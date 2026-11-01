@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(./characters/**)",
+      "Read(./Music/**)",
+      "Read(./mods/**/*.png)",
+      "Read(./mods/**/*.jpg)",
+      "Read(./mods/**/*.ogg)",
+      "Read(./js/data/photos.js)",
+      "Read(./js/data/mod-photos.js)",
+      "Read(./css/dark.css)",
+      "Read(./bot-kurallari-*.json)"
+    ]
+  }
+}
