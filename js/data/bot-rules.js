@@ -31493,6 +31493,61 @@ Stories.BOT_RULES = {
       "note": "korunma izni yokken kondomsuz giriş · 🤝 Güven −3"
     },
     {
+      "id": "r_st_izinsiz_kondom",
+      "name": "🚫 İzinsiz · kondomsuz (kondom şartı var)",
+      "category": "🛡️ Korunma",
+      "when": [
+        "=durum",
+        "=izinsiz_kondom"
+      ],
+      "reply": [
+        "DUR! Kondomsuz İZİN VERMİYORUM, bunu biliyorsun 😠🚫",
+        "Hayır hayır hayır! Kondom şartım var dedim! 😡",
+        "Kondomsuz OLMAZ. Ya takarsın ya biter 🚫",
+        "Bana sormadan kondomsuz mu giriyorsun?! 😤",
+        "Kırmızı çizgimi geçiyorsun… kondom. ŞİMDİ. 😠",
+        "Ciddiyim, kondomsuz devam etmem 🚫😡",
+        "Sana güvenmiştim… kondom takmadan olmaz dedim 😣",
+        "Çık hemen! Kondomsuz izin yok 🚫",
+        "Kaç kere söyleyeceğim? KONDOM! 😤",
+        "Bu benim kuralım, pazarlığı yok 🚫",
+        "Hissediyorum, takmadın… dur, devam etme 😠",
+        "İzin vermediğim bir şeyi yapıyorsun 😡",
+        "Kondom yoksa ben de yokum 🚫",
+        "Sınırımı çiğniyorsun, hoşuma gitmiyor 😣",
+        "Bir daha kondomsuz denersen kapıdan çıkarsın 😠"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "kondom şartı varken kondomsuz önden pozisyon (her seferinde, iki baloncuk) · 🤝 Güven −6"
+    },
+    {
+      "id": "r_st_izinsiz_icine",
+      "name": "🚫 İzinsiz · içine boşaldı",
+      "category": "🛡️ Korunma",
+      "when": [
+        "=durum",
+        "=izinsiz_icine"
+      ],
+      "reply": [
+        "İÇİME Mİ?! Sana izin vermiyorum demiştim! 😡🚫",
+        "Hayır… içime boşalmana izin vermemiştim 😣",
+        "Ne yaptın sen?! Dışarı demiştim! 😠",
+        "Bunu benden habersiz yapmaya hakkın yoktu 😡",
+        "İçime boşalmak YASAKTI, biliyordun 🚫",
+        "Ya hamile kalırsam?! İzin vermemiştim! 😰",
+        "Sınırımı bile bile geçtin 😣🚫",
+        "Bana sormadın bile… çok kızgınım 😠",
+        "Dışarı boşalacaktın! Söz vermiştin 😡",
+        "Bunu affetmem kolay olmayacak 😣",
+        "İzin vermediğim tek şey buydu 🚫😠",
+        "Hemen eczaneye gitmem lazım… neden yaptın?! 😰"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "içe izin vermeyen karaktere (kondom şartı / içe izin yok) korunmasız içe boşalma (iki baloncuk) · 🤝 Güven −8 · 💞 Aşk −3"
+    },
+    {
       "id": "r_st_girissabah",
       "name": "Giriş · sabah hapı",
       "category": "🛡️ Korunma",

@@ -1315,6 +1315,16 @@ button.cs-cond { border: 0; cursor: pointer; }
 .chat-light .st-card .pv-bar { background: rgba(20, 40, 80, .07); }
 .chat-head .st-btn { font-size: 17px; opacity: .6; }
 .chat-head .st-btn.on { opacity: 1; }
+/* ✏️ Düzenleme modu kapalı: detaylı görünümler ve ayarlar gizli */
+.chat.no-edit .st-btn, .chat.no-edit .st-card, .chat.no-edit .me-hud, .chat.no-edit .oc-chgs, .chat.no-edit .oc-fires,
+.chat.no-edit [data-tool="note"], .chat.no-edit [data-tool="fx"], .chat.no-edit [data-tool="turns"], .chat.no-edit [data-tool="quick"],
+.chat.no-edit [data-tool="chg"], .chat.no-edit [data-tool="score"], .chat.no-edit #groupBtn,
+.chat.no-edit [data-tool="place"], .chat.no-edit [data-tool="modemusic"], .chat.no-edit [data-tool="sfx"], .chat.no-edit [data-tool="sexsfx"],
+.chat.no-edit [data-tool="places"], .chat.no-edit [data-tool="lia"],
+.chat.no-edit .menu [data-a="group"], .chat.no-edit .menu [data-a="autoadd"], .chat.no-edit .menu [data-a="meadd"], .chat.no-edit .menu [data-a="hugmode"],
+.chat.no-edit .menu [data-a="bot"], .chat.no-edit .menu [data-a="keywords"], .chat.no-edit .menu [data-a="play"],
+.app.no-edit .nav a[data-tab="monia"] { display: none !important; }
+.chat.no-edit .chat-clock { pointer-events: none; }
 
 /* 🤖 uygulamanın içindeki bot editörü */
 .bot-page { display: flex; flex-direction: column; gap: 10px; }
@@ -3187,6 +3197,42 @@ button.cr-and:active { transform: scale(.9); }
 /* 🔒 kilit ekranı */
 .lock-scr { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; color: #fff; background: radial-gradient(circle at 30% 20%, #2a1b3d, #0d0a14 70%); transition: opacity .25s; }
 .lock-scr.out { opacity: 0; }
+/* 👥 Hesap oluşturma (onboard) */
+.ob-scr { position: fixed; inset: 0; z-index: 190; display: grid; place-items: center; padding: 16px; overflow-y: auto; color: #fff; background: radial-gradient(circle at 30% 20%, #3d1b35, #0d0a14 70%); opacity: 0; transition: opacity .6s ease; }
+.ob-scr.in { opacity: 1; }
+.ob-box { width: 100%; max-width: 380px; display: grid; gap: 14px; text-align: center; transition: opacity .22s ease, transform .22s ease; }
+.ob-box.ob-anim { animation: obIn .4s ease both; }
+.ob-box.ob-leave { opacity: 0; transform: translateY(-10px); }
+@keyframes obIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.ob-lia { display: flex; align-items: flex-end; gap: 10px; text-align: left; margin-top: 6px; }
+.ob-lia-ava { flex: none; width: 56px; height: 56px; border-radius: 50%; overflow: hidden; display: grid; place-items: center; font-size: 30px; background: linear-gradient(135deg, #0089c4, #c2185b); box-shadow: 0 0 0 3px rgba(255, 255, 255, .85), 0 8px 22px rgba(0, 0, 0, .4); }
+.ob-lia-ava img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+.ob-say { padding: 12px 14px; border-radius: 18px 18px 18px 4px; background: rgba(255, 255, 255, .12); }
+.ob-say small { display: block; color: #ff8fb8; font-weight: 700; font-size: 12px; margin-bottom: 2px; }
+.ob-say p { margin: 0; font-size: 18px; line-height: 1.35; }
+.ob-top { display: grid; grid-template-columns: 32px 1fr 32px; align-items: center; gap: 10px; }
+.ob-x { width: 32px; height: 32px; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .1); color: #fff; font-size: 18px; cursor: pointer; }
+.ob-prog { height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .12); overflow: hidden; }
+.ob-prog i { display: block; height: 100%; background: var(--grad); transition: width .3s; }
+.ob-logo { font-size: 30px; font-weight: 800; letter-spacing: -1px; }
+.ob-logo span { color: #ff4f9a; }
+.ob-in { width: 100%; padding: 14px 16px; border: 2px solid rgba(255, 255, 255, .18); border-radius: 16px; background: rgba(255, 255, 255, .08); color: #fff; font-size: 20px; text-align: center; outline: none; }
+.ob-in:focus { border-color: #ff4f9a; }
+.ob-opts { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.ob-opts button { padding: 10px 14px; border: 2px solid rgba(255, 255, 255, .18); border-radius: 999px; background: rgba(255, 255, 255, .08); color: #fff; font-size: 15px; cursor: pointer; }
+.ob-opts button.on { border-color: #ff4f9a; background: rgba(255, 79, 154, .25); }
+.ob-pic { justify-self: center; width: 128px; height: 128px; border-radius: 50%; overflow: hidden; display: grid; place-items: center; border: 2px dashed rgba(255, 255, 255, .3); cursor: pointer; font-size: 34px; }
+.ob-pic img { width: 100%; height: 100%; object-fit: cover; }
+.ob-pic small { display: block; font-size: 13px; opacity: .7; }
+.ob-err { min-height: 18px; color: #ff8fb8; font-size: 14px; }
+.ob-skip { border: 0; background: none; color: rgba(255, 255, 255, .6); font-size: 14px; cursor: pointer; }
+.ob-money { padding: 14px; border-radius: 16px; background: rgba(255, 255, 255, .08); font-size: 17px; }
+.acc-list { display: grid; gap: 8px; }
+.acc-row { display: flex; align-items: center; gap: 6px; }
+.acc-go { flex: 1; display: flex; align-items: center; gap: 10px; padding: 8px 10px; border: 1px solid var(--line, rgba(0, 0, 0, .1)); border-radius: 14px; background: none; color: inherit; text-align: left; cursor: pointer; }
+.acc-go span { display: grid; }
+.acc-row.on .acc-go { border-color: var(--pink, #ff2d78); cursor: default; }
+.acc-del { border: 0; background: none; font-size: 18px; cursor: pointer; }
 .lk-box { display: grid; justify-items: center; gap: 6px; }
 .lk-box.bad .lk-dots { animation: lkShake .35s; }
 @keyframes lkShake { 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }

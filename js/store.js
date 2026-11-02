@@ -14,6 +14,8 @@
  * turns:      sohbet id -> her mesajdan sonra taraf otomatik değişsin mi
  * pinned:     mesaj listesinde sabitlenen karakter id'leri (en fazla 4)
  * monia:      Monia Paneli senaryoları ve kalıp olayları (aşağıda)
+ * accounts:   [{ id, user, threads, chats, side, turns, pinned }] diğer hesaplar; aktif hesabın verisi üst seviyededir (accId).
+ *             Karakterler, Monia ve ayarlar tüm hesaplarda ortak.
  */
 window.Stories = window.Stories || {};
 
@@ -32,8 +34,13 @@ Stories.Store = (() => {
     // scenarios = [{ id, title, desc, cover (resim), chars: [], part, day, season, timeNote, place, placeName, placeIcon, events: [{ id, title, text }], created }]
     // places = eklediğin mekanlar [{ id, icon, name, tags: [etiket id], hints: [] }], groups = kendi etiketlerin [{ id, icon, name }]
     // events: { title, cat, text, steps: [], opener, starter, tones: [], note, part, when, place (olayın kendi zamanı / mekanı), base? (değiştirdiğin hazır olayın id'si) }
-    monia: { events: [], scenarios: [], places: [], groups: [] }
+    monia: { events: [], scenarios: [], places: [], groups: [] },
+    accId: '',
+    accounts: []
   });
+  // Hesaba özel alanlar (geri kalanı ortak)
+  const ACC_KEYS = ['user', 'threads', 'chats', 'side', 'turns', 'pinned'];
+  const accBlank = () => { const d = defaults(); return ACC_KEYS.reduce((o, k) => (o[k] = d[k], o), {}); };
 
   const read = k => { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } };
 
@@ -82,11 +89,48 @@ Stories.Store = (() => {
   }
 
   function reset() {
-    const user = state.user;
+    const user = state.user, accId = state.accId;
     state = defaults();
     state.user = user;
+    state.accId = accId;
     save();
   }
 
-  return { get state() { return state; }, save, replace, reset, uid };
+  /* 👥 Hesaplar: liste aktif hesap dahil [{ id, user, active }]; geçince aktif hesabın alanları accounts'a,
+   * seçilenin alanları üst seviyeye taşınır */
+  const ensureId = () => { if (!state.accId) state.accId = uid(); };
+  function accounts() {
+    ensureId();
+    return [{ id: state.accId, user: state.user, active: true }, ...state.accounts.map(a => ({ id: a.id, user: a.user, active: false }))];
+  }
+  function stash() {
+    ensureId();
+    const cur = { id: state.accId };
+    ACC_KEYS.forEach(k => cur[k] = state[k]);
+    state.accounts.push(cur);
+  }
+  function load(acc) {
+    state.accounts = state.accounts.filter(a => a.id !== acc.id);
+    ACC_KEYS.forEach(k => state[k] = acc[k] != null ? acc[k] : accBlank()[k]);
+    state.accId = acc.id;
+  }
+  function switchAccount(id) {
+    const acc = state.accounts.find(a => a.id === id);
+    if (!acc) return false;
+    stash(); load(acc);
+    return save();
+  }
+  function addAccount(user) {
+    stash();
+    load(Object.assign(accBlank(), { id: uid(), user }));
+    return save();
+  }
+  // Aktif hesap silinirse sıradaki hesaba geçilir; tek hesapsa boş yeni hesap açılır (adı olmadığı için kayıt ekranı gelir)
+  function removeAccount(id) {
+    if (id === state.accId) load(state.accounts[0] || Object.assign(accBlank(), { id: uid() }));
+    else state.accounts = state.accounts.filter(a => a.id !== id);
+    return save();
+  }
+
+  return { get state() { return state; }, save, replace, reset, uid, accounts, switchAccount, addAccount, removeAccount };
 })();

@@ -86,7 +86,9 @@ Stories.Bot = (() => {
   const originTrait = city => { const r = Stories.World && Stories.World.regionOf(city); return r ? 'Memleket: ' + r : ''; };
   function fits(rule, ch) {
     const traits = (rule.traits || []).filter(Boolean);
-    const have = [...(ch.traits || []), ageTrait(ch.age), originTrait(ch.city)].filter(Boolean);
+    // 🛡️ korunma seçiminden gelenler: "Kondom: Var", "İçe: İzin yok", "Hap: Alıyor"… (app.js protTraits)
+    const prot = Stories.protTraits ? Stories.protTraits(ch) : [];
+    const have = [...(ch.traits || []), ageTrait(ch.age), originTrait(ch.city), ...prot].filter(Boolean);
     if (traits.length && !traits.every(t => String(t).split('|').some(a => have.some(x => lower(x) === lower(a))))) return false;
     const names = (rule.chars || []).map(lower).filter(Boolean);
     if (names.length) {

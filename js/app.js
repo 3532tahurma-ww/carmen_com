@@ -378,6 +378,7 @@
     const full = ['p', 'chat'].includes(r.name) || (r.name === 'create' && r.id);
     app.classList.toggle('no-nav', !!full);
     document.querySelectorAll('.nav a').forEach(a => a.classList.toggle('active', a.dataset.tab === r.name && !full));
+    app.classList.toggle('no-edit', !editOn()); // ✏️ kapalıyken 📖 Monia sekmesi gizli
     document.querySelectorAll('.sheet-wrap, .lightbox').forEach(el => el.remove());
     clearTimeout(playTimer);
     clearTimeout(botTimer);
@@ -434,10 +435,15 @@
       case 'hikayeler': return renderHomeMonia();
       case 'messages': return renderMessages();
       case 'me': return renderMe();
-      case 'monia': return renderMonia(r.id, r.extra);
+      case 'monia':
+        if (!editOn()) { notify('Monia için Ben → ⚙️ Ayarlar → ✏️ Düzenleme modunu aç', '✏️'); ui.meTab = 'ayar'; location.replace('#/me'); return; }
+        return renderMonia(r.id, r.extra);
       case 'p': return renderProfile(c);
       case 'chat': return renderChat(c, t);
-      case 'create': return renderCreate(r.id && byId(r.id) ? r.id : null);
+      // ✨ Oluştur sadece ✏️ Düzenleme modunda (Ben → ⚙️ Ayarlar)
+      case 'create':
+        if (!editOn()) { notify('Oluştur için Ben → ⚙️ Ayarlar → ✏️ Düzenleme modunu aç', '✏️'); ui.meTab = 'ayar'; location.replace('#/me'); return; }
+        return renderCreate(r.id && byId(r.id) ? r.id : null);
       default: return renderHome();
     }
   }
@@ -578,9 +584,9 @@
         <span><b>${esc((c.name || '?').split(' ')[0])}</b><small>${l ? esc((l.from === 'me' ? 'Sen: ' : '') + preview(l)) : 'Henüz mesaj yok'}</small></span></a>`; }),
       `<a class="hl-cont hl-cont-g" href="#/oyun/ps"><i>🗂️</i><span><b>Problematic Subjects</b><small>Bölüm ${psData().level}</small></span></a>`,
       `<a class="hl-cont hl-cont-g" href="#/oyun/fp"><i>🔥</i><span><b>Fiery Passions</b><small>Gün ${fpData().day}</small></span></a>`].join('');
-    // 🧭 hızlı erişim
-    const QUICK = [...['carmen', 'fans', 'live', 'gram', 'tinder'].map(k => sites.find(s => s.k === k)).filter(Boolean).map(s => [s.href, s.ic, s.logo.replace(/<[^>]+>/g, '')]),
-      ['#/oyun', '🎮', 'CarmenPlay'], ['#/haberler', '📰', 'Haberler'], ['#/booble', '🔍', `Booble +${sites.length}`]];
+    // 🧭 rastgele iki site kartı (oturum boyunca aynı, 🎲 karıştırır)
+    if (!ui.homeSites || ui.homeSites.some(k => !sites.some(s => s.k === k))) ui.homeSites = sample(sites, 2).map(s => s.k);
+    const pick = ui.homeSites.map(k => sites.find(s => s.k === k));
     view.innerHTML = `
       <div class="page-pad home home-land">
         <div class="hl-head">
@@ -591,7 +597,8 @@
         </div>
         <div class="hl-sec"><h3>⏯️ Kaldığın yerden</h3><a href="#/messages">Sohbetler ›</a></div>
         <div class="hl-conts">${cont}</div>
-        <div class="hl-quick">${QUICK.map(([h, ic, l], i) => `<a href="${h}" style="--i:${i}"><span>${ic}</span><small>${esc(l)}</small></a>`).join('')}</div>
+        ${pick.map((s, i) => `<a class="net-card net-${s.k} hl-ad" href="${s.href}" style="--i:${i}"><span class="net-ic">${s.ic}</span>
+          <span class="net-txt"><small>🔒 ${s.url}</small><b>${s.logo}</b><span>${esc(s.desc)}</span></span></a>`).join('')}
         ${(() => { const nw = newsUnseen(), [ic, t] = HOME_NEWS[0]; return `<a class="hl-news" href="#/haberler">
           <span class="hl-lia">💁‍♀️</span>
           <span class="hl-news-t"><small>📰 Lia'dan haberler${nw ? ` · <em>${nw} yeni</em>` : ''}</small><b>${ic} ${esc(t)}</b></span>
@@ -610,7 +617,7 @@
         ${left ? '<button type="button" class="btn ghost block hl-more" id="hlMore">Daha fazla ↓</button>' : ''}
         <footer class="cm-foot">© Carmen · Tüm profiller ve ilanlar kurgusaldır, 18+</footer>
       </div>`;
-    $('#hlShuffle').onclick = () => { ui.homeAds = null; ui.homeMore = 1; renderHome(); };
+    $('#hlShuffle').onclick = () => { ui.homeAds = null; ui.homeSites = null; ui.homeMore = 1; renderHome(); };
     $('#hlBoss').onclick = () => bossKey();
     const mb = $('#hlMore');
     if (mb) mb.onclick = () => { const y = window.scrollY; ui.homeMore = more + 1; renderHome(); window.scrollTo(0, y); };
@@ -2032,7 +2039,7 @@
       <div class="bb-home">${logo}
         <form class="bb-form" id="bbForm"><span>🔍</span><input id="bbQ" type="search" placeholder="Booble'da ara ya da site adı yaz" value="${esc(q)}" autocomplete="off" enterkeyhint="search"></form>
         <div class="bb-btns"><button type="submit" form="bbForm" class="btn ghost sm">Booble'da ara</button><button type="button" class="btn ghost sm" id="bbLucky">Şansımı deneyeceğim</button></div>
-        <div class="bb-pop"><small>Popüler aramalar</small>${sites.map(s => `<button type="button" data-bbq="${esc(bbPlain(s.logo))}">${s.ic} ${esc(bbPlain(s.logo))}</button>`).join('')}</div>
+        <div class="bb-pop"><small>Popüler aramalar</small>${sites.map(s => `<button type="button" data-go="${s.href}">${s.ic} ${esc(bbPlain(s.logo))}</button>`).join('')}</div>
       </div>
       <div class="bb-results" id="bbRes">${results()}</div>
       <footer class="bb-foot">Booble · <button type="button" class="bb-all" data-bbq="*">Tüm siteler</button> · Gizli sekme 🕶️</footer></div>`;
@@ -2047,7 +2054,7 @@
       if (exact || h.length === 1) location.hash = (exact || h[0]).href;
     };
     $('#bbLucky').onclick = () => { const h = bbSearch(inp.value); location.hash = (h[0] || sites[Math.floor(Math.random() * sites.length)]).href; };
-    view.querySelector('.bb-pop').onclick = e => { const b = e.target.closest('[data-bbq]'); if (b) { inp.value = b.dataset.bbq; upd(); inp.focus(); } };
+    view.querySelector('.bb-pop').onclick = e => { const b = e.target.closest('[data-go]'); if (b) location.hash = b.dataset.go; };
     if (!bbNorm(q)) inp.focus();
   }
   function netSites() {
@@ -2841,7 +2848,121 @@
   const JOB_OFFICE = /sekreter|asistan|ofis|müdür|yönetici|muhasebe|insan kaynak|pazarlama|satış|danışman|banka|halkla ilişkiler|editör|ajans/;
   const jobFits = c => jobRole(c) !== JOB_ROLES[JOB_ROLES.length - 1] || JOB_OFFICE.test(low(c.job));
   const jobCo = c => cmPick(c, 'co', jobRole(c).co);
+  /* 💼 Kazandıran işler (CarmenJobs → 🏦 CarmenBank): sohbet "💼 İş için" olur (th.job = { id, at: başladığı mesaj, ts, preg: başta hamile miydi });
+   * iş süresince yazılan olaylardan ücret hesaplanır, ✅ İşi bitir → bakiyeye yatar (S().user.bank hareketleri). cool: aynı işe tekrar için saat */
+  const GIG_DK = { small: 300, mid: 500, big: 900, huge: 1400 };
+  const gigDick = () => ((Stories.ME_DICK || {}).size || {})[S().user.dick];
+  const GIGS = [
+    { id: 'donor', ic: '🧪', name: 'Sperm donörü', co: 'CarmenKlinik Tüp Bebek Merkezi', cool: 24, who: 'Klinik hemşiresi',
+      say: ['Ben {o}, numune odasından sorumlu hemşireyim. Kimse seni orada dergilerle yalnız bırakmıyor 😏 Elimle, ağzımla yardımcı olurum; tek kural: numune kaba gidecek, ne kadar yoğun o kadar iyi.',
+        'Merhaba, ben {o} 🩺 Bağışçılarımıza özel ilgi gösteriyorum. Odaya beraber gireceğiz, seni hazırlayacağım, son anda kabı ben tutacağım. Birkaç gün biriktirirsen ücretin artar 😉'],
+      greet: ['Numune odası hazır 🧪 kapıyı kilitledim, önlüğümü çıkarayım mı? 😏', 'Hoş geldin 🩺 kabı masaya koydum… ama acele etme, yardım edeceğim 😈'],
+      desc: 'Klinikte numune ver. Ücret 💦 Cum değerine ve yoğunluğa (Cumming Size) göre; uzun süre vermediysen kalite primi. En fazla 2 numune sayılır.',
+      pay: s => {
+        if (!s.cum) return [['Numune yok', 0]];
+        const n = Math.min(2, s.cum), d = gigDays('donor'), k = d == null ? 1.5 : 1 + .25 * Math.min(4, Math.floor(d));
+        const base = n * (250 + Math.round(s.cumP * 4)) + Math.min(3, s.sizes) * 100;
+        return [[`💦 Numune ×${n} (Cum ${s.cumP})`, n * (250 + Math.round(s.cumP * 4))], [`🧪 Yoğunluk ×${Math.min(3, s.sizes)}`, Math.min(3, s.sizes) * 100], [`⏳ Bekleme primi ×${k}`, Math.round(base * (k - 1))]];
+      } },
+    { id: 'model', ic: '🍆', name: 'Beden modeli', co: 'Nova Studio', cool: 12, who: 'Çekim partneri',
+      say: ['Ben {o}, Nova Studio\'nun modeliyim 📸 Seninle partner olarak poz vereceğim: farklı pozlar, göğüs, kalça yakın çekimleri; finali kameraya, dışarıda çekiyoruz. Ücretin bedenine göre.',
+        'Selam, ben {o} 🎬 Bu çekimde ikimiz varız, kamera her şeyi alıyor. Ne kadar çok poz o kadar çok para; son kare dışarıda, üstüme 😏'],
+      greet: ['Işıklar hazır, kamera kayıtta 📸 üstündekileri çıkar, ilk poz bende 😏', 'Fotoğrafçı çıktı, sadece ikimiz ve kamera kaldık 🎬 başlayalım mı?'],
+      desc: 'Çekimde poz ver. Taban ücret 🍆 Dick Size\'a göre; her farklı poz, onun orgazmı ve final çekimi (dışarı boşalma) prim.',
+      req: () => gigDick() ? '' : 'Ben → Profil\'den 🍆 Dick Size seç',
+      pay: s => {
+        if (!s.pos && !s.body) return [['Çekim yapılmadı', 0]];
+        const p = Math.min(10, s.pos + s.body);
+        return [[`🍆 Çekim ücreti (${S().user.dick})`, GIG_DK[gigDick()] || 500], [`📸 Poz ×${p}`, p * 60], [`💗 Onun orgazmı ×${Math.min(2, s.org)}`, Math.min(2, s.org) * 150], ['💦 Final çekimi', s.out ? 200 : 0]];
+      } },
+    { id: 'surrogate', ic: '🤰', name: 'Bebek isteyen çift', co: 'Umut Aile Merkezi', cool: 0, who: 'Bebek isteyen kadın',
+      say: ['Ben {o}. Eşimle yıllardır bebek istiyoruz ama olmuyor… Senden tek bir şey istiyoruz 🥺 Hap kullanmıyorum, içime bırakacaksın. Hamile kalırsam çift olarak cömertçe ödeyeceğiz.',
+        'Merhaba, ben {o} 🤍 Eşim biliyor ve razı. Riskli günlerimdeyim, korunmayacağız; her deneme için de ödeme var ama asıl ödül bebek.'],
+      greet: ['Eşim bu gece evde değil… biliyorsun neden buradasın 🥺🤍', 'Riskli günlerimdeyim, hazırım… lütfen bu sefer olsun 🤰'],
+      desc: 'Çift bebek istiyor: içe izin veren, hap kullanmayan karakterle. Hamile kalırsa büyük ödeme; kalmazsa her deneme küçük ücret (en fazla 3).',
+      need: ch => !ch ? '' : (ch.fields || {}).hamile ? 'Zaten hamile' : protGet(ch).ice !== 'var' ? 'İçe izin vermiyor' : protGet(ch).hap === 'var' ? 'Doğum kontrol hapı kullanıyor' : '',
+      pay: s => s.preg ? [['🤰 Hamile kaldı · çiftin ödemesi', 15000]] : [[`💦 Deneme ×${Math.min(3, s.inside)}`, Math.min(3, s.inside) * 300]] },
+    { id: 'masor', ic: '💆', name: 'Masör', co: 'Lotus Wellness', cool: 6, who: 'Müşteri',
+      say: ['Ben {o}, Lotus Wellness\'ta randevum var ve masörüm sen olacaksın 💆 Sırtımdan başla, yağı bol koy. Gerisine ben karar veririm; beğenirsem bahşişim cömert olur 😏',
+        'Selam, ben {o} 🌸 Haftalık masajım, bu sefer yeni masör istedim. Önce gerçekten masaj; sonra… ellerine bağlı. Hoşlanmadığım bir şey yaparsan bahşiş yok.'],
+      greet: ['Havlum altında hiçbir şey yok 💆 yağı ısıttın mı?', 'Yüzüstü uzandım… sırtımdan başla, sonra bakarız 😏'],
+      desc: 'Masajla başla, nereye kadar gideceğine o karar verir. Bahşiş 💗 Uyarılma\'sına, ❤️ sevdiği olaylara ve orgazmına göre; 💔 sevmediği / 🚫 izin vermediği kesinti.',
+      pay: s => !s.massage ? [['Masaj yapılmadı', 0]] : [['💆 Seans ücreti', 300], [`🤲 Masaj ×${Math.min(5, s.massage)}`, Math.min(5, s.massage) * 80], [`💗 Bahşiş (Uyarılma ${s.uyar})`, Math.round(s.uyar * 5)],
+        [`❤️ Sevdiği ×${s.liked}`, s.liked * 50], [`💗 Orgazm ×${Math.min(2, s.org)}`, Math.min(2, s.org) * 200], [`💔 Sevmediği / izinsiz ×${s.bad}`, -150 * s.bad]] }
+  ];
+  const gigOf = id => GIGS.find(g => g.id === id);
+  // 🚫 bu işe engel: senin şartın (req) ya da karakterin şartı (need)
+  const gigNo = (g, ch) => (g.req ? g.req() : '') || (g.need && ch ? g.need(ch) : '');
+  const gigDays = id => { const b = (S().user.bank || []).find(x => x.job === id); return b ? (Date.now() - b.ts) / 864e5 : null; };
+  // ⏳ tekrar için kalan saat (0: hazır)
+  const gigWait = g => { const b = g.cool && (S().user.bank || []).find(x => x.job === g.id); return b ? Math.max(0, Math.ceil(g.cool - (Date.now() - b.ts) / 36e5)) : 0; };
+  // iş başladığından beri yazılan olaylar
+  function gigStats(t, ch) {
+    const all = allEvents(), evs = msgsOf(t).slice(t.job.at).filter(m => m.from === 'me' && m.ev).map(m => all.find(e => e.id === m.ev)).filter(Boolean);
+    const tg = e => (e.tags || []).map(low), pv = (c, me, l) => { const p = allParams().find(x => (x.who === 'me') === me && low(x.label) === l); return p && c ? paramVal(c, p) : 0; };
+    const cums = evs.filter(e => tg(e).includes('boşalma'));
+    return { evs, cum: cums.length, inside: cums.filter(isInsideCum).length, out: cums.some(e => !tg(e).includes('vajinal') && !tg(e).includes('anal')),
+      sizes: evs.filter(e => low(catOfEv(e).label) === 'cumming size').length, org: evs.filter(e => low(e.title) === 'orgazm').length,
+      pos: new Set(evs.filter(e => (catOfEv(e).tags || []).includes(CHAT_TOP_TAG)).map(e => e.id)).size,
+      body: evs.filter(e => ['göğüs', 'kalça', 'kıyafet'].some(x => tg(e).includes(x))).length,
+      massage: evs.filter(e => /masaj|massage|masöz/i.test([e.title, ...(e.tags || []), e.desc || ''].join(' '))).length,
+      liked: evs.filter(e => ((ch || {}).likes || []).includes(e.id)).length, bad: evs.filter(e => [...((ch || {}).dislikes || []), ...((ch || {}).denies || [])].includes(e.id)).length,
+      uyar: pv(ch, false, 'uyarılma'), cumP: pv(S().user, true, 'cum'), preg: !!((ch || {}).fields || {}).hamile && !t.job.preg };
+  }
+  const gigPay = (t, ch) => { const g = gigOf(t.job.id), lines = g.pay(gigStats(t, ch)); return { g, lines, total: Math.max(0, lines.reduce((a, [, v]) => a + v, 0)) }; };
+  // 🏦 bakiyeye ekler ve hareket yazar (en yeni başta, en fazla 200)
+  function bankAdd(amt, label, job) {
+    const u = S().user;
+    u.money = (u.money != null ? +u.money : START_MONEY) + amt;
+    u.bank = [{ ts: Date.now(), amt, label, job }, ...(u.bank || [])].slice(0, 200);
+    save();
+  }
+  // 💼 sohbeti işe bağlar (başlangıç mesajıyla)
+  function gigStart(t, ch, g) {
+    t.job = { id: g.id, at: msgsOf(t).length, ts: Date.now(), preg: !!(ch.fields || {}).hamile };
+    msgsOf(t).push({ id: Store.uid(), from: 'sys', ts: Date.now(), text: `💼 İş başladı: ${g.ic} ${g.name} · ${g.co}\n${g.desc}` });
+    save();
+  }
+  // seçim sayfası: işler (bekleme / şart) → done(g)
+  function gigSheet(ch, done) {
+    const sh = sheet(`<div class="sheet-grip"></div><h3>💼 Hangi iş?</h3>
+      <div class="ws-list">${GIGS.map(g => { const w = gigWait(g), nd = gigNo(g, ch); return `<button type="button" class="ws-row" data-gig="${g.id}"${w || nd ? ' disabled style="opacity:.5"' : ''}><span class="ws-ric jb-ic">${g.ic}</span>
+        <span class="ws-rin"><b>${esc(g.name)}</b><small>${esc(g.co)}</small><small>${w ? `⏳ ${w} saat sonra` : nd ? `🚫 ${esc(nd)}` : esc(g.desc)}</small></span></button>`; }).join('')}</div>`, 'light');
+    sh.el.onclick = e => { const b = e.target.closest('[data-gig]'); if (!b || b.disabled) return; sh.close(); done(gigOf(b.dataset.gig)); };
+  }
+  // 📋 işin ilanları: şartı tutan Carmen.com kadınlarından 3'ü (her iş kendi sırasıyla)
+  const gigAds = g => cmAll().filter(c => !g.need || !g.need(c)).sort((a, b) => cmNum(a, 'gig' + g.id, 997) - cmNum(b, 'gig' + g.id, 997)).slice(0, 3);
+  // 🛡️ sınırları: korunma kademesi, ❤️ sevdikleri, 🚫/💔 asla dedikleri (koyu)
+  function gigLimits(c) {
+    const p = protGet(c), t = ids => feelEvents(ids || []).slice(0, 4).map(e => e.title).join(', ');
+    const prot = p.kon === 'var' ? '🛡️ <b>Kondom şartım var, kondomsuz olmaz.</b>' : p.ice === 'yok' ? '↩️ Kondom şart değil ama <b>içime boşalmak yok</b>, dışarı.'
+      : p.hap === 'var' ? '💊 Hap kullanıyorum, içime boşalabilirsin.' : p.ice === 'var' ? '🤰 Hap kullanmıyorum; içime boşalırsan hamile kalabilirim.' : '🛡️ Korunmayı orada konuşuruz.';
+    const pids = PROT_T.map(protEvId), no = t([...(c.denies || []).filter(id => !pids.includes(id)), ...(c.dislikes || [])]);
+    return [prot, t(c.likes) && `❤️ Sevdiklerim: ${esc(t(c.likes))}`, no && `🚫 <b>Asla: ${esc(no)}</b>`].filter(Boolean);
+  }
+  const gigShort = c => { const p = protGet(c); return p.kon === 'var' ? '🛡️ Kondomlu' : p.ice === 'yok' ? '↩️ Dışarı' : p.hap === 'var' ? '💊 Hap, içe izinli' : p.ice === 'var' ? '🤰 Hapsız, içe izinli' : '🛡️ Konuşulur'; };
+  function renderGigAd(g, c) {
+    const first = c.name.split(' ')[0], w = gigWait(g), nd = gigNo(g, c);
+    view.innerHTML = wsPage('jobs', 'Carmen<i>Jobs</i>', `carmenjobs.com/is/${g.id}`, '#/is', `
+      <div class="ws-sec jb-top"><span class="jb-logo">${g.ic}</span><div><small>${esc(g.co)} · 📍 ${esc(c.city || 'Merkez')}</small><h2>${esc(g.name)}</h2>
+        <small>${g.cool ? `⏳ ${g.cool} saatte bir` : '🤰 Tek seferlik büyük ödeme'} · ücret işi nasıl yaptığına göre</small></div></div>
+      <section class="ws-sec jb-hr">${avatar(c, 56)}<div><small>${esc(g.who)}</small><b>${esc(c.name)}${c.age ? `<small>, ${esc(c.age)}</small>` : ''}</b><small>${esc(persOf(c).slice(0, 2).join(', '))}</small></div></section>
+      <section class="ws-sec"><h3>💬 ${esc(first)} anlatıyor</h3><p>${esc(cmPick(c, 'gs' + g.id, g.say).replace(/\{o\}/g, first))}</p></section>
+      <section class="ws-sec"><h3>📏 Sınırlarım</h3><ul class="cm-good">${gigLimits(c).map(x => `<li>${x}</li>`).join('')}</ul></section>
+      <section class="ws-sec"><h3>💰 Ücret</h3><p class="cm-mute">${esc(g.desc)}</p></section>
+      <div class="ws-sec"><button type="button" class="btn primary" id="gigGo"${w || nd ? ' disabled' : ''}>${w ? `⏳ ${w} saat sonra` : nd ? `🚫 ${esc(nd)}` : '💼 İşi kabul et'}</button></div>`);
+    $('#gigGo').onclick = () => {
+      const ch = cmAdopt(c), t = newThread(ch, g.name);
+      gigStart(t, ch, g);
+      msgsOf(t).push({ id: Store.uid(), from: 'her', ts: Date.now() + 1, text: cmPick(c, 'gg' + g.id, g.greet) });
+      save();
+      sfx('match');
+      location.hash = `#/chat/${t.id}`;
+    };
+  }
   function renderJobs(id) {
+    const gm = /^gig-(\w+?)-(.+)$/.exec(id || ''), gg = gm && gigOf(gm[1]), gc = gm && cmFind(gm[2]);
+    if (gg && gc) return renderGigAd(gg, gc);
     const c = id && cmFind(id);
     if (c) return renderJobPage(c);
     const list = cmAll().filter(c => c.job), q = low(ui.jbQ);
@@ -2849,6 +2970,14 @@
     view.innerHTML = wsPage('jobs', 'Carmen<i>Jobs</i>', 'carmenjobs.com', '#/booble', `
       <div class="ws-hero"><h1>Hayalindeki iş seni bekliyor 💼</h1><p>${list.length} açık pozisyon · başvur, mülakata çağrıl</p>
         <input id="jbQ" type="search" placeholder="🔍 Meslek, şehir, şirket…" value="${esc(ui.jbQ || '')}"></div>
+      <h3 class="ws-h" style="margin:16px 4px 8px;font-size:1rem">🏦 CarmenBank <small class="cm-mute">· bakiye <b>${money()}</b></small></h3>
+      <div class="ws-list">${(S().user.bank || []).slice(0, 5).map(b => `<div class="ws-row"><span class="ws-rin"><b>${b.amt >= 0 ? '+' : ''}${b.amt.toLocaleString('tr-TR')}₺</b><small>${esc(b.label)} · ${new Date(b.ts).toLocaleString('tr-TR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}</small></span></div>`).join('')
+        || '<div class="ws-row"><span class="ws-rin"><small>Henüz hareket yok. Aşağıdaki işlerden birini yap.</small></span></div>'}</div>
+      <h3 class="ws-h" style="margin:16px 4px 8px;font-size:1rem">💼 Kazandıran işler <small class="cm-mute">· ilana dokun, ne yapılacağını ve sınırlarını o anlatsın</small></h3>
+      <div class="ws-list">${GIGS.flatMap(g => { const w = gigWait(g); return gigAds(g).map(c => `<a class="ws-row" href="#/is/gig-${g.id}-${c.id}"${w ? ' style="opacity:.5"' : ''}>${avatar(c, 46)}
+        <span class="ws-rin"><b>${g.ic} ${esc(g.name)} · ${esc(c.name.split(' ')[0])}</b><small>${esc(g.co)} · ${esc(g.who)}${w ? ` · ⏳ ${w} saat sonra` : ''}</small><small>${gigShort(c)}</small></span><i class="ws-go">›</i></a>`); }).join('')
+        || '<div class="ws-row"><span class="ws-rin"><small>Şu an ilan yok.</small></span></div>'}</div>
+      <h3 class="ws-h" style="margin:16px 4px 8px;font-size:1rem">📋 İş ilanları</h3>
       <div class="ws-list">${shown.map(c => { const r = jobRole(c); return `<a class="ws-row" href="#/is/${c.id}"><span class="ws-ric jb-ic">${r.ic}</span><span class="ws-rin"><b>${esc(c.job)}</b>
         <small>${esc(jobCo(c))} · 📍 ${esc(c.city || 'Uzaktan')} · ${1 + cmNum(c, 'jd', 20)} gün önce</small><small>İşe alım: ${esc(c.name.split(' ')[0])} · ${12 + cmNum(c, 'ja', 140)} başvuru</small></span><i class="ws-go">›</i></a>`; }).join('')}</div>`);
     const inp = $('#jbQ');
@@ -5133,6 +5262,8 @@
   }
   if (darkMQ) darkMQ.addEventListener('change', () => { if (themePref() === 'auto') applyTheme(); });
   applyTheme();
+  // ✏️ Düzenleme modu: kapalıyken ✨ Oluştur ve sohbetteki detaylı görünümler/ayarlar gizli (.chat.no-edit)
+  const editOn = v => { try { if (v != null) localStorage.setItem('amor-stories:edit', v ? '1' : '0'); return localStorage.getItem('amor-stories:edit') === '1'; } catch (e) { return false; } };
   const liaOn = v => { try { if (v != null) localStorage.setItem('amor-stories:lia', v ? '1' : '0'); return localStorage.getItem('amor-stories:lia') !== '0'; } catch (e) { return true; } };
   // 💞 ideal seansın aşamaları (kategori adlarıyla); Lia sıradaki aşamayı önerir
   const LIA_PHASES = [
@@ -5389,7 +5520,7 @@
   }
   // 💬 karakter şeridi: dokununca son sohbetine gider (sohbeti yoksa yenisi açılır)
   const charStrip = () => chars().length ? `<div class="ch-strip">
-      <a class="ch-ava ch-new" href="#/create"><span>＋</span><small>Yeni</small></a>
+      ${editOn() ? '<a class="ch-ava ch-new" href="#/create"><span>＋</span><small>Yeni</small></a>' : ''}
       ${[...chars()].sort((a, b) => (currentThread(b) ? activity(currentThread(b)) : b.created || 0) - (currentThread(a) ? activity(currentThread(a)) : a.created || 0))
         .map((c, i) => `<button type="button" class="ch-ava${currentThread(c) ? ' has' : ''}" data-cav="${c.id}" style="--i:${i}">${avatar(c, 56)}<small>${esc(c.name.split(' ')[0])}</small></button>`).join('')}
     </div>` : '';
@@ -6028,7 +6159,8 @@
     else setKey(saved === 'her' ? c.id : 'me');
     const keyOf = () => cs.side === 'her' ? cs.who : cs.side;
     const curChar = () => cs.side === 'her' ? (byId(cs.who) || GHOST) : null;
-    const turns = () => S().turns[th.id] !== false;
+    // ✏️ düzenleme modu kapalıyken ⇄ sırayla yazma hep kapalı (düğmesi gizli)
+    const turns = () => editOn() && S().turns[th.id] !== false;
 
     ui.undo = ui.undo || {};
     const stack = ui.undo[th.id] = ui.undo[th.id] || [];
@@ -6056,9 +6188,11 @@
         </div>`;
 
     // 🤖 bot modu varsayılan açık: hiç açılıp kapatılmamış sohbette açılır (kapattığın sohbet kapalı kalır)
-    if (th.bot === undefined) th.bot = true;
+    if (th.bot === undefined || !editOn()) th.bot = true; // ✏️ düzenleme modu kapalıyken 🤖 bot hep açık
+    // 🗣️ düzenleme modu kapalıyken olay mesajlarım varsayılan açık (⋮'dan kapattığın sohbet kapalı kalır)
+    if (th.meAdd === undefined && !editOn()) th.meAdd = true;
     const chatHtml = `
-      <div class="chat">
+      <div class="chat${editOn() ? '' : ' no-edit'}">
         <div class="chat-head">
           <a class="icon-btn" href="#/messages" aria-label="Geri">${ICON.arrowLeft}</a>
           ${head}
@@ -6079,6 +6213,7 @@
 
         ${hcard}
         ${th.kd ? '<button type="button" class="kd-bar" id="kdBar"></button>' : ''}
+        ${th.job && !group ? '<button type="button" class="kd-bar" id="jobBar"></button>' : ''}
         <div class="st-card" id="stCard" hidden></div>
 
         <div class="msgs-wrap">
@@ -6092,11 +6227,11 @@
         <div class="mode-bar" id="modeBar" hidden></div>
         <div class="reply-bar" id="replyBar" hidden></div>
         ${group ? '<div class="spk-row" id="spkRow"></div>' : ''}
-        <div class="side-hint" id="sideHint"></div>
+        <div class="side-hint" id="sideHint"${editOn() ? '' : ' hidden'}></div>
         <div class="ev-quick" id="evQuick" hidden></div>
         <div class="ev-pend" id="evPend" hidden></div>
         <form class="composer" id="composer" autocomplete="off">
-          <button type="button" class="side-btn" id="sideBtn" aria-label="Kimin yazdığını değiştir"></button>
+          <button type="button" class="side-btn" id="sideBtn" aria-label="Kimin yazdığını değiştir"${editOn() ? '' : ' hidden'}></button>
           <input id="msgInput" type="text" enterkeyhint="send" maxlength="1000">
           <button class="send-btn" type="submit" aria-label="Gönder">${ICON.send}</button>
         </form>
@@ -6106,7 +6241,7 @@
             <small class="ct-sec">✍️ Yaz</small>
             <button type="button" data-tool="note"><span>📝</span>Not</button>
             <button type="button" data-tool="fx"><span>✨</span>Efekt</button>
-            <button type="button" data-tool="turns"><span>⇄</span>Sırayla</button>
+            ${editOn() ? '<button type="button" data-tool="turns"><span>⇄</span>Sırayla</button>' : ''}
             <button type="button" data-tool="rp" class="${th.rp ? 'on' : ''}"><span>🎭</span>Role-play</button>
             <button type="button" data-tool="place"${placesOn() ? '' : ' hidden'}><span>📍</span>Mekan</button>
             <small class="ct-sec">🎨 Görünüm ve ses</small>
@@ -6255,7 +6390,7 @@
           return `<button type="button" data-spk="${k}" class="${keyOf() === k ? 'on' : ''}">${m ? avatar(m, 26) : userAvatar(26)}<span>${esc(m ? m.name : userName())}</span></button>`;
         }).join('');
       }
-      $('[data-tool=turns]').classList.toggle('on', turns());
+      if ($('[data-tool=turns]')) $('[data-tool=turns]').classList.toggle('on', turns());
       $('[data-tool=note]').classList.toggle('on', side === 'sys');
       // ✨ sonraki mesajın efekti
       const nf = fxById(cs.nextFx);
@@ -6265,7 +6400,7 @@
       if (th.autoAdd) $('#sideHint').innerHTML += ` · <span class="add-on">🪄 Ekler açık <button type="button" id="addOff" aria-label="Otomatik ekleri kapat">✕</button></span>`;
       const ao = $('#addOff');
       if (ao) ao.onclick = () => { th.autoAdd = false; save(); drawComposer(); };
-      if (th.bot) $('#sideHint').innerHTML += ` · <span class="bot-on">🤖 Bot açık <button type="button" id="botOff" aria-label="Bot modunu kapat">✕</button></span>`;
+      if (th.bot && editOn()) $('#sideHint').innerHTML += ` · <span class="bot-on">🤖 Bot açık <button type="button" id="botOff" aria-label="Bot modunu kapat">✕</button></span>`;
       const bo = $('#botOff');
       if (bo) bo.onclick = () => { th.bot = false; save(); clearTimeout(botTimer); drawComposer(); };
       const fc = $('#fxClear');
@@ -6714,6 +6849,8 @@
         const only = { ...rules, rules: (rules.rules || []).filter(r => (r.when || []).includes('=' + st2) && (pk || !String(r.id).startsWith('r_pk_'))) };
         const sm = only.rules.length && BOT.best(only, `durum ${st2}`, ch);
         if (sm && !sm.fallback) parts.push(...BOT.reply(sm.rule, vars, botRecent(sm.rule.id)));
+        // 🚫 izin vermediği olay: itiraz iki baloncuk
+        if (sm && !sm.fallback && /^izinsiz_/.test(st2)) parts.push(...BOT.reply(sm.rule, vars, botRecent(sm.rule.id)));
       }
       // 🎂 pozisyon / boşalma / orgazm olaylarında çoğu zaman yaşa göre bir baloncuk daha ("=yas" + olay kelimeleri, traits "Yaş: …").
       // Olayın kendi cevap havuzu yerinde kalır; bu sadece ardına eklenir
@@ -7442,6 +7579,32 @@
       bar.innerHTML = KD.map((x, i) => `<span class="${i + 1 < k.lvl ? 'done' : i + 1 === k.lvl ? 'cur' : 'lock'}"><i>${i + 1 > k.lvl ? '🔒' : x.ic}</i><small>${esc(x.name)}</small></span>`).join('');
     }
     drawKd();
+    // 💼 iş çubuğu: hangi iş · şu anki tahmini ücret · dokununca döküm, ✅ İşi bitir (bakiyeye yatar) / ✖ Bırak
+    function drawJob() {
+      const bar = $('#jobBar');
+      if (!bar || !th.job) return;
+      const p = gigPay(th, c);
+      bar.innerHTML = `<span class="cur"><i>${p.g.ic}</i><small>${esc(p.g.name)}</small></span><span class="done"><i>💰</i><small>~${p.total.toLocaleString('tr-TR')}₺</small></span><span class="done"><i>✅</i><small>İşi bitir</small></span>`;
+    }
+    drawJob();
+    if ($('#jobBar')) $('#jobBar').onclick = () => {
+      const p = gigPay(th, c);
+      const sh = sheet(`<div class="sheet-grip"></div><h3>${p.g.ic} ${esc(p.g.name)} <small class="cm-mute">· ${esc(p.g.co)}</small></h3>
+        <p class="kd-mode-tip">${esc(p.g.desc)}</p>
+        <div class="ws-list">${p.lines.map(([l, v]) => `<div class="ws-row"><span class="ws-rin"><b>${esc(l)}</b></span><b>${v >= 0 ? '+' : ''}${v.toLocaleString('tr-TR')}₺</b></div>`).join('')}</div>
+        <div class="ws-btns" style="margin-top:10px"><button type="button" class="btn primary" id="jobEnd">✅ İşi bitir · +${p.total.toLocaleString('tr-TR')}₺</button><button type="button" class="btn ghost" id="jobQuit">✖ Bırak (ödemesiz)</button></div>`, 'light');
+      const end = paid => {
+        if (paid && p.total) bankAdd(p.total, `${p.g.ic} ${p.g.co} · ${p.g.name} · ${c.name}`, p.g.id);
+        list.push({ id: Store.uid(), from: 'sys', ts: Date.now(), text: paid ? `💰 İş bitti: ${p.g.name} · +${p.total.toLocaleString('tr-TR')}₺ CarmenBank'a yattı (bakiye ${money()})` : `💼 İş bırakıldı: ${p.g.name} · ödeme yok` });
+        delete th.job;
+        save();
+        sh.close();
+        if (paid && p.total) notify(`+${p.total.toLocaleString('tr-TR')}₺ · ${p.g.name}`, '💰');
+        render();
+      };
+      sh.el.querySelector('#jobEnd').onclick = () => end(true);
+      sh.el.querySelector('#jobQuit').onclick = () => end(false);
+    };
     if ($('#kdBar')) $('#kdBar').onclick = () => {
       const k = th.kd, evs = n => PS_POS.filter(p => psTier(p.tier) + 1 === n).map(p => `<em${k.done.includes(p.t) ? ' class="ok"' : ''}>${esc(p.t)}</em>`).join('');
       sheet(`<div class="sheet-grip"></div><h3>🪜 Kademeli Eğlence</h3>
@@ -7500,7 +7663,7 @@
       // 🪜 kademe: kilitli olay reddedilir (ret mesajı hemen görünür)
       const kd = kdApply(picked);
       picked = kd.picked;
-      if (!picked.length) { save(); draw(); refreshList(); drawKd(); return; }
+      if (!picked.length) { save(); draw(); refreshList(); drawKd(); drawJob(); return; }
       const n0 = list.length;
       picked.forEach(x => eventMessages(x.e, x.sub));
       maybeInterrupt(picked[picked.length - 1].e);
@@ -7511,7 +7674,7 @@
       const done = () => {
         const up = kdUp(added);
         if (up) list.push({ id: Store.uid(), from: 'her', text: up, ts: Date.now() });
-        save(); draw(); refreshList(); drawKd(); lockInput(false); if (th.bot) botEventReply(added); else th.interrupt = null;
+        save(); draw(); refreshList(); drawKd(); drawJob(); lockInput(false); if (th.bot) botEventReply(added); else th.interrupt = null;
       };
       let k = 0;
       const next = () => {
@@ -7567,6 +7730,8 @@
         const ok = p.nothing || th.izinVerdi;
         state = preg ? (ok ? 'hamilekaldi' : 'hamilekaldi_istemedi') : (ch.fields || {}).hamile ? 'hamileyken' : shield ? 'kondomkorudu'
           : p.pill ? 'haplakorundu' : th.izinVerdi ? 'icineistedi' : p.morning ? 'sabahhap' : p.pullout ? 'pulloutkacti' : p.nothing ? 'icineistedi' : 'riskli';
+        // 🚫 içe izin vermiyorsa (kondom şartı / içe izin yok) korunmasız içe boşalma daha sert
+        if (['pulloutkacti', 'riskli'].includes(state) && protGet(ch).ice !== 'var' && protGet(ch).kon) state = 'izinsiz_icine';
         th.izinVerdi = false;
         // bir sonraki önden girişte yine "kondomsuz giriyorsun" tepkisi gelebilir
         if (th.giris) delete th.giris[ch.id];
@@ -7586,6 +7751,12 @@
         const p = protOf(ch);
         state = 'hold_' + ((ch.fields || {}).hamile ? 'icine' : p.condom ? 'kondom' : p.nothing ? 'icine' : p.pill ? 'hap' : p.pullout ? 'pullout' : p.morning ? 'sabah' : 'dikkat');
       }
+      // 🚫 kondom şartı varken kondomsuz her önden pozisyon (ilk girişle sınırlı değil; ısrara razı olduysa yok)
+      if (!state && ch && evs[0] && isPos(evs[0]) && (evs[0].tags || []).some(t => low(t) === 'vajinal') && !(ch.fields || {}).hamile
+        && protGet(ch).kon === 'var' && !protOf(ch).condom && !th.izinVerdi) {
+        state = 'izinsiz_kondom';
+        (th.giris = th.giris || {})[ch.id] = 1;
+      }
       // 🚪 bu turda ilk önden giriş: korunmasına göre ("Kondomsuz giriyorsun… dışarı boşal tamam mı canım? 🥺")
       if (!state && ch && evs[0] && isPos(evs[0]) && (evs[0].tags || []).some(t => low(t) === 'vajinal') && !(ch.fields || {}).hamile) {
         const gd = th.giris = th.giris || {};
@@ -7596,8 +7767,9 @@
         }
       }
       // 💔 izinsiz / istenmeyen olanlar güveni sarsar
-      const HURT = { hamilekaldi_istemedi: [['güven', -8], ['aşk', -3]], pulloutkacti: [['güven', -5]], girisdikkat: [['güven', -3]], riskli: [['güven', -2]] };
+      const HURT = { hamilekaldi_istemedi: [['güven', -8], ['aşk', -3]], izinsiz_icine: [['güven', -8], ['aşk', -3]], izinsiz_kondom: [['güven', -6]], pulloutkacti: [['güven', -5]], girisdikkat: [['güven', -3]], riskli: [['güven', -2]] };
       const hurt = HURT[state] || (/^izin_red_/.test(state) ? [['güven', -3]] : null);
+      if (/^izinsiz_/.test(state) && ch) notify(`🚫 ${ch.name} ${state === 'izinsiz_kondom' ? 'kondomsuz' : 'içine boşalmana'} izin vermiyor!`, '🚫');
       if (hurt && ch) {
         const fx = hurt.map(([l, d]) => { const pp = allParams().find(x => x.who !== 'me' && low(x.label) === l); return pp && { p: 'p:' + pp.id, d }; }).filter(Boolean);
         if (fx.length) applyOutcome({ text: '', effects: fx }, [ch.id]);
@@ -7759,6 +7931,7 @@
     $('#statBtn').onclick = () => { statsOn(!statsOn()); $('#statBtn').classList.toggle('on', statsOn()); drawStats(); };
     // 🕰️ saate dokununca: bu sohbetin şu anki saati, mesaj başına dakika, aç / kapat
     $('#chatClock').onclick = () => {
+      if (!editOn()) return; // ✏️ saat/dakika ayarı sadece düzenleme modunda
       clockInit();
       const ck = th.clock;
       const sh = sheet(`
@@ -8359,7 +8532,8 @@
         : `<button data-a="profile">👤 Profili gör</button>
           <button data-a="threads">🗂️ ${esc(c.name)} ile sohbetler</button>
           <button data-a="new">➕ Yeni sohbet</button>
-          <button data-a="rename">✏️ Sohbetin adını değiştir</button>`) + `
+          <button data-a="rename">✏️ Sohbetin adını değiştir</button>
+          <button data-a="job">💼 İş için: ${th.job ? esc(gigOf(th.job.id).name) : 'kapalı'}</button>`) + `
         <button data-a="autoadd">🪄 Otomatik ekler: </button>
         <button data-a="meadd">🗣️ Olay mesajlarım: ${th.meAdd ? 'açık' : 'kapalı'}</button>
         <button data-a="hugmode">🤗 Sarılma modu: ${th.hugMode ? 'açık' : 'kapalı'}</button>
@@ -8382,6 +8556,8 @@
         if (a === 'threads') threadSheet();
         if (a === 'new') createThread(c);
         if (a === 'rename') renameThread(th, render);
+        // 💼 iş: açıksa çubuktaki döküm (bitir / bırak), değilse iş seç → bu sohbet işe bağlanır
+        if (a === 'job') { if (th.job) $('#jobBar').click(); else gigSheet(c, g => { gigStart(th, c, g); render(); }); }
         if (a === 'search') openSearch();
         if (a === 'hero') $('#heroBtn').click();
         if (a === 'autoadd') {
@@ -9658,9 +9834,10 @@
   const permCfg = () => Object.assign({}, PERM_DEF, (S().monia || {}).permCfg || (Stories.SYSTEM || {}).permCfg || {});
   // ✅/🚫 dışında bir şey içermeyen kural (genel kurallardan izin paneline taşınabilir)
   const permOnly = r => [...crIfs(r), ...(r.not || [])].every(v => /^(a:|d:|\*a$|\*d$)/.test(v));
+  // 🛡️ sadece ✅/🚫'den oluşan kurallar sayılmaz: korunma olaylarının tutarlılığını artık 🛡️ Korunma & boşalma kademeleri sağlar (protSet)
   function crBlocked(d) {
     const m = new Map();
-    [...crRules(), ...permCfg().rules, ...(T.rules || [])].forEach(r => { if (crMatch(r, d)) crExpand(r).forEach(v => { if (!m.has(v)) m.set(v, crText(r)); }); });
+    [...crRules(), ...permCfg().rules, ...(T.rules || [])].filter(r => !permOnly(r)).forEach(r => { if (crMatch(r, d)) crExpand(r).forEach(v => { if (!m.has(v)) m.set(v, crText(r)); }); });
     return m;
   }
   // kurala aykırıları düzeltir (repick: tek seçimli grupta yerine izinli biri gelir); ✅ olamayan olay 🚫'ye, 🚫 olamayan ✅'ye geçer
@@ -9867,6 +10044,8 @@
     });
     if (d.traits) crFix(d, true);
     if (k === 'all' || k === 'color') d.colors = pick(T.colors);
+    // 🛡️ korunma & boşalma önce seçilir (📏 kurallara uyanlardan); ❤️/💔 onun sınırlarına göre gelir
+    if (k === 'all' || k === 'perm') protRand(d);
     // ❤️/💔 sadece 'event' etiketli kategorilerden; aynı olay iki listede olmaz
     // ❤️ 5–8 sevdiği, 💔 3–5 sevmediği (havuz yetmezse ikisi de küçülür)
     if (k === 'all' || k === 'feel') {
@@ -9878,18 +10057,15 @@
       // 🦄 0–2 fantezi, çoğu ❤️
       sample(fantPool().map(e => e.id), Math.floor(Math.random() * 3)).forEach(id => (Math.random() < .7 ? d.likes : d.dislikes).push(id));
     }
+    // 💦 korunma sınırı: içe izin yoksa içe boşalma ❤️ olamaz (💔'ye geçer, yoksa yarı yarıya biri 💔 olur); izin varsa yarı yarıya biri ❤️
+    if (k === 'all' || k === 'feel' || k === 'perm') {
+      protFixFeel(d);
+      const inside = feelPool().filter(e => isInsideCum(e) && !(d.likes || []).includes(e.id) && !(d.dislikes || []).includes(e.id));
+      const no = protGet(d).ice !== 'var', has = feelEvents(no ? d.dislikes : d.likes).some(isInsideCum);
+      if (inside.length && !has && Math.random() < .5) (no ? d.dislikes : d.likes).push(pick(inside).id);
+    }
     // 👗 genelde giydikleri (kişiliğe göre günlük / iddialı) ve şu anki kombin
     if (k === 'all' || k === 'wear') randWear(d);
-    // ✅/🚫 sadece 'if' etiketli kategorilerden; sayılar ⚙️ İzin ayarlarından, kurala aykırı olacak olay atlanır (kural sayıdan önce gelir)
-    if (k === 'all' || k === 'perm') {
-      const pc = permCfg(), ids = permPool().map(e => e.id);
-      const count = ([a, b]) => { a = Math.max(0, +a || 0); b = Math.max(a, +b || 0); return a + Math.floor(Math.random() * (b - a + 1)); };
-      const na = count(pc.allow), nd = count(pc.deny);
-      d.allows = []; d.denies = [];
-      const fits = () => { const bl = crBlocked(d); return !d.allows.some(x => bl.has('a:' + x)) && !d.denies.some(x => bl.has('d:' + x)); };
-      const tryAdd = (key, id) => { d[key].push(id); if (fits()) return true; d[key].pop(); return false; };
-      sample(ids, ids.length).forEach(id => { if (d.allows.length < na && tryAdd('allows', id)) return; if (d.denies.length < nd) tryAdd('denies', id); });
-    }
     // 🌱 doğurganlık: çoğu normal civarı, uçlar seyrek
     if ((k === 'all' || k === 'fert') && charFields().some(f => f.id === FERT_ID)) {
       const v = Math.round((Math.random() + Math.random() + Math.random()) / 3 * 20) * 5;
@@ -10102,10 +10278,8 @@
         </div>
 
         <div class="ctrl cr-fold feel-box" id="permBox" data-fold="perm" data-nav="✅ İzinler">
-          <div class="row2"><span>✅ İzin verdiği / 🚫 vermediği olaylar <small>"${PERM_TAG}" etiketli kategorilerden · 🎲 ✅ ${permCfg().allow.join('–')} · 🚫 ${permCfg().deny.join('–')} · 📏 ${permCfg().rules.length} kural</small></span><button type="button" class="dice-btn" id="permCfgBtn" aria-label="İzin ayarları">⚙️</button>${dice('perm')}</div>
-          ${PERMS.map(f => `<div class="mo-sub">${f.icon} ${f.label}</div>
-            <div class="presets">${feelEvents(d[f.key]).map(e => `<button type="button" class="on x" data-feelrm="${f.key}" data-id="${esc(e.id)}">${evEmo(e)}${esc(e.title)}</button>`).join('')}
-              <button type="button" class="chip" data-feeladd="${f.key}">➕ Seç</button></div>`).join('')}
+          <div class="row2"><span>🛡️ Korunma & boşalma <small>✅/🚫 izinler seçimlere göre dolar · kademeler kuraldır</small></span><button type="button" class="dice-btn" id="permCfgBtn" aria-label="İzin ayarları">⚙️</button>${dice('perm')}</div>
+          ${protBox(d)}
         </div>
 
         <div class="ctrl cr-fold" data-fold="wear" data-nav="👗 Giyim">
@@ -10257,7 +10431,20 @@
     // ❤️/💔 olaylar: bir olay ya sevilen ya sevilmeyen listesinde olur
     // ❤️/💔 ve ✅/🚫 listeleri: bir olay çiftin ya birinde ya diğerinde olur
     $('#feelBox').onclick = $('#permBox').onclick = e => {
-      const rm = e.target.closest('[data-feelrm]'), add = e.target.closest('[data-feeladd]');
+      const rm = e.target.closest('[data-feelrm]'), add = e.target.closest('[data-feeladd]'), pb = e.target.closest('[data-prot]');
+      // 🛡️ korunma: kondom yok → içe izin yok, içe izin var → hap alıyor varsayılır
+      if (pb) {
+        const p = protGet(d), k = pb.dataset.prot, v = pb.dataset.v;
+        if (k === 'kon') Object.assign(p, v === 'var' ? { kon: 'var', ice: '', hap: '' } : { kon: 'yok', ice: p.ice || 'yok' });
+        if (k === 'ice') Object.assign(p, { ice: v, hap: v === 'var' ? p.hap || 'var' : '' });
+        if (k === 'hap') p.hap = v;
+        if (!protEvId(p.kon === 'var' ? 'condom' : p.ice === 'yok' ? 'pull-out method' : 'nothing')) { notify(`Önce "${PERM_TAG}" etiketli kategoride korunma olayları olmalı (Condom, Nothing, Pull-Out Method, Control Pill)`, '🛡️'); return; }
+        protSet(d, p);
+        const gone = [...crFix(d), ...protFixFeel(d).map(t => '💔 ' + t)];
+        if (gone.length) notify(`📏 Kurala göre değişti: ${gone.join(', ')}`, '📏');
+        redraw();
+        return;
+      }
       if (rm) { d[rm.dataset.feelrm] = (d[rm.dataset.feelrm] || []).filter(x => x !== rm.dataset.id); redraw(); }
       if (!add) return;
       const key = add.dataset.feeladd, set = feelSet(key), f = set.list.find(x => x.key === key), other = set.list.find(x => x.key !== key).key;
@@ -10269,6 +10456,9 @@
         const pre = Object.keys(CR_EV).find(p => CR_EV[p].key === key), bl = crBlocked(d);
         const no = pre ? evs.filter(x => bl.has(pre + x.id)) : [], ids = evs.filter(x => !no.includes(x)).map(x => x.id);
         if (no.length) notify(`📏 ${bl.get(pre + no[0].id)} varken ${no.map(x => x.title).join(', ')} ${key === 'allows' ? 'izinli' : 'izinsiz'} olamaz`, '📏');
+        // 🛡️ içe izin yoksa içe boşalma olayı ❤️ olamaz
+        const noIn = key === 'likes' && protGet(d).ice !== 'var' ? evs.filter(x => isInsideCum(x) && ids.includes(x.id)) : [];
+        if (noIn.length) { notify(`🛡️ İçe izin yokken ${noIn.map(x => x.title).join(', ')} ❤️ olamaz`, '🛡️'); noIn.forEach(x => ids.splice(ids.indexOf(x.id), 1)); }
         d[key] = [...new Set([...(d[key] || []), ...ids])];
         d[other] = (d[other] || []).filter(x => !ids.includes(x));
         const gone = crFix(d);
@@ -10382,6 +10572,57 @@
   // ✅/🚫 karakterin izin verdiği / vermediği olaylar: 'if' etiketli kategorilerden (c.allows / c.denies)
   const PERM_TAG = 'if';
   const PERMS = [{ key: 'allows', icon: '✅', label: 'İzin verdiği olaylar' }, { key: 'denies', icon: '🚫', label: 'İzin vermediği olaylar' }];
+  /* 🛡️ korunma & boşalma: kondom şartı → (yoksa) içe izin → (varsa) hap; ✅/🚫 listelerindeki korunma olaylarına yazılır
+   * var: ✅ Condom · 🚫 Nothing, Pull-Out | içe yok: ✅ Pull-Out · 🚫 Nothing | içe var: ✅ Nothing + hap ✅/🚫 Control Pill */
+  const PROT_T = ['condom', 'nothing', 'pull-out method', 'control pill', 'morning-after pill', 'tight condom'];
+  const protEvId = t => (allEvents().find(e => String(e.title || '').toLocaleLowerCase('tr').trim() === t) || {}).id;
+  function protGet(d) {
+    const a = t => (d.allows || []).includes(protEvId(t)), n = t => (d.denies || []).includes(protEvId(t));
+    if (a('nothing') || a('control pill') || a('morning-after pill')) return { kon: 'yok', ice: 'var', hap: a('control pill') ? 'var' : n('control pill') ? 'yok' : '' };
+    if (a('pull-out method')) return { kon: 'yok', ice: 'yok', hap: '' };
+    if (a('condom') || n('nothing')) return { kon: 'var', ice: '', hap: '' };
+    return { kon: '', ice: '', hap: '' };
+  }
+  function protSet(d, p) {
+    const [con, not, pull, pill, morn, tight] = PROT_T.map(protEvId);
+    const allow = p.kon === 'var' ? [con] : p.ice === 'yok' ? [pull] : [not, p.hap === 'yok' ? null : pill];
+    const deny = p.kon === 'var' ? [not, pull] : p.ice === 'yok' ? [not] : p.hap === 'yok' ? [pill] : [];
+    // yönetilenler sıfırlanır; sabah hapı sadece içe izin yokken ✅'den çıkar
+    const own = [con, not, pull, pill, tight, ...(p.ice === 'var' ? [] : [morn])].filter(Boolean);
+    d.allows = [...(d.allows || []).filter(x => !own.includes(x)), ...allow.filter(Boolean)];
+    d.denies = [...(d.denies || []).filter(x => !own.includes(x)), ...deny.filter(Boolean)];
+  }
+  const protRow = (k, label, cur, opts) => `<div class="presets"><small>${label}</small>${opts.map(([v, t]) => `<button type="button" class="${cur === v ? 'on' : ''}" data-prot="${k}" data-v="${v}">${t}</button>`).join('')}</div>`;
+  function protBox(d) {
+    const p = protGet(d);
+    return `${protRow('kon', '🛡️ Kondom şartı', p.kon, [['var', 'Var'], ['yok', 'Yok']])}
+      ${p.kon === 'yok' ? protRow('ice', '💦 İçe boşalma', p.ice, [['var', 'İzin veriyor'], ['yok', 'İzin vermiyor']]) : ''}
+      ${p.ice === 'var' ? protRow('hap', '💊 Doğum kontrol hapı', p.hap, [['var', 'Alıyor'], ['yok', 'Almıyor']]) : ''}`;
+  }
+  // 🎲 rastgele korunma: sadece 📏 kurallara uyanlar arasından (hiçbiri uymazsa en az aykırı olan); ağırlıklar kondom şartı %35 · içe izin yok %30 · hap %25 · hapsız %10
+  const PROT_OPTS = [[.35, { kon: 'var' }], [.3, { kon: 'yok', ice: 'yok' }], [.25, { kon: 'yok', ice: 'var', hap: 'var' }], [.1, { kon: 'yok', ice: 'var', hap: 'yok' }]];
+  const protBad = (d, p) => { const x = { ...d, allows: [], denies: [] }; protSet(x, p); const bl = crBlocked(x); return x.allows.filter(id => bl.has('a:' + id)).length + x.denies.filter(id => bl.has('d:' + id)).length; };
+  function protRand(d) {
+    d.allows = []; d.denies = [];
+    const sc = PROT_OPTS.map(([w, p]) => ({ w, p, bad: protBad(d, p) })), min = Math.min(...sc.map(x => x.bad)), ok = sc.filter(x => x.bad === min);
+    let r = Math.random() * ok.reduce((a, x) => a + x.w, 0);
+    protSet(d, (ok.find(x => (r -= x.w) < 0) || ok[0]).p);
+  }
+  // 💦 içe boşalma olayı (vajinal + boşalma etiketli): içe izin yoksa ❤️ olamaz, 💔'ye geçer. Geçenlerin adları
+  const isInsideCum = e => { const tg = (e.tags || []).map(low); return tg.includes('vajinal') && tg.includes('boşalma'); };
+  function protFixFeel(d) {
+    if (protGet(d).ice === 'var') return [];
+    const bad = feelEvents(d.likes).filter(isInsideCum), ids = bad.map(e => e.id);
+    d.likes = (d.likes || []).filter(x => !ids.includes(x));
+    d.dislikes = [...new Set([...(d.dislikes || []), ...ids])];
+    return bad.map(e => e.title);
+  }
+  // 🤖 bot kurallarında özellik gibi eşleşir (js/bot.js fits): "Kondom: Var|Yok", "İçe: İzin var|İzin yok", "Hap: Alıyor|Almıyor"
+  Stories.protTraits = ch => {
+    const p = protGet(ch || {});
+    return [p.kon && 'Kondom: ' + (p.kon === 'var' ? 'Var' : 'Yok'), p.ice && 'İçe: ' + (p.ice === 'var' ? 'İzin var' : 'İzin yok'),
+      p.hap && 'Hap: ' + (p.hap === 'var' ? 'Alıyor' : 'Almıyor')].filter(Boolean);
+  };
   const feelSet = key => FEELS.some(f => f.key === key) ? { list: FEELS, tag: CHAT_TOP_TAG } : { list: PERMS, tag: PERM_TAG };
   const feelEvents = ids => { const pool = allEvents(); return (ids || []).map(id => pool.find(e => e.id === id)).filter(Boolean); };
   const partOf = sc => MD.parts.find(p => p.id === sc.part);
@@ -14846,6 +15087,183 @@
         <div style="display:flex;gap:8px;flex-wrap:wrap"><input id="fkCode" type="text" placeholder="Kodu yaz…" autocomplete="off" style="flex:1;min-width:140px"><button type="button" class="btn sm" data-fkcode>🔓 Aç</button></div>`;
     } },
     ...FANT_BOOK.map(([key, icon, title, sub]) => ({ icon, title, sub, get body() { return fantBookBody(key); } }))] });
+  // 🎬 Olay Kitabı: Lia her olayı sahneleyerek anlatır ("ben şöyle dururum, sen bunu yaparsan bu olay olur")
+  const OLAY_BOOK = [
+    ['💋', 'Isınma', 'öpüşme, sarılma, gösterme', 'Her şey buradan başlar. Acele yok; önce birbirimizi tanıyalım 😌', [
+      ['Kissing', 'Bak, ben karşında duruyorum, çenemi hafif kaldırdım, gözlerim kapalı. Sen yaklaşıp dudaklarıma dokunursan önce yumuşacık, sonra aç bir öpücük başlar.'],
+      ['Lap Kissing', 'Sen oturuyorsun, ben gelip kucağına oturuyorum, kollarım boynunda. Bu hâlde beni öpersen kalçam kucağında kıpırdamaya başlar 😏'],
+      ['Front Hugging', 'Karşına geçip kollarımı açıyorum. Sen de beni kendine çekersen göğsüne sokulurum, kollarımı boynuna dolarım.'],
+      ['Back Hugging', 'Ben sana sırtımı dönüp duruyorum, saçlarım bir omzumda. Sen arkamdan gelip belime sarılırsan başımı omzuna yaslarım.'],
+      ['Show Tits', 'Karşında dikiliyorum, parmaklarım bluzumun düğmelerinde. Sen "göster" dersen düğmeleri tek tek açar, sütyenimi aşağı indiririm 🙈'],
+      ['Show Ass', 'Sana arkamı dönüp öne eğiliyorum. Sen bakmaya devam edersen eteğimi yavaşça toplar, kalçamı sallarım 🍑']]],
+    ['👅', 'Onu ısıt', 'Eat: Uyarılma yükselir', 'Benim Uyarılma\'m yükselmeden pozisyona geçme; önce beni ısıt 💗', [
+      ['Cunnilingus', 'Yatağın kenarına uzanıp bacaklarımı açıyorum. Sen aralarına diz çöküp dilini kullanırsan Uyarılma\'m +25 fırlar.'],
+      ['Facesitting', 'Sen sırtüstü uzan, ben dizlerimi başının iki yanına koyup üstüne iniyorum. Dilini çıkarırsan kalçalarımı döndürmeye başlarım: +20.'],
+      ['On Mouth', 'Yine üstündeyim ama bu sefer ağzına oturup sürtünüyorum. Sen sadece dudaklarını açık tut, gerisini ben hallederim: +15.'],
+      ['Breastfeeding', 'Yanına uzanıp göğsümü dudaklarına yaklaştırıyorum. Sen emmeye başlarsan Uyarılma\'m +30 çıkar, beni orgazma bile götürebilir.'],
+      ['Squirt', 'Uyarılma\'m tavan yaptığında bacaklarım titremeye başlar. Sen durmazsan fışkırarak boşalırım; her yer ıslanır 💦']]],
+    ['🤲', 'Dokunuş', 'içeri girmeden: el, ağız, göğüs, ayak', 'Bunlarda ben seni ısıtırım; senin Zevk\'in yükselir 😈', [
+      ['Handjob', 'Yanına oturup elimi kucağına koyuyorum. Sen pantolonunu açarsan aletini avucuma alıp ağır ağır okşarım.'],
+      ['Blowjob', 'Önünde dizlerimin üstüne çöküyorum, ellerim dizlerinde. Sen yaklaşırsan aletini ağzıma alırım.'],
+      ['Deepthroat', 'Yine dizlerimdeyim ama başımı geriye yatırdım. Sen başımı tutup itersen aletini boğazıma kadar alırım; gözlerim yaşarır ama durmam.'],
+      ['Titfuck', 'Önünde diz çöküp göğüslerimi iki elimle birleştiriyorum. Sen aletini aralarına koyarsan onu göğüslerimin arasında kaydırırım.'],
+      ['69', 'Sen sırtüstü uzan, ben ters dönüp üstüne uzanıyorum. Sen beni yalamaya başlarsan ben de aletini ağzıma alırım; ikimiz birden.'],
+      ['Footjob', 'Karşına oturup ayaklarımı kucağına uzatıyorum. Sen soyunursan aletini ayak tabanlarımın arasına alıp okşarım.'],
+      ['Buttjob', 'Kucağına sırtım dönük oturuyorum. Sen beni belimden tutarsan aletini kalçalarımın arasında sürterim, içeri almadan.'],
+      ['Masturbation', 'Karşına uzanıp bacaklarımı açıyorum. Sen sadece izlersen parmaklarımla kendime dokunurum, gözlerim sende 😏']]],
+    ['❤️', 'Önden', 'yüz yüze pozisyonlar', 'Yüz yüze olunca gözlerime bak, öyle daha güzel 💕', [
+      ['Missionary', 'Sırtüstü uzanıp bacaklarımı açıyorum, kollarımı sana uzatıyorum. Sen üstüme gelip aletinle içime girersen yüz yüze, göz göze sevişiriz.'],
+      ['Cowgirl', 'Sen sırtüstü uzan, ben üstüne çıkıp aletinin üstüne iniyorum, ellerimi göğsüne dayıyorum. Sen kalçamı tutarsan ritmi ben tutarım.'],
+      ['Standing', 'Duvara yaslanıp bir bacağımı kaldırıyorum. Sen bacağımı beline dolayıp yaklaşırsan aletini ayakta içime alırım.'],
+      ['OnDesk', 'Masanın üstüne uzanıp bacaklarımı havaya kaldırıyorum. Sen bacaklarımı omuzlarına koyarsan aletinle derin derin girersin.'],
+      ['Lap Sex', 'Sen otur, ben yüzüm sana dönük aletinin üstüne iniyorum. Kollarımı boynuna dolarım; sen belimi tutarsan inip çıkarım.'],
+      ['Full Nelson', 'Sırtım sana dönük, kucağındayım. Sen bacaklarımı kollarınla kilitleyip beni havada aletine indirirsen tamamen teslim olurum.']]],
+    ['🍑', 'Arkadan', 'doggy, spooning ve anal', 'Arkadan olanlarda belimden sıkı tut, yoksa kayarım 😏', [
+      ['Doggy', 'Yatağa dört ayak üstüne çıkıp kalçamı sana uzatıyorum. Sen belimden tutup aletinle arkadan girersen Doggy olur.'],
+      ['Standing Doggy', 'Ayakta öne eğilip ellerimi masaya dayıyorum. Sen arkama geçip aletinle girersen ayakta doggy başlar.'],
+      ['Spooning', 'Yan yatıp sırtımı sana dönüyorum, bir bacağımı hafif kaldırıyorum. Sen arkamdan sarılıp aletinle içime girersen yavaş ve sıcak bir Spooning olur.'],
+      ['Spooning Anal', 'Aynı yan yatış, ama bu sefer kalçamı biraz daha geriye itiyorum. Sen aletinle yavaş yavaş kalçama girersen Spooning Anal olur.'],
+      ['Cowgirl Anal', 'Sana sırtımı dönüp üstüne çıkıyorum. Sen kalçamı aralarsan kalçamı yavaşça aletine indiririm.'],
+      ['Standing Anal', 'Kapıya yaslanıp kalçamı geriye çıkarıyorum. Sen arkamdan aletinle kalçama girersen Standing Anal olur.'],
+      ['Rough Anal', 'Ellerimi arkamda birleştiriyorum. Sen bileklerimi tutup aletini sertçe kalçama gömersen Rough Anal olur; Acı\'m artar, dikkat et 🥵']]],
+    ['🎭', 'Tempo', 'Mode: nasıl sevişeceğiniz', 'Tempo pozisyonu değiştirmez, nasıl yaptığını değiştirir. Acı yükselirse Gentle\'a dön 💕', [
+      ['Gentle', 'Ben gözlerini arıyorum, ellerim yüzünde. Sen yavaş ve şefkatli gidersen Gentle olur, Acı\'m düşer.'],
+      ['Passionate', 'Seni kendime çekip dudaklarına yapışıyorum. Sen öpüşerek, sıcak bir tempoyla devam edersen Passionate olur 🔥'],
+      ['Assertive', 'Gözlerimi indiriyorum, sana bırakıyorum. Sen kararlıca yönlendirirsen Assertive olur.'],
+      ['Rough', 'Saçımı omzumdan çekiyorum, ensem açık. Sen saçımı tutup sert ve hızlı gidersen, bir de şaplak atarsan Rough olur.'],
+      ['Brutal', 'Yatağa yüzüstü kapanıyorum, ellerim çarşafta. Sen hiç acımadan gidersen Brutal olur; Acı\'m hızla artar.']]],
+    ['🦄', 'Fanteziler', 'başka bir fantezi gelene kadar o olurum', 'Bir fantezi yazınca ben o kıza dönüşürüm ve başka bir fantezi gelene kadar öyle kalırım. Fantezi Kitabı\'nda gizli sorular da var 🥚', [
+      ['Cat Girl', 'Kedi kulaklarımı takıp dört ayak üstünde sana sokuluyorum, kuyruğum kalçamda. Sen ensemi okşarsan kedin olurum: miyavlarım, mırlarım, aletini yalayarak teşekkür ederim 🐱'],
+      ['Cow Girl', 'Boynuzlarım başımda, çanım boynumda, göğüslerim sütle dolu. Sen göğüslerimi sağarsan sütüm akar; aletinle içimdeyken bile damlar 🐮🍼'],
+      ['Bunny Girl', 'Tavşan kulaklarım, pamuk kuyruğum ve file çoraplarımla karşında zıplıyorum. Sen kuyruğumu çekersen kucağına atlar, aletinin üstünde zıplarım 🐰'],
+      ['Fox Girl', 'Kabarık kuyruğumu sallayarak etrafında dolanıyorum, gözlerim kısık. Sen beni yakalamaya çalışırsan kaçar gibi yapıp sonunda aletine kendim otururum 🦊'],
+      ['Doggy Girl', 'Tasmamı takıp dizlerimin üstünde bekliyorum, tasmanın ucu sende. Sen çekersen "efendim" der, söylediğin her şeyi yaparım; aletini bile izin verirsen yalarım 🐶'],
+      ['Unicorn Girl', 'Parıltılı boynuzum ve pembe saçlarımla yatağa uzanıyorum. Sen masal prensi gibi yaklaşırsan sihrimi sana veririm, aletini içime alırken her yer ışıldar 🦄'],
+      ['Bondage', 'Bileklerimi başımın üstünde birleştirip ipi sana uzatıyorum. Sen beni bağlarsan kıpırdayamam; aletinle ne yaparsan yap, sadece inlerim 🔗'],
+      ['Cheating', 'Telefonum çalıyor, ekranda sevgilimin adı. Sen yine de aletini içimde tutmaya devam edersen gizli ve yasak bir an olur; 📱 kesintiler sıklaşır 🤫'],
+      ['Sex toys', 'Çekmeceden titreşimli oyuncağı çıkarıp sana uzatıyorum. Sen onu bende kullanırsan, ben de aletine halkayı takarım 🍆'],
+      ['Belly Bulge', 'Sırtüstü uzanıp karnımı açıyorum. Sen aletinle o kadar derine girersen karnımda şeklin belli olur 😳'],
+      ['Cumflation', 'Bacaklarımı belinden hiç çözmüyorum. Sen aletin içimdeyken üst üste boşalırsan karnım şişer, ağzına kadar dolarım 💦']]],
+    ['🎭', 'Roller', 'role-play: ben bir rol, sen bir rol', 'Rol yazınca ikimiz de o karakterlere gireriz; konuşmam da ona göre değişir 🎭', [
+      ['Patron – Sekreter', 'Dar eteğim ve dosyalarımla odana giriyorum, kapıyı arkamdan kilitliyorum. Sen "masaya eğil" dersen sekreterin olurum, aletine mesai dışında da hizmet ederim 💼'],
+      ['Hoca – Öğrenci', 'Notum düşük, ders bitince masanın önünde bekliyorum. Sen kapıyı kapatırsan ekstra puan için aletini ağzıma alırım 🎓'],
+      ['Kadın Hoca – Öğrenci', 'Gözlüklerimi indirip masama yaslanıyorum, sen öğrencimsin. Sen ödevini yapmadıysan cezanı ben veririm: aletinin üstüne kendim otururum 👩‍🏫'],
+      ['Doktor – Hasta', 'Muayene masasına oturup "bir yerim ağrıyor" diyorum. Sen doktor olarak her yerimi muayene edersen, tedavi aletinle olur 🩺'],
+      ['Polis – Şüpheli', 'Ellerimi arabanın kaputuna dayıyorum, sen polissin. Sen üstümü ararsan kelepçeyi takar, aletini sorguda kalçama dayarsın 🚓'],
+      ['Yeni Komşu', 'Kapını çalıp elimde boş bir kaseyle "biraz şeker var mı?" diyorum. Sen beni içeri alırsan şekerden fazlasını isterim 🏠'],
+      ['Hizmetçi – Ev Sahibi', 'Önlüğüm ve tüy süpürgemle yerleri silerken eğiliyorum. Sen ev sahibi olarak arkama geçersen aletini de temizlerim 🧹'],
+      ['Masöz – Müşteri', 'Sen masaya yüzüstü uzanıyorsun, ben ellerimi yağlıyorum. Sen dönersen masaj aletinle devam eder; mutlu son benden 💆'],
+      ['Avukat – Müvekkil', 'Ceketimi çıkarıp masaya oturuyorum, davan zor. Sen ücretini başka türlü ödemeyi teklif edersen aletini kabul ederim ⚖️'],
+      ['Psikolog – Danışan', 'Koltuğumda bacak bacak üstüne atmış, not alıyorum. Sen fantezilerini anlatırsan "uygulamalı terapi" deyip aletini elime alırım 🛋️'],
+      ['Gardiyan – Mahkum', 'Copumla hücrenin parmaklıklarına vuruyorum, sen mahkumsun. Sen iyi davranırsan ziyaret saatinde aletini ödül olarak alırım 🔒'],
+      ['Pizza Kuryesi – Müşteri', 'Kapında pizza kutusuyla duruyorum ama param yok. Sen "başka bir ödeme" dersen kutuyu bırakıp aletine diz çökerim 🍕'],
+      ['Ressam – Çıplak Model', 'Fırçam elimde, sen önümde çıplak poz veriyorsun. Sen kıpırdamadan durursan bir süre sonra fırçayı bırakıp aletini çizmek yerine tutarım 🎨'],
+      ['Dans Hocası – Öğrenci', 'Ellerimi beline koyup seni kendime çekiyorum, adımlarını sayıyorum. Sen ritmi tutturursan dans aletinle yatakta biter 🩰'],
+      ['Fizyoterapist – Sporcu', 'Sen sedyedesin, bacağını esnetiyorum. Sen gerilirsen kasların kadar aletini de gevşetirim 🦵'],
+      ['Taksi Şoförü – Gece Yolcusu', 'Gece yarısı arka koltuktasın, ben dikiz aynasından bakıyorum. Sen parayı unuttuysan arabayı kenara çeker, ücreti aletinle alırım 🚕'],
+      ['Klinik Doktoru – Hasta', 'Önlüğümün altında hiçbir şey yok, sen hastamsın. Sen "örnek" vermen gerektiğini öğrenince aletini ben toplarım 🥼'],
+      ['Limon Kız', 'Sarı elbisem ve ekşi bakışımla karşındayım. Sen beni sıkarsan suyum akar; aletin ekşi ekşi ıslanır 🍋'],
+      ['Çilek Kız', 'Kıpkırmızı dudaklarım ve tatlı kokumla sana uzanıyorum. Sen beni ısırırsan aletini çilek tadında yalarım 🍓'],
+      ['Portakal Kız', 'Güneş gibi turuncuyum, kabuğumu yavaşça soyuyorum. Sen dilimlerimi aralarsan aletin sulu sulu içime girer 🍊'],
+      ['Şarap Kız', 'Bordo elbisem ve yıllanmış bakışımla kadehimi sana uzatıyorum. Sen beni yudum yudum içersen başın döner, aletin bende kalır 🍷'],
+      ['Vodka Kız', 'Buz gibi bakıyorum, aksanım Rus. Sen beni bir dikişte içersen ısınırım; aletinle buzlarımı eritirsin 🍸']]],
+    ['👑', 'Femdom', 'bu sefer ben yönetirim', 'Femdom\'da kontrol bende. Dominant bir kızsa buyurur, diğerleri yeni deniyor gibi utanarak yapar. 🚫 İzin vermediğim olay emirle de olmaz 👑', [
+      ['Female Domination', 'Koltuğa bacak bacak üstüne atıp oturuyorum, sen önümde dizlerinin üstündesin. Sen "emredersiniz" dersen bundan sonra ne yapacağını, ne zaman yapacağını ben söylerim 👑', 'Bütün kontrol onda: ne yapacağını, ne zaman yapacağını o söyler'],
+      ['Strap-On', 'Kemerimi belime bağlayıp tokasını sıkıyorum. Sen dört ayak üstüne geçersen bu sefer arkadan ben girerim; kontrol tamamen bende 😈', 'Belindeki kemerle sana arkadan girer; bu kez kontrol tamamen onda'],
+      ['Trampling', 'Sen yere sırtüstü uzan, ben çıplak ayaklarımla üstünde duruyorum. Sen kıpırdamazsan göğsüne ve karnına basıp ağırlığımı yavaş yavaş veririm 👣', 'Çıplak ayaklarıyla göğsüne ve karnına basar, ağırlığını yavaşça verir'],
+      ['Face Smothering', 'Sen uzan, ben yüzüne bütün ağırlığımla oturuyorum. Sen dilini kullanırsan arada nefes almana izin veririm; ama ne zaman, ona ben karar veririm 🍑', 'Yüzüne bütün ağırlığıyla oturur; nefes alman onun iznine bağlı'],
+      ['Foot Worship', 'Ayağımı uzatıp önüne koyuyorum. Sen diz çöküp parmaklarımı öpmeye başlarsan tapar gibi sevmene izin veririm 💋', 'Diz çökersin; ayaklarını öper, yalar, tapar gibi seversin'],
+      ['Cock Squeeze', 'Aletini avucuma alıp gözlerine bakıyorum. Sen sesini çıkarmazsan yavaş yavaş sıkar, zonklamasını hissederken yüzünü izlerim ✊', 'Penisini avucuna alıp sıkar; zonklamasını hissedip yüzünü izler'],
+      ['Cock Crush', 'Sen sırtüstü uzan, ben ayağımı kaldırıyorum. Sen bacaklarını açarsan tabanımla aletine bastırır, ne kadar dayanacağını izlerim 👠', 'Ayağının tabanıyla aletine hafifçe bastırır, ne kadar dayanacağını izler'],
+      ['Ball Squeeze', 'Elimi bacaklarının arasına kaydırıyorum. Sen kıpırdamazsan taşaklarını avucuma alır, parmaklarımla yavaş yavaş sıkarım 🤏', 'Taşaklarını avucuna alır, parmaklarıyla yavaş yavaş sıkar'],
+      ['Ball Crush', 'Dizimi bacaklarının arasına yerleştiriyorum. Sen bana karşı gelirsen dizimi taşaklarına bastırıp ezerim; ne kadar dayanacağını görelim 💥', 'Dizini ya da ayağını taşaklarına bastırıp ezer; ne kadar dayanacağını izler'],
+      ['Death Grip', 'Aletinin dibini parmaklarımla halka gibi sarıyorum. Sen boşalmak üzereysen bütün gücümle sıkarım; ben izin vermeden bitiremezsin 🚫', 'Boşalmaman için penisinin dibini bütün gücüyle sıkar; izin vermeden bitiremezsin'],
+      ['Orgasm Denial', 'Üstündeyim, aletin içimde, hızlanıyorum. Sen tam boşalacakken kalkıp seni içimden çıkarırım; gülümseyip "henüz değil" derim 😏', 'Tam boşalmak üzereyken seni içinden çıkarır; boşalmana izin vermez']]],
+    ['🎃', 'Halloween pozisyonları', 'vampir, cadı, slime… gece yarısı', 'Halloween olayları en çok Gothic.com kızlarında ve 🎃 Halloween mekanlarında çıkar. Pozisyonların çoğunun kendi bitişi var, sonraki bölümde 🩸', [
+      ['Vampire Bite', 'Sana sırtımı dönüp saçlarımı yana topluyorum, boynum açık. Sen aletinle arkadan girerken boynuma dişlerini geçirirsen Vampire Bite olur 🧛‍♀️', 'Ayakta, arkasından alırken boynuna dişlerini geçirirsin'],
+      ['Full Moon Doggy', 'Dolunayın altında dört ayak üstüne çıkıp kalçamı sana uzatıyorum. Sen saçımdan çekip aletinle sertçe girersen vahşi bir Full Moon Doggy olur 🌕', 'Dolunay ışığında vahşi doggy: saçından çekip arkadan sertçe alırsın'],
+      ['Coffin Missionary', 'Dar bir tabutun içine sırtüstü uzanıyorum, kıpırdayacak yer yok. Sen üstüme sığıp aletinle içime girersen Coffin Missionary olur ⚰️', 'Dar bir yerde, tabut gibi sıkışık: üst üste, kıpırdayacak yer yokken missionary'],
+      ['Pumpkin Grind', 'Kostümüm üstümde, kucağına oturuyorum. Sen beni belimden tutarsan kalçamı dairesel çevirip aletine sürtünürüm 🎃', 'Kostümler üstünde: kucağında kalçasını dairesel çevirerek sana sürtünür'],
+      ['Spider Web', 'Sırtüstü uzanıp bacaklarımı ağ gibi dört yana açıyorum. Sen bileklerimi başımın üstünde tutup aletinle girersen Spider Web olur 🕸️', 'Bilekleri başının üstünde tutulu, bacakları ağ gibi dört yana açık'],
+      ['Crystal Ball', 'Göğüslerimi avuçlarımla birleştirip bir kristal küre yapıyorum. Sen aletini aralarına koyarsan falına bakar gibi sürtünürüm 🔮', 'Göğüslerini avuçlarıyla birleştirip kristal küre yapar, arasında sürtünürsün'],
+      ['Masquerade', 'Maskem yüzümde, kim olduğumu bilmiyorsun. Sen kıyafetlerin üstünden aletini bana sürtersen Masquerade olur; maskemi çıkarmak yok 🎭', 'Maskeli ve kostümlü: kimliğini saklayarak, kıyafetlerin üstünden sürtünme'],
+      ['Candy Lick', 'Tenime şeker ve karamel sürüp uzanıyorum. Sen dilinle yalayarak temizlersen Candy Lick olur 🍬', 'Vücuduna şeker ve karamel sürülür, yalayarak temizlersin'],
+      ['Tombstone', 'Sırtımı soğuk bir mezar taşına yaslayıp bir bacağımı kaldırıyorum. Sen aletinle önden girersen Tombstone olur 🪦', 'Ayakta, sırtı soğuk bir taşa yaslı; bir bacağını kaldırıp önden alırsın'],
+      ['Coffin Lid', 'Sırtüstü uzanıp bacaklarımı birleşik ve dimdik havaya kaldırıyorum, tabut kapağı gibi. Sen bacaklarımı tutup aletinle girersen Coffin Lid olur', 'Sırtüstü, bacakları birleşik ve dimdik yukarıda, tabut kapağı gibi'],
+      ['Ghost Ride', 'Üstüme beyaz tül bir çarşaf alıp sırtım dönük üstüne çıkıyorum. Sen kalçamı tutarsan aletinin üstünde hayalet gibi süzülürüm 👻', 'Reverse cowgirl, üstünde beyaz tül bir çarşaf: hayalet gibi süzülür'],
+      ['Neck Feast', 'Yan yatıp sırtımı sana dönüyorum, boynumu uzatıyorum. Sen arkamdan aletinle girerken boynuma kapanıp ısırırsan Neck Feast olur 🩸', 'Kaşık pozisyonu: arkadan sarılıp alırken boynuna kapanır, ısırıp içersin'],
+      ['Jugular Ride', 'Aletinin üstüne oturup öne eğiliyorum, dudaklarım boynunda. Sen beni sürmeme izin verirsen sürerken boynundan içerim 🧛‍♀️', 'Üstünde oturur, öne eğilip boynuna kapanır; seni sürerken boynundan içer'],
+      ['Wrist Offering', 'Sırtüstü uzanıp dudaklarımı aralıyorum. Sen bileğini ağzıma uzatıp aletinle içime girersen ben emerken Wrist Offering olur', 'Missionary: bileğini ağzına uzatırsın, o emerken içine girersin'],
+      ['Thigh Bite', 'Bacaklarımı açıp seni aralarına çekiyorum. Sen iç bacağımı ısırıp sonra yalamaya dönersen Thigh Bite olur', 'Bacaklarının arasındayken iç bacağını ısırırsın, sonra yalamaya dönersin'],
+      ['Shoulder Mark', 'Duvara yaslanıp omzumu sana uzatıyorum. Sen aletinle içime girerken omzuma dişlerini geçirip iz bırakırsan Shoulder Mark olur', 'Ayakta, duvara yaslı; alırken omzuna dişlerini geçirip iz bırakırsın'],
+      ['Chalice', 'Göğüslerimi kadeh gibi birleştirip arasına kırmızı şarap döküyorum. Sen eğilip içersen Chalice olur 🍷', 'Göğüslerini kadeh gibi birleştirir, arasına kırmızı şarap döker; sen içersin'],
+      ['Red Fountain', 'Sırtüstü uzanıp karnıma kırmızı sıvı döküyorum. Sen aşağı akarken yalarsan Red Fountain olur', 'Sırtüstü uzanır, karnına kırmızı sıvı dökülür; aşağı akarken yalarsın'],
+      ['Communion', 'Kadehten bir yudum alıp dudaklarımı sana yaklaştırıyorum. Sen ağzını açarsan şarabı ağzımdan ağzına aktarırım', 'Aynı kadehten içer, şarabı ağzından ağzına aktarırsınız'],
+      ['Blood Bath', 'Kırmızı suyla dolu küvete giriyorum, kollarımı açıyorum. Sen de girip aletinle yüz yüze içime alırsan Blood Bath olur 🛁', 'Kırmızı suyla dolu küvette, kucağında yüz yüze'],
+      ['Milk Bath', 'Bu sefer küvet süt dolu, içine gömülüyorum. Sen kucağında yüz yüze aletine oturtursan Milk Bath olur 🥛', 'Süt dolu küvette, kucağında yüz yüze: Blood Bath\'in beyaz eşi'],
+      ['Bottoms Up', 'Dört ayak üstüne çıkıp kalçamı kaldırıyorum, şarabı belimden aşağı döküyorum. Sen kalçamdan içersen Bottoms Up olur 🍑🍷', 'Dört ayak üstünde, kalçasından aşağı şarap dökülür; götünden içersin'],
+      ['Sacrifice', 'Bağlı yatıyorum, avucumda küçük bir kesik var. Sen damlalar göğsüme düşerken aletinle önden girersen Sacrifice olur 🕯️', 'Bağlı yatar, avucuna küçük bir kesik atılır; damlalar göğsüne düşerken önden alırsın'],
+      ['Blood Pact', 'Kesik avucumu sana uzatıyorum. Sen kendi avucunu benimkiyle birleştirip beni kucağında yüz yüze aletine oturtursan Blood Pact olur', 'İki avuç kesilip birleştirilir; sonra kucağında yüz yüze oturarak'],
+      ['Full Body Wrap', 'Jöle gibi bedenimle arkana geçiyorum. Sen aletinle bana girerken bütün bedenimle sana sarılır, her yerini kaplarım 🫠', 'Arkadan alırken bütün bedeniyle sana sarılır; jöle gibi her yerini kaplar'],
+      ['Jelly Ride', 'Yüz yüze aletinin üstüne oturuyorum. Sen beni sürmeye bırakırsan her inişte bedenim dalga dalga titrer', 'Yüz yüze üstüne oturur; her inişte bedeni dalga dalga titrer'],
+      ['Wobble Doggy', 'Dört ayak üstüne çıkıyorum, jöle kalçam sana dönük. Sen aletinle arkadan girersen her vuruşta kalçam sallanır', 'Dört ayak üstünde; jöle kalçası her vuruşta sallanır'],
+      ['Slime Hug', 'Göğüslerim eriyor gibi yumuşuyor. Sen aletini aralarına koyarsan etrafına sarar, kaygan ve yapışkan bir göğüs arası yaparım', 'Erimiş gibi göğüslerini etrafına sarar; kaygan, yapışkan bir göğüs arası'],
+      ['Shapeshift', 'Sırtüstü uzanıyorum, bedenim kıpır kıpır. Sen aletinle önden girersen şekil değiştiririm: göğüslerim, kalçam büyür, içim sana göre daralır ✨', 'Önden alırken şekil değiştirir: göğüslerini, kalçasını büyütür, içini sana göre daraltır']]],
+    ['🩸', 'Halloween bitişleri', 'kadeh, iksir, slime…', 'Halloween pozisyonundan sonra bunlardan birini yaz; her pozisyona en çok yakışanı 🎃 Halloween kitapçığında yazıyor', [
+      ['Chalice Cumshot', 'Göğüslerimi yine kadeh gibi birleştiriyorum. Sen aralarına boşalırsan şarapla karışır 🍷', 'Kadeh gibi birleştirdiği göğüslerinin arasına boşalırsın, şarapla karışır'],
+      ['Wine Glass', 'Elimde boş bir kadeh, sana uzatıyorum. Sen içine boşalırsan şarapla karıştırıp içerim 🥂', 'Kadehe boşalırsın; o şarapla karıştırıp içer'],
+      ['Bottoms Up Finish', 'Şaraplı kalçamı sana kaldırıyorum. Sen üstüne boşalırsan sonra yalayıp temizlerim', 'Şarap döktüğün kalçasının üstüne boşalırsın; sonra yalayıp temizler'],
+      ['Red Bath Creampie', 'Kırmızı küvette kucağındayım, bacaklarım belinde. Sen suyun içinde içime boşalırsan Red Bath Creampie olur', 'Kırmızı küvette, suyun içinde içine boşalırsın'],
+      ['Shroud Cumshot', 'Tülüm ya da mumya sargım hâlâ üstümde. Sen kumaşın üstüne boşalırsan iz kalır 👻', 'Hayalet tülünün ya da mumya sargısının üstüne boşalırsın; kumaşta iz kalır'],
+      ['Potion Ingredient', 'Kazanımın başında, şişeyi sana uzatıyorum. Sen içine boşalırsan iksirin son malzemesi olur 🧪', 'Cadının kazanına ya da şişesine boşalırsın: iksirin son malzemesi'],
+      ['Siren\'s Swallow', 'Önünde diz çöküp ağzımı açıyorum. Sen ağzıma boşalırsan yutar, sonra şarkı mırıldanırım 🧜‍♀️', 'Ağzına boşalırsın, yutar; sonra şarkı mırıldanır'],
+      ['Crimson Mix', 'Kesik avucumu ya da kırmızı damlalı göğsümü sana açıyorum. Sen üstüne boşalırsan iki renk karışır', 'Kesikli avucunun ya da göğsündeki kırmızı damlaların üstüne boşalırsın; iki renk karışır'],
+      ['Vampire Kiss Finish', 'Kanlı dudaklarımı aralıyorum. Sen ağzıma boşalırsan seni o dudaklarla öperim 💋', 'Ağzına boşalırsın; o kanlı dudaklarıyla seni öper'],
+      ['Visible Creampie', 'Yarı saydam bedenimle seni içime alıyorum. Sen içime boşalırsan beyaz bir bulut olarak görünür', 'İçine boşalırsın; yarı saydam bedeninde beyaz bir bulut olarak görünür'],
+      ['Absorption', 'Jöle tenimi sana uzatıyorum. Sen üstüme boşalırsan her damlayı emerim, hiç iz kalmaz', 'Tenine boşalırsın; her damlayı emer, hiç iz kalmaz'],
+      ['Slime Coat', 'Yeşil göğüslerimi sana kaldırıyorum. Sen üstlerine boşalırsan parlar, yavaşça içime kaybolur 🫠', 'Göğüslerinin üstüne boşalırsın; yeşilin üstünde parlar, yavaşça içine kaybolur'],
+      ['Visible Swallow', 'Ağzımı açıyorum, boğazım yarı saydam. Sen ağzıma boşalırsan yutarım; aşağı süzülüşü dışarıdan görünür', 'Ağzına boşalırsın, yutar; boğazından aşağı süzülüşü dışarıdan görünür']]],
+    ['🧛‍♀️', 'Halloween rolleri', 'vampir, cadı, succubus…', 'Halloween rolleri de fantezi gibi: başka bir rol gelene kadar o olurum 🎃', [
+      ['Vampir Kontes – Misafir', 'Şatomun kapısını açıp mum ışığında seni içeri alıyorum, boynuna bakıyorum. Sen gece kalmayı kabul edersen önce kanını, sonra aletini tadarım 🧛‍♀️'],
+      ['Cadı – Çırak', 'Kazanım kaynıyor, tarif kitabım açık; eksik malzeme sensin. Sen çıraklığı kabul edersen aletini iksirimin en önemli parçası yaparım 🧙‍♀️'],
+      ['Falcı – Müşteri', 'Kürenin başına oturup ellerini avuçlarıma alıyorum. Sen falına baktırırsan kürede bu geceyi görürüm: aletin içimde 🔮'],
+      ['Perili Ev Rehberi – Ziyaretçi', 'Tur bitti, fenerimi söndürüyorum ama sen hâlâ buradasın. Sen kalırsan gıcırdayan merdivenlerde aletini karanlıkta bulurum 🏚️'],
+      ['Maskeli Yabancı – Kostüm Partisi', 'Maskemle kalabalıktan çıkıp elini tutuyorum, adımı sorma. Sen beni boş bir odaya takip edersen maskem yüzümdeyken aletini içime alırım 🎭'],
+      ['Kara Kedi – Sahibi', 'Kapının önünde kıvrılmış bekliyorum, gözlerim parlıyor. Sen beni içeri alırsan kucağına sokulur, sonra aletini kedi gibi yalarım 🐈‍⬛'],
+      ['Mumya Kraliçe – Kâşif', 'Lahdimden doğruluyorum, sargılarım gevşek. Sen sargılarımı çözersen bin yıllık uykumdan aletinle uyanırım 🏺'],
+      ['Succubus – Rüya', 'Rüyanda yatağının ucunda belirip üstüne süzülüyorum. Sen uyanmazsan aletinin üstüne oturup bütün gece enerjini emerim 😈'],
+      ['Hayalet – Evin Yeni Sahibi', 'Yüz yıldır bu evde yalnızım; gece yatağının yanında beliriyorum. Sen korkmazsan soğuk ellerimle aletine dokunurum 👻'],
+      ['Peri – Ormandaki Gezgin', 'Mantar halkasının ortasında kanatlarım parlıyor. Sen halkadan çıkmazsan ormanımda kalırsın; aletine peri tozu serperim 🧚‍♀️'],
+      ['Deniz Kızı – Denizci', 'Ağına takılmış, kuyruğum güvertede çırpınıyor. Sen beni bırakmazsan kuyruğum bacağa dönüşür ve aletini dalgalar gibi içime alırım 🧜‍♀️'],
+      ['Slime Girl – Laborant', 'Kavanozun kapağını açtın, yeşil bedenimle masaya yayılıyorum. Sen elini uzatırsan aletini jöle gibi sarar, içime çekerim 🫠']].map(([t, say]) => [t, say, (HW_ROLES.find(r => r[2] === t) || [])[3]])],
+    ['🛡️', 'Korunma', 'boşalmadan önce kararını ver', 'Riskli günlerde kartta 🔥 görünür; o gün Nothing yazma 🙈', [
+      ['Condom', 'Elimde paket, sana uzatıyorum. Sen takarsan Condom olur; içime boşalsan da risk yok.'],
+      ['Control Pill', 'Çantamdan hap kutusunu çıkarıp gösteriyorum. Ben hapımı içiyorsam Control Pill olur, rahat olabilirsin.'],
+      ['Pull-out Method', 'Bacaklarımı belinden çözüyorum. Sen son anda çekip dışarı boşalırsan Pull-out olur.'],
+      ['Morning-after Pill', 'Ertesi sabah bir bardak su ve hapla yanındayım. İçersem Morning-after Pill olur; dünkü risk biter.'],
+      ['Nothing', 'Paketi yere atıyorum, bacaklarımı beline doluyorum. Sen hiç korunmadan içime boşalırsan hamilelik riski var 😳']]],
+    ['✋', 'Tutmak', 'boşalmayı ertele', 'Tutarsan Zevk düşer ama döl birikir; bazen tutamazsın 😏', [
+      ['Holding', 'Ritmimi yavaşlatıp gözlerine bakıyorum. Sen derin nefes alıp kendini tutarsan Holding olur.'],
+      ['Hard Holding', 'Kalçamı sıkıca sana bastırıp kıpırdamıyorum. Sen dişlerini sıkıp direnirsen Hard Holding olur; daha çok birikir ama zor.'],
+      ['Atlas Holding', 'Kucağına atlıyorum, bacaklarım belinde. Sen beni havada tutarak dayanırsan Atlas Holding olur.']]],
+    ['💦', 'Bitiş', 'nereye boşalacağın', 'Nereye boşalacağını ben değil sen seçersin; ama önce korunmaya bak 🛡️', [
+      ['Vaginal Creampie', 'Bacaklarımı sana dolayıp bırakmıyorum. Sen içimde boşalırsan Vaginal Creampie olur; korunmaya göre hamilelik ihtimali var.'],
+      ['Anal Creampie', 'Kalçamı sana bastırıp kalıyorum. Sen kalçamın içine boşalırsan Anal Creampie olur.'],
+      ['Mouth Cumming', 'Önünde diz çöküp ağzımı açıyorum. Sen ağzıma boşalırsan Mouth Cumming olur; belki yutarım 😏'],
+      ['Face Cumming', 'Gözlerimi kapatıp yüzümü sana kaldırıyorum. Sen yüzüme boşalırsan Face Cumming olur.'],
+      ['Tit Cumshot', 'Göğüslerimi ellerimle sana doğru kaldırıyorum. Sen üstlerine boşalırsan Tit Cumshot olur.'],
+      ['Ass Cumshot', 'Dört ayak üstünde, kalçam sana dönük kalıyorum. Sen çekip kalçama boşalırsan Ass Cumshot olur.']]],
+    ['🌸', 'Benim orgazmım', 'Lia\'nın sırrı', 'Lia\'nın sırrı: Eat → Eat → Orgazm 💗', [
+      ['Orgazm', 'Uyarılma\'m 80\'i geçince nefesim kesilir, tırnaklarım sırtına geçer. Sen durmazsan kendiliğinden orgazm olurum; Uyarılma\'m sıfırlanır.'],
+      ['Squirt', 'Çok ısındıysam bacaklarım titrer, seni itmeye çalışırım. Sen yine de devam edersen fışkırırım 💦']]]
+  ];
+  BOOKS.push({ id: 'olay', icon: '🎬', title: 'Olay Kitabı', sub: 'Lia her olayı sahneleyerek anlatır', chips: [`${OLAY_BOOK.reduce((n, c) => n + c[4].length, 0)} olay`, '💁‍♀️ Lia anlatıyor'], chapters: [
+    { icon: '🎬', title: 'Olay Kitabı nasıl okunur', sub: 'Lia sahneler, sen yaparsın', body: `
+      <p>Bu kitapta her olayı <b>Lia</b> kendisi sahneliyor: önce nasıl durduğunu anlatır, sonra senin ne yaparsan o olayın olacağını söyler.</p>
+      ${bkChat('Örnek', [['her', '💁‍♀️ Bak, ben dört ayak üstüne çıkıp kalçamı sana uzatıyorum. Sen belimden tutup aletinle arkadan girersen…'], ['ev', '#Doggy'], ['note', 'Sohbette olayı # ile yazarsın: <code>#doggy</code>']])}
+      <p>Her bölüm bir olay grubu: ısınma, onu ısıtma, dokunuş, pozisyonlar, tempo, fanteziler, roller, femdom, Halloween, korunma, tutma ve bitiş. Sırayla okursan bir seansın akışını da öğrenmiş olursun.</p>` },
+    ...OLAY_BOOK.map(([icon, title, sub, intro, evs]) => ({ icon, title, sub, body: `<p>${esc(intro)}</p>
+      ${evs.map(([ev, say, d = evDescOf(ev)]) => bkChat(esc(ev), [['her', `💁‍♀️ ${esc(say)}`], ['ev', `#${esc(ev)}`], ...(d ? [['note', esc(d)]] : [])])).join('')}` }))] });
   // ✨ Carmen 2.0 Yenilikleri: yeni bot kuralları (note: 'Carmen 2.0') ve sade araç çubuğu
   const C2_RULES = () => ((Stories.BOT_RULES || {}).rules || []).filter(r => r.note === 'Carmen 2.0');
   BOOKS.push({ id: 'yeni', icon: '✨', title: 'Carmen 2.0 Yenilikleri', sub: 'yeni iltifatlar, teklifler, sevişme ve sonrası, sade sohbet', chips: ['kitapçık', 'yeni'], chapters: [
@@ -15185,6 +15603,11 @@
     return out;
   }
   // 📜 olaya dokununca sonuçları: 🎲 olay sonuçları (yüzdeyle) + 💬 karakterin cevapları (olay sorgusuna "evt <etiketler> <kategori> <olay>" uyan =evt kuralları; fantezi / pozisyon / mekan şartlı olanlar hariç)
+  // ilk n tanesi görünür, kalanı gizli; "+N daha"ya dokununca açılır (Olay rehberi box.onclick → [data-more])
+  const evbMore = (items, n, what) => items.slice(0, n).join('') + items.slice(n).map(x => x.replace(/^<(\w+)/, '<$1 hidden')).join('')
+    + (items.length > n ? `<button type="button" class="btn ghost sm" data-more style="margin:4px 0">+${items.length - n} ${what} daha</button>` : '');
+  const evbRule = (r, strong) => `<div><p class="about" style="margin:6px 0 2px"><b>${esc(r.name || r.id)}</b>${(r.traits || []).length ? ` <small>· ${esc(r.traits.join(', '))}</small>` : ''}</p>
+    <ul>${evbMore(r.reply.map(t => `<li>${strong ? '<b>' : ''}${esc(String(t).split('||')[0])}${strong ? '</b>' : ''}</li>`), 12, 'cevap')}</ul></div>`;
   function evbResults(e) {
     const B = Stories.Bot, data = Stories.BOT_RULES || { rules: [] }, out = [];
     const oc = (e.outcomes || []).filter(o => String(o.text || '').trim());
@@ -15192,9 +15615,16 @@
     if (B) {
       const msg = B.norm(`evt ${(e.tags || []).join(' ')} ${catOfEv(e).label || ''} ${e.title}`);
       const hit = (data.rules || []).filter(r => (r.when || []).includes('=evt') && !(r.when || []).some(w => /^=(fant|poz|mekan|mod|miktar|sivi)$/.test(w)) && (r.reply || []).length && B.inOrder(msg, (r.when || []).filter(Boolean), data))
-        .sort((a, b) => B.score(b) - B.score(a)).slice(0, 8);
-      if (hit.length) out.push(`<div class="sec-title">💬 Cevapları</div>${hit.map(r => `<p class="about" style="margin:6px 0 2px"><b>${esc(r.name || r.id)}</b>${(r.traits || []).length ? ` <small>· ${esc(r.traits.join(', '))}</small>` : ''}</p>
-        <ul>${r.reply.slice(0, 12).map(t => `<li>${esc(String(t).split('||')[0])}</li>`).join('')}${r.reply.length > 12 ? `<li><small>+${r.reply.length - 12} cevap daha</small></li>` : ''}</ul>`).join('')}`);
+        .sort((a, b) => B.score(b) - B.score(a));
+      if (hit.length) out.push(`<div class="sec-title">💬 Cevapları</div><div>${evbMore(hit.map(r => evbRule(r)), 8, 'kural')}</div>`);
+      // 🚫 izin vermediği / 💔 sevmediği: o durumdaki cevaplar koyu
+      const t = low(e.title), tg = (e.tags || []).map(low), ct = catOfEv(e).tags || [], has = (r, w) => (r.when || []).includes('=' + w) && (r.reply || []).length;
+      const pkey = /condom/.test(t) ? 'kondom' : /control/.test(t) ? 'hap' : /morning/.test(t) ? 'sabah' : /pull/.test(t) ? 'pullout' : t === 'nothing' ? 'nothing' : 'genel';
+      const sts = [...(ct.includes(PERM_TAG) ? ['izin_red_' + pkey] : []), ...(tg.includes('vajinal') && ct.includes(CHAT_TOP_TAG) ? ['izinsiz_kondom', 'girisdikkat'] : []),
+        ...(tg.includes('vajinal') && tg.includes('boşalma') ? ['izinsiz_icine', 'hamilekaldi_istemedi'] : [])];
+      const deny = (data.rules || []).filter(r => sts.some(s => has(r, s)));
+      const msg2 = msg + ' sevmez', dis = (data.rules || []).filter(r => has(r, 'sevmez') && (r.when || []).filter(Boolean).every(w => B.inOrder(msg2, [w], data)));
+      if (deny.length || dis.length) out.push(`<div class="sec-title">🚫 İzin vermezse · 💔 sevmezse</div><div>${evbMore([...deny, ...dis].map(r => evbRule(r, true)), 8, 'kural')}</div>`);
     }
     return out.join('') || '<p class="about">Bu olayın kendi sonuç metni yok; genel cevaplar gelir.</p>';
   }
@@ -15293,6 +15723,9 @@
     box.onclick = ev => {
       const el = ev.target.closest('[data-evg]');
       if (!el) return;
+      // ➕ "+N cevap / kural daha": gizli kardeşleri açar
+      const more = ev.target.closest('[data-more]');
+      if (more) { more.parentElement.querySelectorAll(':scope > [hidden]').forEach(x => { x.hidden = false; }); more.remove(); return; }
       // 🗣️ olayın benim mesajlarım (js/data/me-lines.js): sonuçlardan ayrı açılıp kapanır
       const mb = ev.target.closest('[data-evme]');
       if (mb) {
@@ -15833,6 +16266,94 @@
   }
   // 🍆 senin Dick Size'ın (Ben → Profil; Pussy / Anal Size gibi tek seçim): onun baloncukları (dickLine) ve benim mesajlarım (ME_DICK)
   const DICK_SIZES = ['Very Small', 'Small', 'Average', 'Large', 'Very Large', 'Huge', 'Massive'];
+  /* 👥 Hesaplar: ilk açılışta (adı yoksa) ve ➕ Yeni hesapta soru soru hesap oluşturma. Her hesabın kendi profili,
+   * 💰 parası ve sohbetleri var; karakterler ortak (Store.accounts) */
+  const START_MONEY = 1000;
+  const money = (u = S().user) => `${(u.money != null ? +u.money : START_MONEY).toLocaleString('tr-TR')}₺`;
+  function switchAccount(id) { if (Store.switchAccount(id)) { location.replace('#/home'); location.reload(); } else notify('Hesap değiştirilemedi', '⚠️'); }
+  function onboard(add) {
+    if (document.getElementById('obScreen')) return;
+    const d = { name: '', age: '', city: '', height: '', dick: '', bio: '', photo: '' };
+    const steps = [
+      { k: 'name', q: () => `Selam, ben <b>Lia</b> 💁‍♀️ Seni ${add ? 'yeni hesabına' : 'Carmen\'e'} ben kaydedeceğim. Önce, sana ne diyelim?`, ph: 'Adın', max: 20 },
+      { k: 'age', q: () => `Memnun oldum ${esc(d.name)}! 😊 Kaç yaşındasın bakalım? 🎂`, ph: 'ör. 25', num: true, max: 2, ok: v => +v >= 18 && +v <= 99, err: 'Üzgünüm, 18 yaşından büyük olmalısın 🙈' },
+      { k: 'city', q: () => 'Hangi şehirdesin? Yakınlarda biri var mı bakarım 📍', ph: 'ör. İstanbul', max: 20, skip: true },
+      { k: 'height', q: () => 'Boyun kaç, yakışıklı? 📏', ph: 'cm, ör. 180', num: true, max: 3, ok: v => +v >= 120 && +v <= 230, err: 'Boyunu cm olarak yaz 😅', skip: true },
+      { k: 'dick', q: () => 'Peki… boyutu ne kadar canım? 😏 Aramızda kalacak', opts: DICK_SIZES, skip: true },
+      { k: 'bio', q: () => 'Kendini bir cümleyle anlat, kızlara ben okurum ✨', ph: 'Hakkımda', max: 80, skip: true },
+      { k: 'photo', q: () => 'Son olarak bir fotoğraf? Güzel bir tane seç 📷', photo: true, skip: true }
+    ];
+    const lia = html => `<div class="ob-lia"><span class="ob-lia-ava">${liaAva()}</span><div class="ob-say"><small>Lia</small><p>${html}</p></div></div>`;
+    let i = 0;
+    const el = document.createElement('div');
+    el.id = 'obScreen';
+    el.className = 'ob-scr';
+    // err: aynı adımda uyarı (geçişsiz); yoksa yeni adım fade ile gelir
+    const draw = err => {
+      const s = steps[i];
+      el.innerHTML = i < steps.length ? `<div class="ob-box${err ? '' : ' ob-anim'}">
+        <div class="ob-top">${i ? '<button type="button" class="ob-x" data-ob="back" aria-label="Geri">‹</button>' : '<span></span>'}
+          <div class="ob-prog"><i style="width:${Math.round(i / steps.length * 100)}%"></i></div>
+          ${add ? '<button type="button" class="ob-x" data-ob="cancel" aria-label="Vazgeç">✕</button>' : '<span></span>'}</div>
+        <div class="ob-logo">carm<span>e</span>n</div>
+        ${lia(s.q())}
+        ${s.opts ? `<div class="ob-opts">${s.opts.map(v => `<button type="button" data-obopt="${esc(v)}" class="${d[s.k] === v ? 'on' : ''}">${esc(v)}</button>`).join('')}</div>`
+          : s.photo ? `<label class="ob-pic">${d.photo ? `<img src="${esc(d.photo)}" alt="">` : '<span>📷<small>Fotoğraf seç</small></span>'}<input type="file" accept="image/*" id="obPhoto" hidden></label>`
+          : `<input class="ob-in" id="obIn" maxlength="${s.max}" ${s.num ? 'inputmode="numeric"' : ''} placeholder="${esc(s.ph)}" value="${esc(d[s.k])}" autocomplete="off">`}
+        <div class="ob-err">${err ? esc(err) : ''}</div>
+        <button type="button" class="btn primary block" data-ob="next">${i === steps.length - 1 ? 'Bitir' : 'Devam'}</button>
+        ${s.skip ? '<button type="button" class="ob-skip" data-ob="skip">Şimdilik geç</button>' : ''}
+      </div>` : `<div class="ob-box ob-anim">
+        <div class="ob-logo">carm<span>e</span>n</div>
+        ${lia(`Hazırsın ${esc(d.name)}! 🎉 Hesabına para da yükledim, dikkatli harca 😉`)}
+        <div class="ob-money">💰 Bakiyen <b>${START_MONEY.toLocaleString('tr-TR')}₺</b></div>
+        <button type="button" class="btn primary block" data-ob="done">Başlayalım 💘</button>
+      </div>`;
+      const inp = el.querySelector('#obIn');
+      if (inp) { inp.focus(); inp.onkeydown = e => { if (e.key === 'Enter') next(); }; }
+      const ph = el.querySelector('#obPhoto');
+      if (ph) ph.onchange = async e => { const f = e.target.files[0]; if (!f) return; try { d.photo = await readPhoto(f, 320, true); draw(); } catch (er) { draw('Fotoğraf okunamadı'); } };
+    };
+    const next = () => {
+      const s = steps[i], inp = el.querySelector('#obIn');
+      if (inp) d[s.k] = inp.value.trim();
+      if (!s.skip && !d[s.k]) return draw('Bunu boş bırakma 🥺');
+      if (d[s.k] && s.ok && !s.ok(d[s.k])) return draw(s.err);
+      go(1);
+    };
+    // adım geçişi: eski kutu söner, yenisi belirir
+    let busy = false;
+    const go = n => {
+      if (busy) return;
+      busy = true;
+      const box = el.querySelector('.ob-box');
+      if (box) box.classList.add('ob-leave');
+      setTimeout(() => { i += n; busy = false; draw(); }, 220);
+    };
+    const close = then => { el.classList.remove('in'); setTimeout(() => { el.remove(); if (then) then(); }, 600); };
+    const done = () => {
+      const user = { ...d, likes: [], money: START_MONEY };
+      if (add) { if (!Store.addAccount(user)) return notify('Hesap açılamadı (depolama dolu olabilir)', '⚠️'); close(() => { location.replace('#/home'); location.reload(); }); return; }
+      Object.assign(S().user, user); save();
+      render();
+      close();
+    };
+    el.onclick = e => {
+      const o = e.target.closest('[data-obopt]'), b = e.target.closest('[data-ob]');
+      if (o) { d[steps[i].k] = o.dataset.obopt; o.classList.add('on'); go(1); return; }
+      if (!b) return;
+      const a = b.dataset.ob;
+      if (a === 'next') next();
+      if (a === 'skip') { d[steps[i].k] = ''; go(1); }
+      if (a === 'back') go(-1);
+      if (a === 'cancel') close();
+      if (a === 'done') done();
+    };
+    document.body.appendChild(el);
+    draw();
+    requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('in')));
+  }
+
   const ME_TABS = [['profil', '👤 Profil'], ['ozet', '📊 Özet'], ['ses', '🎵 Ses'], ['ayar', '⚙️ Ayarlar'], ['veri', '💾 Veri'], ['yardim', '❓ Yardım']];
   const MU = Stories.Music;
   // 🕘 geçmiş (bu tarayıcıda): son 15 sayfa + site başına ziyaret sayısı (🧭 Gezgin rozeti)
@@ -15948,7 +16469,7 @@
     const totalMsgs = chars().reduce((n, c) => n + msgCount(c), 0);
 
     view.innerHTML = `
-      ${pageHero('me', '🙋', esc(u.name || 'İsimsiz'), [u.age ? `🎂 ${esc(u.age)}` : '', `📍 ${esc(u.city || 'Türkiye')}`, u.height ? `📏 ${esc(u.height)} cm` : '', `❤️ ${(u.likes || []).length}`, `${chars().length} karakter`, `${chatsCount} sohbet`, `${totalMsgs} mesaj`],
+      ${pageHero('me', '🙋', esc(u.name || 'İsimsiz'), [`💰 ${money(u)}`, u.age ? `🎂 ${esc(u.age)}` : '', `📍 ${esc(u.city || 'Türkiye')}`, u.height ? `📏 ${esc(u.height)} cm` : '', `❤️ ${(u.likes || []).length}`, `${chars().length} karakter`, `${chatsCount} sohbet`, `${totalMsgs} mesaj`],
         `<label class="me-photo pg-act" title="Fotoğrafını değiştir">${userAvatar(64)}<span class="cam">📷</span><input type="file" accept="image/*" id="uPhoto" hidden></label>`, { pic: u.photo || '' })}
 
       <div class="me-tabs" id="meTabs">${ME_TABS.map(([k, l]) => `<button type="button" data-metab="${k}" class="${meTab === k ? 'on' : ''}">${l}</button>`).join('')}</div>
@@ -15964,7 +16485,16 @@
             <div class="field"><label>Şehrin</label><input id="uCity" maxlength="20" value="${esc(u.city)}"></div>
             <div class="field"><label>📏 Boyun (cm)</label><input id="uHeight" inputmode="numeric" maxlength="3" value="${esc(u.height || '')}" placeholder="ör. 180"></div>
             <div class="field"><label>📝 Hakkımda</label><input id="uBio" maxlength="80" value="${esc(u.bio || '')}" placeholder="Kendini bir cümleyle anlat"></div>
+            ${editOn() ? `<div class="field"><label>💰 Bakiye (₺) <small>· ✏️ düzenleme modu</small></label><input id="uMoney" inputmode="numeric" maxlength="9" value="${esc(u.money != null ? u.money : START_MONEY)}"></div>` : ''}
             ${u.photo ? '<button class="btn ghost block" id="uPhotoRm" style="margin-top:12px">Fotoğrafımı kaldır</button>' : ''}
+          </div>
+          <div class="card">
+            <div class="sec-title" style="margin-top:0">👥 Hesaplar <small>· karakterler ortak; profil, 💰 para ve sohbetler her hesapta ayrı</small></div>
+            <div class="acc-list">${Store.accounts().map(a => `<div class="acc-row${a.active ? ' on' : ''}">
+              <button type="button" class="acc-go" data-acc="${a.id}"${a.active ? ' disabled' : ''}>${avatar({ name: a.user.name || 'İsimsiz', photo: a.user.photo, colors: ['#0089c4', '#c2185b'] }, 36)}
+                <span><b>${esc(a.user.name || 'İsimsiz')}</b><small>💰 ${money(a.user)}${a.active ? ' · ✓ aktif' : ''}</small></span></button>
+              <button type="button" class="acc-del" data-accdel="${a.id}" aria-label="Hesabı sil">🗑️</button></div>`).join('')}</div>
+            <button class="btn ghost block" id="accAdd" style="margin-top:10px">➕ Yeni hesap aç</button>
           </div>
           <div class="card">
             <div class="sec-title" style="margin-top:0">🍆 Dick Size <small>· tek seçim, tekrar dokununca kalkar · onun cevaplarına ve 🗣️ benim mesajlarıma (özellikle 🤗 sarılma) yansır</small></div>
@@ -15996,6 +16526,12 @@
         </section>
 
         <section class="me-sec" data-sec="ayar">
+          <div class="card" style="margin-bottom:12px">
+            <label class="flt-row"><span><b>✏️ Düzenleme modu</b> <small>✨ Oluştur, 📖 Monia, 🕰️ saat ayarı ve sohbetteki detaylı görünümler (📊 durumlar, 📈 değer değişimleri, 🎯 bot puanları, ✨ efekt, ⇄ sırayla…) sadece bu modda</small></span><input type="checkbox" id="editOn"${editOn() ? ' checked' : ''}></label>
+            ${editOn() ? `<div class="sec-title">✨ Oluştur</div>
+            <a class="btn primary block" href="#/create">✨ Karakter oluştur</a>
+            <a class="btn ghost block" href="#/kurallar" style="margin-top:8px">📏 Oluştur kuralları</a>` : ''}
+          </div>
           <div class="card">
             <div class="sec-title" style="margin-top:0">🌙 Tema</div>
             <div class="theme-pick" id="themePick">${[['light', '☀️ Açık'], ['dark', '🌙 Koyu'], ['auto', '📱 Sistem']].map(([k, l]) => `<button type="button" data-theme-set="${k}" class="${themePref() === k ? 'on' : ''}">${l}</button>`).join('')}</div>
@@ -16044,12 +16580,12 @@
         </section>
 
         <section class="me-sec" data-sec="ayar">
-        <div class="card" style="margin-top:12px">
+        ${editOn() ? `<div class="card" style="margin-top:12px">
           <div class="sec-title" style="margin-top:0">📏 Oluştur kuralları <small>· tüm karakterler için: bir özellik varken olamayacaklar</small></div>
           ${crRules().length ? `<div class="cr-list">${crRules().map(r => `<span class="cr-rule"><b>${esc(crText(r))}</b> → 🚫 ${esc((r.not || []).map(crLabel).join(', '))}</span>`).join('')}</div>` : '<div class="about">Henüz kural yok. ör. Experience: Virgo → 🚫 Pussy Size: Loose. Oluştur\'da seçilemez, 🎲 rastgele de seçmez.</div>'}
           ${(T.rules || []).length ? `<div class="about" style="margin-top:10px">⚖️ Hazır kilo kuralları (her zaman geçerli):</div><div class="cr-list">${T.rules.map(r => `<span class="cr-rule"><b>${esc(crText(r))}</b> → 🚫 ${esc(r.not.map(crLabel).join(', '))}</span>`).join('')}</div>` : ''}
           <a class="btn ghost block" href="#/kurallar" style="margin-top:12px">📏 Kurallar panelini aç</a>
-        </div>
+        </div>` : ''}
         <div class="card" style="margin-top:12px">
           <div class="sec-title" style="margin-top:0">🔑 Anahtar kelimeler</div>
           ${keywords().length ? kwSummary(null)
@@ -16109,6 +16645,15 @@
       try { u.photo = await readPhoto(f, 320, true); save(); renderMe(); } catch (err) { notify('Fotoğraf okunamadı', '⚠️'); }
     };
     if ($('#uPhotoRm')) $('#uPhotoRm').onclick = () => { u.photo = ''; save(); renderMe(); };
+    if ($('#uMoney')) $('#uMoney').onchange = () => { u.money = Math.max(0, parseInt($('#uMoney').value, 10) || 0); save(); renderMe(); };
+    $('#accAdd').onclick = () => onboard(true);
+    view.querySelectorAll('[data-acc]').forEach(b => b.onclick = () => switchAccount(b.dataset.acc));
+    view.querySelectorAll('[data-accdel]').forEach(b => b.onclick = () => {
+      const a = Store.accounts().find(x => x.id === b.dataset.accdel);
+      if (!a || !confirm(`${a.user.name || 'İsimsiz'} hesabı ve sohbetleri silinsin mi?${a.active ? ' (Şu an açık olan hesap; ' + (Store.accounts().length > 1 ? 'diğer hesaba geçilir)' : 'yeni hesap oluşturulur)') : ''}`)) return;
+      Store.removeAccount(a.id);
+      if (a.active) { location.replace('#/home'); location.reload(); } else renderMe();
+    });
 
     sysCheck().then(ok => {
       const el = $('#sysStat');
@@ -16133,6 +16678,8 @@
     $('#lockBtn').onclick = () => lockSheet(() => { const b = $('#lockBtn'); if (b) b.textContent = `🔒 Uygulama kilidi${lockCfg() ? ' · açık' : ''}`; });
     $('#bossBtn').onclick = () => bossKey();
     $('#liaOn').onchange = e => liaOn(e.target.checked);
+    // ✏️ düzenleme modu açılınca ⇄ sırayla tüm sohbetlerde yeniden açık başlar
+    $('#editOn').onchange = e => { editOn(e.target.checked); if (e.target.checked) { S().turns = {}; save(); } const y = window.scrollY; renderMe(); window.scrollTo(0, y); };
     $('#themePick').onclick = e => { const b = e.target.closest('[data-theme-set]'); if (!b) return; themePref(b.dataset.themeSet); applyTheme(); $('#themePick').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); };
     $('#sysCats').onclick = () => catSheet();
     $('#sysPull').onclick = () => sysPull().then(r => { if (!r) notify('Yerel sunucu yok: yerel-duzenleme.bat ile aç', '⚠️'); }, () => notify('Sistem dosyası okunamadı', '⚠️'));
@@ -16302,5 +16849,8 @@
   document.addEventListener('keydown', e => { if (ui.chatKeys) ui.chatKeys(e); });
   wideMQ.addEventListener('change', () => { if (['messages', 'chat'].includes(ui.route.name)) render(); });
   render();
+  // 👥 adı olmayan hesap önce hesap oluşturmadan geçer; eski hesaplara başlangıç parası
+  if (!S().user.name) onboard(false);
+  else if (S().user.money == null) { S().user.money = START_MONEY; save(); }
   setTimeout(() => $('#splash').classList.add('hide'), 700);
 })();
