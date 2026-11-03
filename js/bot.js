@@ -58,12 +58,21 @@ Stories.Bot = (() => {
     return out;
   }
 
+  // ⚡ best()/addons() süresince açılmış terimler saklanır (aynı @grup yüzlerce kuralda tekrar açılmasın)
+  let memo = null;
+  const expandC = (term, data) => {
+    if (!memo) return expand(term, data);
+    let v = memo.get(term);
+    if (!v) memo.set(term, v = expand(term, data));
+    return v;
+  };
+
   // Kelimeler mesajda bu sırayla geçiyor mu?
   function inOrder(msg, when, data) {
     let from = 0;
     for (const term of when) {
       let best = -1, end = 0;
-      for (const m of expand(term, data)) {
+      for (const m of expandC(term, data)) {
         let i, e;
         if (m.start) {
           const k = msg.indexOf(' ' + m.s + (m.whole ? ' ' : ''), Math.max(0, from - 1));
@@ -84,12 +93,14 @@ Stories.Bot = (() => {
   const ageTrait = age => { const a = parseInt(age, 10); return !(a >= 18) ? '' : a <= 22 ? 'Yaş: Genç' : a <= 29 ? 'Yaş: Yirmili' : a <= 39 ? 'Yaş: Otuzlu' : 'Yaş: Olgun'; };
   // 🌍 Memleket de bir özellik: şehrin ülkesinin kültür bölgesi ("Memleket: Latin", "Memleket: Doğu Asya"…; bkz. js/data/world.js)
   const originTrait = city => { const r = Stories.World && Stories.World.regionOf(city); return r ? 'Memleket: ' + r : ''; };
-  function fits(rule, ch) {
+  // 🛡️ korunma seçiminden gelenler: "Kondom: Var", "İçe: İzin yok", "Hap: Alıyor"… (app.js protTraits)
+  const haveOf = ch => new Set([...(ch.traits || []), ageTrait(ch.age), originTrait(ch.city), ...(Stories.protTraits ? Stories.protTraits(ch) : [])].filter(Boolean).map(lower));
+  function fits(rule, ch, have) {
     const traits = (rule.traits || []).filter(Boolean);
-    // 🛡️ korunma seçiminden gelenler: "Kondom: Var", "İçe: İzin yok", "Hap: Alıyor"… (app.js protTraits)
-    const prot = Stories.protTraits ? Stories.protTraits(ch) : [];
-    const have = [...(ch.traits || []), ageTrait(ch.age), originTrait(ch.city), ...prot].filter(Boolean);
-    if (traits.length && !traits.every(t => String(t).split('|').some(a => have.some(x => lower(x) === lower(a))))) return false;
+    if (traits.length) {
+      have = have || haveOf(ch);
+      if (!traits.every(t => String(t).split('|').some(a => have.has(lower(a))))) return false;
+    }
     const names = (rule.chars || []).map(lower).filter(Boolean);
     if (names.length) {
       const full = lower(ch.name), first = full.split(' ')[0];
@@ -118,9 +129,13 @@ Stories.Bot = (() => {
   // Mesaja ve karaktere göre en iyi kural: { rule, score, fallback, loose } ya da null.  data: BOT_RULES (ya da sadece kural dizisi)
   // loose: true → tam tutmayan kurallar da gevşek puanıyla yarışır
   function best(data, text, ch, loose) {
+    memo = new Map();
+    try { return bestOf(data, text, ch, loose); } finally { memo = null; }
+  }
+  function bestOf(data, text, ch, loose) {
     data = asData(data);
-    const msg = norm(text);
-    const usable = (data.rules || []).filter(r => (r.reply || []).some(x => String(x).trim()) && fits(r, ch));
+    const msg = norm(text), have = ch && haveOf(ch);
+    const usable = (data.rules || []).filter(r => (r.reply || []).some(x => String(x).trim()) && fits(r, ch, have));
     const hit = usable.filter(r => words(r).length && inOrder(msg, words(r), data)).map(r => ({ r, s: score(r) }));
     if (loose) usable.forEach(r => {
       if (!words(r).length || hit.some(x => x.r === r)) return;
@@ -142,10 +157,14 @@ Stories.Bot = (() => {
   const ADD_MODES = ['prepend', 'append', 'before', 'message'];
   function addons(data, text, ch) {
     data = asData(data);
-    const msg = norm(text);
+    const msg = norm(text), have = ch && haveOf(ch);
     const out = { prepend: null, append: null, before: null, message: null };
-    const hit = (data.addons || []).filter(a => (a.add || []).some(x => String(x).trim()) && fits(a, ch) &&
-      (!words(a).length || inOrder(msg, words(a), data)));
+    memo = new Map();
+    let hit;
+    try {
+      hit = (data.addons || []).filter(a => (a.add || []).some(x => String(x).trim()) && fits(a, ch, have) &&
+        (!words(a).length || inOrder(msg, words(a), data)));
+    } finally { memo = null; }
     ADD_MODES.forEach(mode => {
       const pool = hit.filter(a => (a.mode || 'append') === mode);
       if (!pool.length) return;

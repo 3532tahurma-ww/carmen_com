@@ -156,8 +156,14 @@
     };
   }
 
+  // ⚡ art arda kayıtlar tek yazmaya toplanır (tüm durum JSON'a çevrildiği için pahalı); sayfa gizlenince hemen yazılır
+  let saveT = 0;
+  const flushSave = () => { if (!saveT) return; clearTimeout(saveT); saveT = 0; if (!Store.save()) notify('Depolama dolu! Albümden fotoğraf silmeyi dene.', '⚠️'); };
+  addEventListener('pagehide', flushSave);
+  addEventListener('beforeunload', flushSave);
+  document.addEventListener('visibilitychange', () => { if (document.hidden) flushSave(); });
   function save() {
-    if (!Store.save()) notify('Depolama dolu! Albümden fotoğraf silmeyi dene.', '⚠️');
+    if (!saveT) saveT = setTimeout(() => { saveT = -1; flushSave(); }, 400);
     if (sysCfg().on) { clearTimeout(sysTimer); sysTimer = setTimeout(() => sysPush().catch(() => notify('Sistem kaydı yapılamadı', '⚠️')), 1500); }
   }
 
@@ -6444,7 +6450,7 @@
 
     /* ---------- Geri alma (↶): her değişiklikten önce mesajların kopyası saklanır ---------- */
     function snap(label) {
-      stack.push({ label, msgs: JSON.parse(JSON.stringify(list)) });
+      stack.push({ label, msgs: deepCopy(list) });
       if (stack.length > 40) stack.shift();
       drawUndo();
     }
@@ -8401,7 +8407,8 @@
       if (cs.playing) return;
       const q = e.target.closest('[data-q]');
       if (q) {
-        const o = box.querySelector(`[data-id="${q.dataset.q}"]`);
+        let o = box.querySelector(`[data-id="${q.dataset.q}"]`);
+        if (!o && list.some(x => x.id === q.dataset.q)) { drawMessages(ctx, cs, q.dataset.q); o = box.querySelector(`[data-id="${q.dataset.q}"]`); }
         if (o) { o.scrollIntoView({ block: 'center', behavior: 'smooth' }); o.classList.add('flash'); setTimeout(() => o.classList.remove('flash'), 1200); }
         return;
       }
@@ -9535,6 +9542,9 @@
     return html + `<div class="msg me${cls}" data-id="${m.id}"><span class="seen">${ICON.check}</span>${bubble}</div>`;
   }
 
+  const CHAT_WIN = 80;
+  // ⚡ JSON kopyasından hızlı: yazılar (fotoğrafların base64'ü dahil) kopyalanmaz, paylaşılır
+  const deepCopy = v => Array.isArray(v) ? v.map(deepCopy) : v && typeof v === 'object' ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, deepCopy(x)])) : v;
   function drawMessages(ctx, cs, target) {
     const box = $('#msgs');
     if (!box) return;
@@ -9544,9 +9554,27 @@
     ctx.chains = new Map();
     msgs.forEach(x => { if (x.chain && x.evc && mIds.has(x.chain)) { if (!ctx.chains.has(x.chain)) ctx.chains.set(x.chain, []); ctx.chains.get(x.chain).push(x); } });
     ctx.merged = new Set([...ctx.chains.values()].flat().map(x => x.id));
+    // ⚡ sadece son ctx.win mesaj çizilir (aramada hepsi); hedef / zincir kökü pencerenin dışındaysa pencere genişler
+    ctx.win = ctx.win || CHAT_WIN;
+    let start = ctx.query ? 0 : Math.max(0, msgs.length - ctx.win);
+    if (start) {
+      const idx = new Map(msgs.map((x, i) => [x.id, i]));
+      if (target && idx.get(target) < start) start = idx.get(target);
+      for (let i = start; i < msgs.length; i++) { const x = msgs[i]; if (ctx.merged.has(x.id) && idx.get(x.chain) < start) start = idx.get(x.chain); }
+      ctx.win = Math.max(ctx.win, msgs.length - start);
+    }
     box.innerHTML = msgs.length
-      ? msgs.map((m, i) => itemHtml(ctx, m, msgs[i - 1])).join('')
+      ? (start ? `<button type="button" class="sys" data-older style="display:block;margin:6px auto;border:0;cursor:pointer">⬆️ Önceki mesajlar (${start})</button>` : '')
+        + msgs.slice(start).map((m, i) => itemHtml(ctx, m, msgs[start + i - 1])).join('')
       : `<div class="sys">${ctx.group ? 'Grupta' : `${esc(ctx.speaker({ from: 'her' }).name)} ile`} hikayeni yazmaya başla 💌<br>Alttaki avatara dokunarak kimin yazdığını değiştirebilirsin.</div>`;
+    const older = box.querySelector('[data-older]');
+    if (older) older.onclick = e => {
+      e.stopPropagation();
+      const h = box.scrollHeight, y = box.scrollTop;
+      ctx.win += CHAT_WIN;
+      drawMessages(ctx, cs, msgs[start] && msgs[start].id);
+      box.scrollTop = box.scrollHeight - h + y;
+    };
     if (cs && cs.mode) { const t = box.querySelector(`[data-id="${cs.mode.id}"]`); if (t) t.classList.add('target'); }
     const t = target && box.querySelector(`[data-id="${target}"]`);
     if (t) t.scrollIntoView({ block: 'center' });
