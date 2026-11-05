@@ -85,8 +85,10 @@
     .syntax { margin-top: 6px; font-size: 12px; color: var(--muted); font-weight: 700; line-height: 1.6; }
     .syntax code, .help code { background: var(--chip); border-radius: 6px; padding: 1px 5px; font-size: 12px; color: var(--text); }
     textarea { width: 100%; min-height: 110px; border-radius: 12px; border: 1px solid var(--line); padding: 10px 12px; font-weight: 600; line-height: 1.55; resize: vertical; }
-    .en-list { border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; font-size: 14px; font-weight: 600; line-height: 1.55; max-height: 280px; overflow: auto; background: var(--chip); }
-    .en-l.miss { color: var(--muted); font-style: italic; }
+    .btn.on { background: var(--purple); color: #fff; }
+    .en-row { padding: 8px 0; border-bottom: 1px solid var(--line); }
+    .en-row:last-child { border-bottom: 0; }
+    .en-tr { font-size: 13.5px; font-weight: 700; color: #6f6f80; margin-bottom: 5px; }
     .chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
     .chip { display: inline-flex; align-items: center; gap: 2px; padding: 4px 4px 4px 10px; border-radius: 999px; background: var(--amber-soft); color: var(--amber); font-weight: 800; font-size: 13px; }
     .chip.w { background: var(--chip); color: var(--text); }
@@ -148,13 +150,13 @@
   <header class="top">
     <div class="brand">🤖 Bot editörü</div>
     <nav class="tabs" id="tabs">
-      <button data-tab="rules" class="on">Kurallar <small id="nRules"></small></button>
+      <button data-tab="rules" class="on">Türkçe kurallar <small id="nRules"></small></button>
+      <button data-tab="en">İngilizce kurallar <small id="nEn"></small></button>
       <button data-tab="addons">🪄 Otomatik ekler <small id="nAddons"></small></button>
       <button data-tab="groups">Kelime grupları <small id="nGroups"></small></button>
       <button data-tab="verbs">Fiiller <small id="nVerbs"></small></button>
     </nav>
     <span id="status"></span>
-    <button class="btn" id="langBtn" title="Cevap dilini değiştir (sadece gösterim)">🌐 TR</button>
     <button class="btn" id="exportBtn" title="Kuralları, grupları ve fiilleri JSON olarak indir">⬇️ Dışa aktar</button>
     <button class="btn" id="importBtn" title="JSON dosyasından kural yükle">⬆️ İçe aktar</button>
     <input type="file" id="importFile" accept=".json,application/json" hidden>
@@ -187,7 +189,7 @@
           <option value="score">Özgüllük</option>
           <option value="new">Son eklenen</option>
         </select>
-        <div class="add"><button class="btn sm" id="addRule">+ Kural</button><button class="btn sm" id="addFb">+ Yedek cevap</button></div>
+        <div class="add"><button class="btn sm" id="addRule">+ Kural</button><button class="btn sm" id="addFb">+ Yedek cevap</button><button class="btn sm" id="enMiss" hidden>Sadece eksikler</button></div>
       </div>
       <div id="ruleList"></div>
     </aside>
@@ -284,6 +286,7 @@
     const ui = { tab: 'rules', kind: 'rules', sel: null, selBy: {}, q: '', sort: 'name', closed: new Set(), gq: '', vq: '' };
     // Kurallar ve otomatik ekler aynı ekranı paylaşır: coll() açık listeyi, TX() cevap/ek alanının adını verir
     const A = () => ui.kind === 'addons';
+    const EN = () => ui.tab === 'en';      // İngilizce sekmesi: aynı kurallar, sadece cevap çevirileri düzenlenir
     const coll = () => data[ui.kind];
     const TX = () => (A() ? 'add' : 'reply');
     const MODES = { prepend: 'Başına ekle', append: 'Sonuna ekle', before: 'Önce ayrı mesaj', message: 'Sonra ayrı mesaj' };
@@ -344,8 +347,12 @@
       data.addons = (data.addons || []).map(a => Object.assign({ id: uid(), name: '', category: '', when: [], add: [], mode: 'append', chance: 100, traits: [], chars: [], note: '' }, a));
       data.groups = (data.groups || []).map(g => Object.assign({ name: '', words: [] }, g));
       data.verbs = (data.verbs || []).map(v => Object.assign({ verb: '', stems: [] }, v));
+      setEnPairs(data.en, true);
       ui.sel = data.rules[0] ? data.rules[0].id : null;
       counts(); refreshLists(); renderRules(); renderGroups(); renderVerbs(); runTest();
+      let last = '';
+      try { last = localStorage.getItem(EN_KEY); } catch (e) {}
+      if (last === 'en') $('[data-tab=en]').click();
     }
 
     /* ---------- Sekmeler ---------- */
@@ -354,20 +361,24 @@
       if (!b) return;
       ui.tab = b.dataset.tab;
       document.querySelectorAll('#tabs button').forEach(x => x.classList.toggle('on', x === b));
-      const listTab = ui.tab === 'rules' || ui.tab === 'addons';
+      const listTab = ui.tab === 'rules' || ui.tab === 'en' || ui.tab === 'addons';
+      const kind = ui.tab === 'addons' ? 'addons' : 'rules';
       ['rules', 'groups', 'verbs'].forEach(t => $('#v' + t[0].toUpperCase() + t.slice(1)).classList.toggle('on', t === (listTab ? 'rules' : ui.tab)));
-      if (listTab && ui.kind !== ui.tab) {
+      if (ui.tab === 'rules' || EN()) { try { localStorage.setItem(EN_KEY, EN() ? 'en' : 'tr'); } catch (e) {} }
+      if (listTab && ui.kind !== kind) {
         ui.selBy[ui.kind] = ui.sel;
-        ui.kind = ui.tab;
+        ui.kind = kind;
         ui.sel = ui.selBy[ui.kind] || ((coll()[0] || {}).id || null);
         ui.q = ''; $('#q').value = '';
         $('#addRule').textContent = A() ? '+ Ek' : '+ Kural';
-        $('#addFb').hidden = A();
         $('#q').placeholder = A() ? 'Ek ara…' : 'Kural ara…';
         $('#tMsgLb').textContent = A() ? 'Karakterin mesajı' : 'Senin mesajın';
         $('#tMsg').placeholder = A() ? 'ör. bunu ben yaptım' : 'ör. ne yapıyorsun, seni seviyorum';
         $('#helpAddons').hidden = !A();
       }
+      $('#addRule').hidden = EN();
+      $('#addFb').hidden = A() || EN();
+      $('#enMiss').hidden = !EN();
       refreshLists();
       if (listTab) { renderRules(); runTest(); }
       if (ui.tab === 'groups') renderGroups();
@@ -375,7 +386,8 @@
     };
 
     /* ================= KURALLAR ================= */
-    const matchesQ = r => !ui.q || lower([r.name, r.category, r.when.join(' '), r[TX()].join(' '), r.traits.join(' '), r.chars.join(' '), r.note].join(' ')).includes(ui.q);
+    const matchesQ = r => (!EN() || !ui.enMiss || enDone(r) < r.reply.length) &&
+      (!ui.q || lower([r.name, r.category, r.when.join(' '), r[TX()].join(' '), EN() ? r.reply.map(l => lineEn(l).s).join(' ') : '', r.traits.join(' '), r.chars.join(' '), r.note].join(' ')).includes(ui.q));
 
     function sorted(list) {
       const by = {
@@ -388,6 +400,7 @@
 
     function renderList() {
       const list = coll().filter(matchesQ);
+      if (EN()) $('#nEn').textContent = `${data.rules.filter(r => enDone(r) === r.reply.length).length}/${data.rules.length}`;
       const cats = {};
       list.forEach(r => { (cats[catOf(r)] = cats[catOf(r)] || []).push(r); });
       const names = Object.keys(cats).sort((a, b) => (a === FB) - (b === FB) || a.localeCompare(b, 'tr'));
@@ -397,7 +410,7 @@
           <div class="rows">${sorted(cats[c]).map(r => `
             <button class="row${r.id === ui.sel ? ' on' : ''}" data-id="${r.id}">
               <b>${esc(title(r))}${isFb(r) ? '<span class="bd fb">yedek</span>' : ''}${r.traits.length ? `<span class="bd tr">💫 ${r.traits.length}</span>` : ''}${r.chars.length ? '<span class="bd ch">👤</span>' : ''}</b>
-              <small>${isFb(r) ? 'hiçbir kural eşleşmezse' : r.when.length ? esc(r.when.join(' → ')) : 'her mesaj'} · ${A() ? `${MODES[r.mode] || MODES.append} · %${r.chance}` : `${r.reply.length} cevap`}</small>
+              <small>${isFb(r) ? 'hiçbir kural eşleşmezse' : r.when.length ? esc(r.when.join(' → ')) : 'her mesaj'} · ${A() ? `${MODES[r.mode] || MODES.append} · %${r.chance}` : EN() ? `${enDone(r)}/${r.reply.length} çevrili` : `${r.reply.length} cevap`}</small>
             </button>`).join('')}</div>
         </div>`).join('') : `<div class="empty">${coll().length ? 'Aramaya uyan kayıt yok' : A() ? 'Henüz ek yok. “+ Ek” ile başla.' : 'Henüz kural yok'}</div>`;
     }
@@ -408,26 +421,59 @@
         ${i > 0 ? '<button data-tmove="-1" title="Sola al">‹</button>' : ''}${i < n - 1 ? '<button data-tmove="1" title="Sağa al">›</button>' : ''}<button data-tdel title="Sil">✕</button></span>`;
     }
 
-    // 🌐 cevap dili: EN'de cevapların çevirisi metin kutusunun altında gösterilir; kayıtlı metin hep Türkçe kalır (bot Türkçe okur)
+    // 🌐 İngilizce sekmesi: tetikler ve bot mantığı Türkçe kalır. enMap = sözlük anahtarı → çeviri, kaydedince data.en olur;
+    // js/data/i18n-en-*.js'teki çevirinin üstüne yazılır (uygulama aynı sözlükten okur, bkz. Bot.enDict). Aynı cümle her kuralda ortaktır
     const EN_KEY = 'amor-stories:botedit-lang';
-    let enOn = false;
-    try { enOn = localStorage.getItem(EN_KEY) === 'en'; } catch (e) {}
+    const I = Stories.I18n;
+    let enMap = new Map();
+    const enCache = new Map();
+    const partsOf = l => String(l).split('||').map(p => p.trim()).filter(Boolean);
+    const keyOf = p => I.keyOf(p)[1];
+    const noKey = p => /\{[^{}]*:[^{}]*\}/.test(p);     // {x:y}: cevapta rastgele dolar, sözlük tutmaz
+    function partEn(p) {
+      if (enCache.has(p)) return enCache.get(p);
+      const k = I.keyOf(p), own = enMap.get(k[1]), x = own != null ? k[0] + own + k[2] : I.line(p);
+      const o = { s: x == null ? p : x, ok: x != null || !/\p{L}/u.test(p) || noKey(p) };
+      enCache.set(p, o);
+      return o;
+    }
     const lineEn = l => {
-      const parts = String(l).split('||').map(p => { const x = Stories.I18n.line(p.trim()); return { s: x == null ? p.trim() : x, ok: x != null || !/\p{L}/u.test(p) }; });
+      const parts = partsOf(l).map(partEn);
       return { s: parts.map(p => p.s).join(' || '), ok: parts.every(p => p.ok) };
     };
-    function enHtml(r) {
-      if (!enOn || A()) return '';
-      const rows = r.reply.map(lineEn);
-      return `<label class="lb">🌐 English <small><b class="no-i18n">${rows.filter(x => x.ok).length}/${rows.length}</b> · sadece gösterim: kayıtlı metin Türkçe kalır</small></label>
-        <div class="en-list no-i18n">${rows.map(x => `<div class="en-l${x.ok ? '' : ' miss'}">${esc(x.s)}</div>`).join('')}</div>`;
+    const enDone = r => r.reply.filter(l => lineEn(l).ok).length;
+    function putEn(list) {
+      list.forEach(([k, v]) => enMap.set(k, v));
+      I.toSide(true); I.add(BOT.enDict(list)); I.toSide(false);     // Dene kutusu dolu metni sözlükten çevirir
     }
-    function drawEn() { const b = $('#enBox'), r = ruleById(ui.sel); if (b && r) b.innerHTML = enHtml(r); }
-    function drawLang() { $('#langBtn').textContent = enOn ? '🌐 EN' : '🌐 TR'; drawEn(); }
+    function setEnPairs(pairs, reset) {
+      if (reset) enMap = new Map();
+      enCache.clear();
+      putEn((pairs || []).filter(p => Array.isArray(p) && p[0] && p[1]));
+    }
+    function setEn(part, val) {
+      const k = keyOf(part), v = val.trim();
+      enCache.delete(part);
+      if (v) putEn([[k, keyOf(v) || v]]); else enMap.delete(k);
+    }
+    function enCard(r) {
+      const rows = r.reply.flatMap(partsOf).filter(p => /\p{L}/u.test(p)).map(p => {
+        const x = partEn(p), fixed = noKey(p);
+        return `<div class="en-row"><div class="en-tr no-i18n">${esc(p)}</div>
+          <input class="in" data-en="${esc(p)}" value="${x.ok && !fixed ? esc(x.s) : ''}" placeholder="${fixed ? 'Bu satır çevrilemez' : 'Çeviri yok'}"${fixed ? ' disabled' : ''}></div>`;
+      });
+      return `<div class="card" data-rule="${r.id}">
+        <div class="card-h"><b class="name">${esc(title(r))}</b></div>
+        <div class="syntax">${isFb(r) ? 'hiçbir kural eşleşmezse' : esc(r.when.join(' → '))}</div>
+        <label class="lb">İngilizce cevaplar <small><b class="no-i18n" id="enN">${enDone(r)}/${r.reply.length}</b> · aynı cümle her kuralda ortaktır · <code>{sen}</code> <code>{ben}</code> aynen kalsın</small></label>
+        ${rows.join('') || '<div class="empty">Çevrilecek cevap yok</div>'}
+      </div>`;
+    }
 
     function renderDetail() {
       const r = ruleById(ui.sel);
       if (!r) { $('#detail').innerHTML = `<div class="empty">Soldan bir ${A() ? 'ek' : 'kural'} seç ya da “${A() ? '+ Ek' : '+ Kural'}” ile yenisini ekle.</div>`; return; }
+      if (EN()) { $('#detail').innerHTML = enCard(r); return; }
       const when = r.when.filter(Boolean);
       $('#detail').innerHTML = `<div class="card" data-rule="${r.id}">
         <div class="card-h">
@@ -452,8 +498,7 @@
         ${A() ? `<label class="lb">Eklenecekler <small>(her satır bir seçenek, biri rastgele · emoji ya da metin · {sen} {ben})</small></label>
         <textarea data-f="add" placeholder="😏&#10;✨&#10;değil mi {sen}?">${esc(r.add.join('\n'))}</textarea>`
         : `<label class="lb">Cevaplar <small>(her satır bir seçenek · || ayrı baloncuk · {sen} {ben})</small></label>
-        <textarea data-f="reply" placeholder="Selam {sen}! 👋&#10;Heyy||nasılsın?">${esc(r.reply.join('\n'))}</textarea>
-        <div id="enBox">${enHtml(r)}</div>`}
+        <textarea data-f="reply" placeholder="Selam {sen}! 👋&#10;Heyy||nasılsın?">${esc(r.reply.join('\n'))}</textarea>`}
         <div class="grid2">
           <div><label class="lb">Kişilik şartı <small>(hepsi olmalı)</small></label>
             <div class="chips">${r.traits.map(t => `<span class="chip">${esc(t)}<button data-trdel="${esc(t)}">✕</button></span>`).join('')}
@@ -525,22 +570,22 @@
 
     $('#detail').addEventListener('input', e => {
       const f = e.target.dataset.f, r = ruleById(ui.sel);
+      if (r && e.target.dataset.en != null) {
+        setEn(e.target.dataset.en, e.target.value);
+        $('#enN').textContent = `${enDone(r)}/${r.reply.length}`;
+        setDirty(); runTest();
+        return;
+      }
       if (!f || !r) return;
       if (f === 'reply' || f === 'add') r[f] = e.target.value.split('\n').map(s => s.trim()).filter(Boolean);
       else if (f === 'chance') r.chance = Math.max(0, Math.min(100, +e.target.value || 0));
       else if (f === 'chars') r.chars = e.target.value.split(',').map(s => s.trim()).filter(Boolean);
       else r[f] = e.target.value;
-      if (f === 'reply') drawEn();
       setDirty(); runTest();
     });
-    $('#langBtn').onclick = () => {
-      enOn = !enOn;
-      try { localStorage.setItem(EN_KEY, enOn ? 'en' : 'tr'); } catch (e) {}
-      drawLang(); runTest();
-    };
-    drawLang();
+    $('#enMiss').onclick = e => { ui.enMiss = !ui.enMiss; e.target.classList.toggle('on', ui.enMiss); renderList(); };
     // Liste satırı (isim, kategori, rozetler) alandan çıkınca güncellenir
-    $('#detail').addEventListener('change', e => { if (e.target.dataset.f) { renderList(); refreshLists(); } });
+    $('#detail').addEventListener('change', e => { if (e.target.dataset.f || e.target.dataset.en != null) { renderList(); refreshLists(); } });
 
     function addRule(fb) {
       // Yeni kural, seçili kuralın kategorisine eklenir
@@ -593,7 +638,7 @@
       const m = BOT.best(data, BOT.fromEn(msg), ch);
       if (!m) { out.innerHTML = `<div class="bub me">${esc(msg)}</div><div class="info">Uygun kural yok (yedek cevap da yok).</div>`; return; }
       const parts = BOT.reply(m.rule, { sen: 'Sen', ben: ch.name.split(' ')[0] });
-      out.innerHTML = `<div class="bub me">${esc(msg)}</div><div class="who">${esc(ch.name)}</div>${parts.map(p => `<div class="bub no-i18n">${esc(enOn ? lineEn(p).s : p)}</div><br>`).join('')}
+      out.innerHTML = `<div class="bub me">${esc(msg)}</div><div class="who">${esc(ch.name)}</div>${parts.map(p => `<div class="bub no-i18n">${esc(EN() ? I.line(p) || p : p)}</div><br>`).join('')}
         <div class="info">${m.fallback ? 'Yedek cevap' : 'Kural'}: <a data-go="${m.rule.id}">${esc(title(m.rule))}</a> · ${m.rule.reply.length} seçenekten biri</div>`;
       const row = document.querySelector(`.row[data-id="${m.rule.id}"]`);
       if (row) row.classList.add('hit');
@@ -737,11 +782,17 @@
     };
 
     /* ---------- Dışa / içe aktar (biçim: docs/BOT-KURALLARI.md) ---------- */
+    // Cümlesi silinmiş ya da değişmiş kuralların çevirisi atılır
+    const enPairs = () => {
+      const used = new Set(data.rules.flatMap(r => r.reply.flatMap(partsOf)).map(keyOf));
+      return [...enMap].filter(([k]) => used.has(k));
+    };
     const cleanData = () => ({
       rules: data.rules.map(r => ({ id: r.id, name: r.name || '', category: r.category || '', when: r.when.filter(Boolean), reply: r.reply.filter(Boolean), traits: r.traits, chars: r.chars, note: r.note || '' })),
       addons: data.addons.map(a => ({ id: a.id, name: a.name || '', category: a.category || '', when: a.when.filter(Boolean), add: a.add.filter(Boolean), mode: okMode(a.mode), chance: Math.max(0, Math.min(100, +a.chance)), traits: a.traits, chars: a.chars, note: a.note || '' })),
       groups: data.groups.filter(g => g.name).map(g => ({ name: g.name, words: g.words.filter(Boolean) })),
-      verbs: data.verbs.filter(v => v.verb).map(v => ({ verb: v.verb, stems: v.stems.filter(Boolean) }))
+      verbs: data.verbs.filter(v => v.verb).map(v => ({ verb: v.verb, stems: v.stems.filter(Boolean) })),
+      ...(enMap.size ? { en: enPairs() } : {})
     });
 
     $('#exportBtn').onclick = () => {
@@ -778,7 +829,7 @@
       const missing = new Set();
       rules.concat(addons).forEach(r => r.when.forEach(t => t.split('|').forEach(p => { if (p[0] === '@' && !known.has(lower(p.slice(1)))) missing.add(p); })));
       if (missing.size) warns.push(`Tanımsız gruplar: ${[...missing].join(', ')}`);
-      return { rules, addons, groups, verbs, warns };
+      return { rules, addons, groups, verbs, en: arr(d.en).filter(p => Array.isArray(p) && p[0] && p[1]).map(p => [String(p[0]), String(p[1])]), warns };
     }
 
     let pending = null;
@@ -804,6 +855,7 @@
       if (mode === 'cancel' || !pending) { pending = null; return; }
       const p = pending;
       pending = null;
+      setEnPairs(p.en, mode === 'replace');
       if (mode === 'replace') {
         data = { rules: p.rules, addons: p.addons, groups: p.groups, verbs: p.verbs };
       } else {
