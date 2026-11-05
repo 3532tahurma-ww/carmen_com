@@ -8,6 +8,9 @@ Saf HTML + CSS + JS mesajlaşma/hikaye uygulaması. Derleme/sunucu yok, GitHub P
 - Subagent açma (ben istemedikçe). Küçük işlerde planlama/keşif yapmadan doğrudan uygula.
 - Değişen satırları göster, tam dosya gösterme.
 
+## Bilgi kütüphanesi
+- Oturum başında `ProjectMemory/INDEX.md`'yi oku, sadece ilgili dokümanları aç. Bir sistemi etkileyen her değişiklikte o doküman + `changelog.md` + `status.md` + `INDEX.md` aynı görevde güncellenir.
+
 ## Yapı
 - `index.html` iskelet; `js/app.js` tüm ekranlar; `js/store.js` localStorage.
 - `js/data/`: `traits.js`, `pools.js`, `mods.js` (mod tanımları), `themes.js` (sohbet temaları).
@@ -15,6 +18,7 @@ Saf HTML + CSS + JS mesajlaşma/hikaye uygulaması. Derleme/sunucu yok, GitHub P
 - `css/dark.css` otomatik üretilir (`tools/build-dark.js`, `style.css` + `stories.css` okur). Elle düzenleme: `css/dark-base.css`. Çıktıyı düzenleme; `style.css`/`stories.css` değişince yeniden üret (çalıştırma komutu script başlığında; önce sor).
 - Yeni mod: görselleri `mods/<mod>/` altına koy + `js/data/mods.js`'e giriş ekle.
 - Yeni tema: `js/data/themes.js`.
+- Dil (EN varsayılan / TR): `js/i18n.js` ekrandaki Türkçe metni `js/data/i18n-en*.js` sözlüğünden çevirir. Yeni arayüz metni eklersen sözlüğe de ekle.
 
 ## Kurallar
 - Mevcut stil/isimlendirmeye uy; en küçük değişiklik. İlgisiz refactor yok, yeni bağımlılık yok.

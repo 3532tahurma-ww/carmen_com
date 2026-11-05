@@ -19085,7 +19085,7 @@ Stories.BOT_RULES = {
       "category": "❓ Sorular",
       "when": [
         "=ne",
-        "iş|is|meslek-",
+        "=iş|=is|=işin|=isin|meslek-",
         "yap-"
       ],
       "reply": [

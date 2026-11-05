@@ -33,6 +33,19 @@ Stories.Bot = (() => {
   const clean = s => norm(s).trim();
   const lower = s => String(s || '').toLocaleLowerCase('tr').trim();
 
+  // 🌐 İngilizce yazılan mesaj: kurallar Türkçe okuduğu için eşleşmeden önce Türkçe tetikleyicilere çevrilir (js/data/bot-en.js).
+  // Türkçe harf varsa ya da hiçbir ifade tutmazsa metin aynen döner; saklanan mesaj değişmez
+  let enRe = null;
+  function fromEn(text) {
+    const src = String(text || '');
+    if (!Stories.BOT_EN || /[çğıöşü]/i.test(src)) return src;
+    if (!enRe) enRe = Stories.BOT_EN.map(([e, tr]) => [new RegExp(`\\b(?:${e})\\b`, 'g'), ` ${tr} `]);
+    const low = src.toLowerCase().replace(/['’]/g, '');
+    let s = low;
+    enRe.forEach(([re, tr]) => { s = s.replace(re, tr); });
+    return s === low ? src : s.replace(/\s+/g, ' ').trim();
+  }
+
   // Bir kuralı kelimesini eşleştiricilere çevirir: [{ s: 'yap', start: true }, ...]
   function expand(term, data, depth = 0) {
     const out = [];
@@ -194,5 +207,5 @@ Stories.Bot = (() => {
     return txt.split('||').map(s => s.trim()).filter(Boolean);
   }
 
-  return { norm, expand, inOrder, fits, ageTrait, originTrait, best, reply, score, looseScore, catches, addons, addText, ADD_MODES };
+  return { norm, fromEn, expand, inOrder, fits, ageTrait, originTrait, best, reply, score, looseScore, catches, addons, addText, ADD_MODES };
 })();

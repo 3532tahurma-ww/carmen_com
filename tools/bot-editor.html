@@ -85,6 +85,8 @@
     .syntax { margin-top: 6px; font-size: 12px; color: var(--muted); font-weight: 700; line-height: 1.6; }
     .syntax code, .help code { background: var(--chip); border-radius: 6px; padding: 1px 5px; font-size: 12px; color: var(--text); }
     textarea { width: 100%; min-height: 110px; border-radius: 12px; border: 1px solid var(--line); padding: 10px 12px; font-weight: 600; line-height: 1.55; resize: vertical; }
+    .en-list { border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; font-size: 14px; font-weight: 600; line-height: 1.55; max-height: 280px; overflow: auto; background: var(--chip); }
+    .en-l.miss { color: var(--muted); font-style: italic; }
     .chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
     .chip { display: inline-flex; align-items: center; gap: 2px; padding: 4px 4px 4px 10px; border-radius: 999px; background: var(--amber-soft); color: var(--amber); font-weight: 800; font-size: 13px; }
     .chip.w { background: var(--chip); color: var(--text); }
@@ -152,6 +154,7 @@
       <button data-tab="verbs">Fiiller <small id="nVerbs"></small></button>
     </nav>
     <span id="status"></span>
+    <button class="btn" id="langBtn" title="Cevap dilini değiştir (sadece gösterim)">🌐 TR</button>
     <button class="btn" id="exportBtn" title="Kuralları, grupları ve fiilleri JSON olarak indir">⬇️ Dışa aktar</button>
     <button class="btn" id="importBtn" title="JSON dosyasından kural yükle">⬆️ İçe aktar</button>
     <input type="file" id="importFile" accept=".json,application/json" hidden>
@@ -257,7 +260,14 @@
   <datalist id="catList"></datalist>
   <datalist id="termList"></datalist>
 
+  <script src="../js/i18n.js"></script>
+  <script src="../js/data/i18n-en-tools.js"></script>
+  <script>Stories.I18n.toSide(true);</script>
+  <script src="../js/data/i18n-en-bot.js"></script>
+  <script src="../js/data/i18n-en-chat.js"></script>
+  <script>Stories.I18n.toSide(false);</script>
   <script src="../js/data/traits.js"></script>
+  <script src="../js/data/bot-en.js"></script>
   <script src="../js/bot.js"></script>
   <script>
   (() => {
@@ -398,6 +408,23 @@
         ${i > 0 ? '<button data-tmove="-1" title="Sola al">‹</button>' : ''}${i < n - 1 ? '<button data-tmove="1" title="Sağa al">›</button>' : ''}<button data-tdel title="Sil">✕</button></span>`;
     }
 
+    // 🌐 cevap dili: EN'de cevapların çevirisi metin kutusunun altında gösterilir; kayıtlı metin hep Türkçe kalır (bot Türkçe okur)
+    const EN_KEY = 'amor-stories:botedit-lang';
+    let enOn = false;
+    try { enOn = localStorage.getItem(EN_KEY) === 'en'; } catch (e) {}
+    const lineEn = l => {
+      const parts = String(l).split('||').map(p => { const x = Stories.I18n.line(p.trim()); return { s: x == null ? p.trim() : x, ok: x != null || !/\p{L}/u.test(p) }; });
+      return { s: parts.map(p => p.s).join(' || '), ok: parts.every(p => p.ok) };
+    };
+    function enHtml(r) {
+      if (!enOn || A()) return '';
+      const rows = r.reply.map(lineEn);
+      return `<label class="lb">🌐 English <small><b class="no-i18n">${rows.filter(x => x.ok).length}/${rows.length}</b> · sadece gösterim: kayıtlı metin Türkçe kalır</small></label>
+        <div class="en-list no-i18n">${rows.map(x => `<div class="en-l${x.ok ? '' : ' miss'}">${esc(x.s)}</div>`).join('')}</div>`;
+    }
+    function drawEn() { const b = $('#enBox'), r = ruleById(ui.sel); if (b && r) b.innerHTML = enHtml(r); }
+    function drawLang() { $('#langBtn').textContent = enOn ? '🌐 EN' : '🌐 TR'; drawEn(); }
+
     function renderDetail() {
       const r = ruleById(ui.sel);
       if (!r) { $('#detail').innerHTML = `<div class="empty">Soldan bir ${A() ? 'ek' : 'kural'} seç ya da “${A() ? '+ Ek' : '+ Kural'}” ile yenisini ekle.</div>`; return; }
@@ -425,7 +452,8 @@
         ${A() ? `<label class="lb">Eklenecekler <small>(her satır bir seçenek, biri rastgele · emoji ya da metin · {sen} {ben})</small></label>
         <textarea data-f="add" placeholder="😏&#10;✨&#10;değil mi {sen}?">${esc(r.add.join('\n'))}</textarea>`
         : `<label class="lb">Cevaplar <small>(her satır bir seçenek · || ayrı baloncuk · {sen} {ben})</small></label>
-        <textarea data-f="reply" placeholder="Selam {sen}! 👋&#10;Heyy||nasılsın?">${esc(r.reply.join('\n'))}</textarea>`}
+        <textarea data-f="reply" placeholder="Selam {sen}! 👋&#10;Heyy||nasılsın?">${esc(r.reply.join('\n'))}</textarea>
+        <div id="enBox">${enHtml(r)}</div>`}
         <div class="grid2">
           <div><label class="lb">Kişilik şartı <small>(hepsi olmalı)</small></label>
             <div class="chips">${r.traits.map(t => `<span class="chip">${esc(t)}<button data-trdel="${esc(t)}">✕</button></span>`).join('')}
@@ -502,8 +530,15 @@
       else if (f === 'chance') r.chance = Math.max(0, Math.min(100, +e.target.value || 0));
       else if (f === 'chars') r.chars = e.target.value.split(',').map(s => s.trim()).filter(Boolean);
       else r[f] = e.target.value;
+      if (f === 'reply') drawEn();
       setDirty(); runTest();
     });
+    $('#langBtn').onclick = () => {
+      enOn = !enOn;
+      try { localStorage.setItem(EN_KEY, enOn ? 'en' : 'tr'); } catch (e) {}
+      drawLang(); runTest();
+    };
+    drawLang();
     // Liste satırı (isim, kategori, rozetler) alandan çıkınca güncellenir
     $('#detail').addEventListener('change', e => { if (e.target.dataset.f) { renderList(); refreshLists(); } });
 
@@ -555,10 +590,10 @@
         got.forEach(a => { const row = document.querySelector(`.row[data-id="${a.id}"]`); if (row) row.classList.add('hit'); });
         return;
       }
-      const m = BOT.best(data, msg, ch);
+      const m = BOT.best(data, BOT.fromEn(msg), ch);
       if (!m) { out.innerHTML = `<div class="bub me">${esc(msg)}</div><div class="info">Uygun kural yok (yedek cevap da yok).</div>`; return; }
       const parts = BOT.reply(m.rule, { sen: 'Sen', ben: ch.name.split(' ')[0] });
-      out.innerHTML = `<div class="bub me">${esc(msg)}</div><div class="who">${esc(ch.name)}</div>${parts.map(p => `<div class="bub">${esc(p)}</div><br>`).join('')}
+      out.innerHTML = `<div class="bub me">${esc(msg)}</div><div class="who">${esc(ch.name)}</div>${parts.map(p => `<div class="bub no-i18n">${esc(enOn ? lineEn(p).s : p)}</div><br>`).join('')}
         <div class="info">${m.fallback ? 'Yedek cevap' : 'Kural'}: <a data-go="${m.rule.id}">${esc(title(m.rule))}</a> · ${m.rule.reply.length} seçenekten biri</div>`;
       const row = document.querySelector(`.row[data-id="${m.rule.id}"]`);
       if (row) row.classList.add('hit');
