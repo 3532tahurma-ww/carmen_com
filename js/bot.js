@@ -6,6 +6,7 @@
  *   groups: [{ name: 'selam', words: ['selam', 'merhaba', 'slm'] }]          → kuralda "@selam"
  *   verbs : [{ verb: 'gitmek', stems: ['git', 'gid'] }]                      → kuralda "+gitmek"
  *   addons: [{ ..., when, add: [...], mode, chance }]  🪄 karakterin mesajına otomatik ek (aşağıda addons())
+ *   en    : [['Selam {sen}!', 'Hi {sen}!'], ...]   editörün İngilizce sekmesi: sözlük anahtarı → çeviri, js/data/i18n-en-*.js üstüne yazılır (enDict)
  *
  * Kuraldaki bir kelime (when öğesi) şunlardan biri olabilir; "|" ile alternatifler yazılır:
  *   kahve      → mesajda geçmesi yeterli (ekler olur: "kahveyi")
@@ -207,5 +208,17 @@ Stories.Bot = (() => {
     return txt.split('||').map(s => s.trim()).filter(Boolean);
   }
 
-  return { norm, fromEn, expand, inOrder, fits, ageTrait, originTrait, best, reply, score, looseScore, catches, addons, addText, ADD_MODES };
+  // data.en çiftlerini sözlüğe çevirir; {sen} gibi adlar sıra numarası olur, çeviride yerleri değişebilir
+  function enDict(pairs) {
+    const out = {};
+    (pairs || []).forEach(([tr, en]) => {
+      const names = String(tr).match(/\{\w*\}/g) || [];
+      out[tr] = String(en).replace(/\{\w+\}/g, m => (names.includes(m) ? `{${names.indexOf(m)}}` : m));
+    });
+    return out;
+  }
+
+  return { norm, fromEn, expand, inOrder, fits, ageTrait, originTrait, best, reply, score, looseScore, catches, addons, addText, ADD_MODES, enDict };
 })();
+
+if (Stories.BOT_RULES && Stories.I18n) Stories.I18n.add(Stories.Bot.enDict(Stories.BOT_RULES.en));

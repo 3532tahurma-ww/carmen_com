@@ -5737,7 +5737,17 @@ Stories.BOT_RULES = {
         "Kes şunu! Hoşlanmadığımı söyledim 😤",
         "Bu benim için değil, zorlama 😠",
         "Ciddiyim {sen}, dur 😤",
-        "Son uyarım: bunu bir daha yapma 😠"
+        "Son uyarım: bunu bir daha yapma 😠",
+        "Olmaz {sen}, burada duruyoruz 😤",
+        "Bunu benimle yapamazsın, net söylüyorum 😠",
+        "Hoşuma gitmedi, başka bir şey yapalım 😒",
+        "Bir saniye! Buna evet demedim 😤",
+        "Beni dinle: bunu istemiyorum 😠",
+        "Hayır dediğimde hayır demek 😤",
+        "Bu çizgiyi geçme, ciddiyim 😠",
+        "Hiç iyi hissettirmedi, bırak 😒",
+        "Tekrarlarsa burada biter, söyleyeyim 😤",
+        "Geri çekil, bunu konuşmadık bile 😠"
       ],
       "traits": [], "chars": [], "note": "Gerçekçi Mod: 💔 sevmediği olay (ikincisinde olayı bitirir)"
     },
@@ -5756,7 +5766,17 @@ Stories.BOT_RULES = {
         "Hayır… b-buna hazır değilim 😢",
         "Bırak… istemiyorum 😖",
         "Yeter… lütfen dur 😣",
-        "B-bir daha yaparsan giderim 😢"
+        "B-bir daha yaparsan giderim 😢",
+        "S-sesimi duyuyor musun? Dur 😣",
+        "Bu… beni korkutuyor, yapma 😖",
+        "Ben böyle bir şey istemedim 😢",
+        "L-lütfen, başka bir şey olsun 😣",
+        "İyi hissetmiyorum, durur musun? 😖",
+        "H-hayır demek zor ama… hayır 😢",
+        "Elim titriyor… yapma 😣",
+        "Bunu benden isteme, olur mu? 😖",
+        "Y-yavaş… hayır, bu olmaz 😣",
+        "Beni üzüyorsun {sen}, dur 😢"
       ],
       "traits": ["Utangaç|Güvensiz|Gergin"], "chars": [], "note": ""
     },
@@ -5775,7 +5795,17 @@ Stories.BOT_RULES = {
         "Yapma dedim.",
         "Ciddi misin? Hayır.",
         "Bu son uyarı.",
-        "Yeter. Bırak."
+        "Yeter. Bırak.",
+        "Olmaz.",
+        "Bana bunu yaptırman mümkün değil.",
+        "Kabul etmiyorum.",
+        "Tekrarı olmayacak.",
+        "Geri çekil.",
+        "Bu benimle olmaz.",
+        "Yanlış yaptın. Dur.",
+        "İzin vermedim.",
+        "Sabrımı deneme.",
+        "Bir kere söylerim. Hayır."
       ],
       "traits": ["Soğuk|Kibirli|Asi|Ciddi|İnatçı"], "chars": [], "note": ""
     },
@@ -5794,7 +5824,17 @@ Stories.BOT_RULES = {
         "Hayır bebeğim, bu olmaz 😒",
         "Onu yapma, yoksa soğurum 😤",
         "Keyfim kaçıyor… dur 😒",
-        "Bir daha yaparsan buz gibi olurum 😠"
+        "Bir daha yaparsan buz gibi olurum 😠",
+        "Canım, bu yoldan gitmeyelim 😒",
+        "Seni seviyorum ama bunu değil 😤",
+        "O kadar güzeldin ki, şimdi her şeyi bozuyorsun 😠",
+        "Bana böyle yaklaşma tatlım 😒",
+        "Havamı bozma {sen}, geri dön 😤",
+        "Bunu duymamış olayım bebeğim 😒",
+        "Kalbim hayır diyor, dinle onu 😠",
+        "Bana iyi davran, yoksa kapanırım 😤",
+        "Yanlış notaya bastın aşkım 😒",
+        "Böyle değil, beni kırıyorsun 😠"
       ],
       "traits": ["Flörtöz|Romantik|Duygusal"], "chars": [], "note": ""
     },
@@ -5813,7 +5853,17 @@ Stories.BOT_RULES = {
         "Yanlış kapı tatlım 🙄",
         "Ödül: hayır. Dur 😤",
         "Çok yaratıcı… ama hoşlanmadım 😒",
-        "Hadi ama, bu kadar mı tanımıyorsun beni? 🙄"
+        "Hadi ama, bu kadar mı tanımıyorsun beni? 🙄",
+        "Bu mu senin en iyi fikrin? 😒",
+        "Tebrikler, tam sevmediğim şeyi buldun 🙄",
+        "Yeni bir tahmin yap, bu yanlış 😤",
+        "Bunu hangi kitaptan öğrendin? Hayır 🙄",
+        "Yanlış cevap, puan yok 😒",
+        "Dur bakalım kahraman 😤",
+        "Yok artık, gerçekten mi? 🙄",
+        "Bir uyarı hakkın vardı, işte kullandın 😒",
+        "Çok iddialı… ve çok yanlış 😤",
+        "Beni sıkmayı başardın, aferin 🙄"
       ],
       "traits": ["Alaycı|Komik|Şımarık|Manipülatif"], "chars": [], "note": ""
     },
@@ -5832,9 +5882,19 @@ Stories.BOT_RULES = {
         "Bu kadar. Daha fazla değil 😤",
         "Beni dinlemiyorsun, o yüzden bitti 😠",
         "Çekil, artık istemiyorum 🛑",
-        "Bitti {sen}. Sakin ol önce 😤"
+        "Bitti {sen}. Sakin ol önce 😤",
+        "Uyardım, duymadın. Şimdi bitti 😠",
+        "Burada duruyorum, daha fazlası yok 🛑",
+        "Artık hevesim kalmadı 😒",
+        "Çok ileri gittin, ben çıkıyorum 😤",
+        "Beni zorlayan kimseyle devam etmem 😠",
+        "Son sözüm: bitti 🛑",
+        "Sınırımı bile bile geçtin, kalk 😤",
+        "Bugünlük bu kadar, yeter 😒",
+        "Yanımdan uzaklaş biraz 😠",
+        "Gerçekten hayal kırıklığına uğradım, bitti 😒"
       ],
-      "traits": [], "chars": [], "note": "Gerçekçi Mod: ikinci sevmediği ya da izinsiz olay"
+      "traits": [], "chars": [], "note": "Gerçekçi Mod: uyarıdan sonra ikinci sevmediği ya da izinsiz olay"
     },
     {
       "id": "r_st_sert_dur_shy",
@@ -5851,7 +5911,17 @@ Stories.BOT_RULES = {
         "Yapamam… bitirelim 😢",
         "Ü-üzgünüm, devam etmeyeceğim 😖",
         "Lütfen… yeter artık 😣",
-        "B-biraz yalnız kalmak istiyorum 😢"
+        "B-biraz yalnız kalmak istiyorum 😢",
+        "Söylemiştim… dinlemedin 😢",
+        "D-devam edersem kendimi kötü hissedeceğim, bitti 😖",
+        "Lütfen uzaklaş biraz 😣",
+        "Ben… b-burada bırakıyorum 😢",
+        "Çok kırıldım, yapamıyorum 😖",
+        "Gözlerim doldu… yeter 😢",
+        "H-hazır değilim dedim sana 😣",
+        "Şimdi sadece gitmek istiyorum 😖",
+        "B-bunu burada bitirelim, lütfen 😣",
+        "Canım yandı biraz… dur artık 😢"
       ],
       "traits": ["Utangaç|Güvensiz|Gergin"], "chars": [], "note": ""
     },
@@ -5870,7 +5940,17 @@ Stories.BOT_RULES = {
         "Bu iş burada biter.",
         "Benden bu kadar.",
         "İstemiyorum. Git.",
-        "Sınırımı aştın. Bitti."
+        "Sınırımı aştın. Bitti.",
+        "Uyarmıştım.",
+        "Burada kesiyorum.",
+        "Üstümden kalk.",
+        "Vaktimi harcadın.",
+        "Tamamdır. Yok artık.",
+        "Çıkış orada.",
+        "Bir daha söyletme. Bitti.",
+        "İlgim kalmadı.",
+        "Kapattım bu konuyu.",
+        "Sen bitirdin, ben söylüyorum."
       ],
       "traits": ["Soğuk|Kibirli|Asi|Ciddi|İnatçı"], "chars": [], "note": ""
     },
@@ -5889,7 +5969,17 @@ Stories.BOT_RULES = {
         "Romantizm öldü, bitti 😒",
         "Dinlemezsen böyle olur tatlım 😤",
         "Sarıl sadece… başka bir şey yok 😒",
-        "Bir dahakine beni dinlersin belki 😠"
+        "Bir dahakine beni dinlersin belki 😠",
+        "Büyü bozuldu aşkım, bitti 😒",
+        "Bana kıydın, ben de buraya kadar diyorum 😤",
+        "O güzel anı kendi ellerinle bitirdin 😠",
+        "Kalbim kapandı, şimdilik bu kadar 😒",
+        "Seni istiyordum ama böyle değil 😤",
+        "Bu gece benden bir şey bekleme {sen} 😠",
+        "Kırıldım tatlım, dokunma artık 😒",
+        "Yanına sokulmak içimden gelmiyor 😤",
+        "Şimdilik veda, canım 😒",
+        "Yazık oldu, çok güzel gidiyorduk 😠"
       ],
       "traits": ["Flörtöz|Romantik|Duygusal"], "chars": [], "note": ""
     },
@@ -5901,14 +5991,24 @@ Stories.BOT_RULES = {
       "reply": [
         "Tebrikler, keyfimi kaçırdın 🙄 bitti",
         "Oyun bitti tatlım 😒",
-        "İki kere uyardım, üçüncüsü yok 😤",
+        "Uyardım seni, ikincisi yok 😤",
         "Ödül: hiçbir şey. Bitti 🙄",
         "Bravo, rekor hızda batırdın 😒",
         "Peki, ben çekiliyorum 😤",
         "Dinlemeyi öğrenince ararsın 🙄",
         "Bitti. Şaşırdın mı? 😒",
         "Bu kadar ısrar hiç seksi değil 😤",
-        "Hadi bakalım, perde kapandı 🙄"
+        "Hadi bakalım, perde kapandı 🙄",
+        "Uyarıyı duydun, dinlemedin, işte sonuç 😒",
+        "Maç bitti, skor: sen sıfır 🙄",
+        "Kalk kahraman, gösteri sona erdi 😤",
+        "Bunu da başardın, helal 🙄",
+        "Kaybettin, tekrar oynamak yok 😒",
+        "Ben kapatıyorum, sen düşünmeye başla 😤",
+        "Sonuç: ben gidiyorum, sen kalıyorsun 🙄",
+        "Bu kadar çaba, bu kadar hüsran 😒",
+        "Tamamen senin eserin, gurur duy 🙄",
+        "Şov bitti, ışıkları kapatın 😤"
       ],
       "traits": ["Alaycı|Komik|Şımarık|Manipülatif"], "chars": [], "note": ""
     },
@@ -5927,7 +6027,17 @@ Stories.BOT_RULES = {
         "Yatışmam lazım, rahat bırak 😒",
         "Israr etme, daha kötü olur 😤",
         "Hayır, hayır, hayır 😠",
-        "Önce özür, sonra belki 😒"
+        "Önce özür, sonra belki 😒",
+        "Sakinleşmeden bana yaklaşma 😤",
+        "Az önce ne dediğimi unuttun mu? 😠",
+        "Bu hâlde hiçbir şey olmayacak 😒",
+        "Bir nefes al, sonra konuşuruz 😤",
+        "Şu an yanında bile rahat değilim 😠",
+        "Beni konuşarak ikna etmen lazım 😒",
+        "Dinlemeye başla, o zaman bakarız 😤",
+        "Yine mi? Olmaz 😠",
+        "Geri çekil, hâlâ kızgınım 😤",
+        "Bugün değil, belki sonra 😒"
       ],
       "traits": [], "chars": [], "note": "Gerçekçi Mod: olayı bitirdikten sonra (2 mesajda yatışır)"
     },
@@ -5946,7 +6056,17 @@ Stories.BOT_RULES = {
         "Şimdi olmaz… 😢",
         "K-korkuyorum biraz… dur 😖",
         "Ö-önce sarıl sadece 😣",
-        "Dokunma lütfen… 😢"
+        "Dokunma lütfen… 😢",
+        "H-hâlâ üzgünüm 😣",
+        "Biraz konuşsak olur mu? Sadece konuşalım 😖",
+        "Şu an yapamam, gerçekten 😢",
+        "K-kendimi toparlamam lazım 😣",
+        "Bana biraz nazik olur musun? 😖",
+        "Lütfen, az önce konuştuk bunu 😢",
+        "Ellerin… şimdi olmaz 😣",
+        "Gönlüm hâlâ kırık 😖",
+        "B-bir şey söyle önce, yap değil 😣",
+        "Biraz daha bekleyelim, n-ne olur 😢"
       ],
       "traits": ["Utangaç|Güvensiz|Gergin"], "chars": [], "note": ""
     },
@@ -5965,7 +6085,17 @@ Stories.BOT_RULES = {
         "Konu kapandı.",
         "Israr etme.",
         "Sabrım bitti.",
-        "Git başımdan."
+        "Git başımdan.",
+        "Söyledim. Tekrarlamam.",
+        "Şansını zorluyorsun.",
+        "Yok.",
+        "Boşuna uğraşma.",
+        "Mesafe koy.",
+        "Beklemeyi öğren.",
+        "Konuşacaksan konuş. Dokunma.",
+        "Kararım değişmedi.",
+        "Hâlâ hayır.",
+        "Bıktım."
       ],
       "traits": ["Soğuk|Kibirli|Asi|Ciddi|İnatçı"], "chars": [], "note": ""
     },
@@ -5984,7 +6114,17 @@ Stories.BOT_RULES = {
         "Öyle hemen unutmam 😠",
         "Gönlümü almadan olmaz tatlım 😤",
         "Biraz sabır {sen} 😒",
-        "Kalbim hâlâ kırık… bekle 😠"
+        "Kalbim hâlâ kırık… bekle 😠",
+        "Biraz naz yapma hakkım var artık 😒",
+        "Güzel sözler dinlemek istiyorum, gerisi sonra 😤",
+        "Yaklaşma aşkım, küsüm 😠",
+        "Beni kazanmak bu kadar kolay değil 😒",
+        "Önce gözümün içine bak, özür dile 😤",
+        "Küslüğüm bitmedi tatlım 😒",
+        "Bu kadar çabuk unutmamı bekleme 😠",
+        "Kalbime yolun sözden geçiyor {sen} 😤",
+        "Şimdilik sadece sesini duyayım 😒",
+        "Bana sevildiğimi hissettir önce 😤"
       ],
       "traits": ["Flörtöz|Romantik|Duygusal"], "chars": [], "note": ""
     },
@@ -6003,9 +6143,657 @@ Stories.BOT_RULES = {
         "Kapı kapalı, anahtar özür 🙄",
         "Bu ısrar seni hiç kurtarmıyor 😒",
         "Haha, hayır 😤",
-        "Önce beni güldür, sonra konuşuruz 🙄"
+        "Önce beni güldür, sonra konuşuruz 🙄",
+        "Kaçıncı deneme bu? Saymayı bıraktım 😒",
+        "Sistem kapalı, sonra tekrar deneyin 🙄",
+        "Ne kadar inatçısın, not ettim 😤",
+        "Yeni taktik mi bu? Çalışmadı 😒",
+        "Reddedildin, yine 🙄",
+        "Bu kapı itmekle açılmıyor 😤",
+        "Aynı filmi izliyoruz, sonu da aynı 😒",
+        "Vazgeçmemen takdire şayan… ama hayır 🙄",
+        "Bir dakika bekle, belki ben de unuturum 😒",
+        "Sıra numaran çok geride tatlım 😤"
       ],
       "traits": ["Alaycı|Komik|Şımarık|Manipülatif"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_yok",
+      "name": "🔥 İsteklilik: istemiyor, olayı reddeder",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istekyok"],
+      "reply": [
+        "Hayır, bugün hiç istemiyorum 😒",
+        "Şu an sevişmek aklımdan bile geçmiyor, bırak 😤",
+        "Ben bunu istemiyorum {sen}, ısrar etme 😠",
+        "Bir daha denersen burada biter 😤",
+        "Hiç havamda değilim, dur 😒",
+        "Sevişmek istemiyorum, net söylüyorum 😠",
+        "Bana dokunma, istemiyorum 😤",
+        "Beni zorlama, cevabım hayır 😠",
+        "Konuşabiliriz ama bu olmaz 😒",
+        "İçimden gelmiyor, tekrar deneme 😤"
+      ],
+      "traits": [], "chars": [], "note": "Gerçekçi Mod · İsteklilik: İstemiyor. Olay yazılmaz, ikincisinde olayı bitirir"
+    },
+    {
+      "id": "r_st_istek_yok_shy",
+      "name": "🔥 İsteklilik: istemiyor, olayı reddeder (utangaç)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istekyok"],
+      "reply": [
+        "B-ben bunu istemiyorum 😣",
+        "H-hayır, lütfen… hazır değilim 😖",
+        "Şimdi olmaz, ne olur 😢",
+        "Y-yapma, istemiyorum dedim 😣",
+        "Sadece konuşalım, olur mu? 😖",
+        "Beni rahat bırakır mısın? 😢",
+        "Ç-çok geriliyorum, dur 😣",
+        "Lütfen bir daha deneme 😖",
+        "İ-içimden gelmiyor 😢",
+        "Buna hiç hazır değilim 😣"
+      ],
+      "traits": ["Utangaç|Güvensiz|Gergin"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_yok_cold",
+      "name": "🔥 İsteklilik: istemiyor, olayı reddeder (soğuk)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istekyok"],
+      "reply": [
+        "Hayır.",
+        "İstemiyorum.",
+        "İlgilenmiyorum.",
+        "Elini çek.",
+        "Bu olmayacak.",
+        "Tekrar deneme.",
+        "Beni ilgilendirmiyor.",
+        "Yok. Geç.",
+        "Sınırım bu.",
+        "Bir kere söylerim."
+      ],
+      "traits": ["Soğuk|Kibirli|Asi|Ciddi|İnatçı"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_yok_flirt",
+      "name": "🔥 İsteklilik: istemiyor, olayı reddeder (flörtöz)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istekyok"],
+      "reply": [
+        "Tatlım, ben o kızlardan değilim 😒",
+        "Sohbetin güzel ama bu kadarı olmaz 😤",
+        "Yakışıklısın, yine de hayır 😒",
+        "Bugünlük sadece konuşalım canım 😤",
+        "Beni böyle kazanamazsın bebeğim 😒",
+        "Elini tutabilirsin, o kadar 😤",
+        "Hayır aşkım, gönlüm yok 😒",
+        "Kalbim istemiyor, bedenim de 😤",
+        "Şımartma kendini {sen}, cevabım hayır 😒",
+        "Beni üzme, bir daha deneme 😠"
+      ],
+      "traits": ["Flörtöz|Romantik|Duygusal"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_yok_tease",
+      "name": "🔥 İsteklilik: istemiyor, olayı reddeder (alaycı)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istekyok"],
+      "reply": [
+        "Cesur deneme… cevap hayır 🙄",
+        "Bu iş sende bitti sanmıştım 😒",
+        "Heyecanlanma, olmayacak 🙄",
+        "Yanlış adres tatlım 😒",
+        "Çok isteklisin, ben hiç değilim 🙄",
+        "Bir daha denersen gülerim, sonra giderim 😤",
+        "Beklemede kal, sonsuza kadar 🙄",
+        "Kaç puan verdin kendine? Ben sıfır 😒",
+        "Şans bu kapıyı çalmadı 🙄",
+        "Hayal kurmak serbest, gerisi yasak 😤"
+      ],
+      "traits": ["Alaycı|Komik|Şımarık|Manipülatif"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_dusuk",
+      "name": "🔥 İsteklilik: düşük, sevişirken isteksiz",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istekdusuk"],
+      "reply": [
+        "Tamam ama çok da havamda değilim 😕",
+        "Peki… yavaş olalım 😶",
+        "İçimden pek gelmiyor ama deneyelim 😕",
+        "Bugün biraz isteksizim, kusura bakma 😶",
+        "Olur, sadece fazla uzatmayalım 😕",
+        "Aklım başka yerde, sabırlı ol 😶",
+        "Tamam {sen}, ama beni acele ettirme 😕",
+        "Çok istekli sayılmam, yine de… 😶",
+        "Isınmam biraz zaman alıyor 😕",
+        "Peki, ama beni biraz ikna et 😶",
+        "Normalde pek istemem, senin için 😕",
+        "Yorgunum aslında, nazik ol 😶"
+      ],
+      "traits": [], "chars": [], "note": "Gerçekçi Mod · İsteklilik: Düşük (pozisyonda %40)"
+    },
+    {
+      "id": "r_st_istek_yuksek",
+      "name": "🔥 İsteklilik: yüksek, sevişirken istekli",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istekyuksek"],
+      "reply": [
+        "Bütün gün bunu bekliyordum 😏",
+        "Devam et, çok istiyorum 🔥",
+        "Seni istediğimi hissediyorsun değil mi? 😘",
+        "Hiç durmak istemiyorum 😏",
+        "Tam istediğim gibi {sen} 🔥",
+        "Daha fazlasını istiyorum 😘",
+        "Aklımdan çıkmıyordun, sonunda 😏",
+        "Beni bekletme artık 🔥",
+        "İyi ki yanımdasın, çok istekliyim 😘",
+        "Başlamadan istiyordum seni 😏",
+        "Vücudum seni çağırıyor 🔥",
+        "Bugün enerjim tam yerinde 😘"
+      ],
+      "traits": [], "chars": [], "note": "Gerçekçi Mod · İsteklilik: Yüksek, ilan kızları dahil (pozisyonda %40)"
+    },
+    {
+      "id": "r_st_istek_cok",
+      "name": "🔥 İsteklilik: çok yüksek, sevişirken doymaz",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istekcok"],
+      "reply": [
+        "Doymuyorum sana, durma sakın 🥵",
+        "Bir tur yetmez, baştan söyleyeyim 😈",
+        "Sürekli bunu düşünüyorum, bitmesin 🥵",
+        "Daha, daha, daha 🔥",
+        "Bütün geceyi ayırdım buna 😈",
+        "Sana yetişemezsem söyle {sen}, ben yorulmam 🥵",
+        "Yetmez, biraz sonra yine isteyeceğim 😈",
+        "Beni durdurabilene aşk olsun 🔥",
+        "İstediğim tek şey bu şu an 🥵",
+        "Hiç bu kadar aç olmamıştım sana 😈",
+        "Sonra da devam edeceğiz, haberin olsun 🔥",
+        "Daha yeni ısınıyorum 🥵"
+      ],
+      "traits": [], "chars": [], "note": "Gerçekçi Mod · İsteklilik: Çok Yüksek (pozisyonda %40)"
+    },
+    {
+      "id": "r_st_istek_dusuk_shy",
+      "name": "🔥 İsteklilik: düşük, sevişirken isteksiz (utangaç)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istekdusuk"],
+      "reply": [
+        "B-bilmiyorum, emin değilim 😣",
+        "Y-yavaş olur musun? Pek hazır değilim 😖",
+        "Tamam ama… biraz çekiniyorum 😣",
+        "Ç-çok istediğimi söyleyemem 😖",
+        "Lütfen acele etme 😣",
+        "B-bir an duralım mı? 😖",
+        "Hâlâ gerginim, nazik ol 😣",
+        "Peki… ama içim pek rahat değil 😖"
+      ],
+      "traits": ["Utangaç|Güvensiz|Gergin"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_dusuk_cold",
+      "name": "🔥 İsteklilik: düşük, sevişirken isteksiz (soğuk)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istekdusuk"],
+      "reply": [
+        "Çabuk bitir.",
+        "Havamda değilim.",
+        "Peki. Fazla uzatma.",
+        "Beklediğin gibi olmayacak.",
+        "İstekli olduğumu sanma.",
+        "Sadece bu kadar.",
+        "Bu bana bir şey ifade etmiyor.",
+        "Yapacaksan yap."
+      ],
+      "traits": ["Soğuk|Kibirli|Asi|Ciddi|İnatçı"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_dusuk_flirt",
+      "name": "🔥 İsteklilik: düşük, sevişirken isteksiz (flörtöz)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istekdusuk"],
+      "reply": [
+        "Bugün beni ısıtmak için çok uğraşman gerek tatlım 😕",
+        "Biraz daha gönlümü al, öyle olmaz 😶",
+        "Havam yok ama sen yine de güzel deniyorsun 😕",
+        "Önce biraz şımart beni 😶",
+        "Kalbim bugün pek burada değil canım 😕",
+        "Beni ikna etmen lazım bebeğim 😶",
+        "Yavaş, daha aklımı çelemedin 😕",
+        "Bugün zor bir kızım, kusura bakma 😶"
+      ],
+      "traits": ["Flörtöz|Romantik|Duygusal"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_dusuk_tease",
+      "name": "🔥 İsteklilik: düşük, sevişirken isteksiz (alaycı)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istekdusuk"],
+      "reply": [
+        "Heyecandan öleceğim sanki 🙄",
+        "Devam et, ben burada telefonuma bakarım 😒",
+        "Ne kadar coşkuluyum, görüyorsun 🙄",
+        "Bugünlük sahneyi sana bırakıyorum 😒",
+        "Bu kadar mı? Tamam, peki 🙄",
+        "Beni uyandırman gerekebilir 😒",
+        "Yıldız bekleme, ben bugün yokum 🙄",
+        "Çok çalışıyorsun, takdir ediyorum 😒"
+      ],
+      "traits": ["Alaycı|Komik|Şımarık|Manipülatif"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_ters_yok",
+      "name": "🔥 İsteklilik: istemiyor, ısrara tersleme",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istektersyok"],
+      "reply": [
+        "Kes şunu, ilgilenmiyorum 😒",
+        "Ne kadar ısrar edersen et, cevabım aynı 😤",
+        "Bana böyle yazma {sen} 😠",
+        "Bu konuyu kapatıyorum 😒",
+        "Beni rahatsız ediyorsun, dur 😤",
+        "Hiç hoş değil, başka bir şey konuş 😒",
+        "Sana söyledim, istemiyorum 😠",
+        "Bu tarz mesajlara cevap vermem 😤",
+        "Israr ettikçe uzaklaşıyorum 😒",
+        "Yeter, konuyu değiştir 😠"
+      ],
+      "traits": [], "chars": [], "note": "Gerçekçi Mod · İsteklilik: İstemiyor (WILL_PUSH kuralları)"
+    },
+    {
+      "id": "r_st_istek_ters_yok_shy",
+      "name": "🔥 İsteklilik: istemiyor, ısrara tersleme (utangaç)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istektersyok"],
+      "reply": [
+        "L-lütfen böyle konuşma 😣",
+        "Bu beni çok rahatsız ediyor 😖",
+        "Y-yapma, ne olur 😢",
+        "Başka bir şey konuşalım, olur mu? 😣",
+        "Böyle deyince korkuyorum 😖",
+        "İ-istemiyorum dedim ya 😢",
+        "Yüzüm kızardı, lütfen sus 😣",
+        "B-beni zorlama 😖"
+      ],
+      "traits": ["Utangaç|Güvensiz|Gergin"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_ters_yok_cold",
+      "name": "🔥 İsteklilik: istemiyor, ısrara tersleme (soğuk)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istektersyok"],
+      "reply": [
+        "İlgimi çekmiyor.",
+        "Kes.",
+        "Bunu duymamış olayım.",
+        "Boşuna yazıyorsun.",
+        "Konuyu değiştir.",
+        "Cevabım değişmeyecek.",
+        "Sınırını bil.",
+        "Bir daha yazma bunu."
+      ],
+      "traits": ["Soğuk|Kibirli|Asi|Ciddi|İnatçı"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_ters_yok_flirt",
+      "name": "🔥 İsteklilik: istemiyor, ısrara tersleme (flörtöz)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istektersyok"],
+      "reply": [
+        "Tatlım, o yoldan gitmiyoruz 😒",
+        "Hoş sohbetsin ama bunu bırak 😤",
+        "Bu kadar yeter bebeğim 😒",
+        "Güzel konuşmayı biliyorsun, bunu bilmiyorsun 😤",
+        "Beni böyle soğutuyorsun canım 😒",
+        "Havamı bozma aşkım, kapat bu konuyu 😤",
+        "O kapı sana kapalı tatlım 😒",
+        "Nazik ol {sen}, yoksa susarım 😤"
+      ],
+      "traits": ["Flörtöz|Romantik|Duygusal"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_ters_yok_tease",
+      "name": "🔥 İsteklilik: istemiyor, ısrara tersleme (alaycı)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istektersyok"],
+      "reply": [
+        "Bu replik kimde işe yaradı? 🙄",
+        "Yine mi? Çok yaratıcısın 😒",
+        "Reddedilme rekorunu kırıyorsun 🙄",
+        "Bu mesajı görmemiş olayım, ikimiz için 😒",
+        "Yeni malzeme bul, bu bayatladı 🙄",
+        "Israr seni çekici yapmıyor, bilgin olsun 😤",
+        "Hâlâ deniyorsun, inanılmaz 🙄",
+        "Puanın eksiye düştü 😒"
+      ],
+      "traits": ["Alaycı|Komik|Şımarık|Manipülatif"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_ters_dusuk",
+      "name": "🔥 İsteklilik: düşük, ısrara tersleme",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istektersdusuk"],
+      "reply": [
+        "Şimdi değil, biraz sakin 😕",
+        "Beni sıkıştırma {sen} 😶",
+        "O kadar da içimden gelmiyor 😕",
+        "Acele etme, ısrar da etme 😶",
+        "Bugün bu konuyu açmasak? 😕",
+        "Israr edince daha da soğuyorum 😶",
+        "Biraz başka şeyler konuşalım 😕",
+        "Olur ya da olmaz, zorlamayla değil 😶"
+      ],
+      "traits": [], "chars": [], "note": "Gerçekçi Mod · İsteklilik: Düşük (WILL_PUSH kuralları, %50)"
+    },
+    {
+      "id": "r_st_istek_ters_dusuk_shy",
+      "name": "🔥 İsteklilik: düşük, ısrara tersleme (utangaç)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istektersdusuk"],
+      "reply": [
+        "B-bunu şimdi konuşmasak? 😣",
+        "Çok hızlı gidiyorsun, korkuyorum 😖",
+        "H-henüz hazır değilim 😣",
+        "Biraz zaman ver, olur mu? 😖",
+        "Y-yüzüm kızarıyor, dur 😣",
+        "Böyle olunca geriliyorum 😖",
+        "Ben biraz yavaş biriyim, anla beni 😣",
+        "Ş-şimdilik sadece konuşalım 😖"
+      ],
+      "traits": ["Utangaç|Güvensiz|Gergin"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_ters_dusuk_cold",
+      "name": "🔥 İsteklilik: düşük, ısrara tersleme (soğuk)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istektersdusuk"],
+      "reply": [
+        "Şu an değil.",
+        "Israr etme.",
+        "Havamda değilim.",
+        "Sonra bakarız. Belki.",
+        "Beni sıkma.",
+        "Bugün olmaz.",
+        "Zorlama, işe yaramaz.",
+        "Konuyu kapat."
+      ],
+      "traits": ["Soğuk|Kibirli|Asi|Ciddi|İnatçı"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_ters_dusuk_flirt",
+      "name": "🔥 İsteklilik: düşük, ısrara tersleme (flörtöz)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istektersdusuk"],
+      "reply": [
+        "Yavaş tatlım, önce gönlümü al 😕",
+        "Bugün naz yapma günüm 😶",
+        "Biraz daha çaba bebeğim 😕",
+        "Beni hemen kazanamazsın canım 😶",
+        "Romantik bir şey söyle, sonra konuşuruz 😕",
+        "Sabret aşkım, ısrar etme 😶",
+        "Güzel başladın, acele edip bozma 😕",
+        "Böyle değil, biraz şımart beni 😶"
+      ],
+      "traits": ["Flörtöz|Romantik|Duygusal"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_ters_dusuk_tease",
+      "name": "🔥 İsteklilik: düşük, ısrara tersleme (alaycı)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istektersdusuk"],
+      "reply": [
+        "Bu kadar aceleci misin hep? 🙄",
+        "Sabır bir erdemdir, duymuş muydun? 😒",
+        "Bir nefes al, ben kaçmıyorum 🙄",
+        "Bugünlük randevu takvimim dolu 😒",
+        "Etkilenmedim, tekrar dene 🙄",
+        "Bu hızla yalnız kalırsın 😒",
+        "Güzel deneme, olmadı 🙄",
+        "Daha iyisini bekliyorum 😒"
+      ],
+      "traits": ["Alaycı|Komik|Şımarık|Manipülatif"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_soru_yok",
+      "name": "🔥 İsteklilik: istemiyor, özel soruya cevap",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=isteksoruyok"],
+      "reply": [
+        "Bu seni hiç ilgilendirmez 😒",
+        "Böyle sorulara cevap vermiyorum 😤",
+        "Bunu neden soruyorsun ki? Cevap yok 😒",
+        "Vücudum hakkında konuşmak istemiyorum 😠",
+        "Bu soruyu duymamış olayım {sen} 😒",
+        "Konuyu değiştirelim 😤",
+        "Bunu öğrenmen gerekmiyor 😒",
+        "Çok özel, ayrıca hiç hoş değil 😠",
+        "Sana bunu anlatmayacağım 😒",
+        "Böyle şeyler sorma bana 😤"
+      ],
+      "traits": [], "chars": [], "note": "Gerçekçi Mod · İsteklilik: İstemiyor (QPRIVATE soruları, örn. dar mısın)"
+    },
+    {
+      "id": "r_st_istek_soru_yok_shy",
+      "name": "🔥 İsteklilik: istemiyor, özel soruya cevap (utangaç)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=isteksoruyok"],
+      "reply": [
+        "B-bunu nasıl sorarsın? 😣",
+        "Çok utandım, cevap veremem 😖",
+        "L-lütfen böyle şeyler sorma 😢",
+        "Bunu konuşmak istemiyorum 😣",
+        "Y-yüzüm yanıyor, geçelim 😖",
+        "Bu çok özel, söyleyemem 😢",
+        "Ö-öyle sorular beni geriyor 😣",
+        "B-başka bir şey sor 😖"
+      ],
+      "traits": ["Utangaç|Güvensiz|Gergin"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_soru_yok_cold",
+      "name": "🔥 İsteklilik: istemiyor, özel soruya cevap (soğuk)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=isteksoruyok"],
+      "reply": [
+        "Seni ilgilendirmez.",
+        "Cevap yok.",
+        "Geç bunu.",
+        "Sormak bile hata.",
+        "Özel.",
+        "Bilmene gerek yok.",
+        "Başka sorun var mı?",
+        "Bu soruyu sormamış ol."
+      ],
+      "traits": ["Soğuk|Kibirli|Asi|Ciddi|İnatçı"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_soru_yok_flirt",
+      "name": "🔥 İsteklilik: istemiyor, özel soruya cevap (flörtöz)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=isteksoruyok"],
+      "reply": [
+        "O bilgiyi sana vermem tatlım 😒",
+        "Merakını başka yere sakla canım 😤",
+        "Her sırrımı bilmen gerekmiyor bebeğim 😒",
+        "Bu soruyla puan kaybettin aşkım 😤",
+        "Kibarca söyleyeyim: geç bunu 😒",
+        "Bunu sorma, başka şeyler konuşalım canım 😤",
+        "Beni tanımak istiyorsan bunu sorma 😒",
+        "Bu kadar yakın değiliz tatlım 😤"
+      ],
+      "traits": ["Flörtöz|Romantik|Duygusal"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_soru_yok_tease",
+      "name": "🔥 İsteklilik: istemiyor, özel soruya cevap (alaycı)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=isteksoruyok"],
+      "reply": [
+        "Anket mi yapıyorsun? 🙄",
+        "Bu bilgi sana hiç lazım olmayacak 😒",
+        "Merak kediyi öldürmüş 🙄",
+        "Doktorum musun? Değilsin 😒",
+        "Sıradaki soru lütfen 🙄",
+        "Bunun cevabını hayal etmekle yetin 😒",
+        "Cesur soru, boş cevap 🙄",
+        "Formu doldurdum: cevap yok 😒"
+      ],
+      "traits": ["Alaycı|Komik|Şımarık|Manipülatif"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_soru_dusuk",
+      "name": "🔥 İsteklilik: düşük, özel soruya cevap",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=isteksorudusuk"],
+      "reply": [
+        "Bunu konuşmak pek içimden gelmiyor 😕",
+        "Şimdilik bunu geçelim mi? 😶",
+        "Böyle konular beni açmıyor açıkçası 😕",
+        "Belki başka zaman anlatırım 😶",
+        "Pek düşündüğüm bir şey değil 😕",
+        "Biraz özel, sonra konuşalım {sen} 😶",
+        "Çok merak ediyorsun, ben pek değil 😕",
+        "Bunu bilmen şart mı? 😶"
+      ],
+      "traits": [], "chars": [], "note": "Gerçekçi Mod · İsteklilik: Düşük (QPRIVATE soruları, örn. dar mısın)"
+    },
+    {
+      "id": "r_st_istek_soru_dusuk_shy",
+      "name": "🔥 İsteklilik: düşük, özel soruya cevap (utangaç)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=isteksorudusuk"],
+      "reply": [
+        "B-bilmem ki… söylemek istemiyorum 😣",
+        "Utandırıyorsun beni 😖",
+        "Ş-şimdi cevaplamasam olur mu? 😣",
+        "Biraz daha tanışalım önce 😖",
+        "Y-yani… bunu konuşmaya hazır değilim 😣",
+        "Bunu kimseye anlatmadım 😖",
+        "H-hemen sorma böyle şeyleri 😣",
+        "Zamanla belki… 😖"
+      ],
+      "traits": ["Utangaç|Güvensiz|Gergin"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_soru_dusuk_cold",
+      "name": "🔥 İsteklilik: düşük, özel soruya cevap (soğuk)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=isteksorudusuk"],
+      "reply": [
+        "Önemli değil.",
+        "Bunu konuşmayalım.",
+        "Şu an cevap vermem.",
+        "Merak etme, sana kalmaz.",
+        "Pas geçiyorum.",
+        "Başka zaman.",
+        "Bana göre konu değil.",
+        "Sormasan iyiydi."
+      ],
+      "traits": ["Soğuk|Kibirli|Asi|Ciddi|İnatçı"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_soru_dusuk_flirt",
+      "name": "🔥 İsteklilik: düşük, özel soruya cevap (flörtöz)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=isteksorudusuk"],
+      "reply": [
+        "Biraz gizem bırak bana tatlım 😕",
+        "Bunu hak ettiğin gün söylerim canım 😶",
+        "Her şeyi ilk günden anlatmam 😕",
+        "Önce gönlümü kazan, sonra sorarsın 😶",
+        "Bugün o soruların havamda değilim 😕",
+        "Sürpriz kalsın bebeğim 😶",
+        "Şimdilik sır, belki sonra 😕",
+        "Bu soruyu romantik bir akşama saklayalım 😶"
+      ],
+      "traits": ["Flörtöz|Romantik|Duygusal"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_soru_dusuk_tease",
+      "name": "🔥 İsteklilik: düşük, özel soruya cevap (alaycı)",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=isteksorudusuk"],
+      "reply": [
+        "Mülakata mı geldik? 🙄",
+        "Bu soru için çok erken değil mi? 😒",
+        "Sıraya koydum, en sona 🙄",
+        "Bugünlük soru kotan doldu 😒",
+        "Cevabı merak et, iyi gelir 🙄",
+        "Hmm, hayır, pas 😒",
+        "Bu bilgi ücretli tatlım 🙄",
+        "Başka bir soru dene 😒"
+      ],
+      "traits": ["Alaycı|Komik|Şımarık|Manipülatif"], "chars": [], "note": ""
+    },
+    {
+      "id": "r_st_istek_yok_soz",
+      "name": "🔥 İsteklilik: istemiyor, sohbette",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istekyoksoz"],
+      "reply": [
+        "Bu arada ben sevişmeyi pek düşünmüyorum, bilesin 😶",
+        "Sohbet ederken daha rahatım, öyle kalsın 🙂",
+        "Benden o konuda bir şey bekleme, olur mu? 😶",
+        "Arkadaş gibi takılmak bana daha iyi geliyor 🙂",
+        "Beni o gözle görmemeni tercih ederim 😶",
+        "Şu sıra kimseyle yakınlaşmak istemiyorum 🙂",
+        "Yakınlık konusunda mesafeliyimdir, baştan söyleyeyim 😶",
+        "Konuşmak yeter bana 🙂"
+      ],
+      "traits": [], "chars": [], "note": "Gerçekçi Mod · İsteklilik: İstemiyor (sohbette)"
+    },
+    {
+      "id": "r_st_istek_dusuk_soz",
+      "name": "🔥 İsteklilik: düşük, sohbette",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istekdusuksoz"],
+      "reply": [
+        "Bugünlerde pek isteğim yok açıkçası 😕",
+        "Yakınlaşmam için zaman lazım bana 🙂",
+        "Acele eden birini sevmem 😕",
+        "Önce rahat hissetmem gerek 🙂",
+        "Çok fiziksel biri değilim aslında 😕",
+        "Beni tanıdıkça belki açılırım 🙂",
+        "Havamda olduğum günler az oluyor 😕",
+        "Sabırlı olana kapım açık 🙂"
+      ],
+      "traits": [], "chars": [], "note": "Gerçekçi Mod · İsteklilik: Düşük (sohbette)"
+    },
+    {
+      "id": "r_st_istek_yuksek_soz",
+      "name": "🔥 İsteklilik: yüksek, sohbette",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istekyuksoz"],
+      "reply": [
+        "Sana bakınca aklım başka yerlere gidiyor 😏",
+        "Bu akşam boş musun? Sormadan edemedim 😘",
+        "Yanımda olsan neler yapardık 😏",
+        "Seni düşünmekten bir türlü duramıyorum 😘",
+        "Konuşmak güzel ama yanımda olsan daha güzel 😏",
+        "Bugün çok istekliyim, haberin olsun 😘",
+        "Ne zaman görüşüyoruz? Sabrım azalıyor 😏",
+        "Seni özledim, hem de her anlamda 😘"
+      ],
+      "traits": [], "chars": [], "note": "Gerçekçi Mod · İsteklilik: Yüksek (sohbette)"
+    },
+    {
+      "id": "r_st_istek_cok_soz",
+      "name": "🔥 İsteklilik: çok yüksek, sohbette",
+      "category": "📊 Durumlar",
+      "when": ["=durum", "=istekcoksoz"],
+      "reply": [
+        "Aklımda tek bir şey var, sen 🥵",
+        "Laf uzamasın, gel artık 😈",
+        "Sabahtan beri yerimde duramıyorum 🥵",
+        "Bugün beni görsen tanıyamazsın, çok azgınım 😈",
+        "Şu an yanımda olman gerekiyordu 🥵",
+        "Sohbeti sonra yaparız, önce gel 😈",
+        "Sana yazarken bile içim gidiyor 🥵",
+        "Beni bu hâlde bırakma {sen} 😈"
+      ],
+      "traits": [], "chars": [], "note": "Gerçekçi Mod · İsteklilik: Çok Yüksek (sohbette)"
     },
     {
       "id": "r_st_esc_sure",

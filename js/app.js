@@ -466,6 +466,7 @@
       const r = await fetch('/api/bot-rules', { cache: 'no-store' });
       if (!r.ok) return false;
       Stories.BOT_RULES = await r.json();
+      Stories.I18n.add(Stories.Bot.enDict(Stories.BOT_RULES.en));
       return true;
     } catch (e) { return false; }
   }
@@ -500,7 +501,7 @@
       ['⏳ Anlaştığın kadar süre', 'İlandaki kızla yaptığın anlaşma artık bir saat gibi işler: 30 dk, 1 saat, 1,5 saat, 2 saat ya da sabaha kadar. Süre sohbet saatinden sayılır (her mesaj birkaç dakika). Süre dolunca "Tamam, zamanın doldu 🙄" der ve sonraki mesajlarına ters cevap verir. Sevişirken dolarsa "Hadi boşal, zamanın tükendi ⏰" der; 3 mesaj içinde boşalamazsan "Çık, bu kadardı 😒" der ve seans biter. Son anda boşalırsan "Güzeldi ama zamanın doldu" diye uğurlar.'],
       ['🎭 Her kız kendi ağzıyla', 'Bütün bu cümleler kişiliğe göre değişir: utangaç kekeler, soğuk tek kelimeyle keser, flörtöz yeni seansa davet eder, alaycı dalga geçer. Her durumda en az 10 farklı cümle var. 🧭 CarmenGuide → 🧪 Bot deneyi → 📊 Durum\'da esc… ve sert… durumlarını seçip deneyebilirsin.'],
       ['👑 CarmenChoise sözleri tutuluyor', 'Turnuvayı kazanan kız verdiği sözleri unutmaz: indirimli seans o seansta her seferinde indirimli gelir, "kondomsuz ek ücret yok" kondomsuzu kondomlu fiyatına yapar, "bir sonraki seans yarı fiyatına" bir kez geçerlidir, "+30 dakika" ve "ikinci tur bedava" süreyi uzatır, "gece kalırım" sabaha kadar yapar, "… benden hediye" olayı da sevdiklerine girer. Carmen.com görüşmesinde fiyatın yanında "👑 söz" yazar.'],
-      ['🛑 Sınırlar ve olayı bitirmek', 'Karakterler artık sevmediği şeylere sessiz kalmaz. 💔 sevmediği bir olayda sertçe uyarır; güveni ve aşkı düşer. İkinci kez yaparsan ya da izin vermediği bir şeyi zorlarsan (🚫 izinsiz) sohbete "🛑 … olayı bitirdi" düşer: o andan sonra yeni olay yazamazsın, denersen sertçe reddeder. Onunla 2 mesaj normal konuşup yatıştırınca yeniden yakınlaşabilirsiniz.'],
+      ['🛑 Sınırlar ve olayı bitirmek', 'Karakterler artık sevmediği şeylere sessiz kalmaz. 💔 sevmediği bir olayda ya da izin vermediği bir şeyi zorlarsan (🚫 izinsiz) önce sertçe uyarır; güveni ve aşkı düşer. Bir kez daha yaparsan sohbete "🛑 … olayı bitirdi" düşer: o andan sonra yeni olay yazamazsın, denersen sertçe reddeder. Onunla 2 mesaj normal konuşup yatıştırınca yeniden yakınlaşabilirsiniz.'],
       ['💊 Pull-Out\'un bedeli', 'Sadece "dışarı boşal" iznini verdiği bir kızın içine boşalırsan bunun bir bedeli var: sabah hapı ve tazminat olarak 1.500₺ bakiyenden düşer, sohbete 💸 bedel notu gelir ve kişiliğine göre hesap sorar ("Söz vermiştin! Sabah hapının parasını sen ödüyorsun 😠"). Bakiye yetmezse olanı alır, aşkı da fazladan düşer.'],
       ['🌹 esc rozeti', 'İlan sitelerinden (Carmen.com, Gothic.com, Meisove.com, CarmenStay) açılan sohbetler listede 🌹 esc rozetiyle görünür; üstteki 🌹 Esc filtresiyle hepsini bir arada bulursun.']
     ], 'Manşet'],
@@ -860,8 +861,10 @@
       x.allows = (x.allows || []).filter(id => !raw.has(id));
       x.denies = [...new Set([...(x.denies || []), ...out])];
     }
-    return x;
+    return adWill(x);
   }
+  // 🔥 ilan kızının isteği hep Yüksek (bkz. willOf)
+  const adWill = x => { x.traits = [...(x.traits || []).filter(t => !/^İsteklilik: /.test(t)), 'İsteklilik: Yüksek']; return x; };
   const cmAll = () => [...chars(), ...cmAds()].filter((c, i, a) => !c.photo || a.findIndex(x => x.photo === c.photo) === i);
   const cmFind = id => byId(id) || cmAds().find(x => x.id === id);
   const cmVip = c => c.cmVip != null ? !!c.cmVip : cmNum(c, 'vip', 4) === 0;
@@ -1035,6 +1038,10 @@
     return h ? Math.round(parseFloat(h[1].replace(',', '.')) * 60) : m ? +m[1] : /hafta/i.test(s) ? 2880 : ((420 - (hour || 0) * 60) + 1440) % 1440 || 1440; };
   // 🌹 esc: ilan sitelerinden (Carmen / Gothic / Meisove / Stay) açılan sohbet; listede rozet + filtre (eski sohbetler başlığından tanınır)
   const isEsc = t => !!t && (!!t.esc || /^(Carmen|Gothic|Meisove)\.com$/.test(t.title || ''));
+  // 🔥 İsteklilik (🌿 sadece Gerçekçi Mod): 0 İstemiyor · 1 Düşük · 2 Orta (seçilmemişse de) · 3 Yüksek · 4 Çok Yüksek; ilan kızı / ilan sohbeti en az Yüksek
+  const WILL = ['İstemiyor', 'Düşük', 'Orta', 'Yüksek', 'Çok Yüksek'];
+  const willOf = (c, t) => { const x = c || {}, i = WILL.indexOf(String((x.traits || []).find(s => /^İsteklilik: /.test(s)) || '').replace('İsteklilik: ', '')), v = i < 0 ? 2 : i;
+    return x.cmRid || x.goth || x.meisove || x.klDoc || isEsc(t) ? Math.max(3, v) : v; };
   const sessSet = (t, dur, hour) => { t.esc = 1; t.paid = { mins: sessMins(dur, hour), from: msgsOf(t).filter(m => m.from !== 'sys').length, st: '', n: 0 }; };
   // 💌 hakkımda: flörtöz açılış + kişilik + vücut + sevdiği + kapanış
   const CM_OPEN = ['Merhaba canım, ben {ad} 💋', 'Selam yakışıklı, ben {ad}…', 'Hoş geldin, ben {ad}; seni bekliyordum 😏', 'Ben {ad}, bu gecenin en güzel sürprizi 🌹', 'Merhaba beyefendi, ben {ad} 💄'];
@@ -1451,6 +1458,7 @@
         Object.assign(x, { set: 'emily:' + p.key, mod: 'emily', name: p.name, photo: p.photo, album: [p.photo], bio: p.bio, about: p.about, colors: p.colors,
           traits: [...x.traits.filter(t => !pv.includes(t)), ...p.traits.filter(t => !x.traits.includes(t))] });
         Object.assign(x, { id: 'gt' + Store.uid(), created: Date.now() - Math.floor(Math.random() * 40) * 864e5, cmVip: Math.random() < .3, age: Math.max(18, +x.age || 18) });
+        adWill(x);
         a.push(gtFix(x));
       }
       ui.createMod = mod;
@@ -2261,12 +2269,14 @@
       const m = /^(.+) %(\d+) indirimli$/.exec(t), g = / benden hediye$/.exec(t);
       if (m) d.ses[m[1]] = Math.max(d.ses[m[1]] || 0, +m[2]);
       else if (g) { const e = all.find(x => low(x.title) === low(t.slice(0, g.index))); if (e) { c.likes = [...new Set([...(c.likes || []), e.id])]; c.dislikes = (c.dislikes || []).filter(id => id !== e.id); } }
-      else if (t === 'Kondomsuz, ek ücret yok') d.rawFree = 1;
+      else if (t === 'Kondomsuz, ek ücret yok' || t === 'Kondomsuz ve içime, ekstra yok') d.rawFree = 1;
       else if (t === '+30 dakika ücretsiz') d.plus = (d.plus || 0) + 30;
       else if (t === 'İkinci tur bedava') d.plus = (d.plus || 0) + 60;
       else if (t === 'Gece kalırım, kahvaltı dahil') d.night = 1;
       else if (t === 'Bir sonraki seans yarı fiyatına') d.half = 1;
     });
+    // 💦 içe boşalma sözü verdiyse o olaylar 💔'den çıkar
+    if (offers.some(([, t]) => CH_INC.some(x => x[1] === t))) { const no = feelEvents(c.dislikes || []).filter(isInsideCum).map(e => e.id); c.dislikes = (c.dislikes || []).filter(id => !no.includes(id)); }
     save();
   }
   function chConfirm() {
@@ -6787,6 +6797,8 @@
       // 🕰️ sohbet saati: gece (22–04) · sabah (05–10) · akşam (18–21); sevişirken 01–05 arası "uykum geldi"
       const hr = clockOn() ? Math.floor((((clockNow() % 1440) + 1440) % 1440) / 60) : -1;
       const tm = hr < 0 ? '' : hr >= 22 || hr <= 4 ? 'saatgece' : hr <= 10 ? 'saatsabah' : hr >= 18 ? 'saataksam' : '';
+      // 🔥 sohbette isteğine göre (🌿 Gerçekçi Mod): "=istekyoksoz" · "=istekdusuksoz" · "=istekyuksoz" · "=istekcoksoz"
+      if (talk && ch && !group && realOn() && Math.random() < .2) { const k = ['istekyoksoz', 'istekdusuksoz', '', 'istekyuksoz', 'istekcoksoz'][willOf(ch, th)]; if (k) return k; }
       if (talk && rel) return rel;
       if (talk && tm) return tm;
       const z = v('zevk'), cum = v('cum'), n = v('cumming sayısı');
@@ -6935,6 +6947,15 @@
       const dPos = !opts.events && !yn && domLv(ch) === 'dom' && sexPhase() === 'sexnow' && DOM_CUM_RE.test(evbFold(userMsg.text)) && Math.random() < .45 ? posNow() : null;
       const deny = dPos && pickByTitles(['forward', 'backward'].includes(String(catOfEv(dPos).label).toLocaleLowerCase('tr')) ? ['Orgasm Denial'] : ['Death Grip'], ch);
       const cmdEv = !opts.events && !defy && (deny || ansEv || cmdEvent(m.rule.id, ch) || drink);
+      if (cmdEv && willRefuse([cmdEv])) return;
+      // 🔥 isteksiz karakter (🌿 Gerçekçi Mod · İstemiyor / Düşük): özel soruya soğuk cevap ("=durum =isteksoruyok|isteksorudusuk"), ısrar ve cinsel mesaja tersleme ("=istektersyok|istektersdusuk"; Düşük %50)
+      if (!cmdEv && !opts.events && !yn && !group && realOn() && willOf(ch, th) < 2) {
+        const wv = willOf(ch, th), rid = String(m.rule.id), wq = QPRIVATE.some(p => rid.startsWith(p)) || /^r_q2_(azgin|son|yer)/.test(rid);
+        if (wq || (WILL_PUSH.test(rid) && (wv === 0 || Math.random() < .5))) {
+          sessSay(stLine(ch, `istek${wq ? 'soru' : 'ters'}${wv ? 'dusuk' : 'yok'}`, [wq ? 'Bunu konuşmak istemiyorum 😒' : 'Yapma, istemiyorum 😒']));
+          return;
+        }
+      }
       if (cmdEv) {
         const n0 = list.length;
         snap('Komut');
@@ -7211,7 +7232,7 @@
       return true;
     }
     /* 🌿 Gerçekçi Mod · sert tepki ve 🛑 olayı bitirme (th.dis: bu sohbette sevmediği olay sayısı, th.stop { n: o zamandan beri mesajın }):
-     * 💔 sevmediği olayda sert cevap ("=durum =sertsevmez"), güven −3 / aşk −2; ikincisinde ya da izinsiz olayda (🚫) olayı bitirir ("=sertdur").
+     * 💔 sevmediği olay (güven −3 / aşk −2) ya da 🚫 izinsiz olay: ilkinde bot cevabıyla uyarır ("=durum =sertsevmez" / izinsiz cevabı), ikincisinde olayı bitirir ("=sertdur").
      * Bitirince olay yazılamaz (writeEvents, "=sertbitti"); 2 normal mesajdan sonra yatışır. Dönüş: true → cevap verildi */
     function realGate(userMsg, opts) {
       if (!realOn() || group || !c) return false;
@@ -7224,14 +7245,27 @@
       if (!bad && !forced) return false;
       if (bad) { cmParam(c, 'güven', -3); cmParam(c, 'aşk', -2); }
       th.dis = (th.dis || 0) + 1;
-      if (forced || th.dis >= 2) {
-        th.stop = { n: 0 }; th.dis = 0;
-        list.push({ id: Store.uid(), from: 'sys', ts: Math.max(Date.now(), ((list[list.length - 1] || {}).ts || 0) + 1), text: `🛑 ${c.name.split(' ')[0]} olayı bitirdi` });
-        save();
-        sessSay(stLine(c, 'sertdur', ['Yeter! Bitti, dokunma bana 😠']));
-        return true;
-      }
+      if (th.dis >= 2) { realStop(); return true; }
+      save();
+      if (forced) return false;   // izinsiz: uyarıyı kendi "=izinsiz_*" cevabı verir
       sessSay(stLine(c, 'sertsevmez', ['Hayır! Bundan hoşlanmıyorum, dur 😠']));
+      return true;
+    }
+    function realStop() {
+      th.stop = { n: 0 }; th.dis = 0;
+      list.push({ id: Store.uid(), from: 'sys', ts: Math.max(Date.now(), ((list[list.length - 1] || {}).ts || 0) + 1), text: `🛑 ${c.name.split(' ')[0]} olayı bitirdi` });
+      save();
+      sessSay(stLine(c, 'sertdur', ['Yeter! Bitti, dokunma bana 😠']));
+    }
+    /* 🔥 İsteklilik: İstemiyor ise sevişme olayı yazılmaz; ilkinde bot cevabıyla uyarır ("=durum =istekyok"), ikincisinde olayı bitirir. Dönüş: true → reddedildi */
+    function willRefuse(evs) {
+      if (!realOn() || group || !c || willOf(c, th) > 0 || !evs.some(e => (catOfEv(e).tags || []).includes(CHAT_TOP_TAG))) return false;
+      snap('Olay reddedildi');
+      if (th.stop) { sessSay(stLine(c, 'sertbitti', ['Bitti dedim! Dokunma 😠'])); return true; }
+      th.dis = (th.dis || 0) + 1;
+      if (th.dis >= 2) { realStop(); return true; }
+      save();
+      sessSay(stLine(c, 'istekyok', ['Bugün hiç istemiyorum, dokunma 😒']));
       return true;
     }
     function sessSay(text) {
@@ -7874,6 +7908,7 @@
         notify(`🛑 ${c.name.split(' ')[0]} olayı bitirdi · biraz konuşup yatıştır`, '🛑');
         return;
       }
+      if (willRefuse(picked.map(x => x.e))) return;
       snap('Olay');
       // 🪜 kademe: kilitli olay reddedilir (ret mesajı hemen görünür)
       const kd = kdApply(picked);
@@ -7918,7 +7953,9 @@
       if (!e) return;
       // zincirde karakterin sevdiği bir olay varsa daha zevkli, ilk olayı sevmiyorsa isteksiz cevaplar
       const ch = group ? byId(chatCharIds()[0]) : c, has = k => evs.some(x => ((ch || {})[k] || []).includes(x.id));
-      const mood = has('likes') ? 'sever' : ((ch || {}).dislikes || []).includes(evs[0].id) ? 'sevmez' : '';
+      // 👑 Choise'da kondomsuz söz verdiyse (chDeal.rawFree) kondomsuz önden pozisyon izinsiz ya da sevmediği sayılmaz, olayı bitirmez
+      const rawOk = !!((ch || {}).chDeal || {}).rawFree;
+      const mood = has('likes') ? 'sever' : ((ch || {}).dislikes || []).includes(evs[0].id) && !(rawOk && (evs[0].tags || []).some(t => low(t) === 'vajinal')) ? 'sevmez' : '';
       // 💦 boşalmada hangi pozisyondayken olduğu da gider: "… poz <pozisyon> <kategorisi>" (kurallar ör. =poz, doggy)
       // 🦄 fantezi olayında da şu anki pozisyon gider ("evt fantesy Cat Girl poz Doggy Backward")
       const cum = (e.tags || []).some(t => low(t) === 'boşalma'), fan = isFant(e), pos = (cum || fan) && posNow();
@@ -7946,7 +7983,7 @@
         state = preg ? (ok ? 'hamilekaldi' : 'hamilekaldi_istemedi') : (ch.fields || {}).hamile ? 'hamileyken' : shield ? 'kondomkorudu'
           : p.pill ? 'haplakorundu' : th.izinVerdi ? 'icineistedi' : p.morning ? 'sabahhap' : p.pullout ? 'pulloutkacti' : p.nothing ? 'icineistedi' : 'riskli';
         // 🚫 içe izin vermiyorsa (kondom şartı / içe izin yok) korunmasız içe boşalma daha sert
-        if (['pulloutkacti', 'riskli'].includes(state) && protGet(ch).ice !== 'var' && protGet(ch).kon) state = 'izinsiz_icine';
+        if (['pulloutkacti', 'riskli'].includes(state) && protGet(ch).ice !== 'var' && protGet(ch).kon && !rawOk) state = 'izinsiz_icine';
         th.izinVerdi = false;
         // bir sonraki önden girişte yine "kondomsuz giriyorsun" tepkisi gelebilir
         if (th.giris) delete th.giris[ch.id];
@@ -7958,7 +7995,7 @@
       // 🛡️ korunma olayı (Condom, Control Pill, Pull-Out…): izin verdiyse rahat, vermediyse itiraz ("izin_ok_kondom", "izin_red_hap"…)
       if (!state && ch && (catOfEv(e).tags || []).includes(PERM_TAG)) {
         const t = low(e.title), key = /condom/.test(t) ? 'kondom' : /control/.test(t) ? 'hap' : /morning/.test(t) ? 'sabah' : /pull/.test(t) ? 'pullout' : t === 'nothing' ? 'nothing' : 'diger';
-        const ok = (ch.allows || []).includes(e.id), red = (ch.denies || []).includes(e.id);
+        const ok = (ch.allows || []).includes(e.id) || (key === 'nothing' && rawOk), red = (ch.denies || []).includes(e.id);
         state = `izin_${ok ? 'ok' : red ? 'red' : 'notr'}_${key}`;
       }
       // ✋ Holding / Hard Holding / Cock Ring: korunmasına göre ("hold_pullout": "Tut… sakın içime gelme 😳", "hold_icine": "Tut, sonra hepsini içime ver 😈")
@@ -7968,7 +8005,7 @@
       }
       // 🚫 kondom şartı varken kondomsuz her önden pozisyon (ilk girişle sınırlı değil; ısrara razı olduysa yok)
       if (!state && ch && evs[0] && isPos(evs[0]) && (evs[0].tags || []).some(t => low(t) === 'vajinal') && !(ch.fields || {}).hamile
-        && protGet(ch).kon === 'var' && !protOf(ch).condom && !th.izinVerdi) {
+        && protGet(ch).kon === 'var' && !protOf(ch).condom && !th.izinVerdi && !rawOk) {
         state = 'izinsiz_kondom';
         (th.giris = th.giris || {})[ch.id] = 1;
       }
@@ -8005,6 +8042,9 @@
       if (!state && prev && pc !== cc && LIA_PHASES.some(p => p.cat === cc)) state = 'gecis' + cc;
       // 🔀 başka bir pozisyona geçiş: pozisyon cevabından önce geçiş baloncuğu ("=gecispoz" + eski ve yeni kategori, süren fantezi)
       const trans = prev && prev.id !== evs[0].id && [pc, cc].every(k => LIA_PHASES.some(p => p.cat === k)) ? `durum gecispoz ${pc} ${cc}${fnow ? ` fant ${fantKey(fnow)}` : ''}` : '';
+      // 🔥 İsteklilik (🌿 Gerçekçi Mod): pozisyonda bazen isteğine göre cevap ("=istekdusuk", "=istekyuksek", "=istekcok")
+      const wk = ch && !group && realOn() ? ['', 'istekdusuk', '', 'istekyuksek', 'istekcok'][willOf(ch, th)] : '';
+      if (!state && wk && isPos(e) && !cum && Math.random() < (wk === 'istekdusuk' ? .6 : .4)) state = wk;
       if (!state && (isPos(e) || cum || low(e.title) === 'orgazm') && i0 >= 0) {
         const n = list.slice(0, i0).filter(x => x.ev === e.id).length;
         state = n === 0 ? 'ilkkez' : n >= 2 ? 'hepbunu' : 'yine';
@@ -8943,6 +8983,8 @@
   };
   const SEX_CATS = ['forward', 'backward', 'outercourse', 'eat'];
   // ❓ özel sorular (🤝 Güven ≤ 15 iken kaçamak cevap): kural kimliğinin başı
+  // 🔥 isteksiz karakteri terslemeye iten mesaj kuralları (bkz. botReply)
+  const WILL_PUSH = /^r_(israr|sx2_|cmp_bd_|cmd_(sert|don|ustume|gir)|c2_(op|yatak|banyo|diz|sx_kiyafet|ses_iste)|c3_(bagla|tasma|diz|yalvar|sahip|iz_sx|ceza))/;
   const QPRIVATE = ['r_q_boob', 'r_q_pussy', 'r_q_anal', 'r_q_butt', 'r_q_exp', 'r_q_virgin', 'r_q_sever', 'r_q_sevmez', 'r_q_korunma', 'r_q_hamile',
     'r_q2_pozisyon', 'r_q2_fantezi', 'r_q2_bosal', 'r_q2_bebek', 'r_q2_ilk', 'r_q2_gecmis', 'r_q2_seks', 'r_q2_hassas', 'r_q2_anal', 'r_q2_oral',
     'r_q2_kondom', 'r_q2_hap', 'r_q2_azgin', 'r_q2_sut', 'r_q2_kiyafet', 'r_q2_sertyavas', 'r_q2_orgazmsay', 'r_q2_bosalmasay',

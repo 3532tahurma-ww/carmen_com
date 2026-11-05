@@ -23,7 +23,7 @@ Stories.I18n = (() => {
 
   // D: tam metin → çeviri · DL: küçük harfli anahtar → çeviri (balonlarda "hep küçük harf" yazım tarzı için) · P: desenler { re, tok, out }
   // main: ekran çevirisi · side: sadece line() okur (bot editörü: çipler ve kural adları bot sözlüğünden etkilenmesin)
-  const main = { D: new Map(), DL: new Map(), P: [] }, side = { D: new Map(), DL: new Map(), P: [] };
+  const main = { D: new Map(), DL: new Map(), P: [], K: new Map() }, side = { D: new Map(), DL: new Map(), P: [], K: new Map() };
   let S = main, T = main;              // S: okunan depo · T: add'in yazdığı depo
   const lc = s => s.toLocaleLowerCase('tr');
   let ci = false;                      // true: balon çevriliyor, küçük harfli eşleşme serbest
@@ -37,8 +37,11 @@ Stories.I18n = (() => {
       if (PH.test(key)) {
         PH.lastIndex = 0;
         if (!/\p{L}/u.test(key.replace(PH, ''))) return;   // sadece yer tutucu: her şeye uyardı
+        const old = T.K.get(key);
+        if (old) { old.out = out; return; }   // aynı anahtar yeniden gelirse çeviri güncellenir (bot editörünün İngilizce sekmesi)
         const lits = key.split(PH), tok = lits.reduce((a, b) => (b.length > a.length ? b : a), '');
-        T.P.push({ re: new RegExp('^' + lits.map(reEsc).join('(.+?)') + '$', 'u'), tok, out, w: lits.join('').length, b: key.includes('{v}') });
+        const p = { re: new RegExp('^' + lits.map(reEsc).join('(.+?)') + '$', 'u'), tok, out, w: lits.join('').length, b: key.includes('{v}') };
+        T.K.set(key, p); T.P.push(p);
       } else { T.D.set(key, out); T.DL.set(lc(key), out); }
       PH.lastIndex = 0;
     });
@@ -62,6 +65,8 @@ Stories.I18n = (() => {
   }
   // baş / son: emoji, boşluk, noktalama (anahtarlarda yok)
   const SPLIT = /^([^\p{L}\p{N}{]*)([\s\S]*?)([^\p{L}\p{N}}.!?…)]*)$/u;
+  // metni [baş, sözlük anahtarı, son] diye böler
+  const keyOf = s => { const m = SPLIT.exec(s); return m ? [m[1], norm(m[2]), m[3]] : [s, '', '']; };
   function look(s) {
     const m = SPLIT.exec(s);
     if (!m || !m[2]) return null;
@@ -151,5 +156,5 @@ Stories.I18n = (() => {
   const wrap = name => { const f = window[name]; if (f) window[name] = function (msg, ...rest) { return f.call(window, msg == null ? msg : t(String(msg)), ...rest); }; };
   ['alert', 'confirm', 'prompt'].forEach(wrap);
 
-  return { lang, add, t, translate, toSide, line, refresh: () => schedule(document.body) };
+  return { lang, add, t, translate, toSide, line, keyOf, refresh: () => schedule(document.body) };
 })();

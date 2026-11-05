@@ -28,6 +28,11 @@ Stories.Traits = (() => {
       id: 'experience', label: 'Experience', single: true,
       items: ['Virgo' , 'Little','Some','Medium','Much','A lot','Great']
     },
+    // 🔥 sevişme isteği, sadece 🌿 Gerçekçi Mod'da geçerli (bkz. app.js willOf); ilan kızları hep Yüksek ya da üstü
+    {
+      id: 'willing', label: '🔥 İsteklilik', single: true,
+      items: ['Çok Yüksek', 'Yüksek', 'Orta', 'Düşük', 'İstemiyor']
+    },
     // single: true -> bu gruptan tek seçim yapılır, karakterde "Pussy Size: Tight" diye saklanır
     // (böylece farklı gruplarda aynı seçenek, ör. 'Tight', karışmaz)
     {

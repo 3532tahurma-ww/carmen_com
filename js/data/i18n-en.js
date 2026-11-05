@@ -102,6 +102,7 @@ Stories.I18n.add({
   'Bu karakter için uygun kural yok (Ben → 💾 Veri → 🤖 Bot editörü)': 'No matching rule for this character (Me → 💾 Data → 🤖 Bot editor)',
   'Geç cevap verir': 'Replies late', 'yazıyor…': 'typing…', 'Bot cevabı': 'Bot reply', 'Sonuç': 'Outcome', 'Olmadı': "Didn't happen", 'Sonuç · ⭐ varsayılan': 'Outcome · ⭐ default',
   'olmadı, değer değişmedi': "didn't happen, values unchanged", 'Şart tutmadı: {}': 'Condition not met: {}', 'Olunca': 'When it happens', 'İpucu': 'Hint', 'Bir yerde': 'Somewhere', 'Silinmiş mesaj': 'Deleted message',
+  'İsteklilik': 'Willingness', 'Çok Yüksek': 'Very High', 'İstemiyor': 'Unwilling', 'İsteklilik: Çok Yüksek': 'Willingness: Very High', 'İsteklilik: Yüksek': 'Willingness: High', 'İsteklilik: Orta': 'Willingness: Medium', 'İsteklilik: Düşük': 'Willingness: Low', 'İsteklilik: İstemiyor': 'Willingness: Unwilling',
   'yatıştı': 'calmed down', 'olayı bitirdi': 'ended the event', 'Dinlenin, sarılın; 🕰️ saat ilerledikçe toparlanırsın.': "Rest and cuddle; you'll recover as the 🕰️ clock moves on.",
   'az önce orgazm oldu. Biraz sarılın, sonra devam edebilirsiniz.': 'just came. Cuddle a little, then you can go on.', 'Bir Eat daha onu bitirir.': 'One more Eat will finish her.',
   'Son aşamadasınız. Tempoyu Mode ile artır; 🥴 Zevk 80\'de bitiş kendiliğinden gelir.': "You're at the last stage. Raise the pace with Mode; at 🥴 Pleasure 80 the finish comes by itself.",
