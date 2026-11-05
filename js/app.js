@@ -9998,8 +9998,8 @@
     const chg = [...(ev && ev.changes || []), ...kids.flatMap(k => k.evc.changes || [])];
     // ✨ yeni olay kartında küçük animasyon: 💦 boşalma / 🔥 sert Mode ve fanteziler / ❤️ Foreplay ve orgazm
     const efk = ev && Date.now() - (main.ts || 0) < 6000 && evFxKind(main.ev);
-    // 🌐 balon dili: karakter Türk değilse İngilizce görünür (kayıt Türkçe kalır; js/i18n.js); senin mesajında sadece olay mesajlarım (m.ml)
-    const blang = m.from === 'her' ? adLang(ctx.speaker(m)) : m.ml || '';
+    // 🌐 balon dili (kayıt Türkçe kalır; js/i18n.js): uygulama Türkçeyse hepsi Türkçe; İngilizceyse yabancı karakterde İngilizce, Türk karakterde Türkçe. Senin mesajında sadece olay mesajlarım (m.ml)
+    const blang = Stories.I18n.lang() !== 'en' ? '' : m.from === 'her' ? adLang(ctx.speaker(m)) : m.ml || '';
     const bubble = ev
       ? `<div class="bubble ev-bubble${efk ? ' evfx evfx-' + efk : ''}"${isHex(mev.color) ? ` style="--evc:${esc(mev.color)}"` : ''}>${efk ? `<span class="evfx-p" aria-hidden="true">${Array.from({ length: 7 }, (_, i) => `<i style="--i:${i}">${EVFX[efk]}</i>`).join('')}</span>` : ''}${ev.prev || kids.length ? `<div class="evb-chain">${ev.prev ? `<span>${esc(ev.prev.emo)} ${esc(ev.prev.t)}</span><i>➜</i>` : ''}<span>${esc(ev.emojis || '📜')} ${esc(ev.title || '')}</span>${steps}</div>` : ''}<div class="evb-h"><span class="evb-ic">${esc(mev.emojis || '📜')}</span><span class="evb-ti"><small>📜 Olay${kids.length ? ` · 🔗 ${kids.length + 1} an` : ''}${mev.sub ? ` · 🪜 ${esc(mev.sub)}` : ''}${mev.level ? ` · 📶 ${esc(mev.level)}` : ''}</small><b>${esc(mev.title || '')}</b></span></div>${evDup(main.text, mev.title) ? '' : `<div class="evb-t">${main === m ? body : txt(main.text)}</div>`}${chg.length && chgOn() ? `<div class="evb-on"><small>⚡ Olunca</small>${ocChips(chg)}</div>` : ''}${react}${fxTag}</div>`
       : oc

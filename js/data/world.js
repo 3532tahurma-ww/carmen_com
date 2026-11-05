@@ -152,7 +152,9 @@ Stories.World = (() => {
   function countryOf(city) {
     const parts = String(city || '').split(/[,/·]/).map(low).filter(Boolean);
     if (!parts.length) return null;
-    return countries.find(c => parts.some(p => low(c.name) === p || c.cities.some(x => low(x) === p))) || null;
+    // Türkiye listesinde yabancı şehirler de var (pools.js moreCities): önce kendi ülkesi
+    const has = c => parts.some(p => low(c.name) === p || c.cities.some(x => low(x) === p));
+    return countries.find(c => c.id !== 'tr' && has(c)) || countries.find(has) || null;
   }
   const regionOf = city => { const c = countryOf(city); return c ? REGIONS[c.r] : ''; };
   // 🎲 ülke (ağırlıklı) → şehir; isim o ülkenin havuzundan
