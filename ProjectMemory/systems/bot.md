@@ -13,6 +13,11 @@
 ## Engine (`Stories.Bot`)
 `norm` (tr lowercase, strip punct, collapse repeats) → `expand` → `inOrder` → `fits` → `score` (words×100 + traits×10 + chars 20) → `best/bestOf` (loose mode for 3+ words) → `reply(rule, vars, recent)`; `addons`, `catches`.
 
+## Questions (❓ Sorular)
+- `r_q*` ids count as questions (`isQ`): no state bubble, possible counter question (`QCOUNTER`, default `k_genel`). `QPRIVATE` prefixes: evasive answer at 🤝 Güven ≤ 15 and cold refusal for unwilling characters in Gerçekçi Mod.
+- `r_q4_*` (private, in `QPRIVATE`): İsteklilik (`_is_`), Dominance (`_dom_`), Pussy/Anal (`_dar_`, `_arka_`), Boob (`_boob_`), Butt (`_butt_`), Experience (`_exp_`), event questions (`_ev_`). `r_q5_*` (not private): Weight, body. Each question has trait buckets plus one traitless rule. `İsteklilik: İstemiyor` replies are always a clear no.
+- Event questions: `evqOf(typedText, ch)` (app.js, next to `QPRIVATE`) runs in `moodBest` after the jealousy check, not in role-play. It needs `EVQ_RE` (ister/sever/seviyor/hoşlanır/dener/denedin/yaptın + question suffix, or English do/would you like) and an event title or `EVQ_ALIAS` word, categories `SEX_CATS` + foreplay + fantesy. Winner state: `evqyok` (🚫 denies) > `evqsevmez` (💔) > `evqsever` (❤️) > `evqnotr`; rules `=evq` + state, `{olay}` filled from `m.evq`. The event does not start. "yapar mısın / yapalım mı" are requests and stay with the command rules.
+
 ## English typing
 `js/data/bot-en.js` (`Stories.BOT_EN`, `[english regex, turkish trigger]`, applied in order: long phrases first, single words last). `Stories.Bot.fromEn(text)`: lowercases, drops apostrophes, replaces phrases; returns the text unchanged if it has Turkish letters or nothing matched. `botReply` runs it only for typed messages; all later logic (rules, `yesNo`, `learnFacts`, `otherMention`) reads the converted copy, the stored message stays as typed, `botMiss` logs the original. New English coverage = new line in `bot-en.js`. The editor's test box uses `fromEn`; Bot lab (`#/deney`) tests raw text, no `fromEn`.
 

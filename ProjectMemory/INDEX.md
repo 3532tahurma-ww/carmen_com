@@ -6,7 +6,7 @@
 - [systems/store.md](systems/store.md) — localStorage state shape, accounts, all `amor-stories:*` keys
 - [systems/routing-ui.md](systems/routing-ui.md) — hash router, route table, shared helpers, Lia, global toggles
 - [systems/chat.md](systems/chat.md) — renderChat internals, themes, effects, messages list, profile
-- [systems/bot.md](systems/bot.md) — bot rule format, matching engine, English typing (`bot-en.js`), editor, context words
+- [systems/bot.md](systems/bot.md) — bot rule format, matching engine, trait and event questions, English typing (`bot-en.js`), editor, context words
 - [systems/monia.md](systems/monia.md) — events, scenarios, cause-effect, params, clock, body, one-time fixes
 - [systems/characters-create.md](systems/characters-create.md) — Create screen, presets/mods, random, rules/perms, wardrobe
 - [systems/sites.md](systems/sites.md) — home + all internet sites (prefix → route table)

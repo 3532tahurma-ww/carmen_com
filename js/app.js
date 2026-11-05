@@ -7022,6 +7022,13 @@
           const m = only.rules.length && BOT.best(only, 'kiskanc', ch);
           if (m && !m.fallback) return { ...m, other };
         }
+        // ❓ olay sorusu: 🚫 / 💔 / ❤️ listesine göre cevap, olay başlamaz
+        const eq = !opts.events && !th.rp && evqOf(typedText, ch);   // yazılan hâli: bot-en "blowjob"u komut kelimesine çevirir
+        if (eq) {
+          const only = { ...rules, rules: (rules.rules || []).filter(r => (r.when || []).includes('=' + eq.s)) };
+          const m = only.rules.length && BOT.best(only, `evq ${eq.s}`, ch);
+          if (m && !m.fallback) return { ...m, evq: eq.title };
+        }
         // 🎯 olayın kendi cevap havuzu varsa (r_ev_/r_pc_/r_cm_/r_dl_/r_dr_: pozisyon, boşalma, boyut, içki) genel ❤️/💔 ve kişilik cevapları onu çoğu zaman ezmesin
         const ownEv = opts.events ? BOT.best(rules, userMsg.text, ch, false) : null;
         const specific = !!(ownEv && !ownEv.fallback && /^r_(ev|pc|cm|dl|dr)_/.test(ownEv.rule.id));
@@ -7121,6 +7128,7 @@
       if (deny) parts = [pickOne(domEvPool(ch, deny.title))];
       const dEv = opts.events && domEvPool(ch, opts.olay);
       if (dEv) parts.push(pickOne(dEv));
+      if (m.evq) parts = parts.map(p => p.replace(/\{olay\}/g, m.evq));
       // 😤 kıskançlık: anılan ad cevaba girer, 😤 Kıskançlık +6
       if (m.other) {
         parts = parts.map(p => p.replace(/\{diger\}/g, capTr(m.other)));
@@ -9145,7 +9153,20 @@
   const QPRIVATE = ['r_q_boob', 'r_q_pussy', 'r_q_anal', 'r_q_butt', 'r_q_exp', 'r_q_virgin', 'r_q_sever', 'r_q_sevmez', 'r_q_korunma', 'r_q_hamile',
     'r_q2_pozisyon', 'r_q2_fantezi', 'r_q2_bosal', 'r_q2_bebek', 'r_q2_ilk', 'r_q2_gecmis', 'r_q2_seks', 'r_q2_hassas', 'r_q2_anal', 'r_q2_oral',
     'r_q2_kondom', 'r_q2_hap', 'r_q2_azgin', 'r_q2_sut', 'r_q2_kiyafet', 'r_q2_sertyavas', 'r_q2_orgazmsay', 'r_q2_bosalmasay',
-    'r_q2_disaribosal', 'r_q2_kondomsuz', 'r_q2_kiyas', 'r_q2_boy', 'r_q2_son', 'r_q2_kackez', 'r_q2_yut', 'r_q2_yuz', 'r_q2_hamilebirak', 'r_q2_arkadan', 'r_q2_mastur', 'r_q2_oyuncak', 'r_q2_baglan', 'r_q3_'];
+    'r_q2_disaribosal', 'r_q2_kondomsuz', 'r_q2_kiyas', 'r_q2_boy', 'r_q2_son', 'r_q2_kackez', 'r_q2_yut', 'r_q2_yuz', 'r_q2_hamilebirak', 'r_q2_arkadan', 'r_q2_mastur', 'r_q2_oyuncak', 'r_q2_baglan', 'r_q3_', 'r_q4_'];
+  // ❓ olay sorusu ("Blowjob ister misin?", "sakso sever misin?"): komut gibi olayı başlatmaz, 🚫/💔/❤️ listesine göre cevaplanır ("=evq" + evqyok|evqsevmez|evqsever|evqnotr, {olay})
+  // "yapar mısın / yapalım mı" soru sayılmaz: bunlar istek, komut kuralına gider
+  const EVQ_RE = / (ister|sever|seviyor|hoşlan\S*|hoslan\S*|dener|denedin|yaptın|yaptin) m[ıiuü]\S* | (ister|sever|dener)m[ıi]s[ıi]n | (do|would) you (like|love|want|enjoy) | wanna /;
+  const EVQ_ALIAS = [['sakso', 'Blowjob'], ['derin boğaz', 'Deepthroat'], ['derin bogaz', 'Deepthroat'], ['göğüs arası', 'Titfuck'], ['gogus arasi', 'Titfuck'], ['misyoner', 'Missionary'], ['köpek pozisyon', 'Doggy'], ['kopek pozisyon', 'Doggy'], ['kaşık pozisyon', 'Spooning'], ['kasik pozisyon', 'Spooning']];
+  function evqOf(text, ch) {
+    const n = Stories.Bot.norm(text), low = s => String(s || '').toLocaleLowerCase('tr');
+    if (!EVQ_RE.test(n)) return null;
+    const al = EVQ_ALIAS.find(([k]) => n.includes(' ' + k));
+    const e = al ? evByTitle(low(al[1])) : allEvents().filter(x => [...SEX_CATS, 'foreplay', 'fantesy'].includes(low(catOfEv(x).label)) && x.title.length >= 4 && n.includes(' ' + Stories.Bot.norm(x.title).trim())).sort((a, b) => b.title.length - a.title.length)[0];
+    if (!e) return null;
+    const has = k => (ch[k] || []).includes(e.id);
+    return { title: e.title, s: has('denies') ? 'evqyok' : has('dislikes') ? 'evqsevmez' : has('likes') ? 'evqsever' : 'evqnotr' };
+  }
   // ❓ cevaptan sonraki karşı soru konusu (kural kimliğinin başı → "=sor" konusu); yoksa k_genel
   const QCOUNTER = [['r_q_boob', 'k_buyuk'], ['r_q_pussy', 'k_dar'], ['r_q_anal', 'k_anal'], ['r_q2_anal', 'k_anal'], ['r_q_butt', 'k_kalca'],
     ['r_q_exp', 'k_deneyim'], ['r_q_virgin', 'k_deneyim'], ['r_q2_ilk', 'k_deneyim'], ['r_q2_gecmis', 'k_deneyim'], ['r_q_sever', 'k_sever'], ['r_q2_pozisyon', 'k_sever'],
@@ -9153,7 +9174,8 @@
     ['r_q2_bebek', 'k_bebek'], ['r_q_hamile', 'k_bebek'], ['r_q2_bosal', 'k_icine'], ['r_q2_oral', 'k_oral'], ['r_q2_sertyavas', 'k_sert'],
     ['r_q2_disaribosal', 'k_icine'], ['r_q2_kondomsuz', 'k_icine'], ['r_q2_hamilebirak', 'k_bebek'], ['r_q2_kiyas', 'k_kiyas'], ['r_q2_boy', 'k_boy'],
     ['r_q2_yut', 'k_oral'], ['r_q2_arkadan', 'k_anal'], ['r_q2_oyuncak', 'k_fantezi'], ['r_q2_baglan', 'k_fantezi'], ['r_q2_yer', 'k_yer'],
-    ['r_q3_meme', 'k_buyuk'], ['r_q3_sut', 'k_bebek'], ['r_q3_kalca', 'k_kalca']];
+    ['r_q3_meme', 'k_buyuk'], ['r_q3_sut', 'k_bebek'], ['r_q3_kalca', 'k_kalca'],
+    ['r_q4_dar', 'k_dar'], ['r_q4_arka', 'k_anal'], ['r_q4_boob', 'k_buyuk'], ['r_q4_butt', 'k_kalca'], ['r_q4_exp', 'k_deneyim']];
   // 🎭 soru cevabının kişiliğe göre çerçevesi (pre başa, add cevabın sonuna)
   const QFRAME = {
     'Utangaç': { pre: ['S-söylemem gerekiyor mu? 🙈 ', 'Utanıyorum ama… ', 'Ş-şey… '] }, 'Kibirli': { add: [' kıskandın mı? 💅', ' etkilendin değil mi? 💁‍♀️'] },

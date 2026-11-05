@@ -1,6 +1,6 @@
 # Status
 
-## Done (as of 2026-11-05, sw VERSION v675)
+## Done (as of 2026-11-05, sw VERSION v680)
 - Core: characters, multi-thread chats, groups, themes, effects, keywords, undo, search, play mode, PWA, accounts, lock, backup.
 - Bot mode with large rule set + editor; Monia events/scenarios/cause-effect engine; body/cycle/pregnancy; wardrobe.
 - Sites: Carmen.com, Gothic, Meisove, Booble, Choise, Fans, Stay, Shop, Klinik, Jobs/Bank, School, Confessly, Creative, Gram, Flix, Live, Party, Halloween.
@@ -11,6 +11,8 @@
 - i18n phase 1: EN/TR switch, core screens and ad sites translated (2026-11-04).
 
 ## Open / unverified
+- Trait questions (v680): rule routing and app boot checked in headless Edge; `evqOf` not tried in a real chat. Trait-specific replies have no EN translation (only traitless ones), so EN-mode characters with those traits see Turkish. Bot lab (`#/deney`) does not run `evqOf`. Proposed, not built: stable answers per character, open questions the character asks you.
+- Cities in `moreCities` with no foreign country in `world.js` still count as Turkish: Viyana, Budapeşte, Zürih, Dublin, Bakü, Tiflis, Saraybosna, Üsküp (Lefkoşa and Girne too).
 - Mixed language on TR ad pages (seen in headless Edge, app language EN, 2026-11-05): `.cm-rules` lines partly English inside `data-lang="tr"`, also on non-Hotwife ads with old lines. Not on every run; cause unknown, may come from fast hash navigation in the test.
 - Hotwife rules (v675): 💦 inside lines (`CM_HW_INS`) not seen in a browser; the 10 sampled ads had only condom and pull-out cases.
 - 🐂 Bull (v672): `bullGate`, Create toggles and site additions not tried in a browser; bot routing checked in headless Edge. Me-lines and bot replies have no EN translations.
