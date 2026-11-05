@@ -5,6 +5,11 @@
 ## Home
 `renderHome` (Lia news card → 💘 Eşleş → 🌐 sites → feed of Carmen.com ads), `renderNews` (#/haberler), `renderMatch` (#/esles swipe deck → saves char + opens chat).
 
+## New event themes in ads
+`CM_NEW_EV` lists the themes; `cmNewEv(x)` gives each ad liked events once (flag `x.newEv1`, called from `cmFix`, `gtFix`, `msFix`). `CM_GOOD_EV` keys are `tr` lowercased, so `Ice Tease` is `ıce tease` and `Islak Fantezi` is `ıslak fantezi`. Adding a theme for existing ads needs a new flag. Choise reads the same themes in `chPool` and `chSay`.
+
+`cmHwFix(x)` runs inside `cmNewEv` before its flag check, so saved ads get it too; a Hotwife ad shows a "Kocamın izniyle" chip, an about line, `CH_HW` offers and `CH_PITCH_HW` pitches. Carmen.com's `hw` filter tab lists characters with `fields.hotwife`. `cmRules` hands these to `cmHwRules` (pools `CM_HW_*`, picks via `cmHwPick`); decisions still come from `cmProt` / `insT`. Gothic and Meisove rules have no Hotwife variant.
+
 ## Sites (prefix → route)
 | Prefix | Site | Route |
 |---|---|---|

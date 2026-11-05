@@ -13,6 +13,45 @@ Stories.SYSTEM = {
   { "id": "mvfd10grip", "title": "Death Grip", "cat": "c:mvfemdom01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["femdom", "tutma"], "desc": "Boşalmaman için penisinin dibini bütün gücüyle sıkar; izin vermeden bitiremezsin", "color": "#5a189a", "emojis": "✊🚫" },
   { "id": "mvfd11denial", "title": "Orgasm Denial", "cat": "c:mvfemdom01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["femdom", "tutma"], "desc": "Tam boşalmak üzereyken seni içinden çıkarır; boşalmana izin vermez", "color": "#5a189a", "emojis": "🚫💦" },
   { "id": "mvfd06femdom", "title": "Female Domination", "cat": "c:mvfemdom01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["femdom"], "desc": "Bütün kontrol onda: ne yapacağını, ne zaman yapacağını o söyler", "color": "#5a189a", "emojis": "👑" },
+  { "id": "mvbu01approved", "title": "Husband Approved", "cat": "c:mvbullstory01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["bull"], "desc": "Kocasının izin mesajını gösterir; artık aldatma değil, anlaşma", "color": "#b8860b", "emojis": "💍✅", "onEffects": [{ "p": "p:guven", "d": 2 }, { "p": "p:sehvet", "d": 5 }] },
+  { "id": "mvbu02compare", "title": "Compare Talk", "cat": "c:mvbullstory01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["bull"], "desc": "Fısıldayarak seni kocasıyla karşılaştırır; \"ona söyleme\" oyunu", "color": "#b8860b", "emojis": "🤫😏", "onEffects": [{ "p": "p:umvjzd17hys1oy", "d": 10 }, { "p": "p:kiskanclik", "d": 3 }] },
+  { "id": "mvbu03thanks", "title": "Husband Thanks", "cat": "c:mvbullstory01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["bull", "kocabilir"], "desc": "Kocasından sana teşekkür mesajı gelir", "color": "#b8860b", "emojis": "💌🐂", "onEffects": [{ "p": "p:guven", "d": 2 }, { "p": "p:samimiyet", "d": 1 }] },
+  { "id": "mvbu04doggy", "title": "Bull Doggy", "cat": "c:mvbull01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["vajinal", "bull"], "desc": "Dört ayak üstünde, telefon elinde, alyansı parmağında", "color": "#ff5f5f", "emojis": "🐂🍑", "onEffects": [{ "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvbu05room", "title": "Husband In Room", "cat": "c:mvbull01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["vajinal", "bull", "kocabilir"], "desc": "Kocası köşedeki sandalyede izler, o gözlerini sana diker", "color": "#ff5f5f", "emojis": "🪑👀", "onEffects": [{ "p": "p:umvjzd17hys1oy", "d": 10 }, { "p": "p:samimiyet", "d": 1 }] },
+  { "id": "mvbu06creampie", "title": "Bull Creampie", "cat": "c:mvgu3rsuko7km", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["vajinal", "bull", "boşalma"], "desc": "Evli kadının içine boşalırsın (korunmaya göre hamilelik ihtimali)", "color": "#5f8bff", "emojis": "🐂💦", "outcomes": [{ "id": "mvbu06preg", "text": "{ben} hamile kaldı", "pct": 50, "next": "", "effects": [{ "p": "f:hamile", "d": 1 }], "conds": [{ "k": "not", "ev": "mvh1h70jral7v" }] }], "onEffects": [{ "p": "p:umvjy7ucpiosps", "d": 1 }, { "p": "p:umvjof3wzh5hej", "d": -30 }] },
+  { "id": "mvbu07trophy", "title": "Condom Trophy", "cat": "c:mvgu3rsuko7km", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["kondom", "bull", "boşalma", "kocabilir"], "desc": "Dolu kondomu kocasına götürmek için saklar, fotoğrafını atar", "color": "#5f8bff", "emojis": "🎈🏆", "onEffects": [{ "p": "p:umvjy7ucpiosps", "d": 1 }] },
+  { "id": "mvbu08ring", "title": "Ring Cumshot", "cat": "c:mvgu3rsuko7km", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["el", "bull", "boşalma"], "desc": "Alyanslı eline boşalırsın", "color": "#5f8bff", "emojis": "💍💦", "onEffects": [{ "p": "p:umvjy7ucpiosps", "d": 1 }] },
+  { "id": "mvbu09marked", "title": "Marked Wife", "cat": "c:mvgu3rsuko7km", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["göğüs", "kalça", "bull", "boşalma"], "desc": "Tenine boşalırsın; izini eve kadar taşır", "color": "#5f8bff", "emojis": "🐂✨", "onEffects": [{ "p": "p:umvjy7ucpiosps", "d": 1 }] },
+  { "id": "mvsa01towel", "title": "Towel Drop", "cat": "c:mvsauna01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["sauna"], "desc": "Havlusunu yavaşça açar, tahta sekide sana döner", "color": "#d98e4a", "emojis": "🧖‍♀️😏", "onEffects": [{ "p": "p:umvjzd17hys1oy", "d": 10 }, { "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvsa02hug", "title": "Sweaty Hug", "cat": "c:mvsauna01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["sauna"], "desc": "Terli bedenlerle kısa ama sımsıkı sarılırsınız", "color": "#d98e4a", "emojis": "♨️🤗", "onEffects": [{ "p": "p:umvjzd17hys1oy", "d": 10 }, { "p": "p:samimiyet", "d": 2 }, { "p": "p:ask", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvsa03titjob", "title": "Sweaty Titjob", "cat": "c:mvsauna01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["göğüs", "sauna"], "desc": "Terli göğüslerinin arasında kayarsın", "color": "#c9742e", "emojis": "♨️🍒", "onEffects": [{ "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvsa04hotdog", "title": "Bench Hotdogging", "cat": "c:mvsauna01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["kalça", "sauna"], "desc": "Sekiye eğilir, terli kalça yanaklarının arasında kayarsın, içeri girmeden", "color": "#c9742e", "emojis": "♨️🍑", "onEffects": [{ "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvsa05cumshot", "title": "Sauna Cumshot", "cat": "c:mvgu3rsuko7km", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["göğüs", "kalça", "sauna", "boşalma"], "desc": "Saunada terli tenine boşalırsın", "color": "#5f8bff", "emojis": "♨️💦", "onEffects": [{ "p": "p:umvjy7ucpiosps", "d": 1 }] },
+  { "id": "mvsa06plunge", "title": "Cold Plunge", "cat": "c:mvcooldown01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["sauna"], "desc": "Soğuk havuza birlikte atlarsınız; teniniz ürperir, nefesiniz kesilir", "color": "#6fb7e9", "emojis": "❄️💦", "onEffects": [{ "p": "p:umvjzd17hys1oy", "d": 10 }, { "p": "p:samimiyet", "d": 1 }] },
+  { "id": "mvsa07ice", "title": "Ice Tease", "cat": "c:mvcooldown01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["sauna"], "desc": "Kızgın teninde buzu yavaşça gezdirirsin", "color": "#6fb7e9", "emojis": "🧊😳", "onEffects": [{ "p": "p:umvjzd17hys1oy", "d": 15 }, { "p": "p:sehvet", "d": 10 }, { "p": "p:samimiyet", "d": 1 }] },
+  { "id": "mvsa08snow", "title": "Snow Roll", "cat": "c:mvcooldown01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["sauna"], "desc": "Saunadan fırlayıp karda kısa bir yuvarlanır, gülerek içeri koşarsınız", "color": "#6fb7e9", "emojis": "❄️😂", "onEffects": [{ "p": "p:samimiyet", "d": 2 }, { "p": "p:ask", "d": 1 }] },
+  { "id": "mvsa09rest", "title": "Rest Room", "cat": "c:mvcooldown01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["sauna"], "desc": "Havluya sarılı dinlenir, su içer, sohbet edersiniz", "color": "#8fbf9f", "emojis": "🧖‍♀️💧", "onEffects": [{ "p": "p:umvjzd17hys1oy", "d": -15 }, { "p": "p:ask", "d": 2 }, { "p": "p:guven", "d": 2 }, { "p": "p:samimiyet", "d": 2 }] },
+  { "id": "mvsh01hug", "title": "Soapy Hug", "cat": "c:mvshower01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["duş"], "desc": "Köpüklü bedenler birbirine kayarak sarılırsınız", "color": "#4cc9f0", "emojis": "🧼🤗", "onEffects": [{ "p": "p:umvjzd17hys1oy", "d": 10 }, { "p": "p:samimiyet", "d": 2 }, { "p": "p:ask", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvsh02soapher", "title": "Soap Her", "cat": "c:mvshower01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["duş"], "desc": "Bedenini avuçlarınla yavaşça köpüklersin; göğüslerinde ve kalçasında oyalanırsın", "color": "#4cc9f0", "emojis": "🧼👐", "onEffects": [{ "p": "p:umvjzd17hys1oy", "d": 15 }, { "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvsh03washme", "title": "Wash Me", "cat": "c:mvshower01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["el", "duş"], "desc": "Seni baştan aşağı köpükler; eli aletinde oyalanır", "color": "#4cc9f0", "emojis": "🧼😏", "onEffects": [{ "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvsh04handjob", "title": "Soapy Handjob", "cat": "c:mvshower01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["el", "duş"], "desc": "Köpüklü avucuyla seni suyun altında okşar", "color": "#3fa7d6", "emojis": "🧼✋🏻", "onEffects": [{ "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvsh05titjob", "title": "Soapy Titjob", "cat": "c:mvshower01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["göğüs", "duş"], "desc": "Köpüklü göğüslerinin arasında kayarsın", "color": "#3fa7d6", "emojis": "🧼🍒", "onEffects": [{ "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvsh06hotdog", "title": "Soapy Hotdogging", "cat": "c:mvshower01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["kalça", "duş"], "desc": "Köpüklü kalça yanaklarının arasında kayarsın, içeri girmeden", "color": "#3fa7d6", "emojis": "🧼🍑", "onEffects": [{ "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvsh07thigh", "title": "Soapy Thighjob", "cat": "c:mvshower01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["bacak", "duş"], "desc": "Köpüklü uyluklarının arasında sıkıştırıp sürter", "color": "#3fa7d6", "emojis": "🧼🦵", "onEffects": [{ "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvsh08slide", "title": "Body Slide", "cat": "c:mvshower01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["göğüs", "duş"], "desc": "Bütün köpüklü bedenini senin bedeninde kaydırır", "color": "#3fa7d6", "emojis": "🫧🔥", "onEffects": [{ "p": "p:umvjzd17hys1oy", "d": 10 }, { "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvsh09blow", "title": "Shower Blowjob", "cat": "c:mvshower01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["oral", "duş"], "desc": "Suyun altında önünde diz çöküp ağzına alır", "color": "#3fa7d6", "emojis": "🚿👄", "onEffects": [{ "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvsh10lift", "title": "Shower Lift", "cat": "c:mvshower01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["vajinal", "duş"], "desc": "Kucağına alırsın, sırtı duvarda; bacakları belinde", "color": "#ff5f5f", "emojis": "🚿🔥", "onEffects": [{ "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvsh11doggy", "title": "Shower Doggy", "cat": "c:mvshower01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["vajinal", "duş"], "desc": "Elleri duvarda, belini büker; arkadan girersin", "color": "#ff5f5f", "emojis": "🚿🍑", "onEffects": [{ "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvsh12anal", "title": "Shower Anal", "cat": "c:mvshower01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["anal", "duş"], "desc": "Ayakta, duvara yaslı; köpükle yavaşça arkadan girersin", "color": "#ff5f5f", "emojis": "🚿🍑", "onEffects": [{ "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvsh13creampie", "title": "Shower Creampie", "cat": "c:mvgu3rsuko7km", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["vajinal", "duş", "boşalma"], "desc": "Duşta içine boşalırsın, su akıp gider (korunmaya göre hamilelik ihtimali)", "color": "#5f8bff", "emojis": "🚿💦", "outcomes": [{ "id": "mvsh13preg", "text": "{ben} hamile kaldı", "pct": 50, "next": "", "effects": [{ "p": "f:hamile", "d": 1 }], "conds": [{ "k": "not", "ev": "mvh1h70jral7v" }] }], "onEffects": [{ "p": "p:umvjy7ucpiosps", "d": 1 }, { "p": "p:umvjof3wzh5hej", "d": -30 }] },
+  { "id": "mvsh14cumshot", "title": "Shower Cumshot", "cat": "c:mvgu3rsuko7km", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["el", "göğüs", "kalça", "bacak", "duş", "boşalma"], "desc": "Duşta tenine boşalırsın, su hemen yıkar", "color": "#5f8bff", "emojis": "🚿💦", "onEffects": [{ "p": "p:umvjy7ucpiosps", "d": 1 }] },
+  { "id": "mvpe01wetfan", "title": "Islak Fantezi", "cat": "c:mvpee01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["iseme"], "desc": "Çişini yapar; ıslak fantezi", "color": "#e0b100", "emojis": "💦😳", "onEffects": [{ "p": "p:umvjzd17hys1oy", "d": 15 }, { "p": "p:sehvet", "d": 10 }, { "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvpe02golden", "title": "Golden Shower", "cat": "c:mvpee01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["iseme"], "desc": "Sen istersin, o da üzerine işer; gözünü senden ayırmaz", "color": "#e0b100", "emojis": "🚿💛", "onEffects": [{ "p": "p:umvjzd17hys1oy", "d": 15 }, { "p": "p:sehvet", "d": 10 }, { "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvpe03peeher", "title": "Pee On Her", "cat": "c:mvpee01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["iseme"], "desc": "Kendi isteğiyle önünde diz çöker, sen de üzerine işersin", "color": "#c99700", "emojis": "🧎‍♀️💦", "onEffects": [{ "p": "p:umvjzd17hys1oy", "d": 15 }, { "p": "p:sehvet", "d": 10 }, { "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvpe04shower", "title": "Shower Pee", "cat": "c:mvpee01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["iseme"], "desc": "Duşta, suyun altında birbirinizin üzerine işersiniz", "color": "#e0b100", "emojis": "🚿💦", "onEffects": [{ "p": "p:umvjzd17hys1oy", "d": 15 }, { "p": "p:sehvet", "d": 10 }, { "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvpe05panties", "title": "Wet Panties", "cat": "c:mvpee01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["iseme"], "desc": "Seninle göz göze, külotunu çıkarmadan bilerek altına işer", "color": "#c99700", "emojis": "🩲💦", "onEffects": [{ "p": "p:umvjzd17hys1oy", "d": 15 }, { "p": "p:sehvet", "d": 10 }, { "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvpe07hotdog", "title": "Hotdogging Pee", "cat": "c:mvpee01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["iseme"], "desc": "Kalçalarını sıkıştırır, onun isteğiyle yanaklarının arasına işersin", "color": "#c99700", "emojis": "🌭💦", "onEffects": [{ "p": "p:umvjzd17hys1oy", "d": 15 }, { "p": "p:sehvet", "d": 10 }, { "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvpe06watch", "title": "Watching Her Pee", "cat": "c:mvpee01x", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["iseme"], "desc": "Kapıyı açık bırakır; işerken onu izlemene izin verir", "color": "#c99700", "emojis": "🚪👀", "onEffects": [{ "p": "p:umvjzd17hys1oy", "d": 15 }, { "p": "p:sehvet", "d": 10 }, { "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
   {
    "id": "mvgkvtgs4970g",
    "title": "Kissing",
@@ -3869,6 +3908,50 @@ Stories.SYSTEM = {
    "tags": [
     "event"
    ]
+  },
+  {
+   "id": "c:mvpee01x",
+   "icon": "🚿",
+   "label": "Pee",
+   "tags": [
+    "event"
+   ]
+  },
+  {
+   "id": "c:mvshower01x",
+   "icon": "🧼",
+   "label": "Shower",
+   "tags": [
+    "event"
+   ]
+  },
+  {
+   "id": "c:mvsauna01x",
+   "icon": "🧖‍♀️",
+   "label": "Sauna",
+   "tags": [
+    "event"
+   ]
+  },
+  {
+   "id": "c:mvcooldown01x",
+   "icon": "❄️",
+   "label": "Cool Down",
+   "tags": []
+  },
+  {
+   "id": "c:mvbull01x",
+   "icon": "🐂",
+   "label": "Bull",
+   "tags": [
+    "event"
+   ]
+  },
+  {
+   "id": "c:mvbullstory01x",
+   "icon": "💍",
+   "label": "Bull Story",
+   "tags": []
   }
  ],
  "catEdits": {},
@@ -3889,6 +3972,18 @@ Stories.SYSTEM = {
    "id": "korunma",
    "icon": "🛡️",
    "label": "Korunma",
+   "type": "toggle"
+  },
+  {
+   "id": "evli",
+   "icon": "💍",
+   "label": "Evli",
+   "type": "toggle"
+  },
+  {
+   "id": "hotwife",
+   "icon": "🐂",
+   "label": "Hotwife",
    "type": "toggle"
   },
   {
@@ -4056,6 +4151,12 @@ Stories.SYSTEM = {
   "c:mvgtgdbp6e8xv",
   "c:mvgu3rsuko7km",
   "c:mvfemdom01x",
+  "c:mvshower01x",
+  "c:mvsauna01x",
+  "c:mvcooldown01x",
+  "c:mvbull01x",
+  "c:mvbullstory01x",
+  "c:mvpee01x",
   "c:mvguxicvzx0iq",
   "c:mvgvrcewukjlt",
   "c:mvgwj75108lqd",

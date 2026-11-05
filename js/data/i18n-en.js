@@ -52,7 +52,7 @@ Stories.I18n.add({
 
   // ---------- eşleş ----------
   'aşk': 'love', 'Süper eşleşme': 'Super match', 'Eşleşme': 'Match', 'Eşleş': 'Match', 'Eşleş filtreleri': 'Match filters', 'Yaş': 'Age', 'Şehir': 'City', 'Kişilik': 'Personality',
-  'Göğüs': 'Breasts', 'Kalça': 'Butt', 'Hamile': 'Pregnant', 'Sever': 'Likes', '{} eşleşme · sağa kaydır → sohbet': '{} matches · swipe right → chat', 'Geç': 'Skip',
+  'Göğüs': 'Breasts', 'Kalça': 'Butt', 'Evli': 'Married', 'Hotwife': 'Hotwife', 'Hamile': 'Pregnant', 'Sever': 'Likes', '{} eşleşme · sağa kaydır → sohbet': '{} matches · swipe right → chat', 'Geç': 'Skip',
   'Süper beğeni': 'Super like', 'Beğen': 'Like', '{} seni de beğendi': '{} liked you too', 'Sohbet açılıyor…': 'Opening chat…', 'Süper eşleşme!': 'Super match!', 'Eşleştiniz!': "It's a match!",
 
   // ---------- mesajlar ----------

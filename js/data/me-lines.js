@@ -591,6 +591,324 @@ Stories.ME_DICK = {
   }
 };
 Stories.ME_HUG_LINES = {
+  bullPos: {
+    label: '🤗 Sarılma · Bull · pozisyon',
+    events: ['Bull Doggy', 'Husband In Room'],
+    lines: [
+      'Sırtına kapandım, alyanslı elin çarşafı sıkıyor; {gogus} göğüslerin avuçlarımda… ahh 😩',
+      'Kollarımı beline doladım, {kalca} kalçan bana çarpıyor offf 🥵',
+      'Arkandan sımsıkı sarıldım, kulağına "benimsin şimdilik" diye fısıldıyorum 😮‍💨',
+      '{kalcaHis}, seni kendime çektikçe nefesin kesiliyor ahh 🔥',
+      '{gogusHis}, yüzüğün tenimde serin kalıyor… offf 😩',
+      'Yüzünü bana çevirdim, ıslak ıslak öpüyorum {o} 🥵',
+      'Ellerimi ellerinin üstüne koydum, parmaklarımız yüzüğünün etrafında birleşti 🔥',
+      'Omzuna dudaklarımı bastırıp sana yaslanıyorum, sen geriye geliyorsun 😮‍💨',
+      'Başka bir adamın karısı kollarımda eriyor, seni bırakmıyorum ahh 😩',
+      'Sımsıkı sarılmışken kalbinin deli gibi attığını duyuyorum {o} 🤍'
+    ]
+  },
+  bullFinish: {
+    label: '🤗 Sarılma · Bull · bitiş',
+    events: ['Bull Creampie', 'Ring Cumshot', 'Marked Wife', 'Condom Trophy'],
+    lines: [
+      'Seni sımsıkı sardım, titreyerek boşalıyorum… ahhh 😩💦',
+      'Boynuna gömüldüm, her atışta kollarım kasılıyor offf 🥵',
+      'Geldi {o}, seni bırakmıyorum, sen de bana sımsıkı sarıldın… ahh 💦',
+      '{gogus} göğüslerin göğsüme bastırmışken bütün bedenim boşalıyor offf 😮‍💨',
+      'Alyanslı elin sırtımda geziyor, nefesimiz bir türlü düzelmiyor ahh 😩',
+      '{kalca} kalçanı kavrayıp son damlaya kadar sana bastırıyorum 🔥',
+      'Dizlerim titriyor, sana yaslanıyorum; sen beni tutuyorsun {o} 🥰',
+      'Boşalırken alnımı omzuna dayadım, "eve böyle gideceksin" diye fısıldıyorum 💦',
+      'Bitti; bırakmadan öpüyorum, saçlarını yüzünden çekiyorum 🤍',
+      'Bir süre sarılı duruyoruz; birazdan eve, kocana döneceksin 😮‍💨'
+    ],
+    rub: [
+      'Seni sımsıkı sardım, lastiğin içine titreyerek boşalıyorum… ahhh 😩',
+      'Boynuna gömüldüm, kondom her atışta ısınıyor offf 🥵',
+      'Geldi {o}, hepsi kondomda; sen bana sımsıkı sarıldın… ahh 💦',
+      'Sarılı kalıyoruz, hazne ağırlaştı offf 😮‍💨',
+      'Bitti; kondomu çıkarmadan önce seni bir kez daha öpüyorum 🤍'
+    ]
+  },
+  bullTalk: {
+    label: '🤗 Sarılma · Bull · sohbet',
+    events: ['Husband Approved', 'Compare Talk', 'Husband Thanks'],
+    lines: [
+      'Telefonunu bıraktın, başını göğsüme yasladın; seni sarıyorum 🤍',
+      'Kollarımı beline doladım, kulağıma fısıldadığın şeyi duyunca gülümsedim 😏',
+      'Sana sarılınca alyansın tenime değiyor, ikimiz de susuyoruz 😮‍💨',
+      'Saçlarını okşuyorum, kocan hakkında anlattıklarını dinliyorum {o} 🤍',
+      'Alnından öpüp seni kendime çekiyorum 🥰',
+      'Heyecandan titriyorsun, seni sıkıca tutuyorum 🤍',
+      'Parmaklarını parmaklarımın arasına aldım, yüzüğün üstünde durdum 😏',
+      'Başını omzuma koydun, nefesin yavaşlıyor 😮‍💨',
+      'Sarılmışken sırrımızı fısıldıyorsun, gülmemek için dudağımı ısırıyorum 😏',
+      'Bu an sadece bizim, seni bırakmıyorum {o} 🥰'
+    ]
+  },
+  saunaHug: {
+    label: '🤗 Sarılma · Sauna · ısınma',
+    events: ['Towel Drop', 'Sweaty Hug'],
+    lines: [
+      'Terli tenin bana yapıştı, kollarımı sıkıca beline doluyorum… ahh 😩',
+      '{gogus} göğüslerin göğsüme bastırıyor, sıcaklık ikimizi de eritiyor offf 🥵',
+      'Sekide sımsıkı sarıldım, ter sırtından süzülüyor 😮‍💨',
+      '{kalca} kalçanı ellerimle kavradım, tenin parmaklarımın altında kayıyor ahh 🔥',
+      'Başını omzuma yasladın, nefesin boynumda sıcacık {o} 🤍',
+      '{gogusHis}, buhar tenimize siniyor… offf 🥵',
+      'Alnımız birbirine dayalı, tuzlu ter dudaklarımıza iniyor 😮‍💨',
+      '{kalcaHis}, tahta sekide sana daha çok sokuluyorum ahh 🔥',
+      'Bu sıcakta bile bırakmak istemiyorum seni {o} 🥰',
+      'Sımsıkı sarılmışken kalbinin deli gibi attığını duyuyorum 🤍'
+    ]
+  },
+  saunaRub: {
+    label: '🤗 Sarılma · Sauna · sürtünme',
+    events: ['Sweaty Titjob', 'Bench Hotdogging'],
+    lines: [
+      'Üstüne eğilip omuzlarını kavradım, terli tenin ellerimde kayıyor… ahh 😩',
+      'Kollarım belinde, {kalca} kalçan terle üstümde gidip geliyor offf 🥵',
+      'Sırtın ıslak ıslak parlıyor, alnımı omzuna dayadım 😮‍💨',
+      'Sıcaklık başıma vuruyor; seni kendime çektikçe kayganlık artıyor ahh 🔥',
+      '{kalcaHis}, ter her hareketi kolaylaştırıyor offf 🥵',
+      'Ensene dudaklarımı bastırıyorum, tuzunu tadıyorum {o} 😮‍💨',
+      '{gogusHis}, tenim tenine yapışıp ayrılıyor… ahh 😩',
+      'Ahşap gıcırdıyor, kollarım seni bırakmıyor 🔥',
+      'İçeri girmiyorum ama sana sarıldıkça zonkluyorum offf 🥵',
+      'Saçlarını yüzünden çekip alnından öpüyorum {o} 🥰'
+    ]
+  },
+  saunaFinish: {
+    label: '🤗 Sarılma · Sauna · bitiş',
+    events: ['Sauna Cumshot'],
+    lines: [
+      'Seni sımsıkı sardım, titreyerek tenine boşalıyorum… ahhh 😩💦',
+      'Boynuna gömüldüm, her atışta kollarım kasılıyor offf 🥵',
+      'Geldi {o}, seni bırakmıyorum, sen de bana yapıştın… ahh 💦',
+      'Terli bedenin bana bastırmışken bitiyorum offf 😮‍💨',
+      'Nefesim kesildi, sıcaktan mı senden mi bilmiyorum ahh 😩',
+      '{kalca} kalçanı kavrayıp son damlaya kadar sana bastırıyorum 🔥',
+      'Dizlerim titriyor, sekiye çöküp seni de yanıma çekiyorum {o} 🥰',
+      'Boşalırken alnımı omzuna dayadım, ter sırtımdan akıyor… offf 💦',
+      'Bitti; bırakmadan öpüyorum, ıslak saçlarını yüzünden çekiyorum 🤍',
+      'Sarılı duruyoruz, sadece taşların tıkırtısı kalıyor 😮‍💨'
+    ]
+  },
+  saunaCool: {
+    label: '🤗 Sarılma · Sauna · soğuk mola',
+    events: ['Cold Plunge', 'Ice Tease', 'Snow Roll'],
+    lines: [
+      'Soğuktan titriyorsun, seni kendime çekip kollarımla sarıyorum 🥰',
+      'Sıcak tenim soğuk tenine değince ikimiz de ürperdik offf 😳',
+      'Göğsüme sokuldun, dişlerin birbirine vuruyor; daha sıkı sarılıyorum {o} 🤍',
+      'Kahkahan boynumda titriyor, seni bırakmıyorum 😂',
+      'Tenin diken diken, avuçlarımla ısıtıyorum 😮‍💨',
+      '{gogus} göğüslerin soğuktan ürpermiş, göğsüme bastırıp ısıtıyorum ahh 🥵',
+      'Soğuk ile sıcak aynı anda; kollarımda eriyorsun offf 🔥',
+      'Burnun buz gibi, boynuma gömüyorsun {o} 🥰',
+      'Nefesimiz buhar buhar karışıyor, seni daha da çekiyorum 😮‍💨',
+      'Isınana kadar bırakmıyorum, söz {o} 🤍'
+    ]
+  },
+  saunaRest: {
+    label: '🤗 Sarılma · Sauna · dinlenme',
+    events: ['Rest Room'],
+    lines: [
+      'Havluya sarınmış, kollarımdasın; başın göğsümde 🥰',
+      'Sessizce sarılıyoruz, nefesimiz yavaş yavaş düzeliyor 😮‍💨',
+      'Saçların nemli, burnumu içlerine gömüyorum {o} 🤍',
+      'Elini tuttum, parmaklarımız birbirine geçti 🤍',
+      'Tenin hâlâ sıcak, ama bu sıcak başka 🥰',
+      'Bir yudum su verip seni yine kollarıma alıyorum 💧',
+      'Bacakların bacaklarıma dolandı, kıpırdamak istemiyorum 😮‍💨',
+      'Alnından öpüyorum, gözlerin kapanıyor {o} 🥰',
+      'Havlunun altından belini okşuyorum, gülümsüyorsun 🤍',
+      'Burada böyle kalsak, dünya dursa olur {o} 🥰'
+    ]
+  },
+  showerSoap: {
+    label: '🤗 Sarılma · Duş · köpük',
+    events: ['Soapy Hug', 'Soap Her', 'Wash Me', 'Body Slide'],
+    lines: [
+      'Köpüklü bedenin bana kayıyor, kollarımı sıkıca beline doluyorum… ahh 😩',
+      '{gogus} göğüslerin göğsümde kayıyor, köpük aramızda ılık ılık eriyor offf 🥵',
+      'Suyun altında sımsıkı sarıldım, tenin ellerimden kayıp duruyor 😮‍💨',
+      '{kalca} kalçanı avuçlarıma aldım, köpükten bir türlü tutamıyorum ahh 🔥',
+      'Başını omzuma yasladın, su sırtından akıyor; seni bırakmıyorum {o} 🤍',
+      '{gogusHis}, köpük tenimize yapışıyor… offf 🥵',
+      'Alnımı alnına dayadım, damlalar dudaklarımıza süzülüyor 😮‍💨',
+      '{kalcaHis}, ellerim köpüğün üstünde kayıyor ahh 🔥',
+      'Kollarımda sabun gibi kayıyorsun, seni daha sıkı çekiyorum 🥰',
+      'Sımsıkı sarılmışken kalbinin atışını köpüğün altından duyuyorum {o} 🤍'
+    ]
+  },
+  showerRub: {
+    label: '🤗 Sarılma · Duş · sürtünme',
+    events: ['Soapy Handjob', 'Soapy Hotdogging', 'Soapy Thighjob'],
+    lines: [
+      'Arkandan sarıldım, köpüklü tenin bana kayarken sertliğim sana sürtünüyor… ahh 😩',
+      'Kollarım belinde, {kalca} kalçan köpükle üstümde gidip geliyor offf 🥵',
+      'Ellerim {gogus} göğüslerinde kayıyor, sen beni sıkıştırıyorsun 😮‍💨',
+      'Su ikimizden akıyor; sımsıkı sarılıp kayganlığın içinde gidip geliyorum ahh 🔥',
+      '{kalcaHis}, köpük her hareketi daha da kolaylaştırıyor offf 🥵',
+      'Başını omzuma attın, kulağına nefesimi bırakıyorum {o} 😮‍💨',
+      '{gogusHis}, kayganlık aklımı başımdan alıyor… ahh 😩',
+      'Bedenini kendime çektikçe köpük aramızda ince ince eriyor 🔥',
+      'İçeri girmiyorum ama sarıldıkça aynı yerde zonkluyorum offf 🥵',
+      'Ensene dudaklarımı bastırıp seni bırakmadan sürtünüyorum {o} 🥰'
+    ]
+  },
+  showerKneel: {
+    label: '🤗 Sarılma · Duş · diz çökmüş',
+    events: ['Soapy Titjob', 'Shower Blowjob'],
+    lines: [
+      'Eğilip başını karnıma yaslıyorum, ıslak saçlarını avuçlarımda topluyorum… ahh 😩',
+      'Ellerimi yanaklarına koydum, su yüzünden süzülüyor; gözlerin bende offf 🥵',
+      'Saçlarının arasında parmaklarım, başını şefkatle sana doğru tutuyorum 😮‍💨',
+      'Omuzlarını kavradım, su ikimizin üstüne dökülüyor ahh 🔥',
+      '{gogus} göğüslerin ıslak ıslak parlıyor, sana eğilip alnından öpüyorum {o} 🤍',
+      'Sırtını suyun altında okşuyorum, dizlerin üşümesin diye havluyu altına serdim 🥰',
+      '{gogusHis}, ellerim omuzlarında dinleniyor… offf 🥵',
+      'Başını karnıma bastırıp saçlarını okşuyorum, nefesin tenimde 😮‍💨',
+      'Damlalar kirpiklerinden düşüyor, yüzünü iki avucumun arasına alıyorum ahh 🔥',
+      'Bitince seni kaldırıp sımsıkı sarılacağım {o}, şimdiden bekleyemiyorum 🥰'
+    ]
+  },
+  showerLift: {
+    label: '🤗 Sarılma · Duş · kucakta',
+    events: ['Shower Lift'],
+    lines: [
+      'Seni kucağıma aldım, bacakların belimde; sırtın duvarda, bütün ağırlığın kollarımda… ahh 😩',
+      'Boynuma sımsıkı sarıldın, her hareketimde {gogus} göğüslerin göğsüme bastırıyor offf 🥵',
+      '{kalca} kalçanı avuçlarımla tutup yukarı kaldırıyorum, sonra kendime çekiyorum 😮‍💨',
+      'Su ikimizin arasından akıyor, alnın alnımda, nefeslerimiz karışıyor ahh 🔥',
+      '{kalcaHis}, seni duvara yaslayıp daha sıkı tutuyorum offf 🥵',
+      'Kaymıyorsun, bırakmıyorum; kollarımda güvendesin {o} 🤍',
+      '{gogusHis}, duvarla bedenimin arasında sıkıştın… ahh 😩',
+      'Bacaklarını belimde kilitledin, derinleştikçe tırnakların sırtımda 🔥',
+      'Kulağımda inliyorsun, su sesini bastırıyor; seni daha da kendime çekiyorum offf 🥵',
+      'Sımsıkı sarılmışken ayaklarını yerden kesiyorum, bütünüyle benimlesin {o} 🥰'
+    ]
+  },
+  showerBack: {
+    label: '🤗 Sarılma · Duş · arkadan',
+    events: ['Shower Doggy', 'Shower Anal'],
+    lines: [
+      'Sırtına kapandım, ellerin fayansta, ellerim {gogus} göğüslerinde… ahh 😩',
+      'Su ensenden aşağı akıyor, göğsüm sırtına yapıştı; arkandan sımsıkı sarıldım offf 🥵',
+      'Kollarımı beline dolayıp {kalca} kalçana bastırıyorum 😮‍💨',
+      '{kalcaHis}, buhar içinde duvara doğru itiliyorsun ahh 🔥',
+      'Çeneni tutup yüzünü bana çeviriyorum, ıslak ıslak öpüyorum {o} 🥵',
+      '{gogusHis}, tenin suyun altında kayıyor… offf 😩',
+      'Ellerimi ellerinin üstüne koydum, fayansta parmaklarımız birbirine geçti 🤍',
+      'Omzuna dudaklarımı bastırıp yavaş yavaş gidip geliyorum ahh 😮‍💨',
+      'Seni kendime çektikçe su aramızda kayboluyor offf 🔥',
+      'Kulağına "seni bırakmıyorum" diye fısıldıyorum, sen geriye yaslanıyorsun {o} 🥰'
+    ]
+  },
+  showerFinish: {
+    label: '🤗 Sarılma · Duş · bitiş',
+    events: ['Shower Creampie', 'Shower Cumshot'],
+    lines: [
+      'Seni sımsıkı sardım, titreyerek boşalıyorum; su üstümüze akmaya devam ediyor… ahhh 😩💦',
+      'Boynuna gömüldüm, her atışta kollarım daha çok kasılıyor offf 🥵',
+      'Geldi {o}, seni bırakmıyorum, sen de bana sımsıkı sarıldın… ahh 💦',
+      '{gogus} göğüslerin göğsüme bastırmışken bütün bedenim boşalıyor offf 😮‍💨',
+      'Sarılı kalıyoruz, su ikimizi de yıkıyor, nefesimiz bir türlü düzelmiyor ahh 😩',
+      '{kalca} kalçanı kavrayıp son damlaya kadar seni kendime çekiyorum 🔥',
+      'Dizlerim titriyor, sana yaslanıyorum; sen beni tutuyorsun {o} 🥰',
+      'Boşalırken alnımı omzuna dayadım, su sırtımdan akıyor… offf 💦',
+      'Bitti; bırakmadan öpüyorum, ıslak saçlarını yüzünden çekiyorum 🤍',
+      'Bir süre öylece sarılı duruyoruz, sadece suyun sesi kalıyor 😮‍💨'
+    ],
+    rub: [
+      'Seni sımsıkı sardım, lastiğin içine titreyerek boşalıyorum… ahhh 😩',
+      'Boynuna gömüldüm, kondom her atışta ısınıyor offf 🥵',
+      'Geldi {o}, hepsi kondomda; sen bana sımsıkı sarıldın… ahh 💦',
+      'Sarılı kalıyoruz, su ikimizi de yıkıyor, hazne ağırlaştı offf 😮‍💨',
+      'Bitti; kondomu dikkatle çıkarmadan önce seni bir kez daha öpüyorum 🤍'
+    ]
+  },
+  peeHer: {
+    label: '🤗 Sarılma · Pee · o işerken',
+    events: ['Islak Fantezi', 'Golden Shower', 'Wet Panties'],
+    lines: [
+      'Sana sımsıkı sarıldım, bedenin gevşedikçe sıcaklığın bana yayılıyor… ahh 😩',
+      'Kollarımda bırakıyorsun kendini; {gogus} göğüslerin göğsüme yapışmış, ikimiz de ıslağız offf 🥵',
+      'Sarılıp kulağına "bırak gelsin" diye fısıldıyorum, titreyerek bırakıyorsun 😮‍💨',
+      '{kalca} kalçanı ellerimle kavradım, sıcaklığın bacağımdan aşağı süzülüyor ahh 🔥',
+      'Yüzünü boynuma gömdün, utancın tenimde; seni daha sıkı sarıyorum {o} 🤍',
+      'Islak bedenin bana yapıştı, {gogusHis}; bırakmıyorum seni… offf 😩',
+      'Kollarımı beline doladım, sen rahatladıkça ben sertleşiyorum ahh 🥵',
+      'Sımsıkı sarılmışken karnımda sıcacık akışını hissediyorum offf 😮‍💨',
+      '{kalcaHis}, bir yandan da ıslaklığın tenime yayılıyor… ahh 🔥',
+      'Bitti mi {o}? Bırakmıyorum, ıslak ıslak sarılıyoruz böyle 🥰'
+    ]
+  },
+  peeMe: {
+    label: '🤗 Sarılma · Pee · sen işerken',
+    events: ['Pee On Her'],
+    lines: [
+      'Seni kendime çektim, sıcaklık tenlerimizin arasından süzülüyor… ahh 😩',
+      'Sarılmışken bırakıyorum, sen başını göğsüme yaslayıp gülümsüyorsun offf 🥵',
+      'Kollarım belinde, {gogus} göğüslerin ıslanıyor; "devam et" diye fısıldıyorsun 😮‍💨',
+      'İstediğin için bırakıyorum {o}; seni sımsıkı tutuyorum, hiçbir yere gitmiyorum 🤍',
+      '{kalca} kalçanı avuçlarıma aldım, sıcaklık karnından aşağı iniyor ahh 🔥',
+      'Bedenini bana bastırıyorsun, ıslanmaktan kaçmıyorsun; bu beni bitiriyor offf 😩',
+      '{gogusHis}, tenin sıcacık ve ıslak… ahh 🥵',
+      'Alnını alnıma dayadın, gözlerin bende; son damlaya kadar sarılıyoruz 😮‍💨',
+      'Titrediğini hissedip daha sıkı sarılıyorum {o} 🥰',
+      'Bitti; ıslak bedenini bırakmadan saçlarını öpüyorum, birazdan seni ben yıkayacağım 🚿'
+    ]
+  },
+  peeShower: {
+    label: '🤗 Sarılma · Pee · duşta',
+    events: ['Shower Pee'],
+    lines: [
+      'Suyun altında sana sarıldım, sıcaklığın bacağıma iniyor… ahh 😩',
+      'Kollarımda sırılsıklamsın, {gogus} göğüslerin göğsümde kayıyor offf 🥵',
+      'Sımsıkı sarılmışken aynı anda bırakıyoruz, su hepsini alıp götürüyor 😮‍💨',
+      'Seni duvara yaslayıp sarıldım, gülüşün boynumda titriyor {o} 🔥',
+      '{kalca} kalçan ellerimde kayıyor, buhar ikimizi sarıyor ahh 😩',
+      'Sıcak su sırtından akarken bir sıcaklık da bacaklarımızın arasından süzülüyor offf 🥵',
+      '{gogusHis}, su tenlerimizin arasından süzülüyor… ahh 🚿',
+      'Başını omzuma koydun, gözlerin kapalı; bırakıyorsun kendini {o} 🤍',
+      '{kalcaHis}, duşun altında birbirimizden ayrılmıyoruz offf 🔥',
+      'Bitince de bırakmıyorum; ıslak saçlarını geriye atıp seni öpüyorum 🥰'
+    ]
+  },
+  peeHotdog: {
+    label: '🤗 Sarılma · Pee · hotdogging',
+    events: ['Hotdogging Pee'],
+    lines: [
+      'Sana arkadan sarıldım, {kalca} kalçanın arasında sıcaklık süzülüyor… ahh 😩',
+      'Kollarım belinde, kalçalarını sıkıp bana yaslanıyorsun offf 🥵',
+      'Göğsüm sırtına yapıştı; "bırak" diye fısıldıyorsun, bırakıyorum 😮‍💨',
+      '{kalcaHis}, sıcaklık bacaklarından aşağı iniyor ahh 🔥',
+      'Ellerim {gogus} göğüslerinde, sen kalçanı bana bastırıyorsun offf 😩',
+      'Arkandan sımsıkı sarılmışken ensene öpücükler bırakıyorum {o} 🤍',
+      '{gogusHis}, yanakların arasında ıslak bir sıcaklık… ahh 🥵',
+      'Başını omzuma attın, gözlerin kapalı; son damlaya kadar sarılıyorum 😮‍💨',
+      'Titrediğini hissedip belini daha sıkı tutuyorum {o} 🥰',
+      'Bitti; bırakmadan seni kollarımda duşa taşıyorum 🚿'
+    ]
+  },
+  peeWatch: {
+    label: '🤗 Sarılma · Pee · izlerken',
+    events: ['Watching Her Pee'],
+    lines: [
+      'Yanına çömelip sana sarıldım, başını omzuma yasladın; sesini dinliyorum 😮‍💨',
+      'Kollarımı boynuna doladım {o}, utancın yanağımda sıcacık 😳',
+      'Dizlerine sarılıp gözlerine bakıyorum, bakışını kaçırmıyorsun offf 🥵',
+      'Alnından öpüyorum, sen de gülümseyip bırakıyorsun 🤍',
+      'Kapıyı açık bırakman yetti, şimdi kollarımdasın ahh 🔥',
+      'Bana bu kadar güvenmene dayanamıyorum, seni sıkıca sarıyorum 🥰',
+      'Elimi tuttun, parmaklarını sıkıyorsun; kıpırdamadan yanındayım 😮‍💨',
+      'Kulağına "çok güzelsin" diye fısıldıyorum, yanakların kızarıyor 😳',
+      'Bitince kalkmana yardım edip seni kucaklıyorum, {kalca} kalçanı tutuyorum offf 🥵',
+      'Seni kollarımda kaldırıp yatağa götürüyorum {o}, daha yeni başlıyoruz 😈'
+    ]
+  },
   doggy: {
     label: '🤗 Sarılma · Doggy', events: ['Doggy'], rp: 'pos',
     lines: [
@@ -2845,6 +3163,474 @@ Stories.ME_EV_LINES = {
     'Uyluklarının arasında zonkluyorum, durma… ahh 😮‍💨',
     'Biraz daha, kondomun içine geliyor… ahh 💦'
   ],
+  'Husband Approved': [
+    'Mesajı gösterdin, kocan gerçekten yazmış 😳',
+    'Demek izin çıktı {o} 😏',
+    'Artık saklanmak zorunda değiliz 😈',
+    'Kocana teşekkür etmem lazım sanırım 😏',
+    'Kuralları var mı, söyle 🤍',
+    'İçin rahat mı {o}? 🤍',
+    'Bu anlaşmayı çok sevdim 😈',
+    'Yüzüğünü çıkarma, öyle kalsın 💍',
+    'Şimdi telefonu bırak ve gel 😏',
+    'O zaman her şeyi ona anlatacaksın 😈'
+  ],
+  'Compare Talk': [
+    'Fısıldasana, kim daha iyi 😏',
+    'Ona söylemem, merak etme {o} 🤫',
+    'Yüzün her şeyi anlatıyor 😈',
+    'Kocan bunu yapmıyor mu 😏',
+    'Bu sır aramızda kalsın 🤫',
+    'Devam et, duymak istiyorum 🥵',
+    'Gülüşünden anladım {o} 😏',
+    'Beni kıskandırmaya mı çalışıyorsun 😈',
+    'Bir daha söyle, kulağıma 😮‍💨',
+    'Ona anlatacaksın ama bunu atlayacaksın 😏'
+  ],
+  'Husband Thanks': [
+    'Kocan yazmış, ciddi misin 😂',
+    'Ne cevap yazayım şimdi {o} 😅',
+    'Karşılıklı memnuniyet demek bu 😏',
+    'Selamımı söyle ona 😏',
+    'Sana iyi baktığımı söylüyor demek 😈',
+    'Bir daha çağırırsa gelirim 😏',
+    'Bu mesajı ömür boyu unutmam 😂',
+    'Akşam neler anlattın {o} 😈',
+    'Kocan çok centilmen çıktı 😏',
+    'O zaman bir dahaki buluşmayı konuşalım 😈'
+  ],
+  'Bull Doggy': [
+    'Eğil {o}, telefonu elinden bırakma 😈',
+    'Alyansın parmağında, ben arkandayım ahh 😩',
+    'Kalçanı tuttum, kaçamazsın offf 🥵',
+    'Başka adamın karısı benim altımda 🔥',
+    'Yüzük çarşafa sürtüyor, duyuyorum 😈',
+    'Sert mi, yavaş mı söyle {o} 🥵',
+    'Sesini ona da duyur ahh 😩',
+    'Belini biraz daha bük offf 🔥',
+    'Fotoğrafını çekeyim mi 😈',
+    'Her vuruşta adımı söyle {o} 🥵'
+  ],
+  'Husband In Room': [
+    'Kocan köşede, sen bana bakıyorsun 😈',
+    'Bakmasın diye değil, görsün diye yapıyorum 🔥',
+    'Gözlerini benden ayırma {o} 🥵',
+    'Sandalye gıcırdadı, izliyor ahh 😩',
+    'Onun önünde inlemeni istiyorum offf 🥵',
+    'Selam, güzel eşin var 😏',
+    'Sana her şeyimle veriyorum, o da görüyor 🔥',
+    'Elini ona uzatma, ben buradayım 😈',
+    'Daha derin {o}, görsün ahh 😩',
+    'Bitince ona gidersin, şimdi benimsin 😈'
+  ],
+  'Bull Creampie': [
+    'Geliyor {o}, bırakma beni ahhh 😩💦',
+    'İçine boşalıyorum, evli kadın offf 🥵',
+    'Son damlasına kadar içinde kalıyorum 💦',
+    'Zonklaya zonklaya doluyorsun ahh 😩',
+    'Bacaklarını sıkıyorsun, hepsini istiyorsun 😈',
+    'Bunu eve götüreceksin {o} 😏',
+    'Dizlerim titriyor, bırakma beni 🥵',
+    'Sıcaklığı içinde hissediyor musun 💦',
+    'Bitti… hâlâ içindeyim, kıpırdama ahh 😩',
+    'Kocana bunu nasıl anlatacaksın 😈'
+  ],
+  'Condom Trophy': [
+    'Geliyor {o}, kondomun içine ahhh 😩',
+    'Hazne doldu, offf 🥵',
+    'Dur, sen çıkar, senin kupan bu 😏',
+    'Düğümle de kocana götür 😈',
+    'Ağır ağır sarkıyor, görüyor musun 💦',
+    'Fotoğraf için poz vereyim mi 😏',
+    'Bu kadarı yeter mi sence {o} 😈',
+    'Çantanda ne taşıdığını kimse bilmeyecek 😏',
+    'Kocana selamımla ver 😂',
+    'Bir sonrakini de doldururuz 😈'
+  ],
+  'Ring Cumshot': [
+    'Elini uzat {o}, geliyor ahhh 😩💦',
+    'Alyansının üstüne boşalıyorum offf 🥵',
+    'Parmaklarının arasından süzülüyor 💦',
+    'Yüzüğün parladı 😈',
+    'Sıkı tut, durma ahh 😩',
+    'Elini çekme, son damlaya kadar 🔥',
+    'Bu görüntü aklımdan çıkmaz {o} 😏',
+    'Parmağındaki yüzük artık başka anlatıyor 😈',
+    'Hepsi elinde offf 💦',
+    'Silmeden önce bir bakayım 😏'
+  ],
+  'Marked Wife': [
+    'Geliyor {o}, geri çekiliyorum ahhh 😩💦',
+    'Tenine boşalıyorum offf 🥵',
+    'Göğüslerine, kalçana, her yerine 💦',
+    'İşaretledim seni 😈',
+    'Silme, öyle kalsın {o} 😏',
+    'Bunu eve taşıyacaksın 😈',
+    'Tenin parlıyor ahh 🥵',
+    'Son damla da düştü offf 😮‍💨',
+    'Kocana göster bakalım 😏',
+    'Bugün benimdin, teninde belli 😈'
+  ],
+  'Towel Drop': [
+    'Havlunun ucunu tutuyorsun, sabırsızlanıyorum 😏',
+    'Yavaş yavaş {o}, acele etme 😮‍💨',
+    'Havlu düştü, nefesim kesildi ahh 🥵',
+    'Bu sıcakta başka ne giyecektin zaten 😈',
+    'Tenin ter içinde parlıyor 😍',
+    'Gel, yanıma otur 😏',
+    'Gözlerim senden ayrılmıyor offf 🔥',
+    'Sekiye doğru dönüşün deli ediyor 😈',
+    'Benimkini de açayım mı {o} 😏',
+    'Saunanın ısısı değil, senin ısın bu 🥵'
+  ],
+  'Sweaty Hug': [
+    'Gel buraya {o}, ter falan umurumda değil 😏',
+    'Tenin bana yapıştı ahh 🥵',
+    'Sıcaktan eriyoruz ama bırakmıyorum 🤍',
+    'Teninin tuzunu dudaklarımda hissediyorum 😮‍💨',
+    'Kısa olsun dedin, ama olmuyor 😏',
+    'Kalbin ne kadar hızlı atıyor {o} 🥰',
+    'Sırtın ıslak ıslak kayıyor ellerimde offf 🔥',
+    'Bu sıcakta sadece sen daha sıcaksın 😈',
+    'Biraz daha sarılalım, sonra serinleriz 😮‍💨',
+    'Kollarımdan çıkmana izin yok 😏'
+  ],
+  'Sweaty Titjob': [
+    'Terli göğüslerinin arasında kayıyorum ahh 😩',
+    'Birleştir biraz daha {o} 🥵',
+    'Ter yağ gibi, ne kadar kaygan offf 🔥',
+    'Göğüslerin parlıyor, gözümü alamıyorum 😍',
+    'Yukarı aşağı oynattıkça başım dönüyor, sıcaktan değil 😮‍💨',
+    'Sen alt sekide, ben üstte; manzara bu 😈',
+    'Ucum çenene değiyor ahh 🥵',
+    'Daha sıkı, kaçamıyorum zaten 😏',
+    'Ter damlaları aralarına süzülüyor offf 😩',
+    'Böyle devam edersen göğüslerine bitireceğim {o} 💦'
+  ],
+  'Bench Hotdogging': [
+    'Kalçalarının arasında kayıyorum, terle ne güzel ahh 😩',
+    'Sık biraz daha {o}, kaçmayayım 😈',
+    'İçeri girmiyorum ama aklım gitti offf 🥵',
+    'Belini tuttum, seki gıcırdıyor 🔥',
+    '{kalca} kalçan ter içinde parlıyor 😍',
+    'Her kayışta beline kadar uzanıyorum ahh 😮‍💨',
+    'Kalçanı bana doğru itiyorsun, hissediyorum 😈',
+    'Sıcak iyice başıma vurdu offf 😩',
+    'Ellerin sekide, gözlerin kapalı, çok güzelsin {o} 🥵',
+    'Hızlanıyorum, tut kendini 🔥'
+  ],
+  'Sauna Cumshot': [
+    'Geliyor {o}, geri çekiliyorum ahhh 😩💦',
+    'Terli tenine boşalıyorum offf 🥵',
+    'Sıcak atışlar göğsüne iniyor 💦',
+    'Kalçana, sırtına, her yerine ahh 😩',
+    'Elini çekme, bitir beni offf 🔥',
+    'Tenin zaten yanıyordu, şimdi daha da 😈',
+    'Ter ile karışıp aşağı süzülüyor ahh 🥵',
+    'Son damla da düştü {o} 😮‍💨',
+    'Dizlerim gitti, sekiye çöküyorum offf 💦',
+    'Gel, su dökelim üstümüze 😏'
+  ],
+  'Cold Plunge': [
+    'Üç deyince atlıyoruz {o} 😈',
+    'Ahhh! Buz gibi 😱',
+    'Çığlığın bütün saunada yankılandı 😂',
+    'Nefesim kesildi offf 😮‍💨',
+    'Gel, ısıtayım seni 🥰',
+    'Tenin bir anda diken diken oldu 😳',
+    'Kaç saniye dayanacaksın bakalım 😏',
+    'Bu kadar canlı hissetmemiştim {o} 🔥',
+    'Dudakların morarmadan çıkalım 😅',
+    'Bir daha sekiye, sonra bir daha buraya 😈'
+  ],
+  'Ice Tease': [
+    'Gözlerini kapat {o}, kıpırdama 😏',
+    'Buz boynundan aşağı iniyor 😈',
+    'Titredin, daha yeni başladık 😏',
+    'Göğüslerinin etrafında yavaşça dolaştırıyorum ahh 🥵',
+    'Kızgın teninde hemen eriyor offf 🔥',
+    'Damlaları dudaklarımla topluyorum 😮‍💨',
+    'Karnından aşağı iniyor, nefesini tut 😈',
+    'Soğuk mu, sıcak mı, karar veremedin 😏',
+    'Nefesin titriyor {o} 🥵',
+    'Buz bitti, sıra dudaklarımda 😈'
+  ],
+  'Snow Roll': [
+    'Yarış, en son kim çıkarsa 😈',
+    'Ahhh, kar değdi 😱',
+    'Gülmekten nefes alamıyorum {o} 😂',
+    'Üstüne kar atıyorum, kaçma 😏',
+    'Tenimiz buharlaşıyor bak 😮‍💨',
+    'Hemen içeri, donacağız 😂',
+    'Kar üstünde bile çok güzelsin 😍',
+    'Saçlarında kar kalmış {o} 🥰',
+    'Bir daha yapalım mı 😈',
+    'Koş, sekiye kadar ısıtmıyorum seni 😏'
+  ],
+  'Rest Room': [
+    'Şöyle yanıma gel {o} 🤍',
+    'Al, biraz su iç 💧',
+    'Ne kadar kızardın, çok tatlısın 🥰',
+    'Biraz dinlenelim, sonra yine gireriz 😏',
+    'Başını omzuma koy 🤍',
+    'Hiç konuşmadan da güzel 😮‍💨',
+    'Anlat bakalım, aklında ne var {o} 😊',
+    'Havlu sana çok yakışıyor 😍',
+    'Bedenim hafifledi, sen nasılsın 🥰',
+    'Burada seninle olmak çok iyi geliyor 🤍'
+  ],
+  'Soapy Hug': [
+    'Gel buraya {o}, köpüğün hepsi benim üstümde kalsın 😏',
+    'Tenin ellerimden kayıyor ahh 🥵',
+    'Suyun altında sarılmak gibisi yok 😮‍💨',
+    'Bırakmıyorum seni, ne kadar kaysan da 🤍',
+    'Köpük aramızda eriyor offf 🔥',
+    'Saçların ıslanmış, çok güzelsin {o} 😍',
+    'Beni kendine çek, daha sıkı 😈',
+    'Sırtında ellerim kayıyor, hoşuna gidiyor değil mi 😏',
+    'Bu duş uzun sürecek gibi 😏',
+    'Kalbini köpüğün altından duyuyorum 🤍'
+  ],
+  'Soap Her': [
+    'Kollarını kaldır {o}, her yerini ben köpükleyeceğim 😏',
+    'Boynundan başlıyorum, acelem yok 😮‍💨',
+    'Göğüslerini köpüklerken nefesin değişti 🥵',
+    'Sırtın, belin, kalçan… hiçbir yeri atlamıyorum 😈',
+    'Burayı biraz daha yıkamam lazım gibi offf 🔥',
+    'Ellerim köpükle bacaklarının arasına iniyor ahh 😩',
+    'Kıpırdama, daha bitmedi 😏',
+    'Tenin avuçlarımda kayıyor, bayılıyorum 😍',
+    'Titredin, su mu soğuk yoksa ellerim mi {o} 😈',
+    'Tertemiz oldun, şimdi yeniden kirlenebiliriz 😏'
+  ],
+  'Wash Me': [
+    'Sabun sende {o}, ben teslimim 😏',
+    'Ellerin sırtımda ne güzel geziyor ahh 😮‍💨',
+    'Köpüklü avucun göğsümde offf 🥵',
+    'Oraya geldin, ne kadar da özenli yıkıyorsun 😈',
+    'Orada biraz daha oyalan {o} 🔥',
+    'Gözlerimi kapattım, seni hissediyorum 😩',
+    'Avucun aşağı inince nefesim kesildi ahh 🥵',
+    'Böyle yıkanmayı her gün isterim 😏',
+    'Sertleştiğimi fark ettin, gülümseme öyle 😈',
+    'Sıra bende olacak, unutma {o} 😏'
+  ],
+  'Soapy Handjob': [
+    'Avucun köpükle kayıyor ahh 😩',
+    'Suyun altında bu kadar iyi olacağını bilmiyordum offf 🥵',
+    'Yavaş yavaş, tam böyle {o} 😮‍💨',
+    'Baş parmağın ucumda gezdikçe titriyorum 🔥',
+    'Köpük her hareketi kolaylaştırıyor 😈',
+    'Duvara yaslanmam lazım, dizlerim gidiyor offf 😩',
+    'Gözlerini ayırma benden {o} 🥵',
+    'Biraz daha sık, biraz daha hızlı ahh 🔥',
+    'Elin nasıl bu kadar iyi biliyor 😏',
+    'Devam edersen burada biter bu iş offf 💦'
+  ],
+  'Soapy Titjob': [
+    'Köpüklü göğüslerinin arasında kayıyorum ahh 😩',
+    'Birleştir biraz daha {o}, tam böyle 🥵',
+    'Su üstlerinden akıyor, ne güzel görünüyorlar 😍',
+    'Kayganlık bambaşka offf 🔥',
+    'Yukarı aşağı oynattıkça başım dönüyor 😮‍💨',
+    'Gözlerin bende, ellerin göğüslerinde 😈',
+    'Ucum çenene değiyor ahh 🥵',
+    'Köpüğü bırakma, daha çok sür 😏',
+    'Dizlerin üşümesin diye yavaş gitmem lazım ama yapamıyorum offf 😩',
+    'Böyle devam edersen göğüslerine boşalacağım {o} 💦'
+  ],
+  'Soapy Hotdogging': [
+    'Kalçalarının arasında kayıyorum, köpükle ne güzel ahh 😩',
+    'Sık biraz daha {o}, kaçmayayım 😈',
+    'İçeri girmiyorum ama aklım gitti offf 🥵',
+    'Belini tuttum, kalçan köpükte gidip geliyor 🔥',
+    '{kalca} kalçan suyun altında parlıyor 😍',
+    'Her kayışta beline kadar uzanıyorum ahh 😮‍💨',
+    'Kalçanı bana doğru itiyorsun, hissediyorum 😈',
+    'Bu kadar kaygan olmamalıydı offf 😩',
+    'Ellerin duvarda, gözlerin kapalı, çok güzelsin {o} 🥵',
+    'Hızlanıyorum, tut kendini 🔥'
+  ],
+  'Soapy Thighjob': [
+    'Uyluklarının arasına girdim, sık bakalım 😈',
+    'Köpüklü bacakların beni sıkıştırıyor ahh 😩',
+    'Sırtın göğsümde, ben aranda gidip geliyorum offf 🥵',
+    'Bacaklarını birleştir {o}, kaçmayayım 😏',
+    'İçeri girmeden bu kadar iyi olması haksızlık 🔥',
+    'Kaygan tenin her gidişte beni sarıyor 😮‍💨',
+    'Belinden tuttum, sen sadece sık 😈',
+    'Her sürtünmede titriyorsun, seni de hissediyorum 🥵',
+    'Bacaklarını gevşetme, tam orası ahh 😩',
+    'Böyle devam edersen uyluklarının arasında biteceğim {o} 💦'
+  ],
+  'Body Slide': [
+    'Üstümde bütün bedeninle kayıyorsun ahh 😩',
+    'Köpüklü göğüslerin karnımdan yukarı çıkıyor offf 🥵',
+    'Duvara yaslandım, her şey sana kalmış {o} 😏',
+    'Tenin her santimimde geziyor 😮‍💨',
+    'Aşağı inerken gözlerime bakıyorsun 😈',
+    'Bu kadar köpük nereden çıktı, devam et 🔥',
+    'Kalçan bacağımda kayıyor ahh 🥵',
+    'Bunu nereden öğrendin {o} 😏',
+    'Yukarı çık, dudaklarını istiyorum 😍',
+    'Üstümde bir daha kay, durma offf 😩'
+  ],
+  'Shower Blowjob': [
+    'Su sırtından akıyor, sen önümde diz çöktün ahh 😩',
+    'Saçlarını topladım {o}, gözlerin bende 🥵',
+    'Dudakların sıcak, su soğuk geliyor yanında offf 😮‍💨',
+    'Suyun altında bu görüntü var ya 😍',
+    'Yavaş yavaş, nefesini de tut 🔥',
+    'Dilin ucumda dolaşıyor ahh 😩',
+    'Damlalar kirpiklerinden düşüyor, çok güzelsin 😍',
+    'Duvara yaslanmasam düşeceğim offf 🥵',
+    'Başını iki elimle tutuyorum, sen yönet {o} 😈',
+    'Devam edersen ağzına geliyorum ahh 💦'
+  ],
+  'Shower Lift': [
+    'Gel kucağıma {o}, bacaklarını belime dola 😈',
+    'Sırtın duvarda, içine giriyorum ahh 😩',
+    'Tuttum seni, düşmezsin 🤍',
+    'Her kaldırışımda daha derine iniyorsun offf 🥵',
+    'Su aramızdan akıyor, sen boynuma tutunuyorsun 🔥',
+    'Bu kadar hafif olduğunu bilmiyordum 😏',
+    'Kalçanı avuçlarımda tutup yukarı aşağı oynatıyorum ahh 😮‍💨',
+    'Kulağımda inliyorsun, su bile bastıramıyor 🥵',
+    'Bacaklarını sıkıyorsun, hissediyorum {o} 😈',
+    'Kollarım yanıyor ama seni bırakmam offf 🔥'
+  ],
+  'Shower Doggy': [
+    'Ellerini fayansa koy {o}, belini bük 😈',
+    'Arkandan giriyorum, su sırtından akıyor ahh 😩',
+    'Kalçan ıslak ıslak bana çarpıyor offf 🥵',
+    'Belini tuttum, kaymıyorsun 🔥',
+    'Sesin banyoda yankılanıyor 😏',
+    'Su başına akmasın, saçlarını tuttum {o} 😈',
+    'Her vuruşta ellerin duvarda kayıyor ahh 😮‍💨',
+    'Böyle eğilince aklım gidiyor 🥵',
+    'Daha sert mi istiyorsun, söyle 😈',
+    'Kalçanı biraz daha geri it offf 🔥'
+  ],
+  'Shower Anal': [
+    'Köpükle yavaş yavaş {o}, acele yok 😮‍💨',
+    'Sıkıysan söyle, dururum 🤍',
+    'Ucum girdi, nefes al ahh 😩',
+    'Su sırtından kalçana akıyor, ne güzel görünüyor 🥵',
+    'Gevşedin, biraz daha giriyorum offf 🔥',
+    'Duvara yaslan, ellerim belinde 😈',
+    'Köpük her şeyi kolaylaştırıyor ama çok sıkısın ahh 😩',
+    'Bana doğru gelen sensin, hissediyorum {o} 😏',
+    'Yavaş gidip geliyorum, kıpırdama 🥵',
+    'Sesin titriyor, devam edeyim mi 😮‍💨'
+  ],
+  'Shower Creampie': [
+    'Geliyor {o}, bırakma beni ahhh 😩💦',
+    'İçine boşalıyorum, su üstümüze akıyor offf 🥵',
+    'Son damlasına kadar içinde kalıyorum 💦',
+    'Zonklaya zonklaya doluyorsun ahh 😩',
+    'Bacaklarını sıkıyorsun, hepsini istiyorsun 😈',
+    'Duvara yaslı sana sarılıp bitiyorum offf 😮‍💨',
+    'Dizlerim titriyor, bırakma beni {o} 🥵',
+    'Sıcaklığı içinde hissediyor musun 💦',
+    'Bitti… hâlâ içindeyim, kıpırdama ahh 😩',
+    'Su her şeyi yıkar ama bu kalır 😏'
+  ],
+  'Shower Cumshot': [
+    'Geliyor {o}, geri çekiliyorum ahhh 😩💦',
+    'Tenine boşalıyorum, su hemen alıyor offf 🥵',
+    'Sıcak atışlar köpüğün üstüne iniyor 💦',
+    'Sırtına, kalçana, her yerine ahh 😩',
+    'Elini çekme, bitir beni offf 🔥',
+    'Su akıp götürüyor ama sen gördün 😈',
+    'Bedenin parlıyor, durma ahh 🥵',
+    'Son damla da süzüldü {o} 😮‍💨',
+    'Dizlerim gitti, duvara tutunuyorum offf 💦',
+    'Gel, bir daha yıkayayım seni 😏'
+  ],
+  'Islak Fantezi': [
+    'Bırak kendini {o}, buradayım 😏💦',
+    'Yanakların kızardı ama gözlerin parlıyor… bırak gelsin 😳',
+    'Sıcaklığını buradan hissediyorum offf 🥵',
+    'Bunu benimle yapman beni deli ediyor ahh 🔥',
+    'Utanma, sana bakmayı seviyorum 😍',
+    'Bacakların titriyor, ne güzel salıverdin kendini 💦',
+    'Her yer ıslandı, aldırma {o} 😈',
+    'Bu sırrı sadece ikimiz biliyoruz 🤫',
+    'Son damlasına kadar bırak, acele yok 😮‍💨',
+    'Sen rahatladıkça ben sertleşiyorum offf 🥵'
+  ],
+  'Golden Shower': [
+    'Hadi {o}, üstüme bırak kendini 😈',
+    'Sıcacık göğsüme iniyor… ahh 😩',
+    'Tam üstümde dur, gözlerini benden ayırma 🔥',
+    'Bunu ben istedim, sakın durma 😏',
+    'Sıcaklığın karnımdan aşağı akıyor offf 🥵',
+    'Yukarıdan bana öyle bakınca eriyorum 😮‍💨',
+    'Tenim sıcacık oldu, ne güzelsin {o} 😍',
+    'Daha bitmedi değil mi, devam et 😈',
+    'Üstümde gülümsemen beni bitiriyor ahh 🔥',
+    'Bana hükmetmek sana çok yakışıyor {o} 👑'
+  ],
+  'Pee On Her': [
+    'Diz çöktün, gözlerin bende; istediğin bu mu {o}? 😈',
+    'Hazır mısın, başlıyorum… ahh 😮‍💨',
+    'Sıcaklığı göğsüne iniyor, gülümsüyorsun offf 🥵',
+    'Sen istedikçe bırakıyorum 😏',
+    'Durmamı istersen tek kelime yeter {o} 🤍',
+    'Tenin parlıyor, ne güzel görünüyorsun 😍',
+    'Gözünü kaçırmıyorsun, beni deli ediyorsun ahh 🔥',
+    'Karnından aşağı süzülüyor, titriyorsun 🥵',
+    'Son damlaya kadar… offf 😩',
+    'Gel şöyle, birazdan seni ben yıkayacağım 🚿'
+  ],
+  'Shower Pee': [
+    'Su üstümüze akıyor, kimse bilmeyecek 😏',
+    'Aynı anda bırakalım mı {o}? 😈',
+    'Bacağımda sıcaklığını hissettim ahh 🥵',
+    'Güldün, demek sen de başladın 😏💦',
+    'Suyun altında ikimiz de sırılsıklamız 🚿',
+    'Sıcak suyla karışıp gidiyor offf 😮‍💨',
+    'Sırtını duvara yasla, sakın kıpırdama 🔥',
+    'Sabunu bırak, önce bu 😈',
+    'Bunu yalnızca seninle yaparım {o} 🤍',
+    'Bitince seni baştan aşağı köpükleyeceğim 🧼'
+  ],
+  'Wet Panties': [
+    'Gözlerime bakıyorsun, yoksa… 😳',
+    'Külotun koyulaşmaya başladı offf 🥵',
+    'Çıkarmadın bile, bile bile yapıyorsun 😈',
+    'Bacaklarının arasından süzülüyor ahh 😩',
+    'Islandıkça yüzün kızarıyor {o} 😍',
+    'Kumaş tenine yapıştı, ne güzel görünüyor 🔥',
+    'Durma, bırak tamamen ıslansın 😏💦',
+    'Bu kadar yaramaz olduğunu bilmiyordum 😈',
+    'Sıcaklığını elimde hissediyorum offf 🥵',
+    'Şimdi o külotu ben çıkaracağım {o} 😏'
+  ],
+  'Hotdogging Pee': [
+    'Kalçalarını sıktın, tam aralarındayım {o} 😈',
+    'Hazır mısın, bırakıyorum… ahh 😮‍💨',
+    'Sıcaklık yanaklarının arasından süzülüyor offf 🥵',
+    'Sen istedin, sıkı tut kalçalarını 😏',
+    'Bacaklarından aşağı akıyor, titriyorsun 😩',
+    'Belini tuttum, kıpırdama {o} 🔥',
+    'Kalçanı bastırdıkça daha da sıcak geliyor sana ahh 🥵',
+    'Durmamı istersen söyle yeter 🤍',
+    'Tenin ıslak ıslak parlıyor, ne güzel görünüyor 😍',
+    'Son damlaya kadar… offf 😩'
+  ],
+  'Watching Her Pee': [
+    'Kapıyı açık bıraktığını gördüm 👀',
+    'Girebilir miyim {o}? 😏',
+    'Buradan izliyorum, aldırma 😈',
+    'Sesini duyuyorum, tenim ürperdi 🥵',
+    'Bakışını kaçırma, sana bakıyorum 😍',
+    'Hiç utanmadan oturuşun beni deli ediyor offf 🔥',
+    'Bana güvenmen çok hoşuma gidiyor 🤍',
+    'Bacaklarını biraz aç, güzelce göreyim 👀',
+    'Utandın mı, yanakların kızardı 😳',
+    'Bitince kucağıma gel {o} 😈'
+  ],
   'Condom Cumshot': [
     'Geldi… kondomun içine boşalıyorum ahhh 😩💦',
     'Hazne dölle şişiyor, görüyor musun offf 🥵',
@@ -5056,7 +5842,7 @@ Object.entries({
 }).forEach(([k, v]) => { const w = Stories.ME_BODY_WORDS[k]; if (w) Object.keys(v).forEach(s => { w[s] = (w[s] || []).concat(v[s]); }); });
 
 /* 🛏️ Yatakta: üstünden sarılıp onu yatağa bastırma · bed / bedRub alanları; ME_BED_SKIP'teki olaylarda (ayakta, masada, sedyede) yazılmaz */
-Stories.ME_BED_SKIP = ['Standing Missionary', 'Standing doggy', 'Standing', 'Standing Anal', 'Ondesk', 'Intimate Doggy', 'Intimate Therapy', 'Tombstone', 'Shoulder Mark', 'Blood Bath', 'Milk Bath', 'Red Bath Creampie', 'Coffin Missionary'];
+Stories.ME_BED_SKIP = ['Standing Missionary', 'Standing doggy', 'Standing', 'Standing Anal', 'Ondesk', 'Intimate Doggy', 'Intimate Therapy', 'Tombstone', 'Shoulder Mark', 'Blood Bath', 'Milk Bath', 'Red Bath Creampie', 'Coffin Missionary', 'Shower Lift', 'Shower Doggy', 'Shower Anal', 'Shower Creampie', 'Shower Cumshot', 'Sweaty Titjob', 'Bench Hotdogging', 'Sauna Cumshot', 'Cold Plunge', 'Snow Roll', 'Husband In Room'];
 Object.entries({
   missionary: { bed: [
     'Bütün ağırlığımla üstüne kapandım, sımsıkı sarılıp seni yatağa gömüyorum; yumuşacık bedenin şiltenin içine batıyor… ahhh 😩',
