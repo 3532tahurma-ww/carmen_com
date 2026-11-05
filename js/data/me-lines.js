@@ -2785,6 +2785,78 @@ Stories.ME_EV_LINES = {
     'Patlamasa bari offf 😅',
     'Sıkıyor ama değecek… ahh 🔥'
   ],
+  'Condom Buttjob': [
+    'Lastik kalçanın üstünde kayıyor… ahh 😩',
+    'Kondomun üstünden bile kalçanın sıcaklığı geliyor offf 🔥',
+    'Belinden tutup kalçana bastırıyorum, lastik gıcırdıyor… ahhh {o} 🥵',
+    'Kaygan kondom kalçanda kayıp duruyor offf 😮‍💨',
+    'Kalçanı yukarı aşağı oynat, lastiğin içinde zonkluyorum… ahh 😩',
+    'İçeri girmiyorum ama kalçan beni deli ediyor offf 🔥',
+    'Haznede ön sıvı birikiyor, kalçanı hissediyorum… ahhh 🥵',
+    'Kondom kalçanın kıvrımına oturdu, hızlanıyorum offf 😈',
+    'Kalçanı biraz daha bastır {o}, böyle çok iyi… ahh 😮‍💨',
+    'Hızlanıyorum, durma, kondomu dolduracağım… ahh 💦'
+  ],
+  'Condom Hotdogging': [
+    'Lastikli halde kalçalarının arasına yerleştim… ahh 😩',
+    'Kalçanı birleştirdin, kondom aralarında kayıyor offf 🔥',
+    'İki yanağın kondomu sıkıyor… ahhh {o} 🥵',
+    'Belinden tutup yanaklarının arasında gidip geliyorum offf 😮‍💨',
+    'Lastiğin üstünden bile aranın sıcaklığı geliyor… ahh 😩',
+    'Kalçan beni sarıyor, kondom kaygan kaygan kayıyor offf 🔥',
+    'Uç yukarı çıktıkça hazne sallanıyor, hızlanıyorum… ahhh 🥵',
+    'Girmeden bu kadar iyi olması haksızlık {o} offf 😈',
+    'Yanaklarını biraz daha sık, zonkluyorum… ahh 😮‍💨',
+    'Biraz daha, kondomun içine bırakacağım… ahh 💦'
+  ],
+  'Condom Titfuck': [
+    'Kondomlu halde göğüslerinin arasına girdim… ahhh 😩',
+    'Göğüslerini sıktın, lastik aralarında kayıyor offf 🔥',
+    'Yumuşacık göğüslerin kondomu sarıyor… ahh {o} 🥵',
+    'Haznenin ucu çenene değiyor offf 😮‍💨',
+    'Kaygan lastik göğüslerinin arasında vuruyor… ahhh 😩',
+    'Kondomun üstünden bile sıcaklığın geliyor offf 🔥',
+    'Göğüslerini iki yandan bastır, hızlanıyorum… ahh 🥵',
+    'Ucundaki hazne ön sıvıyla doluyor, izle {o} 😈',
+    'Göğüslerini oynatıyorsun, lastiğin içinde zonkluyorum offf 😮‍💨',
+    'Biraz daha sık, kondomu dolduracağım… ahhh 💦'
+  ],
+  'Condom Handjob': [
+    'Kondomu sen geçirdin, şimdi avucunda… ahh 😩',
+    'Elin lastiğin üstünde yukarı aşağı kayıyor offf 🔥',
+    'Parmakların kondomu sıkıyor… ahhh {o} 🥵',
+    'Lastik kaygan, elin hızlandıkça daha iyi offf 😮‍💨',
+    'Baş parmağın ucu buluyor, hazneyi oynatıyorsun… ahh 😩',
+    'Kondomun üstünden bile elinin sıcaklığı geliyor offf 🔥',
+    'Bir yandan da gözlerimin içine bakıyorsun… ahhh 🥵',
+    'Sıkı tut {o}, tam böyle offf 😈',
+    'Avucunda zonkluyorum, durma… ahh 😮‍💨',
+    'Hızlan, hazneyi dolduruyorum… ahh 💦'
+  ],
+  'Condom Legjob': [
+    'Kondomlu halde uyluklarının arasına girdim… ahh 😩',
+    'Bacaklarını kapattın, lastik aralarında kayıyor offf 🔥',
+    'Uylukların kondomu iki yandan sıkıyor… ahhh {o} 🥵',
+    'Kaygan lastik tenin üstünde gidip geliyor offf 😮‍💨',
+    'Belinden tutup uyluklarının arasında hızlanıyorum… ahh 😩',
+    'Lastiğin üstünden bile bacaklarının sıcaklığı geliyor offf 🔥',
+    'Her kayışta hazne arkadan çıkıp sallanıyor… ahhh 🥵',
+    'Bacaklarını biraz daha sık {o}, çok iyi offf 😈',
+    'Uyluklarının arasında zonkluyorum, durma… ahh 😮‍💨',
+    'Biraz daha, kondomun içine geliyor… ahh 💦'
+  ],
+  'Condom Cumshot': [
+    'Geldi… kondomun içine boşalıyorum ahhh 😩💦',
+    'Hazne dölle şişiyor, görüyor musun offf 🥵',
+    'Zonklaya zonklaya lastiği dolduruyorum… ahh {o} 💦',
+    'Sıcacık döl haznede birikiyor offf 😮‍💨',
+    'Kondom içimden gelen her atışta şişiyor… ahhh 😩',
+    'Dölün hepsi lastiğin içinde, ucu sallanıyor offf 🥵',
+    'Durma, son damlasına kadar bastır… ahh 💦',
+    'Haznenin sıcaklığını teninde hissediyorsun değil mi {o} 😈',
+    'Lastik doldu, ağır ağır sarkıyor… offf 😮‍💨',
+    'Bitti… kondom ağzına kadar dolu, ahh 💦'
+  ],
   'Control Pill': [
     'Hapını içtin mi {o}? 💊',
     'Haplar tamam, içimiz rahat 😌',

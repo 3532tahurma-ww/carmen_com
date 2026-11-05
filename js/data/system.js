@@ -2812,6 +2812,13 @@ Stories.SYSTEM = {
    "color": "#ff8a65",
    "emojis": "🍑🌭"
   },
+  { "id": "mvcr01buttjob", "title": "Condom Buttjob", "cat": "c:mvgn2ubfw2eoh", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["kondom"], "desc": "Kondom takılıyken kalçasıyla seni okşar: lastik kalçasının üstünde kayar, içeri girmeden", "color": "#c86bff", "emojis": "🎈🍑", "onEffects": [{ "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvcr02hotdog", "title": "Condom Hotdogging", "cat": "c:mvgn2ubfw2eoh", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["kondom"], "desc": "Kondomla kalçanın iki yanağı arasında sürtme: içeri girmeden, lastik yanakların arasında kayar", "color": "#ff8a65", "emojis": "🎈🌭", "onEffects": [{ "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvcr03titfuck", "title": "Condom Titfuck", "cat": "c:mvgn2ubfw2eoh", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["kondom"], "desc": "Kondom takılıyken göğüslerinin arasında kayarsın", "color": "#ff7eb3", "emojis": "🎈🍒", "onEffects": [{ "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvcr04handjob", "title": "Condom Handjob", "cat": "c:mvgn2ubfw2eoh", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["kondom"], "desc": "Kondomu kendi takar, lastiğin üstünden eliyle sıvazlar", "color": "#7fb3ff", "emojis": "🎈✊", "onEffects": [{ "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvcr05legjob", "title": "Condom Legjob", "cat": "c:mvgn2ubfw2eoh", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["kondom"], "desc": "Kondom takılıyken uyluklarının arasında sıkıştırıp sürter", "color": "#8ed081", "emojis": "🎈🦵", "onEffects": [{ "p": "p:samimiyet", "d": 1 }, { "p": "p:guven", "d": 1 }] },
+  { "id": "mvcr06cumshot", "title": "Condom Cumshot", "cat": "c:mvgu3rsuko7km", "text": "", "steps": [], "opener": "", "starter": "", "tones": [], "note": "", "part": "", "when": "", "place": "", "mix": [], "tags": ["kondom", "boşalma"], "desc": "Sürtünürken kondomun içine boşalırsın; hazne şişer, teninde sıcaklığı hissedilir", "color": "#5f8bff", "emojis": "💦🎈", "onEffects": [{ "p": "p:umvjy7ucpiosps", "d": 1 }]
+  },
   {
    "id": "mvs1stdmis01a",
    "title": "Standing Missionary",

@@ -9613,7 +9613,7 @@
   // 💦 sürtünmeli / dışarı boşalma mı (Cumming olayı + sürtünme pozisyonu ya da … Cumshot): 'tits' · 'ass' · 'body', değilse ''
   const DK_RUB_RE = /titfuck|buttjob|hotdog|handjob|footjob|thigh|dry |cumshot/i;
   function dickRubSpot(e, pos) {
-    if (!e || catOfEv(e).label !== 'Cumming' || /creampie/i.test(e.title)) return '';
+    if (!e || catOfEv(e).label !== 'Cumming' || /creampie|^condom /i.test(e.title)) return '';   // 🎈 Condom Cumshot: döl kondomda, tene gelmez
     const t = `${e.title} ${pos && DK_RUB_RE.test(pos.title) ? pos.title : ''}`;
     if (!DK_RUB_RE.test(t)) return '';
     return /tit|boob|göğüs/i.test(t) ? 'tits' : /butt|ass|hotdog|kalça/i.test(t) ? 'ass' : 'body';
@@ -13824,7 +13824,8 @@
     'göğüs': ['Titfuck', 'Reverse Titfuck', 'Tit Cumshot'],
     bacak: ['Footjob', 'Legjob', 'Leg Cumshot', 'Legs Creampie'],
     'kalça': ['Buttjob', 'Hotdogging', 'Ass Cumshot'],
-    el: ['Handjob', 'Masturbation', 'Face Cumming']
+    el: ['Handjob', 'Masturbation', 'Face Cumming'],
+    kondom: ['Condom Buttjob', 'Condom Hotdogging', 'Condom Titfuck', 'Condom Handjob', 'Condom Legjob', 'Condom Cumshot']
   };
   // her "olay|etiket" çifti bir kez verilir (S().posTagged): sonradan eklenen olay da etiketlenir, sonradan sildiğin etiket geri gelmez
   function tagPositions() {
@@ -14548,7 +14549,8 @@
         <tr><td>göğüs</td><td>Titfuck, Reverse Titfuck</td><td>Tit Cumshot</td></tr>
         <tr><td>bacak</td><td>Footjob, Legjob</td><td>Leg Cumshot, Legs Creampie</td></tr>
         <tr><td>kalça</td><td>Buttjob, Hotdogging</td><td>Ass Cumshot</td></tr>
-        <tr><td>el</td><td>Handjob, Masturbation</td><td>Face Cumming</td></tr></table>
+        <tr><td>el</td><td>Handjob, Masturbation</td><td>Face Cumming</td></tr>
+        <tr><td>kondom</td><td>Condom Buttjob, Hotdogging, Titfuck, Handjob, Legjob</td><td>Condom Cumshot</td></tr></table>
       <p><b>Akış:</b> her pozisyon 🥴 Zevk'i artırır → <b>Zevk ≥ 80</b> → 🎯 Cumming kategorisinden pozisyonla aynı etiketli olay (birden çok uyan varsa rastgele) → Zevk −100.</p>
       <p>Yeni pozisyon eklediğinde ona bir bitiş etiketi vermen yeter.</p>` },
     { icon: '💦', title: 'Cumming: miktar ve meni', sub: 'Cum rezervi ve Cumming sayısı', body: `
@@ -15054,6 +15056,7 @@
         <tr><td>Buttjob</td><td>kalça</td><td>Ass Cumshot · kalçasının üstünde sürtme</td></tr>
         <tr><td>Hotdogging</td><td>kalça</td><td>Ass Cumshot · kalçasının iki yanağı arasında kayma</td></tr>
         <tr><td>Footjob · Legjob</td><td>bacak</td><td>Leg Cumshot, Legs Creampie</td></tr>
+        <tr><td>Condom Buttjob · Hotdogging · Titfuck · Handjob · Legjob</td><td>kondom</td><td>Condom Cumshot · kondom takılı sürtünme, döl haznede kalır</td></tr>
         <tr><td>Handjob · Masturbation</td><td>el</td><td>Face Cumming</td></tr></table>
       <p>Acı vermez, hamilelik riski yoktur. Boyuta göre (iri / küçük göğüs, dolgun / küçük kalça) ayrı cümleler gelir.</p>
       <h4>💋 Foreplay · 👅 Eat · 💥 Mode</h4>
@@ -15069,7 +15072,8 @@
         <tr><td>Face Cumming</td><td>oral, el</td><td>yüzüne</td></tr>
         <tr><td>Tit Cumshot</td><td>Titfuck, Reverse Titfuck</td><td>göğüslerine; iri göğüste ayrı cümle</td></tr>
         <tr><td>Ass Cumshot</td><td>Buttjob, Hotdogging</td><td>kalçasına / kalçalarının arasına</td></tr>
-        <tr><td>Leg Cumshot · Legs Creampie</td><td>Footjob, Legjob</td><td>bacaklarına / uylukların arasına</td></tr></table>
+        <tr><td>Leg Cumshot · Legs Creampie</td><td>Footjob, Legjob</td><td>bacaklarına / uylukların arasına</td></tr>
+        <tr><td>Condom Cumshot</td><td>Condom Buttjob, Hotdogging, Titfuck, Handjob, Legjob</td><td>kondomun içine</td></tr></table>
       <p>Her boşalma: 🔁 Cumming sayısı +1, "Cumming" ortak sonucu 💦 Cum −10…−50. Ardından iki bilgi olayı gelir, boşalmadan <b>önceki</b> değerlere bakar:</p>
       <ul><li><b>Miktar</b> (💦 Cum): Watery · Low-volume · Normal · Thick White · High Sperm.</li>
         <li><b>Yoğunluk</b> (🔁 sayı): Hyper-concentrated (ilk) → Polyzoospermia → Normozoospermia → Oligospermia → Azoospermia (5+).</li></ul>
@@ -15630,6 +15634,13 @@
       ['Pull-out Method', 'Bacaklarımı belinden çözüyorum. Sen son anda çekip dışarı boşalırsan Pull-out olur.'],
       ['Morning-after Pill', 'Ertesi sabah bir bardak su ve hapla yanındayım. İçersem Morning-after Pill olur; dünkü risk biter.'],
       ['Nothing', 'Paketi yere atıyorum, bacaklarımı beline doluyorum. Sen hiç korunmadan içime boşalırsan hamilelik riski var 😳']]],
+    ['🎈', 'Kondomlu sürtünme', 'içeri girmeden, lastikli', 'Burada döl hep kondomda kalır; sonra içime gireceksen ayrıca Condom yaz 🛡️', [
+      ['Condom Buttjob', 'Kucağına sırtım dönük oturuyorum, kondomun takılı. Sen beni belimden tutarsan lastiği kalçamın üstünde kaydırırım, içeri almadan.'],
+      ['Condom Hotdogging', 'Masaya eğilip kalçalarımı birleştiriyorum. Sen kondomla yanaklarımın arasına yerleşirsen seni orada sıkıştırırım, içeri girmeden.'],
+      ['Condom Titfuck', 'Önünde diz çöküp göğüslerimi birleştiriyorum. Sen kondomu takıp aralarına koyarsan lastiği göğüslerimin arasında kaydırırım.'],
+      ['Condom Handjob', 'Paketi dişlerimle açıp kondomu sana ben geçiriyorum. Sen arkana yaslanırsan lastiğin üstünden avucumla okşarım.'],
+      ['Condom Legjob', 'Yan yatıp uyluklarımı açıyorum. Sen kondomla aralarına girersen bacaklarımı kapatıp seni sıkıştırır, sürterim.'],
+      ['Condom Cumshot', 'Hazneyi gözümden ayırmıyorum. Sen sürtünürken dayanamayıp kondomun içine boşalırsan Condom Cumshot olur; sıcaklığını tenimde hissederim.']]],
     ['✋', 'Tutmak', 'boşalmayı ertele', 'Tutarsan Zevk düşer ama döl birikir; bazen tutamazsın 😏', [
       ['Holding', 'Ritmimi yavaşlatıp gözlerine bakıyorum. Sen derin nefes alıp kendini tutarsan Holding olur.'],
       ['Hard Holding', 'Kalçamı sıkıca sana bastırıp kıpırdamıyorum. Sen dişlerini sıkıp direnirsen Hard Holding olur; daha çok birikir ama zor.'],
@@ -15649,7 +15660,7 @@
     { icon: '🎬', title: 'Olay Kitabı nasıl okunur', sub: 'Lia sahneler, sen yaparsın', body: `
       <p>Bu kitapta her olayı <b>Lia</b> kendisi sahneliyor: önce nasıl durduğunu anlatır, sonra senin ne yaparsan o olayın olacağını söyler.</p>
       ${bkChat('Örnek', [['her', '💁‍♀️ Bak, ben dört ayak üstüne çıkıp kalçamı sana uzatıyorum. Sen belimden tutup aletinle arkadan girersen…'], ['ev', '#Doggy'], ['note', 'Sohbette olayı # ile yazarsın: <code>#doggy</code>']])}
-      <p>Her bölüm bir olay grubu: ısınma, onu ısıtma, dokunuş, pozisyonlar, tempo, fanteziler, roller, femdom, Halloween, korunma, tutma ve bitiş. Sırayla okursan bir seansın akışını da öğrenmiş olursun.</p>
+      <p>Her bölüm bir olay grubu: ısınma, onu ısıtma, dokunuş, pozisyonlar, tempo, fanteziler, roller, femdom, Halloween, korunma, kondomlu sürtünme, tutma ve bitiş. Sırayla okursan bir seansın akışını da öğrenmiş olursun.</p>
       <p>Bir olayın nasıl tetiklendiğini ve sonuçlarını aramak için: 🧭 CarmenGuide → <a href="#/olaylar">📜 Olay rehberi</a>.</p>` },
     ...OLAY_BOOK.map(([icon, title, sub, intro, evs]) => ({ icon, title, sub, body: `<p>${esc(intro)}</p>
       ${evs.map(([ev, say, d = evDescOf(ev)]) => bkChat(esc(ev), [['her', `💁‍♀️ ${esc(say)}`], ['ev', `#${esc(ev)}`], ...(d ? [['note', esc(d)]] : [])])).join('')}` }))] });

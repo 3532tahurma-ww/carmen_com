@@ -1,6 +1,14 @@
 /* 🌐 İngilizce sözlük (events). Kaynak Türkçe metin → çeviri; bkz. js/i18n.js */
 Stories.I18n.add({
   'Düştü': 'Fell',
+  'Kondom takılıyken kalçasıyla seni okşar: lastik kalçasının üstünde kayar, içeri girmeden': 'With the condom on she strokes you with her ass: the rubber slides over it, no entry',
+  'Kondomla kalçanın iki yanağı arasında sürtme: içeri girmeden, lastik yanakların arasında kayar': 'Rubbing between her ass cheeks with a condom: no entry, the rubber slides between them',
+  'Kondom takılıyken göğüslerinin arasında kayarsın': 'With the condom on you slide between her breasts',
+  'Kondomu kendi takar, lastiğin üstünden eliyle sıvazlar': 'She puts the condom on you herself and strokes you through the rubber',
+  'Kondom takılıyken uyluklarının arasında sıkıştırıp sürter': 'With the condom on she squeezes you between her thighs and rubs',
+  'Sürtünürken kondomun içine boşalırsın; hazne şişer, teninde sıcaklığı hissedilir': 'You cum into the condom while rubbing; the tip swells and she feels the heat on her skin',
+  'kondomun içine': 'into the condom',
+  'Condom Cumshot · kondom takılı sürtünme, döl haznede kalır': 'Condom Cumshot · rubbing with a condom on, the cum stays in the tip',
   '{ben} hamile kaldı': '{ben} got pregnant',
   'Benekli kostüm, boynuzlar ve çan; göğüsleri sütle dolu, pozisyonlarda bile süt akar, emzirmek ister': 'Spotted costume, horns and a bell; her breasts are full of milk, milk flows even in positions, she wants to nurse',
   'Karşı tarafın orgazmı (💗 Uyarılma eşiğinden gelir)': 'The other side\'s orgasm (comes from the 💗 Arousal threshold)',
