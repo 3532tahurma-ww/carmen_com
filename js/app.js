@@ -8305,7 +8305,7 @@
       if (t === 'quick') { quickOn(!quickOn()); b.classList.toggle('on', quickOn()); drawQuick(); notify(quickOn() ? '⚡ Kısayollar açık' : '⚡ Kısayollar kapalı', '⚡'); }
       if (t === 'lia') { liaOn(!liaOn()); b.classList.toggle('on', liaOn()); drawLia(); notify(liaOn() ? 'Lia önerileri açık' : 'Lia önerileri kapalı', '💁‍♀️'); }
       if (t === 'place') placeSheet(null);
-      if (t === 'event') poolPicker({ title: '📜 Olay yaz', catFirst: CHAT_TOP_TAG }, evs => {
+      if (t === 'event') poolPicker({ title: '📜 Olay yaz', catFirst: CHAT_TOP_TAG, fold: true }, evs => {
         if (!evs.length) return;
         askSubs(evs, writeEvents);
       });
@@ -12676,13 +12676,16 @@
     const sel = [];
     const rec = recentEvents().filter(e => (!opts.cats || opts.cats.includes(e.cat || 'mine')) && !(opts.skip || []).includes(e.title));
     const chipOf = e => `<button type="button" class="mo-chip${evCls(e)}"${evStyle(e)} data-pick="${esc(e.id)}" data-tags="${esc((e.tags || []).join('|'))}" data-desc="${esc(e.desc || e.text || '')}" title="${esc(e.desc || e.text || '')}">${evEmo(e)}${esc(e.title)}</button>`;
+    // opts.fold: akordeon, kategoriler kapalı başlar, aynı anda biri açık (son açılan ui.pkFold)
+    const foldAt = key => opts.fold ? ` data-pkfold="${esc(key)}" role="button"` : '';
+    const foldEnd = n => opts.fold ? `<small class="pk-n">${n}</small><b class="pk-cnt" hidden></b>` : '';
     const sh = sheet(`
       <div class="sheet-grip"></div>
       <h3>${esc(opts.title)}</h3>
       <input class="pk-search" id="pkSearch" placeholder="# yaz, olay ara…" autocomplete="off">
       ${rec.length ? `<div class="mo-sub pk-rec">🕘 Önerilen <small>· son kullandıkların</small></div><div class="mo-chips">${rec.map(chipOf).join('')}</div>` : ''}
-      ${allEvTags().length ? `<div class="chips mo-filter">${tagChips(allEvTags(), [], 'data-pf')}</div>` : ''}
-      ${!opts.noGroups && evGroups().length ? `<div class="mo-sub">🧺 Olay grupları <small>· seçince içindeki tüm olaylar gelir</small></div>
+      ${!opts.fold && allEvTags().length ? `<div class="chips mo-filter">${tagChips(allEvTags(), [], 'data-pf')}</div>` : ''}
+      ${!opts.noGroups && evGroups().length ? `<div class="mo-sub"${foldAt('grp')}>🧺 Olay grupları <small>· seçince içindeki tüm olaylar gelir</small>${foldEnd(evGroups().length)}</div>
         <div class="mo-chips">${evGroups().map(g => `<button type="button" class="mo-chip mo-grp" data-pick="grp:${esc(g.id)}" data-tags="" data-desc="${esc(groupEvents(g).map(x => x.title).join(' + '))}">${evEmo(g) || '🧺 '}${esc(g.title)} <small>${groupEvents(g).length}</small></button>`).join('')}</div>` : ''}
       ${(() => {
         // opts.top: bu etiketi taşıyan olaylar (ya da kategorileri) en üstte ayrı bölümde
@@ -12691,7 +12694,7 @@
         return top.length ? `<div class="mo-sub pk-top">⭐ ${esc(opts.top)} <small>· ${top.length} olay</small></div>
           <div class="mo-chips">${top.map(e => `<button type="button" class="mo-chip${evCls(e)}"${evStyle(e)} data-pick="${esc(e.id)}" data-tags="${esc((e.tags || []).join('|'))}" data-desc="${esc(e.desc || e.text || '')}" title="${esc(e.desc || e.text || '')}">${evEmo(e)}${esc(e.title)}</button>`).join('')}</div>` : '';
       })()}
-      ${(opts.onlyTop ? [] : opts.catFirst ? [...tagCats(opts.catFirst), ...moCats().filter(c => !(c.tags || []).includes(opts.catFirst))] : moCats()).filter(cat => !opts.cats || opts.cats.includes(cat.id)).map(cat => { const evs = poolOf(cat).filter(e => !(opts.skip || []).includes(e.title) && !(opts.top && hasTag(e, opts.top, opts.topExact))); const star = opts.catFirst && (cat.tags || []).includes(opts.catFirst); return evs.length ? `<div class="mo-sub${star ? ' pk-top' : ''}">${star ? '⭐ ' : ''}${cat.icon} ${esc(cat.label)}</div>
+      ${(opts.onlyTop ? [] : opts.catFirst ? [...tagCats(opts.catFirst), ...moCats().filter(c => !(c.tags || []).includes(opts.catFirst))] : moCats()).filter(cat => !opts.cats || opts.cats.includes(cat.id)).map(cat => { const evs = poolOf(cat).filter(e => !(opts.skip || []).includes(e.title) && !(opts.top && hasTag(e, opts.top, opts.topExact))); const star = opts.catFirst && (cat.tags || []).includes(opts.catFirst); return evs.length ? `<div class="mo-sub${star ? ' pk-top' : ''}"${foldAt(cat.id)}>${star ? '⭐ ' : ''}${cat.icon} ${esc(cat.label)}${foldEnd(evs.length)}</div>
         <div class="mo-chips">${evs.map(e => `<button type="button" class="mo-chip${evCls(e)}"${evStyle(e)} data-pick="${esc(e.id)}" data-tags="${esc((e.tags || []).join('|'))}" data-desc="${esc(e.desc || e.text || '')}" title="${esc(e.desc || e.text || '')}">${evEmo(e)}${esc(e.title)}</button>`).join('')}</div>` : ''; }).join('')}
       <div class="mo-pool-foot">
         <div class="mo-pick-info" id="poolInfo" hidden></div>
@@ -12700,7 +12703,24 @@
       </div>`, 'light');
     const btn = sh.el.querySelector('#poolAdd');
     let ptag = '';
+    // etiket seçiliyken eşleşenlerin hepsi açık; kapalı kategoride seçili olay sayısı rozette
+    const foldSync = () => sh.el.querySelectorAll('[data-pkfold]').forEach(h => {
+      const open = !!ptag || h.dataset.pkfold === ui.pkFold, n = h.nextElementSibling.querySelectorAll('.mo-chip.on').length, cnt = h.querySelector('.pk-cnt');
+      h.classList.toggle('open', open);
+      h.nextElementSibling.classList.toggle('pk-shut', !open);
+      cnt.hidden = !n;
+      cnt.textContent = n;
+    });
+    foldSync();
     sh.el.onclick = e => {
+      const fh = e.target.closest('[data-pkfold]');
+      if (fh) {
+        if (ptag) return;
+        ui.pkFold = ui.pkFold === fh.dataset.pkfold ? '' : fh.dataset.pkfold;
+        foldSync();
+        fh.scrollIntoView({ block: 'start', behavior: 'smooth' });
+        return;
+      }
       const f = e.target.closest('[data-pf]');
       if (f) {
         // etikete göre süz: seçili etiketi taşımayan olaylar gizlenir
@@ -12708,6 +12728,7 @@
         sh.el.querySelectorAll('[data-pf]').forEach(x => x.classList.toggle('on', x.dataset.pf === ptag));
         sh.el.querySelectorAll('[data-pick]').forEach(x => { x.hidden = !!ptag && !x.dataset.tags.split('|').includes(ptag); });
         sh.el.querySelectorAll('.mo-chips').forEach(c => { const s = c.previousElementSibling; if (s && s.classList.contains('mo-sub')) s.hidden = c.hidden = ![...c.children].some(x => !x.hidden); });
+        foldSync();
         return;
       }
       const b = e.target.closest('[data-pick]');
@@ -12716,6 +12737,7 @@
         i >= 0 ? sel.splice(i, 1) : sel.push(b.dataset.pick);
         sh.el.querySelectorAll(`[data-pick="${CSS.escape(b.dataset.pick)}"]`).forEach(x => x.classList.toggle('on', i < 0));
         btn.textContent = sel.length ? `Ekle (${sel.length})` : 'Ekle';
+        foldSync();
         // dokunduğun olayın açıklaması altta görünür
         const info = sh.el.querySelector('#poolInfo');
         info.hidden = i >= 0 || !b.dataset.desc;
@@ -12739,6 +12761,8 @@
       const b = sh.el.querySelector(`[data-pick="${CSS.escape(e.id)}"]`);
       if (!b) return;
       if (!b.classList.contains('on')) b.click();
+      const fh = b.parentElement.previousElementSibling;
+      if (fh && fh.dataset.pkfold) { ui.pkFold = fh.dataset.pkfold; foldSync(); }
       b.scrollIntoView({ block: 'center', behavior: 'smooth' });
     }, { whole: true, noSubs: true, cats: opts.cats, skip: opts.skip });
     topSave(sh, () => sh.el.querySelector('#poolAdd').click(), '➕ Ekle');
