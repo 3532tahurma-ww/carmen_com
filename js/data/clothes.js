@@ -145,12 +145,32 @@ Stories.CLOTHES = (() => {
     ['hayaletkost', 'elbise', 'Beyaz tül gecelik', '👻', 'k', ['Beyaz tül bir gecelik… altı neredeyse görünüyor 👻', 'Tülüm uçuşuyor, süzülüyormuş gibiyim 🤍'], ['Tülümü ay ışığına tuttum, her şey belli 😏', 'Tülün altında hiçbir şey yok 👻'], ['Tül yere süzüldü 🤍', 'Hayaletin soyundu… artık görünür oldum 😈']],
     ['perikost', 'elbise', 'Peri kostümü', '🧚‍♀️', 'k', ['Yaprak yeşili kısa bir elbise ve parlak kanatlar 🧚‍♀️', 'Saçlarımda çiçekler, tenimde peri tozu ✨'], ['Yapraklardan elbisemin üstü kaydı 🌿', 'Kanatlarımı açtım, göğüslerim ortada 😈'], ['Yapraklar döküldü, sadece kanatlarım kaldı 🧚‍♀️', 'Peri elbisemi bir çiçeğe astım 🌸']],
     ['denizkizikost', 'elbise', 'Deniz kızı kostümü', '🧜‍♀️', 'k', ['Deniz kabuklu sütyen ve pullu dar etek… deniz kızın karada 🧜‍♀️', 'Pullarım ışıkta parlıyor 🐚'], ['Kabuklu sütyenimi biraz araladım 🐚😏', 'Pullu eteğim kalçamı sımsıkı sarıyor 😈'], ['Kabukları açtım, deniz kızı çıplak 🧜‍♀️', 'Pullu eteğimi sıyırdım, bacaklarım çıktı 🌊']],
-    ['slimekost', 'elbise', 'Slime girl kostümü', '🫠', 'k', ['Yarı saydam yeşil lateks bir body ve jöle gibi parlayan eldivenler… yapış yapışım 🫠', 'Tenim ışıkta yeşil yeşil parlıyor 💚'], ['Body\'mi biraz eriterek araladım 😈', 'Göğüslerim lateksin içinden jöle gibi taşıyor 💚'], ['Body\'m eridi, geriye ben kaldım… çıplak bir slime 🫠', 'Kostümü emdim, artık tamamen ben varım 💚']]
+    ['slimekost', 'elbise', 'Slime girl kostümü', '🫠', 'k', ['Yarı saydam yeşil lateks bir body ve jöle gibi parlayan eldivenler… yapış yapışım 🫠', 'Tenim ışıkta yeşil yeşil parlıyor 💚'], ['Body\'mi biraz eriterek araladım 😈', 'Göğüslerim lateksin içinden jöle gibi taşıyor 💚'], ['Body\'m eridi, geriye ben kaldım… çıplak bir slime 🫠', 'Kostümü emdim, artık tamamen ben varım 💚']],
+    // 🎭 2. set roller
+    ['kaptankost', 'elbise', 'Kaptan üniforması', '⚓', 'k', ['Beyaz kaptan ceketi, altın apoletler, kısa lacivert etek ve kaptan şapkası… güverteye hoş geldin tayfa ⚓', 'Ceketimin düğmeleri parlıyor, emirlerim de öyle 😏'], ['Ceketimin düğmelerini tek tek açtım, altında sadece sütyen var ⚓😈', 'Eteğimi harita masasında sıyırdım, bak tayfa 😏'], ['Ceket sandalyede, şapka hâlâ başımda ⚓', 'Üniforma yerde; emir hâlâ benden 😈']],
+    ['kralicekost', 'elbise', 'Kraliçe elbisesi ve taç', '👑', 'k', ['Mor kadife, altın işlemeli bir elbise, omzumda pelerin ve başımda taç… önümde eğil 👑', 'Mücevherlerim ağır, ama bakışım daha ağır 😏'], ['Korsemin bağcıklarını gevşetmene izin veriyorum hizmetkâr 😈', 'Pelerinimi açtım, kraliçenin göğüsleri sana lütuf 👑'], ['Elbisemi çıkar, ama tacım kalıyor 👑', 'Kadife yere düştü; taç ve mücevherler kaldı 💎']],
+    ['androidkost', 'elbise', 'Siyah savaş elbisesi ve göz bandı', '🤖', 'k', ['Kısa siyah savaş elbisesi, uzun çizmeler ve gözümde siyah bant… görev kıyafetim, komutan 🤖🖤', 'Elbisemin eteği çok kısa; savaşta hareket kolay olsun diye 😏'], ['Elbisemin göğsünü indirdim; sentetik tenim insandan farksız, kontrol et komutan 🖤', 'Eteğimi kaldırdım, sistem taraması başlasın 😈'], ['Savaş elbisemi çıkardım, sadece göz bandı ve çizmeler kaldı 🤖', 'Elbise yerde; zırhsız modda bekliyorum 😈']],
+    ['elfkost', 'elbise', 'Elf prensesi elbisesi', '🧝‍♀️', 'k', ['Gümüş işlemeli, yaprak yeşili uzun bir elbise ve alnımda ince bir taç 🧝‍♀️', 'Elbisemin kumaşı ay ışığından dokunmuş, şövalyem 🌙'], ['Elbisemin bağcıklarını çöz, ölümlü… yavaşça 😏', 'Yırtmacımdan uzun bacağımı uzattım 🌿'], ['Elf elbisem yosunların üstüne süzüldü 🧝‍♀️', 'Elbise gitti, taç kaldı 🌙']],
+    ['hosteskost', 'elbise', 'Hostes üniforması', '✈️', 'k', ['Dar kırmızı ceket, kalem etek, boynumda fular ve ten rengi çorap… hoş geldiniz efendim ✈️', 'Kırmızı rujum üniformama uyuyor 💄'], ['Ceketimin düğmelerini açtım; acil çıkış burası efendim 😈', 'Eğilip battaniyenizi düzeltiyorum, eteğim kısa 😏'], ['Ceket ve etek yerde, fularım kaldı 🧣', 'Üniformamı çıkardım, servis başlıyor 😈']],
+    ['rahibekost', 'elbise', 'Rahibe cübbesi', '📿', 'k', ['Siyah uzun cübbe, beyaz yaka ve başörtüsü; boynumda tespih… günah çıkarmaya mı geldin? 📿', 'Cübbem bileklerime kadar kapalı… şimdilik 😳'], ['Cübbemin yakasını açtım, altındaki tenimi kimse görmedi 🕯️', 'Cübbemi dizlerime kadar kaldırdım… affet beni 😈'], ['Cübbe yere düştü, başörtüm kaldı 📿', 'Yeminlerimle birlikte cübbemi de çıkardım 😈']],
+    ['taksikost', 'elbise', 'Deri ceket ve şoför şapkası', '🚕', 'k', ['Siyah deri ceket, kısa kot şort ve şoför şapkası… nereye gidiyoruz? 🚕', 'Ceketimin fermuarı yarıya kadar açık, yol uzun 😏'], ['Kırmızı ışıkta ceketimin fermuarını indirdim 😈', 'Şortumun düğmesini açtım, taksimetre çalışıyor 🚕'], ['Deri ceket ön koltukta, şort arka koltukta 😈', 'Şapka kalsın, gerisi gitti 🚕']],
+    // 🍓 Meisove kızları
+    ['limonkost', 'elbise', 'Sarı limon elbisesi', '🍋', 'k', ['Sapsarı, kısacık bir elbise giydim; limon kokuyorum 🍋', 'Elbisem jöle tenime yapıştı, yarı saydam 💛'], ['Elbisemin askısını indirdim, sıkılmaya hazır 🍋😈', 'Eteğimi kaldırdım, damlalar bacağımdan süzülüyor 💛'], ['Sarı elbisem yerde, ekşi ve çıplağım 🍋', 'Elbise gitti, sıkabilirsin 😈']],
+    ['cilekkost', 'elbise', 'Kırmızı çilek elbisesi', '🍓', 'k', ['Kıpkırmızı, benekli bir elbise ve yeşil yaprak tacım 🍓', 'Elbisem çok dar, utanıyorum 🙈'], ['Elbisemin göğsünü indirdim… kızardım 🍓😳', 'Eteğimi kaldırdım, krema ister misin? 😈'], ['Kırmızı elbisem yerde, sadece yaprak tacım kaldı 🍓', 'Elbise gitti, ısırabilirsin 😈']],
+    ['portakalkost', 'elbise', 'Turuncu kabuk elbise', '🍊', 'k', ['Turuncu, dokulu bir elbise; kabuk gibi sarıyor beni 🍊', 'Elbisem güneş gibi parlıyor ☀️'], ['Kabuk elbisemi yavaşça soyuyorum, dilimlerim görünüyor 🍊😈', 'Elbisemin önünü araladım, sulu sulu 😏'], ['Kabuğum yerde, şimdi soyulmuş portakalın 🍊', 'Elbise gitti, dilim dilim seninim 😈']],
+    ['sarapkost', 'elbise', 'Bordo kadife elbise', '🍷', 'k', ['Bordo kadife, uzun bir elbise; dudaklarım aynı renk 🍷', 'Elbisem yıllanmış şarap gibi ağır ve yumuşak 😏'], ['Kadife elbisemin omzunu kaydırdım, mum ışığında 🍷😈', 'Yırtmacımdan bacağımı uzattım, yudumla 😏'], ['Kadife elbise yere süzüldü 🍷', 'Elbise gitti, şişe açık 😈']],
+    ['vodkakost', 'elbise', 'Beyaz kürk ve buz mavisi body', '🍸', 'k', ['Omzumda beyaz kürk, altında buz mavisi bir body… privet ❄️', 'Body\'m buz gibi parlıyor, kürküm sıcak 🍸'], ['Kürkümü açtım, body\'min buzlu dantelini gör ❄️😈', 'Body\'min askısını indirdim, davay 😏'], ['Kürk yerde, body de birazdan 🍸', 'Body\'yi çıkardım, buzum eriyor 😈']],
+    ['balkost', 'elbise', 'Altın bal damlalı body', '🍯', 'k', ['Altın sarısı, bal damlası desenli bir body; yapış yapış 🍯', 'Body\'m tenime yapıştı, çıkarmak zor olacak 🐝'], ['Body\'min askısını indirdim, bal damlıyor 🍯😈', 'Body\'min altını yana çektim, parmağını batır 😏'], ['Body\'yi soydum, bal tenimde kaldı 🍯', 'Body gitti, yapış yapış çıplağım 😈']],
+    ['tekilakost', 'elbise', 'Sombrero ve fırfırlı elbise', '🌵', 'k', ['Fırfırlı, rengarenk bir elbise ve yana eğik sombrero… ¡hola! 🌵', 'Eteğim dans edince havalanıyor 💃'], ['Fırfırlı yakamı indirdim, tuz boynumda 🧂😈', 'Dönüyorum, eteğim havalandı… ¡olé! 💃'], ['Elbisem yerde, sombrero kaldı 🌵', 'Fırfırlar gitti, ateşim kaldı 😈']],
+    ['sampanyakost', 'elbise', 'Altın pullu elbise', '🍾', 'k', ['Altın pullu, kısacık bir elbise; her hareketimde ışıldıyorum 🍾', 'Pullarım kabarcıklarım gibi parlıyor ✨'], ['Pullu elbisemin askısını indirdim, kabarcıklarım taşıyor 🍾😈', 'Eteğimi kaldırdım, konfeti saçılıyor 🎉'], ['Pullu elbisem yerde ışıldıyor ✨', 'Elbise gitti, sadece kabarcıklarım kaldı 😈']],
+    ['sutkost', 'elbise', 'İnek desenli bikini', '🥛', 'k', ['Siyah beyaz inek desenli bir bikini; göğüslerim süt dolu 🥛🐄', 'Bikinim küçük, göğüslerim zor sığıyor 😳'], ['Bikini üstümü indirdim, uçlarımdan süt damlıyor 🥛😈', 'Bikini altımı yana çektim, kremamsı tenim senin 😏'], ['Bikinim samanların üstünde 🐄', 'Bikini gitti, sağılmaya hazırım 🥛😈']]
   );
   const FANT = { kedikost: 'fxkedi', inekkost: 'fxinek',tavsankost: 'fxtavsan', tilkikost: 'fxtilki', kopekkost: 'fxkopek', unikornkost: 'fxunikorn', kosum: 'fxbag', lateks: 'fxbag',
     hemsirekost: 'fxrpmuayene', poliskost: 'fxrpsorgu', hizmetcikost: 'fxrpev', ogrencikost: 'fxrpkampus', masozkost: 'fxrpmasaj', sabahlik: 'fxrpkapi',
     vampirkost: 'fxrpvampir', cadikost: 'fxrpcadi', falcikost: 'fxrpfalci', rehberkost: 'fxrpperili', maskeli: 'fxrpmaske', karakedikost: 'fxrpkarakedi',
-    mumyakost: 'fxrpmumya', seytankost: 'fxrpsuccubus', hayaletkost: 'fxrphayalet', perikost: 'fxrpperi', denizkizikost: 'fxrpdenizkizi', slimekost: 'fxrpslime', doktorkost: 'fxrpklinik' };
+    mumyakost: 'fxrpmumya', seytankost: 'fxrpsuccubus', hayaletkost: 'fxrphayalet', perikost: 'fxrpperi', denizkizikost: 'fxrpdenizkizi', slimekost: 'fxrpslime', doktorkost: 'fxrpklinik',
+    melekkost: 'fxrpmelek', kaptankost: 'fxrpkaptan', kralicekost: 'fxrpkral', androidkost: 'fxrprobot', elfkost: 'fxrpelf', hosteskost: 'fxrphostes', rahibekost: 'fxrprahibe', taksikost: 'fxrptaksi',
+    limonkost: 'fxrplimon', cilekkost: 'fxrpcilek', portakalkost: 'fxrpportakal', sarapkost: 'fxrpsarap', vodkakost: 'fxrpvodka', balkost: 'fxrpbal', tekilakost: 'fxrptekila', sampanyakost: 'fxrpsampanya', sutkost: 'fxrpsut' };
   /* 💦 cum: giyinikken üstüne boşalınca (Dressed Tit / Ass / Leg Cumshot) o parça için söylediği */
   const CUM = {
     // 👚 üst giyim
@@ -274,7 +294,125 @@ Stories.CLOTHES = (() => {
     hayaletkost: ['Beyaz tülüm sırılsıklam, tamamen transparan oldu 👻💦', 'Tülün içinden tenime geçti 🥵', 'Beyazın üstünde beyaz… fark edilmez sanma 😏', 'Tülüm tenime yapıştı, her şey görünüyor 🙈', 'Hayaletin ıslandı 😈'],
     perikost: ['Yaprak elbisem çiy gibi ıslandı 🧚‍♀️💦', 'Kanatlarıma kadar sıçradı ✨', 'Peri tozuyla karıştı, parlıyor 😳', 'Yeşil elbisemin içine süzülüyor 🥵', 'Çiçeklerim sulandı 😆🌸'],
     denizkizikost: ['Pullu eteğimde parlıyor 🧜‍♀️💦', 'Deniz kabuklu sütyenimin arasına doldu 🐚', 'Deniz köpüğü gibi bembeyaz 🌊', 'Pullarımdan aşağı süzülüyor 🥵', 'Deniz kızı karada ıslandı 😈'],
-    slimekost: ['Yeşil lateksimde bembeyaz parlıyor 🫠💦', 'Body\'min içinden tenime emiliyor 😳', 'Yapış yapışın üstüne yapış yapış 😆', 'Jöle tenimde süzülmüyor, içime kayboluyor 💚', 'Kostümüm bile seni emdi 😈']
+    slimekost: ['Yeşil lateksimde bembeyaz parlıyor 🫠💦', 'Body\'min içinden tenime emiliyor 😳', 'Yapış yapışın üstüne yapış yapış 😆', 'Jöle tenimde süzülmüyor, içime kayboluyor 💚', 'Kostümüm bile seni emdi 😈'],
+    // 🎭 2. set roller
+    kaptankost: ['Beyaz kaptan ceketim bembeyaz lekelendi, fark edilmez sanma ⚓💦', 'Apoletlerime kadar sıçradı 😳', 'Lacivert eteğimde parlıyor 🥵', 'Tayfa kaptanının üniformasını kirletti 😈', 'Ceketimin içine süzülüyor 😩'],
+    kralicekost: ['Kraliyet kadifemi kirlettin, hizmetkâr 👑💦', 'Mücevherlerimin üstünde parlıyor 💎', 'Pelerinime kadar sıçradı 😳', 'Bu elbise bir servet, ve şimdi sırılsıklam 🥵', 'Kraliçeni işaretledin… cezası ağır olacak 😈'],
+    androidkost: ['Siyah savaş elbisemde bembeyaz izler, analiz ediyorum 🤖💦', 'Göz bandıma kadar sıçradı 😳', 'Kumaş tenime yapıştı, sensörlerim sıcak 🥵', 'Görev kıyafetim kirlendi komutan 😈', 'Elbisemin içine süzülüyor, sistem uyarısı ⚠️'],
+    elfkost: ['Ay ışığından dokunmuş elbisem ıslandı 🧝‍♀️💦', 'Gümüş işlemelerimde parlıyor ✨', 'Yeşil elbisemin içine süzülüyor 🥵', 'Bin yıllık elbiseme ilk leke 😳', 'Elf prensesini işaretledin, şövalye 😈'],
+    hosteskost: ['Kırmızı ceketim sırılsıklam, inişe kadar kurumaz ✈️💦', 'Fularıma kadar sıçradı 😳', 'Kalem eteğimde bembeyaz izler 🥵', 'Çoraplarımdan aşağı süzülüyor 😩', 'Yolcuların önüne bu üniformayla çıkamam 😈'],
+    rahibekost: ['Siyah cübbemde bembeyaz izler… günah apaçık 📿💦', 'Beyaz yakama kadar sıçradı 😳', 'Cübbemin içine süzülüyor 🥵', 'Tespihime damladı 😩', 'Bu cübbeyle bir daha dua edemem 😈'],
+    taksikost: ['Deri ceketimde parlıyor, silinir ama iz kalır 🚕💦', 'Kot şortum sırılsıklam 🥵', 'Şoför şapkama kadar sıçradı 😳', 'Koltuk da ceket de kirlendi 😆', 'Bu yolculuğun ücreti ceketim oldu 😈'],
+    // 🍓 Meisove kızları
+    limonkost: ['Sarı elbisem ıslandı, limonata gibi oldu 🍋💦', 'Ekşi kumaşımda bembeyaz izler 😳', 'Elbisem jöle tenime iyice yapıştı 🥵', 'Limon ve krema… ilginç bir tat 😈', 'Elbisemin içine süzülüyor 💛'],
+    cilekkost: ['Kırmızı elbisemde bembeyaz… çilekli krema oldum 🍓💦', 'Yaprak tacıma kadar sıçradı 😳', 'Elbisem sırılsıklam, kızardım 🙈', 'Tam istediğim gibi, kremalı 😈', 'Beneklerimin arasına süzülüyor 🥵'],
+    portakalkost: ['Turuncu kabuğumda bembeyaz izler 🍊💦', 'Kabuk elbisemin içine süzülüyor 🥵', 'Portakal suyuna krema karıştı 😆', 'Güneş gibi parlıyor şimdi ☀️', 'Kabuğumu da işaretledin 😈'],
+    sarapkost: ['Bordo kadifemde bembeyaz izler, ne kontrast 🍷💦', 'Kadife her şeyi emdi 😳', 'Yıllanmış elbisem mahvoldu 🥵', 'Şarap lekesi gibi çıkmayacak 😈', 'Elbisemin içine süzülüyor 😩'],
+    vodkakost: ['Beyaz kürkümde fark edilmez sanma ❄️💦', 'Buz mavisi body\'m sıcacık oldu 🥵', 'Kürküme kadar sıçradı 😳', 'Buzum eridi, body\'m sırılsıklam 😩', 'Na zdorovye… üstüme 😈'],
+    balkost: ['Bal damlalı body\'mde bembeyaz damlalar 🍯💦', 'Bal ve krema birbirine karıştı, yapış yapış 🥵', 'Body\'m tenime iyice yapıştı 😳', 'Yalayarak temizlersin 😈', 'Body\'min içine süzülüyor 🐝'],
+    tekilakost: ['Fırfırlarıma kadar sıçradı 🌵💦', 'Rengarenk elbisemde bembeyaz izler 😳', 'Sombrero bile nasibini aldı 😆', 'Elbisem sırılsıklam, ¡ay caramba! 🥵', 'Fırfırlarımın içine süzülüyor 😈'],
+    sampanyakost: ['Pullarımda parlıyor, köpük gibi 🍾💦', 'Altın elbisemde bembeyaz izler ✨', 'Pulların arasından tenime süzüldü 🥵', 'Kutlamanın en güzel lekesi 😈', 'Elbisem sırılsıklam, şerefe 🥂'],
+    sutkost: ['Desenli bikinimde beyaz beyaza karıştı 🥛💦', 'Benim sütüm de seninki de aynı renk 😈', 'Bikinim yapış yapış, göğüslerim hâlâ damlıyor 🥵', 'Siyah beneklerim beyaza döndü 😆', 'Bikinimin içine süzülüyor 🐄']
+  };
+  /* 💦➕ fantezi kostümlerine ek boşalma cümleleri (CUM'a eklenir) */
+  const CUM_MORE = {
+    kedikost: ['Patilerime kadar bulaştı, yalamam lazım 🐾💦', 'Siyah kostümümde bembeyaz benekler, artık alacalı kediyim 😆', 'Kulaklarım dikildi, sıcacık 🐱', 'Mırr… kostümümün içi de ıslandı 😩', 'Sütünü kostümüme döktün, miyav 🥛😼', 'Kuyruğumu kaldırmıştım, fırsatı kaçırmadın 😈'],
+    tavsankost: ['Pamuk kuyruğum bembeyaz, artık fark edilmiyor 🐇💦', 'Papyonum ıslandı, kayıyor 😳', 'Saten kostümümde parlıyor 🥵', 'File çoraplarımın deliklerinden tenime süzülüyor 😩', 'Tavşanın havuçtan çok bunu seviyor 😈', 'Kulaklarım yamuldu, sen de yamulttun 😆'],
+    tilkikost: ['Kuyruğumun tüyleri birbirine yapıştı 🦊💦', 'Turuncu kürküm bembeyaz lekelendi 😳', 'Kurnaz tilki bu sefer avlandı 😏', 'Kostümümün fermuarından içeri süzülüyor 🥵', 'Tilki gibi yalayıp temizlerim 😈', 'Kulaklarıma kadar sıçradı, inanamıyorum 😆'],
+    kopekkost: ['Tasmamın tokasında parlıyor 🐶💦', 'Kulaklı bandıma kadar sıçradı 😳', 'Sahibim beni işaretledi 🥺', 'Dört ayak üstünde sırtımdan süzülüyor 😩', 'Kuyruğumu sallıyorum, aferin dedin mi? 🐾', 'İyi köpek ödülünü aldı 😈'],
+    unikornkost: ['Gökkuşağı yelem bembeyaz oldu 🌈💦', 'Boynuzuma kadar sıçradı 🦄😳', 'Simlerle karıştı, ışıl ışıl parlıyor ✨', 'Pembe kostümümün içine süzülüyor 🥵', 'Sihirli tozum ıslandı 😆', 'Unicorn sütü diye bir şey varmış demek 😈'],
+    kosum: ['Kayışlar arasında kalan tenim bembeyaz 😈💦', 'Göğüs halkama damlıyor ⛓️', 'Deri kayışlarım parlıyor şimdi 🥵', 'Bağlıyken kaçamadım, hepsi üstüme 😩', 'Kayışın altından süzülüyor, hissediyorum 😳', 'Koşumunu iyi doldurdun 😏'],
+    lateks: ['Lateksin üstünde boncuk boncuk duruyor 😈💦', 'Fermuarımın içine kaçtı 😳', 'Parlak siyahın üstünde bembeyaz yol 🥵', 'Lateksten aşağı kayıyor, yavaşça 😩', 'Silmeden bırak, parlıyor 😏', 'Catsuitim sıcacık, içim de 🖤'],
+    doktorkost: ['Beyaz önlüğümde fark edilmez sanma doktor bey… pardon hasta 😏💦', 'Steteskobuma kadar sıçradı 🩺😳', 'Önlüğümün içine, dar eteğime süzülüyor 🥵', 'Bu muayene raporu yazılmaz 😈', 'Yaka kartım bile ıslandı 😆', 'Tedavi başarılı, önlük mahvoldu 😩'],
+    hemsirekost: ['Hemşire şapkama kadar sıçradı 😳💦', 'Kırmızı haçın üstünde bembeyaz 🩺', 'Önlüğümün düğmeleri arasından içeri süzülüyor 🥵', 'Ateşini düşürdüm galiba 😏', 'Bu iğneyi ben yaptım sana 😈', 'Kısacık kostümüm sırılsıklam, nöbet bitti 😩'],
+    poliskost: ['Kelepçelerime damladı 🚔💦', 'Polis şapkamın siperliğinde parlıyor 😳', 'Delilleri üstüme bıraktın, suç tamam 😈', 'Üniformamın içine süzülüyor 🥵', 'Bu ifadeyi tutanağa yazıyorum 😏', 'Rozetim bembeyaz, rütbem düştü 😆'],
+    hizmetcikost: ['Dantel bonemi bile ıslattınız efendim 😳💦', 'Toz bezimi getireyim mi efendim? 🧹', 'Önlüğümün fırfırlarında parlıyor 🥵', 'Siyah eteğimin içine süzülüyor 😩', 'Temizlik listeme ekliyorum efendim 😈', 'Hizmetiniz beğenildi mi efendim? 😏'],
+    masozkost: ['Önlüğüm yağ ve seninle sırılsıklam 💆💦', 'Masaj masasına da damladı 😳', 'Önlüğümün yakasından içeri süzülüyor 🥵', 'Mutlu son, önlüğümde 😈', 'Ellerim yağlıydı, şimdi daha kaygan 😩', 'Rahatladın mı? Önlüğüm rahatlamadı 😆'],
+    sabahlik: ['Saten kuşağıma kadar sıçradı 😳💦', 'Sabahlığımın açık önünden göbeğime süzülüyor 🥵', 'Komşu kapısında böyle mi karşılanır? 😈', 'Saten tenime yapıştı 😩', 'Sabahlığım mahvoldu, seninkini ödünç alırım 😏', 'Kapı aralığında bıraktın izini 🤫'],
+    seytankost: ['Boynuzlarıma kadar sıçradı 😈💦', 'Kırmızı korsemde bembeyaz alevler 🔥', 'Şeytan kuyruğumdan aşağı süzülüyor 🥵', 'Ruhunu değil bunu aldım 😏', 'Cehennem bile bu kadar sıcak değil 😩', 'Kostümüm yandı, ben de 🔥'],
+    melekkost: ['Halem bembeyaz parlıyor, ama başka sebepten 😇💦', 'Beyaz tüylerime yapıştı 🪶', 'Melek kostümümün korsesinden içeri süzülüyor 🥵', 'Cennetten kovulmaya yeter 😈', 'Kanatlarım ağırlaştı 😩', 'Saflığım lekelendi, pişman değilim 😏'],
+    inekkost: ['Boynumdaki çan şıngırdadı, sıçradığında 🔔💦', 'Boynuzlu bandıma kadar ulaştı 😳🐮', 'Beneklerim karıştı, hangisi süt hangisi sen? 😆', 'Bikini üstümün içine süzülüyor 🥵', 'Çiftlik usulü, bol bol 🍼', 'Sağılmadan önce sen boşaldın 😈'],
+    // 🎃 Halloween
+    vampirkost: ['Pelerinimin kırmızı astarında bembeyaz 🧛‍♀️💦', 'Dantel eldivenlerime damladı 😳', 'Korsemin içine süzülüyor, kan gibi sıcak 🥵', 'Kontesin gecesi lekelendi 😈', 'Boynumdaki kolyeye kadar 🩸', 'Kan yerine bu… fena değil 😏'],
+    cadikost: ['Sivri şapkamın kenarında parlıyor 🧙‍♀️💦', 'Siyah elbisemin içine süzülüyor 🥵', 'Kazanıma yeni malzeme 🔮', 'File çoraplarımın ağlarında kaldı 😳', 'Bu büyü elbisemi bozdu 😈', 'Süpürgeme binmeden önce temizlenmem lazım 😆'],
+    falcikost: ['Eşarbımın saçaklarına damladı 🔮💦', 'Bileziklerim şıngırdadı, ıslandı ✨', 'Tül bluzum tenime yapıştı, her şey görünüyor 🥵', 'Kartlar bunu söylememişti 😳', 'Kahve falıma beyaz bir iz düştü 😈', 'Kehanet: bir tur daha 😏'],
+    rehberkost: ['Fenerimin ışığında parlıyor 🕯️💦', 'Siyah dantelim bembeyaz lekelendi 🖤', 'Korsemin bağcıklarına süzülüyor 🥵', 'Bu evin hayaletleri bile kıskandı 👻', 'Tur programında yoktu bu 😈', 'Eteğimin içine süzülüyor, ürperdim 😳'],
+    maskeli: ['Dantel maskemin kenarına kadar 🎭💦', 'Uzun elbisemin eteğinde parlıyor ✨', 'Sırt dekoltemden aşağı süzülüyor 🥵', 'Kim olduğumu bilmiyorsun ama işaretledin 😈', 'Baloda kimse anlamayacak… umarım 😳', 'Maskem düşmedi, elbisem mahvoldu 😏'],
+    karakedikost: ['Siyah body\'mde bembeyaz yol 🐈‍⬛💦', 'Patilerim yapış yapış 😆', 'Tasmamın çıngırağına damladı 🔔', 'Uğursuzluk mu? Bence şans 😈', 'Body\'min fermuarından içeri süzülüyor 🥵', 'Miyav… dokuz canımdan biri gitti 😩'],
+    mumyakost: ['Sargılarım tenime yapıştı, çıkaramıyorum 🏺💦', 'Bin yıllık sargılara ilk leke 😳', 'Sargıların arasından göbeğime süzülüyor 🥵', 'Firavun laneti değil, senin lanetin 😈', 'Altın kolyeme damladı 👑', 'Artık yeniden sarılmam lazım 😆'],
+    hayaletkost: ['Tülüm tamamen şeffaf oldu, görünür oldum 👻💦', 'Beyaz tülde beyaz… ama hissediyorum 🤍', 'Tül tenime yapıştı, ürperdim 🥵', 'Hayaletin bile sıcacık oldu 😳', 'Artık içinden geçemezsin, tülüm yapışık 😆', 'Ruhum ıslandı 😈'],
+    perikost: ['Peri tozumla karıştı, ışıl ışıl ✨💦', 'Kanatlarımın kenarına damladı 🧚‍♀️', 'Yaprak elbisemin arasından süzülüyor 🥵', 'Saçımdaki çiçeklere kadar 🌸', 'Uçamam artık, kanatlarım ağır 😩', 'Orman perisi sulandı 😆'],
+    denizkizikost: ['Kabuklarımın içine doldu 🐚💦', 'Pullarımda inci gibi duruyor 🦪', 'Pullu eteğimden aşağı süzülüyor 🥵', 'Deniz kızı karada ıslandı 😈', 'Yüzgecim yapış yapış 😆', 'Okyanus köpüğü gibi beyaz 🌊'],
+    slimekost: ['Jöle body\'m seni emiyor, kayboldu 🫠💦', 'Yeşilin içinde beyaz bir bulut 💚', 'Eldivenlerime yapıştı 😆', 'Lateksim ısındı, eriyorum 🥵', 'Yapışkan üstüne yapışkan 😈', 'Artık bir parçam oldun 😳'],
+    // 🎭 2. set roller
+    kaptankost: ['Kaptan şapkamın altın şeridine damladı ⚓💦', 'Lacivert eteğimin içine süzülüyor 🥵', 'Pusulama bile bulaştı 🧭', 'Seyir defterine yazılacak bir leke 😈', 'Üniformam fırtınadan çıkmış gibi 🌊', 'Tayfa, bunu sen temizleyeceksin 😏'],
+    kralicekost: ['Tacıma kadar sıçradı, cüret ettin 👑💦', 'Altın işlemelerimde inci gibi duruyor 💎', 'Kadife korsemin içine süzülüyor 🥵', 'Kraliyet tarihine geçecek bir leke 😈', 'Pelerinimin ucunda parlıyor ✨', 'Hizmetkâr, bunun cezası tahtımın önünde 😏'],
+    androidkost: ['Çizmelerime kadar süzüldü 🤖💦', 'Göz bandım ıslandı, görüşüm bulanık 😳', 'Sentetik tenim bunu emmiyor, üstümde duruyor 🥵', 'Veri kaydedildi: sıcak, beyaz, çok 😈', 'Savaş elbisem kısa devre yaptı ⚡', 'Komutan, görev kıyafetim temizlenmeli 😏'],
+    elfkost: ['İnce tacımda parlıyor 🧝‍♀️💦', 'Yaprak yeşili elbisemin yırtmacından içeri 🥵', 'Gümüş saçlarıma kadar sıçradı 🌙', 'Ölümlü tohumu bir elf elbisesinde 😈', 'Elfçe bunun bir adı yok 😳', 'Bin yıl da geçse bu leke kalacak 😏'],
+    hosteskost: ['Ten rengi çoraplarımdan aşağı süzülüyor ✈️💦', 'Yaka kartıma kadar sıçradı 😳', 'Kırmızı rujumla karıştı 💄', 'Kalem eteğimin yırtmacından içeri 🥵', 'Kaptan anons yapmadan bitti 😈', 'Yedek üniformam bagajda… 😏'],
+    rahibekost: ['Başörtüme kadar sıçradı 📿💦', 'Beyaz yakam artık lekeli 😳', 'Tespih tanelerinde parlıyor 🕯️', 'Cübbemin içinden dizlerime süzülüyor 🥵', 'Bu günahı itiraf edemem 😈', 'Kutsal kumaş bunu affetmez 😩'],
+    taksikost: ['Deri ceketimin fermuarında parlıyor 🚕💦', 'Kot şortumun içine süzülüyor 🥵', 'Şoför şapkamın siperliğine damladı 😳', 'Taksimetre durdu, ben de 😈', 'Koltuk kılıfı da nasibini aldı 😆', 'Bu yolculuk bahşişli oldu 😏'],
+    // 🍓 Meisove kızları
+    limonkost: ['Sarı elbisem şeffaflaştı, jöle tenim görünüyor 🍋💦', 'Ekşi suyum seninle karıştı 😈', 'Elbisemin eteğinden damlıyor 💛', 'Limonlu krema, tatlı ekşi 😋', 'Sıkmadan taştım 🥵', 'Elbisem limonata gibi kokuyor şimdi 😆'],
+    cilekkost: ['Yeşil yaprak tacıma kadar sıçradı 🍓💦', 'Kırmızı elbisemde krema gibi 🍰', 'Benekli kumaşımın içine süzülüyor 🥵', 'Çilek pasta oldum 😆', 'Utancımdan elbisemden daha kırmızıyım 🙈', 'Tam istediğim krema 😈'],
+    portakalkost: ['Kabuk elbisemin dokusunda parlıyor 🍊💦', 'Dilimlerimin arasına süzüldü 🥵', 'Portakal çiçeği kokuma karıştı 🌼', 'Turuncu ve beyaz, dondurma gibi 🍦', 'Güneş gibi parlıyorum, ıslak ☀️', 'Kabuğumu soymadan doldurdun 😈'],
+    sarapkost: ['Bordo kadifem kremayla mermer gibi oldu 🍷💦', 'Yırtmacımdan bacağıma süzülüyor 🥵', 'Kadehime de damladı, karıştırayım mı? 🥂', 'Yıllanmış elbisemde taze bir iz 😈', 'Mum ışığında parlıyor 🕯️', 'Kadife her damlayı emdi 😩'],
+    vodkakost: ['Beyaz kürkümde kayboldu, ama hissediyorum ❄️💦', 'Buz mavisi body\'m buğulandı 🥵', 'Kürkümün tüyleri yapıştı 😳', 'Vodka ve krema, beyaz Rus 🍸', 'Body\'min dantelinden tenime geçti 😈', 'Davay… her yerime 😩'],
+    balkost: ['Bal damlalarımın arasında beyaz damlalar 🍯💦', 'Body\'m iki kat yapışkan oldu 🥵', 'Arılar bile şaşırır 🐝', 'Body\'min içine ağır ağır süzülüyor 😩', 'Ballı krema, en sevdiğim 😋', 'Artık hiç çıkmaz bu body 😈'],
+    tekilakost: ['Sombreromun kenarından damlıyor 🌵💦', 'Fırfırlı yakama kadar sıçradı 😳', 'Rengarenk eteğimin içine süzülüyor 🥵', 'Margarita gibi, kremalı 🍸', 'Fırfırlarımın arasında kayboldu 😆', '¡Olé! elbisem bitti 😈'],
+    sampanyakost: ['Pullarımın arasında köpük gibi 🍾💦', 'Altın elbisem sırılsıklam, ışıl ışıl ✨', 'Askımdan göğsüme süzülüyor 🥵', 'Kadeh tokuşturmadan taştın 🥂', 'Konfetilerim yapış yapış 🎉', 'Gece yarısı patlaması 😈'],
+    sutkost: ['İnek desenli bikinim beyaz beyaza karıştı 🥛💦', 'Bikini ipimden aşağı süzülüyor 🥵', 'Göğüslerimden akanla buluştu 😈', 'Samanlara da damladı 🌾', 'Bikinimin üçgenleri sırılsıklam 😩', 'Sürahim taştı, sen de 😆']
+  };
+  Object.entries(CUM_MORE).forEach(([k, v]) => { CUM[k] = (CUM[k] || []).concat(v); });
+  /* 🔁 ortak cümleler: her yuvada parçanın adıyla ({K} büyük harfle, {k} küçük). Kostümlerde ve "-sız" parçalarda kullanılmaz */
+  const GEN = {
+    ust: {
+      t: ['Bugün üstümde {k} var, beğendin mi? 😏', '{K}… sence fazla mı dar? 🙈', 'Aynada baktım: {k} tam oturmuş 😌', 'Üstümde {k}; altında ne olduğunu tahmin et 😈'],
+      show: ['{K} yukarı kalktı… kazara değil 😈', 'Şu {k} artık bir şey saklamıyor, bak 😏', '{K} kaydı, göğüslerim ortada 🥵', 'Biraz eğiliyorum, {k} açılıyor 😏'],
+      off: ['{K} yerde, sıra sende 😈', 'Bu {k} gitti, üstümde başka ne kaldı? 😏', '{K} çıktı, saçlarım dağıldı 😅', 'Yavaşça çıkarıyorum… {k} yere süzüldü 🥵']
+    },
+    alt: {
+      t: ['Altımda {k} var, kalçamı nasıl sarıyor bak 🍑', 'Bugün {k} seçtim, arkamdan bakmayı unutma 😏', 'Bu {k} bacaklarımı uzun gösteriyor değil mi? 😌', '{K}… altında ne var, merak ediyor musun? 😈'],
+      show: ['{K} biraz aşağı kaydı, görüyor musun? 😈', 'Eğiliyorum… {k} kalçamı saklayamıyor artık 🍑', 'Şu {k} açıldı, bak 😏', '{K} yukarı sıyrıldı 🥵'],
+      off: ['{K} ayak bileklerimde 😈', 'Bu {k} da gitti 😏', '{K} yere düştü, adım atıp çıkıyorum 🥵', 'Tek hareket: {k} yok artık 😈']
+    },
+    elbise: {
+      t: ['Bugün {k} giydim, nasıl olmuşum? 💃', 'Üstümde {k} var, sadece senin için 😏', '{K}… vücuduma tam oturuyor 😌', 'Bu {k} ile dönünce her şey uçuşuyor 🙈'],
+      show: ['{K} omzumdan kaydı, tutmuyorum 😈', '{K} yukarı sıyrıldı, kalçam ortada 🍑', 'Şu {k} artık hiçbir şey saklamıyor 🥵', '{K} aralandı, bak 😏'],
+      off: ['{K} ayaklarımın dibinde 😈', 'Bu {k} gitti, ben kaldım 🥵', '{K} yavaşça yere süzüldü 😏', 'Fermuar indi, {k} düştü 😈']
+    },
+    sutyen: {
+      t: ['Altımda {k} var, görmek ister misin? 😏', 'Bugün {k} seçtim, uçlarım belli mi? 🙈', 'Bu {k} göğüslerimi sana sunuyor gibi 😈'],
+      show: ['{K} göründü, beğendin mi? 😏', 'Şu {k} kaydı, uçlarım ortada 🥵', '{K} göğüslerimi zor tutuyor 😈'],
+      off: ['{K} yere düştü 😈', 'Bu {k} da gitti, göğüslerim serbest 🥵', '{K} çıktı, şimdi tamamen seninim 😏']
+    },
+    tanga: {
+      t: ['Altımda {k} var, sadece sen bileceksin 🤫', 'Bugün {k} seçtim, tahmin edemezdin 😈', '{K}… incecik, hissetmiyorum bile 😏'],
+      show: ['{K} göründü, bak 😈', 'Şu {k} kenara kaydı 🥵', '{K} kalçama gömüldü, görüyor musun? 🍑'],
+      off: ['{K} bacaklarımdan kaydı 😈', 'Bu {k} gitti, altım çıplak 🥵', '{K} yerde, dişlerinle mi alacaktın? 😏']
+    },
+    corap: {
+      t: ['Bacaklarımda {k} var 😏', 'Bugün {k} seçtim, dokunmak ister misin? 🦵', 'Bu {k} bacaklarımı uzun gösteriyor 😌'],
+      show: ['Bacağımı uzattım, {k} parlıyor 😈', 'Eteğimi kaldırınca {k} görünüyor 😏', 'Şu {k} bacaklarımı sarıyor, bak 🦵'],
+      off: ['{K} kalsın mı yoksa? 😏', 'Bu {k} yavaşça bacağımdan iniyor 😈', '{K} çıktı, çıplak bacaklarım senin 🥵']
+    }
+  };
+  /* 💦 boşalmada hâlâ üstündeyse: onun cümleleri (hers) ve senin mesajın (me). Bölge: gogus, kalca, bacak, icine (tanga kenara / etek sıyrık) */
+  const CUMW = {
+    hers: {
+      gogus: ['{K} sırılsıklam oldu, göğüslerime yapıştı 🥵💦', 'Bak, {k} bembeyaz lekelendi 😳', '{K} mahvoldu… umurumda değil 😈', '{K} ıslandı, uçlarım belli oluyor şimdi 🙈', 'Çıkarmama izin vermedin, {k} üstümdeyken boşaldın 😩'],
+      kalca: ['{K} arkadan sırılsıklam oldu 🥵💦', '{K} kalçama yapıştı, sıcacık 😩', '{K} bembeyaz lekelendi, dönüp bakamıyorum 🙈', '{K} mahvoldu… yine de giyeceğim 😈', 'Kumaşın içinden tenime geçiyor 😳'],
+      bacak: ['{K} sırılsıklam oldu, bacaklarıma yapıştı 🥵💦', '{K} boyunca süzülüyor 😩', '{K} bembeyaz lekelendi 😳', '{K} mahvoldu, çıkarsam mı artık? 😏', 'Dizlerime kadar akıyor, {k} parlıyor 😈'],
+      aside: ['{K} kenara çekiliydi, içime boşaldın… hâlâ üstümde 🥵💦', '{K} çıkmadı bile, yana çektin ve doldurdun 😩', 'Şimdi {k} yerine dönünce içime akanı tutacak… ya da tutamayacak 😈', 'Kalktım, {k} sırılsıklam oluyor 😳'],
+      up: ['{K} hâlâ üstümde, sadece sıyırdın ve içime boşaldın 🥵💦', '{K} buruş buruş oldu, içim sıcacık 😩', 'Soyunmaya bile fırsat vermedin, {k} üstümdeyken doldurdun 😈', '{K} aşağı inince kimse anlamayacak… ama ben bileceğim 😏']
+    },
+    me: {
+      gogus: ['{K} üstüne boşalıyorum, kumaş sırılsıklam oluyor… ahhh {o} 💦', 'Göğüslerine, tam {k} üstüne fışkırıyor offf 🥵', 'Bak, {k} bembeyaz lekelendi 😈', 'Şu {k} mahvoldu, uçların kumaşın altından belli oluyor 😏', 'Çıkarmana fırsat vermeden {k} üstüne bırakıyorum… ahh 😩'],
+      kalca: ['{K} üstüne, kalçana boşalıyorum… ahhh {o} 💦', 'Kalçandaki {k} bembeyaz oldu offf 🥵', '{K} sıcacık ıslandı, kalçana yapıştı 😈', 'Arkandan {k} üstüne bırakıyorum, sırılsıklam 😩', 'Kumaşın içinden tenine geçiyor… ahh 😏'],
+      bacak: ['{K} boyunca süzülüyor… ahhh {o} 💦', 'Bacaklarına, {k} üstüne boşalıyorum offf 🥵', 'Şu {k} parlıyor şimdi 😈', '{K} sırılsıklam, bacağına yapıştı 😏', 'Dizlerine kadar akıyor, {k} bembeyaz… ahh 😩'],
+      aside: ['{K} kenara çekili, içine boşalıyorum… ahhh {o} 💦', '{K} çıkarmadan içini dolduruyorum offf 😩', 'Bırakınca {k} yerine dönecek ve her şeyi tutacak 😈', '{K} yana çekili, son damlaya kadar içine… ahh 🥵'],
+      up: ['{K} beline sıyrılmış, içine boşalıyorum… ahhh {o} 💦', '{K} buruş buruş, ben içindeyim offf 😩', 'Soymaya bile vakit yok, {k} üstündeyken dolduruyorum 😈', '{K} aşağı inince kimse anlamayacak… ahh 😏']
+    }
   };
   const items = L.map(([id, slot, name, emoji, style, t, show, off]) => ({ id, slot, name, emoji, style, t, show, off, ...(CUM[id] ? { cum: CUM[id] } : {}), ...(FANT[id] ? { fant: FANT[id] } : {}) }));
   /* 🧥 hazır kombinler: parts = { yuva: kıyafet } (verilmeyen yuva boş kalır); fant: o fantezi / rol olunca giyilir; say: giyince söylediği */
@@ -293,5 +431,5 @@ Stories.CLOTHES = (() => {
     { id: 'plaj4', name: 'Plaj · mayo', emoji: '🩱', parts: { elbise: 'mayo' }, say: ['Tek parça mayomu giydim 🩱'] },
     { id: 'plaj5', name: 'Plaj · tanga bikini', emoji: '🍑', parts: { sutyen: 'pushupbikini', tanga: 'tangabikini' }, say: ['Push-up bikini ve tanga altı… herkes bakıyor 😏'] }
   ];
-  return { slots: SLOTS, items, combos: COMBOS };
+  return { slots: SLOTS, items, combos: COMBOS, gen: GEN, cumw: CUMW };
 })();

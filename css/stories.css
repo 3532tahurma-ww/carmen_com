@@ -3279,3 +3279,32 @@ button.cr-and:active { transform: scale(.9); }
 .kd-row div { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
 .kd-row em { font-style: normal; font-size: 12px; padding: 3px 9px; border-radius: 999px; background: var(--chip); }
 .kd-row em.ok { background: var(--pink-soft); font-weight: 600; }
+
+/* 🏙️ CarmenCity (#/sehir): kuşbakışı harita; yollar ve kumsal/deniz arka plan katmanları, binalar % konumla */
+.ws-city { --ws: #00897b; }
+.cc-clock { display: flex; align-items: center; gap: 10px; padding: 12px var(--pad); }
+.cc-clock b { min-width: 52px; font-size: 18px; }
+.cc-clock input { flex: 1; min-width: 0; accent-color: var(--ws); }
+.cc-map { position: relative; width: calc(100% - 2 * var(--pad)); max-width: 520px; margin: 0 auto; aspect-ratio: 3 / 5; border-radius: 18px; overflow: hidden; box-shadow: 0 6px 20px rgba(0, 0, 0, .18);
+  background:
+    linear-gradient(transparent 83%, #e8c98a 83%, #e8c98a 87%, #29b6f6 87%),
+    linear-gradient(transparent calc(31% - 5px), #78797d calc(31% - 5px), #78797d calc(31% + 5px), transparent calc(31% + 5px), transparent calc(48% - 5px), #78797d calc(48% - 5px), #78797d calc(48% + 5px), transparent calc(48% + 5px), transparent calc(65% - 5px), #78797d calc(65% - 5px), #78797d calc(65% + 5px), transparent calc(65% + 5px)),
+    linear-gradient(#8bc34a, #8bc34a) 0 0 / 100% 31% no-repeat,
+    linear-gradient(90deg, transparent calc(34% - 5px), #78797d calc(34% - 5px), #78797d calc(34% + 5px), transparent calc(34% + 5px), transparent calc(66% - 5px), #78797d calc(66% - 5px), #78797d calc(66% + 5px), transparent calc(66% + 5px)),
+    #6fae3e; }
+.cc-map::after { content: ''; position: absolute; inset: 0; pointer-events: none; transition: background .4s; }
+.cc-map.cc-sabah::after { background: rgba(255, 200, 120, .15); }
+.cc-map.cc-aksam::after { background: rgba(255, 110, 40, .2); }
+.cc-map.cc-gece::after { background: rgba(8, 16, 60, .5); }
+.cc-b { position: absolute; z-index: 2; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 0; border: 0; background: none; cursor: pointer; }
+.cc-ic { display: grid; place-items: center; width: 52px; height: 44px; font-size: 26px; background: var(--cc); border: 2px solid rgba(255, 255, 255, .75); border-radius: 10px 10px 6px 6px; box-shadow: 0 4px 0 rgba(0, 0, 0, .25), 0 6px 12px rgba(0, 0, 0, .25); transition: transform .15s; }
+.cc-gece .cc-ic { box-shadow: 0 4px 0 rgba(0, 0, 0, .3), 0 0 14px rgba(255, 230, 140, .55); }
+.cc-b small { padding: 1px 6px; border-radius: 8px; font-size: 11px; font-weight: 700; white-space: nowrap; color: #fff; background: rgba(0, 0, 0, .55); }
+.cc-b.on .cc-ic { transform: scale(1.1); outline: 3px solid #fff; outline-offset: 2px; }
+.cc-avs { display: flex; align-items: center; margin-bottom: -4px; }
+.cc-avs .ava { margin-left: -8px; border: 2px solid #fff; border-radius: 50%; box-shadow: 0 2px 4px rgba(0, 0, 0, .3); }
+.cc-avs .ava:first-child { margin-left: 0; }
+.cc-avs i { margin-left: -6px; padding: 2px 5px; border-radius: 10px; font-size: 11px; font-style: normal; font-weight: 700; color: #fff; background: rgba(0, 0, 0, .65); }
+.cc-home .cc-ic { width: 40px; height: 32px; font-size: 20px; border-radius: 12px 12px 4px 4px; }
+.cc-home small { font-size: 10px; }
+@media (max-width: 380px) { .cc-ic { width: 44px; height: 38px; font-size: 22px; } .cc-b small { font-size: 10px; } .cc-home .cc-ic { width: 36px; height: 30px; font-size: 18px; } }
