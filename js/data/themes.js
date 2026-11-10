@@ -76,6 +76,26 @@ Stories.Themes = {
     { id: 'mucevher', label: 'Mücevher kalp', icon: '💎', bg: 'kalp-kolye', bubble: 'kalp', note: 'Amor Lv.5: mücevher kalp + kalpli baloncuklar' },
     { id: 'halloween', label: 'Halloween', icon: '🎃', bg: 'halloween', bubble: 'halloween', note: 'Turuncu-mor, mum ışıklı Cadılar Bayramı' }
   ],
+  // 🦄 Fanteziye göre sohbet teması: fantezi olayı olunca sohbet bu [arka plan, baloncuk]'a geçer (anahtar = app.js fantKey; fxdiger = listede olmayanlar)
+  fantasy: {
+    fxkedi: ['pastel-lila', 'seker'], fxinek: ['pastel-bulut', 'cloud'], fxtavsan: ['pastel-pembe', 'seker'], fxtilki: ['sunset', 'pastel-seftali'],
+    fxkopek: ['coffee', 'pastel'], fxunikorn: ['pastel-gokkusagi', 'pastel-sise'], fxbag: ['dark', 'mono'], fxgizli: ['night', 'gece-neonu'],
+    fxtoy: ['pembe-ruya', 'neon'], fxkarin: ['pembe-ruya', 'kalp'], fxdolum: ['pembe-ruya', 'kalp'], fxayna: ['galaksi', 'glass'],
+    fxrpklinik: ['pastel-mavi', 'imessage'], fxrpprof: ['coffee', 'paper'], fxrpofis: ['coffee', 'paper'], fxrpkampus: ['pastel-nane', 'comic'],
+    fxrpmuayene: ['pastel-mavi', 'imessage'], fxrpsorgu: ['dark', 'terminal'], fxrpkapi: ['rose', 'whatsapp'], fxrpev: ['carmen-acik', 'carmen-pastel'],
+    fxrpmasaj: ['sunset', 'pastel-gul'], fxrpavukat: ['night', 'paper'], fxrppsikolog: ['pastel-lila', 'pastel-lila'], fxrpgardiyan: ['dark', 'mono'],
+    fxrppizza: ['sunset', 'retro'], fxrpressam: ['carmen-acik', 'paper'], fxrpdans: ['ucan-kalpler', 'neon'], fxrpfizyo: ['pastel-nane', 'pastel-nane'],
+    fxrptaksi: ['night', 'gece-neonu'], fxrpmelek: ['pastel-bulut', 'cloud'], fxrpkaptan: ['ocean', 'glass'], fxrpkral: ['kalp-kolye', 'gold'],
+    fxrprobot: ['galaksi', 'terminal'], fxrpelf: ['forest', 'pastel-nane'], fxrphostes: ['pastel-mavi', 'insta'], fxrprahibe: ['dark', 'paper'],
+    // 🎃 Halloween rolleri
+    fxrpvampir: ['halloween', 'halloween'], fxrpcadi: ['halloween', 'halloween'], fxrpfalci: ['halloween', 'halloween'], fxrpperili: ['halloween', 'halloween'],
+    fxrpmaske: ['halloween', 'halloween'], fxrpkarakedi: ['halloween', 'halloween'], fxrpmumya: ['halloween', 'halloween'], fxrpsuccubus: ['halloween', 'halloween'],
+    fxrphayalet: ['halloween', 'halloween'], fxrpperi: ['forest', 'galaksi'], fxrpdenizkizi: ['ocean', 'glass'], fxrpslime: ['pastel-nane', 'glass'],
+    // 🍓 Meisove kızları
+    fxrplimon: ['pastel-limon', 'pastel-limon'], fxrpcilek: ['pastel-pembe', 'seker'], fxrpportakal: ['pastel-seftali', 'pastel-seftali'], fxrpsarap: ['rose', 'kalp'],
+    fxrpvodka: ['night', 'glass'], fxrpbal: ['sunset', 'altin-isilti'], fxrptekila: ['sunset', 'retro'], fxrpsampanya: ['kalp-kolye', 'altin-isilti'], fxrpsut: ['pastel-bulut', 'cloud'],
+    fxdiger: ['pembe-ruya', 'kalp']
+  },
   // Grupta üyelere tek tek verilebilen baloncuk renkleri
   memberColors: [
     ['#ff6fa8', '#ff3d8b'], ['#a78bfa', '#7b5cff'], ['#5fb4ff', '#2f6bff'], ['#34e3a8', '#0e9f8e'], ['#ffb72b', '#ff7a3d'],

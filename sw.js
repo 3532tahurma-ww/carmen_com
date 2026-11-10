@@ -1,10 +1,10 @@
-/*
- * Amor Stories - Service worker (çevrimdışı çalışma)
- * Uygulama dosyaları kurulumda önbelleğe alınır; açılışta önbellekten gelir,
- * arka planda güncellenir (stale-while-revalidate). Fotoğraflar ilk görüldüklerinde saklanır.
- * Yeni sürüm yayınlarken VERSION'ı artır, eski önbellek silinir.
+﻿/*
+ * Amor Stories - Service worker (Ã§evrimdÄ±ÅŸÄ± Ã§alÄ±ÅŸma)
+ * Uygulama dosyalarÄ± kurulumda Ã¶nbelleÄŸe alÄ±nÄ±r; aÃ§Ä±lÄ±ÅŸta Ã¶nbellekten gelir,
+ * arka planda gÃ¼ncellenir (stale-while-revalidate). FotoÄŸraflar ilk gÃ¶rÃ¼ldÃ¼klerinde saklanÄ±r.
+ * Yeni sÃ¼rÃ¼m yayÄ±nlarken VERSION'Ä± artÄ±r, eski Ã¶nbellek silinir.
  */
-const VERSION = 'amor-stories-v703';
+const VERSION = 'amor-stories-v710';
 const CORE = [
   './', './index.html', './manifest.json', './css/style.css', './css/stories.css', './css/dark.css',
   './js/store.js', './js/i18n.js', './js/data/i18n-en.js', './js/data/i18n-en-ads.js', './js/data/i18n-en-ads2.js', './js/data/i18n-en-ads3.js', './js/data/i18n-en-labels.js', './js/data/i18n-en-ui2.js', './js/data/i18n-en-sites.js', './js/data/i18n-en-books.js', './js/data/i18n-en-misc.js', './js/data/i18n-en-events.js', './js/data/i18n-en-bot.js', './js/data/i18n-en-chat.js', './js/data/bot-en.js','./js/data/traits.js', './js/data/amor-pools.js', './js/data/pools.js', './js/data/world.js', './js/data/photos.js', './js/data/mod-photos.js', './js/data/mods.js', './js/data/themes.js', './js/data/me-lines.js', './js/data/fant-interrupts.js','./js/data/places.js', './js/data/monia.js', './js/data/effects.js', './js/data/emojis.js', './js/data/bot-rules.js', './js/data/clothes.js', './js/data/fiery.js','./js/bot.js', './js/gallery.js', './js/music.js','./js/data/system.js', './js/app.js',
@@ -28,17 +28,17 @@ self.addEventListener('fetch', e => {
   const req = e.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
-  // yerel düzenleme (yerel-duzenleme.bat, localhost): önbellek yok, her şey diskten taze gelir
+  // yerel dÃ¼zenleme (yerel-duzenleme.bat, localhost): Ã¶nbellek yok, her ÅŸey diskten taze gelir
   if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) return;
   if (url.pathname.includes('/tools/') || url.pathname.startsWith('/api/')) return;
-  // 🎧 Music/ mp3'leri: tarayıcının kendi önbelleği (parça parça istenir, burada saklanmaz)
+  // ðŸŽ§ Music/ mp3'leri: tarayÄ±cÄ±nÄ±n kendi Ã¶nbelleÄŸi (parÃ§a parÃ§a istenir, burada saklanmaz)
   if (url.pathname.includes('/Music/')) return;
 
-  // 🖼️ Lara Gallery (js/gallery.js): albums.json her zaman ağdan; fotoğrafların adı değişmez, önce önbellek
+  // ðŸ–¼ï¸ Lara Gallery (js/gallery.js): albums.json her zaman aÄŸdan; fotoÄŸraflarÄ±n adÄ± deÄŸiÅŸmez, Ã¶nce Ã¶nbellek
   const gallery = url.pathname.includes('/lara-gallery/');
   if (gallery && url.pathname.endsWith('.json')) return;
 
-  // Karakter ve mod fotoğrafları: önce önbellek
+  // Karakter ve mod fotoÄŸraflarÄ±: Ã¶nce Ã¶nbellek
   if (gallery || (url.origin === location.origin && (url.pathname.includes('/characters/') || url.pathname.includes('/mods/')))) {
     e.respondWith(caches.open(IMG_CACHE).then(async cache => {
       const hit = await cache.match(req);

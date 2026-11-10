@@ -413,6 +413,7 @@
       case 'deney': return renderBotLab();
       case 'kesinti': return renderFantIntLab();
       case 'kiyafet': return renderClothesLab();
+      case 'ilankural': return renderAdRulesLab();
       case 'esles': case 'tinder': return renderMatch();
       case 'booble': return renderBooble();
       case 'carmen': return renderCarmen(r.id, r.extra);
@@ -496,6 +497,9 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['🎭', 'Kişilik Kitabı', 'Utangaç, Kibirli, Flörtöz, Soğuk… her kişilik nasıl konuşur? Yeni 🎭 Kişilik Kitabı her kişiliğin olaylardaki ve durumlardaki cevaplarını, cevap eklerini, soru tarzını ve başka cevaplardaki varyantlarını gösterir. 😤 Kıskançlık (başka bir kızın adını anınca) ve ⌨️ Yazım tarzı da burada. ❓ Sorular Kitabı\'na da yeni bölüm: onun soruları ve senin evet / hayır cevabın.', '#/kitap/kisilik/0'],
+    ['💐', 'Övgü Kitapçığı', 'Soru dışında yazdıklarına ne cevap gelir? Yeni 💐 Övgü Kitapçığı iltifatları, kaba sözleri, azgın sözleri, sevişirken yazdıklarını, komutları ve sohbeti konularına göre listeler: nasıl yazılır, cevabı neye bakar (kişilik, fantezi, sevişme anı).', '#/kitap/ovgu/0'],
+    ['❓', 'Sorular Kitabı', 'Karakterini tanımak için ona ne sorabilirsin? Yeni ❓ Sorular Kitabı bütün soruları konularına göre listeler: nasıl sorulur, cevabı neye bakar. Yeni sorular: "Sevişmek ister misin?", "Benimle yatar mısın?", "Seni ne azdırır?", "Seks senin için önemli mi?", "Seksten sonra ne yaparsın?"… (İstekliliğe göre); "Arkadan / Önden / Oral / Anal sever misin?", ön sevişme, göğüs, kalça, ayak, el, yalanmak, sert, yavaş (sevdiği pozisyonlara göre, çoğu zaman en sevdiğini de söyler).', '#/kitap/soru/0'],
     ['🎭', 'Roller her yerde', 'Fanteziler sitelere geldi: Carmen.com ve Gothic\'te 🎭 rol ilanları (ön görüşmesiz, kostümle başlar), CarmenParty\'de 🎭 Kostüm partisi, CarmenFlix\'te 8 rol dizisi (bitince 🎭 Rolü oyna), CarmenJobs\'ta hostes, kaptan, şoför, mühendis… mesleğine uyan rol. CarmenShop\'tan alınan rol kostümü gelince karakter giyer ve rolü teklif eder.', '#/carmen'],
     ['🥛', 'Meisove\'de Süt Kız', 'Meisove.com\'a 🥛 Süt Kız geldi: bembeyaz, kremalı ve göğüsleri hep dolu. Çiftlik evinde kendi kuralları, baloncukları, kesintileri ve 🥚 egg\'leri var.', '#/meisove'],
     ['🛁', '7 yeni mekân', 'Yeni olay kategorileri: 🛁 Küvet & jakuzi, 🏖️ Havuz, 🚗 Araba, 🛗 Asansör, 🏕️ Kamp, 🍳 Mutfak ve 🎥 Kamera. Her birinin kendi pozisyonları ve bitişleri var. Havuzda, arabada, asansörde ve kampta biri görebilir, o yüzden kesintiler daha sık. Asansörde bazen 🔔 kat gelir. Mutfakta meyve kızlarının kremayla ayrı cevapları var.', '#/kitap/olay'],
@@ -7396,7 +7400,7 @@
         if (eq) {
           const only = { ...rules, rules: (rules.rules || []).filter(r => (r.when || []).includes('=' + eq.s)) };
           const m = only.rules.length && BOT.best(only, `evq ${eq.s}`, ch);
-          if (m && !m.fallback) return { ...m, evq: eq.title };
+          if (m && !m.fallback) return { ...m, evq: eq.title, evqFav: eq.fav };
         }
         // 🎯 olayın kendi cevap havuzu varsa (r_ev_/r_pc_/r_cm_/r_dl_/r_dr_: pozisyon, boşalma, boyut, içki) genel ❤️/💔 ve kişilik cevapları onu çoğu zaman ezmesin
         const ownEv = opts.events ? BOT.best(rules, userMsg.text, ch, false) : null;
@@ -7498,6 +7502,8 @@
       const dEv = opts.events && domEvPool(ch, opts.olay);
       if (dEv) parts.push(pickOne(dEv));
       if (m.evq) parts = parts.map(p => p.replace(/\{olay\}/g, m.evq));
+      // 🍑 pozisyon grubu sorusunda en sevdiği pozisyon
+      if (m.evqFav && Math.random() < .7) parts.push(pickOne(['En çok {f} 😈', 'Özellikle {f}… 🥵', '{f} en sevdiğim 😏']).replace('{f}', m.evqFav));
       // 😤 kıskançlık: anılan ad cevaba girer, 😤 Kıskançlık +6
       if (m.other) {
         parts = parts.map(p => p.replace(/\{diger\}/g, capTr(m.other)));
@@ -7621,6 +7627,8 @@
       if (!isQ && !qid.startsWith('r_rude')) moanParts(parts, sexPhase());
       // kabalığa kırgın cevapta ve soru cevabında (kişiliği çerçeve verdi) kişilik eki yok; yazım tarzı yine uygulanır
       personaParts(parts, ch, String(m.rule.id).startsWith('r_rude') || isQ);
+      // ✂️ bir turda en fazla 3 baloncuk; bu tur soru / emir geldiyse (th.botAsk) o son baloncuk olarak kalır
+      if (parts.length > 3) parts = th.botAsk && th.botAsk !== ask0 ? [...parts.slice(0, 2), parts[parts.length - 1]] : parts.slice(0, 3);
       const slow = (ch.traits || []).includes('Geç cevap verir') ? 2.5 : 1;
       const step = i => {
         if (i >= parts.length) {
@@ -7996,6 +8004,14 @@
       const b = $('[data-tool="music"]');
       if (b) b.classList.add('on');
     }
+    // 🎨 fantezi olayı olunca sohbet teması ona uyana geçer (Stories.Themes.fantasy); sohbetin teması olarak kalır, 🎨 Tema'dan yine değiştirilebilir
+    function fantTheme(e) {
+      const ft = isFant(e) && (TH.fantasy || {})[fantKey(e)], cur = themeOf(th, look);
+      if (!ft || (cur.bg === ft[0] && cur.bubble === ft[1])) return;
+      th.theme = { ...(th.theme || {}), bg: ft[0], bubble: ft[1] };
+      applyTheme();
+      notify('Sohbet teması fanteziye göre değişti', '🎨');
+    }
     /* 📱 rastgele kesintiler (⋯ Diğer → 📱 Kesintiler ile açılıp kapanır): pozisyon ya da fantezi olayından sonra bazen telefon çalar,
      * kapı çalınır, komşu duyar… (%6; bir fantezi sürüyorsa %12; Cheating fantezisi sürüyorsa %22 ve "yakalanma" hâlleri).
      * Karakter "=durum =kes_<tür>" kurallarıyla cevap verir; arka arkaya 8 mesaj içinde bir daha gelmez */
@@ -8174,6 +8190,10 @@
         const wl = wx && cumWearOf(wx, cz, 'me');
         if (wl && Math.random() < .75) meL = [wl];
       }
+      // ✂️ senin ağzından art arda en fazla 3 mesaj (olay kartları / sonuçlar sayılmaz; onun bir cevabı sayacı sıfırlar): zincirle gelen olaylarda yığılmasın
+      let meRun = 0;
+      for (let i = list.length - 1; i >= 0; i--) { const x = list[i]; if (x.from === 'her' && !x.oc) break; if (x.from === 'me' && !x.ev) meRun++; }
+      if (meRun >= 3) meL = null;
       if (meL && meL.length) list.push({ id: Store.uid(), from: 'me', text: [meFill(pick(meL)), dkAdd].filter(Boolean).join(' ').replace(/\{o\}/g, ((meCh || {}).name || '').split(' ')[0]), ts, ...(meCh ? { ml: adLang(meCh) } : {}) });
       markDone(e.id, live.subId);
       trPos = posNow();
@@ -8224,6 +8244,7 @@
           if (r4.changes.length) evc.changes = [...(evc.changes || []), ...r4.changes];
         });
         modeMusic(e);
+        fantTheme(e);
       }
       if (lowT(e.title) === 'orgazm') sfx('orgasm');
       // 💥 Ses efektleri: boşalma / Squirt → fışkırma; önden / arkadan pozisyon → ten tene çarpma (sert Mode'larda hızlı)
@@ -9054,6 +9075,7 @@
         th.rp = e.id;
         list.push({ id: Store.uid(), from: 'me', ts: nowTs(), text: `🎭 ${e.title}`, ev: e.id, evc: { title: e.title, emojis: e.emojis || '', color: e.color || '', level: '' } });
         done();
+        fantTheme(e);
         notify(`🎭 Role-play: ${e.title}`, '🎭');
       });
       const off = sh.el.querySelector('#rpOff');
@@ -9577,10 +9599,36 @@
   // "yapar mısın / yapalım mı" soru sayılmaz: bunlar istek, komut kuralına gider
   const EVQ_RE = / (ister|sever|seviyor|hoşlan\S*|hoslan\S*|dener|denedin|yaptın|yaptin) m[ıiuü]\S* | (ister|sever|dener)m[ıi]s[ıi]n | (do|would) you (like|love|want|enjoy) | wanna /;
   const EVQ_ALIAS = [['sakso', 'Blowjob'], ['derin boğaz', 'Deepthroat'], ['derin bogaz', 'Deepthroat'], ['göğüs arası', 'Titfuck'], ['gogus arasi', 'Titfuck'], ['misyoner', 'Missionary'], ['köpek pozisyon', 'Doggy'], ['kopek pozisyon', 'Doggy'], ['kaşık pozisyon', 'Spooning'], ['kasik pozisyon', 'Spooning']];
+  /* 🍑 pozisyon grubu sorusu ("Arkadan sever misin?", "Oral ister misin?"): gruptaki pozisyonlardan biri ❤️ ise sever (+ en sevdiği),
+   * yarısı 💔/🚫 ise sevmez, hepsi 🚫 ise yok. [sözler, olay süzgeci, cevaptaki {olay}]; ilk uyan grup, olay takma adları (EVQ_ALIAS) önce */
+  const evqLow = s => String(s || '').toLocaleLowerCase('tr');
+  const evqCat = c => e => evqLow(catOfEv(e).label) === c;
+  const evqTag = t => e => [...SEX_CATS, 'foreplay'].includes(evqLow(catOfEv(e).label)) && (e.tags || []).some(x => evqLow(x) === t);
+  const evqMode = ts => e => evqCat('mode')(e) && ts.includes(evqLow(e.title));
+  const EVQ_CAT = [
+    [['arkadan'], evqCat('backward'), 'Arkadan'], [['önden', 'onden'], evqCat('forward'), 'Önden'],
+    [['ön sevişme', 'on sevisme', 'ısınma', 'isinma'], evqCat('foreplay'), 'Ön sevişme'],
+    [['oral', 'ağzına al', 'agzina al', 'ağzınla', 'agzinla'], evqTag('oral'), 'Oral'],
+    [['anal', 'arkana', 'götten', 'gotten', 'götüne', 'gotune'], evqTag('anal'), 'Anal'],
+    [['vajinal', 'klasik seks', 'normal seks'], evqTag('vajinal'), 'Klasik'],
+    [['göğüslerinle', 'goguslerinle', 'memelerinle', 'göğüslerinin arası', 'goguslerinin arasi', 'memelerinin arası', 'memelerinin arasi'], evqTag('göğüs'), 'Göğüslerimle'],
+    [['kalçanla', 'kalcanla', 'kalçanın arası', 'kalcanin arasi', 'kalça arası', 'kalca arasi'], evqTag('kalça'), 'Kalçamla'],
+    [['ayakla', 'ayaklarınla', 'ayaklarinla', 'bacakla', 'bacaklarınla', 'bacaklarinla'], evqTag('bacak'), 'Ayakla / bacakla'],
+    [['elle ', 'elinle', 'ellerinle', 'el işi', 'el isi'], evqTag('el'), 'Elle'],
+    [['yalanmak', 'yalanmayı', 'yalanmayi', 'yalamamı', 'yalamami', 'yüzüne otur', 'yuzune otur'], evqCat('eat'), 'Yalanmak'],
+    [['sert', 'hırpalan', 'hirpalan'], evqMode(['rough', 'brutal', 'assertive']), 'Sert'],
+    [['yavaş', 'yavas', 'nazik ol'], evqMode(['gentle', 'passionate']), 'Yavaş ve nazik']
+  ];
   function evqOf(text, ch) {
-    const n = Stories.Bot.norm(text), low = s => String(s || '').toLocaleLowerCase('tr');
+    const n = Stories.Bot.norm(text), low = evqLow;
     if (!EVQ_RE.test(n)) return null;
     const al = EVQ_ALIAS.find(([k]) => n.includes(' ' + k));
+    const ca = !al && EVQ_CAT.find(([ws]) => ws.some(k => n.includes(' ' + k)));
+    if (ca) {
+      const evs = allEvents().filter(ca[1]), of = k => evs.filter(x => (ch[k] || []).includes(x.id));
+      const lk = of('likes'), dn = of('denies'), bad = dn.length + of('dislikes').length;
+      if (evs.length) return { title: ca[2], fav: lk.length ? pickOne(lk).title : '', s: lk.length ? 'evqsever' : dn.length === evs.length ? 'evqyok' : bad * 2 >= evs.length ? 'evqsevmez' : 'evqnotr' };
+    }
     const e = al ? evByTitle(low(al[1])) : allEvents().filter(x => [...SEX_CATS, 'foreplay', 'fantesy'].includes(low(catOfEv(x).label)) && x.title.length >= 4 && n.includes(' ' + Stories.Bot.norm(x.title).trim())).sort((a, b) => b.title.length - a.title.length)[0];
     if (!e) return null;
     const has = k => (ch[k] || []).includes(e.id);
@@ -11582,6 +11630,8 @@
       p.hap && 'Hap: ' + (p.hap === 'var' ? 'Alıyor' : 'Almıyor'),
       // 🍆 senin Dick Size'ın (Ben → Profil): "Dick Size: Small"…
       (S().user || {}).dick && 'Dick Size: ' + S().user.dick,
+      // 🍼 sütü var mı (memeAns ile aynı: hamile ve 🍼 Süt ≥ 50)
+      ((ch || {}).fields || {}).hamile && relV(ch, 'süt') >= 50 ? 'Süt: Var' : 'Süt: Yok',
       // 💍 "evli misin?" cevapları için
       ((ch || {}).fields || {}).hotwife ? 'Evli: Hotwife' : ((ch || {}).fields || {}).evli ? 'Evli: Evet' : 'Evli: Hayır'].filter(Boolean);
   };
@@ -16201,6 +16251,169 @@
         <div style="display:flex;gap:8px;flex-wrap:wrap"><input id="fkCode" type="text" placeholder="Kodu yaz…" autocomplete="off" style="flex:1;min-width:140px"><button type="button" class="btn sm" data-fkcode>🔓 Aç</button></div>`;
     } },
     ...FANT_BOOK.map(([key, icon, title, sub]) => ({ icon, title, sub, get body() { return fantBookBody(key); } }))] });
+  /* ❓ Sorular Kitabı: karakteri tanımak için sorabileceğin sorular. Bölümler bot-rules.js'teki r_q* kurallarından okunur
+   * (kural kimliğinin başı → ilk uyan bölüm; son bölüm geri kalan hepsi). Örnek cümleler "when" seçeneklerinden, "cevaba bakan" traits / note'tan */
+  const QB_CH = [
+    ['🔥', 'İstek ve seks soruları', 'sevişmek ister misin, seks sever misin, azgın mısın', ['r_q4_is_', 'r_q2_seks', 'r_q2_azgin', 'r_q2_istek', 'r_q2_tahrik', 'r_q2_mastur', 'r_q2_sertyavas', 'r_q2_kackez', 'r_q2_son']],
+    ['🍑', 'Pozisyon ve olay soruları', 'arkadan / önden sever misin, en sevdiğin pozisyon', ['r_q4_ev_', 'r_q2_pozisyon', 'r_q2_arkadan', 'r_q2_anal', 'r_q2_oral', 'r_q2_yut', 'r_q2_yuz', 'r_q2_oyuncak', 'r_q2_baglan', 'r_q2_fantezi', 'r_q2_yer', 'r_q2_hassas', 'r_q2_dokun', 'r_q_sever', 'r_q_sevmez']],
+    ['👙', 'Vücut soruları', 'göğüs, kalça, darlık, kilo, boy', ['r_q_boob', 'r_q_butt', 'r_q_pussy', 'r_q_anal', 'r_q4_boob', 'r_q4_butt', 'r_q4_dar', 'r_q4_arka', 'r_q4_dick', 'r_q3_', 'r_q5_', 'r_q2_kiyafet', 'r_q2_boy', 'r_q2_sevboy', 'r_q2_neyim', 'r_q2_kiyas', 'r_q2_sut']],
+    ['🧠', 'Deneyim soruları', 'daha önce, ilk kez, kaç kez, baskın mısın', ['r_q_exp', 'r_q_virgin', 'r_q4_exp', 'r_q4_dom', 'r_q2_ilk', 'r_q2_gecmis', 'r_q2_orgazmsay', 'r_q2_bosalmasay']],
+    ['🛡️', 'Korunma ve boşalma soruları', 'kondom, hap, içine, hamilelik', ['r_q_korunma', 'r_q_hamile', 'r_q2_kondom', 'r_q2_korunmak', 'r_q2_hap', 'r_q2_bosal', 'r_q2_disaribosal', 'r_q2_hamile', 'r_q2_bebek']],
+    ['💞', 'Hayatı ve ilişki soruları', 'adın, yaşın, şehrin, sevgilin var mı', ['r_q']]
+  ];
+  const QB_INTRO = { 1: `<p><b>Olay ve pozisyon soruları</b>: "Doggy sever misin?", "Blowjob ister misin?", "Cowgirl denedin mi?", <b>"Arkadan sever misin?"</b>, <b>"Önden sever misin?"</b>, <b>"Oral ister misin?"</b>. Cevap karakterin ❤️ sevdiği / 💔 sevmediği / 🚫 izin vermediği listelerinden gelir; olay başlamaz.</p>
+    <p><b>Pozisyon grupları</b> (o gruptaki bütün pozisyonlara bakar): ${EVQ_CAT.map(([ws, , t]) => `<b>${esc(t)}</b> <small>("${esc(ws[0].trim())} sever misin")</small>`).join(', ')}. Grup sorusunda biri ❤️ ise sever ve çoğu zaman en sevdiğini söyler, yarısı 💔/🚫 ise sevmez, hepsi 🚫 ise reddeder.</p>` };
+  const qbRules = i => ((Stories.BOT_RULES || {}).rules || []).filter(r => /^r_q\d?_/.test(r.id) && QB_CH.findIndex(c => c[3].some(p => String(r.id).startsWith(p))) === i);
+  function qbBody(i) {
+    const groups = new Map(), alt = g => String(g).split('|').map(p => p.replace(/^[=+@]/, '').replace(/-$/, '').trim()).filter(Boolean);
+    qbRules(i).forEach(r => { const k = String(r.name || r.id).split(' · ')[0]; if (!groups.has(k)) groups.set(k, []); groups.get(k).push(r); });
+    const rows = [...groups].map(([name, rs]) => {
+      const w = (rs[0].when || []).filter(t => !/^=[^|]*$/.test(String(t)));
+      if (!w.length) return '';
+      const say = w.length === 1 ? alt(w[0]).slice(0, 3).map(s => `"${esc(s)}…"`).join(', ') : `"${w.map(g => esc(alt(g)[0])).join(' … ')}"`;
+      const by = [...new Set(rs.flatMap(r => (r.traits || []).flatMap(t => String(t).split('|').map(x => x.includes(':') ? x.split(':')[0].trim() : '🎭 kişilik'))))];
+      const note = rs.map(r => r.note).find(Boolean) || '';
+      const priv = QPRIVATE.some(p => String(rs[0].id).startsWith(p));
+      return `<tr><td><b>${esc(name)}</b>${priv ? ' 🔒' : ''}</td><td>${say}</td><td>${esc([...by, note].filter(Boolean).join(' · ') || '—')}</td></tr>`;
+    }).filter(Boolean);
+    return `${QB_INTRO[i] || ''}<table class="bk-t"><tr><th>Soru</th><th>Nasıl sorulur</th><th>Cevaba bakan</th></tr>${rows.join('')}</table>
+      <p><small>🔒 özel soru: 🤝 Güven ≤ 15 iken kaçamak cevap verir. "…" ile biten kelimenin devamı serbest.</small></p>`;
+  }
+  BOOKS.push({ id: 'soru', icon: '❓', title: 'Sorular Kitabı', sub: 'karakteri tanımak için ona sorabileceğin sorular', chips: [`${QB_CH.length} konu`, '🤖 bot modu'], chapters: [
+    { icon: '📖', title: 'Sorular Kitabı nasıl okunur', sub: 'nasıl sorulur, cevabı ne belirler', get body() {
+      const n = QB_CH.reduce((a, c, i) => a + new Set(qbRules(i).map(r => String(r.name || r.id).split(' · ')[0])).size, 0);
+      return `<p>🤖 <b>Bot modunda</b> karaktere soru yaz; cevabı onun özelliklerine göre gelir. Böylece onu tanırsın: neyi sever, ne kadar istekli, deneyimi ne, sınırları nerede. Şu an <b>${n}</b> çeşit soru var.</p>
+        <ul><li><b>Cevaba bakan</b>: karakterin özellikleri (İsteklilik, Experience, Boob Size…), ❤️/💔/🚫 olay listeleri ve 🎭 kişiliği. Kişilik cevabı çerçeveler (Utangaç "Ş-şey…", Kibirli "kıskandın mı? 💅").</li>
+          <li><b>🔒 Özel sorular</b>: 🤝 Güven düşükken kaçamak cevap; 🌿 Gerçekçi Mod'da isteksiz karakter soğuk cevap verir.</li>
+          <li><b>Karşı soru</b>: cevaptan sonra bazen o da sana sorar; "evet / hayır" yazarsın.</li>
+          <li>Soru olayı başlatmaz: "yapar mısın / yapalım mı" ise istektir, olay olur.</li>
+          <li>İngilizce yazabilirsin ("do you like doggy?").</li></ul>`;
+    } },
+    ...QB_CH.map(([icon, title, sub], i) => ({ icon, title, sub, get body() { return qbBody(i); } })),
+    { icon: '❔', title: 'Onun soruları ve senin cevabın', sub: 'devam edelim mi, daha sert mi, içime mi… evet / hayır', get body() { return qbAskBody(); } }] });
+  /* ❔ karakterin soruları ("=sor" + konu) ve senin evet / hayır'ına cevaplar ("=cevap" + konu + evet|hayir), bot-rules.js "❔ Karakterin soruları";
+   * evet / hayır'da olan olaylar BOT_ASK'tan */
+  function qbAskBody() {
+    const R = ((Stories.BOT_RULES || {}).rules || []).filter(r => r.category === '❔ Karakterin soruları'), W = r => r.when || [];
+    const topicOf = r => (W(r).find(t => /^=[^|]*$/.test(t) && !['=sor', '=cevap', '=evet', '=hayir'].includes(t) && !/^=kor/.test(t)) || '').slice(1);
+    const topics = [...new Set(R.filter(r => W(r).includes('=sor')).map(topicOf).filter(Boolean))];
+    const evs = l => Array.isArray(l) ? (l.length ? l.join(', ') : '') : l === '@pos' ? 'şu anki pozisyonla devam' : l === '@other' ? 'başka bir pozisyon (önce ❤️ sevdikleri)' : '';
+    const ans = (t, yn) => { const r = R.find(x => W(x).includes('=cevap') && topicOf(x) === t && W(x).includes('=' + yn) && !W(x).some(y => /^=kor/.test(y)) && !(x.traits || []).length); return r ? (r.reply || [])[0] : ''; };
+    const row = t => {
+      const asks = R.filter(r => W(r).includes('=sor') && topicOf(r) === t), q = ((asks.find(r => !(r.traits || []).length) || asks[0]).reply || [])[0] || t, a = BOT_ASK[t];
+      const cell = (yn, k) => `${esc(ans(t, yn) || '—')}${a && evs(a[k]) ? `<br><small>→ ${esc(evs(a[k]))}</small>` : ''}`;
+      return `<tr><td><b>${esc(q)}</b>${asks.length > 1 ? ` <small>· ${asks.length} söyleyiş</small>` : ''}</td><td>✅ ${cell('evet', 'yes')}</td><td>❌ ${cell('hayir', 'no')}</td></tr>`;
+    };
+    const table = ts => `<table class="bk-t"><tr><th>Onun sorusu</th><th>Evet dersen</th><th>Hayır dersen</th></tr>${ts.map(row).join('')}</table>`;
+    const ev = topics.filter(t => !t.startsWith('k_')), kq = topics.filter(t => t.startsWith('k_'));
+    return `<p>🤖 Bot modunda karakter de sana soru sorar ve senin bir sonraki mesajın o sorunun cevabı sayılır:</p>
+      <ul><li><b>Olaydan sonra</b> %30, boşalmadan sonra %60 bir soru sorar ("Devam edelim mi?", "Bir daha mı?"); soru o anki pozisyona uyar (ör. "Arkadan denemek ister misin?" sadece önden bir pozisyondayken).</li>
+        <li><b>Senin soruna cevap verince</b> %40 sana karşı soru sorar ("Sen büyük göğüs sever misin?").</li>
+        <li><b>Cevabın</b>: en fazla 6 kelimelik, evet (evet, olur, tabii, tamam, isterim, hadi, lütfen…) ya da hayır (hayır, yok, istemem, olmaz, sonra, başka…) anlamına gelen bir mesaj. Uzun ya da başka bir şey yazarsan soru düşer, mesajın normal cevaplanır.</li>
+        <li><b>Olay</b>: evet / hayır'a göre aşağıdaki olaylardan biri kendiliğinden olur (❤️ sevdiği öne çıkar).</li>
+        <li><b>"İçime mi boşalacaksın?"</b> sorusuna evet dersen cevap korunmasına göre değişir: dışarı boşalma şartı varsa "Hayır, dışarı!", korunmuyorsa "Olmaz!", hap / sabah hapı / kondom varsa razı, içine istiyorsa sevinir.</li>
+        <li><b>👑 Emirleri</b>: Dominant (bazen Switch) karakter olaydan sonra ya da sevişirken emir verir; evet / hayır'ına itaat eden ya da kızan bir cevap gelir.</li>
+        <li>Kişiliği varsa soruyu kendi tarzıyla sorar (utangaç "D-daha sert mi…").</li></ul>
+      <h4>Olay soruları</h4>${table(ev)}
+      ${kq.length ? `<h4>Karşı sorular</h4>${table(kq)}` : ''}`;
+  }
+  /* 💐 Övgü Kitapçığı: soru dışında yazdıklarına (iltifat, azgın söz, sevişirken, komut, sohbet) gelen cevaplar. Bölümler bot-rules.js
+   * kategorilerinden okunur; olay / durum / soru gibi iç bağlam kuralları (OV_INT) dışarıda. Kişilik "(…)" ve fantezi (=fx…) varyantları tek satırda */
+  const OV_CH = [
+    ['💐', 'İltifat ve kabalık', 'gözlerin güzel, seni yerim, seni seviyorum… ya da kaba söz', ['💐 iltifat', '💐 iltifat ve kabalık'],
+      '<p>İltifata karakterin kişiliğine göre cevap gelir (utangaç kızarır, kibirli "biliyorum" der). Kaba söze kırgın cevap gelir; kırgın cevaba kişilik eki ve tatlı hitap eklenmez.</p>'],
+    ['🔥', 'Azgın sözler', 'çok azdım, çok seksisin, içine boşalmak istiyorum', ['azgın konuşma'],
+      '<p>Kişiliğe göre cevap verir; bir 🦄 fantezi ya da 🎭 rol sürüyorsa önce o fantezinin cevabı gelir. Daha özel bir kural (göğüs iltifatı, ısrar) tutarsa o kazanır.</p>'],
+    ['💬', 'Sevişirken yazdıkların', 'emiyorum seni, boynunu öpüyorum, ahh devam', ['💬 sevişirken'],
+      '<p>Sohbette bir pozisyon / Mode / fantezi sürerken (son 12 mesaj) yazdıkların önce <b>sevişirken</b> kurallarına bakar; biri az önce bitirdiyse <b>sonrası</b> kurallarına. Cevaplara bazen inleme eklenir.</p>'],
+    ['🗣️', 'Komut sözleri', 'dön, üstüme gel, öp beni, bağla', ['🗣️ komutlar'],
+      '<p>Komut olayı hemen başlatır (ör. "dön" → Doggy, ❤️ sevdiği öne çıkar), cevap ardından gelir. 🚫 izin vermediği olayı reddeder. 👑 Dominant karakter emre çoğu zaman kafa tutar ve olay olmaz; 🌿 Gerçekçi Mod\'da isteksiz karakter tersler.</p>'],
+    ['💞', 'Sohbet ve romantik sözler', 'selam, nasılsın, özledim, seni seviyorum, buluşalım', ['romantik', 'selamlaşma', 'sohbet', '💬 sohbet'],
+      '<p>❤️ Aşk\'a göre sana hitap eder (adın → canım → aşkım). Yazdıklarından öğrendiklerini (adın, şehrin, sevdiklerin) hatırlar; başka bir kızdan bahsedersen kıskanç karakter alınır.</p>']
+  ];
+  const OV_INT = /^=(evt|durum|sor|cevap|evq|yas|memleket|gecispoz|kacamak|fant|poz)$/;
+  const ovRules = i => ((Stories.BOT_RULES || {}).rules || []).filter(r => OV_CH[i][3].includes(String(r.category || '').toLocaleLowerCase('tr')) && (r.when || []).length && !(r.when || []).some(t => OV_INT.test(String(t))));
+  const ovBase = r => String(r.name || r.id).split(' · ')[0].replace(/\s*\([^)]*\)\s*$/, '').trim();
+  function ovBody(i) {
+    const groups = new Map(), alt = g => String(g).split('|').map(p => p.replace(/^[=+@]/, '').replace(/-$/, '').trim()).filter(Boolean);
+    ovRules(i).forEach(r => { const k = ovBase(r); if (!groups.has(k)) groups.set(k, []); groups.get(k).push(r); });
+    const rows = [...groups].map(([name, rs]) => {
+      const r0 = rs.find(r => !(r.when || []).some(t => /^=[^|]*$/.test(String(t)))) || rs[0], w = (r0.when || []).filter(t => !/^=[^|]*$/.test(String(t)));
+      if (!w.length) return '';
+      const say = w.length === 1 ? alt(w[0]).slice(0, 3).map(s => `"${esc(s)}…"`).join(', ') : `"${w.map(g => esc(alt(g)[0])).join(' … ')}"`;
+      const terms = rs.flatMap(r => (r.when || []).map(String)), pers = rs.filter(r => /\([^)]*\)\s*$/.test(String(r.name || '').split(' · ')[0])).length;
+      const by = [...new Set(rs.flatMap(r => (r.traits || []).flatMap(t => String(t).split('|').map(x => x.includes(':') ? x.split(':')[0].trim() : '🎭 kişilik'))))];
+      if (pers && !by.includes('🎭 kişilik')) by.push('🎭 kişilik');
+      if (terms.some(t => /^=fx/.test(t))) by.push('🦄 fantezi');
+      if (terms.includes('=sexnow')) by.push('🔥 sevişirken');
+      if (terms.includes('=sexsonra')) by.push('💦 bitince');
+      const note = rs.map(r => r.note).find(Boolean) || '';
+      return `<tr><td><b>${esc(name)}</b></td><td>${say}</td><td>${esc([...by, note].filter(Boolean).join(' · ') || '—')}</td></tr>`;
+    }).filter(Boolean);
+    return `${OV_CH[i][4]}<table class="bk-t"><tr><th>Ne yazarsın</th><th>Nasıl yazılır</th><th>Cevaba bakan</th></tr>${rows.join('')}</table>
+      <p><small>"…" ile biten kelimenin devamı serbest; "a … b" kelimeler bu sırayla geçmeli (aradaki serbest).</small></p>`;
+  }
+  BOOKS.push({ id: 'ovgu', icon: '💐', title: 'Övgü Kitapçığı', sub: 'iltifat, azgın sözler, sevişirken, komutlar: soru dışında yazdıklarına gelen cevaplar', chips: ['kitapçık', '🤖 bot modu'], chapters: [
+    { icon: '📖', title: 'Övgü Kitapçığı nasıl okunur', sub: 'yazdığına cevap nasıl seçilir', get body() {
+      const n = OV_CH.reduce((a, c, i) => a + new Set(ovRules(i).map(ovBase)).size, 0);
+      return `<p>🤖 <b>Bot modunda</b> soru sormadan yazdıkların da cevaplanır: iltifat, azgın sözler, sevişirken anlattıkların, komutlar ve sohbet. Şu an <b>${n}</b> çeşit söz var. Sorular için ❓ <a href="#/kitap/soru/0">Sorular Kitabı</a>.</p>
+        <ul><li><b>Sıra</b>: önce süren 🦄 fantezi / 🎭 rol, sonra sevişme anı (sevişirken / bitince), sonra en çok kelimesi tutan kural. Kelimeler başka sırada ya da biri eksik olsa da kural düşük puanla yarışır.</li>
+          <li><b>🎭 Kişilik</b>: aynı söze utangaç, kibirli, flörtöz… her kişilik kendi cevabını verir; yazım tarzı da eklenir.</li>
+          <li><b>Hitap</b>: ❤️ Aşk arttıkça "canım", "aşkım" der.</li>
+          <li><b>Durum baloncuğu</b>: cevabın altına bazen Zevk, saat, ilişki gibi o anki durumuna göre bir mesaj daha gelir. Bir turda en fazla 3 baloncuk.</li>
+          <li>Anlamadığı mesajlar 🧪 <a href="#/deney">Bot deneyi</a>'nde eksik cevap olarak görünür.</li></ul>`;
+    } },
+    ...OV_CH.map(([icon, title, sub], i) => ({ icon, title, sub, get body() { return ovBody(i); } }))] });
+  /* 🎭 Kişilik Kitabı: her kişilik nasıl cevap verir. Bölümler Stories.Traits 💫 Kişilik listesinden; içerik bot-rules.js "🎭 Kişilik" kuralları (r_pk_*),
+   * başka kategorilerdeki kişilik varyantları (traits ya da adında "(kişilik)"), PERSONA cevap eki, QFRAME soru çerçevesi. + 😤 Kıskançlık, ⌨️ Yazım tarzı */
+  const KP_TRAITS = () => (((Stories.Traits || {}).groups || []).find(g => g.id === 'personality') || { items: Object.keys(PERSONA) }).items;
+  const KP_ICON = { 'Neşeli': '😄', 'Utangaç': '🙈', 'Alaycı': '🙄', 'Soğuk': '🧊', 'Flörtöz': '😘', 'Romantik': '🌹', 'Kıskanç': '😤', 'Asi': '🤘', 'Sakin': '🍃', 'Gergin': '😬',
+    'Meraklı': '🤔', 'Gizemli': '🤫', 'Dürüst': '🗣️', 'Sadık': '💗', 'İnatçı': '🐂', 'Şımarık': '💅', 'Olgun': '🙂', 'Çocuksu': '🧸', 'Kibirli': '💁‍♀️', 'Alçakgönüllü': '😊',
+    'Duygusal': '🥺', 'Mantıklı': '🧠', 'Komik': '😂', 'Ciddi': '😐', 'Korumacı': '🛡️', 'Manipülatif': '😈', 'Güvensiz': '😟', 'Özgüvenli': '😎' };
+  const kpHas = (r, t) => (r.traits || []).some(x => String(x).split('|').includes(t));
+  const kpOwn = t => ((Stories.BOT_RULES || {}).rules || []).filter(r => r.category === '🎭 Kişilik' && kpHas(r, t) && !(r.when || []).includes('=kiskanc'));
+  const kpVars = t => { const tl = '(' + t.toLocaleLowerCase('tr') + ')'; return ((Stories.BOT_RULES || {}).rules || []).filter(r => r.category !== '🎭 Kişilik' && (kpHas(r, t) || String(r.name || '').toLocaleLowerCase('tr').includes(tl))); };
+  const kpQuote = a => (a || []).slice(0, 2).map(x => `"${esc(String(x).replace(/\{diger\}/g, 'Ayşe').replace(/\{sen\}/g, 'canım').replace(/\{olay\}/g, 'Doggy'))}"`).join('<br>');
+  function kpBody(t) {
+    const own = kpOwn(t), vars = kpVars(t), P = PERSONA[t], F = QFRAME[t], byCat = new Map();
+    vars.forEach(r => { const k = r.category || '—'; if (!byCat.has(k)) byCat.set(k, new Set()); byCat.get(k).add(ovBase(r)); });
+    const sit = own.map(r => `<tr><td>${esc(String(r.name || r.id).split(' · ').slice(1).join(' · ') || r.name)}</td><td>${kpQuote(r.reply)}</td></tr>`).join('');
+    const lst = a => (a || []).map(x => `"${esc(x.trim())}"`).join(', ');
+    const special = { 'Soğuk': 'Sana hep adınla seslenir ("canım / aşkım" demez), cevaplarındaki emojiler silinir, iltifatı soğuk karşılar.', 'Kıskanç': 'Başka bir kızdan bahsedince alınır: 😤 Kıskançlık bölümüne bak.',
+      'Utangaç': 'Özel sorularda kekeler, izin vermediği olayda daha yumuşak reddeder.', 'Kibirli': 'Olay sorusunda sevmediği şeye küçümseyerek cevap verir.', 'Asi': 'Olay sorusunda sevmediği şeye ters cevap verir.' }[t] || '';
+    return `<p>${KP_ICON[t] || '🎭'} <b>${esc(t)}</b> bir karakter böyle konuşur. ${special}</p>
+      ${sit ? `<h4>🎭 Olaylarda ve durumlarda</h4><p><small>Olay ya da durum baloncuğunda %70 bu kişilik cevabı genel cevabın önüne geçer.</small></p><table class="bk-t"><tr><th>Ne zaman</th><th>Örnek</th></tr>${sit}</table>` : '<p><small>Bu kişiliğin kendine ait olay / durum cevapları yok; aşağıdaki ekler ve varyantlarla görünür.</small></p>'}
+      ${P ? `<h4>💬 Cevap eki</h4><p>Cevaplarının %${Math.round((P.p || .4) * 100)}'ine eklenir${P.pre ? `; başa: ${lst(P.pre)}` : ''}${P.add ? `; sona: ${lst(P.add)}` : ''}. Kaba söze kırgın cevapta eklenmez.</p>` : ''}
+      ${F ? `<h4>❓ Soru cevabı</h4><p>Sorularına cevap verirken %60 kendi tarzıyla çerçeveler${F.pre ? `; başa: ${lst(F.pre)}` : ''}${F.add ? `; sona: ${lst(F.add)}` : ''}.</p>` : ''}
+      ${byCat.size ? `<h4>📚 Başka cevaplarda kendi varyantı</h4><table class="bk-t"><tr><th>Konu</th><th>Söz / durum</th></tr>${[...byCat].map(([k, s]) => `<tr><td>${esc(k)}</td><td>${[...s].map(esc).join(', ')}</td></tr>`).join('')}</table>` : ''}`;
+  }
+  const KP_STYLE = [['Kısa yazar', 'Cevabı tek baloncuk.'], ['Uzun yazar', '%55 cevabın sonuna bir cümle daha ("Bütün gün aklımdaydın…").'], ['Hep küçük harf', 'Bütün cevap küçük harf.'],
+    ['Emoji sever', '%70 sona emoji ekler (😍✨, 🥰💕…).'], ['Emoji kullanmaz', 'Cevaplardaki emojiler silinir (Soğuk da öyle).'], ['Harf uzatır (canımmm)', '%60 son kelimenin son harfini uzatır.'],
+    ['Noktalama kullanmaz', 'Noktalama işaretleri silinir.'], ['Resmi konuşur', 'Sana hep adınla seslenir; "canım / aşkım" demez.'], ['Argo kullanır', '%30 sona "lan", "ya" ekler.'],
+    ['Çok güler (sjsjsj)', '%40 sona "sjsjsj", "ksksks" ekler.'], ['Geç cevap verir', 'Yazıyor… süresi 2,5 kat uzun.'], ['Sesli mesaj sever', '%25 cevap 🎤 ile başlar.']];
+  BOOKS.push({ id: 'kisilik', icon: '🎭', title: 'Kişilik Kitabı', sub: 'her kişilik nasıl konuşur, kıskançlık, yazım tarzı', chips: [`${KP_TRAITS().length} kişilik`, '😤 kıskançlık'], chapters: [
+    { icon: '📖', title: 'Kişilik Kitabı nasıl okunur', sub: 'kişilik cevaplara nerede girer', get body() {
+      return `<p>Karakter oluştururken seçtiğin <b>💫 Kişilik</b> ve <b>⌨️ Yazım tarzı</b> özellikleri 🤖 bot modundaki her cevabı etkiler. Bir karakterin birden çok kişiliği olabilir; hepsi ayrı ayrı uygulanır.</p>
+        <ul><li><b>🎭 Olay ve durum cevapları</b>: pozisyonda, ısınırken, boşalınca, orgazmda, hamilelikte, korunma durumlarında kişiliğe özel cevaplar (%70 öne geçer).</li>
+          <li><b>💬 Düz mesajlarda</b>: yazdığına kendi kuralı yoksa ya da yarı yarıya kişilik kuralı cevap verir (olayın kendi cevap havuzu varsa %20).</li>
+          <li><b>💐 İltifat, azgın söz, komut, sohbet</b>: çoğunun kişilik varyantı var (💐 Övgü Kitapçığı).</li>
+          <li><b>💬 Cevap eki</b> ve <b>❓ soru çerçevesi</b>: cevabın başına / sonuna kişiliğe uyan küçük bir ek.</li>
+          <li><b>⌨️ Yazım tarzı</b> en son uygulanır: küçük harf, emoji, uzatma…</li>
+          <li>🎭 Role-play açıkken kişilik kuralları araya girmez; rol konuşur.</li></ul>`;
+    } },
+    { icon: '😤', title: 'Kıskançlık', sub: 'başka bir kızın adını anınca', get body() {
+      const R = ((Stories.BOT_RULES || {}).rules || []).filter(r => (r.when || []).includes('=kiskanc'));
+      return `<p>Karakter <b>Kıskanç</b> kişilikteyse ya da <b>😤 Kıskançlık</b> değeri 50 ve üstündeyse, mesajında başka bir kızdan bahsedince alınır:</p>
+        <ul><li><b>Ne sayılır</b>: kayıtlı başka bir karakterin adı (en az 3 harf), ya da "eski sevgilim", "başka bir kız", "kız arkadaşım", "bir kızla", "biriyle tanıştım", "eski karım".</li>
+          <li><b>Cevap</b>: anılan ad cevaba girer ("Ayşe de kim? 😤"); kişiliğine göre varyant (Utangaç, Kibirli…). Kıskanç değilse normal cevap verir.</li>
+          <li><b>Etkisi</b>: 😤 Kıskançlık +6. Değer yükseldikçe kıskanç olmayan karakter de kıskanmaya başlar (50+).</li>
+          <li><b>Kıskanç kişilik</b> cevaplarına %30 "…başka kimseyle böyle konuşmuyorsun değil mi? 😤", "sadece benimsin 😠" eki gelir; durum baloncuğunda da kıskançlığını gösterir.</li></ul>
+        <table class="bk-t"><tr><th>Kural</th><th>Örnek</th></tr>${R.map(r => `<tr><td>${esc(r.name || r.id)}</td><td>${kpQuote(r.reply)}</td></tr>`).join('')}</table>`;
+    } },
+    { icon: '⌨️', title: 'Yazım tarzı', sub: 'küçük harf, emoji, uzatma, sesli mesaj', get body() {
+      return `<p>Yazım tarzı özellikleri her cevaba en son uygulanır.</p><table class="bk-t"><tr><th>Özellik</th><th>Etkisi</th></tr>${KP_STYLE.map(([a, b]) => `<tr><td><b>${esc(a)}</b></td><td>${esc(b)}</td></tr>`).join('')}</table>`;
+    } },
+    ...KP_TRAITS().map(t => ({ icon: KP_ICON[t] || '🎭', title: `${t} kişilik`, get sub() { const n = kpOwn(t).length, v = kpVars(t).length; return `${n} durum cevabı · ${v} varyant`; }, get body() { return kpBody(t); } }))] });
   // 🎬 Olay Kitabı: Lia her olayı sahneleyerek anlatır ("ben şöyle dururum, sen bunu yaparsan bu olay olur")
   const OLAY_BOOK = [
     ['💋', 'Isınma', 'öpüşme, sarılma, gösterme', 'Her şey buradan başlar. Acele yok; önce birbirimizi tanıyalım 😌', [
@@ -16815,11 +17028,11 @@
         <li><b>Cevap</b>: bot modunda karakter o duruma uyan cevaplardan biriyle karşılık verir.</li>
         <li>Hepsini görmek ve denemek için 🧭 CarmenGuide → <a href="#/kesinti">📱 Kesinti deneyi</a>.</li></ul>` });
     // 🗂️ raf sırası
-    const ORDER = ['carmen', 'bot', 'seans', 'olay', 'fantezi', 'ulke', 'internet', 'oyun'];
+    const ORDER = ['carmen', 'bot', 'seans', 'olay', 'fantezi', 'soru', 'ovgu', 'kisilik', 'ulke', 'internet', 'oyun'];
     BOOKS.sort((a, b) => ORDER.indexOf(a.id) - ORDER.indexOf(b.id));
   }
   // 📚 raflar (🧭 CarmenGuide): [başlık, açıklama, kitaplar]
-  const BOOK_SHELVES = [['🧭 Kullanım', 'uygulama, bot ve seans', ['carmen', 'bot', 'seans']], ['📚 Başvuru', 'olaylar, fanteziler, memleketler', ['olay', 'fantezi', 'ulke']],
+  const BOOK_SHELVES = [['🧭 Kullanım', 'uygulama, bot ve seans', ['carmen', 'bot', 'seans']], ['📚 Başvuru', 'olaylar, fanteziler, sorular, övgüler, kişilikler, memleketler', ['olay', 'fantezi', 'soru', 'ovgu', 'kisilik', 'ulke']],
     ['🌐 Dünya', 'siteler ve oyunlar', ['internet', 'oyun']]];
   /* 📜 Olay Kitabı: her olay nasıl tetiklenir (📜 elle, 🗣️ komut, ❔ karakterin sorusu, 🔄 başka pozisyon, 💡 Lia).
    * Bölümler olay kategorileri (senin eklediklerin de); 🔍 arama olay adıyla bulur. Komut cümleleri bot-rules.js'teki komut kurallarından okunur */
@@ -17555,6 +17768,44 @@
     };
     draw();
   }
+  /* 📋 İlan kuralı deneyi (#/ilankural): Carmen.com / Gothic.com / Meisove.com ilanlarının 📋 Kurallar satırları (cmRules / gtRules / msRules).
+   * Site, korunma, içe boşalma isteği, 3. satır ve 💍 Hotwife seç → 🎲 ile başka bir ilan kızının satırları. Karakterlere dokunmaz; seçim bu oturumda kalır (ui.irLab) */
+  function renderAdRulesLab() {
+    const SITES = [['carmen', '🌹 Carmen.com', cmRules], ['gothic', '🦇 Gothic.com', gtRules], ['meisove', '🍓 Meisove.com', msRules]];
+    const PROTS = [['need', '🛡️ Kondom şart', []], ['pill', '💊 Hap', ['control pill']], ['morning', '🌅 Sabah hapı', ['morning-after pill']], ['pull', '↩️ Dışarı boşalma', ['pull-out method']], ['nothing', '🔥 Hiçbir şey', ['nothing']]];
+    const lab = ui.irLab || (ui.irLab = { s: 'carmen', p: 'need', lv: 1, r3: 1, hw: 0, seed: 1 });
+    // satırlar ilan id'sinden sabit (cmNum / cmPick): istenen 3. satır ve isteklilikle eşleşen sahte bir id aranır
+    const fake = () => {
+      const allows = PROTS.find(x => x[0] === lab.p)[2].map(protEvId).filter(Boolean), fields = lab.s === 'carmen' && lab.hw ? { hotwife: 1 } : {};
+      for (let i = 0; i < 500; i++) {
+        const c = { id: `irlab${lab.seed}_${i}`, allows, fields };
+        if (cmNum(c, 'r3', 3) > 0 === !!lab.r3 && cmNum(c, 'insT', 3) === lab.lv) return c;
+      }
+      return { id: 'irlab' + lab.seed, allows, fields };
+    };
+    const chips = (k, opts) => `<div class="lab-chips">${opts.map(([v, t]) => `<button type="button" class="lab-chip${String(lab[k]) === String(v) ? ' on' : ''}" data-irk="${k}" data-v="${v}">${esc(t)}</button>`).join('')}</div>`;
+    view.innerHTML = `<div class="page-pad narrow monia">${pageHero('ilankural', '📋', 'İlan kuralı deneyi', ['3 site', `${PROTS.length} korunma`], '', { back: '#/guide' })}
+      <div class="about card">İlan sitelerindeki 📋 Kurallar yazıları karakterin ✅ korunma izinlerinden (Condom, Control Pill, Morning-After Pill, Pull-Out Method, Nothing) ve içe boşalma isteğinden gelir. Burada seç, 🎲 ile başka bir kızın yazacağı satırları gör; karakterlerin değişmez.</div>
+      <div id="irBox"></div></div>`;
+    const box = $('#irBox');
+    const draw = () => {
+      const site = SITES.find(x => x[0] === lab.s), inside = !['need', 'pull'].includes(lab.p), hw = lab.s === 'carmen' && lab.hw;
+      box.innerHTML = `<div class="card"><div class="sec-title" style="margin-top:0">🌐 Site</div>${chips('s', SITES)}
+        <div class="sec-title">🛡️ Korunma</div>${chips('p', PROTS)}
+        ${inside && lab.s !== 'meisove' ? `<div class="sec-title">💦 İçe boşalma isteği</div>${chips('lv', [[0, '😅 Razı'], [1, '😌 Nötr'], [2, '🥵 Çok istekli']])}` : ''}
+        ${lab.s !== 'meisove' && !hw ? `<div class="sec-title">➕ Üçüncü satır</div>${chips('r3', [[1, 'Var'], [0, 'Yok']])}` : ''}
+        ${lab.s === 'carmen' ? `<div class="sec-title">💍 Hotwife ilanı</div>${chips('hw', [[0, 'Hayır'], [1, 'Evet']])}` : ''}</div>
+        <div class="card"><div class="sec-title" style="margin-top:0">📋 Kurallar <small>· ${esc(site[1])}</small></div>
+        ${site[2](fake()).map(([ic, a, b]) => `<p style="margin:8px 0"><b>${ic} ${esc(a)}</b><br><span style="opacity:.8">${esc(b)}</span></p>`).join('')}
+        <button type="button" class="btn primary block sm" data-irtry="1">🎲 Başka bir kız</button></div>`;
+    };
+    box.onclick = e => {
+      const b = e.target.closest('[data-irk]');
+      if (b) { const k = b.dataset.irk; lab[k] = ['lv', 'r3', 'hw'].includes(k) ? +b.dataset.v : b.dataset.v; draw(); return; }
+      if (e.target.closest('[data-irtry]')) { lab.seed++; draw(); }
+    };
+    draw();
+  }
   /* 👗 Kıyafet deneyi (#/kiyafet): kombin / kostüm / karakterin kıyafeti seç, açılan bölgeleri işaretle, giyme · gösterme · çıkarma ·
    * boşalma (onun ve senin) cümlelerini dene. Sohbete ve karaktere dokunmaz; seçim bu oturumda kalır (ui.clLab) */
   function renderClothesLab() {
@@ -17639,6 +17890,7 @@
         ${tool('#/olaylar', '📜', 'Olay rehberi', 'hangi olay nasıl tetiklenir: elle, komut, karakterin sorusu, Lia')}
         ${tool('#/deney', '🧪', 'Bot deneyi', 'bir mesaj, olay ya da durum dene; karaktere uyan bütün cevapları ve hangisinin kazandığını gör')}
         ${tool('#/kesinti', '📱', 'Kesinti deneyi', 'fantezi sürerken gelen özel kesintiler (süt devrildi, kocası arıyor…) ve karakterin bütün cevapları; dokun, dene')}
+        ${tool('#/ilankural', '📋', 'İlan kuralı deneyi', 'Carmen.com, Gothic.com ve Meisove.com ilanlarındaki kural yazıları; korunma ve içe boşalma isteğini seç, dene')}
         ${tool('#/kiyafet', '👗', 'Kıyafet deneyi', 'bir kombin ya da kostüm giydir; giyince, gösterince, çıkarınca ve boşalınca gelen cümleleri dene')}
         ${tool('#/mesajlarim', '🗣️', 'Benim mesajlarım', 'olay tetikleyince senin ağzından yazılan otomatik mesajlar (sohbet ⋮ → 🗣️ Olay mesajlarım)')}
         ${tool('#/haberler', '📰', 'Haberler', 'bütün yenilikler')}
