@@ -73,6 +73,28 @@ Stories.MODS = (() => {
         scanned(Y, 'isabeau', { name: 'Isabeau Quill', colors: ['#e2b3f5', '#a855c7'] })
       ]
     },
+    {
+      // Genshin: mods/genshin/<Ad>.png (tek resim); rol olayları system.js'te "Ad – …" başlıklı (fantKey fxrp<ad>)
+      id: 'genshin', name: 'Genshin', icon: '✨', desc: 'Yelan, Clorinde, Mavuika, Xianyun · kişilikleri hazır · rol olayları 🎭 Role-play\'de',
+      characters: [
+        { key: 'yelan', name: 'Yelan', gender: '♀', age: '28', city: 'Liyue', zodiac: '', job: 'İstihbaratçı', colors: ['#4fc3f7', '#1565c0'],
+          bio: 'Sıradan bir memurum. İnandın mı?', traits: ['Gizemli', 'Flörtöz', 'Özgüvenli', 'Alaycı', 'Kısa yazar'],
+          about: 'Kendini sıradan bir memur diye tanıtır; aslında bir çayevinin sahibi ve usta bir istihbaratçıdır. Tehlikeyi, zarı ve bahsi sever.\nNabzından yalanını okur, su mavisi ipleriyle seni sarar. Sıkılmaktan başka hiçbir şeyden korkmaz.',
+          photo: 'mods/genshin/Yelan.png', album: ['mods/genshin/Yelan.png'], bg: '' },
+        { key: 'clorinde', name: 'Clorinde', gender: '♀', age: '27', city: 'Fontaine', zodiac: '', job: 'Şampiyon düellocu', colors: ['#b39ddb', '#5e35b1'],
+          bio: 'Kuralları biliyorsun. Kılıcını çek.', traits: ['Ciddi', 'Sakin', 'Dürüst', 'Soğuk', 'Kısa yazar', 'Resmi konuşur'],
+          about: 'Hiç yenilmemiş bir düellocu: bir elinde kılıç, diğerinde tabanca, başında üç köşeli şapkası. Az konuşur, sözünü tutar.\nGörev dışında masa oyunu gecelerinin kuralcı oyun yöneticisidir. Utandığında susar ve bunu belli etmemeye çalışır.',
+          photo: 'mods/genshin/Clorinde.png', album: ['mods/genshin/Clorinde.png'], bg: '' },
+        { key: 'mavuika', name: 'Mavuika', gender: '♀', age: '30', city: 'Natlan', zodiac: '', job: 'Lider', colors: ['#ffb74d', '#e53935'],
+          bio: 'Ateşim hiç sönmez. Dayanabilir misin?', traits: ['Özgüvenli', 'Neşeli', 'Korumacı', 'Olgun', 'Dürüst'],
+          about: 'Halkının önünde savaşan ateşli bir lider. Alev gibi kızıl saçları, güneş gözlüğü ve alevle çalışan motoru vardır.\nSıcak, cesur ve doğrudandır; ne istediğini açıkça söyler. Zaferi herkesle, geceyi tek kişiyle kutlar.',
+          photo: 'mods/genshin/Mavuika.png', album: ['mods/genshin/Mavuika.png'], bg: '' },
+        { key: 'xianyun', name: 'Xianyun', gender: '♀', age: '35', city: 'Liyue', zodiac: '', job: 'Mucit', colors: ['#a5d6a7', '#26a69a'],
+          bio: 'Bu adeptus kısa konuşur. Genellikle.', traits: ['Kibirli', 'Olgun', 'Mantıklı', 'Uzun yazar', 'Resmi konuşur'],
+          about: 'Binlerce yıllık bir turna adeptus; insan formunda otuzlarında görünür ve kırmızı çerçeveli gözlük takar. Dağdaki inzivasında mekanizmalar icat eder.\nKendinden "bu adeptus" diye söz eder ve konuşmaya başlayınca susmaz. İçten içe yalnızdır; misafiri sever ama belli etmez.',
+          photo: 'mods/genshin/Xianyun.png', album: ['mods/genshin/Xianyun.png'], bg: '' }
+      ]
+    },
     { id: E, name: 'Emily', icon: '🔪', desc: 'Sayko kızlar · her resim bir karakter · Gothic.com ilanları buradan gelir (resimleri mods/emily/ klasörüne ekle)', characters: emily },
     {
       id: 'dontstop', name: "Don't Stop", icon: `${D}icon_luna.png`, desc: 'Oyunun karakterleri · profil ve kişilik hazır',

@@ -95,7 +95,8 @@ Stories.ME_BODY_LINES = {
     label: '🍒 Göğüs', trait: 'Boob Size',
     size: { '70': 'small', '75': 'small', '80': 'mid', '85': 'mid', '90': 'big', '95': 'big' },
     events: ['Show Tits', 'Titfuck', 'Reverse Titfuck', 'Lick Tits', 'Boob Grab', 'Slap Boob', 'Tit Cumshot', 'Dressed Tit Cumshot',
-      'Chalice', 'Chalice Cumshot', 'Crystal Ball', 'Slime Hug', 'Slime Coat', 'Cowgirl', 'Jelly Ride', 'Front Hugging', 'Breastfeeding'],
+      'Chalice', 'Chalice Cumshot', 'Crystal Ball', 'Slime Hug', 'Slime Coat', 'Cowgirl', 'Jelly Ride', 'Front Hugging', 'Breastfeeding',
+      'Double Titfuck', 'Double Tit Cumshot', 'Ride and Facesit', 'Cowgirl Kiss', 'Stacked Missionary'],
     small: [
       'Minik göğüslerin avucuma tam oturuyor… mmm 😍',
       'Küçük ama ne kadar hassas, hafif dokunsam titriyorsun offf 🥵',
@@ -139,7 +140,8 @@ Stories.ME_BODY_LINES = {
     events: ['Show Ass', 'Slap Ass', 'Ass Grab', 'Buttjob', 'Hotdogging', 'Lick Ass', 'Ass Cumshot', 'Dressed Ass Cumshot',
       'Doggy', 'Standing doggy', 'Wobble Doggy', 'Full Moon Doggy', 'Dry Doggy', 'Intimate Doggy', 'Spooning', 'Spooning Anal',
       'Cowgirl Anal', 'Standing Anal', 'Rough Anal', 'Anal Creampie', 'Bottoms Up', 'Bottoms Up Finish', 'Facesitting', 'Ghost Ride',
-      'Pumpkin Grind', 'Face Smothering', 'Asshole Fingering', 'Lap Sex'],
+      'Pumpkin Grind', 'Face Smothering', 'Asshole Fingering', 'Lap Sex',
+      'Side by Side Doggy', 'Stacked Missionary', 'Spooning Sandwich', 'Doggy Lick', 'Taking Turns', 'Ride and Facesit'],
     small: [
       'Küçük kalçan avuçlarıma tam oturuyor… mmm 😍',
       'Sıkı ve minik, her vuruşta çarpışını hissediyorum offf 🔥',
@@ -1973,6 +1975,53 @@ Stories.ME_RP_HUG_LINES = {
       'Süt taşmak üzere, ama kapağı tutuyorum offf 😆',
       'Ter içinde sarılı tutuyorum, "doldur beni" dediğini duymak istiyorum ahh 😏'
     ]
+  },
+  // 👯 Threesome sarılma satırları (iki kız)
+  trioHug: {
+    label: '🤗 Sarılma · Threesome · ısınma',
+    events: ['Girls Kissing', 'Girls Licking', 'Scissoring Show'],
+    lines: [
+      'İkinizi birden kollarıma aldım; biriniz sağımda, biriniz solumda… ahh 😩',
+      'Öpüşürken ikinize de sarıldım, dudaklarınız yanağımda buluşuyor offf 🥵',
+      'Ellerim iki belde birden, sizi kendime çekiyorum 🔥',
+      '{gogus} göğüsler göğsüme bastırıyor, hangisi kimin bilmiyorum bile 😮‍💨',
+      'Ortanızda kaldım, iki sıcak beden bana sokuluyor ahh 😩',
+      'Saçlarınız yüzüme dökülüyor, ikinizi de koklıyorum {o} 🤍',
+      'Biri boynumu, diğeri kulağımı öpüyor; ben ikinizi sıkıca sarıyorum 🥵',
+      'Kollarımda iki kız… bundan güzel bir şey olamaz 🥰'
+    ]
+  },
+  trioPos: {
+    label: '🤗 Sarılma · Threesome · pozisyon',
+    events: ['Ride and Facesit', 'Side by Side Doggy', 'Stacked Missionary', 'Spooning Sandwich', 'Cowgirl Kiss', 'Taking Turns', 'Doggy Lick', 'Double Blowjob', 'Double Handjob', 'Double Titfuck'],
+    lines: [
+      'Birine sarılmışken öbürü arkamdan bana yapıştı ahh 😩',
+      'Kollarım ikinizin belinde, sırayla kendime çekiyorum offf 🥵',
+      '{kalca} kalçayı kavradım, öbür elim diğerinin göğsünde 🔥',
+      'Üçümüz birbirimize dolandık, kimin kolu kimin bilmiyorum 😮‍💨',
+      'Sırtına kapandım, yanındaki eliyle yüzümü okşuyor ahh 😩',
+      '{gogusHis}, öbürü de omzumu öpüyor offf 🥵',
+      'İkinizi de sımsıkı tutuyorum, kaçmak yok {o} 🔥',
+      'Sarılırken üç kalp birden çarpıyor 🤍'
+    ],
+    hold: [
+      'İkinize birden sarılıp kasıklarımı kilitledim, tutuyorum offf 😣',
+      'Biri "bırak artık" diyor, öbürü "dayan" diyor ahh 😩',
+      'Kollarımda iki beden, zonkluyorum ama tutuyorum 🥵',
+      'Sarılı kalıyorum, biriken yük ikinize yetecek ahh 😮‍💨'
+    ]
+  },
+  trioFinish: {
+    label: '🤗 Sarılma · Threesome · bitiş',
+    events: ['Double Facial', 'Cum Sharing Kiss', 'Double Tit Cumshot', 'Creampie Lick'],
+    lines: [
+      'İkinizi birden kollarıma alıp titreyerek boşalıyorum… ahhh 😩💦',
+      'Biriniz boynumda, biriniz göğsümde; her atışta ikinizi sıkıyorum offf 🥵',
+      'Geldi {o}, ikiniz de bana sımsıkı sarıldınız… ahh 💦',
+      'Bitti; üçümüz yatağa yığıldık, nefeslerimiz birbirine karıştı 😮‍💨',
+      'İkinizin alnından öpüyorum, sarılı kalıyoruz 🤍',
+      'Kollarımda iki yorgun kız, gülümsüyorum 🥰'
+    ]
   }
 };
 
@@ -3470,6 +3519,159 @@ Stories.ME_EV_LINES = {
     'Son damla da düştü offf 😮‍💨',
     'Kocana göster bakalım 😏',
     'Bugün benimdin, teninde belli 😈'
+  ],
+  // 👯 Threesome (iki kızlı, yalnız grup sohbetinde)
+  'Girls Kissing': [
+    'Öpüşün bakalım, izliyorum 😏',
+    'Vay… ikiniz birlikte çok güzelsiniz 🥵',
+    'Ellerinizi de kullanın 😈',
+    'Nefesim kesildi şu an offf 😮‍💨',
+    'Biraz daha… durmayın 🔥',
+    'Bu manzarayı hiç unutmam 😍',
+    'Dudaklarınız birbirine yakışıyor 💋',
+    'Ben de katılayım mı artık? 😈'
+  ],
+  'Double Blowjob': [
+    'İki dil birden… aklım gidiyor ahh 😩',
+    'Sırayla alın, kavga etmeyin 😏',
+    'Dudaklarınız ortada buluşuyor offf 🥵',
+    'Saçlarınızı topluyorum, ikinizinkini de 😈',
+    'Hangisi daha iyi bilemiyorum ahh 😮‍💨',
+    'Gözlerinizi bana dikin 🔥',
+    'Böyle devam ederseniz çok sürmez 😩',
+    'İkiniz de harikasınız 😍'
+  ],
+  'Ride and Facesit': [
+    'Biri üstümde, biri yüzümde ahh 🥵',
+    'Sizi tadıyorum, sizi hissediyorum offf 😩',
+    'Öpüşün üstümde, duyuyorum 😈',
+    'Kalçanı tuttum, kaçamazsın 🔥',
+    'Nefes almaya vakit yok ahh 😮‍💨',
+    'Ritminiz aynı, nasıl yapıyorsunuz 😍',
+    'Bastırın biraz daha 😈',
+    'Cennette miyim ben 🥵'
+  ],
+  'Side by Side Doggy': [
+    'İki kalça yan yana, seçemiyorum 😈',
+    'Önce sen… sonra sıra ötekinde 😏',
+    'Birinden çıkıp diğerine giriyorum ahh 🥵',
+    'Elim ikinizin belinde 🔥',
+    'Kim daha çok inleyecek bakalım 😈',
+    'Sıraya geçin, adil olacağım 😏',
+    'Offf ikiniz de çok sıcaksınız 😩',
+    'El ele tutuşun, yavaşlamıyorum 🔥'
+  ],
+  'Stacked Missionary': [
+    'Üst üste… iki kalça birden 😈',
+    'Hangisinin içindeyim bilmiyorum bile ahh 🥵',
+    'Alttakini, sonra üsttekini 😏',
+    'Birbirinize sarılın, hızlanıyorum 🔥',
+    'Bu görüntü çok yaramaz 😍',
+    'Sırayla, bir sana bir ona 😩',
+    'Öpüşmeye devam edin offf 🥵',
+    'Yatak gıcırdıyor 😈'
+  ],
+  'Spooning Sandwich': [
+    'Arkamda biri, önümde biri… sıcacık 🥵',
+    'Önündekine yavaşça giriyorum ahh 😩',
+    'Arkamdan sarılışın ne güzel 🤗',
+    'İkinizin arasında eriyorum 😮‍💨',
+    'Boynumu öpüyorsun, devam et 💋',
+    'Yavaş ve derin 🔥',
+    'Hiç bitmesin bu sandviç 😈',
+    'Nefesleriniz kulağımda offf 🥵'
+  ],
+  'Double Facial': [
+    'Diz çökün ikiniz, yanak yanağa 😈',
+    'Geliyor… ikinize de ahhh 😩💦',
+    'Hiç kimse eksik kalmasın 💦',
+    'Yüzünüz ıslandı offf 🥵',
+    'Birbirinizi temizleyin bakalım 😏',
+    'Bu kadar çok olduğunu bilmiyordum 😳',
+    'İkiniz de çok güzelsiniz böyle 😍',
+    'Gözlerinizi kapatmayın ahh 😩'
+  ],
+  'Girls Licking': [
+    'Biri diğerini yalıyor, ben izliyorum offf 🥵',
+    'Bacaklarının arası parlıyor, durmayın 😈',
+    'İnlemeleriniz odayı doldurdu ahh 😩',
+    'Saçlarını tut, yavaşlamasın 🔥',
+    'Bu manzaraya dayanamam {o} 😮‍💨',
+    'Sıra bana ne zaman gelecek? 😏'
+  ],
+  'Scissoring Show': [
+    'Bacaklarınız birbirine geçti, ne güzel sürtünüyorsunuz 🥵',
+    'Gözleriniz bende, ellerim yerinde durmuyor offf 😩',
+    'Daha hızlı, ikiniz de titriyorsunuz 🔥',
+    'Bu gösteri bana mı? 😈',
+    'Islaklığınız buradan görünüyor ahh 😮‍💨',
+    'Birazdan araya gireceğim 😏'
+  ],
+  'Double Handjob': [
+    'İki el birden… ahh 😩',
+    'Biri yukarı biri aşağı, aklım gidiyor offf 🥵',
+    'Parmaklarınız birbirine değiyor 🔥',
+    'Sıkın biraz daha 😈',
+    'Böyle devam ederseniz uzun sürmez ahh 😮‍💨',
+    'Gözlerinizi kaçırmayın 😏'
+  ],
+  'Double Titfuck': [
+    'Dört göğsün arasında kayıyorum ahh 😩',
+    'Göğüslerinizi birbirine bastırın offf 🥵',
+    'Bu kadar yumuşaklık fazla 😈',
+    'Ucum ikinizin dudağına değiyor 🔥',
+    'Sıkın, kaçmayayım ahh 😮‍💨',
+    'Çok yaramazsınız 😏'
+  ],
+  'Cowgirl Kiss': [
+    'Biri üstümde, biri dudaklarımda ahh 😩',
+    'Sen sür, sen öp… offf 🥵',
+    'Dilin ağzımda, kalçası kucağımda 🔥',
+    'Aynı anda ikinizi hissediyorum 😈',
+    'Nefes almaya fırsat vermiyorsunuz ahh 😮‍💨',
+    'Bırakmayın beni {o} 🥵'
+  ],
+  'Taking Turns': [
+    'Önce sen… şimdi sen ahh 😩',
+    'Birkaç vuruş, sonra sıradaki offf 🥵',
+    'El ele tutuşmuşsunuz, çok güzel 🔥',
+    'Hangisi daha sıcak bilemiyorum 😈',
+    'Sıranızı bekleyin, adil olacağım 😏',
+    'İkiniz de inliyorsunuz ahh 😮‍💨'
+  ],
+  'Doggy Lick': [
+    'Arkandan giriyorum, sen de onu yala ahh 😩',
+    'Her vuruşumda dili daha derine iniyor offf 🥵',
+    'İnlemeleri birbirine karıştı 🔥',
+    'Kalçanı tuttum, durmuyorum 😈',
+    'Zincir gibiyiz şu an ahh 😮‍💨',
+    'Kimse durmasın 😏'
+  ],
+  'Double Tit Cumshot': [
+    'Göğüslerinize… ahhh 😩💦',
+    'Dördüne de yetti offf 🥵',
+    'Birbirinize sürün bakalım 😈',
+    'Göğüsleriniz parlıyor 💦',
+    'Nefesim kesildi 😮‍💨',
+    'Ne güzel bir manzara 😍'
+  ],
+  'Creampie Lick': [
+    'İçine boşalıyorum ahhh 😩💦',
+    'Şimdi sen eğil ve yala 😈',
+    'Damla damla akıyor, kaçırmıyor offf 🥵',
+    'Böyle bir şey görmedim 😳',
+    'Hepsini temizle 😏',
+    'İkiniz de bembeyaz oldunuz 💦'
+  ],
+  'Cum Sharing Kiss': [
+    'Ağzına boşalıyorum ahhh 😩💦',
+    'Şimdi paylaş onunla 😈',
+    'Öpüşerek paylaşıyorsunuz… offf 🥵',
+    'Bir damla kaçırmayın 😏',
+    'Dudaklarınızdan süzülüyor 💦',
+    'Bundan güzel bir şey görmedim 😍',
+    'Yutun ikiniz de 😈',
+    'Nefesim hâlâ yerine gelmedi 😮‍💨'
   ],
   'Towel Drop': [
     'Havlunun ucunu tutuyorsun, sabırsızlanıyorum 😏',
@@ -7317,4 +7519,112 @@ Object.assign(Stories.ME_RP_HUG_LINES, {
   (Stories.ME_EV_LINES[ev] = Stories.ME_EV_LINES[ev] || []).push(...evL);
   const r = Stories.ME_RP_LINES[k];
   if (r) { r.pos.push(...pos); r.cum.push(...cum); }
+});
+
+/* ✨ Genshin: Yelan, Clorinde, Mavuika, Xianyun (karakter başına 2 olay; rol satırları fantKey'e göre) */
+Object.assign(Stories.ME_EV_LINES, {
+  'Yelan – Çayevi Sorgusu': [
+    'Arka odanın kapısı arkamdan kilitleniyor, sen masanın ucunda oturuyorsun {o} 🎲',
+    'Çayımı uzatıyorsun, parmağın bileğimde nabzımı sayıyor 💧',
+    '"Bildiğin her şeyi anlatacaksın" diyorsun, gülümsemen tehlikeli 😏',
+    'Su mavisi iplerin bileklerime dolanıyor, karşı koymuyorum 💠',
+    'Kürkün omzundan kayıyor, sorgunun yönü değişiyor 😈'
+  ],
+  'Yelan – Zar Bahsi': [
+    'Zarları avucuna bırakıyorum, "kaybeden soyunur" diyorsun 🎲',
+    'Yine çift altı attın; gömleğimi çıkarıyorum {o} 😏',
+    'Bileziğin şıngırdıyor, zarlar masada dönüyor 💧',
+    'Son elde her şeyimi ortaya koyuyorum, sen dudağını ısırıyorsun 😈',
+    'Masayı itip seni kucağıma çekiyorum, zarlar yere saçılıyor 🎲'
+  ],
+  'Clorinde – Düello': [
+    'Boş salonda kılıcımı çekiyorum, sen şapkanı düzeltiyorsun ⚔️',
+    'Kılıcının ucu çeneme dayanıyor, gözlerin sakin {o} ⚡',
+    'Bir hamlede arkana geçip belini kavrıyorum 😏',
+    'Şapkan yere düşüyor; "bir dileğin var" diyorsun 🎩',
+    'Kılıçlar yerde, sırtın duvarda, nefesin hızlı 😈'
+  ],
+  'Clorinde – Masa Oyunu Gecesi': [
+    'Mum ışığında zarı atıyorum, sen kural kitabının üstünden bakıyorsun 🎲',
+    '"Karakterin bana yaklaşıyor" diyorsun, ben de yaklaşıyorum {o} 🕯️',
+    'Zar bir geldi; ceketimi çıkarıyorum 😏',
+    'Oyun yöneticisinin eldivenini dişlerimle çekiyorum 🧤',
+    'Haritayı kenara itip seni masaya oturtuyorum 😈'
+  ],
+  'Mavuika – Zafer Gecesi': [
+    'Kamp ateşinin başında zırhımı çözüyorsun {o} 🔥',
+    'Yaramı öpüyorsun, "iyi dövüştün savaşçım" diyorsun ☀️',
+    'Kızıl saçların ateş ışığında parlıyor, elimi geçiriyorum 😏',
+    'Çadırın perdesini kapatıyorsun, kutlama sesleri dışarıda kalıyor 🥁',
+    'Beni postların üstüne itip üstüme çıkıyorsun 😈'
+  ],
+  'Mavuika – Motor Gezintisi': [
+    'Arkana atlayıp beline sarılıyorum, motor kükrüyor 🏍️',
+    'Virajda sana daha sıkı yapışıyorum {o} 🔥',
+    'Gözlüğünü bana takıyorsun, gülüyorsun 😎',
+    'Volkanın yamacında duruyoruz, motor hâlâ sıcak ☀️',
+    'Seni selenin üstüne oturtup fermuarını indiriyorum 😈'
+  ],
+  'Xianyun – Dağ Zirvesi': [
+    'Nefes nefese zirveye varıyorum, sen çay koyuyorsun ☁️',
+    'Hikâyene başlıyorsun, dudaklarına bakmaktan dinleyemiyorum {o} 😏',
+    'Gözlüğünü yavaşça çıkarıyorum, susuyorsun 👓',
+    'Saç tokanı çözüyorum, saçların tüy gibi dökülüyor 🕊️',
+    'Bulutların üstünde seni taş masaya yaslıyorum 😈'
+  ],
+  'Xianyun – Yeni İcat': [
+    'Atölyende masaya uzanıyorum, sen dişlileri ayarlıyorsun ⚙️',
+    '"Kıpırdama, ölçüm alıyorum" diyorsun, elin göğsümde {o} 📈',
+    'Mekanizma vızıldıyor, sen not alıyorsun 😏',
+    'İcadını kapatıp bileğinden tutuyorum: "seni deneyeceğim" 😈',
+    'Gözlüğün buğulanıyor, defterin elinden düşüyor 👓'
+  ]
+});
+Object.assign(Stories.ME_RP_LINES, {
+  fxrpyelan: {
+    pos: ['Zarlar her vuruşta masada zıplıyor {o} 🎲', 'Bileziğin kulağımın dibinde şıngırdıyor 💧', 'İplerin bileklerimde, ama ritmi ben belirliyorum 😈', 'Kürkün yere düşmüş, üstündeyiz 🤍',
+      'Kulağıma "itiraf et" diyorsun, inleyerek 😏', 'Kısa saçların terden alnına yapışmış 🥵', 'Seni çayevinin duvarına yaslıyorum, nefesin kesiliyor 😩', 'Gözlerin hâlâ beni okuyor, ama bulanık 💠'],
+    cum: ['İçine boşalıyorum, bahsi kazandım… ahhhh {o} 🎲💦', 'İplerin gevşeyip yere düşüyor 💠', '"Bu sır bende" diye fısıldıyorsun 🤫', 'Bileziğin son kez şıngırdıyor 💧', 'Kürkünün üstüne yığılıyoruz 🤍', 'Soğukkanlı ajanın dizleri titriyor 😈']
+  },
+  fxrpclorinde: {
+    pos: ['Her hamleme bir karşılık veriyorsun {o} ⚔️', 'Şapkan çoktan düştü, saçların dağıldı 🎩', 'Tenin elektrik gibi, dokundukça ürperiyorum ⚡', 'Eldivenli elin sırtımı çiziyor 🧤',
+      'Sakin yüzün ilk kez kızarıyor 😳', 'Çizmeli bacakların belimde kilitlendi 😈', 'Seni duvara yasladım, kılıçlar ayak ucumuzda 🥵', 'Dişlerini sıkıp sesini tutuyorsun, bırakmıyorum 😩'],
+    cum: ['İçine boşalıyorum, şampiyon… ahhhh {o} ⚔️💦', '"Yenildim" diyorsun, ilk kez ⚡', 'Bütün bedenin elektrik çarpmış gibi titriyor 😩', 'Şapkanı başıma takıp gülümsüyorsun 🎩', 'Alnın alnımda, nefesin kesik 🥵', 'Rövanş istiyorsun, hemen 😈']
+  },
+  fxrpmavuika: {
+    pos: ['Kızıl saçların her vuruşta alev gibi savruluyor {o} 🔥', 'Tenin kor gibi, terliyorum ☀️', 'Üstümdesin, lider gibi sürüyorsun 😈', 'Kalçanı kavrıyorum, kasların gerilmiş 🥵',
+      '"Daha sert savaşçım" diye bağırıyorsun 😩', 'Gözlüğün yastığın yanında, gözlerin gözlerimde 😎', 'Motorun selesinde seni kendime çekiyorum 🏍️', 'Göğsündeki ter ateş ışığında parlıyor 🔥'],
+    cum: ['İçine boşalıyorum, ateşin beni yutuyor… ahhhh {o} 🔥💦', 'Saçların bir an alev aldı sanki ☀️', '"Bir tur daha" diyorsun, nefes bile almadan 😈', 'Sıcak tenine yığılıyorum 🥵', 'Zafer çığlığın çadırı aşıyor 🥁', 'Beni göğsüne bastırıyorsun 😌']
+  },
+  fxrpxianyun: {
+    pos: ['Konuşmayı kestin, sadece inliyorsun {o} ☁️', 'Gözlüğün buğulandı, çıkarıp kenara koyuyorum 👓', 'Uzun saçların taş masaya yayılmış 🕊️', '"Bu adeptus…" diye başlıyorsun, bitiremiyorsun 😩',
+      'Binlerce yıllık sabrın bir ölümlüde tükendi 😈', 'Bulutlar pencerenin altında, biz üstündeyiz 🥵', 'Bacakların belimde, tüy kadar hafifsin 🕊️', 'Mekanizma köşede vızıldıyor, bakan yok ⚙️'],
+    cum: ['İçine boşalıyorum, adeptusum… ahhhh {o} ☁️💦', 'Turna gibi ince bir ses çıkarıyorsun 🕊️', '"Deney sonucu… olağanüstü" diye fısıldıyorsun ⚙️', 'Dağ yankılanıyor 😩', 'Başını göğsüme koyup ilk kez susuyorsun 😌', 'Tekrar istiyorsun, "bilimsel" diyorsun 😈']
+  }
+});
+Object.assign(Stories.ME_RP_HUG_LINES, {
+  fxrpyelan: {
+    pos: ['Arkandan sımsıkı sarıldım, kürkün yüzüme değiyor… ahhh 🎲😩', '{gogus} göğüslerini avuçladım, bileziğin şıngırdıyor offf 💧', 'Kulağına "sorgu bitmedi" diye fısıldıyorum… ahh 😈', 'İplerin ikimizi birbirine bağladı, sarılı gidip geliyoruz offf 💠', 'Ensendeki kısa saçları öpüyorum ahh 🥵', 'Zar masasına yaslanmış sarılıyız offf 🎲'],
+    in: ['Sana sımsıkı sarılıp içine boşalıyorum; nabzın avucumda… ahhhh 🎲💦', 'Ensene gömülüp bırakıyorum, sırrımız olsun offf 🤫', 'Son damlaya kadar içine doluyorum ahh 😈', 'Boşaldıktan sonra kürkünün altında sana sarılı kalıyorum… mmm 😌'],
+    out: ['Son anda çıktım; açık sırtına fışkırıyor… ahhhh 💧💦', 'Kalçana boşalıyorum, zarlar yere düşüyor offf 🎲', 'Bitirince ensenden öpüyorum… mmm 😌'],
+    hold: ['Sana sarılıyım, bakışın beni zorluyor; ama tutuyorum… offf 😣🎲', '"Kim önce pes edecek" dedin, dişlerimi sıkıyorum ahh 😏', 'Zar durana kadar bekliyorum offf 🎲']
+  },
+  fxrpclorinde: {
+    pos: ['Arkandan sımsıkı sarıldım, şapkan düştü… ahhh ⚔️😩', '{gogus} göğüslerini avuçladım, nefesin bozuldu offf ⚡', 'Kulağına "teslim ol" diye fısıldıyorum… ahh 😈', 'Eldivenli ellerin ellerimin üstünde offf 🧤', 'Düello duruşun kollarımda çözülüyor ahh 🥵', 'Boynundaki teri öpüyorum offf 😳'],
+    in: ['Sana sımsıkı sarılıp içine boşalıyorum; bedenin kıvılcım gibi… ahhhh ⚡💦', 'Ensene gömülüp bırakıyorum, sesini tutamıyorsun offf 😩', 'Yenilmez düellocuyu son damlaya kadar dolduruyorum ahh 😈', 'Boşaldıktan sonra sana sarılı kalıyorum, kalbin hızlı… mmm 😌'],
+    out: ['Son anda çıktım; beline fışkırıyor… ahhhh ⚔️💦', 'Çoraplı bacaklarına boşalıyorum offf 😈', 'Bitirince omzunu öpüyorum… mmm 😌'],
+    hold: ['Sana sarılıyım, disiplinin beni zorluyor; ama tutuyorum… offf 😣⚔️', '"İlk bırakan kaybeder" dedin, dayanıyorum ahh 😏', 'Nefesimi düelloda adım sayar gibi sayıyorum offf ⚡']
+  },
+  fxrpmavuika: {
+    pos: ['Arkandan sımsıkı sarıldım, kızıl saçların yüzümü yakıyor… ahhh 🔥😩', '{gogus} göğüslerini avuçladım, tenin kor gibi offf ☀️', 'Kulağına "liderim" diye fısıldıyorum… ahh 😈', 'Güçlü belini kavrayıp kendime çekiyorum offf 🥵', 'Sırtındaki ter ateş ışığında parlıyor ahh 🔥', 'Motorun selesinde sana yapıştım offf 🏍️'],
+    in: ['Sana sımsıkı sarılıp içine boşalıyorum; ateşin içimi yakıyor… ahhhh 🔥💦', 'Saçlarına gömülüp bırakıyorum offf ☀️', 'Son damlaya kadar veriyorum, hepsini alıyorsun ahh 😈', 'Boşaldıktan sonra sıcacık tenine sarılı kalıyorum… mmm 😌'],
+    out: ['Son anda çıktım; terli sırtına fışkırıyor… ahhhh 🔥💦', 'Kalçana boşalıyorum, tenin o kadar sıcak ki offf 🥵', 'Bitirince omzundan öpüyorum… mmm 😌'],
+    hold: ['Sana sarılıyım, sıcaklığın beni zorluyor; ama tutuyorum… offf 😣🔥', '"Dayan savaşçım" dedin, dişlerimi sıkıyorum ahh 😈', 'Sen "şimdi" diyene kadar bekliyorum offf ☀️']
+  },
+  fxrpxianyun: {
+    pos: ['Arkandan sımsıkı sarıldım, uzun saçların tüy gibi… ahhh 🕊️😩', '{gogus} göğüslerini avuçladım, cümlen yarım kaldı offf ☁️', 'Kulağına "sus, adeptusum" diye fısıldıyorum… ahh 😈', 'İnce belini sarıp kendime çekiyorum offf 🥵', 'Gözlüğün burnundan kaydı, düzeltmiyorsun ahh 👓', 'Bulutlara bakan pencerede sarılıyız offf ☁️'],
+    in: ['Sana sımsıkı sarılıp içine boşalıyorum; turna gibi inliyorsun… ahhhh 🕊️💦', 'Saçlarına gömülüp bırakıyorum offf ☁️', 'Binlerce yıllık bedeni son damlaya kadar dolduruyorum ahh 😈', 'Boşaldıktan sonra sana sarılı kalıyorum, hiç konuşmuyorsun… mmm 😌'],
+    out: ['Son anda çıktım; ipek elbisene fışkırıyor… ahhhh ☁️💦', 'Sırtına boşalıyorum, ürperiyorsun offf 🕊️', 'Bitirince ensenden öpüyorum… mmm 😌'],
+    hold: ['Sana sarılıyım, sesin beni zorluyor; ama tutuyorum… offf 😣☁️', '"Ölümlüler sabırsızdır" dedin, tersini kanıtlıyorum ahh 😏', 'Hikâyen bitene kadar bekliyorum… bitmiyor offf 😩']
+  }
 });

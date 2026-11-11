@@ -195,6 +195,8 @@ Stories.I18n.add({
   'ör. İstanbul': 'e.g. Istanbul', 'Boyun kaç, yakışıklı?': 'How tall are you, handsome?', 'cm, ör. 180': 'cm, e.g. 180', 'Peki… boyutu ne kadar canım? 😏 Aramızda kalacak': "And… how big is it, darling? 😏 It stays between us",
   'Kendini bir cümleyle anlat, kızlara ben okurum': "Describe yourself in one sentence, I'll read it to the girls", 'Hakkımda': 'About me', 'Son olarak bir fotoğraf? Güzel bir tane seç': 'Finally a photo? Pick a nice one',
   'Fotoğraf seç': 'Pick a photo', 'Şimdilik geç': 'Skip for now', 'Hazırsın': "You're ready", 'Hesabına para da yükledim, dikkatli harca': 'I put some money in your account too, spend it wisely', 'Başlayalım': "Let's start",
+  'Peki ne kadar dayanırsın? Kızlar merak ediyor': 'So how long can you last? The girls are curious', 'çabucak biter': 'over in no time', 'çabuk': 'quick',
+  'normal': 'normal', 'uzun sürer': 'lasts long', 'çok uzun': 'very long', 'bitmez': 'never ends',
   'Bunu boş bırakma': "Don't leave this empty", 'Hesap açılamadı (depolama dolu olabilir)': "Couldn't create the account (storage may be full)", 'Bakiyen': 'Your balance',
 
   // ---------- ben ----------
@@ -208,6 +210,9 @@ Stories.I18n.add({
   'Kendini bir cümleyle anlat': 'Describe yourself in one sentence', 'Bakiye (₺)': 'Balance (₺)', 'düzenleme modu': 'edit mode', 'Fotoğrafımı kaldır': 'Remove my photo', 'Hesaplar': 'Accounts',
   'karakterler ortak; profil, 💰 para ve sohbetler her hesapta ayrı': 'characters are shared; profile, 💰 money and chats are separate per account', 'Hesabı sil': 'Delete account', 'Yeni hesap aç': 'New account',
   'tek seçim, tekrar dokununca kalkar · onun cevaplarına ve 🗣️ benim mesajlarıma (özellikle 🤗 sarılma) yansır': 'single choice, tap again to clear · affects her replies and 🗣️ my messages (especially 🤗 cuddles)',
+  'Seni beğenenler': 'Liked you', 'dokun, mesajını oku': 'tap to read her message', 'Eşleş ve cevapla': 'Match and reply', 'Geç': 'Pass', 'Seni beğendi': 'Liked you', 'Süper beğeni': 'Super like',
+  'seni zaten beğenmişti': 'already liked you', '{} dk önce': '{} min ago', '{} sa önce': '{} h ago',
+  'Dayanıklılık': 'Stamina', 'mod yok': 'no mode', 'giyinik': 'dressed', 'yarı çıplak': 'half naked', 'Onun Soruları': 'Her Questions', 'Giydir · ✓ üstünde, ✗ bu sohbette çıktı': 'Dress · ✓ wearing, ✗ taken off in this chat', "boşalmaya karşı; düşükse 🥴 Zevk'in daha hızlı dolar, çabuk boşalırsın · onun cevaplarına yansır": 'against cumming; if low your 🥴 Pleasure fills faster and you finish sooner · affects her replies',
   'Sevdiklerim': 'My likes', 'sevdiğin olaylar; dokununca çıkar': 'events you like; tap to remove', 'Olay ekle… (ör. Doggy, Kissing)': 'Add event… (e.g. Doggy, Kissing)',
   'Sesler': 'Sounds', 'Müzikler': 'Music', 'dosyasız, çalarken üretilir · {} parça': 'no files, generated while playing · {} tracks', 'parça': 'tracks', 'Yeni müzik üret': 'Generate new music',
   'ile seçtiğin parça ana menüde ve sohbet dışındaki sayfalarda çalar · sohbetlere ⋯ Diğer → 🎵 ile ayrı müzik seçebilirsin': 'the track you pick plays on the main menu and pages outside chats · pick separate music for chats with ⋯ More → 🎵',

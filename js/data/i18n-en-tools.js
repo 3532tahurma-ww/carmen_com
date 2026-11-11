@@ -1,5 +1,8 @@
 /* 🌐 İngilizce sözlük: bot editörü (tools/bot-editor.html). Sadece editörde yüklenir: kural kelimeleri (çipler) ana sözlüklerle çevrilmesin diye. */
 Stories.I18n.add({
+  'Boyut · Dayanıklılık': 'Size · Stamina', 'Profil mesajları': 'Profile messages', 'Dick Size · karakterin baloncukları': "Dick Size · her bubbles", 'Dayanıklılık · karakterin baloncukları': 'Stamina · her bubbles',
+  'Dick Size kuralları': 'Dick Size rules', 'Dayanıklılık kuralları': 'Stamina rules', 'Henüz bu özelliği kullanan kural yok.': 'No rule uses this trait yet.',
+  'içeride': 'inside', 'ağızda': 'in mouth', 'dışarıda (el / göğüs / kalça)': 'outside (hand / breasts / hips)', 'senin boşalman': 'you cum', 'pozisyonda': 'in position', 'pozisyonda, 🥴 Zevk ≥ 60': 'in position, 🥴 Pleasure ≥ 60',
   'Bot editörü · Amor Stories': 'Bot editor · Amor Stories', 'Bot editörü': 'Bot editor', 'Kurallar': 'Rules', 'Otomatik ekler': 'Automatic adds', 'Kelime grupları': 'Word groups', 'Fiiller': 'Verbs',
   'Dışa aktar': 'Export', 'İçe aktar': 'Import', 'Kaydet': 'Save', 'Birleştir': 'Merge', 'Birleştir:': 'Merge:', 'Tümünü değiştir': 'Replace all', 'Tümünü değiştir:': 'Replace all:', 'Vazgeç': 'Cancel',
   'Kuralları, grupları ve fiilleri JSON olarak indir': 'Download rules, groups and verbs as JSON', 'JSON dosyasından kural yükle': 'Load rules from a JSON file',

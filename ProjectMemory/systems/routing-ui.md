@@ -8,7 +8,7 @@
 - Edit-mode gate: `create` and `monia` require `editOn()` (Ben → ⚙️ Ayarlar → ✏️); otherwise redirect to `#/me`.
 
 ## Route table
-home, messages, me, p/<charId> (profile), chat/<threadId>, create[/<id>], monia[/<id>/<extra>], hikayeler, bot, kurallar[/izin], deney (bot lab), esles|tinder, booble|internet, haberler, carmen, gothic, meisove, choise, fans, otel, shop, klinik, is, okul, itiraf, creative, gram, flix, canli, parti, oyun[/ps|fp[/play]], kitap/<book>/<n>, guide, olaylar, mesajlarim, halloween. Unknown → home.
+home, messages, me, p/<charId> (profile), chat/<threadId>, create[/<id>], monia[/<id>/<extra>], hikayeler, bot, kurallar[/izin], deney (bot lab), esles|tinder, booble|internet, haberler, carmen, gothic, meisove, choise, fans, otel, shop, klinik, is, okul, itiraf, creative, gram, flix, canli, parti, oyun[/ps|fp[/play]], kitap/<book>/<n>, guide, olaylar, mesajlarim, kesinti, kiyafet, halloween. Unknown → home.
 
 ## Shared helpers
 `avatar`, `userAvatar`, `fmtTime`, thread helpers (`threads`, `threadsOf`, `groupsOf`, `membersOf`, `msgsOf`, `newThread`, `openChat`), `notify(text, icon)`, `sheet(html)` bottom sheet, `readPhoto`, `pageHero(...)` page header card, `lightbox`, `copyText`.

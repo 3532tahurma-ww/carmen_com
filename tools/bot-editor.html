@@ -113,8 +113,11 @@
     .help { font-size: 12.5px; color: #55556a; line-height: 1.6; margin-top: 16px; }
 
     /* Gruplar ve fiiller */
-    #vGroups, #vVerbs { grid-template-columns: minmax(0, 1fr) 320px; }
-    @media (max-width: 900px) { #vGroups, #vVerbs { grid-template-columns: 1fr; } }
+    #vGroups, #vVerbs, #vSizes { grid-template-columns: minmax(0, 1fr) 320px; }
+    @media (max-width: 900px) { #vGroups, #vVerbs, #vSizes { grid-template-columns: 1fr; } }
+    .slines { margin: 2px 0 10px; padding-left: 18px; font-size: 13.5px; font-weight: 600; line-height: 1.5; }
+    .gcard[data-goto] { cursor: pointer; }
+    .gcard[data-goto]:hover { box-shadow: 0 0 0 2px var(--teal); }
     .wrap { padding: 18px 22px 40px; }
     .wrap-h { display: flex; gap: 10px; align-items: center; margin-bottom: 12px; flex-wrap: wrap; }
     .wrap-h h2 { margin: 0 auto 0 0; font-size: 18px; }
@@ -155,6 +158,7 @@
       <button data-tab="addons">🪄 Otomatik ekler <small id="nAddons"></small></button>
       <button data-tab="groups">Kelime grupları <small id="nGroups"></small></button>
       <button data-tab="verbs">Fiiller <small id="nVerbs"></small></button>
+      <button data-tab="sizes">🍆⏱️ Boyut · Dayanıklılık</button>
     </nav>
     <span id="status"></span>
     <button class="btn" id="exportBtn" title="Kuralları, grupları ve fiilleri JSON olarak indir">⬇️ Dışa aktar</button>
@@ -258,6 +262,21 @@
     </aside>
   </div>
 
+  <!-- 🍆 Dick Size · ⏱️ Dayanıklılık (salt okunur) -->
+  <div class="view" id="vSizes">
+    <section class="wrap pane" id="sizeList"></section>
+    <aside class="side pane">
+      <h2>🍆⏱️ Profil mesajları</h2>
+      <div class="help">
+        Uygulamada <b>Ben → Profil</b>'deki <b>🍆 Dick Size</b> ve <b>⏱️ Dayanıklılık</b> seçimine göre karakterin olaylarda gönderdiği ek baloncuklar.<br><br>
+        <b>🍆</b> pozisyon / oral / boşalmada %50 · <b>⏱️</b> pozisyonda ve boşalmada %40. Average'da ikisi de yok.<br>
+        Kişiliğe göre ekler: Utangaç / Virgo büyükte çekinir, Kibirli / Alaycı küçükte ve çabuk bitende takılır, Utangaç uzun sürene şaşırır.<br><br>
+        Bu satırlar <code>js/data/user-lines.js</code> dosyasında düzenlenir (burada salt okunur).<br><br>
+        <b>Bot kuralları</b>: kurala <code>Dick Size: Small</code> ya da <code>Dayanıklılık: Low</code> özelliği ekle; o kurallar aşağıda listelenir. Karta dokununca kural açılır.
+      </div>
+    </aside>
+  </div>
+
   <datalist id="traitList"></datalist>
   <datalist id="catList"></datalist>
   <datalist id="termList"></datalist>
@@ -269,6 +288,7 @@
   <script src="../js/data/i18n-en-chat.js"></script>
   <script>Stories.I18n.toSide(false);</script>
   <script src="../js/data/traits.js"></script>
+  <script src="../js/data/user-lines.js"></script>
   <script src="../js/data/bot-en.js"></script>
   <script src="../js/bot.js"></script>
   <script>
@@ -278,7 +298,8 @@
     const lower = s => String(s || '').toLocaleLowerCase('tr').trim();
     const uid = () => 'r_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
     const BOT = Stories.Bot;
-    const allTraits = Stories.Traits ? Stories.Traits.all : [];
+    // + senin profil özelliklerin (uygulama Stories.protTraits ile ekler): Dick Size / Dayanıklılık
+    const allTraits = [...(Stories.Traits ? Stories.Traits.all : []), ...(Stories.DICK_SIZES || []).map(v => 'Dick Size: ' + v), ...(Stories.STAMINA_LEVELS || []).map(v => 'Dayanıklılık: ' + v)];
     const FB = 'Yedek';
 
     let data = { rules: [], addons: [], groups: [], verbs: [] };
@@ -363,7 +384,7 @@
       document.querySelectorAll('#tabs button').forEach(x => x.classList.toggle('on', x === b));
       const listTab = ui.tab === 'rules' || ui.tab === 'en' || ui.tab === 'addons';
       const kind = ui.tab === 'addons' ? 'addons' : 'rules';
-      ['rules', 'groups', 'verbs'].forEach(t => $('#v' + t[0].toUpperCase() + t.slice(1)).classList.toggle('on', t === (listTab ? 'rules' : ui.tab)));
+      ['rules', 'groups', 'verbs', 'sizes'].forEach(t => $('#v' + t[0].toUpperCase() + t.slice(1)).classList.toggle('on', t === (listTab ? 'rules' : ui.tab)));
       if (ui.tab === 'rules' || EN()) { try { localStorage.setItem(EN_KEY, EN() ? 'en' : 'tr'); } catch (e) {} }
       if (listTab && ui.kind !== kind) {
         ui.selBy[ui.kind] = ui.sel;
@@ -383,6 +404,38 @@
       if (listTab) { renderRules(); runTest(); }
       if (ui.tab === 'groups') renderGroups();
       if (ui.tab === 'verbs') renderVerbs();
+      if (ui.tab === 'sizes') renderSizes();
+    };
+
+    /* ---------- 🍆⏱️ Boyut · Dayanıklılık (js/data/user-lines.js, salt okunur) + bu özellikleri kullanan kurallar ---------- */
+    function renderSizes() {
+      const ul = a => `<ul class="slines">${a.map(x => `<li>${esc(x)}</li>`).join('')}</ul>`;
+      const lines = (head, levels, kindOf, L, sit) => {
+        const kinds = [...new Set((levels || []).map(v => kindOf[v]).filter(k => L && L[k]))];
+        return `<div class="wrap-h"><h2>${head}</h2></div><div class="gcards">${kinds.map(k => `<div class="gcard"><div class="gcard-h"><b>${esc(levels.filter(v => kindOf[v] === k).join(' · '))}</b></div>`
+          + Object.keys(L[k]).map(s => `<label class="lb">${esc(sit[s] || s)} <small>${L[k][s].length}</small></label>${ul(L[k][s])}`).join('') + '</div>').join('')}</div>`;
+      };
+      const rules = (head, pre) => {
+        const rs = data.rules.filter(r => (r.traits || []).some(t => String(t).split('|').some(x => x.trim().startsWith(pre))));
+        return `<div class="wrap-h" style="margin-top:18px"><h2>${head} <small>${rs.length}</small></h2></div>` + (rs.length
+          ? `<div class="gcards">${rs.map(r => `<div class="gcard" data-goto="${esc(r.id)}"><div class="gcard-h"><b>${esc(title(r))}</b></div>`
+            + `<small>${esc(r.traits.filter(t => String(t).includes(pre)).join(' · '))}</small>${ul(r.reply.slice(0, 6))}${r.reply.length > 6 ? `<small>+${r.reply.length - 6}</small>` : ''}</div>`).join('')}</div>`
+          : '<div class="help">Henüz bu özelliği kullanan kural yok.</div>');
+      };
+      const S = window.Stories || {};
+      $('#sizeList').innerHTML = lines('🍆 Dick Size · karakterin baloncukları', S.DICK_SIZES, S.DK_KIND || {}, S.DK_LINES, S.DK_SIT || {})
+        + rules('🍆 Dick Size kuralları', 'Dick Size:')
+        + `<div style="margin-top:22px"></div>` + lines('⏱️ Dayanıklılık · karakterin baloncukları', S.STAMINA_LEVELS, S.ST_KIND || {}, S.ST_LINES, S.ST_SIT || {})
+        + rules('⏱️ Dayanıklılık kuralları', 'Dayanıklılık:');
+    }
+    $('#sizeList').onclick = e => {
+      const c = e.target.closest('[data-goto]');
+      if (!c) return;
+      $('[data-tab=rules]').click();
+      ui.sel = c.dataset.goto; ui.q = ''; $('#q').value = '';
+      renderRules();
+      const row = document.querySelector(`.row[data-id="${CSS.escape(ui.sel)}"]`);
+      if (row) row.scrollIntoView({ block: 'nearest' });
     };
 
     /* ================= KURALLAR ================= */

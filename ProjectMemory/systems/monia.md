@@ -25,6 +25,12 @@
 
 - 🐂 Bull: `bull` tag events pass `bullGate` (`writeEvents` only, so chained finishes skip it). `kocabilir` tag = husband must know. Hotwife counts as approved; Husband Approved is per chat (`lastDone`). `bull` is a `THEME` tag like `duş`. Bull Creampie copies the Vaginal Creampie pregnancy outcome.
 
+- 🏖️ Place cats (Bathtub, Pool, Car, Elevator, Camping, Kitchen, Camera): tags `küvet/havuz/araba/asansör/kamp/mutfak/kamera` are `THEME` tags like `duş`, so their finishes only follow same-place positions. An event with its own `outcomes` skips the tag-shared "Etiket sonuçları" (Zevk +8), so Elevator positions put Zevk +8 into their own 70% outcome.
+- 👯 Threesome (`c:mvthreesome01x`, tag `event`, `mvtr01`–`mvtr06`, `mvtr09`–`mvtr15`; picker stage "Pozisyon") + Cumming `Double Facial` / `Cum Sharing Kiss` / `Double Tit Cumshot` / `Creampie Lick` (`mvtr07`, `mvtr08`, `mvtr16`, `mvtr17`). Hug groups `trioHug|trioPos|trioFinish`. `üçlü` is an `EV_THEME` tag (finishes only after üçlü positions) and `writeEvents` drops üçlü events outside group chats. Lines: `ME_EV_LINES`, bot `r_ev_tr_*`, commands `r_gc_*` (CMD_EV). Not in `SEX_CATS`, so askTopic/surpriseEv ignore them.
+- 🍆 Dick Show (`mvdk01show`, Outercourse, no tags → not a position): bot `r_ev_dk_show_*` by the user's `Dick Size:` trait (+ Alaycı/Kibirli mock small), `ME_EV_LINES['Dick Show']`.
+- 🦄 Adding a fantasy: put the event in system.js under Fantesy cat `c:mvgwj75108lqd` (`roleplay` tag for roles; `adoptSystem` delivers it), then add an app.js `FANT_KEYS` prefix → `fx…` key (title `startsWith`, first match wins, so check prefix clashes), `FLAVOR` (optional), `FANT_BOOK` (append at END, numeric book links), Olay Kitabı line, bot rules `=fant =<key>`, `fant-interrupts.js`, EN. Role-play sheet lists every `fxrp*` fantasy automatically. Old roles came from `fixRole1`/`ROLEPLAY*` (kept for existing users).
+- ✨ Genshin (Yelan, Clorinde, Mavuika, Xianyun): one `fxrp<name>` key per character, two events each titled "<Ad> – …" (the `FANT_KEYS` prefix is the name, so a third event with the same prefix needs no new key). Start rules match the event's own words (`çayevi sorgusu`, `zar bahsi`…), `_poz` rules match the name. Renaming an event → update its `r_rp_<name>_a|b` rule, `ME_EV_LINES` key, Olay Kitabı line, `GS_BOOK` and EN.
+
 ## Interactions
 Chat (`#` events, bot rule outcomes), Create (perms ✅/🚫 from event cats, `crFixPerms`), books/guide (`renderEvGuide`, Olay Kitabı), sites (shop/klinik/jobs start events), system save.
 

@@ -489,6 +489,35 @@ Stories.FANT_INTERRUPTS = {
       { g: '🍃 Rüzgâr esti, yapraklar üstünüze yağdı', r: ['Orman bizi örtüyor 🍃', 'Saçına yaprak takıldı 😆', 'Doğa onayladı 😏', 'Yaprak yatağı 🌿', 'Hiç durma 🥵'] },
       { g: '🎶 Uzaktan elf şarkıları duyuluyor, kardeşleri yaklaşıyor', r: ['Kardeşlerim! Saklan 😱', 'Görmesinler bizi 🙈', 'Bir insanla… beni sürgün ederler 😳', 'Geçip gittiler, devam 😈', 'Şarkıları bizim için 😏'] }
     ],
+    // ✨ Genshin
+    fxrpyelan: [
+      { g: '🎲 Masadaki zar kendi kendine yuvarlanıp yere düştü', r: ['Tek geldi. Şanslısın 🎲', 'Bırak, sonra toplarım 😏', 'Kader bile bizi izliyor 😈', 'Hile yok, sadece yer çekimi 💧', 'Kaç geldi? Boşver 🙈'] },
+      { g: '🚪 Çayevinin kapısı tıklatılıyor: "Hanımefendi, bir misafiriniz var"', r: ['Beklesin 😏', 'Meşgulüm. Çok 😈', 'Şşş, ses çıkarma 🤫', 'Kim olduğunu biliyorum, önemsiz 💧', 'Kapı kilitli, devam 🎲'] },
+      { g: '💠 Bileziği bir an parlayıp sönüyor', r: ['Bir uyarı… önemsiz 😏', 'Atalarım izliyorsa utansınlar 😈', 'Yakında bir tehlike var. En sevdiğim 💧', 'Görmezden gel 🙈', 'Sen de hissettin mi? 💠'] },
+      { g: '📜 Kapının altından mühürlü bir not kayıyor', r: ['Görev… sabaha kalsın 😏', 'Okumayacağım 🤫', 'Şu an tek görevim sensin 😈', '"Acil" yazıyor. Değil 💧', 'Notu ayağınla it 🎲'] },
+      { g: '🍵 Çay fincanı devrildi, masa ıslandı', r: ['Bırak, aksın 💧', 'Zaten her şey ıslaktı 😈', 'Sonra silerim 😏', 'Dikkatimi dağıtamazsın 🎲', 'Sıcakmış… senin kadar değil 🥵'] }
+    ],
+    fxrpclorinde: [
+      { g: '🔔 Saat kulesi gece yarısını vuruyor', r: ['Nöbetim bitti. Resmen ⚔️', 'Geç oldu… kalıyorum 😏', 'On iki vuruş. Say, durma 😈', 'Bu saatte düello yasak. Bu değil ⚡', 'Sabaha kadar vaktimiz var 😳'] },
+      { g: '🎩 Şapkası askıdan kayıp yere düştü', r: ['Bırak, kalsın 🎩', 'Bugün ikinci düşüşü 😳', 'Uğursuzluk değil, işaret 😏', 'Sonra alırım ⚔️', 'Şapkam bile teslim oldu 😈'] },
+      { g: '👣 Koridorda muhafız devriyesinin adımları duyuluyor', r: ['Sessiz. Nefesini tut 🤫', 'Beni böyle görmemeliler 😳', 'Geçtiler. Devam ⚔️', 'Kapı kilitli, endişelenme 😏', 'Yakalanırsak düelloyla çözerim 😈'] },
+      { g: '⚡ Dışarıda şimşek çaktı, salon bir an aydınlandı', r: ['Ben değildim… galiba ⚡', 'Fırtına bize eşlik ediyor 😏', 'Yüzümü gördün. Unut 😳', 'Güzel bir ışık ⚔️', 'Gök gürlesin, sesimi örter 😈'] },
+      { g: '🎲 Masadaki zar yuvarlanıp yirmi geldi', r: ['Kritik başarı. Senin lehine 😏', 'Zar bile senden yana 🎲', 'Oyun yöneticisi onaylıyor 🎩', 'Bir hamle daha hakkın var 😈', 'Tesadüf değil 😳'] }
+    ],
+    fxrpmavuika: [
+      { g: '🥁 Dışarıda zafer davulları çalmaya başladı', r: ['Ritme uy, savaşçım 🥁', 'Halkım kutluyor, biz de 🔥', 'Davullar sesimi örter 😈', 'Ne güzel bir eşlik ☀️', 'Daha yüksek çalsınlar 😏'] },
+      { g: '🔥 Ateş bir anda harlandı', r: ['Ben yaptım. İstemeden 😳', 'Heyecanlanınca böyle oluyor 🔥', 'Korkma, seni yakmam 😏', 'Ateş de azdı 😈', 'Daha da harlansın ☀️'] },
+      { g: '📣 Dışarıdan bir savaşçı sesleniyor: "Liderim, sizi bekliyorlar!"', r: ['Beklesinler! 🔥', 'Liderin meşgul 😏', 'Geliyorum… hayır, gelmiyorum 😈', 'Bir zafer konuşması daha mı? Sonra ☀️', 'Şşş, yokmuşuz gibi 🤫'] },
+      { g: '🏍️ Motor kendi kendine kükredi, farı yanıp söndü', r: ['Kıskandı 😆', 'Sus bakalım, sıra sende değil 🏍️', 'Motoru boşver, bana bak 🔥', 'Sonra onunla da gezeriz 😈', 'O da sabırsız, sahibi gibi 😏'] },
+      { g: '🌋 Uzakta volkan gürledi, yer hafifçe sarsıldı', r: ['Natlan bizi kutluyor 🌋', 'Bu ben değildim… belki 😏', 'Sarsıntı işimize yarar 😈', 'Tutun bana ☀️', 'Toprak bile ısındı 🔥'] }
+    ],
+    fxrpxianyun: [
+      { g: '🕊️ Pencereye bir turna kondu, içeri bakıyor', r: ['Git, bu adeptus meşgul 🕊️', 'Akrabam sayılır, utandım 😳', 'Bakma öyle, yuvana dön 😤', 'Kimseye anlatmaz, merak etme 😏', 'Perdeyi çek 🙈'] },
+      { g: '⚙️ Köşedeki mekanizma kendi kendine çalışmaya başladı', r: ['Arıza değil, özellik ⚙️', 'Kapat şunu… hayır, kalsın 😈', 'Bu adeptusun icatları da heyecanlandı 😳', 'Vızıltısı ritim tutuyor 😏', 'Sonra onarırım ☁️'] },
+      { g: '☁️ Odaya bulut doldu, her yer sisli', r: ['Zirvede böyle olur ☁️', 'Artık kimse görmez 😏', 'Elimi bul, ölümlü 🥺', 'Sis tenimi serinletiyor 😈', 'Bu adeptus bulutu çağırmadı. Sanırım 😳'] },
+      { g: '🍵 Çaydanlık fokurdayıp taştı', r: ['Çay! …boşver 😩', 'Bin yıllık çaydanlık, dayanır 🍵', 'Bu adeptus ilk kez çayı unuttu 😳', 'Taşsın, biz de taşıyoruz 😈', 'Sonra taze demlerim ☁️'] },
+      { g: '📣 Dağın eteğinden bir ses yankılanıyor: "Ustam, orada mısınız?"', r: ['Öğrencim! Sus 😱', 'Bu adeptus burada değil! 😳', 'Cevap verme, gider 🤫', 'Yarın gelsin, bugün ders yok 😤', 'Gitti… devam, ölümlü 😈'] }
+    ],
     fxrphostes: [
       { g: '🔔 Kabin içinden "ding": bir yolcu hostesi çağırıyor', r: ['Beklesin 😏', 'Tek yolcum sensin ✈️', 'Bir dakika beyefendi! …hayır, gitmiyorum 😈', 'Ding ding… sus 🙈', 'Başka hostes baksın 💄'] },
       { g: '✈️ Pilot anons ediyor: "Türbülans bölgesine giriyoruz, kemerlerinizi bağlayın"', r: ['Kemer mi? Sen beni tut 😈', 'Türbülans tam zamanında 🥵', 'Sallanalım 😏', 'Kemerimi sen bağla 😳', 'Yerimizde kalalım ✈️'] },

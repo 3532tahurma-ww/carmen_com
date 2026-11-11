@@ -78,6 +78,8 @@ seni  →  +sevmek  + Soğuk → "Hıh. Tamam."                     aynı kelime
 
 **Yaş özelliği:** motor karakterin yaşından bir özellik daha türetir (kullanıcı ~20 yaşında varsayılır): `Yaş: Genç` (18–22), `Yaş: Yirmili` (23–29), `Yaş: Otuzlu` (30–39), `Yaş: Olgun` (40+). Yaşı olmayan karakterde yoktur. Örnek: `"traits": ["Yaş: Otuzlu|Yaş: Olgun"]`.
 
+**Korunma özelliği:** karakterin 🛡️ Korunma & boşalma seçiminden türetilir: `Kondom: Var` / `Kondom: Yok`, (kondom yoksa) `İçe: İzin var` / `İçe: İzin yok`, (içe izin varsa) `Hap: Alıyor` / `Hap: Almıyor`. Örnek: `"traits": ["İçe: İzin var", "Hap: Almıyor"]`.
+
 ---
 
 ## 4. Kelime yazımı (`when`)
@@ -169,6 +171,10 @@ Kurallar dosyadaki **sırasına göre değil**, bu puana göre seçilir; dosya s
 Bot cevapları normal mesaj gibi sohbete kaydedilir: düzenlenebilir, ↶ ile geri alınabilir, karakterin **anahtar kelime efektleri** onlarda da çalışır.
 
 ---
+
+### İngilizce cevaplar (`en`)
+
+Editörün **İngilizce kurallar** sekmesinde her cevap cümlesinin İngilizcesi yazılır. Tetik kelimeleri Türkçe kalır. Dosyada üst düzeyde `"en": [["Selam {sen}!", "Hi {sen}!"]]` çiftleri olarak durur ve aynı cümleyi kullanan bütün kurallarda geçerlidir. Türkçe cümle değişirse çevirisi kaydederken silinir. `{x:y}` kalıbı içeren satırlar çevrilemez.
 
 ## 9. Otomatik ekler
 
