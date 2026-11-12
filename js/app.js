@@ -1533,83 +1533,93 @@
     deal: ['Anlaştık 🤝 {h}\'da {y}.', 'Tamamdır: {h}, {y} 💋', 'Söz verdik: {y}, saat {h} 🤝', 'Not aldım: {h} · {y} 😘'],
     bye: ['Görüşürüz 💋', 'Şimdiden hazırlanmaya başlıyorum 😈', 'Geç kalma, beklemeyi sevmem 😘', 'En güzel iç çamaşırımı giyeceğim 🙈', 'Duşumu alıp seni bekleyeceğim 🛁', 'Heyecandan şimdiden titriyorum 🥵', 'Kapıda gülümsemeni görmek istiyorum 😘', 'Sakın beni ekme, unutmam 😏']
   };
-  /* 📞 ön görüşme sayfası (#/carmen/<id>/gorusme): ui.cmMt { id, step, log, spots, ses, spot, hour, no, alt } */
-  function renderCarmenMeet(c0) {
-    const first = (c0.name || 'İsimsiz').split(' ')[0], vip = cmVip(c0), ses = cmSessions(c0), raw = !cmProt(c0).need;
-    const f = (k, o = {}) => pick(CM_MT[k]).replace(/\{(\w+)\}/g, (m, x) => x === 'ad' ? first : o[x] != null ? o[x] : m);
-    if (!ui.cmMt || ui.cmMt.id !== c0.id) {
-      const home = [{ id: 'her', ic: '🏠', name: `${first}'in evi`, place: 'yatak', hint: pick(['Kapıyı aralık bırakmış; içerisi loş, mis gibi parfüm kokuyor', 'Salonda mumlar yanıyor, yatak odasının kapısı açık', 'Yumuşak bir müzik çalıyor; masada iki kadeh şarap']), greet: ['Kapıyı aralık bıraktım, gir içeri 😏', 'Mumları yaktım, ayakkabılarını kapıda bırak 💋', 'Zil çalma, kapı açık… yatak odasındayım 😈'] },
-        { id: 'you', ic: '🚪', name: 'Senin evin', place: 'salon', hint: pick(['Kapı çaldı; paltosunun altından dantel görünüyor', 'Kapında, topukluları elinde; parfümü koridoru doldurmuş', 'Kapıyı açınca sana sarılıp içeri süzülüyor']), greet: ['Kapındayım 🔔 aç bakalım 😘', 'Komşular görmeden aç kapıyı 🙈', 'Aç kapıyı, paltomun altında bir sürprizim var 😈'] }];
-      ui.cmMt = { id: c0.id, step: 'ses', spots: [...(vip ? [] : home), ...sample(SY_VENUES, vip ? 4 : 3).map(v => ({ ...v, stay: 1 }))], log: [['her', f('hi')], ['her', f('ask1')]] };
-    }
-    const S = ui.cmMt, spots = S.spots, steps = [['ses', '💎 Seans'], ['yer', '📍 Yer'], ['saat', '🕰️ Saat'], ['ok', '🤝 Anlaşma']], si = steps.findIndex(x => x[0] === S.step);
-    const card = (k, ic, t, sub, cls = '') => `<button type="button" class="cm-mo${cls}" data-mt="${k}"><i>${ic}</i><span><b>${esc(t)}</b>${sub ? `<small>${esc(sub)}</small>` : ''}</span></button>`;
-    const dp = s => cmDealPrice(c0, s, raw), was = s => raw ? s.raw : s.kon;
-    const opts = S.step === 'ses' ? ses.map((s, i) => card(i, s.ic, s.name, `${s.dur} · ${cmTl(dp(s))}${dp(s) < was(s) ? ` (👑 söz: ${cmTl(was(s))} yerine)` : ''}${raw ? ' · kondomsuz' : ''}`))
-      : S.step === 'yer' ? spots.map((v, i) => card(i, v.ic, v.name, v.stay ? `${v.kind} · 📍 ${v.area} · +${cmTl(Math.round(v.price * .4 / 50) * 50)} oda` : v.id === 'her' ? 'onun adresi, gizli' : 'o sana gelir'))
-      : S.step === 'saat' ? [...(S.alt != null ? [card('alt', '👍', `${hh2(S.alt)} olur`, 'onun önerisi', ' hot')] : []), ...CM_HOURS.filter(h => h !== S.no).map(h => card(h, '🕰️', hh2(h), h === 0 ? 'gece yarısı' : h < 18 ? 'gündüz' : 'akşam'))]
-      : [card('go', '💬', 'Sohbete geç', 'sohbet o mekanda, o saatte başlar', ' hot')];
-    view.innerHTML = `<div class="cm-site cm-mt" data-lang="${adLang(c0)}">${cmBar()}
-      <div class="cm-mhead">${avatar(c0, 56)}<span><b>📞 ${esc(first)} ile ön görüşme</b><small>${vip ? '👑 VIP · ' : ''}⭐ ${cmStars(c0)} · ${cmOnline(c0) ? '<em class="cm-on">● Çevrimiçi</em>' : 'birazdan döner'}</small></span></div>
-      <div class="cm-msteps">${steps.map(([k, l], i) => `<span class="${i < si ? 'done' : i === si ? 'on' : ''}">${l}</span>`).join('')}</div>
-      <div class="cm-mbody"><div class="cm-mlog">${S.log.map(([w, t]) => `<p class="${w}">${esc(t)}</p>`).join('')}</div>
-        <aside class="cm-mdeal"><h4>🤝 Anlaşma</h4><p>💎 ${S.ses ? esc(S.ses.name) : '—'}</p><p>📍 ${S.spot ? esc(S.spot.name) : '—'}</p><p>🕰️ ${S.hour != null ? hh2(S.hour) : '—'}</p>
-          ${S.ses ? `<p class="cm-mpr">${cmTl(dp(S.ses) + (S.spot && S.spot.stay ? Math.round(S.spot.price * .4 / 50) * 50 : 0))}</p>` : ''}</aside></div>
-      <div class="cm-mopts">${opts.join('')}</div>
-      <div class="cm-macts"><button type="button" id="cmMtRe">🔄 Baştan</button><a href="#/carmen/${c0.id}">↩ İlana dön</a></div>
-      <footer class="cm-foot">© Carmen.com · Tüm profiller kurgusaldır, 18+</footer></div>`;
-    const lg = view.querySelector('.cm-mlog'); lg.scrollTop = lg.scrollHeight;
-    const say = (me, her) => { S.log.push(['me', me], ...[].concat(her).map(t => ['her', t])); };
-    view.querySelector('.cm-mt').onclick = e => {
-      if (e.target.closest('#cmMtRe')) { ui.cmMt = null; return renderCarmenMeet(c0); }
-      const b = e.target.closest('[data-mt]'); if (!b) return;
-      const v = b.dataset.mt;
-      if (S.step === 'ses') {
-        S.ses = ses[+v];
-        const n = S.ses.name.toLocaleLowerCase('tr');
-        say(f('me1', { s: S.ses.name }), [n.includes('gece') ? f('night') : n.includes('kısa') ? f('short') : f('ses'), f(vip ? 'ask2v' : 'ask2')]);
-        S.step = 'yer';
-      } else if (S.step === 'yer') {
-        S.spot = spots[+v];
-        const k = S.spot.id === 'her' ? 'Her' : S.spot.id === 'you' ? 'You' : 'Stay';
-        say(f('me2' + k.toLowerCase(), { y: S.spot.name }), [f('yer' + k), f('ask3')]);
-        S.step = 'saat';
-      } else if (S.step === 'saat') {
-        const h = v === 'alt' ? S.alt : +v;
-        if (v !== 'alt' && Math.random() < .35) {
-          S.no = h; S.alt = (h + 1) % 24;
-          say(f('me3', { h: hh2(h) }), f('no', { h: hh2(h), a: hh2(S.alt) }));
-        } else {
-          S.hour = h;
-          say(v === 'alt' ? f('meOk', { a: hh2(h) }) : f('me3', { h: hh2(h) }), [...(h === 0 || h === 23 ? [f('late')] : []), f('deal', { h: hh2(h), y: S.spot.name }), f('bye')]);
-          S.step = 'ok';
-        }
-      } else if (v === 'go') {
-        if (!realPay(dp(S.ses) + (S.spot.stay ? Math.round(S.spot.price * .4 / 50) * 50 : 0), `🌹 Carmen.com · ${first} · ${S.ses.name}`)) return;
-        if (c0.chDeal) delete c0.chDeal.half;
-        const c = cmAdopt(c0), t = newThread(c, 'Carmen.com'), now = Date.now(), sp = S.spot, hint = sp.stay ? pick(sp.hints) : sp.hint;
-        msgsOf(t).push(...S.log.map(([w, text], i) => ({ id: Store.uid(), from: w, text, ts: now - (S.log.length - i) * 60000 })),
-          { id: Store.uid(), from: 'sys', ts: now, text: `🕰️ ${hh2(S.hour)} · ${S.ses.name} · ${hint}`, scene: { place: sp.place, icon: sp.ic, name: sp.name, hint } },
-          { id: Store.uid(), from: 'her', ts: now + 1, text: pick(sp.greet) });
-        t.clock = { start: S.hour * 60, done: 0 };
-        sessSet(t, S.ses.dur, S.hour);
-        // 👑 Choise sözleri: gece kalır → sabaha kadar; +30 dk / ikinci tur süre ekler
-        const dl = c.chDeal || {};
-        if (dl.night) t.paid.mins = Math.max(t.paid.mins, sessMins('sabaha kadar', S.hour));
-        t.paid.mins += dl.plus || 0;
-        ui.cmMt = null;
-        save();
-        location.hash = `#/chat/${t.id}`;
-        return;
-      }
-      renderCarmenMeet(c0);
-    };
+  /* 📞 ön görüşme ana sohbette (#/carmen/<id>/gorusme, #/gothic/<id>/gorusme → mtStart): açık görüşmesi varsa o thread, yoksa yenisi.
+   * th.site = { k: 'cm'|'gt', step: ses|yer|saat|ok, spots, ses, spot, hour, no, alt }; seçenekler sohbet şeridinde (SITE_CHAT.cm/gt = MT_CHAT).
+   * 🤝 Anlaşmayı onayla → öder, 📍 mekan kartı + 🕰️ saat + seans süresi (sessSet), görüşme biter (th.site.done). Site farkları mtCfg'de */
+  const mtRoom = v => Math.round(v.price * .4 / 50) * 50;
+  function mtCfg(k) {
+    if (k === 'gt') return { title: 'Gothic.com', ic: '🕯️', pay: '🦇 Gothic.com', T: GT_MT, adopt: gtAdopt, first: gtFirst, ses: gtSessions, hours: [21, 22, 23, 0, 1, 2, 3],
+      price: (c, s, raw) => raw ? s.raw : s.kon, room: () => 0, late: h => h === 0 || h === 3, hourSub: h => h === 0 ? 'gece yarısı' : h === 3 ? 'cadı saati' : 'gece', staySub: () => '🎃 Halloween mekanı',
+      sesKey: n => n.includes('cadılar') ? 'night' : n.includes('mum') ? 'short' : n.includes('seansı') ? 'role' : 'ses',
+      spots: (first, vip) => [...(vip ? [] : [{ id: 'her', ic: '🕯️', name: `${first}'in mahzeni`, place: 'yatak', hint: pick(['Kapı aralık; içerisi mum ışığıyla dolu, siyah çarşaflar serili', 'Duvarlarda kafatası şamdanlar, yatağın üstünde kırmızı güller', 'Tütsü kokuyor; o kostümüyle yatağın kenarına oturmuş']), greet: ['Kapı açık, mumların arasından gel 🕯️', 'Ayakkabılarını çıkar, ruhunu kapıda bırak 😈'] },
+        { id: 'you', ic: '🚪', name: 'Senin evin', place: 'salon', hint: pick(['Gece yarısı kapın çaldı; pelerinli bir gölge', 'Kapını açınca kostümüyle sana sarılıp içeri süzülüyor']), greet: ['Kapındayım… ışıkları söndür 🚪', 'Şeker mi şaka mı? Cevabı biliyorum 😈'] }]), ...GT_SPOTS.map(s => ({ ...s, stay: 1 }))] };
+    return { title: 'Carmen.com', ic: '📞', pay: '🌹 Carmen.com', T: CM_MT, adopt: cmAdopt, first: c => (c.name || 'İsimsiz').split(' ')[0], ses: cmSessions, hours: CM_HOURS,
+      price: cmDealPrice, room: mtRoom, late: h => h === 0 || h === 23, hourSub: h => h === 0 ? 'gece yarısı' : h < 18 ? 'gündüz' : 'akşam', staySub: v => `${v.kind} · 📍 ${v.area} · +${cmTl(mtRoom(v))} oda`,
+      sesKey: n => n.includes('gece') ? 'night' : n.includes('kısa') ? 'short' : 'ses',
+      spots: (first, vip) => [...(vip ? [] : [{ id: 'her', ic: '🏠', name: `${first}'in evi`, place: 'yatak', hint: pick(['Kapıyı aralık bırakmış; içerisi loş, mis gibi parfüm kokuyor', 'Salonda mumlar yanıyor, yatak odasının kapısı açık', 'Yumuşak bir müzik çalıyor; masada iki kadeh şarap']), greet: ['Kapıyı aralık bıraktım, gir içeri 😏', 'Mumları yaktım, ayakkabılarını kapıda bırak 💋', 'Zil çalma, kapı açık… yatak odasındayım 😈'] },
+        { id: 'you', ic: '🚪', name: 'Senin evin', place: 'salon', hint: pick(['Kapı çaldı; paltosunun altından dantel görünüyor', 'Kapında, topukluları elinde; parfümü koridoru doldurmuş', 'Kapıyı açınca sana sarılıp içeri süzülüyor']), greet: ['Kapındayım 🔔 aç bakalım 😘', 'Komşular görmeden aç kapıyı 🙈', 'Aç kapıyı, paltomun altında bir sürprizim var 😈'] }]), ...sample(SY_VENUES, vip ? 4 : 3).map(v => ({ ...v, stay: 1 }))],
+      pre: c => { if (c.chDeal) delete c.chDeal.half; },
+      // 👑 Choise sözleri: gece kalır → sabaha kadar; +30 dk / ikinci tur süre ekler
+      post: (c, t, S) => { const dl = c.chDeal || {}; if (dl.night) t.paid.mins = Math.max(t.paid.mins, sessMins('sabaha kadar', S.hour)); t.paid.mins += dl.plus || 0; } };
   }
+  const mtF = (C, first) => (k, o = {}) => pick(C.T[k] || CM_MT[k]).replace(/\{(\w+)\}/g, (m, x) => x === 'ad' ? first : o[x] != null ? o[x] : m);
+  const mtTotal = (C, c, S, raw) => S.ses ? C.price(c, S.ses, raw) + (S.spot && S.spot.stay ? C.room(S.spot) : 0) : 0;
+  const MT_STEPS = [['ses', '💎 Seans'], ['yer', '📍 Yer'], ['saat', '🕰️ Saat'], ['ok', '🤝 Anlaşma']];
+  function mtStart(k, c0) {
+    const C = mtCfg(k), c = C.adopt(c0);
+    let t = threadsOf(c).find(x => x.site && x.site.k === k && !x.site.done);
+    if (!t) {
+      const first = C.first(c), f = mtF(C, first), now = Date.now();
+      t = newThread(c, C.title);
+      t.site = { k, step: 'ses', spots: C.spots(first, cmVip(c)) };
+      msgsOf(t).push({ id: Store.uid(), from: 'her', ts: now, text: f('hi') }, { id: Store.uid(), from: 'her', ts: now + 1, text: f('ask1') });
+      save();
+    }
+    location.replace(`#/chat/${t.id}`);
+  }
+  function mtBar(c, th) {
+    const S = th.site, C = mtCfg(S.k), raw = !cmProt(c).need, si = MT_STEPS.findIndex(x => x[0] === S.step), total = mtTotal(C, c, S, raw);
+    const card = (v, ic, t, sub, hot) => `<button type="button" data-sact="mt" data-v="${v}"${hot ? ' class="hot"' : ''}>${ic} ${esc(t)}${sub ? ` <small>· ${esc(sub)}</small>` : ''}</button>`;
+    const dp = s => C.price(c, s, raw), was = s => raw ? s.raw : s.kon;
+    const opts = S.step === 'ses' ? C.ses(c).map((s, i) => card(i, s.ic, s.name, `${s.dur} · ${cmTl(dp(s))}${dp(s) < was(s) ? ` (👑 söz: ${cmTl(was(s))} yerine)` : ''}${raw ? ' · kondomsuz' : ''}`))
+      : S.step === 'yer' ? S.spots.map((v, i) => card(i, v.ic, v.name, v.stay ? C.staySub(v) : v.id === 'her' ? 'onun adresi, gizli' : 'o sana gelir'))
+      : S.step === 'saat' ? [...(S.alt != null ? [card('alt', '👍', `${hh2(S.alt)} olur`, 'onun önerisi', 1)] : []), ...C.hours.filter(h => h !== S.no).map(h => card(h, '🕰️', hh2(h), C.hourSub(h)))]
+      : [card('go', '🤝', 'Anlaşmayı onayla', cmTl(total), 1)];
+    const deal = [S.ses && '💎 ' + S.ses.name, S.spot && '📍 ' + S.spot.name, S.hour != null && S.step === 'ok' && '🕰️ ' + hh2(S.hour), total && '💰 ' + cmTl(total)].filter(Boolean).join(' · ');
+    return `<div class="site-steps">${C.ic} ${MT_STEPS.map(([, l], i) => i === si ? `<b>${l}</b>` : `<span>${i < si ? '✓ ' : ''}${l}</span>`).join(' → ')}</div>
+      ${deal ? `<small class="site-sum">${esc(deal)}</small>` : ''}<div class="site-qa">${opts.join('')}${S.step !== 'ses' ? card('re', '🔄', 'Baştan') : ''}</div>`;
+  }
+  function mtAct(c, th, a, v, api) {
+    if (a !== 'mt') return;
+    const S = th.site, C = mtCfg(S.k), first = C.first(c), f = mtF(C, first), vip = cmVip(c);
+    if (v === 're') { Object.assign(S, { step: 'ses', ses: null, spot: null, hour: null, no: null, alt: null }); return api.say('', [f('ask1')]); }
+    if (S.step === 'ses') {
+      S.ses = C.ses(c)[+v]; S.step = 'yer';
+      return api.say(f('me1', { s: S.ses.name }), [f(C.sesKey(S.ses.name.toLocaleLowerCase('tr'))), f(vip ? 'ask2v' : 'ask2')]);
+    }
+    if (S.step === 'yer') {
+      S.spot = S.spots[+v]; S.step = 'saat';
+      const k = S.spot.id === 'her' ? 'Her' : S.spot.id === 'you' ? 'You' : 'Stay';
+      return api.say(f('me2' + k.toLowerCase(), { y: S.spot.name }), [f('yer' + k), f('ask3')]);
+    }
+    if (S.step === 'saat') {
+      const h = v === 'alt' ? S.alt : +v;
+      if (v !== 'alt' && Math.random() < .35) { S.no = h; S.alt = (h + 1) % 24; return api.say(f('me3', { h: hh2(h) }), [f('no', { h: hh2(h), a: hh2(S.alt) })]); }
+      S.hour = h; S.step = 'ok';
+      return api.say(v === 'alt' ? f('meOk', { a: hh2(h) }) : f('me3', { h: hh2(h) }), [...(C.late(h) ? [f('late')] : []), f('deal', { h: hh2(h), y: S.spot.name }), f('bye')]);
+    }
+    if (v === 'go' && mtDeal(c, th, C, first)) api.render();
+  }
+  function mtDeal(c, th, C, first) {
+    const S = th.site, sp = S.spot;
+    if (!realPay(mtTotal(C, c, S, !cmProt(c).need), `${C.pay} · ${first} · ${S.ses.name}`)) return false;
+    if (C.pre) C.pre(c);
+    const now = Date.now(), hint = sp.stay && sp.hints ? pick(sp.hints) : sp.hint;
+    msgsOf(th).push({ id: Store.uid(), from: 'sys', ts: now, text: `🕰️ ${hh2(S.hour)} · ${S.ses.name} · ${hint}`, scene: { place: sp.place, icon: sp.ic, name: sp.name, hint } },
+      { id: Store.uid(), from: 'her', ts: now + 1, text: pick(sp.greet) });
+    th.clock = { start: S.hour * 60, done: 0 };
+    sessSet(th, S.ses.dur, S.hour);
+    if (C.post) C.post(c, th, S);
+    S.done = 1;
+    save();
+    return true;
+  }
+  const MT_CHAT = { bar: mtBar, say: () => null, act: mtAct };
   const cmBar = () => `<div class="cm-bar"><a class="cm-back" href="${location.hash.split('/').length > 3 ? location.hash.split('/').slice(0, 3).join('/') : location.hash.split('/').length > 2 ? '#/carmen' : '#/booble'}" aria-label="Geri">${ICON.arrowLeft}</a>
       <a class="cm-logo" href="#/carmen">Carmen<i>.com</i></a><span class="cm-url">🔒 carmen.com${esc(location.hash.replace(/^#\/carmen/, ''))}</span>${ctxHelp('cm-back')}</div>`;
   function renderCarmen(id, extra) {
     const c = id && cmFind(id);
-    if (c) return extra === 'gorusme' ? renderCarmenMeet(c) : renderCarmenProfile(c);
+    if (c) return extra === 'gorusme' ? mtStart('cm', c) : renderCarmenProfile(c);
     const q = (ui.cmQ || '').toLocaleLowerCase('tr'), f = ['on', 'vip', 'new', 'raw', 'hw'].includes(ui.cmF) ? ui.cmF : 'all', all = cmAll();
     const list = all.filter(c => (!q || [c.name, c.city, c.job, ...persOf(c), ...cmBody(c).map(x => x[2])].join(' ').toLocaleLowerCase('tr').includes(q))
       && (f === 'all' || (f === 'on' && cmOnline(c)) || (f === 'vip' && cmVip(c)) || (f === 'new' && cmBadge(c)) || (f === 'raw' && !cmProt(c).need) || (f === 'hw' && (c.fields || {}).hotwife)))
@@ -2027,7 +2037,7 @@
   const GT_FOOT = '<footer class="cm-foot">© Gothic.com · Karanlığı sevenler için · Tüm profiller kurgusaldır, 18+</footer>';
   function renderGothic(id, extra) {
     const c = id && gtFind(id);
-    if (c) return extra === 'gorusme' ? renderGothicMeet(c) : renderGothicProfile(c);
+    if (c) return extra === 'gorusme' ? mtStart('gt', c) : renderGothicProfile(c);
     const q = (ui.gtQ || '').toLocaleLowerCase('tr'), f = ['on', 'vip', 'new', 'raw'].includes(ui.gtF) ? ui.gtF : 'all', all = gtAll(), roles = [...gtHw().filter(isFant), ...RP_ROLES.filter(r => r[8].split(' ').includes('gt')).map(r => fantEvByKey(r[0])).filter(Boolean)];
     const list = all.filter(c => (!q || [c.name, c.city, c.job, gtType(c).name, ...persOf(c), ...cmBody(c).map(x => x[2]), ...feelEvents(c.likes || []).map(e => e.title)].join(' ').toLocaleLowerCase('tr').includes(q))
       && (!ui.gtR || (c.likes || []).includes(ui.gtR)) && (!ui.gtT || gtType(c).id === ui.gtT) && (f === 'all' || (f === 'on' && cmOnline(c)) || (f === 'vip' && cmVip(c)) || (f === 'new' && cmBadge(c)) || (f === 'raw' && !cmProt(c).need)))
@@ -2135,71 +2145,6 @@
     { id: 'kostum-partisi', ic: '🎭', name: 'Kostüm partisi', place: 'kostum-partisi', hint: 'Herkes maskeli, müzik yüksek; o kalabalığın içinden sana el sallıyor.', greet: ['Beni maskemden tanıdın mı? 🎭', 'Merdivenlerin başında bekliyorum, yukarıda boş bir oda var 😈'] },
     { id: 'mezarlik-araba', ic: '🪦', name: 'Mezarlık önünde, arabada', place: 'mezarlik-araba', hint: 'Farlar sönük, sis mezar taşlarının arasından yükseliyor; o arka koltuğa geçiyor.', greet: ['Farları söndür… arka koltuktayım 🪦', 'Bir baykuş öttü, sarıl bana 😳'] },
     { id: 'misir-labirenti', ic: '🌽', name: 'Mısır labirenti', place: 'misir-labirenti', hint: 'Mısır sapları başınızın üstünde; uzaktan çığlıklar geliyor, o elini tutuyor.', greet: ['Kaybolduk… çok güzel 🌽', 'Labirentin ortasında bekliyorum, korkuluk bizi izliyor 😈'] }];
-  function renderGothicMeet(c0) {
-    const first = gtFirst(c0), vip = cmVip(c0), ses = gtSessions(c0), raw = !cmProt(c0).need;
-    const f = (k, o = {}) => pick(GT_MT[k] || CM_MT[k]).replace(/\{(\w+)\}/g, (m, x) => x === 'ad' ? first : o[x] != null ? o[x] : m);
-    if (!ui.gtMt || ui.gtMt.id !== c0.id) {
-      const home = [{ id: 'her', ic: '🕯️', name: `${first}'in mahzeni`, place: 'yatak', hint: pick(['Kapı aralık; içerisi mum ışığıyla dolu, siyah çarşaflar serili', 'Duvarlarda kafatası şamdanlar, yatağın üstünde kırmızı güller', 'Tütsü kokuyor; o kostümüyle yatağın kenarına oturmuş']), greet: ['Kapı açık, mumların arasından gel 🕯️', 'Ayakkabılarını çıkar, ruhunu kapıda bırak 😈'] },
-        { id: 'you', ic: '🚪', name: 'Senin evin', place: 'salon', hint: pick(['Gece yarısı kapın çaldı; pelerinli bir gölge', 'Kapını açınca kostümüyle sana sarılıp içeri süzülüyor']), greet: ['Kapındayım… ışıkları söndür 🚪', 'Şeker mi şaka mı? Cevabı biliyorum 😈'] }];
-      ui.gtMt = { id: c0.id, step: 'ses', spots: [...(vip ? [] : home), ...GT_SPOTS.map(s => ({ ...s, stay: 1 }))], log: [['her', f('hi')], ['her', f('ask1')]] };
-    }
-    const S = ui.gtMt, spots = S.spots, steps = [['ses', '💎 Seans'], ['yer', '📍 Yer'], ['saat', '🕰️ Saat'], ['ok', '🤝 Anlaşma']], si = steps.findIndex(x => x[0] === S.step);
-    const card = (k, ic, t, sub, cls = '') => `<button type="button" class="cm-mo${cls}" data-gm="${k}"><i>${ic}</i><span><b>${esc(t)}</b>${sub ? `<small>${esc(sub)}</small>` : ''}</span></button>`;
-    const opts = S.step === 'ses' ? ses.map((s, i) => card(i, s.ic, s.name, `${s.dur} · ${cmTl(raw ? s.raw : s.kon)}${raw ? ' · kondomsuz' : ''}`))
-      : S.step === 'yer' ? spots.map((v, i) => card(i, v.ic, v.name, v.stay ? '🎃 Halloween mekanı' : v.id === 'her' ? 'onun adresi, gizli' : 'o sana gelir'))
-      : S.step === 'saat' ? [...(S.alt != null ? [card('alt', '👍', `${hh2(S.alt)} olur`, 'onun önerisi', ' hot')] : []), ...[21, 22, 23, 0, 1, 2, 3].filter(h => h !== S.no).map(h => card(h, '🕰️', hh2(h), h === 0 ? 'gece yarısı' : h === 3 ? 'cadı saati' : 'gece'))]
-      : [card('go', '💬', 'Sohbete geç', 'sohbet o mekanda, o saatte başlar', ' hot')];
-    view.innerHTML = `${GT_CSS}<div class="cm-site gt-site cm-mt" data-lang="${adLang(c0)}">${gtBar()}
-      <div class="cm-mhead">${avatar(c0, 56)}<span><b>🕯️ ${esc(first)} ile gece görüşmesi</b><small>${vip ? '👑 VIP · ' : ''}⭐ ${cmStars(c0)} · ${cmOnline(c0) ? '<em class="cm-on">● Uyanık</em>' : 'gece yarısı döner'}</small></span></div>
-      <div class="cm-msteps">${steps.map(([k, l], i) => `<span class="${i < si ? 'done' : i === si ? 'on' : ''}">${l}</span>`).join('')}</div>
-      <div class="cm-mbody"><div class="cm-mlog">${S.log.map(([w, t]) => `<p class="${w}">${esc(t)}</p>`).join('')}</div>
-        <aside class="cm-mdeal"><h4>🤝 Anlaşma</h4><p>💎 ${S.ses ? esc(S.ses.name) : '—'}</p><p>📍 ${S.spot ? esc(S.spot.name) : '—'}</p><p>🕰️ ${S.hour != null ? hh2(S.hour) : '—'}</p>
-          ${S.ses ? `<p class="cm-mpr">${cmTl(raw ? S.ses.raw : S.ses.kon)}</p>` : ''}</aside></div>
-      <div class="cm-mopts">${opts.join('')}</div>
-      <div class="cm-macts"><button type="button" id="gtMtRe">🔄 Baştan</button><a href="#/gothic/${c0.id}">↩ İlana dön</a></div>
-      ${GT_FOOT}</div>`;
-    const lg = view.querySelector('.cm-mlog'); lg.scrollTop = lg.scrollHeight;
-    const say = (me, her) => { S.log.push(['me', me], ...[].concat(her).map(t => ['her', t])); };
-    view.querySelector('.cm-mt').onclick = e => {
-      if (e.target.closest('#gtMtRe')) { ui.gtMt = null; return renderGothicMeet(c0); }
-      const b = e.target.closest('[data-gm]'); if (!b) return;
-      const v = b.dataset.gm;
-      if (S.step === 'ses') {
-        S.ses = ses[+v];
-        const n = S.ses.name.toLocaleLowerCase('tr');
-        say(f('me1', { s: S.ses.name }), [n.includes('cadılar') ? f('night') : n.includes('mum') ? f('short') : n.includes('seansı') ? f('role') : f('ses'), f(vip ? 'ask2v' : 'ask2')]);
-        S.step = 'yer';
-      } else if (S.step === 'yer') {
-        S.spot = spots[+v];
-        const k = S.spot.id === 'her' ? 'Her' : S.spot.id === 'you' ? 'You' : 'Stay';
-        say(f('me2' + k.toLowerCase(), { y: S.spot.name }), [f('yer' + k), f('ask3')]);
-        S.step = 'saat';
-      } else if (S.step === 'saat') {
-        const h = v === 'alt' ? S.alt : +v;
-        if (v !== 'alt' && Math.random() < .35) {
-          S.no = h; S.alt = (h + 1) % 24;
-          say(f('me3', { h: hh2(h) }), f('no', { h: hh2(h), a: hh2(S.alt) }));
-        } else {
-          S.hour = h;
-          say(v === 'alt' ? f('meOk', { a: hh2(h) }) : f('me3', { h: hh2(h) }), [...(h === 0 || h === 3 ? [f('late')] : []), f('deal', { h: hh2(h), y: S.spot.name }), f('bye')]);
-          S.step = 'ok';
-        }
-      } else if (v === 'go') {
-        if (!realPay(raw ? S.ses.raw : S.ses.kon, `🦇 Gothic.com · ${first} · ${S.ses.name}`)) return;
-        const c = gtAdopt(c0), t = newThread(c, 'Gothic.com'), now = Date.now(), sp = S.spot, hint = sp.hint;
-        msgsOf(t).push(...S.log.map(([w, text], i) => ({ id: Store.uid(), from: w, text, ts: now - (S.log.length - i) * 60000 })),
-          { id: Store.uid(), from: 'sys', ts: now, text: `🕰️ ${hh2(S.hour)} · ${S.ses.name} · ${hint}`, scene: { place: sp.place, icon: sp.ic, name: sp.name, hint } },
-          { id: Store.uid(), from: 'her', ts: now + 1, text: pick(sp.greet) });
-        t.clock = { start: S.hour * 60, done: 0 };
-        sessSet(t, S.ses.dur, S.hour);
-        ui.gtMt = null;
-        save();
-        location.hash = `#/chat/${t.id}`;
-        return;
-      }
-      renderGothicMeet(c0);
-    };
-  }
 
   /* 🍓 Meisove.com (#/meisove): Carmen.com gibi ilan sitesi, ama sadece Meisove (meyve) kızları: slime gibi yumuşacık, aromalı.
    * Kendi ilan kızları (localStorage amor-stories:meisove-ads, fotoğraflar Carmen.com ilanlarında olmayan setlerden); her biri bir tür (MS_TYPES).
@@ -3220,7 +3165,6 @@
       ans: ['İş ve sorumluluklar', 'Telefona bakıp duruyorum', 'Hiç ayıramıyorum'],
       care: ['Her şeyi bir anda taşımak zorunda değilsin canım 🤍', 'Bugün düşünmek yok, sadece dinlenmek var 💗', 'Bedenini ve kafanı birlikte rahatlatacağız tatlım 🌙', 'Şşş… gözlerini kapat, yanındayım 🤍'],
       plan: ['Tedavilerimi anlattım canım; kasları gevşetmek, dizime yatırmak, gerginliği boşaltmak… seç 😌', 'Işıkları kısıyorum tatlım; aşağıdan istediğini seç 🌙'] }];
-  const KL_TALK = ['Seni dinliyorum canım, devam et 🤍', 'Anlıyorum tatlım… bunu yaşaman çok zor olmalı 💗', 'İyi ki anlattın, artık birlikte çözeceğiz 🩺', 'Kendine kızma, elinden geleni yapıyorsun 🤍', 'Nefes al… evet, böyle 😌', 'Buradayım, hiçbir yere gitmiyorum 💗'];
   // 💊 Tedavilerim: doktorun kendi ağzından anlatımı; her doktora bir giriş (id'den sabit) + izinlerine göre ek satırlar (klTell)
   const KL_TELL = {
     'milking therapy': ['Yağlı eldivenle yavaş yavaş seni sağarım; son damlana kadar, hiç acele etmeden.', 'Yağı avuçlarımda ısıtırım, sonra seni ritmimle yavaşça rahatlatırım.', 'Eldivenlerim yağlı, ellerim sabırlı; gerginliğini damla damla alırım.'],
@@ -3291,87 +3235,96 @@
   }
   const klKon = (c, el) => { const p = cmProt(c); return pick(p.need ? el.konNo : p.inside ? el.kon : el.konPull); };
   const klPen = (c, ill, S) => { const ok = ill.ev.map(klEv).filter(Boolean).filter(e => KL_PEN.includes(low(e.title)) && klStat(c, e, { nokon: 1 }).ok); return pick(ok.some(e => low(e.title) !== 'intimate doggy') ? ill.yes : ok.length ? ill.yesShy : ill.no); };
-  const KL_CSS = `<style>.kl-log{display:grid;gap:8px;max-height:46vh;overflow-y:auto;padding:4px 2px}.kl-log p{margin:0;max-width:85%;padding:9px 12px;border-radius:14px;font-size:14px;line-height:1.45}
-    .kl-log p.her{justify-self:start;background:color-mix(in srgb,var(--ws) 14%,transparent);border-bottom-left-radius:4px}.kl-log p.me{justify-self:end;background:var(--ws);color:#fff;border-bottom-right-radius:4px}
-    .kl-opts{display:grid;gap:8px;margin-top:10px}.kl-opts button{text-align:left;width:100%}.kl-qa{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.kl-qa button{padding:6px 12px;font-size:12.5px}
-    .kl-say{display:flex;gap:8px;margin-top:10px}.kl-say input{flex:1;min-width:0;padding:10px 12px;border-radius:999px;border:1px solid color-mix(in srgb,var(--ws) 35%,transparent);font:inherit;background:transparent;color:inherit}
+  // sheet'te --ws yok (site sayfası dışı): --pink'e düşer
+  const KL_CSS = `<style>#klSh{--ws:var(--pink)}.kl-opts{display:grid;gap:8px;margin-top:10px}.kl-opts button{text-align:left;width:100%}
     .kl-tr{display:flex;gap:10px;align-items:flex-start;padding:10px;border-radius:12px;border:1px solid color-mix(in srgb,var(--ws) 25%,transparent);cursor:pointer}
     .kl-tr.on{border-color:var(--ws);background:color-mix(in srgb,var(--ws) 10%,transparent)}.kl-tr.no{opacity:.55;cursor:default}.kl-tr i{font-style:normal;font-size:22px}
     .kl-tr small{display:block;opacity:.8;font-size:12.5px;margin-top:2px}.kl-tr em{display:block;font-style:normal;font-size:12px;margin-top:4px;font-weight:700}
     .kl-rule{display:flex;gap:8px;margin:0 0 8px}.kl-rule span{flex:none}.kl-chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}</style>`;
-  function renderClinicDoctor(c) {
-    const first = c.name.split(' ')[0], d = klDoc(c);
-    if (!ui.klDr || ui.klDr.id !== c.id) ui.klDr = { id: c.id, step: 'ill', pick: [], log: [['her', pick([`Merhaba canım, ben Dr. ${first} 🩺 bugün seni ne getirdi?`, `Hoş geldin tatlım, otur lütfen 🤍 nasıl hissediyorsun?`, `Ben Dr. ${first}, ${d.spec}. Anlat bakalım, neyin var? 💗`])]] };
-    const S = ui.klDr, ill = KL_ILL.find(x => x.id === S.ill), evs = ill ? ill.ev.map(klEv).filter(Boolean) : [];
-    S.pick = S.pick.filter(id => { const e = evs.find(x => x.id === id); return e && klStat(c, e, S).ok; });
-    const si = S.step === 'ill' ? 0 : S.pick.length ? 2 : 1, steps = ['😣 Şikayet', '💊 Tedavilerim', '✅ Onay'];
-    const chips = list => list.map(e => `<span class="st-fe${evCls(e)}"${evStyle(e)}>${evEmo(e)}${esc(e.title)}</span>`).join('');
-    const allows = feelEvents(c.allows || []), denies = feelEvents(c.denies || []);
-    const body = S.step === 'ill'
-      ? `<section class="ws-sec"><h3>😣 Şikayetin ne?</h3><div class="kl-opts">${KL_ILL.map((x, i) => `<button type="button" class="btn ghost" data-kli="${i}">${x.ic} <b>${esc(x.name)}</b></button>`).join('')}</div></section>`
-      : `<section class="ws-sec"><h3>💊 Tedavilerim <small class="cm-mute">· ${ill.ic} ${esc(ill.name)} · istediklerini seç</small></h3><div class="kl-opts">${evs.map(e => { const st = klStat(c, e, S), on = S.pick.includes(e.id);
-          return `<div class="kl-tr${on ? ' on' : ''}${st.ok ? '' : ' no'}"${st.ok ? ` data-klt="${e.id}"` : ''}><i>${st.ok ? (on ? '✅' : '⬜') : st.lock ? '🔒' : '🚫'}</i><span><b>${evEmo(e)}${esc(e.title)}</b>
-            ${klTell(c, e).map(x => `<small>"${esc(x)}"</small>`).join('')}${st.why ? `<em>${esc(st.why)}</em>` : ''}</span></div>`; }).join('')}</div></section>
-        ${S.pick.length ? `<section class="ws-sec"><h3>📋 İzinlerim</h3>${klRules(c).map(([ic, t, x]) => `<p class="kl-rule"><span>${ic}</span><span><b>${esc(t)}</b> ${esc(x)}</span></p>`).join('')}
-          ${allows.length ? `<small class="cm-mute">✅ İzin verdiklerim</small><div class="kl-chips">${chips(allows)}</div>` : ''}
-          ${denies.length ? `<small class="cm-mute">🚫 İzin vermediklerim</small><div class="kl-chips">${chips(denies)}</div>` : ''}
-          <p class="cm-mute" style="font-size:12.5px">Seçtiklerin: ${esc(evs.filter(e => S.pick.includes(e.id)).map(e => e.title).join(', '))}</p>
-          <button type="button" class="btn primary" id="klGo" style="margin-top:10px;width:100%">✅ Onayla · muayeneye geç</button></section>` : ''}`;
-    view.innerHTML = KL_CSS + wsPage('clinic', 'Carmen<i>Klinik</i>', `carmenklinik.com/dr/${first.toLocaleLowerCase('tr')}`, '#/klinik', `
-      <div class="ws-sec kl-head">${avatar(c, 64)}<div><b>Dr. ${esc(c.name)}</b><small>🩺 ${esc(d.spec)} · Oda ${d.room}${c.age ? ` · ${esc(c.age)} yaş` : ''}</small>
-        <small>${cmOnline(c) ? '<em class="cm-on">● Müsait</em>' : '🕰️ Randevulu'} · ${steps.map((l, i) => i === si ? `<b>${l}</b>` : i < si ? `✓ ${l}` : l).join(' → ')}</small></div></div>
-      <section class="ws-sec"><h3>💬 Dr. ${esc(first)} ile görüşme</h3><div class="kl-log">${S.log.map(([w, t]) => `<p class="${w}">${esc(t)}</p>`).join('')}</div>
-        ${ill ? `<div class="kl-qa">${ill.ans.map((a, i) => `<button type="button" class="btn ghost sm" data-kla="${i}">💬 ${esc(a)}</button>`).join('')}</div>` : ''}
-        <form class="kl-say" id="klSay"><input id="klIn" maxlength="200" placeholder="Doktoruna yaz…" autocomplete="off"><button type="submit" class="btn primary sm">Gönder</button></form></section>
-      ${body}
-      <div class="ws-btns" style="margin:12px var(--pad) 0"><button type="button" class="btn ghost sm" id="klRe">🔄 Baştan</button><a class="btn ghost sm" href="#/klinik">↩ Doktorlar</a></div>`);
-    const lg = view.querySelector('.kl-log'); lg.scrollTop = lg.scrollHeight;
-    const say = (me, her) => { if (me) S.log.push(['me', me]); [].concat(her).forEach(t => S.log.push(['her', t])); };
-    const choose = (x, me) => { S.ill = x.id; S.pick = []; S.step = 'tr'; say(me, [pick(x.greet), pick(x.plan), ...(x.id === 'bosal' ? [klPen(c, x, S)] : [])]); };
-    const bo = KL_ILL.find(x => x.id === 'bosal');
-    $('#klSay').onsubmit = e => {
-      e.preventDefault();
-      const t = $('#klIn').value.trim(), lt = low(t);
-      if (!t) return;
-      // ✍️ "boşalamıyorum / elle olmuyor" yazınca şikayet ona döner; "kondomla rahat değilim" yazınca kondomsuz tercihi
-      if (S.ill !== 'bosal' && /boşal|bosal|gelemiyor|bitiremiyor/.test(lt)) choose(bo, t);
-      else if (/kondom/.test(lt) && /rahat|sevm|istem|olmuyor|zorlan|hissetm/.test(lt)) { S.nokon = true; say(t, klKon(c, bo)); }
-      else say(t, ill ? pick(ill.care) : pick(KL_TALK));
-      renderClinicDoctor(c); $('#klIn').focus();
-    };
-    $('#klRe').onclick = () => { ui.klDr = null; renderClinicDoctor(c); };
-    view.querySelectorAll('[data-kli]').forEach(b => b.onclick = () => { const x = KL_ILL[+b.dataset.kli]; choose(x, pick(x.say)); renderClinicDoctor(c); });
-    view.querySelectorAll('[data-kla]').forEach(b => b.onclick = () => {
-      const a = ill.ans[+b.dataset.kla], la = low(a);
-      if (ill.id === 'bosal' && /kondom/.test(la)) { S.nokon = true; say(a, klKon(c, ill)); }
-      else if (ill.id === 'bosal' && /elle/.test(la)) say(a, [pick(ill.care), klPen(c, ill, S)]);
-      else say(a, [pick(ill.care), pick(ill.ask)]);
-      renderClinicDoctor(c);
-    });
-    view.querySelectorAll('[data-klt]').forEach(el => el.onclick = () => { const id = el.dataset.klt; S.pick = S.pick.includes(id) ? S.pick.filter(x => x !== id) : [...S.pick, id]; renderClinicDoctor(c); });
-    const go = $('#klGo');
-    if (go) go.onclick = () => klVisit(c, ill, evs.filter(e => S.pick.includes(e.id)), S.log);
+  /* 💬 Doktor görüşmesi ana sohbette sürer: doktora dokununca (ya da açık görüşmesi varsa ona) thread açılır, th.site = { k: 'kl', ill, pick, nokon, done }.
+   * Sohbette SITE_CHAT.kl: bar = adım şeridi + hazır cevaplar, act = düğmeler (📋 şikayet / tedavi sayfası), say = yazdığın mesaja klinik cevabı (yoksa bot kuralları) */
+  const KL_STEPS = ['😣 Şikayet', '💊 Tedavilerim', '✅ Onay'];
+  function klStart(c0) {
+    const c = klAdopt(c0);
+    let t = threadsOf(c).find(x => x.site && x.site.k === 'kl' && !x.site.done);
+    if (!t) {
+      const first = c.name.split(' ')[0], d = klDoc(c), now = Date.now(), rp = klEv('Klinik Doktoru – Hasta');
+      if (CL.items.some(x => x.id === 'doktorkost')) { c.wardrobe = [...new Set([...(c.wardrobe || []), 'doktorkost'])]; c.outfit = { ...(c.outfit || {}), ust: '', alt: '', elbise: 'doktorkost' }; }
+      t = newThread(c, 'CarmenKlinik');
+      t.site = { k: 'kl', pick: [] };
+      if (rp) t.rp = rp.id;
+      msgsOf(t).push({ id: Store.uid(), from: 'sys', ts: now, text: `🕰️ 10:00 · CarmenKlinik · Oda ${d.room}`, scene: { place: 'calisma', icon: '🩺', name: 'CarmenKlinik', hint: `Muayene odası ${d.room} · Dr. ${first} · ${d.spec}` } },
+        // 🎭 rol olayı: sohbet "Klinik Doktoru – Hasta" fantezisinde sürer (başka fantezi gelene kadar cevaplar role göre)
+        ...(rp ? [{ id: Store.uid(), from: 'me', ts: now + 1, text: `🎭 ${rp.title}`, ev: rp.id, evc: { title: rp.title, emojis: rp.emojis || '', color: rp.color || '', level: '' } }] : []),
+        { id: Store.uid(), from: 'her', ts: now + 2, text: pick([`Merhaba canım, ben Dr. ${first} 🩺 bugün seni ne getirdi?`, `Hoş geldin tatlım, otur lütfen 🤍 nasıl hissediyorsun?`, `Ben Dr. ${first}, ${d.spec}. Anlat bakalım, neyin var? 💗`]) });
+      t.clock = { start: 600, done: 0 };
+      save();
+      sfx('match');
+    }
+    location.replace(`#/chat/${t.id}`);
   }
-  function klVisit(c0, ill, evs, log) {
-    const c = klAdopt(c0), first = c.name.split(' ')[0], d = klDoc(c), now = Date.now(), rp = klEv('Klinik Doktoru – Hasta');
-    if (CL.items.some(x => x.id === 'doktorkost')) { c.wardrobe = [...new Set([...(c.wardrobe || []), 'doktorkost'])]; c.outfit = { ...(c.outfit || {}), ust: '', alt: '', elbise: 'doktorkost' }; }
-    const t = newThread(c, 'CarmenKlinik');
-    if (rp) t.rp = rp.id;
-    msgsOf(t).push(...log.map(([w, text], i) => ({ id: Store.uid(), from: w, text, ts: now - (log.length - i) * 60000 })),
-      { id: Store.uid(), from: 'sys', ts: now, text: `🕰️ 10:00 · CarmenKlinik · Oda ${d.room}`, scene: { place: 'calisma', icon: '🩺', name: 'CarmenKlinik', hint: `Muayene odası ${d.room} · Dr. ${first} · ${d.spec}` } },
-      { id: Store.uid(), from: 'sys', ts: now + 1, text: `${ill.ic} Şikayet: ${ill.name}\n💊 Tedavi: ${evs.map(e => e.title).join(', ')} (⚡ kısayollarda)` },
-      // 🎭 rol olayı: sohbet "Klinik Doktoru – Hasta" fantezisinde sürer (başka fantezi gelene kadar cevaplar role göre)
-      ...(rp ? [{ id: Store.uid(), from: 'me', ts: now + 2, text: `🎭 ${rp.title}`, ev: rp.id, evc: { title: rp.title, emojis: rp.emojis || '', color: rp.color || '', level: '' } }] : []),
-      { id: Store.uid(), from: 'her', ts: now + 3, text: pick(['Önlüğümü giydim, hazırım canım 🥼 sen sadece rahatla', 'Kapıyı kilitledim tatlım, burada sadece ikimiz varız 🤍', 'Uzan bakalım canım, acele etmeden başlıyoruz 🩺']) });
-    t.clock = { start: 600, done: 0 };
+  const klChoose = (c, S, x) => { S.ill = x.id; S.pick = []; return [pick(x.greet), pick(x.plan), ...(x.id === 'bosal' ? [klPen(c, x, S)] : [])]; };
+  function klBar(c, th) {
+    const S = th.site, ill = KL_ILL.find(x => x.id === S.ill), si = !ill ? 0 : S.pick.length ? 2 : 1;
+    return `<button type="button" class="site-steps" data-sact="open">🩺 ${KL_STEPS.map((l, i) => i === si ? `<b>${l}</b>` : `<span>${i < si ? '✓ ' : ''}${l}</span>`).join(' → ')}<i>›</i></button>
+      ${ill ? `<div class="site-qa">${ill.ans.map((a, i) => `<button type="button" data-sact="ans" data-v="${i}">💬 ${esc(a)}</button>`).join('')}</div>` : ''}`;
+  }
+  // ✍️ yazdığın mesaj: "boşalamıyorum" → şikayet ona döner; "kondomla rahat değilim" → kondomsuz tercihi; başka her şeye bot kuralları cevap verir (null)
+  function klSay(c, th, text) {
+    const S = th.site, lt = low(text), bo = KL_ILL.find(x => x.id === 'bosal');
+    if (S.ill !== 'bosal' && /boşal|bosal|gelemiyor|bitiremiyor/.test(lt)) return klChoose(c, S, bo);
+    if (/kondom/.test(lt) && /rahat|sevm|istem|olmuyor|zorlan|hissetm/.test(lt)) { S.nokon = true; return [klKon(c, bo)]; }
+    return null;
+  }
+  function klAct(c, th, a, v, api) {
+    const S = th.site, ill = KL_ILL.find(x => x.id === S.ill);
+    if (a === 'open') return klSheet(c, th, api);
+    if (a !== 'ans' || !ill) return;
+    const t = ill.ans[+v], lt = low(t);
+    if (ill.id === 'bosal' && /kondom/.test(lt)) { S.nokon = true; return api.say(t, [klKon(c, ill)]); }
+    if (ill.id === 'bosal' && /elle/.test(lt)) return api.say(t, [pick(ill.care), klPen(c, ill, S)]);
+    api.say(t, [pick(ill.care), pick(ill.ask)]);
+  }
+  // 📋 şikayet → tedaviler (izinleriyle) → ✅ onay: sohbete şikayet/tedavi notu, tedaviler ⚡ kısayollara, görüşme biter (th.site.done)
+  function klSheet(c, th, api) {
+    const S = th.site, sh = sheet('<div class="sheet-grip"></div><div id="klSh"></div>', 'light'), box = sh.el.querySelector('#klSh');
+    const chips = list => list.map(e => `<span class="st-fe${evCls(e)}"${evStyle(e)}>${evEmo(e)}${esc(e.title)}</span>`).join('');
+    const draw = () => {
+      const ill = KL_ILL.find(x => x.id === S.ill), evs = ill ? ill.ev.map(klEv).filter(Boolean) : [];
+      S.pick = S.pick.filter(id => { const e = evs.find(x => x.id === id); return e && klStat(c, e, S).ok; });
+      const allows = feelEvents(c.allows || []), denies = feelEvents(c.denies || []);
+      box.innerHTML = KL_CSS + (!ill
+        ? `<h3>😣 Şikayetin ne?</h3><div class="kl-opts">${KL_ILL.map((x, i) => `<button type="button" class="btn ghost" data-kli="${i}">${x.ic} <b>${esc(x.name)}</b></button>`).join('')}</div>`
+        : `<h3>💊 Tedavilerim <small class="cm-mute">· ${ill.ic} ${esc(ill.name)} · istediklerini seç</small></h3><div class="kl-opts">${evs.map(e => { const st = klStat(c, e, S), on = S.pick.includes(e.id);
+            return `<div class="kl-tr${on ? ' on' : ''}${st.ok ? '' : ' no'}"${st.ok ? ` data-klt="${e.id}"` : ''}><i>${st.ok ? (on ? '✅' : '⬜') : st.lock ? '🔒' : '🚫'}</i><span><b>${evEmo(e)}${esc(e.title)}</b>
+              ${klTell(c, e).map(x => `<small>"${esc(x)}"</small>`).join('')}${st.why ? `<em>${esc(st.why)}</em>` : ''}</span></div>`; }).join('')}</div>
+          ${S.pick.length ? `<h3 style="margin-top:14px">📋 İzinlerim</h3>${klRules(c).map(([ic, t, x]) => `<p class="kl-rule"><span>${ic}</span><span><b>${esc(t)}</b> ${esc(x)}</span></p>`).join('')}
+            ${allows.length ? `<small class="cm-mute">✅ İzin verdiklerim</small><div class="kl-chips">${chips(allows)}</div>` : ''}
+            ${denies.length ? `<small class="cm-mute">🚫 İzin vermediklerim</small><div class="kl-chips">${chips(denies)}</div>` : ''}
+            <p class="cm-mute" style="font-size:12.5px">Seçtiklerin: ${esc(evs.filter(e => S.pick.includes(e.id)).map(e => e.title).join(', '))}</p>
+            <button type="button" class="btn primary" id="klGo" style="margin-top:10px;width:100%">✅ Onayla · muayeneye geç</button>` : ''}
+          <button type="button" class="btn ghost sm" id="klIll" style="margin-top:10px">😣 Şikayeti değiştir</button>`);
+      box.querySelectorAll('[data-kli]').forEach(b => b.onclick = () => { const x = KL_ILL[+b.dataset.kli], her = klChoose(c, S, x); save(); sh.close(); api.say(pick(x.say), her); });
+      box.querySelectorAll('[data-klt]').forEach(el => el.onclick = () => { const id = el.dataset.klt; S.pick = S.pick.includes(id) ? S.pick.filter(x => x !== id) : [...S.pick, id]; save(); draw(); api.redraw(); });
+      const ch = box.querySelector('#klIll');
+      if (ch) ch.onclick = () => { S.ill = null; S.pick = []; save(); draw(); api.redraw(); };
+      const go = box.querySelector('#klGo');
+      if (go) go.onclick = () => { sh.close(); klConfirm(th, ill, evs.filter(e => S.pick.includes(e.id))); api.render(); };
+    };
+    draw();
+  }
+  function klConfirm(th, ill, evs) {
+    const now = Date.now();
+    msgsOf(th).push({ id: Store.uid(), from: 'sys', ts: now, text: `${ill.ic} Şikayet: ${ill.name}\n💊 Tedavi: ${evs.map(e => e.title).join(', ')} (⚡ kısayollarda)` },
+      { id: Store.uid(), from: 'her', ts: now + 1, text: pick(['Önlüğümü giydim, hazırım canım 🥼 sen sadece rahatla', 'Kapıyı kilitledim tatlım, burada sadece ikimiz varız 🤍', 'Uzan bakalım canım, acele etmeden başlıyoruz 🩺']) });
     [...evs].reverse().forEach(quickPin);
-    ui.klDr = null;
+    th.site.done = 1;
     save();
     sfx('match');
-    location.hash = `#/chat/${t.id}`;
   }
+  const SITE_CHAT = { kl: { bar: klBar, say: klSay, act: klAct }, cm: MT_CHAT, gt: MT_CHAT, pt: { bar: ptBar, say: () => null, act: ptAct } };
   function renderClinic(id, extra) {
-    if (id === 'dr') { const dc = extra && klFind(extra); if (dc) return renderClinicDoctor(dc); }
+    if (id === 'dr') { const dc = extra && klFind(extra); if (dc) return klStart(dc); }
     const c = id && byId(id);
     if (c) return renderClinicPage(c);
     const list = chars(), docs = klAll();
@@ -5876,7 +5829,7 @@
       const col = i % 4, row = Math.floor(i / 4), h = k => cmNum({ id: fnRid(c) + n }, k, 100);
       return `<button type="button" class="pt-guest" data-pt="${esc(c.id)}" style="--x:${2 + col * 23 + h('x') / 25}%;--y:${5 + row * 31 + h('y') / 14}%;--dx:${(h('dx') - 50) / 2}px;--dy:${(h('dy') - 50) / 3}px;--d:${7 + h('d') / 10}s;--dl:-${h('dl') / 10}s;--mtbg:${esc(grad(c))}">
         <span class="pt-pic">${c.photo ? `<img src="${esc(c.photo)}" alt="" loading="lazy" onerror="this.remove()">` : `<span class="mt-ini">${esc((c.name || '?')[0])}</span>`}</span>
-        <b>${esc((c.name || 'İsimsiz').split(' ')[0])}</b><small>${ui.pt.s[fnRid(c)] ? ptMood(ui.pt.s[fnRid(c)].ilgi).split(' ')[0] : ptIsHw(n) ? ptHwRole(c, n)[1] : ptIsCos(n) ? ptCosRole(c, n)[1] : '💃'}</small><i class="pt-bub"></i></button>`;
+        <b>${esc((c.name || 'İsimsiz').split(' ')[0])}</b><small>${ptSite(c) ? ptMood(ptSite(c).site.ilgi).split(' ')[0] : ptIsHw(n) ? ptHwRole(c, n)[1] : ptIsCos(n) ? ptCosRole(c, n)[1] : '💃'}</small><i class="pt-bub"></i></button>`;
     };
     const left = guests.filter(c => gone[fnRid(c)]);
     view.innerHTML = wsPage('party', 'Carmen<i>Party</i>', 'carmenparty.com', '#/booble', `
@@ -5886,7 +5839,7 @@
       ${left.length ? `<div class="pt-left"><h3>Bu gece</h3>${left.map(c => { const g = gone[fnRid(c)]; return `<div class="pt-lrow">${avatar(c, 34)}<b>${esc(c.name.split(' ')[0])}</b>
         <small>${g === 'ev' ? '🏠 Beraber çıktınız' : g === 'zar' ? '🎲 Zarda kazandın' : g === 'num' ? '📱 Numarasını verdi' : '🚶‍♀️ Gitti'}</small>${g !== 'red' ? `<button type="button" class="btn ghost sm" data-ptmsg="${esc(c.id)}">💬 Yaz</button>` : ''}</div>`; }).join('')}</div>` : ''}
       <div class="pt-acts0"><button type="button" class="btn ghost" id="ptNext">🎟️ Başka partiye git</button>${ptIsHw(n) ? '' : ' <button type="button" class="btn ghost" id="ptHw">🎃 Halloween partisi</button>'}${ptIsCos(n) ? '' : ' <button type="button" class="btn ghost" id="ptCos">🎭 Kostüm partisi</button>'}</div>`);
-    view.querySelector('.pt-floor').onclick = e => { const b = e.target.closest('[data-pt]'); if (b) ptTalk(cmFind(b.dataset.pt)); };
+    view.querySelector('.pt-floor').onclick = e => { const b = e.target.closest('[data-pt]'); if (b) ptStart(cmFind(b.dataset.pt)); };
     view.querySelectorAll('[data-ptmsg]').forEach(b => b.onclick = () => { const c = cmFind(b.dataset.ptmsg); if (c && byId(c.id)) openChat(c); else if (c) cmChat(c, 'CarmenParty', 'Partideki ben 😉 numaramı kaydettin mi?', true); });
     $('#ptNext').onclick = () => { const s = ptStore(); s.shift = ((s.shift || 0) + 1) % 100; ptStore(s); renderParty(); };
     // 🎃 doğrudan Halloween partisine: kaydırma, gecenin mekanı Halloween Night olacak şekilde ayarlanır
@@ -5902,161 +5855,92 @@
       el.textContent = pick(PT_TALK); el.classList.remove('go'); void el.offsetWidth; el.classList.add('go');
     }, 1800);
   }
-  function ptTalk(c) {
-    if (!c) return;
-    const S0 = ptState(c), first = (c.name || 'O').split(' ')[0], pers = persOf(c);
-    document.querySelectorAll('.pt-talk-wrap').forEach(el => el.remove());
-    const wrap = document.createElement('div');
-    wrap.className = 'sheet-wrap pt-talk-wrap';
-    // açılışta var olan baloncuklar sessiz gelir, sonrakiler animasyonla
-    let shown = S0.log.length;
-    const line = (l, i) => `<div class="pt-l ${l.me ? 'me' : l.sys ? 'note' : 'her'}${l.res ? ' ' + l.res : ''}${l.up ? ' up' : l.dn ? ' dn' : ''}${i >= shown ? ' new' : ''}">${l.me || l.sys ? '' : `<span class="pt-av">${avatar(c, 24)}</span>`}<span class="pt-tx">${esc(l.t)}</span></div>`;
-    const typing = () => { const log = wrap.querySelector('#ptLog'); if (!log) return; log.insertAdjacentHTML('beforeend', `<div class="pt-l her pt-typing new"><span class="pt-av">${avatar(c, 24)}</span><span class="pt-tx"><i></i><i></i><i></i></span></div>`); log.scrollTop = log.scrollHeight; };
-    const PT_FX = { good: ['💗', '💕', '✨', '🔥', '😍', '💋'], bad: ['💢', '😤', '💔', '⚡'], home: ['💗', '💕', '🔥', '💋', '🥂', '✨', '🏠'], meh: ['💭'] };
-    const fx = kind => {
-      const box = wrap.querySelector('.pt-talk'); if (!box) return;
-      if (kind === 'bad') { box.classList.remove('shake'); void box.offsetWidth; box.classList.add('shake'); }
-      const n = kind === 'home' ? 18 : kind === 'good' ? 9 : kind === 'bad' ? 6 : 2;
-      for (let j = 0; j < n; j++) {
-        const s = document.createElement('span');
-        s.className = 'pt-fx ' + kind;
-        s.textContent = pick(PT_FX[kind]);
-        s.style.cssText = `--x:${5 + Math.random() * 90}%;--r:${Math.round(Math.random() * 80 - 40)}deg;--bx:${Math.round(Math.random() * 120 - 60)}px;--dl:${(Math.random() * .5).toFixed(2)}s;--s:${(.8 + Math.random() * .8).toFixed(2)}`;
-        box.appendChild(s);
-        setTimeout(() => s.remove(), 2400);
-      }
-    };
-    const draw = () => {
-      wrap.innerHTML = `<div class="pt-talk" role="dialog"><div class="pt-th">${avatar(c, 52)}<span><b>${esc(c.name || 'İsimsiz')}${c.age ? `, ${esc(c.age)}` : ''}</b>
-          <small>${pers.map(t => `<em>${esc(t)}</em>`).join('')}</small></span><button type="button" class="pt-x" data-ptx aria-label="Kapat">✕</button></div>
-        <div class="pt-meters"><div><small>💗 İlgi · ${ptMood(S0.ilgi)}</small><div class="kl-bar"><i style="--w:${Math.max(0, Math.min(100, S0.ilgi))}%"></i></div></div>
-          <div><small>⏳ Sabır</small><span class="pt-sab">${'●'.repeat(Math.max(0, S0.sabir))}${'○'.repeat(Math.max(0, 9 - S0.sabir))}</span></div></div>
-        <div class="pt-log" id="ptLog">${S0.log.length ? S0.log.map(line).join('') : `<div class="pt-l note new"><span class="pt-tx">💃 ${esc(first)} pistte dans ediyor. Ne yapacaksın?</span></div>`}</div>
-        <div class="pt-btns">${S0.dice ? diceBtns() : `${PT_ACTS.map(a => `<button type="button" data-pa="${a.k}"><span>${a.ic}</span>${esc(a.t)}</button>`).join('')}
-          ${S0.diced ? '' : '<button type="button" data-pa="dice"><span>🎲</span>Zar oyna</button>'}
-          <button type="button" data-pa="home" class="pt-home"><span>🏠</span>Eve gidelim mi?</button>`}</div></div>`;
-      const log = wrap.querySelector('#ptLog'); log.scrollTop = log.scrollHeight;
-      shown = S0.log.length;
-    };
-    const say = (l, also) => { const n = S0.log.length; S0.log.push(l); if (also) S0.log.push(also); const cut = Math.max(0, S0.log.length - 30); S0.log = S0.log.slice(cut); shown = Math.max(0, Math.min(shown, n) - cut); };
-    const leave = (kind, text) => {
-      const st = ptStore(); st.gone = { ...(st.gone || {}), [fnRid(c)]: kind }; ptStore(st);
-      say({ t: text, res: kind === 'num' ? 'meh' : 'bad' }, { sys: true, dn: kind !== 'num', t: kind === 'num' ? `📱 ${first} numarasını verdi.` : `🚶‍♀️ ${first} yanından ayrıldı.` });
-      draw(); fx(kind === 'num' ? 'good' : 'bad'); wrap.querySelector('.pt-btns').innerHTML = `${kind === 'num' ? `<button type="button" data-pa="msg"><span>💬</span>Ona yaz</button>` : ''}<button type="button" data-ptx><span>🎉</span>Piste dön</button>`;
-    };
-    const goHome = () => {
-      realPay(PT_TAXI, `🚕 CarmenParty · ${first} ile eve taksi`);
-      const st = ptStore(); st.gone = { ...(st.gone || {}), [fnRid(c)]: 'ev' }; ptStore(st);
-      const ch = cmAdopt(c), t = newThread(ch, 'CarmenParty'), now = Date.now(), venue = PT_VENUES[ui.pt.night % PT_VENUES.length];
-      msgsOf(t).push({ id: Store.uid(), from: 'sys', ts: now, text: `🕰️ 01:30 · ${ptIsHw(ui.pt.night) ? '🎃' : '🎉'} ${venue}'dan beraber çıktınız`, scene: { place: 'salon', icon: '🛋️', name: `${first}'in evi`, hint: ptIsHw(ui.pt.night) ? 'Halloween partisinden yeni geldiniz, kostümü hâlâ üstünde' : ptIsCos(ui.pt.night) ? 'Kostüm partisinden yeni geldiniz, rolünden hâlâ çıkmadı' : 'Partiden yeni geldiniz, müzik hâlâ kulağınızda' } });
-      if (ptIsHw(ui.pt.night)) ptHwStart(ch, t, ui.pt.night, now + 1);
-      else if (ptIsCos(ui.pt.night)) ptCosStart(ch, t, ui.pt.night, now + 1);
-      else msgsOf(t).push({ id: Store.uid(), from: 'her', ts: now + 1, text: pick(PT_GREET) });
-      t.clock = { start: 90, done: 0 };
-      cmParam(ch, 'aşk', 3); cmParam(ch, 'şehvet', Math.round(S0.ilgi / 8));
-      save();
-      sfx('match');
-      wrap.remove();
-      const ov = document.createElement('div');
-      ov.className = 'mt-match pt-ok';
-      ov.innerHTML = `<div><h2>🏠 Beraber çıkıyorsunuz!</h2><div class="mt-pair">${avatar(ch, 84)}<span>🎉</span></div><p>${esc(first)} kabul etti 😏</p><small>Onun evine gidiliyor…</small></div>`;
-      document.body.appendChild(ov);
-      const go = () => { ov.remove(); location.hash = `#/chat/${t.id}`; };
-      ov.onclick = go;
-      setTimeout(() => { if (ov.isConnected) go(); }, 1800);
-    };
-    /* 🎲 Zar oyunu (kişi başına gecede bir kez): 3 tur, her turda ikişer zar; toplamı fazla olan kazanır, eşitlikte bir tur daha.
-     * Her turdan sonra gidişe göre konuşur (PT_DICE). Kazanırsan şaşırır ve sohbet açılır (📍 bar), kaybedersen alay edip gider */
-    const DIE = '⚀⚁⚂⚃⚄⚅', roll2 = () => [1 + Math.floor(Math.random() * 6), 1 + Math.floor(Math.random() * 6)], dieTx = ([a, b]) => `${DIE[a - 1]}${DIE[b - 1]} = ${a + b}`;
-    const diceBtns = () => { const g = S0.dice, last = g.r >= 2; return `<div class="pt-l note" style="width:100%;justify-content:center"><span class="pt-tx">🎲 ${g.extra ? 'Uzatma turu' : `Tur ${Math.min(g.r + 1, 3)}/3`} · Sen <b>${g.me}</b> – <b>${g.her}</b> ${esc(first)}</span></div>
-      <button type="button" data-pa="roll" class="pt-home"><span>🎲</span>${g.extra ? 'Uzatma atışı' : last ? 'Son atış' : 'Zar at'}</button>`; };
-    const diceWin = () => {
-      const st = ptStore(); st.gone = { ...(st.gone || {}), [fnRid(c)]: 'zar' }; ptStore(st);
-      const ch = cmAdopt(c), t = newThread(ch, 'CarmenParty'), now = Date.now(), venue = PT_VENUES[ui.pt.night % PT_VENUES.length], g = S0.dice;
-      msgsOf(t).push({ id: Store.uid(), from: 'sys', ts: now, text: `🕰️ 01:00 · 🎲 ${venue}'da zar oyununu ${g.me}–${g.her} kazandın`, scene: { place: 'bar', icon: '🎲', name: venue, hint: `Zar masası · ${first} hâlâ şaşkın` } });
-      if (ptIsHw(ui.pt.night)) ptHwStart(ch, t, ui.pt.night, now + 1);
-      else if (ptIsCos(ui.pt.night)) ptCosStart(ch, t, ui.pt.night, now + 1);
-      else msgsOf(t).push({ id: Store.uid(), from: 'her', ts: now + 1, text: pick(PT_DICE.chat) });
-      t.clock = { start: 60, done: 0 };
-      cmParam(ch, 'aşk', 2); cmParam(ch, 'şehvet', Math.round(Math.max(0, S0.ilgi) / 10));
-      save(); sfx('match'); wrap.remove();
-      const ov = document.createElement('div');
-      ov.className = 'mt-match pt-ok';
-      ov.innerHTML = `<div><h2>🎲 Kazandın!</h2><div class="mt-pair">${avatar(ch, 84)}<span>😳</span></div><p>${esc(first)} buna inanamıyor</p><small>Sohbete geçiliyor…</small></div>`;
-      document.body.appendChild(ov);
-      const go = () => { ov.remove(); location.hash = `#/chat/${t.id}`; };
-      ov.onclick = go;
-      setTimeout(() => { if (ov.isConnected) go(); }, 1800);
-    };
-    const diceRoll = () => {
-      const g = S0.dice, mine = roll2(), hers = roll2();
+  /* 💬 Partide konuşma ana sohbette: kıza dokununca (o gece açık konuşması varsa ona) thread açılır,
+   * th.site = { k: 'pt', night, venue, ilgi, sabir, uses, turn, dice, diced, done }. Şeritte ilgi/sabır + teklifler, 🎲 zar, 🏠 eve gidelim mi?
+   * Giderse / numara verirse görüşme biter (sohbet mesajlaşma olarak sürer); eve gidince ya da zarda kazanınca aynı sohbette 📍 sahne başlar */
+  const ptSite = c => byId(c.id) && ui.pt && threadsOf(c).find(t => t.site && t.site.k === 'pt' && t.site.night === ui.pt.night);
+  const ptGone = (c, kind) => { const st = ptStore(); st.gone = { ...(st.gone || {}), [fnRid(c)]: kind }; ptStore(st); };
+  function ptStart(c0) {
+    if (!c0) return;
+    const n = ui.pt.night, ex = ptSite(c0);
+    if (ex) { location.hash = `#/chat/${ex.id}`; return; }
+    const S0 = ptState(c0), c = cmAdopt(c0), first = (c.name || 'O').split(' ')[0], venue = PT_VENUES[n % PT_VENUES.length], now = Date.now();
+    const t = newThread(c, 'CarmenParty');
+    t.site = { k: 'pt', night: n, venue, ilgi: S0.ilgi, sabir: S0.sabir, uses: {}, turn: 0 };
+    msgsOf(t).push({ id: Store.uid(), from: 'sys', ts: now, text: `🕰️ 23:30 · ${ptIsHw(n) ? '🎃' : ptIsCos(n) ? '🎭' : '🎉'} ${venue} · ${first} pistte dans ediyor. Ne yapacaksın?`,
+      scene: { place: 'bar', icon: '🎉', name: venue, hint: `${first} pistte dans ediyor; müzik yüksek, ışıklar dönüyor` } });
+    t.clock = { start: 23 * 60 + 30, done: 0 };
+    save();
+    location.hash = `#/chat/${t.id}`;
+  }
+  const ptTaxiOk = () => !realOn() || (S().user.money != null ? +S().user.money : START_MONEY) >= PT_TAXI;
+  const PT_DIE = '⚀⚁⚂⚃⚄⚅', ptRoll2 = () => [1 + Math.floor(Math.random() * 6), 1 + Math.floor(Math.random() * 6)], ptDieTx = ([a, b]) => `${PT_DIE[a - 1]}${PT_DIE[b - 1]} = ${a + b}`;
+  function ptBar(c, th) {
+    const S = th.site, g = S.dice, first = (c.name || 'O').split(' ')[0], sab = Math.max(0, S.sabir);
+    const btn = (k, ic, t, hot) => `<button type="button" data-sact="${k}"${hot ? ' class="hot"' : ''}>${ic} ${esc(t)}</button>`;
+    return `<div class="site-steps">${ptIsHw(S.night) ? '🎃' : ptIsCos(S.night) ? '🎭' : '🎉'} ${esc(S.venue)} · 💗 <span>${esc(ptMood(S.ilgi))}</span> · ⏳ ${'●'.repeat(sab)}${'○'.repeat(Math.max(0, 9 - sab))}</div>
+      ${g ? `<small class="site-sum">🎲 ${g.extra ? 'Uzatma turu' : `Tur ${Math.min(g.r + 1, 3)}/3`} · Sen ${g.me} – ${g.her} ${esc(first)}</small>` : ''}
+      <div class="site-qa">${g ? btn('roll', '🎲', g.extra ? 'Uzatma atışı' : g.r >= 2 ? 'Son atış' : 'Zar at', 1)
+        : PT_ACTS.map(a => btn(a.k, a.ic, a.t)).join('') + (S.diced ? '' : btn('dice', '🎲', 'Zar oyna')) + btn('home', '🏠', 'Eve gidelim mi?', 1)}</div>`;
+  }
+  function ptAct(c, th, k, v, api) {
+    const S = th.site, first = (c.name || 'O').split(' ')[0], pers = persOf(c);
+    const gone = kind => { ptGone(c, kind); S.done = 1; return { sys: kind === 'num' ? `📱 ${first} numarasını verdi.` : `🚶‍♀️ ${first} yanından ayrıldı.` }; };
+    if (k === 'dice') { S.dice = { r: 0, me: 0, her: 0 }; return api.say(pick(['Zar atalım mı? Kazanırsam benimle oturursun 🎲', 'Bir oyun: üç tur zar, kim fazla atarsa 😏', 'Şansımı deneyeyim mi? 🎲']), [pick(PT_DICE.start)]); }
+    if (k === 'roll') {
+      const g = S.dice; if (!g) return;
+      const mine = ptRoll2(), hers = ptRoll2();
       g.r++; g.me += mine[0] + mine[1]; g.her += hers[0] + hers[1];
-      say({ me: true, t: `🎲 ${dieTx(mine)}` });
-      draw(); busy = true;
-      setTimeout(typing, 450);
-      setTimeout(() => {
-        busy = false;
-        const diff = g.her - g.me, done = g.r >= 3 && diff !== 0, d66 = x => x[0] === 6 && x[1] === 6, d11 = x => x[0] === 1 && x[1] === 1;
-        const roll = { sys: true, t: `🎲 ${first}: ${dieTx(hers)} · Sen ${g.me} – ${g.her} ${first}` };
-        if (done && diff > 0) { say(roll); S0.diced = true; S0.dice = null; return leave('red', pick(PT_DICE.lose)); }
-        if (done) { say(roll, { t: pick(PT_DICE.win), res: 'home' }); draw(); fx('home'); S0.diced = true; busy = true; return setTimeout(diceWin, 1600); }
-        if (g.r >= 3) g.extra = true;
-        const pool = g.extra ? PT_DICE.extra : d66(mine) ? PT_DICE.me66 : d11(mine) ? PT_DICE.me11 : d66(hers) ? PT_DICE.her66
-          : diff >= 4 ? PT_DICE.lead : diff > 0 ? PT_DICE.leadS : diff === 0 ? PT_DICE.tie : diff > -4 ? PT_DICE.behindS : PT_DICE.behind;
-        const tail = !g.extra && g.r === 2 ? ' ' + pick(PT_DICE.last) : '';
-        say(roll, { t: pick(pool) + tail, res: diff > 0 ? 'bad' : diff < 0 ? 'good' : 'meh' });
-        draw(); fx(diff > 0 ? 'meh' : diff < 0 ? 'good' : 'meh');
-      }, 1300);
-    };
-    draw();
-    document.body.appendChild(wrap);
-    requestAnimationFrame(() => wrap.classList.add('open'));
-    let busy = false;
-    wrap.onclick = e => {
-      if (e.target === wrap || e.target.closest('[data-ptx]')) { wrap.remove(); return renderParty(); }
-      const b = e.target.closest('[data-pa]');
-      if (!b || busy) return;
-      const k = b.dataset.pa;
-      if (k === 'msg') { wrap.remove(); return cmChat(c, 'CarmenParty', pick(['Partideki ben 😉 numaramı kaydettin mi?', 'Selam, dün gece pistteki 💃 hatırladın mı?', 'Yazacağını biliyordum 😏']), true); }
-      if (k === 'dice') { S0.dice = { r: 0, me: 0, her: 0 }; say({ me: true, t: pick(['Zar atalım mı? Kazanırsam benimle oturursun 🎲', 'Bir oyun: üç tur zar, kim fazla atarsa 😏', 'Şansımı deneyeyim mi? 🎲']) }, { t: pick(PT_DICE.start), res: 'meh' }); return draw(); }
-      if (k === 'roll') return S0.dice && diceRoll();
-      // 🌿 Gerçekçi Mod: içki ve eve dönüş taksisi bakiyeden (taksi kabul edince ödenir; önceden yetiyor mu bakılır)
-      if (k === 'drink' && !realPay(PT_DRINK, `🍸 CarmenParty · ${first}'e içki`)) return;
-      if (k === 'home' && realOn() && (S().user.money != null ? +S().user.money : START_MONEY) < PT_TAXI) return notify(`Eve dönüş taksisi için ${cmTl(PT_TAXI)} gerekli`, '💸');
-      S0.turn++;
-      if (k === 'home') {
-        say({ me: true, t: pick(PT_ASK) });
-        draw(); busy = true;
-        setTimeout(typing, 350);
-        const p = Math.max(.02, Math.min(.95, (S0.ilgi - 35) / 55 + pers.reduce((s, t) => s + (PT_HOME[t] || 0), 0) - (S0.turn < 4 ? .3 : 0)));
-        return setTimeout(() => {
-          busy = false;
-          if (Math.random() < p) { say({ t: pick(PT_YES), res: 'home' }, { sys: true, up: true, t: '🏠 Kabul etti!' }); draw(); fx('home'); busy = true; return setTimeout(goHome, 1500); }
-          if (S0.ilgi >= 55) return leave('num', pick(PT_SOFT));
-          leave('red', pick(PT_NO));
-        }, 1500);
-      }
-      const a = PT_ACTS.find(x => x.k === k), used = S0.uses[k] || 0;
-      S0.uses[k] = used + 1;
-      let d = a.g * ptMul(c, a.tone) / (1 + used * .8) + (Math.random() * 6 - 3);
-      if (a.need && S0.ilgi < a.need) d = -12 - Math.random() * 8;
-      d = Math.round(d);
-      const res = d >= 8 ? 'good' : d >= 2 ? 'meh' : 'bad';
-      S0.ilgi = Math.max(-20, Math.min(100, S0.ilgi + d));
-      S0.sabir -= res === 'bad' ? 2 : res === 'meh' ? 1 : 0;
-      if (res === 'good' && S0.turn % 3 === 0) S0.sabir--;
-      say({ me: true, t: pick(a.me) });
-      draw(); busy = true;
-      setTimeout(typing, 300);
-      setTimeout(() => {
-        busy = false;
-        const t = pick(a.r[res]).replace('{job}', c.job || 'Serbest').replace('{city}', c.city || 'İstanbul');
-        if (S0.ilgi < 0 || (a.tone === 'kaba' && d <= -15)) return leave('red', t);
-        if (S0.sabir <= 0) { say({ t, res }); return leave('red', pick(PT_BORED)); }
-        say({ t, res }, { sys: true, up: d > 0, dn: d < 0, t: `${d > 0 ? '💗 +' + d : d < 0 ? '💔 ' + d : '·'} ilgi` });
-        draw(); fx(res);
-      }, 1100);
-    };
+      const diff = g.her - g.me, done = g.r >= 3 && diff !== 0, d66 = x => x[0] === 6 && x[1] === 6, d11 = x => x[0] === 1 && x[1] === 1;
+      const me = `🎲 ${ptDieTx(mine)}`, roll = { sys: `🎲 ${first}: ${ptDieTx(hers)} · Sen ${g.me} – ${g.her} ${first}` };
+      if (done) { S.diced = 1; S.dice = null; }
+      if (done && diff > 0) return api.say(me, [roll, pick(PT_DICE.lose), gone('red')]);
+      if (done) { const sc = { me: g.me, her: g.her }; S.done = 1; return api.say(me, [roll, pick(PT_DICE.win)], () => { ptOut(c, th, 'zar', sc); api.render(); }); }
+      if (g.r >= 3) g.extra = true;
+      const pool = g.extra ? PT_DICE.extra : d66(mine) ? PT_DICE.me66 : d11(mine) ? PT_DICE.me11 : d66(hers) ? PT_DICE.her66
+        : diff >= 4 ? PT_DICE.lead : diff > 0 ? PT_DICE.leadS : diff === 0 ? PT_DICE.tie : diff > -4 ? PT_DICE.behindS : PT_DICE.behind;
+      return api.say(me, [roll, pick(pool) + (!g.extra && g.r === 2 ? ' ' + pick(PT_DICE.last) : '')]);
+    }
+    // 🌿 Gerçekçi Mod: içki ve eve dönüş taksisi bakiyeden (taksi kabul edince ödenir; önceden yetiyor mu bakılır)
+    if (k === 'drink' && !realPay(PT_DRINK, `🍸 CarmenParty · ${first}'e içki`)) return;
+    if (k === 'home' && !ptTaxiOk()) return notify(`Eve dönüş taksisi için ${cmTl(PT_TAXI)} gerekli`, '💸');
+    S.turn++;
+    if (k === 'home') {
+      const p = Math.max(.02, Math.min(.95, (S.ilgi - 35) / 55 + pers.reduce((s, t) => s + (PT_HOME[t] || 0), 0) - (S.turn < 4 ? .3 : 0)));
+      if (Math.random() < p) { S.done = 1; return api.say(pick(PT_ASK), [pick(PT_YES), { sys: '🏠 Kabul etti!' }], () => { ptOut(c, th, 'ev'); api.render(); }); }
+      return api.say(pick(PT_ASK), S.ilgi >= 55 ? [pick(PT_SOFT), gone('num')] : [pick(PT_NO), gone('red')]);
+    }
+    const a = PT_ACTS.find(x => x.k === k);
+    if (!a) return;
+    const used = S.uses[k] || 0;
+    S.uses[k] = used + 1;
+    let d = a.g * ptMul(c, a.tone) / (1 + used * .8) + (Math.random() * 6 - 3);
+    if (a.need && S.ilgi < a.need) d = -12 - Math.random() * 8;
+    d = Math.round(d);
+    const res = d >= 8 ? 'good' : d >= 2 ? 'meh' : 'bad';
+    S.ilgi = Math.max(-20, Math.min(100, S.ilgi + d));
+    S.sabir -= res === 'bad' ? 2 : res === 'meh' ? 1 : 0;
+    if (res === 'good' && S.turn % 3 === 0) S.sabir--;
+    const t = pick(a.r[res]).replace('{job}', c.job || 'Serbest').replace('{city}', c.city || 'İstanbul');
+    if (S.ilgi < 0 || (a.tone === 'kaba' && d <= -15)) return api.say(pick(a.me), [t, gone('red')]);
+    if (S.sabir <= 0) return api.say(pick(a.me), [t, pick(PT_BORED), gone('red')]);
+    api.say(pick(a.me), [t, { sys: `${d > 0 ? '💗 +' + d : d < 0 ? '💔 ' + d : '·'} ilgi` }]);
+  }
+  // 🏠 beraber çıktınız (taksi ödenir) / 🎲 zarda kazandın: aynı sohbette sahne + (Halloween / kostüm rolü ya da) ilk cümlesi
+  function ptOut(c, th, kind, sc) {
+    const S = th.site, n = S.night, first = (c.name || 'O').split(' ')[0], now = Date.now(), ev = kind === 'ev';
+    if (ev) realPay(PT_TAXI, `🚕 CarmenParty · ${first} ile eve taksi`);
+    ptGone(c, kind);
+    msgsOf(th).push(ev ? { id: Store.uid(), from: 'sys', ts: now, text: `🕰️ 01:30 · ${ptIsHw(n) ? '🎃' : '🎉'} ${S.venue}'dan beraber çıktınız`, scene: { place: 'salon', icon: '🛋️', name: `${first}'in evi`, hint: ptIsHw(n) ? 'Halloween partisinden yeni geldiniz, kostümü hâlâ üstünde' : ptIsCos(n) ? 'Kostüm partisinden yeni geldiniz, rolünden hâlâ çıkmadı' : 'Partiden yeni geldiniz, müzik hâlâ kulağınızda' } }
+      : { id: Store.uid(), from: 'sys', ts: now, text: `🕰️ 01:00 · 🎲 ${S.venue}'da zar oyununu ${sc.me}–${sc.her} kazandın`, scene: { place: 'bar', icon: '🎲', name: S.venue, hint: `Zar masası · ${first} hâlâ şaşkın` } });
+    if (ptIsHw(n)) ptHwStart(c, th, n, now + 1);
+    else if (ptIsCos(n)) ptCosStart(c, th, n, now + 1);
+    else msgsOf(th).push({ id: Store.uid(), from: 'her', ts: now + 1, text: pick(ev ? PT_GREET : PT_DICE.chat) });
+    th.clock = { start: ev ? 90 : 60, done: 0 };
+    if (ev) { cmParam(c, 'aşk', 3); cmParam(c, 'şehvet', Math.round(S.ilgi / 8)); } else { cmParam(c, 'aşk', 2); cmParam(c, 'şehvet', Math.round(Math.max(0, S.ilgi) / 10)); }
+    S.done = 1;
+    save();
+    sfx('match');
   }
   /* 💁 Yardımcı karakter (Lia): sol altta kartının ucu görünür; dokununca bulunduğun sayfanın kurallarını adım adım anlatır.
    * Sohbette ucu görünmez, ⋯ Diğer → 💁 Yardım ile açılır. Küçültme bu tarayıcıda hatırlanır */
@@ -7093,6 +6977,10 @@
         ${group && editOn() ? '<div class="spk-row" id="spkRow"></div>' : ''}
         ${group ? '<div class="spk-row" id="tgtRow" aria-label="Olay kime"></div>' : ''}
         <div class="side-hint" id="sideHint"${editOn() ? '' : ' hidden'}></div>
+        ${!group && th.site && !th.site.done && SITE_CHAT[th.site.k] ? `<style>.site-bar{padding:6px 10px 2px;display:grid;gap:6px}.site-steps{all:unset;cursor:pointer;display:flex;align-items:center;gap:4px;font-size:12.5px;padding:7px 12px;border-radius:12px;background:color-mix(in srgb,var(--pink) 12%,transparent)}
+          .site-steps i{margin-left:auto;font-style:normal;font-size:16px}.site-qa{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}.site-qa button{flex:none;font:inherit;font-size:12.5px;padding:5px 11px;border-radius:999px;border:1px solid color-mix(in srgb,var(--pink) 40%,transparent);background:transparent;color:inherit;cursor:pointer}
+          .site-qa button.hot{background:color-mix(in srgb,var(--pink) 20%,transparent);font-weight:700}.site-qa small{opacity:.7;font-weight:400}.site-sum{padding:0 4px;font-size:12px;opacity:.8}</style>
+          <div class="site-bar" id="siteBar"></div>` : ''}
         <div class="ev-quick" id="evQuick" hidden></div>
         <div class="ev-pend" id="evPend" hidden></div>
         <form class="composer" id="composer" autocomplete="off">
@@ -7651,6 +7539,10 @@
       if (!opts.events) userMsg = { ...userMsg, text: BOT.fromEn(typedText) };   // 🌐 İngilizce mesaj: kurallar Türkçe okur, saklanan mesaj değişmez
       if (sessGate(userMsg, opts)) return;
       if (realGate(userMsg, opts)) return;
+      // 💬 site görüşmesi (SITE_CHAT[k].say): siteye özel cevap varsa bot kuralları yerine o
+      const siteSc = !opts.events && !group && th.site && !th.site.done && SITE_CHAT[th.site.k];
+      const siteHers = siteSc && siteSc.say(c, th, userMsg.text);
+      if (siteHers) { save(); siteLines(siteHers); drawSite(); return; }
       const rules0 = Stories.BOT_RULES || { rules: [] };
       // 👯 grup komutları (r_gc_*) tek kişilik sohbette yok
       const rules = group ? rules0 : { ...rules0, rules: (rules0.rules || []).filter(r => !String(r.id).startsWith('r_gc_')) };
@@ -8234,6 +8126,7 @@
       if (!opts.events) return false;
       const bad = opts.mood === 'sevmez', forced = /^izinsiz_/.test(opts.state || '');
       if (!bad && !forced) return false;
+      if (th.iknaOk) return false;   // 🙏 bir kez ikna olduysa bu sohbette bir daha uyarmaz / bitirmez
       if (bad) { cmParam(c, 'güven', -3); cmParam(c, 'aşk', -2); }
       th.dis = (th.dis || 0) + 1;
       if (th.dis >= 2) { realStop(); return true; }
@@ -8254,7 +8147,7 @@
     }
     /* 🙏 ikna (th.ikna { k: sevmez|kondom|icine|stop, ev, n: deneme, w: iknasız mesaj }): uyarı / olayı bitirmeden sonra "lütfen", "bir kere", "söz"… yazınca
      * şans = (Güven + Aşk) / 200 × 0.6 (kondom ×0.8, stop ×0.7) + her denemede +0.12 (en çok %85). Razı olursa: sevmez → o olay bu sohbette sevmez sayılmaz (th.iknaEv),
-     * kondom → bu tur kondomsuz izinsiz sayılmaz (th.iknaRaw), icine → affeder (güven +4), stop → yatışır. 3. başarısızlıkta keser (güven −2). İkna kelimesi olmayan 4. mesajda unutulur.
+     * kondom → bu sohbette kondomsuz izinsiz sayılmaz (th.iknaRaw), icine → affeder (güven +4), stop → yatışır. Her başarıda th.iknaOk: realGate bu sohbette bir daha uyarmaz / bitirmez. 3. başarısızlıkta keser (güven −2). İkna kelimesi olmayan 4. mesajda unutulur.
      * Cevaplar: "=durum =iknaok<k>" / "=iknared" / "=iknason". Dönüş: true → cevap verildi */
     function iknaTry(userMsg) {
       const I = th.ikna, nm = c.name.split(' ')[0];
@@ -8262,7 +8155,7 @@
       const p = Math.min(.85, (relV(c, 'güven') + relV(c, 'aşk')) / 200 * .6 * ({ kondom: .8, stop: .7 }[I.k] || 1) + .12 * I.n);
       I.n++;
       if (Math.random() < p) {
-        delete th.ikna; th.dis = 0;
+        delete th.ikna; th.dis = 0; th.iknaOk = 1;
         if (I.k === 'sevmez' && I.ev) (th.iknaEv = th.iknaEv || {})[I.ev] = 1;
         if (I.k === 'kondom') th.iknaRaw = 1;
         if (I.k === 'icine') cmParam(c, 'güven', 4);
@@ -8969,6 +8862,25 @@
       bar.innerHTML = `<span class="cur"><i>${p.g.ic}</i><small>${esc(p.g.name)}</small></span><span class="done"><i>💰</i><small>~${p.total.toLocaleString('tr-TR')}₺</small></span><span class="done"><i>✅</i><small>İşi bitir</small></span>`;
     }
     drawJob();
+    // 💬 site görüşmesi (th.site, SITE_CHAT): adım şeridi + hazır cevaplar; say(me, hers, then) = senin mesajın (bot cevaplamaz) + onun cevapları sırayla
+    // (hers içinde { sys } = not satırı, beklemeden), hepsi bitince then()
+    const siteApi = {
+      say: (me, hers, then) => { if (me) { cs.noBot = true; send(me); cs.noBot = false; } else save(); siteLines(hers || [], then); drawSite(); },
+      redraw: () => drawSite(), render: () => render() };
+    function siteLines(hers, then) {
+      if (!hers.length) { if (then) setTimeout(then, 600); return; }
+      const [h, ...rest] = hers;
+      if (typeof h === 'object') { list.push({ id: Store.uid(), from: 'sys', text: h.sys, ts: Math.max(Date.now(), ((list[list.length - 1] || {}).ts || 0) + 1) }); save(); draw(); refreshList(); siteLines(rest, then); }
+      else { sessSay(h); setTimeout(() => siteLines(rest, then), 1100); }
+    }
+    function drawSite() {
+      const bar = $('#siteBar'), sc = th.site && SITE_CHAT[th.site.k];
+      if (!bar || !sc) return;
+      bar.hidden = !!th.site.done;
+      bar.innerHTML = th.site.done ? '' : sc.bar(c, th);
+    }
+    drawSite();
+    if ($('#siteBar')) $('#siteBar').onclick = e => { const b = e.target.closest('[data-sact]'); if (b && !cs.busy) SITE_CHAT[th.site.k].act(c, th, b.dataset.sact, b.dataset.v, siteApi); };
     if ($('#jobBar')) $('#jobBar').onclick = () => {
       const p = gigPay(th, c);
       const sh = sheet(`<div class="sheet-grip"></div><h3>${p.g.ic} ${esc(p.g.name)} <small class="cm-mute">· ${esc(p.g.co)}</small></h3>
@@ -9148,7 +9060,6 @@
         // 🚫 içe izin vermiyorsa (kondom şartı / içe izin yok) korunmasız içe boşalma daha sert
         if (['pulloutkacti', 'riskli'].includes(state) && protGet(ch).ice !== 'var' && protGet(ch).kon && !rawOk) state = 'izinsiz_icine';
         th.izinVerdi = false;
-        delete th.iknaRaw;
         // bir sonraki önden girişte yine "kondomsuz giriyorsun" tepkisi gelebilir
         if (th.giris) delete th.giris[ch.id];
         th.israr = 0;
@@ -17169,7 +17080,7 @@
       `<p>🌿 <b>Gerçekçi Mod</b>'da (tek kişilik sohbet) sevmediği 💔 bir olayda ya da 🚫 izinsiz bir şeyde (kondomsuz giriş, içine boşalma) seni uyarır; ikincisinde 🛑 olayı bitirir. Hemen ardından <b>neden?</b> yazarsan neden reddettiğini anlatır (aşağıdaki tablo).</p>
       <ul><li><b>İkna</b>: uyarıdan ya da olayı bitirdikten sonra "lütfen", "ne olur", "bir kere", "söz", "güven bana", "yavaş olurum", "nazik olurum", "özür dilerim", "affet", "kızma", "hadi ama", "bir şans" gibi bir şey yaz.</li>
         <li><b>Şans</b>: 🤝 Güven ve ❤️ Aşk ne kadar yüksekse o kadar kolay; her yeni denemede biraz artar (en çok %85). Kondomsuz ve olayı bitirdiyse daha zor.</li>
-        <li><b>Razı olursa</b>: 💔 o olay bu sohbette artık sevmediği sayılmaz · 🚫 kondomsuz: bu tur kondomsuz devam edebilirsin (içine boşalma hâlâ izinsiz) · 🚫 içine: affeder (Güven +4) · 🛑 bitirdi: yatışır, olay yazabilirsin.</li>
+        <li><b>Razı olursa</b>: 💔 o olay bu sohbette artık sevmediği sayılmaz · 🚫 kondomsuz: bu sohbette kondomsuz devam edebilirsin (içine boşalma hâlâ izinsiz) · 🚫 içine: affeder (Güven +4) · 🛑 bitirdi: yatışır, olay yazabilirsin. Bir kez ikna olduysa bu sohbette bir daha uyarmaz, olayı bitirmez.</li>
         <li><b>Olmazsa</b>: "Hayır, ikna olmadım"; 3. başarısız denemede konuyu kapatır (Güven −2). İkna kelimesi geçmeyen 4 mesajdan sonra konu unutulur; 🛑 bitirdiyse 2 normal mesajla da kendiliğinden yatışır.</li></ul>`],
     ['🤷', 'Genel neden', 'konusu belli olmayan cevaplar, üst üste neden', null,
       '<p>Hiçbir konu tutmazsa genel bir cevap verir ("Bilmem… öyle hissediyorum 🙈"). Üst üste üçüncü kez "neden" dersen sıkılır.</p>']

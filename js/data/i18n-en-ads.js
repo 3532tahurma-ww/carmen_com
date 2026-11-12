@@ -444,7 +444,7 @@ Stories.I18n.add({
   'Kapında, topukluları elinde; parfümü koridoru doldurmuş': "She's at your door, heels in hand; her perfume fills the hallway", 'Kapıyı açınca sana sarılıp içeri süzülüyor': 'When you open the door she hugs you and slips inside',
   'Seans': 'Session', 'Yer': 'Place', 'Saat': 'Time', 'Anlaşma': 'Deal', 'söz': 'promise', '{} olur': '{} works', 'onun önerisi': 'her suggestion', 'gece yarısı': 'midnight', 'gündüz': 'daytime', 'akşam': 'evening',
   'Sohbete geç': 'Go to chat', 'sohbet o mekanda, o saatte başlar': 'the chat starts at that place, at that time', '{} ile ön görüşme': 'Pre-meeting with {}', 'birazdan döner': 'back soon', 'Çevrimiçi': 'Online',
-  'Baştan': 'Start over', 'İlana dön': 'Back to the ad', '© Carmen.com · Tüm profiller kurgusaldır, 18+': '© Carmen.com · All profiles are fictional, 18+', 'kondomsuz': 'no condom', 'oda': 'room',
+  'Baştan': 'Start over', 'Anlaşmayı onayla': 'Confirm the deal', 'İlana dön': 'Back to the ad', '© Carmen.com · Tüm profiller kurgusaldır, 18+': '© Carmen.com · All profiles are fictional, 18+', 'kondomsuz': 'no condom', 'oda': 'room',
   '(👑 söz: {} yerine)': '(👑 promise: instead of {})',
   // liste / profil
   'Gizli': 'Hidden', 'Kondomlu': 'With condom', 'Kondomsuz olur': 'No condom OK', 'Şehrin en seçkin profilleri · {} ilan · {} VIP': "The city's most exclusive profiles · {} ads · {} VIP", 'İsim, şehir, saç, vücut ara…': 'Search name, city, hair, body…',
