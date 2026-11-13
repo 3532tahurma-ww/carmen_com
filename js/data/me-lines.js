@@ -7881,3 +7881,115 @@ Object.assign(Stories.ME_EV_LINES, {
     'Her sabah böyle başlasın {o} 💗🍼'
   ]
 });
+
+// 🔗 BDSM
+Object.assign(Stories.ME_EV_LINES, {
+  'Vibrator Control': [
+    'Kumanda bende {o}, kıpırdama 😈',
+    'Birinci kademe, sadece ısınıyorsun 😏',
+    'İkiye aldım, nefesin değişti bile 😮‍💨',
+    'Üç… dizlerin titriyor 🥵',
+    'Dörde çıkıyorum, sesini tut 😈',
+    'Beş! Bağırma, komşular duyacak 😏',
+    'Birden bire düşürdüm, yalvarışını duymak istiyorum 😈',
+    'Ne kadar istediğini söyle, ona göre açarım 😏',
+    'Gözlerime bak, kademeyi ben seçiyorum 🔥',
+    'Kapattım. Şimdi teşekkür et {o} 😈'
+  ],
+  'Remote Toy': [
+    'Kumanda cebimde, sen sadece gülümse 😏',
+    'Garson gelirken açtım, yüzünü tut 😈',
+    'Kimse fark etmiyor, sakın belli etme 🤫',
+    'Bacaklarını sıktın, gördüm 😏',
+    'Bir kademe daha, menüye bak sadece 😈',
+    'Sırada beklerken titredin {o} 🥵',
+    'Telefonla konuşurken açacağım, hazır ol 😏',
+    'Yanağın kızardı, herkes soracak 😈',
+    'Eve kadar dayanabilecek misin 😏',
+    'Kapıyı kapattık, artık bağırabilirsin 🔥'
+  ],
+  'Honey Chocolate Lick': [
+    'Çikolata tam kıvamında, sırtüstü yat {o} 😏',
+    'Boynuna bal damlatıyorum, kıpırdama 🍯',
+    'Göğüslerine çikolata sürdüm, şimdi temizleyeceğim 😈',
+    'Damla karnından aşağı kayıyor, yetişiyorum 😮‍💨',
+    'Bu kadar tatlı olacağını bilmiyordum 🍫',
+    'Bir yeri bile atlamıyorum 😏',
+    'Bal dudaklarında, öpüyorum 🍯💋',
+    'Tenin yapış yapış oldu, iyi ki 😈',
+    'Her yalayışta titriyorsun {o} 🥵',
+    'Sonra beraber duşa, ama önce tatlı 😏'
+  ],
+  'Ice Cube': [
+    'Gözlerin bağlı, buzun nereye gideceğini bilmiyorsun 😈',
+    'Boynundan başlıyorum, nefesini tut 🧊',
+    'Omurgandan aşağı iniyor yavaşça 😏',
+    'Tenin diken diken oldu {o} 😳',
+    'Göğsünün etrafında dolaştırıyorum 🥵',
+    'Eriyen damlaları dudaklarımla topluyorum 😮‍💨',
+    'Soğuktan sonra sıcak nefesim, hissettin mi 😈',
+    'Tahmin et, sırada neresi var 😏',
+    'Titremene bayılıyorum 🧊🔥',
+    'Buz bitti, şimdi ısıtacağım seni 😈'
+  ],
+  'Hot Wax': [
+    'Masaj mumu, yakmaz, sadece ısıtır, güven bana 🕯️',
+    'Yükseklerden ilk damla, sırtına 😏',
+    'Nasıl? Biraz daha yaklaşayım mı 😈',
+    'Damla düştükçe sırtın kıvrılıyor 🔥',
+    'Şimdi daha yakından, nefesini tut 🥵',
+    'Kırmızı damlalar teninde çok güzel duruyor 😏',
+    'Fazla gelirse söyle, hemen dururum {o} 🤍',
+    'Sıcak ile titreyişin aynı anda 😮‍💨',
+    'Kurumuş mumu tırnağımla kazıyorum 😈',
+    'Şimdi yağla teninin üstüne masaj 🤲'
+  ],
+  'Warm Oil Massage': [
+    'Yüzüstü uzan {o}, yağı ellerimde ısıtıyorum 🤲',
+    'Omuzların taş gibi, bırak kendini 😌',
+    'Sırtından aşağı yavaşça iniyorum 😮‍💨',
+    'Tenin parlıyor, çok güzel 😏',
+    'Her şeyi bana bırak, düşünme 🤍',
+    'Kalçalarına geldim, nefesin değişti 😈',
+    'Bacaklarının içine doğru 🥵',
+    'Gözlerin kapanıyor, teslim oluyorsun 😏',
+    'Şimdi sırtüstü dön 😈',
+    'Hazırsın artık, asıl sahne başlıyor 🔥'
+  ],
+  'Edging': [
+    'Tam sınırdasın, dur 😈',
+    'Hayır, daha değil {o} 😏',
+    'Bir tur daha, sonra bakarız 😈',
+    'Nefesini düzelt, yeniden başlıyorum 🥵',
+    'Kaçıncı oldu? Sen say 😏',
+    'Yalvarışın çok güzel, devam et 😈',
+    'Bacakların titriyor, yine durdum 😮‍💨',
+    'Gözlerime bak, izni ben veririm 🔥',
+    'Biraz daha… ve dur 😈',
+    'Şimdi! İzin veriyorum {o} 💦'
+  ],
+  'Tied To Bed': [
+    'Bileklerini yatağın başına bağlıyorum 🪢',
+    'Ayak bileklerin de, şimdi açılmış duruyorsun 😈',
+    'Çok mu sıkı? Söyle, gevşeteyim {o} 🤍',
+    'Kıpırdamayı dene 😏',
+    'Artık her şey benim elimde 😈',
+    'Sen sadece hissedeceksin 🔥',
+    'Bedenin geriliyor, ipler gerilmiyor 😏',
+    'Nereden başlayacağımı izle 🥵',
+    'Kaçamazsın, istemiyorsun da zaten 😈',
+    'Bitti, çözüyorum, gel kollarıma 🤍'
+  ],
+  'Address Rule': [
+    'Kural basit {o}: bu gece bana "Efendim" diyeceksin 😈',
+    'Ne dedin? Tekrar et, düzgünce 😏',
+    'Unuttun, bir daha olmasın 😈',
+    'Böyle, aferin 😏',
+    'Bir şey istiyorsan önce hitap 👑',
+    'Sesin titriyor ama doğru söyledin 🔥',
+    'Her unutuşta bir ceza, biliyorsun 😈',
+    'Hanımefendi mi dedin? Çok yakıştı 😏',
+    'Şimdi tekrar, gözlerime bakarak 👑',
+    'Sahne bitti, bana adımla seslenebilirsin 🤍'
+  ]
+});

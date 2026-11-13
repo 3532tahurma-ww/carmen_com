@@ -3288,6 +3288,45 @@ button.cr-and:active { transform: scale(.9); }
 .ob-err { min-height: 18px; color: #ff8fb8; font-size: 14px; }
 .ob-skip { border: 0; background: none; color: rgba(255, 255, 255, .6); font-size: 14px; cursor: pointer; }
 .ob-money { padding: 14px; border-radius: 16px; background: rgba(255, 255, 255, .08); font-size: 17px; }
+/* 🔐 Giriş / Kayıt */
+.au-scr { z-index: 191; }
+.au-box { box-sizing: border-box; width: 100%; max-width: 400px; display: grid; gap: 14px; padding: 28px 22px 20px; border-radius: 24px; background: rgba(20, 14, 28, .78); border: 1px solid rgba(255, 255, 255, .1); box-shadow: 0 24px 60px rgba(0, 0, 0, .5); backdrop-filter: blur(14px); text-align: center; }
+.au-box .ob-logo { font-size: 38px; }
+.au-tag { margin: -8px 0 4px; opacity: .7; font-size: 15px; }
+.au-tabs { display: grid; grid-template-columns: 1fr 1fr; padding: 4px; border-radius: 14px; background: rgba(255, 255, 255, .08); }
+.au-tabs button { padding: 10px; border: 0; border-radius: 10px; background: none; color: rgba(255, 255, 255, .65); font-size: 15px; font-weight: 700; cursor: pointer; transition: background .2s, color .2s; }
+.au-tabs button.on { background: var(--grad); color: #fff; box-shadow: 0 4px 14px rgba(255, 79, 154, .35); }
+.au-recent { display: grid; gap: 8px; }
+.au-recent small { opacity: .6; font-size: 12px; text-align: left; }
+.au-recent > div { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 2px; }
+.au-recent button { flex: none; display: grid; justify-items: center; gap: 4px; width: 72px; padding: 8px 4px; border: 1px solid rgba(255, 255, 255, .12); border-radius: 14px; background: rgba(255, 255, 255, .06); color: #fff; cursor: pointer; }
+.au-recent button span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
+.au-recent button:hover { border-color: #ff4f9a; }
+.au-form { display: grid; gap: 12px; text-align: left; }
+.au-f { display: grid; gap: 5px; }
+.au-f > span:first-child { font-size: 13px; font-weight: 600; opacity: .8; }
+.au-inw { position: relative; display: block; }
+.au-inw input { width: 100%; box-sizing: border-box; padding: 12px 14px; border: 1.5px solid rgba(255, 255, 255, .16); border-radius: 12px; background: rgba(255, 255, 255, .07); color: #fff; font-size: 16px; outline: none; transition: border-color .2s, background .2s; }
+.au-inw input::placeholder { color: rgba(255, 255, 255, .35); }
+.au-inw input:focus { border-color: #ff4f9a; background: rgba(255, 255, 255, .1); }
+.au-eye { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); border: 0; background: none; font-size: 18px; cursor: pointer; padding: 6px; }
+.au-inw input[name^=pw] { padding-right: 44px; }
+.au-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.au-chk { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; opacity: .85; cursor: pointer; line-height: 1.4; }
+.au-chk input { margin: 2px 0 0; accent-color: #ff4f9a; width: 16px; height: 16px; flex: none; }
+.au-link { border: 0; background: none; padding: 0; color: #ff8fb8; font-size: 13px; font-weight: 700; cursor: pointer; }
+.au-link:hover { text-decoration: underline; }
+.au-str { display: grid; grid-template-columns: repeat(4, 1fr) auto; align-items: center; gap: 4px; margin-top: -6px; }
+.au-str i { height: 4px; border-radius: 2px; background: rgba(255, 255, 255, .12); transition: background .2s; }
+.au-str small { min-width: 40px; text-align: right; font-size: 11px; opacity: .7; }
+.au-str.s1 i:nth-child(-n+1) { background: #ff5a5a; }
+.au-str.s2 i:nth-child(-n+2) { background: #ffb347; }
+.au-str.s3 i:nth-child(-n+3) { background: #9ad94a; }
+.au-str.s4 i:nth-child(-n+4) { background: #2ecc71; }
+.au-form .ob-err { min-height: 0; text-align: center; }
+.au-foot { margin: 0; font-size: 14px; opacity: .85; }
+.au-foot .au-link { font-size: 14px; }
+.au-legal { margin: 0; font-size: 11px; opacity: .5; }
 .acc-list { display: grid; gap: 8px; }
 .acc-row { display: flex; align-items: center; gap: 6px; }
 .acc-go { flex: 1; display: flex; align-items: center; gap: 10px; padding: 8px 10px; border: 1px solid var(--line, rgba(0, 0, 0, .1)); border-radius: 14px; background: none; color: inherit; text-align: left; cursor: pointer; }
