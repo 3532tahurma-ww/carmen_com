@@ -1748,6 +1748,20 @@ summary.lab-h { cursor: pointer; }
 .tn-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 10px 0 4px; font-size: 13px; font-weight: 700; color: var(--muted); }
 .net-tinder { background: linear-gradient(135deg, #fd267a, #ff6036); box-shadow: 0 14px 34px rgba(253, 38, 122, .3); }
 .net-tinder b i { color: #fff3c4; }
+/* 🐝 CarmenBumble */
+.hl-bumble { background: linear-gradient(135deg, #ffc629, #ff6a00); }
+.hl-bumble .hl-shade { background: linear-gradient(110deg, rgba(240, 120, 0, .9), rgba(255, 198, 41, .4) 45%, rgba(0, 0, 0, 0) 70%), linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, .45)); }
+.hl-bumble .hl-txt > small:first-child i { font-style: normal; }
+.bm-bar { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--card); border-bottom: 1px solid var(--line); }
+.bm-bar .cm-back { color: var(--text); background: rgba(255, 198, 41, .18); }
+.bm-bar .cm-url { color: var(--muted); background: rgba(255, 198, 41, .12); }
+.bm-logo { font-family: var(--font-logo); font-weight: 900; font-size: 20px; background: linear-gradient(90deg, #f0a500, #ff4f1f); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.bm-logo i { font-style: normal; }
+.bm-hot { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin: 6px 0; }
+.bm-hot span { padding: 3px 10px; border-radius: 999px; background: rgba(255, 198, 41, .95); color: #3a2200; font-size: 13px; font-weight: 800; }
+.tn-lk-sh .bm-hot { align-items: center; }
+.net-bumble { background: linear-gradient(135deg, #ffc629, #ff6a00); box-shadow: 0 14px 34px rgba(255, 140, 0, .3); }
+.net-bumble b i { color: #fff3c4; }
 /* 🔍 Booble arama motoru */
 .bb-site { min-height: 100vh; background: var(--card); color: var(--text); display: flex; flex-direction: column; }
 .bb-bar { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--card); border-bottom: 1px solid var(--line); }

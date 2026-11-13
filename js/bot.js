@@ -19,6 +19,7 @@
  * traits: karakterde HEPSİ olmalı; bir öğede "|" ile alternatifler (ör. "Pussy Size: Tight|Pussy Size: Very Tight" = biri yeter).
  *   Yaştan gelen özellik de sayılır: "Yaş: Genç" (18–22), "Yaş: Yirmili", "Yaş: Otuzlu", "Yaş: Olgun" (40+); bkz. ageTrait.
  *   Şehirden gelen memleket de: "Memleket: Türk", "Memleket: Latin", "Memleket: Akdeniz"… (js/data/world.js); bkz. originTrait.
+ *   Geldiği site de: "Site: CarmenParty", "Site: Gothic.com"… (karakterin src'si); bkz. siteTrait / SITES.
  * chars: sadece bu adlar (tam ad ya da ilk ad).
  * Eşleşenler arasında en özel kural kazanır: daha çok kelime > kişilik şartı > karakter şartı. Eşitlikte rastgele.
  * best(..., loose) ile sırası farklı ya da (3+ kelimede) bir kelimesi eksik kurallar da düşük puanla yarışır.
@@ -107,8 +108,11 @@ Stories.Bot = (() => {
   const ageTrait = age => { const a = parseInt(age, 10); return !(a >= 18) ? '' : a <= 22 ? 'Yaş: Genç' : a <= 29 ? 'Yaş: Yirmili' : a <= 39 ? 'Yaş: Otuzlu' : 'Yaş: Olgun'; };
   // 🌍 Memleket de bir özellik: şehrin ülkesinin kültür bölgesi ("Memleket: Latin", "Memleket: Doğu Asya"…; bkz. js/data/world.js)
   const originTrait = city => { const r = Stories.World && Stories.World.regionOf(city); return r ? 'Memleket: ' + r : ''; };
+  // 🌐 geldiği site de bir özellik: karakterin src'si (cmAdopt / eşleşme) → "Site: CarmenParty", "Site: Gothic.com"…
+  const SITES = { tn: 'CarmenTinder', bm: 'CarmenBumble', cm: 'Carmen.com', gt: 'Gothic.com', ms: 'Meisove.com', fn: 'CarmenFans', sy: 'CarmenStay', shop: 'CarmenShop', kl: 'CarmenKlinik', job: 'CarmenJobs', sc: 'CarmenSchool', gi: 'CarmenImpact', ga: 'CarmenGasino', am: 'CarmenAmor', pt: 'CarmenParty' };
+  const siteTrait = src => SITES[src] ? 'Site: ' + SITES[src] : '';
   // 🛡️ korunma seçiminden gelenler: "Kondom: Var", "İçe: İzin yok", "Hap: Alıyor"… (app.js protTraits)
-  const haveOf = ch => new Set([...(ch.traits || []), ageTrait(ch.age), originTrait(ch.city), ...(Stories.protTraits ? Stories.protTraits(ch) : [])].filter(Boolean).map(lower));
+  const haveOf = ch => new Set([...(ch.traits || []), ageTrait(ch.age), originTrait(ch.city), siteTrait(ch.src), ...(Stories.protTraits ? Stories.protTraits(ch) : [])].filter(Boolean).map(lower));
   function fits(rule, ch, have) {
     const traits = (rule.traits || []).filter(Boolean);
     if (traits.length) {
@@ -283,7 +287,7 @@ Stories.Bot = (() => {
     return out;
   }
 
-  return { norm, fromEn, expand, inOrder, fits, ageTrait, originTrait, best, reply, score, looseScore, catches, addons, addText, ADD_MODES, enDict, near, fold };
+  return { norm, fromEn, expand, inOrder, fits, ageTrait, originTrait, siteTrait, SITES, best, reply, score, looseScore, catches, addons, addText, ADD_MODES, enDict, near, fold };
 })();
 
 if (Stories.BOT_RULES && Stories.I18n) Stories.I18n.add(Stories.Bot.enDict(Stories.BOT_RULES.en));

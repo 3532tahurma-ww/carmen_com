@@ -89,6 +89,8 @@ Stories.Themes = {
     fxrprobot: ['galaksi', 'terminal'], fxrpelf: ['forest', 'pastel-nane'], fxrphostes: ['pastel-mavi', 'insta'], fxrprahibe: ['dark', 'paper'],
     // ✨ Genshin
     fxrpyelan: ['ocean', 'glass'], fxrpclorinde: ['night', 'gece-neonu'], fxrpmavuika: ['sunset', 'altin-isilti'], fxrpxianyun: ['pastel-bulut', 'pastel-nane'],
+    // 🎰 CarmenGasino
+    fxrpgazino: ['night', 'altin-isilti'],
     // 🎃 Halloween rolleri
     fxrpvampir: ['halloween', 'halloween'], fxrpcadi: ['halloween', 'halloween'], fxrpfalci: ['halloween', 'halloween'], fxrpperili: ['halloween', 'halloween'],
     fxrpmaske: ['halloween', 'halloween'], fxrpkarakedi: ['halloween', 'halloween'], fxrpmumya: ['halloween', 'halloween'], fxrpsuccubus: ['halloween', 'halloween'],

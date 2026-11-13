@@ -536,6 +536,17 @@ Stories.FANT_INTERRUPTS = {
       { g: '🍵 Çaydanlık fokurdayıp taştı', r: ['Çay! …boşver 😩', 'Bin yıllık çaydanlık, dayanır 🍵', 'Bu adeptus ilk kez çayı unuttu 😳', 'Taşsın, biz de taşıyoruz 😈', 'Sonra taze demlerim ☁️'] },
       { g: '📣 Dağın eteğinden bir ses yankılanıyor: "Ustam, orada mısınız?"', r: ['Öğrencim! Sus 😱', 'Bu adeptus burada değil! 😳', 'Cevap verme, gider 🤫', 'Yarın gelsin, bugün ders yok 😤', 'Gitti… devam, ölümlü 😈'] }
     ],
+    fxrpgazino: [
+      { g: '🎰 Salondan jackpot sireni çalıyor, alkışlar yükseliyor', r: ['Biri kazandı! Biz de kazanıyoruz 😈', 'Duymazdan gel, tatlım 🐰', 'Sirenden yüksek inlerim 😏', 'Şansımız açık bu gece 🎰', 'Alkışlar bize sanki 😳'] },
+      { g: '🚪 Kapı tıklatılıyor: "Bunny, 3 numaralı masa seni bekliyor!"', r: ['Beklesin, VIP müşterideyim 😏', 'Şşş, ses çıkarma 🤫', 'Mesaim bitti, diyorum! 🐰', 'Beş dakika… belki on 😈', 'Kapı kilitli, devam 🎰'] },
+      { g: '🎡 Rulet topu masadan fırlayıp yere sekti', r: ['Kırmızıya düştü, işaret 😈', 'Bırak, sonra toplarım 🐰', 'Top bile heyecanlandı 😏', 'Çarkı biz çeviriyoruz şimdi 🎡', 'Ayağına değdi mi? 😳'] },
+      { g: '🍾 Barmen kapıya şampanya bıraktı: "Müessesenin ikramı"', r: ['Sonra içeriz 🥂', 'Göğsüme dök, sen iç 😈', 'Müdür biliyor demek 😳', 'Mantarı patlat, kutlayalım 🍾', 'Şimdi değil, devam 🐰'] },
+      { g: '📹 Tavandaki güvenlik kamerası yavaşça bize dönüyor', r: ['Gazinoda kamera her yerde 😏', 'Kuyruğumu görsünler 🐇', 'Yüzümü sakla! 🙈', 'Güvenlik şefi benim eski sevgilim 😈', 'Kaydı ben silerim 🤫'] },
+      { g: '🎶 Salonda orkestra gecenin son şarkısına başladı', r: ['Bizim şarkımız 🥰', 'Ritmine uy, tatlım 😈', 'Son şarkı… son el 🐰', 'Dans etmek yerine bu 😏', 'Bitmesin bu şarkı 🥵'] },
+      { g: '💸 Yan masadan biri "Bunny! Bahşişin burada!" diye bağırıyor', r: ['Bahşişimi sen veriyorsun şu an 😏', 'Duymadım 🙉', 'Masama koysun, sonra alırım 🎰', 'Bu geceki tek müşterim sensin 😈', 'Kıskandın mı? 🐰'] },
+      { g: '🐰 Kulaklarından biri teli kayıp yamuldu', r: ['Düzeltme, böyle daha tatlıyım 😆', 'Sen yamulttun 😏', 'Bir kulakla da olur 🐇', 'Tut onu, dizgin yap 😈', 'Kostüm kurallarını çiğniyoruz 🙈'] },
+      { g: '🃏 Desteden bir kart yere düştü: maça ası', r: ['Şans kartı! 🃏', 'Bırak orada dursun 😏', 'Maça ası… tehlike demek 😈', 'Al, sende kalsın 🐰', 'Eğilip alayım mı? İzle 🍑'] }
+    ],
     fxrphostes: [
       { g: '🔔 Kabin içinden "ding": bir yolcu hostesi çağırıyor', r: ['Beklesin 😏', 'Tek yolcum sensin ✈️', 'Bir dakika beyefendi! …hayır, gitmiyorum 😈', 'Ding ding… sus 🙈', 'Başka hostes baksın 💄'] },
       { g: '✈️ Pilot anons ediyor: "Türbülans bölgesine giriyoruz, kemerlerinizi bağlayın"', r: ['Kemer mi? Sen beni tut 😈', 'Türbülans tam zamanında 🥵', 'Sallanalım 😏', 'Kemerimi sen bağla 😳', 'Yerimizde kalalım ✈️'] },

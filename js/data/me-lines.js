@@ -7662,6 +7662,87 @@ Object.assign(Stories.ME_RP_HUG_LINES, {
     hold: ['Sana sarılıyım, sesin beni zorluyor; ama tutuyorum… offf 😣☁️', '"Ölümlüler sabırsızdır" dedin, tersini kanıtlıyorum ahh 😏', 'Hikâyen bitene kadar bekliyorum… bitmiyor offf 😩']
   }
 });
+
+/* 🎰 CarmenGasino: Gazino Bunny olayları (6) + rol satırları (fxrpgazino) */
+Object.assign(Stories.ME_EV_LINES, {
+  'Gazino Bunny – Rulet Masası': [
+    'Fişlerimi kırmızıya sürüyorum, sen çarkı çevirip göz kırpıyorsun {o} 🎡',
+    'Top dönerken kalçanı masaya yaslıyorsun, ben topa bakamıyorum 😏',
+    'Kırmızı 7 geldi; fişlerimi toplayıp senin dekoltene bırakıyorum 🐰',
+    'Kulaklarını düzeltip "bahisler kapandı" diye fısıldıyorsun 🎰',
+    'Seni yeşil çuhanın üstüne oturtuyorum, fişler yere saçılıyor 😈',
+    'Sıfır geliyor; "kasa kazandı" diyorsun ama kucağıma oturuyorsun {o} 🎡',
+    'Her kazandığımda bir fişi korsene sıkıştırıyorum 🎰',
+    'Topu parmağınla dürtüyorsun, yine benim numaram geliyor 😏'
+  ],
+  'Gazino Bunny – Blackjack': [
+    'Kart dağıtmak için eğiliyorsun, korsen gevşiyor {o} 🃏',
+    '"Bir kart daha" diyorum, gözüm kartta değil 😏',
+    'Blackjack! Ödülümü masanın altından istiyorum 🐰',
+    'Papyonunu parmağımla çekiyorum, kart destesi elinden kayıyor 🎀',
+    'Masayı aşıp seni kucağıma çekiyorum, kasa kapandı 😈',
+    'Double down diyorum; sen gülüp korsenin bir kopçasını açıyorsun {o} 🃏',
+    'Korsenin içinden bir kart çıkarıyorsun, görmemiş gibi yapıyorum 😏',
+    'Patlıyorum; cezam kulaklarının arasından seni öpmek 🐰'
+  ],
+  'Gazino Bunny – Kokteyl Servisi': [
+    'Tepsini masaya bırakıp martiniyi uzatıyorsun {o} 🍸',
+    'Bahşişi file çorabının lastiğine sıkıştırıyorum 😏',
+    'Pamuk kuyruğuna dokunuyorum, "yasak" diyorsun ama gülüyorsun 🐰',
+    'VIP salonun kadife perdesini sen çekiyorsun 🎭',
+    'Seni kucağıma oturtuyorum, buzlar bardakta eriyor 😈',
+    'Kirazı dişlerinle uzatıyorsun, dudaklarımdan alıyorum {o} 🍒',
+    'Tepsin düşüyor; eğilip toplarken gözümü kalçandan alamıyorum 🐰',
+    'Kadehteki buzu boynunda gezdiriyorum, ürperiyorsun 🧊'
+  ],
+  'Gazino Bunny – Jackpot Ödülü': [
+    'Slot makinesi çıldırıyor, ışıklar yanıp sönüyor; sen koşup elimi tutuyorsun {o} 🎰',
+    'Süitin kapısını arkamızdan kapatıyorsun: "büyük ödül benim" 💰',
+    'Papyonunu kurdele gibi çözüyorum 🎀',
+    'Altın konfetiler yatağa saçılıyor, sen ortasına uzanıyorsun ✨',
+    'Ödülümü yavaş yavaş açıyorum: önce korse, sonra çoraplar 😈',
+    'Şampanyayı patlatıyorsun, köpük göğsüne taşıyor; yalıyorum {o} 🍾',
+    'Süitin camından şehrin ışıkları, kucağımda sen 🌃',
+    'Konfetileri saçından tek tek topluyorum, sen kıkırdıyorsun ✨'
+  ],
+  'Gazino Bunny – Sahne Arkası': [
+    'Kulisin kapısından sızıyorum, sen ışıklı aynanın önünde nefes nefesesin {o} 💃',
+    'Tenindeki simli teri parmağımla siliyorum 😏',
+    'Kostümünün fermuarını ağır ağır açıyorum 🐰',
+    'Aynada ikimizi izliyorsun, kulakların hâlâ başında 🪞',
+    'Seni makyaj masasına oturtuyorum, fırçalar yere dökülüyor 😈',
+    'Tüylerini omzundan alıyorum, simli tenin ışıkta parlıyor {o} 🪶',
+    'Perdenin arkasından alkış geliyor; sen "bis" diye fısıldıyorsun 💃',
+    'Topuklularını çıkarmama izin vermiyorsun, "onlarla daha uzunum" diyorsun 👠'
+  ],
+  'Gazino Bunny – Strip Poker': [
+    'Kartlar dağıtıldı; ilk eli kaybedip ceketimi çıkarıyorum {o} ♠️',
+    'Full house açıyorum; sen gülerek papyonunu çözüyorsun 😏',
+    'Blöf yapıyorsun, dudağını ısırman seni ele veriyor 🐰',
+    'File çorabını yavaşça sıyırıyorsun, gözüm kartlarda değil 🃏',
+    'Son el: kartları atıp seni masanın üstüne çekiyorum 😈',
+    'Raise diyorsun ve korseni ortaya koyuyorsun {o} ♠️',
+    'Masanın altında ayağın baldırımda; bu blöf değil 🐇',
+    'Fold ediyorum, sen yine de soyunuyorsun 😏'
+  ]
+});
+Object.assign(Stories.ME_RP_LINES, {
+  fxrpgazino: {
+    pos: ['Kulakların her vuruşta sallanıyor {o} 🐰', 'Fişler yere saçılıyor, kimse toplamıyor 🎰', 'File çorabın kalçanda yırtıldı, umurunda değil 😈', 'Papyonun boynunda, başka bir şeyin kalmadı 🎀',
+      'Pamuk kuyruğun karnıma çarpıyor 🐇', 'Rulet masasının çuhası terimizle ıslandı 🎡', 'Topukluların belimde kilitlendi 🥵', '"All-in" diye inliyorsun 😩',
+      'Korsen kaydı, göğüslerin her vuruşta zıplıyor {o} 😈', 'Kuyruğunu çekiyorum, belini büküyorsun 🐇', 'Rujun boynumda iz bıraktı 💋', 'Gazinonun müziği ritmimizi tutuyor 🎶'],
+    cum: ['İçine boşalıyorum, jackpot… ahhhh {o} 🎰💦', 'Kulakların başından kayıyor 🐰', '"Kasa iflas etti" diye gülüyorsun 😈', 'Papyonun bile ıslandı 🎀', 'Fişlerin üstüne yığılıyoruz 🎰', 'Gazinonun ışıkları gözlerinde 🥵',
+      '"Kırmızı 7" diye inliyorsun, titreyerek 🎡', 'File çorapların ayak bileklerinde, nefesin kesik 😩', 'Kuyruğun yamuldu, düzeltmiyorsun 🐇']
+  }
+});
+Object.assign(Stories.ME_RP_HUG_LINES, {
+  fxrpgazino: {
+    pos: ['Arkandan sımsıkı sarıldım, kulakların yüzüme değiyor… ahhh 🐰😩', '{gogus} göğüslerini korsenin içinden avuçladım offf 🎀', 'Kulağına "kasa kaybetti" diye fısıldıyorum… ahh 😈', 'Pamuk kuyruğun karnıma bastırılmış, gidip geliyoruz offf 🐇', 'File çorabının üstünden kalçanı sıkıyorum ahh 🥵', 'Rulet masasına yaslanmış sarılıyız offf 🎡', 'Papyonunu dişlerimle çekiyorum, boynun açılıyor ahh 🎀', 'Süitin camında sarılı, şehir altımızda offf 🌃'],
+    in: ['Sana sımsıkı sarılıp içine boşalıyorum; kulakların titriyor… ahhhh 🐰💦', 'Ensene gömülüp bırakıyorum, jackpot offf 🎰', 'Son damlaya kadar içine doluyorum ahh 😈', 'Boşaldıktan sonra konfetilerin arasında sana sarılı kalıyorum… mmm 😌'],
+    out: ['Son anda çıktım; pamuk kuyruğuna fışkırıyor… ahhhh 🐇💦', 'File çoraplı kalçana boşalıyorum offf 🥵', 'Bitirince kulaklarının arasından öpüyorum… mmm 😌'],
+    hold: ['Sana sarılıyım, kalçan beni zorluyor; ama tutuyorum… offf 😣🐰', '"Pas mı geçiyorsun?" dedin, dişlerimi sıkıyorum ahh 😏', 'Çark durana kadar bekliyorum offf 🎡', 'Fişleri sayıyorum aklımdan, dayanmak için ahh 🎰']
+  }
+});
 /* 🤱 Nursing (c:mvnursing01x): olay başına 10 mesaj */
 Object.assign(Stories.ME_EV_LINES, {
   'Cradle Hold': [
