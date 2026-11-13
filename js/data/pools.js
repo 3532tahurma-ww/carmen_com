@@ -17,7 +17,9 @@ Stories.Pools = (() => {
       'Asya', 'Lara', 'Ada', 'Su', 'Buse', 'Gizem', 'Yaren', 'Damla', 'Irmak', 'Naz', 'Beren', 'Esila'],
     '♂': ['Mert', 'Emir', 'Kerem', 'Arda', 'Can', 'Deniz', 'Ege', 'Kaan', 'Alp', 'Barış', 'Efe', 'Yiğit',
       'Onur', 'Burak', 'Doruk', 'Aras', 'Tuna', 'Umut', 'Ozan', 'Batu', 'Emre', 'Cem', 'Volkan', 'Serkan', 'Tolga', 'Koray',
-      'Berk', 'Çağan', 'Kuzey', 'Atlas', 'Görkem', 'Selim', 'Hakan', 'Murat', 'Oğuz', 'Eren', 'Baran', 'Furkan', 'Sarp', 'Tarık']
+      'Berk', 'Çağan', 'Kuzey', 'Atlas', 'Görkem', 'Selim', 'Hakan', 'Murat', 'Oğuz', 'Eren', 'Baran', 'Furkan', 'Sarp', 'Tarık',
+      'Ali', 'Mehmet', 'Ahmet', 'Yusuf', 'Ömer', 'Kemal', 'Cenk', 'Erdem', 'Levent', 'Sinan', 'Uğur', 'Gökhan', 'Taylan', 'Berkay',
+      'Alper', 'Anıl', 'Bora', 'Çınar', 'Utku', 'Tuncay', 'Engin', 'Ercan', 'Harun', 'İlker', 'Kağan', 'Mustafa', 'Okan', 'Rüzgar', 'Taner', 'Yavuz']
   },
   age: [18, 32],
   cities: ['İstanbul', 'İzmir', 'Ankara', 'Antalya', 'Bursa', 'Eskişehir', 'Muğla', 'Trabzon', 'Mersin', 'Çanakkale',

@@ -46,7 +46,12 @@
 - EN edits live in `enMap` (dictionary key → English), saved as `data.en`, only keys still used by a reply (`enPairs`); included in export/import. Runtime: `Stories.Bot.enDict(pairs)` turns `{sen}`-style names into positions, and `I18n.add` overrides the bundled dictionary (bot.js at load, `reloadBotRules` after editing). Translations are per sentence, so a shared line changes in every rule. Changing a Turkish line drops its translation at save. Lines with `{x:y}` tokens can't be translated (disabled, counted as done). Addons have no translation view.
 - Rule outcomes (🎲) linked in Monia → Sebep-sonuç → 🤖 (systems/monia.md).
 - 🥛 Addons `a_sut_bosal_msg` (extra "milking" bubble, 45%) / `a_sut_bosal_emoji` (🥛, 40%) fire when her reply contains boşal-/meni-/döl-/fışkır-; to change frequency edit `chance`. Avoid bare `süt-`/`sağ-` stems (sütyen, sağol).
-- `S().botMiss`: messages the bot didn't understand, shown in #/bot and #/deney.
+- `S().botMiss`: messages the bot didn't understand, shown in #/bot and #/deney; routed/teyit messages carry `near: [rid, sim]`.
+
+## 🔁 Fallback router (v775)
+- `Bot.near(data, text, ch, skip)` → `{rule, sim, typo}`: fuzzy per-term (folded exact 1 · suffix 0.9 · typo 0.7, see changelog). Runs only as the last `moodBest` step when `BOT.best(..., true)` fell back.
+- ≥ 0.75 → rule silently (`m.near`); 0.45–0.75 → `_teyit` question, `th.botAsk = {t:'teyit', rid, txt}`; answer read by `teyitYn` (own yes/no regexes, then `yesNo`). Evet → `teyitOk`: original `txt` replayed with the target rule forced (full normal turn); hayır → `TEYIT_NO`. Nothing else in the teyit turn may set `th.botAsk` (guard new askers with `!m.teyit`). Constants next to `BOT_ASK`. New context-word token (injected by the app, never typed) → add to `NEAR_SKIP`, else typed text may route to it.
+- Plan for next phases: `Yarı-yapay-zeka.md` (Faz 2 intent + `r_yd_*`, Faz 3).
 
 ## Change safety
 - Text is lowercased with `tr` locale: a title starting with capital `I` becomes `ı` (`Ice Tease` → `ıce tease`), so `when` terms must use `ı`. Otherwise the rule silently never fires.

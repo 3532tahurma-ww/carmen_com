@@ -7,6 +7,7 @@ All data lives in the browser. Main state = `Stories.Store.state` under localSto
 
 ## Shape (main keys)
 - `user` {name, age, city, photo, params…}, `characters[]` (id, name, traits[], album[], colors, params{}, wardrobe, outfit, memory, life…), `threads[]` {id, charId | group, title, job?, kd?…}, `chats{threadId: msgs[]}` (msg: from me|her|sys, text, ts, type, src, reply, react, effect), `side`, `turns`, `pinned`, `keywords`, `monia` {events, scenarios, places, groups, cats, params, clock, flix…}, `accId`, `accounts[]`.
+- Site states created lazily on S(): `shop` {orders}, `amor` {love{key: pts}, gifts{key: {giftId: n}}, sat{key: {v, ts}}, cold{key: until ts}, log[]} (old `done` unused); threads may carry `amor` / `amAsk` (💝 CarmenAmor, key = `cmRid || id`).
 - Many one-time migration flags in state: `posSetup`, `cumSetup`, `evFix1`, `zevkFix1`, `descV`, `roleV`… (see systems/monia.md).
 - Accounts: `ACC_KEYS = user, threads, chats, side, turns, pinned` are per-account; characters/monia/settings shared.
 

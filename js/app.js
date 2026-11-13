@@ -434,6 +434,7 @@
       case 'okul': return renderSchool();
       case 'sehir': return renderCity();
       case 'impact': return renderImpact();
+      case 'amor': return renderAmor();
       case 'itiraf': return renderConfess();
       case 'creative': return renderCreative();
       case 'choise': return renderChoise();
@@ -501,6 +502,7 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['💝', 'CarmenAmor açıldı', 'Hediye sitesi: 💌 aşk mektubundan 🚗 spor arabaya 53 hediye. Sitede kızlar sana flört eder; biriyle sohbet aç, sohbette 🎁 Hediye ile gönder: 💗 sevgisi artar (🤍 Tanışma → ❤️‍🔥 Tutku), kişiliğine ve hediyenin değerine göre karşılık verir: teşekkür, buluşma sahnesi, evine davet, lüks süit. Her gün sohbette bir 💌 isteği söyler; o hediyeyi gönderirsen ×2 💗 ve söz verdiği olayı seninle yaşar. Kalpler ve hediyeler sitede görünür.', '#/amor'],
     ['🍼', 'Lactation Fantasy ve Süt Kitabı', 'Yeni 🍼 Lactation Fantasy kategorisi: Milk Maid, Breast Pump, Milking Station, Nursing Lap, Double Suckle, Milk Shower, Milk Contest ve daha fazlası (📜 Olay → 🍼 Lactation). Karakterin ne kadar süt verdiğini 🩺 CarmenKlinik\'te litre olarak görürsün; süt miktarına ve kalitesine göre cevapları ve olaylar değişir.', '#/kitap/sut', [
       ['🩺 Litre ve kalite', 'Klinik hasta sayfasında göğüslerdeki süt, kapasite (göğüs bedenine göre), saatlik dolma, 🥛 kalite (Sulu, Normal, Kremamsı, Altın) ve bugüne kadar verdiği toplam süt.'],
       ['✨ Fanteziye özel sütler', 'Cow Girl\'de Farm Fresh Milk, Süt Kız\'da Vanilla Cream Milk, Elf prensesinde Moonlight Milk, Melek\'te Holy Milk, Slime Girl\'de Slime Milk… süren fanteziye göre süt ve cevap değişir.'],
@@ -2505,6 +2507,7 @@
       { k: 'school', href: '#/okul', ic: '🎓', logo: 'Carmen<i>School</i>', url: 'carmenschool.com', desc: 'Ders bitti, sınıf boş: hocalar ve öğrenciler. Birine dokun, sohbet doğrudan Hoca – Öğrenci, Kadın Hoca ya da Dans Hocası fantezisiyle başlar.', chips: [`🎓 ${cmAll().length} kişi`, '🎭 hoca fantezisi'] },
       { k: 'city', href: '#/sehir', ic: '🏙️', logo: 'Carmen<i>City</i>', url: 'carmencity.com', desc: 'Kuşbakışı şehir: Sahil, Okul, Evler, Pub, Gece Kulübü, Masaj Salonu, Hastane… Karakterlerin mesleğine ve saate göre binalarda; saati kaydır, binaya dokun, sohbete geç.', chips: [`👥 ${chars().length} kişi`, `🏢 ${CC_B.length + CC_HOMES.length} bina`] },
       { k: 'impact', href: '#/impact', ic: '✨', logo: 'Carmen<i>Impact</i>', url: 'carmenimpact.com', desc: 'Genshin kadınları: 🎲 Yelan, ⚔️ Clorinde, 🔥 Mavuika, ☁️ Xianyun. Her birinin iki olayı var; dokun, sohbet doğrudan onun sahnesiyle ve kendi ağzıyla başlar. 🌠 Dilek tut, rastgele biri gelsin.', chips: ['✨ 4 karakter', '🌠 dilek'] },
+      { k: 'amor', href: '#/amor', ic: '💝', logo: 'Carmen<i>Amor</i>', url: 'carmenamor.com', desc: 'Kızlar sana flört ediyor: biriyle sohbet aç, sohbette hediye gönder, kalbini kazan. Gülden pırlanta kolyeye, şiir kitabından Paris seyahatine.', chips: [`💗 ${Object.keys(amData().love).length} kalp`, `🎁 ${AM_GIFTS.length} hediye`] },
       { k: 'clinic', href: '#/klinik', ic: '🩺', logo: 'Carmen<i>Klinik</i>', url: 'carmenklinik.com', desc: 'Rahatsızsan doktora git: şikayetini seç, muayene ve tedavi sohbette. Ayrıca döngü takvimi, hamilelik haftası, ultrason notları.', chips: [`👩‍⚕️ ${klAll().length} doktor`, `🤰 ${chars().filter(c => pregWeek(c)).length} hamile`] },
       { k: 'conf', href: '#/itiraf', ic: '🎭', logo: 'Confess<i>ly</i>', url: 'confessly.com', desc: 'İsimsiz aldatma itirafları: kocası maç izlerken üst katta, düğünden önceki gece, balayında spa\'da… Kadın da erkek de yazar.', chips: [`${CF_POOL.length} itiraf`, '🔥😂😳'] },
       { k: 'cr', href: '#/creative', ic: '✨', logo: 'Carmen<i>Creative</i>', url: 'carmencreative.com', desc: 'Yeni pozisyon ve olay üret: her olayın mekan, tempo, rol, açı… türevleri, yepyeni fikirler ve 🎲 fikir makinesi. Beğendiğini Monia\'ya ekle.', chips: [`${CR_IDEAS.length} yeni fikir`, `🔬 ${CR_LENS.length + 1} mercek`] },
@@ -3105,6 +3108,8 @@
   const isMilkP = p => !!(p && p.prm && p.prm.who !== 'me' && String(p.name || '').toLocaleLowerCase('tr').trim() === 'süt');
   const milkPct = c => { const p = allParams().find(x => x.who !== 'me' && String(x.label || '').toLocaleLowerCase('tr').trim() === 'süt'); return p ? Math.max(0, Math.min(100, paramVal(c, p))) : 0; };
   const fmtL = v => (Math.round(v * 100) / 100).toFixed(2).replace('.', ',') + ' L';
+  // 🤱 son emzirme (c.lastNurse, eventScene): "az önce / 3 saat önce / 2 gün önce"
+  const agoText = ts => { const m = Math.max(0, Math.round((Date.now() - ts) / 60000)); return m < 2 ? 'az önce' : m < 60 ? `${m} dakika önce` : m < 1440 ? `${Math.round(m / 60)} saat önce` : `${Math.round(m / 1440)} gün önce`; };
   // 🥛 kalite: 🥛 Süt Kalitesi parametresi (+15 hamileliğin 20. haftasından sonra) → kademe [üst sınır, durum anahtarı, simge, ad]
   const MILK_Q = [[25, 'sutsulu', '💧', 'Sulu'], [55, 'sutnormal', '🥛', 'Normal'], [80, 'sutkrema', '🍦', 'Kremamsı'], [Infinity, 'sutaltin', '✨', 'Altın']];
   const milkQ = c => { const p = allParams().find(x => x.who !== 'me' && String(x.label || '').toLocaleLowerCase('tr').trim() === 'süt kalitesi'); return Math.max(0, Math.min(100, (p ? paramVal(c, p) : 50) + (pregWeek(c) >= 20 ? 15 : 0))); };
@@ -3359,7 +3364,7 @@
     save();
     sfx('match');
   }
-  const SITE_CHAT = { kl: { bar: klBar, say: klSay, act: klAct }, cm: MT_CHAT, gt: MT_CHAT, pt: { bar: ptBar, say: () => null, act: ptAct } };
+  const SITE_CHAT = { kl: { bar: klBar, say: klSay, act: klAct }, cm: MT_CHAT, gt: MT_CHAT, pt: { bar: ptBar, say: () => null, act: ptAct }, am: { bar: c => amBar(c), say: (c, t, x, api) => amSay(c, t, x, api), act: () => amAct() } };
   function renderClinic(id, extra) {
     if (id === 'dr') { const dc = extra && klFind(extra); if (dc) return klStart(dc); }
     const c = id && byId(id);
@@ -3397,7 +3402,8 @@
         <p>${mp >= 90 ? '😣 Göğüsleri taşmak üzere, acilen boşaltılmalı.' : mp >= 50 ? (w ? '🤰 Süt veriyor; sağılmaya hazır.' : '🍼 Göğüsleri dolu; sağılmaya hazır.') : mp >= 10 ? '💧 Biraz süt var, dolmaya devam ediyor.' : '🫙 Göğüsleri boş; birkaç saat dinlenmeli.'}</p>
         <p>${mq[2]} Süt kalitesi: ${mq[3]} (${Math.round(milkQ(c))}/100)</p>
         ${spMilkOf(c) ? `<p>✨ Özel sütü: ${esc(spMilkOf(c))}</p>` : ''}
-        <p>🥛 Bugüne kadar verdiği süt: ${fmtL(+c.milkL || 0)}</p><a class="btn ghost sm" href="#/kitap/sut">🍼 Süt Kitabı</a></section>
+        <p>🥛 Bugüne kadar verdiği süt: ${fmtL(+c.milkL || 0)}</p>
+        <p>🤱 Son emzirme: ${c.lastNurse ? `${agoText(c.lastNurse)} · toplam ${+c.nurseN || 0} kez` : 'henüz yok'}${mp < 95 ? ` · taşmasına ≈ ${Math.ceil((95 - mp) / 5)} saat sohbet` : ' · <b>taşmak üzere</b>'}</p><a class="btn ghost sm" href="#/kitap/sut">🍼 Süt Kitabı</a></section>
       <section class="ws-sec"><h3>🧪 Testler</h3><div class="ws-btns"><button type="button" class="btn ghost sm" id="klTest">🧪 Gebelik testi</button><a class="btn ghost sm" href="#/p/${c.id}">👤 Profil</a><button type="button" class="btn primary sm" id="klChat">💬 Ona yaz</button></div>
         <p id="klRes" class="kl-res" hidden></p></section>`);
     $('#klTest').onclick = () => { const r = $('#klRes'); r.hidden = false; r.innerHTML = w ? '➕➕ <b>Pozitif.</b> Tebrikler, hamile 🤰' : '➖ <b>Negatif.</b> Hamile değil.'; sfx(w ? 'preg' : 'match'); };
@@ -3742,6 +3748,379 @@
     $('#giWish').onclick = () => { const p = pick(ps.filter(giInfo)), g = p && giInfo(p); if (g) giGo(p, pick(g[9]), true); };
   }
 
+  /* 💝 CarmenAmor (#/amor): sitede kızlar (cmAll) flört eder, 💗 sevgi / 😌 tatmin / 🥶 küs görünür; sohbet CarmenAmor sohbetinde (t.amor).
+   * 🎁 hediye (sohbette, realPay) → kişiliğine × kademesine göre teşekkür + karşılık (2 buluşma, 3 evi + sevdiği olay, 4 lüks sahne + olay).
+   * Tatmini düşünce (amSat < AM_WANT) arsızlığına göre zamanında teklif eder (amOffer); kabul / pazarlık / ret yazışarak (amSay).
+   * Durum S().amor { love, gifts, sat {v, ts}, cold: bitiş zamanı, log } · anahtar = cmRid || id (ilan kızı sohbete geçince de aynı kalır) */
+  const AM_GIFTS = [
+    { id: 'mektup', ic: '💌', n: 'Aşk mektubu', p: 30, t: 1 }, { id: 'dondurma', ic: '🍦', n: 'Dondurma', p: 50, t: 1 }, { id: 'kahve', ic: '☕', n: 'Kahve', p: 60, t: 1 },
+    { id: 'papatya', ic: '🌼', n: 'Papatya demeti', p: 60, t: 1 }, { id: 'toka', ic: '🎀', n: 'Saç tokası', p: 70, t: 1 }, { id: 'balon', ic: '🎈', n: 'Kalpli balon', p: 75, t: 1 },
+    { id: 'lale', ic: '🌷', n: 'Lale', p: 80, t: 1 }, { id: 'gul', ic: '🌹', n: 'Kırmızı gül', p: 90, t: 1 }, { id: 'kurabiye', ic: '🍪', n: 'Ev yapımı kurabiye', p: 90, t: 1 },
+    { id: 'mum', ic: '🕯️', n: 'Kokulu mum', p: 110, t: 1 }, { id: 'makaron', ic: '🧁', n: 'Makaron kutusu', p: 120, t: 1 }, { id: 'oje', ic: '💅', n: 'Oje seti', p: 140, t: 1 },
+    { id: 'cikolata', ic: '🍫', n: 'Çikolata kutusu', p: 150, t: 1 }, { id: 'cilek', ic: '🍓', n: 'Çikolatalı çilek', p: 160, t: 1 }, { id: 'kopuk', ic: '🫧', n: 'Köpük banyosu', p: 180, t: 1 },
+    { id: 'kitap', ic: '📖', n: 'Şiir kitabı', p: 260, t: 2 }, { id: 'ayicik', ic: '🧸', n: 'Peluş ayıcık', p: 280, t: 2 }, { id: 'ruj', ic: '💄', n: 'Kırmızı ruj', p: 340, t: 2 },
+    { id: 'pasta', ic: '🎂', n: 'Çilekli pasta', p: 380, t: 2 }, { id: 'buket', ic: '💐', n: 'Çiçek buketi', p: 390, t: 2 }, { id: 'plak', ic: '💿', n: 'Plak', p: 420, t: 2 },
+    { id: 'pijama', ic: '🌙', n: 'Saten pijama', p: 450, t: 2 }, { id: 'sal', ic: '🧣', n: 'İpek şal', p: 480, t: 2 }, { id: 'kupe', ic: '✨', n: 'Gümüş küpe', p: 500, t: 2 },
+    { id: 'sarap', ic: '🍷', n: 'Şarap', p: 520, t: 2 }, { id: 'konser', ic: '🎫', n: 'Konser bileti', p: 550, t: 2 }, { id: 'gozluk', ic: '🕶️', n: 'Güneş gözlüğü', p: 590, t: 2 },
+    { id: 'yemek', ic: '🍽️', n: 'Akşam yemeği daveti', p: 600, t: 2 }, { id: 'spa', ic: '🧖‍♀️', n: 'Spa günü', p: 620, t: 2 }, { id: 'sampanya', ic: '🍾', n: 'Şampanya', p: 640, t: 2 },
+    { id: 'corap', ic: '🖤', n: 'File çorap', p: 700, t: 3 }, { id: 'bikini', ic: '🏖️', n: 'Bikini', p: 740, t: 3 }, { id: 'ic', ic: '👙', n: 'Dantel iç çamaşırı', p: 780, t: 3 },
+    { id: 'gecelik', ic: '🩱', n: 'İpek gecelik', p: 860, t: 3 }, { id: 'jartiyer', ic: '❤️', n: 'Kırmızı jartiyer', p: 880, t: 3 }, { id: 'parfum', ic: '🌸', n: 'Parfüm', p: 950, t: 3 },
+    { id: 'masaj', ic: '💆‍♀️', n: 'Çift masajı', p: 950, t: 3 }, { id: 'kutu', ic: '🎁', n: 'Sürpriz kutu', p: 1100, t: 3 }, { id: 'topuk', ic: '👠', n: 'Topuklu ayakkabı', p: 1200, t: 3 },
+    { id: 'elbise', ic: '👗', n: 'Gece elbisesi', p: 1500, t: 3 }, { id: 'bileklik', ic: '📿', n: 'Altın bileklik', p: 1650, t: 3 }, { id: 'saat', ic: '⌚', n: 'Kol saati', p: 1700, t: 3 },
+    { id: 'canta', ic: '👜', n: 'Marka çanta', p: 2400, t: 4 }, { id: 'kurk', ic: '🧥', n: 'Kürk manto', p: 3200, t: 4 }, { id: 'telefon', ic: '📱', n: 'Yeni telefon', p: 3800, t: 4 },
+    { id: 'kolye', ic: '💎', n: 'Pırlanta kolye', p: 4500, t: 4 }, { id: 'pkupe', ic: '💠', n: 'Pırlanta küpe', p: 5200, t: 4 }, { id: 'tac', ic: '👑', n: 'Taç', p: 6800, t: 4 },
+    { id: 'yuzuk', ic: '💍', n: 'Yüzük', p: 7500, t: 4 }, { id: 'tatil', ic: '✈️', n: 'Hafta sonu tatili', p: 9900, t: 4 }, { id: 'paris', ic: '🗼', n: 'Paris seyahati', p: 12000, t: 4 },
+    { id: 'yat', ic: '🛥️', n: 'Yat gezisi', p: 15000, t: 4 }, { id: 'araba', ic: '🚗', n: 'Spor araba', p: 45000, t: 4 }
+  ];
+  const AM_TIERS = ['', '☕ Küçük jestler', '💐 Güzel sürprizler', '👠 Özel hediyeler', '💎 Lüks'];
+  const AM_LOVE = [[0, '🤍', 'Tanışma'], [40, '💗', 'Flört'], [120, '💖', 'Sevgili'], [300, '💞', 'Aşk'], [700, '❤️‍🔥', 'Tutku']];
+  const AM_PTS = [0, 8, 20, 45, 100];
+  const AM_ASK = ['Bugün canım {g} çekiyor 🥺 alırsan karşılığında {e}, söz 😏', 'Bana {g} hediye edersen… {e} senin 😈', '{g} görsem dayanamam 😍 karşılığında {e}, istediğin kadar',
+    'Bir {g} alsan, ben de seni {e} ile şımartırım 💋', 'Küçük bir isteğim var: {g} 🙈 karşılığında sana {e} yaşatırım', 'Kalbimi kazanmak mı istiyorsun? {g} getir, gerisi {e} 🔥'];
+  const AM_ASK_NO = ['Bugün canım {g} çekiyor 🥺 alırsan seni çok güzel ödüllendiririm 😏', 'Bana {g} hediye edersen bu akşam tamamen seninim 😈', '{g} alsan, ben de seni öpücüklere boğarım 💋'];
+  // 💬 teşekkür: kişilik türü (amType) × hediye kademesi (değeri) → cevaplar
+  const AM_TYPE = { utangac: ['Utangaç', 'Güvensiz', 'Alçakgönüllü', 'Gergin', 'Çocuksu'], romantik: ['Romantik', 'Duygusal', 'Sadık', 'Dürüst', 'Korumacı', 'Kıskanç'],
+    soguk: ['Soğuk', 'Sakin', 'Ciddi', 'Mantıklı', 'Olgun', 'Gizemli', 'Alaycı'], simarik: ['Şımarık', 'Kibirli', 'Manipülatif', 'Özgüvenli', 'İnatçı'] };
+  const amType = c => { const ps = persOf({ traits: c.traits || [] }); return Object.keys(AM_TYPE).find(k => AM_TYPE[k].some(p => ps.includes(p))) || 'flort'; };
+  const AM_THX = {
+    utangac: [[], ['B-bana mı? {g} 🙈 çok tatlısın…', 'Yüzüm kızardı şu an… {g} için teşekkürler 😳', 'Kimse bana böyle bir şey almamıştı… {g} 🥺'],
+      ['{g}… 😳 ne diyeceğimi bilemedim. Belki bir yere gidebiliriz? Sadece ikimiz 🙈', 'Bu çok fazla… {g} için sana bir teşekkür borçluyum. Buluşalım mı? 😊', 'Ellerim titriyor 🙈 {g} çok güzel… bu akşam boş musun?'],
+      ['{g} mı?! 😳 bunu giymem mi gerekiyor? Peki… ama sadece sen bakabilirsin 🙈', 'Utanıyorum ama… {g} için sana bir şey göstermek istiyorum. Eve gel 😳', '{g}… 🙈 hiç böyle bir şeyim olmamıştı. Bu gece cesur olacağım, söz'],
+      ['{g}… 😭 ben buna layık mıyım? Bu gece senin için her şeyi yaparım 🙈', 'Ağlıyorum şu an 😭 {g}… utangaçlığımı bu gece kapıda bırakıyorum', 'Kimse beni böyle sevmedi… {g} için kendimi sana bırakıyorum 🥺']],
+    flort: [[], ['Ooo {g} 😏 beni tavlamaya mı çalışıyorsun? İşe yarıyor 😘', '{g} mi? Tatlı… ama dudaklarım daha tatlı, söylemiş olayım 💋', 'Böyle devam edersen çok şımarırım 😏 {g} için muah 😘'],
+      ['{g} 😍 tamam, kazandın: bu akşam benimlesin 😏', 'Bunun karşılığını ancak yüz yüze ödeyebilirim 😈 {g} için gel', '{g}… çok yakışıklı bir hareket. Hadi çık, seni bekliyorum 💋'],
+      ['{g} 😈 hemen üstüme deniyorum… görmek ister misin? Gel o zaman', 'Ah yaramaz… {g} demek 🔥 bunun ne anlama geldiğini biliyorum, gel', '{g} çok yakıştı bana 😏 şimdi sıra sende'],
+      ['{g}?! 🔥 Sen beni bitirdin. Bu gece kapını kilitle, ben geliyorum 😈', 'Şaka mı bu? {g}… 😍 bu gece istediğin her şey, her şeyi', '{g} için sana unutamayacağın bir gece borçluyum 💋🔥']],
+    romantik: [[], ['{g} 🥰 küçük şeyler kalbime en çok dokunanlar', 'Aklında olduğumu bilmek… {g} için teşekkür ederim 💗', '{g} elimde, aklım sende 🌸'],
+      ['{g} 💐 gözlerim doldu. Bu akşam sadece ikimiz olalım mı?', 'Seninle bir akşam… {g} için en güzel teşekkür bu olur 🕯️', 'Kalbim çarpıyor 💗 {g}… gel, el ele yürüyelim'],
+      ['{g}… sadece senin için giyeceğim 💗 bu gece bizim', 'Bu kadar düşünceli olman… {g} için seni evime çağırıyorum 🕯️', '{g} ile kendimi çok güzel hissediyorum. Gel, sarıl bana 💞'],
+      ['{g} 😭💞 bu bir söz gibi… bu gece kalbim de bedenim de senin', 'Hayatımın en güzel hediyesi: {g}. Sanırım seni seviyorum 🥺💗', '{g}… bu anı hiç unutmayacağım. Gel, bu gece hiç bitmesin 💞']],
+    soguk: [[], ['{g}. Fena değil 😌', 'Hm. {g}… teşekkürler. Sanırım', '{g} getirmişsin. Not ettim 🙂'],
+      ['{g}… beklemiyordum. Peki, bir akşam ayırabilirim 😌', 'Kabul. {g} karşılığında bir buluşma. Geç kalma', 'İtiraf edeyim, {g} hoşuma gitti. Bu akşam müsaitim'],
+      ['{g}. Zevkin iyiymiş… gel de nasıl durduğuna bak 😏', 'Buz gibi olduğumu mu sanıyordun? {g} için biraz eriyorum… gel', '{g}… tamam, bu gece seninim. Kuralları ben koyarım ama'],
+      ['{g}… 😳 tamam, beni etkiledin. Bu gece duvarlarımı indiriyorum', 'Kimse beni bu kadar ciddiye almamıştı. {g} için… bu gece sınır yok', '{g}. Sessizim çünkü konuşamıyorum. Gel 🔥']],
+    simarik: [[], ['{g} mi? 💅 tatlı ama ben daha büyüklerine alışkınım', 'Hmm {g}… başlangıç için olur 😤 devamını bekliyorum', '{g} için teşekkürler canım 💅 bir dahakine biraz daha cömert ol'],
+      ['{g}! İşte bu 💅 bu akşam beni dışarı çıkarabilirsin', 'Sonunda bana layık bir şey 😌 {g}… peki, buluşalım', '{g} çok güzel 💄 şimdi beni yemeğe götür, prenses gibi'],
+      ['{g} 😍 tam benlik! Gel de sana teşekkür edeyim… kendi yöntemimle 😈', 'Bak sen 💅 {g}… şimdi beni hak ettin', '{g} giydim, aynada kendime bayıldım 😌 gel, sen de bayıl'],
+      ['{g}!!! 😍💎 Sen bir tanesin! Bu gece kraliçen sana ait 👑', 'İşte bana böyle davranılmalı 💅 {g} için bu gece istediğin her şey', '{g}… tamam, şımarıklığı bıraktım. Bu gece seninim 😈']]
+  };
+  const AM_WISHOK = { utangac: ['İsteğimi hatırladın 🙈 söz sözdür: {e}…', 'Utanıyorum ama söz verdim 😳 {e}'], flort: ['💌 İsteğimi hatırladın! Söz verdiğim gibi: {e} 😈', 'Hani sana söz vermiştim ya… {e} şimdi 🔥'],
+    romantik: ['Beni dinlemişsin 🥺 sözümü tutuyorum: {e} 💗', 'Tam istediğim buydu 💌 karşılığı {e}, sevgiyle'], soguk: ['Sözümü tutarım. {e} 😌', 'İstediğim buydu. Anlaştığımız gibi: {e}'],
+    simarik: ['Sonunda istediğimi aldım 💅 hak ettin: {e} 😈', 'Aferin sana 😌 söz verdiğim gibi {e}'] };
+  // 💘 sitede kartındaki flört cümlesi (kişilik türüne göre, her gün değişir; teklif / istek yok, onlar sohbette)
+  const AM_FLIRT = {
+    utangac: ['Profilime baktığını gördüm… 🙈', 'Bana yazarsan kızarırım, haberin olsun 😳', 'Biraz utangacım ama seninle konuşmak isterim 🥺', 'Gülüşün aklımdan çıkmadı 🙈', 'Belki bir kahve? Sadece kahve… 😳', 'İlk mesajı sen atsan… ben atamıyorum 🙈'],
+    flort: ['Bu gece biraz yaramazlık yapmaya ne dersin? 😏', 'Gözlerin mi böyle, yoksa ışık mı? 😘', 'Bana yaz, sıkılmayacağına söz veriyorum 💋', 'Seni gördüm ve gülümsedim… sorumlusu sensin 😏', 'Dudaklarım bugün çok yalnız 💋', 'Yakışıklılar sırada, ama sen öne geçebilirsin 😉'],
+    romantik: ['Gün batımını biriyle izlemek istiyorum… belki seninle? 🌅', 'Kalbim doğru kişiyi bekliyor 💗', 'El ele yürüyecek birini arıyorum 🌸', 'Bir mesajın günümü güzelleştirebilir 🥰', 'Mum ışığında uzun sohbetleri severim 🕯️', 'Yağmurda öpüşmek… hayalim 🌧️💗'],
+    soguk: ['Beni etkilemek kolay değil. Deneyebilirsin 😌', 'Sıradan mesajlara cevap vermem. Şaşırt beni', 'İlgimi çekersen… belki 🙂', 'Sabırlıysan karşılığını alırsın 😏', 'Az konuşurum ama dinlerim', 'Buzları eritebilecek biri var mı? ❄️'],
+    simarik: ['Beni şımartacak biri lazım 💅', 'Prensesler gibi davranılmayı severim 👑', 'Bana layık mısın? Göster bakalım 😌', 'Güzel şeyleri severim… sen de güzel misin? 💄', 'İlgi isterim, çok ilgi 💅', 'Sıkıcı erkeklere vaktim yok, sen değilsin umarım 😌']
+  };
+  const AM_HI = ['CarmenAmor\'dan mı geldin? 💝 hoş geldin', 'Selam 💗 profilimi görmüşsün', 'Merhaba 😊 kalbimi kazanmak isteyenlerden misin?', 'Hey 💋 sana bir şey söyleyeyim mi?'];
+  const AM_DATES = [{ place: 'restoran', ic: '🍝', name: 'Mum ışığında akşam yemeği', hint: 'Köşe masa, iki kadeh, aranızda titreyen bir mum; hediyen masanın üstünde', h: 20 },
+    { place: 'kafe', ic: '☕', name: 'Köşedeki kafe', hint: 'Cam kenarı, buğulu fincanlar; o elinden tutup hediyeni anlatıyor', h: 16 },
+    { place: 'sahil', ic: '🌅', name: 'Gün batımında sahil', hint: 'Turuncu gökyüzü, ıslak kum; o ayakkabılarını eline almış yanında yürüyor', h: 19 },
+    { place: 'sinema', ic: '🎬', name: 'Sinemada arka sıra', hint: 'Karanlık salon, tek tük seyirci; başını omzuna yaslamış', h: 21 }];
+  const AM_HOME = { place: 'yatak', ic: '🛏️', name: 'Onun yatak odası', hint: 'Loş ışık, yatağın üstünde açılmış hediye paketi; o kapıyı arkandan kapatıyor', h: 22 };
+  const AM_LUX = [{ place: 'tatil', ic: '🏝️', name: 'Deniz manzaralı süit', hint: 'Açık balkon kapısı, dalga sesi, buzda şampanya; o yeni hediyesiyle seni bekliyor', h: 22 },
+    { place: 'yatak', ic: '🥂', name: 'Otelin balayı süiti', hint: 'Gül yaprakları, jakuzi, şehir ışıkları; kapıda "rahatsız etmeyin" kartı', h: 23 },
+    { place: 'cati', ic: '🌃', name: 'Çatı katında özel akşam', hint: 'Şehrin üstünde, sadece ikiniz; yanıp sönen ışıklar ve yumuşak müzik', h: 21 }];
+  const amData = () => { const s = S(); s.amor = s.amor || { love: {}, done: {}, log: [] }; s.amor.gifts = s.amor.gifts || {}; return s.amor; };
+  const amKey = c => c.cmRid || c.id;
+  const amDay = () => Math.floor(Date.now() / 864e5);
+  const amLove = c => amData().love[amKey(c)] || 0;
+  const amLvl = c => { const v = amLove(c); let i = 0; AM_LOVE.forEach((l, j) => { if (v >= l[0]) i = j; }); return i; };
+  const amFill = (s, g, e) => s.replace('{g}', `${g.ic} ${g.n}`).replace('{e}', e ? `🎭 ${e.title}` : '');
+  /* 😌 tatmin: her karakterin doyum eşiği (amNeed, ₺: kişilik türü × kişiye özel çarpan 0,5–1,7) ve tatmin değeri 0–100 (S().amor.sat[k] {v, ts}).
+   * Hediye tatmini fiyat / eşik × 60 artırır (teklif ettiği hediye ×1,5). Tatmin saatte düşer (🍬 4, 🎁 8, 💎 14 puan); 35'in altına inince yeniden hediye ister.
+   * İlk tanışmada 20 (hemen bir şey ister). AM_NEED = [ikon, ad, eşik sınırı, saatlik düşüş] */
+  const AM_NEED = [['🍬', 'Az ile yetinir', 400, 4], ['🎁', 'Ölçülü', 1500, 8], ['💎', 'Doyumsuz', Infinity, 14]];
+  const AM_WANT = 35;
+  const amNeed = c => Math.round({ utangac: 250, romantik: 400, flort: 800, soguk: 1200, simarik: 2500 }[amType(c)] * (0.5 + (+sysHash([amKey(c), 'need']) % 13) / 10) / 10) * 10;
+  const amNeedLv = c => { const n = amNeed(c); return AM_NEED.findIndex(x => n < x[2]); };
+  function amSat(c) {
+    const s = (amData().sat || {})[amKey(c)];
+    return s ? Math.max(0, Math.round(s.v - (Date.now() - s.ts) / 36e5 * AM_NEED[amNeedLv(c)][3])) : 20;
+  }
+  const amSatSet = (c, v) => { const d = amData(); d.sat = d.sat || {}; d.sat[amKey(c)] = { v: Math.max(0, Math.min(100, Math.round(v))), ts: Date.now() }; };
+  // 🥶 küs: teklifi reddedince / pazarlıkta teklifini geri çekince 3 saat; olay yazılmaz, sevişmek istemez. Tatmini 50+ yapan hediye ya da teklif ettiği hediye bitirir
+  const amCold = c => ((amData().cold || {})[amKey(c)] || 0) > Date.now();
+  const amColdSet = (c, h) => { const d = amData(); d.cold = d.cold || {}; d.cold[amKey(c)] = h ? Date.now() + h * 36e5 : 0; };
+  // ne isteyeceği: tatmini ~100'e çıkaracak fiyat civarında bir hediye (+ sevdiği bir olay karşılık olarak)
+  function amWish(c) {
+    const need = amNeed(c), want = Math.max(need * 0.3, (100 - amSat(c)) / 60 * need), ev = feelEvents(c.likes || []);
+    const gs = AM_GIFTS.filter(g => g.p >= want * 0.5 && g.p <= want * 1.5);
+    const g = gs.length ? pick(gs) : AM_GIFTS.reduce((a, b) => Math.abs(b.p - want) < Math.abs(a.p - want) ? b : a);
+    // 🤱 sütü varsa (🍼 Süt ≥ 50 ya da hamile) %50 karşılığı bir Nursing olayı; sabah (05–11) Morning Nursing
+    const nu = (milkPct(c) >= 50 || !!(c.fields || {}).hamile) && Math.random() < .5 && amNurseEv(c);
+    const e = nu || (ev.length ? pick(ev) : null);
+    return { g, e, line: amFill(pick(nu ? AM_ASK_NU : e ? AM_ASK : AM_ASK_NO), g, e) };
+  }
+  const AM_ASK_NU = ['Göğüslerim yine doldu 🥺 {g} alırsan karşılığında {e}, söz 🍼', 'Bana {g} getir… ben de seni göğsümde uyuturum: {e} 🤱', 'Bir {g} alsan, ilk sütüm senin: {e} 🍼😏'];
+  function amNurseEv(c) {
+    const evs = allEvents().filter(e => String(catOfEv(e).label).toLocaleLowerCase('tr') === 'nursing' && !(c.denies || []).includes(e.id)), h = new Date().getHours();
+    return (h >= 5 && h < 11 && evs.find(e => e.id === 'mvnu18morning')) || (evs.length ? pick(evs) : null);
+  }
+  const amThread = c => threadsOf(c).find(t => t.amor) || null;
+  /* 😈 arsızlık 0–100: kişilik türü + Manipülatif/Asi/Özgüvenli/Kibirli + Dominance + İsteklilik. Kademe (amArsLv) teklifin ne zaman geldiğini seçer:
+   * 😈 Arsız sohbet açılır açılmaz teklif eder, cevap vermezsen ısrar eder, reddedince bir kez indirimle diretir; 😏 Cesur 3, 🙈 Çekingen 7 mesaj sonra */
+  const AM_ARS = [['🙈', 'Çekingen', 7], ['😏', 'Cesur', 3], ['😈', 'Arsız', 1]];
+  function amArs(c) {
+    const tr = c.traits || [], end = s => tr.some(x => String(x).endsWith(s));
+    let v = { simarik: 75, flort: 60, soguk: 35, romantik: 30, utangac: 10 }[amType(c)];
+    if (['Manipülatif', 'Asi', 'Özgüvenli', 'Kibirli'].some(x => tr.includes(x))) v += 15;
+    if (end('Dominant')) v += 10;
+    if (end('Submissive')) v -= 10;
+    if (end('Çok Yüksek')) v += 10;
+    if (end('Düşük') || end('İstemiyor')) v -= 10;
+    return Math.max(0, Math.min(100, v));
+  }
+  const amArsLv = c => { const v = amArs(c); return v >= 70 ? 2 : v >= 40 ? 1 : 0; };
+  const AM_PRE = [['Şey… bir şey söylesem kızmazsın değil mi? 🙈 ', 'Aslında söylemeye utanıyorum ama… ', 'Belki saçma ama… 🥺 '], ['Bu arada… ', 'Aklıma bir şey geldi 😏 ', 'Sana bir teklifim var: '], ['Lafı dolandırmayacağım: ', 'Bak ne istiyorum: ', '']];
+  // 💬 teklif cevapları (kişilik türüne göre); {p} yeni fiyat, {g} hediye
+  const AM_HAG_OK = { utangac: ['Tamam tamam 🙈 {p} olsun, yeter ki sen al', 'Pazarlık mı? 😳 peki… {p}, olur mu?'], flort: ['Hmm, pazarlıkçı çıktın 😏 peki, {p}. Karşılığı aynı, söz', 'Sana kıyamam 😘 {p} olsun'],
+    romantik: ['Para önemli değil zaten 💗 {p} olsun', 'Senin için {p}, yeter ki düşündüğünü bileyim 🥰'], soguk: ['{p}. Son teklifim', 'Peki. {p}. Daha aşağı inmem'], simarik: ['Of, tamam 💅 {p}. Ama bu son', 'Hıh 😤 {p}… sırf sen diye'] };
+  const AM_HAG_SWAP = { utangac: ['O zaman… {g} da olur 🙈 hiç sorun değil', 'Pahalıysa {g} yeter bana, gerçekten 😊'], flort: ['Tamam, o zaman {g} 😏 karşılığı yine geçerli', 'Olsun, {g} de iş görür 😘'],
+    romantik: ['{g} de çok güzel olur 💗 önemli olan sen', 'Hiç dert etme, {g} yeter 🥰'], soguk: ['O zaman {g}. Ama ona göre davranırım', '{g}. Kabul edilebilir'], simarik: ['Ühh 💅 peki, {g}. Ama bir dahakine cömert ol', '{g} mi? Mecburen 😤'] };
+  const AM_HAG_NO = { utangac: ['Şey… bu fiyat zaten uygun ama 🥺', 'Daha ucuzunu bilmiyorum ki 🙈'], flort: ['Pazarlık yapma benimle 😏 karşılığına bak, sonra fiyatı konuş', 'Değmez mi sence? 😈 bence değer'],
+    romantik: ['Bunu gerçekten çok istiyordum 🥺', 'Fiyatı değil, beni düşün 💗'], soguk: ['Fiyat belli.', 'Pazarlık yapmam.'], simarik: ['Ben pazarlık yapılacak kız mıyım? 💅', 'Ucuzunu isteyen başkasına baksın 😤'] };
+  const AM_HAG_END = { utangac: ['Tamam… unut gitsin, sorun değil 🥺', 'Boş ver, zaten utanmıştım 🙈'], flort: ['Peki, teklif masadan kalktı 😏 kaybeden sensin', 'Pazarlıkla olmuyor bu iş, boş ver 😘'],
+    romantik: ['Anladım… önemli değil 💔', 'Boş ver, yine de seninle konuşmak güzel 🥺'], soguk: ['Teklif geçersiz.', 'Bu konuşma bitti.'], simarik: ['Unut! Teklifimi geri çektim 💅😤', 'Cimri erkeklerle uğraşamam 😤'] };
+  const AM_NO = { utangac: ['Tamam… sorun değil, haddimi aştım 🙈', 'Peki 🥺 sormasaydım keşke'], flort: ['Kaybeden sensin 😏 ama fikrini değiştirirsen buradayım', 'Peki peki 😘 sonra pişman olursun'],
+    romantik: ['Anlıyorum 💗 sadece seninle bir şey paylaşmak istemiştim', 'Sorun değil, sen yeter 🥰'], soguk: ['Peki.', 'Nasıl istersen.'], simarik: ['Ne demek hayır?! 😤 tamam, küstüm', 'Hıh 💅 bunu unutmayacağım'] };
+  const AM_INSIST = ['Emin misin? 😏 {p} olsun, son kez soruyorum', 'Hayır mı? Bak {g} için {p} diyorum, kaçırma 😈', 'O kadar kolay vazgeçmem 💅 {g}, {p}. Anlaştık mı?'];
+  const AM_NAG = ['Hâlâ cevap vermedin 😤 {g} alıyor musun, almıyor musun?', 'Konuyu değiştirme 😏 {g}?', 'Hey, teklifim duruyor 💋 {g}…'];
+  const AM_BROKE = ['Bakiyen yetmiyor mu? 😅 pazarlık yapabiliriz', 'Paran yetmedi galiba 🙈 başka bir şey de olur'];
+  const AM_YES_RE = /(tamam|olur|peki|anlaştık|kabul|alırım|alayım|alıyorum|evet|tabi|tamamdır|hemen al|senin için|neden olmasın|hediyen benden)/i;
+  const AM_HAG_RE = /(pahalı|indirim|ucuz|pazarlık|daha az|düşür|fazla değil|çok para|biraz in)/i;
+  const AM_NO_RE = /(hayır|olmaz|istemiyorum|almam|almıyorum|almayacağım|alamam|bugün değil|vazgeç|unut|pas geç)/i;
+  const AM_COUNTER = ['O kadar olmaz… {p} desen? 😏', '{p} ama, daha aşağı inmem', 'Ortası olsun: {p} 🤝', '{p}. Son sözüm'];
+  const amG = id => AM_GIFTS.find(g => g.id === id);
+  const amTl = (s, of) => amFill(s, amG(of.g)).replace('{p}', cmTl(of.p));
+  const amLoveAdd = (c, n) => { const d = amData(), k = amKey(c); d.love[k] = Math.max(0, (d.love[k] || 0) + n); };
+  // 💌 teklif: th.site.offer { g, e, p fiyat, n pazarlık, ins ısrar, ign cevapsız } + onun cümlesi (pre: baştaki söz, yoksa arsızlığına göre)
+  function amOffer(c, t, pre) {
+    const w = amWish(c);
+    t.site.offer = { g: w.g.id, e: w.e ? w.e.id : '', p: w.g.p, n: 0 };
+    return amPlus(c, `💌 ${pre != null ? pre : pick(AM_PRE[amArsLv(c)])}${w.line} (${cmTl(w.g.p)})`);
+  }
+  const amWants = (c, t) => !t.site.offer && !amCold(c) && amSat(c) < AM_WANT;
+  // sohbet açılınca: site görüşmesi (k 'am') kurulur; 😈 arsız ve tatmini düşükse teklif hemen gelir
+  function amChatOpen(c, t) {
+    t.site = t.site && t.site.k === 'am' ? t.site : { k: 'am', n: 0 };
+    if (amArsLv(c) < 2 || !amWants(c, t)) return;
+    msgsOf(t).push({ id: Store.uid(), from: 'her', ts: Date.now(), text: amOffer(c, t) });
+  }
+  // 🤝 pazarlık: amt = senin söylediğin fiyat (0: sadece "pahalı / indirim"). En düşük kabul: Arsız %85, Cesur %70, Çekingen %50
+  function amHaggle(c, t, amt) {
+    const of = t.site.offer, ar = amArs(c), ty = amType(c), g = amG(of.g), first = (c.name || 'O').split(' ')[0];
+    of.n = (of.n || 0) + 1;
+    if (amt) {
+      const min = Math.round(g.p * [0.5, 0.7, 0.85][amArsLv(c)] / 10) * 10;
+      if (amt >= of.p) return [pick(['Ooo, daha da cömertsin 😍 fiyat aynı kalsın, sen "tamam" de yeter', 'Ben zaten daha azını istemiştim 🙈 tamam mı?'])];
+      if (amt >= min) { of.p = amt; return [amTl(pick(AM_HAG_OK[ty]), of)]; }
+      if (of.n >= 3 || ar >= 85) return amWithdraw(c, t);
+      of.p = Math.max(min, Math.round((of.p + min) / 2 / 10) * 10);
+      return [amPlus(c, amTl(pick(AM_COUNTER), of))];
+    }
+    if (Math.random() < 0.8 - ar / 200 - (of.n - 1) * 0.25) {
+      const lower = AM_GIFTS.filter(x => x.t === g.t - 1);
+      if (lower.length && (ty === 'utangac' || ty === 'romantik' || Math.random() < 0.3)) { const g2 = pick(lower); of.g = g2.id; of.p = g2.p; return [`${amTl(pick(AM_HAG_SWAP[ty]), of)} (${cmTl(of.p)})`]; }
+      of.p = Math.max(10, Math.round(of.p * (ar >= 70 ? 0.9 : ar >= 40 ? 0.85 : 0.75) / 10) * 10);
+      return [amTl(pick(AM_HAG_OK[ty]), of)];
+    }
+    if (of.n >= 2 || ar >= 85) return amWithdraw(c, t);
+    return [amPlus(c, pick(AM_HAG_NO[ty]))];
+  }
+  function amWithdraw(c, t) {
+    t.site.offer = null;
+    amLoveAdd(c, -3);
+    amColdSet(c, 3);
+    return [pick(AM_HAG_END[amType(c)]), { sys: `😤 ${(c.name || 'O').split(' ')[0]} teklifini geri çekti · −3 💗 · 🥶 sana küs` }];
+  }
+  function amReject(c, t) {
+    const of = t.site.offer, ty = amType(c);
+    if (amArsLv(c) === 2 && !of.ins) { of.ins = 1; of.p = Math.max(10, Math.round(of.p * 0.9 / 10) * 10); return [amPlus(c, amTl(pick(AM_INSIST), of))]; }
+    t.site.offer = null;
+    amLoveAdd(c, -2);
+    amColdSet(c, 3);
+    return [pick(AM_NO[ty]), { sys: `❌ Teklifi reddettin · −2 💗 · 🥶 ${(c.name || 'O').split(' ')[0]} sana küs, sevişmek istemiyor` }];
+  }
+  // 🥶 küsken: özür → barışma şartı (yeni teklif), sevişme isteği → ret, diğer mesajlar → soğuk kısa cevap
+  const AM_COLD = { utangac: ['…', 'Şu an konuşmak istemiyorum 🥺', 'Biraz kırıldım, tamam mı?', 'Hı hı.'], flort: ['Hıı, şimdi mi aklına geldim? 😒', 'Bugün havamda değilim 🙄', 'Bana öyle bakma, işe yaramaz 😒', 'Neyse.'],
+    romantik: ['Kırıldım biraz… 💔', 'Bir şey istemiştim, o kadar 🥺', 'Sanırım beni yeterince önemsemiyorsun', 'Boş ver.'], soguk: ['Hm.', 'Meşgulüm.', 'Sonra.', 'Evet. Ve?'],
+    simarik: ['Küsüm sana 😤', 'Benimle konuşma 💅', 'Hediyemi almayan beni de alamaz 😤', 'Hıh.'] };
+  const AM_COLD_SEX = { utangac: ['Hayır… bugün olmaz 🥺', 'Şu an istemiyorum, lütfen 🙈'], flort: ['Hadi canım 😏 önce gönlümü al', 'Rüyanda görürsün 😒'],
+    romantik: ['Kalbim kırıkken olmaz 💔', 'Önce barışalım… 🥺'], soguk: ['Hayır.', 'Unut.'], simarik: ['Hediyemi almadın, beni de alamazsın 💅', 'Asla! Küsüm 😤'] };
+  const AM_MAKEUP = ['Affetmemi mi istiyorsun? 😏 ', 'Özür kabul… bir şartla: ', 'Barışmak mı? Peki… ', 'Gönlümü almak kolay değil ama… '];
+  const AM_STILLCOLD = { utangac: ['Teşekkürler… ama hâlâ kırgınım 🥺'], flort: ['Bununla mı gönlümü alacaksın? 😒 biraz daha çabala'], romantik: ['Güzel… ama kalbim hâlâ kırık 💔'],
+    soguk: ['Hm. Yetmez.'], simarik: ['Bu mu? 💅 Hâlâ küsüm 😤'] };
+  const AM_MAKEUP_OK = { utangac: ['Tamam… barıştık 🙈💗'], flort: ['Peki, affettim 😏 ama bir daha olmasın'], romantik: ['Barıştık 💗 sana kızgın kalamıyorum'], soguk: ['Peki. Barıştık.'], simarik: ['Hmm 💅 affettim. Bu seferlik'] };
+  const AM_MEH = { utangac: ['Teşekkürler… 🙂'], flort: ['Bu mu? 😏 tatlı ama beni doyurmaz', 'Hıı, küçük bir başlangıç 😘'], romantik: ['Düşünmen güzel 💗 ama…', 'Tatlı… 🥰 sanırım'],
+    soguk: ['Hm. Küçük.', 'Not ettim.'], simarik: ['Bu mu?! 💅 ciddi misin?', 'Şaka mı bu 😒 ben daha fazlasına alışkınım'] };
+  /* 💃 kendini övme (teklif, pazarlıkta direnme, karşı fiyat, ısrar): Boob / Butt / Pussy Size, Weight, Experience ve sevdiği pozisyondan (❤️ likes,
+   * 'event' etiketli kategori) adaylar toplanır, biri seçilir. Olasılık arsızlığa göre (😈 %80, 😏 %50, 🙈 %20); utangaç sadece yumuşak cümleler */
+  const AM_BRAG = {
+    bigBoob: ['Şu göğüslere bak, hâlâ pahalı mı geliyor? 🍒', '{cup} göğüsler… ellerin doluyken pazarlık edemezsin 😏', 'Göğüslerim bu fiyatı fazlasıyla hak ediyor 🍒😈'],
+    smallBoob: ['Minik ama ne kadar hassas olduklarını bir bilsen 🍒', 'Küçük göğüslerim avucuna tam oturur 😏'],
+    bigButt: ['Bu kalçaya değmez mi sence? 🍑', 'Arkamı dönünce fiyatı unutursun 🍑😈', 'Böyle bir kalçayı başka nerede bulacaksın? 🍑'],
+    smallButt: ['Minyonum ama kucağına tam otururum 😏', 'Küçücük kalçam ellerine sığar 🍑'],
+    tight: ['Dar mı dar… bunun için bu fiyat az bile 😈', 'Ne kadar sıkı olduğumu hissedince anlarsın 🌸', 'Bu kadar dar birini daha önce gördün mü? 😏🌸'],
+    curvy: ['Kıvrımlarıma değmez mi? 😏', 'Bu kıvrımlar ücretsiz değil, tatlım 💋'],
+    slim: ['İncecik belime bir bak, sonra konuşalım 😏', 'Belimi tek kolunla sararsın 💋'],
+    exp: ['Deneyimliyim, ne yaptığımı bilirim 😈 bu fiyata bulunmaz', 'Benimle bir gece, diğerleriyle bir yıl gibi 🔥', 'Neler bildiğimi tahmin bile edemezsin 😈'],
+    fresh: ['Bana dokunan pek olmadı… ilk sen olabilirsin 🙈', 'Tecrübesizim ama hevesliyim 😳 bu da bir şey değil mi?'],
+    pos: ['🎭 {pos} yaparken beni bir görsen 😈 bunda çok iyiyim', '🎭 {pos} benim uzmanlık alanım 😏', 'Bir 🎭 {pos} yaptıktan sonra bana hayır diyemezsin 🔥', '🎭 {pos}… bunu benden iyi yapan yok 💋'],
+    any: ['Böyle güzele değmez mi sence? 😏', 'Bu yüze hayır mı diyeceksin? 😘', 'Benim gibisini başka nerede bulacaksın? 💋', 'Bana bir bak, sonra pahalı de 😏'],
+    shy: ['Ben… sana layık olmaya çalışıyorum 🙈', 'Belki çok güzel değilim ama… senin için güzel olurum 🥺', 'Beni mutlu edersen ben de seni çok mutlu ederim 🙈']
+  };
+  function amBrag(c) {
+    if (Math.random() >= [0.2, 0.5, 0.8][amArsLv(c)]) return '';
+    if (amType(c) === 'utangac') return pick(AM_BRAG.shy);
+    const T = g => cmTrait(c, g), boob = +T('Boob Size') || 0, butt = T('Butt Size'), w = T('Weight'), ex = T('Experience'), keys = ['any'];
+    if (boob >= 90) keys.push('bigBoob'); else if (boob && boob <= 75) keys.push('smallBoob');
+    if (['L', 'XL'].includes(butt)) keys.push('bigButt'); else if (['XS', 'S'].includes(butt)) keys.push('smallButt');
+    if (/Tight/.test(T('Pussy Size'))) keys.push('tight');
+    if (['Curvy', 'Chubby'].includes(w)) keys.push('curvy'); else if (['Very Thin', 'Thin', 'Slim'].includes(w)) keys.push('slim');
+    if (['Much', 'A lot', 'Great'].includes(ex)) keys.push('exp'); else if (['Virgo', 'Little'].includes(ex)) keys.push('fresh');
+    const likes = feelEvents(c.likes || []), pos = likes.filter(e => (catOfEv(e).tags || []).includes(CHAT_TOP_TAG));
+    const pe = pick(pos.length ? pos : likes);
+    if (pe) keys.push('pos', 'pos');
+    return pick(AM_BRAG[pick(keys)]).replace('{cup}', `${boob} ${CM_CUP[boob] || ''}`.trim()).replace('{pos}', pe ? pe.title : '');
+  }
+  const amPlus = (c, s) => { const b = amBrag(c); return b ? `${s} ${b}` : s; };
+  const AM_SORRY_RE = /(özür|affet|kusura bakma|pardon|barışalım|gönlünü|küsme)/i;
+  const AM_SEX_RE = /(seviş|sikiş|seks|sex|yatağa|yatalım|yatak odası|soyun|çıkar|öp|dokun|azdım|azgın|ıslak|em(?:er|sene|meni)|yala|içine|sok|hadi gel|yanıma gel|arkanı dön|eğil)/i;
+  // ✅ kabul: hediye teklif fiyatından gider, karşılığı (söz verdiği olay) sohbette yazılır
+  function amAccept(c, t, api) {
+    setTimeout(() => {
+      const of = t.site && t.site.offer;
+      if (!of) return;
+      const r = amGift(c, amG(of.g), t, of.p);
+      if (!r) { api.say(null, [pick(AM_BROKE)]); return; }
+      api.draw();
+      if (r.e) setTimeout(() => api.events([r.e]), 700);
+    }, 500);
+  }
+  /* 💬 SITE_CHAT.am: düğme / çubuk yok (amBar boş, çubuk gizlenir); teklif, kabul, pazarlık ve ret yazışarak.
+   * Sırayla: rakam ("300 olur mu?") ya da pahalı / indirim → pazarlık, hayır / olmaz → ret, tamam / olur / alırım → kabul; başka mesaj → normal bot */
+  const amBar = () => '';
+  function amSay(c, t, text, api) {
+    const of = t.site.offer, ty = amType(c);
+    if (!of && amCold(c)) {
+      if (AM_SORRY_RE.test(text)) return [amOffer(c, t, pick(AM_MAKEUP))];
+      return [pick((AM_SEX_RE.test(text) ? AM_COLD_SEX : AM_COLD)[ty])];
+    }
+    if (of) {
+      const num = /(\d[\d.]*)/.exec(text), amt = num ? +num[1].replace(/\./g, '') : 0;
+      if (amt > 0 || AM_HAG_RE.test(text)) return amHaggle(c, t, amt);
+      if (AM_NO_RE.test(text)) return amReject(c, t);
+      if (AM_YES_RE.test(text)) { amAccept(c, t, api); return []; }
+      if (amCold(c) && AM_SEX_RE.test(text)) return [pick(AM_COLD_SEX[ty])];
+      of.ign = (of.ign || 0) + 1;
+      if (amArsLv(c) === 2 && of.ign >= 2) { of.ign = 0; return [amPlus(c, amTl(pick(AM_NAG), of))]; }
+      return null;
+    }
+    if (!amWants(c, t)) { t.site.n = 0; return null; }
+    t.site.n = (t.site.n || 0) + 1;
+    if (t.site.n < AM_ARS[amArsLv(c)][2]) return null;
+    t.site.n = 0;
+    return [amOffer(c, t)];
+  }
+  const amAct = () => {};
+  // 💬 sitedeki "Sohbet et": CarmenAmor sohbetine gider (yoksa açar; ilk mesaj selam + bugünkü isteği)
+  function amOpen(c0) {
+    const ch = cmAdopt(c0, 'am');
+    let t = amThread(ch);
+    if (!t) {
+      t = newThread(ch, 'CarmenAmor');
+      t.amor = 1;
+      msgsOf(t).push({ id: Store.uid(), from: 'her', ts: Date.now(), text: pick(AM_HI) });
+    }
+    save();
+    location.hash = `#/chat/${t.id}`;
+  }
+  /* 🎁 sohbette hediye (sadece CarmenAmor sohbeti): sevgi, hediye sayısı, sohbete 🎁 notu + kişiliğine ve hediyenin değerine göre teşekkür,
+   * kademe 2+ ya da istek → 📍 sahne kartı; isteğiyse söz verdiği olay, kademe 3+ sevdiği bir olay döner (sohbet onu yazar). null: ödeme yok */
+  function amGift(ch, g, t, price) {
+    if (!realPay(price || g.p, `CarmenAmor · ${g.n}`)) return null;
+    const d = amData(), k = amKey(ch), lv0 = amLvl(ch), of = t.site && t.site.offer, ty = amType(ch);
+    const wish = of && of.g === g.id ? { e: of.e ? allEvents().find(x => x.id === of.e) || null : null } : null, pts = AM_PTS[g.t] * (wish ? 2 : 1);
+    d.love[k] = (d.love[k] || 0) + pts;
+    d.gifts[k] = d.gifts[k] || {};
+    d.gifts[k][g.id] = (d.gifts[k][g.id] || 0) + 1;
+    if (wish) t.site.offer = null;
+    d.log = [{ ts: Date.now(), k, name: ch.name, g: g.id, wish: !!wish, pts }, ...(d.log || [])].slice(0, 100);
+    // 😌 tatmin: fiyat / doyum eşiği × 60 (teklif ettiği ×1,5); küslüğü teklif ettiği hediye ya da tatmini 50+ yapan hediye bitirir
+    const need = amNeed(ch), cold0 = amCold(ch), s1 = Math.min(100, amSat(ch) + (price || g.p) / need * 60 * (wish ? 1.5 : 1));
+    amSatSet(ch, s1);
+    if (wish || s1 >= 50) amColdSet(ch, 0);
+    const cold = amCold(ch), meh = !wish && (price || g.p) < need * 0.25 && amNeedLv(ch) === 2;
+    const sc = cold || meh ? null : g.t >= 4 ? pick(AM_LUX) : g.t === 3 ? AM_HOME : g.t === 2 || wish ? pick(AM_DATES) : null;
+    let ts = Date.now();
+    const push = (from, text, x) => msgsOf(t).push({ id: Store.uid(), from, ts: ts++, text, ...x });
+    push('sys', `🎁 ${g.ic} ${g.n}${wish ? ' · 💌 onun isteği' : ''} · +${pts} 💗 · 😌 tatmin ${Math.round(s1)}`);
+    push('her', cold ? pick(AM_STILLCOLD[ty]) : meh ? amFill(pick(AM_MEH[ty]), g) : amFill(pick(AM_THX[ty][g.t]), g));
+    if (cold0 && !cold) push('her', pick(AM_MAKEUP_OK[ty]));
+    if (s1 >= 90) push('sys', `😌 ${(ch.name || 'O').split(' ')[0]} tatmin oldu`);
+    if (sc) push('sys', `🕰️ ${hh2(sc.h)} · ${sc.ic} ${sc.name}`, { scene: { place: sc.place, icon: sc.ic, name: sc.name, hint: sc.hint } });
+    const e = cold ? null : wish ? wish.e : g.t >= 3 && !meh ? pick(feelEvents(ch.likes || [])) || null : null;
+    if (wish && e) push('her', amFill(pick(AM_WISHOK[ty] || AM_WISHOK.flort), g, e));
+    const lv = amLvl(ch);
+    if (lv > lv0) push('sys', `💗 CarmenAmor · yeni kademe: ${AM_LOVE[lv][1]} ${AM_LOVE[lv][2]}`);
+    save();
+    sfx('match');
+    notify(`${g.ic} ${(ch.name || '').split(' ')[0]}: +${pts} 💗${lv > lv0 ? ` · ${AM_LOVE[lv][1]} ${AM_LOVE[lv][2]}` : ''}`, '💝');
+    return { e };
+  }
+  // 🎁 hediye seçimi (sohbetteki 🎁 Hediye): bugünkü istek üstte ve 💌 işaretli; bütün hediyeler her kademede gönderilebilir
+  function amSheet(ch, t, done) {
+    const L = AM_LOVE[amLvl(ch)], of = t.site && t.site.offer, w = of && { g: amG(of.g), line: `${amG(of.g).n} · ${cmTl(of.p)}` };
+    const sh = sheet(`${AM_CSS}<div class="sheet-grip"></div><h3>🎁 ${esc((ch.name || '').split(' ')[0])} için hediye</h3><p class="am-mute">${L[1]} ${L[2]} · ${amLove(ch)} 💗 · 💰 ${money()}</p>
+      ${w ? `<p class="am-mute">💌 ${esc(w.line)}</p>` : ''}
+      ${[1, 2, 3, 4].map(tr => `<div class="am-tier">${AM_TIERS[tr]}</div><div class="am-gifts">${AM_GIFTS.filter(g => g.t === tr).map(g => `<button type="button" class="am-gift${w && w.g.id === g.id ? ' wish' : ''}" data-amgi="${g.id}"><span>${g.ic}</span><b>${esc(g.n)}</b><small>${cmTl(w && w.g.id === g.id ? of.p : g.p)} · +${AM_PTS[g.t] * (w && w.g.id === g.id ? 2 : 1)} 💗${w && w.g.id === g.id ? ' 💌' : ''}</small></button>`).join('')}</div>`).join('')}`, 'light');
+    sh.el.onclick = e => { const x = e.target.closest('[data-amgi]'); if (!x) return; sh.close(); done(AM_GIFTS.find(g => g.id === x.dataset.amgi)); };
+  }
+  const AM_CSS = `<style>.am-mute{opacity:.7;font-size:.85rem;margin:6px 0 0}.am-gifts{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-top:10px}
+    .am-gift{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 6px;border-radius:14px;border:1px solid rgba(214,51,108,.3);background:transparent;color:inherit;cursor:pointer;text-align:center;font:inherit}
+    .am-gift span{font-size:1.8rem}.am-gift small{opacity:.75;font-size:.75rem}.am-gift:disabled{opacity:.45;cursor:default}.am-gift.wish{border:2px solid #d6336c;background:rgba(214,51,108,.1)}.am-tier{margin:14px 0 0;font-weight:700;font-size:.9rem}</style>`;
+  function renderAmor() {
+    const tab = ['hepsi', 'kalp', 'gecmis'].includes(ui.amT) ? ui.amT : 'hepsi', d = amData(), n = ui.amN || 24, all = cmAll();
+    const list = tab === 'kalp' ? all.filter(c => amLove(c) > 0).sort((a, b) => amLove(b) - amLove(a)) : all;
+    const card = c => {
+      const lv = amLvl(c), L = AM_LOVE[lv], nx = AM_LOVE[lv + 1], v = amLove(c), pct = nx ? Math.round((v - L[0]) / (nx[0] - L[0]) * 100) : 100, fl = AM_FLIRT[amType(c)];
+      const gs = d.gifts[amKey(c)] || {}, gn = Object.values(gs).reduce((a, x) => a + x, 0), NL = AM_NEED[amNeedLv(c)];
+      return `<article class="am-card"><div class="am-top">${avatar(c, 56)}<div><b>${esc(c.name || 'İsimsiz')}${c.age ? `<small>, ${esc(c.age)}</small>` : ''}</b>
+          <small class="am-lv">${L[1]} ${L[2]} · ${v} 💗${nx ? ` / ${nx[0]}` : ''} · ${AM_ARS[amArsLv(c)][0]} ${AM_ARS[amArsLv(c)][1]}</small><div class="am-bar"><i style="width:${pct}%"></i></div></div></div>
+        <p class="am-mute">🎁 ${gn ? `${gn} hediye · ${Object.entries(gs).map(([id, x]) => `${AMG(id).ic || '🎁'}×${x}`).join(' ')}` : 'Henüz hediye yok'}</p>
+        <p class="am-mute">😌 Tatmin ${amSat(c)}/100 · ${NL[0]} ${NL[1]}${amCold(c) ? ' · 🥶 Sana küs' : amSat(c) < AM_WANT ? ' · 💌 Hediye bekliyor' : ''}</p><div class="am-bar am-sat"><i style="width:${amSat(c)}%"></i></div>
+        <div class="am-wish"><p>"${esc(fl[+sysHash([amKey(c), amDay(), 'fl']) % fl.length])}"</p></div>
+        <div class="am-act"><button type="button" class="btn sm" data-amo="${esc(c.id)}">💬 ${byId(c.id) && amThread(c) ?'Sohbete dön' : 'Sohbet et'}</button></div></article>`;
+    };
+    const AMG = id => AM_GIFTS.find(g => g.id === id) || {};
+    const body = tab === 'gecmis'
+      ? ((d.log || []).length ? `<div class="ws-list">${d.log.map(x => `<div class="ws-row"><span class="ws-ric">${AMG(x.g).ic || '🎁'}</span><span class="ws-rin"><b>${esc(x.name || '')} · ${esc(AMG(x.g).n || '')}</b><small>${x.wish ? '💌 isteği · ' : ''}+${x.pts} 💗 · ${new Date(x.ts).toLocaleDateString('tr-TR')}</small></span></div>`).join('')}</div>` : '<div class="empty">Henüz hediye göndermedin.</div>')
+      : list.length ? `<div class="am-grid">${list.slice(0, n).map(card).join('')}</div>${list.length > n ? '<button type="button" class="btn ghost" id="amMore" style="margin-top:12px;width:100%">Daha fazla göster</button>' : ''}`
+        : `<div class="empty">${tab === 'kalp' ? 'Henüz kimseye hediye göndermedin. Bir kızla sohbet et, sohbette 🎁 Hediye ile gönder.' : 'Henüz kimse yok.'}</div>`;
+    view.innerHTML = `<style>.ws-amor{--ws:#d6336c}.am-hero{background:linear-gradient(135deg,#5a0f2e,#d6336c 60%,#ff9eb5);color:#fff;border-radius:18px;padding:18px 16px;margin:12px 0}
+      .am-hero h1{margin:0 0 4px;font-size:1.35rem;color:#fff}.am-hero p{margin:0;opacity:.92;color:#fff}
+      .am-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px}
+      .am-card{border-radius:18px;padding:14px;background:var(--card,#fff);border:1px solid rgba(214,51,108,.3);box-shadow:0 4px 18px rgba(214,51,108,.12)}
+      .am-top{display:flex;gap:12px;align-items:center}.am-top>div{flex:1;min-width:0}.am-top>.ava{flex:none}.am-top b{display:block;font-size:1.05rem}.am-lv{display:block;opacity:.8}
+      .am-bar{height:6px;border-radius:9px;background:rgba(214,51,108,.15);margin-top:6px;overflow:hidden}.am-bar i{display:block;height:100%;background:linear-gradient(90deg,#ff7aa2,#d6336c)}.am-sat i{background:linear-gradient(90deg,#ffd166,#06d6a0)}
+      .am-wish{margin:10px 0;padding:10px 12px;border-radius:12px;background:rgba(214,51,108,.08)}.am-wish small{opacity:.75}.am-wish p{margin:0;font-style:italic}
+      .am-act{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}</style>${AM_CSS}` + wsPage('amor', 'Carmen<i>Amor</i>', 'carmenamor.com', '#/booble', `
+      ${wsTabs('amt', [['hepsi', '💘 Kızlar'], ['kalp', '💗 Kalplerim'], ['gecmis', '📜 Geçmiş']], tab)}
+      ${body}
+      <p class="am-mute" style="margin-top:12px">Kademeler: ${AM_LOVE.map(l => `${l[1]} ${l[2]} ${l[0]}`).join(' · ')}. Nasıl çalışır: 🧭 CarmenGuide → <a href="#/kitap/amor/0">💝 CarmenAmor Kitabı</a>.</p>`);
+    view.querySelectorAll('[data-amt]').forEach(b => b.onclick = () => { ui.amT = b.dataset.amt; ui.amN = 24; renderAmor(); });
+    const more = $('#amMore');
+    if (more) more.onclick = () => { ui.amN = n + 24; renderAmor(); };
+    view.onclick = ev => {
+      const b = ev.target.closest('[data-amo]'), c = b && cmFind(b.dataset.amo);
+      if (c) amOpen(c);
+    };
+  }
+
   /* 🏙️ CarmenCity (#/sehir): kuşbakışı şehir. Kayıtlı karakterler mesleğine (Pools.jobGroupOf) ve saate göre binalarda yuvarlak fotoğrafla
    * durur (ccWhere: gündüz iş yeri, akşam Pub / Sahil, gece Gece Kulübü ya da ev; gece vardiyası / gece işi olanlar ters). Boş saatlerdeki
    * yer kişi + saat + gün ile seçilir (her gün biraz farklı). Saat kaydırıcısı ui.ccH (ilk açılışta gerçek saat), seçili bina ui.ccB;
@@ -3756,8 +4135,22 @@
     { k: 'studyo', ic: '🎬', n: 'Stüdyo', x: 17, y: 73, c: '#ba68c8', d: ['çekim izliyor 🎥'] },
     { k: 'pub', ic: '🍺', n: 'Pub', x: 50, y: 73, c: '#ffd54f', d: ['bira içiyor 🍺', 'dart atıyor 🎯', 'barda sohbet ediyor 🍻', 'maç izliyor ⚽'] },
     { k: 'kulup', ic: '🪩', n: 'Gece Kulübü', x: 82, y: 73, c: '#9575cd', d: ['dans ediyor 💃', 'VIP locada 🥂', 'shot atıyor 🥃', 'barda flört ediyor 😏'] },
-    { k: 'sahil', ic: '🏖️', n: 'Sahil', x: 50, y: 91, c: '#4fc3f7', d: ['güneşleniyor 👙', 'denize giriyor 🌊', 'kumsalda yürüyor 🐚', 'voleybol oynuyor 🏐'] }
+    { k: 'sahil', ic: '🏖️', n: 'Sahil', x: 50, y: 91, c: '#4fc3f7', d: ['güneşleniyor 👙', 'denize giriyor 🌊', 'kumsalda yürüyor 🐚', 'voleybol oynuyor 🏐'] },
+    { k: 'park', ic: '🌳', n: 'Park', x: 17, y: 91, c: '#81c784', d: ['bankta oturuyor 🌳', 'yürüyüş yapıyor 🚶‍♀️', 'kuşları besliyor 🐦'] }
   ];
+  /* 🤱 parkta emzirme molası: sütü olan (🍼 Süt ≥ 50 ya da hamile) karakter gündüz bazen Park'ta (ccWhere nurse); dokununca yeni sohbet
+   * park bankında başlar, ilk mesajı emzirme teklifi, "evet" → Covered Nursing (th.botAsk istek) */
+  const ccMilk = c => milkPct(c) >= 50 || !!(c.fields || {}).hamile;
+  const CC_NURSE_HI = ['Parktayım, bankta… göğüslerim doldu, örtümü de getirdim. Gelir misin? 🧣🍼', 'Bankta oturuyorum, kimse bakmıyor… örtünün altına girer misin? 🤫🍼', 'Ağaçların gölgesinde bir bank buldum. Emzirme molası verelim mi? 🌳🤱'];
+  function ccNurse(c, h) {
+    const ch = cmAdopt(c), now = Date.now(), t = newThread(ch, 'CarmenCity'), ev = allEvents().find(e => e.id === 'mvnu14cover');
+    msgsOf(t).push({ id: Store.uid(), from: 'sys', ts: now, text: `🕰️ ${hh2(h)} · 🌳 Parkta`, scene: { place: 'park', icon: '🌳', name: 'Parkta', hint: 'Ağaçların gölgesinde bir bank; etrafta yürüyüş yapanlar var.' } });
+    msgsOf(t).push({ id: Store.uid(), from: 'her', ts: now + 1, text: pick(CC_NURSE_HI) });
+    t.clock = { start: h * 60, done: 0 };
+    if (ev) t.botAsk = { t: 'istek', w: 'emzir', ev: ev.id };
+    save();
+    location.hash = `#/chat/${t.id}`;
+  }
   /* 🏘️ konut mahallesi (haritanın üstü): 5 ev + Apartman. ccHomes hane kurar: evli / Hotwife karakter kocasıyla yalnız yaşar, diğerleri
    * id sırasıyla tek, 2 ya da 3 kişilik ev arkadaşı olur. İlk 5 hane evlere, kalanlar Apartman'ın dairelerine. ccWhere "evler" der, harita hanenin evine çevirir */
   const CC_HOMES = [{ k: 'ev1', ic: '🏠', n: 'Mavi Ev', x: 17, y: 8, c: '#90caf9' }, { k: 'ev2', ic: '🏡', n: 'Bahçeli Ev', x: 50, y: 8, c: '#a5d6a7' },
@@ -3795,6 +4188,7 @@
     if (h < 3) return out(r < 35 ? 'kulup' : r < 45 ? 'pub' : 'evler');
     if (h < 7) return out('evler');
     if (h < 9) return out(r < 40 ? 'kafe' : 'evler');
+    if (h < 19 && ccMilk(c) && ccRnd(c, h, 'nu') < 35) return { k: 'park', job: false, doing: '🤱 bankta, örtünün altında emzirme molası', nurse: true };
     if (h < 17) return out(r < 30 ? 'sahil' : r < 50 ? 'kafe' : r < 62 ? 'masaj' : 'evler');
     if (h < 19) return out(r < 35 ? 'sahil' : r < 55 ? 'kafe' : r < 65 ? 'masaj' : 'evler');
     if (h < 23) return out(r < 40 ? 'pub' : r < 55 && h < 21 ? 'sahil' : 'evler');
@@ -3834,13 +4228,13 @@
       card.innerHTML = !cs.length ? `<section class="ws-sec"><h3>Şehir boş 🌆</h3><p>Henüz karakterin yok. Oluştur sekmesinden karakter ekle; mesleğine göre şehirde yerini alır.</p></section>`
         : !sel ? `<section class="ws-sec"><h3>👆 Bir binaya dokun</h3><p>Karakterler mesleğine ve saate göre yer değiştirir: gündüz işte, akşam Pub ya da Sahil'de, gece Gece Kulübü'nde ya da evde. Saati kaydır, şehri izle.</p></section>`
         : `<section class="ws-sec"><h3>${sel.ic} ${esc(sel.n)} <small>· ${hh} · ${L.length} kişi</small></h3>${homeInfo}${L.length || sel.home ? '' : '<p>Şu an burada kimse yok.</p>'}</section>
-          ${L.length ? `<div class="ws-list">${L.map(w => `<a class="ws-row" href="#/sehir" data-ccc="${esc(w.c.id)}">${avatar(w.c, 46)}<span class="ws-rin"><b>${esc(w.c.name)}${w.c.age ? `<small>, ${esc(w.c.age)}</small>` : ''}</b>
+          ${L.length ? `<div class="ws-list">${L.map(w => `<a class="ws-row" href="#/sehir" data-ccc="${esc(w.c.id)}"${w.nurse ? ' data-ccn="1"' : ''}>${avatar(w.c, 46)}<span class="ws-rin"><b>${esc(w.c.name)}${w.c.age ? `<small>, ${esc(w.c.age)}</small>` : ''}</b>
             <small>${w.job ? '💼 iş başında' : '🌿 boş zaman'}${w.c.job ? ` · ${esc(w.c.job)}` : ''}</small><small>${esc(w.doing)}</small></span><i class="ws-go">›</i></a>`).join('')}</div>` : ''}`;
     };
     rng.oninput = () => { ui.ccH = +rng.value; draw(); };
     $('#ccNow').onclick = () => { ui.ccH = new Date().getHours(); rng.value = ui.ccH; draw(); };
     map.onclick = e => { const b = e.target.closest('[data-ccb]'); if (!b) return; ui.ccB = ui.ccB === b.dataset.ccb ? null : b.dataset.ccb; draw(); if (ui.ccB) card.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
-    card.onclick = e => { const a = e.target.closest('[data-ccc]'); if (!a) return; e.preventDefault(); const c = byId(a.dataset.ccc); if (c) openChat(c); };
+    card.onclick = e => { const a = e.target.closest('[data-ccc]'); if (!a) return; e.preventDefault(); const c = byId(a.dataset.ccc); if (c && a.dataset.ccn) ccNurse(c, ui.ccH); else if (c) openChat(c); };
     draw();
   }
 
@@ -7118,6 +7512,7 @@
 
   function renderChat(c, th) {
     th.opened = Date.now();
+    if (th.amor && !th.group && c) amChatOpen(c, th);
     save();
     const group = !!th.group;
     const list = msgsOf(th);
@@ -7246,11 +7641,12 @@
             <button type="button" data-tool="help"><span>💁‍♀️</span>Yardım</button>
             <button type="button" data-tool="boss"><span>🙈</span>Patron geldi</button>
           </div>
-          <div class="ct-main">
+          <div class="ct-main"${th.amor && !group ? ' style="grid-template-columns:repeat(6,1fr)"' : ''}>
             <button type="button" data-tool="photo"><span>📷</span>Fotoğraf</button>
             <button type="button" data-tool="event"><span>📜</span>Olay</button>
             <button type="button" data-tool="place"><span>📍</span>Mekan</button>
             <button type="button" data-tool="emoji"><span>😊</span>Emoji</button>
+            ${th.amor && !group ? '<button type="button" data-tool="gift"><span>🎁</span>Hediye</button>' : ''}
             <button type="button" data-tool="more" aria-label="Diğer araçlar"><span>⋯</span>Diğer</button>
           </div>
         </div>
@@ -7666,9 +8062,11 @@
       const liked = fav.filter(e => !isFant(e) && cats.includes(low(catOfEv(e).label)) && e !== posNow()), likedFx = fav.filter(isFant);
       // 🙋 merak: bu sohbette henüz sorulmamış boyut / dayanıklılık (normal sohbette ❤️ Aşk ≥ 20 ya da İsteklilik Yüksek+)
       const merak = ['boyut', 'dayan'].filter(t => !(th.merak || {})[t] && (sx || w >= 3 || relV(ch, 'aşk') >= 20));
-      const ctx = { sx, w, naked: dressState(ch, (th.undress || {})[ch.id]) === 'çıplak', drunk, fx, liked: liked.length, likedFx: likedFx.length, dom: lv === 'dom', merak: merak.length };
+      // 🤱 sütü dolu (🍼 Süt ≥ 80 ya da hamile ve ≥ 50): emzirme isteği; Süt ≥ 90 ise çoğu zaman o
+      const sut = relV(ch, 'süt'), milk = sut >= 80 || (!!(ch.fields || {}).hamile && sut >= 50);
+      const ctx = { sx, w, naked: dressState(ch, (th.undress || {})[ch.id]) === 'çıplak', drunk, fx, liked: liked.length, likedFx: likedFx.length, dom: lv === 'dom', merak: merak.length, milk };
       const ks = Object.keys(BOT_WANT).filter(x => BOT_WANT[x].ok(ctx));
-      const k = pickOne([...ks, ...ks.filter(x => per && (per.like || []).includes(x))]), wt = k && BOT_WANT[k];
+      const k = typeof force === 'string' ? force : milk && sut >= 90 && ks.includes('emzir') && Math.random() < .6 ? 'emzir' : pickOne([...ks, ...ks.filter(x => per && (per.like || []).includes(x)), ...(milk ? ['emzir'] : [])]), wt = k && BOT_WANT[k];
       if (!wt) return null;
       // 🙋 merak: kural soruları ("=sor =boyut|dayan"; cevabı senin 🍆 / ⏱️ değerine bakar)
       if (wt.rule) {
@@ -7685,7 +8083,7 @@
       let ev = null, pl = null;
       // 🍷 içki: memleketinin içkisi önce (%70)
       if (wt.ev) { ev = (k === 'icki' && reg && WANT_REG[reg] && Math.random() < .7 && pickByTitles(WANT_REG[reg].ev, ch)) || pickByTitles(wt.ev, ch); if (!ev) return null; }
-      else if (wt.pick) { ev = wt.pick === 'liked' ? pickOne(liked) : wt.pick === 'fant' ? pickOne(likedFx) : otherPosition(ch); if (!ev) return null; }
+      else if (wt.pick) { ev = wt.pick === 'liked' ? pickOne(liked) : wt.pick === 'fant' ? pickOne(likedFx) : wt.pick === 'nurse' ? nursePick(ch) : otherPosition(ch); if (!ev) return null; }
       else {
         const cur = ((lastScene() || {}).scene || {}).place, h = new Date().getHours(), sexy = w >= 3 || !!ctx.sx;
         const pool = allPlaces().filter(p => p.id !== cur && inHours(p.hours, h) && (!sexy || (p.lv || 0) >= 3));
@@ -7836,14 +8234,18 @@
       if (realGate(userMsg, opts)) return;
       // 💬 site görüşmesi (SITE_CHAT[k].say): siteye özel cevap varsa bot kuralları yerine o
       const siteSc = !opts.events && !group && th.site && !th.site.done && SITE_CHAT[th.site.k];
-      const siteHers = siteSc && siteSc.say(c, th, userMsg.text);
+      const siteHers = siteSc && siteSc.say(c, th, userMsg.text, siteApi);
       if (siteHers) { save(); siteLines(siteHers); drawSite(); return; }
       const rules0 = Stories.BOT_RULES || { rules: [] };
       // 👯 grup komutları (r_gc_*) tek kişilik sohbette yok
       const rules = group ? rules0 : { ...rules0, rules: (rules0.rules || []).filter(r => !String(r.id).startsWith('r_gc_')) };
       // Grupta kuralı en iyi eşleşen üye cevap verir (eşitlikte rastgele)
       // ❔ karakter bir soru sorduysa ve bu mesaj "evet / hayır" ise önce o sorunun cevap kuralları ("=cevap" + konu)
-      const pend = !opts.events && th.botAsk, yn = pend ? yesNo(userMsg.text) : '';
+      // 🔁 teyit sorusuna onay ("evet", "doğru", "onu dedim"…): asıl mesaj o kural tutmuş gibi baştan işlenir (komut, emir, durum hepsi); "hayır" → netleştirme
+      const pend0 = !opts.events && th.botAsk, tyn = pend0 && pend0.t === 'teyit' ? teyitYn(userMsg.text) : '';
+      const teyitOk = tyn === 'evet' ? pend0 : null;
+      if (teyitOk && teyitOk.txt) userMsg = { ...userMsg, text: teyitOk.txt };
+      const pend = teyitOk ? null : pend0, yn = !pend ? '' : pend.t === 'teyit' ? tyn : yesNo(userMsg.text);
       if (!opts.events) th.botAsk = null;
       // 🧠 senin mesajından öğrendikleri (ad, sevdiklerin, şehir…): her üye kendi hafızasına yazar; yeni bir şeyse "not ettim" cümlesi
       const memAck = {};
@@ -7855,6 +8257,10 @@
       if (!opts.events) th.whyN = why ? (th.whyN || 0) + 1 : 0;
       // ❤️ / 💔 olayı seviyor / sevmiyorsa önce "=sever" / "=sevmez" içeren kurallar (yoksa normal kurallar)
       const moodBest = ch => {
+        if (teyitOk) {
+          const r = (rules.rules || []).find(x => x.id === teyitOk.rid);
+          if (r && BOT.fits(r, ch)) return { rule: r, score: BOT.score(r), fallback: false };
+        }
         if (swapTo && ch.id === swapTo) {
           const only = { ...rules, rules: (rules.rules || []).filter(r => (r.when || []).includes('=grupgecis')) };
           const m = only.rules.length && BOT.best(only, 'grupgecis', ch);
@@ -7872,6 +8278,8 @@
           const m = only.rules.length && BOT.best(only, userMsg.text, ch);
           if (m && !m.fallback) return m;
         }
+        // 🔁 teyit sorusuna "hayır" → netleştirme (evet yukarıda: teyitOk)
+        if (yn === 'hayir' && pend.t === 'teyit') return { rule: { id: '_teyityok', reply: TEYIT_NO }, score: 0, fallback: false };
         if (yn) {
           const only = { ...rules, rules: (rules.rules || []).filter(r => (r.when || []).includes('=cevap') && (r.when || []).includes('=' + pend.t)) };
           const m = only.rules.length && BOT.best(only, `cevap ${pend.t} ${yn} ${korToken(ch)}${pend.fx ? ' ' + pend.fx : ''}${pend.ks ? ' ' + pend.ks : ''}`, ch);
@@ -7945,7 +8353,19 @@
         // 🔓 senin mesajında gevşek eşleşme: sırası farklı ya da bir kelimesi eksik kurallar da tutar (daha düşük puanla)
         if (opts.events) return BOT.best(rules, userMsg.text, ch, false);
         const fk = fantRecent() ? `=${fantKey(fantRecent())}` : '';
-        return BOT.best({ ...rules, rules: (rules.rules || []).filter(r => (r.when || []).every(t => !/^=fx\w+$/.test(t) || t === fk)) }, userMsg.text, ch, true);
+        const pool = { ...rules, rules: (rules.rules || []).filter(r => (r.when || []).every(t => !/^=fx\w+$/.test(t) || t === fk)) };
+        const fm = BOT.best(pool, userMsg.text, ch, true);
+        // 🔁 yönlendirici: hiçbir kural tutmadıysa yazım / ek / Türkçe harf farkıyla en yakın kural (BOT.near).
+        // ≥ 0.75 sessizce o kural · 0.45–0.75 teyit sorusu (grupta yok) · altı yedek cevap
+        if (fm && fm.fallback) {
+          const nr = BOT.near(pool, `${userMsg.text}${sx ? ' ' + sx : ''}`, ch, nearSkip);
+          if (nr && nr.sim >= .75) return { rule: nr.rule, score: BOT.score(nr.rule), fallback: false, near: nr };
+          if (nr && nr.sim >= .45 && !group) {
+            const w = String(nr.rule.name || '').split(' · ')[0].toLocaleLowerCase('tr') || nr.typo.slice(0, 2).join(' ');
+            if (w) return { rule: { id: '_teyit', reply: TEYIT_ASK.map(x => x.replace('{w}', w)) }, score: 0, fallback: false, near: nr, teyit: nr.rule.id };
+          }
+        }
+        return fm;
       };
       let cands = (group ? members() : [c]).map(ch => ({ ch, m: moodBest(ch) })).filter(x => x.m && !(opts.events && x.m.fallback));
       // olayın kendi kuralı yoksa ama bir durumu varsa (ör. 🛡️ Pull-Out'a izin, 🚪 ilk giriş) sadece durum baloncuğu gelir
@@ -7985,6 +8405,9 @@
       if (String(m.rule.id).startsWith('r_fe_')) fantEggFound(m.rule);
       // 📭 yedek cevaba düşen mesaj: Bot deneyindeki eksik cevap raporuna
       if (m.fallback && !opts.events && !yn) botMiss(typedText, ch);
+      // 🔁 yönlendirilen / teyit sorulan mesaj da rapora (en yakın kural + benzerlik); teyit → evet / hayır beklenir
+      if (m.near) botMiss(typedText, ch, m.near);
+      if (m.teyit) th.botAsk = { t: 'teyit', rid: m.teyit, txt: userMsg.text };
       // 🙏 izin dışı ısrar: kaçıncı ısrar; razı olursa bu tur içine istiyormuş gibi (uyarı yok, boşalınca kızmaz)
       const kor0 = ch ? korToken(ch) : '';
       if (String(m.rule.id).startsWith('r_israr')) {
@@ -8092,7 +8515,7 @@
       let st = !opts.fint && opts.state && Math.random() < (opts.stateP == null ? 1 : opts.stateP) ? opts.state : '';
       const fromEvent = !!st;
       // sevişirken normal sohbet baloncukları (saat, ilişki) yerine sevişme durumları
-      if (!st && !isQ) st = botState(ch, !opts.events && !cmdEv && !sexPhase());
+      if (!st && !isQ && !m.teyit) st = botState(ch, !opts.events && !cmdEv && !sexPhase());
       // 🛡️ ısrarcı korunma uyarıları (seviye 2–3) her zaman gelir
       if (st && (fromEvent || /^kor\w+[23]$/.test(st) || Math.random() < .65)) {
         // 🎭 durumun kişilik varyantı (r_pk_*) çoğu zaman öne geçer, bazen genel cevap gelsin diye dışarıda kalır
@@ -8162,7 +8585,7 @@
         if (qm && !qm.fallback) { parts.push(...BOT.reply(qm.rule, vars, botRecent(qm.rule.id))); th.botAsk = fx ? { t, fx } : ks ? { t, ks } : { t }; }
       }
       // 🦄 fantezi sürerken sohbette yazdığına da bazen (%12) o fanteziye özel bir soru
-      const fr = !opts.events && !isQ && !cmdEv && !yn && !group && th.botAsk === ask0 && sexPhase() && fantRecent();
+      const fr = !opts.events && !isQ && !cmdEv && !yn && !group && !m.teyit && th.botAsk === ask0 && sexPhase() && fantRecent();
       if (fr && Math.random() < .12) {
         const fx = fantKey(fr), only = { ...rules, rules: (rules.rules || []).filter(FSOR_Q) };
         const qm = only.rules.length && BOT.best(only, `fsor ${fx}`, ch);
@@ -8183,7 +8606,7 @@
         if (qm && !qm.fallback) { parts.push(...BOT.reply(qm.rule, vars, botRecent(qm.rule.id))); th.botAsk = { t }; }
       }
       // 🙋 normal sohbette bazen senin hakkında soru (boyutun, dayanıklılığın): %8, ❤️ Aşk ≥ 30, bu tur başka soru yoksa
-      if (!opts.events && !isQ && !cmdEv && !yn && !group && th.botAsk === ask0 && !sexPhase() && relV(ch, 'aşk') >= 30 && Math.random() < .08) {
+      if (!opts.events && !isQ && !cmdEv && !yn && !group && !m.teyit && th.botAsk === ask0 && !sexPhase() && relV(ch, 'aşk') >= 30 && Math.random() < .08) {
         // 😤 kıskançsa %35 "Benden başka biriyle de yatıyor musun?" (ksSub: değerlerine göre)
         const ks = jealousOf(ch) && Math.random() < .35 ? ksSub(false) : '';
         const t = ks ? 'kiskansor' : pickOne(['boyut', 'dayan', 'gorus']);
@@ -8192,16 +8615,27 @@
         if (qm && !qm.fallback) { parts.push(...BOT.reply(qm.rule, vars, botRecent(qm.rule.id))); th.botAsk = ks ? { t, ks } : { t }; }
       }
       // 👑 onun emri (bu tur başka soru sorulmadıysa): kafa tuttuysa %60, olaydan sonra Dominant %35 / Switch %15, sevişirken sohbette Dominant %20
-      const dc = lv && lv !== 'sub' && th.botAsk === ask0 ? (defy ? .6 : opts.events ? (lv === 'dom' ? .35 : .15) : lv === 'dom' && sexPhase() === 'sexnow' ? .2 : 0) : 0;
+      const dc = lv && lv !== 'sub' && !m.teyit && th.botAsk === ask0 ? (defy ? .6 : opts.events ? (lv === 'dom' ? .35 : .15) : lv === 'dom' && sexPhase() === 'sexnow' ? .2 : 0) : 0;
       if (dc && Math.random() < dc) {
         const lowC = s => String(s || '').toLocaleLowerCase('tr'), pz = posNow(), zp = allParams().find(x => x.who === 'me' && lowC(x.label) === 'zevk');
         const o = pickOne(domOrdersFor(ch, { cat: pz ? lowC(catOfEv(pz).label) : '', done: !!opts.climax, zevk: zp ? paramVal(S().user, zp) : 0 }));
         if (o) { parts.push(pickOne(o.say)); th.botAsk = { t: o.t }; }
       }
       // 💡 bu tur soru / emir yoksa bazen kendi isteği (içki, soyunma, mekan, öpüşme): sorar ya da kendisi yapar; son baloncuk(lar) olarak kalır
-      if (!opts.events && !isQ && !cmdEv && (!yn || wantMore) && !ordK && !why && !group && th.botAsk === ask0) {
+      if (!opts.events && !isQ && !cmdEv && (!yn || wantMore) && !ordK && !why && !group && !m.teyit && th.botAsk === ask0) {
         const wn = wantNow(ch, wantMore);
         if (wn) parts = [...parts.slice(0, 3 - wn.length), ...wn];
+      }
+      // 🍼 taşma (th.fullAt): 🍼 Süt ≥ 95 → önce emzirme ister; 6 mesaj içinde emzirilmezse (Süt hâlâ ≥ 95) Lactation – Overflow kendiliğinden
+      if (!group && ch && ch !== GHOST) {
+        if (relV(ch, 'süt') < 95) th.fullAt = null;
+        else if (th.fullAt == null) {
+          if (!opts.events && !isQ && !cmdEv && !why && th.botAsk === ask0) { const wn = wantNow(ch, 'emzir'); if (wn) { th.fullAt = list.length; parts = [...parts.slice(0, 3 - wn.length), ...wn]; } }
+        } else if (list.length - th.fullAt >= 6) {
+          const ov = allEvents().find(e => e.id === 'mvlf15over');
+          th.fullAt = null;
+          if (ov) { parts.push(pickOne(['Ahh… geç kaldın, taşıyor! 😣🍼', 'Söylemiştim… her yer süt oldu 🙈🍼', 'Dayanamadım, kendiliğinden fışkırıyor 😩🍼'])); eventMessages(ov); clockTick(); save(); draw(); refreshList(); }
+        }
       }
       // 🔀 pozisyon geçişi: geçiş baloncuğu pozisyon cevabının önüne
       if (opts.trans) {
@@ -8594,12 +9028,51 @@
       if (here.length && stage === 'poz') stage = 'mekan';
       const ok = e => !!e && !denies.has(e.id) && !dislikes.has(e.id);
       const lf = evs => [...evs.filter(e => likes.has(e.id)), ...evs.filter(e => !likes.has(e.id))];
-      const lia = liaTips(), now = [];
+      const lia = liaTips(), now = [], nu = nurseTips(ch, sc);
+      if (nu.evs.length && stage !== 'bit') now.push(...lf(nu.evs.filter(ok)).slice(0, 3));
       if (stage === 'bit' && pos) { const cc = moCats().find(c => low(c.label) === 'cumming'); if (cc) now.push(...lf(matchFinishes(cc.id, pos).filter(ok)).slice(0, 4)); }
       if (stage !== 'son' && stage !== 'bit') now.push(...lf(sample(all.filter(e => (here.includes(e.cat) || spotFits(e, sc)) && (!pos || e.id !== pos.id) && ok(e)), 6)).slice(0, 3));
       now.push(...lia.evs);
       if (pos && sexy) now.push(...lf(sample(all.filter(e => e.cat === pos.cat && e.id !== pos.id && ok(e)), 6)).slice(0, 3));
-      return { now: now.filter((e, i) => ok(e) && now.indexOf(e) === i).slice(0, 8), stage, place: sc, likes, dislikes, denies, say: String(lia.say || '').replace(/<[^>]+>/g, '') };
+      return { now: now.filter((e, i) => ok(e) && now.indexOf(e) === i).slice(0, 8), stage, place: sc, likes, dislikes, denies, say: (nu.say && stage !== 'bit' ? nu.say + ' · ' : '') + String(lia.say || '').replace(/<[^>]+>/g, '') };
+    }
+    // 🤱 emzirme isteğinin olayı: 👑 Dominant → Dominant Nursing, Flörtöz → Teasing (%50), yoksa nurseTips, yoksa temel tutuşlar
+    function nursePick(ch) {
+      const tr = ch.traits || [], ok = e => !!e && !(ch.denies || []).includes(e.id) && !(ch.dislikes || []).includes(e.id);
+      const by = t => pickByTitles([t], ch);
+      if (domLv(ch) === 'dom' && Math.random() < .5 && ok(by('Dominant Nursing'))) return by('Dominant Nursing');
+      if (tr.includes('Flörtöz') && Math.random() < .5 && ok(by('Teasing Nursing'))) return by('Teasing Nursing');
+      const evs = nurseTips(ch, (lastScene() || {}).scene || null).evs.filter(ok);
+      return evs.length ? pickOne(evs) : pickByTitles(['Cradle Hold', 'Side-Lying Nursing', 'Lap Nursing', 'Laid-Back Nursing'], ch);
+    }
+    /* 🤱 Nursing önerileri (🎯 Şimdi): 🍼 Süt ≥ 80 (ya da hamile / nursing kıyafeti), 🕰️ saat (gece / sabah), 📍 mekân (banyo / dışarı / yatak),
+     * ruh hali (yorgun · üzgün · 🤝 Güven < 25 → Comfort, 😤 Kıskançlık ≥ 60 → Dominant). Süt < 20 ve hamile değilse sadece Comfort / Lullaby */
+    function nurseTips(ch, sc) {
+      const low = s => String(s || '').toLocaleLowerCase('tr').trim();
+      const nc = moCats().find(c => low(c.label) === 'nursing');
+      if (!nc || !ch || !ch.id) return { evs: [], say: '' };
+      const nev = id => allEvents().find(e => e.id === id && e.cat === nc.id);
+      const sut = relV(ch, 'süt'), preg = !!(ch.fields || {}).hamile, bra = nurseWear(ch);
+      const hr = clockOn() ? Math.floor((((clockNow() % 1440) + 1440) % 1440) / 60) : new Date().getHours();
+      const place = (sc || {}).place || '';
+      const lastMe = low(((list.slice().reverse().find(m => m.from === 'me' && !m.ev)) || {}).text);
+      const sad = /yorgun|üzgün|kötüyüm|moralim|stres|bunald|ağlı|ağla|canım sıkkın|bitkin/.test(lastMe) || relV(ch, 'güven') < 25;
+      const ids = [], says = [];
+      if (sad) { ids.push('mvnu16comfort', 'mvnu15lullaby'); says.push('🫂 Teselli ister gibisin'); }
+      if (relV(ch, 'kıskançlık') >= 60) { ids.push('mvnu13dom'); says.push('😤 Kıskanç, seni göğsüne bastırmak istiyor'); }
+      const milky = sut >= 80 || (preg && sut >= 50) || bra;
+      if (milky || sut >= 20 || preg) {
+        if (sut >= 80) { ids.push('mvnu18morning', 'mvnu17tandem', 'mvnu09pump'); says.push('🍼 Göğüsleri dolu'); }
+        if (hr >= 22 || hr < 5) { ids.push('mvnu10night'); says.push('🌙 Gece'); }
+        else if (hr >= 5 && hr < 11) { ids.push('mvnu18morning'); says.push('🌅 Sabah'); }
+        if (place === 'banyo') ids.push('mvnu11bath');
+        else if (['yatak', 'misafir', 'dag-evi', 'yazlik', 'onun-evi', 'senin-evin'].includes(place)) ids.push('mvnu02side', 'mvnu01cradle');
+        else if (['salon', 'ev-sinema', 'somine'].includes(place)) ids.push('mvnu07lap', 'mvnu04laidback');
+        else if (NURSE_OUT.includes(place)) { ids.push('mvnu14cover'); says.push('🧣 Dışarıdasınız'); }
+        if (bra) { ids.push('mvnu01cradle', 'mvnu08switch'); says.push('👚 Emzirme kıyafeti üstünde'); }
+      }
+      const evs = [...new Set(ids)].map(nev).filter(Boolean);
+      return { evs: (milky || sad) ? evs : evs.filter(e => ['mvnu16comfort', 'mvnu15lullaby', 'mvnu13dom', 'mvnu10night', 'mvnu14cover'].includes(e.id)).slice(0, 2), say: evs.length ? '🤱 ' + says.slice(0, 2).join(', ') : '' };
     }
     function drawLia() {
       const el = $('#liaBar');
@@ -8706,6 +9179,8 @@
         const cz = cumZoneOf(t), x = cz && dressedAt(ch, cz, u);
         return x && Math.random() < .85 ? cumWearOf(x, cz, 'hers') : '';
       }
+      // 🤱 Nursing: göğüs kendiliğinden açılır (emzirme kıyafetinde "show" cümlesi)
+      if (e && low(catOfEv(e).label) === 'nursing') return once('gogus', 'show');
       if (!e || !isPosEv(e)) return '';
       const cat = low(catOfEv(e).label), tags = (e.tags || []).map(low);
       if (cat === 'foreplay') return !u.gogus && !u.kalca && Math.random() < .3 ? wearLine(ch, 't', 'any') : '';
@@ -8779,16 +9254,18 @@
       { k: 'eve', only: true, g: '🔑 Kapıda anahtar sesi… biri eve geliyor!' }
     ];
     function maybeInterrupt(e) {
-      if (!interruptsOn() || !(isPosEv(e) || isFant(e)) || cs.playing) return;
+      // 🤱 Nursing olayları da kesilebilir (NURSE_INT: Covered → biri geliyor, Night → telefon, Morning → alarm)
+      const nk = NURSE_INT[e.id] || (lowTag(catOfEv(e).label) === 'nursing' ? NURSE_INT._ : null);
+      if (!interruptsOn() || !(isPosEv(e) || isFant(e) || nk) || cs.playing) return;
       const n = msgCount();
       if (th.intAt && n - th.intAt < 8) return;
       const fr = fantRecent(), fk = fr && fantKey(fr), gizli = fk === 'fxgizli';
       // 🏖️ açık mekân olayları (havuz, araba, asansör, kamp): "biri görecek" riski, kesinti daha sık ve mekâna özel (FANT_INTERRUPTS.yer…)
       const et = (e.tags || []).map(lowTag), pl = PLACE_INT.find(([t]) => et.includes(t));
-      if (Math.random() >= (gizli ? .22 : pl ? pl[2] : fr ? .12 : .06)) return;
+      if (Math.random() >= (nk ? nk[1] : gizli ? .22 : pl ? pl[2] : fr ? .12 : .06)) return;
       // 🦄 süren fantezinin kendi kesintisi (%70, js/data/fant-interrupts.js): karakter cevabı th.fantInt = [fantezi, sıra] ile gelir
-      const ik = pl ? pl[1] : fk, fp = ik && (Stories.FANT_INTERRUPTS || {})[ik];
-      if (fp && fp.length && Math.random() < .7) {
+      const ik = nk ? nk[0] : pl ? pl[1] : fk, fp = ik && (Stories.FANT_INTERRUPTS || {})[ik];
+      if (fp && fp.length && (nk || Math.random() < .7)) {
         const i = Math.floor(Math.random() * fp.length);
         list.push({ id: Store.uid(), from: 'sys', text: fp[i].g, ts: nowTs() + 1 });
         th.interrupt = null;
@@ -8849,6 +9326,17 @@
         }
         const vc = virginFx(e.evId, charIds);
         if (vc.length) o.onChanges = [...(o.onChanges || []), ...vc];
+        // 🤱 art arda 3 Nursing (araya başka olay girmeden): 🫂 Samimiyet +5, ❤️ Aşk +3 (her 3'te bir)
+        const ne = allEvents().find(x => x.id === e.evId);
+        if (ne && String(catOfEv(ne).label).toLocaleLowerCase('tr') === 'nursing') {
+          th.nurseRun = (th.nurseRun || 0) + 1;
+          charIds.map(byId).filter(Boolean).forEach(k => { k.lastNurse = Date.now(); k.nurseN = (+k.nurseN || 0) + 1; });
+          if (th.nurseRun % 3 === 0) {
+            const r3 = applyOutcome({ text: '', effects: [{ p: 'p:samimiyet', d: 5 }, { p: 'p:ask', d: 3 }] }, charIds);
+            if (r3.changes.length) o.onChanges = [...(o.onChanges || []), ...r3.changes];
+            setTimeout(() => notify('🤱 Üç emzirme art arda: 🫂 Samimiyet +5, ❤️ Aşk +3', '🤱'), 1200);
+          }
+        } else if (ne && !['lactation', 'lactation fantasy'].includes(String(catOfEv(ne).label).toLocaleLowerCase('tr'))) th.nurseRun = 0;
         return o;
       };
       if (!res) return onFx();
@@ -9213,7 +9701,7 @@
     // (hers içinde { sys } = not satırı, beklemeden), hepsi bitince then()
     const siteApi = {
       say: (me, hers, then) => { if (me) { cs.noBot = true; send(me); cs.noBot = false; } else save(); siteLines(hers || [], then); drawSite(); },
-      redraw: () => drawSite(), render: () => render() };
+      redraw: () => drawSite(), render: () => render(), draw: () => { draw(); drawSite(); }, events: evs => askSubs(evs, writeEvents) };
     function siteLines(hers, then) {
       if (!hers.length) { if (then) setTimeout(then, 600); return; }
       const [h, ...rest] = hers;
@@ -9223,8 +9711,8 @@
     function drawSite() {
       const bar = $('#siteBar'), sc = th.site && SITE_CHAT[th.site.k];
       if (!bar || !sc) return;
-      bar.hidden = !!th.site.done;
       bar.innerHTML = th.site.done ? '' : sc.bar(c, th);
+      bar.hidden = !!th.site.done || !bar.innerHTML;
     }
     drawSite();
     if ($('#siteBar')) $('#siteBar').onclick = e => { const b = e.target.closest('[data-sact]'); if (b && !cs.busy) SITE_CHAT[th.site.k].act(c, th, b.dataset.sact, b.dataset.v, siteApi); };
@@ -9325,6 +9813,12 @@
         snap('Olay reddedildi');
         sessSay(stLine(c, 'sertbitti', ['Bitti dedim! Dokunma 😠']));
         notify(`🛑 ${c.name.split(' ')[0]} olayı bitirdi · biraz konuşup yatıştır`, '🛑');
+        return;
+      }
+      // 🥶 CarmenAmor: hediye teklifini reddettiysen küs, sevişmek istemez (özür dile ya da gönlünü hediyeyle al)
+      if (th.amor && !group && c && amCold(c)) {
+        sessSay(pick(AM_COLD_SEX[amType(c)]));
+        notify(`🥶 ${c.name.split(' ')[0]} sana küs · özür dile ya da hediyeyle gönlünü al`, '🥶');
         return;
       }
       snap('Olay');
@@ -9571,6 +10065,14 @@
         input.focus();
       }
       if (t === 'photo') photoSheet();
+      // 💝 CarmenAmor hediyesi: teşekkür + sahne mesajları, karşılığı olay varsa sohbet onu yazar
+      if (t === 'gift' && c) amSheet(c, th, g => {
+        if (cs.busy) { notify('Biraz bekle, karşı taraf yazıyor… ⏳', '⏳'); return; }
+        const of = th.site && th.site.offer, r = amGift(c, g, th, of && of.g === g.id ? of.p : 0);
+        if (!r) return;
+        draw();
+        if (r.e) setTimeout(() => askSubs([r.e], writeEvents), 700);
+      });
       if (t === 'help') drawHelper(true);
       if (t === 'score') { scoreOn(!scoreOn()); b.classList.toggle('on', scoreOn()); draw(); notify(scoreOn() ? '🎯 Bot puanları görünüyor' : '🎯 Bot puanları gizli', '🤖'); }
       if (t === 'interrupts') { interruptsOn(!interruptsOn()); b.classList.toggle('on', interruptsOn()); notify(interruptsOn() ? '📱 Kesintiler açık · telefon, kapı, komşu… fantezilerde daha sık' : '📱 Kesintiler kapalı', '📱'); }
@@ -10409,6 +10911,16 @@
   }
   /* ❔ karakterin soruları ("=sor" + konu) ve cevabın: "evet / hayır" gelince "=cevap" + konu + evet|hayir (+ korunma durumu) kuralı,
    * yes / no: o cevapta tetiklenecek olaylar. ok(ctx): bu soru şimdi sorulabilir mi (cat: şu anki pozisyonun kategorisi) */
+  // 🔁 yönlendirici (BOT.near): teyit sorusu ({w} = kural adı, yoksa düzeltilen kelime) ve "hayır" cevabı.
+  // Bağlam kelimeli kurallar (olay, fantezi, durum, soru-cevap…) yazılan mesajla yarışmaz
+  const TEYIT_ASK = ['Bunu mu demek istedin: "{w}"? 😏', 'Doğru mu anladım, "{w}"? 🙈', 'Şunu mu diyorsun: "{w}"? 😳'];
+  const TEYIT_NO = ['Ne demek istedin peki? 🙈', 'Hmm… o zaman anlamadım, bir daha yazar mısın? 😅', 'Tamam, başka bir şeydi galiba. Anlatsana 😊'];
+  // teyite cevap: yesNo'nun yanında "doğru", "onu dedim", "aynen öyle", "yanlış anladın", "onu demedim"… (önce hayır bakılır: "demek istemedim")
+  const TEYIT_YES_RE = /^(evet|evt|he|hı hı|hıhı|aynen|doğru|dogru|tabi|tabii|tabiki|tamam|ok|okey|olur|öyle|oyle|yes|yep|yeah|kesinlikle|elbette|ta kendisi)(?= |$)|doğru anla|dogru anla|onu de|bunu de|öyle de|oyle de|demek iste|onu kastet|bingo/;
+  const TEYIT_NO_RE = /^(hayır|hayir|yok|yanlış|yanlis|değil|degil|no|nope|ıh|ıhı|olmaz|alakası yok|alakasi yok)(?= |$)|yanlış anla|yanlis anla|(onu|bunu|öyle|oyle) demedim|demek istemedim|kastetmedim|başka bir şey|baska bir sey/;
+  const teyitYn = text => { const t = Stories.Bot.norm(text).trim(); return TEYIT_NO_RE.test(t) ? 'hayir' : TEYIT_YES_RE.test(t) ? 'evet' : yesNo(text); };
+  const NEAR_SKIP = /^=(evt|fant|fx\w*|durum|cevap|sor|fsor|memleket|nedencvp|kacamak|yas|gecispoz|evq\w*|grup\w*|kiskanc\w*|digersex|modcum)$/;
+  const nearSkip = r => /^r_(why|ans)_/.test(r.id) || (r.when || []).some(t => String(t).split('|').some(a => NEAR_SKIP.test(a.trim())));
   const BOT_ASK = {
     sert: { ok: c => ['forward', 'backward'].includes(c.cat), yes: ['Rough', 'Passionate'], no: ['Gentle'] },
     devam: { ok: c => c.cat === 'foreplay', yes: ['Missionary', 'Cowgirl', 'Spooning'], no: ['Kissing', 'Front Hugging'] },
@@ -11308,7 +11820,12 @@
     opus: { ok: c => (!c.sx && c.w >= 3) || !!c.fx, ev: ['Kissing', 'Lap Kissing'],
       ask: ['Şu an seni öpmek istiyorum… izin var mı? 😘', 'Kucağına oturabilir miyim? 😏', 'Yaklaş biraz… dudaklarını özledim 💋'],
       do: ['Konuşmayı bırak… *seni öper* 💋', '*kucağına oturur* Böylesi daha iyi 😏', 'Dayanamadım, gel buraya 😘'],
-      yes: ['Gel o zaman 😘', 'Mmm, bekliyordum 💋', 'Gözlerini kapat 😏'], no: ['Hıh… peki 😒', 'Naz mı yapıyorsun? 😏', 'Tamam, sonra kaçamazsın ama 😌'] }
+      yes: ['Gel o zaman 😘', 'Mmm, bekliyordum 💋', 'Gözlerini kapat 😏'], no: ['Hıh… peki 😒', 'Naz mı yapıyorsun? 😏', 'Tamam, sonra kaçamazsın ama 😌'] },
+    // 🤱 sütü dolu (c.milk: 🍼 Süt ≥ 80 ya da hamile ve ≥ 50): emzirme ister; olay nursePick (saat / mekân / kişilik)
+    emzir: { ok: c => !!c.milk, pick: 'nurse',
+      ask: ['Göğüslerim ağrıyor, çok doldular… biraz rahatlatır mısın? 🍼', 'Sütüm sızıyor bak… emer misin? 🤱', 'Göğüslerim taş gibi oldu, yardım eder misin? 🥺🍼', 'Bluzum ıslandı bile… gel, {olay} yapalım mı? 🍼'],
+      do: ['Dayanamıyorum, çok doldum… gel buraya 🤱', '*bluzunu açıp başını göğsüne çeker* Em 🍼', 'Sormuyorum bile: {olay} 🤱', 'Gel, göğsüm seni bekliyor 🍼'],
+      yes: ['Ohh… teşekkür ederim, çok rahatladım 🥺🍼', 'Gel, kucağıma 🤱', 'Yavaşça… ahh, akıyor 🍼'], no: ['Ah… peki, ama taşacak gibi 😣', 'Tamam… pedlerim ıslanacak ama 🙈', 'Hıh, sonra yalvarırsın 😒🍼'] }
   };
   /* 🌍 memlekete göre istek cümleleri (Memleket özelliği → World.REGIONS anahtarı): istek → [soru, kendisi yapınca]; ev: içki isteğinde o memleketin içkileri.
    * wantNow %60 bunu kullanır (fantezi cümlesi yoksa) */
@@ -11431,6 +11948,17 @@
     'Dürüst': { sevdigi: ['Açık konuşayım: {olay} istiyorum. Yapalım mı?', 'Açık konuşayım: {olay} yapıyoruz 😌'], fantezi: ['Açık konuşayım: {olay} fantezim. Oynar mısın?', 'Açık konuşayım: {olay} oynuyoruz 😌'] },
     'Manipülatif': { sevdigi: ['{olay} yaparsan sana bir sürpriz yaparım… yapalım mı? 😏', 'Bana borçlusun: {olay} 😏'], fantezi: ['{olay} oynarsan bir dileğini yerine getiririm 😏', 'Oyunum, kurallarım: {olay} 😏'] }
   }).forEach(([t, o]) => { if (WANT_PER[t]) { const { like, ...rest } = o; Object.assign(WANT_PER[t], rest); if (like) WANT_PER[t].like = [...(WANT_PER[t].like || []), ...like]; } });
+  // 🤱 emzirme isteği kişiliğe göre: [soru, kendisi yapınca] (utangaç fısıldar, flörtöz Teasing'le gelir…)
+  Object.entries({
+    'Utangaç': ['*fısıldar* Ş-şey… göğüslerim çok doldu, emer misin? 🙈🍼', '*kızararak bluzunu açar* B-bakma öyle… sadece em 😳🍼'],
+    'Flörtöz': ['Ucumu dudaklarına değdirsem ne yaparsın? 😉🍼 Hadi, {olay}?', '*göğsünü dudaklarına sürtüp çeker* Yakalayabilirsen senin 😘🍼'],
+    'Romantik': ['Seni göğsümde tutmak istiyorum… {olay} yapalım mı? 🌹🍼', '*başını okşayarak göğsüne yaslar* Şşş, sadece ikimiz 💞🍼'],
+    'Kibirli': ['Sütüm herkese verilmez. Sana veriyorum, şanslısın 💅🍼', 'Gel. Bir damlasını bile boşa harcama 💁‍♀️🍼'],
+    'Duygusal': ['Seni göğsümde hissetmeye ihtiyacım var… emer misin? 🥺🍼', '*sarılıp göğsüne çeker* Biraz böyle kalalım 💗🍼'],
+    'Şımarık': ['Göğüslerim ağrıyooor, emmezsen küserim 🥺🍼', 'Hıh, sormuyorum: em! 😤🍼'],
+    'Neşeli': ['Süt servisi açıldı! İlk müşteri sen misin? 😄🍼', 'Ta-daa! Taze süt 😆🍼'],
+    'Dürüst': ['Açık konuşayım: göğüslerim doldu, emmeni istiyorum 🍼', 'Açık konuşayım: emziriyorum seni, gel 🍼']
+  }).forEach(([t, l]) => { if (WANT_PER[t]) WANT_PER[t].emzir = l; });
   // karakterin memleket anahtarı (Memleket özelliği, yoksa şehrinden) → WANT_REG
   const regKeyOf = ch => { const R = (Stories.World || {}).REGIONS || {}, n = traitVal(ch || {}, 'Memleket') || ((Stories.World || {}).regionOf ? Stories.World.regionOf((ch || {}).city) : '');
     return Object.keys(R).find(k => R[k] === n) || (R[n] ? n : ''); };
@@ -15323,7 +15851,7 @@
   function randWear(d) {
     const p = boldOf(d), w = [];
     CL.slots.forEach(s => {
-      const n = s.id === 'corap' ? (Math.random() < .6 ? 1 : 0) : 2, pool = CL.items.filter(x => x.slot === s.id && x.style !== 'k');
+      const n = s.id === 'corap' ? (Math.random() < .6 ? 1 : 0) : 2, pool = CL.items.filter(x => x.slot === s.id && x.style !== 'k' && (!NURSE_WEAR.includes(x.id) || (d.fields || {}).hamile));
       for (let i = 0; i < n; i++) {
         const st = Math.random() < p ? 'i' : 'g', free = pool.filter(x => !w.includes(x.id)), pref = free.filter(x => x.style === st);
         const x = pickOne(pref.length ? pref : free);
@@ -15343,6 +15871,10 @@
   }
   const outfitOf = c => c.outfit || {};
   const outfitItems = c => WEAR_ORDER.map(s => clItem(outfitOf(c)[s])).filter(Boolean);
+  // 🤱 emzirme kıyafetleri (clothes.js): rastgele gardıroba sadece hamileyse girer; giyiliyse Nursing olayları 🎯 Şimdi'de öne çıkar
+  const NURSE_WEAR = ['emzirmebluz', 'emzirmesutyen'];
+  const NURSE_OUT = ['park', 'kafe', 'restoran', 'alisveris', 'sinema', 'sahil', 'piknik', 'vapur', 'araba', 'kampus', 'sergi', 'kitapci', 'lunapark', 'is'];
+  const nurseWear = c => Object.values(outfitOf(c)).some(id => NURSE_WEAR.includes(id));
   // bölgeye göre giydiği bir parçanın cümlesi: gogus (elbise / üst / sütyen), kalca (elbise / alt / tanga / çorap), any; çoğu zaman dış katman
   function wearLine(c, kind, zone) {
     const o = outfitOf(c), order = zone === 'gogus' ? ['elbise', 'ust', 'sutyen'] : zone === 'kalca' ? ['elbise', 'alt', 'tanga', 'corap'] : WEAR_ORDER;
@@ -15492,12 +16024,13 @@
     return c && c.id !== 'tr' && !String(city).includes(',') ? `${city}, ${c.name} ${c.flag}` : city;
   }
   // 📭 eksik cevap raporu: bot modunda hiçbir kural tutmayıp yedek cevaba düşen mesajlar (S().botMiss, en fazla 300; aynı mesaj sayılır)
-  function botMiss(text, ch) {
+  // near (🔁 yönlendirici): { rule, sim } → kayda near: [kural id, benzerlik]
+  function botMiss(text, ch, near) {
     const k = Stories.Bot.norm(text).trim();
     if (!k) return;
-    const L = S().botMiss = S().botMiss || [], x = L.find(m => m.k === k);
-    if (x) Object.assign(x, { n: x.n + 1, at: Date.now(), ch: ch.name });
-    else L.unshift({ k, t: String(text).slice(0, 200), n: 1, at: Date.now(), ch: ch.name });
+    const L = S().botMiss = S().botMiss || [], x = L.find(m => m.k === k), nr = near ? { near: [near.rule.id, near.sim] } : {};
+    if (x) Object.assign(x, { n: x.n + 1, at: Date.now(), ch: ch.name }, nr);
+    else L.unshift({ k, t: String(text).slice(0, 200), n: 1, at: Date.now(), ch: ch.name, ...nr });
     if (L.length > 300) L.length = 300;
   }
   // pozisyon: 🗂️ event etiketli kategorideki olay
@@ -15648,6 +16181,8 @@
   const lowTag = x => String(x).toLocaleLowerCase('tr');
   // 🏖️ mekân etiketi → [etiket, kesinti havuzu (FANT_INTERRUPTS), kesinti olasılığı]
   const PLACE_INT = [['havuz', 'yerhavuz', .2], ['araba', 'yeraraba', .15], ['asansör', 'yerasansor', .2], ['kamp', 'yerkamp', .1]];
+  // 🤱 Nursing olayı id → [kesinti havuzu (FANT_INTERRUPTS), olasılık]; _ = diğer Nursing olayları
+  const NURSE_INT = { mvnu14cover: ['nuortu', .3], mvnu10night: ['nugece', .2], mvnu18morning: ['nusabah', .2], _: ['nugenel', .06] };
   const sharedByTag = (g, e) => {
     const et = (e.tags || []).map(lowTag), cat = moCats().find(c => c.id === (e.cat || 'mine')) || {}, ct = (cat.tags || []).map(lowTag);
     return (g.tags || []).some(t => et.includes(lowTag(t))) || (g.ctags || []).some(t => ct.includes(lowTag(t)));
@@ -15950,6 +16485,17 @@
     });
     mo.triggers = trs;
     S().milkSetup1 = 1;
+    save();
+  }
+  /* 🤱 Nursing kurulumu (bir kez, S().nurseSetup1): ⚡ "Süt ≥ 95 → Overflow" eşiği kalkar (sohbette önce emzirme ister, 6 mesajda olmazsa taşar: th.fullAt);
+   * Teasing / Lap Nursing 💗 Uyarılma +30 (Breastfeeding gibi: Uyarılma ≥ 80 → onun Orgazm'ı). Var olanı silmez (sadece o eşiği) */
+  function setupNursing() {
+    const mo = S().monia;
+    if (!mo || S().nurseSetup1 || !(mo.events || []).length) return;
+    mo.triggers = allTriggers().filter(t => t.ev !== 'mvlf15over');
+    const ua = allParams().find(p => p.who !== 'me' && String(p.label).toLocaleLowerCase('tr') === 'uyarılma');
+    if (ua) mo.events.filter(e => ['mvnu12tease', 'mvnu07lap'].includes(e.id)).forEach(e => { e.onEffects = [...(e.onEffects || []).filter(f => f.p !== 'p:' + ua.id), { p: 'p:' + ua.id, d: 30 }]; });
+    S().nurseSetup1 = 1;
     save();
   }
   /* 💞 İlişki kurulumu (bir kez, S().bondSetup): pozisyonlar (event kategorileri) ⚡ olunca 🫂 Samimiyet +1 ve 🤝 Güven +1,
@@ -17503,6 +18049,78 @@
         ${bkChat('🎲 Yelan', [['ev', '📜 🎲 Yelan – Zar Bahsi'], ['her', 'Zarlar benim, kurallar benim. Kaybeden bir parça çıkarır 🎲'], ['me', 'zar at'], ['her', '*zarları avucunda sallar, masaya bırakır* Çift altı. Soyun 🎲😏'], ['note', '🥚 "Çift Altı" egg\'i açıldı. Rol sürdükçe her cevap Yelan\'ın ağzından gelir.']])}`;
     } },
     ...GS_BOOK.map(g => ({ icon: g[1], title: `${g[2]} · ${g[3]}`, sub: g[4], get body() { return gsBookBody(g); } }))] });
+  // 💝 CarmenAmor Kitabı: hediye sistemi (veriler AM_* tablolarından okunur)
+  const AM_TYPE_N = { utangac: '🙈 Utangaç', flort: '😘 Flörtöz', romantik: '💗 Romantik', soguk: '🧊 Soğuk', simarik: '💅 Şımarık' };
+  BOOKS.push({ id: 'amor', icon: '💝', title: 'CarmenAmor Kitabı', sub: 'hediyeler, sevgi, tatmin, arsızlık, pazarlık ve küslük', chips: [`🎁 ${AM_GIFTS.length} hediye`, '🤝 pazarlık'], chapters: [
+    { icon: '📖', title: 'CarmenAmor nasıl çalışır', sub: 'site, sohbet ve 🎁 Hediye', get body() {
+      return `<p><a href="#/amor">CarmenAmor</a> bir tanışma ve hediye sitesi. Kızların kartlarında flört cümleleri, 💗 sevgi kademesi, 😌 tatmini, 😈 arsızlığı ve ona gönderdiğin hediyeler görünür. Kartta teklif yoktur; pazarlık ve istekler sadece <b>sohbette</b> olur.</p>
+        <ul><li><b>💬 Sohbet et</b>: kızla bir CarmenAmor sohbeti açar (ilan kızıysa karakter olarak kaydedilir). Hediye sadece bu sohbetlerde sayılır.</li>
+          <li><b>🎁 Hediye</b>: sohbetin alt araç çubuğunda. Bütün hediyeler her zaman gönderilebilir; teklif ettiği hediye 💌 ile işaretli ve anlaşılan fiyatla görünür.</li>
+          <li><b>💌 Teklif</b>: tatmini düşünce kendisi hediye ister; karşılığında sevdiği bir olayı söz verir. Ne zaman soracağı arsızlığına bağlıdır.</li>
+          <li><b>🤝 Cevabın</b>: düğme yok, yazarak cevap verirsin: kabul, pazarlık ya da ret.</li>
+          <li><b>🥶 Ret</b>: teklifini reddedersen ya da pazarlıkta onu kızdırırsan küser ve sevişmek istemez.</li>
+          <li><b>⏳ Zaman</b>: tatmini saat geçtikçe düşer; düşünce yeniden hediye ister.</li></ul>
+        <p>Bot modu açık olmalı: teklif, pazarlık ve küslük cevapları bot cevabının yerine gelir. 🌿 Gerçekçi Mod açıksa hediyeler bakiyenden düşer.</p>`;
+    } },
+    { icon: '🎁', title: 'Hediyeler', sub: `${AM_GIFTS.length} hediye, 4 kademe`, get body() {
+      const what = ['', 'teşekkür (sohbet aynı yerde sürer)', '📍 buluşma sahnesi: restoran, kafe, sahil ya da sinema', '📍 onun yatak odası + sevdiği bir olay başlar', '📍 lüks sahne (deniz manzaralı süit, balayı süiti, çatı katı) + sevdiği bir olay'];
+      return `<p>Her hediyenin bir <b>kademesi</b> var. Kademe 💗 sevgiyi ve karşılığını belirler; fiyat 😌 tatmini belirler.</p>
+        ${[1, 2, 3, 4].map(tr => `<h4>${AM_TIERS[tr]} <small>· +${AM_PTS[tr]} 💗 · ${what[tr]}</small></h4><table class="bk-t"><tr><th>Hediye</th><th>Fiyat</th></tr>${AM_GIFTS.filter(g => g.t === tr).map(g => `<tr><td>${g.ic} ${esc(g.n)}</td><td>${cmTl(g.p)}</td></tr>`).join('')}</table>`).join('')}
+        <p>Teklif ettiği hediyeyi gönderirsen 💗 ×2, 😌 tatmin ×1,5 ve <b>söz verdiği olay</b> başlar.</p>`;
+    } },
+    { icon: '💗', title: 'Sevgi kademeleri', sub: AM_LOVE.map(l => l[2]).join(' → '), get body() {
+      return `<p>Her hediye kademesine göre 💗 sevgi kazandırır (teklif ettiği hediye iki katı). Reddetmek −2, pazarlıkta teklifini geri çektirmek −3 💗.</p>
+        <table class="bk-t"><tr><th>Kademe</th><th>Gereken 💗</th></tr>${AM_LOVE.map(l => `<tr><td>${l[1]} ${l[2]}</td><td>${l[0]}</td></tr>`).join('')}</table>
+        <p>Yeni kademeye geçince sohbette "💗 yeni kademe" notu çıkar. Kademe hediyeleri kilitlemez.</p>`;
+    } },
+    { icon: '😌', title: 'Tatmin ve doyum', sub: 'kim azla yetinir, kim daha çok ister', get body() {
+      return `<p>Her karakterin bir <b>doyum eşiği</b> var: onu tatmin etmek için ne kadarlık hediye gerektiği. Eşik kişilik türüne göre başlar ve kişiye göre 0,5–1,7 katı değişir.</p>
+        <table class="bk-t"><tr><th>Tür</th><th>Ortalama eşik</th></tr>${Object.entries({ utangac: 250, romantik: 400, flort: 800, soguk: 1200, simarik: 2500 }).map(([k, v]) => `<tr><td>${AM_TYPE_N[k]}</td><td>~${cmTl(v)}</td></tr>`).join('')}</table>
+        <table class="bk-t"><tr><th>Doyum</th><th>Eşik</th><th>Tatmin düşüşü</th></tr>${AM_NEED.map((x, i) => `<tr><td>${x[0]} ${x[1]}</td><td>${i ? `${cmTl(AM_NEED[i - 1][2])} ve üstü` : `${cmTl(x[2])} altı`}</td><td>saatte −${x[3]}</td></tr>`).join('')}</table>
+        <ul><li><b>Tatmin</b> 0–100. İlk tanışmada 20: hemen bir şey ister.</li>
+          <li>Hediye tatmini <b>fiyat ÷ eşik × 60</b> artırır; teklif ettiği hediye ×1,5. Eşiği kadar bir hediye ~60 puan.</li>
+          <li>Tatmin <b>${AM_WANT}</b>'in altına inince yeniden hediye ister. Ne isteyeceği tatmininin ne kadar eksik olduğuna göre seçilir: doyumsuz kız pahalı şeyler ister.</li>
+          <li>💎 Doyumsuz bir kıza eşiğinin dörtte birinden ucuz hediye verirsen burun kıvırır ("Bu mu?! 💅"); karşılık da vermez.</li>
+          <li>90'ı geçince "😌 tatmin oldu" notu çıkar. Sitede her kartta tatmin çubuğu ve "💌 Hediye bekliyor" durumu görünür.</li></ul>`;
+    } },
+    { icon: '😈', title: 'Arsızlık ve teklif zamanı', sub: 'hemen mi, konuşurken mi', get body() {
+      return `<p><b>Arsızlık</b> (0–100) kişilik türünden gelir (💅 Şımarık 75, 😘 Flörtöz 60, 🧊 Soğuk 35, 💗 Romantik 30, 🙈 Utangaç 10). Manipülatif / Asi / Özgüvenli / Kibirli +15, 👑 Dominant +10, Submissive −10, 🔥 İsteklilik Çok Yüksek +10, Düşük / İstemiyor −10.</p>
+        <table class="bk-t"><tr><th>Arsızlık</th><th>Ne zaman sorar</th><th>Nasıl</th></tr>
+          <tr><td>${AM_ARS[2][0]} ${AM_ARS[2][1]} (70+)</td><td>Sohbet açılır açılmaz</td><td>"${esc(AM_PRE[2][1])}…" · cevap vermezsen ısrar eder · reddedince bir kez %10 indirimle diretir</td></tr>
+          <tr><td>${AM_ARS[1][0]} ${AM_ARS[1][1]} (40–69)</td><td>Sen ${AM_ARS[1][2]} mesaj yazdıktan sonra</td><td>"${esc(AM_PRE[1][0])}…"</td></tr>
+          <tr><td>${AM_ARS[0][0]} ${AM_ARS[0][1]} (0–39)</td><td>Sen ${AM_ARS[0][2]} mesaj yazdıktan sonra</td><td>"${esc(AM_PRE[0][0])}"</td></tr></table>
+        <p>Sadece tatmini ${AM_WANT}'in altındayken ve küs değilken sorar. Teklifte hediye, fiyatı ve karşılığında söz verdiği olay yazar.</p>`;
+    } },
+    { icon: '🤝', title: 'Kabul, pazarlık, ret', sub: 'yazarak cevap ver', get body() {
+      return `<p>Teklif varken yazdığın mesaj şu sırayla okunur:</p>
+        <table class="bk-t"><tr><th>Yazarsan</th><th>Ne olur</th></tr>
+          <tr><td>Rakam: "300 olur mu?", "500 veririm"</td><td>🤝 Pazarlık. En düşük razı olduğu fiyat: Arsız %85, Cesur %70, Çekingen %50. Altındaysa ortadan bir fiyat söyler; 3 denemede anlaşamazsan teklifi geri çeker.</td></tr>
+          <tr><td>"pahalı", "indirim", "ucuz", "pazarlık", "biraz in"</td><td>🤝 Fiyatı kendisi düşürür ya da (utangaç / romantikse çoğu zaman) bir alt kademeden daha ucuz bir hediyeye razı olur. Israr edersen geri çeker.</td></tr>
+          <tr><td>"hayır", "olmaz", "almam", "bugün değil", "vazgeç"</td><td>❌ Ret: −2 💗, 🥶 küser (arsızsa önce bir kez diretir).</td></tr>
+          <tr><td>"tamam", "olur", "alırım", "anlaştık", "evet"</td><td>✅ Hediye anlaşılan fiyattan gider, teşekkür eder, söz verdiği olay başlar.</td></tr>
+          <tr><td>Başka bir şey</td><td>Sohbet normal sürer; 😈 arsızsa iki mesajda bir teklifini hatırlatır.</td></tr></table>
+        ${bkChat('💅 Şımarık, 😈 arsız', [['her', '💌 Bak ne istiyorum: Bana 👠 Topuklu ayakkabı hediye edersen… 🎭 Lap Dance senin 😈 (1.200 ₺)'], ['me', '700 olur mu?'], ['her', 'O kadar olmaz… 1.060 ₺ desen? 😏'], ['me', 'hayır'], ['her', 'Emin misin? 😏 950 ₺ olsun, son kez soruyorum'], ['me', 'tamam'], ['note', '🎁 👠 Topuklu ayakkabı · 💌 onun isteği · +90 💗 · 😌 tatmin 78']])}`;
+    } },
+    { icon: '💃', title: 'Kendini övme', sub: 'vücuduna ve pozisyonlarına göre', get body() {
+      const row = (k, when) => `<tr><td>${when}</td><td>${AM_BRAG[k].map(s => esc(s.replace('{cup}', '90 DD').replace('{pos}', 'Doggy'))).join('<br>')}</td></tr>`;
+      return `<p>Teklif ederken, pazarlıkta direnirken, karşı fiyat söylerken, ısrar ederken ve hatırlatırken cümlesinin sonuna kendini öven bir söz ekleyebilir. Olasılık arsızlığına bağlı: 😈 %80, 😏 %50, 🙈 %20. Söz, karakterin özelliklerine uyan adaylardan rastgele seçilir; ❤️ sevdiği pozisyon varsa daha sık o gelir.</p>
+        <table class="bk-t"><tr><th>Ne zaman</th><th>Örnekler</th></tr>${row('bigBoob', '🍒 Boob Size 90+')}${row('smallBoob', '🍒 Boob Size 75 ve altı')}${row('bigButt', '🍑 Butt Size L, XL')}${row('smallButt', '🍑 Butt Size XS, S')}
+          ${row('tight', '🌸 Pussy Size Tight / Very / Extremely Tight')}${row('curvy', '⚖️ Weight Curvy, Chubby')}${row('slim', '⚖️ Weight Very Thin, Thin, Slim')}${row('exp', '🔥 Experience Much, A lot, Great')}${row('fresh', '🔥 Experience Virgo, Little')}
+          ${row('pos', '❤️ sevdiği pozisyon (ya da sevdiği bir olay)')}${row('any', 'herkes')}${row('shy', '🙈 Utangaç türü (sadece bunlar)')}</table>`;
+    } },
+    { icon: '🥶', title: 'Küslük ve barışma', sub: 'reddedince sevişmek istemez', get body() {
+      return `<p>Teklifini reddedersen ya da pazarlıkta teklifini geri çektirirsen <b>3 saat küser</b>:</p>
+        <ul><li>📜 Olay yazamazsın: "${esc(AM_COLD_SEX.romantik[0])}", "${esc(AM_COLD_SEX.simarik[0])}"</li>
+          <li>Sevişme isteğine ("sevişelim", "soyun", "yatağa gel"…) ret, diğer mesajlarına soğuk kısa cevaplar: "${esc(AM_COLD.flort[1])}", "${esc(AM_COLD.soguk[0])}"</li>
+          <li><b>🙏 Özür dilersen</b> ("özür dilerim", "affet", "barışalım") barışma şartı olarak yeni bir hediye ister.</li>
+          <li><b>Barışmak için</b>: istediği hediyeyi gönder ya da tatminini 50'nin üstüne çıkaracak bir hediye ver. Küçük bir hediye yetmez: "${esc(AM_STILLCOLD.simarik[0])}"</li>
+          <li>3 saat geçince kendiliğinden yatışır. Sitede kartında "🥶 Sana küs" yazar.</li></ul>`;
+    } },
+    { icon: '💬', title: 'Kişiliğe göre cevaplar', sub: 'teşekkür, flört, pazarlık', get body() {
+      return `<p>Cevaplar kişiliğine göre 5 türden birinden gelir (ilk uyan kişilik):</p>
+        <table class="bk-t"><tr><th>Tür</th><th>Kişilikler</th></tr>${Object.entries(AM_TYPE).map(([k, ps]) => `<tr><td>${AM_TYPE_N[k]}</td><td>${ps.join(', ')}</td></tr>`).join('')}<tr><td>${AM_TYPE_N.flort}</td><td>diğerleri</td></tr></table>
+        <table class="bk-t"><tr><th>Tür</th><th>☕ Küçük</th><th>💎 Lüks</th><th>Sitede flört</th></tr>${Object.keys(AM_TYPE_N).map(k => `<tr><td>${AM_TYPE_N[k]}</td><td>${esc(AM_THX[k][1][0].replace('{g}', '🌹 gül'))}</td><td>${esc(AM_THX[k][4][0].replace('{g}', '💍 Yüzük'))}</td><td>${esc(AM_FLIRT[k][0])}</td></tr>`).join('')}</table>`;
+    } }] });
   /* ❓ Sorular Kitabı: karakteri tanımak için sorabileceğin sorular. Bölümler bot-rules.js'teki r_q* kurallarından okunur
    * (kural kimliğinin başı → ilk uyan bölüm; son bölüm geri kalan hepsi). Örnek cümleler "when" seçeneklerinden, "cevaba bakan" traits / note'tan */
   const QB_CH = [
@@ -17758,6 +18376,71 @@
           <li>Hitap, kişilik eki ve yazım tarzı diğer cevaplardaki gibi eklenir.</li></ul>`;
     } },
     ...NB_CH.map(([icon, title, sub], i) => ({ icon, title, sub, get body() { return nbBody(i); } }))] });
+  /* 🔁 Anlamadığında Kitapçığı: yazdığın mesaja kural tutmayınca ne olur (🔁 yönlendirici BOT.near, 🙈 teyit sorusu, 💬 yedek cevap, 📭 eksik cevaplar).
+   * Örnek tablosu canlı hesaplanır (YD_EX mesajları, özelliksiz bir karakterle); eşikler botReply → moodBest sonundaki yönlendiriciyle aynı olmalı */
+  const YD_EX = ['donsene artik', 'gogslerin cok guzel', 'opusmek istiyorum', 'dudaklarını ozledim', 'nerelsin', 'nasılsn', 'kalcani kaldir', 'yeni araba aldım', 'bugün işe gittim'];
+  const ydRules = () => { const R = Stories.BOT_RULES || { rules: [] }; return { ...R, rules: (R.rules || []).filter(r => !String(r.id).startsWith('r_gc_')) }; };
+  const ydExBody = () => {
+    const R = ydRules(), ch = { name: '', traits: [] }, BOT = Stories.Bot;
+    const rows = YD_EX.map(t => {
+      const b = BOT.best(R, t, ch, true);
+      if (b && !b.fallback) return `<tr><td class="no-i18n">"${esc(t)}"</td><td>${esc(b.rule.name || b.rule.id)}</td><td>—</td><td>✅ Zaten anlar</td></tr>`;
+      const n = BOT.near(R, t, ch, nearSkip);
+      const what = !n || n.sim < .45 ? '💬 Yedek cevap' : n.sim >= .75 ? '🔁 Doğrudan o kural' : '🙈 Teyit sorar';
+      return `<tr><td class="no-i18n">"${esc(t)}"</td><td>${n && n.sim >= .45 ? esc(n.rule.name || n.rule.id) : '—'}</td><td>${n ? Math.round(n.sim * 100) + '%' : '—'}</td><td>${what}</td></tr>`;
+    });
+    return `<table class="bk-t"><tr><th>Yazdığın</th><th>En yakın kural</th><th>Benzerlik</th><th>Ne olur</th></tr>${rows.join('')}</table>`;
+  };
+  BOOKS.push({ id: 'yedek', icon: '🔁', title: 'Anlamadığında Kitapçığı', sub: 'yazdığını anlamazsa ne yapar', chips: ['kitapçık', '🤖 bot modu'], chapters: [
+    { icon: '📖', title: 'Anlamadığında Kitapçığı nasıl okunur', sub: 'mesajın hangi sırayla anlaşılır', get body() {
+      return `<p>🤖 <b>Bot modunda</b> karakter senin mesajını kurallarla anlar: her kuralın tetik kelimeleri var ("dön", "kaç yaşındasın", "seni seviyorum"…). Mesajın hiçbir kurala uymazsa hemen pes etmez, şu sırayla dener:</p>
+        <ol><li><b>Kurallar</b>: önce tam eşleşme, sonra gevşek eşleşme (kelimeler başka sırada ya da 3+ kelimelik kuralda biri eksik).</li>
+          <li><b>🔁 Yönlendirici</b>: tutmadıysa yazım hatası, Türkçe harf ya da ek farkı olabilir mi diye en yakın kurala bakar.</li>
+          <li><b>🙈 Teyit sorusu</b>: emin değilse "Bunu mu demek istedin?" diye sorar.</li>
+          <li><b>💬 Yedek cevap</b>: hiçbir şeye benzemiyorsa sohbet kopmasın diye bir teklif ya da soru gelir.</li></ol>
+        <p>Bu kitapçık bu dört adımı anlatır. Kuralların listesi: 🗣️ <a href="#/kitap/komut/0">Komutlar</a>, 💐 <a href="#/kitap/ovgu/0">Övgü</a>, ❓ <a href="#/kitap/soru/0">Sorular</a>.</p>`;
+    } },
+    { icon: '🔁', title: 'Yönlendirici', sub: 'yazım hatası, Türkçe harf, ek farkı', get body() {
+      return `<p>Mesajın hiçbir kurala tutmadıysa her kuralın kelimeleriyle tek tek karşılaştırılır. Her kelime bir puan alır:</p>
+        <table class="bk-t"><tr><th>Fark</th><th>Örnek</th><th>Puan</th></tr>
+          <tr><td>Türkçe harfsiz yazım</td><td>"gogus" → göğüs, "ozledim" → özledim</td><td>%100</td></tr>
+          <tr><td>Ek farkı</td><td>"dönsene" → dön</td><td>%90</td></tr>
+          <tr><td>Bir harf hatası (5+ harfli kelimede)</td><td>"nerelsin" → nereli, "gogsler" → göğüs</td><td>%70</td></tr>
+          <tr><td>Kelime yok</td><td>—</td><td>%0</td></tr></table>
+        <ul><li><b>Benzerlik</b> = kuralın kelimelerinin ortalaması. Sıra önemli değil; mesajındaki bir kelime kuralın tek kelimesini karşılar.</li>
+          <li><b>Eksik kelime</b>: sadece 3+ kelimelik kuralda biri eksik olabilir, o zaman diğerleri tam tutmalı.</li>
+          <li><b>Harf hatası</b>: ilk iki harf aynı olmalı. Böylece "aldım" "azdım" sanılmaz.</li>
+          <li><b>%75 ve üstü</b>: karakter sormadan o kurala göre cevap verir; komutsa olay da olur.</li>
+          <li><b>%45–75</b>: 🙈 teyit sorusu sorar (grup sohbetinde sormaz, yedek cevap verir).</li>
+          <li><b>%45 altı</b>: 💬 yedek cevap.</li>
+          <li>Olay, fantezi, durum ve soru-cevap için olan iç kurallar yönlendiriciyle yarışmaz; sadece senin yazabileceğin kurallar.</li></ul>
+        <p><b>Canlı örnekler</b> (şu anki kurallarla, özelliksiz bir karakter için):</p>${ydExBody()}`;
+    } },
+    { icon: '🙈', title: 'Teyit sorusu', sub: '"Bunu mu demek istedin?" · evet / hayır', get body() {
+      const li = a => a.map(x => `<li>"${esc(x)}"</li>`).join('');
+      return `<p>Yönlendirici emin değilse (%45–75) karakter kendi ağzıyla sorar. Tırnak içinde en yakın kuralın adı yazar (ör. "nerelisin").</p>
+        <ul>${li(TEYIT_ASK.map(x => x.replace('{w}', 'nerelisin')))}</ul>
+        <ul><li><b>Evet</b> ("evet", "doğru", "aynen öyle", "onu dedim", "onu demek istedim", "ta kendisi", "tabi"…): ilk mesajın o kuralı tutmuş gibi baştan işlenir; komutsa olay olur, emirse itaat eder ya da kafa tutar.</li>
+          <li><b>Hayır</b> ("hayır", "yok", "yanlış anladın", "onu demedim", "başka bir şey", "alakası yok"…): ne demek istediğini sorar:</li></ul>
+        <ul>${li(TEYIT_NO)}</ul>
+        <p>Evet ya da hayır yerine başka bir şey yazarsan soru unutulur, yeni mesajın normal anlaşılır. Teyit sorduğu turda başka soru, istek ya da durum baloncuğu eklemez; soru hep son baloncuktur.</p>`;
+    } },
+    { icon: '💬', title: 'Hiç anlamazsa', sub: 'yedek cevap, teklif ve soru', get body() {
+      const fb = (ydRules().rules || []).filter(r => !(r.when || []).filter(Boolean).length && (r.reply || []).some(x => String(x).trim()));
+      const [ob, oi] = bookIdx('Sohbet kopmasın');
+      return `<p>Mesajın hiçbir kurala benzemiyorsa (%45 altı) <b>yedek cevap</b> kuralı seçilir (kelimesi olmayan kurallar, kişiliğe ve yaşa göre). Ama yedek cümle çoğu zaman atılır, yerine sohbeti sürdüren bir şey gelir:</p>
+        <ul><li>%50 <b>kendi isteği</b>: içki, soyunma, mekan, öpüşme…</li>
+          <li>yoksa <b>bir soru</b>: 🔥 İsteklilik'ine ve ❤️ sevdiği olaylara göre ("{olay} yapalım mı?"). Ayrıntısı: ❔ <a href="#/kitap/${ob}/${oi}">Sohbet kopmasın</a>.</li></ul>
+        <table class="bk-t"><tr><th>Yedek kural</th><th>Örnek</th><th>Kişilik</th></tr>${fb.map(r => `<tr><td><b>${esc(r.name || r.id)}</b></td><td>${(r.reply || []).slice(0, 2).map(s => `"${esc(s)}"`).join('<br>')}</td><td>${esc((r.traits || []).join(', ') || '—')}</td></tr>`).join('')}</table>`;
+    } },
+    { icon: '📭', title: 'Eksik cevaplar', sub: 'anlamadığı mesajlar nerede toplanır', get body() {
+      const L = S().botMiss || [], nN = L.filter(x => x.near).length;
+      return `<p>Yedek cevaba düşen, yönlendirilen ya da teyit sorulan her mesaj 🧭 CarmenGuide → <a href="#/deney">🧪 Bot deneyi</a>'nde <b>📭 Eksik cevaplar</b> listesine yazılır. Şu an <b>${L.length}</b> mesaj var${nN ? `, <b>${nN}</b> tanesi yönlendirildi` : ''}.</p>
+        <ul><li>Aynı mesaj tekrar gelirse sayısı artar (×3); en çok tekrarlanan başta.</li>
+          <li>Yönlendirilen mesajın yanında <b>🔁 ≈ kural (%)</b> yazar: hangi kurala ne kadar benzediği. Sık görülüyorsa o kuralın kelimelerine eklemek iyi olur (🤖 Bot editörü).</li>
+          <li>Mesaja dokununca deneyde denersin.</li></ul>
+        <p><b>Yakında</b>: mesajın ne olduğunu (soru mu, duygu, konu) anlayıp ona göre yedek cevap; "nerelisin", "ne iş yapıyorsun" gibi sorulara karakterin kendi bilgileriyle cevap; deneyde "kurala ekle" düğmesi.</p>`;
+    } }] });
   /* 🎭 Kişilik Kitabı: her kişilik nasıl cevap verir. Bölümler Stories.Traits 💫 Kişilik listesinden; içerik bot-rules.js "🎭 Kişilik" kuralları (r_pk_*),
    * başka kategorilerdeki kişilik varyantları (traits ya da adında "(kişilik)"), PERSONA cevap eki, QFRAME soru çerçevesi. + 😤 Kıskançlık, ⌨️ Yazım tarzı */
   const KP_TRAITS = () => (((Stories.Traits || {}).groups || []).find(g => g.id === 'personality') || { items: Object.keys(PERSONA) }).items;
@@ -18494,7 +19177,15 @@
         const evs = allEvents().filter(e => lowS(catOfEv(e).label) === 'nursing');
         return `<p>📜 Olay → 🍼 Lactation sekmesinde <b>🤱 Nursing</b>. Fantezi sayılmaz: Cow Girl, Elf gibi süren fantezi bozulmaz, emzirirken o fanteziye özel süt gelir. Her biri 🍼 Süt'ü düşürür; sonra karakter miktarına ve kalitesine göre konuşur.</p>
           <table class="bk-t"><tr><th>Olay</th><th>Ne olur</th><th>🍼</th><th>🥛</th></tr>${evs.map(evRow).join('')}</table>
-          <p>Her çeşidin 8 cevabı, ayrıca <b>utangaç</b>, <b>flörtöz</b> ve <b>romantik</b> kızların kendi cevapları var. Eat'teki <b>Breastfeeding</b> (onu orgazma götüren emme) ayrı kalır.</p>`;
+          <p>Her çeşidin 8 cevabı, ayrıca <b>utangaç</b>, <b>flörtöz</b> ve <b>romantik</b> kızların kendi cevapları var. Eat'teki <b>Breastfeeding</b> (onu orgazma götüren emme) ayrı kalır.</p>
+          <h4>🤱 Sohbette</h4><ul>
+          <li><b>🎯 Şimdi</b>: 🍼 Süt ≥ 80 → Morning, Double Breast, Nurse & Pump · gece Night · sabah Morning · banyoda Bath · yatakta Side-Lying / Cradle · salonda Lap / Laid-Back · dışarıda (park, kafe, araba…) Covered · yorgun / üzgünsen ya da 🤝 Güven &lt; 25 Comfort / Lullaby · 😤 Kıskançlık ≥ 60 Dominant · emzirme kıyafeti giyiliyse Cradle / Switch.</li>
+          <li><b>Kendisi ister</b>: Süt ≥ 80 (hamileyse ≥ 50) iken ara sıra "Emer misin?" der; kişiliğine göre (utangaç fısıldar, flörtöz Teasing'le gelir, 👑 Dominant sormadan başlar). "Evet" → olay olur.</li>
+          <li><b>Taşma</b>: Süt ≥ 95 → önce ister; 3 turda emzirilmezse <b>Lactation – Overflow</b> kendiliğinden.</li>
+          <li><b>Zincir</b>: art arda 3 Nursing → 🫂 Samimiyet +5, ❤️ Aşk +3. Teasing ve Lap Nursing 💗 Uyarılma +30 (onu orgazma götürebilir).</li>
+          <li><b>👗 Kıyafet</b>: Nursing olunca göğsü kendiliğinden açılır. Gardıropta 🍼 Emzirme sütyeni ve 🤱 Önden düğmeli emzirme bluzu (rastgele sadece hamilelere).</li>
+          <li><b>📱 Kesintiler</b>: Covered → biri geliyor, Night → telefon, Morning → alarm.</li>
+          <li><b>🩺 Klinik</b>: son emzirme, toplam sayı, taşmasına kalan saat · <b>🏙️ CarmenCity</b>: sütü olan kız gündüz 🌳 Park'ta emzirme molasında; dokununca sohbet bankta başlar · <b>💝 CarmenAmor</b>: dileği bazen bir Nursing olayı (sabah Morning Nursing).</li></ul>`;
       } }] });
   }
   /* 📚 Kitaplık düzeni: her konu tek kitapta. ✨ Carmen 2.0 ve 🎃 Halloween kitapçıkları konularına dağıtılır; Carmen Kitabı'nda
@@ -18573,12 +19264,12 @@
         <li><b>Cevap</b>: bot modunda karakter o duruma uyan cevaplardan biriyle karşılık verir.</li>
         <li>Hepsini görmek ve denemek için 🧭 CarmenGuide → <a href="#/kesinti">📱 Kesinti deneyi</a>.</li></ul>` });
     // 🗂️ raf sırası
-    const ORDER = ['carmen', 'bot', 'seans', 'olay', 'fantezi', 'sut', 'soru', 'onun', 'ovgu', 'komut', 'neden', 'kisilik', 'grup', 'ulke', 'internet', 'oyun', 'genshin'];
+    const ORDER = ['carmen', 'bot', 'seans', 'olay', 'fantezi', 'sut', 'soru', 'onun', 'ovgu', 'komut', 'neden', 'yedek', 'kisilik', 'grup', 'ulke', 'internet', 'oyun', 'genshin', 'amor'];
     BOOKS.sort((a, b) => ORDER.indexOf(a.id) - ORDER.indexOf(b.id));
   }
   // 📚 raflar (🧭 CarmenGuide): [başlık, açıklama, kitaplar]
-  const BOOK_SHELVES = [['🧭 Kullanım', 'uygulama, bot ve seans', ['carmen', 'bot', 'seans']], ['📚 Başvuru', 'olaylar, fanteziler, süt, sorular, övgüler, komutlar, nedenler, kişilikler, grup, memleketler', ['olay', 'fantezi', 'sut', 'soru', 'onun', 'ovgu', 'komut', 'neden', 'kisilik', 'grup', 'ulke']],
-    ['🌐 Dünya', 'siteler ve oyunlar', ['internet', 'oyun', 'genshin']]];
+  const BOOK_SHELVES = [['🧭 Kullanım', 'uygulama, bot ve seans', ['carmen', 'bot', 'seans']], ['📚 Başvuru', 'olaylar, fanteziler, süt, sorular, övgüler, komutlar, nedenler, anlamadığında, kişilikler, grup, memleketler', ['olay', 'fantezi', 'sut', 'soru', 'onun', 'ovgu', 'komut', 'neden', 'yedek', 'kisilik', 'grup', 'ulke']],
+    ['🌐 Dünya', 'siteler ve oyunlar', ['internet', 'oyun', 'genshin', 'amor']]];
   /* 📜 Olay Kitabı: her olay nasıl tetiklenir (📜 elle, 🗣️ komut, ❔ karakterin sorusu, 🔄 başka pozisyon, 💡 Lia).
    * Bölümler olay kategorileri (senin eklediklerin de); 🔍 arama olay adıyla bulur. Komut cümleleri bot-rules.js'teki komut kurallarından okunur */
   const EVB_ASK = { sert: 'Daha sert mi istiyorsun?', devam: 'Devam edelim mi?', agiz: 'Ağzıma almamı ister misin?', arka: 'Arkadan denemek ister misin?', yala: 'Beni yalar mısın?',
@@ -19004,7 +19695,7 @@
     const drawMiss = () => {
       const L = (S().botMiss || []).slice().sort((a, b) => b.n - a.n || b.at - a.at);
       mbox.innerHTML = `<div class="sec-title" style="margin-top:0">📭 Eksik cevaplar <small>· sohbette hiçbir kural tutmayıp yedek cevaba düşen mesajlar (${L.length})</small></div>
-        ${L.length ? `<div class="lab-mlist">${L.map(x => `<div class="lab-mrow"><button type="button" class="lab-mtx" data-mtry="${esc(x.k)}"><b>${esc(x.t)}</b><small>×${x.n} · ${esc(x.ch || '')} · ${esc(fmtTime(x.at))}</small></button><button type="button" class="lab-mx" data-mdel="${esc(x.k)}" aria-label="Sil">✕</button></div>`).join('')}</div>
+        ${L.length ? `<div class="lab-mlist">${L.map(x => `<div class="lab-mrow"><button type="button" class="lab-mtx" data-mtry="${esc(x.k)}"><b>${esc(x.t)}</b><small>×${x.n} · ${esc(x.ch || '')} · ${esc(fmtTime(x.at))}${x.near ? ` · 🔁 ≈ ${esc(x.near[0])} (${Math.round(x.near[1] * 100)}%)` : ''}</small></button><button type="button" class="lab-mx" data-mdel="${esc(x.k)}" aria-label="Sil">✕</button></div>`).join('')}</div>
           <button type="button" class="btn ghost block sm" data-mclear="1" style="margin-top:8px">🧹 Listeyi temizle</button>`
         : '<div class="about">Henüz yok. Bot modunda karakterin anlamadığı (yedek cevap verdiği) mesajlar burada toplanır; dokununca burada denersin, sonra Bot editöründe kuralını yazarsın.</div>'}`;
     };
@@ -20042,6 +20733,7 @@
   setupPreCum();
   setupEat();
   setupMilk();
+  setupNursing();
   setupBond();
   fixEvents1();
   fixZevk1();

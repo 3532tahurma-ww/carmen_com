@@ -1,6 +1,13 @@
-# Yarı-yapay-zeka yedek cevap (fikir — uygulanmadı)
+# Yarı-yapay-zeka yedek cevap
 
-Durum: sadece fikir. Henüz kod yok.
+Durum: **Faz 1 uygulandı (v775)** — `Stories.Bot.near` + `moodBest` sonunda yönlendirici + teyit sorusu + `botMiss.near`. Faz 2 ve 3 bekliyor.
+
+Faz 1'de plandan farklar:
+- Levenshtein ≤ 1 (yer değiştirme dahil) sadece ilk 2 harf aynıysa ("aldım" ≠ "azdım").
+- Bir mesaj kelimesi tek terimi karşılar; eksik terim varsa diğerleri tam tutmalı.
+- Teyit sorusu kuralın adını gösterir ("Bunu mu demek istedin: "nerelisin"?"). Grupta teyit yok, sadece ≥ 0.75 yönlendirme.
+- "Hayır" şimdilik netleştirme cümlesi (`TEYIT_NO`); Faz 2'de besteciye bağlanacak.
+- Bağlam kelimeli kurallar (`NEAR_SKIP`) yarışmaz; `EVQ_RE`, `WHY_RE`, `repeatEv`, `domOrder`, `MEM_RE` kaynakları henüz eklenmedi (sadece kurallar).
 
 ## Mevcut durum
 - Yedek cevap = `when: []` kuralı. Sadece 6 tane var (4'ü yaşa göre: `r_c4_yedek_*`, 2'si genel). Mesajın içeriğine bakılmıyor.

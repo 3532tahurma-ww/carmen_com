@@ -2347,4 +2347,10 @@ Stories.I18n.add({
   'Ah… yıllardır böyle gelmemiştim': 'Ah… I haven\'t come like this in years',
   'Genç adam… beni yeniden yirmilerime götürdün': 'Young man… you took me back to my twenties',
   'Bu bir sırrımız olsun tatlım': 'Let this be our secret sweetie',
+  'Bunu mu demek istedin: "{v}"?': 'Is this what you meant: "{v}"?',
+  'Doğru mu anladım, "{v}"?': 'Did I get that right, "{v}"?',
+  'Şunu mu diyorsun: "{v}"?': 'Are you saying: "{v}"?',
+  'Ne demek istedin peki?': 'So what did you mean?',
+  'Hmm… o zaman anlamadım, bir daha yazar mısın?': 'Hmm… then I didn\'t get it, can you write it again?',
+  'Tamam, başka bir şeydi galiba. Anlatsana': 'Okay, it was something else then. Tell me',
 });

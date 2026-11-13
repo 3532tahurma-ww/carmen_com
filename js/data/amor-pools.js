@@ -14,7 +14,10 @@ Amor.NAMES = {
     'Ekin', 'Mavi', 'Nisan', 'Elif Naz', 'Zeynep Su', 'Ecrin', 'Hira', 'Lavin', 'Melis Su',
     'Ahsen', 'Almila', 'Arya', 'Asude', 'Ayda', 'Bade', 'Belinay', 'Ceylin', 'Deren', 'Derin', 'Elanur', 'Elvin', 'Esila',
     'Eslem', 'Esmanur', 'Hiranur', 'İlkim', 'Lal', 'Lidya', 'Melisa', 'Meva', 'Miray', 'Naz', 'Nefes', 'Pera', 'Sahra',
-    'Selen', 'Serra', 'Zeren', 'Yüsra', 'Asmin', 'Liya', 'Mihra', 'Rana'
+    'Selen', 'Serra', 'Zeren', 'Yüsra', 'Asmin', 'Liya', 'Mihra', 'Rana',
+    'Aysu', 'Beliz', 'Eliz', 'Elzem', 'Esil', 'Iraz', 'İklim', 'Kumsal', 'Lavinya', 'Nilsu', 'Neva', 'Peri', 'Sare', 'Serin',
+    'Umay', 'Yade', 'Zeyna', 'Ahu', 'Alara', 'Ayza', 'Elyaz', 'Erva', 'Feyza', 'Hazel', 'İnci', 'Leya', 'Lorin', 'Melin',
+    'Meryem', 'Sanem', 'Zerda', 'Bilgesu', 'Dora', 'Elya', 'Vera', 'Ekinsu'
   ],
   modern: [
     'Ece', 'Defne', 'Melis', 'Selin', 'İrem', 'Ceren', 'Damla', 'Ezgi', 'Cansu', 'Buse', 'Dilara', 'Simge', 'Gamze', 'Begüm',
@@ -22,7 +25,10 @@ Amor.NAMES = {
     'İlayda', 'Irmak', 'Melike', 'Nazlıcan', 'Sena', 'Sude', 'Şeyma', 'Tuğçe', 'Yağmur', 'Gizem', 'Sıla', 'Seray', 'Feza',
     'Aybüke', 'Ayça', 'Başak', 'Bensu', 'Beste', 'Cansel', 'Çağla', 'Ecem', 'Esin', 'Gökçe', 'Hilal', 'İlkay', 'Kardelen',
     'Lalin', 'Nihan', 'Öznur', 'Rabia', 'Sedef', 'Selenay', 'Sevde', 'Simay', 'Şevval', 'Yaprak', 'Bahar', 'Burçin', 'Ceyda',
-    'Dicle', 'Esma', 'Gülce', 'Melda', 'Özüm', 'Zehra'
+    'Dicle', 'Esma', 'Gülce', 'Melda', 'Özüm', 'Zehra',
+    'Aleyna', 'Ayşenur', 'Berra', 'Beyza', 'Ceylan', 'Dilan', 'Dilay', 'Ecenur', 'Fulya', 'Hümeyra', 'Kevser', 'Pelinsu',
+    'Rümeysa', 'Selcan', 'Şimal', 'Asena', 'Aslıhan', 'Berrak', 'Betül', 'Neslişah', 'Nisanur', 'Seren', 'Sevcan', 'Gülnur',
+    'Didar', 'Eylem', 'Hazan', 'Mercan', 'Sırma', 'Gülin', 'Dide', 'Nida', 'Tansu'
   ],
   klasik: [
     'Zeynep', 'Elif', 'Merve', 'Büşra', 'Esra', 'Kübra', 'Tuğba', 'Özge', 'Burcu', 'Ebru', 'Pınar', 'Seda', 'Derya', 'Aslı',
@@ -30,7 +36,10 @@ Amor.NAMES = {
     'Işıl', 'Leyla', 'Meltem', 'Nazlı', 'Neslihan', 'Nilay', 'Pelin', 'Sevda', 'Şule', 'Tülay', 'Yeliz', 'Zerrin', 'Özlem',
     'Buket', 'Didem', 'Duygu', 'Elvan', 'Funda', 'Gülcan', 'Gülden', 'Gülşah', 'Hatice', 'İlknur', 'Mine', 'Müge', 'Nihal',
     'Oya', 'Özden', 'Reyhan', 'Selda', 'Sevil', 'Şenay', 'Tuba', 'Yeşim', 'Zeliha', 'Aysun', 'Bilge', 'Emel', 'Ferda', 'Hale',
-    'Nagehan', 'Nergis', 'Seçil', 'Sezen', 'Tijen'
+    'Nagehan', 'Nergis', 'Seçil', 'Sezen', 'Tijen',
+    'Ayşe', 'Burçak', 'Esen', 'Evrim', 'Figen', 'Gülnihal', 'Hacer', 'Harika', 'Jülide', 'Kader', 'Lerzan', 'Nazan', 'Nurhan',
+    'Özgül', 'Pervin', 'Sevilay', 'Şirin', 'Ülker', 'Yonca', 'Dilşad', 'Gülizar', 'Işın', 'Mehtap', 'Neşe', 'Nurdan', 'Saliha',
+    'Sevgül', 'Şeyda', 'Ayfer', 'Berrin', 'Gülsen', 'Nilüfer', 'Asuman'
   ],
   olgun: [
     'Ayten', 'Canan', 'Filiz', 'Gülay', 'Hülya', 'Nermin', 'Nur', 'Nurcan', 'Sevgi', 'Sevim', 'Serap', 'Songül', 'Yasemin',
@@ -38,7 +47,10 @@ Amor.NAMES = {
     'Gülsüm', 'Lale', 'Nevin', 'Sibel', 'Şebnem', 'Ümran',
     'Aysel', 'Jale', 'Nalan', 'Saadet', 'Serpil', 'Yıldız', 'Fatma', 'Gönül', 'Kadriye', 'Leman', 'Meral', 'Necla', 'Nilgün',
     'Nurten', 'Perihan', 'Rezzan', 'Sema', 'Semra', 'Sevinç', 'Suna', 'Şükran', 'Türkan', 'Ülkü', 'Vildan', 'Gülseren',
-    'Birgül', 'Feriha'
+    'Birgül', 'Feriha',
+    'Behiye', 'Cemile', 'Gülümser', 'Hayriye', 'İclal', 'Lütfiye', 'Melahat', 'Mualla', 'Münevver', 'Nazife', 'Nebahat',
+    'Neriman', 'Nurhayat', 'Saime', 'Selver', 'Semiha', 'Şengül', 'Zübeyde', 'Zekiye', 'Bedia', 'Cahide', 'Dilber', 'Gülbahar',
+    'Hamiyet', 'Nevra', 'Perran', 'Sabiha', 'Feray', 'Muazzez', 'Tomris', 'Ayla', 'Gülnaz', 'Nurşen'
   ]
 };
 

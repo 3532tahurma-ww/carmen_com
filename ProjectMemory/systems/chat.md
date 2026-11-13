@@ -35,3 +35,5 @@ Messaging screen for a thread (single character or group). User picks who writes
 ## Change safety
 - Message objects are persisted; new fields must be optional.
 - Any change touching `itemHtml`/`drawMessages` affects play mode, search and groups too.
+
+- 🤱 Nursing in chat (v774): 🎯 Şimdi adds `nurseTips(ch, sc)` (Süt / hamile / hour / place `NURSE_OUT` / mood / `nurseWear`); `BOT_WANT.emzir` + `nursePick` + `WANT_PER[t].emzir` (`wantNow(ch, 'emzir')` forces); overflow `th.fullAt` in botReply (Süt ≥ 95 asks, 6 msgs → `mvlf15over`); `wearPart` reveals breasts on Nursing; `maybeInterrupt` uses `NURSE_INT` (pools nuortu/nugece/nusabah/nugenel in fant-interrupts.js).

@@ -190,6 +190,71 @@ Stories.Bot = (() => {
   const addText = (a, vars) => pick((a.add || []).map(String).filter(x => x.trim()))
     .replace(/\{sen\}/gi, vars.sen || 'sen').replace(/\{ben\}/gi, vars.ben || '');
 
+  /* 🔁 Yönlendirici (yedek cevaptan önce): hiçbir kural tutmayınca mesaj kurallara bulanık puanlanır.
+   * Türkçe harfsiz yazım (gogus → göğüs) tam sayılır (1), ek farkı (dönsene → =dön) 0.9, 5+ harfli kelimede 1 harf hata 0.7.
+   * Kelime sırası önemsiz; 3+ kelimelik kuralda biri eksik olabilir (0 puan, gerisi tam tutmalı). sim = ortalama.
+   * Dönüş: { rule, sim, typo: [düzeltilen kelimeler] } ya da null.  skip(rule): true → yarışmaz */
+  const fold = s => String(s || '').replace(/[çğıöşü]/g, c => ({ ç: 'c', ğ: 'g', ı: 'i', ö: 'o', ş: 's', ü: 'u' })[c]);
+  function lev1(a, b) {
+    if (a === b) return true;
+    if (Math.abs(a.length - b.length) > 1) return false;
+    let i = 0;
+    while (i < a.length && a[i] === b[i]) i++;
+    if (a.length === b.length) return a.slice(i + 1) === b.slice(i + 1) || (a[i] === b[i + 1] && a[i + 1] === b[i] && a.slice(i + 2) === b.slice(i + 2));
+    return a.length > b.length ? a.slice(i + 1) === b.slice(i) : a.slice(i) === b.slice(i + 1);
+  }
+  const SUFF = ['misin', 'musun', 'sana', 'sene', 'alim', 'elim', 'sin', 'sun', 'lim', 'lar', 'ler', 'dan', 'den', 'yi', 'ya', 'ye', 'da', 'de', 'ta', 'te', 'la', 'le', 'in', 'un', 'i', 'u', 'a', 'e'];
+  // tok (mesaj kelimesi) w'yi (kural kelimesi) karşılıyor mu: 1 tam · 0.9 ek farkı · 0.7 yazım hatası · 0
+  function wordHit(tok, w, kind) {
+    if (kind === 'whole' ? tok === w : kind === 'start' ? tok.startsWith(w) : tok.includes(w)) return 1;
+    if (kind === 'whole' && w.length >= 3 && SUFF.some(x => tok.endsWith(x) && tok.length - x.length >= 3 && tok.slice(0, -x.length) === w)) return .9;
+    if (w.length < 5 || tok.slice(0, 2) !== w.slice(0, 2)) return 0;   // hata ilk 2 harfte sayılmaz (aldım ≠ azdım)
+    if (kind === 'whole') return lev1(tok, w) ? .7 : 0;
+    return [w.length - 1, w.length, w.length + 1].some(n => tok.length >= n && lev1(tok.slice(0, n), w)) ? .7 : 0;
+  }
+  // terimin en iyi karşılığı: { v, typo, at, n } (çok kelimeli terimde kelimeler art arda olmalı; en zayıfı sayılır).
+  // used: başka terimin aldığı kelimeler (bir kelime iki terimi karşılamaz)
+  function termHit(toks, term, data, used) {
+    let best = { v: 0, typo: '' };
+    for (const m of expandC(term, data)) {
+      const pw = fold(m.s).split(' ').filter(Boolean), kind = m.whole ? 'whole' : m.start ? 'start' : 'sub';
+      for (let i = 0; i + pw.length <= toks.length; i++) {
+        let v = 1;
+        for (let j = 0; j < pw.length && v; j++) v = used.has(i + j) ? 0 : Math.min(v, wordHit(toks[i + j], pw[j], j < pw.length - 1 && kind === 'sub' ? 'start' : kind));
+        if (v > best.v) best = { v, typo: v < 1 ? m.s : '', at: i, n: pw.length };
+        if (best.v === 1) return best;
+      }
+    }
+    return best;
+  }
+  function near(data, text, ch, skip) {
+    data = asData(data);
+    const toks = fold(clean(text)).split(' ').filter(Boolean);
+    if (!toks.length) return null;
+    const have = ch && haveOf(ch);
+    let out = [], top = 0;
+    memo = new Map();
+    try {
+      (data.rules || []).forEach(r => {
+        const w = words(r);
+        if (!w.length || (skip && skip(r)) || !(r.reply || []).some(x => String(x).trim()) || !fits(r, ch, have)) return;
+        const used = new Set(), hits = w.map(t => {
+          const h = termHit(toks, t, data, used);
+          for (let j = 0; h.v && j < h.n; j++) used.add(h.at + j);
+          return h;
+        }), miss = hits.filter(h => !h.v).length;
+        if (miss > (w.length >= 3 ? 1 : 0) || (miss && hits.some(h => h.v && h.v < 1))) return;   // eksik kelime varsa gerisi tam
+        const sim = hits.reduce((a, h) => a + h.v, 0) / w.length;
+        if (sim < top) return;
+        const x = { rule: r, sim, s: score(r), typo: hits.map(h => h.typo).filter(Boolean) };
+        if (sim > top) { top = sim; out = [x]; } else out.push(x);
+      });
+    } finally { memo = null; }
+    if (!out.length) return null;
+    const s = Math.max(...out.map(x => x.s)), w = pick(out.filter(x => x.s === s));
+    return { rule: w.rule, sim: Math.round(w.sim * 100) / 100, typo: w.typo };
+  }
+
   // Bir kelime/mesaj bir terimi yakalıyor mu? (editördeki "dene" kutuları için)
   const catches = (text, term, data) => inOrder(norm(text), [term], asData(data));
 
@@ -218,7 +283,7 @@ Stories.Bot = (() => {
     return out;
   }
 
-  return { norm, fromEn, expand, inOrder, fits, ageTrait, originTrait, best, reply, score, looseScore, catches, addons, addText, ADD_MODES, enDict };
+  return { norm, fromEn, expand, inOrder, fits, ageTrait, originTrait, best, reply, score, looseScore, catches, addons, addText, ADD_MODES, enDict, near, fold };
 })();
 
 if (Stories.BOT_RULES && Stories.I18n) Stories.I18n.add(Stories.Bot.enDict(Stories.BOT_RULES.en));

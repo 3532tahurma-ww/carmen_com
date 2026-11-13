@@ -6,6 +6,24 @@
  */
 window.Stories = window.Stories || {};
 Stories.FANT_INTERRUPTS = {
+  // 🤱 Nursing olayları (fantezi değil; app.js NURSE_INT: Covered → nuortu, Night → nugece, Morning → nusabah, diğerleri → nugenel)
+  nuortu: [
+    { g: '👀 Yanınızdan biri geçiyor… örtünün altına bakıyor gibi', r: ['Şşş, kıpırdama… görmedi 🤫🍼', '*örtüyü düzeltir* Devam et, sessizce 😳', 'Kalbim çıkacak… ama bırakma 🙈', 'Sadece bebek gibi görünüyorsun, merak etme 😏', 'Gitti mi? Emmeye devam 🍼'] },
+    { g: '🧣 Rüzgâr örtünün ucunu kaldırdı!', r: ['Ay! Tut şunu 😱', '*örtüyü hızla kapatır* Kimse görmedi değil mi? 🙈', 'Göğsüm açıkta kaldı bir an… 😳🍼', 'Gülme! Devam et 😤🍼', 'Bu heyecan sütümü daha çok akıttı 🥵'] },
+    { g: '☕ Garson masaya yaklaşıyor: "Bir şey alır mısınız?"', r: ['*gülümser* Hayır, teşekkürler… 😇 (sakın durma)', 'Yüzüm kızardı mı? 😳', 'Garson gidene kadar nefes alma 🤫', 'Fark etmedi, eminim 🙈🍼', 'Bir süt alalım dese güleceğim 😂🍼'] }
+  ],
+  nugece: [
+    { g: '📱 Gece yarısı telefon titredi… ekran karanlığı aydınlattı', r: ['Kapat şunu, uyandırma beni 😴🍼', 'Kimse bu saatte aramaz… boş ver 🌙', '*telefonu ters çevirir* Sen devam et 🍼', 'Işık gözümü aldı… gel, karanlıkta kalalım 🌙', 'Mmm… uyurken bile emiyorsun 🥺'] },
+    { g: '🌙 Koridorda bir ses… biri tuvalete kalktı', r: ['Şşş… nefesini tut 🤫', 'Kapı kapalı mı? 😳', 'Sessiz em… kimse duymasın 🍼', 'Geçti, devam 🌙', '*seni göğsüne bastırır* Kıpırdama 🤫🍼'] }
+  ],
+  nusabah: [
+    { g: '⏰ Alarm çaldı! Sabah 07:00', r: ['Erteleyelim… beş dakika daha 😴🍼', 'Alarm mı? Sen bitirmeden kalkmıyorum 🍼', 'Kapat şunu, göğsüm hâlâ dolu 😣', 'İşe geç kalacağız ama değer 😏🍼', '*alarmı kapatır* Nerede kalmıştık? 🌅'] },
+    { g: '☀️ Perdenin arasından güneş vurdu yüzüne', r: ['Günaydın… ilk süt senin 🌅🍼', 'Gözlerim kamaştı ama sen bırakma 😌', 'Sabahın en güzel hali bu 🥰🍼', 'Kahvaltı bekleyebilir 😏', 'Güneş bile kıskandı bizi ☀️🍼'] }
+  ],
+  nugenel: [
+    { g: '🍼 Diğer göğsünden süt kendiliğinden akmaya başladı', r: ['Ay, öbürü de sızıyor 🙈', 'Elinle tut, boşa gitmesin 🍼', 'Bak ne yaptın bana 😳🍼', 'Sırası gelecek, sabırsız 😏', 'Pedim ıslandı bile 🥵🍼'] },
+    { g: '📱 Telefonuna mesaj geldi: "Müsait misin?"', r: ['Değilim. Hiç değilim 🍼', 'Sonra bakarım, sen devam 😌', 'Şu an meşgulüm… emziriyorum 😏', 'Telefonu at bir kenara 🤫', 'Kim yazdıysa beklesin 🍼'] }
+  ],
   // 🐾 hayvan kızları ve fanteziler
   fxkedi: [
     { g: '🥛 Mutfakta süt kabı devrildi… şıngır şıngır!', r: ['Miyav! Benim sütüm! 😿', 'Boş ver sütü, sen bana yetersin 😼', 'Kuyruğum kabardı, korktum 🙀', 'Sonra yalarım, şimdi sen 😽', 'Pati pati… nerede kalmıştık? 🐾'] },

@@ -7662,3 +7662,222 @@ Object.assign(Stories.ME_RP_HUG_LINES, {
     hold: ['Sana sarılıyım, sesin beni zorluyor; ama tutuyorum… offf 😣☁️', '"Ölümlüler sabırsızdır" dedin, tersini kanıtlıyorum ahh 😏', 'Hikâyen bitene kadar bekliyorum… bitmiyor offf 😩']
   }
 });
+/* 🤱 Nursing (c:mvnursing01x): olay başına 10 mesaj */
+Object.assign(Stories.ME_EV_LINES, {
+  'Cradle Hold': [
+    'Başımı koluna yasladım, beşik gibi sallıyorsun beni {o} 🤱',
+    'Dudaklarım ucunu buldu, ilk yudum sıcacık 🍼',
+    'Elimi göğsüne koyup tutuyorum, bırakmıyorum 💗',
+    'Kalbinin atışını yanağımda duyuyorum 😌',
+    'Salladıkça süt daha rahat geliyor 🍼',
+    'Gözlerimi kapattım, sadece emiyorum 🥺',
+    'Kolun yoruldu mu? Biraz daha dayan {o} 😆',
+    'Bir damla çeneme kaçtı, dilimle yakaladım 👅🍼',
+    'Saçlarımı okşamaya devam et, çok güzel 💗',
+    'Kucağında kendimi bebek gibi hissediyorum… hoşuma gidiyor 😳'
+  ],
+  'Side-Lying Nursing': [
+    'Yan yana uzandık, alttaki göğsünü ağzıma verdin 🛏️🍼',
+    'Yorganın altında sadece sen ve ben {o} 💗',
+    'Bacağımı bacağına attım, sokuldum 😌',
+    'Saçımı okşadıkça gözlerim kapanıyor 😴🍼',
+    'Nefesim göğsünde, sen gıdıklanıyorsun 😆',
+    'Üstteki de damlıyor, birazdan ona geçeceğim 🍼',
+    'Böyle uyuyakalırsam beni uyandırma 🥺',
+    'Elim belinde, seni kendime çekiyorum 💗',
+    'Sütün yastığa akıyor, umurumda değil 😏🍼',
+    'Sessizce emiyorum, sadece nefesimiz duyuluyor {o} 😌'
+  ],
+  'Football Hold': [
+    'Koltuğunun altına aldın beni, başımı tutuyorsun 🏈🍼',
+    'Yandan emmek garip ama süt çok hızlı geliyor 😳',
+    'Elin ensemde, kaçamıyorum {o} 😏',
+    'Kolunun altında küçücük kaldım 😆',
+    'Her yudumumu izliyorsun, biliyorum 🍼',
+    'Yanağım göğsüne yapıştı, sıcacık 💗',
+    'Ucunu kaçırdım, yönlendir beni 😅🍼',
+    'Sıkı tutuyorsun, ben de rahat rahat emiyorum 😌',
+    'Kolunun altı en güvenli yermiş {o} 🥺',
+    'Bu taraf bitince öbür tarafa geçelim mi? 🍼'
+  ],
+  'Laid-Back Nursing': [
+    'Yastıklara yaslandın, ben üstüne uzandım 🛋️🍼',
+    'Göğsün yüzüme düştü, ucunu kendim buluyorum 😏',
+    'Ağırlığımı taşıyabiliyor musun {o}? 😆',
+    'Göğsün yanağıma yayıldı, nefesim kesiliyor 🥵',
+    'Hiçbir şey yapmıyorsun, hepsi bende 😌🍼',
+    'Elimi öbür göğsüne koydum, o da dolu 😳',
+    'Süt kendiliğinden çeneme akıyor 🍼',
+    'Kalbinin atışını göğsümde hissediyorum 💗',
+    'Bütün öğleden sonra böyle kalabilirim {o} 🥺',
+    'Kalçalarımı kıpırdatmamaya çalışıyorum… zor 😈'
+  ],
+  'Standing Nursing': [
+    'Duvara yaslandın, bluzunu açtın… eğiliyorum 🧍‍♀️🍼',
+    'Ayakta bile dayanamadım {o} 😏',
+    'Belini tutuyorum, düşme 💪',
+    'Sütün karnından aşağı süzülüyor, dilimle yetişiyorum 👅🍼',
+    'Kapı açılırsa yakalanırız ama durmuyorum 😳',
+    'Dizlerin titriyor, seni duvara bastırıyorum 🥵',
+    'Ucunu hafifçe ısırdım, inledin 😈',
+    'Bluzun omzundan kaydı, hiç umursamıyoruz 🍼',
+    'Ayak sesleri! … geçti, devam {o} 🙈',
+    'Boynum ağrıyor ama bırakamam 😆🍼'
+  ],
+  'Kneeling Nursing': [
+    'Önünde diz çöktüm, ağzım açık bekliyorum 🧎🍼',
+    'Tepeden bana bakıyorsun {o}, gözlerin parlıyor 👑',
+    'Göğsünü uzattın, dudaklarım ucunu buldu 😌',
+    'Saçımı tutup başımı yönlendiriyorsun 😳',
+    'Süt çeneme akıyor, yalıyorum 👅🍼',
+    'Ellerimi kalçana koydum, sıkı tutuyorum 💪',
+    '"Aferin" deyince içim eriyor 🥺',
+    'Dizlerim acıyor ama kalkmıyorum {o} 😏',
+    'Gözlerine bakarak emiyorum 💗🍼',
+    'Öbürünü de istiyorum, lütfen 🥺🍼'
+  ],
+  'Lap Nursing': [
+    'Kucağıma ata bindin, göğsünü ağzıma bastırdın 🪑🍼',
+    'Kalçanı oynattıkça süt daha hızlı geliyor {o} 🥵',
+    'Ellerim belinde, seni sabitliyorum 💪',
+    'Göğsün yüzümü kapladı, nefes almadan emiyorum 😳',
+    'Kucağımda bu kadar sallanırsan dayanamam 😈',
+    'Altında sertleştim, hissediyorsun değil mi? 😏🍼',
+    'Her yudumda biraz daha bastırıyorsun 🍼',
+    'Sırtını okşuyorum, sen sallanmaya devam et 💗',
+    'Bluzun yere düştü, kimin umurunda {o} 😆',
+    'Kucağımda kraliçe gibisin, ben de aç tebaan 👑🍼'
+  ],
+  'Switch Nursing': [
+    '"Şimdi bu taraf" dedin, hemen geçiyorum 🔄🍼',
+    'Sol daha tatlı galiba {o} 😏',
+    'Değiştirirken bir damla kaçtı, yaladım 👅',
+    'Öbürü beklerken akmaya başlamış bile 😳🍼',
+    'Sırayla, ikisini de eşit boşaltacağım 💗',
+    'Her değişimde ucuna bir öpücük kondurdum 💋',
+    'Hangisini seçeyim bilemiyorum, ikisi de güzel 😆',
+    'Bu taraf bitti, öbürü dolmuş 🍼',
+    'Değiştirirken açıkta kalınca ürperdin {o} 😌',
+    'Bir tur daha mı? Ben hazırım 🔄🍼'
+  ],
+  'Nurse & Pump': [
+    'Bir yanından ben emiyorum, öbüründen pompa çekiyor 🍼⚙️',
+    'Makinenin sesine rağmen sadece seni duyuyorum {o} 😌',
+    'Şişe dolmadan ben bitirmem 😏',
+    'İki taraf birden çekilince inliyorsun 🥵',
+    'Pompayla yarışıyorum, kaybetmeyeceğim 😆🍼',
+    'Hiç damla boşa gitmiyor 💗',
+    'Şişe yarın sabah benim, değil mi? 🍼',
+    'Göğsün iki yandan boşalıyor, rahatladın mı {o}? 🥺',
+    'Makine mi ben mi daha iyi? Söyle 😈',
+    'Pompayı kapat, öbürünü de ben emeyim 🍼'
+  ],
+  'Night Nursing': [
+    'Gece yarısı uyandım, sessizce göğsünü verdin 🌙🍼',
+    'Karanlıkta ucunu buldum {o} 😌',
+    'Uykulu nefesin saçlarımda 😴',
+    'Şşş, kimse uyanmasın 🙈🍼',
+    'Gece boyu dolmuşsun, sıcacık akıyor 🍼',
+    'Gözlerin kapalı ama elin saçımda 💗',
+    'Ay ışığında yüzün ne güzel 🌙',
+    'Bitince sana sarılıp uyuyacağım {o} 🥺',
+    'Yarı uykudayken bile beni besliyorsun 💗🍼',
+    'Karanlıkta sadece yudumlarım duyuluyor 😳'
+  ],
+  'Bath Nursing': [
+    'Sıcak küvette sırtımı sana yasladım 🛁🍼',
+    'Göğsünü omzumun üstünden ağzıma uzattın {o} 😌',
+    'Süt köpüğe karışıyor 😳',
+    'Buhar yüzümü kızarttı, sen emzirirken daha da 🥵',
+    'Su sıcak, sütün daha sıcak 🍼',
+    'Ellerim suyun altında dizlerinde 😏',
+    'Başımı çevirip ucunu yakaladım 👅🍼',
+    'Su soğusa da çıkmak istemiyorum {o} 🥺',
+    'Islak saçların omzuma döküldü 💗',
+    'Sonra seni ben yıkayacağım 😈🛁'
+  ],
+  'Teasing Nursing': [
+    'Ucunu dudaklarıma değdirip geri çektin {o} 😩',
+    'Lütfen… bir yudum 🥺🍼',
+    'Yaklaşınca yine kaçırdın, sinir oluyorum 😤',
+    'Bir damla verdin, tadı aklımı aldı 🍼',
+    'Dilimi uzatıyorum, yetişemiyorum 😏',
+    'Yalvarmamı mı istiyorsun? Yalvarıyorum {o} 🙏',
+    'Gülüşün çok kötü niyetli 😈',
+    'Sonunda verdin… ahh, hemen yapıştım 🥵🍼',
+    'Bir daha çekersen bileklerini tutarım 😏',
+    'Bekletmek seni de tahrik ediyor, biliyorum 💋'
+  ],
+  'Dominant Nursing': [
+    'Başımı göğsüne bastırdın: "Bitirmeden bırakmam" 👑🍼',
+    'Nefes almak için izin istiyorum {o} 😳',
+    'Son damlaya kadar emiyorum, söz 🍼',
+    'Elin ensemde, kıpırdayamıyorum 😩',
+    '"İyi çocuk" dedin, içim eriyor 🥺',
+    'Süt boğazımdan aşağı akıyor, yutmaya yetişemiyorum 🥵',
+    'Ağzımdan bir damla kaçtı… ceza mı var? 😅',
+    'Sen emrediyorsun, ben emiyorum {o} 👑',
+    'Bitirince teşekkür ettim, gülümsedin 💗',
+    'Öbürünü de emredersen bitiririm 🍼'
+  ],
+  'Covered Nursing': [
+    'Örtünün altına girdim, kimse fark etmesin 🧣🍼',
+    'Garson geldi, nefesimi tuttum 😳',
+    'Masum yüzünle etrafa gülümsüyorsun {o} 😏',
+    'Örtünün altı sıcak, sütün daha sıcak 🍼',
+    'Sesimi çıkarmamaya çalışıyorum 🙈',
+    'Fısıldıyorsun: "Çabuk ol" 🤫',
+    'Elim örtünün altında beline kaydı 😈',
+    'Biri bakıyor gibi… durmuyorum {o} 🥵',
+    'Kalabalığın ortasında sadece ikimiz varız 💗',
+    'Örtüyü kaldırınca yanaklarım kıpkırmızı 😳🍼'
+  ],
+  'Lullaby Nursing': [
+    'Saçımı okşayıp ninni mırıldanıyorsun 🎶🍼',
+    'Sesin çok yumuşak {o}, gözlerim kapanıyor 😌',
+    'Her nakaratta bir yudum alıyorum 🍼',
+    'Ninni bitmeden uyumayacağım 😆',
+    'Melodiyi unutunca güldün 💗',
+    'Sesinle sütün birlikte içimi ısıtıyor 🥺',
+    'Bir daha söyle, o kısmı çok sevdim 🎶',
+    'Göğsüne yaslanıp dinliyorum {o} 💗🍼',
+    'Mırıltın göğsünden yanağıma titriyor 😌',
+    'Uyurken de yanımda kal 🎶🍼'
+  ],
+  'Comfort Nursing': [
+    'Kötü bir gündü, göğsüne sığındım 🫂🍼',
+    'Hiç soru sormadan beni aldın {o} 🥺',
+    'Omuzlarım gevşiyor, her yudumda biraz daha 😌',
+    'Sütün gerçekten iyi geldi 🍼',
+    'Gözlerim doldu, saçımı okşamaya devam et 💗',
+    'Burada her şeyi unutuyorum 🫂',
+    'Sesin "geçecek" diyor, inanıyorum {o} 🥺',
+    'Biraz daha kalabilir miyim? 🍼',
+    'Gülümsedim, fark ettin 😊',
+    'Sen olmasan ne yapardım 💗🍼'
+  ],
+  'Double Breast Nursing': [
+    'Birini emerken öbürü kendiliğinden akıyor 🍒🍼',
+    'Damlalar göğsüme düşüyor {o} 😳',
+    'Öbürünü elimle sıkıyorum, boşa gitmesin 🍼',
+    'İkisini birden ağzıma sığdırmaya çalışıyorum 😏',
+    'Hangisi önce bitecek, yarışıyoruz 😆',
+    'Bu taraf boşaldı, şimdi taşan tarafa 🍒',
+    'İkisi de sıcacık, ikisi de dolu 🥵🍼',
+    'Uçlarını birbirine yaklaştırdın, ikisi birden 😈',
+    'Rahatladın mı {o}? Hafifledin 💗',
+    'Son damlayı da aldım, ikisi de bomboş 🍼'
+  ],
+  'Morning Nursing': [
+    'Sabah göğüslerin dolu dolu, beni uyandırdın 🌅🍼',
+    'Gözlerimi açmadan ucunu buldum {o} 😏',
+    'İlk süt en bolu, ağzım taşıyor 😳🍼',
+    'Alarm yerine sen, en güzel uyanış 😌',
+    'Saçın dağınık, çok güzelsin 💗',
+    'Kahvaltıdan önce süt 🍼',
+    'Gece boyu dolmuşsun, seni rahatlatıyorum 🥵',
+    'Uykulu sesin "günaydın" diyor 🌅',
+    'Sabah sertliğim sana değiyor, fark ettin 😈',
+    'Her sabah böyle başlasın {o} 💗🍼'
+  ]
+});
