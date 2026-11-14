@@ -8074,3 +8074,49 @@ Object.assign(Stories.ME_EV_LINES, {
     'Sahne bitti, bana adımla seslenebilirsin 🤍'
   ]
 });
+
+/* 🆕 yeni pozisyonlar, BDSM eklemeleri, 🏝️ plaj / 🏢 ofis / 🏨 otel */
+Object.assign(Stories.ME_EV_LINES, {
+  'Reverse Cowgirl': ['Sırtın bana dönük, kalçanın inip kalkışını izliyorum 😈', 'Belini tutuyorum, ritmi sen seç {o} 🥵', 'Saçların sırtında savruluyor 🔥', 'Kalçana bir şaplak 😏', 'Bu manzara bana yeter ahh 😩', 'Arkana yaslan, göğüslerini tutayım 🤍'],
+  'Prone Bone': ['Yüzüstü yattın, üstüne kapanıyorum 😈', 'Kulağına fısıldıyorum {o}, yastığa inliyorsun 🥵', 'Bacakların kapalı, çok dar ahh 😩', 'Ellerini yatağa bastırıyorum 🔥', 'Enseni öpüyorum 💋', 'Ağırlığım sende, kaçamazsın 😏'],
+  'Lotus': ['Kucağımdasın, alnın alnımda 🪷', 'Yavaşça, acele yok {o} 🤍', 'Bacakların belime dolandı 🥰', 'Nefeslerimiz aynı ritimde 😮‍💨', 'Gözlerinin içine bakıyorum ahh 😩', 'Sımsıkı sarılıyorum, hiç bitmesin 💞'],
+  'Butterfly': ['Yatağın kenarındasın, bacakların omuzlarımda 😈', 'Ayaktayım, en derine ahh {o} 🥵', 'Kalçanı kendime çekiyorum 🔥', 'Bileklerini öpüyorum 💋', 'Yüzünü izliyorum, kızardın 😏', 'Çarşafı sıkıyorsun 😩'],
+  'Missionary Anal': ['Kalçanın altına yastığı koydum, gözlerime bak 👀', 'Yavaşça, acele yok {o} 🤍', 'Elini tutuyorum 🥰', 'Nefes al, gevşe ahh 😩', 'Yüzündeki ifadeyi izliyorum 😈', 'Daha derin mi? Sen söyle 🔥'],
+  'Reverse Cowgirl Anal': ['Kendini yavaşça bana indiriyorsun 😳', 'Hızı sen belirle {o} 🤍', 'Kalçanı açıyorum, izliyorum 😈', 'Ahh… çok dar 😩', 'Belini tutuyorum, düşmezsin 🥵', 'Arkana dönüp bana bakıyorsun 🔥'],
+  'Blindfold': ['Gözlerini bağladım, ipek bant tenine değiyor 🖤', 'Nerede olduğumu tahmin et {o} 😏', 'Nefesimi boynunda hissediyor musun 😈', 'Her dokunuşta irkiliyorsun 🥵', 'Kulağına fısıldıyorum, ürperiyorsun 😮‍💨', 'Bant kalsın, daha yeni başlıyoruz 🔥'],
+  'Collar & Leash': ['Tasmayı boynuna takıyorum, tokayı sıkıyorum ⛓️', 'Ucu elimde {o}, gel buraya 😈', 'Hafifçe çekiyorum, dizlerinin üstüne 😏', 'Aferin, böyle 🐾', 'Gözlerini kaldır, bana bak 🔥', 'Sahne bitince tasmayı çıkarıp boynunu öpüyorum 🤍'],
+  'Spanking': ['Dizlerimin üstüne yattın, say bakalım 😈', 'Bir… kalçan kızardı {o} 🍑', 'İki… sesin titredi 😏', 'Elimle okşuyorum, sonra bir tane daha ✋', 'Saymayı unuttun, baştan 😈', 'Bitti; kızaran yeri öpüyorum 🤍'],
+  'Butt Plug': ['Kayganlaştırıp yavaşça yerleştiriyorum 💎', 'Nefes al {o}, gevşe 🤍', 'Mücevheri parlıyor 😈', 'Yürürken hissediyor musun 😏', 'Hafifçe dokunuyorum, irkiliyorsun 🥵', 'Akşama kadar orada kalacak 🔥'],
+  'Nipple Clamps': ['Mandalları göğüs uçlarına takıyorum ⛓️', 'Acıtıyor mu {o}? İyi acı mı 😏', 'Zinciri hafifçe çekiyorum 😈', 'Nefesin kesildi 🥵', 'Zincir göğüslerinin arasında sallanıyor 🔥', 'Çıkarırken uçlarını öpüyorum 🤍'],
+  'Ball Gag': ['Tıkacı ağzına takıyorum, mendil elinde 🔴', 'Artık sadece inleyebilirsin {o} 😈', 'Mendili düşürürsen dururum, söz 🤍', 'İnlemelerin daha da güzel 🥵', 'Gözlerin her şeyi söylüyor 😏', 'Çıkarıyorum, dudaklarını öpüyorum 💋'],
+  'Safe Word': ['Güvenli kelimemizi seçiyoruz: söylediğin an dururum 🛑', 'Söz veriyorum {o}, her zaman 🤍', 'Kelimeyi bir kez daha söyle, aklımda olsun 🥰', 'Güvendesin, bunu bil 🤍', 'Hazır olduğunda başlarız 😏', 'Elimi sıkarsan da dururum 🤝'],
+  'Sunscreen Rub': ['Sırtına kremi döküp yayıyorum 🧴', 'Bikinin ipini çözdün {o} 😏', 'Elim belinden aşağı kayıyor 😈', 'Güneş mi yaktı, ben mi 🥵', 'Kalçalarını da unutmayalım 🍑', 'Sırtın ışıl ışıl parlıyor ☀️'],
+  'Beach Towel Sex': ['Issız koyda havluya uzandın, üstündeyim 🏝️', 'Kumlar her yere yapıştı {o} 😂', 'Dalgalar sesimizi örtüyor ahh 😩', 'Tenin tuzlu ve sıcak 🥵', 'Güneş sırtımı yakıyor, umurumda değil 🔥', 'Kimse gelmez, merak etme 😏'],
+  'Wave Sex': ['Belimize kadar denizdeyiz, bacakların belimde 🌊', 'Her dalga seni bana bastırıyor {o} 😈', 'Tuzlu dudaklarını öpüyorum 💋', 'Su serin, sen sıcaksın 🥵', 'Kıyıdan görünüyor muyuz 😳', 'Dalgalarla aynı ritim ahh 😩'],
+  'Beach Cumshot': ['Güneşte parlayan tenine boşalıyorum ahhh 😩💦', 'Göğsünden karnına akıyor 🥵', 'Hepsini sana bıraktım {o} 😈', 'Hadi denize, yıkanalım 🌊', 'Kumlara da bulaştı 😂', 'Havluya sarıp sarılıyorum 🤍'],
+  'Under The Desk': ['Toplantıdayım, sen masanın altındasın 😳', 'Yüzümü sabit tutmaya çalışıyorum {o} 😩', 'Kamerayı kapattım, sesini kıs 🤫', 'Biri soru sordu, cevap veremiyorum 😂', 'Saçını tutuyorum masanın altında 😈', 'Toplantı bitsin artık 🥵'],
+  'Office Chair Ride': ['Sandalyemde kucağımdasın, eteğin belinde 🪑', 'Sandalye gıcırdıyor {o} 😂', 'Dönüyoruz, dur 😅', 'Kalçanı tutuyorum ahh 🥵', 'Ekran kilitlendi, biz değil 😈', 'Mesai bitti, sen bitme 🔥'],
+  'Copy Room Quickie': ['Makineye eğildin, kapı kilitli değil 😳', 'Makine çalışıyor, sesini örtüyor {o} 😈', 'Hızlı olmalıyız ahh 🥵', 'Kâğıtlar yere saçıldı 😂', 'Koridordan adım sesi 🤫', 'Eteğini indir, kimse anlamasın 😏'],
+  'Office Cumshot': ['Gömleğinin düğmelerini açtın, göğsüne boşalıyorum ahhh 😩💦', 'Toplantıya beş dakika var {o} 😂', 'Hepsini sana bıraktım 😈', 'Mendil çekmecede 😅', 'Düğmelerini ben ilikliyorum 🤍', 'Akşam eve gelince devam 🔥'],
+  'Room Service': ['Kapıyı bornozla açtın, garson gitti 🛎️', 'Bornoz yere düştü {o} 😏', 'Şampanya bekleyebilir 😈', 'Çileği dudaklarına götürüyorum 🍓', 'Kapıya "Rahatsız etmeyin"i astım 🤫', 'Yemek soğusun, sen soğuma 🔥'],
+  'Balcony Sex': ['Korkuluğa tutundun, şehir önümüzde 🌃', 'Rüzgâr saçlarını savuruyor {o} 😈', 'Karşı otelden görünüyor muyuz 😳', 'Belini tutuyorum ahh 🥵', 'Şehrin ışıkları gözlerinde ✨', 'Sesini kıs, aşağıda havuz var 🤫'],
+  'Hotel Mirror': ['Boy aynasının karşısındayız, izliyorum 🪞', 'Aynadan gözlerime bak {o} 😈', 'Yüzündeki ifade ahh 🥵', 'Kendini izlemek tuhaf mı 😏', 'Saçını çekiyorum, başın kalkıyor 🔥', 'Ayna buğulandı 😂'],
+  'Hotel Creampie': ['Otel yatağında içine boşalıyorum… ahhh {o} 😩💦', 'Sımsıkı sarılıyorum 🤍', 'Son damlama kadar 😈', 'Çarşafları onlar değiştirir 😂', 'Kahvaltıyı odaya isteyelim 🥰', 'Titriyorsun, tutuyorum 🤍']
+});
+/* 🔗 BDSM 3. set: darbe, duyusal, bağlama */
+Object.assign(Stories.ME_EV_LINES, {
+  'Paddle': ['Deri küreği avucumda tartıyorum 🏓', 'Şak! Kalçan kızardı {o} 😈', 'Say bakalım, kaçtı? 😏', 'İzi kaldı, okşuyorum 🤍', 'Bir tane daha, daha sesli 🔥', 'Gözlerin doldu mu? Dur deme yeter 🛑'],
+  'Riding Crop': ['Kırbacın ucunu çenene dayıyorum 🏇', 'İç bacağına hafif bir dokunuş {o} 😈', 'Şimdi kalçana, nokta atışı ✨', 'İrkildin, güzel 😏', 'Ucuyla göğüs ucunu okşuyorum 🥵', 'Kırbacı bırakıp dudaklarını öpüyorum 🤍'],
+  'Flogger': ['Şeritleri sırtında gezdiriyorum önce 🪶', 'Yağmur gibi iniyor {o} 😈', 'Ritim tutuyorum, sırtın ısınıyor 🔥', 'Nefesin derinleşti 😮‍💨', 'Biraz daha sert mi? 😏', 'Kızaran sırtına sarılıyorum 🤍'],
+  'Feather Tease': ['Tüyü boynundan aşağı gezdiriyorum 🪶', 'Gıdıklanıyor musun {o} 😏', 'Göğüs uçlarında yavaşça 😈', 'Kıvranıyorsun, durmuyorum 🥵', 'İç bacağına iniyorum 😮‍💨', 'Tüyü bırakıp dudaklarımla devam 💋'],
+  'Wartenberg Wheel': ['Tekerleği karnında yuvarlıyorum ⚙️', 'Her diken ayrı ayrı {o} 😈', 'Göğüslerinin etrafında daire çiziyorum 😏', 'Tüylerin diken diken 🥵', 'Batmıyor, söz 🤍', 'İç bacağına doğru… 😮‍💨'],
+  'Hot & Cold': ['Ağzımda sıcak çay, dilim sende 🍵', 'Şimdi buz, ürperdin {o} 🧊', 'Sıcak… soğuk… sıcak 😈', 'Kalçaların kalkıyor 🥵', 'Buz eridi, dilim kaldı 😏', 'Hangisi daha güzel, söyle 😮‍💨'],
+  'Handcuffs': ['Kelepçeler klik diye kapandı 🔗', 'Anahtar komodinde, ikimiz de görüyoruz {o} 🤍', 'Bileklerin başının üstünde 😈', 'Çekiştiriyorsun, açılmaz 😏', 'Şimdi her yerin benim 🥵', 'Açarken bileklerini öpüyorum 💋'],
+  'Shibari': ['İpi göğüslerinin etrafından geçiriyorum 🪢', 'Bir düğüm daha {o}, sabret 😏', 'İp tenine iz bırakıyor 😈', 'Kırmızı sana çok yakışıyor 🔥', 'Bitti, bir sanat eseri gibisin 🎎', 'Uyuşma var mı? Söyle 🤍'],
+  'Spreader Bar': ['Çubuğu ayak bileklerine taktım 📏', 'Bacaklarını kapatamıyorsun {o} 😈', 'Her şey bana açık 😏', 'Kıvranıyorsun ama kaçamıyorsun 🥵', 'İç bacaklarını öpüyorum 💋', 'Çözerken bileklerine masaj 🤍'],
+  'Hands Behind Back': ['Bileklerini arkada kurdeleyle bağlıyorum 🎀', 'Ellerin yok artık {o} 😈', 'Göğüslerin öne çıktı 😏', 'Kurdelenin ucunu çekiyorum, bana geliyorsun 🔥', 'Dengen bende, düşmezsin 🤍', 'Fiyonk yaptım 😂']
+});
+Stories.ME_HUG_LINES.placeFinish.events.push('Beach Cumshot', 'Office Cumshot', 'Hotel Creampie');
+Stories.ME_HUG_LINES.campHug.events.push('Sunscreen Rub', 'Beach Towel Sex', 'Wave Sex', 'Office Chair Ride', 'Room Service', 'Balcony Sex', 'Hotel Mirror');
+Stories.ME_BED_SKIP.push('Sunscreen Rub', 'Beach Towel Sex', 'Wave Sex', 'Beach Cumshot',
+  'Under The Desk', 'Office Chair Ride', 'Copy Room Quickie', 'Office Cumshot', 'Balcony Sex', 'Hotel Mirror');

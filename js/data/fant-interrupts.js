@@ -599,6 +599,28 @@ Stories.FANT_INTERRUPTS = {
       { g: '🐗 Çalıların arasında bir hışırtı var', r: ['O neydi?! 😱', 'Yaban domuzu mu? 😳', 'Çadıra girelim 🙈', 'Rüzgârdır, devam 😏', 'Sen beni korursun 🥺'] },
       { g: '🔥 Kamp ateşi çıtırdayıp bir kıvılcım uçurdu', r: ['Battaniye! 😱', 'Söndü, sorun yok 😮‍💨', 'Ateş bizim kadar sıcak değil 😈', 'Biraz uzaklaşalım 😏', 'Ne heyecanlı 😂'] },
       { g: '🌧️ Çadırın üstüne yağmur damlaları vurmaya başladı', r: ['Yağmur sesi… ne güzel 🥰', 'Sesimizi bastırır 😏', 'Tulumun içine gir 😈', 'Islanmayalım 🙈', 'Bu sesle devam 🥵'] }
+    ],
+    // 🏝️🏢🏨 plaj / ofis / otel (PLACE_INT)
+    yerplaj: [
+      { g: '🚤 Koya bir tekne yaklaşıyor, motor sesi büyüyor', r: ['Tekne! 😱', 'Havluyu ver 🙈', 'Suya gir, belimize kadar 🤫', 'Uzaklaştı… oh 😮‍💨', 'El sallasak mı 😂'] },
+      { g: '🐕 Sahilde bir köpek havlayarak size doğru koşuyor', r: ['Köpek! 😳', 'Sahibi de arkasından mı geliyor?! 🙈', 'Geri dön kuçu 😂', 'Gitti, devam 😏', 'Kalbim duracaktı 😈'] },
+      { g: '🌊 Büyük bir dalga havluya kadar geldi', r: ['Havlu ıslandı! 😂', 'Her yer kum oldu 🙈', 'Zaten ıslağız 😈', 'Dalga bile kıskandı 😏', 'Biraz geri çekilelim 🥵'] },
+      { g: '🍦 Uzaktan dondurmacının çanı duyuluyor, sahile iniyor', r: ['Biri geliyor! 😱', 'Bikinim nerede?! 🙈', 'Kayanın arkasına 🤫', 'Sonra dondurma alalım 😋', 'Geçti, devam 😈'] },
+      { g: '☀️ Güneş tepeye çıktı, tenin yanmaya başladı', r: ['Yanıyorum! 🥵', 'Krem sür bana 😏', 'Gölgeye geçelim 🙈', 'Sen daha çok yakıyorsun 😈', 'Denize gir, serinleyelim 🌊'] }
+    ],
+    yerofis: [
+      { g: '🧹 Koridorda temizlikçinin arabası tıkırdıyor', r: ['Temizlikçi! 😱', 'Kapıyı kilitle! 🙈', 'Masanın altına 🤫', 'Geçti… oh 😮‍💨', 'Işığı kapat 😏'] },
+      { g: '📞 Masadaki telefon çaldı: ekranda patronun adı', r: ['Patron! 😳', 'Açma! 🙈', 'Açıp "çalışıyorum" de 😈', 'Sustu, devam 😏', 'Sesim titrer, sen konuş 😂'] },
+      { g: '💻 Bilgisayarda bir toplantı daveti açıldı, kamera ışığı yandı', r: ['Kamera açık mı?! 😱', 'Kapat şunu! 🙈', 'Görüntü kapalı, emin misin 😳', 'Toplantıyı reddet 😈', 'Bu toplantı bekleyebilir 😏'] },
+      { g: '🔔 Asansörden bir zil sesi: biri kata çıktı', r: ['Biri geldi! 😱', 'Eteğimi indir 🙈', 'Normal davran 🤫', 'Başka kata gitti 😮‍💨', 'Hızlı bitirelim 🥵'] },
+      { g: '🖨️ Yazıcı kendiliğinden çalışıp kâğıt basmaya başladı', r: ['Ödüm koptu 😂', 'Kim yazdırıyor?! 😳', 'Makine bile heyecanlandı 😈', 'Bırak bassın 😏', 'Ses bizi örter 🤫'] }
+    ],
+    yerotel: [
+      { g: '🚪 Kapı çalındı: "Kat hizmetleri!"', r: ['Rahatsız etmeyin asılı değil miydi?! 😱', '"Sonra gelin!" 🙈', 'Bornozumu ver 😳', 'Gitti… oh 😮‍💨', 'Tabelayı as artık 😂'] },
+      { g: '📞 Odanın telefonu çaldı: resepsiyon', r: ['Şikâyet mi geldi?! 😳', 'Açma 🙈', 'Duvarlar inceymiş 😂', 'Sustu, devam ama sessiz 🤫', 'Bir gece daha kalalım 😈'] },
+      { g: '🔊 Yan odadan duvara vurdular', r: ['Duydular! 😱', 'Sesimi kısamıyorum 😩', 'Onlar da yapıyordur 😏', 'Yastığı ısırayım 🙈', 'Daha yüksek 😈'] },
+      { g: '🌃 Karşı otelin penceresinde biri perdeyi araladı', r: ['Görüyor mu?! 😳', 'Perdeyi kapat 🙈', 'Bıraksana, izlesin 😈', 'Işığı söndür 😏', 'Gitti… devam 🥵'] },
+      { g: '🍾 Oda servisinin getirdiği şampanya kendiliğinden patladı', r: ['Ödüm koptu! 😂', 'Halıya döküldü 🙈', 'Kadeh getir 🥂', 'Tenimden iç 😈', 'Kutlama zamanı 😏'] }
     ]
   };
   Object.keys(MORE).forEach(k => (Stories.FANT_INTERRUPTS[k] = Stories.FANT_INTERRUPTS[k] || []).push(...MORE[k]));

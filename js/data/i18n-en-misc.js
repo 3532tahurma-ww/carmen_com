@@ -62,6 +62,8 @@ Stories.I18n.add({
   'Kitapçıda': 'At the bookstore',
   'Kampüste': 'On campus',
   'Onun iş yerinin önünde': 'Outside her workplace',
+  'Ofiste': 'At the office',
+  'Otel odasında': 'In a hotel room',
   'Yağmurlu bir sokakta': 'On a rainy street',
   'Bir çatıda': 'On a rooftop',
   'Gece yürüyüşünde': 'On a night walk',

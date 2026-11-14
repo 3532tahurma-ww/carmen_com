@@ -504,6 +504,15 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['🔗', 'BDSM gelişiyor', '10 yeni BDSM olayı geldi; artık 26 olay var. ✋ Darbe: Paddle, Riding Crop, Flogger. 🌡️ Duyusal: Feather Tease, Wartenberg Wheel, Hot & Cold. 🪢 Bağlama: Handcuffs, Shibari, Spreader Bar, Hands Behind Back. 🔗 BDSM Kitabı da güncellendi.', '#/kitap/bdsm', [
+      ['✋ Darbe', 'En yumuşaktan en serte: Flogger, Spanking, Riding Crop, Paddle. Paddle ve Riding Crop Acı\'yı da artırır; güvenli kelime her zaman geçerli.'],
+      ['🌡️ Duyusal', 'Tüy, dikenli tekerlek, sıcak çay ve buz. Göz bağıyla birlikte her dokunuş sürpriz olur.'],
+      ['🪢 Bağlama', 'Kurdeleyle bilekler arkada, pelüş kelepçe, ayak bileği çubuğu ve göğüslerin etrafında süs düğümlü ip. Bağlamak Güven\'i artırır.'],
+      ['🎭 Kişilik ve rol', '26 BDSM olayının her birine utangaç, flörtöz, romantik, soğuk ve dominant kişiliğe göre ayrı cevaplar geldi. Bir rol ya da fantezi sürerken (Kraliçe, Polis, Vampir, Cat Girl, meyve kızları… 58 rol) o rolün ağzından konuşur.']]],
+    ['🆕', 'Yeni olaylar', '23 yeni olay geldi. 🔥 Pozisyonlar: Reverse Cowgirl, Prone Bone, Lotus, Butterfly, Missionary Anal, Reverse Cowgirl Anal. 🔗 BDSM: Blindfold, Collar & Leash, Spanking, Butt Plug, Nipple Clamps, Ball Gag ve Güven\'i artıran Safe Word. Üç yeni mekân: 🏝️ Plaj, 🏢 Ofis, 🏨 Otel; her birinin kendi bitişi var.', '#/messages', [
+      ['🏝️ Plaj', 'Sunscreen Rub, Beach Towel Sex, Wave Sex ve Beach Cumshot. Sahilde ya da tatildeyken görünür.'],
+      ['🏢 Ofis', 'Under The Desk, Office Chair Ride, Copy Room Quickie ve Office Cumshot. Ofiste, çalışma odasında ya da iş yerinde görünür.'],
+      ['🏨 Otel', 'Room Service, Balcony Sex, Hotel Mirror ve Hotel Creampie. Otel odasında ya da tatildeyken görünür.']]],
     ['🎰', 'CarmenGasino açıldı', 'Gazinonun 🐰 Bunny Girl\'leri geldi: kulaklar, papyon, file çorap. Her gece 6 kız bir masada: 🎡 Rulet Masası, 🃏 Blackjack, 🍸 Kokteyl Servisi, 🎰 Jackpot Ödülü, 💃 Sahne Arkası ve ♠️ Strip Poker. Masaya otur, sohbet o sahneyle ve tavşan kostümüyle başlar; her birinin kendi mesajları, soruları, kesintileri ve 🥚 egg\'leri var. Olaylar ⋯ Diğer → 🎭 Role-play\'de de.', '#/gasino'],
     ['🗺️', 'Görevler', 'Ben sayfasında yeni 🗺️ Görevler sekmesi: 9 dalda 50 görev. Bir görevi bitirince altındaki dallar açılır; öpücükten ilk geceye, duştan arabaya, fantezilerden üçlüye kadar uygulamadaki her şeyi adım adım denersin. Her görevin 💰 ödülü var, bitince 🎁 ile alırsın.', '#/me/gorev', [
       ['🌳 Dallanan yol', 'Yakınlaşma "Sıra onda" ve "Sıra sende" diye ikiye ayrılır, ikisi bitince İlk gece açılır; Pozisyonlar, Bitiş, Mekanlar ve Fanteziler oradan dallanır.'],
@@ -645,6 +654,14 @@
     flix: ['Yeni film: Kapı Komşusu 🍿', 'İzle'], live: ['Şu an canlı yayında 🔴', 'Yayına gir'], party: ['Bu gece parti var, dans pisti dolu 💃', 'Katıl'], shop: ['Oyuncakta kargo bedava 📦', 'Alışveriş'],
     jobs: ['Sekreter aranıyor… mülakat bugün 💼', 'Başvur'], school: ['Ders bitti, hocan seni odasına çağırıyor 🎓', 'Derse gir'], clinic: ['Döngü takvimini kontrol et 🩺', 'Takvim'], conf: ['Bugünün en çok okunan itirafı 🎭', 'Oku'], cr: ['Yeni pozisyon fikirleri ✨', 'Keşfet'],
     ch: ['Turnuva başlıyor: kimi seçeceksin? 👑', 'Oyna'], play: ['Yeni bölüm açıldı 🎮', 'Oyna'], gothic: ['Gece yarısı ilanları: vampir, cadı, succubus 🦇', 'Karanlığa gir'], meisove: ['Taze, sulu, aromalı: bugün hangi meyve? 🍓', 'Tadına bak'], guide: ['Takıldın mı? Kitaplık ve bot deneyi burada 🧭', 'Rehbere bak'] };
+  // 🔥 ana sayfa: haberlerin altındaki slogan başlığı ve kartlardaki onun ağzından sloganlar
+  const HOME_SLOGAN = ['🔥 Bu gece kimin olacaksın?', '💋 Tek mesaj at, gerisini o halleder', '😈 Uykun mu var? Onlar uyumuyor', '🌙 Gece uzun, yatak geniş',
+    '🫦 Seni bekleyen dudaklar var', '🔞 Utanma, burada herkes istekli', '💦 Bugün biraz yaramazlık yapalım mı?', '🍑 Bakmak serbest, dokunmak bir mesaj uzağında'];
+  const HOME_HOT = ['Kapımı kilitledim, anahtar sende 🔑', 'Bu gece uyumak yok 😈', 'Altımda hiçbir şey yok… şu an 🙈', 'Yaz bana, sonrasını ben düşünürüm 💋',
+    'Sıcak bir duş, sonra sen 🚿', 'Dudaklarım seni bekliyor 🫦', 'Bir kadeh şarap, sonra yatak 🍷', 'Utangaçım ama sadece ilk beş dakika 😏',
+    'Sırtımı öp, gerisi kendiliğinden 🔥', 'Bu gece benim misafirimsin 🌙', 'Yatağım çok büyük, tek başıma 🥺', 'Beni ısıt, üşüdüm 😈'];
+  const HOME_HOT_GT = ['Gece yarısı kapımı çal 🦇', 'Boynunu uzat, ölümlü 🩸', 'Mumları yaktım, ipler hazır 🕯️', 'Kelepçelerim çantamda ⛓️',
+    'Karanlıkta seni kokundan bulurum 🖤', 'Dolunay doğdu, ben vahşiyim 🌕', 'Tabutum iki kişilik ⚰️', 'Güvenli kelime: dolunay. Gerisi serbest 😈'];
   function renderHome() {
     const sites = netSites(), all = cmAll();
     // 🌹 akıştaki ilanlar: oturum boyunca aynı sıra (VIP'ler öne yakın), 🎲 karıştırır
@@ -670,7 +687,9 @@
       live: { t: ['🔴 CarmenLive · şu an canlı', '🔴 CarmenLive · yayında'], go: '#/canli', more: 'Tüm yayınlar', href: c => `#/canli/${c.id}`,
         top: c => `<em class="hl-cm-vip hl-src-live">🔴 CANLI · 👁 ${k1(120 + cmNum(c, 'vw', 2400))}</em>`, sub: c => esc(cmPick(c, 'lt', ['Sohbet & dans 💃', 'Yeni kostüm gecesi 🐰', 'Duştan sonra 💦', 'Sorularınızı cevaplıyorum 💬', 'Hedefe ulaşınca sürpriz 🎁', 'Uykum yok, eşlik et 🌙'])) },
       gram: { t: ['📸 Carmentagram · keşfet', '📸 Carmentagram · popüler hesaplar'], go: '#/gram', more: 'Akış', href: c => `#/gram/${c.id}`,
-        top: c => `<em class="hl-cm-vip hl-src-gram">${cmVip(c) ? '✔ ' : ''}${k1(grFollowers(c))} takipçi</em>`, sub: c => esc(fnHandle(c)) }
+        top: c => `<em class="hl-cm-vip hl-src-gram">${cmVip(c) ? '✔ ' : ''}${k1(grFollowers(c))} takipçi</em>`, sub: c => esc(fnHandle(c)) },
+      gothic: { t: ['🦇 Gothic.com · gece yarısı ilanları', '🕯️ Gothic.com · karanlıktan yeni'], go: '#/gothic', more: 'Gothic.com', href: c => `#/gothic/${c.id}`,
+        top: c => `<em class="hl-cm-vip hl-src-gothic" style="background:#170d1f;color:#ff7a18">${gtType(c).ic} ${esc(gtType(c).name)}</em>`, sub: c => `📍 ${esc(c.city || 'Gizli')} · ${cmVip(c) ? '👑 VIP' : '🦇 Gothic'}` }
     };
     const srcCard = k => (c, i) => { const s = SRC[k]; return `<a class="hl-cm hl-cm-${k}${k === 'carmen' && cmVip(c) ? ' vip' : ''}" href="${s.href(c)}" style="--i:${i};--mtbg:${esc(grad(c))}">
         ${c.photo ? `<img src="${esc(c.photo)}" alt="" loading="lazy" onerror="this.remove()">` : `<span class="mt-ini">${esc((c.name || '?')[0])}</span>`}
@@ -684,8 +703,12 @@
     // akış: 3 VIP vitrin, sonra bloklar sırayla Carmen.com → CarmenFans → CarmenLive → Carmentagram (4'er karakter);
     // her bloğun ardından sırayla site reklamı ve 🎮 CarmenPlay reklamı. Her site kendi listesinde ilerler
     const vip = ads.filter(cmVip).slice(0, 3), rest = ads.filter(c => !vip.includes(c));
-    const POOLS = { carmen: rest, fans: [...notVip.slice(8), ...notVip.slice(0, 8)], live: online, gram: [...ads].reverse() }, ORDER = ['carmen', 'fans', 'live', 'gram'];
-    const blocks = [], at = { carmen: 0, fans: 0, live: 0, gram: 0 };
+    // 🦇 Gothic.com ilanları da akışta (oturum boyunca aynı sıra, 🎲 karıştırır)
+    const gts = gtAll();
+    if (!ui.homeGt || ui.homeGt.some(id => !gts.some(c => c.id === id))) ui.homeGt = sample(gts, gts.length).map(c => c.id);
+    const POOLS = { carmen: rest, fans: [...notVip.slice(8), ...notVip.slice(0, 8)], gothic: ui.homeGt.map(id => gts.find(c => c.id === id)).filter(Boolean), live: online, gram: [...ads].reverse() };
+    const ORDER = ['carmen', 'gothic', 'fans', 'live', 'gram'];
+    const blocks = [], at = { carmen: 0, gothic: 0, fans: 0, live: 0, gram: 0 };
     let shown = 0, left = false;
     for (let b = 0; ; b++) {
       const k = ORDER[b % ORDER.length], items = POOLS[k].slice(at[k], at[k] + 4);
@@ -707,9 +730,15 @@
         <span><b>${esc((c.name || '?').split(' ')[0])}</b><small>${l ? esc((l.from === 'me' ? 'Sen: ' : '') + preview(l)) : 'Henüz mesaj yok'}</small></span></a>`; }),
       `<a class="hl-cont hl-cont-g" href="#/oyun/ps"><i>🗂️</i><span><b>Problematic Subjects</b><small>Bölüm ${psData().level}</small></span></a>`,
       `<a class="hl-cont hl-cont-g" href="#/oyun/fp"><i>🔥</i><span><b>Fiery Passions</b><small>Gün ${fpData().day}</small></span></a>`].join('');
-    // 🧭 rastgele iki site kartı (oturum boyunca aynı, 🎲 karıştırır)
-    if (!ui.homeSites || ui.homeSites.some(k => !sites.some(s => s.k === k))) ui.homeSites = sample(sites, 2).map(s => s.k);
-    const pick = ui.homeSites.map(k => sites.find(s => s.k === k));
+    // 🔥 haberlerin altında: erotik slogan + 4 karakter kartı (Carmen.com ve Gothic.com karışık; oturum boyunca aynı, 🎲 karıştırır), kartta onun ağzından slogan
+    const hotAll = [...new Set([...ads, ...gts])];
+    if (!ui.homeHot || ui.homeHot.some(id => !hotAll.some(c => c.id === id))) ui.homeHot = sample(hotAll, 4).map(c => c.id);
+    if (ui.homeSlogan == null) ui.homeSlogan = Math.floor(Math.random() * HOME_SLOGAN.length);
+    const hot = ui.homeHot.map(id => hotAll.find(c => c.id === id)).filter(Boolean);
+    const hotCard = (c, i) => `<a class="hl-cm${cmVip(c) ? ' vip' : ''}" href="${c.goth ? `#/gothic/${c.id}` : `#/carmen/${c.id}`}" style="--i:${i};--mtbg:${esc(grad(c))}">
+        ${c.photo ? `<img src="${esc(c.photo)}" alt="" loading="lazy" onerror="this.remove()">` : `<span class="mt-ini">${esc((c.name || '?')[0])}</span>`}
+        ${c.goth ? `<em class="hl-cm-vip" style="background:#170d1f;color:#ff7a18">${gtType(c).ic} ${esc(gtType(c).name)}</em>` : cmVip(c) ? '<em class="hl-cm-vip">👑 VIP</em>' : ''}${cmOnline(c) ? '<em class="hl-cm-on">●</em>' : ''}
+        <span class="hl-cm-txt"><b>${nm(c)}${c.age ? `, ${esc(c.age)}` : ''}</b><small>${esc(cmPick(c, 'hsl', c.goth ? HOME_HOT_GT : HOME_HOT))}</small></span></a>`;
     view.innerHTML = `
       <div class="page-pad home home-land">
         <div class="hl-head">
@@ -718,14 +747,14 @@
           <button type="button" class="icon-btn hl-dice" id="hlBoss" aria-label="Patron geldi" title="Patron geldi">🙈</button>
           <button type="button" class="icon-btn hl-dice" id="hlShuffle" aria-label="İlanları karıştır" title="İlanları karıştır">🎲</button></span>
         </div>
-        <div class="hl-sec"><h3>⏯️ Kaldığın yerden</h3><a href="#/messages">Sohbetler ›</a></div>
-        <div class="hl-conts">${cont}</div>
-        ${pick.map((s, i) => `<a class="net-card net-${s.k} hl-ad" href="${s.href}" style="--i:${i}"><span class="net-ic">${s.ic}</span>
-          <span class="net-txt"><small>🔒 ${s.url}</small><b>${s.logo}</b><span>${esc(s.desc)}</span></span></a>`).join('')}
         ${(() => { const nw = newsUnseen(), [ic, t] = HOME_NEWS[0]; return `<a class="hl-news" href="#/haberler">
           <span class="hl-lia">💁‍♀️</span>
           <span class="hl-news-t"><small>📰 Lia'dan haberler${nw ? ` · <em>${nw} yeni</em>` : ''}</small><b>${ic} ${esc(t)}</b></span>
           <span class="hl-news-go">›</span></a>`; })()}
+        ${hot.length ? `<div class="hl-sec"><h3>${esc(HOME_SLOGAN[ui.homeSlogan % HOME_SLOGAN.length])}</h3><a href="#/carmen">Tümü ›</a></div>
+        <div class="hl-cm-grid">${hot.map(hotCard).join('')}</div>` : ''}
+        <div class="hl-sec"><h3>⏯️ Kaldığın yerden</h3><a href="#/messages">Sohbetler ›</a></div>
+        <div class="hl-conts">${cont}</div>
         ${(() => { const m = meetDraft(); return `<a class="hl-meet hl-tinder" id="hlMeet" href="#/tinder">
           ${m.photo ? `<img src="${esc(m.photo)}" alt="" onerror="this.remove()">` : ''}<span class="hl-shade"></span>
           <span class="hl-ic">🔥</span>
@@ -748,7 +777,7 @@
         ${left ? '<button type="button" class="btn ghost block hl-more" id="hlMore">Daha fazla ↓</button>' : ''}
         <footer class="cm-foot">© Carmen · Tüm profiller ve ilanlar kurgusaldır, 18+</footer>
       </div>`;
-    $('#hlShuffle').onclick = () => { ui.homeAds = null; ui.homeSites = null; ui.homeMore = 1; renderHome(); };
+    $('#hlShuffle').onclick = () => { ui.homeAds = null; ui.homeGt = null; ui.homeHot = null; ui.homeSlogan = null; ui.homeMore = 1; renderHome(); };
     $('#hlBoss').onclick = () => bossKey();
     const mb = $('#hlMore');
     if (mb) mb.onclick = () => { const y = window.scrollY; ui.homeMore = more + 1; renderHome(); window.scrollTo(0, y); };
@@ -1085,10 +1114,20 @@
     asansor: ['Emergency Stop', 'Elevator Kiss', 'Elevator Quickie', 'Elevator Blowjob'],
     kamp: ['Campfire Cuddle', 'Sleeping Bag Spooning', 'Tent Cowgirl', 'Under The Stars'],
     mutfak: ['Apron Only', 'Whipped Cream', 'Counter Sex', 'Counter Doggy'],
-    kamera: ['Start Recording', 'POV Blowjob', 'POV Cowgirl', 'Selfie Doggy', 'Watch It Together']
+    kamera: ['Start Recording', 'POV Blowjob', 'POV Cowgirl', 'Selfie Doggy', 'Watch It Together'],
+    // 3. dalga (x.newEv3): yeni pozisyonlar, BDSM eklemeleri, plaj / ofis / otel
+    poz2: ['Reverse Cowgirl', 'Prone Bone', 'Lotus', 'Butterfly', 'Missionary Anal', 'Reverse Cowgirl Anal'],
+    bdsm2: ['Blindfold', 'Collar & Leash', 'Spanking', 'Butt Plug', 'Nipple Clamps', 'Ball Gag', 'Safe Word'],
+    plaj: ['Sunscreen Rub', 'Beach Towel Sex', 'Wave Sex'],
+    ofis: ['Under The Desk', 'Office Chair Ride', 'Copy Room Quickie'],
+    otel: ['Room Service', 'Balcony Sex', 'Hotel Mirror'],
+    // 4. dalga (x.newEv4): BDSM darbe, duyusal, bağlama
+    bdsm3: ['Paddle', 'Riding Crop', 'Flogger', 'Feather Tease', 'Wartenberg Wheel', 'Hot & Cold', 'Handcuffs', 'Shibari', 'Spreader Bar', 'Hands Behind Back']
   };
-  const CM_NEW_ODDS = { kondom: 2, dus: 2, sauna: 3, iseme: 5, kuvet: 3, havuz: 4, araba: 4, asansor: 5, kamp: 4, mutfak: 4, kamera: 5 };   // 1/n ilan
+  const CM_NEW_ODDS = { kondom: 2, dus: 2, sauna: 3, iseme: 5, kuvet: 3, havuz: 4, araba: 4, asansor: 5, kamp: 4, mutfak: 4, kamera: 5, poz2: 2, bdsm2: 5, plaj: 4, ofis: 4, otel: 4, bdsm3: 4 };   // 1/n ilan
   const CM_NEW_V2 = ['kuvet', 'havuz', 'araba', 'asansor', 'kamp', 'mutfak', 'kamera'];
+  const CM_NEW_V3 = ['poz2', 'bdsm2', 'plaj', 'ofis', 'otel'];
+  const CM_NEW_V4 = ['bdsm3'];
   const cmNewEvs = (k, x) => {
     const low = s => String(s || '').toLocaleLowerCase('tr').trim(), no = new Set([...(x.dislikes || []), ...(x.denies || [])]);
     return [].concat(CM_NEW_EV[k] || k).map(t => allEvents().find(e => low(e.title) === low(t))).filter(e => e && !no.has(e.id));
@@ -1105,9 +1144,11 @@
   function cmNewEv(x) {
     cmHwFix(x);
     const add = k => { if (!cmNum(x, 'nw' + k, CM_NEW_ODDS[k])) x.likes = [...new Set([...(x.likes || []), ...cmPicks(x, 'nwp' + k, cmNewEvs(k, x).map(e => e.id), 2)])]; };
-    if (!x.newEv1) { x.newEv1 = 1; Object.keys(CM_NEW_EV).filter(k => !CM_NEW_V2.includes(k)).forEach(add); }
+    if (!x.newEv1) { x.newEv1 = 1; Object.keys(CM_NEW_EV).filter(k => !CM_NEW_V2.includes(k) && !CM_NEW_V3.includes(k) && !CM_NEW_V4.includes(k)).forEach(add); }
     // 🏖️ mekânlar sonradan geldi: kayıtlı ilanlar da bir kez alır
     if (!x.newEv2) { x.newEv2 = 1; CM_NEW_V2.forEach(add); }
+    if (!x.newEv3) { x.newEv3 = 1; CM_NEW_V3.forEach(add); }
+    if (!x.newEv4) { x.newEv4 = 1; CM_NEW_V4.forEach(add); }
     return x;
   }
   function cmFix(x) {
@@ -1839,6 +1880,8 @@
    * pozisyonunu ve 2 Halloween rolünü ❤️ sever, rollerin kostümleri gardırobundadır. Puan / VIP / vücut / kondom kuralları Carmen.com'la aynı hesap (cm*);
    * metinler, seanslar, yorumlar ve ön görüşme (Halloween mekanlarında) kendine ait. Kaydedilen kız (c.goth) rolünün kostümüyle gelir */
   const GT_N = 100, GT_KEY = 'amor-stories:gothic-ads';
+  const GT_BD_N = { vampir: 5, succubus: 5, cadi: 4, kurt: 4, rahibe: 4, kedi: 4 };
+  const gtBdEvs = () => allEvents().filter(e => e.cat === 'c:mvbdsm01x');
   const gtHw = () => allEvents().filter(e => (e.tags || []).some(t => lowTag(t) === 'halloween'));
   function gtFix(x) {
     cmNewEv(x);
@@ -1854,6 +1897,13 @@
     if (!GT_TYPES.some(t => t.id === x.gtType)) {
       const rt = roles.filter(e => rIds.includes(e.id)).map(e => GT_TYPES.find(t => t.role && String(e.title || '').toLocaleLowerCase('tr').startsWith(t.role))).find(Boolean);
       x.gtType = (rt || GT_TYPES[Math.floor(Math.random() * GT_TYPES.length)]).id;
+    }
+    // 🔗 gothic kızlar BDSM'i daha çok sever: bir kez (x.gbd1) türüne göre 3–5 BDSM olayı ❤️ (🚫 olanlar hariç)
+    if (!x.gbd1) {
+      x.gbd1 = 1;
+      const bd = gtBdEvs().map(e => e.id).filter(id => !(x.denies || []).includes(id)), add = cmPicks(x, 'gbd', bd, GT_BD_N[x.gtType] || 3);
+      x.likes = [...new Set([...x.likes, ...add])];
+      x.dislikes = x.dislikes.filter(id => !add.includes(id));
     }
     // 🩸 kanlı boşalmalar: kondom şartı olan hepsine, içe izin vermeyen içe olanlara 🚫; kanı sevmeyen (Vampir / Succubus / Cadı değil, kan pozisyonu da sevmiyor) 💔, seven 2'sini ❤️
     const hasT = (e, t) => (e.tags || []).some(x => lowTag(x) === t), kan = allEvents().filter(e => hasT(e, 'kan')), kanCum = kan.filter(e => hasT(e, 'boşalma'));
@@ -2105,6 +2155,51 @@
     ['Blood Moon Creampie.', 'Kan ayı doğduğunda içime boşal; o anda boynunu ısırırım, ikimiz aynı anda geliriz 🌕'],
     ['Red Bath Creampie serbest.', 'Kırmızı küvette, suyun içinde içime bırak; kontes banyosu böyle biter 🛁'],
     ['Kanımız karışınca içime.', 'Önce kan antlaşması, sonra son damlana kadar içimde 🩸']];
+  // 🔗 sevdiği BDSM olaylarından kural satırları (en çok 2; "Kurallarım"da tür kurallarından sonra)
+  const GT_BD_RULE = {
+    'vibrator control': ['📳', 'Kumanda bende kalmaz.', 'Vibratörü sana veririm; kademeyi sen seçersin, ben her birinde başka türlü kıvranırım.'],
+    'remote toy': ['📲', 'Dışarıda da oyun sürer.', 'Restoranda bile iç çamaşırımda oyuncak olur; kumanda cebinde, kimse fark etmemeli.'],
+    'honey chocolate lick': ['🍫', 'Tatlıyı tenimden yersin.', 'Erimiş çikolata ve bal tenime dökülür; tek damla bırakmadan yalarsın.'],
+    'ice cube': ['🧊', 'Buz serbest.', 'Soğuk tenime buz gezdir; ürpermemi izlemek senin hakkın.'],
+    'hot wax': ['🕯️', 'Mum damlası serbest.', 'Sadece düşük ısılı masaj mumu; yakından damla yakar, uzaktan okşar.'],
+    'warm oil massage': ['🫗', 'Önce yağ, sonra ayin.', 'Ilık yağla bütün bedenime masaj yapmadan sahne başlamaz.'],
+    'edging': ['⏸️', 'Hemen gelmek yok.', 'Sınıra getir, durdur, yeniden başla; yalvarmadan bitirmem.'],
+    'tied to bed': ['🪢', 'Yatağa bağlanmayı severim.', 'Bileklerim ve ayak bileklerim dört köşeye; ipleri sık kontrol edersin.'],
+    'address rule': ['👑', 'Hitap kuralı.', 'Sahne boyunca "Efendim" ya da "Hanımefendi"; unutan düzeltilir.'],
+    'blindfold': ['🖤', 'Gözlerim bağlı olacak.', 'İpek bantla; karanlık zaten benim evim, dokunuşların sürpriz olsun.'],
+    'collar & leash': ['⛓️', 'Tasmam çantamda.', 'Deri tasmamı boynuma takarsın; ucunu çektiğin yere gelirim.'],
+    'spanking': ['✋', 'Şaplak serbest.', 'Kalçama vur, ben sayarım; kızaran yeri sonra öpersin.'],
+    'butt plug': ['💎', 'Tıpam takılı gelirim.', 'Mücevherli tıpam akşam boyunca içimde; seansta sen çıkarırsın.'],
+    'nipple clamps': ['⛓️', 'Mandallar serbest.', 'Göğüs uçlarıma zincirli mandal; zinciri yavaşça çekersin.'],
+    'ball gag': ['🔴', 'Tıkaç serbest, mendil elimde.', 'Konuşamam, sadece inlerim; mendili düşürürsem durursun.'],
+    'safe word': ['🛑', 'Önce güvenli kelime.', 'Kelimemiz "dolunay"; söylediğim an her şey durur. Gerisinde sınırsızım.'],
+    'paddle': ['🏓', 'Deri kürek serbest.', 'Kalçamda iz kalırsa gururla taşırım; güvenli kelime her zaman geçerli.'],
+    'riding crop': ['🏇', 'Binici kırbacı çantamda.', 'Önce ucuyla okşa, sonra nokta atışı; iç bacağım en sevdiğim yer.'],
+    'flogger': ['🪶', 'Kırbaç yağmuru.', 'Çok şeritli kırbaç sırtıma yağmur gibi; ritmini bozma.'],
+    'feather tease': ['🪶', 'Tüyle işkence serbest.', 'Gıdıklanırım, kıvranırım ama durma.'],
+    'wartenberg wheel': ['⚙️', 'Dikenli tekerlek serbest.', 'Tenimde yuvarla; batmaz ama her diken ayrı ayrı hissedilir.'],
+    'hot & cold': ['🍵', 'Sıcak ve soğuk.', 'Ağzında önce sıcak çay, sonra buz; dilin sırayla yakar ve üşütür.'],
+    'handcuffs': ['🔗', 'Kelepçe serbest.', 'Pelüş kelepçeyle karyolaya; anahtar komodinde, ikimizin de gözü önünde.'],
+    'shibari': ['🪢', 'Kırmızı ip ayini.', 'Göğüslerimin etrafında süs düğümleri; acele eden ölümlüye ipimi vermem.'],
+    'spreader bar': ['📏', 'Çubuk serbest.', 'Ayak bileklerime çubuk takarsın; bacaklarım kapanmaz, her şey sana açık.'],
+    'hands behind back': ['🎀', 'Bileklerim arkada.', 'İpek kurdeleyle bağla; ellerim yok, gerisini sen yaparsın.']
+  };
+  const gtBdRules = c => cmPicks(c, 'gbr', feelEvents(c.likes || []).filter(e => e.cat === 'c:mvbdsm01x').map(e => GT_BD_RULE[String(e.title || '').toLocaleLowerCase('tr').trim()]).filter(Boolean), 2);
+  Object.assign(GT_GOOD_EV, {
+    'vibrator control': ['📳 Kumandayı sana veririm; her kademede başka bir çığlık duyarsın.'], 'remote toy': ['📲 Mum ışıklı bir restoranda, iç çamaşırımda titreyen oyuncak; yüzüm kıpırdamaz, bacaklarım titrer.'],
+    'honey chocolate lick': ['🍫 Siyah dantelimin üstünden çikolata akar; dilinle temizlersin.'], 'ice cube': ['🧊 Buz zaten soğuk tenimde erimez; ürpertimi izle.'],
+    'hot wax': ['🕯️ Kırmızı mum tenime damlar; her damla bir mühür.'], 'warm oil massage': ['🫗 Yağlı ellerin sunağımda; sonra ayin başlar.'],
+    'edging': ['⏸️ Beni sınırda tut; yalvarışım mezarlıktan duyulur.'], 'tied to bed': ['🪢 Tabutum değil, yatağım; bileklerim dört köşede.'],
+    'address rule': ['👑 Bu gece bana "Hanımefendi" diyeceksin, ölümlü.'], 'blindfold': ['🖤 Gözlerim bağlı; karanlıkta seni kokundan bulurum.'],
+    'collar & leash': ['⛓️ Deri tasmam boynumda, ucu elinde; ya da tam tersi 😈'], 'spanking': ['✋ Kalçama şaplak, sayarım; on üçe kadar, uğursuz sayı.'],
+    'butt plug': ['💎 İçimde kırmızı taşlı bir tıpa; bütün gece benimle.'], 'nipple clamps': ['⛓️ Göğüslerimde gümüş zincir; çekince çan gibi inlerim.'],
+    'ball gag': ['🔴 Ağzımda kırmızı top; sadece gözlerim konuşur.'], 'safe word': ['🛑 Kelimem "dolunay"; söylemedikçe durma.'],
+    'paddle': ['🏓 Deri kürek kalçamda; iz bir hafta kalır.'], 'riding crop': ['🏇 Binici kırbacının ucu iç bacağımda; nokta atışı.'],
+    'flogger': ['🪶 Kırbaç şeritleri sırtımda yağmur gibi; ritmi sen tut.'], 'feather tease': ['🪶 Kuzgun tüyüyle beni gıdıkla; kıvranmamı izle.'],
+    'wartenberg wheel': ['⚙️ Dikenli tekerlek tenimde; küçük bir işkence aleti, büyük bir zevk.'], 'hot & cold': ['🍵 Sıcak çay, buz, dilin; ateşle buz arasında kaybolurum.'],
+    'handcuffs': ['🔗 Kelepçelerim çantamda; anahtarı kaybedersen sabaha kadar seninim.'], 'shibari': ['🪢 Kırmızı ip göğüslerimde örülür; bir sanat eseri, bir ayin.'],
+    'spreader bar': ['📏 Çubuk ayak bileklerimde; bacaklarımı kapatamam, istemem de.'], 'hands behind back': ['🎀 Bileklerim arkada siyah kurdeleyle; gerisi senin.']
+  });
   function gtRules(c) {
     const p = cmProt(c), three = cmNum(c, 'r3', 3) > 0, lv = cmNum(c, 'insT', 3);
     if (p.need) return [cmPick(c, 'gk', GT_KON), cmPick(c, 'gk2', GT_KON2), ...(three ? [cmPick(c, 'gk3', GT_KON3)] : [])].map(([a, b]) => ['🛡️', a, b]);
@@ -2228,7 +2323,7 @@
       ${sec('🦇', 'Karanlıkta en iyi yaptıklarım', dark.length || other.length ? `<ul class="cm-good">${[...dark, ...other.slice(0, 3)].map((e, i) => `<li>${esc(gtGood(c, e, i + 2))}</li>`).join('')}</ul>
         <div class="cm-cat"><small>🎃 Halloween</small>${chips(dark)}</div>${other.length ? `<div class="cm-cat"><small>Diğer sevdiklerim</small>${chips(other)}</div>` : ''}` : '')}
       ${sec('📏', 'Fiziksel özellikler', `<div class="cm-phys">${cmBody(c).map(([ic, k, v]) => `<div><small>${ic} ${k}</small><b>${esc(v)}</b></div>`).join('')}</div>`)}
-      ${sec('⛓️', 'Kurallarım', `<div class="cm-rules">${[...cmPicks(c, 'gru', gtType(c).rule, 2), ...(gtPsy(c) ? [cmPick(c, 'gpr', GT_PSY_RULE)] : []), ...gtRules(c)].map(([ic, t, d]) => `<div class="${ic === '🚫' || ic === '🛡️' ? 'no' : 'ok'}"><span>${ic}</span><p><b>${esc(t)}</b> ${esc(d)}</p></div>`).join('')}</div>
+      ${sec('⛓️', 'Kurallarım', `<div class="cm-rules">${[...cmPicks(c, 'gru', gtType(c).rule, 2), ...(gtPsy(c) ? [cmPick(c, 'gpr', GT_PSY_RULE)] : []), ...gtBdRules(c), ...gtRules(c)].map(([ic, t, d]) => `<div class="${ic === '🚫' || ic === '🛡️' ? 'no' : 'ok'}"><span>${ic}</span><p><b>${esc(t)}</b> ${esc(d)}</p></div>`).join('')}</div>
         ${denies.length ? `<div class="cm-cat cm-no"><small>İzin vermediklerim</small>${chips(denies)}</div>` : ''}`)}
       ${sec('💔', 'Gün ışığı kadar sevmediklerim', dislikes.length ? `<div class="cm-cat cm-no">${chips(dislikes)}</div>` : '')}
       ${sec('📸', 'Fotoğraflar', album.length > 1 ? `<div class="cm-album">${album.map((u, i) => `<img src="${esc(u)}" alt="" loading="lazy" data-gtz="${i}">`).join('')}</div>` : '')}
@@ -15328,7 +15423,7 @@
     ['on', '👅', 'Ön sevişme', ['eat', 'outercourse']],
     ['sut', '🍼', 'Lactation', ['lactation', 'nursing', 'lactation fantasy']],
     ['poz', '🔥', 'Pozisyon', ['forward', 'backward', 'threesome', 'mode', 'pre-cumming']],
-    ['mekan', '📍', 'Mekân', ['mekanda', 'shower', 'sauna', 'bathtub', 'pool', 'car', 'elevator', 'camping', 'kitchen', 'camera']],
+    ['mekan', '📍', 'Mekân', ['mekanda', 'shower', 'sauna', 'bathtub', 'pool', 'car', 'elevator', 'camping', 'kitchen', 'camera', 'beach', 'office', 'hotel']],
     ['fant', '🦄', 'Fantezi', ['fantesy', 'meisove', 'femdom', 'bdsm', 'bull', 'pee']],
     ['bit', '💦', 'Bitiş', ['cumming', 'cumming size']],
     ['son', '🌙', 'Sonrası', ['cool down', 'treatment', 'bull story']]
@@ -15342,7 +15437,10 @@
     car: { ids: ['araba', 'garaj', 'mezarlik-araba'], to: { place: 'araba' } },
     elevator: { ids: [], to: { place: '', icon: '🛗', name: 'Asansörde', hint: 'Aynalı duvarlar, kat numaraları akıyor; kapı her an açılabilir.' } },
     camping: { ids: ['kamp'], to: { place: 'kamp' } },
-    kitchen: { ids: ['mutfak', 'kahvalti'], to: { place: 'mutfak' } }
+    kitchen: { ids: ['mutfak', 'kahvalti'], to: { place: 'mutfak' } },
+    beach: { ids: ['sahil', 'tatil'], to: { place: 'sahil' } },
+    office: { ids: ['ofis', 'calisma', 'is'], to: { place: 'ofis' } },
+    hotel: { ids: ['otel', 'tatil'], to: { place: 'otel' } }
   };
   const placeEvOf = cat => PLACE_EV[String((cat || {}).label || '').toLocaleLowerCase('tr').trim()];
   const placeFits = (pe, sc) => !!pe && !!sc && (pe.ids.includes(sc.place) || (!pe.to.place && sc.name === pe.to.name));
@@ -15351,12 +15449,12 @@
   // 📍 Mekanda kategorisi (system.js c:mvatplace01x): olay id → olabileceği mekanlar (places.js id); sadece oradayken görünür
   const HOME_ROOMS = ['yatak', 'misafir', 'onun-evi', 'senin-evin', 'dag-evi', 'yazlik'];
   const SPOT_EV = {
-    mvap01enter: [...HOME_ROOMS, 'calisma', 'giyinme', 'salon', 'cati-kati'], mvap02desk: ['calisma', 'kampus'], mvap03bed: HOME_ROOMS,
+    mvap01enter: [...HOME_ROOMS, 'calisma', 'giyinme', 'salon', 'cati-kati', 'ofis', 'otel'], mvap02desk: ['calisma', 'kampus', 'ofis'], mvap03bed: [...HOME_ROOMS, 'otel'],
     mvap04counter: ['mutfak', 'kahvalti'], mvap05sofa: ['salon', 'ev-sinema', 'misafir', 'onun-evi', 'senin-evin'],
-    mvap06wall: [...HOME_ROOMS, 'salon', 'banyo', 'giyinme', 'kapi', 'garaj', 'kiler'], mvap07mirror: ['banyo', 'giyinme', 'yatak'],
-    mvap08window: ['balkon', 'teras', 'cati-kati', 'cati', 'salon'], mvap09fire: ['somine', 'dag-evi'], mvap10backseat: ['araba', 'mezarlik-araba', 'garaj'],
+    mvap06wall: [...HOME_ROOMS, 'salon', 'banyo', 'giyinme', 'kapi', 'garaj', 'kiler'], mvap07mirror: ['banyo', 'giyinme', 'yatak', 'otel'],
+    mvap08window: ['balkon', 'teras', 'cati-kati', 'cati', 'salon', 'otel', 'ofis'], mvap09fire: ['somine', 'dag-evi'], mvap10backseat: ['araba', 'mezarlik-araba', 'garaj'],
     mvap11tent: ['kamp'], mvap12sand: ['sahil', 'tatil'], mvap13shower: ['banyo'], mvap14table: ['mutfak', 'kahvalti', 'yazlik'],
-    mvap15lock: [...HOME_ROOMS, 'banyo', 'calisma', 'giyinme'], mvap16curtain: ['alisveris', 'giyinme'], mvap17bar: ['bar', 'ev-partisi', 'konser', 'dans'],
+    mvap15lock: [...HOME_ROOMS, 'banyo', 'calisma', 'giyinme', 'ofis', 'otel'], mvap16curtain: ['alisveris', 'giyinme'], mvap17bar: ['bar', 'ev-partisi', 'konser', 'dans'],
     mvap18backrow: ['sinema', 'ev-sinema']
   };
   // 📍 Mekanda olaylarına onun cevabı (kuralları yok; wearPart ekler)
@@ -16713,7 +16811,7 @@
   // 🏷️ etikete göre ortak sonuç: g.tags olayın kendi etiketiyle, g.ctags kategorisinin etiketiyle eşleşir (büyük/küçük harf fark etmez)
   const lowTag = x => String(x).toLocaleLowerCase('tr');
   // 🏖️ mekân etiketi → [etiket, kesinti havuzu (FANT_INTERRUPTS), kesinti olasılığı]
-  const PLACE_INT = [['havuz', 'yerhavuz', .2], ['araba', 'yeraraba', .15], ['asansör', 'yerasansor', .2], ['kamp', 'yerkamp', .1]];
+  const PLACE_INT = [['havuz', 'yerhavuz', .2], ['araba', 'yeraraba', .15], ['asansör', 'yerasansor', .2], ['kamp', 'yerkamp', .1], ['plaj', 'yerplaj', .15], ['ofis', 'yerofis', .2], ['otel', 'yerotel', .1]];
   // 🤱 Nursing olayı id → [kesinti havuzu (FANT_INTERRUPTS), olasılık]; _ = diğer Nursing olayları
   const NURSE_INT = { mvnu14cover: ['nuortu', .3], mvnu10night: ['nugece', .2], mvnu18morning: ['nusabah', .2], _: ['nugenel', .06] };
   const sharedByTag = (g, e) => {
@@ -16815,7 +16913,7 @@
   let trPos = null;
   // 🎯 sadece bitiş yeri etiketleri eşleşir (vajinal, kalça…); 🎃 temalı olaylar (halloween / kan / slime / tedavi / mekânlar) ancak pozisyon da o temadaysa:
   // vanilla Doggy → Vaginal Creampie, Red Bath / Visible Creampie değil; Blood Bath → Red Bath Creampie da olabilir
-  const EV_THEME = ['halloween', 'kan', 'slime', 'tedavi', 'boşalma', 'duş', 'sauna', 'bull', 'küvet', 'havuz', 'araba', 'asansör', 'kamp', 'mutfak', 'kamera', 'üçlü'];
+  const EV_THEME = ['halloween', 'kan', 'slime', 'tedavi', 'boşalma', 'duş', 'sauna', 'bull', 'küvet', 'havuz', 'araba', 'asansör', 'kamp', 'mutfak', 'kamera', 'plaj', 'ofis', 'otel', 'üçlü'];
   // bir kategorideki (ör. Cumming) şu anki pozisyona uyan olayların hepsi (trTarget 'match:' ve olay seçicinin 🎯 Şimdi satırı)
   function matchFinishes(catId, pos) {
     const tags = ((pos || {}).tags || []).map(lowTag), spot = tags.filter(t => !EV_THEME.includes(t));
@@ -19065,7 +19163,7 @@
     } }))] });
   // 🔗 BDSM Kitabı: olaylar system.js'ten (c:mvbdsm01x), cümleler ME_EV_LINES ve r_ev_bd_* kurallarından okunur
   const BD_CAT = 'c:mvbdsm01x';
-  const BD_PN = { 'p:umvjzd17hys1oy': 'Uyarılma', 'p:sehvet': 'Şehvet', 'p:samimiyet': 'Samimiyet', 'p:guven': 'Güven', 'p:ask': 'Aşk' };
+  const BD_PN = { 'p:umvjzd17hys1oy': 'Uyarılma', 'p:sehvet': 'Şehvet', 'p:samimiyet': 'Samimiyet', 'p:guven': 'Güven', 'p:ask': 'Aşk', 'p:umvl2lpjpbiqzo': 'Acı' };
   const bdEvents = () => ((Stories.SYSTEM || {}).events || []).filter(e => e.cat === BD_CAT);
   const bdBody = titles => titles.map(t => {
     const e = bdEvents().find(x => x.title === t);
@@ -19083,18 +19181,22 @@
       return `<p>🔗 BDSM olayları sohbette <b>📜 Olay yaz → 🦄 Fantezi → 🔗 BDSM</b> içinden ya da <b>#</b> yazıp olayın adıyla başlar. Her olay değerlere etki eder ve 🤖 bot modu açıksa karakter kendi cevabını yazar.</p>
         <ul><li><b>Pozisyon sayılmaz</b>: bu olaylar sahneyi hazırlar ya da sürdürür; boşalma için ayrıca bir pozisyon ya da bitiş olayı gerekir.</li>
           <li><b>Kademe ve süre</b>: vibratör kademesini, mumun mesafesini ya da edging turunu mesajında söylersin; ayrı bir düğme yok.</li>
-          <li><b>Sıra önerisi</b>: Warm Oil Massage ile başla, duyusal oyunlarla devam et, kontrol ve bağlamayla tırman, sonunda mutlaka sarıl.</li></ul>
+          <li><b>Sıra önerisi</b>: Warm Oil Massage ile başla, duyusal oyunlarla devam et, kontrol ve bağlamayla tırman, sonunda mutlaka sarıl.</li>
+          <li><b>Kişilik ve rol</b>: cevabı kişiliği değiştirir: utangaç kızarır, flörtöz kışkırtır, romantik güvenir, soğuk küçümser, dominant intikam yemini eder. Bir rol ya da fantezi sürüyorsa (Kraliçe, Vampir, Cat Girl, Limon Kız…) o rolün ağzından cevap verir; şaplak, kürek ve kırbaca ayrı tepkisi vardır.</li></ul>
         <table class="bk-t"><tr><th>Olay</th><th>Ne olur</th></tr>${bdEvents().map(e => `<tr><td>${e.emojis || '🔗'} <b>${esc(e.title)}</b></td><td>${esc(e.desc || '')}</td></tr>`).join('')}</table>
         ${bkChat('🔗 Örnek', [['ev', '📜 🧊 Ice Cube'], ['me', 'Gözlerin bağlı, buzun nereye gideceğini bilmiyorsun 😈'], ['her', 'Göremiyorum, nereye gideceğini bilmiyorum 😈'], ['note', 'Uyarılma +12, Şehvet +8. Göz bağıyla sürpriz daha büyük.']])}`;
     } },
-    { icon: '🌡️', title: 'Duyusal oyunlar', sub: 'buz, mum, yağ, çikolata ve bal', get body() {
-      return `<p>Sıcak ile soğuk, sert ile yumuşak: duyusal oyunlar tene odaklanır ve en kolay başlangıçtır.</p>${bdBody(['Warm Oil Massage', 'Ice Cube', 'Hot Wax', 'Honey Chocolate Lick'])}`;
+    { icon: '🌡️', title: 'Duyusal oyunlar', sub: 'göz bağı, tüy, tekerlek, buz, mum, yağ, çikolata ve bal', get body() {
+      return `<p>Sıcak ile soğuk, sert ile yumuşak: duyusal oyunlar tene odaklanır ve en kolay başlangıçtır.</p>${bdBody(['Blindfold', 'Feather Tease', 'Wartenberg Wheel', 'Warm Oil Massage', 'Ice Cube', 'Hot & Cold', 'Hot Wax', 'Honey Chocolate Lick'])}`;
     } },
-    { icon: '📳', title: 'Uyarım ve kontrol', sub: 'vibratör, uzaktan kumanda, edging', get body() {
-      return `<p>Kontrol sende: ne zaman, ne kadar ve ne zamana kadar sen karar verirsin. Bu olaylar en çok Uyarılma ve Şehvet verir.</p>${bdBody(['Vibrator Control', 'Remote Toy', 'Edging'])}`;
+    { icon: '📳', title: 'Uyarım ve kontrol', sub: 'vibratör, uzaktan kumanda, edging, tıpa', get body() {
+      return `<p>Kontrol sende: ne zaman, ne kadar ve ne zamana kadar sen karar verirsin. Bu olaylar en çok Uyarılma ve Şehvet verir.</p>${bdBody(['Vibrator Control', 'Remote Toy', 'Edging', 'Butt Plug'])}`;
     } },
-    { icon: '🪢', title: 'Kısıtlama ve kurallar', sub: 'yatağa bağlama, hitap kuralı', get body() {
-      return `<p>Bağlamak ve kural koymak güven ister; ikisi de Güven'i artırır. Kural bozulursa nasıl düzeltileceğini önceden konuşun.</p>${bdBody(['Tied To Bed', 'Address Rule'])}`;
+    { icon: '🔥', title: 'Acı ve haz', sub: 'şaplak, kürek, kırbaç, göğüs mandalları', get body() {
+      return `<p>Hafif acı hazzı keskinleştirir. Yavaş başla, tepkisini izle; kızarıklık ve nefes sana ne kadar ileri gidebileceğini söyler. En yumuşaktan en serte: Flogger, Spanking, Riding Crop, Paddle; Paddle ve Riding Crop Acı'yı da artırır.</p>${bdBody(['Flogger', 'Spanking', 'Riding Crop', 'Paddle', 'Nipple Clamps'])}`;
+    } },
+    { icon: '🪢', title: 'Kısıtlama ve kurallar', sub: 'bağlama, kelepçe, ip, tasma, tıkaç, hitap kuralı', get body() {
+      return `<p>Bağlamak ve kural koymak güven ister; ikisi de Güven'i artırır. Kural bozulursa nasıl düzeltileceğini önceden konuşun. Tıkaçlıyken konuşamaz: durmak için elindeki mendili düşürür.</p>${bdBody(['Hands Behind Back', 'Handcuffs', 'Tied To Bed', 'Spreader Bar', 'Shibari', 'Collar & Leash', 'Ball Gag', 'Address Rule'])}`;
     } },
     { icon: '🤍', title: 'Rıza, güvenli kelime ve sonrası', sub: 'önce konuş, sonra oyna, sonunda sarıl', get body() {
       return `<p>BDSM'in temeli rızadır. Sahneden önce sınırları konuşun; neyi istediğini, neyi asla istemediğini sor.</p>
@@ -19103,7 +19205,8 @@
           <li><b>Bağlarken</b>: ipleri sık kontrol et, uyuşma ya da üşüme olursa hemen çöz.</li>
           <li><b>Mum</b>: sadece düşük ısılı masaj mumu; yakın damla yoğun, uzak damla yumuşak.</li>
           <li><b>Sonrası (aftercare)</b>: çöz, sarıl, su ver, nasıl hissettiğini sor. ❄️ Cool Down kategorisindeki <b>Rest Room</b> buna çok uyar: Uyarılma'yı düşürür, Aşk, Güven ve Samimiyet verir.</li></ul>
-        <p>🌿 Gerçekçi Mod açıksa sevmediği ya da izin vermediği olaylarda karakter itiraz eder; zorlamak yerine konuşun.</p>`;
+        <p>🌿 Gerçekçi Mod açıksa sevmediği ya da izin vermediği olaylarda karakter itiraz eder; zorlamak yerine konuşun.</p>
+        <p>Sohbette güvenli kelimeyi <b>Safe Word</b> olayıyla kurarsınız; en çok Güven veren BDSM olayı budur.</p>${bdBody(['Safe Word'])}`;
     } }] });
   BOOKS.push({ id: 'kisilik', icon: '🎭', title: 'Kişilik Kitabı', sub: 'her kişilik nasıl konuşur, kıskançlık, yazım tarzı', chips: [`${KP_TRAITS().length} kişilik`, '😤 kıskançlık'], chapters: [
     { icon: '📖', title: 'Kişilik Kitabı nasıl okunur', sub: 'kişilik cevaplara nerede girer', get body() {
@@ -19162,7 +19265,9 @@
       ['Standing', 'Duvara yaslanıp bir bacağımı kaldırıyorum. Sen bacağımı beline dolayıp yaklaşırsan aletini ayakta içime alırım.'],
       ['OnDesk', 'Masanın üstüne uzanıp bacaklarımı havaya kaldırıyorum. Sen bacaklarımı omuzlarına koyarsan aletinle derin derin girersin.'],
       ['Lap Sex', 'Sen otur, ben yüzüm sana dönük aletinin üstüne iniyorum. Kollarımı boynuna dolarım; sen belimi tutarsan inip çıkarım.'],
-      ['Full Nelson', 'Sırtım sana dönük, kucağındayım. Sen bacaklarımı kollarınla kilitleyip beni havada aletine indirirsen tamamen teslim olurum.']]],
+      ['Full Nelson', 'Sırtım sana dönük, kucağındayım. Sen bacaklarımı kollarınla kilitleyip beni havada aletine indirirsen tamamen teslim olurum.'],
+      ['Lotus', 'Sen bağdaş kur, ben yüzüm sana dönük kucağına oturup bacaklarımı beline doluyorum. Alnını alnıma dayarsan yavaş bir Lotus olur.'],
+      ['Butterfly', 'Yatağın kenarına uzanıp bacaklarımı omuzlarına koyuyorum. Sen ayakta durup kalçamı kendine çekersen Butterfly olur.']]],
     ['🍑', 'Arkadan', 'doggy, spooning ve anal', 'Arkadan olanlarda belimden sıkı tut, yoksa kayarım 😏', [
       ['Doggy', 'Yatağa dört ayak üstüne çıkıp kalçamı sana uzatıyorum. Sen belimden tutup aletinle arkadan girersen Doggy olur.'],
       ['Standing Doggy', 'Ayakta öne eğilip ellerimi masaya dayıyorum. Sen arkama geçip aletinle girersen ayakta doggy başlar.'],
@@ -19170,7 +19275,11 @@
       ['Spooning Anal', 'Aynı yan yatış, ama bu sefer kalçamı biraz daha geriye itiyorum. Sen aletinle yavaş yavaş kalçama girersen Spooning Anal olur.'],
       ['Cowgirl Anal', 'Sana sırtımı dönüp üstüne çıkıyorum. Sen kalçamı aralarsan kalçamı yavaşça aletine indiririm.'],
       ['Standing Anal', 'Kapıya yaslanıp kalçamı geriye çıkarıyorum. Sen arkamdan aletinle kalçama girersen Standing Anal olur.'],
-      ['Rough Anal', 'Ellerimi arkamda birleştiriyorum. Sen bileklerimi tutup aletini sertçe kalçama gömersen Rough Anal olur; Acı\'m artar, dikkat et 🥵']]],
+      ['Rough Anal', 'Ellerimi arkamda birleştiriyorum. Sen bileklerimi tutup aletini sertçe kalçama gömersen Rough Anal olur; Acı\'m artar, dikkat et 🥵'],
+      ['Reverse Cowgirl', 'Sırtımı sana dönüp üstüne çıkıyorum. Sen arkana yaslanıp kalçamın inip kalkışını izlersen Reverse Cowgirl olur.'],
+      ['Prone Bone', 'Yüzüstü uzanıp bacaklarımı kapatıyorum. Sen üstüme kapanıp arkadan girersen Prone Bone olur; yastığa inlerim.'],
+      ['Missionary Anal', 'Sırtüstü uzanıp kalçamın altına yastık koyuyorum. Sen gözlerime bakarak yavaşça kalçama girersen Missionary Anal olur.'],
+      ['Reverse Cowgirl Anal', 'Sırtım sana dönük, kendimi yavaşça kalçamdan aletine indiriyorum. Hızı ben belirlersem Reverse Cowgirl Anal olur.']]],
     ['🎭', 'Tempo', 'Mode: nasıl sevişeceğiniz', 'Tempo pozisyonu değiştirmez, nasıl yaptığını değiştirir. Acı yükselirse Gentle\'a dön 💕', [
       ['Gentle', 'Ben gözlerini arıyorum, ellerim yüzünde. Sen yavaş ve şefkatli gidersen Gentle olur, Acı\'m düşer.'],
       ['Passionate', 'Seni kendime çekip dudaklarına yapışıyorum. Sen öpüşerek, sıcak bir tempoyla devam edersen Passionate olur 🔥'],
@@ -19464,7 +19573,7 @@
       ['Put Underwear On', 'Sadece iç çamaşırlarımı geri giyiyorum. Komut: "iç çamaşırını giy".']]],
     ['📍', 'Mekanda', 'bulunduğun mekana özel anlar', 'Bunlar sadece o mekandayken görünür: önce 📍 Mekan ile yeri seç, sonra 📜 Olay → 📍 Mekân sekmesine bak 😉', [
       ['Enters The Room', 'Kapıyı arkamdan yavaşça kapatıyorum, gözüm sende. Yatak odası, çalışma odası, salon gibi evin odalarında.'],
-      ['Lies On The Desk', 'Masadaki her şeyi kenara itip sırtüstü uzanıyorum. Çalışma odasında ya da kampüste.'],
+      ['Lies On The Desk', 'Masadaki her şeyi kenara itip sırtüstü uzanıyorum. Çalışma odasında, kampüste ya da ofiste.'],
       ['Falls On The Bed', 'Seni de çekip kendimi yatağa bırakıyorum. Yatak odasında, onun ya da senin evinde, dağ evinde, yazlıkta.'],
       ['Sits On The Counter', 'Tezgaha zıplayıp bacaklarımı açıyorum. Mutfakta ya da kahvaltı masasında.'],
       ['Pulls You To The Sofa', 'Elinden tutup seni kanepeye çekiyorum. Salonda, ev sinemasında, misafir odasında.'],
@@ -19480,7 +19589,22 @@
       ['Locks The Door', 'Kapıyı kilitleyip anahtarı cebime atıyorum. Evin odalarında, banyoda.'],
       ['Pulls The Curtain', 'Kabinin perdesini çekip seni içeri alıyorum. Alışverişte ya da giyinme odasında.'],
       ['Leans On The Bar', 'Bara yaslanıp kadehimi dudağıma götürüyorum. Barda, ev partisinde, konserde, dans pistinde.'],
-      ['Back Row', 'En arka sırada, ışıklar sönünce elini dizime koyuyorum. Sinemada ya da ev sinemasında.']]]
+      ['Back Row', 'En arka sırada, ışıklar sönünce elini dizime koyuyorum. Sinemada ya da ev sinemasında.']]],
+    ['🏝️', 'Plaj', 'güneş kremi, havlu, dalgalar', 'Issız bir koy bul; kumlar her yere girer ama dalgalar sesimizi örter 🌊', [
+      ['Sunscreen Rub', 'Havluya yüzüstü uzanıp bikinimin ipini çözüyorum. Sen sırtıma krem sürersen Sunscreen Rub olur; elin aşağı kayabilir.'],
+      ['Beach Towel Sex', 'Havlumu kuma serip sana uzanıyorum. Sen üstüme gelirsen Beach Towel Sex olur.'],
+      ['Wave Sex', 'Belimize kadar denizde boynuna sarılıp bacaklarımı beline doluyorum. Dalgalarla gidersen Wave Sex olur.'],
+      ['Beach Cumshot', 'Güneşte parlayan tenimi sana dönüyorum. Sen tenime boşalırsan Beach Cumshot olur; sonra denize gireriz.']]],
+    ['🏢', 'Ofis', 'masa altı, döner sandalye, fotokopi odası', 'Mesai bitti ama kapı kilitli değil; sesini kıs, koridordan biri geçebilir 🤫', [
+      ['Under The Desk', 'Sen toplantıdasın, ben masanın altında diz çöküyorum. Yüzünü sabit tutarsan Under The Desk olur.'],
+      ['Office Chair Ride', 'Döner sandalyende kucağına oturup eteğimi belime topluyorum. Sen belimi tutarsan Office Chair Ride olur; sandalye gıcırdar.'],
+      ['Copy Room Quickie', 'Fotokopi makinesine eğiliyorum, makine çalışıyor. Sen hızlı olursan Copy Room Quickie olur.'],
+      ['Office Cumshot', 'Gömleğimin düğmelerini açıyorum. Sen göğsüme boşalırsan Office Cumshot olur; toplantıya beş dakika var.']]],
+    ['🏨', 'Otel', 'oda servisi, balkon, boy aynası', 'Kapıya "Rahatsız etmeyin" asılı; çarşafları başkası değiştirir 😏', [
+      ['Room Service', 'Kapıyı bornozla açıyorum. Garson gidince bornozu yere düşürürsem Room Service olur.'],
+      ['Balcony Sex', 'Balkonun korkuluğuna tutunuyorum, şehrin ışıkları önümüzde. Sen arkamdan alırsan Balcony Sex olur.'],
+      ['Hotel Mirror', 'Boy aynasının karşısında duruyorum. Sen arkama geçip aynadan gözlerime bakarsan Hotel Mirror olur.'],
+      ['Hotel Creampie', 'Otel yatağında bacaklarımı sana doluyorum. Sen içime boşalırsan Hotel Creampie olur; korunmaya göre hamilelik ihtimali var.']]]
   ];
   BOOKS.push({ id: 'olay', icon: '🎬', title: 'Olay Kitabı', sub: 'Lia her olayı sahneleyerek anlatır', chips: [`${OLAY_BOOK.reduce((n, c) => n + c[4].length, 0)} olay`, '💁‍♀️ Lia anlatıyor'], chapters: [
     { icon: '🎬', title: 'Olay Kitabı nasıl okunur', sub: 'Lia sahneler, sen yaparsın', body: `
@@ -21019,8 +21143,9 @@
   // biten görev u.quests[id] = { at, paid } olarak kalır (veri silinse de açılan dal kapanmaz), alt görevler need[] bitince açılır, 🎁 ödül bankAdd ile
   const QC = { poz: 'c:mvglvwdtam0h7', anal: 'c:mvgm9ihwda8f5', son: 'c:mvgu3rsuko7km', fant: 'c:mvgwj75108lqd', meyve: 'c:mvmeisove01x', bdsm: 'c:mvbdsm01x',
     femdom: 'c:mvfemdom01x', uclu: 'c:mvthreesome01x', soyun: 'c:mvundress01x', dus: 'c:mvshower01x', sauna: 'c:mvsauna01x', kuvet: 'c:mvtub01x', havuz: 'c:mvpool01x',
-    araba: 'c:mvcar01x', asansor: 'c:mvlift01x', kamp: 'c:mvcamp01x', mutfak: 'c:mvkitchen01x', kamera: 'c:mvcam01x' };
-  const QPLACES = ['dus', 'sauna', 'kuvet', 'havuz', 'araba', 'asansor', 'kamp', 'mutfak'];
+    araba: 'c:mvcar01x', asansor: 'c:mvlift01x', kamp: 'c:mvcamp01x', mutfak: 'c:mvkitchen01x', kamera: 'c:mvcam01x',
+    plaj: 'c:mvbeach01x', ofis: 'c:mvoffice01x', otel: 'c:mvhotel01x' };
+  const QPLACES = ['dus', 'sauna', 'kuvet', 'havuz', 'araba', 'asansor', 'kamp', 'mutfak', 'plaj', 'ofis', 'otel'];
   const QBODY = /^r_q(_boob|_butt|_pussy|_anal|3_|4_boob|4_butt|4_dar|4_arka|5_)/, QEXP = /^r_q(_exp|_virgin|4_exp|4_dom|2_ilk|2_gecmis|2_son|2_cilgin|2_yakalan|2_kadin)/;
   const QBR = [['ilk', '🌱', 'Tanışma', 'ilk adımlar'], ['soru', '❓', 'Merak', 'sorular sor, onu tanı'], ['yakin', '💋', 'Yakınlaşma', 'öpücükten ilk geceye'],
     ['poz', '🔥', 'Pozisyonlar', 'klasiklerden akrobasiye'], ['final', '💦', 'Bitiş', 'boşalma, korunma, hamilelik'], ['mekan', '🗺️', 'Mekanlar', 'duştan arabaya'],
@@ -21047,6 +21172,7 @@
     ['klasik', 'poz', '🛏️', 'Klasikler', 'Missionary, Cowgirl, Doggy, Spooning: 3 tanesi', ['gece'], x => qn(x.ev('Missionary', 'Cowgirl', 'Doggy', 'Spooning'), 3), '#/messages', 800],
     ['tempo', 'poz', '💥', 'Tempo', 'Bir mod olayı: Gentle, Passionate, Rough…', ['klasik'], x => qn(x.ev('Gentle', 'Passionate', 'Assertive', 'Rough', 'Brutal')), '#/messages', 500],
     ['akro', 'poz', '🤸', 'Akrobat', 'Full Nelson, Standing, Lap Sex, Spider Web, Standing Missionary: 2 tanesi', ['klasik'], x => qn(x.ev('Full Nelson', 'Standing', 'Lap Sex', 'Spider Web', 'Standing Missionary'), 2), '#/messages', 800],
+    ['yeniaci', 'poz', '🔄', 'Yeni açılar', 'Reverse Cowgirl, Prone Bone, Lotus, Butterfly: 2 tanesi', ['klasik'], x => qn(x.ev('Reverse Cowgirl', 'Prone Bone', 'Lotus', 'Butterfly'), 2), '#/messages', 800],
     ['anal1', 'poz', '🍑', 'Arka kapı', 'Bir 🍑 anal olay', ['klasik'], x => qn(x.cat('anal')), '#/messages', 800],
     ['anal3', 'poz', '🍑', 'Arka kapı ustası', '3 farklı 🍑 anal olay', ['anal1'], x => qn(x.cat('anal'), 3), '#/messages', 1200],
     ['kama', 'poz', '📖', 'Kama Sutra', '🔥 Pozisyonlar kategorisinden 10 farklı olay', ['akro', 'tempo'], x => qn(x.cat('poz'), 10), '#/messages', 2500],
@@ -21061,11 +21187,15 @@
     ['risk', 'mekan', '🚗', 'Yakalanma riski', 'Bir 🚗 araba ya da 🛗 asansör olayı', ['dus'], x => qn(x.cat('araba') + x.cat('asansor')), '#/messages', 800],
     ['kamp', 'mekan', '🏕️', 'Ev dışı ev içi', 'Bir 🏕️ kamp ya da 🍳 mutfak olayı', ['risk'], x => qn(x.cat('kamp') + x.cat('mutfak')), '#/messages', 600],
     ['kayit', 'mekan', '🎥', 'Kayıtta', 'Bir 🎥 kamera olayı', ['risk'], x => qn(x.cat('kamera')), '#/messages', 800],
-    ['gezgin', 'mekan', '🧭', 'Gezgin âşık', '5 farklı mekanda olay: duş, sauna, küvet, havuz, araba, asansör, kamp, mutfak', ['su', 'ter', 'kamp'], x => qn(x.places, 5), '#/messages', 2500],
+    ['kumda', 'mekan', '🏝️', 'Kumda', 'Bir 🏝️ plaj olayı', ['su'], x => qn(x.cat('plaj')), '#/messages', 600],
+    ['mesai', 'mekan', '🏢', 'Mesai sonrası', 'Bir 🏢 ofis olayı', ['risk'], x => qn(x.cat('ofis')), '#/messages', 800],
+    ['otelgece', 'mekan', '🏨', 'Rahatsız etmeyin', 'Bir 🏨 otel olayı', ['kamp'], x => qn(x.cat('otel')), '#/messages', 600],
+    ['gezgin', 'mekan', '🧭', 'Gezgin âşık', '5 farklı mekanda olay: duş, sauna, küvet, havuz, araba, asansör, kamp, mutfak, plaj, ofis, otel', ['su', 'ter', 'kamp'], x => qn(x.places, 5), '#/messages', 2500],
     ['f1', 'fant', '🦄', 'Hayal gücü', 'Bir 🦄 fantezi başlat', ['klasik'], x => qn(x.cat('fant')), '#/messages', 600],
     ['meyve', 'fant', '🍓', 'Meyve tabağı', 'Bir 🍓 Meisove kızı fantezisi', ['f1'], x => qn(x.cat('meyve')), '#/messages', 600],
     ['bagli', 'fant', '🔗', 'Bağlı', 'Bir 🔗 BDSM olayı', ['f1'], x => qn(x.cat('bdsm')), '#/messages', 800],
     ['kralice', 'fant', '👑', 'Kraliçe', 'Bir 👑 Femdom olayı', ['bagli'], x => qn(x.cat('femdom')), '#/messages', 800],
+    ['guvenli', 'fant', '🛑', 'Güvenli kelime', 'Safe Word ve 3 farklı 🔗 BDSM olayı', ['bagli'], x => qn(x.ev('Safe Word') ? x.cat('bdsm') : 0, 4), '#/messages', 1200],
     ['f5', 'fant', '🎭', 'Fantezi koleksiyonu', '5 farklı 🦄/🍓 fantezi', ['meyve'], x => qn(x.cat('fant') + x.cat('meyve'), 5), '#/messages', 2000],
     ['grup', 'fant', '👥', 'Kalabalık', 'Bir grup sohbeti kur', ['klasik'], x => qn(x.groups), '#/messages', 600],
     ['uclu', 'fant', '👯', 'Üçlü', 'Grupta bir 👯 threesome olayı', ['grup'], x => qn(x.cat('uclu')), '#/messages', 1200],
@@ -21653,5 +21783,6 @@
   // 👥 adı olmayan hesap önce hesap oluşturmadan geçer; eski hesaplara başlangıç parası
   if (!S().user.name || loggedOut()) authScreen();
   if (S().user.name && S().user.money == null) { S().user.money = START_MONEY; save(); }
-  setTimeout(() => $('#splash').classList.add('hide'), 700);
+  // ✨ açılış: Carmen yazısı büyüyüp küçülür (style.css carmenPulse), sonra büyüyerek kaybolur
+  setTimeout(() => $('#splash').classList.add('hide'), 1800);
 })();
