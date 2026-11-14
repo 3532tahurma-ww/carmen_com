@@ -166,5 +166,16 @@ Stories.I18n.add({
   'Dikenli tekerlek tenimde; küçük bir işkence aleti, büyük bir zevk.': 'A spiked wheel on my skin; a small torture device, a big pleasure.', 'Sıcak çay, buz, dilin; ateşle buz arasında kaybolurum.': 'Hot tea, ice, your tongue; I get lost between fire and ice.',
   'Kelepçelerim çantamda; anahtarı kaybedersen sabaha kadar seninim.': "My cuffs are in my bag; lose the key and I'm yours till morning.", 'Kırmızı ip göğüslerimde örülür; bir sanat eseri, bir ayin.': 'Red rope woven around my breasts; a work of art, a ritual.',
   'Çubuk ayak bileklerimde; bacaklarımı kapatamam, istemem de.': "The bar at my ankles; I can't close my legs, and I don't want to.", 'Bileklerim arkada siyah kurdeleyle; gerisi senin.': 'My wrists behind me with a black ribbon; the rest is yours.',
+  'İzin almadan gelmem.': "I don't come without permission.", 'Sınıra her geldiğimde sorarım; sen "şimdi" demeden bırakmam.': 'Every time I reach the edge I ask; I don\'t let go until you say "now".',
+  'Kapıda diz çöker beklerim.': 'I kneel and wait at the door.', 'Başım eğik, ellerim dizlerimde; sen gelene kadar kıpırdamam.': "Head bowed, hands on my knees; I don't move until you come.",
+  'Her darbeye teşekkür.': 'A thank you for every strike.', 'Her şaplaktan sonra sayıyı söyler, teşekkür ederim; unutursam baştan.': 'After every spank I say the number and thank you; if I forget, we start over.',
+  'Tasmayla gezdirilirim.': 'I get walked on a leash.', 'Ucunu tut, odadan odaya yürüt; durduğun yerde dururum.': 'Hold the end, walk me room to room; I stop where you stop.',
+  'Son anda bırakmak serbest.': 'Stopping at the last second is allowed.', 'Zirvede durdurursan kızarım ama bir sonrakinde iki katını isterim.': "Stop me at the peak and I'll be mad, but next time I want double.",
+  'Tenime rujla yaz.': 'Write on my skin with lipstick.', '"Senin" yaz, çentik at; aynada okuturum ama ertesi güne kadar silmem.': 'Write "yours", add tally marks; I\'ll read it in the mirror and keep it until the next day.',
+  'Göz bağı ve kulaklık.': 'Blindfold and headphones.', 'Ne görürüm ne duyarım; sadece dokunuşun kalır, ara sıra elimi sık.': 'I neither see nor hear; only your touch remains, squeeze my hand now and then.',
+  'Gelmek için senden izin dilerim; yalvarışım bir dua gibi.': 'I beg your permission to come; my pleading is like a prayer.', 'Mum ışığında kapında diz çökmüş beklerim; gece yarısına kadar.': 'I wait kneeling at your door by candlelight; until midnight.',
+  'Her şaplağa teşekkür ederim; on üçüncüsünde sesim kısılır.': 'I thank you for every spank; by the thirteenth my voice is gone.', 'Tasmanın ucu elinde, mahzenden yatak odasına peşinden gelirim.': 'The leash in your hand, I follow you from the crypt to the bedroom.',
+  'Zirvede bırakırsan lanetimi hak edersin; ama yine isterim.': 'Leave me at the peak and you earn my curse; but I still want more.', 'Siyah rujla tenime "senin" yaz; mühür gibi taşırım.': 'Write "yours" on my skin in black lipstick; I wear it like a seal.',
+  'Ne görürüm ne duyarım; karanlıkta yalnızca senin dokunuşun.': 'I neither see nor hear; in the dark there is only your touch.',
   'Ben içimde zonkladığını hissederim, o bana yeter': 'I feel you throb inside me, that is enough for me', 'Çıkarmaya kalkarsan lanetlenirsin.': "Try to take it off and you'll be cursed."
 });

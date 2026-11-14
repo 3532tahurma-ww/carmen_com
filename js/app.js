@@ -504,6 +504,21 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['🔗', 'Kıyafetlere aksesuar', 'Gardıropta 3 yeni yuva var: ⛓️ Tasma, 💎 Anal tıpa ve 📳 Oyuncak / mandal. Soyunsa da üstünde kalırlar; BDSM olayları onları kendiliğinden takar.', '#/messages', [
+      ['⛓️ Tasma', 'Deri tasma, dantel choker, çanlı tasma, halkalı çelik tasma. Collar & Leash ve Follow Me deri tasmayı takar.'],
+      ['💎 Anal tıpa', 'Mücevherli, tilki kuyruklu ya da silikon tıpa. Butt Plug olayı takar, anal pozisyon çıkarır.'],
+      ['📳 Oyuncak / mandal', 'Uzaktan kumandalı vibratör, zincirli göğüs mandalları, Ben Wa topları. Remote Toy ve Nipple Clamps takar.'],
+      ['🗣️ Komutlar', '"Tasmanı tak", "kuyruklu tıpanı sok", "mandalları çıkar", "vibratörü tak" gibi yaz: o parçayı takar ya da çıkarır. Parça adı vermezsen gardırobundakini seçer.'],
+      ['👗 Gardırop', 'Sevdiği BDSM olaylarının aksesuarı gardırobuna girer. Soyunma komutları ve Get Dressed aksesuarlara dokunmaz; giyinik / çıplak durumu da onları saymaz.']]],
+    ['⏸️', 'Edging sayacı', 'Edging artık tur sayıyor: her tur sayacı artırır (en çok 5) ve sayaç doluyken izin vermeden gelemez. 🙏 Permission to Come biriken turları tek seferde verir; 💔 Ruined Finish hepsini boşa harcar.', '#/kitap/bdsm', [
+      ['⏸️ Sınırda tutmak', 'Her Edging sohbete "Sınırda tutuluyor: 2/5" yazar. Uyarılma eşiği dolsa bile orgazm gelmez, yerine "izin yok" notu düşer.'],
+      ['🙏 İzin vermek', 'Permission to Come tur başına Şehvet +4, Aşk +1, Güven +1 verir ve orgazmı hemen getirir. 5 tur bekletirsen ödül en büyüğü olur.'],
+      ['💔 Boşa harcamak', 'Ruined Finish turları sıfırlar: tur başına Şehvet +3, Güven −1, orgazm yok. Sonra baştan başlarsın.']]],
+    ['🔗', 'BDSM: kontrol ve kurallar', '7 yeni BDSM olayı geldi; artık 33 olay var. 🙏 Kontrol: Permission to Come, Ruined Finish. 👑 Kurallar: Kneel & Wait, Say Thank You, Follow Me. 🌡️ Duyusal: Sensory Deprivation, Lipstick Marks. 🔗 BDSM Kitabı da güncellendi.', '#/kitap/bdsm', [
+      ['🙏 Kontrol', 'İzin almadan bitirmek yok; ya da tam zirvede durdurursun. Edging ile birlikte en çok Uyarılma ve Şehvet veren olaylar.'],
+      ['👑 Kurallar', 'Kapıda diz çöküp beklemek, her şaplağa teşekkür etmek, tasmayla odadan odaya yürümek. Hepsi Güven\'i biraz artırır.'],
+      ['🌡️ Duyusal', 'Göz bağı ile kulaklık birlikte: ne görür ne duyar. Ruj ile tene yazı: "Senin", bir kalp, çentikler.'],
+      ['🎭 Kişilik ve rol', 'Yeni olayların her birinin utangaç, flörtöz, romantik, soğuk ve dominant cevapları var; süren rol ya da fantezi de otomatik olarak geçerli.']]],
     ['🔗', 'BDSM gelişiyor', '10 yeni BDSM olayı geldi; artık 26 olay var. ✋ Darbe: Paddle, Riding Crop, Flogger. 🌡️ Duyusal: Feather Tease, Wartenberg Wheel, Hot & Cold. 🪢 Bağlama: Handcuffs, Shibari, Spreader Bar, Hands Behind Back. 🔗 BDSM Kitabı da güncellendi.', '#/kitap/bdsm', [
       ['✋ Darbe', 'En yumuşaktan en serte: Flogger, Spanking, Riding Crop, Paddle. Paddle ve Riding Crop Acı\'yı da artırır; güvenli kelime her zaman geçerli.'],
       ['🌡️ Duyusal', 'Tüy, dikenli tekerlek, sıcak çay ve buz. Göz bağıyla birlikte her dokunuş sürpriz olur.'],
@@ -1122,12 +1137,15 @@
     ofis: ['Under The Desk', 'Office Chair Ride', 'Copy Room Quickie'],
     otel: ['Room Service', 'Balcony Sex', 'Hotel Mirror'],
     // 4. dalga (x.newEv4): BDSM darbe, duyusal, bağlama
-    bdsm3: ['Paddle', 'Riding Crop', 'Flogger', 'Feather Tease', 'Wartenberg Wheel', 'Hot & Cold', 'Handcuffs', 'Shibari', 'Spreader Bar', 'Hands Behind Back']
+    bdsm3: ['Paddle', 'Riding Crop', 'Flogger', 'Feather Tease', 'Wartenberg Wheel', 'Hot & Cold', 'Handcuffs', 'Shibari', 'Spreader Bar', 'Hands Behind Back'],
+    // 5. dalga (x.newEv5): BDSM kontrol ve kurallar
+    bdsm4: ['Permission to Come', 'Kneel & Wait', 'Say Thank You', 'Follow Me', 'Ruined Finish', 'Lipstick Marks', 'Sensory Deprivation']
   };
-  const CM_NEW_ODDS = { kondom: 2, dus: 2, sauna: 3, iseme: 5, kuvet: 3, havuz: 4, araba: 4, asansor: 5, kamp: 4, mutfak: 4, kamera: 5, poz2: 2, bdsm2: 5, plaj: 4, ofis: 4, otel: 4, bdsm3: 4 };   // 1/n ilan
+  const CM_NEW_ODDS = { kondom: 2, dus: 2, sauna: 3, iseme: 5, kuvet: 3, havuz: 4, araba: 4, asansor: 5, kamp: 4, mutfak: 4, kamera: 5, poz2: 2, bdsm2: 5, plaj: 4, ofis: 4, otel: 4, bdsm3: 4, bdsm4: 4 };   // 1/n ilan
   const CM_NEW_V2 = ['kuvet', 'havuz', 'araba', 'asansor', 'kamp', 'mutfak', 'kamera'];
   const CM_NEW_V3 = ['poz2', 'bdsm2', 'plaj', 'ofis', 'otel'];
   const CM_NEW_V4 = ['bdsm3'];
+  const CM_NEW_V5 = ['bdsm4'];
   const cmNewEvs = (k, x) => {
     const low = s => String(s || '').toLocaleLowerCase('tr').trim(), no = new Set([...(x.dislikes || []), ...(x.denies || [])]);
     return [].concat(CM_NEW_EV[k] || k).map(t => allEvents().find(e => low(e.title) === low(t))).filter(e => e && !no.has(e.id));
@@ -1144,11 +1162,12 @@
   function cmNewEv(x) {
     cmHwFix(x);
     const add = k => { if (!cmNum(x, 'nw' + k, CM_NEW_ODDS[k])) x.likes = [...new Set([...(x.likes || []), ...cmPicks(x, 'nwp' + k, cmNewEvs(k, x).map(e => e.id), 2)])]; };
-    if (!x.newEv1) { x.newEv1 = 1; Object.keys(CM_NEW_EV).filter(k => !CM_NEW_V2.includes(k) && !CM_NEW_V3.includes(k) && !CM_NEW_V4.includes(k)).forEach(add); }
+    if (!x.newEv1) { x.newEv1 = 1; Object.keys(CM_NEW_EV).filter(k => !CM_NEW_V2.includes(k) && !CM_NEW_V3.includes(k) && !CM_NEW_V4.includes(k) && !CM_NEW_V5.includes(k)).forEach(add); }
     // 🏖️ mekânlar sonradan geldi: kayıtlı ilanlar da bir kez alır
     if (!x.newEv2) { x.newEv2 = 1; CM_NEW_V2.forEach(add); }
     if (!x.newEv3) { x.newEv3 = 1; CM_NEW_V3.forEach(add); }
     if (!x.newEv4) { x.newEv4 = 1; CM_NEW_V4.forEach(add); }
+    if (!x.newEv5) { x.newEv5 = 1; CM_NEW_V5.forEach(add); }
     return x;
   }
   function cmFix(x) {
@@ -2182,7 +2201,14 @@
     'handcuffs': ['🔗', 'Kelepçe serbest.', 'Pelüş kelepçeyle karyolaya; anahtar komodinde, ikimizin de gözü önünde.'],
     'shibari': ['🪢', 'Kırmızı ip ayini.', 'Göğüslerimin etrafında süs düğümleri; acele eden ölümlüye ipimi vermem.'],
     'spreader bar': ['📏', 'Çubuk serbest.', 'Ayak bileklerime çubuk takarsın; bacaklarım kapanmaz, her şey sana açık.'],
-    'hands behind back': ['🎀', 'Bileklerim arkada.', 'İpek kurdeleyle bağla; ellerim yok, gerisini sen yaparsın.']
+    'hands behind back': ['🎀', 'Bileklerim arkada.', 'İpek kurdeleyle bağla; ellerim yok, gerisini sen yaparsın.'],
+    'permission to come': ['🙏', 'İzin almadan gelmem.', 'Sınıra her geldiğimde sorarım; sen "şimdi" demeden bırakmam.'],
+    'kneel & wait': ['🧎‍♀️', 'Kapıda diz çöker beklerim.', 'Başım eğik, ellerim dizlerimde; sen gelene kadar kıpırdamam.'],
+    'say thank you': ['🙇‍♀️', 'Her darbeye teşekkür.', 'Her şaplaktan sonra sayıyı söyler, teşekkür ederim; unutursam baştan.'],
+    'follow me': ['🐾', 'Tasmayla gezdirilirim.', 'Ucunu tut, odadan odaya yürüt; durduğun yerde dururum.'],
+    'ruined finish': ['💔', 'Son anda bırakmak serbest.', 'Zirvede durdurursan kızarım ama bir sonrakinde iki katını isterim.'],
+    'lipstick marks': ['💄', 'Tenime rujla yaz.', '"Senin" yaz, çentik at; aynada okuturum ama ertesi güne kadar silmem.'],
+    'sensory deprivation': ['🎧', 'Göz bağı ve kulaklık.', 'Ne görürüm ne duyarım; sadece dokunuşun kalır, ara sıra elimi sık.']
   };
   const gtBdRules = c => cmPicks(c, 'gbr', feelEvents(c.likes || []).filter(e => e.cat === 'c:mvbdsm01x').map(e => GT_BD_RULE[String(e.title || '').toLocaleLowerCase('tr').trim()]).filter(Boolean), 2);
   Object.assign(GT_GOOD_EV, {
@@ -2198,7 +2224,11 @@
     'flogger': ['🪶 Kırbaç şeritleri sırtımda yağmur gibi; ritmi sen tut.'], 'feather tease': ['🪶 Kuzgun tüyüyle beni gıdıkla; kıvranmamı izle.'],
     'wartenberg wheel': ['⚙️ Dikenli tekerlek tenimde; küçük bir işkence aleti, büyük bir zevk.'], 'hot & cold': ['🍵 Sıcak çay, buz, dilin; ateşle buz arasında kaybolurum.'],
     'handcuffs': ['🔗 Kelepçelerim çantamda; anahtarı kaybedersen sabaha kadar seninim.'], 'shibari': ['🪢 Kırmızı ip göğüslerimde örülür; bir sanat eseri, bir ayin.'],
-    'spreader bar': ['📏 Çubuk ayak bileklerimde; bacaklarımı kapatamam, istemem de.'], 'hands behind back': ['🎀 Bileklerim arkada siyah kurdeleyle; gerisi senin.']
+    'spreader bar': ['📏 Çubuk ayak bileklerimde; bacaklarımı kapatamam, istemem de.'], 'hands behind back': ['🎀 Bileklerim arkada siyah kurdeleyle; gerisi senin.'],
+    'permission to come': ['🙏 Gelmek için senden izin dilerim; yalvarışım bir dua gibi.'], 'kneel & wait': ['🧎‍♀️ Mum ışığında kapında diz çökmüş beklerim; gece yarısına kadar.'],
+    'say thank you': ['🙇‍♀️ Her şaplağa teşekkür ederim; on üçüncüsünde sesim kısılır.'], 'follow me': ['🐾 Tasmanın ucu elinde, mahzenden yatak odasına peşinden gelirim.'],
+    'ruined finish': ['💔 Zirvede bırakırsan lanetimi hak edersin; ama yine isterim.'], 'lipstick marks': ['💄 Siyah rujla tenime "senin" yaz; mühür gibi taşırım.'],
+    'sensory deprivation': ['🎧 Ne görürüm ne duyarım; karanlıkta yalnızca senin dokunuşun.']
   });
   function gtRules(c) {
     const p = cmProt(c), three = cmNum(c, 'r3', 3) > 0, lv = cmNum(c, 'insT', 3);
@@ -8940,6 +8970,8 @@
       // 👗 kıyafete göre (gömleğin düğmeleri, eteği sıyırmak, tangayı kenara çekmek…)
       const wl = wearPart(ch, opts, qid);
       if (wl) parts.push(wl);
+      const al = accCmd(ch, qid, userMsg.text);
+      if (al) parts.push(al);
       const jl = jobPart(ch, opts, userMsg.text, isQ);
       if (jl) parts.push(jl);
       const sl = sitePart(ch, opts, userMsg.text, isQ);
@@ -9605,6 +9637,46 @@
       // 💃 striptiz: dıştan içe ilk üç parça, aralarında "…"
       return k === 'striptiz' ? xs.slice(0, 3).map(line).filter(Boolean).join(' … ') : xs.slice(-2).map(line).filter(Boolean).join(' ');
     }
+    // 🔗 aksesuar: ACC_EV olayı parçayı takar (yuvada parça yoksa varsayılanı; gardıroba da girer), anal pozisyon tıpayı çıkarır
+    function accWear(ch, e) {
+      const und = th.undress = th.undress || {}, u = und[ch.id] = und[ch.id] || {}, a = ACC_EV[e.title], o = outfitOf(ch);
+      if (a) {
+        const [s, id] = a;
+        if (!clItem(o[s])) ch.outfit = { ...o, [s]: id };
+        const x = clItem(ch.outfit[s]);
+        if (!x || (o[s] === x.id && !slotOff(u, s))) return;
+        if (u.off) delete u.off[s];
+        if (!(ch.wardrobe || []).includes(x.id)) ch.wardrobe = [...(ch.wardrobe || []), x.id];
+        notify(`${x.emoji} ${x.name} takıldı`, '🔗');
+        return;
+      }
+      const tp = clItem(o.tipa);
+      if (tp && !slotOff(u, 'tipa') && isPosEv(e) && (e.tags || []).some(t => lowTag(t) === 'anal')) {
+        undressSlots(u, ['tipa']);
+        notify(`${tp.emoji} ${tp.name} çıkarıldı`, '🔗');
+      }
+    }
+    // 🗣️ aksesuar komutu: tak = o parça (yoksa gardırobundaki / varsayılan) takılır, gardıroba girer · çıkar = o yuva çıkar (bu sohbette)
+    function accCmd(ch, rid, text) {
+      const m = /^r_cmd_acc(tak|cikar)/.exec(rid || ''), low = String(text || '').toLocaleLowerCase('tr');
+      const hit = m && ch && ACC_WORDS.find(([re]) => re.test(low));
+      if (!hit) return '';
+      const [, s, id0] = hit, und = th.undress = th.undress || {}, u = und[ch.id] = und[ch.id] || {}, o = outfitOf(ch), cur = clItem(o[s]), w = ch.wardrobe || [];
+      if (m[1] === 'cikar') {
+        if (!cur || slotOff(u, s)) return pickOne(['Takılı değil ki 😏', 'Onu zaten çıkardım 🙈', 'Üstümde öyle bir şey yok 😇']);
+        undressSlots(u, [s]);
+        save();
+        return pickOne(cur.off) || '';
+      }
+      const id = id0 || (cur ? cur.id : (w.map(clItem).find(x => x && x.slot === s) || {}).id || ACC_DEF[s]), x = clItem(id);
+      if (!x) return '';
+      if (cur && cur.id === id && !slotOff(u, s)) return pickOne(['Zaten takılı, bak 😏', 'Hiç çıkarmadım ki 😈', 'Takılı duruyor 🙈']);
+      ch.outfit = { ...o, [s]: id };
+      if (u.off) delete u.off[s];
+      if (!w.includes(id)) ch.wardrobe = [...w, id];
+      save();
+      return pickOne(x.t) || '';
+    }
     // 👗 penetrasyonlu pozisyon (vajinal / anal) için alt taraf hâlâ giyiliyse önce yazılacak soyunma olayı (yoksa null)
     function undressFirst(e, ch) {
       if (!ch || !isPosEv(e) || !(e.tags || []).some(t => ['vajinal', 'anal'].includes(lowTag(t))) || !outfitItems(ch).length) return null;
@@ -9882,6 +9954,7 @@
       const pre = undressFirst(e, dch);
       if (pre && pre.id !== e.id) eventMessages(pre, null, depth, root, why);
       if (dch && DRESS_EV[e.title]) (th.dressSay = th.dressSay || {})[dch.id] = { t: dressDo(dch, DRESS_EV[e.title]), k: DRESS_EV[e.title] };
+      if (dch) accWear(dch, e);
       const ts = Math.max(Date.now(), ((list[list.length - 1] || {}).ts || 0) + 1);
       // evc / oc: sohbette olay ve sonuç kartı olarak çizilir; grupta tg = kime (🎯 ad ya da 👯 ikisi)
       const evc = { title: live.title, emojis: live.emojis || '', color: ev.color || '', level: ev.level || '', ...(live.subOf ? { sub: live.subOf } : {}), ...(root && why ? { why } : {}),
@@ -10060,6 +10133,29 @@
         sfx('slap', /rough|brutal|bağırtmalı|ağlatmalı/.test(mt) ? { n: 7, gap: .24, vol: .7 } : /gentle/.test(mt) ? { n: 3, gap: .6, vol: .4 } : {});
       }
       ids.forEach(cid => { const c0 = byId(cid); if (c0) bodyTick(c0, 0, txt => list.push({ id: Store.uid(), from: 'sys', text: txt, ts: nowTs() + 1 })); });
+      // ⏸️ edging sayacı (th.edge, en çok 5): Edging +1; sayaç doluyken izinsiz orgazm (⚡ Uyarılma eşiği) tutulur.
+      // Permission to Come biriken turları bonusla verir ve Orgazm'ı getirir; Ruined Finish turları boşa harcar, orgazm olmaz
+      const edT = lowT(e.title), edN = th.edge || 0, EDGE_MAX = 5;
+      const edSys = t => list.push({ id: Store.uid(), from: 'sys', text: t, ts: nowTs() + 1 });
+      const edFx = fx => { const r7 = applyOutcome({ text: '', effects: fx }, ids); if (r7.changes.length) evc.changes = [...(evc.changes || []), ...r7.changes]; };
+      if (edT === 'edging') { th.edge = Math.min(EDGE_MAX, edN + 1); edSys(`⏸️ Sınırda tutuluyor: ${th.edge}/${EDGE_MAX} · izin vermeden gelemez`); }
+      else if (edT === 'permission to come') {
+        if (edN) {
+          th.edge = 0;
+          edFx([{ p: 'p:sehvet', d: 4 * edN }, { p: 'p:ask', d: edN }, { p: 'p:guven', d: edN }]);
+          const org = allEvents().find(x => lowT(x.title) === 'orgazm');
+          if (org && !chain.some(([x]) => x.id === org.id)) chain.push([org, `🙏 ${edN} tur sonra izin`]);
+          edSys(`💥 ${edN} tur sınırda tuttun, şimdi izin verdin: Şehvet +${4 * edN}, Aşk +${edN}, Güven +${edN}`);
+        } else edSys('🙏 Bekleyen tur yok · önce ⏸️ Edging: her tur izinle gelen orgazmı büyütür');
+      } else if (edT === 'ruined finish') {
+        if (edN) { th.edge = 0; edFx([{ p: 'p:sehvet', d: 3 * edN }, { p: 'p:guven', d: -1 }]); edSys(`💔 ${edN} tur boşa gitti: zirveye vardı ama gelemedi · Şehvet +${3 * edN}, Güven −1`); }
+        else edSys('💔 Sayaç boştu · önce ⏸️ Edging ile sınıra getir');
+      }
+      if ((th.edge || edT === 'ruined finish') && edT !== 'permission to come') {
+        let held = false;
+        for (let i = chain.length - 1; i >= 0; i--) if (lowT(chain[i][0].title) === 'orgazm') { chain.splice(i, 1); held = true; }
+        if (held && th.edge) edSys(`⏸️ Gelmek üzereydi ama izin yok (${th.edge}/${EDGE_MAX}) · 🙏 Permission to Come ile izin ver`);
+      }
       chain.push(...bands.map(b => [b, 'band']));
       if (depth >= MAX_CHAIN) return;
       chain.forEach(([x, w]) => eventMessages(x, undefined, depth + 1, root || mid, w || 'next'));
@@ -16471,7 +16567,17 @@
    * Elbise giyilince üst ve alt boşalır. Rastgelede kişiliğe göre iddialı parça oranı değişir (Flörtöz / Özgüvenli daha çok, Utangaç daha az) */
   const CL = Stories.CLOTHES || { slots: [], items: [] };
   const clItem = id => id && CL.items.find(x => x.id === id);
-  const WEAR_ORDER = ['elbise', 'ust', 'alt', 'sutyen', 'tanga', 'corap'];
+  const WEAR_BASE = ['elbise', 'ust', 'alt', 'sutyen', 'tanga', 'corap'];
+  // 🔗 aksesuar yuvaları (clothes.js acc): soyunma / giyinme komutları dokunmaz, giyinik / çıplak özetine sayılmaz
+  const ACC_SLOTS = CL.slots.filter(s => s.acc).map(s => s.id);
+  const WEAR_ORDER = [...WEAR_BASE, ...ACC_SLOTS];
+  // 🔗 BDSM olayı → taktığı aksesuar [yuva, varsayılan parça]; o yuvada zaten bir parça varsa onu takar
+  // 🗣️ "X tak / X çıkar" (r_cmd_acctak / r_cmd_acccikar): mesajdaki kelime → [yuva, parça ('' = gardırobundaki ya da ACC_DEF)]; özel olan önce
+  const ACC_DEF = { tasma: 'derttasma', tipa: 'plug', oyuncak: 'uzakvibe' };
+  const ACC_WORDS = [[/choker/, 'tasma', 'choker'], [/[çc]anl[ıi]/, 'tasma', 'cantasma'], [/çelik|celik|halka/, 'tasma', 'halkatasma'], [/tasma/, 'tasma', ''],
+    [/kuyru/, 'tipa', 'kuyrukplug'], [/silikon/, 'tipa', 'siliplug'], [/t[ıi]pa|plug/, 'tipa', ''],
+    [/mandal/, 'oyuncak', 'mandal'], [/vibrat/, 'oyuncak', 'uzakvibe'], [/ben ?wa/, 'oyuncak', 'benwa']];
+  const ACC_EV = { 'Butt Plug': ['tipa', 'plug'], 'Collar & Leash': ['tasma', 'derttasma'], 'Follow Me': ['tasma', 'derttasma'], 'Nipple Clamps': ['oyuncak', 'mandal'], 'Remote Toy': ['oyuncak', 'uzakvibe'] };
   const boldOf = c => {
     const tr = c.traits || [];
     let p = .35;
@@ -16482,7 +16588,7 @@
   function randWear(d) {
     const p = boldOf(d), w = [];
     CL.slots.forEach(s => {
-      const n = s.id === 'corap' ? (Math.random() < .6 ? 1 : 0) : 2, pool = CL.items.filter(x => x.slot === s.id && x.style !== 'k' && (!NURSE_WEAR.includes(x.id) || (d.fields || {}).hamile));
+      const n = s.acc ? (Math.random() < p * .4 ? 1 : 0) : s.id === 'corap' ? (Math.random() < .6 ? 1 : 0) : 2, pool = CL.items.filter(x => x.slot === s.id && x.style !== 'k' && (!NURSE_WEAR.includes(x.id) || (d.fields || {}).hamile));
       for (let i = 0; i < n; i++) {
         const st = Math.random() < p ? 'i' : 'g', free = pool.filter(x => !w.includes(x.id)), pref = free.filter(x => x.style === st);
         const x = pickOne(pref.length ? pref : free);
@@ -16491,6 +16597,8 @@
     });
     // 🎭 sevdiği fantezilerin kostümleri de gardıroba girer
     feelEvents(d.likes || []).filter(isFant).forEach(e => CL.items.filter(x => x.fant === fantKey(e)).forEach(x => { if (!w.includes(x.id)) w.push(x.id); }));
+    // 🔗 sevdiği BDSM olaylarının aksesuarı da gardıroba girer
+    feelEvents(d.likes || []).forEach(e => { const a = ACC_EV[e.title]; if (a && !w.includes(a[1])) w.push(a[1]); });
     d.wardrobe = w;
     d.outfit = randOutfit(d);
   }
@@ -16498,7 +16606,8 @@
   function randOutfit(c) {
     const w = (c.wardrobe || []).map(clItem).filter(x => x && x.style !== 'k'), of = s => { const xs = w.filter(x => x.slot === s); return xs.length ? pickOne(xs).id : ''; };
     const dress = !!of('elbise') && Math.random() < .35;
-    return { ust: dress ? '' : of('ust'), alt: dress ? '' : of('alt'), elbise: dress ? of('elbise') : '', sutyen: of('sutyen'), tanga: of('tanga'), corap: Math.random() < .5 ? of('corap') : '' };
+    return { ust: dress ? '' : of('ust'), alt: dress ? '' : of('alt'), elbise: dress ? of('elbise') : '', sutyen: of('sutyen'), tanga: of('tanga'), corap: Math.random() < .5 ? of('corap') : '',
+      ...Object.fromEntries(ACC_SLOTS.map(s => [s, Math.random() < .3 ? of(s) : ''])) };
   }
   const outfitOf = c => c.outfit || {};
   const outfitItems = c => WEAR_ORDER.map(s => clItem(outfitOf(c)[s])).filter(Boolean);
@@ -16542,7 +16651,7 @@
     tanga: ['elbise', 'alt', 'tanga'], corap: ['corap'], striptiz: ['elbise', 'ust', 'alt', 'sutyen', 'tanga', 'corap'],
     ickal: ['elbise', 'ust', 'alt'], corapkal: ['elbise', 'ust', 'alt', 'sutyen', 'tanga'], soyben: ['elbise', 'ust', 'alt', 'sutyen', 'tanga'] };
   // 👚 giyinme komutları → geri gelen parçalar
-  const DRESS_CMD = { giyin: WEAR_ORDER, ustgiy: ['elbise', 'ust', 'sutyen'], altgiy: ['elbise', 'alt', 'tanga'], icgiy: ['sutyen', 'tanga'] };
+  const DRESS_CMD = { giyin: WEAR_BASE, ustgiy: ['elbise', 'ust', 'sutyen'], altgiy: ['elbise', 'alt', 'tanga'], icgiy: ['sutyen', 'tanga'] };
   // komut kuralı → anahtar (kişilik sürümleri _flortoz / _utangac dahil)
   const DRESS_CMD_RE = /^r_cmd_(?:(ust|alt|ic|sutyen|tanga|corap)cikar|(striptiz|ickal|corapkal|soyben|giyin|ustgiy|altgiy|icgiy))/;
   // 👗 Undress kategorisinin olayları (system.js c:mvundress01x) → anahtar; komut da aynı olayı yazar (cmdEvent)
@@ -16561,7 +16670,7 @@
   // 👗 parça parça durum: [{ s, x, off }] (sadece giydikleri) ve özet: giyinik · yarı çıplak · çıplak
   const dressRows = (c, u) => WEAR_ORDER.map(s => ({ s, x: clItem(outfitOf(c)[s]) })).filter(r => r.x).map(r => ({ ...r, off: slotOff(u, r.s) }));
   function dressState(c, u) {
-    const rs = dressRows(c, u).filter(r => r.s !== 'corap');
+    const rs = dressRows(c, u).filter(r => r.s !== 'corap' && !ACC_SLOTS.includes(r.s));
     return !rs.length || rs.every(r => r.off) ? 'çıplak' : rs.some(r => r.off) ? 'yarı çıplak' : 'giyinik';
   }
   // o bölgede hâlâ üstünde olan dış parça; und: bu sohbette açılan bölgeler / çıkan parçalar (slotOff)
@@ -18122,6 +18231,7 @@
     { icon: '🦄', title: 'Fanteziler, roller ve kıyafet', sub: 'tonu değiştiren her şey', body: `
       <p><b>🦄 Fantezi / 🎭 rol</b> olayı olunca karakter uygun <b>kostümü</b> giyer ("Kedi kostümümü giydim…", Sekreter kombini) ve başka bir fantezi gelene kadar pozisyonlar, ön sevişme ve boşalma çoğu zaman o fantezinin ağzından cevaplanır (%60): Doggy Girl + arkadan → "Dört ayak üstünde, efendim". Rolde sana rolüne göre seslenir.</p>
       <p><b>👗 Kıyafet</b>: "ne giyiyorsun?" giydiklerini anlatır; Show Tits / Show Ass, "aç memeni", "soyun" ve sohbetteki ilk sevişmede giydiği parçanın cümlesi gelir (göğüs ve kalça bir sohbette birer kez). Profilde ya da 📊 kartta 👗 ile giydirilir.</p>
+      <p><b>🔗 Aksesuar</b>: ⛓️ Tasma, 💎 Anal tıpa ve 📳 Oyuncak / mandal ayrı yuvalardır. Soyunma komutları ve Get Dressed onlara dokunmaz, giyinik / çıplak durumu da onları saymaz. Butt Plug, Collar & Leash, Follow Me, Nipple Clamps ve Remote Toy olayları ilgili parçayı takar. Anal pozisyon tıpayı çıkarır. "Tasmanı tak" ya da "mandalları çıkar" gibi komutlarla da takıp çıkarırsın. Kostüm ya da hazır kombin giyince aksesuarlar da gider.</p>
       <p><b>📍 Mekan</b>: son mekan kartına göre (araba, duş, sinema…) özel cümleler (%40) ve olamayacak pozisyonlar.</p>` },
     { icon: '🛡️', title: 'İzinlere göre tepkiler', sub: 'korunma, giriş, hamilelik', body: `
       <p>Karakterin ✅ izin verdiği / 🚫 vermediği korunmalar konuşmasını baştan sona değiştirir:</p>
@@ -18953,6 +19063,8 @@
   const KM_CH = [
     ['▶️', 'Devam et ve beni şaşırt', 'aynı olay bir daha, rastgele sürpriz', /^r_cmd_(devam|sasirt)/,
       '<p>"Devam et / bir daha" şu anki olayı (son pozisyonu) tekrarlar; boşalma, orgazm ve Mode tekrarlanmaz. "Bitirme, uzatalım" şimdiki pozisyonda kalır, "Bir öncekine dön" ondan önceki pozisyona, "Baştan başla" bu sohbetin ilk pozisyonuna döner. "Beni şaşırt" ve "Zar at" rastgele bir pozisyon ya da fantezi başlatır (❤️ sevdikleri öne çıkar, 🚫 / 💔 olanlar atlanır); "En sevdiğini yap" yalnız ❤️ sevdiklerinden, "Hiç yapmadığımız bir şey" bu sohbette olmamışlardan, "Bir fantezi seç" fantezilerden, "Sen seç" pozisyonlardan seçer.</p>'],
+    ['🔗', 'Aksesuar tak ve çıkar', 'tasmanı tak, tıpanı sok, mandalları çıkar', /^r_cmd_acc/,
+      '<p>Aksesuarın adını ve "tak / giy / sok" ya da "çıkar / çöz / al" yaz: tasma, choker, çanlı ya da çelik tasma; tıpa, kuyruklu ya da silikon tıpa; mandal, vibratör, ben wa. Parçanın adını vermezsen gardırobundakini seçer. Takınca parçanın kendi cümlesini söyler ve parça gardırobuna girer. Çıkarınca sadece bu sohbette çıkmış sayılır. Olay yazılmaz.</p>'],
     ['👗', 'Soyun ve giyin', 'üstünü / altını çıkar, striptiz, giyin', /^r_cmd_(.*cikar|striptiz|giyin|.*giy|ickal|corapkal|soyben)/,
       '<p>Soyunma komutları kıyafeti <b>bu sohbette</b> çıkarır; karakter giydiğine göre anlatır. "Striptiz" hepsini sırayla çıkarır (çorap dahil), "İç çamaşırlarını çıkar" çorap hariç hepsini. "Sadece iç çamaşırınla kal" üstü ve altı, "Sadece çoraplarınla kal" çorap dışında her şeyi çıkarır; "Seni ben soyacağım" dersen seni bekler. 👚 Giyin komutları çıkanı geri giydirir; gömleğini, topuklularını ya da seksi bir şey giymesini istersen sadece cevap verir.</p><p>Her soyunma ve giyinme komutu 👗 <b>Undress</b> kategorisinden kendi olayını da yazar (ör. "Sütyenini çıkar" → Take Off Bra, "Striptiz yap" → Striptease, "Giyin" → Get Dressed). Aynı olayları 📜 Olay → 👗 Soyunma sekmesinden de seçebilirsin; karakter yine giydiği parçalara göre anlatır. Önden ya da arkadan bir pozisyona geçtiğinde altı hâlâ üstündeyse önce <b>Take Off Panties</b> kendiliğinden yazılır.</p>'],
     ['💋', 'Teklifler ve yakınlık', 'öp beni, masaj, banyo, yatağa gel, diz çök', /^r_c2_/,
@@ -19180,23 +19292,35 @@
     { icon: '📖', title: 'BDSM Kitabı nasıl okunur', sub: 'olayları başlat, tepkilerini izle', get body() {
       return `<p>🔗 BDSM olayları sohbette <b>📜 Olay yaz → 🦄 Fantezi → 🔗 BDSM</b> içinden ya da <b>#</b> yazıp olayın adıyla başlar. Her olay değerlere etki eder ve 🤖 bot modu açıksa karakter kendi cevabını yazar.</p>
         <ul><li><b>Pozisyon sayılmaz</b>: bu olaylar sahneyi hazırlar ya da sürdürür; boşalma için ayrıca bir pozisyon ya da bitiş olayı gerekir.</li>
-          <li><b>Kademe ve süre</b>: vibratör kademesini, mumun mesafesini ya da edging turunu mesajında söylersin; ayrı bir düğme yok.</li>
+          <li><b>Kademe ve süre</b>: vibratör kademesini ve mumun mesafesini mesajında söylersin; ayrı bir düğme yok. <b>⏸️ Edging</b> ise turları kendisi sayar (bkz. Uyarım ve kontrol).</li>
+          <li><b>🔗 Aksesuarlar</b>: tıpa, tasma, mandal ve vibratör kıyafet gibi giyilir; olay takar, komutla takıp çıkarırsın (bkz. Giyilen aksesuarlar).</li>
           <li><b>Sıra önerisi</b>: Warm Oil Massage ile başla, duyusal oyunlarla devam et, kontrol ve bağlamayla tırman, sonunda mutlaka sarıl.</li>
           <li><b>Kişilik ve rol</b>: cevabı kişiliği değiştirir: utangaç kızarır, flörtöz kışkırtır, romantik güvenir, soğuk küçümser, dominant intikam yemini eder. Bir rol ya da fantezi sürüyorsa (Kraliçe, Vampir, Cat Girl, Limon Kız…) o rolün ağzından cevap verir; şaplak, kürek ve kırbaca ayrı tepkisi vardır.</li></ul>
         <table class="bk-t"><tr><th>Olay</th><th>Ne olur</th></tr>${bdEvents().map(e => `<tr><td>${e.emojis || '🔗'} <b>${esc(e.title)}</b></td><td>${esc(e.desc || '')}</td></tr>`).join('')}</table>
         ${bkChat('🔗 Örnek', [['ev', '📜 🧊 Ice Cube'], ['me', 'Gözlerin bağlı, buzun nereye gideceğini bilmiyorsun 😈'], ['her', 'Göremiyorum, nereye gideceğini bilmiyorum 😈'], ['note', 'Uyarılma +12, Şehvet +8. Göz bağıyla sürpriz daha büyük.']])}`;
     } },
-    { icon: '🌡️', title: 'Duyusal oyunlar', sub: 'göz bağı, tüy, tekerlek, buz, mum, yağ, çikolata ve bal', get body() {
-      return `<p>Sıcak ile soğuk, sert ile yumuşak: duyusal oyunlar tene odaklanır ve en kolay başlangıçtır.</p>${bdBody(['Blindfold', 'Feather Tease', 'Wartenberg Wheel', 'Warm Oil Massage', 'Ice Cube', 'Hot & Cold', 'Hot Wax', 'Honey Chocolate Lick'])}`;
+    { icon: '🌡️', title: 'Duyusal oyunlar', sub: 'göz bağı, kulaklık, ruj, tüy, tekerlek, buz, mum, yağ, çikolata ve bal', get body() {
+      return `<p>Sıcak ile soğuk, sert ile yumuşak: duyusal oyunlar tene odaklanır ve en kolay başlangıçtır.</p>${bdBody(['Blindfold', 'Sensory Deprivation', 'Lipstick Marks', 'Feather Tease', 'Wartenberg Wheel', 'Warm Oil Massage', 'Ice Cube', 'Hot & Cold', 'Hot Wax', 'Honey Chocolate Lick'])}`;
     } },
-    { icon: '📳', title: 'Uyarım ve kontrol', sub: 'vibratör, uzaktan kumanda, edging, tıpa', get body() {
-      return `<p>Kontrol sende: ne zaman, ne kadar ve ne zamana kadar sen karar verirsin. Bu olaylar en çok Uyarılma ve Şehvet verir.</p>${bdBody(['Vibrator Control', 'Remote Toy', 'Edging', 'Butt Plug'])}`;
+    { icon: '📳', title: 'Uyarım ve kontrol', sub: 'vibratör, uzaktan kumanda, edging sayacı, izin, yarım bırakma, tıpa', get body() {
+      return `<p>Kontrol sende: ne zaman, ne kadar ve ne zamana kadar sen karar verirsin. Bu olaylar en çok Uyarılma ve Şehvet verir.</p>
+        <p><b>⏸️ Edging sayacı</b>: her Edging bir tur ekler (en çok 5). Sayaç doluyken izinsiz gelemez: Uyarılma eşiği gelse de orgazm tutulur. <b>Permission to Come</b> biriken turları verir: tur başına Şehvet +4, Aşk +1, Güven +1 ve hemen orgazm. <b>Ruined Finish</b> turları boşa harcar: tur başına Şehvet +3, Güven −1, orgazm yok.</p>${bdBody(['Vibrator Control', 'Remote Toy', 'Edging', 'Permission to Come', 'Ruined Finish', 'Butt Plug'])}`;
     } },
-    { icon: '🔥', title: 'Acı ve haz', sub: 'şaplak, kürek, kırbaç, göğüs mandalları', get body() {
-      return `<p>Hafif acı hazzı keskinleştirir. Yavaş başla, tepkisini izle; kızarıklık ve nefes sana ne kadar ileri gidebileceğini söyler. En yumuşaktan en serte: Flogger, Spanking, Riding Crop, Paddle; Paddle ve Riding Crop Acı'yı da artırır.</p>${bdBody(['Flogger', 'Spanking', 'Riding Crop', 'Paddle', 'Nipple Clamps'])}`;
+    { icon: '🔥', title: 'Acı ve haz', sub: 'şaplak, teşekkür, kürek, kırbaç, göğüs mandalları', get body() {
+      return `<p>Hafif acı hazzı keskinleştirir. Yavaş başla, tepkisini izle; kızarıklık ve nefes sana ne kadar ileri gidebileceğini söyler. En yumuşaktan en serte: Flogger, Spanking, Riding Crop, Paddle; Paddle ve Riding Crop Acı'yı da artırır.</p>${bdBody(['Flogger', 'Spanking', 'Say Thank You', 'Riding Crop', 'Paddle', 'Nipple Clamps'])}`;
     } },
-    { icon: '🪢', title: 'Kısıtlama ve kurallar', sub: 'bağlama, kelepçe, ip, tasma, tıkaç, hitap kuralı', get body() {
-      return `<p>Bağlamak ve kural koymak güven ister; ikisi de Güven'i artırır. Kural bozulursa nasıl düzeltileceğini önceden konuşun. Tıkaçlıyken konuşamaz: durmak için elindeki mendili düşürür.</p>${bdBody(['Hands Behind Back', 'Handcuffs', 'Tied To Bed', 'Spreader Bar', 'Shibari', 'Collar & Leash', 'Ball Gag', 'Address Rule'])}`;
+    { icon: '🪢', title: 'Kısıtlama ve kurallar', sub: 'bağlama, kelepçe, ip, tasma, tıkaç, hitap kuralı, diz çökme', get body() {
+      return `<p>Bağlamak ve kural koymak güven ister; ikisi de Güven'i artırır. Kural bozulursa nasıl düzeltileceğini önceden konuşun. Tıkaçlıyken konuşamaz: durmak için elindeki mendili düşürür.</p>${bdBody(['Hands Behind Back', 'Handcuffs', 'Tied To Bed', 'Spreader Bar', 'Shibari', 'Collar & Leash', 'Follow Me', 'Ball Gag', 'Address Rule', 'Kneel & Wait'])}`;
+    } },
+    { icon: '💎', title: 'Giyilen aksesuarlar', sub: 'tasma, tıpa, mandal, vibratör: takılır, üstünde kalır', get body() {
+      const accs = CL.slots.filter(s => s.acc), evOf = id => Object.keys(ACC_EV).filter(t => ACC_EV[t][1] === id).join(', ');
+      return `<p>Bazı BDSM oyuncakları kıyafet gibi giyilir. Gardıropta üç ayrı yuvası var. Soyunsa da üstünde kalırlar; giyinik / çıplak durumu onları saymaz, soyunma komutları ve Get Dressed onlara dokunmaz.</p>
+        ${accs.map(s => `<h4>${s.icon} ${esc(s.label)}</h4><table class="bk-t"><tr><th>Parça</th><th>Giyince</th><th>Takan olay</th></tr>${CL.items.filter(x => x.slot === s.id).map(x => `<tr><td>${x.emoji} <b>${esc(x.name)}</b></td><td>"${esc((x.t || [])[0] || '')}"</td><td>${esc(evOf(x.id) || '—')}</td></tr>`).join('')}</table>`).join('')}
+        <ul><li><b>Olay takar</b>: o yuvada bir parçası varsa onu takar (ör. tilki kuyruğu), yoksa tablodaki parçayı. Takılan parça gardırobuna girer.</li>
+          <li><b>Anal pozisyon</b>: tıpa takılıysa önce çıkar.</li>
+          <li><b>🗣️ Komutla</b>: "tasmanı tak", "kuyruklu tıpanı sok", "mandalları çıkar", "vibratörü tak". Parça adı vermezsen gardırobundakini seçer.</li>
+          <li><b>Gardırop</b>: sevdiği BDSM olaylarının aksesuarı gardırobunda olur; 👗 ile elle de giydirirsin. Kostüm ya da hazır kombin giyince aksesuarlar gider.</li></ul>
+        ${bkChat('💎 Örnek', [['ev', '📜 💎 Butt Plug'], ['note', '🔗 Mücevherli tıpa takıldı'], ['me', 'mandallarını da tak'], ['her', 'Göğüs uçlarımda zincirli mandallar var, kıyafetimin altında 😈'], ['me', 'soyun'], ['note', 'Kıyafetleri çıkar; tıpa ve mandallar üstünde kalır.']])}`;
     } },
     { icon: '🤍', title: 'Rıza, güvenli kelime ve sonrası', sub: 'önce konuş, sonra oyna, sonunda sarıl', get body() {
       return `<p>BDSM'in temeli rızadır. Sahneden önce sınırları konuşun; neyi istediğini, neyi asla istemediğini sor.</p>

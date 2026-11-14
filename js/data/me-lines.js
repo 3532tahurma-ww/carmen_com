@@ -8114,7 +8114,14 @@ Object.assign(Stories.ME_EV_LINES, {
   'Handcuffs': ['Kelepçeler klik diye kapandı 🔗', 'Anahtar komodinde, ikimiz de görüyoruz {o} 🤍', 'Bileklerin başının üstünde 😈', 'Çekiştiriyorsun, açılmaz 😏', 'Şimdi her yerin benim 🥵', 'Açarken bileklerini öpüyorum 💋'],
   'Shibari': ['İpi göğüslerinin etrafından geçiriyorum 🪢', 'Bir düğüm daha {o}, sabret 😏', 'İp tenine iz bırakıyor 😈', 'Kırmızı sana çok yakışıyor 🔥', 'Bitti, bir sanat eseri gibisin 🎎', 'Uyuşma var mı? Söyle 🤍'],
   'Spreader Bar': ['Çubuğu ayak bileklerine taktım 📏', 'Bacaklarını kapatamıyorsun {o} 😈', 'Her şey bana açık 😏', 'Kıvranıyorsun ama kaçamıyorsun 🥵', 'İç bacaklarını öpüyorum 💋', 'Çözerken bileklerine masaj 🤍'],
-  'Hands Behind Back': ['Bileklerini arkada kurdeleyle bağlıyorum 🎀', 'Ellerin yok artık {o} 😈', 'Göğüslerin öne çıktı 😏', 'Kurdelenin ucunu çekiyorum, bana geliyorsun 🔥', 'Dengen bende, düşmezsin 🤍', 'Fiyonk yaptım 😂']
+  'Hands Behind Back': ['Bileklerini arkada kurdeleyle bağlıyorum 🎀', 'Ellerin yok artık {o} 😈', 'Göğüslerin öne çıktı 😏', 'Kurdelenin ucunu çekiyorum, bana geliyorsun 🔥', 'Dengen bende, düşmezsin 🤍', 'Fiyonk yaptım 😂'],
+  'Permission to Come': ['İzin vermeden yok {o} 😈', 'Sor bakalım, güzelce 😏', 'Daha değil… dayan 🔥', 'Yalvarışın çok tatlı 🥵', 'Şimdi. Bırak kendini 💥', 'Aferin, çok iyi dayandın 🤍'],
+  'Kneel & Wait': ['Kapıyı açtım, dizlerinin üstündesin 🧎‍♀️', 'Başın eğik, tam istediğim gibi {o} 😏', 'Biraz daha bekle 😈', 'Çeneni kaldırıyorum, bana bak 🔥', 'Kıpırdamadın, aferin 👑', 'Kalk, dizlerine masaj yapayım 🤍'],
+  'Say Thank You': ['Say bakalım {o} ✋', 'Bir… teşekkür nerede? 😏', 'Unuttun, baştan başlıyoruz 😈', 'Sesin titriyor 🔥', 'On. Çok güzel saydın 👑', 'Kızaran yeri öpüyorum 🤍'],
+  'Follow Me': ['Tasmanın ucu elimde, gel {o} 🐾', 'Salona geçiyoruz 😏', 'Dur. Bekle 😈', 'Yatak odasına, yavaşça 🔥', 'Çektiğim yere geliyorsun, aferin 👑', 'Tasmayı çıkarıyorum, sarıl bana 🤍'],
+  'Ruined Finish': ['Geliyorsun değil mi {o}? 😏', 'Ve… bıraktım 😈', 'O yüz ifaden 😂', 'Nefes nefesesin 🥵', 'Bir dahakine belki 😏', 'Gel buraya, sarılalım 🤍'],
+  'Lipstick Marks': ['Rujumu aldım 💄', 'Göğsüne "Senin" yazıyorum {o} 😏', 'Kalçana bir kalp ❤️', 'Her seferinde bir çentik 😈', 'Aynaya dön, oku bakalım 🔥', 'Yarın da silme 😏'],
+  'Sensory Deprivation': ['Göz bağı, şimdi kulaklık 🎧', 'Beni duyamıyorsun artık {o} 😈', 'Sadece dokunuşum var 🔥', 'Nereye dokunacağımı bilmiyorsun 😏', 'Ürperdin 🥵', 'Kulaklığı çıkarıyorum, buradayım 🤍']
 });
 Stories.ME_HUG_LINES.placeFinish.events.push('Beach Cumshot', 'Office Cumshot', 'Hotel Creampie');
 Stories.ME_HUG_LINES.campHug.events.push('Sunscreen Rub', 'Beach Towel Sex', 'Wave Sex', 'Office Chair Ride', 'Room Service', 'Balcony Sex', 'Hotel Mirror');

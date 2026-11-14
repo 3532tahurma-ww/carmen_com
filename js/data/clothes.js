@@ -18,7 +18,11 @@ Stories.CLOTHES = (() => {
     { id: 'elbise', icon: '👗', label: 'Elbise / tek parça' },
     { id: 'sutyen', icon: '👙', label: 'Sütyen' },
     { id: 'tanga', icon: '🩲', label: 'Tanga / külot' },
-    { id: 'corap', icon: '🧦', label: 'Çorap / jartiyer' }
+    { id: 'corap', icon: '🧦', label: 'Çorap / jartiyer' },
+    // 🔗 aksesuarlar (acc): soyunmakla çıkmaz; BDSM olayı takar (app.js ACC_EV), anal pozisyon tıpayı çıkarır
+    { id: 'tasma', icon: '⛓️', label: 'Tasma / boyun', acc: true },
+    { id: 'tipa', icon: '💎', label: 'Anal tıpa', acc: true },
+    { id: 'oyuncak', icon: '📳', label: 'Oyuncak / mandal', acc: true }
   ];
   const L = [
     // 👚 üst giyim
@@ -166,6 +170,19 @@ Stories.CLOTHES = (() => {
     ['tekilakost', 'elbise', 'Sombrero ve fırfırlı elbise', '🌵', 'k', ['Fırfırlı, rengarenk bir elbise ve yana eğik sombrero… ¡hola! 🌵', 'Eteğim dans edince havalanıyor 💃'], ['Fırfırlı yakamı indirdim, tuz boynumda 🧂😈', 'Dönüyorum, eteğim havalandı… ¡olé! 💃'], ['Elbisem yerde, sombrero kaldı 🌵', 'Fırfırlar gitti, ateşim kaldı 😈']],
     ['sampanyakost', 'elbise', 'Altın pullu elbise', '🍾', 'k', ['Altın pullu, kısacık bir elbise; her hareketimde ışıldıyorum 🍾', 'Pullarım kabarcıklarım gibi parlıyor ✨'], ['Pullu elbisemin askısını indirdim, kabarcıklarım taşıyor 🍾😈', 'Eteğimi kaldırdım, konfeti saçılıyor 🎉'], ['Pullu elbisem yerde ışıldıyor ✨', 'Elbise gitti, sadece kabarcıklarım kaldı 😈']],
     ['sutkost', 'elbise', 'İnek desenli bikini', '🥛', 'k', ['Siyah beyaz inek desenli bir bikini; göğüslerim süt dolu 🥛🐄', 'Bikinim küçük, göğüslerim zor sığıyor 😳'], ['Bikini üstümü indirdim, uçlarımdan süt damlıyor 🥛😈', 'Bikini altımı yana çektim, kremamsı tenim senin 😏'], ['Bikinim samanların üstünde 🐄', 'Bikini gitti, sağılmaya hazırım 🥛😈']]
+  );
+  // 🔗 aksesuarlar
+  L.push(
+    ['derttasma', 'tasma', 'Deri tasma', '⛓️', 'i', ['Boynumda deri tasmam var, halkası senin için 😏', 'Tasmamı taktım, kime ait olduğum belli 😈'], ['Saçımı topladım, tasmam görünsün diye ⛓️😏', 'Halkaya parmağını geçir, çek beni 😈'], ['Tasmamı çıkarma… ya da çıkar, sen bilirsin 🥺', 'Tasmanın tokasını açtım, boynumda izi kaldı 😳']],
+    ['choker', 'tasma', 'Dantel choker', '🖤', 'g', ['Boynumda siyah dantel bir choker var 🖤', 'Choker taktım, masum görünüyorum değil mi? 😇'], ['Choker\'ım boynumu sarıyor, öpmek ister misin? 😏', 'Başımı yana eğdim, choker\'ımı gör 🖤'], ['Choker\'ımı çözdüm 😏', 'Choker gitti, boynum senin 😈']],
+    ['cantasma', 'tasma', 'Çanlı tasma', '🔔', 'i', ['Çanlı bir tasma taktım, her hareketimde çınlıyor 🔔', 'Nereye gitsem duyarsın, çanım var 😏'], ['Başımı salladım… çın çın 🔔😈', 'Çanım her nefeste çınlıyor, dinle 😏'], ['Çanlı tasmamı çıkardım, sessizlik 😳', 'Tasma gitti, artık beni duyamazsın 😈']],
+    ['halkatasma', 'tasma', 'Halkalı çelik tasma', '⭕', 'i', ['Boynumda soğuk çelik bir halka var 😈', 'Çelik tasmam ağır, ama hoşuma gidiyor 😏'], ['Halkaya zincir takılır, biliyorsun 😈', 'Çelik halka tenimde ısınıyor 🥵'], ['Kilidi sen açarsın, anahtar sende 🔐', 'Çelik tasma çıktı, boynum hafifledi 😳']],
+    ['plug', 'tipa', 'Mücevherli tıpa', '💎', 'i', ['İçimde mücevherli bir tıpa var, kimse bilmiyor 💎😏', 'Oturunca hissediyorum, bütün gün böyle 🥵'], ['Eğiliyorum… parlayan taşı gördün mü? 💎😈', 'Eteğimi kaldırdım, mücevherim ortada 😏'], ['Tıpayı yavaşça çıkardım… ahh 🥵', 'Mücevherim çıktı, içim boş kaldı 😳']],
+    ['kuyrukplug', 'tipa', 'Tilki kuyruklu tıpa', '🦊', 'i', ['Arkamda tilki kuyruğu var, sallanıyor 🦊😏', 'Kuyruğum bana çok yakıştı, değil mi? 😈'], ['Kalçamı salladım, kuyruğum da sallandı 🦊', 'Kuyruğumu okşa, ucu içimde 😈'], ['Kuyruğumu çıkardım… ahh 🥵', 'Kuyruk gitti, artık tilki değilim 😳']],
+    ['siliplug', 'tipa', 'Silikon tıpa', '⚫', 'i', ['İçimde küçük bir silikon tıpa var, alışıyorum 😳', 'Tıpa takılı, yürümek bile başka 🥵'], ['Arkamı dönüyorum, görüyor musun? 😈', 'Kalçamı aç, tıpam orada 😏'], ['Silikon tıpayı çıkardım, rahatladım 😮‍💨', 'Tıpa çıktı… sıra sende 😈']],
+    ['uzakvibe', 'oyuncak', 'Uzaktan kumandalı vibratör', '📲', 'i', ['Külotumda uzaktan kumandalı bir oyuncak var, kumanda sende 📲😏', 'Oyuncağım takılı… ne zaman açacaksın? 🥵'], ['Kumandaya bas da gör yüzümü 😈', 'Titredi… bacaklarım kendiliğinden kapandı 🥵'], ['Oyuncağı çıkardım, sırılsıklam 😳', 'Kumandanın pili bitti, ben bitmedim 😈']],
+    ['mandal', 'oyuncak', 'Zincirli göğüs mandalları', '⛓️', 'i', ['Göğüs uçlarımda zincirli mandallar var, kıyafetimin altında 😈', 'Her adımda zincir sallanıyor 🥵'], ['Üstümü kaldırdım, zinciri gör ⛓️😏', 'Zinciri hafifçe çek… ahh 🥵'], ['Mandalları çıkardın… kan geri geldi, offf 😩', 'Mandallar gitti, uçlarım zonkluyor 🥵']],
+    ['benwa', 'oyuncak', 'Ben Wa topları', '🔮', 'i', ['İçimde iki Ben Wa topu var, yürüdükçe tıkırdıyor 🔮😳', 'Bütün gün içimdeler, odaklanamıyorum 🥵'], ['Kalçamı salladım… hissettim 😈', 'Bir adım daha atarsam düşeceğim 🥵'], ['Topları ipinden çektim… birer birer 😩', 'Ben Wa topları çıktı, bacaklarım titriyor 😳']]
   );
   const FANT = { kedikost: 'fxkedi', inekkost: 'fxinek',tavsankost: 'fxtavsan', tilkikost: 'fxtilki', kopekkost: 'fxkopek', unikornkost: 'fxunikorn', kosum: 'fxbag', lateks: 'fxbag',
     hemsirekost: 'fxrpmuayene', poliskost: 'fxrpsorgu', hizmetcikost: 'fxrpev', ogrencikost: 'fxrpkampus', masozkost: 'fxrpmasaj', sabahlik: 'fxrpkapi',
