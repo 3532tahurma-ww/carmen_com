@@ -2886,6 +2886,6 @@ Stories.I18n.add({
   '📚 {} olay': '📚 {} events', '👩‍🏫 {} hoca': '👩‍🏫 {} teachers', 'Olaylar okulu 🎓': 'The event school 🎓',
   '{} olay · {} kategori · {} hoca. Bir kategori seç, hocası her olayı tek tek anlatsın: ne olduğu, nasıl tetiklendiği, sonunda ne olduğu.': '{} events · {} categories · {} teachers. Pick a category and its teacher explains every event: what it is, how it triggers, what happens after.',
   '🔍 Olay ya da kategori ara… (ör. Doggy, School)': '🔍 Search an event or category… (e.g. Doggy, School)', '👩‍🏫 Hocalarımız': '👩‍🏫 Our teachers', '📚 {} ders': '📚 {} lessons',
-  'hocası': 'teacher', 'Hoca': 'Teacher', '💬 Hocaya sor': '💬 Ask the teacher', '{} ders': '{} lessons', '· Ders {}': '· Lesson {}',
+  'hocası': 'teacher', 'Hoca': 'Teacher', '💬 Hocaya sor': '💬 Ask the teacher', '{} ders': '{} lessons', '· Ders {}': '· Lesson {}', '💦 Bu mekânın bitişleri · {} ders': '💦 This place\'s finishes · {} lessons',
   '🎯 Nasıl tetiklenir': '🎯 How it triggers', '📌 Sohbete etkisi': '📌 Effect on the chat', '👆 Sonuçlar ve cevaplar': '👆 Results and replies', 'ile dene': 'try it with',
 });

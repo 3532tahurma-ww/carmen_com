@@ -512,6 +512,10 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['🌳', 'Park ve Restoran açıldı', '17 yeni olay: 🌳 Outdoors kategorisinde 7 pozisyon ve 3 bitiş, 🍽️ Restaurant kategorisinde 5 pozisyon ve 2 bitiş. Hepsi kitaplıktaki yeni 🌳 Dışarıda Kitabı\'nda ve 🎓 CarmenEvents derslerinde.', '#/kitap/disari', [
+      ['🌳 Outdoors', 'Park, piknik, bahçe ve mısır labirenti: örtüde, ağaç arkasında, çimende, hamakta, bankta, labirentin çıkmazında. Bitişler: Picnic Creampie, Grass Facial, Open Air Anal Creampie.'],
+      ['🍽️ Restaurant', 'Restoran ve kafe: masanın altında, tuvalette, köşe locada ve mutfağın arka kapısında. Bitişler: Dessert Facial, Restroom Creampie.'],
+      ['🎓 CarmenEvents', 'Mekân derslerinin sonunda artık o mekânın bitişleri de anlatılıyor (Gym, Bar, Pool, Beach… hepsinde).']]],
     ['🏖️', 'Havuz ve Plaj gelişiyor', '27 yeni olay: 🏖️ Pool kategorisinde 10 pozisyon ve 3 bitiş, 🏝️ Beach kategorisinde 11 pozisyon ve 3 bitiş. Hepsi kitaplıktaki yeni 🏖️ Yaz Kitabı\'nda ve 🎓 CarmenEvents derslerinde.', '#/kitap/yaz', [
       ['🏖️ Havuz', 'Merdiven, duvar, jakuzi, şişme yatak, kabana, basamaklar ve cankurtaran kulesi; su altında oral ve kenarda Edge Facesitting. Night Swim Sex kapanıştan sonra gizlice. Bitişler: Jacuzzi Creampie, Underwater Creampie, Poolside Facial.'],
       ['🏝️ Plaj', 'Kum tepesi, şezlong, gün batımı, soyunma kabini, kayalık koy, sığ su, çıplak plaj, kamp ateşi, plaj duşu ve tekne güvertesi; bir de Sand 69. Bitişler: Cove Creampie, Sunset Creampie, Sand Cumshot.'],
@@ -13418,7 +13422,7 @@
       balkon: ['yatak', 'banyo'], somine: ['yatak', 'banyo'], araba: ['senin-evin', 'onun-evi', 'otel'], sahil: ['otel', 'yazlik'], bar: ['otel', 'araba', 'senin-evin'],
       sinema: ['araba', 'senin-evin'], ofis: ['araba', 'otel'], kafe: ['araba', 'onun-evi'], kabin: ['araba', 'senin-evin'], parti: ['araba', 'senin-evin'], kamp: ['araba'],
       vapur: ['sahil', 'otel'], perili: ['araba', 'senin-evin'], labirent: ['araba'], kostum: ['otel', 'araba'], mezarlik: ['senin-evin', 'otel'],
-      kilise: ['kiler', 'cati-kati', 'araba'], tuvalet: ['banyo', 'yatak'], spor: ['banyo', 'araba', 'senin-evin'] },
+      kilise: ['kiler', 'cati-kati', 'araba'], tuvalet: ['banyo', 'yatak'], spor: ['banyo', 'araba', 'senin-evin'], doga: ['araba', 'senin-evin', 'onun-evi'] },
     per: { 'Utangaç': ['yatak', 'banyo', 'onun-evi', 'senin-evin'], 'Romantik': ['somine', 'teras', 'sahil', 'dag-evi', 'cati'], 'Neşeli': ['lunapark', 'dans', 'ev-partisi', 'piknik'],
       'Komik': ['lunapark', 'mutfak', 'piknik'], 'Flörtöz': ['bar', 'dans', 'sahil', 'araba'], 'Asi': ['cati', 'araba', 'mezarlik-araba', 'sinema'], 'Kibirli': ['otel', 'restoran', 'teras'],
       'Şımarık': ['alisveris', 'otel', 'restoran'], 'Özgüvenli': ['bar', 'ofis', 'sahil'], 'Duygusal': ['yagmur', 'somine', 'balkon'], 'Gizemli': ['perili-ev', 'gece-yuruyusu', 'cati', 'kiler'],
@@ -13453,11 +13457,12 @@
       mezarlik: ['Burası çok ürkütücü… ama çok da heyecanlı 😱', 'Camlar buğulandı, dışarısı karanlık 🌙', 'Bir ışık mı yandı? 😳'],
       kilise: ['Kubbe her sesi geri yolluyor, sessiz ol 🤫', 'Mumların ışığında… burası kutsal 😳', 'Sıralar gıcırdıyor, biri duyacak 🕯️'],
       tuvalet: ['Kapı kilitli mi?! 😳', 'Burası çok dar ahh 😩', 'Lavaboya tutunuyorum, aynada bize bak 😈'],
-      spor: ['Terden kayıyorum, sıkı tut 🥵', 'Aynada ikimizi görüyorum 😏', 'Bir set daha… ahh 🏋️']
+      spor: ['Terden kayıyorum, sıkı tut 🥵', 'Aynada ikimizi görüyorum 😏', 'Bir set daha… ahh 🏋️'],
+      doga: ['Çimenler tenimi gıdıklıyor 🌿', 'Biri yoldan geçiyor, sus! 🤫', 'Açık havada… kuşlar bile utandı 🙈']
     },
     arrive: ['Hmm, {yer}… tam istediğim yer 😏', '{yer} olmak güzel fikir 😈', 'Tamam, {yer}… şimdi ne yapacağız bakalım? 😏', 'Elini tut, {yer} sana yakın durmak istiyorum 🥰', 'Oh, {yer}! Sevdim burayı 😍'],
     public: ['kafe', 'restoran', 'park', 'sahil', 'sinema', 'alisveris', 'sergi', 'kitapci', 'kampus', 'is', 'ofis', 'lunapark', 'yagmur', 'bar', 'konser', 'dans', 'cati',
-      'gece-yuruyusu', 'kostum-partisi', 'mezarlik-araba', 'araba', 'vapur', 'piknik', 'misir-labirenti', 'kamp', 'ev-partisi', 'balkon', 'teras', 'tatil', 'Asansörde', 'Havuz başında', 'Saunada', 'kilise', 'spor'],
+      'gece-yuruyusu', 'kostum-partisi', 'mezarlik-araba', 'araba', 'vapur', 'piknik', 'misir-labirenti', 'kamp', 'ev-partisi', 'balkon', 'teras', 'tatil', 'Asansörde', 'Havuz başında', 'Saunada', 'kilise', 'spor', 'bahce'],
     safe: ['yatak', 'otel', 'senin-evin', 'onun-evi', 'banyo', 'araba'],
     // 👀 gerilim: eşik → [sys notu, onun cümlesi]; 100'de yakalanırsınız, gerilim sıfırlanır ve kaçmayı önerir
     risk: [[40, ['👀 Uzaktan biri bakıyor gibi…', '👀 Bir an bir gölge geçti…', '👀 Yakınlarda bir ses duyuldu…'], ['Biri mi baktı? 😳', 'Dur… bir ses duydum 🙈']],
@@ -16528,7 +16533,7 @@
     ['on', '👅', 'Ön sevişme', ['eat', 'outercourse']],
     ['sut', '🍼', 'Lactation', ['lactation', 'nursing', 'lactation fantasy']],
     ['poz', '🔥', 'Pozisyon', ['forward', 'backward', 'threesome', 'mode', 'pre-cumming']],
-    ['mekan', '📍', 'Mekân', ['mekanda', 'shower', 'sauna', 'bathtub', 'pool', 'car', 'elevator', 'camping', 'kitchen', 'camera', 'beach', 'office', 'hotel', 'school', 'church', 'gym', 'bar', 'cinema', 'pee']],
+    ['mekan', '📍', 'Mekân', ['mekanda', 'shower', 'sauna', 'bathtub', 'pool', 'car', 'elevator', 'camping', 'kitchen', 'camera', 'beach', 'office', 'hotel', 'school', 'church', 'gym', 'bar', 'cinema', 'outdoors', 'restaurant', 'pee']],
     ['fant', '🦄', 'Fantezi', ['fantesy', 'meisove', 'femdom', 'bdsm', 'bull']],
     ['bit', '💦', 'Bitiş', ['cumming', 'cumming size']],
     ['son', '🌙', 'Sonrası', ['cool down', 'treatment', 'bull story']]
@@ -16551,6 +16556,8 @@
     gym: { ids: ['spor'], to: { place: 'spor' } },
     bar: { ids: ['bar', 'dans', 'konser'], to: { place: 'bar' } },
     cinema: { ids: ['sinema'], to: { place: 'sinema' } },
+    outdoors: { ids: ['park', 'piknik', 'bahce', 'misir-labirenti'], to: { place: 'park' } },
+    restaurant: { ids: ['restoran', 'kafe'], to: { place: 'restoran' } },
     pee: { ids: ['tuvalet', 'banyo'], to: { place: 'tuvalet' } }
   };
   const placeEvOf = cat => PLACE_EV[String((cat || {}).label || '').toLocaleLowerCase('tr').trim()];
@@ -17814,7 +17821,7 @@
    * block: olamayacak pozisyonlar · allow: sadece bunlar olabilir (kalabalık yerler) */
   const PLACE_KEY = { araba: 'araba', garaj: 'araba', banyo: 'dus', mutfak: 'mutfak', yatak: 'yatak', 'onun-evi': 'yatak', 'senin-evin': 'yatak', misafir: 'yatak', 'cati-kati': 'yatak',
     salon: 'koltuk', 'ev-sinema': 'koltuk', somine: 'somine', 'dag-evi': 'somine', balkon: 'balkon', teras: 'balkon', cati: 'balkon', sahil: 'sahil', tatil: 'sahil', yazlik: 'sahil',
-    sinema: 'sinema', bar: 'bar', konser: 'bar', dans: 'bar', 'ev-partisi': 'parti', kamp: 'kamp', piknik: 'kamp', park: 'kamp', vapur: 'vapur', kampus: 'ofis', is: 'ofis', calisma: 'ofis',
+    sinema: 'sinema', bar: 'bar', konser: 'bar', dans: 'bar', 'ev-partisi': 'parti', kamp: 'kamp', piknik: 'doga', park: 'doga', bahce: 'doga', vapur: 'vapur', kampus: 'ofis', is: 'ofis', calisma: 'ofis',
     kafe: 'kafe', restoran: 'kafe', kitapci: 'kafe', alisveris: 'kabin', giyinme: 'kabin', kilise: 'kilise', tuvalet: 'tuvalet', spor: 'spor',
     'perili-ev': 'perili', 'misir-labirenti': 'labirent', 'kostum-partisi': 'kostum', 'mezarlik-araba': 'mezarlik' };
   const PLACE_RULES = {
@@ -17830,7 +17837,7 @@
   const placeBlock = (key, e) => {
     const r = PLACE_RULES[key];
     // mekânın kendi kategorisindeki olaylar (bar / sinema etiketi) hep serbest
-    if (!r || !isPosEv(e) || (e.tags || []).some(x => lowTag(x) === key)) return '';
+    if (!r || !isPosEv(e) || (e.tags || []).some(x => lowTag(x) === key || (key === 'kafe' && lowTag(x) === 'restoran'))) return '';
     const t = String(e.title).toLocaleLowerCase('tr');
     return (r.allow ? !r.allow.includes(t) : r.block.includes(t)) ? `${r.icon} ${r.why}` : '';
   };
@@ -17939,9 +17946,9 @@
   const lowTag = x => String(x).toLocaleLowerCase('tr');
   // 🏖️ mekân etiketi → [etiket, kesinti havuzu (FANT_INTERRUPTS), kesinti olasılığı]
   const PLACE_INT = [['havuz', 'yerhavuz', .2], ['araba', 'yeraraba', .15], ['asansör', 'yerasansor', .2], ['kamp', 'yerkamp', .1], ['plaj', 'yerplaj', .15], ['ofis', 'yerofis', .2], ['otel', 'yerotel', .1], ['okul', 'yerokul', .2],
-    ['spor', 'yerspor', .15], ['bar', 'yerbar', .15], ['sinema', 'yersinema', .2]];
+    ['spor', 'yerspor', .15], ['bar', 'yerbar', .15], ['sinema', 'yersinema', .2], ['doğa', 'yerdoga', .15], ['restoran', 'yerrestoran', .2]];
   // 👀 yakalanma riski olan mekân etiketleri → [etiket, kesinti havuzu, bildirim adı] (renderChat riskStep; 70 / 100 eşiğinde kesinti)
-  const RISK_TAG = [['sinema', 'yersinema', '🎬 sinema'], ['bar', 'yerbar', '🍸 bar'], ['kilise', 'yerkilise', '⛪ kilise']];
+  const RISK_TAG = [['sinema', 'yersinema', '🎬 sinema'], ['bar', 'yerbar', '🍸 bar'], ['kilise', 'yerkilise', '⛪ kilise'], ['restoran', 'yerrestoran', '🍽️ restoran']];
   // 📳 vibratör kademeleri (renderChat eventMessages, th.vib): 1–5
   const VIB_LV = ['kapalı', 'hafif titreşim', 'düzenli vızıltı', 'dalga dalga', 'güçlü', 'en yüksek'];
   // 📳 kademe cevabı: bot kuralı "=durum =vib<N>" (kişilik varyantı önce, stLine), yoksa bu yedek havuz; th.vibSay → sonraki cevabın başına
@@ -18048,7 +18055,7 @@
   let trPos = null;
   // 🎯 sadece bitiş yeri etiketleri eşleşir (vajinal, kalça…); 🎃 temalı olaylar (halloween / kan / slime / tedavi / mekânlar) ancak pozisyon da o temadaysa:
   // vanilla Doggy → Vaginal Creampie, Red Bath / Visible Creampie değil; Blood Bath → Red Bath Creampie da olabilir
-  const EV_THEME = ['halloween', 'kan', 'slime', 'tedavi', 'boşalma', 'duş', 'sauna', 'bull', 'küvet', 'havuz', 'araba', 'asansör', 'kamp', 'mutfak', 'kamera', 'plaj', 'ofis', 'otel', 'okul', 'kilise', 'spor', 'bar', 'sinema', 'üçlü'];
+  const EV_THEME = ['halloween', 'kan', 'slime', 'tedavi', 'boşalma', 'duş', 'sauna', 'bull', 'küvet', 'havuz', 'araba', 'asansör', 'kamp', 'mutfak', 'kamera', 'plaj', 'ofis', 'otel', 'okul', 'kilise', 'spor', 'bar', 'sinema', 'doğa', 'restoran', 'üçlü'];
   // bir kategorideki (ör. Cumming) şu anki pozisyona uyan olayların hepsi (trTarget 'match:' ve olay seçicinin 🎯 Şimdi satırı)
   function matchFinishes(catId, pos) {
     const tags = ((pos || {}).tags || []).map(lowTag), spot = tags.filter(t => !EV_THEME.includes(t));
@@ -20608,6 +20615,27 @@
     { icon: '🏝️', title: 'Beach', sub: 'kum tepesi, şezlong, gün batımı, koy, kamp ateşi, tekne', get body() {
       return ghPlace('c:mvbeach01x', 'plaj', 'r_ev_be_', '🏝️ Issız bir koy, kum tepeleri, soyunma kabinleri ve açıkta bir tekne. Sunset Missionary ve Bonfire Spoon Samimiyet\'i daha çok artırır; Nude Beach Sex en riskli olanıdır.');
     } }] });
+  /* 🌳 Dışarıda Kitabı: Outdoors / Restaurant olayları (c:mvoutdoors01x, c:mvrestaurant01x + bitişleri), kesintiler (yerdoga, yerrestoran); ghPlace ile data'dan canlı okunur */
+  BOOKS.push({ id: 'disari', icon: '🌳', title: 'Dışarıda Kitabı', sub: 'park, piknik, bahçe, labirent ve restoran', chips: ['17 olay', '👀 risk'], chapters: [
+    { icon: '📖', title: 'Dışarıda Kitabı nasıl okunur', sub: 'iki mekân, pozisyonlar ve bitişler', get body() {
+      return `<p>🌳 Evden çıktınız. Bu kitap iki mekân kategorisini anlatır: <b>🌳 Outdoors</b> ve <b>🍽️ Restaurant</b>. Sohbette <b>📜 Olay yaz → 📍 Mekân</b> sekmesinden ya da <b>#</b> yazıp olayın adıyla başlarlar. Sohbet o mekândaysa ⚡ Kısayollar'da da çıkarlar.</p>
+        <ul><li><b>🌳 Outdoors</b> <b>Parkta / Piknikte / Bahçede / Mısır labirentinde</b>, <b>🍽️ Restaurant</b> <b>Restoranda / Kafede</b> geçer.</li>
+          <li><b>🔥 Pozisyonlar</b> yatak cümlesi kullanmaz: örtüde, ağaç arkasında, hamakta, bankta, lavaboda, locada. Kafenin "sadece masanın altından" kuralı Restaurant olaylarına uygulanmaz.</li>
+          <li><b>💦 Bitişler</b> sadece aynı mekânın pozisyonundan sonra eşleşir; Picnic ve Restroom Creampie korunmaya göre hamilelik ihtimali taşır.</li>
+          <li><b>👀 Riskli olanlar</b> (Behind the Tree Standing, Garden Bench Cowgirl, Maze Wall Anal, Under the Table Blowjob, Restroom Sink Doggy, Booth Side Ride, Kitchen Back Door Standing) Uyarılma'yı fazladan artırır. Restaurant olayları ayrıca 👀 yakalanma riskini işletir.</li>
+          <li><b>🎓 CarmenEvents</b>'te ikisinin de dersi var; bitişler dersin sonunda.</li></ul>
+        ${bkChat('🍽️ Örnek', [['ev', '📜 🍽️👄 Under the Table Blowjob'], ['her', 'Sen sipariş vermeye devam et 😇'], ['note', 'Gerilim 👀 70\'i geçti: "🧑‍🍳 Garson masaya yaklaşıyor: Her şey yolunda mı efendim?"'], ['ev', '📜 🍰💦 Dessert Facial'], ['her', 'Tatlıyı iptal et 😏']])}`;
+    } },
+    { icon: '🌳', title: 'Outdoors', sub: 'örtü, ağaç, çimen, hamak, bank, labirent', get body() {
+      return ghPlace('c:mvoutdoors01x', 'doğa', 'r_ev_do_', '🌳 Güneş yaprakların arasından sızıyor, uzakta yürüyüş yolu. Piknik örtüsü, kalın bir ağaç, bahçedeki hamak, park bankı ve mısır labirentinin çıkmazları.');
+    } },
+    { icon: '🍽️', title: 'Restaurant', sub: 'masa altı, tuvalet, loca, arka kapı', get body() {
+      return ghPlace('c:mvrestaurant01x', 'restoran', 'r_ev_rs_', '🍽️ Mumlar yanıyor, masa örtüleri yere kadar. Under the Table Blowjob masada, diğerleri tuvalette, köşe locada ya da mutfağın arka kapısında olur. Kesinti ihtimali %20.');
+    } },
+    { icon: '📱', title: 'Kesintiler', sub: 'köpek, bisikletli, garson, kapı', get body() {
+      return `<p>📱 Kesintiler açıkken bu mekânların olaylarından sonra bazen bir kesinti gelir: Outdoors %15, Restaurant %20. Restaurant ayrıca 👀 gerilim 70'e ve 100'e gelince de kesinti getirir.</p>
+        <h4>🌳 Outdoors</h4><ul>${ghInts('yerdoga')}</ul><h4>🍽️ Restaurant</h4><ul>${ghInts('yerrestoran')}</ul>`;
+    } }] });
   BOOKS.push({ id: 'kisilik', icon: '🎭', title: 'Kişilik Kitabı', sub: 'her kişilik nasıl konuşur, kıskançlık, yazım tarzı', chips: [`${KP_TRAITS().length} kişilik`, '😤 kıskançlık'], chapters: [
     { icon: '📖', title: 'Kişilik Kitabı nasıl okunur', sub: 'kişilik cevaplara nerede girer', get body() {
       return `<p>Karakter oluştururken seçtiğin <b>💫 Kişilik</b> ve <b>⌨️ Yazım tarzı</b> özellikleri 🤖 bot modundaki her cevabı etkiler. Bir karakterin birden çok kişiliği olabilir; hepsi ayrı ayrı uygulanır.</p>
@@ -21494,11 +21522,11 @@
         <li><b>Cevap</b>: bot modunda karakter o duruma uyan cevaplardan biriyle karşılık verir.</li>
         <li>Hepsini görmek ve denemek için 🧭 CarmenGuide → <a href="#/kesinti">📱 Kesinti deneyi</a>.</li></ul>` });
     // 🗂️ raf sırası
-    const ORDER = ['carmen', 'bot', 'seans', 'olay', 'hafiza', 'fantezi', 'bdsm', 'ofis', 'okul', 'kilise', 'gece', 'yaz', 'sut', 'soru', 'onun', 'ovgu', 'komut', 'neden', 'yedek', 'kisilik', 'grup', 'ulke', 'internet', 'oyun', 'genshin', 'amor'];
+    const ORDER = ['carmen', 'bot', 'seans', 'olay', 'hafiza', 'fantezi', 'bdsm', 'ofis', 'okul', 'kilise', 'gece', 'yaz', 'disari', 'sut', 'soru', 'onun', 'ovgu', 'komut', 'neden', 'yedek', 'kisilik', 'grup', 'ulke', 'internet', 'oyun', 'genshin', 'amor'];
     BOOKS.sort((a, b) => ORDER.indexOf(a.id) - ORDER.indexOf(b.id));
   }
   // 📚 raflar (🧭 CarmenGuide): [başlık, açıklama, kitaplar]
-  const BOOK_SHELVES = [['🧭 Kullanım', 'uygulama, bot ve seans', ['carmen', 'bot', 'seans']], ['📚 Başvuru', 'olaylar, olay hafızası, fanteziler, BDSM, ofis, okul, kilise, gece hayatı, yaz, süt, sorular, övgüler, komutlar, nedenler, anlamadığında, kişilikler, grup, memleketler', ['olay', 'hafiza', 'fantezi', 'bdsm', 'ofis', 'okul', 'kilise', 'gece', 'yaz', 'sut', 'soru', 'onun', 'ovgu', 'komut', 'neden', 'yedek', 'kisilik', 'grup', 'ulke']],
+  const BOOK_SHELVES = [['🧭 Kullanım', 'uygulama, bot ve seans', ['carmen', 'bot', 'seans']], ['📚 Başvuru', 'olaylar, olay hafızası, fanteziler, BDSM, ofis, okul, kilise, gece hayatı, yaz, dışarıda, süt, sorular, övgüler, komutlar, nedenler, anlamadığında, kişilikler, grup, memleketler', ['olay', 'hafiza', 'fantezi', 'bdsm', 'ofis', 'okul', 'kilise', 'gece', 'yaz', 'disari', 'sut', 'soru', 'onun', 'ovgu', 'komut', 'neden', 'yedek', 'kisilik', 'grup', 'ulke']],
     ['🌐 Dünya', 'siteler ve oyunlar', ['internet', 'oyun', 'genshin', 'amor']]];
   /* 📜 Olay Kitabı: her olay nasıl tetiklenir (📜 elle, 🗣️ komut, ❔ karakterin sorusu, 🔄 başka pozisyon, 💡 Lia).
    * Bölümler olay kategorileri (senin eklediklerin de); 🔍 arama olay adıyla bulur. Komut cümleleri bot-rules.js'teki komut kurallarından okunur */
@@ -21773,7 +21801,12 @@
     draw();
   }
   function renderEventsCat(cats, i, hs) {
-    const { c, evs } = cats[i], h = evnHoca(i, hs), first = h ? (h.name || '').split(' ')[0] : 'Hoca', cx = evbCtx();
+    const { c, evs: ev0 } = cats[i], h = evnHoca(i, hs), first = h ? (h.name || '').split(' ')[0] : 'Hoca', cx = evbCtx();
+    // 💦 mekân dersi (Gym, Outdoors, Restaurant…): olayların çoğundaki EV_THEME etiketiyle Cumming'deki bitişler de derse eklenir
+    const thTags = [...new Set(ev0.flatMap(e => (e.tags || []).map(lowTag)))].filter(t => t !== 'boşalma' && EV_THEME.includes(t) && ev0.filter(e => (e.tags || []).map(lowTag).includes(t)).length * 2 >= ev0.length);
+    const cumC = thTags.length && lowTag(c.label) !== 'cumming' ? moCats().find(x => lowTag(x.label) === 'cumming') : null;
+    const fins = cumC ? poolOf(cumC).filter(e => (e.tags || []).some(t => thTags.includes(lowTag(t))) && !ev0.includes(e)) : [];
+    const evs = [...ev0, ...fins];
     const prev = cats[(i - 1 + cats.length) % cats.length].c, next = cats[(i + 1) % cats.length].c;
     const hi = evnFill(EVN_HI[+sysHash([c.id, 'evh']) % EVN_HI.length], { kat: `${c.icon || ''} ${c.label || ''}`, n: evs.length, ad: first });
     const ls = (e, k) => {
@@ -21793,7 +21826,8 @@
       <div class="evn-bub">${esc(hi)}</div>
       ${h ? '<div class="evn-act"><button type="button" class="btn sm" id="evnAsk">💬 Hocaya sor</button></div>' : ''}
       <div class="sec-title">📚 ${esc(c.icon || '')} ${esc(c.label || '')} · ${evs.length} ders</div>
-      ${evs.map(ls).join('')}
+      ${ev0.map(ls).join('')}
+      ${fins.length ? `<div class="sec-title">💦 Bu mekânın bitişleri · ${fins.length} ders</div>${fins.map((e, k) => ls(e, ev0.length + k)).join('')}` : ''}
       <div class="evn-nav"><a class="btn ghost sm" href="#/events/${encodeURIComponent(prev.id)}">← ${esc(prev.icon || '')} ${esc(prev.label || '')}</a><a class="btn ghost sm" href="#/events/${encodeURIComponent(next.id)}">${esc(next.icon || '')} ${esc(next.label || '')} →</a></div>`);
     if (h) $('#evnAsk').onclick = () => cmChat(h, 'CarmenEvents', pick(EVN_ASK), true);
     view.querySelectorAll('[data-evl]').forEach(el => el.onclick = ev => {

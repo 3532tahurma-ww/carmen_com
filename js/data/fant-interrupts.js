@@ -694,6 +694,19 @@ Stories.FANT_INTERRUPTS = {
       { g: '🎵 Müzik bir anda durdu, DJ şarkı değiştiriyor', r: ['Sus! 😳', 'Nefesini tut 🤫', 'Herkes duydu mu? 🙈', 'Şimdi bas başladı, devam 😈', 'Tam zamanında 😂'] },
       { g: '🧍‍♂️ Güvenlik görevlisi fenerle koridoru tarıyor', r: ['Güvenlik! 😱', 'Duvara yapış 🙈', 'Işık geçti… 😮‍💨', 'Kovarlarsa da değerdi 😈', 'Arka kapıdan kaçarız 😏'] }
     ],
+    // 🌳 / 🍽️ Outdoors ve Restaurant kesintileri (PLACE_INT; yerrestoran riskStep 70–100 eşiğinde de)
+    yerdoga: [
+      { g: '🐕 Tasmasız bir köpek çalıların arasından koşarak çıkıyor, arkasından sahibi sesleniyor', r: ['Köpek! 😱', 'Örtüyü çek üstümüze 🙈', 'Sahibi geliyor mu? 😳', 'Kıpırdama 🤫', 'Gitti… devam 😈'] },
+      { g: '🚴 Patikadan bisikletliler zil çalarak geçiyor', r: ['Eğil! 🙈', 'Gördüler mi? 😳', 'Hızlı geçtiler, görmediler 😏', 'Ağacın arkasına 🌳', 'Kalbim duracak 😅'] },
+      { g: '🌧️ Gökyüzü karardı, ilk damlalar düşmeye başladı', r: ['Yağmur! 😆', 'Islanalım, umurumda değil 😈', 'Örtüyü topla 🧺', 'Böylesi daha güzel 🥵', 'Arabaya koşalım mı? 🚗'] },
+      { g: '🌽 Labirentin içinden çocuk kahkahaları yaklaşıyor', r: ['Biri geliyor! 😱', 'Öbür koridora 🙈', 'Sus 🤫', 'Uzaklaştılar… 😮‍💨', 'Çıkışı hiç bulmayalım 😏'] }
+    ],
+    yerrestoran: [
+      { g: '🧑‍🍳 Garson masaya yaklaşıyor: "Her şey yolunda mı efendim?"', r: ['Yüzümü bozmadan "harika" 😇', 'Masa örtüsü yeterince uzun mu? 😳', 'Hesabı isteyelim 😅', 'Biraz daha şarap 😏', 'Gitti… devam 😈'] },
+      { g: '🚪 Tuvaletin kapısı tıklatılıyor: "Kimse var mı?"', r: ['Dolu! 😳', 'Şşş 🤫', 'Bir dakika! 😅', 'Kapı kilitli değil mi?! 😱', 'Gitsin, devam 😈'] },
+      { g: '🎂 Yan masada "İyi ki doğdun" şarkısı başladı, bütün restoran alkışlıyor', r: ['Tam zamanında 😂', 'Kimse duymaz şimdi 😈', 'Sen de alkışla 😅', 'Pastadan bize de var mı? 🍰', 'Sesimi bastırıyor 🥵'] },
+      { g: '🍷 Şef masanıza geliyor, yemeği beğenip beğenmediğinizi soruyor', r: ['Şef! 😱', 'Çok lezzetli… her şey 😏', 'Elini çek 🙈', 'Gülümse, gülümse 😅', 'Gitti mi? 😮‍💨'] }
+    ],
     yersinema: [
       { g: '🔦 Görevli el feneriyle sıraları dolaşıyor', r: ['Fener! 😱', 'Montu çek üstümüze 🙈', 'Filme bak, filme 😅', 'Geçti mi? 😳', 'Gitti… devam 😈'] },
       { g: '🍿 Ön sıradaki biri dönüp "şşş" diyor', r: ['Duydu! 🙈', 'Pardon… 😅', 'Sessiz olamıyorum ki 😩', 'Daha yavaş 🤫', 'Bırak duysun 😈'] },

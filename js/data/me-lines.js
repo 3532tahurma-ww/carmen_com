@@ -8437,3 +8437,28 @@ Stories.ME_BED_SKIP.push('Bench Press Ride', 'Squat Rack Doggy', 'Leg Press Miss
   'Stall Creampie', 'Cocktail Facial', 'VIP Couch Cumshot',
   'Back Row Lap Ride', 'Reverse Seat Ride', 'Aisle Stairs', 'Projection Booth Doggy', 'Empty Theater Missionary', 'Projection Booth Anal', 'Back Row Blowjob', 'Under The Coat', 'Popcorn Bucket Trick', 'Dark Scene Touch',
   'Back Row Creampie', 'Seat Cumshot', 'Credits Facial');
+/* 🌳 Outdoors · 🍽️ Restaurant: mekân pozisyonları ve bitişleri (c:mvoutdoors01x / c:mvrestaurant01x + Cumming) */
+Object.assign(Stories.ME_EV_LINES, {
+  'Blanket Missionary': ['Seni piknik örtüsüne yatırdım 🧺', 'Güneş yüzüne vuruyor {o} 🥰', 'Yapraklar hışırdıyor 🌳', 'Gözlerime bak 🔥', 'Örtü kayıyor 😂', 'Gökyüzü bizi izliyor 😈'],
+  'Behind the Tree Standing': ['Seni ağacın gövdesine yasladım 🌳', 'Eteğin belinde {o} 😈', 'Yoldan sesler geliyor 🤫', 'Bacağını kaldırıyorum 🥵', 'Sesini kıs 🙈', 'Ağaç bizi saklıyor 😏'],
+  'Grass Doggy': ['Çimende dört ayaksın, arkandayım 🌿', 'Dizlerin yeşil oldu {o} 😂', 'Saçın rüzgârda uçuşuyor 🌬️', 'Kalçanı tutuyorum 🥵', 'Açık havada bambaşka 😈', 'Çimenlere tutun 🔥'],
+  'Hammock Ride': ['Hamakta uzandım, sen üstümdesin 🌴', 'Hamak bizi sallıyor {o} 😆', 'Her sallanış daha derin 🥵', 'Dengeni ben tutuyorum 😏', 'İpler gıcırdıyor 😳', 'Hiç inmeyelim 😈'],
+  'Garden Bench Cowgirl': ['Bankta oturuyorum, kucağımdasın 🪑', 'Eteğin ikimizi örtüyor {o} 😏', 'Sarılıyormuşuz gibi 🥰', 'Bank gıcırdıyor 😳', 'Yavaş… biri geliyor 🤫', 'Kimse anlamaz 😈'],
+  'Maze Wall Anal': ['Labirentin çıkmazında eğildin 🌽', 'Yeşil duvara tutun {o} 😈', 'Yavaşça… nefes 😳', 'Mısırlar hışırdıyor 🤫', 'Burada kimse bulamaz 😏', 'Kalçan titriyor 🥵'],
+  'Picnic Blowjob': ['Örtünün üstünde diz çöktün 🍓', 'Dudakların çilek tadında {o} 😏', 'Sepeti kenara ittin 🧺', 'Gözlerin yukarıda 🥵', 'Biri gelirse? 🙈', 'En güzel tatlı 😈'],
+  'Picnic Creampie': ['Örtünün üstünde içine boşalıyorum… ahhh {o} 😩💦', '"En güzel piknik" diyorsun 🧺', 'Son damlasına kadar 😈', 'Çimene uzanıp gökyüzüne bakıyoruz ☁️', 'Nefes nefeseyiz 🥵', 'Örtüyü yıkamamız lazım 😂'],
+  'Grass Facial': ['Yüzüne boşalıyorum ahhh 😩💦', 'Güneşte parlıyor {o} 😈', 'Peçeteyi sepetten uzatıyorum 😂', 'Kirpiklerine kadar 🥵', 'Açık havada ilk 😏', 'Kimse görmedi 🙈'],
+  'Open Air Anal Creampie': ['Arkandayken içine boşalıyorum… ahhh {o} 😩💦', 'Eteğini indiriyorsun 🙈', '"Yürürken hissedeceğim" diyorsun 😈', 'Bacakların titriyor 🥵', 'Açık havada delilik 😏', 'Eve kadar dayan 😂'],
+  'Under the Table Blowjob': ['Masa örtüsünün altına kaydın 🍽️', 'Garsona sipariş veriyorum, yüzüm hiç bozulmadan {o} 😇', 'Örtü uzun, kimse görmez 😏', 'Çatalı düşürdüm, ahh 🥵', 'Ana yemek sensin 😈', 'Garson geliyor! 😳'],
+  'Restroom Sink Doggy': ['Lavaboya tutundun, arkandayım 🚻', 'Aynada rujunu izliyorsun {o} 💄', 'Kapı kilitli mi? 😳', 'Musluk açık, ses bastırsın 🤫', 'Kalçan aynada 🥵', 'Masaya dönmemiz lazım 😈'],
+  'Booth Side Ride': ['Locada kucağıma kaydın 🕯️', 'Eteğini topladın {o} 😏', 'Mumlar titriyor 🔥', 'Yan masa bakıyor mu? 🙈', 'Sarılıyormuşuz gibi 🥰', 'Şarabın devrilecek 😂'],
+  'Kitchen Back Door Standing': ['Arka kapıda seni duvara yasladım 🚪', 'İçeriden tabak sesleri {o} 🍽️', 'Bacağını kaldırıyorum 🥵', 'Aşçı çıkarsa? 😳', 'Ara sokak bizim 😈', 'Hızlı, tatlı bekliyor 😂'],
+  'Restroom Anal': ['Kabinin kapısına yaslandın, elbisen belinde 🚻', '"Tatlıdan önce" diyorsun {o} 😈', 'Yavaşça… 😳', 'Kapı tıklatıldı! 🙈', 'Nefesini tut 🥵', 'Masaya nasıl yürüyeceksin? 😂'],
+  'Dessert Facial': ['Masanın altında yüzüne boşalıyorum ahhh 😩💦', 'Peçeteyle siliyorsun {o} 😏', '"Tatlıyı iptal et" diyorsun 🍰', 'Rujunla karıştı 💄', 'Yukarı çıkıyorsun, yüzün kıpkırmızı 🙈', 'En iyi tatlı 😈'],
+  'Restroom Creampie': ['Lavabonun önünde içine boşalıyorum… ahhh {o} 😩💦', 'Rujunu tazeliyorsun 💄', '"Hesabı sen ödüyorsun" 😏', 'Son damlasına kadar 😈', 'Bacakların titriyor 🥵', 'Masaya böyle dönüyoruz 🙈']
+});
+Stories.ME_HUG_LINES.placeFinish.events.push('Picnic Creampie', 'Grass Facial', 'Open Air Anal Creampie', 'Dessert Facial', 'Restroom Creampie');
+Stories.ME_HUG_LINES.campHug.events.push('Blanket Missionary', 'Hammock Ride', 'Garden Bench Cowgirl', 'Booth Side Ride');
+Stories.ME_BED_SKIP.push('Blanket Missionary', 'Behind the Tree Standing', 'Grass Doggy', 'Hammock Ride', 'Garden Bench Cowgirl', 'Maze Wall Anal', 'Picnic Blowjob',
+  'Picnic Creampie', 'Grass Facial', 'Open Air Anal Creampie',
+  'Under the Table Blowjob', 'Restroom Sink Doggy', 'Booth Side Ride', 'Kitchen Back Door Standing', 'Restroom Anal', 'Dessert Facial', 'Restroom Creampie');
