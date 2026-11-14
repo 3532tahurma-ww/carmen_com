@@ -760,6 +760,7 @@ Stories.I18n.add({
   'Seansın adı?': 'Session name?',
   'Seansım {}': 'My session {}',
   'Seans sohbetteki ⚡ kısayollarda, sırayla': 'The session is in the chat\'s ⚡ shortcuts, in order',
+  'Seans karakterin sohbetindeki ⚡ kısayollarda, sırayla': 'The session is in her chat\'s ⚡ shortcuts, in order',
   'Carmen Kitabı': 'Carmen Book',
   'olaylar, sonuçlar, değerler, tetiklenmeler': 'events, results, values, triggers',
   'uygulamanın el kitabı': 'the app\'s handbook',

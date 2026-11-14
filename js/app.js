@@ -3009,13 +3009,14 @@
     c.params = c.params || {};
     c.params[p.id] = Math.max(lo, Math.min(hi, paramVal(c, p) + d));
   }
-  const quickPin = e => { if (!e) return; MO().quickPins = [e.id, ...(MO().quickPins || []).filter(x => x !== e.id)].slice(0, 8); };
+  // 📌 ⚡ kısayol sabitleri sohbete özel (t.quickPins)
+  const quickPin = (e, t) => { if (!e || !t) return; t.quickPins = [e.id, ...(t.quickPins || []).filter(x => x !== e.id)].slice(0, 8); };
   // 🎭 sohbet doğrudan rol fantezisiyle başlar (CarmenKlinik gibi): th.rp sabitlenir, ilk 'me' mesajı rol olayı, olay ⚡ kısayola
   function rpBegin(t, e, ts) {
     if (!e) return;
     t.rp = e.id;
     msgsOf(t).push({ id: Store.uid(), from: 'me', ts, text: `🎭 ${e.title}`, ev: e.id, evc: { title: e.title, emojis: e.emojis || '', color: e.color || '', level: '' } });
-    quickPin(e);
+    quickPin(e, t);
   }
   // 👗 kostüm giydir: fnCostumes setinin id'si, kıyafet id'si ya da rol olayı (fantKey'i taşıyan kostüm)
   function wearCos(ch, id) {
@@ -3149,8 +3150,8 @@
         const c = byId(o.char);
         if (!c) return;
         const items = o.items.map(shopProd).filter(Boolean);
-        items.forEach(p => { if (p.kind === 'toy') quickPin(shopEvent(p)); else c.wardrobe = [...new Set([...(c.wardrobe || []), ...Object.values(p.parts)])]; });
         const t = currentThread(c) || newThread(c, 'CarmenShop');
+        items.forEach(p => { if (p.kind === 'toy') quickPin(shopEvent(p), t); else c.wardrobe = [...new Set([...(c.wardrobe || []), ...Object.values(p.parts)])]; });
         msgsOf(t).push({ id: Store.uid(), from: 'sys', ts: now, text: `📦 CarmenShop teslimatı · ${items.map(p => `${p.emoji} ${p.name}`).join(', ')}` },
           { id: Store.uid(), from: 'her', ts: now + 1, text: pick(['Paketin geldi, açayım mı? 😏', 'Kapıya bir paket bıraktılar… üstünde senin adın var 😳 açıyorum!', 'Kargo geldi 📦 içinde ne var acaba, tahmin et 😈', 'Paketi açtım… yüzüm kızardı 🙈 bunu benim için mi aldın?']) });
         // 🎭 rol kostümü geldiyse: giyer, rol fantezisi ⚡ kısayola sabitlenir ve oynamayı teklif eder
@@ -3158,7 +3159,7 @@
         if (fc) {
           const [x, e] = fc;
           c.outfit = { ust: '', alt: '', elbise: x.id, sutyen: '', tanga: '', corap: '' };
-          quickPin(e);
+          quickPin(e, t);
           msgsOf(t).push({ id: Store.uid(), from: 'her', ts: now + 2, text: `${pickOne(x.t)} ${pick([`🎭 ${e.title} oynayalım mı? ⚡ kısayolda hazır 😈`, `Bu kostümle ${e.title} olmamı ister misin? 😏 (⚡ kısayolda)`, `Kostüm üstümde… 🎭 ${e.title} başlasın mı? 😈`])}` });
         }
         o.thread = t.id;
@@ -3766,7 +3767,7 @@
       msgsOf(t).push({ id: Store.uid(), from: 'sys', ts: now, text: `🕰️ 10:00 · ${co}`, scene: { place: r.place, icon: r.ic, name: co, hint: `${co} · ${c.job} mülakatı` } },
         { id: Store.uid(), from: 'sys', ts: now + 1, text: `💼 ${you} başvurdun${rp ? ` · 🎭 Rol: ${rp.title}` : ''}${note ? `\n📝 ${note}` : ''}` });
       // 🎭 iş koluna uyan rol varsa sohbet doğrudan o fanteziyle başlar; uymayan meslekte (genel 💼) sadece ⚡ kısayola
-      if (jobFits(c)) rpBegin(t, rp, now + 2); else quickPin(rp);
+      if (jobFits(c)) rpBegin(t, rp, now + 2); else quickPin(rp, t);
       msgsOf(t).push({ id: Store.uid(), from: 'her', ts: now + 3, text: pick(r.greet) });
       t.clock = { start: 600, done: 0 };
       save();
@@ -9669,15 +9670,39 @@
       th.intAt = n;
     }
     // ⚡ kısayollar: en son kullandığın olaylar, mesaj kutusunun hemen üstünde (dokununca olay yazılır)
+    /* ⚡ kısayol önerileri: bu sohbette son olan olayın kategorisi + bulunduğun mekânın olayları (Mekân kategorileri, spotFits);
+     * son olay ya da mekân değişene kadar aynı liste kalır (her draw'da karışmasın). Hiçbiri yoksa son kullanılanlar */
+    let quickKey = null, quickList = [];
+    function quickSuggest(all) {
+      const at = lastDone(), lastId = Object.keys(at).reduce((m, id) => (m && at[m] >= at[id] ? m : id), '');
+      const sc = (lastScene() || {}).scene || null, key = `${lastId}|${sc ? sc.place + '/' + sc.name : ''}`;
+      if (key === quickKey) return quickList;
+      const ch = byId(chatCharIds()[0]) || {}, likes = new Set(ch.likes || []), bad = new Set([...(ch.dislikes || []), ...(ch.denies || [])]);
+      const pk = placeKey(), ok = e => !bad.has(e.id) && e.id !== lastId && !placeBlock(pk, e);
+      const lf = evs => { const s = sample(evs, evs.length); return [...s.filter(e => likes.has(e.id)), ...s.filter(e => !likes.has(e.id))]; };
+      const here = sc ? moCats().filter(c => placeFits(placeEvOf(c), sc)).map(c => c.id) : [];
+      const place = sc ? lf(all.filter(e => (here.includes(e.cat) || spotFits(e, sc)) && ok(e))).slice(0, 5) : [];
+      const last = lastId && all.find(e => e.id === lastId);
+      const same = last ? lf(all.filter(e => e.cat === last.cat && ok(e) && !place.includes(e))) : [];
+      quickKey = key;
+      quickList = [...place, ...same];
+      return quickList;
+    }
+    // 📌 bu sohbetin sabitleri (olay kartına uzun bas) önce, sonra mekân + son olayın kategorisi (yoksa bu sohbette son olanlar)
+    function quickEvents() {
+      const all = allEvents(), pins = (th.quickPins || []).map(id => all.find(e => e.id === id)).filter(Boolean);
+      const sug = quickSuggest(all), at = lastDone();
+      const mine = Object.keys(at).sort((a, b) => at[b] - at[a]).map(id => all.find(e => e.id === id)).filter(Boolean);
+      return Object.assign([...pins, ...(sug.length ? sug : mine).filter(e => !pins.includes(e))].slice(0, 12), { pins, sug });
+    }
     function drawQuick() {
       const el = $('#evQuick');
       if (!el) return;
-      // 📌 sabitlenenler (olay kartına uzun bas) önce, sonra son kullanılanlar
-      const all = allEvents(), pins = (MO().quickPins || []).map(id => all.find(e => e.id === id)).filter(Boolean);
-      const evs = [...pins, ...recentEvents().filter(e => !pins.includes(e))].slice(0, 12);
-      el.hidden = !quickOn() || cs.playing || !evs.length;
+      const evs = quickEvents(), { pins, sug } = evs, tb = $('#tahminBar');
+      // yazarken birleşik 🔮⚡ çubuğu (drawTahmin) görünür; bu çubuk o sırada gizli
+      el.hidden = !quickOn() || cs.playing || !evs.length || !!(tb && !tb.hidden);
       if (el.hidden) return;
-      el.innerHTML = `<span class="eq-ic" title="Son kullanılan olaylar">⚡</span><div class="eq-row">${evs.map(e => `<button type="button" class="mo-chip${evCls(e)}"${evStyle(e)} data-qev="${esc(e.id)}">${pins.includes(e) ? '📌' : ''}${evEmo(e)}${esc(e.title)}</button>`).join('')}</div>
+      el.innerHTML = `<span class="eq-ic" title="${sug.length ? 'Mekâna ve son olaya göre' : 'Son kullanılan olaylar'}">⚡</span><div class="eq-row">${evs.map(e => `<button type="button" class="mo-chip${evCls(e)}"${evStyle(e)} data-qev="${esc(e.id)}">${pins.includes(e) ? '📌' : ''}${evEmo(e)}${esc(e.title)}</button>`).join('')}</div>
         <button type="button" class="eq-x" data-q="off" aria-label="Kısayolları kapat">✕</button>`;
     }
     // olmuş sayılan: harcandıktan sonra yeniden olmuş olaylar
@@ -9919,7 +9944,7 @@
         if (r4.changes.length) evc.changes = [...(evc.changes || []), ...r4.changes];
       }
       // 🐮 Cow Girl olunca 🍼 Breastfeeding ⚡ kısayollara: emzirmek ister
-      if (lowT(e.title) === 'cow girl') { const bf = allEvents().find(x => lowT(x.title) === 'breastfeeding'); if (bf) quickPin(bf); }
+      if (lowT(e.title) === 'cow girl') { const bf = allEvents().find(x => lowT(x.title) === 'breastfeeding'); if (bf) quickPin(bf, th); }
       if (!depth) {
         // 😣 acı / rahatlık
         ids.forEach(cid => {
@@ -10448,28 +10473,36 @@
       else askSubs([e], add);
       input.focus();
     }, { hide: e => evAway(e, (lastScene() || {}).scene || null) });
-    // 🔮 tahmin çubuğu: Tab / tıkla = tamamla, ↑↓ = seç, Esc = gizle (Enter hep gönderir)
-    let tItems = [], tCur = 0, tHide = false, tStage = null;
+    /* 🔮⚡ birleşik öneri çubuğu (kutu odaktayken; ⚡ #evQuick o sırada gizli): kutu boşken ⚡ kısayol olayları + 💬 duruma göre cümleler,
+     * yazarken 🔮 tamamlamalar + yazdığına benzeyen olaylar (tahminEvents). Tab / tıkla = tamamla, ↑↓ = seç (sadece metinler), Esc = gizle */
+    let tItems = [], tEvs = [], tCur = 0, tHide = false, tStage = null;
     function drawTahmin() {
       const el = $('#tahminBar');
       if (!el) return;
       const pos = input.selectionStart == null ? input.value.length : input.selectionStart, before = input.value.slice(0, pos);
-      tItems = [];
-      if (tahminOn() && !tHide && !cs.playing && !cs.busy && document.activeElement === input && !/(?:^|\s)#[^#\n]*$/.test(before)) {
-        const n = msgsOf(th).length;
-        if (!tStage || tStage.n !== n) { let st = 'isin'; try { st = pickerCtx().stage; } catch (e) { /* aşama bulunamazsa ısınma */ } tStage = { n, st }; }
-        const ids = chatCharIds();
-        const extra = [
-          ...(TAHMIN_CTX[tStage.st] || TAHMIN_CTX.isin).map(d => ({ d, n: 1000, ic: '💬', ctx: true })),
-          ...keywords().filter(k => k.word && (!k.charId || ids.includes(k.charId))).map(k => ({ d: k.word, n: 500, ic: '✨' }))
-        ];
-        tItems = tahminFor(before, extra, ['poz', 'mekan', 'bit'].includes(tStage.st));
+      tItems = []; tEvs = [];
+      if ((tahminOn() || quickOn()) && !tHide && !cs.playing && !cs.busy && document.activeElement === input && !/(?:^|\s)#[^#\n]*$/.test(before)) {
+        const empty = !input.value.trim();
+        if (tahminOn()) {
+          const n = msgsOf(th).length;
+          if (!tStage || tStage.n !== n) { let st = 'isin'; try { st = pickerCtx().stage; } catch (e) { /* aşama bulunamazsa ısınma */ } tStage = { n, st }; }
+          const ids = chatCharIds();
+          const extra = [
+            ...(TAHMIN_CTX[tStage.st] || TAHMIN_CTX.isin).map(d => ({ d, n: 1000, ic: '💬', ctx: true })),
+            ...keywords().filter(k => k.word && (!k.charId || ids.includes(k.charId))).map(k => ({ d: k.word, n: 500, ic: '✨' }))
+          ];
+          tItems = tahminFor(before, extra, ['poz', 'mekan', 'bit'].includes(tStage.st));
+        }
+        if (quickOn()) tEvs = empty ? quickEvents().slice(0, 8) : tahminEvents(before, byId(chatCharIds()[0]), group);
       }
       tCur = Math.max(0, Math.min(tCur, tItems.length - 1));
-      el.hidden = !tItems.length;
+      el.hidden = !tItems.length && !tEvs.length;
+      drawQuick();
       if (el.hidden) return;
-      el.innerHTML = `<span class="eq-ic" title="Tab: tamamla · ↑↓: seç">🔮</span><div class="eq-row">${tItems.map((o, i) => `<button type="button" class="mo-chip${i === tCur ? ' on' : ''}" data-th="${i}">${o.ic} ${esc(o.d)}</button>`).join('')}</div>
-        <button type="button" class="eq-x" data-th="off" aria-label="Tahmin modunu kapat">✕</button>`;
+      const evChips = tEvs.map(e => `<button type="button" class="mo-chip${evCls(e)}"${evStyle(e)} data-thev="${esc(e.id)}">📜${evEmo(e)}${esc(e.title)}</button>`).join('');
+      const txChips = tItems.map((o, i) => `<button type="button" class="mo-chip${i === tCur ? ' on' : ''}" data-th="${i}">${o.ic} ${esc(o.d)}</button>`).join('');
+      el.innerHTML = `<span class="eq-ic" title="Tab: tamamla · ↑↓: seç">${tItems.length ? '🔮' : '⚡'}</span><div class="eq-row">${!input.value.trim() ? evChips + txChips : txChips + evChips}</div>
+        <button type="button" class="eq-x" data-th="off" aria-label="Önerileri kapat">✕</button>`;
       const on = el.querySelector('.mo-chip.on');
       if (on) on.scrollIntoView({ block: 'nearest', inline: 'nearest' });
     }
@@ -10484,9 +10517,22 @@
     };
     $('#tahminBar').onmousedown = e => e.preventDefault();   // kutu odağını kaybetmesin
     $('#tahminBar').onclick = e => {
+      const ev = e.target.closest('[data-thev]');
+      if (ev && !cs.playing) {
+        // 📜 olay: kutu boşsa hemen yazılır (⚡ kısayol gibi), yazı varsa kutunun üstünde bekler, metninle birlikte gider
+        const x = allEvents().find(y => y.id === ev.dataset.thev);
+        if (!x) return;
+        if (!input.value.trim()) askSubs([x], writeEvents);
+        else askSubs([x], items => { cs.pend = [...(cs.pend || []), ...items]; drawPend(); input.focus(); });
+        return;
+      }
       const b = e.target.closest('[data-th]');
       if (!b) return;
-      if (b.dataset.th === 'off') { tahminOn(false); const tb = $('[data-tool="tahmin"]'); if (tb) tb.classList.remove('on'); drawTahmin(); notify('Tahmin modu kapalı · ⋯ Diğer → 🔮 ile aç', '🔮'); return; }
+      if (b.dataset.th === 'off') {
+        tahminOn(false); quickOn(false);
+        ['tahmin', 'quick'].forEach(k => { const tb = $(`[data-tool="${k}"]`); if (tb) tb.classList.remove('on'); });
+        drawTahmin(); notify('Öneriler kapalı · ⋯ Diğer → ⚡ / 🔮 ile aç', '⚡'); return;
+      }
       if (tItems[+b.dataset.th]) tahminPick(tItems[+b.dataset.th]);
     };
     input.addEventListener('input', () => { tCur = 0; tHide = false; drawTahmin(); });
@@ -11029,7 +11075,7 @@
       if (ch && ch !== GHOST && target.closest('.ava')) return charMenu(ch);
       const e = m.ev && allEvents().find(x => x.id === m.ev);
       if (e) {
-        const pins = MO().quickPins || [], pinned = pins.includes(e.id);
+        const pins = th.quickPins || [], pinned = pins.includes(e.id);
         const sh = sheet(`<div class="sheet-grip"></div><h3>${esc(evEmo(e))}${esc(e.title)}</h3>
           <button class="act" data-lm="again">🔁 Bir daha</button>
           <button class="act" data-lm="pin">📌 ${pinned ? 'Kısayoldan çıkar' : 'Kısayola sabitle'}</button>
@@ -11039,7 +11085,7 @@
           if (!b) return;
           sh.close();
           if (b.dataset.lm === 'again') askSubs([e], writeEvents);
-          if (b.dataset.lm === 'pin') { MO().quickPins = pinned ? pins.filter(x => x !== e.id) : [e.id, ...pins].slice(0, 8); save(); drawQuick(); notify(pinned ? 'Kısayoldan çıkarıldı' : '📌 Kısayola sabitlendi', '⚡'); }
+          if (b.dataset.lm === 'pin') { th.quickPins = pinned ? pins.filter(x => x !== e.id) : [e.id, ...pins].slice(0, 8); save(); drawQuick(); notify(pinned ? 'Kısayoldan çıkarıldı' : '📌 Kısayola sabitlendi', '⚡'); }
           if (b.dataset.lm === 'edit') { ui.moReturn = location.hash; location.hash = `#/monia/olay/${encodeURIComponent(e.id)}`; }
         };
         return;
@@ -11677,6 +11723,32 @@
   };
   // kural id → CMD_EV anahtarı (kişilik / sayı sürümleri aynı komut)
   const cmdKey = id => String(id || '').replace(/^r_hz_sik.*/, 'r_cmd_gir').replace(/^(r_c[23]_[a-z]+)_.*/, '$1').replace(/_(shy|exp|sever|sevmez)$/, '').replace(/\d+$/, '');
+  /* 🔮⚡ yazdığın metne benzeyen olaylar (öneri çubuğu): 🗣️ komut kuralı tutarsa onun CMD_EV olayları ("öpmek" → Kissing),
+   * yoksa TAHMIN_EV kökleri ("yala" → Lick …), sonra son kelime olay adının bir kelimesinin başıysa ("kiss" → Kissing). group: 👯 r_gc_* da */
+  const TAHMIN_EV = [[/yala|yalay/, ['lick', 'cunnilingus']], [/\bem(mek|eyim|eyeyim|ebilir|sene|sin|iyim)?\b|sakso|ağzına|agzina/, ['blowjob']],
+    [/emzir|sütün|sutun|süt iç|sut ic/, ['breastfeeding', 'nursing']], [/parmak/, ['fingering']], [/şaplak|saplak|tokat/, ['slap']],
+    [/okşa|oksa|dokun|avuçla|avucla/, ['grab']], [/masaj/, ['massage']], [/sarıl|saril/, ['hugging']], [/soyun|soy\b/, ['undress', 'striptease']]];
+  let tEvCmd = null;
+  function tahminEvents(text, ch, group) {
+    const t = String(text || '').trim(), low = t.toLocaleLowerCase('tr');
+    if (low.length < 2) return [];
+    const all = allEvents(), out = [], bad = new Set((ch || {}).denies || []);
+    const add = e => { if (e && !bad.has(e.id) && !out.includes(e)) out.push(e); };
+    const R = Stories.BOT_RULES, B = Stories.Bot;
+    if (R && B) {
+      if (!tEvCmd || tEvCmd.R !== R) tEvCmd = { R, rules: (R.rules || []).filter(r => CMD_EV[cmdKey(r.id)]) };
+      const rules = group ? tEvCmd.rules : tEvCmd.rules.filter(r => !/^r_gc_/.test(r.id));
+      const m = B.best({ ...R, rules }, t, ch || { name: '', traits: [] }, true);
+      if (m && !m.fallback) (CMD_EV[cmdKey(m.rule.id)] || []).forEach(x => add(all.find(e => e.title === x)));
+    }
+    // temel olay önce: başlığı tam o kelime olan ("Kissing", "Doggy"), sonra kısa başlık ("Girls Kissing"den önce)
+    const best = (evs, w) => evs.sort((a, b) => (String(b.title).toLowerCase().split(/[\s-]+/)[0].startsWith(w) - String(a.title).toLowerCase().split(/[\s-]+/)[0].startsWith(w)) || a.title.length - b.title.length).slice(0, 4);
+    TAHMIN_EV.forEach(([re, keys]) => { if (re.test(low)) best(all.filter(e => keys.some(k => String(e.title).toLowerCase().includes(k))), keys[0]).forEach(add); });
+    const last = (low.match(/[\p{L}]+$/u) || [''])[0];
+    if (last.length >= 3) best(all.filter(e => String(e.title).toLowerCase().split(/[\s-]+/).some(w => w.startsWith(last))), last).forEach(add);
+    const likes = new Set((ch || {}).likes || []);
+    return [...out.filter(e => likes.has(e.id)), ...out.filter(e => !likes.has(e.id))].slice(0, 4);
+  }
   /* 🎭 ton: en son fantezi (başkası gelene kadar), Mode'lardan en sonuncusu hep (p: olasılık). pre başa, add sona eklenir */
   const FLAVOR = [
     { key: 'cat girl', add: [' miyav 🐱', ' mrrr~ 🐾', ' *patisiyle dokunur* 🐾'], p: .6 },
@@ -17290,7 +17362,7 @@
       (isMine(p) ? [S().user] : charIds.map(byId).filter(Boolean)).forEach(ch => {
         const nm = ch === S().user ? userName() : ch.name.split(' ')[0];
         // ⏱️ Dayanıklılık + 💥 Mode: senin 🥴 Zevk artışın ölçeklenir (dayanıklılık düşük / mod sert → daha çabuk boşalırsın)
-        const dd = ch === S().user && dlt > 0 && String(p.label || '').toLocaleLowerCase('tr') === 'zevk' ? Math.max(1, Math.round(dlt * staminaMul() * modeMul())) : dlt;
+        const dd = ch === S().user && dlt > 0 && String(p.name || '').trim().toLocaleLowerCase('tr') === 'zevk' ? Math.max(1, Math.round(dlt * staminaMul() * modeMul())) : dlt;
         const [a, b] = paramStep(ch, p, dd), stuck = a === b;
         // 🍼 verdiği süt (litre, 🩺 CarmenKlinik'te görünür): Süt düşüşü × göğüs kapasitesi
         if (ch !== S().user && +a > +b && isMilkP(p)) ch.milkL = Math.round(((+ch.milkL || 0) + (a - b) / 100 * milkCap(ch)) * 1000) / 1000;
@@ -17829,7 +17901,11 @@
       if (ds.snup != null) { const i = +ds.snup; [d.evs[i - 1], d.evs[i]] = [d.evs[i], d.evs[i - 1]]; }
       if (ds.sn === 'clear') d.evs = [];
       if (ds.sn === 'save' && d.evs.length) { const name = prompt('Seansın adı?', `Seansım ${(S().seansSaved || []).length + 1}`); if (name) { S().seansSaved = [...(S().seansSaved || []), { name: name.slice(0, 40), evs: d.evs.slice(), ch: d.ch }]; notify('💾 Seans kaydedildi', '💞'); } }
-      if (ds.sn === 'pin' && d.evs.length) { MO().quickPins = [...new Set(d.evs)].slice(0, 12); notify('📌 Seans sohbetteki ⚡ kısayollarda, sırayla', '⚡'); }
+      if (ds.sn === 'pin' && d.evs.length) {
+        // seçili karakterin son sohbetine (yoksa yeni sohbet)
+        const sc = byId(d.ch), t = sc && (currentThread(sc) || newThread(sc));
+        if (t) { t.quickPins = [...new Set(d.evs)].slice(0, 12); notify('📌 Seans karakterin sohbetindeki ⚡ kısayollarda, sırayla', '⚡'); }
+      }
       if (ds.snload != null) { const s = (S().seansSaved || [])[+ds.snload]; if (s) { d.evs = s.evs.slice(); if (s.ch) d.ch = s.ch; } }
       if (ds.sndel != null && confirm('Bu seans silinsin mi?')) S().seansSaved.splice(+ds.sndel, 1);
       save();

@@ -1330,7 +1330,7 @@ button.cs-cond { border: 0; cursor: pointer; }
 .chat-head .st-btn.on { opacity: 1; }
 /* ✏️ Düzenleme modu kapalı: detaylı görünümler ve ayarlar gizli */
 .chat.no-edit .st-btn, .chat.no-edit .st-card, .chat.no-edit .me-hud, .chat.no-edit .oc-chgs, .chat.no-edit .oc-fires,
-.chat.no-edit [data-tool="note"], .chat.no-edit [data-tool="fx"], .chat.no-edit [data-tool="turns"], .chat.no-edit [data-tool="quick"],
+.chat.no-edit [data-tool="note"], .chat.no-edit [data-tool="fx"], .chat.no-edit [data-tool="turns"],
 .chat.no-edit [data-tool="chg"], .chat.no-edit [data-tool="score"], .chat.no-edit #groupBtn,
 .chat.no-edit [data-tool="modemusic"], .chat.no-edit [data-tool="sfx"], .chat.no-edit [data-tool="sexsfx"],
 .chat.no-edit [data-tool="places"], .chat.no-edit [data-tool="lia"],
