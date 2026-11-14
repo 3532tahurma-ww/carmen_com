@@ -45,6 +45,21 @@ Stories.FANT_INTERRUPTS = {
     { g: '🍇 Masadaki üzümler hâlâ yeşil', r: ['Ekşi üzüm istemem, seni isterim 😏', 'Üzüm sonra, sen şimdi 🦊', 'Kurnazlığım sana yetmiyor bak 😈', 'Ben tatlı olanı seçerim 😋', 'Hmm… ikisini birden? 😏'] },
     { g: '🌕 Ay buluttan çıktı, odaya ışık doldu', r: ['Ay ışığında kuyruğum parlıyor 🦊', 'Şimdi her şeyimi görüyorsun 😳', 'Aya bakarken beni al 😈', 'Gece tilkisiyim ben 🌙', 'Işık güzel, sen daha güzel 😏'] }
   ],
+  fxkurt: [
+    { g: '🌕 Dolunay bulutların arasından çıktı', r: ['Auuu! Dayanamıyorum 🐺', 'Gözlerim sarardı, kaç ya da kal 😈', 'Dolunayda vahşileşirim, uyarmıştım 🌕', 'Tut beni, kontrolü kaybediyorum 🥵', 'Ay bizi izliyor, durma 🐺'] },
+    { g: '🐺 Uzaktan bir kurt uluması geliyor', r: ['Sürüm beni çağırıyor… gitmiyorum 🐺', 'Benim sürüm artık sensin 😏', '*kulakları dikilir* Sus, dinle 🤫', 'Uluyayım mı ben de? Auuu~ 🌕', 'Onlar ulusun, ben inlerim 🥵'] },
+    { g: '🌲 Pencerenin dışında dallar çıtırdadı', r: ['Kokusunu aldım… av mı? 🐺', 'Bölgeme kimse giremez 😤', '*hırlar* Gitti. Devam 🐺', 'Seni koruyorum, kıpırdama 😈', 'Bu gece av sensin zaten 😏'] }
+  ],
+  fxseytan: [
+    { g: '🕯️ Odadaki bütün mumlar aynı anda söndü', r: ['Karanlık bana yakışıyor 😈', 'Korkma… ya da kork, daha güzel 🔥', 'Gözlerim kıpkırmızı parlıyor, görüyor musun? 😏', 'Mumları ben söndürdüm 😈', 'Şimdi sadece benim ışığım var 🔥'] },
+    { g: '📜 Masada bir sözleşme beliriyor, imza yeri boş', r: ['İmzala… kanınla değil, merak etme 😏', 'Bedeli sonra konuşuruz 😈', 'Okuma, sadece imzala 🔥', 'Küçük yazıları sevmem… sen de sevme 😏', 'Anlaşma tamam, ruhun güvende… şimdilik 😈'] },
+    { g: '🔔 Uzaktaki kilise çanı çalmaya başladı', r: ['Ugh, o ses! 😖', 'Kulaklarımı kapat, çabuk 🙈', 'Beni bundan uzaklaştır… içine 😈', 'Çanlar çalsın, günah daha tatlı 🔥', 'Bitti mi? Kuyruğum hâlâ diken diken 😤'] }
+  ],
+  fxkoyun: [
+    { g: '🐑 Ahırdan sürünün melemesi geliyor', r: ['Meee… beni arıyorlar 🙈', 'Sürüye dönmem, seninleyim 🥺', 'Sesimi duymasınlar 🤫🐑', 'Kuzun burada, merak etmeyin 😳', 'Onlar meler, ben inlerim 🥵'] },
+    { g: '✂️ Bir kırkım makası masadan yere düştü', r: ['Makas! Yünüme dokunma 😱', 'Sadece sen kırkabilirsin beni 😳', 'Korktum, sarıl bana 🥺', 'Yünüm kabardı 🐑', 'Kaldır onu, yumuşaklığım sana kalsın ☁️'] },
+    { g: '🐕 Çoban köpeği kapının önünde havlıyor', r: ['Çoban geliyor! Saklan 🙈', 'Beni geri götürmesin 🥺', 'Şşş… yünüme gömül 🐑', 'Kurt değilsin değil mi? 😳', 'Gitsin, kuzun sende kalsın ☁️'] }
+  ],
   fxkopek: [
     { g: '🔔 Kapı zili çaldı', r: ['Hav hav! 🐶', 'Havlamamak için dilimi ısırıyorum 🙈', 'Sahibim burada, kimseye açmam 🐾', 'Kuyruğum durmadan sallanıyor 😳', 'Bekçi köpeği gibi kapıya mı koşayım? Hayır, sende kalıyorum 🥺'] },
     { g: '🎾 Top masanın altına yuvarlandı', r: ['Topum! …sonra getiririm 🐶', 'Topu mu kovalayayım seni mi? Seni 😏', 'Getir dersen getiririm, ama önce bitir 🥵', 'Sadık köpeğin yerinden kıpırdamaz 🐾', 'Atma onu şimdi, beni at 😈'] },
@@ -240,6 +255,18 @@ Stories.FANT_INTERRUPTS = {
       { g: '🐔 Kümesten tavuk gıdaklaması geliyor', r: ['Tavuklar! …sonra 🦊', 'Av mı sen mi? Sen 😏', 'Kurnaz tilki sırasını bilir 😈', 'Gıdaklasınlar, ben inlerim 🥵', 'Ağzım sulandı… sana 😋'] },
       { g: '🍂 Kuyruğuna kuru yapraklar takıldı', r: ['Kuyruğum çalı gibi oldu 🙈', 'Temizle beni 😏', 'Yavaş, kuyruğuma hassasım 😳', 'Ormandan geldim, belli 🦊', 'Tara beni… her yerimi 😈'] },
       { g: '🪤 Kapının önüne bir tuzak kurulmuş', r: ['Tuzak! Kim kurdu?! 😱', 'Beni yakalayan tek kişi sensin 😏', 'Sen mi kurdun yoksa? 😈', 'Dikkat et, adımına bak 🙈', 'Bu gece dışarı çıkmıyoruz 🦊'] }
+    ],
+    fxkurt: [
+      { g: '🍖 Buzdolabından çiğ et kokusu geliyor', r: ['Açım… ama sana 🐺', 'Et beklesin, önce sen 😈', '*dudaklarını yalar* 🐺', 'Avımı yerim, sonra eti 😏', 'Midem guruldadı, gülme 😤'] },
+      { g: '🔫 Uzakta bir avcı tüfeği patladı', r: ['Avcılar! 😱', 'Beni saklarsın değil mi? 🥺', '*hırlar* Kimse dokunamaz bize 🐺', 'Sessiz ol, iz bırakma 🤫', 'Korkmadım… biraz korktum 😳'] }
+    ],
+    fxseytan: [
+      { g: '💧 Biri kapının önüne kutsal su dökmüş', r: ['Tıss! Yanıyor 😖', 'Kim yaptı bunu?! 😤', 'Kapıdan çıkamam artık… mecburen seninleyim 😏', 'Önemli değil, içeride kalırız 😈', 'Ayaklarımı öp, acısı geçsin 🔥'] },
+      { g: '🔥 Şöminedeki ateş birden mosmor yandı', r: ['Cehennemden selam var 😈', 'Ateşim seni çağırıyor 🔥', 'Sıcak mı? Daha başlamadık 😏', 'Bu renk heyecanlanınca çıkar 😳', 'Yak beni, ben de seni yakayım 🔥'] }
+    ],
+    fxkoyun: [
+      { g: '☁️ Yünü statik elektrikle kabardı, saçları diken diken', r: ['Meee! Her yerim kabardı 🙈', 'Dokununca çarpıyor, dikkat 😳', 'Bulut gibi oldum ☁️', 'Düzelt beni… elinle 😏', 'Gülme, kuzun böyle 🐑'] },
+      { g: '🌙 Uyumak için koyun sayan biri "…99, 100" dedi', r: ['Yüzüncü koyun benim 🐑', 'Sayma beni, uyuma 😤', 'Uyutmam seni bu gece 😈', 'Meee… sıramı kaçırdım 🙈', 'Sen beni say, ben seni 🥵'] }
     ],
     fxkopek: [
       { g: '🐈 Pencerenin önünden bir kedi geçti', r: ['Kedi! Hav hav! 🐶', 'Kovalayayım mı? Hayır, sahibimdeyim 🥺', 'Kulaklarım dikildi 😳', 'Kedi beklesin 😏', 'Otur dedin, oturuyorum 🐾'] },
@@ -547,6 +574,21 @@ Stories.FANT_INTERRUPTS = {
       { g: '🐰 Kulaklarından biri teli kayıp yamuldu', r: ['Düzeltme, böyle daha tatlıyım 😆', 'Sen yamulttun 😏', 'Bir kulakla da olur 🐇', 'Tut onu, dizgin yap 😈', 'Kostüm kurallarını çiğniyoruz 🙈'] },
       { g: '🃏 Desteden bir kart yere düştü: maça ası', r: ['Şans kartı! 🃏', 'Bırak orada dursun 😏', 'Maça ası… tehlike demek 😈', 'Al, sende kalsın 🐰', 'Eğilip alayım mı? İzle 🍑'] }
     ],
+    fxrpfakulte: [
+      { g: '🚪 Kapı tıklatılıyor: "Hocam, ödevimi bırakacaktım!"', r: ['Kapının altından at! 😱', 'Şşş, ses çıkarma 🤫', 'Ofis saati bitti! 😏', 'Kapı kilitli mi? 😳', 'Gitti… devam 🎓'] },
+      { g: '📱 Telefonda dekandan mesaj: "Fakülte kurulu 10 dakika sonra"', r: ['On dakika yeter 😈', 'Geç kalırım, olsun 😏', 'Telefonu ters çevir 📱', 'Hızlı olmalıyız 🥵', 'Kurul bekleyebilir 🎓'] },
+      { g: '🔔 Teneffüs zili çaldı, koridor doluyor', r: ['Zil! 😱', 'Bluzumu ilikle 🙈', 'Normal davran 🤫', 'Bu oda ders dışı 😏', 'Koridor boşalınca devam 😈'] },
+      { g: '🧹 Hademe kapının önünden paspasla geçiyor, ıslık çalıyor', r: ['Hademe! 😳', 'Işığı kapat 🙈', 'Kıpırdama 🤫', 'Uzaklaşıyor 😮‍💨', 'Islık bile ritim tutuyor 😂'] },
+      { g: '📽️ Projektör kendiliğinden açıldı, perdeye ders slaytı yansıdı', r: ['Ödüm koptu 😂', 'Kapat şunu 🙈', 'Işığı güzel ama 😏', 'Slaytı sen anlat 😈', 'Ders başlasın 🎓'] }
+    ],
+    fxrpplaza: [
+      { g: '🚪 Kapı tıklatılıyor: "Toplantı başladı, sizi bekliyoruz!"', r: ['Beş dakika! …belki on 😏', 'Şşş, ses çıkarma 🤫', 'Başlasınlar, biz meşgulüz 😈', 'Kapı kilitli mi? 😳', 'Gitti… devam 💼'] },
+      { g: '📞 Masadaki telefon ısrarla çalıyor', r: ['Bırak çalsın 😏', 'Sesini kapat 🤫', 'Açarsam sesim titrer 😳', 'Meşgul tuşuna bas 😈', 'Sekreter baksın 💼'] },
+      { g: '🔦 Koridorda güvenlik görevlisinin fener ışığı geçiyor', r: ['Eğil! 😱', 'Işıkları kapat 🙈', 'Tur atıyor, gider 😏', 'Kıpırdama 🤫', 'Gitti… nefes al 😈'] },
+      { g: '🛗 Asansörün "ding" sesi geldi, kat boştu sanıyorduk', r: ['Biri mi geldi? 😳', 'Temizlikçi olmalı 🧹', 'Kapıyı tut 🤫', 'Duymazdan gel 😈', 'Yanlış kat… umarım 🙈'] },
+      { g: '💻 Ekranda toplantı hatırlatıcısı çıktı: "15 dakika sonra"', r: ['On beş dakika yeter 😈', 'Ertele! 😏', 'Kapat şunu 💻', 'Hızlı olmalıyız 🥵', 'Toplantı biz olsun 💼'] },
+      { g: '🖨️ Yazıcı kendi kendine çalışmaya başladı', r: ['Gürültü işimize yarar 😏', 'Kim yazdırıyor bu saatte? 😳', 'Bırak, kâğıt bitince durur 🖨️', 'Ritim tutuyor 😈', 'Sonra bakarım 💼'] }
+    ],
     fxrphostes: [
       { g: '🔔 Kabin içinden "ding": bir yolcu hostesi çağırıyor', r: ['Beklesin 😏', 'Tek yolcum sensin ✈️', 'Bir dakika beyefendi! …hayır, gitmiyorum 😈', 'Ding ding… sus 🙈', 'Başka hostes baksın 💄'] },
       { g: '✈️ Pilot anons ediyor: "Türbülans bölgesine giriyoruz, kemerlerinizi bağlayın"', r: ['Kemer mi? Sen beni tut 😈', 'Türbülans tam zamanında 🥵', 'Sallanalım 😏', 'Kemerimi sen bağla 😳', 'Yerimizde kalalım ✈️'] },
@@ -562,7 +604,17 @@ Stories.FANT_INTERRUPTS = {
       { g: '🎶 Kilisede koro ilahi söylemeye başladı', r: ['İlahiler… ve biz 😳', 'Sesimizi bastırırlar 😏', 'Kendi ilahimizi söyleyelim 😈', 'Duymazlar, devam 🤫', 'Ne tuhaf bir eşlik 🕯️'] },
       { g: '🚪 Kapı tıklatılıyor: "Rahibe, iyi misiniz? Bir ses duydum"', r: ['İyiyim! Dua ediyorum! 😱', 'Sesini kes… 🤫', 'Gitti mi? 😳', 'Yalan söyledim, bir günah daha 😈', 'Devam… ama sessiz 🥵'] },
       { g: '🐈‍⬛ Manastırın kedisi pencere pervazından içeri atladı', r: ['Kedi! Ödüm koptu 😳', 'O da günah çıkarmaya gelmiş 😆', 'Kovma onu, sır tutar 😏', 'Bize bakıyor 🙈', 'Gözlerini kapat, kedicik 😈'] },
-      { g: '📿 Duvardaki haç hafifçe sallanıp yamuldu', r: ['Bir işaret mi?! 😱', 'Rüzgârdır… umarım 😳', 'Düzeltme, bakmasın 🙈', 'Affet bizi 🙏', 'Durma, artık çok geç 😈'] }
+      { g: '📿 Duvardaki haç hafifçe sallanıp yamuldu', r: ['Bir işaret mi?! 😱', 'Rüzgârdır… umarım 😳', 'Düzeltme, bakmasın 🙈', 'Affet bizi 🙏', 'Durma, artık çok geç 😈'] },
+      { g: '🌹 Bahçe kapısının menteşesi gıcırdadı, fener ışığı çitlerin arasında dolaşıyor', r: ['Eğil, gül çitinin arkasına! 😱', 'Bekçi rahibe… sus 🤫', 'Dikenler batıyor, kıpırdama 🌹', 'Fener uzaklaştı… devam 😈', 'Elmalar yere saçıldı, umurumda değil 🍎'] },
+      { g: '💧 Hamamın tavanından soğuk bir damla sırtına düştü', r: ['Ahh! Soğuk 😳', 'Kutsal su bu, sayılır 😏', 'Buhar her yeri kapladı, kimse görmez 💧', 'Isıt beni 🥵', 'Taşlar kaygan, tut beni 🙈'] },
+      { g: '⛪ Kilisenin büyük kapısı açıldı; biri sıraların arasında yürüyor', r: ['Sıranın altına! 😱', 'Nefesini tut 🤫', 'Mum yakmaya gelmiş… gitsin 🕯️', 'Kabinin perdesi kapalı mı? 😳', 'Kapı kapandı… devam 😈'] }
+    ],
+    fxrpbasrahibe: [
+      { g: '🚪 Kapı tıklatılıyor: "Başrahibe, akşam duası için sizi bekliyoruz"', r: ['Başlayın, geliyorum! 😤', 'Şşş… cevap verme 🤫', 'Rahibeler beklesin, kural benim ⛪', 'Gitti mi? 😏', 'Duayı bu gece ben burada kılıyorum 😈'] },
+      { g: '🗝️ Belindeki anahtar destesi yere düşüp şıngırdadı', r: ['Toplama, sonra 😏', 'Bütün manastır duydu 😳', 'Hangisi bu odanın anahtarı? Neyse 🗝️', 'Kapı zaten kilitli 😈', 'Ses yapma dedim, bahçıvan! 😤'] },
+      { g: '🔔 Gece yarısı çanı çalıyor', r: ['Sayım saati… beklesinler ⛪', 'Çan bize çalıyor 😈', 'On iki vuruş… sen de say 😏', 'Duymazdan gel 🤫', 'Bu saatte kurallar uyur 🥵'] },
+      { g: '📏 Cetvel masadan kayıp yere düştü', r: ['Al onu, bana ver 😏', 'Cezan bekleyebilir 😈', 'Sonra kullanacağım, unutma 📏', 'Eğil de al… dur, öyle kal 🍑', 'Cetvel de mi isyan ediyor? 😤'] },
+      { g: '👣 Koridorda genç bir rahibenin ayak sesleri: "Başrahibe hanım, bir ses duydum!"', r: ['Yatağına dön, rahibe! 😤', 'Hiçbir şey yok, git! 😱', 'Şşş… 🤫', 'Ayak sesleri uzaklaşıyor 😮‍💨', 'Yarın ona kefaret veririm 😏'] }
     ],
     fxayna: [
       { g: '🪞 Ayna duvardaki çivisinden biraz kaydı, çatırdadı', r: ['Düşmesin! 😱', 'Tut onu… beni de 😈', 'Kırılırsa yedi yıl uğursuzluk 😳', 'Sağlam, devam 😏', 'Düzeltmek sonra 🙈'] },
@@ -621,6 +673,13 @@ Stories.FANT_INTERRUPTS = {
       { g: '🔊 Yan odadan duvara vurdular', r: ['Duydular! 😱', 'Sesimi kısamıyorum 😩', 'Onlar da yapıyordur 😏', 'Yastığı ısırayım 🙈', 'Daha yüksek 😈'] },
       { g: '🌃 Karşı otelin penceresinde biri perdeyi araladı', r: ['Görüyor mu?! 😳', 'Perdeyi kapat 🙈', 'Bıraksana, izlesin 😈', 'Işığı söndür 😏', 'Gitti… devam 🥵'] },
       { g: '🍾 Oda servisinin getirdiği şampanya kendiliğinden patladı', r: ['Ödüm koptu! 😂', 'Halıya döküldü 🙈', 'Kadeh getir 🥂', 'Tenimden iç 😈', 'Kutlama zamanı 😏'] }
+    ],
+    yerokul: [
+      { g: '🔔 Zil çaldı, koridorda kapılar açılıyor', r: ['Zil! 😱', 'Ceketimi ver 🙈', 'Kapı kilitli mi?! 😳', 'Bu ders boş, merak etme 😏', 'Hızlı bitirelim 🥵'] },
+      { g: '🚪 Kapı tıklandı: "Hocam, müsait misiniz?"', r: ['Öğrenci! 😱', '"Ofis saati bitti!" 🙈', 'Masanın arkasına 🤫', 'Gitti… oh 😮‍💨', 'Kapıya not asacağım 😂'] },
+      { g: '🧹 Hademe koridorda paspas yapıyor, ıslık çalıyor', r: ['Hademe! 😳', 'Işığı kapat 🙈', 'Sessiz ol 🤫', 'Uzaklaşıyor 😮‍💨', 'Islık bile bize eşlik ediyor 😂'] },
+      { g: '📱 Telefonda bölüm başkanından mesaj: "Odanda mısın?"', r: ['Başkan! 😱', '"Kütüphanedeyim" yaz 😅', 'Cevap verme 🙈', 'Telefonu ters çevir 😈', 'Yalan söylemek yakıştı mı bana 😏'] },
+      { g: '📽️ Projektör kendiliğinden açıldı, perdeye slayt yansıdı', r: ['Ödüm koptu 😂', 'Slaytta ben varım 😳', 'Kapat şunu 🙈', 'Bırak, ışık güzel 😏', 'Ders başlasın 😈'] }
     ]
   };
   Object.keys(MORE).forEach(k => (Stories.FANT_INTERRUPTS[k] = Stories.FANT_INTERRUPTS[k] || []).push(...MORE[k]));

@@ -52,6 +52,7 @@ Stories.I18n.add({
   'Gece yarısı kapımı çal': 'Knock on my door at midnight', 'Boynunu uzat, ölümlü': 'Offer your neck, mortal', 'Mumları yaktım, ipler hazır': 'Candles lit, ropes ready',
   'Kelepçelerim çantamda': 'My cuffs are in my bag', 'Karanlıkta seni kokundan bulurum': 'In the dark I find you by your scent', 'Dolunay doğdu, ben vahşiyim': "The full moon is up, I'm wild",
   'Tabutum iki kişilik': 'My coffin fits two', 'Güvenli kelime: dolunay. Gerisi serbest': 'Safe word: full moon. Everything else goes',
+  'CarmenJobs · ofis ilanları': 'CarmenJobs · office ads', 'CarmenJobs · mesai sonrası': 'CarmenJobs · after hours',
   'Gothic.com · gece yarısı ilanları': 'Gothic.com · midnight ads', 'Gothic.com · karanlıktan yeni': 'Gothic.com · new from the dark',
   'Carmen.com · öne çıkanlar': 'Carmen.com · featured', 'Carmen.com · yeni ilanlar': 'Carmen.com · new ads', 'CarmenFans · önerilen üreticiler': 'CarmenFans · suggested creators',
   'CarmenFans · bu hafta yeni kostüm': 'CarmenFans · new costume this week', 'CarmenLive · şu an canlı': 'CarmenLive · live now', 'CarmenLive · yayında': 'CarmenLive · on air', 'Tüm yayınlar': 'All streams',

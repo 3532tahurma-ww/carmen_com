@@ -60,7 +60,7 @@ Stories.I18n.add({
   'Yazlık evde': 'At the summer house',
   'Alışverişte': 'Shopping',
   'Kitapçıda': 'At the bookstore',
-  'Kampüste': 'On campus',
+  'Kampüste': 'On campus', 'Kilisede': 'At church', 'Tuvalette': 'In the restroom',
   'Onun iş yerinin önünde': 'Outside her workplace',
   'Ofiste': 'At the office',
   'Otel odasında': 'In a hotel room',

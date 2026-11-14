@@ -79,6 +79,7 @@ Stories.Themes = {
   // 🦄 Fanteziye göre sohbet teması: fantezi olayı olunca sohbet bu [arka plan, baloncuk]'a geçer (anahtar = app.js fantKey; fxdiger = listede olmayanlar)
   fantasy: {
     fxkedi: ['pastel-lila', 'seker'], fxinek: ['pastel-bulut', 'cloud'], fxtavsan: ['pastel-pembe', 'seker'], fxtilki: ['sunset', 'pastel-seftali'],
+    fxkurt: ['night', 'mono'], fxseytan: ['dark', 'neon'], fxkoyun: ['pastel-bulut', 'cloud'],
     fxkopek: ['coffee', 'pastel'], fxunikorn: ['pastel-gokkusagi', 'pastel-sise'], fxbag: ['dark', 'mono'], fxgizli: ['night', 'gece-neonu'],
     fxtoy: ['pembe-ruya', 'neon'], fxkarin: ['pembe-ruya', 'kalp'], fxdolum: ['pembe-ruya', 'kalp'], fxayna: ['galaksi', 'glass'],
     fxrpklinik: ['pastel-mavi', 'imessage'], fxrpprof: ['coffee', 'paper'], fxrpofis: ['coffee', 'paper'], fxrpkampus: ['pastel-nane', 'comic'],
@@ -86,11 +87,15 @@ Stories.Themes = {
     fxrpmasaj: ['sunset', 'pastel-gul'], fxrpavukat: ['night', 'paper'], fxrppsikolog: ['pastel-lila', 'pastel-lila'], fxrpgardiyan: ['dark', 'mono'],
     fxrppizza: ['sunset', 'retro'], fxrpressam: ['carmen-acik', 'paper'], fxrpdans: ['ucan-kalpler', 'neon'], fxrpfizyo: ['pastel-nane', 'pastel-nane'],
     fxrptaksi: ['night', 'gece-neonu'], fxrpmelek: ['pastel-bulut', 'cloud'], fxrpkaptan: ['ocean', 'glass'], fxrpkral: ['kalp-kolye', 'gold'],
-    fxrprobot: ['galaksi', 'terminal'], fxrpelf: ['forest', 'pastel-nane'], fxrphostes: ['pastel-mavi', 'insta'], fxrprahibe: ['dark', 'paper'],
+    fxrprobot: ['galaksi', 'terminal'], fxrpelf: ['forest', 'pastel-nane'], fxrphostes: ['pastel-mavi', 'insta'], fxrprahibe: ['dark', 'paper'], fxrpbasrahibe: ['night', 'paper'],
     // ✨ Genshin
     fxrpyelan: ['ocean', 'glass'], fxrpclorinde: ['night', 'gece-neonu'], fxrpmavuika: ['sunset', 'altin-isilti'], fxrpxianyun: ['pastel-bulut', 'pastel-nane'],
     // 🎰 CarmenGasino
     fxrpgazino: ['night', 'altin-isilti'],
+    // 🏢 Ofis rolleri
+    fxrpplaza: ['coffee', 'paper'],
+    // 🎓 Fakülte rolleri
+    fxrpfakulte: ['paper', 'coffee'],
     // 🎃 Halloween rolleri
     fxrpvampir: ['halloween', 'halloween'], fxrpcadi: ['halloween', 'halloween'], fxrpfalci: ['halloween', 'halloween'], fxrpperili: ['halloween', 'halloween'],
     fxrpmaske: ['halloween', 'halloween'], fxrpkarakedi: ['halloween', 'halloween'], fxrpmumya: ['halloween', 'halloween'], fxrpsuccubus: ['halloween', 'halloween'],

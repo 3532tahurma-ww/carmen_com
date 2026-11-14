@@ -5634,6 +5634,42 @@ Object.entries({
     'Kuyruğunu belime doladın offf 😈',
     'Bu sefer kim kimi avladı? 😏'
   ],
+  'Wolf Girl': [
+    'Kulakların dikildi, dolunay mı geldi? 🌕',
+    'Kurdumu ensesinden tutuyorum offf 🐺',
+    'Hırlaman beni deli ediyor {o}… ahh 😈',
+    'Sürünün alfası benim bu gece mmm 😏',
+    'Gözlerin sapsarı parlıyor offf 🐺',
+    'Boynumu ısırdın, işaretledin beni… ahhh 🥵',
+    'Kuyruğun durmadan sallanıyor mmm 😍',
+    'Ulumanı duymak istiyorum offf 🌕',
+    'Vahşi kurdumu evcilleştiriyorum… ahh 💗',
+    'Bu gece av sensin, ben avcı offf 😈'
+  ],
+  'Demon Girl': [
+    'Boynuzların kıpkırmızı oldu… ahh 😈',
+    'Kuyruğun bileğime dolandı offf 🔥',
+    'Anlaşmayı imzaladım, şimdi benimsin {o}… mmm 😏',
+    'Ruhumu değil, bütün geceni istiyorum offf 😈',
+    'Gözlerin kor gibi yanıyor… ahhh 🥵',
+    'Günahın bu kadar tatlı olduğunu bilmiyordum offf 🔥',
+    'Kuyruğunun ucunu okşuyorum, titredin mmm 😍',
+    'Cehennem bu kadar sıcaksa gelirim… ahh 😈',
+    'Bedelini ödüyorum, her damlasıyla offf 💦',
+    'Küçük şeytanım benim… ahhh 💗'
+  ],
+  'Sheep Girl': [
+    'Yünün ne kadar yumuşak… mmm ☁️',
+    'Kuzumu sürüden kaçırdım offf 🐑',
+    'Utangaç melemelerin {o}… ahh 😍',
+    'Yününe gömülüyorum, bulut gibi offf ☁️',
+    'Yanakların kızardı kuzucuğum mmm 😳',
+    'Kıvırcık yününü okşuyorum… ahhh 🥵',
+    'Bu gece seni kimse saymayacak, ben hariç offf 😈',
+    'Meee deyişine bayılıyorum… ahh 💗',
+    'Yumuşacık kuzum bana sokuldu mmm 🐑',
+    'Sürüye geri vermem seni offf 😏'
+  ],
   'Cumflation': [
     'O kadar doldurdum ki karnın şişti… ahhh 😳💦',
     'Elimi karnına koydum, dopdolu offf 🥵',
@@ -7743,6 +7779,78 @@ Object.assign(Stories.ME_RP_HUG_LINES, {
     hold: ['Sana sarılıyım, kalçan beni zorluyor; ama tutuyorum… offf 😣🐰', '"Pas mı geçiyorsun?" dedin, dişlerimi sıkıyorum ahh 😏', 'Çark durana kadar bekliyorum offf 🎡', 'Fişleri sayıyorum aklımdan, dayanmak için ahh 🎰']
   }
 });
+/* 🏢 Ofis rolleri (4 "Ofis – …" olayı) + rol satırları (fxrpplaza) */
+Object.assign(Stories.ME_EV_LINES, {
+  'Ofis – Kişisel Asistan': ['Kahvemi getirdin, ajandamı göğsüne bastırıyorsun {o} ☕', 'Saat yediden sonrasını bana ayırmışsın 😏', 'Kravatımı gevşetiyorsun, "gerginsiniz efendim" diyorsun 👔', 'Dikte ediyorum, her kelimede biraz daha yaklaşıyorsun 📝', 'Telefonlara "meşgul" diyorsun, kapıyı kilitliyorsun 🤫', 'Kartvizitinin arkasındaki numarayı okuyorum 😈'],
+  'Ofis – Patroniçe': ['Köşe ofisine giriyorum, topuklun masada {o} 👠', 'Terfi istiyorum; sen "ikna et" diyorsun 😏', 'Raporum elimde, ellerim arkada bekliyorum 📈', 'Ceketimi çıkarmamı söylüyorsun, çıkarıyorum 😳', 'Masanın önünde diz çöküyorum, gözlerin bende 👑', 'Performans değerlendirmem başladı 😈'],
+  'Ofis – Muhasebeci': ['Defterleri açıyorum, gözlüğün burnunun ucunda {o} 👓', 'Bilanço tutmuyor diyorsun, yanına oturuyorum 📊', 'Topuzunu çözüyorum, saçların omzuna dökülüyor 😏', 'Hesap makinesini kenara itiyorsun 😈', 'Kâr-zarar tablosuna değil sana bakıyorum 📈', 'Kasadaki açığı birlikte kapatıyoruz 💼'],
+  'Ofis – İK Uzmanı': ['Mülakat odasına giriyorum, dosyam masanda {o} 🗂️', 'Bacak bacak üstüne atıyorsun, ilk soru geliyor 😏', 'Kendimi üç kelimeyle anlatıyorum, sen "göster" diyorsun 😈', 'Kapıyı kilitliyorsun, kamera kapalı 🤫', 'Uygulamalı sınava hazırım 📝', 'Son aşamadayım; son aşama sensin 💋']
+});
+Object.assign(Stories.ME_RP_LINES, {
+  fxrpplaza: {
+    pos: ['Dosyalar yere saçıldı {o} 🗂️', 'Eteğin belinde, jartiyerin görünüyor 😈', 'Masa sallanıyor, kalemlik devrildi 😂', 'Plazanın ışıkları camda yanıyor 🌃', 'Gözlüğün kaydı, düzeltmiyorsun 👓', 'Telefon çalıyor, ikimiz de duymuyoruz 📞',
+      'Gömleğinin düğmeleri açıldı {o} 🥵', 'Kravatımdan çekiyorsun 👔', 'Döner sandalye dönüyor, sen dönüyorsun 💺', 'Toplantı odasının camı buğulandı 😏'],
+    cum: ['İçine boşalıyorum, mesai bitti… ahhhh {o} 💼💦', 'Masaya yığılıyoruz 😩', '"Tutanağa yazma" diye gülüyorsun 😈', 'Gömleğin değişmeli 😂', 'Plazanın ışıkları gözlerinde 🥵', 'Dizlerin titriyor, toplantıya nasıl gideceksin 😏']
+  }
+});
+Object.assign(Stories.ME_RP_HUG_LINES, {
+  fxrpplaza: {
+    pos: ['Arkandan sarıldım, masaya yaslanmışsın… ahhh 💼😩', '{gogus} göğüslerini gömleğinin içinden avuçladım offf 🥵', 'Kulağına "fazla mesai" diye fısıldıyorum… ahh 😈', 'Cama yaslı sarılıyız, şehir altımızda offf 🌃', 'Kalem eteğinin üstünden kalçanı sıkıyorum ahh 🔥'],
+    in: ['Sana sımsıkı sarılıp içine boşalıyorum… ahhhh 💼💦', 'Ensene gömülüp bırakıyorum offf 😩', 'Boşaldıktan sonra masada sarılı kalıyoruz… mmm 😌'],
+    out: ['Son anda çıktım; eteğine fışkırıyor… ahhhh 💦', 'Jartiyerli kalçana boşalıyorum offf 🥵', 'Bitirince ensenden öpüyorum… mmm 😌'],
+    hold: ['Sana sarılıyım, dayanıyorum… offf 😣', 'Raporları düşünüyorum aklımdan, dayanmak için ahh 📊', 'Toplantı saatini sayıyorum offf 🕰️']
+  }
+});
+/* 🎓 Fakülte rolleri (6 "Fakülte – …" olayı) + rol satırları (fxrpfakulte) */
+Object.assign(Stories.ME_EV_LINES, {
+  'Fakülte – Tıp': ['Anatomi laboratuvarına giriyorum, önlüğün açık {o} 🩺', 'Steteskobu göğsüne koymamı istiyorsun 💓', 'Kalbin çok hızlı atıyor hocam 😏', 'Maket yerine seni çalışıyorum 😈', 'Sözlü sınavım başladı 📝', 'Önlüğünün altında hiçbir şey yok 🥵'],
+  'Fakülte – Hukuk': ['Duruşma salonuna giriyorum, kürsüdesin {o} ⚖️', 'Savunmamı dinliyorsun, bacak bacak üstüne 😏', 'İtirazım reddedildi 😳', 'Cübbeni omzundan kaydırıyorsun 😈', 'Hâkim de jüri de sensin 👑', 'Kararını bu gece veriyorsun 🔥'],
+  'Fakülte – Güzel Sanatlar': ['Atölyeye giriyorum, model gelmemiş {o} 🎨', 'Önlüğünü çözüp kürsüye çıkıyorsun 😏', 'Kömürüm titriyor, çizgilerini çiziyorum ✏️', 'Işığı ayarlıyorum, gölgelerin çok güzel 😈', 'Boya tenine bulaştı 🖌️', 'Tuvalim doldu, sıra sende 🔥'],
+  'Fakülte – Mühendislik': ['Laboratuvara giriyorum, projem masanda {o} ⚙️', 'Gözlüğünü takıp kodumu inceliyorsun 😏', 'Hatalıymışım, düzeltmemi istiyorsun 💻', 'Kabloları birlikte bağlıyoruz, ellerimiz değiyor ⚡', 'Robot değil, sen çalışıyorsun 😈', 'Gece uzun, teslim sabah 🌙'],
+  'Fakülte – Edebiyat': ['Seminer odasında mum yanıyor {o} 🕯️', 'Kulağıma bir sone fısıldıyorsun 🖋️', 'Bir dize yazıyorum sana 📜', 'Kitapları kapattın, ders sensin 😏', 'Dudaklarından şiir dinliyorum 💋', 'Son bölümü birlikte yazıyoruz 😈'],
+  'Fakülte – Spor Bilimleri': ['Boş salona giriyorum, taytın terden yapışık {o} 🏐', 'Düdüğü bırakıyorsun, asıl antrenman başlıyor 😏', 'Esnerken arkamdan bastırıyorsun 🧘‍♀️', 'Nabzım çok yüksek 🥵', 'Matı seriyoruz 😈', 'Bir set daha, bırakmak yok 🔥']
+});
+Object.assign(Stories.ME_RP_LINES, {
+  fxrpfakulte: {
+    pos: ['Ders notları yere saçıldı {o} 📚', 'Eteğin belinde hocam 😈', 'Masa sallanıyor, kalemlik devrildi 😂', 'Gözlüğün kaydı, düzeltmiyorsun 👓', 'Koridordan adım sesi geliyor 🤫', 'Topuzun çözüldü, saçların omzunda {o} 🥵',
+      'Bluzunun fiyongası açıldı 😏', 'Tahtadaki formüller sırtında siliniyor 🧑‍🏫', 'Kürsü gıcırdıyor 😂', 'Kim hoca kim öğrenci şimdi? 😈'],
+    cum: ['İçine boşalıyorum, ders bitti… ahhhh {o} 🎓💦', 'Kürsüye yığılıyoruz 😩', '"Not defterine yazma" diye gülüyorsun 😈', 'Bluzun değişmeli 😂', 'Kampüsün ışıkları gözlerinde 🥵', 'Dizlerin titriyor, derse nasıl gireceksin 😏']
+  }
+});
+Object.assign(Stories.ME_RP_HUG_LINES, {
+  fxrpfakulte: {
+    pos: ['Arkandan sarıldım, kürsüye yaslanmışsın… ahhh 🎓😩', '{gogus} göğüslerini ipek bluzunun içinden avuçladım offf 🥵', 'Kulağına "hocam" diye fısıldıyorum… ahh 😈', 'Tahtaya yaslı sarılıyız offf 🧑‍🏫', 'Midi eteğinin üstünden kalçanı sıkıyorum ahh 🔥'],
+    in: ['Sana sımsıkı sarılıp içine boşalıyorum… ahhhh 🎓💦', 'Ensene gömülüp bırakıyorum offf 😩', 'Boşaldıktan sonra kürsüde sarılı kalıyoruz… mmm 😌'],
+    out: ['Son anda çıktım; eteğine fışkırıyor… ahhhh 💦', 'Kalçana boşalıyorum offf 🥵', 'Bitirince ensenden öpüyorum… mmm 😌'],
+    hold: ['Sana sarılıyım, dayanıyorum… offf 😣', 'Formülleri düşünüyorum aklımdan, dayanmak için ahh 📐', 'Zile kaç dakika kaldı sayıyorum offf 🔔']
+  }
+});
+/* 🕯️ Rahibe olay ailesi (7 "Rahibe – …" olayı, fxrprahibe) + ⛪ Başrahibe – Bahçıvan (fxrpbasrahibe) */
+Object.assign(Stories.ME_EV_LINES, {
+  'Rahibe – Dua Sırası': ['Boş kilisede yanına diz çöküyorum; dudakların dua ederken titriyor {o} 🙏', 'Ellerini birleştirmişsin, ben ellerini çözüyorum 😏', '"Burada olmaz" diyorsun ama sıradan kalkmıyorsun 😳', 'Duan yarım kaldı, başını kucağıma eğiyorsun 😈', 'Seni ön sıraya eğiyorum, ahşap gıcırdıyor 🪑', 'Cübbeni sıranın üstünde beline topluyorum {o} 🔥', 'Dua kitabın yere düştü, ikimiz de bakmıyoruz 📖', 'Mumlar titriyor, sen de 🕯️'],
+  'Rahibe – Tespih Bağı': ['Tespihini bileklerime dolayıp beni yatağına bağlıyorsun {o} 📿', '"Her tanede bir günah say" diyorsun, sayıyorum 😩', 'Taneleri tenimde tek tek gezdiriyorsun 😏', 'Yüzüncü taneye kadar boşalmak yasakmış 🥵', 'Sayıyı şaşırıyorum, baştan başlatıyorsun 😈', 'Bağlıyım, sen üstüme çıkıyorsun {o} 🕯️', 'Tespihin ucundaki haç göğsüme değiyor 📿', 'Elli bir… elli iki… dayanamıyorum 😩'],
+  'Rahibe – Kutsal Su Banyosu': ['Hamamın kapısını aralıyorum; ıslak cübben tenine yapışmış {o} 💧', 'Beni görünce kovaya uzanıyorsun ama suyu bana döküyorsun 😏', 'Buharın içinde başörtün kaymış, saçların sırılsıklam 😳', 'Islak cübbenin üstünden göğüslerini avuçluyorum 🥵', 'Taş duvara yaslıyorum seni, su ikimizden süzülüyor 😈', '"Bu kutsal su" diyorsun, avucuna alıp bana sürüyorsun {o} 💧', 'Mum buhardan söndü, karanlıkta seni buluyorum 🕯️', 'Kurna taşıyor, biz de 🔥'],
+  'Rahibe – Bahçede Yasak Meyve': ['Duvardan atlıyorum, elma sepetin elinden düşüyor {o} 🍎', 'Bir elma uzatıyorsun: "yasak meyve" diye gülümsüyorsun 😈', 'Gül çitinin arkasına çekiyorum seni 🌹', 'Çimenlerin üstünde cübben dizlerine sıyrılıyor 😏', 'Uzaktan bekçinin feneri görünüyor, sesini avucumla kapatıyorum 🤫', 'Elma ağacına yaslıyorum seni, dallar sallanıyor {o} 🍏', 'Hızlı olmalıyız, akşam duası başlıyor 🔔', 'Dudaklarında elmanın tadı var 💋'],
+  'Rahibe – İtiraf Kabini': ['Kafesin arkasından fısıldıyorum: "Rahibe, günah işledim" {o} 🤫', '"Anlat… hepsini" diyorsun, nefesin kafesten geçiyor 😏', 'En büyük günahım sensin diyorum, susuyorsun 😳', 'Perdeyi açıp benim tarafıma giriyorsun 😈', 'Kabin iki kişilik değil; kucağıma oturuyorsun {o} 🪟', 'Dışarıda ayin sürüyor, sen dudağını ısırıyorsun 🎶', 'Kafesin ahşabı her hareketimizde gıcırdıyor 😩', 'Bu itirafı kimse duymayacak 🤫'],
+  'Rahibe – Sunak Önünde': ['Gece boş şapelde yüzlerce mum yanıyor; sunağın önündesin {o} 🕯️', 'Seni basamaklara yatırıyorum, cübben beyaz örtünün üstünde 😈', '"Burası kutsal" diyorsun, sonra beni kendine çekiyorsun 😳', 'Haç kolyen göğüslerinin arasında parlıyor 📿', 'Yeminlerini sunağın önünde tek tek bozuyorum {o} 🔥', 'Sesin şapelin kubbesinde yankılanıyor 😩', 'Mumların alevi hepimizle birlikte titriyor 🕯️', 'Bu, manastırın en büyük günahı 😈'],
+  'Rahibe – Cübbe Altı': ['Cübbeni çıkarmıyorum; sadece eteğini yavaşça kaldırıyorum {o} 📿', 'Külotunu dizlerine kadar indiriyorum, cübben üstünde kalıyor 😏', 'Başörtünün iğnesini çekiyorum, saçların omzuna dökülüyor 😳', '"Cübbe kalsın" diye fısıldıyorsun, kalıyor 😈', 'Cübbenin altına elimi sokuyorum; altında hiçbir şey kalmadı 🥵', 'Beyaz yakan yerinde, gerisi açıkta {o} 🕯️'],
+  'Başrahibe – Bahçıvan': ['Odana çağrıldım; kapıyı kilitlememi söylüyorsun {o} 🗝️', 'Cetvelini avucuna vuruyorsun, "bahçıvan, kuralları öğreneceksin" 📏', 'Masanın önünde ellerim arkada bekliyorum 😳', 'Dizlerimin üstüne çökmemi emrediyorsun, çöküyorum ⛪', 'Kolalı yakanın düğmelerini sen açıyorsun, gözün bende 😏', 'Anahtar desten şıngırdıyor, cübbeni kaldırıyorsun 😈', 'Altında jartiyer… "kimse bilmeyecek" diyorsun {o} 🔥', '"Bu odada kural benim" diye fısıldıyorsun, kucağıma oturuyorsun 🥵']
+});
+Object.assign(Stories.ME_RP_LINES, {
+  fxrpbasrahibe: {
+    pos: ['Meşe masa her vuruşta gıcırdıyor {o} ⛪', 'Anahtar destesi belinde şıngırdıyor 🗝️', 'Kolalı yakan yerinde, gerisi açıkta 😈', 'Cetveli hâlâ elinde tutuyorsun, bana dokunuyor 📏', 'Jartiyerinin lastiği kalçana çarpıyor 🥵', '"Daha sert, bahçıvan" diye emrediyorsun 😩',
+      'Gümüş haçın göğüslerinin arasında sallanıyor {o} 📿', 'Koridorda ayak sesleri; sen "devam" diyorsun 🤫', 'Sert yüzün ilk kez yumuşuyor 😳', 'Başörtün kaydı, düzeltmiyorsun 😈'],
+    cum: ['İçine boşalıyorum, kural bozuldu… ahhhh {o} ⛪💦', 'Masaya yığılıyoruz, anahtarlar yere düşüyor 🗝️', '"Bu da bir kural ihlali" diye gülüyorsun 😈', 'Lacivert cübben değişmeli 😂', 'Dizlerin titriyor, akşam duasına nasıl gideceksin 😏', 'Cetvelin elinden kaydı, bakmıyorsun bile 📏']
+  }
+});
+Object.assign(Stories.ME_RP_HUG_LINES, {
+  fxrpbasrahibe: {
+    pos: ['Arkandan sarıldım, masaya yaslanmışsın… ahhh ⛪😩', '{gogus} göğüslerini dantel sütyeninin içinden avuçladım offf 🥵', 'Kulağına "başrahibem" diye fısıldıyorum… ahh 😈', 'Anahtar destesi ikimizin arasında sıkıştı offf 🗝️', 'Cübbenin üstünden kalçanı sıkıyorum ahh 🔥'],
+    in: ['Sana sımsıkı sarılıp içine boşalıyorum… ahhhh ⛪💦', 'Ensene gömülüp bırakıyorum offf 😩', 'Boşaldıktan sonra masada sarılı kalıyoruz, kural falan kalmadı… mmm 😌'],
+    out: ['Son anda çıktım; lacivert cübbene fışkırıyor… ahhhh 💦', 'Jartiyerli kalçana boşalıyorum offf 🥵', 'Bitirince ensenden öpüyorum… mmm 😌'],
+    hold: ['Sana sarılıyım, dayanıyorum… offf 😣', '"İzin vermedim" dedin, dişlerimi sıkıyorum ahh 📏', 'Çan vuruşlarını sayıyorum, dayanmak için offf 🔔']
+  }
+});
 /* 🤱 Nursing (c:mvnursing01x): olay başına 10 mesaj */
 Object.assign(Stories.ME_EV_LINES, {
   'Cradle Hold': [
@@ -8123,6 +8231,90 @@ Object.assign(Stories.ME_EV_LINES, {
   'Lipstick Marks': ['Rujumu aldım 💄', 'Göğsüne "Senin" yazıyorum {o} 😏', 'Kalçana bir kalp ❤️', 'Her seferinde bir çentik 😈', 'Aynaya dön, oku bakalım 🔥', 'Yarın da silme 😏'],
   'Sensory Deprivation': ['Göz bağı, şimdi kulaklık 🎧', 'Beni duyamıyorsun artık {o} 😈', 'Sadece dokunuşum var 🔥', 'Nereye dokunacağımı bilmiyorsun 😏', 'Ürperdin 🥵', 'Kulaklığı çıkarıyorum, buradayım 🤍']
 });
+/* 🏢 Ofis gelişiyor: pozisyonlar, olaylar, bitişler */
+Object.assign(Stories.ME_EV_LINES, {
+  'Desk Bent Over': ['Masaya eğildin, dosyalar yere düştü 🗂️', 'E-postan hâlâ açık {o} 😏', 'Eteğini belime topluyorum 😈', 'Masaya tutun ahh 🥵', 'Kalemlik devrildi 😂', 'Sesini kıs, koridor dolu 🤫'],
+  'On The Desk': ['Seni masaya oturttum, bacakların belimde 🖥️', 'Klavye kalçanın altında {o} 😂', 'Masa sallanıyor 😈', 'Gözlerin bende, ekranda değil 😏', 'Raporlar buruştu ahh 🥵', 'Sımsıkı tutuyorum 🤍'],
+  'Boss Chair Reverse': ['Patronun koltuğundasın, sırtın bana dönük 💺', 'Şehir ayaklarının altında {o} 🌆', 'Deri gıcırdıyor 😂', 'Belini tutuyorum ahh 🥵', 'Bu koltuk artık senin 👑', 'Dönme, dönme 😅'],
+  'Window Press': ['Seni cama yasladım, şehir ışıkları altında 🌃', 'Nefesin camı buğuladı {o} 😏', 'Cam soğuk, sen sıcaksın 🥵', 'Karşı binadan görünüyor muyuz 😳', 'Ellerin cama yapıştı 😈', 'Camda izimiz kalacak 😂'],
+  'Conference Table': ['Toplantı masasına uzandın, projektör açık 📽️', 'Bütçe burada konuşulurdu {o} 😏', 'Ortaya gel, masa uzun 😈', 'Yarınki toplantı bu masada ahh 🥵', 'Gündem maddesi: sen 💋', 'Kapı camlıydı, değil mi 😅'],
+  'Supply Closet': ['Malzeme dolabındayız, raflar sallanıyor 🚪', 'Işık söndü, kıpırda {o} 😂', 'Burası çok dar, çok yakınız 🥵', 'Koridorda biri var 🤫', 'Kâğıtlar üstümüze düştü 😅', 'Dizlerin titriyor 😈'],
+  'Desk Anal': ['Masaya eğildin, eteğin belinde 🗂️', 'Kimse bilmeyecek {o} 🤫', 'Yavaşça… tutun masaya 😳', 'Nefesin kesildi ahh 🥵', 'Bu bizim sırrımız 😏', 'Toplantıda oturamayacaksın 😂'],
+  'Boss Chair Blowjob': ['Koltuğa yaslandım, sen dizlerimin arasındasın 💺', 'Kapı kilitli değil {o} 😳', 'Gözlerime bak 😈', 'Telefon çalıyor, açmıyorum 🤫', 'Saçını tutuyorum ahh 🥵', 'Terfin onaylandı 😏'],
+  'Desk Licking': ['Masanın kenarında bacaklarını açtın 👅', 'Sandalyemle önüne kaydım {o} 😈', 'Bacakların titriyor 😩', 'Sesini kısamıyorsun 🤫', 'Durmuyorum 🔥', 'Kalemlik yine devrildi 😂'],
+  'Stairwell Quickie': ['Yangın merdivenindeyiz 🪜', 'Adım sesleri yankılanıyor {o} 😳', 'Korkuluğa tutun 😈', 'Hızlı olmalıyız ahh 🥵', 'Kapı açılırsa ne deriz 😅', 'Bir kat daha inelim mi 😏'],
+  'Desk Tease': ['Raporu uzatırken eğildin 📄', 'Dekolten tam önümde {o} 😏', 'İmzayı yavaş atıyorum 😈', 'Gözlerim rapora bakmıyor 🙈', 'Odada sıcak mı oldu 🥵', 'Başka bir şey var mı? 😏'],
+  'Under Desk Footsie': ['Masanın altında ayağın bacağımda 🦶', 'Yüzün ciddi ama {o} 😏', 'Sunumu dinleyemiyorum 😂', 'Ayağın yukarı çıkıyor 🥵', 'Not alıyormuş gibi yapıyorum 🤫', 'Toplantı bitmesin 😈'],
+  'Panties In Drawer': ['Çekmecemi açtım, külotun burada 🗄️', 'Notunu okudum {o} 😳', 'Demek altında hiçbir şey yok 😈', 'Bütün gün bunu düşüneceğim 🥵', 'Akşam geri vereceğim, belki 😏', 'Çekmeceyi kilitliyorum 😂'],
+  'Elevator Glance': ['Kalabalık asansörde bana yaslandın 🛗', 'Kimse fark etmedi {o} 😏', 'Kalçan bana değdi 🥵', 'Ensende nefesim 😈', 'Herkes inince… 🤫', 'Ding! Bizim kat 😅'],
+  'Late Night Overtime': ['Herkes gitti, sadece ikimiz 🌙', 'Kahveler soğudu {o} ☕', 'Işıkları kısıyorum 😏', 'Ayakkabılarını çıkar 👠', 'Bu proje hiç bitmesin 😂', 'Mesai bitti, biz bitmedik 🤍'],
+  'Almost Caught': ['Kapı çalındı! 😱', 'Gömleğin ters {o} 🙈', 'Saçını düzelt hızlı 😳', 'Rapor üzerinde çalışıyorduk 😅', 'Gitti… kalbim duracaktı 🥵', 'Bu sefer kilitliyorum 🔒'],
+  'Performance Review': ['Kapı kapalı, değerlendirme başlıyor 📈', 'İlk soru {o}: hedeflerin? 😏', 'Yanlış cevap, ceza 😈', 'Doğru cevap, ödül 💋', 'Terfi için çalışmalısın 🥵', 'Not: beklentilerin üstünde 📝'],
+  'Desk Creampie': ['Masaya eğilmişken içine boşalıyorum… ahhh {o} 😩💦', 'Masaya tutunuyorsun hâlâ 🥵', 'Son damlama kadar 😈', 'Eteğini ben indiriyorum 🤍', 'Mendil çekmecede 😅', 'Toplantıda oturamayacaksın 😂'],
+  'Glasses Facial': ['Gözlüğüne ve yüzüne boşalıyorum ahhh 😩💦', 'Gözlüğün bulanık {o} 😂', 'Dudaklarında kaldı 😈', 'Mendili uzatıyorum 😅', 'Gözlüğü silip işine dönüyorsun 💼', 'Çok güzel görünüyorsun 😏'],
+  'Skirt Cumshot': ['Eteğine ve kalçana boşalıyorum ahhh 😩💦', 'Kuru temizleme benden {o} 😂', 'Kalçana aktı 🥵', 'Ceketinle kapat 😅', 'Kimse anlamaz 🤫', 'Akşam yeni etek alırız 💋']
+});
+Stories.ME_HUG_LINES.placeFinish.events.push('Desk Creampie', 'Glasses Facial', 'Skirt Cumshot');
+Stories.ME_HUG_LINES.campHug.events.push('On The Desk', 'Boss Chair Reverse', 'Late Night Overtime');
+Stories.ME_BED_SKIP.push('Desk Bent Over', 'On The Desk', 'Boss Chair Reverse', 'Window Press', 'Conference Table', 'Supply Closet', 'Desk Anal', 'Boss Chair Blowjob',
+  'Desk Licking', 'Stairwell Quickie', 'Desk Tease', 'Under Desk Footsie', 'Panties In Drawer', 'Elevator Glance', 'Late Night Overtime', 'Almost Caught', 'Performance Review',
+  'Desk Creampie', 'Glasses Facial', 'Skirt Cumshot');
+/* 🎓 School: CarmenSchool pozisyonları, olaylar, bitişler */
+Object.assign(Stories.ME_EV_LINES, {
+  'On The Podium': ['Kâğıtları yere ittin, kürsüye oturdun 📚', 'Bacakların açık {o} 😈', 'Amfi yankılanıyor 🤫', 'Yarın bu kürsüde ders anlatacaksın 😳', 'Ahh… sımsıkı tut 🥵', 'Not defterin düştü 😂'],
+  'Grading Desk': ['Sınav kâğıtlarının üstüne eğildin 📝', 'Kırmızı kalem hâlâ elinde {o} 🖍️', 'Kâğıtlar buruşuyor 😂', 'Masaya tutun ahh 🥵', 'Notumu yükselt 😈', 'Benim kâğıdım en üstte 😏'],
+  'Dean Chair Ride': ['Başkanın koltuğundayım, sen kucağımdasın 💺', 'Yüzün bana dönük {o} 😏', 'Deri gıcırdıyor 😂', 'Belini tutuyorum ahh 🥵', 'Başkan bilse 😳', 'Koltuk dönüyor, tut 😅'],
+  'Back Row Spooning': ['En arka sıradayız, yan yana 🪑', 'Nefesim ensende {o} 🥵', 'Sıra çok dar 😂', 'Kürsüden kimse görmez 🤫', 'Yavaş… çok yavaş 😏', 'Sarılıyorum sana 🤍'],
+  'Chalkboard Press': ['Seni kara tahtaya yasladım 🧑‍🏫', 'Formüllerin siliniyor {o} 😂', 'Sırtın tebeşir oldu 😈', 'Tahta soğuk, sen sıcaksın 🥵', 'Her yer toz 🙈', 'Bu ders çok öğretici 😏'],
+  'Library Stacks': ['Raflar arasındayız, bacağın rafta 📚', 'Kitaplar sallanıyor {o} 😳', 'Kütüphanede sessiz olunur 🤫', 'Ahh… tut kendini 🥵', 'Görevli gelirse 😱', 'Bu bölümü kimse okumaz 😏'],
+  'Under The Lectern': ['Kürsünün altına girdin 🎓', 'Ofis saatim sürüyor {o} 🤫', 'Yüzümü ciddi tutamıyorum 😳', 'Kapı çalarsa durma 😈', 'Elim saçında 🥵', 'Ofis saati uzasın 😏'],
+  'Lectern Blowjob': ['Kürsünün arkasında dizlerinin üstündesin 👩‍🏫', 'Gözlüğünün üstünden bakıyorsun {o} 😏', 'Saçını tutuyorum 🥵', 'Kapı açık ama… 😳', 'Bu dersin sınavı yok 😂', 'Aferin hocam 💋'],
+  'Oral Exam': ['Masadayım, sözlü sınav başladı 📝', 'İlk soru {o} 😏', 'Doğru cevap verdim, devam et 🥵', 'Yanlış dedim, durdun 😂', 'Sesim titriyor 😩', 'Tam puan 🔥'],
+  'Detention Anal': ['Masaya eğildin, cetvel elimde 📏', 'Ödevini yapmadın {o} 😈', 'Yavaşça… tutun 😳', 'Nefesin kesildi ahh 🥵', 'Bu ceza aramızda 🤫', 'Yarın derste oturamayacaksın 😂'],
+  'Ballet Barre': ['Bacağın barda, dengen bende 🩰', 'Aynada ikimiz {o} 😏', 'Esnekliğine bayıldım 🥵', 'Bar sallanıyor 😂', 'Ritmi tutuyorum 💃', 'Stüdyo bizim 🤍'],
+  'Studio Mirror': ['Aynanın önündeyiz, arkandayım 🪞', 'Kendini izle {o} 😏', 'Ayna buğulandı 🥵', 'Yüzün aynada çok güzel 😈', 'Müzik bitmesin 💃', 'Bir tekrar daha 🔥'],
+  'Glasses Off': ['Gözlüğünü çıkardın 👓', 'Topuzunu açtın {o} 💇‍♀️', 'Artık hocam değilsin 😈', 'Saçların omuzlarında 😍', 'Gözlüğü ben tutayım 😏', 'Ders bitti 🎓'],
+  'Red Pen Reward': ['Doğru cevap, bir tik ✅', 'Bluzunun bir düğmesi {o} 😏', 'Bir soru daha 🖍️', 'Çok çalıştım 🥵', 'Sadece eteğin kaldı 🙈', 'Tam puan, hepsi benim 🔥'],
+  'Dean Knocks': ['Kapı çalındı: bölüm başkanı! 😱', 'Ceketin ters {o} 🙈', 'Kâğıtları topla hızlı 😳', '"Ödev konuşuyorduk" 😅', 'Gitti… kalbim duracaktı 🥵', 'Bu sefer kilitliyorum 🔒'],
+  'Grade Appeal': ['Not itirazına geldim 📄', 'İkna etmemi istiyorsun {o} 😏', 'Bacak bacak üstüne attın 🦵', 'Sunumum zayıf mı? 🥵', 'Kapıyı kapatıyorum 🤫', 'Bu ofis saati uzun sürecek 😈'],
+  'Stretch Together': ['Arkamdan bastırıyorsun 🧘‍♀️', 'Bedenlerimiz yapışık {o} 🥵', 'Biraz daha eğiliyorum 😏', 'Nefes al… ver 😈', 'Isındım 🔥', 'Şimdi asıl ders 💃'],
+  'Exam Paper Cumshot': ['Kalçana ve sınav kâğıdına boşalıyorum ahhh 😩💦', 'Notum: A+ {o} 🖍️', 'Kâğıt ıslandı 😂', 'Kalçana aktı 🥵', 'Kimse anlamaz 🤫', 'Ödev kabul edildi 💋'],
+  'Professor Glasses': ['Gözlüğüne boşalıyorum ahhh 😩💦', 'Gözlüğün bulanık {o} 😂', 'Dudaklarında kaldı 😈', 'Mendili uzatıyorum 😅', '"Ders bitti" dedin 🎓', 'Çok güzel görünüyorsun 😏'],
+  'Podium Creampie': ['Kürsünün üstünde içine boşalıyorum… ahhh {o} 😩💦', 'Kürsüye tutunuyorsun hâlâ 🥵', 'Son damlasına kadar 😈', 'Eteğini ben indiriyorum 🤍', 'Yarın bu kürsüde ders var 😂', 'Mendil çekmecede 😅'],
+  'School Bell Finish': ['Zil çaldı, göğsüne boşalıyorum ahhh 😩💦', 'Koridor doluyor {o} 😳', 'Düğmelerin, hızlı 🙈', 'Tam zamanında 😂', 'Ceketini ver 😅', 'Sonraki ders yine burada 😏']
+});
+Stories.ME_HUG_LINES.placeFinish.events.push('Exam Paper Cumshot', 'Professor Glasses', 'Podium Creampie', 'School Bell Finish');
+Stories.ME_HUG_LINES.campHug.events.push('On The Podium', 'Dean Chair Ride', 'Back Row Spooning');
+Stories.ME_BED_SKIP.push('On The Podium', 'Grading Desk', 'Dean Chair Ride', 'Back Row Spooning', 'Chalkboard Press', 'Library Stacks', 'Under The Lectern', 'Lectern Blowjob',
+  'Oral Exam', 'Detention Anal', 'Ballet Barre', 'Studio Mirror', 'Glasses Off', 'Red Pen Reward', 'Dean Knocks', 'Grade Appeal', 'Stretch Together',
+  'Exam Paper Cumshot', 'Professor Glasses', 'Podium Creampie', 'School Bell Finish');
+/* ⛪ Church: kilise pozisyonları, ısınma, bitişler (c:mvchurch01x + Cumming) */
+Object.assign(Stories.ME_EV_LINES, {
+  'Pew Ride': ['Sıraya oturdum, cübbeni toplayıp kucağıma oturdun 🪑', 'Dua kitabın hâlâ elinde {o} 🙏', 'Sıra gıcırdıyor, kilise yankılanıyor 😳', 'Belini tutuyorum ahh 🥵', 'Cübben ikimizi örtüyor 🤫', 'Duanı unuttun 😈'],
+  'Kneeler Doggy': ['Rahleye diz çöktün, ön sıraya tutundun 🙏', 'Cübbeni beline topluyorum {o} 😈', 'Rahle her vuruşta gıcırdıyor 😳', 'Başörtün kaydı, saçını tutuyorum 🥵', 'Duan yarım kaldı 😏', 'Kimse dua etmeye gelmesin 🤫'],
+  'Altar Missionary': ['Seni sunağın beyaz örtüsüne yatırdım 🕯️', 'Bacakların omuzlarımda {o} 🥵', 'Mumlar titriyor 😳', 'Haç kolyen göğüslerinde zıplıyor 📿', 'Gözlerime bak, sunağın önünde 😈', 'Yeminin burada bozuluyor 🔥'],
+  'Confession Lap': ['Kabin dar, sırtın bana dönük kucağımdasın 🪟', 'Kafese tutunuyorsun {o} 🤫', 'Dışarıda ayin sürüyor 😳', 'Sesini avucumla kapatıyorum 😈', 'Ahşap gıcırdıyor 🥵', 'İtirafın bu mu? 😏'],
+  'Cell Cot': ['Dar demir yatağında arkandayım 🛏️', 'Yaylar gıcırdıyor {o} 😳', 'Duvarın ardında bir rahibe uyuyor 🤫', 'Ensene nefes veriyorum 🥵', 'Yavaşça, sabaha kadar 😈', 'Sana sımsıkı sarılıyorum 🤍'],
+  'Bathhouse Lift': ['Seni kaldırdım, bacakların belimde 💧', 'Islak cübben tenime yapıştı {o} 🥵', 'Taş duvara yaslıyorum seni 😈', 'Su ikimizden süzülüyor 💧', 'Kaymasın diye sıkı tutuyorum 😳', 'Buhar her şeyi saklıyor 🤫'],
+  'Orchard Tree': ['Seni elma ağacına yasladım 🍎', 'Bacağın belimde {o} 🥵', 'Dallar sallanıyor, elmalar düşüyor 😂', 'Bekçinin feneri uzakta 😱', 'Hızlı olmalıyız 🔔', 'Yasak meyveyi ısırıyorum 😈'],
+  'Bell Rope': ['Çan ipine tutundun, arkandayım 🔔', 'Her vuruşta çan hafifçe çalıyor {o} 😳', 'Bütün manastır duyacak 😱', 'İnlemelerin çan sesine karışıyor 😩', 'Rüzgâr esiyor, sen sıcaksın 🥵', 'Gece yarısı çanını biz çalıyoruz 😈'],
+  'Rosary Cowgirl': ['Üstümdesin, tespihin boynundan sarkıyor 📿', 'Her inişte bir tane sayıyorsun {o} 😈', 'Sayıyı şaşırdın, baştan 😏', 'Elli bir… elli iki… 🥵', 'Kalçalarını tutuyorum 😩', 'Sayı bitmeden durmak yok 🔥'],
+  'Penance Anal': ['Kendin istedin: en büyük günah 📿', 'Yüzüstü uzandın, tespihi ısırıyorsun {o} 😳', 'Yavaşça giriyorum 😈', 'Sesini bastırıyorsun 🤫', 'Ahh… sımsıkısın 🥵', 'Bu kefareti kimse bilmeyecek 🕯️'],
+  'Pew Bent Anal': ['Sıranın sırtına eğildin, cübben belinde 🪑', 'Çok yavaş, kilise yankı yapıyor {o} 🤫', 'İlahi kitapları yere düştü 😂', 'Ahh… sesin titriyor 🥵', 'Kalçanı tutuyorum 😈', 'Kapı açılırsa? 😱'],
+  'Confession Anal': ['Kabinde ayaktasın, kafese yaslandın 🪟', 'Fısıltıyla itirafına devam ediyorsun {o} 🤫', 'Arkandan yavaşça 😈', 'Sesin titriyor 😳', 'Kabin sallanıyor 🥵', 'Ayin bitmeden 🔔'],
+  'Altar Anal': ['Seni sunağa eğdim ⛪', 'Haç kolyen örtüde sallanıyor {o} 📿', 'Yavaş… burası kutsal 🕯️', 'Örtüye tutunuyorsun 🥵', 'Kubbe sesini geri yolluyor 😳', 'Manastırın en ağır günahı 😈'],
+  'Habit Anal': ['Cübben üstünde, sadece kaldırıyorum 👗', 'Altında hiçbir şey yok {o} 😈', 'Başörtün yerinde 😳', 'Siyah kumaş belinde toplandı 🥵', 'Yavaşça, evladım 😏', 'Cübbeyle günah 🔥'],
+  'Rosary Bead Tease': ['Tespih tanelerini tenin üstünde gezdiriyorum 📿', 'Her tane bir günah, sayıyorsun {o} 😏', 'Kalçalarının arasına iniyorum 😈', 'Titriyorsun 🥵', 'Bir tane daha 😳', 'Hazırsın galiba 🔥'],
+  'Holy Water Creampie': ['İçine boşalıyorum… ahhh {o} 💧💦', 'Karnını okşuyorsun, "kutsal olmayan bir su" 😈', 'Son damlasına kadar 😩', 'Yeminin tamamen bozuldu 🥵', 'Alnını öpüyorum 🤍', 'Kimse bilmeyecek 🤫'],
+  'Habit Cumshot': ['Siyah cübbene boşalıyorum ahhh 😩💦', 'Bembeyaz izler apaçık {o} 😳', 'Bu cübbeyle duaya çıkamazsın 😂', 'Kumaşa işledi 🥵', 'Yedek cübben hücrede 😅', 'Günahın cübbende yazıyor 😈'],
+  'Veil Facial': ['Yüzüne ve başörtüne boşalıyorum ahhh 😩💦', 'Gözlerini kapatıp istavroz çıkarıyorsun {o} 🙏', 'Dudaklarında kaldı 😈', 'Beyaz başörtü, beyaz damlalar 😳', 'Mendili uzatıyorum 😅', 'Masum yüzün artık masum değil 🥵'],
+  'Altar Cloth Finish': ['Son anda çıkıp sunak örtüsüne boşalıyorum ahhh 😩💦', '"Sunak örtüsüne mi?!" {o} 😱', 'Sabaha kadar yıkaman lazım 😂', 'En büyük günah bu oldu 😈', 'Lekeyi mumla kapatırız 🕯️', 'Kimse anlamasın 🤫'],
+  'Penance Anal Creampie': ['Arkandan içine boşalıyorum… ahhh {o} 📿💦', '"Bu günahı kimse duymayacak" diye fısıldıyorsun 🤫', 'Tespihi bıraktın sonunda 😩', 'Son damlasına kadar 🥵', 'Kalkınca dikkat et 😳', 'Kefaretin tamam 😈'],
+  'Bell Toll Finish': ['Çan çalarken göğsüne boşalıyorum ahhh 🔔💦', 'İnlemelerimiz çan sesinde kayboluyor {o} 😩', 'On iki vuruş, tam zamanında 😂', 'Göğüslerin sıcacık 🥵', 'Cübbeni kapatıyorum 😳', 'Her gece yarısı burada 😈']
+});
+Stories.ME_HUG_LINES.placeFinish.events.push('Habit Cumshot', 'Veil Facial', 'Altar Cloth Finish', 'Bell Toll Finish');
+Stories.ME_BED_SKIP.push('Pew Ride', 'Kneeler Doggy', 'Altar Missionary', 'Confession Lap', 'Bathhouse Lift', 'Orchard Tree', 'Bell Rope', 'Pew Bent Anal', 'Confession Anal', 'Altar Anal',
+  'Habit Cumshot', 'Veil Facial', 'Altar Cloth Finish', 'Bell Toll Finish');
 Stories.ME_HUG_LINES.placeFinish.events.push('Beach Cumshot', 'Office Cumshot', 'Hotel Creampie');
 Stories.ME_HUG_LINES.campHug.events.push('Sunscreen Rub', 'Beach Towel Sex', 'Wave Sex', 'Office Chair Ride', 'Room Service', 'Balcony Sex', 'Hotel Mirror');
 Stories.ME_BED_SKIP.push('Sunscreen Rub', 'Beach Towel Sex', 'Wave Sex', 'Beach Cumshot',
