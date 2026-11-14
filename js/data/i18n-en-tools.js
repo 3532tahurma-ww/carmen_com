@@ -34,4 +34,8 @@ Stories.I18n.add({
   '{} kayıt editördekilerle aynı kimlikte (birleştirince güncellenir)': '{} records share IDs with the editor (updated on merge)', 'değiştirildi': 'replaced', 'birleştirildi': 'merged', "{} · Kaydet'e bas": '{} · press Save', 'değişiklik yok': 'no changes', 'sunucu kapalı mı?': 'is the server off?'
   'Türkçe kurallar': 'Turkish rules', 'İngilizce kurallar': 'English rules', 'Sadece eksikler': 'Missing only', 'İngilizce cevaplar': 'English answers', '{}/{} çevrili': '{}/{} translated',
   'aynı cümle her kuralda ortaktır': 'a sentence is shared by every rule that uses it', 'aynen kalsın': 'must stay as they are', 'Çeviri yok': 'No translation', 'Bu satır çevrilemez': 'This line cannot be translated', 'Çevrilecek cevap yok': 'Nothing to translate',
+  'Üret': 'Generate', 'Kapsam': 'Scope', 'Pozisyonlar': 'Positions', 'Sorular': 'Questions', 'Nasıl çalışır?': 'How does it work?', 'Kural yok': 'No rules',
+  'Soldan bir kural seç.': 'Pick a rule on the left.', 'Kuralı aç': 'Open rule', 'Kaç tane': 'How many', 'Tümünü seç / bırak': 'Select / clear all', 'Seçilenleri kurala ekle': 'Add selected to the rule',
+  'Yeni cevap çıkmadı. Yöntemleri değiştir ya da tekrar 🎲 Üret.': 'No new answers. Change the methods or 🎲 Generate again.', 'Mevcut cevaplar': 'Existing answers',
+  'Cümle karıştır': 'Mix sentences', 'Baloncuk karıştır': 'Mix bubbles', 'Eş anlamlı': 'Synonyms', 'Emoji değiştir': 'Swap emoji',
 });

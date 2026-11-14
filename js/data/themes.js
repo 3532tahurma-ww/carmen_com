@@ -88,6 +88,7 @@ Stories.Themes = {
     fxrppizza: ['sunset', 'retro'], fxrpressam: ['carmen-acik', 'paper'], fxrpdans: ['ucan-kalpler', 'neon'], fxrpfizyo: ['pastel-nane', 'pastel-nane'],
     fxrptaksi: ['night', 'gece-neonu'], fxrpmelek: ['pastel-bulut', 'cloud'], fxrpkaptan: ['ocean', 'glass'], fxrpkral: ['kalp-kolye', 'gold'],
     fxrprobot: ['galaksi', 'terminal'], fxrpelf: ['forest', 'pastel-nane'], fxrphostes: ['pastel-mavi', 'insta'], fxrprahibe: ['dark', 'paper'], fxrpbasrahibe: ['night', 'paper'],
+    fxrptrainer: ['pastel-nane', 'neon'], fxrpbarmen: ['night', 'gece-neonu'],
     // ✨ Genshin
     fxrpyelan: ['ocean', 'glass'], fxrpclorinde: ['night', 'gece-neonu'], fxrpmavuika: ['sunset', 'altin-isilti'], fxrpxianyun: ['pastel-bulut', 'pastel-nane'],
     // 🎰 CarmenGasino

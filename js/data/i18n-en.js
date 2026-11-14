@@ -5,7 +5,7 @@
  */
 Stories.I18n.add({
   // ---------- alt menü, açılış ----------
-  'Ana sayfa': 'Home', 'Mesaj': 'Messages', 'Ben': 'Me', 'kendi hikayeni yaz': 'write your own story',
+  'Ana sayfa': 'Home', 'Mesaj': 'Messages', 'Ben': 'Me', 'kendi hikayeni yaz': 'write your own story', 'Yükleniyor…': 'Loading…',
   'Ayarlar': 'Settings', 'Profil': 'Profile', 'Veri': 'Data', 'Ses': 'Sound', 'Sohbet': 'Chat', 'Sohbetler': 'Chats',
   'Kaydet': 'Save', 'Vazgeç': 'Cancel', 'Sil': 'Delete', 'Ekle': 'Add', 'Düzenle': 'Edit', 'Kapat': 'Close', 'Tamam': 'OK', 'Evet': 'Yes', 'Hayır': 'No',
   'Geri': 'Back', 'İleri': 'Next', 'Seç': 'Select', 'Yenile': 'Refresh', 'Tekrar dene': 'Try again', 'Yenileniyor…': 'Refreshing…', 'Temizle': 'Clear', 'Uygula': 'Apply',

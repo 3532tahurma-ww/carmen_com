@@ -400,6 +400,11 @@
       void view.offsetWidth;
       view.classList.add('page-in');
     }
+    // ✨ bir siteye girip çıkarken (veya siteler arası geçişte) Carmen yükleme ekranı
+    if (!ui.siteSet) ui.siteSet = new Set(['booble', 'halloween', ...netSites().map(s => s.href.split('/')[1])]);
+    const site = ui.siteSet.has(r.name) ? r.name : '';
+    if (ui.lastSite !== undefined && site !== ui.lastSite) splashWhile(new Promise(res => setTimeout(res, 900)));
+    ui.lastSite = site;
 
     if ((r.name === 'p' && !c) || (r.name === 'chat' && !(t && (t.group || c)))) { location.hash = '#/home'; return; }
     // kayıtlı karakterin düzenleme taslağı sayfadan çıkınca bırakılır; yeniden açınca güncel hâli gelir (sohbette değişen Hamile vb.)
@@ -426,6 +431,7 @@
       case 'internet': return renderBooble();
       case 'haberler': return renderNews();
       case 'olaylar': return renderEvGuide();
+      case 'events': return renderEvents(r.id);
       case 'guide': return renderGuide();
       case 'mesajlarim': return renderMeLines();
       case 'halloween': return renderHalloween();
@@ -437,6 +443,7 @@
       case 'impact': return renderImpact();
       case 'gasino': return renderGasino();
       case 'kilise': return renderChurch(r.id);
+      case 'ciftlik': return renderFarm(r.id);
       case 'amor': return renderAmor();
       case 'itiraf': return renderConfess();
       case 'creative': return renderCreative();
@@ -505,6 +512,16 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['🏖️', 'Havuz ve Plaj gelişiyor', '27 yeni olay: 🏖️ Pool kategorisinde 10 pozisyon ve 3 bitiş, 🏝️ Beach kategorisinde 11 pozisyon ve 3 bitiş. Hepsi kitaplıktaki yeni 🏖️ Yaz Kitabı\'nda ve 🎓 CarmenEvents derslerinde.', '#/kitap/yaz', [
+      ['🏖️ Havuz', 'Merdiven, duvar, jakuzi, şişme yatak, kabana, basamaklar ve cankurtaran kulesi; su altında oral ve kenarda Edge Facesitting. Night Swim Sex kapanıştan sonra gizlice. Bitişler: Jacuzzi Creampie, Underwater Creampie, Poolside Facial.'],
+      ['🏝️ Plaj', 'Kum tepesi, şezlong, gün batımı, soyunma kabini, kayalık koy, sığ su, çıplak plaj, kamp ateşi, plaj duşu ve tekne güvertesi; bir de Sand 69. Bitişler: Cove Creampie, Sunset Creampie, Sand Cumshot.'],
+      ['🌹 İlanlar', 'Carmen.com ilanlarında her 3 kızdan biri yeni Havuz ya da Plaj olaylarından 2\'sini ❤️ sever.']]],
+    ['🌃', 'Gym, Bar ve Cinema geldi', '43 yeni olay ve 2 yeni rol: 🏋️ Gym (yeni Spor salonu mekânı), 🍸 Bar ve 🎬 Cinema kategorilerinde pozisyonlar, ısınmalar ve bitişler. Yeni roller 🏋️ Personal Trainer – Üye ve 🍸 Barmen – Son Müşteri. 💼 CarmenJobs\'ta 🏋️ Spor Salonu İlanları açıldı.', '#/kitap/gece', [
+      ['🏋️ Gym', 'Bench, squat kafesi, yoga matı, barfiks, aynalı duvar, soyunma odası: 10 pozisyon, 3 ısınma (Stretch Help, Spotting, Sweaty Top Peel) ve 3 bitiş. CarmenJobs → Spor Salonu İlanları\'nda "Kapanışta buluş" sohbeti salonda 22:30\'da başlatır.'],
+      ['🍸 Bar · 🎬 Cinema', 'Tuvalet kabini, bar tezgâhı, VIP locası, bilardo masası; arka sıra, makine dairesi, mont altı, mısır kovası. Her birinin kendi bitişleri var.'],
+      ['👀 Yakalanma riski', 'Cinema, Bar ve Church olayları gerilimi yükseltir. 70\'te ve 100\'de 📱 o mekâna özel bir kesinti gelir: görevlinin feneri, kabin kapısı, çan sesi…'],
+      ['📳 Vibratör kademesi', 'Vibrator Control ve Remote Toy her yazılışta titreşimi bir kademe artırır (1–5). 5\'te orgazm gelir; Edging sayacı doluysa yine tutulur.']]],
+    ['🚜', 'CarmenFarm açıldı', 'Hayvan fantezisi ilanları geldi: 🐱 kedi, 🐮 inek, 🐰 tavşan, 🦊 tilki, 🐶 köpek, 🦄 unicorn, 🐺 kurt ve 🐑 koyun kızlar. Her ilanın kendi hayvanı, sahnesi ve çiftlik kuralları var; kulak, kuyruk, çan ve tasma kostümdür, gerçek hayvan yok.', '#/ciftlik'],
     ['⛪', 'Kilise pozisyonları', 'Rahibe fantezisine 21 yeni olay: ⛪ Church kategorisinde 9 vajinal ve 5 anal pozisyon (Pew Ride, Kneeler Doggy, Altar Missionary, Confession Lap, Penance Anal, Habit Anal…), 📿 Rosary Bead Tease ısınması ve 6 kilise bitişi (Holy Water Creampie, Habit Cumshot, Veil Facial…). Yeni ⛪ Kilise mekânında olay seçicinin 📍 Mekân sekmesinde ve ⚡ Kısayollar\'da çıkar. Bir de 🚽 Tuvalet mekânı geldi: Pee olayları artık tuvalette ve banyoda önerilir.', '#/kitap/kilise'],
     ['⛪', 'CarmenChurch açıldı', 'Manastırın ilan sitesi geldi: 🕯️ rahibeler ve ⛪ başrahibeler. Rahibe fantezisi artık bir olay ailesi: 🙏 Dua Sırası, 📿 Tespih Bağı, 💧 Kutsal Su Banyosu, 🍎 Bahçede Yasak Meyve, 🪟 İtiraf Kabini, ⛪ Sunak Önünde ve kıyafet olayı 👗 Cübbe Altı. Yeni rol: ⛪ Başrahibe – Bahçıvan.', '#/kilise', [
       ['🕯️ Rahibeler', 'Her ilanın bir günahı var; dokununca sohbet o sahneyle (saat + mekan), cübbesiyle ve onun ilk sözüyle başlar. 🔔 Çanı çal, rastgele biri gelsin.'],
@@ -1185,15 +1202,26 @@
       'Desk Tease', 'Under Desk Footsie', 'Panties In Drawer', 'Elevator Glance', 'Late Night Overtime', 'Almost Caught', 'Performance Review'],
     // 7. dalga (x.newEv7): 🎓 School
     okul: ['On The Podium', 'Grading Desk', 'Dean Chair Ride', 'Back Row Spooning', 'Chalkboard Press', 'Library Stacks', 'Under The Lectern', 'Lectern Blowjob', 'Oral Exam', 'Detention Anal',
-      'Ballet Barre', 'Studio Mirror', 'Glasses Off', 'Red Pen Reward', 'Dean Knocks', 'Grade Appeal', 'Stretch Together']
+      'Ballet Barre', 'Studio Mirror', 'Glasses Off', 'Red Pen Reward', 'Dean Knocks', 'Grade Appeal', 'Stretch Together'],
+    // 8. dalga (x.newEv8): 🌃 Gym / Bar / Cinema
+    gym: ['Bench Press Ride', 'Squat Rack Doggy', 'Yoga Mat Spoon', 'Leg Press Missionary', 'Pull-Up Bar Lift', 'Mirror Wall Standing', 'Locker Room Bench', 'Gym Ball Bounce', 'Squat Rack Anal',
+      'Locker Room Blowjob', 'Stretch Help', 'Spotting', 'Sweaty Top Peel'],
+    bar: ['Bathroom Stall', 'Bar Counter', 'VIP Booth', 'Pool Table', 'Back Alley Wall', 'Bar Stool Ride', 'Stall Anal', 'Stall Blowjob', 'Dance Floor Grind', 'Salt & Lime Lick', 'Under The Table'],
+    sinema: ['Back Row Lap Ride', 'Reverse Seat Ride', 'Aisle Stairs', 'Projection Booth Doggy', 'Empty Theater Missionary', 'Projection Booth Anal', 'Back Row Blowjob', 'Under The Coat',
+      'Popcorn Bucket Trick', 'Dark Scene Touch'],
+    // 9. dalga (x.newEv9): 🏖️ Havuz / 🏝️ Plaj gelişiyor
+    havuz2: ['Pool Ladder Doggy', 'Wall Pin', 'Jacuzzi Cowgirl', 'Underwater Oral', 'Edge Facesitting', 'Float Missionary', 'Night Swim Sex', 'Cabana Reverse', 'Pool Stairs Spoon', 'Lifeguard Chair'],
+    plaj2: ['Sand Dune Doggy', 'Sunbed Cowgirl', 'Sunset Missionary', 'Beach Hut Standing', 'Rock Cove Lift', 'Shallow Water Doggy', 'Nude Beach Sex', 'Bonfire Spoon', 'Sand 69', 'Beach Shower Sex', 'Boat Deck Sex']
   };
-  const CM_NEW_ODDS = { kondom: 2, dus: 2, sauna: 3, iseme: 5, kuvet: 3, havuz: 4, araba: 4, asansor: 5, kamp: 4, mutfak: 4, kamera: 5, poz2: 2, bdsm2: 5, plaj: 4, ofis: 4, otel: 4, bdsm3: 4, bdsm4: 4, ofis2: 3, okul: 3 };   // 1/n ilan
+  const CM_NEW_ODDS = { kondom: 2, dus: 2, sauna: 3, iseme: 5, kuvet: 3, havuz: 4, araba: 4, asansor: 5, kamp: 4, mutfak: 4, kamera: 5, poz2: 2, bdsm2: 5, plaj: 4, ofis: 4, otel: 4, bdsm3: 4, bdsm4: 4, ofis2: 3, okul: 3, gym: 3, bar: 3, sinema: 4, havuz2: 3, plaj2: 3 };   // 1/n ilan
   const CM_NEW_V2 = ['kuvet', 'havuz', 'araba', 'asansor', 'kamp', 'mutfak', 'kamera'];
   const CM_NEW_V3 = ['poz2', 'bdsm2', 'plaj', 'ofis', 'otel'];
   const CM_NEW_V4 = ['bdsm3'];
   const CM_NEW_V5 = ['bdsm4'];
   const CM_NEW_V6 = ['ofis2'];
   const CM_NEW_V7 = ['okul'];
+  const CM_NEW_V8 = ['gym', 'bar', 'sinema'];
+  const CM_NEW_V9 = ['havuz2', 'plaj2'];
   const cmNewEvs = (k, x) => {
     const low = s => String(s || '').toLocaleLowerCase('tr').trim(), no = new Set([...(x.dislikes || []), ...(x.denies || [])]);
     return [].concat(CM_NEW_EV[k] || k).map(t => allEvents().find(e => low(e.title) === low(t))).filter(e => e && !no.has(e.id));
@@ -1210,7 +1238,7 @@
   function cmNewEv(x) {
     cmHwFix(x);
     const add = k => { if (!cmNum(x, 'nw' + k, CM_NEW_ODDS[k])) x.likes = [...new Set([...(x.likes || []), ...cmPicks(x, 'nwp' + k, cmNewEvs(k, x).map(e => e.id), 2)])]; };
-    if (!x.newEv1) { x.newEv1 = 1; Object.keys(CM_NEW_EV).filter(k => !CM_NEW_V2.includes(k) && !CM_NEW_V3.includes(k) && !CM_NEW_V4.includes(k) && !CM_NEW_V5.includes(k) && !CM_NEW_V6.includes(k) && !CM_NEW_V7.includes(k)).forEach(add); }
+    if (!x.newEv1) { x.newEv1 = 1; Object.keys(CM_NEW_EV).filter(k => !CM_NEW_V2.includes(k) && !CM_NEW_V3.includes(k) && !CM_NEW_V4.includes(k) && !CM_NEW_V5.includes(k) && !CM_NEW_V6.includes(k) && !CM_NEW_V7.includes(k) && !CM_NEW_V8.includes(k) && !CM_NEW_V9.includes(k)).forEach(add); }
     // 🏖️ mekânlar sonradan geldi: kayıtlı ilanlar da bir kez alır
     if (!x.newEv2) { x.newEv2 = 1; CM_NEW_V2.forEach(add); }
     if (!x.newEv3) { x.newEv3 = 1; CM_NEW_V3.forEach(add); }
@@ -1218,6 +1246,8 @@
     if (!x.newEv5) { x.newEv5 = 1; CM_NEW_V5.forEach(add); }
     if (!x.newEv6) { x.newEv6 = 1; CM_NEW_V6.forEach(add); }
     if (!x.newEv7) { x.newEv7 = 1; CM_NEW_V7.forEach(add); }
+    if (!x.newEv8) { x.newEv8 = 1; CM_NEW_V8.forEach(add); }
+    if (!x.newEv9) { x.newEv9 = 1; CM_NEW_V9.forEach(add); }
     return x;
   }
   function cmFix(x) {
@@ -2807,11 +2837,13 @@
       { k: 'impact', href: '#/impact', ic: '✨', logo: 'Carmen<i>Impact</i>', url: 'carmenimpact.com', desc: 'Genshin kadınları: 🎲 Yelan, ⚔️ Clorinde, 🔥 Mavuika, ☁️ Xianyun. Her birinin iki olayı var; dokun, sohbet doğrudan onun sahnesiyle ve kendi ağzıyla başlar. 🌠 Dilek tut, rastgele biri gelsin.', chips: ['✨ 4 karakter', '🌠 dilek'] },
       { k: 'gasino', href: '#/gasino', ic: '🎰', logo: 'Carmen<i>Gasino</i>', url: 'carmengasino.com', desc: 'Gazinonun Bunny Girl\'leri: rulet, blackjack, kokteyl servisi, jackpot süiti, kulis ve strip poker. Bir masaya otur, sohbet o sahneyle, tavşan kostümüyle ve onun ağzıyla başlar. 🎰 Jackpot çevir, rastgele biri gelsin.', chips: ['🐰 6 masa', '🎰 jackpot'] },
       { k: 'church', href: '#/kilise', ic: '⛪', logo: 'Carmen<i>Church</i>', url: 'carmenchurch.com', desc: 'Manastırın ilanları: rahibeler ve başrahibeler. Dua sırası, tespih bağı, kutsal su banyosu, bahçede yasak meyve, itiraf kabini, sunak önü… Birine dokun, sohbet o sahneyle ve cübbesiyle başlar.', chips: [`🕯️ ${cmAll().length} ilan`, '🔔 gece yarısı'] },
+      { k: 'farm', href: '#/ciftlik', ic: '🚜', logo: 'Carmen<i>Farm</i>', url: 'carmenfarm.com', desc: 'Hayvan fantezisi ilanları: kedi, inek, tavşan, tilki, köpek, unicorn, kurt ve koyun kızlar. Kulak, kuyruk, çan, tasma; hepsi kostüm ve rol. Birine dokun, sohbet onun sahnesiyle başlar.', chips: [`🐾 ${cmAll().length} ilan`, `🚜 ${Object.keys(FM_T).length} hayvan`] },
       { k: 'amor', href: '#/amor', ic: '💝', logo: 'Carmen<i>Amor</i>', url: 'carmenamor.com', desc: 'Kızlar sana flört ediyor: biriyle sohbet aç, sohbette hediye gönder, kalbini kazan. Gülden pırlanta kolyeye, şiir kitabından Paris seyahatine.', chips: [`💗 ${Object.keys(amData().love).length} kalp`, `🎁 ${AM_GIFTS.length} hediye`] },
       { k: 'clinic', href: '#/klinik', ic: '🩺', logo: 'Carmen<i>Klinik</i>', url: 'carmenklinik.com', desc: 'Rahatsızsan doktora git: şikayetini seç, muayene ve tedavi sohbette. Ayrıca döngü takvimi, hamilelik haftası, ultrason notları.', chips: [`👩‍⚕️ ${klAll().length} doktor`, `🤰 ${chars().filter(c => pregWeek(c)).length} hamile`] },
       { k: 'conf', href: '#/itiraf', ic: '🎭', logo: 'Confess<i>ly</i>', url: 'confessly.com', desc: 'İsimsiz aldatma itirafları: kocası maç izlerken üst katta, düğünden önceki gece, balayında spa\'da… Kadın da erkek de yazar.', chips: [`${CF_POOL.length} itiraf`, '🔥😂😳'] },
       { k: 'cr', href: '#/creative', ic: '✨', logo: 'Carmen<i>Creative</i>', url: 'carmencreative.com', desc: 'Yeni pozisyon ve olay üret: her olayın mekan, tempo, rol, açı… türevleri, yepyeni fikirler ve 🎲 fikir makinesi. Beğendiğini Monia\'ya ekle.', chips: [`${CR_IDEAS.length} yeni fikir`, `🔬 ${CR_LENS.length + 1} mercek`] },
       { k: 'ch', href: '#/choise', ic: '👑', logo: 'Carmen<i>Choise</i>', url: 'carmenchoise.com', desc: '4, 8, 16 ya da 32 kız: her turda ikisi seni ikna etmeye çalışır, teklifler yağdırır. Birini tercih et, onayla; diğeri elenir. Kazananla sohbet başlar.', chips: [`👥 ${cmAll().length} aday`, ui.ch ? (ui.ch.champ ? '🏆 şampiyon belli' : `🏆 ${chRoundName(ui.ch.q.length + 2 * ui.ch.win.length)}`) : '⚔️ eleme turnuvası'] },
+      { k: 'events', href: '#/events', ic: '🎓', logo: 'Carmen<i>Events</i>', url: 'carmenevents.com', desc: 'Olaylar okulu: bütün olaylar kategorilere göre ders ders anlatılır. Her kategorinin bir hocası var; ne olduğunu, nasıl tetiklendiğini ve sonunda ne olduğunu öğretir, istersen pratiği onunla yaparsın.', chips: [`📚 ${allEvents().length} olay`, `👩‍🏫 ${Math.min(EVN_N, cmAll().length)} hoca`] },
       { k: 'guide', href: '#/guide', ic: '🧭', logo: 'Carmen<i>Guide</i>', url: 'carmenguide.com', desc: 'Yardım sitesi: kitaplık, olay rehberi, bot deneyi ve benim mesajlarım. Bir şey nasıl yapılır, buradan bak.', chips: [`📚 ${BOOKS.length} kitap`, '🧪 bot deneyi'] },
       { k: 'play', href: '#/oyun', ic: '🎮', logo: 'Carmen<i>Play</i>', url: 'carmenplay.com', desc: 'Adult Game: 🗂️ Problematic Subjects (ofiste ricaları karşıla, zevk puanı topla) ve 🔥 Fiery Passions (erkeksiz köyde sandbox görsel roman).', chips: [`🗂️ Bölüm ${psData().level}`, `🔥 Gün ${fpData().day}`] }
     ];
@@ -2832,7 +2864,10 @@
     kondom: ['Kondomun takılı, içeri girmeden bile bitiririm seni 🎈', 'Lastikli sürtünmede benden iyisi yok 😈'],
     dus: ['Beni seç, duşta seni baştan aşağı köpükleyeyim 🧼', 'Seni duşta duvara yaslatırım, ona bakma 🚿', 'Köpüklü tenim ellerinden kayacak, söz 🧼'],
     sauna: ['Saunaya gel, havlumu senin için açayım 🧖‍♀️', 'Önce terleriz, sonra soğuk havuza atlarız ❄️', 'Tahta sekide unutamayacağın şeyler yaparım ♨️'],
-    iseme: ['Benim ıslak fantezilerim var, onun yok 😳', 'Başkasına söylemediğim bir şeyi sana yaparım 💦']
+    iseme: ['Benim ıslak fantezilerim var, onun yok 😳', 'Başkasına söylemediğim bir şeyi sana yaparım 💦'],
+    gym: ['Beni seç, kapanıştan sonra salon ikimize kalsın 🏋️', 'Spot ol bana, gerisini soyunma odasında konuşuruz 😏'],
+    bar: ['Benimle bara gel, tuvalet kabininin kilidi sağlam 🍸', 'Masanın altından elimi hissedeceksin, yüzüm hiç bozulmayacak 😈'],
+    sinema: ['Arka sıra benim, mont da 🎬', 'Filmin sonunu hiç hatırlamayacaksın, söz 🍿']
   };
   // 💍 Hotwife ilanlar: "kocam da izliyor" sözleri ve teklifleri
   const CH_PITCH_HW = ['Kocam da izliyor, ona bakma 💍', 'Kocam izin verdi, seni bekliyorum 😈', 'Beni seç, kocama anlatacak bir şeyim olsun 🐂'];
@@ -3216,7 +3251,9 @@
     ['fxrphostes', '✈️', 'Hostes – Yolcu', 'Hostes', 'Bir isteğiniz var mı efendim? Işıklar söndü…', 'salon', 'Birinci sınıf kabin', 'Gece uçuşu, kabin ışıkları kısık; o kırmızı üniformasıyla koltuğunun yanına eğilmiş', 'cm', 'Gece uçuşlarının hostesiyim; ışıklar sönünce birinci sınıfta özel servis veririm.'],
     ['fxrprahibe', '🕯️', 'Rahibe – Günahkâr', 'Rahibe', 'Gece yarısı kapımı çalan sen misin, günahkâr?', 'kilise', 'Manastır hücresi', 'Taş duvarlı bir hücre, tek bir mum; o cübbesiyle dar yatağın kenarında dua ediyor', 'cm gt', 'Masum bir rahibe gibi görünürüm; günahlarını itiraf etmeye gel, kefaretini ben veririm.'],
     ['fxrpbasrahibe', '⛪', 'Başrahibe – Bahçıvan', 'Başrahibe', 'Bahçıvan… odama çağrıldığını duydun. Kapıyı kilitle.', 'kilise', 'Başrahibenin odası', 'Meşe masa, duvarda anahtar destesi, tek bir şamdan; o cetveliyle masasının arkasında seni bekliyor', 'cm gt', 'Manastırın başrahibesiyim: kurallarım serttir, cetvelim elimden düşmez. Yeni bahçıvanım ol, kuralları sana tek tek öğreteyim.'],
-    ['fxrptaksi', '🚕', 'Taksi Şoförü – Gece Yolcusu', 'Taksi şoförü', 'Atla bakalım… bu gece nereye gidiyoruz?', 'araba', 'Gece taksisi', 'Boş bir sahil yolu, taksimetre çalışıyor; o dikiz aynasından sana bakıp gülümsüyor', 'cm', 'Gece taksisinin şoförüyüm; taksimetre çalışırken arka koltuk senin.']
+    ['fxrptaksi', '🚕', 'Taksi Şoförü – Gece Yolcusu', 'Taksi şoförü', 'Atla bakalım… bu gece nereye gidiyoruz?', 'araba', 'Gece taksisi', 'Boş bir sahil yolu, taksimetre çalışıyor; o dikiz aynasından sana bakıp gülümsüyor', 'cm', 'Gece taksisinin şoförüyüm; taksimetre çalışırken arka koltuk senin.'],
+    ['fxrptrainer', '🏋️', 'Personal Trainer – Üye', 'Personal trainer', 'Geç kaldın! Isınma yok, direkt bench\'e 📣', 'spor', 'Ağırlık alanı', 'Salon kapanmak üzere, ışıklar yarı sönük; o düdüğü boynunda bench\'in yanında seni bekliyor', 'cm', 'Spor salonunda personal trainer\'ım; son dersim hep uzar, soyunma odasında biter.'],
+    ['fxrpbarmen', '🍸', 'Barmen – Son Müşteri', 'Barmen', 'Kapanış saati geçti… ama sen gitme, son kokteyl benden 🍸', 'bar', 'Kapanmış bar', 'Kepenk yarıya inik, sandalyeler masalarda; o shaker\'ı elinde tezgâhın arkasında seni bekliyor', 'cm', 'Gece barının barmeniyim; son müşteri olursan kepengi indiririm, hesabı tezgâhın arkasında konuşuruz.']
   ];
   const rpRole = k => RP_ROLES.find(r => r[0] === k) || null;
   const fantEvByKey = k => { const r = rpRole(k), h = HW_ROLES.find(x => x[0] === k), t = (r || h || [])[2]; return (t && evFind(t)) || allEvents().find(e => isFant(e) && fantKey(e) === k) || null; };
@@ -3923,6 +3960,12 @@
       { k: 'fotokopi', ic: '🖨️', n: 'Fotokopi odası', hint: 'Makine ısınıyor, raflarda kâğıt kolileri; kapının kilidi yok.', fx: ['Ofis – Kişisel Asistan'], ev: ['mvof03copy', 'mvof10closet', 'mvof20caught'] },
       { k: 'asansor', ic: '🛗', n: 'Asansör ve yangın merdiveni', hint: 'Aynalı kabin, beton basamaklar; kamera var mı, emin değilsin.', fx: ['Patron – Sekreter'], ev: ['mvof18lift', 'mvof14stairs', 'mvof20caught'] },
       { k: 'gece', ic: '🌙', n: 'Boş kat, gece mesaisi', hint: 'Işıklar tek tek söndü; sadece sunucuların uğultusu kaldı.', fx: ['Ofis – Muhasebeci', 'Ofis – Patroniçe'], ev: ['mvof19late', 'mvof04cum', 'mvof22cream', 'mvof23glasses'] }
+    ],
+    spor: [
+      { k: 'agirlik', ic: '🏋️', n: 'Ağırlık alanı', hint: 'Bench\'ler boş, kafeslerde barlar asılı; kapanışa yarım saat var.', fx: ['Personal Trainer – Üye'], ev: ['mvgy01bench', 'mvgy02squat', 'mvgy09squatanal', 'mvgy12spot', 'mvgy16cream'] },
+      { k: 'yoga', ic: '🧘‍♀️', n: 'Yoga stüdyosu', hint: 'Loş ışık, serili matlar, köşede pilates topları.', fx: ['Personal Trainer – Üye'], ev: ['mvgy03yoga', 'mvgy08ball', 'mvgy11stretch', 'mvgy14pants'] },
+      { k: 'ayna', ic: '🪞', n: 'Aynalı salon', hint: 'Duvar boyu aynalar, barfiks barı, leg press makinesi.', fx: ['Personal Trainer – Üye'], ev: ['mvgy06mirror', 'mvgy05pullup', 'mvgy04legpress', 'mvgy13peel'] },
+      { k: 'soyunma', ic: '🚿', n: 'Soyunma odası', hint: 'Duşlar damlıyor, tahta banklar ıslak, dolapların ardı görünmüyor.', fx: ['Personal Trainer – Üye'], ev: ['mvgy07locker', 'mvgy10lockerbj', 'mvgy15facial', 'mvgy13peel'] }
     ]
   };
   const spotOf = sc => (sc && (SITE_SPOTS[sc.place] || []).find(s => s.n === sc.name)) || null;
@@ -4032,10 +4075,88 @@
       location.hash = `#/chat/${t.id}`;
     };
   }
+  /* 🏋️ Spor Salonu İlanları (#/is/spor, #/is/sp-<id>): Ofis İlanları kalıbında; rol mesleğe uyarsa ondan, yoksa id'den.
+   * "Kapanışta buluş" → spor salonunda 22:30 sohbeti, antrenör kıyafeti, Personal Trainer fantezisi (üye rolünde yok), Gym olayları ⚡ kısayola */
+  const GY_CAT = 'c:mvgym01x';
+  const GY_ROLES = [
+    { k: 'pt', re: /antrenör|antrenor|fitness|personal|koç|spor/, ic: '🏋️', n: 'Personal trainer', ev: 'Personal Trainer – Üye', wear: 'trainerkost',
+      pitch: ['{gy}\'de personal trainer\'ım 🏋️ Son dersim hep uzar; kapanıştan sonra salon ikimize kalır.', 'Formunu düzeltirim, kondisyonunu ölçerim. Asıl antrenman soyunma odasında başlar 😏'],
+      greet: ['Geç kaldın! Isınma yok, direkt bench\'e 📣', 'Salon boşaldı 🏋️ bugünkü programın bende 😈'],
+      rules: [['📣', 'Program benim.', 'Hangi set, kaç tekrar, ben söylerim.'], ['⏱️', 'Mola yok.', 'Ben "bitti" demeden bitmez.'], ['🪞', 'Aynaya bak.', 'Formunu aynada izlersin; beni değil.'], ['💦', 'Ter serbest.', 'Havluyu ben veririm, ne zaman olduğuna ben karar veririm.'], ['🚿', 'Soğuma şart.', 'Antrenman soyunma odasında biter.']] },
+    { k: 'yoga', re: /yoga|pilates|dans|bale/, ic: '🧘‍♀️', n: 'Yoga eğitmeni', ev: 'Personal Trainer – Üye', wear: 'cb:spor1',
+      pitch: ['{gy}\'de akşam yoga derslerini ben veririm 🧘‍♀️ Son ders bitince stüdyonun ışıklarını kısarım.', 'Nefes, esneklik, denge… hepsini öğretirim. Bir de kimsenin bilmediği bir pozu 😏'],
+      greet: ['Matını ser 🧘‍♀️ ışıkları kısıyorum', 'Nefes al… ve bana bak 😏'],
+      rules: [['🧘‍♀️', 'Nefes önce.', 'Nefesini ritmime uydurursun.'], ['🤫', 'Stüdyo sessizdir.', 'Fısıldarız; inlemek serbest.'], ['🦵', 'Esnetme benden.', 'Bacağını ben kaldırırım, ne kadar ben bilirim.'], ['🕯️', 'Işık loş.', 'Son derste ışıklar hep kısık.']] },
+    { k: 'uye', re: /^$/, ic: '🏃‍♀️', n: 'Salon üyesi', ev: '', wear: 'cb:spor1',
+      pitch: ['{gy}\'ye her akşam gelirim 🏃‍♀️ Taytım dar, kulaklığım takılı; ama seni fark ettim.', 'Spot olacak birini arıyorum. Ya da soyunma odasında sırtımı ovacak 😏'],
+      greet: ['Spot olur musun? 🏋️', 'Herkes gitti… sen hâlâ buradasın 😏'],
+      rules: [['🎧', 'Kulaklık takılı.', 'Çıkarırsam seninle konuşuyorum demektir.'], ['🏋️', 'Spot ol.', 'Bench\'te arkamda dur, barı tut.'], ['💦', 'Terli severim.', 'Duştan önce, sonra değil.'], ['🤫', 'Görevli görmesin.', 'Kameranın kör noktasını bilirim.']] }
+  ];
+  const GY_CO = ['Iron Club', 'Pulse Fitness', 'Core Studio', 'Atlas Gym', 'Flex Salon', 'Zirve Spor'];
+  const GY_GEN = [['🛡️', 'Korunma kuralım geçerli.', 'Salonda da sınırlarım aynı; aşağıda yazıyor.'], ['🏋️', 'Kapanışta buluşurum.', 'Gündüz salon kalabalık; 22:30\'dan sonra bizim.']];
+  const gyRole = c => GY_ROLES.find(r => r.re.source !== '^$' && r.re.test(low(c.job || ''))) || cmPick(c, 'gyr', GY_ROLES);
+  const gyCo = c => cmPick(c, 'gyco', GY_CO);
+  const gyRules = c => [...cmPicks(c, 'gyru', gyRole(c).rules, 3), cmPick(c, 'gyrg', GY_GEN)];
+  function gyEvs(c, n) {
+    const no = new Set([...(c.dislikes || []), ...(c.denies || [])]), all = allEvents().filter(e => e.cat === GY_CAT && !no.has(e.id));
+    const liked = all.filter(e => (c.likes || []).includes(e.id));
+    return [...liked, ...cmPicks(c, 'gye', all.filter(e => !liked.includes(e)).map(e => e.id), n).map(id => all.find(e => e.id === id))].filter(Boolean).slice(0, n);
+  }
+  const gyCard = (c, i) => { const r = gyRole(c); return `<a class="cm-card" href="#/is/sp-${c.id}" style="--i:${Math.min(i, 20)};--mtbg:${esc(grad(c))}">
+      <span class="cm-pic">${c.photo ? `<img src="${esc(c.photo)}" alt="" loading="lazy" onerror="this.remove()">` : `<span class="mt-ini">${esc((c.name || '?')[0])}</span>`}
+        <em class="cm-badge">${r.ic} ${esc(r.n)}</em>${cmOnline(c) ? '<em class="cm-on">● Salonda</em>' : ''}</span>
+      <span class="cm-meta"><b>${esc((c.name || 'İsimsiz').split(' ')[0])}${c.age ? `<span>, ${esc(c.age)}</span>` : ''}</b>
+        <small>🏋️ ${esc(gyCo(c))} · 📍 ${esc(c.city || 'Merkez')}</small><small class="cm-ph">${gigShort(c)}</small>
+        <span class="cm-sv">${gyEvs(c, 3).map(e => `<i>${evEmo(e)}${esc(e.title)}</i>`).join('')}</span></span></a>`; };
+  function renderGymAds() {
+    const f = ui.gyF || '', all = cmAll(), shown = all.filter(c => !f || gyRole(c).k === f);
+    view.innerHTML = OF_CSS + wsPage('jobs', 'Carmen<i>Jobs</i>', 'carmenjobs.com/spor', '#/is', `
+      <div class="ws-hero"><h1>Salon kapanıyor, ışıklar yarı sönük 🏋️</h1><p>${all.length} spor salonu ilanı · birine dokun, kapanışta buluş</p></div>
+      <section class="ws-sec" id="spSec"></section>
+      ${wsTabs('gyf', [['', '🏋️ Hepsi'], ...GY_ROLES.map(r => [r.k, `${r.ic} ${r.n}`])], f)}
+      <div class="jb-of">${shown.length ? `<div class="cm-grid">${shown.map(gyCard).join('')}</div>` : '<div class="cm-empty">Bu rolde ilan yok</div>'}</div>`);
+    spotUi('gypl', SITE_SPOTS.spor, ui.gyPl, null, '📍 Salonun köşeleri <small class="cm-mute">· seç, sonra ilana dokun: orada buluşursunuz</small>', k => { ui.gyPl = k; });
+    view.querySelectorAll('[data-gyf]').forEach(b => b.onclick = () => { ui.gyF = b.dataset.gyf; renderGymAds(); });
+  }
+  function renderGymAd(c) {
+    const r = gyRole(c), co = gyCo(c), first = c.name.split(' ')[0], evs = gyEvs(c, 6), album = [c.photo, ...(c.album || [])].filter((u, i, a) => u && a.indexOf(u) === i), rp = r.ev && evFind(r.ev);
+    view.innerHTML = OF_CSS + wsPage('jobs', 'Carmen<i>Jobs</i>', 'carmenjobs.com/spor/' + c.id.slice(-6), '#/is/spor', `
+      <section class="ws-sec jb-hr">${avatar(c, 72)}<div><small>${r.ic} ${esc(r.n)} · ${esc(co)} · 📍 ${esc(c.city || 'Merkez')}</small><b>${esc(c.name)}${c.age ? `<small>, ${esc(c.age)}</small>` : ''}</b>
+        <small>${esc(persOf(c).slice(0, 3).join(', '))}${cmOnline(c) ? ' · ● Salonda' : ''}</small></div></section>
+      ${album.length > 1 ? `<section class="ws-sec"><h3>📸 Fotoğraflar</h3><div class="cm-album">${album.map(u => `<img src="${esc(u)}" alt="" loading="lazy">`).join('')}</div></section>` : ''}
+      <section class="ws-sec"><h3>💌 ${esc(first)} anlatıyor</h3><p>${esc(cmPick(c, 'gyp', r.pitch).replace(/\{gy\}/g, co))}</p></section>
+      ${rp ? `<section class="ws-sec"><h3>🎭 Rol: ${esc(r.ev)}</h3><p class="cm-mute">${esc(rp.desc || '')}</p></section>` : ''}
+      <section class="ws-sec"><h3>📜 Salon kurallarım</h3><div class="cm-rules">${gyRules(c).map(([ic, t, d]) => `<div class="ok"><span>${ic}</span><p><b>${esc(t)}</b> ${esc(d)}</p></div>`).join('')}</div></section>
+      <section class="ws-sec"><h3>🏋️ Salonda sevdiklerim</h3><ul class="cm-good">${evs.map(e => `<li>${evEmo(e)} <b>${esc(e.title)}</b> · ${esc(e.desc || '')}</li>`).join('')}</ul></section>
+      <section class="ws-sec" id="spSec"></section>
+      <section class="ws-sec"><h3>📏 Sınırlarım</h3><ul class="cm-good">${gigLimits(c).map(x => `<li>${x}</li>`).join('')}</ul></section>
+      <div class="ws-sec"><button type="button" class="btn primary" id="gyGo">🏋️ Kapanışta buluş</button></div>`);
+    const sps = SITE_SPOTS.spor;
+    let sk = (sps.find(x => x.k === ui.gyPl) || sps[0]).k;
+    spotUi('gypl', sps, sk, c, '📍 Nerede buluşalım?', k => { sk = ui.gyPl = k; });
+    $('#gyGo').onclick = () => {
+      const ch = cmAdopt(c, 'job'), now = Date.now(), t = newThread(ch, 'Spor'), ft = rp && (TH.fantasy || {})[fantKey(rp)];
+      const s = sps.find(x => x.k === sk) || sps[0];
+      ch.likes = [...new Set([...(ch.likes || []), ...evs.slice(0, 3).map(e => e.id)])];
+      wearCos(ch, r.wear);
+      msgsOf(t).push({ id: Store.uid(), from: 'sys', ts: now, text: `🕰️ 22:30 · ${co} · ${s.ic} ${s.n}`, scene: { ...spotScene('spor', s), hint: `${co} · ${s.hint}` } });
+      if (ft) t.theme = { ...(t.theme || {}), bg: ft[0], bubble: ft[1] };
+      if (rp) rpBegin(t, rp, now + 1);
+      spotEvs(s, ch).filter(e => e.id !== (rp || {}).id).slice(0, 4).reverse().forEach(e => quickPin(e, t));
+      msgsOf(t).push({ id: Store.uid(), from: 'her', ts: now + 2, text: cmPick(c, 'gyg', r.greet) });
+      t.clock = { start: 1350, done: 0 };
+      save();
+      sfx('match');
+      location.hash = `#/chat/${t.id}`;
+    };
+  }
   function renderJobs(id) {
     const gm = /^gig-(\w+?)-(.+)$/.exec(id || ''), gg = gm && gigOf(gm[1]), gc = gm && cmFind(gm[2]);
     if (gg && gc) return renderGigAd(gg, gc);
     if (id === 'ofis') return renderOfficeAds();
+    if (id === 'spor') return renderGymAds();
+    const sm = /^sp-(.+)$/.exec(id || ''), sc0 = sm && cmFind(sm[1]);
+    if (sc0) return renderGymAd(sc0);
     const om = /^of-(.+)$/.exec(id || ''), oc = om && cmFind(om[1]);
     if (oc) return renderOfficeAd(oc);
     const c = id && cmFind(id);
@@ -4048,6 +4169,8 @@
         <input id="jbQ" type="search" placeholder="🔍 Meslek, şehir, şirket…" value="${esc(ui.jbQ || '')}"></div>
       <h3 class="ws-h" style="margin:16px 4px 8px;font-size:1rem">🏢 Ofis İlanları <small class="cm-mute">· <a href="#/is/ofis">tümünü gör ›</a></small></h3>
       <div class="jb-of"><div class="cm-grid">${ofTop.map(ofCard).join('')}</div></div>
+      <h3 class="ws-h" style="margin:16px 4px 8px;font-size:1rem">🏋️ Spor Salonu İlanları <small class="cm-mute">· <a href="#/is/spor">tümünü gör ›</a></small></h3>
+      <div class="jb-of"><div class="cm-grid">${cmAll().slice().sort((a, b) => cmNum(a, 'gyd' + new Date().toDateString(), 991) - cmNum(b, 'gyd' + new Date().toDateString(), 991)).slice(0, 4).map(gyCard).join('')}</div></div>
       <h3 class="ws-h" style="margin:16px 4px 8px;font-size:1rem">🏦 CarmenBank <small class="cm-mute">· bakiye <b>${money()}</b></small></h3>
       <div class="ws-list">${(S().user.bank || []).slice(0, 5).map(b => `<div class="ws-row"><span class="ws-rin"><b>${b.amt >= 0 ? '+' : ''}${b.amt.toLocaleString('tr-TR')}₺</b><small>${esc(b.label)} · ${new Date(b.ts).toLocaleString('tr-TR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}</small></span></div>`).join('')
         || '<div class="ws-row"><span class="ws-rin"><small>Henüz hareket yok. Aşağıdaki işlerden birini yap.</small></span></div>'}</div>
@@ -4481,6 +4604,125 @@
       <div class="ws-sec"><button type="button" class="btn primary" id="kcGo">${r.ic} ${r.k === 'bas' ? 'Odasına git' : 'Kapısını çal'}</button></div>`);
     view.querySelectorAll('[data-kcgo]').forEach(b => b.onclick = () => kcGo(c, b.dataset.kcgo));
     $('#kcGo').onclick = () => kcGo(c, title);
+  }
+
+  /* 🚜 CarmenFarm (#/ciftlik, #/ciftlik/<id>): hayvan fantezisi (pet play) ilanları, Carmen.com ilanlarından (cmAll). Yetişkin kadınlar kostümle
+   * hayvan kız rolüne girer (kulak, kuyruk, çan, tasma); gerçek hayvan yok (FM_LAW). Her kızın bir hayvanı var (FM_T: sevdiği hayvan kız olayı, yoksa id'den),
+   * dokununca sohbet o sahneyle, kostümle (wear) ve olayın rolüyle (rpBegin) başlar. Yeni hayvan kız olayı → FM_T'ye de ekle */
+  const FM_T = {
+    kedi: { ic: '🐱', who: 'Kedi Kız', you: 'sahibi', ev: 'Cat Girl', wear: 'kedikost', h: 23, place: 'cati-kati', spot: 'Çiftlik evinin çatı katı', hint: 'Saman kokulu çatı katı, yuvarlak pencereden dolunay; o minderin üstüne kıvrılmış, kuyruğu yavaşça sallanıyor',
+      greet: ['*mırlar* Geç kaldın sahibim… mamam nerede? 🐱', 'Miyav… kucağına çıkmama izin var mı? 😼', 'Önce kulaklarımın arkasını kaşı, sonra bakarız 😏🐾'],
+      pitch: ['Gündüz nazlı, gece yaramaz bir kedi kızım 🐱 Kulaklarım ve kuyruğum hazır, bir sahip arıyorum.', 'Kucağına kıvrılırım, mırlarım, canım isterse tırmalarım 😼 Beni ehlileştirebilir misin?', 'Süt kâsemi doldur, kulaklarımı kaşı… gerisini kuyruğum anlatır 😏'],
+      rules: [['😼', 'Ben gelirim, sen çağırmazsın.', 'Kediler sahibine kendi istediğinde gelir.'], ['🐾', 'Kulaklar kaşınır.', 'Önce kulaklarımın arkası, sonra her yerim.'], ['🧶', 'Oyun sever.', 'İp, tüy, parmakların… her şeyle oynarım.'], ['🥛', 'Süt kâsem dolu olur.', 'Aç kedi tırmalar.'], ['🌙', 'Gece aktifim.', 'Kapım gece yarısından sonra açılır.']] },
+    inek: { ic: '🐮', who: 'İnek Kız', you: 'çiftçi', ev: 'Cow Girl', wear: 'inekkost', h: 6, place: 'dag-evi', spot: 'Ahır, saman balyaları', hint: 'Saman balyaları, tahta bölmeler, kapı aralığından sabah ışığı; o benekli bikinisiyle balyanın üstünde, çanı her nefeste şıngırdıyor',
+      greet: ['Sabah sağımı vakti 🐮🔔 Göğüslerim taşmak üzere…', 'Mööö… ellerin sıcak mı bari? 🍼😳', 'Çanımı duydun, değil mi? Gel, sağ beni 😈'],
+      pitch: ['Çiftliğin en tombul ineğiyim 🐮 Benekli bikinim, boynuzlarım ve çanım var; göğüslerim hep dolu.', 'Her sabah sağılmayı beklerim 🍼 Ellerin nazik olsun, çiftçim.', 'Çanımın sesini duyduğunda koş: ineğin taşıyor 🔔😳'],
+      rules: [['🍼', 'Sağım saatinde gelinir.', 'Sabah ve akşam; geç kalırsan taşarım.'], ['🔔', 'Çan çıkmaz.', 'Her şey çıkar, çanım boynumda kalır.'], ['🤲', 'Eller sıcak olur.', 'Soğuk eller ineği ürkütür.'], ['🌾', 'Samanda yatılır.', 'Yatak yok, ahır var.'], ['🥛', 'Sütüm senin.', '…ama önce teşekkür edeceksin.']] },
+    tavsan: { ic: '🐰', who: 'Tavşan Kız', you: 'çiftçi', ev: 'Bunny Girl', wear: 'tavsankost', h: 17, place: 'bahce', spot: 'Çiftliğin sebze bahçesi', hint: 'Havuç sıraları, tahta çit, köşede küçük bir kulübe; o pamuk kuyruğuyla havuçların arasında diz çökmüş',
+      greet: ['Havuçlarımı mı çalmaya geldin? 🥕🐰', '*kulakları dikilir* Seni duydum… yakala beni! 🐇', 'Tavşanlar çok çabuk ürer, biliyorsun değil mi? 😏'],
+      pitch: ['Bahçenin en hızlı tavşanıyım 🐰 Yakalayabilirsen kulaklarım senin.', 'Pamuk kuyruğum, uzun kulaklarım ve hiç bitmeyen enerjim var 🥕', 'Ürkek görünürüm ama bir kere yakaladın mı bırakmam 😏🐇'],
+      rules: [['🏃‍♀️', 'Önce kovalamaca.', 'Beni yakalamadan hiçbir şey olmaz.'], ['🥕', 'Havuç getirilir.', 'Eli boş gelen kulübeye giremez.'], ['🐇', 'Kuyruğa dokunulur.', 'Pamuk kuyruğum en hassas yerim.'], ['👂', 'Kulaklar dik kalır.', 'Bandım başımdan çıkmaz.'], ['⚡', 'Hızlı ve sık.', 'Tavşanlar bekletilmez.']] },
+    tilki: { ic: '🦊', who: 'Tilki Kız', you: 'avcı', ev: 'Fox Girl ( Cunning )', wear: 'tilkikost', h: 21, place: 'misir-labirenti', spot: 'Çiftliğin mısır tarlası', hint: 'Boy boyu mısır sapları, uzakta ahırın ışığı; o turuncu kuyruğuyla sapların arasında kayboluyor',
+      greet: ['Kümesten kaçarken yakalandım… şimdi bana ne yapacaksın? 🦊', 'Beni bulursan ödülün var 😏🌽', 'Kurnazım ama bu gece yakalanmak istiyorum 🦊😈'],
+      pitch: ['Kümesin etrafında dolaşan kurnaz tilkiyim 🦊 Beni tuzağa düşürebilecek bir avcı arıyorum.', 'Turuncu kuyruğum yumuşacık; dokunmak için önce beni yakalaman lazım 😏', 'Her oyunda hile yaparım. Kazanırsan kuralı sen koyarsın 🌽'],
+      rules: [['🌽', 'Tarlada saklambaç.', 'Önce beni bulacaksın.'], ['🦊', 'Hile serbest.', 'Benim için, senin için değil.'], ['🪤', 'Tuzak kurulabilir.', 'Yakalandığımda pazarlık başlar.'], ['😏', 'Son sözü tilki söyler.', 'Kurnazlığım rolden çıkmaz.'], ['🌙', 'Ahırın ışığı sönünce.', 'Tilki karanlıkta gelir.']] },
+    kopek: { ic: '🐶', who: 'Köpek Kız', you: 'sahibi', ev: 'Doggy Girl ( Submission )', wear: 'kopekkost', h: 19, place: 'teras', spot: 'Çiftlik evinin verandası', hint: 'Ahşap veranda, sallanan sandalye, ayakların dibinde bir minder; o tasmasıyla minderde oturmuş, ipini dişlerinde tutuyor',
+      greet: ['*ipini dişleriyle sana uzatır* Hav! Gezmeye çıkalım mı sahibim? 🐶', 'Bütün gün kapıda seni bekledim 🥺🐾', 'İyi kız oldum, ödülümü alabilir miyim? 🐶😏'],
+      pitch: ['Sadık bir köpek kızım 🐶 Tasmam boynumda, ipim senin elinde olsun istiyorum.', 'Komutları çabuk öğrenirim: otur, gel, yat… ödülü sen bilirsin 🥺', 'Kapıda kuyruk sallayarak bekleyen biri hayalinse, o benim 🐾'],
+      rules: [['🦮', 'İp sahibin elinde.', 'Tasmamı yalnızca sahibim çeker.'], ['🦴', 'İyi kıza ödül.', 'Komutu yaparsam okşanırım.'], ['🐾', 'Dört ayak üstünde.', 'Verandada ayağa kalkmam.'], ['🥺', 'Bekletilmem.', 'Uzun kalırsan kapıda sızlanırım.'], ['🛑', 'Komut sözle verilir.', 'Sertlik yok; ses tonun yeter.']] },
+    unicorn: { ic: '🦄', who: 'Unicorn Kız', you: 'seçilmiş', ev: 'Unicorn Girl', wear: 'unikornkost', h: 18, place: 'piknik', spot: 'Çiftliğin çiçekli çayırı', hint: 'Çiçekli bir çayır, uzakta tahta çit, gökyüzü pembe; o pırıltılı yelesiyle çimlerin üstünde dönüyor',
+      greet: ['Beni gören olmadı… sen hariç ✨🦄', 'Unicornlar sadece seçtiklerine görünür 😏', 'Yelemi ör, sana bir dilek hakkı vereyim 🦄💫'],
+      pitch: ['Çayırın nadir unicornuyum 🦄 Herkese görünmem; seçtiğim kişiye bir gece veririm.', 'Pırıltılı yelem, boynuzlu bandım ve biraz büyüm var ✨', 'Masal gibi görünürüm ama yaramazlığım masalda yazmaz 😏'],
+      rules: [['✨', 'Ben seçerim.', 'İlk mesajı ben atarım.'], ['🦄', 'Boynuz kalır.', 'Bandım hiçbir şekilde çıkmaz.'], ['🌸', 'Çayırda buluşulur.', 'Güneş batarken.'], ['💫', 'Bir dilek hakkın var.', 'Akıllıca kullan.'], ['🌈', 'Nazik ol.', 'Kaba olanın önünden kaybolurum.']] },
+    kurt: { ic: '🐺', who: 'Kurt Kız', you: 'av', ev: 'Wolf Girl', wear: 'kurtkost', h: 0, place: 'gece-yuruyusu', spot: 'Çiftliğin arkasındaki orman', hint: 'Çam ağaçları, dolunay, uzakta bir uluma; o kürklü body\'siyle bir kayanın üstünde seni kokluyor',
+      greet: ['*burnunu boynuna sürter* Kokunu kilometrelerce öteden aldım 🐺🌕', 'Dolunay doğdu… artık evcil değilim 😈', 'Sürüme katıl ya da av ol 🐺'],
+      pitch: ['Dolunayda çiftliğin arkasındaki ormana inerim 🐺 Kürküm, kulaklarım ve vahşi bir iştahım var.', 'Evcil değilim: avımı ben seçerim, sen de seçildin 🌕', 'Ulumamı duyunca kaçma… ya da kaç, kovalamayı severim 😈'],
+      rules: [['🌕', 'Dolunayda.', 'Başka gece kapım kapalı.'], ['🐺', 'Lider benim.', 'Sürüde kim önde, ben söylerim.'], ['👃', 'Koklanırsın.', 'Kokunu ezberlemeden yaklaşmam.'], ['🦷', 'Isırık hafif olur.', 'İz bırakmam, söz.'], ['🏃‍♂️', 'Kaçmak serbest.', 'Yakalanmak kaçınılmaz.']] },
+    koyun: { ic: '🐑', who: 'Koyun Kız', you: 'çoban', ev: 'Sheep Girl', wear: 'koyunkost', h: 22, place: 'somine', spot: 'Çiftlik evinde şömine başı', hint: 'Çıtırdayan ateş, yün halı, pencerede kar; o yün elbisesiyle halıya kıvrılmış, çanı hafifçe çınlıyor',
+      greet: ['Meee… üşüdüm, yanıma gel ☁️🐑', 'Yünümü taramaya mı geldin? 🙈', 'Kuzun bu gece senin… ısıt beni 🥺🔔'],
+      pitch: ['Sürüden ayrılmış yumuşacık bir kuzuyum 🐑 Beni ahıra götürecek bir çoban arıyorum.', 'Yün elbisem, kıvrık boynuzlarım ve boynumda çanım var ☁️', 'Utangacım; ama şömine yanınca yünüm de çıkar 🙈🔥'],
+      rules: [['🔥', 'Ateş yanar.', 'Kuzu üşümez.'], ['☁️', 'Yün okşanır.', 'Sertlik yok, yumuşak eller.'], ['🔔', 'Çan kalır.', 'Nerede olduğumu hep duyarsın.'], ['🙈', 'Yavaş başla.', 'Utangacım, ısınmam zaman alır.'], ['🐑', 'Çoban sürüyü bırakmaz.', 'Sabaha kadar yanımda kalırsın.']] }
+  };
+  // 🚜 site kuralları (liste sayfası, her ilanda geçerli)
+  const FM_LAW = [['🔞', 'Sadece yetişkinler.', 'İlan sahipleri 18+ kadınlar; hayvanlık kostümde ve rolde kalır.'], ['🐾', 'Gerçek hayvan yok.', 'Kulak, kuyruk, çan, tasma: hepsi kostüm. Çiftlikteki tek hayvan ilan sahibinin kendisi.'],
+    ['🤝', 'Rıza ve güvenli kelime.', 'Her ilanda bir güvenli kelime var; söylendiği an rol biter.'], ['🧸', 'Rol oyunda kalır.', 'Havlamak, mırlamak, sağılmak… hepsi oyun; sınırlar ilanda yazar.']];
+  const FM_GEN = [['🛡️', 'Korunma kuralım geçerli.', 'Kostüm değişir, sınırlarım aynı; aşağıda yazıyor.'], ['🛑', 'Güvenli kelimem: "Ahır".', 'Söylediğim an kulaklar çıkar, rol biter.']];
+  const FM_CSS = `<style>.ws-farm{--ws:#6d4c41}.fm-hero{background:radial-gradient(circle at 85% 0,#ffd54f 0,transparent 45%),linear-gradient(135deg,#3e2723,#6d4c41 55%,#7cb342);color:#fff;border-radius:18px;padding:18px 16px;margin:12px 0}
+    .fm-hero h1{margin:0 0 4px;font-size:1.35rem;color:#fff}.fm-hero p{margin:0 0 12px;opacity:.9;color:#fff}
+    .fm-gate{background:linear-gradient(90deg,#ffe082,#ffb300);color:#3e2723;border:0;border-radius:999px;padding:10px 18px;font-weight:800;cursor:pointer}
+    .fm-evs{display:grid;gap:8px}.fm-ev{text-align:left;border:0;border-radius:12px;padding:10px 12px;cursor:pointer;color:#fff;background:linear-gradient(135deg,#6d4c41,#33691e)}
+    .fm-ev small{display:block;opacity:.85;font-size:.8rem;margin-top:2px}
+    .fm-ov .fm-paws{font-size:1.8rem;letter-spacing:6px;animation:fmHop 1.2s ease-out}@keyframes fmHop{0%{opacity:0;transform:translateY(20px)}60%{transform:translateY(-6px)}100%{opacity:1;transform:none}}</style>`;
+  const fmName = k => FM_T[k].ev.replace(/\s*\(.*\)\s*$/, '');
+  const fmOk = (c, k) => { const e = evFind(FM_T[k].ev); return e && ![...(c.dislikes || []), ...(c.denies || [])].includes(e.id); };
+  // ilanın hayvanı: sevdiği hayvan kız olayı, yoksa id'den sabit seçim (💔/🚫 hariç)
+  const fmType = c => { const ks = Object.keys(FM_T).filter(k => fmOk(c, k)), lk = ks.find(k => (c.likes || []).includes(evFind(FM_T[k].ev).id));
+    return lk || (ks.length ? cmPick(c, 'fmt', ks) : 'kedi'); };
+  const fmRules = c => [...cmPicks(c, 'fmru', FM_T[fmType(c)].rules, 3), cmPick(c, 'fmrg', FM_GEN)];
+  function fmKeys(c, n) {
+    const m = fmType(c), all = Object.keys(FM_T).filter(k => k !== m && fmOk(c, k)), o = all.length ? cmNum(c, 'fms', all.length) : 0;
+    return [m, ...all.slice(o), ...all.slice(0, o)].slice(0, n);
+  }
+  function fmStart(c0, k) {
+    const a = FM_T[k], e = a && evFind(a.ev);
+    if (!e) return null;
+    const ch = cmAdopt(c0, 'fm'), now = Date.now(), ft = (TH.fantasy || {})[fantKey(e)];
+    ch.likes = [...new Set([...(ch.likes || []), e.id])];
+    wearCos(ch, a.wear);
+    const t = newThread(ch, 'CarmenFarm');
+    msgsOf(t).push({ id: Store.uid(), from: 'sys', ts: now, text: `🕰️ ${hh2(a.h)} · 🚜 ${a.spot}`, scene: { place: a.place, icon: a.ic, name: a.spot, hint: a.hint } });
+    if (ft) t.theme = { ...(t.theme || {}), bg: ft[0], bubble: ft[1] };
+    rpBegin(t, e, now + 1);
+    msgsOf(t).push({ id: Store.uid(), from: 'her', ts: now + 2, text: pick(a.greet) });
+    t.clock = { start: a.h * 60, done: 0 };
+    save();
+    return t;
+  }
+  function fmGo(c0, k, gate) {
+    const t = fmStart(c0, k);
+    if (!t) return;
+    sfx('match');
+    const ch = byId(t.charId) || c0, a = FM_T[k], ov = document.createElement('div');
+    ov.className = 'mt-match ws-ok fm-ov';
+    ov.innerHTML = `<div>${gate ? '<div class="fm-paws">🐾🐾🐾</div>' : ''}<h2>${a.ic} ${esc(a.who)} ${esc((ch.name || '').split(' ')[0])}</h2><div class="mt-pair">${avatar(ch, 84)}<span>${a.ic}</span></div><p>${esc(fmName(k))} · ${esc(a.spot)}</p><small>Çitin kapısı açılıyor…</small></div>`;
+    document.body.appendChild(ov);
+    const go = () => { ov.remove(); location.hash = `#/chat/${t.id}`; };
+    ov.onclick = go;
+    setTimeout(() => { if (ov.isConnected) go(); }, gate ? 2400 : 1800);
+  }
+  const fmCard = (c, i) => { const a = FM_T[fmType(c)]; return `<a class="cm-card" href="#/ciftlik/${c.id}" style="--i:${Math.min(i, 20)};--mtbg:${esc(grad(c))}">
+      <span class="cm-pic">${c.photo ? `<img src="${esc(c.photo)}" alt="" loading="lazy" onerror="this.remove()">` : `<span class="mt-ini">${esc((c.name || '?')[0])}</span>`}
+        <em class="cm-badge">${a.ic} ${esc(a.who)}</em>${cmOnline(c) ? '<em class="cm-on">● Uyanık</em>' : ''}</span>
+      <span class="cm-meta"><b>${esc((c.name || 'İsimsiz').split(' ')[0])}${c.age ? `<span>, ${esc(c.age)}</span>` : ''}</b>
+        <small>🚜 ${esc(a.spot)} · ${hh2(a.h)}</small><small class="cm-ph">🎭 ${esc(fmName(fmType(c)))}</small>
+        <span class="cm-sv">${fmKeys(c, 3).map(k => `<i>${FM_T[k].ic}${esc(FM_T[k].who)}</i>`).join('')}</span></span></a>`; };
+  function renderFarm(id) {
+    const one = id && cmFind(id);
+    if (one) return renderFarmAd(one);
+    const list = cmAll(), f = ui.fmF || '', shown = list.filter(c => !f || fmType(c) === f);
+    view.innerHTML = FM_CSS + OF_CSS + wsPage('farm', 'Carmen<i>Farm</i>', 'carmenfarm.com', '#/booble', `
+      <div class="fm-hero"><h1>Çit açık, ahırın ışığı yanıyor 🐾</h1><p>${list.length} hayvan fantezisi ilanı · ${Object.keys(FM_T).length} hayvan · birine dokun, sohbet onun kostümü ve sahnesiyle başlar</p>
+        <button type="button" class="fm-gate" id="fmGate">🎲 Çiti aç · rastgele kız ve hayvan</button></div>
+      <section class="ws-sec"><h3>📜 Çiftlik kuralları</h3><div class="cm-rules">${FM_LAW.map(([ic, t, d]) => `<div class="ok"><span>${ic}</span><p><b>${esc(t)}</b> ${esc(d)}</p></div>`).join('')}</div></section>
+      ${wsTabs('fmf', [['', '🚜 Hepsi'], ...Object.entries(FM_T).map(([k, a]) => [k, `${a.ic} ${esc(a.who)}`])], f)}
+      <div class="jb-of">${shown.length ? `<div class="cm-grid">${shown.map(fmCard).join('')}</div>` : '<div class="cm-empty">Ahır boş: önce Carmen.com\'da ilan olmalı</div>'}</div>`);
+    view.querySelectorAll('[data-fmf]').forEach(b => b.onclick = () => { ui.fmF = b.dataset.fmf; renderFarm(); });
+    $('#fmGate').onclick = () => { const c = pick(list), k = c && pick(fmKeys(c, 3)); if (k) fmGo(c, k, true); };
+  }
+  function renderFarmAd(c) {
+    const k0 = fmType(c), a = FM_T[k0], first = c.name.split(' ')[0], e = evFind(a.ev), album = [c.photo, ...(c.album || [])].filter((u, i, x) => u && x.indexOf(u) === i);
+    view.innerHTML = FM_CSS + OF_CSS + wsPage('farm', 'Carmen<i>Farm</i>', 'carmenfarm.com/' + c.id.slice(-6), '#/ciftlik', `
+      <section class="ws-sec jb-hr">${avatar(c, 72)}<div><small>${a.ic} ${esc(a.who)} · 🚜 ${esc(a.spot)}</small><b>${esc(c.name)}${c.age ? `<small>, ${esc(c.age)}</small>` : ''}</b>
+        <small>${esc(persOf(c).slice(0, 3).join(', '))}${cmOnline(c) ? ' · ● Uyanık' : ''}</small></div></section>
+      ${album.length > 1 ? `<section class="ws-sec"><h3>📸 Fotoğraflar</h3><div class="cm-album">${album.map(u => `<img src="${esc(u)}" alt="" loading="lazy">`).join('')}</div></section>` : ''}
+      <section class="ws-sec"><h3>💌 ${esc(first)} anlatıyor</h3><p>${esc(cmPick(c, 'fmp', a.pitch))}</p></section>
+      <section class="ws-sec"><h3>🎭 Rol: ${esc(fmName(k0))} · sen ${esc(a.you)}</h3><p class="cm-mute">${esc((e && e.desc) || '')}</p></section>
+      <section class="ws-sec"><h3>📜 Çiftlik kurallarım</h3><div class="cm-rules">${fmRules(c).map(([ic, t, d]) => `<div class="ok"><span>${ic}</span><p><b>${esc(t)}</b> ${esc(d)}</p></div>`).join('')}</div></section>
+      <section class="ws-sec"><h3>🐾 Hayvanlarım · dokun, o kostümle başla</h3><div class="fm-evs">${fmKeys(c, 3).map(k => { const x = FM_T[k]; return `<button type="button" class="fm-ev" data-fmgo="${k}"><b>${x.ic} ${esc(x.who)}</b><small>${esc(x.spot)} · ${hh2(x.h)} · sen ${esc(x.you)}</small></button>`; }).join('')}</div></section>
+      <section class="ws-sec"><h3>📏 Sınırlarım</h3><ul class="cm-good">${gigLimits(c).map(x => `<li>${x}</li>`).join('')}</ul></section>
+      <div class="ws-sec"><button type="button" class="btn primary" id="fmGo">${a.ic} Ahıra git</button></div>`);
+    view.querySelectorAll('[data-fmgo]').forEach(b => b.onclick = () => fmGo(c, b.dataset.fmgo));
+    $('#fmGo').onclick = () => fmGo(c, k0);
   }
 
   /* 💝 CarmenAmor (#/amor): sitede kızlar (cmAll) flört eder, 💗 sevgi / 😌 tatmin / 🥶 küs görünür; sohbet CarmenAmor sohbetinde (t.amor).
@@ -9425,6 +9667,8 @@
       }
       // 👀 açık mekanda gerilim eşiği geçildiyse onun cümlesi en başa · 🤫 "şşş / sessiz ol": gerilim −30
       if (th.riskSay) { parts.unshift(th.riskSay); th.riskSay = null; }
+      // 📳 vibratör kademesine göre onun cümlesi (th.vibSay, eventMessages)
+      if (th.vibSay) { parts.unshift(th.vibSay); th.vibSay = null; }
       if (!opts.events && th.risk && th.risk.v > 0 && PLACE_FLOW.quiet.test(String(userMsg.text || '').toLocaleLowerCase('tr'))) {
         th.risk.v = Math.max(0, th.risk.v - 30);
         notify(`🤫 Gerilim ${th.risk.v}/100`, '🤫');
@@ -10237,20 +10481,32 @@
     }
     /* 👀 açık mekanda gerilim (th.risk { at: varış kartı id, v 0–100 }): pozisyon +18, fantezi +10, Mode +8 (sert modlar +14), diğer olay +5.
      * 40 / 70'te not + onun cümlesi (th.riskSay, bir sonraki cevabının başında), 100'de yakalanırsınız: gerilim sıfırlanır, güvenli bir yere kaçmayı önerir (th.riskMove).
-     * Yer değişince sıfırdan başlar; "şşş / sessiz ol" −30 (botReply) */
+     * Yer değişince sıfırdan başlar; "şşş / sessiz ol" −30 (botReply).
+     * 👀 RISK_TAG (Cinema / Bar / Church olayları): mekân açık olmasa da gerilim işler, olay başına +6 fazla; 70 / 100 eşiğinde 📱 kesintiler açıksa
+     * o mekânın kesinti havuzundan (FANT_INTERRUPTS.yersinema / yerbar / yerkilise) bir kesinti gelir, cevabı th.fantInt ile */
     const isPublic = sc => !!sc && (PLACE_FLOW.public.includes(sc.place) || (!sc.place && PLACE_FLOW.public.includes(sc.name)));
+    const riskTag = e => RISK_TAG.find(([t]) => (e.tags || []).some(x => lowTag(x) === t));
     function riskStep(evs) {
-      const ai = arriveIdx(), sc = ai >= 0 ? list[ai].scene : null;
-      if (group || !isPublic(sc)) return;
-      const r = th.risk && th.risk.at === list[ai].id ? th.risk : (th.risk = { at: list[ai].id, v: 0 });
+      const ai = arriveIdx(), sc = ai >= 0 ? list[ai].scene : null, rt = evs.map(riskTag).filter(Boolean).pop();
+      if (group || (!isPublic(sc) && !rt)) return;
+      const at = ai >= 0 ? list[ai].id : 'tag';
+      const r = th.risk && th.risk.at === at ? th.risk : (th.risk = { at, v: 0 });
       const low = s => String(s || '').toLocaleLowerCase('tr'), HARD = ['rough', 'brutal', 'bağırtmalı', 'ağlatmalı', 'inletmeli'];
-      const d = evs.reduce((a, e) => a + (low(catOfEv(e).label) === 'mode' ? (HARD.includes(low(e.title)) ? 14 : 8) : isPosEv(e) ? 18 : isFant(e) ? 10 : 5), 0);
+      const d = evs.reduce((a, e) => a + (low(catOfEv(e).label) === 'mode' ? (HARD.includes(low(e.title)) ? 14 : 8) : isPosEv(e) ? 18 : isFant(e) ? 10 : 5) + (riskTag(e) ? 6 : 0), 0);
       const v0 = r.v;
       r.v = Math.min(100, v0 + d);
       const hit = PLACE_FLOW.risk.filter(([t]) => v0 < t && r.v >= t).pop();
-      if (!hit) { if (d) notify(`👀 Gerilim ${r.v}/100 · açık mekân`, '👀'); return; }
-      list.push({ id: Store.uid(), from: 'sys', text: pickOf(hit[1]), ts: nowTs() + 1 });
-      th.riskSay = pickOf(hit[2]);
+      if (!hit) { if (d) notify(`👀 Gerilim ${r.v}/100 · ${rt ? rt[2] : 'açık mekân'}`, '👀'); return; }
+      const fp = rt && hit[0] >= 70 && interruptsOn() && !cs.playing && (Stories.FANT_INTERRUPTS || {})[rt[1]];
+      if (fp && fp.length) {
+        const i = Math.floor(Math.random() * fp.length);
+        if (hit[0] === 100) list.push({ id: Store.uid(), from: 'sys', text: pickOf(hit[1]), ts: nowTs() + 1 });
+        list.push({ id: Store.uid(), from: 'sys', text: `${fp[i].g} · 👀 ${r.v}/100`, ts: nowTs() + 1 });
+        th.interrupt = null; th.fantInt = [rt[1], i]; th.intAt = msgCount();
+      } else {
+        list.push({ id: Store.uid(), from: 'sys', text: pickOf(hit[1]), ts: nowTs() + 1 });
+        th.riskSay = pickOf(hit[2]);
+      }
       if (c && c !== GHOST) cmParam(c, 'uyarılma', hit[0] === 100 ? -10 : 6);
       if (hit[0] === 100) { r.v = 0; th.riskMove = true; }
     }
@@ -10658,6 +10914,17 @@
         if (edN) { th.edge = 0; edFx([{ p: 'p:sehvet', d: 3 * edN }, { p: 'p:guven', d: -1 }]); edSys(`💔 ${edN} tur boşa gitti: zirveye vardı ama gelemedi · Şehvet +${3 * edN}, Güven −1`); }
         else edSys('💔 Sayaç boştu · önce ⏸️ Edging ile sınıra getir');
       }
+      // 📳 vibratör seviyesi (th.vib 0–5): Vibrator Control / Remote Toy her yazılışta +1, Uyarılma +3×seviye; 5'te Orgazm gelir
+      // (edging sayacı doluysa aşağıda tutulur). Orgazm ya da bir boşalma olayı seviyeyi sıfırlar
+      if (edT === 'vibrator control' || edT === 'remote toy') {
+        const v = th.vib = Math.min(VIB_LV.length - 1, (th.vib || 0) + 1);
+        edFx([{ p: 'p:umvjzd17hys1oy', d: 3 * v }]);
+        edSys(`📳 Titreşim ${v}/${VIB_LV.length - 1} · ${VIB_LV[v]} · Uyarılma +${3 * v}`);
+        const vch = byId(ids[0]);
+        th.vibSay = vch ? stLine(vch, 'vib' + v, VIB_SAY[v], fxNow()) : null;
+        const org = v === VIB_LV.length - 1 && allEvents().find(x => lowT(x.title) === 'orgazm');
+        if (org && !chain.some(([x]) => x.id === org.id)) chain.push([org, '📳 en yüksek kademe']);
+      } else if (th.vib && (edT === 'orgazm' || (e.tags || []).some(x => lowT(x) === 'boşalma'))) th.vib = 0;
       if ((th.edge || edT === 'ruined finish') && edT !== 'permission to come') {
         let held = false;
         for (let i = chain.length - 1; i >= 0; i--) if (lowT(chain[i][0].title) === 'orgazm') { chain.splice(i, 1); held = true; }
@@ -10974,7 +11241,7 @@
       const done = () => {
         const up = kdUp(added);
         if (up) list.push({ id: Store.uid(), from: 'her', text: up, ts: Date.now() });
-        save(); draw(); refreshList(); drawKd(); drawJob(); lockInput(false); if (th.bot) botEventReply(added); else { th.interrupt = th.fantInt = th.memLast = th.riskSay = th.riskMove = null; th.dressSay = {}; }
+        save(); draw(); refreshList(); drawKd(); drawJob(); lockInput(false); if (th.bot) botEventReply(added); else { th.interrupt = th.fantInt = th.memLast = th.riskSay = th.riskMove = th.vibSay = null; th.dressSay = {}; }
       };
       let k = 0;
       const next = () => {
@@ -12257,7 +12524,8 @@
   const QPRIVATE = ['r_q_boob', 'r_q_pussy', 'r_q_anal', 'r_q_butt', 'r_q_exp', 'r_q_virgin', 'r_q_sever', 'r_q_sevmez', 'r_q_korunma', 'r_q_hamile',
     'r_q2_pozisyon', 'r_q2_fantezi', 'r_q2_bosal', 'r_q2_bebek', 'r_q2_ilk', 'r_q2_gecmis', 'r_q2_seks', 'r_q2_hassas', 'r_q2_anal', 'r_q2_oral',
     'r_q2_kondom', 'r_q2_hap', 'r_q2_azgin', 'r_q2_sut', 'r_q2_kiyafet', 'r_q2_sertyavas', 'r_q2_orgazmsay', 'r_q2_bosalmasay',
-    'r_q2_disaribosal', 'r_q2_kondomsuz', 'r_q2_kiyas', 'r_q2_boy', 'r_q2_son', 'r_q2_kackez', 'r_q2_yut', 'r_q2_yuz', 'r_q2_hamilebirak', 'r_q2_arkadan', 'r_q2_mastur', 'r_q2_oyuncak', 'r_q2_baglan', 'r_q3_', 'r_q4_'];
+    'r_q2_disaribosal', 'r_q2_kondomsuz', 'r_q2_kiyas', 'r_q2_boy', 'r_q2_son', 'r_q2_kackez', 'r_q2_yut', 'r_q2_yuz', 'r_q2_hamilebirak', 'r_q2_arkadan', 'r_q2_mastur', 'r_q2_oyuncak', 'r_q2_baglan', 'r_q3_', 'r_q4_',
+    'r_q6_porno', 'r_q6_sahte', 'r_q6_uclu', 'r_q6_kulotsuz', 'r_q6_izlen', 'r_q7_'];
   // ❓ olay sorusu ("Blowjob ister misin?", "sakso sever misin?"): komut gibi olayı başlatmaz, 🚫/💔/❤️ listesine göre cevaplanır ("=evq" + evqyok|evqsevmez|evqsever|evqnotr, {olay})
   // "yapar mısın / yapalım mı" soru sayılmaz: bunlar istek, komut kuralına gider
   const EVQ_RE = / (ister|sever|seviyor|hoşlan\S*|hoslan\S*|dener|denedin|yaptın|yaptin) m[ıiuü]\S* | (ister|sever|dener)m[ıi]s[ıi]n | (do|would) you (like|love|want|enjoy) | wanna /;
@@ -13150,7 +13418,7 @@
       balkon: ['yatak', 'banyo'], somine: ['yatak', 'banyo'], araba: ['senin-evin', 'onun-evi', 'otel'], sahil: ['otel', 'yazlik'], bar: ['otel', 'araba', 'senin-evin'],
       sinema: ['araba', 'senin-evin'], ofis: ['araba', 'otel'], kafe: ['araba', 'onun-evi'], kabin: ['araba', 'senin-evin'], parti: ['araba', 'senin-evin'], kamp: ['araba'],
       vapur: ['sahil', 'otel'], perili: ['araba', 'senin-evin'], labirent: ['araba'], kostum: ['otel', 'araba'], mezarlik: ['senin-evin', 'otel'],
-      kilise: ['kiler', 'cati-kati', 'araba'], tuvalet: ['banyo', 'yatak'] },
+      kilise: ['kiler', 'cati-kati', 'araba'], tuvalet: ['banyo', 'yatak'], spor: ['banyo', 'araba', 'senin-evin'] },
     per: { 'Utangaç': ['yatak', 'banyo', 'onun-evi', 'senin-evin'], 'Romantik': ['somine', 'teras', 'sahil', 'dag-evi', 'cati'], 'Neşeli': ['lunapark', 'dans', 'ev-partisi', 'piknik'],
       'Komik': ['lunapark', 'mutfak', 'piknik'], 'Flörtöz': ['bar', 'dans', 'sahil', 'araba'], 'Asi': ['cati', 'araba', 'mezarlik-araba', 'sinema'], 'Kibirli': ['otel', 'restoran', 'teras'],
       'Şımarık': ['alisveris', 'otel', 'restoran'], 'Özgüvenli': ['bar', 'ofis', 'sahil'], 'Duygusal': ['yagmur', 'somine', 'balkon'], 'Gizemli': ['perili-ev', 'gece-yuruyusu', 'cati', 'kiler'],
@@ -13184,11 +13452,12 @@
       kostum: ['Kostümüm yırtılacak 🙈', 'Maskeyi çıkarma, böyle daha heyecanlı 🎭', 'Kim olduğumuzu kimse bilmiyor 😈'],
       mezarlik: ['Burası çok ürkütücü… ama çok da heyecanlı 😱', 'Camlar buğulandı, dışarısı karanlık 🌙', 'Bir ışık mı yandı? 😳'],
       kilise: ['Kubbe her sesi geri yolluyor, sessiz ol 🤫', 'Mumların ışığında… burası kutsal 😳', 'Sıralar gıcırdıyor, biri duyacak 🕯️'],
-      tuvalet: ['Kapı kilitli mi?! 😳', 'Burası çok dar ahh 😩', 'Lavaboya tutunuyorum, aynada bize bak 😈']
+      tuvalet: ['Kapı kilitli mi?! 😳', 'Burası çok dar ahh 😩', 'Lavaboya tutunuyorum, aynada bize bak 😈'],
+      spor: ['Terden kayıyorum, sıkı tut 🥵', 'Aynada ikimizi görüyorum 😏', 'Bir set daha… ahh 🏋️']
     },
     arrive: ['Hmm, {yer}… tam istediğim yer 😏', '{yer} olmak güzel fikir 😈', 'Tamam, {yer}… şimdi ne yapacağız bakalım? 😏', 'Elini tut, {yer} sana yakın durmak istiyorum 🥰', 'Oh, {yer}! Sevdim burayı 😍'],
     public: ['kafe', 'restoran', 'park', 'sahil', 'sinema', 'alisveris', 'sergi', 'kitapci', 'kampus', 'is', 'ofis', 'lunapark', 'yagmur', 'bar', 'konser', 'dans', 'cati',
-      'gece-yuruyusu', 'kostum-partisi', 'mezarlik-araba', 'araba', 'vapur', 'piknik', 'misir-labirenti', 'kamp', 'ev-partisi', 'balkon', 'teras', 'tatil', 'Asansörde', 'Havuz başında', 'Saunada', 'kilise'],
+      'gece-yuruyusu', 'kostum-partisi', 'mezarlik-araba', 'araba', 'vapur', 'piknik', 'misir-labirenti', 'kamp', 'ev-partisi', 'balkon', 'teras', 'tatil', 'Asansörde', 'Havuz başında', 'Saunada', 'kilise', 'spor'],
     safe: ['yatak', 'otel', 'senin-evin', 'onun-evi', 'banyo', 'araba'],
     // 👀 gerilim: eşik → [sys notu, onun cümlesi]; 100'de yakalanırsınız, gerilim sıfırlanır ve kaçmayı önerir
     risk: [[40, ['👀 Uzaktan biri bakıyor gibi…', '👀 Bir an bir gölge geçti…', '👀 Yakınlarda bir ses duyuldu…'], ['Biri mi baktı? 😳', 'Dur… bir ses duydum 🙈']],
@@ -13231,6 +13500,8 @@
       fxrpkral: [['otel', 'restoran', 'somine', 'dag-evi'], ['Sarayım {pl}, beni oraya götür 👑{ic}', 'Kraliçen {pl} olmak istiyor 👑{ic}'], ['Diz çök 👑', 'Tebaam iyi hizmet ediyor 😏']],
       fxrprobot: [['calisma', 'ofis', 'garaj'], ['Protokol: {pl} geçiş onaylansın mı? 🤖{ic}', 'Şarjım {pl} dolar 🔋{ic}'], ['Sistem aşırı ısınıyor 🤖', 'Hata: zevk %100 🔋']],
       fxrpelf: [['bahce', 'dag-evi', 'kamp', 'park'], ['Orman gibi… {pl} gidelim mi? 🧝‍♀️{ic}', 'Elf büyüsü {pl} güçlenir 🌿{ic}'], ['Kulaklarım çok hassas 🧝‍♀️', 'Doğa bizi izliyor 🌿']],
+      fxrptrainer: [['spor', 'banyo', 'park'], ['Isınma bitti… {pl} devam edelim mi? 🏋️{ic}', 'Bugünkü antrenman {pl}, itiraz yok 📣{ic}'], ['Bir set daha! 🏋️', 'Nefesini tut… şimdi bırak 📣']],
+      fxrpbarmen: [['bar', 'dans', 'araba'], ['Kepenk iniyor… {pl} devam edelim mi? 🍸{ic}', 'Son kokteyl {pl}, benden 😏{ic}'], ['Shaker\'ı salladığım gibi 🍸', 'Hesap sonra 😈']],
       fxrphostes: [['otel', 'vapur', 'restoran'], ['Uçuş bitti… {pl} devam edelim mi? ✈️{ic}', 'Kemerlerinizi çözün, {pl} geçiyoruz ✈️{ic}'], ['Türbülans ahh ✈️', 'Başka bir isteğiniz? 😏']],
       fxrprahibe: [['kilise', 'kiler', 'cati-kati', 'bahce', 'banyo'], ['Günah çıkarmayı {pl} yapalım 🙏{ic}', '{pl} kimse duymaz dualarımı 🙏{ic}'], ['Affet beni… 🙏', 'Tespihim düştü 🙈']],
       fxrpbasrahibe: [['kilise', 'calisma', 'kiler'], ['Bahçıvan, seni {pl} bekliyorum. Gecikme ⛪{ic}', 'Kurallar {pl} da geçerli 🗝️{ic}'], ['Cetvelim nerede? 📏', 'Bu manastırda kural benim ⛪']],
@@ -13325,6 +13596,10 @@
       mekan: ['{pl} geçelim mi? Ofiste kamera var {ic}💼', 'Dosyaları bırak, {pl} geliyorsun {ic}💼'], opus: ['Bir öpücük… terfi için? 💼😘', '*kravatından çekip öper* 💼💋'] },
     fxrpmasaj: { icki: ['Masajdan önce bir kadeh rahatlatır… içelim mi? 💆‍♀️🍷', 'Gevşe, kadehin hazır 💆‍♀️🍷'], soyun: ['Yağ bulaşmasın, önlüğümü çıkarayım mı? 💆‍♀️😏', '*önlüğünü çıkarır* Tam vücut masajı 💆‍♀️🔥'],
       mekan: ['{pl} geçelim mi? Orada daha rahat edersin {ic}💆‍♀️', '{pl} uzan, masaj orada devam {ic}'], opus: ['Masajın sonunda bir öpücük? 💆‍♀️😘', '*sırtından boynuna kadar öper* 💆‍♀️💋'] },
+    fxrptrainer: { icki: ['Antrenmandan sonra protein shake mi, yoksa bir kadeh mi? 🏋️🥤', 'Su iç, terledin… sonra ben 😏💧'], soyun: ['Bu tayt çok sıcak… çıkarsam form kontrolü daha kolay olur 🏋️😏', '*spor sütyenini başından sıyırır* Duruşuna bak, bana değil 📣🔥'],
+      mekan: ['{pl} geçelim mi? Kardiyo orada devam eder {ic}🏋️', 'Antrenman planı değişti: {pl} {ic}📣'], opus: ['Toparlanma için bir öpücük şart 🏋️😘', '*nefes nefese öper* Bu da bir egzersiz 💋'] },
+    fxrpbarmen: { icki: ['Son kokteyl benden, adı "kalma sebebi" 🍸😏', '*iki shot doldurur* Kapanışa, ikimize 🥃'], soyun: ['Önlüğüm üstümde kalsın mı? Altı boş 🍸😈', '*yeleğinin düğmelerini açar* Tezgâhın bu tarafı sıcak 🔥'],
+      mekan: ['Kepenk indi… {pl} devam edelim mi? {ic}🍸', 'Hesabı {pl} ödersin 😏{ic}'], opus: ['Kokteyl tadında bir öpücük? 🍸😘', '*tezgâhın üstünden eğilip öper* Limonlu 🍋💋'] },
     fxrphostes: { icki: ['Uçuşta ikram: şampanya ister misiniz? ✈️🥂', 'Birinci sınıf ikramınız, efendim 🥂✈️'], soyun: ['Türbülans var… üniformamı çıkarsam? ✈️😏', '*eteğinin fermuarını açar* Kemerlerinizi bağlayın ✈️🔥'],
       mekan: ['{pl} geçelim mi? Kabin bizim {ic}✈️', 'Rotayı değiştirdim: {pl} {ic}✈️'], opus: ['Yolcuya özel bir öpücük? ✈️😘', '*eğilip öper* İyi uçuşlar ✈️💋'] },
     fxrpkral: { icki: ['Kraliçe şarap ister. Doldurur musun? 👑🍷', 'Kadehimi kaldırdım; sen de iç, emrimdir 👑🍷'], soyun: ['Tacım kalsın, gerisini sen çıkar. İzin veriyorum 👑', '*cübbesini omzundan atar* Bak ama dokunma, henüz 👑'],
@@ -13743,6 +14018,15 @@
 
   /* 🖼️ Galeriden fotoğraf seç (js/gallery.js): albüm sekmeleri + fotoğraflar. multi: birden çok seçim (max adede kadar) */
   const GAL = Stories.Gallery;
+  // ✨ yükleme ekranı: açılıştaki Carmen efekti (style.css .splash.busy), iş bitene kadar nabız atar
+  let splashN = 0;
+  function splashWhile(p) {
+    const sp = $('#splash'), sub = sp && sp.querySelector('.splash-sub');
+    if (!sp) return p;
+    if (!splashN++) { sub.textContent = 'Yükleniyor…'; sp.classList.remove('hide'); sp.classList.add('busy'); }
+    const done = () => { if (--splashN) return; sp.classList.add('hide'); setTimeout(() => { if (!splashN) { sp.classList.remove('busy'); sub.textContent = 'kendi hikayeni yaz'; } }, 550); };
+    return Promise.resolve(p).then(v => { done(); return v; }, e => { done(); throw e; });
+  }
   function galleryPicker(opts, cb) {
     if (!GAL) return;
     const sel = [];
@@ -13768,11 +14052,11 @@
         </div>`;
     };
     const fail = e => { body.innerHTML = `<div class="empty" style="padding:24px">⚠️ ${esc(e.message || 'Galeri okunamadı')}<br><button type="button" class="btn ghost sm" id="galRef" style="margin-top:10px">🔄 Tekrar dene</button></div>`; };
-    GAL.load().then(draw, fail);
+    (GAL.cached() ? GAL.load() : splashWhile(GAL.load())).then(draw, fail);
     sh.el.onclick = e => {
       const alb = e.target.closest('[data-alb]');
       if (alb) { ui.galAlbum = alb.dataset.alb; draw(GAL.cached()); return; }
-      if (e.target.closest('#galRef')) { body.innerHTML = '<div class="empty" style="padding:24px">Yenileniyor…</div>'; GAL.load(true).then(draw, fail); return; }
+      if (e.target.closest('#galRef')) { body.innerHTML = '<div class="empty" style="padding:24px">Yenileniyor…</div>'; splashWhile(GAL.load(true)).then(draw, fail); return; }
       if (e.target.closest('#galAdd')) { sh.close(); cb(sel); return; }
       const ph = e.target.closest('[data-gu]');
       if (!ph) return;
@@ -14381,8 +14665,8 @@
     view.querySelectorAll('[data-wrm]').forEach(b => b.onclick = () => { d.wardrobe = (d.wardrobe || []).filter(x => x !== b.dataset.wrm); d.outfit = randOutfit(d); redraw(); });
     $('#wearEdit').onclick = () => dressSheet(d, () => { d.outfit = randOutfit(d); redraw(); }, true);
     // 🖼️ Lara Gallery: albümler gelince listeyi yenile; profil / albüm için galeriden seçim
-    if (mod.gallery && !GAL.cached()) GAL.load().then(() => { if (ui.createMod === mod.id && ui.route.name === 'create') redraw(); }, e => notify(e.message, '⚠️'));
-    if ($('#galSets')) $('#galSets').onclick = () => GAL.load(true).then(() => { redraw(); notify('Albümler yenilendi', '🖼️'); }, e => notify(e.message, '⚠️'));
+    if (mod.gallery && !GAL.cached()) splashWhile(GAL.load()).then(() => { if (ui.createMod === mod.id && ui.route.name === 'create') redraw(); }, e => notify(e.message, '⚠️'));
+    if ($('#galSets')) $('#galSets').onclick = () => splashWhile(GAL.load(true)).then(() => { redraw(); notify('Albümler yenilendi', '🖼️'); }, e => notify(e.message, '⚠️'));
     if ($('#galPP')) $('#galPP').onclick = () => galleryPicker({ title: 'Profil fotoğrafı' }, ([u]) => {
       d.photo = u;
       if (!d.album.includes(u) && d.album.length < MAX_ALBUM) d.album.unshift(u);
@@ -14635,6 +14919,7 @@
     ['avukat', 'fxrpavukat'], ['psikolog', 'fxrppsikolog'], ['gardiyan', 'fxrpgardiyan'], ['pizza kuryesi', 'fxrppizza'],
     ['ressam', 'fxrpressam'], ['dans hocası', 'fxrpdans'], ['fizyoterapist', 'fxrpfizyo'], ['taksi şoförü', 'fxrptaksi'],
     ['melek', 'fxrpmelek'], ['kaptan kadın', 'fxrpkaptan'], ['kraliçe', 'fxrpkral'], ['android', 'fxrprobot'], ['elf prensesi', 'fxrpelf'], ['hostes', 'fxrphostes'], ['rahibe', 'fxrprahibe'], ['başrahibe', 'fxrpbasrahibe'],
+    ['personal trainer', 'fxrptrainer'], ['barmen', 'fxrpbarmen'],
     ['ayna karşısında', 'fxayna'],
     // 🍼 Lactation Fantasy kategorisi (başlık "Lactation – …")
     ['lactation', 'fxlac'],
@@ -16243,7 +16528,7 @@
     ['on', '👅', 'Ön sevişme', ['eat', 'outercourse']],
     ['sut', '🍼', 'Lactation', ['lactation', 'nursing', 'lactation fantasy']],
     ['poz', '🔥', 'Pozisyon', ['forward', 'backward', 'threesome', 'mode', 'pre-cumming']],
-    ['mekan', '📍', 'Mekân', ['mekanda', 'shower', 'sauna', 'bathtub', 'pool', 'car', 'elevator', 'camping', 'kitchen', 'camera', 'beach', 'office', 'hotel', 'school', 'church', 'pee']],
+    ['mekan', '📍', 'Mekân', ['mekanda', 'shower', 'sauna', 'bathtub', 'pool', 'car', 'elevator', 'camping', 'kitchen', 'camera', 'beach', 'office', 'hotel', 'school', 'church', 'gym', 'bar', 'cinema', 'pee']],
     ['fant', '🦄', 'Fantezi', ['fantesy', 'meisove', 'femdom', 'bdsm', 'bull']],
     ['bit', '💦', 'Bitiş', ['cumming', 'cumming size']],
     ['son', '🌙', 'Sonrası', ['cool down', 'treatment', 'bull story']]
@@ -16263,6 +16548,9 @@
     hotel: { ids: ['otel', 'tatil'], to: { place: 'otel' } },
     school: { ids: ['kampus'], to: { place: 'kampus' } },
     church: { ids: ['kilise'], to: { place: 'kilise' } },
+    gym: { ids: ['spor'], to: { place: 'spor' } },
+    bar: { ids: ['bar', 'dans', 'konser'], to: { place: 'bar' } },
+    cinema: { ids: ['sinema'], to: { place: 'sinema' } },
     pee: { ids: ['tuvalet', 'banyo'], to: { place: 'tuvalet' } }
   };
   const placeEvOf = cat => PLACE_EV[String((cat || {}).label || '').toLocaleLowerCase('tr').trim()];
@@ -17527,7 +17815,7 @@
   const PLACE_KEY = { araba: 'araba', garaj: 'araba', banyo: 'dus', mutfak: 'mutfak', yatak: 'yatak', 'onun-evi': 'yatak', 'senin-evin': 'yatak', misafir: 'yatak', 'cati-kati': 'yatak',
     salon: 'koltuk', 'ev-sinema': 'koltuk', somine: 'somine', 'dag-evi': 'somine', balkon: 'balkon', teras: 'balkon', cati: 'balkon', sahil: 'sahil', tatil: 'sahil', yazlik: 'sahil',
     sinema: 'sinema', bar: 'bar', konser: 'bar', dans: 'bar', 'ev-partisi': 'parti', kamp: 'kamp', piknik: 'kamp', park: 'kamp', vapur: 'vapur', kampus: 'ofis', is: 'ofis', calisma: 'ofis',
-    kafe: 'kafe', restoran: 'kafe', kitapci: 'kafe', alisveris: 'kabin', giyinme: 'kabin', kilise: 'kilise', tuvalet: 'tuvalet',
+    kafe: 'kafe', restoran: 'kafe', kitapci: 'kafe', alisveris: 'kabin', giyinme: 'kabin', kilise: 'kilise', tuvalet: 'tuvalet', spor: 'spor',
     'perili-ev': 'perili', 'misir-labirenti': 'labirent', 'kostum-partisi': 'kostum', 'mezarlik-araba': 'mezarlik' };
   const PLACE_RULES = {
     araba: { icon: '🚗', block: ['standing', 'full nelson', 'standing doggy', 'standing anal', 'ondesk'], why: 'Arabada ayağa kalkacak yer yok' },
@@ -17541,7 +17829,8 @@
   };
   const placeBlock = (key, e) => {
     const r = PLACE_RULES[key];
-    if (!r || !isPosEv(e)) return '';
+    // mekânın kendi kategorisindeki olaylar (bar / sinema etiketi) hep serbest
+    if (!r || !isPosEv(e) || (e.tags || []).some(x => lowTag(x) === key)) return '';
     const t = String(e.title).toLocaleLowerCase('tr');
     return (r.allow ? !r.allow.includes(t) : r.block.includes(t)) ? `${r.icon} ${r.why}` : '';
   };
@@ -17649,7 +17938,15 @@
   // 🏷️ etikete göre ortak sonuç: g.tags olayın kendi etiketiyle, g.ctags kategorisinin etiketiyle eşleşir (büyük/küçük harf fark etmez)
   const lowTag = x => String(x).toLocaleLowerCase('tr');
   // 🏖️ mekân etiketi → [etiket, kesinti havuzu (FANT_INTERRUPTS), kesinti olasılığı]
-  const PLACE_INT = [['havuz', 'yerhavuz', .2], ['araba', 'yeraraba', .15], ['asansör', 'yerasansor', .2], ['kamp', 'yerkamp', .1], ['plaj', 'yerplaj', .15], ['ofis', 'yerofis', .2], ['otel', 'yerotel', .1], ['okul', 'yerokul', .2]];
+  const PLACE_INT = [['havuz', 'yerhavuz', .2], ['araba', 'yeraraba', .15], ['asansör', 'yerasansor', .2], ['kamp', 'yerkamp', .1], ['plaj', 'yerplaj', .15], ['ofis', 'yerofis', .2], ['otel', 'yerotel', .1], ['okul', 'yerokul', .2],
+    ['spor', 'yerspor', .15], ['bar', 'yerbar', .15], ['sinema', 'yersinema', .2]];
+  // 👀 yakalanma riski olan mekân etiketleri → [etiket, kesinti havuzu, bildirim adı] (renderChat riskStep; 70 / 100 eşiğinde kesinti)
+  const RISK_TAG = [['sinema', 'yersinema', '🎬 sinema'], ['bar', 'yerbar', '🍸 bar'], ['kilise', 'yerkilise', '⛪ kilise']];
+  // 📳 vibratör kademeleri (renderChat eventMessages, th.vib): 1–5
+  const VIB_LV = ['kapalı', 'hafif titreşim', 'düzenli vızıltı', 'dalga dalga', 'güçlü', 'en yüksek'];
+  // 📳 kademe cevabı: bot kuralı "=durum =vib<N>" (kişilik varyantı önce, stLine), yoksa bu yedek havuz; th.vibSay → sonraki cevabın başına
+  const VIB_SAY = [[], ['Hmm… gıdıklıyor 😏', 'Bu kadar mı? 😌'], ['Ahh… şimdi hissediyorum 😳', 'Düzenli… çok düzenli 🥵'],
+    ['Dalga dalga geliyor… ahh 😩', 'Bacaklarım titremeye başladı 😳'], ['Çok güçlü! Ahhh 😩', 'Dur… hayır durma 🥵'], ['En yüksekte! Dayanamıyorum ahhhh 😵‍💫', 'Geliyorum… geliyorum! 💥']];
   // 🤱 Nursing olayı id → [kesinti havuzu (FANT_INTERRUPTS), olasılık]; _ = diğer Nursing olayları
   const NURSE_INT = { mvnu14cover: ['nuortu', .3], mvnu10night: ['nugece', .2], mvnu18morning: ['nusabah', .2], _: ['nugenel', .06] };
   const sharedByTag = (g, e) => {
@@ -17751,7 +18048,7 @@
   let trPos = null;
   // 🎯 sadece bitiş yeri etiketleri eşleşir (vajinal, kalça…); 🎃 temalı olaylar (halloween / kan / slime / tedavi / mekânlar) ancak pozisyon da o temadaysa:
   // vanilla Doggy → Vaginal Creampie, Red Bath / Visible Creampie değil; Blood Bath → Red Bath Creampie da olabilir
-  const EV_THEME = ['halloween', 'kan', 'slime', 'tedavi', 'boşalma', 'duş', 'sauna', 'bull', 'küvet', 'havuz', 'araba', 'asansör', 'kamp', 'mutfak', 'kamera', 'plaj', 'ofis', 'otel', 'okul', 'kilise', 'üçlü'];
+  const EV_THEME = ['halloween', 'kan', 'slime', 'tedavi', 'boşalma', 'duş', 'sauna', 'bull', 'küvet', 'havuz', 'araba', 'asansör', 'kamp', 'mutfak', 'kamera', 'plaj', 'ofis', 'otel', 'okul', 'kilise', 'spor', 'bar', 'sinema', 'üçlü'];
   // bir kategorideki (ör. Cumming) şu anki pozisyona uyan olayların hepsi (trTarget 'match:' ve olay seçicinin 🎯 Şimdi satırı)
   function matchFinishes(catId, pos) {
     const tags = ((pos || {}).tags || []).map(lowTag), spot = tags.filter(t => !EV_THEME.includes(t));
@@ -19419,7 +19716,8 @@
     ['fxrpyelan', '🎲', 'Yelan', 'zar, sır ve su mavisi ipler'], ['fxrpclorinde', '⚔️', 'Clorinde', 'yenilmez düellocu'], ['fxrpmavuika', '🔥', 'Mavuika', 'ateşin lideri'], ['fxrpxianyun', '☁️', 'Xianyun', 'konuşkan turna adeptus'],
     ['fxrpgazino', '🎰', 'Gazino Bunny', 'gazinonun tavşan kızı'], ['fxrpplaza', '🏢', 'Ofis Rolleri', 'asistan, patroniçe, muhasebeci, İK'], ['fxrpfakulte', '🏛️', 'Fakülte Rolleri', 'tıp, hukuk, sanat, mühendislik, edebiyat, spor hocası'],
     ['fxkurt', '🐺', 'Wolf Girl', 'dolunay kurdu'], ['fxseytan', '😈', 'Demon Girl', 'boynuzlu şeytan'], ['fxkoyun', '🐑', 'Sheep Girl', 'yumuşacık kuzu'],
-    ['fxrpbasrahibe', '⛪', 'Başrahibe – Bahçıvan', 'o başrahibe, sen bahçıvan']];
+    ['fxrpbasrahibe', '⛪', 'Başrahibe – Bahçıvan', 'o başrahibe, sen bahçıvan'],
+    ['fxrptrainer', '🏋️', 'Personal Trainer – Üye', 'o antrenör, sen yeni üye'], ['fxrpbarmen', '🍸', 'Barmen – Son Müşteri', 'o barmen, sen son müşteri']];
   /* ✨ Genshin Kitabı: [fantKey, simge, ad, lakap, element · silah · bölge, tanıtım, kişilik, sana hitabı, konuşması, olay başlıkları] */
   const GS_BOOK = [
     ['fxrpyelan', '🎲', 'Yelan', 'Vadi Orkidesi', '💧 Hydro · 🏹 yay · Liyue', 'Kendini sıradan bir memur diye tanıtır; aslında Liyue\'nin en iyi istihbaratçısıdır ve bir çayevinin sahibidir. Tehlikeyi, kumarı ve heyecanı sever. Kısa koyu saçlı, omzunda beyaz kürk, bileğinde atalarından kalma bir bilezik, boynunda bir zar taşır. Su mavisi ipleriyle hedefini sarar ve nabzından yalanını okur.',
@@ -19606,10 +19904,10 @@
   /* ❓ Sorular Kitabı: karakteri tanımak için sorabileceğin sorular. Bölümler bot-rules.js'teki r_q* kurallarından okunur
    * (kural kimliğinin başı → ilk uyan bölüm; son bölüm geri kalan hepsi). Örnek cümleler "when" seçeneklerinden, "cevaba bakan" traits / note'tan */
   const QB_CH = [
-    ['🔥', 'İstek ve seks soruları', 'sevişmek ister misin, seks sever misin, azgın mısın', ['r_q4_is_', 'r_q2_seks', 'r_q2_azgin', 'r_q2_istek', 'r_q2_tahrik', 'r_q2_mastur', 'r_q2_sertyavas', 'r_q2_kackez', 'r_q2_son', 'r_q2_kendine', 'r_q2_ses', 'r_q2_sac', 'r_q2_isik']],
+    ['🔥', 'İstek ve seks soruları', 'sevişmek ister misin, seks sever misin, azgın mısın', ['r_q4_is_', 'r_q2_seks', 'r_q2_azgin', 'r_q2_istek', 'r_q2_tahrik', 'r_q2_mastur', 'r_q2_sertyavas', 'r_q2_kackez', 'r_q2_son', 'r_q2_kendine', 'r_q2_ses', 'r_q2_sac', 'r_q2_isik', 'r_q6_']],
     ['🍑', 'Pozisyon ve olay soruları', 'arkadan / önden sever misin, en sevdiğin pozisyon', ['r_q4_ev_', 'r_q2_pozisyon', 'r_q2_arkadan', 'r_q2_anal', 'r_q2_oral', 'r_q2_yut', 'r_q2_yuz', 'r_q2_oyuncak', 'r_q2_baglan', 'r_q2_fantezi', 'r_q2_yer', 'r_q2_hassas', 'r_q2_dokun', 'r_q2_ustalt', 'r_q2_rol', 'r_q2_cilgin', 'r_q_sever', 'r_q_sevmez']],
     ['👙', 'Vücut soruları', 'göğüs, kalça, darlık, kilo, boy', ['r_q_boob', 'r_q_butt', 'r_q_pussy', 'r_q_anal', 'r_q4_boob', 'r_q4_butt', 'r_q4_dar', 'r_q4_arka', 'r_q4_dick', 'r_q3_', 'r_q5_', 'r_q2_kiyafet', 'r_q2_boy', 'r_q2_sevboy', 'r_q2_neyim', 'r_q2_kiyas', 'r_q2_sut']],
-    ['🧠', 'Deneyim soruları', 'daha önce, ilk kez, kaç kez, baskın mısın', ['r_q_exp', 'r_q_virgin', 'r_q4_exp', 'r_q4_dom', 'r_q2_ilk', 'r_q2_gecmis', 'r_q2_orgazmsay', 'r_q2_bosalmasay', 'r_q2_yakalan', 'r_q2_kadin']],
+    ['🧠', 'Deneyim soruları', 'daha önce, ilk kez, kaç kez, baskın mısın', ['r_q_exp', 'r_q_virgin', 'r_q4_exp', 'r_q4_dom', 'r_q2_ilk', 'r_q2_gecmis', 'r_q2_orgazmsay', 'r_q2_bosalmasay', 'r_q2_yakalan', 'r_q2_kadin', 'r_q7_']],
     ['🛡️', 'Korunma ve boşalma soruları', 'kondom, hap, içine, hamilelik, dayanıklı mıyım', ['r_q4_st', 'r_q_korunma', 'r_q_hamile', 'r_q2_kondom', 'r_q2_korunmak', 'r_q2_hap', 'r_q2_bosal', 'r_q2_disaribosal', 'r_q2_hamile', 'r_q2_bebek']],
     ['💞', 'Hayatı ve ilişki soruları', 'adın, yaşın, şehrin, sevgilin var mı', ['r_q']]
   ];
@@ -20024,7 +20322,7 @@
     { icon: '📖', title: 'BDSM Kitabı nasıl okunur', sub: 'olayları başlat, tepkilerini izle', get body() {
       return `<p>🔗 BDSM olayları sohbette <b>📜 Olay yaz → 🦄 Fantezi → 🔗 BDSM</b> içinden ya da <b>#</b> yazıp olayın adıyla başlar. Her olay değerlere etki eder ve 🤖 bot modu açıksa karakter kendi cevabını yazar.</p>
         <ul><li><b>Pozisyon sayılmaz</b>: bu olaylar sahneyi hazırlar ya da sürdürür; boşalma için ayrıca bir pozisyon ya da bitiş olayı gerekir.</li>
-          <li><b>Kademe ve süre</b>: vibratör kademesini ve mumun mesafesini mesajında söylersin; ayrı bir düğme yok. <b>⏸️ Edging</b> ise turları kendisi sayar (bkz. Uyarım ve kontrol).</li>
+          <li><b>Kademe ve süre</b>: <b>📳 vibratör kademesi</b> kendiliğinden sayılır (Vibrator Control / Remote Toy her yazılışta +1, 5'te orgazm); mumun mesafesini mesajında söylersin. <b>⏸️ Edging</b> de turları kendisi sayar (bkz. Uyarım ve kontrol).</li>
           <li><b>🔗 Aksesuarlar</b>: tıpa, tasma, mandal ve vibratör kıyafet gibi giyilir; olay takar, komutla takıp çıkarırsın (bkz. Giyilen aksesuarlar).</li>
           <li><b>Sıra önerisi</b>: Warm Oil Massage ile başla, duyusal oyunlarla devam et, kontrol ve bağlamayla tırman, sonunda mutlaka sarıl.</li>
           <li><b>Kişilik ve rol</b>: cevabı kişiliği değiştirir: utangaç kızarır, flörtöz kışkırtır, romantik güvenir, soğuk küçümser, dominant intikam yemini eder. Bir rol ya da fantezi sürüyorsa (Kraliçe, Vampir, Cat Girl, Limon Kız…) o rolün ağzından cevap verir; şaplak, kürek ve kırbaca ayrı tepkisi vardır.</li></ul>
@@ -20036,7 +20334,8 @@
     } },
     { icon: '📳', title: 'Uyarım ve kontrol', sub: 'vibratör, uzaktan kumanda, edging sayacı, izin, yarım bırakma, tıpa', get body() {
       return `<p>Kontrol sende: ne zaman, ne kadar ve ne zamana kadar sen karar verirsin. Bu olaylar en çok Uyarılma ve Şehvet verir.</p>
-        <p><b>⏸️ Edging sayacı</b>: her Edging bir tur ekler (en çok 5). Sayaç doluyken izinsiz gelemez: Uyarılma eşiği gelse de orgazm tutulur. <b>Permission to Come</b> biriken turları verir: tur başına Şehvet +4, Aşk +1, Güven +1 ve hemen orgazm. <b>Ruined Finish</b> turları boşa harcar: tur başına Şehvet +3, Güven −1, orgazm yok.</p>${bdBody(['Vibrator Control', 'Remote Toy', 'Edging', 'Permission to Come', 'Ruined Finish', 'Butt Plug'])}`;
+        <p><b>⏸️ Edging sayacı</b>: her Edging bir tur ekler (en çok 5). Sayaç doluyken izinsiz gelemez: Uyarılma eşiği gelse de orgazm tutulur. <b>Permission to Come</b> biriken turları verir: tur başına Şehvet +4, Aşk +1, Güven +1 ve hemen orgazm. <b>Ruined Finish</b> turları boşa harcar: tur başına Şehvet +3, Güven −1, orgazm yok.</p>
+        <p><b>📳 Vibratör kademesi</b>: Vibrator Control ve Remote Toy her yazılışta titreşimi bir kademe artırır (1–5), Uyarılma +3 × kademe. 5. kademede orgazm gelir (edging sayacı doluysa tutulur); orgazm ya da boşalma kademeyi sıfırlar. Ayrıntı: <a href="#/kitap/gece">🌃 Gece Hayatı Kitabı</a>.</p>${bdBody(['Vibrator Control', 'Remote Toy', 'Edging', 'Permission to Come', 'Ruined Finish', 'Butt Plug'])}`;
     } },
     { icon: '🔥', title: 'Acı ve haz', sub: 'şaplak, teşekkür, kürek, kırbaç, göğüs mandalları', get body() {
       return `<p>Hafif acı hazzı keskinleştirir. Yavaş başla, tepkisini izle; kızarıklık ve nefes sana ne kadar ileri gidebileceğini söyler. En yumuşaktan en serte: Flogger, Spanking, Riding Crop, Paddle; Paddle ve Riding Crop Acı'yı da artırır.</p>${bdBody(['Flogger', 'Spanking', 'Say Thank You', 'Riding Crop', 'Paddle', 'Nipple Clamps'])}`;
@@ -20188,7 +20487,8 @@
         return `<tr><td>${e.emojis || '⛪'} <b>${esc(e.title)}</b>${tg ? `<br><small>${tg}</small>` : ''}</td><td>${esc(e.desc || '')}</td><td>${((r || {}).reply || []).slice(0, 2).map(x => `"${esc(x)}"`).join('<br>') || '—'}</td></tr>`; }).join('')}</table>`;
       return `<p>⛪ <b>Church</b> olayları <b>⛪ Kilise</b> mekânına aittir: oradayken olay seçicinin <b>📍 Mekân</b> sekmesinde ve ⚡ Kısayollar'da çıkar; başka yerde Church olayı yazarsan sohbet Kilise'ye geçer. CarmenChurch sohbetleri Kilise'de başlar, ikisi ❤️ ve ⚡'a eklenir. Rahibe sürerken mekân önerilerinde Kilise öne çıkar. Rol sürerken cevapları rahibenin ağzından gelir.</p>
         <ul><li><b>Rosary Bead Tease</b> pozisyon değil ısınmadır: Uyarılma +15, anal'den önce iyi gider.</li>
-          <li><b>Bitişler</b> (💦 Bitiş sekmesi) sadece bir kilise pozisyonundan sonra eşleşir; <b>Holy Water Creampie</b> korunmaya göre hamilelik ihtimali taşır.</li></ul>
+          <li><b>Bitişler</b> (💦 Bitiş sekmesi) sadece bir kilise pozisyonundan sonra eşleşir; <b>Holy Water Creampie</b> korunmaya göre hamilelik ihtimali taşır.</li>
+          <li><b>👀 Yakalanma riski</b>: Church olayları gerilimi fazladan yükseltir; 70'te ve 100'de 📱 kilise kesintisi gelir (çan, kapı, koro…). Bkz. <a href="#/kitap/gece">🌃 Gece Hayatı Kitabı</a>.</li></ul>
         <h4>🔥 Pozisyonlar</h4>${tb(ch)}<h4>💦 Bitişler</h4>${tb(fin)}`;
     } },
     { icon: '👗', title: 'Cübbe Altı', sub: 'kıyafet olayı ve cübbe kombinleri', get body() {
@@ -20223,6 +20523,90 @@
         <table class="bk-t"><tr><th>Söz</th><th>Cevap</th></tr>${fq.map(x => `<tr><td><b>${esc(String(x.name || '').replace(/^.*?: /, ''))}</b></td><td>"${esc((x.reply || [])[0] || '')}"</td></tr>`).join('')}</table>
         <p>🥚 Egg'ler: ${eggs.filter(fantEggOpen).length}/${eggs.length} bulundu. Bulduklarını 🦄 Fantezi Kitabı'nda görürsün.</p>
         <h4>📱 Kesintiler</h4><ul>${[...ints('fxrprahibe'), ...ints('fxrpbasrahibe')].map(x => `<li>${esc(x.g)}: "${esc((x.r || [])[0] || '')}"</li>`).join('')}</ul>`;
+    } }] });
+  /* 🌃 Gece Hayatı Kitabı: Gym / Bar / Cinema olayları (c:mvgym01x, c:mvbar01x, c:mvcinema01x + bitişleri), Personal Trainer ve Barmen rolleri,
+   * Spor Salonu İlanları (GY_ROLES), 👀 yakalanma riski (RISK_TAG), 📳 vibratör kademesi (VIB_LV); hepsi data'dan canlı okunur */
+  const ghEvs = (cat, tag) => { const all = allEvents(); return [all.filter(e => e.cat === cat), all.filter(e => (e.tags || []).includes(tag) && (e.tags || []).includes('boşalma'))]; };
+  const ghTb = (evs, pre) => `<table class="bk-t"><tr><th>Olay</th><th>Ne olur</th><th>Onun cevabı</th></tr>${evs.map(e => {
+    const t = e.tags || [], r = ofRule(pre, e.title), tg = t.includes('anal') ? '🍑 anal' : t.includes('vajinal') ? '🌸 vajinal' : t.includes('oral') ? '👄 oral' : t.includes('boşalma') ? '' : '😏 ısınma';
+    const fx = (e.onEffects || []).map(f => BD_PN[f.p] ? `${BD_PN[f.p]} ${f.d > 0 ? '+' : ''}${f.d}` : '').filter(Boolean).join(' · ');
+    return `<tr><td>${e.emojis || ''} <b>${esc(e.title)}</b>${tg || fx ? `<br><small>${[tg, fx].filter(Boolean).join(' · ')}</small>` : ''}</td><td>${esc(e.desc || '')}</td><td>${((r || {}).reply || []).slice(0, 2).map(x => `"${esc(x)}"`).join('<br>') || '—'}</td></tr>`; }).join('')}</table>`;
+  const ghPlace = (cat, tag, pre, intro) => { const [pos, fin] = ghEvs(cat, tag); return `<p>${intro}</p><h4>🔥 Pozisyonlar ve ısınmalar</h4>${ghTb(pos, pre)}<h4>💦 Bitişler</h4>${ghTb(fin, pre)}`; };
+  const ghInts = k => (((Stories.FANT_INTERRUPTS || {})[k]) || []).map(x => `<li>${esc(x.g)}: "${esc((x.r || [])[0] || '')}"</li>`).join('');
+  const ghRole = (k, ev) => { const e = ofSysEv(ev), r = ofRule('r_rp_' + k, ev), fq = ((Stories.BOT_RULES || {}).rules || []).filter(x => x.id.startsWith(`r_fq_fxrp${k}_`)), eggs = fantRules('r_fe_', 'fxrp' + k);
+    return `<table class="bk-t"><tr><th>Olay</th><td>${e ? `${e.emojis || ''} <b>${esc(ev)}</b><br><small>${esc(e.desc || '')}</small>` : esc(ev)}</td></tr>
+      <tr><th>Rol cevapları</th><td>${((r || {}).reply || []).slice(0, 3).map(x => `"${esc(x)}"`).join('<br>') || '—'}</td></tr></table>
+      <table class="bk-t"><tr><th>Söz</th><th>Cevap</th></tr>${fq.map(x => `<tr><td><b>${esc(String(x.name || '').replace(/^.*?: /, ''))}</b></td><td>"${esc((x.reply || [])[0] || '')}"</td></tr>`).join('')}</table>
+      <p>🥚 Egg'ler: ${eggs.filter(fantEggOpen).length}/${eggs.length} bulundu · <a href="#/kitap/fantezi/${ofFb('fxrp' + k)}">🦄 Fantezi Kitabı'nda</a></p>
+      <h4>📱 Kesintiler</h4><ul>${ghInts('fxrp' + k)}</ul>`; };
+  BOOKS.push({ id: 'gece', icon: '🌃', title: 'Gece Hayatı Kitabı', sub: 'spor salonu, bar, sinema; yakalanma riski ve vibratör kademesi', chips: ['43 olay', '🎭 2 rol', '👀 risk'], chapters: [
+    { icon: '📖', title: 'Gece Hayatı Kitabı nasıl okunur', sub: 'üç mekân, iki rol, iki mekanik', get body() {
+      return `<p>🌃 Şehir uyumadı. Bu kitap üç mekân kategorisini anlatır: <b>🏋️ Gym</b>, <b>🍸 Bar</b> ve <b>🎬 Cinema</b>. Sohbette <b>📜 Olay yaz → 📍 Mekân</b> sekmesinden ya da <b>#</b> yazıp olayın adıyla başlarlar. Sohbet o mekândaysa ⚡ Kısayollar'da da çıkarlar; başka yerde yazarsan sohbet oraya geçer.</p>
+        <ul><li><b>🌹 İlanlar</b>: Carmen.com ilanlarında Gym ve Bar olaylarını 3 kızdan biri, Cinema olaylarını 4 kızdan biri ❤️ sever (2'şer olay). 🗺️ Görevler'de yeni görevler var: Ter atma, Son kadeh, Arka sıra, Az kalsın, Kumanda sende, Kişisel antrenör, Son müşteri.</li>
+          <li><b>🏋️ Gym</b> yeni <b>Spor salonunda</b> mekânına aittir. 🍸 Bar <b>Barda / Dans pistinde / Konserde</b>, 🎬 Cinema <b>Sinemada</b> geçer.</li>
+          <li><b>🔥 Pozisyonlar</b> yatak cümlesi kullanmaz (ayakta, tezgâhta, koltukta). Sinema ve barın dar alan kuralı bu kategorilerin kendi olaylarına uygulanmaz.</li>
+          <li><b>💦 Bitişler</b> sadece aynı mekânın pozisyonundan sonra eşleşir; Bench, Stall ve Back Row Creampie korunmaya göre hamilelik ihtimali taşır.</li>
+          <li><b>🎭 Roller</b>: 🏋️ Personal Trainer – Üye ve 🍸 Barmen – Son Müşteri (🦄 Fantesy). Kendi kostümleri, temaları, kesintileri ve 🥚 egg'leri var.</li>
+          <li><b>👀 Yakalanma riski</b> ve <b>📳 vibratör kademesi</b> son iki bölümde.</li></ul>
+        ${bkChat('🍸 Örnek', [['ev', '📜 💃🔥 Dance Floor Grind'], ['her', 'Kalçamı hissediyor musun? 😏'], ['ev', '📜 🚻🔥 Bathroom Stall'], ['her', 'Kilitle kapıyı! 😳'], ['note', 'Gerilim 👀 70\'i geçti: "🚪 Kabinin kapısı yumruklanıyor: Daha çok sürecek mi?!" Sonra 💦 Stall Creampie.']])}`;
+    } },
+    { icon: '🏋️', title: 'Gym', sub: 'bench, squat kafesi, yoga matı, barfiks, ayna, soyunma odası', get body() {
+      return ghPlace(GY_CAT, 'spor', 'r_ev_gy_', '🏋️ Spor salonu kapanmak üzere, ışıklar yarı sönük. Ağırlık alanı, yoga stüdyosu, aynalı salon ve soyunma odası. Isınmalar (Stretch Help, Spotting, Sweaty Top Peel) Uyarılma verir; pozisyon değildir.');
+    } },
+    { icon: '🍸', title: 'Bar', sub: 'tuvalet kabini, tezgâh, VIP, bilardo, arka sokak', get body() {
+      return ghPlace('c:mvbar01x', 'bar', 'r_ev_br_', '🍸 Müzik yüksek, sıra uzun. Dance Floor Grind, Salt &amp; Lime Lick ve Under The Table ısınmadır. Bar olayları 👀 yakalanma riskini artırır.');
+    } },
+    { icon: '🎬', title: 'Cinema', sub: 'arka sıra, merdiven, makine dairesi, boş salon', get body() {
+      return ghPlace('c:mvcinema01x', 'sinema', 'r_ev_cn_', '🎬 Işıklar söndü, film başladı. Under The Coat, Popcorn Bucket Trick ve Dark Scene Touch ısınmadır. Sinema en riskli mekândır: kesinti ihtimali %20.');
+    } },
+    { icon: '🏋️', title: 'Personal Trainer – Üye', sub: 'düdüklü, sert antrenör', get body() {
+      return `<p>O düdüğü boynunda, taytı terli personal trainer; sen ilk dersine gelen yeni üyesin. Program onun, mola yok. Rol sürerken mekân önerilerinde Spor salonu öne çıkar; 🏋️ Antrenör kıyafetini giyer.</p>
+        <p>"Kaç tekrar", "yoruldum", "düdük", "protein" yazmayı dene.</p>${ghRole('trainer', 'Personal Trainer – Üye')}`;
+    } },
+    { icon: '🍸', title: 'Barmen – Son Müşteri', sub: 'kapanış saati, kepenk yarıda', get body() {
+      return `<p>Bar kapandı, sandalyeler masalarda. O shaker'ı elinde barmen, sen hesabı ödeyemeyen son müşterisin. Rol sürerken Bar öne çıkar; 🍸 Barmen kıyafetini giyer.</p>
+        <p>"Hesap", "ne önerirsin", "shaker", "buz" yazmayı dene.</p>${ghRole('barmen', 'Barmen – Son Müşteri')}`;
+    } },
+    { icon: '📋', title: 'Spor Salonu İlanları', sub: 'CarmenJobs → kapanışta buluş', get body() {
+      return `<p><a href="#/is/spor">💼 CarmenJobs → 🏋️ Spor Salonu İlanları</a> Carmen.com gibi fotoğraflı ilanlardır. Kızın mesleği antrenör / fitness / spor ise personal trainer, yoga / pilates / dans ise yoga eğitmeni olur; uymuyorsa ilana sabit bir rol düşer.</p>
+        <ul><li><b>📍 Nerede buluşalım?</b> Ağırlık alanı, yoga stüdyosu, aynalı salon, soyunma odası; her köşenin kendi olayları var.</li>
+          <li><b>🏋️ Kapanışta buluş</b>: sohbet salonda 22:30'da başlar; ilk 3 Gym olayı ❤️ olur, köşenin olayları ⚡ kısayollara eklenir. Antrenör ve yoga eğitmeni Personal Trainer rolüyle başlar, salon üyesi rolsüz.</li></ul>
+        ${GY_ROLES.map(r => `<h4>${r.ic} ${esc(r.n)}</h4><table class="bk-t"><tr><th>İlk sözü</th><td>${r.greet.map(x => `"${esc(x)}"`).join('<br>')}</td></tr>
+          <tr><th>Kuralları</th><td>${r.rules.map(([ic, t]) => `${ic} ${esc(t)}`).join('<br>')}</td></tr></table>`).join('')}`;
+    } },
+    { icon: '👀', title: 'Yakalanma riski', sub: 'Cinema, Bar ve Church; 70\'te ve 100\'de kesinti', get body() {
+      return `<p>Açık bir mekândayken her olay gerilimi (👀 0–100) yükseltir: pozisyon +18, fantezi +10, Mode +8 (sert modlar +14), diğerleri +5. <b>Cinema, Bar ve Church</b> olayları buna ek olarak +6 verir ve mekân açık olmasa da gerilimi işletir.</p>
+        <ul><li><b>40</b>: "Uzaktan biri bakıyor gibi…" notu.</li>
+          <li><b>70</b>: 📱 Kesintiler açıksa o mekânın kesintisi gelir (görevlinin feneri, kabin kapısı, çan sesi…); kapalıysa ayak sesi notu.</li>
+          <li><b>100</b>: yakalanırsınız; kesinti gelir, gerilim sıfırlanır ve o güvenli bir yere kaçmayı önerir.</li>
+          <li>"Şşş" ya da "sessiz ol" yazmak gerilimi 30 düşürür; yer değişince sıfırdan başlar.</li></ul>
+        <h4>🎬 Sinema</h4><ul>${ghInts('yersinema')}</ul><h4>🍸 Bar</h4><ul>${ghInts('yerbar')}</ul><h4>⛪ Kilise</h4><ul>${ghInts('yerkilise')}</ul><h4>🏋️ Spor salonu</h4><ul>${ghInts('yerspor')}</ul>`;
+    } },
+    { icon: '📳', title: 'Vibratör kademesi', sub: 'Vibrator Control ve Remote Toy, 1\'den 5\'e', get body() {
+      return `<p>🔗 BDSM'deki <b>Vibrator Control</b> ve <b>Remote Toy</b> artık bir kademe sayar. Her yazılışta titreşim bir kademe artar ve Uyarılma 3 × kademe kadar yükselir.</p>
+        <table class="bk-t"><tr><th>Kademe</th><th>Ne olur</th></tr>${VIB_LV.slice(1).map((t, i) => `<tr><td>📳 ${i + 1}</td><td>${esc(t)} · Uyarılma +${3 * (i + 1)}${i + 1 === VIB_LV.length - 1 ? ' · <b>Orgazm</b> gelir' : ''}</td></tr>`).join('')}</table>
+        <ul><li>⏸️ Edging sayacı doluysa 5. kademedeki orgazm da tutulur; 🙏 Permission to Come ile izin verirsin.</li>
+          <li>Orgazm ya da herhangi bir boşalma kademeyi sıfırlar.</li>
+          <li>🤖 Bot açıkken her kademede onun bir cümlesi cevabının başına gelir; Utangaç, Flörtöz ve Alaycı kızların kendi cümleleri var.</li></ul>
+        <table class="bk-t"><tr><th>Kademe</th><th>Onun cevabı</th></tr>${VIB_LV.slice(1).map((t, i) => { const r = ((Stories.BOT_RULES || {}).rules || []).find(x => x.id === 'r_st_vib' + (i + 1));
+          return `<tr><td>📳 ${i + 1}</td><td>${((r || {}).reply || VIB_SAY[i + 1]).slice(0, 2).map(x => `"${esc(x)}"`).join('<br>')}</td></tr>`; }).join('')}</table>`;
+    } }] });
+  /* 🏖️ Yaz Kitabı: Pool / Beach olayları (c:mvpool01x, c:mvbeach01x + bitişleri); ghPlace ile data'dan canlı okunur */
+  BOOKS.push({ id: 'yaz', icon: '🏖️', title: 'Yaz Kitabı', sub: 'havuz ve plaj; jakuzi, kabana, kum tepesi, koy, tekne', chips: ['38 olay', '🌊 su ve kum'], chapters: [
+    { icon: '📖', title: 'Yaz Kitabı nasıl okunur', sub: 'iki mekân, pozisyonlar ve bitişler', get body() {
+      return `<p>🏖️ Güneş, su ve kum. Bu kitap iki mekân kategorisini anlatır: <b>🏖️ Pool</b> ve <b>🏝️ Beach</b>. Sohbette <b>📜 Olay yaz → 📍 Mekân</b> sekmesinden ya da <b>#</b> yazıp olayın adıyla başlarlar. Sohbet havuzda ya da sahildeyse ⚡ Kısayollar'da da çıkarlar.</p>
+        <ul><li><b>🏖️ Pool</b> havuz başında, <b>🏝️ Beach</b> sahilde ya da tatildeyken önerilir.</li>
+          <li><b>🔥 Pozisyonlar</b> yatak cümlesi kullanmaz: suda, kenarda, şezlongda, kayada, güvertede.</li>
+          <li><b>💦 Bitişler</b> sadece aynı mekânın pozisyonundan sonra eşleşir; Jacuzzi, Underwater, Cove ve Sunset Creampie korunmaya göre hamilelik ihtimali taşır.</li>
+          <li><b>👀 Riskli olanlar</b> (Night Swim Sex, Cabana Reverse, Lifeguard Chair, Sand Dune Doggy, Beach Hut Standing, Nude Beach Sex, Beach Shower Sex) Uyarılma'yı fazladan artırır.</li>
+          <li><b>🌹 İlanlar</b>: Carmen.com ilanlarında her 3 kızdan biri yeni Havuz ya da Plaj olaylarından 2'sini ❤️ sever.</li></ul>
+        ${bkChat('🏝️ Örnek', [['ev', '📜 🌅💏 Sunset Missionary'], ['her', 'Gökyüzü turuncu, gözlerin bende 🌅'], ['ev', '📜 🌅💦 Sunset Creampie'], ['her', 'Sarıl, batışı izleyelim 🌅']])}`;
+    } },
+    { icon: '🏖️', title: 'Pool', sub: 'merdiven, duvar, jakuzi, şişme yatak, kabana, cankurtaran kulesi', get body() {
+      return ghPlace('c:mvpool01x', 'havuz', 'r_ev_po_', '🏖️ Havuz başı: su ılık, şezlonglar dolu ya da gece bomboş. Underwater Oral ve Edge Facesitting onun için oraldir; Night Swim Sex kapanıştan sonra gizlice olur.');
+    } },
+    { icon: '🏝️', title: 'Beach', sub: 'kum tepesi, şezlong, gün batımı, koy, kamp ateşi, tekne', get body() {
+      return ghPlace('c:mvbeach01x', 'plaj', 'r_ev_be_', '🏝️ Issız bir koy, kum tepeleri, soyunma kabinleri ve açıkta bir tekne. Sunset Missionary ve Bonfire Spoon Samimiyet\'i daha çok artırır; Nude Beach Sex en riskli olanıdır.');
     } }] });
   BOOKS.push({ id: 'kisilik', icon: '🎭', title: 'Kişilik Kitabı', sub: 'her kişilik nasıl konuşur, kıskançlık, yazım tarzı', chips: [`${KP_TRAITS().length} kişilik`, '😤 kıskançlık'], chapters: [
     { icon: '📖', title: 'Kişilik Kitabı nasıl okunur', sub: 'kişilik cevaplara nerede girer', get body() {
@@ -20351,6 +20735,8 @@
       ['Rahibe – Sunak Önünde', 'Gece boş şapelde yüzlerce mum yanıyor, sunağın basamaklarına uzanıyorum. Sen yeminlerimi burada bozarsan manastırın en büyük günahı aletin olur 🕯️'],
       ['Rahibe – Cübbe Altı', 'Cübbem üstümde kalıyor; eteğini kaldırıp külotumu indiriyorum. Sen başörtümü çözersen cübbenin altında aletin beni bulur 📿'],
       ['Başrahibe – Bahçıvan', 'Odama çağırdım seni bahçıvan, cetvelim masada. Sen kurallarıma uyarsan kapıyı kilitlerim; manastırın en sert kadını aletine kendi kuralını koyar ⛪'],
+      ['Personal Trainer – Üye', 'Düdüğüm boynumda, taytım terli; salon kapanmak üzere. Sen son setini bitirirsen soyunma odasında ekstra antrenman var; aletin de kondisyon testine girer 🏋️'],
+      ['Barmen – Son Müşteri', 'Kepengi yarıya indirdim, sandalyeler masada. Sen hesabı ödeyemezsen tezgâhın arkasına geçersin; son kokteyli aletinle karıştırırım 🍸'],
       ['Yelan – Çayevi Sorgusu', 'Çayevimin arka odasında karşıma oturtuyorum seni, iplerim bileklerinde. Sen itiraf etmezsen sorguyu kucağında sürdürürüm; aletin her şeyi anlatır 🎲'],
       ['Yelan – Zar Bahsi', 'Zarları sallıyorum, kaybeden bir parça çıkarır. Sen çıplak kalırsan son bahsi ben koyarım: bu gece aletin benim 💧'],
       ['Clorinde – Düello', 'Kılıcımı çekip karşına geçiyorum, hiç yenilmedim. Sen şapkamı düşürürsen teslim olurum; aletin ilk yenilgim olur ⚔️'],
@@ -20539,7 +20925,20 @@
       ['Sunbed Doggy', 'Şezlonga dizlerimin üstünde eğiliyorum. Sen arkamdan alırsan Sunbed Doggy olur.'],
       ['Poolside Blowjob', 'Sen kenara otur, ben sudan sana uzanıyorum. Ağzıma alırsam Poolside Blowjob olur.'],
       ['Pool Creampie', 'Suyun içinde sana yapışıyorum. Sen içime boşalırsan Pool Creampie olur.'],
-      ['Pool Cumshot', 'Kenarda sana dönüyorum, tenim ıslak. Sen tenime boşalırsan Pool Cumshot olur.']]],
+      ['Pool Cumshot', 'Kenarda sana dönüyorum, tenim ıslak. Sen tenime boşalırsan Pool Cumshot olur.'],
+      ['Pool Ladder Doggy', 'Merdivenin tutamaklarına tutunuyorum, belimden aşağısı suda. Sen arkamdan alırsan Pool Ladder Doggy olur.'],
+      ['Wall Pin', 'Sırtımı havuzun duvarına yaslıyorum, bacaklarımı beline doluyorum. Sen beni duvara bastırırsan Wall Pin olur.'],
+      ['Jacuzzi Cowgirl', 'Jakuzide kucağına oturuyorum, yüzüm sana dönük. Sen belimi tutarsan Jacuzzi Cowgirl olur.'],
+      ['Underwater Oral', 'Havuzun kenarına oturup bacaklarımı açıyorum. Sen nefesini tutup suyun altına dalarsan Underwater Oral olur.'],
+      ['Edge Facesitting', 'Sen kenara sırtüstü uzan; ben bikinimi kenara çekip yüzüne oturuyorum. Dilini kullanırsan Edge Facesitting olur.'],
+      ['Float Missionary', 'Şişme yatağa sırtüstü uzanıyorum. Sen üstüme gelirsen Float Missionary olur; düşmemek için sana sarılırım.'],
+      ['Night Swim Sex', 'Havuz kapandı, çitten atlıyorum. Sen de karanlık suya girersen Night Swim Sex olur; bekçinin fenerine dikkat.'],
+      ['Cabana Reverse', 'Kabananın perdesini yarıya çekip sırtım sana dönük kucağına oturuyorum. Sen kalçamı tutarsan Cabana Reverse olur.'],
+      ['Pool Stairs Spoon', 'Sığ basamaklarda yan uzanıyorum, sırtım göğsünde. Sen arkamdan yavaşça girersen Pool Stairs Spoon olur.'],
+      ['Lifeguard Chair', 'Cankurtaran kulesine tırmanıyorum. Sen sandalyeye oturursan kucağına çıkarım; Lifeguard Chair olur.'],
+      ['Jacuzzi Creampie', 'Jakuzide kucağındayım. Sen içime boşalırsan Jacuzzi Creampie olur.'],
+      ['Underwater Creampie', 'Suyun altında duvara yaslıyım. Sen içime boşalırsan Underwater Creampie olur.'],
+      ['Poolside Facial', 'Suyun içinden kenara uzanıp sana bakıyorum. Sen yüzüme boşalırsan Poolside Facial olur; sonra suya dalarım.']]],
     ['🚗', 'Araba', 'park yeri, buğulu camlar', 'Sadece park halindeyken; camlar buğulanınca gerisi kolay 🌫️', [
       ['Steamy Windows', 'Issız bir yerde motoru kapatıyorum. Sen beni öpersen camlar buğulanır, Steamy Windows olur.'],
       ['Front Seat Ride', 'Ön koltukta kucağına geçiyorum, sırtım direksiyonda. Sen belimi tutarsan Front Seat Ride olur.'],
@@ -20631,7 +21030,21 @@
       ['Sunscreen Rub', 'Havluya yüzüstü uzanıp bikinimin ipini çözüyorum. Sen sırtıma krem sürersen Sunscreen Rub olur; elin aşağı kayabilir.'],
       ['Beach Towel Sex', 'Havlumu kuma serip sana uzanıyorum. Sen üstüme gelirsen Beach Towel Sex olur.'],
       ['Wave Sex', 'Belimize kadar denizde boynuna sarılıp bacaklarımı beline doluyorum. Dalgalarla gidersen Wave Sex olur.'],
-      ['Beach Cumshot', 'Güneşte parlayan tenimi sana dönüyorum. Sen tenime boşalırsan Beach Cumshot olur; sonra denize gireriz.']]],
+      ['Beach Cumshot', 'Güneşte parlayan tenimi sana dönüyorum. Sen tenime boşalırsan Beach Cumshot olur; sonra denize gireriz.'],
+      ['Sand Dune Doggy', 'Kum tepesinin arkasında dört ayak üstüne çıkıyorum. Sen arkamdan alırsan Sand Dune Doggy olur.'],
+      ['Sunbed Cowgirl', 'Şemsiyenin altında şezlonguna çıkıp bikinimin altını kenara çekiyorum. Sen uzanırsan Sunbed Cowgirl olur.'],
+      ['Sunset Missionary', 'Gün batarken havluya sırtüstü uzanıyorum. Sen üstüme gelip gözlerime bakarsan Sunset Missionary olur.'],
+      ['Beach Hut Standing', 'Soyunma kabininde ellerimi tahta duvara dayıyorum. Sen arkamdan alırsan Beach Hut Standing olur; dışarıda sıra var.'],
+      ['Rock Cove Lift', 'Kayalık koyda boynuna sarılıyorum. Sen beni kucağına alıp sırtımı kayaya yaslarsan Rock Cove Lift olur.'],
+      ['Shallow Water Doggy', 'Sığ suda dizlerimin üstüne çöküyorum. Sen arkamdan alırsan Shallow Water Doggy olur; dalgalar bizi iter.'],
+      ['Nude Beach Sex', 'Çıplak plajda havluma uzanıyorum, uzakta birkaç kişi var. Sen umursamazsan Nude Beach Sex olur.'],
+      ['Bonfire Spoon', 'Ateşin yanında battaniyenin altına giriyorum. Sen arkamdan sarılıp girersen Bonfire Spoon olur.'],
+      ['Sand 69', 'Havluya ters uzanıyorum, yüzüm kasıklarında. Sen de beni ağzına alırsan Sand 69 olur.'],
+      ['Beach Shower Sex', 'Plaj duşunda kumları yıkarken tek bacağımı beline kaldırıyorum. Sen beni duvara yaslarsan Beach Shower Sex olur.'],
+      ['Boat Deck Sex', 'Kiralık teknenin güvertesine uzanıyorum, kıyı çok uzakta. Sen üstüme gelirsen Boat Deck Sex olur.'],
+      ['Cove Creampie', 'Koyda kucağındayım, sırtım kayada. Sen içime boşalırsan Cove Creampie olur.'],
+      ['Sunset Creampie', 'Güneş batıyor, bacaklarım belinde. Sen içime boşalırsan Sunset Creampie olur.'],
+      ['Sand Cumshot', 'Havluda sırtüstü uzanıyorum. Sen göğsüme ve karnıma boşalırsan Sand Cumshot olur; sonra denize koşarım.']]],
     ['🏢', 'Ofis', 'masa altı, döner sandalye, fotokopi odası', 'Mesai bitti ama kapı kilitli değil; sesini kıs, koridordan biri geçebilir 🤫', [
       ['Under The Desk', 'Sen toplantıdasın, ben masanın altında diz çöküyorum. Yüzünü sabit tutarsan Under The Desk olur.'],
       ['Office Chair Ride', 'Döner sandalyende kucağına oturup eteğimi belime topluyorum. Sen belimi tutarsan Office Chair Ride olur; sandalye gıcırdar.'],
@@ -21064,6 +21477,12 @@
         <li><b>👗 Cübbe Altı</b>: Rahibe sohbetinde ⚡ Kısayollar'da bekleyen kıyafet olayı. Cübbe üstünde kalır, sütyen ve külot gider.</li>
         <li><b>🔔 Çanı çal</b>: rastgele bir rahibe ve günahıyla başlatır.</li>
         <li>İlan sayfasında 📜 Manastır kurallarım, 🕯️ günahları ve 📏 sınırları yazar. Sorular, 🥚 egg'ler ve kesintiler 🦄 Fantezi Kitabı → 🕯️ Rahibe ve ⛪ Başrahibe'de.</li></ul>` });
+    putAfter(net, 'CarmenChurch', { icon: '🚜', title: 'CarmenFarm', sub: 'hayvan fantezisi ilanları', body: `
+      <p><a href="#/ciftlik">CarmenFarm</a> hayvan fantezisi (pet play) ilan sitesi. Carmen.com ilanlarındaki her kız burada bir hayvan kız rolüne girer: sevdiği hayvan kız olayı varsa o, yoksa ilana sabit bir hayvan.</p>
+      <ul><li><b>🐾 Hayvanlar</b>: 🐱 Kedi (çatı katı), 🐮 İnek (ahır, sabah sağımı), 🐰 Tavşan (sebze bahçesi), 🦊 Tilki (mısır tarlası), 🐶 Köpek (veranda), 🦄 Unicorn (çayır), 🐺 Kurt (orman, dolunay), 🐑 Koyun (şömine başı). Dokununca sohbet o sahneyle, kostümüyle ve onun ilk sözüyle başlar.</li>
+        <li><b>📜 Çiftlik kuralları</b>: sadece yetişkinler; gerçek hayvan yok, kulak, kuyruk, çan ve tasma kostümdür; her ilanda güvenli kelime var.</li>
+        <li><b>🎲 Çiti aç</b>: rastgele bir kız ve hayvanıyla başlatır.</li>
+        <li>İlan sayfasında 📜 Çiftlik kurallarım, 🐾 hayvanları ve 📏 sınırları yazar.</li></ul>` });
     const nb = BOOKS.find(b => b.id === 'internet');
     nb.sub = 'Booble, Carmen.com, Gothic, Meisove, Fans, Gram, Flix, Stay, Live, Party, Shop, Jobs, School, City, Impact, Klinik, İtiraf, Creative, Choise, Play';
     nb.chips = ['20 site', 'sohbete bağlanır'];
@@ -21075,11 +21494,11 @@
         <li><b>Cevap</b>: bot modunda karakter o duruma uyan cevaplardan biriyle karşılık verir.</li>
         <li>Hepsini görmek ve denemek için 🧭 CarmenGuide → <a href="#/kesinti">📱 Kesinti deneyi</a>.</li></ul>` });
     // 🗂️ raf sırası
-    const ORDER = ['carmen', 'bot', 'seans', 'olay', 'hafiza', 'fantezi', 'bdsm', 'ofis', 'okul', 'kilise', 'sut', 'soru', 'onun', 'ovgu', 'komut', 'neden', 'yedek', 'kisilik', 'grup', 'ulke', 'internet', 'oyun', 'genshin', 'amor'];
+    const ORDER = ['carmen', 'bot', 'seans', 'olay', 'hafiza', 'fantezi', 'bdsm', 'ofis', 'okul', 'kilise', 'gece', 'yaz', 'sut', 'soru', 'onun', 'ovgu', 'komut', 'neden', 'yedek', 'kisilik', 'grup', 'ulke', 'internet', 'oyun', 'genshin', 'amor'];
     BOOKS.sort((a, b) => ORDER.indexOf(a.id) - ORDER.indexOf(b.id));
   }
   // 📚 raflar (🧭 CarmenGuide): [başlık, açıklama, kitaplar]
-  const BOOK_SHELVES = [['🧭 Kullanım', 'uygulama, bot ve seans', ['carmen', 'bot', 'seans']], ['📚 Başvuru', 'olaylar, olay hafızası, fanteziler, BDSM, ofis, okul, kilise, süt, sorular, övgüler, komutlar, nedenler, anlamadığında, kişilikler, grup, memleketler', ['olay', 'hafiza', 'fantezi', 'bdsm', 'ofis', 'okul', 'kilise', 'sut', 'soru', 'onun', 'ovgu', 'komut', 'neden', 'yedek', 'kisilik', 'grup', 'ulke']],
+  const BOOK_SHELVES = [['🧭 Kullanım', 'uygulama, bot ve seans', ['carmen', 'bot', 'seans']], ['📚 Başvuru', 'olaylar, olay hafızası, fanteziler, BDSM, ofis, okul, kilise, gece hayatı, yaz, süt, sorular, övgüler, komutlar, nedenler, anlamadığında, kişilikler, grup, memleketler', ['olay', 'hafiza', 'fantezi', 'bdsm', 'ofis', 'okul', 'kilise', 'gece', 'yaz', 'sut', 'soru', 'onun', 'ovgu', 'komut', 'neden', 'yedek', 'kisilik', 'grup', 'ulke']],
     ['🌐 Dünya', 'siteler ve oyunlar', ['internet', 'oyun', 'genshin', 'amor']]];
   /* 📜 Olay Kitabı: her olay nasıl tetiklenir (📜 elle, 🗣️ komut, ❔ karakterin sorusu, 🔄 başka pozisyon, 💡 Lia).
    * Bölümler olay kategorileri (senin eklediklerin de); 🔍 arama olay adıyla bulur. Komut cümleleri bot-rules.js'teki komut kurallarından okunur */
@@ -21287,6 +21706,117 @@
     };
     draw();
     q.focus();
+  }
+  /* 🎓 CarmenEvents (#/events, #/events/<kategori id>): olayları kategorilere göre ders gibi anlatan site. Kategoriler (moCats + poolOf)
+   * cmAll'dan seçilen EVN_N hocaya dağıtılır (sysHash sırası, kategori i → hoca i % N). Kategori sayfası = ders: hocanın girişi (EVN_HI),
+   * her olay bir ders kartı (açıklama, hocanın notu evnTip, evbTriggers, evbInfo; 👆 evbResults). 💬 Hocaya sor → cmChat, ▶ Hocayla dene → olay ⚡ kısayolda */
+  const EVN_N = 6;
+  const EVN_HI = ['Hoş geldin, derse geç kalmadın 🤓 Bugün {kat} işliyoruz: {n} konu var, not al.', 'Otur bakalım. {kat} benim alanım; {n} olayın hepsini tek tek anlatacağım 📚',
+    'Defterini aç tatlım ✏️ {kat} dersinde bugün {n} olay var. Takıldığın yerde bana yaz.', 'Ben {ad}, {kat} hocanım 😏 Her olayın nasıl tetiklendiğini ve sonunda ne olduğunu öğreteceğim.',
+    'Tahtaya bak 👩‍🏫 {kat}: {n} başlık. Sonunda sınav yok… belki pratik var 😉'];
+  const EVN_TIP = ['Not al: {t}', 'Sınavda çıkar 😏 {t}', 'Püf noktası: {t}', 'Benden duymuş ol: {t}', 'Unutma: {t}'];
+  const EVN_ASK = ['Derste anlamadığın bir şey mi var? 🤓 Sor bakalım', 'Ders bitti ama ben hâlâ buradayım 😏 Ne soracaktın?', 'Ofis saatim başladı ✏️ Hangi olayı merak ettin?', 'Not defterini getirdin mi? Hadi, sor 📚'];
+  const evnCats = () => moCats().map(c => ({ c, evs: poolOf(c) })).filter(x => x.evs.length);
+  const evnHocas = () => { const a = cmAll().slice().sort((x, y) => sysHash([x.cmRid || x.id, 'evn']) - sysHash([y.cmRid || y.id, 'evn'])); return a.slice(0, EVN_N); };
+  const evnHoca = (i, hs = evnHocas()) => hs.length ? hs[i % hs.length] : null;
+  const evnFill = (s, o) => s.replace(/\{(\w+)\}/g, (m, k) => o[k] != null ? o[k] : m);
+  function evnTip(e, cat) {
+    const t = e.title, tg = (e.tags || []).map(x => String(x).toLocaleLowerCase('tr')), ph = evbPhrases();
+    const say = Object.keys(CMD_EV).filter(k => CMD_EV[k].includes(t)).flatMap(k => ph[k] || [])[0];
+    const fans = chars().filter(c => (c.likes || []).includes(e.id)).length;
+    const tip = say ? `🤖 bot modunda "${say}" demen yeter, olay kendiliğinden olur.`
+      : isFant(e) ? 'bu bir fantezi; başka fantezi gelene kadar sürer ve cevaplarına ton verir.'
+      : tg.includes('vajinal') ? 'korunmaya dikkat: tepkisi ona göre değişir, hamilelik zarı da atılır.'
+      : tg.includes('anal') ? 'önce Anal Size\'ına ve anal sevip sevmediğine bak, tepkisi buna göre.'
+      : tg.includes('boşalma') ? 'nereye boşaldığın pozisyona bağlı, ardından miktar gelir.'
+      : `sohbette 📜 Olay → ${cat.icon || ''} ${cat.label || ''} → ${t} ile her zaman yazabilirsin.`;
+    return evnFill(EVN_TIP[+sysHash([t, 'evt']) % EVN_TIP.length], { t: tip }) + (fans ? ` ❤️ ${fans} kişi bunu seviyor.` : '');
+  }
+  const EVN_CSS = `<style>.ws-events{--ws:#1f7a6b}.evn-hero{background:linear-gradient(135deg,#0f3d3e,#1f7a6b 55%,#e0b04a);color:#fff;border-radius:18px;padding:18px 16px;margin:12px 0}
+    .evn-hero h1{margin:0 0 4px;font-size:1.35rem;color:#fff}.evn-hero p{margin:0;opacity:.9;color:#fff}.evn-hero a{color:#fff}
+    .evn-q{width:100%;box-sizing:border-box;margin:10px 0 0;padding:10px 14px;border-radius:999px;border:0;font:inherit}
+    .evn-h{display:flex;gap:10px;overflow-x:auto;padding:4px 0 8px}.evn-h a{flex:none;width:88px;text-align:center;text-decoration:none;color:inherit;font-size:.8rem}.evn-h .ava{margin:0 auto 4px}
+    .evn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:10px}
+    .evn-cat{display:flex;gap:10px;align-items:center;padding:12px;border-radius:14px;background:var(--card,#fff);border:1px solid color-mix(in srgb,#1f7a6b 30%,transparent);text-decoration:none;color:inherit}
+    .evn-cat>span{font-size:1.6rem}.evn-cat b{display:block}.evn-cat small{display:block;opacity:.7}
+    .evn-bub{position:relative;background:color-mix(in srgb,#1f7a6b 14%,var(--card,#fff));border-radius:14px;padding:10px 12px;margin:8px 0}
+    .evn-ls{border-radius:14px;padding:12px;margin-top:10px;background:var(--card,#fff);border:1px solid color-mix(in srgb,#1f7a6b 25%,transparent)}
+    .evn-ls h3{margin:0 0 6px;font-size:1.05rem}.evn-ls h3 small{opacity:.6;font-weight:400}.evn-ls ul{margin:6px 0;padding-left:18px}
+    .evn-act{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.evn-nav{display:flex;justify-content:space-between;gap:8px;margin-top:12px}</style>`;
+  function renderEvents(id) {
+    const cats = evnCats(), hs = evnHocas();
+    if (id) {
+      const i = cats.findIndex(x => x.c.id === decodeURIComponent(id));
+      if (i >= 0) return renderEventsCat(cats, i, hs);
+    }
+    const n = cats.reduce((a, x) => a + x.evs.length, 0);
+    const cnt = h => cats.filter((x, i) => evnHoca(i, hs) === h).length;
+    view.innerHTML = EVN_CSS + wsPage('events', 'Carmen<i>Events</i>', 'carmenevents.com', '#/booble', `
+      <div class="evn-hero"><h1>Olaylar okulu 🎓</h1><p>${n} olay · ${cats.length} kategori · ${hs.length} hoca. Bir kategori seç, hocası her olayı tek tek anlatsın: ne olduğu, nasıl tetiklendiği, sonunda ne olduğu.</p>
+        <input id="evnQ" class="evn-q" type="search" placeholder="🔍 Olay ya da kategori ara… (ör. Doggy, School)" autocomplete="off" value="${esc(ui.evnQ || '')}"></div>
+      ${hs.length ? `<section class="ws-sec"><h3>👩‍🏫 Hocalarımız</h3><div class="evn-h">${hs.map(h => { const k = cats.findIndex((x, i) => evnHoca(i, hs) === h); return `<a href="#/events/${encodeURIComponent(cats[k] ? cats[k].c.id : '')}">${avatar(h, 60)}<b>${esc((h.name || '').split(' ')[0])}</b><br><small>📚 ${cnt(h)} ders</small></a>`; }).join('')}</div></section>` : ''}
+      <div id="evnList"></div>`);
+    const q = $('#evnQ'), box = $('#evnList');
+    const draw = () => {
+      const f = evbFold(q.value.trim());
+      ui.evnQ = q.value;
+      if (!f) {
+        box.innerHTML = `<div class="evn-grid">${cats.map(({ c, evs }, i) => { const h = evnHoca(i, hs); return `<a class="evn-cat" href="#/events/${encodeURIComponent(c.id)}"><span>${esc(c.icon || '📜')}</span><div><b>${esc(c.label || '')}</b><small>📚 ${evs.length} olay</small>${h ? `<small>👩‍🏫 ${esc((h.name || '').split(' ')[0])}</small>` : ''}</div></a>`; }).join('')}</div>`;
+        return;
+      }
+      const hits = cats.flatMap(({ c, evs }) => evs.filter(e => evbFold(e.title).includes(f) || evbFold(c.label).includes(f)).map(e => ({ e, c }))).slice(0, 200);
+      box.innerHTML = hits.length ? `<div class="evn-grid">${hits.map(({ e, c }) => `<a class="evn-cat" href="#/events/${encodeURIComponent(c.id)}" data-evno="${esc(e.id)}"><span>${esc(e.emojis || c.icon || '📜')}</span><div><b>${esc(e.title)}</b><small>${esc(c.icon || '')} ${esc(c.label || '')}</small></div></a>`).join('')}</div>`
+        : '<div class="card about" style="margin-top:10px">Bu adla olay yok</div>';
+    };
+    q.oninput = draw;
+    box.onclick = ev => { const a = ev.target.closest('[data-evno]'); if (a) ui.evnOpen = a.dataset.evno; };
+    draw();
+  }
+  function renderEventsCat(cats, i, hs) {
+    const { c, evs } = cats[i], h = evnHoca(i, hs), first = h ? (h.name || '').split(' ')[0] : 'Hoca', cx = evbCtx();
+    const prev = cats[(i - 1 + cats.length) % cats.length].c, next = cats[(i + 1) % cats.length].c;
+    const hi = evnFill(EVN_HI[+sysHash([c.id, 'evh']) % EVN_HI.length], { kat: `${c.icon || ''} ${c.label || ''}`, n: evs.length, ad: first });
+    const ls = (e, k) => {
+      const d = e.desc || evDescOf(e.title), inf = evbInfo(e), me = (Stories.ME_EV_LINES || {})[e.title] || [];
+      return `<article class="evn-ls" id="evn-${esc(e.id)}" data-evl="${esc(e.id)}"><h3>${esc(e.emojis || '')} ${esc(e.title)} <small>· Ders ${k + 1}</small></h3>
+        ${d ? `<p class="about">${esc(d)}</p>` : ''}
+        ${h ? `<div class="evn-bub"><b>👩‍🏫 ${esc(first)}:</b> ${esc(evnTip(e, c))}</div>` : ''}
+        <b>🎯 Nasıl tetiklenir</b><ul>${evbTriggers(e, cx).map(x => `<li>${x}</li>`).join('')}</ul>
+        ${inf.length ? `<b>📌 Sohbete etkisi</b><ul>${inf.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
+        <div class="evn-act"><button type="button" class="btn ghost sm" data-evnr>👆 Sonuçlar ve cevaplar</button>
+          ${me.length ? `<button type="button" class="btn ghost sm" data-evnme>🗣️ Benim mesajlarım · ${me.length}</button>` : ''}
+          ${h ? `<button type="button" class="btn sm" data-evntry>▶ ${esc(first)} ile dene</button>` : ''}</div></article>`;
+    };
+    view.innerHTML = EVN_CSS + wsPage('events', 'Carmen<i>Events</i>', 'carmenevents.com/' + encodeURIComponent(c.label || c.id), '#/events', `
+      <section class="ws-sec jb-hr">${h ? avatar(h, 72) : '<span style="font-size:3rem">👩‍🏫</span>'}<div><small>👩‍🏫 ${esc(c.icon || '')} ${esc(c.label || '')} hocası</small><b>${esc(h ? h.name : 'Hoca')}${h && h.age ? `<small>, ${esc(h.age)}</small>` : ''}</b>
+        ${h ? `<small>${esc(persOf(h).slice(0, 3).join(', '))}</small>` : ''}</div></section>
+      <div class="evn-bub">${esc(hi)}</div>
+      ${h ? '<div class="evn-act"><button type="button" class="btn sm" id="evnAsk">💬 Hocaya sor</button></div>' : ''}
+      <div class="sec-title">📚 ${esc(c.icon || '')} ${esc(c.label || '')} · ${evs.length} ders</div>
+      ${evs.map(ls).join('')}
+      <div class="evn-nav"><a class="btn ghost sm" href="#/events/${encodeURIComponent(prev.id)}">← ${esc(prev.icon || '')} ${esc(prev.label || '')}</a><a class="btn ghost sm" href="#/events/${encodeURIComponent(next.id)}">${esc(next.icon || '')} ${esc(next.label || '')} →</a></div>`);
+    if (h) $('#evnAsk').onclick = () => cmChat(h, 'CarmenEvents', pick(EVN_ASK), true);
+    view.querySelectorAll('[data-evl]').forEach(el => el.onclick = ev => {
+      const e = evs.find(x => x.id === el.dataset.evl);
+      if (!e) return;
+      const more = ev.target.closest('[data-more]');
+      if (more) { more.parentElement.querySelectorAll(':scope > [hidden]').forEach(x => { x.hidden = false; }); more.remove(); return; }
+      if (ev.target.closest('[data-evntry]')) {
+        const t = cmChat(h, 'CarmenEvents', `Bugünkü pratik: ${e.title} ${e.emojis || ''}. Teoriyi anlattım, şimdi göster bakalım 😏`, true);
+        quickPin(e, t); save();
+        return;
+      }
+      const tg = ev.target.closest('[data-evnr],[data-evnme]');
+      if (!tg) return;
+      const cls = tg.matches('[data-evnr]') ? 'evg-res' : 'evg-me', open = el.querySelector('.' + cls);
+      if (open) return open.remove();
+      const l = (Stories.ME_EV_LINES || {})[e.title] || [];
+      el.insertAdjacentHTML('beforeend', cls === 'evg-res' ? `<div class="evg-res">${evbResults(e)}</div>`
+        : `<div class="evg-me" style="margin-top:8px">${l.map((x, j) => `<div style="display:flex;gap:8px;padding:6px 0;border-top:1px solid rgba(127,127,127,.2)"><b style="min-width:22px;opacity:.6">${j + 1}.</b><span>${esc(x)}</span></div>`).join('')}</div>`);
+    });
+    const o = ui.evnOpen && document.getElementById('evn-' + ui.evnOpen);
+    ui.evnOpen = null;
+    if (o) { o.scrollIntoView({ block: 'start' }); o.querySelector('[data-evnr]').click(); }
   }
   const bookBy =id => BOOKS.find(b => b.id === id) || BOOKS[0];
   const bookAt = (id, v) => { const n = bookBy(id).chapters.length, k = 'amor-stories:book' + (id && id !== 'carmen' ? ':' + id : ''); try { if (v != null) localStorage.setItem(k, String(v)); return Math.max(0, Math.min(n - 1, +localStorage.getItem(k) || 0)); } catch (e) { return v || 0; } };
@@ -22208,8 +22738,8 @@
   const QC = { poz: 'c:mvglvwdtam0h7', anal: 'c:mvgm9ihwda8f5', son: 'c:mvgu3rsuko7km', fant: 'c:mvgwj75108lqd', meyve: 'c:mvmeisove01x', bdsm: 'c:mvbdsm01x',
     femdom: 'c:mvfemdom01x', uclu: 'c:mvthreesome01x', soyun: 'c:mvundress01x', dus: 'c:mvshower01x', sauna: 'c:mvsauna01x', kuvet: 'c:mvtub01x', havuz: 'c:mvpool01x',
     araba: 'c:mvcar01x', asansor: 'c:mvlift01x', kamp: 'c:mvcamp01x', mutfak: 'c:mvkitchen01x', kamera: 'c:mvcam01x',
-    plaj: 'c:mvbeach01x', ofis: 'c:mvoffice01x', otel: 'c:mvhotel01x' };
-  const QPLACES = ['dus', 'sauna', 'kuvet', 'havuz', 'araba', 'asansor', 'kamp', 'mutfak', 'plaj', 'ofis', 'otel'];
+    plaj: 'c:mvbeach01x', ofis: 'c:mvoffice01x', otel: 'c:mvhotel01x', gym: 'c:mvgym01x', bar: 'c:mvbar01x', sinema: 'c:mvcinema01x' };
+  const QPLACES = ['dus', 'sauna', 'kuvet', 'havuz', 'araba', 'asansor', 'kamp', 'mutfak', 'plaj', 'ofis', 'otel', 'gym', 'bar', 'sinema'];
   const QBODY = /^r_q(_boob|_butt|_pussy|_anal|3_|4_boob|4_butt|4_dar|4_arka|5_)/, QEXP = /^r_q(_exp|_virgin|4_exp|4_dom|2_ilk|2_gecmis|2_son|2_cilgin|2_yakalan|2_kadin)/;
   const QBR = [['ilk', '🌱', 'Tanışma', 'ilk adımlar'], ['soru', '❓', 'Merak', 'sorular sor, onu tanı'], ['yakin', '💋', 'Yakınlaşma', 'öpücükten ilk geceye'],
     ['poz', '🔥', 'Pozisyonlar', 'klasiklerden akrobasiye'], ['final', '💦', 'Bitiş', 'boşalma, korunma, hamilelik'], ['mekan', '🗺️', 'Mekanlar', 'duştan arabaya'],
@@ -22254,11 +22784,18 @@
     ['kumda', 'mekan', '🏝️', 'Kumda', 'Bir 🏝️ plaj olayı', ['su'], x => qn(x.cat('plaj')), '#/messages', 600],
     ['mesai', 'mekan', '🏢', 'Mesai sonrası', 'Bir 🏢 ofis olayı', ['risk'], x => qn(x.cat('ofis')), '#/messages', 800],
     ['otelgece', 'mekan', '🏨', 'Rahatsız etmeyin', 'Bir 🏨 otel olayı', ['kamp'], x => qn(x.cat('otel')), '#/messages', 600],
-    ['gezgin', 'mekan', '🧭', 'Gezgin âşık', '5 farklı mekanda olay: duş, sauna, küvet, havuz, araba, asansör, kamp, mutfak, plaj, ofis, otel', ['su', 'ter', 'kamp'], x => qn(x.places, 5), '#/messages', 2500],
+    ['spor', 'mekan', '🏋️', 'Ter atma', 'Bir 🏋️ Gym olayı', ['mesai'], x => qn(x.cat('gym')), '#/is/spor', 800],
+    ['barda', 'mekan', '🍸', 'Son kadeh', 'Bir 🍸 Bar olayı', ['risk'], x => qn(x.cat('bar')), '#/messages', 800],
+    ['sinemada', 'mekan', '🎬', 'Arka sıra', 'Bir 🎬 Cinema olayı', ['risk'], x => qn(x.cat('sinema')), '#/messages', 800],
+    ['yakalan', 'mekan', '👀', 'Az kalsın', '🍸 Bar ve 🎬 Cinema\'dan 5 farklı olay (gerilim 70\'te kesinti gelir)', ['barda', 'sinemada'], x => qn(x.cat('bar') + x.cat('sinema'), 5), '#/messages', 1500],
+    ['gezgin', 'mekan', '🧭', 'Gezgin âşık', '5 farklı mekanda olay: duş, sauna, küvet, havuz, araba, asansör, kamp, mutfak, plaj, ofis, otel, spor salonu, bar, sinema', ['su', 'ter', 'kamp'], x => qn(x.places, 5), '#/messages', 2500],
     ['f1', 'fant', '🦄', 'Hayal gücü', 'Bir 🦄 fantezi başlat', ['klasik'], x => qn(x.cat('fant')), '#/messages', 600],
     ['meyve', 'fant', '🍓', 'Meyve tabağı', 'Bir 🍓 Meisove kızı fantezisi', ['f1'], x => qn(x.cat('meyve')), '#/messages', 600],
     ['bagli', 'fant', '🔗', 'Bağlı', 'Bir 🔗 BDSM olayı', ['f1'], x => qn(x.cat('bdsm')), '#/messages', 800],
     ['kralice', 'fant', '👑', 'Kraliçe', 'Bir 👑 Femdom olayı', ['bagli'], x => qn(x.cat('femdom')), '#/messages', 800],
+    ['kumanda', 'fant', '📳', 'Kumanda sende', 'Vibrator Control ve Remote Toy: kademe 5\'te orgazm gelir', ['bagli'], x => qn(x.ev('Vibrator Control', 'Remote Toy'), 2), '#/kitap/gece/8', 800],
+    ['antrenor', 'fant', '🏋️', 'Kişisel antrenör', 'Personal Trainer – Üye rolünü başlat', ['f1'], x => qn(x.ev('Personal Trainer – Üye')), '#/is/spor', 600],
+    ['sonmusteri', 'fant', '🍸', 'Son müşteri', 'Barmen – Son Müşteri rolünü başlat', ['f1'], x => qn(x.ev('Barmen – Son Müşteri')), '#/messages', 600],
     ['guvenli', 'fant', '🛑', 'Güvenli kelime', 'Safe Word ve 3 farklı 🔗 BDSM olayı', ['bagli'], x => qn(x.ev('Safe Word') ? x.cat('bdsm') : 0, 4), '#/messages', 1200],
     ['f5', 'fant', '🎭', 'Fantezi koleksiyonu', '5 farklı 🦄/🍓 fantezi', ['meyve'], x => qn(x.cat('fant') + x.cat('meyve'), 5), '#/messages', 2000],
     ['grup', 'fant', '👥', 'Kalabalık', 'Bir grup sohbeti kur', ['klasik'], x => qn(x.groups), '#/messages', 600],
@@ -22848,5 +23385,5 @@
   if (!S().user.name || loggedOut()) authScreen();
   if (S().user.name && S().user.money == null) { S().user.money = START_MONEY; save(); }
   // ✨ açılış: Carmen yazısı büyüyüp küçülür (style.css carmenPulse), sonra büyüyerek kaybolur
-  setTimeout(() => $('#splash').classList.add('hide'), 1800);
+  setTimeout(() => { if (!splashN) $('#splash').classList.add('hide'); }, 1800);
 })();

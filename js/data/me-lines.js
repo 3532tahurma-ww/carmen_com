@@ -8319,3 +8319,121 @@ Stories.ME_HUG_LINES.placeFinish.events.push('Beach Cumshot', 'Office Cumshot', 
 Stories.ME_HUG_LINES.campHug.events.push('Sunscreen Rub', 'Beach Towel Sex', 'Wave Sex', 'Office Chair Ride', 'Room Service', 'Balcony Sex', 'Hotel Mirror');
 Stories.ME_BED_SKIP.push('Sunscreen Rub', 'Beach Towel Sex', 'Wave Sex', 'Beach Cumshot',
   'Under The Desk', 'Office Chair Ride', 'Copy Room Quickie', 'Office Cumshot', 'Balcony Sex', 'Hotel Mirror');
+/* 🏖️ Pool · 🏝️ Beach gelişiyor: yeni mekân pozisyonları ve bitişleri (c:mvpool01x / c:mvbeach01x + Cumming) */
+Object.assign(Stories.ME_EV_LINES, {
+  'Pool Ladder Doggy': ['Merdivene tutundun, belinden aşağısı suda 🪜', 'Arkandayım {o} 😈', 'Her vuruşta su şapırdıyor 😂', 'Kalçanı sudan çıkar 😏', 'Basamak kayıyor, seni tutuyorum 🥵', 'Daha sert mi? 💦'],
+  'Wall Pin': ['Seni havuzun duvarına yasladım 🌊', 'Bacakların belimde {o} 😈', 'Fayans soğuk, sen sıcaksın 🥵', 'Su göğüslerimize çarpıyor 💦', 'Kaçacak yerin yok 😏', 'Daha derin… 😩'],
+  'Jacuzzi Cowgirl': ['Jakuzide kucağıma oturdun 🫧', 'Yüzüme bak {o} 😏', 'Kabarcıklar ikimizi de gıdıklıyor 😂', 'Belini tutuyorum, ritmi sen tut 😈', 'Jakuzi taşacak 💦', 'Su da sen de sıcaksın 🥵'],
+  'Underwater Oral': ['Nefesimi tutup suyun altına dalıyorum 🌊', 'Bacaklarını aç {o} 😈', 'Dilim seni buluyor 👅', 'Bacakların titriyor 😏', 'Nefes alıp yine dalıyorum 💦', 'Saçlarımı çekiyorsun 🥵'],
+  'Edge Facesitting': ['Kenara sırtüstü uzandım, otur 😈', 'Bikinini kenara çektin {o} 😏', 'Dilim içinde 👅', 'Ayakların suda, sen yüzümde 🥵', 'Kalçanı tutuyorum, kaçamazsın 😩', 'Islaklık havuzdan değil 💦'],
+  'Float Missionary': ['Şişme yatakta üstündeyim 🛟', 'Düşme {o}, sarıl bana 😳', 'Yatak sallanıyor 😂', 'Her vuruşta küçük bir dalga 💦', 'Yavaş, yoksa devriliriz 😏', 'Devrilsek de durmam 🥵'],
+  'Night Swim Sex': ['Çitten atladık, havuz bizim 🌙', 'Fener! Dal {o} 😱', 'Karanlık suda seni hissediyorum 🥵', 'Sessiz ol… 🤫', 'Bekçi gitti 😈', 'Yasak olunca daha güzel 😏'],
+  'Cabana Reverse': ['Perde yarı açık, kucağımdasın ⛱️', 'Sırtın bana dönük {o} 😏', 'Kalçanı izliyorum 😈', 'Şezlonglar dolu, sesini kıs 🤫', 'Minder ıslandı 😂', 'Daha hızlı 🥵'],
+  'Pool Stairs Spoon': ['Basamaklarda sana arkadan sarıldım 🤍', 'Ensen ne güzel kokuyor {o} 😌', 'Yavaşça giriyorum 😏', 'Su belimize kadar 💦', 'Böyle kalalım 🥺', 'Ilık su, ılık sen 🥵'],
+  'Lifeguard Chair': ['Cankurtaran kulesindeyiz 🛟', 'Kucağıma çık {o} 😈', 'Bütün havuz ayaklarımızın altında 👀', 'Sandalye sallanıyor 😳', 'Düdüğü sen çal 😂', 'Bu nöbeti hiç unutmam 🥵'],
+  'Jacuzzi Creampie': ['Jakuzide içine boşalıyorum… ahhh 💦', 'Kucağımdan inme {o} 😩', 'Kabarcıklar bizi sarıyor 🫧', 'Hepsi içinde 🥵', 'Biraz daha kalalım 🤍'],
+  'Underwater Creampie': ['Suyun altında içine boşalıyorum… 🌊', 'Yüzeye çıkıp nefes alıyoruz {o} 😂', 'Duvara yapıştın kaldın 🥵', 'Sıcacık 💦', 'Sarıl bana 🤍'],
+  'Poolside Facial': ['Kenardan bana bakıyorsun, yüzüne boşalıyorum 💦', 'Kirpiklerine kadar {o} 😈', 'Suya dalıp yıkanıyorsun 😂', 'Dudaklarında kaldı 😏', 'Klor mu ben mi? 🥵'],
+  'Sand Dune Doggy': ['Kum tepesinin arkasında arkandayım 🏜️', 'Dizlerin kuma gömüldü {o} 😂', 'Rüzgâr sesini götürüyor, bağır 😈', 'Kalçanı tutuyorum 🥵', 'Biri tepeye çıkarsa? 😳', 'Kumlar her yerde ama durma 😏'],
+  'Sunbed Cowgirl': ['Şezlongda üstüme çıktın ⛱️', 'Bikinini kenara çekmişsin {o} 😏', 'Şezlong gıcırdıyor 😂', 'Güneş sırtında, ben içinde 🥵', 'Ritmi sen tut 😈', 'Şemsiye bizi saklıyor 🤫'],
+  'Sunset Missionary': ['Gün batarken üstündeyim 🌅', 'Gözlerin gözlerimde {o} 🤍', 'Gökyüzü turuncu 😌', 'Yavaş… bu anı unutmayalım 🥺', 'Dalgaları dinle 🌊', 'Güneş batmadan bitmesin 🥵'],
+  'Beach Hut Standing': ['Kabinde ellerini duvara dayadın 🛖', 'Arkandayım {o} 😈', 'Tahta gıcırdıyor 😂', 'Dışarıda sıra var, hızlı 😳', 'Sesini kıs… 🤫', 'Mayonu ben indirdim 😏'],
+  'Rock Cove Lift': ['Seni kucağıma aldım, sırtın kayada 🪨', 'Bacakların belimde kilitli {o} 😈', 'Dalga ayaklarımıza çarptı 💦', 'Bırakmam seni 🥵', 'Koy bizim 😏', 'Daha sert… 🌊'],
+  'Shallow Water Doggy': ['Sığ suda arkandayım 🌊', 'Dalga ikimizi itiyor {o} 😂', 'Kalçan sudan parlıyor 😈', 'Bir dalga daha… 🥵', 'Saçların ıslandı 💦', 'Denizde böylesi hiç olmamıştı 😏'],
+  'Nude Beach Sex': ['Çıplak plajda, açıkta 🏝️', 'Uzaktakiler bakıyor mu {o}? 😳', 'Görsünler 😈', 'Utanıyorsun ama durmuyorsun 🥵', 'Güneş her yerinde ☀️', 'Kalbim çok hızlı atıyor 🙈'],
+  'Bonfire Spoon': ['Battaniyenin altında sana arkadan sarıldım 🔥', 'Ateş çıtırdıyor {o} 🤍', 'Yavaşça giriyorum 😏', 'Ensen sıcacık 🥺', 'Yıldızlara bak 🌙', 'Sabaha kadar kalalım 😌'],
+  'Sand 69': ['Havluda ters uzandık 👅', 'Aynı anda {o} 😈', 'Kim önce dayanamayacak? 😏', 'Dilim sende, seninki bende 🥵', 'Kumlar havluya doldu 😂', 'Bacakların titriyor 💦'],
+  'Beach Shower Sex': ['Plaj duşunda bacağını belime kaldırdım 🚿', 'Su buz gibi {o} 😱', 'Seni duvara yasladım 😈', 'Kumlar akıp gidiyor 😏', 'Soğuk su, sıcak sen 🥵', 'Herkes görüyor mu? 😳'],
+  'Boat Deck Sex': ['Güvertede üstündeyim ⛵', 'Kıyı çok uzakta {o} 😈', 'Tekne ritmi tutuyor 😂', 'Güverte sıcak 🥵', 'Kaptan biziz 🚢', 'Dalgalarla beraber… 🌊'],
+  'Cove Creampie': ['Koyda içine boşalıyorum… ahhh 💦', 'Tam o an dalga çarptı {o} 😂', 'Bırakmıyorum seni 🥵', 'Hepsi içinde 😩', 'Sarıl bana 🤍'],
+  'Sunset Creampie': ['Güneş batarken içine boşalıyorum 🌅', 'Sıcacık {o} 😩', 'Sarılıp batışı izliyoruz 🤍', 'Nefes nefeseyiz 🥵', 'Yarın aynı saatte? 😏'],
+  'Sand Cumshot': ['Son anda çıkıp göğsüne boşalıyorum 💦', 'Karnına da {o} 😈', 'Güneşte parlıyor 🥵', 'Denize koşuyorsun 😂', 'Kremden iyi 😏']
+});
+Stories.ME_HUG_LINES.placeFinish.events.push('Jacuzzi Creampie', 'Underwater Creampie', 'Poolside Facial', 'Cove Creampie', 'Sunset Creampie', 'Sand Cumshot');
+Stories.ME_HUG_LINES.campHug.events.push('Wall Pin', 'Jacuzzi Cowgirl', 'Float Missionary', 'Pool Stairs Spoon', 'Lifeguard Chair', 'Sunbed Cowgirl', 'Sunset Missionary', 'Rock Cove Lift', 'Bonfire Spoon', 'Boat Deck Sex');
+Stories.ME_BED_SKIP.push('Pool Ladder Doggy', 'Wall Pin', 'Jacuzzi Cowgirl', 'Underwater Oral', 'Edge Facesitting', 'Float Missionary', 'Night Swim Sex', 'Cabana Reverse', 'Pool Stairs Spoon', 'Lifeguard Chair',
+  'Jacuzzi Creampie', 'Underwater Creampie', 'Poolside Facial',
+  'Sand Dune Doggy', 'Sunbed Cowgirl', 'Sunset Missionary', 'Beach Hut Standing', 'Rock Cove Lift', 'Shallow Water Doggy', 'Nude Beach Sex', 'Bonfire Spoon', 'Sand 69', 'Beach Shower Sex', 'Boat Deck Sex',
+  'Cove Creampie', 'Sunset Creampie', 'Sand Cumshot');
+/* 🏋️ Gym · 🍸 Bar · 🎬 Cinema: mekân pozisyonları, ısınmalar, bitişler (c:mvgym01x / c:mvbar01x / c:mvcinema01x + Cumming) */
+Object.assign(Stories.ME_EV_LINES, {
+  'Bench Press Ride': ['Bench\'e uzandım, taytını indirip üstüme oturdun 🏋️', 'Bara tutunuyorsun {o} 😏', 'Bench gıcırdıyor 😂', 'Her inişte bir tekrar 🥵', 'Terin göğsüme damlıyor 💦', 'Bu set hiç bitmesin 😈'],
+  'Squat Rack Doggy': ['Kafesin barına tutundun, arkandayım 🏋️', '"Bir tekrar daha" diye sayıyorsun {o} 😈', 'Ağırlıklar şıngırdıyor 😂', 'Kalçan çelik gibi 🥵', 'Formun mükemmel 😏', 'Yirmi… yirmi bir… 🔥'],
+  'Yoga Mat Spoon': ['Matta yan yatıyoruz, arkandayım 🧘‍♀️', 'Nefesin ritmime uydu {o} 🤍', 'Mat kayıyor 😂', 'Yavaş… nefes al, ver 😏', 'Stüdyo bomboş 🤫', 'Ensene nefes veriyorum 🥵'],
+  'Leg Press Missionary': ['Seni leg press koltuğuna yasladım 🦵', 'Bacakların omuzlarımda {o} 🥵', 'Esnekliğine bayıldım 😈', 'Makine gıcırdıyor 😂', 'Plakalar boşta 😏', 'Gözlerime bak 🔥'],
+  'Pull-Up Bar Lift': ['Bara asıldın, bacakların belimde 💪', 'Seni kalçandan taşıyorum {o} 😈', 'Kolların titriyor 🥵', 'Bırakma barı 😳', 'Ben tutarım seni 🤍', 'Barfiks hiç böyle olmamıştı 😂'],
+  'Mirror Wall Standing': ['Aynaya yaslandın, arkandayım 🪞', 'Kendi yüzünü izle {o} 😏', 'Ayna buğulandı 🥵', 'Terli yüzün çok güzel 😈', 'Avuç izlerin aynada kalacak 😂', 'Göz göze, aynada 🔥'],
+  'Locker Room Bench': ['Tahta bankta kucağımdasın 🚿', 'Duşlar damlıyor {o} 🤫', 'Dolapların ardında biri mi var? 😳', 'Havlun yere düştü 😈', 'Banka tutun 🥵', 'Sesini kıs 🙈'],
+  'Gym Ball Bounce': ['Topta oturuyorum, sen üstümdesin ⚽', 'Top bizi sektiriyor {o} 😂', 'Dengeni ben tutuyorum 😏', 'Her zıplama daha derin 🥵', 'Düşeceğiz! 😆', 'Bu pilates değil 😈'],
+  'Squat Rack Anal': ['Barın üstüne eğildin, taytın dizlerinde 🏋️', 'Bacak gününden sonra bunu da çalıştırıyoruz {o} 😈', 'Yavaşça… nefes 😳', 'Bara sımsıkı tutun 🥵', 'Kalçan titriyor 😩', 'Son tekrar 🔥'],
+  'Locker Room Blowjob': ['Havlunun üstünde diz çöktün 🚪', 'At kuyruğunu tutuyorum {o} 😏', 'Dolap kapakları gıcırdıyor 😳', 'Gözlerin yukarıda 🥵', 'Biri gelirse? 🤫', 'Terli ve güzelsin 😈'],
+  'Stretch Help': ['Bacağını omzuma koydun 🧘‍♀️', 'Biraz daha esnet {o} 😏', 'Taytın incecik 🥵', 'Nefes al… ver 😈', 'Çok esneksin 😳', 'Isındın galiba 🔥'],
+  'Spotting': ['Bench\'tesin, ben spot\'um 🏋️', 'Gözün kasıklarımda {o} 👀', 'Bar titriyor, tutuyorum 😏', 'Bir tekrar daha 🥵', 'Odaklan bana değil 😂', 'Seti bitirdin 😈'],
+  'Sweaty Top Peel': ['Spor sütyenini soymaya çalışıyorum 👙', 'Terden yapışmış {o} 😂', 'Kumaş zor sıyrılıyor 🥵', 'Sonunda… 😈', 'Tenin parlıyor 💦', 'Sıra taytta 😏'],
+  'Yoga Pants Cumshot': ['Son anda çıkıp taytının üstüne boşalıyorum ahhh 😩💦', 'Siyah taytta bembeyaz izler {o} 😈', 'Kalçana aktı 🥵', 'Bu taytla eve gidemezsin 😂', 'Havluyu uzatıyorum 😅', 'Antrenman tamam 🏋️'],
+  'Locker Room Facial': ['Yüzüne boşalıyorum ahhh 😩💦', 'Havluyla siliyorsun {o} 😏', 'Duşa gidiyoruz 🚿', 'Dudaklarında kaldı 😈', 'At kuyruğuna da sıçradı 😂', 'En iyi soğuma 🥵'],
+  'Bench Creampie': ['Bench\'in üstünde içine boşalıyorum… ahhh {o} 😩💦', '"En iyi setim" diyorsun 🏋️', 'Son damlasına kadar 😈', 'Nefes nefeseyiz 🥵', 'Taytını ben çekiyorum 🤍', 'Bench\'i silmemiz lazım 😂'],
+  'Bathroom Stall': ['Kabine daldık, kapıyı kilitledim 🚻', 'Bacağın klozetin kapağında {o} 😈', 'Müzik duvarları titretiyor 🎵', 'Dar ama sığıyoruz 🥵', 'Kapı sallanıyor 😂', 'Sesin bas sesine karışıyor 😩'],
+  'Bar Counter': ['Seni tezgâha oturttum 🍸', 'Bardaklar şıngırdıyor {o} 😂', 'Neon ışık tenine vuruyor 😍', 'Bacakların belimde 🥵', 'Kokteylin devrildi 😈', 'Bar kapalı, bar bizim 🔥'],
+  'VIP Booth': ['Kadife koltukta kucağımdasın 🛋️', 'Perde yarı açık {o} 😳', 'Aşağıda pist dolu 💃', 'Şampanya kadehi elinde 🥂', 'Kimse yukarı bakmaz 😏', 'VIP muamele 😈'],
+  'Pool Table': ['Seni bilardo masasına yatırdım 🎱', 'Toplar ceplere yuvarlanıyor {o} 😂', 'Çuha yemyeşil, sen kıpkırmızı 🥵', 'İstaka yerde 😈', 'Sekiz numara cebe 🎯', 'Bu oyunu ikimiz kazanıyoruz 🔥'],
+  'Back Alley Wall': ['Arka kapıdan çıktık, duvara yasladım seni 🧱', 'İçeriden bas sesi {o} 🎵', 'Sokak lambası yanıp sönüyor 🌙', 'Tuğla soğuk, sen sıcaksın 🥵', 'Biri sokağa girerse? 😳', 'Hızlı ve sert 😈'],
+  'Bar Stool Ride': ['Taburedeyim, sırtın bana dönük üstümdesin 🪑', 'Eteğin ikimizi örtüyor {o} 🤫', 'Tabure dönüyor 😂', 'Tezgâha tutun 🥵', 'Barmen bakıyor mu? 😳', 'Bir içki daha söyle 😈'],
+  'Stall Anal': ['Kabinin duvarına yaslandın, elbisen belinde 🚻', 'Kapının altından ayakkabılar görünüyor {o} 😱', 'Yavaşça… 😈', 'Duvara tutun 🥵', 'Sesini avucumla kapatıyorum 🤫', 'Sıra uzuyor 😂'],
+  'Stall Blowjob': ['Kabinde önümde çömeldin 🚻', 'Rujunu bozmamaya çalışıyorsun {o} 💄', 'Dışarıda sıra var 😳', 'Saçını tutuyorum 🥵', 'Kapıya vuruyorlar 😂', 'Durma 😈'],
+  'Dance Floor Grind': ['Pistin ortasında kalçan bana bastırıyor 💃', 'Işıklar dönüyor {o} 🪩', 'Kimse fark etmiyor 😏', 'Ritmi tutuyorsun 🥵', 'Bu dans çok yakın 😈', 'Kulağına fısıldıyorum 🔥'],
+  'Salt & Lime Lick': ['Boynuna tuz serptim 🧂', 'Tuzu yalıyorum {o} 😏', 'Limonu dudaklarından alıyorum 🍋', 'Tekila yakıyor 🥃', 'Bir tur daha 😈', 'Bu sefer başka yere tuz 🔥'],
+  'Under The Table': ['Elin masanın altında bacağımda 🍹', 'Yüzün hiç bozulmuyor {o} 😳', 'Arkadaşların bir şey sordu 😅', 'Daha yukarı 🥵', 'Kahkaha atıyorsun ama elin… 😈', 'Hesabı isteyelim 🔥'],
+  'Stall Creampie': ['Kabinde içine boşalıyorum… ahhh {o} 😩💦', 'Külotunu çektin, gülüyorsun 😈', 'Dans ederken akacak 😂', 'Son damlasına kadar 🥵', 'Kapıyı açmadan dur 🤫', 'Pistte bunu kimse bilmeyecek 😏'],
+  'Cocktail Facial': ['Yüzüne ve dudaklarına boşalıyorum ahhh 😩💦', 'Kokteylinden bir yudum aldın {o} 🍸', '"Şimdi oldu" diyorsun 😈', 'Peçete uzatıyorum 😅', 'Rujun karıştı 💄', 'En pahalı kokteyl 😏'],
+  'VIP Couch Cumshot': ['Kadife koltukta kalçana boşalıyorum ahhh 😩💦', 'Elbiseni indirip pisti selamlıyorsun {o} 😈', 'Koltuk lekelendi 😂', 'VIP faturası kabarık 🥵', 'Şampanya patlattık sayılır 🍾', 'Perdeyi kapat 🙈'],
+  'Back Row Lap Ride': ['En arka sırada kucağımdasın 🎬', 'Mont ikimizin üstünde {o} 🤫', 'Perdenin ışığı yüzüne vuruyor 😍', 'Yavaşça… 🥵', 'Ön sırada biri döndü mü? 😳', 'Film umurumda değil 😈'],
+  'Reverse Seat Ride': ['Sırtın bana dönük kucağımdasın 🍿', 'Filmi izliyormuş gibi yapıyoruz {o} 😏', 'Patlama sahnesinde hızlandın 💥', 'Koltuk gıcırdıyor 😂', 'Sesini kıs 🤫', 'Bu film çok uzun olsun 🥵'],
+  'Aisle Stairs': ['Yan merdivendeyiz, dirseklerin basamakta 🪜', 'Yerdeki ışıklar bacaklarını aydınlatıyor {o} 😳', 'Biri inerse? 😱', 'Hızlı 🥵', 'Halı dizlerimi yakıyor 😂', 'Merdiveni biz tuttuk 😈'],
+  'Projection Booth Doggy': ['Projektörün yanına eğildin, arkandayım 📽️', 'Makara dönüyor {o} 🎞️', 'Küçük camdan salon görünüyor 😳', 'Makine çok gürültülü, iyi ki 😏', 'Sıcak burası 🥵', 'Film kopmasın 😂'],
+  'Empty Theater Missionary': ['Salon bomboş, perdenin önünde uzanıyorsun 🎞️', 'Jenerik üstümüze akıyor {o} 😍', 'Bütün koltuklar bizi izliyor 😏', 'Gözlerime bak 🥵', 'Sesin salonda yankılanıyor 😳', 'Bu bizim filmimiz 🔥'],
+  'Projection Booth Anal': ['Dar masaya eğildin 📽️', 'Projektör sesini bastırıyor {o} 🤫', 'Yavaşça… 😈', 'Makine sıcak, sen daha sıcak 🥵', 'Makaraya dokunma 😂', 'Gösterim bitmeden 🎞️'],
+  'Back Row Blowjob': ['Koltukların arasına kaydın 🎬', 'Başın kucağımda {o} 😏', 'Filme bakıyormuş gibi yapıyorum 😳', 'Mısır kovası devrildi 🍿', 'Saçını okşuyorum 🥵', 'Sessiz… çok sessiz 🤫'],
+  'Under The Coat': ['Montunu kucağımıza serdin 🧥', 'Altında ellerimiz buluştu {o} 😏', 'Yüzün perdede 😳', 'Kıpırdama 🤫', 'Kimse anlamaz 😈', 'Sahne değişti, el değişmedi 🥵'],
+  'Popcorn Bucket Trick': ['Elin mısır kovasına uzandı 🍿', 'Mısır değil {o} 😂', 'Dudağını ısırıyorsun 😳', 'Kıkırdama! 🤫', 'Kovayı tut 😈', 'En iyi mısır 🥵'],
+  'Dark Scene Touch': ['Perde karardı, elim eteğinin altında 🌑', 'Nefesin hızlandı {o} 🥵', 'Sahne aydınlandı, donduk 😳', 'Yine karardı 😈', 'Bacakların titriyor 🤫', 'Karanlık sahneleri seviyorum 😏'],
+  'Back Row Creampie': ['Kucağımda içine boşalıyorum… ahhh {o} 😩💦', 'Montu topladın 🧥', '"Film bitmeden kalkamam" diyorsun 😂', 'Son damlasına kadar 🥵', 'Kimse duymadı 🤫', 'Jenerikte çıkarız 😈'],
+  'Seat Cumshot': ['Son anda çıkıp kalçana boşalıyorum ahhh 😩💦', 'Peçeteler mısır kovasında {o} 🍿', 'Işıklar yanmak üzere 😱', 'Hızlı sil 😂', 'Koltuk kurtuldu 😅', 'Bu filmi unutmayacağız 😈'],
+  'Credits Facial': ['Jenerik akarken yüzüne boşalıyorum ahhh 😩💦', 'Perdenin ışığında parlıyor {o} 🎞️', '"En iyi sahne" diyorsun 😈', 'Peçete! 😂', 'Kirpiklerine kadar 🥵', 'Yönetmen biziz 🎬'],
+  'Personal Trainer – Üye': ['Salona giriyorum, düdüğünü çalıyorsun: "Geç kaldın!" {o} 📣', 'Isınma yokmuş, direkt bench\'e 🏋️', 'Formumu düzeltmek için arkama geçiyorsun 😏', 'Elin belimde, "kalçayı sık" diyorsun 😳', 'Taytın terden parlıyor 🥵', '"Bir set daha" diyorsun, gözün aşağıda 😈', 'Salon boşaldı, ışıkları kısıyorsun {o} 🌙', 'Soyunma odasını işaret ediyorsun 🚿'],
+  'Barmen – Son Müşteri': ['Kepenk yarıya indi, tek müşteri benim {o} 🍸', 'Shaker\'ı sallıyorsun, gözün bende 😏', '"Hesap?" diyorsun, cüzdanım boş 😅', 'Tezgâhın arkasına çağırıyorsun 😈', 'Papyonunu çözüyorum 🎀', 'Son kokteyl dudaklarından {o} 💋', 'Sandalyeler masalarda, bar bizim 🌙', 'Neon tabela söndü, sen yanıyorsun 🔥']
+});
+Object.assign(Stories.ME_RP_LINES, {
+  fxrptrainer: {
+    pos: ['Düdüğün boynunda sallanıyor {o} 📣', 'Taytın dizlerinde 😈', '"Tekrar say!" diye emrediyorsun 🏋️', 'Terin göğsüme damlıyor 💦', 'Aynada form kontrolü yapıyorsun 😏', 'At kuyruğun her vuruşta sallanıyor {o} 🥵',
+      '"Pes etmek yok" diyorsun 😩', 'Kronometreye bakmıyorsun bile ⏱️', 'Kasların titriyor 🔥', 'Kim kimi çalıştırıyor şimdi? 😈'],
+    cum: ['İçine boşalıyorum, antrenman bitti… ahhhh {o} 🏋️💦', 'Mata yığılıyoruz 😩', '"Kardiyo sayılır" diye gülüyorsun 😈', 'Taytın değişmeli 😂', 'Nabzın hâlâ 180 🥵', 'Yarın aynı saatte 😏']
+  },
+  fxrpbarmen: {
+    pos: ['Tezgâhın arkasındayız, şişeler şıngırdıyor {o} 🍸', 'Önlüğün belinde 😈', 'Papyonun yerde 🎀', 'Buz kovası devrildi 😂', 'Neon ışık sırtına vuruyor 🥵', '"Bahşişi böyle alırım" diyorsun {o} 😏',
+      'Shaker hâlâ elinde 🍸', 'Kepenk sallanıyor 😳', 'Limon kokuyorsun 🍋', 'Hesap kapandı mı? 😈'],
+    cum: ['İçine boşalıyorum, son sipariş… ahhhh {o} 🍸💦', 'Tezgâha yığılıyoruz 😩', '"Hesap ödendi" diye gülüyorsun 😈', 'Yeleğin değişmeli 😂', 'Bar kokusu tenimizde 🥵', 'Yarın da son müşteri benim 😏']
+  }
+});
+Object.assign(Stories.ME_RP_HUG_LINES, {
+  fxrptrainer: {
+    pos: ['Arkandan sarıldım, aynaya yaslanmışsın… ahhh 🏋️😩', '{gogus} göğüslerini spor sütyeninin içinden avuçladım offf 🥵', 'Kulağına "hocam" diye fısıldıyorum… ahh 😈', 'Terli tenimiz birbirine yapıştı offf 💦', 'Taytının üstünden kalçanı sıkıyorum ahh 🔥'],
+    in: ['Sana sımsıkı sarılıp içine boşalıyorum… ahhhh 🏋️💦', 'Ensene gömülüp bırakıyorum offf 😩', 'Boşaldıktan sonra matta sarılı kalıyoruz… mmm 😌'],
+    out: ['Son anda çıktım; taytına fışkırıyor… ahhhh 💦', 'Kalçana boşalıyorum offf 🥵', 'Bitirince ensenden öpüyorum… mmm 😌'],
+    hold: ['Sana sarılıyım, dayanıyorum… offf 😣', '"Bırakma" dedin, nefesimi sayıyorum ahh ⏱️', 'Tekrarları sayıyorum, dayanmak için offf 🏋️']
+  },
+  fxrpbarmen: {
+    pos: ['Arkandan sarıldım, tezgâha yaslanmışsın… ahhh 🍸😩', '{gogus} göğüslerini ıslak gömleğinin içinden avuçladım offf 🥵', 'Kulağına "son kokteyl" diye fısıldıyorum… ahh 😈', 'Yeleğinin düğmeleri ikimizin arasında sıkıştı offf 🎀', 'Mini eteğinin üstünden kalçanı sıkıyorum ahh 🔥'],
+    in: ['Sana sımsıkı sarılıp içine boşalıyorum… ahhhh 🍸💦', 'Ensene gömülüp bırakıyorum offf 😩', 'Boşaldıktan sonra tezgâhta sarılı kalıyoruz… mmm 😌'],
+    out: ['Son anda çıktım; önlüğüne fışkırıyor… ahhhh 💦', 'Kalçana boşalıyorum offf 🥵', 'Bitirince ensenden öpüyorum… mmm 😌'],
+    hold: ['Sana sarılıyım, dayanıyorum… offf 😣', '"Daha değil" dedin, şişeleri sayıyorum ahh 🍾', 'Kepenk sesini dinliyorum, dayanmak için offf 🌙']
+  }
+});
+Stories.ME_HUG_LINES.placeFinish.events.push('Yoga Pants Cumshot', 'Locker Room Facial', 'Bench Creampie', 'Stall Creampie', 'Cocktail Facial', 'VIP Couch Cumshot', 'Back Row Creampie', 'Seat Cumshot', 'Credits Facial');
+Stories.ME_HUG_LINES.campHug.events.push('Yoga Mat Spoon', 'Locker Room Bench', 'VIP Booth', 'Back Row Lap Ride', 'Reverse Seat Ride');
+Stories.ME_BED_SKIP.push('Bench Press Ride', 'Squat Rack Doggy', 'Leg Press Missionary', 'Pull-Up Bar Lift', 'Mirror Wall Standing', 'Locker Room Bench', 'Gym Ball Bounce', 'Squat Rack Anal', 'Locker Room Blowjob',
+  'Stretch Help', 'Spotting', 'Sweaty Top Peel', 'Yoga Pants Cumshot', 'Locker Room Facial', 'Bench Creampie',
+  'Bathroom Stall', 'Bar Counter', 'VIP Booth', 'Pool Table', 'Back Alley Wall', 'Bar Stool Ride', 'Stall Anal', 'Stall Blowjob', 'Dance Floor Grind', 'Salt & Lime Lick', 'Under The Table',
+  'Stall Creampie', 'Cocktail Facial', 'VIP Couch Cumshot',
+  'Back Row Lap Ride', 'Reverse Seat Ride', 'Aisle Stairs', 'Projection Booth Doggy', 'Empty Theater Missionary', 'Projection Booth Anal', 'Back Row Blowjob', 'Under The Coat', 'Popcorn Bucket Trick', 'Dark Scene Touch',
+  'Back Row Creampie', 'Seat Cumshot', 'Credits Facial');

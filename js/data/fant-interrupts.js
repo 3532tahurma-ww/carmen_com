@@ -680,6 +680,41 @@ Stories.FANT_INTERRUPTS = {
       { g: '🧹 Hademe koridorda paspas yapıyor, ıslık çalıyor', r: ['Hademe! 😳', 'Işığı kapat 🙈', 'Sessiz ol 🤫', 'Uzaklaşıyor 😮‍💨', 'Islık bile bize eşlik ediyor 😂'] },
       { g: '📱 Telefonda bölüm başkanından mesaj: "Odanda mısın?"', r: ['Başkan! 😱', '"Kütüphanedeyim" yaz 😅', 'Cevap verme 🙈', 'Telefonu ters çevir 😈', 'Yalan söylemek yakıştı mı bana 😏'] },
       { g: '📽️ Projektör kendiliğinden açıldı, perdeye slayt yansıdı', r: ['Ödüm koptu 😂', 'Slaytta ben varım 😳', 'Kapat şunu 🙈', 'Bırak, ışık güzel 😏', 'Ders başlasın 😈'] }
+    ],
+    // 🏋️ / 🍸 / 🎬 / ⛪ mekân kesintileri (PLACE_INT; yerbar / yersinema / yerkilise riskStep 70–100 eşiğinde de)
+    yerspor: [
+      { g: '🏃‍♂️ Koşu bandından biri iniyor, soyunma odasına doğru yürüyor', r: ['Biri geliyor! 😱', 'Havluyu ver 🙈', 'Esneme yapıyormuş gibi yap 😅', 'Kapıyı kilitledin mi? 😳', 'Geçti… bir set daha 😈'] },
+      { g: '📢 Anons: "Salonumuz 15 dakika içinde kapanacaktır"', r: ['On beş dakika yeter 😈', 'Hızlanalım 🥵', 'Anahtar bende, kapanınca da kalırız 😏', 'Işıkları söndürmesinler 🙈', 'Son set 🏋️'] },
+      { g: '🧹 Temizlikçi paspasla aynalı salona giriyor', r: ['Temizlikçi! 😳', 'Matın arkasına 🙈', 'Kıpırdama 🤫', 'Kulaklığı takmış, duymaz 😏', 'Gitti, devam 😈'] },
+      { g: '🔔 Akıllı saat titriyor: "Nabız 160 · antrenman yoğun"', r: ['Saatim bile anladı 😂', 'Rekor kırıyoruz 🥵', 'Kardiyo sayılır 😏', 'Kapat şunu 🙈', 'Daha da yükselt 😈'] }
+    ],
+    yerbar: [
+      { g: '🚪 Kabinin kapısı yumruklanıyor: "Daha çok sürecek mi?!"', r: ['Dolu! 😳', 'Şşş 🤫', 'Bir dakika! …belki beş 😈', 'Sıra uzamış 😅', 'Gitsin, devam 😏'] },
+      { g: '🍸 Barmen tezgâhın öbür ucundan size bakıp göz kırpıyor', r: ['Gördü! 😱', 'Bahşişi artır 😂', 'Göz kırptı mı o? 🙈', 'Bizi izlemesine izin ver 😈', 'Bir içki daha ısmarlarım ona 😏'] },
+      { g: '🎵 Müzik bir anda durdu, DJ şarkı değiştiriyor', r: ['Sus! 😳', 'Nefesini tut 🤫', 'Herkes duydu mu? 🙈', 'Şimdi bas başladı, devam 😈', 'Tam zamanında 😂'] },
+      { g: '🧍‍♂️ Güvenlik görevlisi fenerle koridoru tarıyor', r: ['Güvenlik! 😱', 'Duvara yapış 🙈', 'Işık geçti… 😮‍💨', 'Kovarlarsa da değerdi 😈', 'Arka kapıdan kaçarız 😏'] }
+    ],
+    yersinema: [
+      { g: '🔦 Görevli el feneriyle sıraları dolaşıyor', r: ['Fener! 😱', 'Montu çek üstümüze 🙈', 'Filme bak, filme 😅', 'Geçti mi? 😳', 'Gitti… devam 😈'] },
+      { g: '🍿 Ön sıradaki biri dönüp "şşş" diyor', r: ['Duydu! 🙈', 'Pardon… 😅', 'Sessiz olamıyorum ki 😩', 'Daha yavaş 🤫', 'Bırak duysun 😈'] },
+      { g: '💡 Film bitmeden salonun ışıkları bir anlığına yandı', r: ['Işıklar! 😱', 'Eteğimi indir! 🙈', 'Gören oldu mu? 😳', 'Söndü, oh 😮‍💨', 'Kalbim duracaktı 😂'] },
+      { g: '📱 Yan sıradaki birinin telefon ekranı yüzünüzü aydınlattı', r: ['Telefon ışığı! 😳', 'Yüzümü sakla 🙈', 'Kapatsın şunu 😤', 'Bize mi bakıyor? 😱', 'Umurumda değil 😈'] }
+    ],
+    yerkilise: [
+      { g: '🔔 Çan kulesinden akşam duası çanı çalmaya başladı', r: ['Çan! 😱', 'Dua saati… 🙏', 'Sesimiz çanda kaybolur 😈', 'Rahibeler gelecek 😳', 'Bir vuruş daha 😏'] },
+      { g: '🚪 Kilisenin ağır kapısı gıcırdayarak aralandı', r: ['Kapı! 😱', 'Sıranın arkasına 🙈', 'Dua ediyormuş gibi yap 🙏', 'Rüzgârmış… 😮‍💨', 'Kilitlememiş miydin?! 😳'] },
+      { g: '🕯️ Kubbede bir yankı: koridordan ayak sesleri', r: ['Ayak sesleri 😳', 'Nefesini tut 🤫', 'Başrahibe mi? 😱', 'Uzaklaşıyor… 😮‍💨', 'Günahımız büyüyor 😈'] },
+      { g: '🎶 Yan şapelde koro prova yapmaya başladı', r: ['Koro! 😳', 'İlahi eşliğinde 😈', 'Bizi duymazlar 🤫', 'Çok günah 🙈', 'Ritmi tut 😏'] }
+    ],
+    fxrptrainer: [
+      { g: '📣 Salonun öbür ucundan başka bir antrenör sesleniyor: "Hocam, anahtarlar sende mi?"', r: ['Bende! Bekle! 😱', 'Cevap verme 🤫', 'Kilitle kapıyı 🙈', 'Gitti mi? 😳', 'Antrenman sürüyor 😈'] },
+      { g: '⏱️ Kronometre öttü: "Set bitti"', r: ['Set bitmedi, ben bitireceğim 😈', 'Bir set daha 🏋️', 'Mola yok 📣', 'Süreyi uzattım 😏', 'Nefes al… devam 🥵'] },
+      { g: '🚿 Soyunma odasında duş kendiliğinden açıldı', r: ['Ödüm koptu 😂', 'Duşa geçelim mi? 😏', 'Kapat şunu 🙈', 'Buhar iyi gelir 🥵', 'Sonra yıkanırız 😈'] }
+    ],
+    fxrpbarmen: [
+      { g: '🔔 Kapının zili çaldı: "Açık mısınız?"', r: ['Kapalıyız! 😤', 'Kepenk inik, görmüyor mu 🙈', 'Şşş 🤫', 'Gitti 😮‍💨', 'Bu gece tek müşterim sensin 😈'] },
+      { g: '🍾 Raftan bir şişe düşüp tezgâhta kırıldı', r: ['Şişe! 😱', 'Biz salladık galiba 😂', 'Sonra toplarım 😏', 'Ayağına dikkat 🙈', 'Pahalı olanıydı 😩'] },
+      { g: '📱 Patron arıyor: "Kasayı kapattın mı?"', r: ['Patron! 😳', 'Kapatıyorum… birazdan 😈', 'Telefonu ters çevir 📱', 'Kasa bekleyebilir 😏', 'Cevap verme 🤫'] }
     ]
   };
   Object.keys(MORE).forEach(k => (Stories.FANT_INTERRUPTS[k] = Stories.FANT_INTERRUPTS[k] || []).push(...MORE[k]));
