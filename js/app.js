@@ -516,6 +516,14 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['🎬', 'Sahneler: olayların alt olayları', 'Bazı olaylar artık bir sahne açar: ⚡ çubuğunun üstünde sahne şeridi çıkar, adımları tek tek yaparsın, sonunda 🏁 bitiş ve 🎉 ödül gelir. Başka mekâna geçersen ya da sahneyi unutursan bozulur. 7 sahne, hepsi 🧠 Olay Hafızası Kitabı\'nın yeni Sahneler bölümünde.', '#/kitap/hafiza/5', [
+      ['🚿 Birlikte Duş', 'Soapy Hug ile açılır; üç köpüklü adım, sonra Shower Cumshot: Şehvet +10, Samimiyet +2, Güven +1.'],
+      ['🧖‍♀️ Sauna Seansı', 'Towel Drop ile açılır; iki terli adım, sonra Sauna Cumshot: Şehvet +8, Samimiyet +2, Aşk +1.'],
+      ['🔗 Yatağa Bağlı', 'Tied To Bed ile açılır; göz bağı, tüy, buz, mum ve Edging sırayla, sonra Permission to Come: Güven +3, Aşk +2, Şehvet +6.'],
+      ['🏢 Mesai Sonrası', 'Late Night Overtime ile açılır; masada kışkırtma, masanın altı ve üstü sırayla, sonra Office Cumshot: Şehvet +10, Uyarılma +8.'],
+      ['🏖️ Gün Batımı Plajı', 'Sunscreen Rub ile açılır; kumda ya da dalgada iki adım, sonra Beach Cumshot: Aşk +2, Samimiyet +2, Şehvet +6.'],
+      ['⛪ Günah Çıkarma', 'Confession Lap ile açılır; tespih, diz çökme yeri ve sunak sırayla: Güven +4, Aşk +2, Şehvet +4.'],
+      ['🎰 VIP Masası', 'Bunny kokteyl getirir; rulet, blackjack, strip poker sırayla, sonra sahne arkası: Şehvet +8, Samimiyet +2, Aşk +1.']]],
     ['🔗', 'Olay komboları', 'Arka arkaya yazdığın olaylar artık kombo olabilir: doğru sırayı tutturunca karakter özel bir mesajla tepki verir ve değerler değişir. Hepsi 🧠 Olay Hafızası Kitabı\'nın yeni Kombolar bölümünde.', '#/kitap/hafiza/4', [
       ['🪜 Adım adım', 'Kissing → iki ısınma → giriş: Aşk +2, Uyarılma +8.'],
       ['🔄 Gel-git', 'Önden → arkadan → yine önden: Uyarılma +6, Acı +3.'],
@@ -10724,10 +10732,92 @@
       const si = sps.findIndex(x => x.n === sc.name), near = sps.length ? [1, 2, 3].map(i => sps[(si + i + sps.length) % sps.length]).filter(x => x.n !== sc.name) : [];
       const pls = group ? [] : plSug(near.length ? 1 : 3);
       // yazarken birleşik 🔮⚡ çubuğu (drawTahmin) görünür; bu çubuk o sırada gizli
-      el.hidden = !quickOn() || cs.playing || (!evs.length && !pls.length && !near.length) || !!(tb && !tb.hidden);
+      const ad = th.act && actDef(th.act.id), act = ad ? actBar(ad, th.act) : '';
+      el.hidden = !quickOn() || cs.playing || (!evs.length && !pls.length && !near.length && !act) || !!(tb && !tb.hidden);
       if (el.hidden) return;
-      el.innerHTML = `<span class="eq-ic" title="${sug.length ? 'Mekâna ve son olaya göre' : 'Son kullanılan olaylar'}">⚡</span><div class="eq-row">${evs.map(e => `<button type="button" class="mo-chip${evCls(e)}"${evStyle(e)} data-qev="${esc(e.id)}">${pins.includes(e) ? '📌' : ''}${evEmo(e)}${esc(e.title)}</button>`).join('')}${near.map(s => `<button type="button" class="mo-chip" data-qsp="${esc(s.k)}" title="Mekana geç">📍${s.ic} ${esc(s.n)}</button>`).join('')}${plChips(pls, 'qpl')}</div>
+      el.classList.toggle('has-act', !!act);
+      el.innerHTML = `${act}<span class="eq-ic" title="${sug.length ? 'Mekâna ve son olaya göre' : 'Son kullanılan olaylar'}">⚡</span><div class="eq-row">${evs.map(e => `<button type="button" class="mo-chip${evCls(e)}"${evStyle(e)} data-qev="${esc(e.id)}"${actOpen(e) ? ` title="🎬 Sahne açar: ${esc(actOpen(e).name)}"` : ''}>${pins.includes(e) ? '📌' : ''}${actOpen(e) ? '🎬' : ''}${evEmo(e)}${esc(e.title)}</button>`).join('')}${near.map(s => `<button type="button" class="mo-chip" data-qsp="${esc(s.k)}" title="Mekana geç">📍${s.ic} ${esc(s.n)}</button>`).join('')}${plChips(pls, 'qpl')}</div>
         <button type="button" class="eq-x" data-q="off" aria-label="Kısayolları kapat">✕</button>`;
+    }
+    /* 🎬 Sahneler (Stories.SCENES): açılış olayı sahneyi açar (th.act = { id, done: [adım sırası], idle, pl, skip, ready }), adımlar sayılır;
+     * need dolunca 🏁 bitiş açılır (bitiş yoksa ödül hemen). Mekân değişimi, başka mekânın olayı ya da ttl kadar adımsız olay bozar (fail);
+     * bitiş erken gelirse ödülsüz kapanır. Zincirle gelen olaylar (depth > 0) yalnızca adım / bitiş olarak sayılır, sahneyi bozmaz */
+    const actLow = s => String(s || '').toLocaleLowerCase('tr');
+    const actDef = id => (Stories.SCENES || []).find(s => s.id === id);
+    const actNeed = d => d.need || d.steps.length;
+    const actEv = t => allEvents().find(x => actLow(x.title) === actLow(t));
+    const actOpen = e => (Stories.SCENES || []).find(s => actLow(s.open) === actLow(e.title));
+    const actPl = () => ((lastScene() || {}).scene || {}).place || '';
+    const actTh = e => (e.tags || []).map(actLow).filter(t => EV_THEME.includes(t) && t !== 'boşalma' && t !== 'üçlü');
+    function actBar(d, a) {
+      const need = actNeed(d), n = Math.min(a.done.length, need), want = d.mode === 'seq' ? d.steps.findIndex((s, i) => !a.done.includes(i)) : -1;
+      const chip = (t, i) => {
+        const e = actEv(t), ok = a.done.includes(i);
+        return !e ? '' : `<button type="button" class="mo-chip${evCls(e)}${ok ? ' eq-ok' : i === want ? ' eq-next' : ''}"${evStyle(e)}${ok ? ' disabled' : ` data-qev="${esc(e.id)}"`}>${ok ? '✓ ' : ''}${evEmo(e)}${esc(e.title)}</button>`;
+      };
+      const fe = d.fin && actEv(d.fin);
+      return `<div class="eq-act"><span class="eq-at" title="${esc(d.desc || '')}">🎬 ${d.icon} ${esc(d.name)} <b>${'●'.repeat(n)}${'○'.repeat(need - n)} ${n}/${need}</b></span>
+        <div class="eq-row">${d.steps.map(chip).join('')}${fe ? `<button type="button" class="mo-chip${a.ready ? ' eq-next' : ' eq-lock'}"${a.ready ? ` data-qev="${esc(fe.id)}"` : ' disabled title="Önce adımları tamamla"'}>${a.ready ? '🏁' : '🔒'} ${esc(fe.title)}</button>` : ''}</div>
+        <button type="button" class="eq-x" data-qact="x" aria-label="Sahneyi bitir" title="Sahneyi bitir">✕</button></div>`;
+    }
+    function actStep(e, depth, ids, evc) {
+      const say = t => list.push({ id: Store.uid(), from: 'sys', text: t, ts: nowTs() + 1 });
+      const pay = fx => {
+        const f = fx.map(([l, v]) => { const p = allParams().find(x => x.who !== 'me' && actLow(x.label) === l); return p && { p: 'p:' + p.id, d: v }; }).filter(Boolean);
+        const r = f.length && applyOutcome({ text: '', effects: f }, ids);
+        if (r && r.changes.length) evc.changes = [...(evc.changes || []), ...r.changes];
+      };
+      const end = (d, a) => {
+        th.act = null;
+        const fx = a.skip ? d.fx.map(([l, v]) => [l, Math.round(v / 2)]) : d.fx;
+        pay(fx);
+        ids.forEach(cid => { const k = byId(cid); if (k) (k.acts = k.acts || {})[d.id] = (k.acts[d.id] || 0) + 1; });
+        say(`🎉 ${d.icon} ${d.name} tamamlandı${a.skip ? ' (sıra karıştı, ödül yarım)' : ''} · ${memFx({ fx })}${d.end ? ' · ' + d.end : ''}`);
+        notify(`🎬 ${d.name} tamamlandı`, '🎉');
+      };
+      const brk = (d, why) => {
+        th.act = null;
+        if (d.fail) pay(d.fail);
+        say(`💔 ${d.icon} ${d.name} bozuldu: ${why}${d.fail ? ' · ' + memFx({ fx: d.fail }) : ''}`);
+      };
+      const t = actLow(e.title), a = th.act, d = a && actDef(a.id), pl = actPl();
+      if (a && !d) th.act = null;
+      if (d) {
+        if (!a.pl) a.pl = pl;
+        if (pl && pl !== a.pl) brk(d, 'mekân değişti');
+        else {
+          const si = d.steps.findIndex(s => actLow(s) === t), need = actNeed(d);
+          if (si >= 0) {
+            if (a.done.includes(si)) return;
+            if (d.mode === 'seq' && si !== d.steps.findIndex((s, i) => !a.done.includes(i))) a.skip = true;
+            a.done.push(si);
+            a.idle = 0;
+            const n = a.done.length;
+            if (a.ready || n < need) { if (!a.ready) say(`${d.icon} ${d.name} · ${n}/${need}`); return; }
+            if (!d.fin) return end(d, a);
+            a.ready = true;
+            say(`🏁 ${d.icon} ${d.name}: ${n}/${need} adım tamam · sıra bitişte: ${d.fin}`);
+            return;
+          }
+          if (d.fin && t === actLow(d.fin)) {
+            if (a.ready) return end(d, a);
+            th.act = null;
+            say(`⏩ ${d.icon} ${d.name} erken bitti (${a.done.length}/${need}) · sahne ödülü yok`);
+            return;
+          }
+          if (depth || t === actLow(d.open)) return;
+          if (actOpen(e)) { th.act = null; say(`🔀 ${d.icon} ${d.name} yarım kaldı`); }
+          else {
+            const why = actTh(e).some(x => x !== d.tag) ? 'başka mekânın olayı' : ++a.idle > (d.ttl || 4) ? 'uzun süre sahneye dönmedin' : '';
+            if (why) brk(d, why);
+            return;
+          }
+        }
+      }
+      const nd = !depth && actOpen(e);
+      if (!nd) return;
+      th.act = { id: nd.id, done: [], idle: 0, pl };
+      say(`🎬 Sahne başladı: ${nd.icon} ${nd.name} · ${nd.mode === 'seq' ? 'sırayla ' : ''}${actNeed(nd)} adım${nd.fin ? ' + 🏁 ' + nd.fin : ''} · ⚡ şeritten seç`);
     }
     // olmuş sayılan: harcandıktan sonra yeniden olmuş olaylar
     const condCtx = charIds => {
@@ -11019,6 +11109,7 @@
         const org = v === VIB_LV.length - 1 && allEvents().find(x => lowT(x.title) === 'orgazm');
         if (org && !chain.some(([x]) => x.id === org.id)) chain.push([org, '📳 en yüksek kademe']);
       } else if (th.vib && (edT === 'orgazm' || (e.tags || []).some(x => lowT(x) === 'boşalma'))) th.vib = 0;
+      actStep(e, depth, ids, evc);
       if ((th.edge || edT === 'ruined finish') && edT !== 'permission to come') {
         let held = false;
         for (let i = chain.length - 1; i >= 0; i--) if (lowT(chain[i][0].title) === 'orgazm') { chain.splice(i, 1); held = true; }
@@ -11549,8 +11640,9 @@
     }
     // 💁‍♀️ Lia önerisine dokununca olay yazılır; 📖 kitabın "İdeal bir seans" bölümü; ✕ kapatır
     $('#evQuick').onclick = e => {
-      const b = e.target.closest('[data-qev], [data-q], [data-qpl], [data-qsp]');
+      const b = e.target.closest('[data-qev], [data-q], [data-qpl], [data-qsp], [data-qact]');
       if (!b || cs.playing) return;
+      if (b.dataset.qact) { const d = th.act && actDef(th.act.id); th.act = null; save(); drawQuick(); if (d) notify(`🎬 ${d.name} bitirildi · ödül yok`, '🎬'); return; }
       if (b.dataset.qsp) { const sc = (lastScene() || {}).scene, s = sc && (SITE_SPOTS[sc.place] || []).find(x => x.k === b.dataset.qsp); if (s) goPlace(spotScene(sc.place, s)); return; }
       if (b.dataset.qpl) { const p = allPlaces().find(x => x.id === b.dataset.qpl); if (p) goPlace(plCard(p)); return; }
       if (b.dataset.q === 'off') { quickOn(false); const tb = $('[data-tool="quick"]'); if (tb) tb.classList.remove('on'); drawQuick(); notify('Kısayollar kapalı · ⋯ Diğer → ⚡ ile aç', '⚡'); return; }
@@ -20384,13 +20476,14 @@
     kmb_mekan: [['🎬 <b>Örnek:</b>', '🚿 Shower Lift → 🚿 Shower Doggy → 💦 Shower Creampie.'], ['💡 <b>İpucu:</b>', 'Üç olayın da aynı mekân etiketini taşıması gerekir (duş, havuz, plaj, ofis, okul, kilise, spor, bar, sinema…). Mekânın bitişleri yalnızca o mekânın pozisyonlarından sonra çıkar, yani doğal sırayla gidersen kendiliğinden tutar.'], ['💔 <b>Bozan:</b>', 'Mekân dışı bir pozisyon ya da başka mekânın bitişi.']]
   };
   const memFx = r =>r.fx.map(([l, d]) => `${d > 0 ? '+' : '−'}${Math.abs(d)} ${l.charAt(0).toLocaleUpperCase('tr') + l.slice(1)}`).join(', ') || '—';
-  BOOKS.push({ id: 'hafiza', icon: '🧠', title: 'Olay Hafızası Kitabı', sub: 'olaylar birbirini hatırlar: sıra ve sayı mesajları değiştirir', chips: [`${MEM_RULES.length} kural`, `🔗 ${MEM_RULES.filter(r => r.seq).length} kombo`, '🤖 bot modu'], chapters: [
+  BOOKS.push({ id: 'hafiza', icon: '🧠', title: 'Olay Hafızası Kitabı', sub: 'olaylar birbirini hatırlar: sıra ve sayı mesajları değiştirir', chips: [`${MEM_RULES.length} kural`, `🔗 ${MEM_RULES.filter(r => r.seq).length} kombo`, `🎬 ${(Stories.SCENES || []).length} sahne`, '🤖 bot modu'], chapters: [
     { icon: '📖', title: 'Olay hafızası nedir', sub: 'tur, sıra, sayı', body: `<p>Sohbette yazdığın olaylar artık birbirinden habersiz değil. Karakter bu sohbette <b>ne yaptığınızı, hangi sırayla ve kaç kez</b> yaptığınızı hatırlar; cevabı, senin mesajın ve parametreler buna göre değişir.</p>
       <ul><li><b>Tur</b>: son boşalmandan sonra yazdığın olaylar. Boşalınca yeni tur başlar (ısınma, çeşitlilik ve tekdüzelik sıfırlanır).</li>
         <li><b>Isınma olayları</b>: Foreplay, Eat ve Outercourse kategorileri.</li>
         <li><b>Pozisyon</b>: bunların ve boşalmanın dışındaki sohbet pozisyonları (önden, arkadan, duş, mekan pozisyonları…).</li>
         <li>Her olayda en fazla <b>bir</b> hafıza kuralı tutar; birden çoğu uyuyorsa <a href="#/kitap/hafiza/1">kurallar</a> tablosundaki sıra önceliklidir.</li>
         <li>🔗 <b>Kombolar</b>: belli olaylar belli sırayla arka arkaya gelince tutan özel kurallar. Tablonun başındadırlar, yani diğer kurallardan önce gelirler (<a href="#/kitap/hafiza/4">Kombolar</a>).</li>
+        <li>🎬 <b>Sahneler</b>: bir açılış olayı alt olaylarıyla birlikte küçük bir sahne açar; adımları bitirince ödül gelir (<a href="#/kitap/hafiza/5">Sahneler</a>).</li>
         <li>Mevcut "ilk kez / yine / hep bunu" ve 🔀 pozisyon geçişi cevapları aynen sürer; hafıza onların üstüne gelir.</li></ul>` },
     { icon: '📋', title: 'Hafıza kuralları', sub: 'ne zaman tutar, ne değişir', get body() {
       return `<p>Kural tutunca ekranın üstünde <b>🧠</b> bildirimi çıkar ve etkileri olay kartında 📈 olarak görünür.</p>
@@ -20433,6 +20526,34 @@
           <li>Mekân kombosu için önce o mekâna geç (📍 Mekân sekmesi): mekân pozisyonları ve bitişleri orada çıkar.</li>
           <li>Emin değilsen önce <a href="#/kombo">🧪 Kombo deneyi</a>'nde dene: her kombo için kaçıncı adımda olduğunu ve sıradaki adımı gösterir.</li>
           <li>Bot kurallarında <code>=durum =kmb_…</code> yazarsan karakterin kombo cevabı kişiliğe göre değişir; yoksa yukarıdaki cümlelerden biri gelir.</li></ul>`);
+    } },
+    // 🎬 Sahneler: Stories.SCENES tablosundan; anlatım chat actStep / actBar davranışını tekrar eder (değişince güncelle)
+    { icon: '🎬', title: 'Sahneler', sub: 'bir olayın alt olayları', get body() {
+      const SC = Stories.SCENES || [];
+      return `<p>Kombo gizlidir: doğru sırayı tutturunca kendiliğinden fark edilir. <b>Sahne</b> ise açıkça başlar. Bir <b>açılış olayı</b> yazınca sahne açılır, ⚡ Kısayollar çubuğunun üstünde sahne şeridi çıkar ve o olayın <b>alt olayları</b> (adımları) orada sıralanır. Adımları bitirince sahne tamamlanır ve ödülünü verir.</p>
+        <h4>🧩 Sahne nasıl ilerler</h4>
+        <ol><li><b>Açılış:</b> ⚡ çubuğunda 🎬 işaretli olaylar sahne açar (ör. 🚿 Soapy Hug). Sohbete "🎬 Sahne başladı" yazılır.</li>
+          <li><b>Adımlar:</b> şeritteki çiplere dokun ya da olayları her zamanki gibi seç. Yapılan adım ✓ olur, ilerleme ●●○ olarak görünür.
+            <ul><li>🔓 <b>Serbest</b> sahnede adımlar istediğin sırayla yapılır, belirtilen sayıda adım yeter.</li>
+              <li>👣 <b>Sıralı</b> sahnede bütün adımlar sırayla yapılır; sıradaki adım şeritte çerçevelidir. Sırayı karıştırırsan sahne yine biter ama ödül yarıya iner.</li></ul></li>
+          <li><b>Bitiş:</b> adımlar dolunca 🔒 bitiş çipi 🏁 olur. Bitişi yazınca sahne tamamlanır: 🎉 ödül olay kartında 📈 olarak görünür. Bitişi olmayan sahne son adımda tamamlanır.</li>
+          <li>Zincirle kendiliğinden gelen olaylar (ör. Zevk dolunca gelen bitiş) da adım ya da bitiş olarak sayılır.</li></ol>
+        <h4>💔 Sahneyi ne bozar</h4>
+        <ul><li>📍 Başka bir mekâna geçmek.</li>
+          <li>Başka mekânın olayı (ör. duş sahnesindeyken bir havuz pozisyonu). Mekân etiketi olmayan olaylar (mod, öpüşme, kıyafet…) bozmaz.</li>
+          <li>Sahneye dönmeden art arda çok olay yazmak (her sahnede 4).</li>
+          <li>Bozulan sahne küçük bir ceza yazar (çoğunda Güven −1).</li>
+          <li>Bitişi adımlardan önce yazarsan sahne ⏩ erken biter: ceza yok, ödül de yok.</li>
+          <li>Başka bir sahnenin açılışı eskisini 🔀 yarım bırakır ve yenisini açar. Şeritteki ✕ sahneyi ödülsüz kapatır.</li></ul>
+        <h4>📋 Sahneler</h4>
+        <table class="bk-t"><tr><th>Sahne</th><th>Açılış</th><th>Adımlar</th><th>Bitiş</th><th>Ödül</th></tr>${SC.map(s => `<tr><td>${s.icon} <b>${esc(s.name)}</b></td><td>${esc(s.open)}</td><td>${s.mode === 'seq' ? '👣 sırayla: ' : `🔓 ${s.need} / ${s.steps.length}: `}${esc(s.steps.join(' → '))}</td><td>${s.fin ? '🏁 ' + esc(s.fin) : '—'}</td><td>${esc(memFx(s))}</td></tr>`).join('')}</table>
+        ${SC.map(s => `<h4>${s.icon} ${esc(s.name)}</h4><p>${esc(s.desc || '')}</p>
+          <p>🎬 <b>Açılış:</b> ${esc(s.open)} · ${s.mode === 'seq' ? '👣 <b>Sıralı:</b> ' : `🔓 <b>Serbest</b> (${s.need} adım yeter): `}${esc(s.steps.join(' → '))}${s.fin ? ` · 🏁 <b>Bitiş:</b> ${esc(s.fin)}` : ''}</p>
+          <p>🎉 <b>Ödül:</b> ${esc(memFx(s))}${s.fail ? ` · 💔 <b>Bozulursa:</b> ${esc(memFx({ fx: s.fail }))}` : ''}</p>${s.end ? `<p>💬 "${esc(s.end)}"</p>` : ''}`).join('')}
+        <h4>🛠️ İpuçları</h4>
+        <ul><li>Sahne, açıldığı mekâna bağlanır. Mekân sahnesine başlamadan önce o mekâna geç (📍 Mekân sekmesi), yoksa sonradan mekân değiştirmek sahneyi bozar.</li>
+          <li>Sahneler kombolarla birlikte çalışır: ör. duş sahnesinde Shower Lift → Shower Doggy → Shower Cumshot sırası 📍 Mekânın tadı kombosunu da tutturur.</li>
+          <li>🔗 Yatağa Bağlı sahnesinin son adımı Edging'dir; bitişteki Permission to Come hem sahne ödülünü hem ⏸️ sınırda tutma bonusunu verir.</li></ul>`;
     } }] });
   /* 🔁 Anlamadığında Kitapçığı: yazdığın mesaja kural tutmayınca ne olur (🔁 yönlendirici BOT.near, 🙈 teyit sorusu, 💬 yedek cevap, 📭 eksik cevaplar).
    * Örnek tablosu canlı hesaplanır (YD_EX mesajları, özelliksiz bir karakterle); eşikler botReply → moodBest sonundaki yönlendiriciyle aynı olmalı */
@@ -21808,7 +21929,7 @@
     ulke: ['Memlekete göre mesajlar: her ülke ve bölge kendi ağzıyla, örneklerle.', 'Karakterine memleket seçerken.', ['kisilik', 'ovgu']],
     seans: ['Bir sevişme seansı baştan sona: değerler, seans türleri ve onlarca örnek seans (evde, dışarıda, rollü, oyun ve kontrol, özel), adım adım değer tabloları, akıcı geçişler, pozisyonlar, orgazm, süt, miktar ve meni, korunma ve hamilelik, role-play, atmosfer ve ses efektleri. Etkileşimli 🛠️ seans tasarımcısıyla kendi seansını kurup puanlatabilirsin.', 'Bir seansa hangi sırayla girileceğini bilmediğinde ya da hazır bir sırayı denemek istediğinde.', ['olay', 'hafiza', 'sut', 'bdsm']],
     olay: ['Lia her olayı sahneleyerek anlatır: olay kategorileri, her olayın nasıl tetiklendiği (elle, komutla, karakterin sorusuyla, başka bir pozisyondan, Lia\'dan) ve sonuçları.', 'Bir olayın ne yaptığını ya da nasıl başlatıldığını öğrenmek istediğinde.', ['komut', 'hafiza', 'seans']],
-    hafiza: ['Olaylar birbirini hatırlar: aynı olayı kaçıncı kez yaptığın, sırası ve sayısı karakterin mesajlarını değiştirir. Kural tablosu ve eşikler.', 'Karakter "yine mi?" ya da "ilk kez" dediğinde nedenini merak ettiğinde.', ['olay', 'seans']],
+    hafiza: ['Olaylar birbirini hatırlar: aynı olayı kaçıncı kez yaptığın, sırası ve sayısı karakterin mesajlarını değiştirir. Kural tablosu, eşikler, kombolar ve 🎬 sahneler (bir olayın alt olayları).', 'Karakter "yine mi?" ya da "ilk kez" dediğinde nedenini merak ettiğinde.', ['olay', 'seans']],
     sut: ['🍼 Süt değeri, göğüs kapasitesi ve litre, süt kalitesi, Lactation Fantasy olayları, fantezilere özel sütler ve miktara göre mesajlar.', 'Süt ve emzirme olaylarını kullanmadan önce.', ['seans', 'fantezi']],
     fantezi: ['Her fantezinin kendi bölümü: ona özel sorular, 🥚 easter egg\'ler ve retler. Sonda Halloween bölümleri ve 📱 Kesintiler.', 'Bir fanteziyi başlatmadan önce ya da gizli cevapları aradığında.', ['genshin', 'bdsm', 'onun', 'internet']],
     genshin: ['✨ Yelan, Clorinde, Mavuika ve Xianyun: özellikleri, olayları, kesintileri ve fantezi soruları.', 'CarmenImpact\'ten bir karakterle sohbet açmadan önce.', ['internet', 'fantezi']],
