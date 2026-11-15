@@ -8510,3 +8510,27 @@ Stories.ME_BED_SKIP.push('Between the Shelves Standing', 'Reading Table Bent Ove
 'Blanket Missionary', 'Behind the Tree Standing', 'Grass Doggy', 'Hammock Ride', 'Garden Bench Cowgirl', 'Maze Wall Anal', 'Picnic Blowjob',
   'Picnic Creampie', 'Grass Facial', 'Open Air Anal Creampie',
   'Under the Table Blowjob', 'Restroom Sink Doggy', 'Booth Side Ride', 'Kitchen Back Door Standing', 'Restroom Anal', 'Dessert Facial', 'Restroom Creampie');
+
+/* 💆 Massage Salon: sürtünme ısınmaları, masa pozisyonları ve bitişler (c:mvmsalon01x + Cumming) */
+Object.assign(Stories.ME_EV_LINES, {
+  'Oil Drip Grind': ['Sırtına ılık yağ damlatıyorum 🫗', 'Yağ kalçalarının arasına süzülüyor {o} 😏', 'Aletimle yayıyorum 🥵', 'Tenin parlıyor ✨', 'Kıpırdama 😈', 'Havlu kayıyor 🙈'],
+  'Shoulder Rub Grind': ['Kalçana oturup omuzlarını ovuyorum 🤲', 'Her ovuşta kalçalarının arasında gidip geliyorum {o} 😏', 'Omuzların gevşiyor 💆', 'Sen gevşedikçe ben sertleşiyorum 🥵', 'Yavaş, derin 😈', 'Nefesin değişti 😳'],
+  'Hug Grind': ['Üstüne uzanıp sana arkadan sarılıyorum 🫂', 'Göğsüm sırtında, kalbin hızlı {o} 🥰', 'Yağlı kalçalarının arasında kayıyorum 🥵', 'Kulağına fısıldıyorum 😏', 'Bırakmıyorum 😈', 'Sıcacıksın 😩'],
+  'Neck Kiss Grind': ['Enseni öpüyorum 💋', 'Her öpücükte kalçanı bana itiyorsun {o} 😏', 'Tüylerin diken diken 😳', 'Biraz daha 🥵', 'Kulak memeni ısırıyorum 😈', 'İnlemeni duyuyorum 😩'],
+  'Thigh Slide': ['Yağlı uyluklarının arasına kaydım 🦵', 'Bacaklarını sıkıyorsun {o} 😏', 'İç bacağın sıcacık 🥵', 'Biraz daha yukarı 😳', 'Kayıyorum 😈', 'Bırakma 😩'],
+  'Lower Back Press': ['Belini avuçlarımla bastırıyorum 🤲', 'Kalçan yükseliyor, bana sürtünüyor {o} 😏', 'Düğüm burada 💆', 'Bir daha 🥵', 'Masa gıcırdıyor 🙈', 'Gevşe 😈'],
+  'Turn Over Tease': ['"Şimdi ön taraf" diyorsun, dönüyorsun 🔄', 'Havlu kaydı {o} 😳', 'Karnının üstündeyim 🥵', '"Devam et" diye fısıldıyorsun 😏', 'Gözlerin bende 😈', 'Mum ışığında çok güzelsin 🕯️'],
+  'Chest Rub Grind': ['Yağlı göğüslerini ovuyorum 🍈', 'Arasında ileri geri gidiyorum {o} 🥵', 'Göğüslerin parlıyor ✨', 'Sıkıştırıyorsun 😏', 'Uçların sertleşti 😳', 'Çok iyi 😈'],
+  'Nuru Slide': ['Masaya uzandım, sen yağlanıyorsun 🧴', 'Bütün bedeninle üstümde kayıyorsun {o} 😈', 'Göğüslerin karnımda 🥵', 'Kaygan ve sıcak 😩', 'Düşme, tutuyorum 😂', 'Böyle masaj görmedim 😏'],
+  'Tip Tease': ['Ucumu girişine sürtüyorum 😮‍💨', 'Girmiyorum {o} 😏', 'Kalçanı geri itiyorsun 🥵', 'Sabırsızsın 😈', 'Biraz daha bekle 😳', 'Yalvarıyorsun 😩'],
+  'Oily Handjob': ['Yağlı ellerinle okşuyorsun 💦', '"Masaj hâlâ sürüyor" diyorsun {o} 😇', 'Yavaş… sonra hızlı 🥵', 'Gözlerimi kapattım 😈', 'Ellerin büyülü 😩', 'Bahşiş hak ettin 😂'],
+  'Slip In': ['Yağdan kaydım, içindeyim 🫗', '"Kazara" diyorsun {o} 😏', 'İkimiz de durmuyoruz 🥵', 'Çok kaygan 😩', 'Pakette yoktu 😈', 'Derin 😳'],
+  'Massage Table Missionary': ['Seni masaj masasının kenarına yatırdım 🛏️', 'Bacakların omuzlarımda {o} 🥵', 'Havlu yerde 😏', 'Masa gıcırdıyor 😳', 'Resepsiyon duymasın 🙈', 'Daha derin 😈'],
+  'Table Cowgirl': ['Masaya uzandım, üstüme çıktın 🐎', 'Yağlı bedeninle kayıyorsun {o} 🥵', 'Masa sallanıyor 😂', 'Kalçanı tutuyorum 😏', 'Şimdi masaj sende 😈', 'Ahh 😩'],
+  'Happy Ending': ['Ellerin ve ağzınla bitiriyorsun… ahhh {o} 😩💦', '"Mutlu son" diye gülümsüyorsun 🫦', 'Son damlasına kadar 😈', 'Tamamen gevşedim 💆', 'Nefes nefeseyim 🥵', 'Bahşişi masaya bırakıyorum 😂'],
+  'Oiled Body Cumshot': ['Yağlı göğüslerine ve karnına boşalıyorum ahhh 😩💦', 'Yağla karıştı {o} ✨', 'Parmaklarınla yayıyorsun 😏', 'Sıcacık 🥵', 'Havlu! 🙈', 'Masajın en güzel kısmı 😈'],
+  'Oiled Back Cumshot': ['Yağlı sırtına ve kalçalarının arasına boşalıyorum ahhh 😩💦', 'Yağla karışıp süzülüyor {o} 🫗', 'Kıpırdamıyorsun, aksın diye 😏', 'Bacakların titriyor 🥵', 'Havluyu uzatıyorum 🙈', 'Seans bitti 😈']
+});
+Stories.ME_HUG_LINES.placeFinish.events.push('Happy Ending', 'Oiled Body Cumshot', 'Oiled Back Cumshot');
+Stories.ME_BED_SKIP.push('Oil Drip Grind', 'Shoulder Rub Grind', 'Hug Grind', 'Neck Kiss Grind', 'Thigh Slide', 'Lower Back Press', 'Turn Over Tease', 'Chest Rub Grind', 'Nuru Slide',
+  'Tip Tease', 'Oily Handjob', 'Slip In', 'Massage Table Missionary', 'Table Cowgirl', 'Happy Ending', 'Oiled Body Cumshot', 'Oiled Back Cumshot');

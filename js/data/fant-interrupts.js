@@ -714,6 +714,20 @@ Stories.FANT_INTERRUPTS = {
       { g: '🌬️ Sert bir rüzgâr esiyor, sandalyenin üstündeki giysiler uçmak üzere', r: ['Eteğim! 😆', 'Tut şunu! 🙈', 'Üşüdüm, sarıl 🥶', 'Bıraksın uçsun 😈', 'Isıt beni 🥵'] },
       { g: '🚁 Tepeden bir helikopter alçaktan geçiyor, projektörü binaları tarıyor', r: ['Işık! 😱', 'Battaniyeye gir 🙈', 'Bizi mi arıyor? 😂', 'Geçti… 😮‍💨', 'Film sahnesi gibi 😈'] }
     ],
+    // 💆 Massage Salon kesintileri (PLACE_INT)
+    yermasaj: [
+      { g: '🚪 Resepsiyon kapıyı tıklatıyor: "Her şey yolunda mı, süreniz doluyor"', r: ['Yolunda! 😳', 'Beş dakika daha 😏', 'Kapı kilitli, değil mi? 🙈', 'Süreyi uzattım 😈', 'Sus, gitsin 🤫'] },
+      { g: '🫗 Yağ şişesi masadan devriliyor, yere yayılıyor', r: ['Kaydım! 😂', 'İsraf etmeyelim 😈', 'Her yer kaygan 🥵', 'Sonra sileriz 🙈', 'Bana dök 😏'] },
+      { g: '🔊 Yan odadan bir müşterinin inlemesi duyuluyor', r: ['Onlar da mı? 😂', 'Bizden yüksek sesle 😏', 'İnce duvarlar 🙈', 'Yarışalım mı? 😈', 'Şşş, bizi de duyarlar 🤫'] },
+      { g: '🕯️ Mumlardan biri söndü, oda biraz daha karardı', r: ['Daha iyi 😈', 'Karanlıkta his yeter 🥵', 'Gözlerini kapat 😏', 'Mumu boş ver 🙈', 'Yakmayalım 😳'] }
+    ],
+    // 🏥 Clinic kesintileri (PLACE_INT, tedavi etiketli pozisyonlar)
+    yerklinik: [
+      { g: '🚪 Hemşire kapıyı tıklatıyor: "Doktor hanım, sıradaki hasta bekliyor"', r: ['Beklesin! 😳', 'Beş dakika daha 😏', 'Kapı kilitli, değil mi? 🙈', 'Muayene uzadı de 😈', 'Sus, gitsin 🤫'] },
+      { g: '📞 Masadaki telefon çalıyor: laboratuvar sonuçları hazırmış', r: ['Sonra ararım 😅', 'Açma! 🙈', 'Sonuç: sen 😏', 'Bekleyebilir 🥵', 'Kapat şunu 😈'] },
+      { g: '🩺 Stetoskop sedyeden kayıp yere düşüyor', r: ['Kalbim zaten duyuluyor 😂', 'Bırak kalsın 😈', 'Sonra alırız 🙈', 'Nabzım tavan 🥵', 'Eğil de al… 😏'] },
+      { g: '🔔 Koridordan anons: "Dr. lütfen acil servise"', r: ['Acil olan burası 😈', 'Duymadık 🙈', 'Bir dakika daha 😳', 'Hızlanalım 🥵', 'Başka doktor gitsin 😏'] }
+    ],
     // 📚 🎡 👻 🌧️ Library / Fair / Haunted / Street kesintileri (PLACE_INT; yerkitap riskStep 70–100 eşiğinde de)
     yerkitap: [
       { g: '🤓 Kütüphaneci gözlüğünün üstünden bakıp "şşşt!" diyor', r: ['Şşş! 😳', 'Kitabı yüzüne tut 🙈', 'Duydu mu? 😅', 'Sessiz olacağım… belki 😈', 'Gitti, devam 😏'] },

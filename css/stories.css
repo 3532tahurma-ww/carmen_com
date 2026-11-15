@@ -1807,6 +1807,44 @@ summary.lab-h { cursor: pointer; }
 .bb-foot { margin-top: auto; padding: 24px 16px; text-align: center; font-size: 12px; color: var(--muted); }
 .bb-foot a, .bb-all { color: inherit; }
 .bb-all { padding: 0; border: 0; background: none; font: inherit; text-decoration: underline; cursor: pointer; }
+/* 🎨 doodle · 📌 sonuçlarda yapışık üst çubuk · ✏️ şunu mu demek istediniz · 🔗 site bağlantıları · 📢 sponsorlu */
+.bb-lw { display: grid; justify-items: center; gap: 4px; }
+.bb-logo.doodle { cursor: pointer; }
+.bb-logo .bb-dd { display: inline-block; font-size: .78em; vertical-align: .06em; animation: bbDd 2.4s ease-in-out infinite; }
+.bb-logo i:nth-child(3) .bb-dd { animation-delay: .3s; }
+@keyframes bbDd { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-5px) rotate(-8deg); } }
+.bb-ddt { font-size: 12px; color: var(--muted); }
+.bb-site.has-q .bb-ddt { display: none; }
+.bb-site.has-q .bb-home { position: sticky; top: 0; z-index: 6; grid-template-columns: auto minmax(0, 1fr); justify-items: start; align-items: center; gap: 14px; padding: 10px 16px; background: var(--card); border-bottom: 1px solid var(--line); }
+.bb-site.has-q .bb-form { padding: 7px 14px; box-shadow: 0 1px 6px rgba(32, 33, 36, .14); }
+.bb-site.has-q .bb-results { margin: 16px 0 0; padding-left: 16px; }
+@media (min-width: 760px) { .bb-site.has-q .bb-results { padding-left: 128px; } }
+@media (max-width: 420px) { .bb-site.has-q .bb-logo { font-size: 24px; } .bb-site.has-q .bb-home { gap: 10px; } }
+.bb-res .bb-site, .bb-ad .bb-site { min-height: 0; flex-direction: row; background: none; }
+.bb-results > * { min-width: 0; }
+.bb-hit { display: grid; gap: 10px; }
+.bb-hit > .bb-res { grid-template-columns: minmax(0, 1fr) auto; column-gap: 12px; }
+.bb-hit > .bb-res > :not(.bb-th) { grid-column: 1; }
+.bb-th { grid-column: 2; grid-row: 1 / span 3; align-self: center; width: 64px; height: 64px; border-radius: 10px; overflow: hidden; background: var(--mtbg, var(--bg)); }
+.bb-th img { width: 64px; height: 64px; object-fit: cover; display: block; }
+.bb-title { font-size: 18px; }
+.bb-sl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 18px; padding-left: 14px; }
+.bb-sl a { font-size: 14.5px; color: #3d6af2; text-decoration: none; }
+.bb-sl a:hover { text-decoration: underline; }
+.bb-dym { font-size: 15px; color: #c5221f; }
+.bb-dym button { padding: 0; border: 0; background: none; font: inherit; font-weight: 700; font-style: italic; color: #3d6af2; cursor: pointer; }
+.bb-dym button:hover { text-decoration: underline; }
+.bb-spn { font-weight: 700; color: var(--text); }
+.bb-ad { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 12px; color: inherit; text-decoration: none; animation: hlIn .4s both; }
+.bb-ad + .bb-ad { margin-top: -14px; }
+.bb-adp { flex: none; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 10px; overflow: hidden; background: var(--mtbg, var(--bg)); color: #fff; font-weight: 700; }
+.bb-adp img { width: 48px; height: 48px; object-fit: cover; display: block; }
+.bb-adt { min-width: 0; display: grid; gap: 1px; }
+.bb-adt small { font-size: 11.5px; color: var(--muted); }
+.bb-ad .bb-title { font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bb-ad .bb-desc { font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bb-ad:hover .bb-title { text-decoration: underline; }
+.bb-on { font-style: normal; color: #34a853; }
 /* 📰 Haberler paneli */
 .pg-haberler .pg-shade { background: linear-gradient(160deg, rgba(123, 92, 255, .55), rgba(194, 24, 91, .2) 45%, rgba(20, 10, 45, .85)); }
 .nw-lia { display: flex; align-items: flex-start; gap: 10px; margin: 14px 0; }
