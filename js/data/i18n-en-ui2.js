@@ -659,7 +659,7 @@ Stories.I18n.add({
   'Sunscreen Rub ile açılır; kumda ya da dalgada iki adım, sonra Beach Cumshot: Aşk +2, Samimiyet +2, Şehvet +6.': 'Opens with Sunscreen Rub; two steps on the sand or in the waves, then Beach Cumshot: Love +2, Intimacy +2, Lust +6.',
   'Confession Lap ile açılır; tespih, diz çökme yeri ve sunak sırayla: Güven +4, Aşk +2, Şehvet +4.': 'Opens with Confession Lap; rosary, kneeler and altar in order: Trust +4, Love +2, Lust +4.',
   'Bunny kokteyl getirir; rulet, blackjack, strip poker sırayla, sonra sahne arkası: Şehvet +8, Samimiyet +2, Aşk +1.': 'The Bunny brings a cocktail; roulette, blackjack, strip poker in order, then backstage: Lust +8, Intimacy +2, Love +1.',
-  'Sahne açar: {}': 'Opens a scene: {}', 'Önce adımları tamamla': 'Finish the steps first', 'Sahneyi bitir': 'End the scene',
+  'Sahne açar: {}': 'Opens a scene: {}', 'Sahne başlat: {}': 'Start scene: {}', 'açılış olayı sahneyi başlatır': 'the opener event starts the scene', 'Sahneler': 'Scenes', 'Sahne': 'Scene', 'Önce adımları tamamla': 'Finish the steps first', 'Sahneyi bitir': 'End the scene',
   '{} bitirildi · ödül yok': '{} ended · no reward', '{} tamamlandı': '{} complete',
   'Olay hafızası': 'Event memory','Olaylar birbirini hatırlar: ısınmadan başlamak, aynı şeyi tekrar etmek, çeşitlilik, ikinci tur… sıraya ve sayıya göre mesajlar ve değerler değişir.': 'Events remember each other: skipping foreplay, repeating the same thing, variety, a second round… messages and values change with order and count.',
   // 🗺️ Ben → Görevler

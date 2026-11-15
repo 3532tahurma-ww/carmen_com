@@ -10988,7 +10988,7 @@
     // ⚡ kısayollar: en son kullandığın olaylar, mesaj kutusunun hemen üstünde (dokununca olay yazılır)
     /* ⚡ kısayol önerileri: bu sohbette son olan olayın kategorisi + bulunduğun mekânın olayları (Mekân kategorileri, spotFits);
      * son olay ya da mekân değişene kadar aynı liste kalır (her draw'da karışmasın). Hiçbiri yoksa son kullanılanlar */
-    let quickKey = null, quickList = [];
+    let quickKey = null, quickList = [], quickActs = [];
     function quickSuggest(all) {
       const at = lastDone(), lastId = Object.keys(at).reduce((m, id) => (m && at[m] >= at[id] ? m : id), '');
       const sc = (lastScene() || {}).scene || null, key = `${lastId}|${sc ? sc.place + '/' + sc.name : ''}`;
@@ -11002,6 +11002,10 @@
       const place = sc ? [...spot, ...lf(all.filter(e => (here.includes(e.cat) || spotFits(e, sc)) && ok(e) && !spot.includes(e)))].slice(0, spot.length ? 8 : 5) : [];
       const last = lastId && all.find(e => e.id === lastId);
       const same = last ? lf(all.filter(e => e.cat === last.cat && ok(e) && !place.includes(e))) : [];
+      // 🎬 sahne önerisi (2): açılışı bu mekâna uyan, 🚫/💔 olmayanlar; mekânın kendi sahneleri önce
+      const fit = e => here.includes(e.cat) || spotFits(e, sc);
+      const acts = sample((Stories.SCENES || []).map(d => ({ d, e: actEv(d.open) })).filter(x => x.e && ok(x.e) && !evAway(x.e, sc)), 99);
+      quickActs = [...acts.filter(x => fit(x.e)), ...acts.filter(x => !fit(x.e))].slice(0, 2);
       quickKey = key;
       quickList = [...place, ...same];
       return quickList;
@@ -11023,11 +11027,11 @@
       const si = sps.findIndex(x => x.n === sc.name), near = sps.length ? [1, 2, 3].map(i => sps[(si + i + sps.length) % sps.length]).filter(x => x.n !== sc.name) : [];
       const pls = group ? [] : plSug(near.length ? 1 : 3);
       // yazarken birleşik 🔮⚡ çubuğu (drawTahmin) görünür; bu çubuk o sırada gizli
-      const ad = th.act && actDef(th.act.id), act = ad ? actBar(ad, th.act) : '';
-      el.hidden = !quickOn() || cs.playing || (!evs.length && !pls.length && !near.length && !act) || !!(tb && !tb.hidden);
+      const ad = th.act && actDef(th.act.id), act = ad ? actBar(ad, th.act) : '', acts = ad ? [] : quickActs;
+      el.hidden = !quickOn() || cs.playing || (!evs.length && !pls.length && !near.length && !act && !acts.length) || !!(tb && !tb.hidden);
       if (el.hidden) return;
       el.classList.toggle('has-act', !!act);
-      el.innerHTML = `${act}<span class="eq-ic" title="${sug.length ? 'Mekâna ve son olaya göre' : 'Son kullanılan olaylar'}">⚡</span><div class="eq-row">${evs.map(e => `<button type="button" class="mo-chip${evCls(e)}"${evStyle(e)} data-qev="${esc(e.id)}"${actOpen(e) ? ` title="🎬 Sahne açar: ${esc(actOpen(e).name)}"` : ''}>${pins.includes(e) ? '📌' : ''}${actOpen(e) ? '🎬' : ''}${evEmo(e)}${esc(e.title)}</button>`).join('')}${near.map(s => `<button type="button" class="mo-chip" data-qsp="${esc(s.k)}" title="Mekana geç">📍${s.ic} ${esc(s.n)}</button>`).join('')}${plChips(pls, 'qpl')}</div>
+      el.innerHTML = `${act}<span class="eq-ic" title="${sug.length ? 'Mekâna ve son olaya göre' : 'Son kullanılan olaylar'}">⚡</span><div class="eq-row">${acts.map(x => `<button type="button" class="mo-chip${evCls(x.e)}"${evStyle(x.e)} data-qev="${esc(x.e.id)}" title="🎬 Sahne başlat: ${esc(x.d.open)}">🎬${x.d.icon} ${esc(x.d.name)}</button>`).join('')}${evs.map(e => `<button type="button" class="mo-chip${evCls(e)}"${evStyle(e)} data-qev="${esc(e.id)}"${actOpen(e) ? ` title="🎬 Sahne açar: ${esc(actOpen(e).name)}"` : ''}>${pins.includes(e) ? '📌' : ''}${actOpen(e) ? '🎬' : ''}${evEmo(e)}${esc(e.title)}</button>`).join('')}${near.map(s => `<button type="button" class="mo-chip" data-qsp="${esc(s.k)}" title="Mekana geç">📍${s.ic} ${esc(s.n)}</button>`).join('')}${plChips(pls, 'qpl')}</div>
         <button type="button" class="eq-x" data-q="off" aria-label="Kısayolları kapat">✕</button>`;
     }
     /* 🎬 Sahneler (Stories.SCENES): açılış olayı sahneyi açar (th.act = { id, done: [adım sırası], idle, pl, skip, ready }), adımlar sayılır;
@@ -11980,7 +11984,7 @@
       if (sub) add([{ e, sub }]);
       else askSubs([e], add);
       input.focus();
-    }, { hide: e => evAway(e, (lastScene() || {}).scene || null) });
+    }, { scenes: true, hide: e => evAway(e, (lastScene() || {}).scene || null) });
     /* 📍 * ile mekan seç (# olay gibi): "*mut" → Mutfakta; seçilen mekan kutunun üstünde bekler, gönderince metnin → mekan kartı → # olaylar.
      * Boş * önerilen mekanları (plSug) gösterir; *eylem* yazarken Enter mesajı gönderir, mekanı sadece aranan kelime varken Enter / her zaman Tab / dokunma seçer */
     let plPop = null;
@@ -17011,6 +17015,16 @@
     });
     return out.sort((a, b) => a.score - b.score || a.e.title.localeCompare(b.e.title, 'tr'));
   }
+  // 🎬 # ile sahne ara (ad / id; "sahne" yazınca hepsi): seçince açılış olayı gelir, sahneyi o açar
+  function scSearch(q, hide) {
+    const qq = lower(q).trim(), evs = allEvents();
+    if (!qq) return [];
+    return (Stories.SCENES || []).map(s => {
+      const e = evs.find(x => lower(x.title) === lower(s.open)), t = lower(s.name);
+      const r = t.startsWith(qq) ? 0 : t.split(/\s+/).some(w => w.startsWith(qq)) ? 1 : t.includes(qq) || lower(s.id).startsWith(qq) ? 2 : qq.length >= 3 && 'sahne'.startsWith(qq) ? 1.5 : -1;
+      return e && r >= 0 && !(hide && hide(e)) ? { e, sc: s, score: r - 0.3 } : null;
+    }).filter(Boolean);
+  }
   /* Yazarken üstte benzer olaylar (IDE gibi): ↑↓ seç, Enter / Tab ekle, Esc kapat.
    * opts.whole: kutunun tamamı aranır ("#" isteğe bağlı); yoksa imleçten önceki "#kelime" aranır ve seçince yazıdan silinir.
    * onPick(olay, altDereceId) */
@@ -17032,7 +17046,7 @@
     const show = () => {
       const qq = query();
       if (!qq || (opts.whole && !qq.q.trim() && !input.value.startsWith('#'))) return close();
-      items = evSearch(qq.q, opts).slice(0, 8);
+      items = (opts.scenes ? [...scSearch(qq.q, opts.hide), ...evSearch(qq.q, opts)].sort((a, b) => a.score - b.score) : evSearch(qq.q, opts)).slice(0, 8);
       if (!items.length) return close();
       cur = Math.max(0, Math.min(cur, items.length - 1));
       if (!pop) {
@@ -17044,6 +17058,9 @@
       }
       const rec = recentIds();
       pop.innerHTML = `<div class="hs-head">📜 Olaylar <small>↑↓ · Enter</small></div>` + items.map((it, i) => {
+        if (it.sc) return `<button type="button" class="hs-it${i === cur ? ' on' : ''}${evCls(it.e)}"${evStyle(it.e)} data-hs="${i}">
+          <span class="hs-t">🎬 ${it.sc.icon} ${esc(it.sc.name)}<small> · ${esc(it.e.title)}</small></span>
+          <small class="hs-c">🎬 Sahne</small></button>`;
         const look = it.sub ? withSub(it.e, it.sub) : it.e, c = catOfEv(it.e);
         return `<button type="button" class="hs-it${i === cur ? ' on' : ''}${evCls(look)}"${evStyle(look)} data-hs="${i}">
           <span class="hs-t">${evEmo(look)}${esc(look.title)}${it.sub ? `<small> · ${esc(it.e.title)}</small>` : ''}</span>
@@ -17195,7 +17212,7 @@
       <h3>${esc(opts.title)}</h3>
       <input class="pk-search" id="pkSearch" placeholder="# yaz, olay ara…" autocomplete="off">
       ${cx && cx.now.length ? `<div class="mo-sub pk-top">🎯 Şimdi <small>· ${esc(cx.say || 'sohbetin şu anına göre')}</small></div><div class="mo-chips">${cx.now.map(chipOf).join('')}</div>` : ''}
-      ${cx ? `<div class="chips mo-filter">${[...PK_STAGES, ['all', '📚', 'Tümü']].map(([k, ic, t]) => `<button type="button" class="chip mo-pick${k === stage ? ' on' : ''}" data-pkstage="${k}">${ic} ${t}</button>`).join('')}</div>` : ''}
+      ${cx ? `<div class="chips mo-filter">${[...PK_STAGES, ['sahne', '🎬', 'Sahneler'], ['all', '📚', 'Tümü']].map(([k, ic, t]) => `<button type="button" class="chip mo-pick${k === stage ? ' on' : ''}" data-pkstage="${k}">${ic} ${t}</button>`).join('')}</div>` : ''}
       ${rec.length ? `<div class="mo-sub pk-rec">🕘 Önerilen <small>· son kullandıkların</small></div><div class="mo-chips">${rec.map(chipOf).join('')}</div>` : ''}
       ${!opts.fold && allEvTags().length ? `<div class="chips mo-filter">${tagChips(allEvTags(), [], 'data-pf')}</div>` : ''}
       ${!opts.noGroups && evGroups().length ? `<div class="mo-sub" data-pkst=""${foldAt('grp')}>🧺 Olay grupları <small>· seçince içindeki tüm olaylar gelir</small>${foldEnd(evGroups().length)}</div>
@@ -17209,6 +17226,12 @@
       })()}
       ${(opts.onlyTop ? [] : opts.catFirst ? [...tagCats(opts.catFirst), ...moCats().filter(c => !(c.tags || []).includes(opts.catFirst))] : moCats()).filter(cat => (!opts.cats || opts.cats.includes(cat.id)) && !away(cat)).map(cat => { const evs = likeFirst(poolOf(cat).filter(e => !(opts.skip || []).includes(e.title) && !awayEv(e) &&!(opts.top && hasTag(e, opts.top, opts.topExact)))); const star = opts.catFirst && (cat.tags || []).includes(opts.catFirst); return evs.length ? `<div class="mo-sub${star ? ' pk-top' : ''}" data-pkst="${stOf(cat)}"${foldAt(cat.id)}>${star ? '⭐ ' : ''}${cat.icon} ${esc(cat.label)}${cx && placeFits(placeEvOf(cat), cx.place) ? ' <small>📍 buradasın</small>' : ''}${foldEnd(evs.length)}</div>
         <div class="mo-chips">${evs.map(chipOf).join('')}</div>` : ''; }).join('')}
+      ${cx ? (() => {
+        // 🎬 sohbette sahneler: açılış olayını seçer (yazılınca sahne açılır); bu mekâna uymayanlar gizli
+        const all = allEvents(), scs = (Stories.SCENES || []).map(s => ({ s, e: all.find(x => lower(x.title) === lower(s.open)) })).filter(x => x.e && !awayEv(x.e) && !(opts.skip || []).includes(x.e.title));
+        return scs.length ? `<div class="mo-sub" data-pkst="sahne"${foldAt('sahne')}>🎬 Sahneler <small>· açılış olayı sahneyi başlatır</small>${foldEnd(scs.length)}</div>
+        <div class="mo-chips">${scs.map(({ s, e }) => `<button type="button" class="mo-chip${evCls(e)}"${stl(e)} data-pick="${esc(e.id)}" data-tags="" data-desc="${esc(`${s.desc || ''} ${s.open} → ${s.steps.join(s.mode === 'seq' ? ' → ' : ', ')}${s.fin ? ` → 🏁 ${s.fin}` : ''}`)}" title="${esc(s.desc || '')}">${mark(e)}🎬 ${s.icon} ${esc(s.name)}</button>`).join('')}</div>` : '';
+      })() : ''}
       <div class="mo-pool-foot">
         <div class="mo-pick-info" id="poolInfo" hidden></div>
         ${opts.merge ? '<label class="mo-check"><input type="checkbox" id="poolMerge"> 🧩 Seçtiklerimi tek satırda birleştir (tek olay + açıklama)</label>' : ''}
@@ -17293,7 +17316,7 @@
       if (fh && fh.dataset.pkfold) shut.delete(fh.dataset.pkfold);
       if (fh && fh.dataset.pkfold) { ui.pkFold = fh.dataset.pkfold; foldSync(); }
       b.scrollIntoView({ block: 'center', behavior: 'smooth' });
-    }, { whole: true, noSubs: true, cats: opts.cats, skip: opts.skip, hide: awayEv });
+    }, { whole: true, noSubs: true, cats: opts.cats, skip: opts.skip, hide: awayEv, scenes: !!cx });
     topSave(sh, () => sh.el.querySelector('#poolAdd').click(), '➕ Ekle');
   }
 
