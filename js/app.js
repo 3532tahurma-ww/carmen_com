@@ -518,6 +518,16 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['🥛', 'Milk & Cum: süt ve meni bir arada', 'Sütü olan karakterle yeni 🥛 Milky Foreplay (5), 🍼 Milky Sex pozisyonları (6), 6 sütlü bitiş ve 3 sonrası olayı; 5 yeni sahne ve 🔗 Süt ve krema kombosu. Olaylar 🍼 Süt değerine bağlı: göğüsleri boşsa yazılmaz. Hepsi 🍼 Süt Kitabı\'nın yeni bölümlerinde.', '#/kitap/sut/0', [
+      ['🥛 Ön sevişme', 'Milk Lick Trail, Suck & Stroke, Milk Lube Handjob, Milk Mouth Blowjob, Nipple Squeeze Tease.'],
+      ['🔥 Pozisyonlar', 'Milky Cowgirl, Nursing Ride, Milking Doggy, Spoon & Squeeze, Mirror Milking, Milky Anal. Her biri 🍼 Süt\'ü düşürür.'],
+      ['💦 Bitişler ve sonrası', 'Creampie Let-down, Double Cream Tits, Milk & Cum Kiss, Milk & Cum Cocktail, Milky Anal Creampie, Creamy Belly; sonra Sticky Cuddle, Wash It Off ve göğüsleri yeniden dolduran Refill Nap.'],
+      ['🎬 Sahneler ve kombo', '🥛 Süt ve Krema, 🍼 Emzirirken, 💋 Sütlü Öpücük, 🍸 Süt Kokteyli, 🌅 Sabah Sütü (son ikisi Milk & Cum Kiss / Cocktail ile biter). 🔗 Kombo: bir Nursing olayı → Milky Sex pozisyonu → sütlü bitiş: Samimiyet +2, Süt Kalitesi +5.']]],
+    ['🤰', 'Hamilelik olayları: 40 yeni olay ve 4 sahne', 'Hamile kalan karakterle artık yeni 💞 Pregnancy Foreplay (14) ve 🤰 Pregnancy (13) olayları, 13 hamilelik bitişi ve 4 sahne var. Her olayın bir hafta aralığı var; karın büyüdükçe bazı pozisyonlar kapanır. Hepsi yeni 🤰 Hamilelik Kitabı\'nda.', '#/kitap/hamile/0', [
+      ['💞 Foreplay', 'Bump Caress, Mirror Bump Hug, Ice Nipples, Maternity Dress Lift, Craving You, Warm Bath Tease, Spoon Fingering, Wedge Pillow Licking, Chair Edge Oral, Side-Lying Handjob, Side-Lying Blowjob, Swollen Titjob, Gentle Vibe ve Colostrum Tease.'],
+      ['🔥 Pozisyonlar', 'Slow Lotus, Reverse Careful Ride, Sofa Edge Missionary, Chair Ride, Side Scissor, Birth Ball Bounce, Counter Lean, Shower Lean Doggy, Mirror Standing, Nesting Quickie, Pregnant Spoon Anal, Extra Wet ve son haftalarda Third Trimester Slow.'],
+      ['💦 Bitişler', 'Swollen Tits Cumshot, Creampie Belly Rub, Milk & Cum, Lotus Creampie, Spoon Creampie, Birth Ball Creampie, Sofa Bump Cumshot, Shower Bump Cumshot, Mirror Creampie, Pregnant Swallow, Spoon Anal Creampie, Oil & Cum Rub, Hormone Multi. İçe bitişler yeni hamilelik getirmez.'],
+      ['🎬 Sahneler', '🤲 Karnına Dokun, 🔥 Hormon Fırtınası, 🐢 Son Haftalar, 🥛 İlk Damlalar. Hamile olmayan karakter bu sahneleri teklif etmez.']]],
     ['👗', 'Soyunma ve içki: 31 yeni olay, komutlar ve 10 sahne', '👗 Undress\'e 16, 🍷 Drinks\'e 15 yeni olay; 3 içki aynı zamanda soyar. Her birinin sohbette yazılan bir komutu var ("fermuarını aç", "kadeh kaldıralım", "külotunu yırtayım"…). 10 yeni sahne ve yeni 🍷 İç, soyun, seviş kombosu. Hepsi 🗣️ Komutlar Kitapçığı\'nda.', '#/kitap/komut/0', [
       ['👗 Undress', 'Çıkarmadan açanlar: Skirt Up, Top Down, Panties Aside. Tek parça, gerisi üstünde: Bra Under Shirt, Panties Under Skirt. Senin elinden: Unzip Dress, Unbutton Shirt, Teeth Strip, One-Hand Unhook (%40 kopça açılmaz, o güler), Tear Off Panties (yırtılan külot o sohbette geri gelmez). Ve Bra Toss, Pocket Panties, Mirror Strip, Lap Strip, Undress Each Other, Shy Undress.'],
       ['🍷 Drinks', 'Whiskey On Ice, Mojito, Margarita, Sake, Beer, Shared Glass, Toast, Drink From Her, Champagne Pour; ayıltanlar Hot Chocolate ve Mint Tea. Soyanlar: Spilled Wine üstünü, Ice In Bra sütyenini çıkarır; Strip Drinking Game\'de kaybeden bir parça verir. Truth Or Drink: ya cevap ya kadeh.'],
@@ -543,7 +553,7 @@
       ['🎬 Sahneler', '💆 Yağlı Masaj (sırayla 5 adım), 🧖 Masöz Randevusu (3 adım) ve 🛏️ Masaj Masası (2 adım). Hepsi Masaj salonunda geçer; başka mekâna geçersen bozulur.'],
       ['🌐 CarmenMassage', 'Masöz ilanları ve üç paket: 🫗 Yağlı Masaj, 🧴 Nuru Paketi, 🛏️ Mutlu Son Paketi. Paketi seçince sohbet salonda, masöz önlüğüyle ve Masöz – Müşteri rolüyle başlar; paketin açılış olayı ⚡ kısayolda.'],
       ['📱 Kesintiler', 'Masaj salonunda %15 ihtimalle: resepsiyon kapıyı tıklatır, yağ şişesi devrilir, yan odadan sesler gelir…']]],
-    ['🎬', 'Sahneler: olayların alt olayları', 'Bazı olaylar artık bir sahne açar: ⚡ çubuğunun üstünde sahne şeridi çıkar, adımları tek tek yaparsın, sonunda 🏁 bitiş ve 🎉 ödül gelir. Başka mekâna geçersen ya da sahneyi unutursan bozulur. 58 sahne, hepsi 🧠 Olay Hafızası Kitabı\'nın yeni Sahneler bölümünde.', '#/kitap/hafiza/5', [
+    ['🎬', 'Sahneler: olayların alt olayları', 'Bazı olaylar artık bir sahne açar: ⚡ çubuğunun üstünde sahne şeridi çıkar, adımları tek tek yaparsın, sonunda 🏁 bitiş ve 🎉 ödül gelir. Başka mekâna geçersen ya da sahneyi unutursan bozulur. 71 sahne, hepsi 🧠 Olay Hafızası Kitabı\'nın yeni Sahneler bölümünde.', '#/kitap/hafiza/5', [
       ['🚿 Birlikte Duş', 'Soapy Hug ile açılır; üç köpüklü adım, sonra Shower Cumshot: Şehvet +10, Samimiyet +2, Güven +1.'],
       ['🧖‍♀️ Sauna Seansı', 'Towel Drop ile açılır; iki terli adım, sonra Sauna Cumshot: Şehvet +8, Samimiyet +2, Aşk +1.'],
       ['🔗 Yatağa Bağlı', 'Tied To Bed ile açılır; göz bağı, tüy, buz, mum ve Edging sırayla, sonra Permission to Come: Güven +3, Aşk +2, Şehvet +6.'],
@@ -1557,6 +1567,8 @@
     done: ['Zamanın doldu dedim 🙄', 'Yeni seans almadan konuşmam 💸', 'Çıkışı biliyorsun 🚪', 'Süren bitti, ısrar etme 😒', '…'],
     after: ['Güzeldi 😘 ama zamanın doldu, hadi giyin', 'Tam zamanında 😏 süren bitti, çıkışa', 'Ohh… tamam, zamanın doldu tatlım 🚪']
   };
+  // 🤰 ilan kızı seansta hamile kalınca: süre sınırı kalkar
+  const PREG_FREE = ['Ahhh içime bıraktın hamileyim 🤰', 'Ahhh içime bıraktın hamileyim 🤰 saate bakma artık, istediğin kadar kal 💕', 'Ahhh içime bıraktın hamileyim 🤰 artık süre yok, sen benimsin 🥺'];
   // "30 dk" / "1 saat" / "1,5 saat" / "sabaha kadar" → dakika (sabaha kadar: 07:00'a dek)
   // karaktere göre esc cümlesi: bot kuralı "=durum =esc<st>" (kişilik varyantı önce), yoksa yedek havuz
   const sessLine = (ch, st, fb) => stLine(ch, 'esc' + st, fb);
@@ -3629,6 +3641,9 @@
   // 🔗 kombo: seq = arka arkaya son olaylar (sonuncusu şimdiki); t:başlık · c:kategori · tag:etiket · p:etiketli pozisyon · pos · pen · warm · cum
   // diff: 'cat' → hepsi farklı kategori · same: 'theme' → hepsi aynı mekân (EV_THEME) etiketi
   const MEM_RULES = [
+    { k: 'kmb_sutkrema', icon: '🥛', name: 'Süt ve krema', seq: ['c:nursing', 'c:milky sex', 'tag:süt'], when: 'Kombo: bir 🤱 Nursing olayı → bir 🍼 Milky Sex pozisyonu → sütlü bir olay ya da bitiş, arka arkaya', fx: [['samimiyet', 2], ['süt kalitesi', 5]],
+      say: ['Önce emdin, sonra… her yerim süt ve sen 🥛😩', 'Sütüm hiç bu kadar güzel akmamıştı {sen} 🍼', 'Emzirmekle başladı, bak nerede bitti 😏'],
+      me: ['Göğsünden başladım, her yerin sütle kaplandı 🥛', 'Emzirdin, ben de seni doyurdum 😈'] },
     { k: 'kmb_adim', icon: '🪜', name: 'Adım adım', seq: ['t:kissing', 'warm', 'warm', 'pen'], when: 'Kombo: Kissing → iki ısınma (Foreplay / Eat / Outercourse) → önden ya da arkadan giriş, arka arkaya', fx: [['aşk', 2], ['uyarılma', 8]],
       say: ['Beni ne güzel hazırladın {sen}… 🥰', 'Öpücükle başladın, şimdi tam yerindeyim 😩💗', 'Adım adım… tam istediğim gibi 🥵'],
       me: ['Öpücükten buraya, adım adım geldim 😏', 'Seni yavaş yavaş hazırladım, şimdi sıra bende 🔥'] },
@@ -3647,6 +3662,15 @@
     { k: 'kmb_icsoy', icon: '🍷', name: 'İç, soyun, seviş', seq: ['c:drinks', 'c:undress', 'pos'], when: 'Kombo: bir 🍷 Drinks olayı → bir 👗 Undress olayı → pozisyon, arka arkaya', fx: [['uyarılma', 8], ['samimiyet', 1]],
       say: ['Önce içirdin, sonra soydun… planın buydu değil mi {sen}? 😏🍷', 'Başım dönüyor, üstümde de bir şey kalmadı 🥵', 'Şarap mı sarhoş etti beni, sen mi? 😩💗'],
       me: ['Bir kadeh, sonra kıyafetlerin, sonra sen 😈🍷', 'İçtik, soyundun, şimdi gecenin asıl kısmı 🔥'] },
+    { k: 'kmb_izsiz', icon: '🐍', name: 'İz bırakmadan', seq: ['t:fake alibi', 'p:aldatma', 't:perfume swap'], when: 'Kombo: Fake Alibi → bir 🐍 Affair pozisyonu → Perfume Swap, arka arkaya', fx: [['şüphe', -10], ['güven', 2]],
+      say: ['Mazeret, sen, sonra parfüm… kusursuz plan {sen} 🤫', 'Kimse anlamayacak, iz yok 😏🌸', 'Bu kadar iyi saklanmayı nereden öğrendik? 😈'],
+      me: ['Mazeret tuttu, kokum da gitti 🤫', 'İz bırakmadan, baştan sona 😏'] },
+    { k: 'kmb_kural', icon: '📜', name: 'Kural bozan', seq: ['t:house rules', 't:breaking a rule', 'p:bull'], when: 'Kombo: House Rules → Breaking A Rule → bir 🐂 Bull pozisyonu, arka arkaya', fx: [['şehvet', 10], ['kural ihlali', 1]],
+      say: ['Kuralı daha yeni yazdı, hemen bozduk {sen} 😈', 'Ona söyleme… ama devam et 🤫🔥', 'Kurallar bozulmak için var, değil mi? 😏'],
+      me: ['Mürekkep kurumadan kuralı bozdum 😈', 'Kocası bilmesin, ben devam ediyorum 🔥'] },
+    { k: 'kmb_rapor', icon: '🗣️', name: 'Her şeyi anlat', seq: ['p:bull', 'cum', 't:report back'], when: 'Kombo: bir 🐂 Bull pozisyonu → boşalma → Report Back, arka arkaya', fx: [['samimiyet', 2], ['güven', 2]],
+      say: ['Ona her şeyi anlatacağım, ayrıntısıyla 😏', 'Kocam bu hikâyeye bayılacak {sen} 🔥', 'Daha bitmeden anlatmaya başladım bile 🙈'],
+      me: ['Bitti; şimdi sıra kocasına anlatmakta 😏', 'Anlatacak çok şey bıraktım 🔥'] },
     { k: 'hfz_isinmadan', icon: '🧊', name: 'Isınmadan', when: 'Sohbetin ilk turunda, öncesinde hiç Foreplay / Eat / Outercourse olmadan önden ya da arkadan ilk giriş', fx: [['acı', 6], ['uyarılma', -5]],
       say: ['Dur… hiç ısıtmadan mı? 😣 Biraz yavaş {sen}', 'Ah! Önce biraz öpseydin beni… 😖', 'Daha hazır değildim ama… tamam, yavaş ol 🥺'],
       me: ['Bekleyemedim, hemen içine girdim 😈', 'Öpüşmeyi atladım, seni çok istiyorum 🔥'] },
@@ -9725,7 +9749,10 @@
       const pend0 = !opts.events && th.botAsk, tyn = pend0 && pend0.t === 'teyit' ? teyitYn(userMsg.text) : '';
       const teyitOk = tyn === 'evet' ? pend0 : null;
       if (teyitOk && teyitOk.txt) userMsg = { ...userMsg, text: teyitOk.txt };
-      const pend = teyitOk ? null : pend0, yn = !pend ? '' : pend.t === 'teyit' ? tyn : yesNo(userMsg.text);
+      let pend = teyitOk ? null : pend0, yn = !pend ? '' : pend.t === 'teyit' ? tyn : yesNo(userMsg.text);
+      // 💭 iki seçenekli fikir ("Banyo mu, yatak mı?"): seçilen seçenek evet sayılır
+      const ip = !opts.events && ideaPick(pend, userMsg.text);
+      if (ip) { pend = ip; yn = 'evet'; }
       if (!opts.events) th.botAsk = null;
       // 🧠 senin mesajından öğrendikleri (ad, sevdiklerin, şehir…): her üye kendi hafızasına yazar; yeni bir şeyse "not ettim" cümlesi
       const memAck = {};
@@ -9909,6 +9936,8 @@
       if (yn === 'evet' && pend.t === 'kiyafet') { const und = th.undress = th.undress || {}; und[ch.id] = { ...(und[ch.id] || {}), ust: 1, alt: 1, ic: 1 }; }
       // 💡 "{yer} gidelim mi?" → evet: mekan kartı
       if (yn === 'evet' && pend.t === 'istek' && pend.pl) { snap('Mekan değişti'); list.push(sceneMsg(pend.pl)); save(); draw(); refreshList(); }
+      // 📋 mini plana evet: mekân kartı + ⚡ plan şeridi (sıradaki adım: sahnenin açılışı)
+      if (yn === 'evet' && pend.w === 'plan' && actDef(pend.plan)) { th.plan = { act: pend.plan, pl: pend.pl.place, name: pend.pl.name, icon: pend.pl.icon }; save(); drawQuick(); }
       // 👑 emrin ("dön", "soyun", "şunu iç"…): Dominant çoğu zaman kafa tutar, olay olmaz; "şunu iç" 🍷 Drinks'ten bir içki olur
       const ordK = !opts.events && !yn ? domOrder(userMsg.text, m.rule.id) : '', defy = !!ordK && domLv(ch) === 'dom' && Math.random() < .55;
       const drink = ordK === 'ic' && !defy ? pickByTitles(allEvents().filter(e => String(catOfEv(e).label).toLocaleLowerCase('tr') === 'drinks').map(e => e.title), ch) : null;
@@ -9945,6 +9974,8 @@
       const fbTxt = new Set(m.fallback ? parts : []);
       // 💡 kendi isteğine "hayır" → %60 hemen başka bir teklif (döngü)
       const wantMore = yn === 'hayir' && pend && pend.t === 'istek' && Math.random() < .6;
+      // 💭 fikrine "hayır" → hemen başka bir fikir (ideaOffer, zorla)
+      const ideaMore = yn === 'hayir' && pend && pend.idea;
       // 👑 emre itaat / kafa tutma; kuralı yoksa (ör. "şunu iç") cevap tamamen buradan. Kafa tutarsa %60 karşı emir verir
       const lv = domLv(ch);
       if (ordK && lv) {
@@ -10081,7 +10112,8 @@
       }
       const ask0 = th.botAsk;
       // 🗺️ mekan önerisi (placeOffer): gerilim dolunca hep; bitişten sonra / gün dilimi değişince / aynı mekanda çok olayda bazen. Önerdiyse bu tur başka soru yok
-      if (!isQ && !cmdEv && !ordK && !why && !m.teyit && (!yn || wantMore)) { const po = placeOffer(ch, opts); if (po) parts.push(...po); }
+      // 💭 yoksa onun fikri (ideaOffer): 🎉 sahne bittiğinde, bitişten sonra, bu mekânda 7+ olayda, hiç gidilmemiş mekân varsa
+      if (!isQ && !cmdEv && !ordK && !why && !m.teyit && !ideaMore && (!yn || wantMore)) { const po = placeOffer(ch, opts) || ideaOffer(ch, opts); if (po) parts.push(...po); }
       // ❔ olaydan sonra bazen karakter bir soru sorar ("=sor" + konu); senin sonraki "evet / hayır"ın ona göre cevaplanır
       // boşalmadan sonra daha sık (%60): yeni pozisyon isteği
       if (opts.events && th.botAsk === ask0 && Math.random() < (opts.climax ? .6 : .3)) {
@@ -10102,8 +10134,8 @@
       // 💬 yedek cevaba düştüyse (hiçbir kural tutmadı) boşluk yerine hep teklif / istek: %50 kendi isteği (wantNow, zorla), yoksa soru (fbAsk: istekliliğine
       // ve ❤️ sevdiklerine göre), o da yoksa yine istek; biri geldiyse yedek cümle atılır
       if (m.fallback && !opts.events && !yn && !cmdEv && !ordK && !group && th.botAsk === ask0) {
-        // 🎬 %35 önce bir sahne teklifi (actOffer: evet → açılış olayı, sahne başlar)
-        const so = Math.random() < .35 ? actOffer(ch) : null;
+        // 💭 %50 önce onun fikri (ideaOffer: mekân / sahne / olay, iki seçenek ya da mini plan)
+        const so = Math.random() < .5 ? ideaOffer(ch, opts, true) : null;
         const wn = !so && Math.random() < .5 ? wantNow(ch, true) : null, fb = !so && !wn && fbAsk(ch, vars), alt = !so && !wn && !fb ? wantNow(ch, true) : null;
         const add = so || wn || (fb && fb.parts) || alt;
         if (add) { parts = [...parts.filter(p => !fbTxt.has(p)), ...add]; if (fb) th.botAsk = fb.ask; }
@@ -10140,8 +10172,8 @@
         if (alt) { parts = alt; if (fb) th.botAsk = fb.ask; th.ongoru = list.length; }
       }
       // 💡 bu tur soru / emir yoksa bazen kendi isteği (içki, soyunma, mekan, öpüşme): sorar ya da kendisi yapar; son baloncuk(lar) olarak kalır
-      if (!opts.events && !isQ && !cmdEv && (!yn || wantMore) && !ordK && !why && !group && !m.teyit && th.botAsk === ask0) {
-        const wn = wantNow(ch, wantMore);
+      if (!opts.events && !isQ && !cmdEv && (!yn || wantMore || ideaMore) && !ordK && !why && !group && !m.teyit && th.botAsk === ask0) {
+        const wn = ideaMore ? ideaOffer(ch, opts, true) || wantNow(ch, true) : wantNow(ch, wantMore);
         if (wn) parts = [...parts.slice(0, 3 - wn.length), ...wn];
       }
       // 🍼 taşma (th.fullAt): 🍼 Süt ≥ 95 → önce emzirme ister; 6 mesaj içinde emzirilmezse (Süt hâlâ ≥ 95) Lactation – Overflow kendiliğinden
@@ -10366,7 +10398,8 @@
      * Seks sırasında dolarsa "hadi boşal"; 3 mesajda boşalmazsan "çık, bu kadardı". Dönüş: true → cevap verildi */
     function sessGate(userMsg, opts) {
       const P = th.paid;
-      if (!P || group || !realOn() || !c) return false;
+      // 🤰 hamile kalan ilan kızında süre sınırı yok (bkz. botEventReply hamilekaldi)
+      if (!P || group || !realOn() || !c || (c.fields || {}).hamile) return false;
       // 🤖 cümle bot kurallarından ("=durum =esc<durum>", kişiliğe göre; 🧪 deneyde 📊 Durum → esc…), yoksa SESS_TX
       const ST = { up: 'sure', hurry: 'acele', out: 'cik', done: 'bitti', after: 'sonra' };
       const low = s => String(s || '').toLocaleLowerCase('tr'), say = arr => sessSay(sessLine(c, ST[Object.keys(SESS_TX).find(k => SESS_TX[k] === arr)], arr));
@@ -10543,10 +10576,12 @@
       const sc = (lastScene() || {}).scene || null, here = moCats().filter(c => placeFits(placeEvOf(c), sc)).map(c => c.id);
       let stage = cumT && cumT >= posT ? 'son' : !pos ? 'isin' : sexy ? (zevk >= 60 ? 'bit' : ps) : ps === 'isin' ? 'on' : ps === 'on' ? 'poz' : ps || 'all';
       if (here.length && stage === 'poz') stage = 'mekan';
-      const ok = e => !!e && !denies.has(e.id) && !dislikes.has(e.id);
+      const ok = e => !!e && !denies.has(e.id) && !dislikes.has(e.id) && (group || !pregBlock(ch, e));
       const lf = evs => [...evs.filter(e => likes.has(e.id)), ...evs.filter(e => !likes.has(e.id))];
       const lia = liaTips(), now = [], nu = nurseTips(ch, sc);
       if (nu.evs.length && stage !== 'bit') now.push(...lf(nu.evs.filter(ok)).slice(0, 3));
+      // 💡 🤰 hamile / 💍 evliyse 🎯 Şimdi'de o olaylar (bitiş aşamasında matchFinishes kendi bitişlerini verir)
+      if (!group && stage !== 'bit' && stage !== 'son') now.push(...lf(sample(all.filter(e => focusEv(ch, e) && ok(e)), 6)).slice(0, 3));
       if (stage === 'bit' && pos) { const cc = moCats().find(c => low(c.label) === 'cumming'); if (cc) now.push(...lf(matchFinishes(cc.id, pos).filter(ok)).slice(0, 4)); }
       if (stage !== 'son' && stage !== 'bit') now.push(...lf(sample(all.filter(e => (here.includes(e.cat) || spotFits(e, sc)) && (!pos || e.id !== pos.id) && ok(e)), 6)).slice(0, 3));
       now.push(...lia.evs);
@@ -10950,13 +10985,15 @@
     function maybeInterrupt(e) {
       // 🤱 Nursing olayları da kesilebilir (NURSE_INT: Covered → biri geliyor, Night → telefon, Morning → alarm)
       const nk = NURSE_INT[e.id] || (lowTag(catOfEv(e).label) === 'nursing' ? NURSE_INT._ : null);
-      if (!interruptsOn() || !(isPosEv(e) || isFant(e) || nk) || cs.playing) return;
+      const et = (e.tags || []).map(lowTag), af = et.includes('aldatma');
+      if (!interruptsOn() || !(isPosEv(e) || isFant(e) || nk || af) || cs.playing) return;
       const n = msgCount();
       if (th.intAt && n - th.intAt < 8) return;
-      const fr = fantRecent(), fk = fr && fantKey(fr), gizli = fk === 'fxgizli';
+      const fr = fantRecent(), fk = af ? 'fxgizli' : fr && fantKey(fr), gizli = fk === 'fxgizli';
       // 🏖️ açık mekân olayları (havuz, araba, asansör, kamp): "biri görecek" riski, kesinti daha sık ve mekâna özel (FANT_INTERRUPTS.yer…)
-      const et = (e.tags || []).map(lowTag), pl = PLACE_INT.find(([t]) => et.includes(t));
-      if (Math.random() >= (nk ? nk[1] : gizli ? .22 : pl ? pl[2] : fr ? .12 : .06)) return;
+      const pl = PLACE_INT.find(([t]) => et.includes(t));
+      // 🕵️ gizli ilişkide Şüphe arttıkça kesinti sıklaşır: %22 + Şüphe/4 (en çok %47)
+      if (Math.random() >= (nk ? nk[1] : gizli ? .22 + ptParam(c || byId(chatCharIds()[0]) || {}, 'şüphe') / 400 : pl ? pl[2] : fr ? .12 : .06)) return;
       // 🦄 süren fantezinin kendi kesintisi (%70, js/data/fant-interrupts.js): karakter cevabı th.fantInt = [fantezi, sıra] ile gelir
       const ik = nk ? nk[0] : pl ? pl[1] : fk, fp = ik && (Stories.FANT_INTERRUPTS || {})[ik];
       if (fp && fp.length && (nk || Math.random() < .7)) {
@@ -10978,10 +11015,11 @@
     let quickKey = null, quickList = [], quickActs = [];
     function quickSuggest(all) {
       const at = lastDone(), lastId = Object.keys(at).reduce((m, id) => (m && at[m] >= at[id] ? m : id), '');
-      const sc = (lastScene() || {}).scene || null, key = `${lastId}|${sc ? sc.place + '/' + sc.name : ''}`;
-      if (key === quickKey) return quickList;
       const ch = byId(chatCharIds()[0]) || {}, likes = new Set(ch.likes || []), bad = new Set([...(ch.dislikes || []), ...(ch.denies || [])]);
-      const pk = placeKey(), ok = e => !bad.has(e.id) && e.id !== lastId && !placeBlock(pk, e);
+      // 🤰 hamilelik olayları sadece hamileyken ve kendi haftasında (hafta değişince liste yenilenir)
+      const sc = (lastScene() || {}).scene || null, key = `${lastId}|${sc ? sc.place + '/' + sc.name : ''}|${group ? '' : `${pregWeek(ch) || ((ch.fields || {}).hamile ? 1 : 0)}${(ch.fields || {}).evli ? 'e' : ''}`}`;
+      if (key === quickKey) return quickList;
+      const pk = placeKey(), ok = e => !bad.has(e.id) && e.id !== lastId && !placeBlock(pk, e) && (group || !pregBlock(ch, e));
       const lf = evs => { const s = sample(evs, evs.length); return [...s.filter(e => likes.has(e.id)), ...s.filter(e => !likes.has(e.id))]; };
       const here = sc ? moCats().filter(c => placeFits(placeEvOf(c), sc)).map(c => c.id) : [];
       // 📍 okul/ofis mekanındaysa (SITE_SPOTS) önce oranın fantezileri ve olayları
@@ -10989,12 +11027,15 @@
       const place = sc ? [...spot, ...lf(all.filter(e => (here.includes(e.cat) || spotFits(e, sc)) && ok(e) && !spot.includes(e)))].slice(0, spot.length ? 8 : 5) : [];
       const last = lastId && all.find(e => e.id === lastId);
       const same = last ? lf(all.filter(e => e.cat === last.cat && ok(e) && !place.includes(e))) : [];
+      // 💡 🤰 hamile / 💍 evli karakterde 3 durum olayı (bitiş değil) ve o sahneler öne çıkar (focusEv)
+      const foc = e => !group && focusEv(ch, e);
+      const pg = lf(all.filter(e => foc(e) && ok(e) && !place.includes(e) && !same.includes(e))).slice(0, 3);
       // 🎬 sahne önerisi (2): açılışı bu mekâna uyan, 🚫/💔 olmayanlar; mekânın kendi sahneleri önce
-      const fit = e => here.includes(e.cat) || spotFits(e, sc);
+      const fit = e => here.includes(e.cat) || spotFits(e, sc) || foc(e);
       const acts = sample((Stories.SCENES || []).map(d => ({ d, e: actEv(d.open) })).filter(x => x.e && ok(x.e) && !evAway(x.e, sc)), 99);
       quickActs = [...acts.filter(x => fit(x.e)), ...acts.filter(x => !fit(x.e))].slice(0, 2);
       quickKey = key;
-      quickList = [...place, ...same];
+      quickList = [...place, ...pg, ...same];
       return quickList;
     }
     // 📍 önerilen mekan çipleri (⚡ ve boş 🔮 çubuğu): dokununca mekan değişir (goPlace)
@@ -11015,11 +11056,14 @@
       const pls = group ? [] : plSug(near.length ? 1 : 3);
       // yazarken birleşik 🔮⚡ çubuğu (drawTahmin) görünür; bu çubuk o sırada gizli
       const ad = th.act && actDef(th.act.id), act = ad ? actBar(ad, th.act) : '', acts = ad ? [] : quickActs;
-      el.hidden = !quickOn() || cs.playing || (!evs.length && !pls.length && !near.length && !act && !acts.length) || !!(tb && !tb.hidden);
+      // 📋 mini plan: sahne başlamadan mekân değiştiyse plan düşer
+      if (th.plan && (!actDef(th.plan.act) || (!ad && actPl() !== th.plan.pl))) th.plan = null;
+      const pd = th.plan && actDef(th.plan.act), plan = pd ? planBar(pd, th.plan) : '';
+      el.hidden = !quickOn() || cs.playing || (!evs.length && !pls.length && !near.length && !act && !plan && !acts.length) || !!(tb && !tb.hidden);
       if (el.hidden) return;
-      el.classList.toggle('has-act', !!act);
-      // 🎬 sahne sürerken sadece sahne çubuğu; ⚡ kısayollar sahne bitince geri gelir
-      if (act) { el.innerHTML = act; return; }
+      el.classList.toggle('has-act', !!(act || plan));
+      // 🎬 sahne sürerken sadece sahne çubuğu (plan varsa üstünde plan şeridi); ⚡ kısayollar sahne bitince geri gelir
+      if (act || plan) { el.innerHTML = plan + act; return; }
       el.innerHTML = `<span class="eq-ic" title="${sug.length ? 'Mekâna ve son olaya göre' : 'Son kullanılan olaylar'}">⚡</span><div class="eq-row">${acts.map(x => `<button type="button" class="mo-chip${evCls(x.e)}"${evStyle(x.e)} data-qev="${esc(x.e.id)}" title="🎬 Sahne başlat: ${esc(x.d.open)}">🎬${x.d.icon} ${esc(x.d.name)}</button>`).join('')}${evs.map(e => `<button type="button" class="mo-chip${evCls(e)}"${evStyle(e)} data-qev="${esc(e.id)}"${actOpen(e) ? ` title="🎬 Sahne açar: ${esc(actOpen(e).name)}"` : ''}>${pins.includes(e) ? '📌' : ''}${actOpen(e) ? '🎬' : ''}${evEmo(e)}${esc(e.title)}</button>`).join('')}${near.map(s => `<button type="button" class="mo-chip" data-qsp="${esc(s.k)}" title="Mekana geç">📍${s.ic} ${esc(s.n)}</button>`).join('')}${plChips(pls, 'qpl')}</div>
         <button type="button" class="eq-x" data-q="off" aria-label="Kısayolları kapat">✕</button>`;
     }
@@ -11038,19 +11082,140 @@
       const own = ((Stories.SCENE_SAY || {})[d.id] || {})[k], s = own && own.length && Math.random() < .75 ? stLine(ch, 'sahne' + d.id + k, own, fxNow()) : stLine(ch, 'sahne' + k, ACT_SAY[k] || ACT_SAY.step, fxNow());
       return s.replace(/\{sahne\}/g, d.name).replace(/\{ic\}/g, d.icon);
     };
-    /* 🎬 yedek cevapta sahne teklifi: sahne yokken, sevişirken ya da İsteklilik Yüksek+ ise. Açılışı bu mekâna uyan (placeAway değil), 💔/🚫 olmayan sahneler;
-     * ❤️ sevdiği olay içerenler %70 öne çıkar, son teklif tekrar edilmez (th.actOff). th.botAsk = istek/sahne + açılış olayı → evet: olay yazılır, sahne açılır */
-    function actOffer(ch) {
-      if (th.act || (!sexPhase() && willOf(ch, th) < 3)) return null;
-      const sc = (lastScene() || {}).scene, no = new Set([...(ch.denies || []), ...(ch.dislikes || [])]), like = new Set(ch.likes || []);
-      const cs = (Stories.SCENES || []).map(d => ({ d, e: actEv(d.open) })).filter(x => x.e && !no.has(x.e.id) && x.d.id !== th.actOff && !placeAway(catOfEv(x.e), sc));
-      if (!cs.length) return null;
-      const fav = cs.filter(x => [x.d.open, ...x.d.steps, x.d.fin].some(t => { const e = t && actEv(t); return e && like.has(e.id); }));
-      const x = fav.length && Math.random() < .7 ? pickOne(fav) : pickOne(cs);
-      th.actOff = x.d.id;
-      th.wantAt = list.length;
-      th.botAsk = { t: 'istek', w: 'sahne', ev: x.e.id };
-      return [actLine(ch, x.d, 'ask')];
+    /* 💭 onun fikri: sahne / mekân / olay adayları tek havuzda puanlanır: ❤️ sevdikleri, bu mekâna uyan, saat (gün dilimi), Zevk / İsteklilik,
+     * süren fantezinin mekânları, daha önce bitirdiği sahneler (ch.acts), son olayın devamı (nextEvs). why: '' · sahne (🎉 sahne bitti) · sonra (bitişten sonra) ·
+     * tekdur (bu mekânda 7+ olay) · yeni (hiç gidilmemiş mekân; sadece mekânlar) */
+    function ideaPool(ch, why) {
+      const low = actLow, w = willOf(ch, th), sx = sexPhase(), sc = (lastScene() || {}).scene || null, out = [];
+      const no = new Set([...(ch.denies || []), ...(ch.dislikes || [])]), like = new Set(ch.likes || []);
+      const zp = allParams().find(x => x.who === 'me' && low(x.label) === 'zevk'), zevk = zp ? paramVal(S().user, zp) : 0;
+      const F = placeFx(fxNow()), dk = dayKey(plHour()), per = (ch.traits || []).flatMap(t => PLACE_FLOW.per[t] || []);
+      const seen = new Set(list.filter(m => m.scene && m.scene.place).map(m => m.scene.place));
+      if (sx !== 'sexnow' || F || why === 'sonra') {
+        const chain = sx === 'sexsonra' || why === 'sonra' || why === 'sahne' ? PLACE_FLOW.chain[placeKey()] || PLACE_FLOW.chain._ : [];
+        allPlaces().filter(plOk()).forEach(p => {
+          if (why === 'yeni' && seen.has(p.id)) return;
+          const s = (per.includes(p.id) ? 2 : 0) + (dk[3].includes(p.id) ? 1 : 0) + (F && F.pl.includes(p.id) ? 2 : 0) + (chain.includes(p.id) ? 2.5 : 0)
+            + (seen.has(p.id) ? 0 : why === 'yeni' ? 3 : .5) + (why === 'tekdur' ? 1 : 0) + (w >= 3 && (p.lv || 0) >= 3 ? .5 : 0);
+          if (s > 0) out.push({ k: 'mekan', pl: plCard(p), s });
+        });
+      }
+      if (why === 'yeni' || why === 'sonra') return out;
+      if (!th.act && (sx || w >= 3)) (Stories.SCENES || []).forEach(d => {
+        const e = actEv(d.open);
+        if (!e || no.has(e.id) || d.id === th.actOff || placeAway(catOfEv(e), sc) || pregBlock(ch, e)) return;
+        const fav = [d.open, ...d.steps, d.fin].some(t => { const x = t && actEv(t); return !!x && like.has(x.id); });
+        const fit = !!sc && moCats().some(c => c.id === e.cat && placeFits(placeEvOf(c), sc));
+        // 💡 🤰 hamile / 💍 evli karakter kendi durumunun sahnelerini daha çok teklif eder
+        out.push({ k: 'sahne', d, e, s: 1 + (fav ? 2 : 0) + (fit ? 1.5 : 0) + (!group && focusEv(ch, e) ? 2 : 0) + Math.min(2, (ch.acts || {})[d.id] || 0) * .75 + (zevk >= 50 ? .5 : 0) });
+      });
+      if (sx || w >= 2) {
+        const cats = sx === 'sexnow' ? SEX_CATS : w >= 3 || sx ? ['foreplay', ...SEX_CATS] : ['foreplay'], pos = posNow();
+        const ok = e => !no.has(e.id) && e !== pos && !evAway(e, sc) && !pregBlock(ch, e);
+        feelEvents(ch.likes || []).filter(e => ok(e) && (isFant(e) ? !F && (w >= 2 || sx) : cats.includes(low(catOfEv(e).label))))
+          .forEach(e => out.push({ k: 'olay', e, like: 1, s: 2 + (zevk >= 60 && SEX_CATS.includes(low(catOfEv(e).label)) ? .5 : 0) }));
+        const at = lastDone(), lastId = Object.keys(at).reduce((m, id) => (m && at[m] >= at[id] ? m : id), ''), last = lastId && allEvents().find(e => e.id === lastId);
+        nextEvs(ch, last).filter(ok).forEach(e => { const o = out.find(x => x.e === e); if (o) o.s += 1.5; else out.push({ k: 'olay', e, s: 1.5 }); });
+        // 💡 🤰 hamile / 💍 evli: durumunun olaylarından 3'ü de aday
+        if (!group) sample(allEvents().filter(e => focusEv(ch, e) && ok(e)), 3).forEach(e => { const o = out.find(x => x.e === e); if (o) o.s += 1; else out.push({ k: 'olay', e, s: 1.5 }); });
+      }
+      return out;
+    }
+    const qMi = s => ({ a: 'mı', 'ı': 'mı', e: 'mi', i: 'mi', o: 'mu', u: 'mu', 'ö': 'mü', 'ü': 'mü' })[(String(s).toLocaleLowerCase('tr').match(/[aıeioöuü](?=[^aıeioöuü]*$)/) || ['e'])[0]];
+    const ideaLab = x => x.k === 'mekan' ? plLow(x.pl.name) : x.k === 'sahne' ? x.d.name : x.e.title;
+    /* 💭 onun fikri mesaj olarak: force (yedek cevap / "hayır"dan sonra) ya da tetikleyici (🎉 sahne bitti th.ideaWhy %60, bitişten sonra %25, bu mekânda 7+ olay %20,
+     * sohbette hiç gidilmemiş mekân %8; en az 6 mesaj arayla). %20 mini plan (mekân + oraya uyan sahne), %40 iki seçenek ("Banyoda mı, yatak odasında mı?"),
+     * yoksa tek teklif; 👑 Dominant %50 / Switch %15 (+ kişilik do) tek teklifi sormadan yapar. th.botAsk.idea = 1 → "hayır" deyince hemen başka fikir */
+    function ideaOffer(ch, opts, force) {
+      if (!ch || ch === GHOST || group || cs.playing) return null;
+      const n = list.length, sx = sexPhase(), cool = n - (th.ideaAt == null ? -99 : th.ideaAt) >= 6;
+      let why = th.ideaWhy || '';
+      th.ideaWhy = null;
+      if (!force) {
+        if (!cool) return null;
+        if (why === 'sahne') { if (Math.random() >= .6) return null; }
+        else if (opts.climax) { if (Math.random() >= .25) return null; why = 'sonra'; }
+        else if (opts.events && list.slice(arriveIdx() + 1).filter(m => m.from === 'me' && m.ev).length >= 7 && Math.random() < .2) why = 'tekdur';
+        else if (!opts.events && !sx && Math.random() < .08) why = 'yeni';
+        else return null;
+      } else if (why !== 'sahne') why = '';
+      const pool = ideaPool(ch, why);
+      if (!pool.length) return null;
+      const rank = pool.map(x => ({ ...x, r: x.s + Math.random() * 1.5 })).sort((a, b) => b.r - a.r), top = rank[0];
+      const lv = domLv(ch), pers = (ch.traits || []).map(t => WANT_PER[t]).filter(Boolean), per = pers.length ? pickOne(pers) : null, tone = per && per.idea;
+      const fill = (s, x) => String(s || '').replace(/\{pl\}/g, x.pl ? plLow(x.pl.name) : '').replace(/\{ic\}/g, x.pl ? x.pl.icon : x.d ? x.d.icon : '')
+        .replace(/\{sahne\}/g, x.d ? x.d.name : '').replace(/\{olay\}/g, x.e ? x.e.title : '');
+      const ask1 = x => x.k === 'mekan' ? { t: 'istek', w: 'mekan', pl: x.pl, idea: 1 } : { t: 'istek', w: x.k === 'sahne' ? 'sahne' : x.like ? 'sevdigi' : 'devam', ev: x.e.id, idea: 1 };
+      th.ideaAt = th.wantAt = n;
+      // 📋 mini plan: önce mekân, orada sahne (açılışı o mekâna bağlı olan)
+      if ((!why || why === 'tekdur') && sx !== 'sexnow' && !th.act && !th.plan && (sx || willOf(ch, th) >= 3) && Math.random() < .2) {
+        const no = new Set([...(ch.denies || []), ...(ch.dislikes || [])]);
+        for (const p of rank.filter(x => x.k === 'mekan').slice(0, 4)) {
+          const ds = (Stories.SCENES || []).map(d => ({ d, e: actEv(d.open) }))
+            .filter(y => y.e && !no.has(y.e.id) && moCats().some(c => c.id === y.e.cat && !!placeEvOf(c) && placeFits(placeEvOf(c), p.pl)));
+          if (!ds.length) continue;
+          const y = pickOne(ds), x = { k: 'plan', pl: p.pl, d: y.d, e: y.e };
+          th.botAsk = { t: 'istek', w: 'plan', pl: p.pl, plan: y.d.id, idea: 1 };
+          return [fill(pickOf(IDEA_SAY.plan), x)];
+        }
+      }
+      // 🔀 iki seçenek (aynı türden ikinci aday)
+      const two = rank.find(x => x !== top && x.k === top.k && ideaLab(x) !== ideaLab(top));
+      if (two && Math.random() < .4) {
+        const A = ideaLab(top), B = ideaLab(two), q = `${capTr(A)} ${qMi(A)}, ${B} ${qMi(B)}?`;
+        const tpl = tone && tone.ikili && Math.random() < .5 ? pickOf(tone.ikili) : lv === 'dom' ? pickOf(IDEA_SAY.ikiliDom) : pickOf(IDEA_SAY.ikili[top.k]);
+        th.botAsk = { t: 'istek', w: 'ikili', idea: 1, opts: [top, two].map(x => ({ ...ask1(x), n: ideaLab(x) })) };
+        return [tpl.replace('{q}', q)];
+      }
+      // 👑 sormadan yapar
+      const doP = lv === 'sub' ? 0 : Math.max(0, (lv === 'dom' ? .5 : lv === 'switch' ? .15 : 0) + ((per && per.do) || 0));
+      if (doP && Math.random() < doP) {
+        snap('İstek');
+        if (top.pl) list.push(sceneMsg(top.pl)); else eventMessages(top.e);
+        clockTick(); save(); draw(); refreshList();
+        return [fill(pickOf(IDEA_SAY.do[top.k]), top)];
+      }
+      if (top.k === 'sahne') th.actOff = top.d.id;
+      th.botAsk = ask1(top);
+      const M = IDEA_SAY.mekan, pm = top.k === 'mekan' && !why ? pers.map(p => p.mekan).filter(Boolean) : [];
+      let s = top.k === 'mekan' ? pickOf(M[why] || (pm.length && Math.random() < .4 ? pickOf(pm) : BOT_WANT.mekan.ask))
+        : top.k === 'sahne' ? (why === 'sahne' ? pickOf(IDEA_SAY.sahne) : actLine(ch, top.d, 'ask'))
+        : pickOf(top.like ? BOT_WANT.sevdigi.ask : IDEA_SAY.devam);
+      s = fill(s, top);
+      // 🎭 kişiliğe göre ton (Utangaç "Ş-şey… …istersen? 🙈")
+      if (tone && tone.pre && Math.random() < .5) s = pickOf(tone.pre) + s.charAt(0).toLocaleLowerCase('tr') + s.slice(1);
+      if (tone && tone.post && Math.random() < .35) s += pickOf(tone.post);
+      return [s];
+    }
+    // 💭 iki seçenekli fikre cevap: "ilki / ikincisi", seçeneğin adı ("banyo"), "fark etmez" (rastgele) ya da "evet" (ilki) → o seçenek; yoksa null
+    const IDEA_ORD = [/\b(ilk|ilki|ilkini|ilkine|birinci|birincisi|1|onceki)\b/, /\b(ikinci|ikincisi|ikinciyi|ikinciye|2|sonraki|digeri|digerini|oteki|otekini)\b/];
+    function ideaPick(p, text) {
+      if (!p || p.w !== 'ikili' || (p.opts || []).length < 2) return null;
+      const t = evbFold(text), stems = s => evbFold(s).split(/[^a-z0-9]+/).filter(w => w.length >= 4).map(w => w.slice(0, Math.max(3, Math.min(5, w.length - 2))));
+      let i = IDEA_ORD.findIndex(r => r.test(t));
+      if (i < 0) { const hit = p.opts.map(o => stems(o.n).some(s => t.includes(s))); i = hit[0] !== hit[1] ? hit.indexOf(true) : -1; }
+      if (i < 0 && /\b(fark etmez|farketmez|sen sec|sen bilirsin|ikisi de|hangisi olursa)\b/.test(t)) i = Math.random() < .5 ? 0 : 1;
+      if (i < 0 && yesNo(text) === 'evet') i = 0;
+      const o = i >= 0 && p.opts[i];
+      return o ? { t: 'istek', w: o.w, ev: o.ev, pl: o.pl, idea: 1 } : null;
+    }
+    // ➡️ son olayın devamı: NEXT_EV (başlıkla), yoksa NEXT_CAT (kategoriyle, 3 rastgele); 🚫/💔 ve bu mekâna uymayanlar hariç
+    function nextEvs(ch, last) {
+      if (!last) return [];
+      const no = new Set([...(ch.dislikes || []), ...(ch.denies || [])]), sc = (lastScene() || {}).scene || null;
+      const ok = e => !!e && e.id !== last.id && !no.has(e.id) && !evAway(e, sc);
+      const t = NEXT_EV[actLow(last.title)];
+      if (t) return [...new Set(t.map(actEv).filter(ok))];
+      const nc = NEXT_CAT[actLow(catOfEv(last).label)];
+      return nc ? sample(allEvents().filter(e => ok(e) && !isFant(e) && nc.includes(actLow(catOfEv(e).label))), 3) : [];
+    }
+    // 📋 mini plan şeridi (th.plan = { act, pl, name, icon }): ① mekân ✓ ② sahne (açılış çipi) ③ sahnenin bitişi; sahne sürerken altında sahne şeridi
+    function planBar(d, p) {
+      const a = th.act && th.act.id === d.id ? th.act : null, e = actEv(d.open), fe = d.fin && actEv(d.fin), k = a ? 2 : 1;
+      const open = !a && e ? `<button type="button" class="mo-chip eq-next${evCls(e)}"${evStyle(e)} data-qev="${esc(e.id)}" title="🎬 Sahne başlat: ${esc(d.open)}">🎬${d.icon} ${esc(d.name)}</button>` : `<span class="eq-at">🎬 ${esc(d.name)} ✓</span>`;
+      return `<div class="eq-act"><span class="eq-at">📋 Plan <b>${'●'.repeat(k)}${'○'.repeat(3 - k)} ${k}/3</b></span>
+        <div class="eq-row"><span class="eq-at">${p.icon} ${esc(p.name)} ✓</span>${open}<span class="eq-at">🏁 ${esc(fe ? fe.title : d.name)}</span></div>
+        <button type="button" class="eq-x" data-qplan="x" aria-label="Planı bırak" title="Planı bırak">✕</button></div>`;
     }
     function actBar(d, a) {
       const need = actNeed(d), n = Math.min(a.done.length, need), want = d.mode === 'seq' ? d.steps.findIndex((s, i) => !a.done.includes(i)) : -1;
@@ -11081,12 +11246,18 @@
         say(`🎉 ${d.icon} ${d.name} tamamlandı${a.skip ? ' (sıra karıştı, ödül yarım)' : ''} · ${memFx({ fx })}${d.end ? ' · ' + d.end : ''}`);
         notify(`🎬 ${d.name} tamamlandı`, '🎉');
         her(d, 'end');
+        // 📋 plan tamam (+2 Aşk +1 Samimiyet) · 💭 sıradaki fikir (sahne / mekân) bir sonraki cevapta
+        if (th.plan && th.plan.act === d.id) { const pf = [['aşk', 2], ['samimiyet', 1]]; th.plan = null; pay(pf); say(`📋 Plan tamamlandı · ${memFx({ fx: pf })}`); notify('Plan tamamlandı', '📋'); }
+        th.actOff = d.id;
+        th.ideaWhy = 'sahne';
       };
+      const planOff = d => { if (th.plan && th.plan.act === d.id) { th.plan = null; say('📋 Plan yarım kaldı'); } };
       const brk = (d, why) => {
         th.act = null;
         if (d.fail) pay(d.fail);
         say(`💔 ${d.icon} ${d.name} bozuldu: ${why}${d.fail ? ' · ' + memFx({ fx: d.fail }) : ''}`);
         her(d, 'fail');
+        planOff(d);
       };
       const t = actLow(e.title), a = th.act, d = a && actDef(a.id), pl = actPl();
       if (a && !d) th.act = null;
@@ -11113,10 +11284,11 @@
             th.act = null;
             say(`⏩ ${d.icon} ${d.name} erken bitti (${a.done.length}/${need}) · sahne ödülü yok`);
             her(d, 'early');
+            planOff(d);
             return;
           }
           if (depth || t === actLow(d.open)) return;
-          if (actOpen(e)) { th.act = null; say(`🔀 ${d.icon} ${d.name} yarım kaldı`); }
+          if (actOpen(e)) { th.act = null; say(`🔀 ${d.icon} ${d.name} yarım kaldı`); planOff(d); }
           else {
             const why = actTh(e).some(x => x !== d.tag) ? 'başka mekânın olayı' : ++a.idle > (d.ttl || 4) ? 'uzun süre sahneye dönmedin' : '';
             if (why) brk(d, why);
@@ -11710,6 +11882,9 @@
     const bullGate = picked => {
       const low = s => String(s || '').toLocaleLowerCase('tr'), tg = (e, t) => (e.tags || []).some(x => low(x) === t);
       const ch = c || byId(chatCharIds()[0]);
+      // 🐍 Affair olayları (aldatma etiketi): bu sohbette Cheating olmadıysa önüne bir kez Cheating girer (sevgilisi var)
+      const cheat0 = allEvents().find(e => e.title === 'Cheating');
+      if (cheat0 && picked.some(x => tg(x.e, 'aldatma')) && !picked.some(x => x.e.id === cheat0.id) && !lastDone()[cheat0.id]) picked = [{ e: cheat0 }, ...picked];
       if (!ch || !picked.some(x => tg(x.e, 'bull'))) return picked;
       const f = ch.fields || {}, first = String(ch.name || '').split(' ')[0];
       if (!f.evli && !f.hotwife) { notify(`💍 ${first} evli değil: Bull olayları Evli ya da Hotwife karakterde açılır`, '🐂'); return picked.filter(x => !tg(x.e, 'bull')); }
@@ -11718,7 +11893,7 @@
       const no = picked.filter(x => tg(x.e, 'kocabilir'));
       if (no.length) { notify(`🐂 Kocası bilmiyor: ${no.map(x => x.e.title).join(', ')} için önce Husband Approved`, '💍'); picked = picked.filter(x => !no.includes(x)); }
       const cheat = allEvents().find(e => e.title === 'Cheating');
-      return picked.some(x => tg(x.e, 'bull')) && cheat && !last[cheat.id] ? [{ e: cheat }, ...picked] : picked;
+      return picked.some(x => tg(x.e, 'bull')) && cheat && !last[cheat.id] && !picked.some(x => x.e.id === cheat.id) ? [{ e: cheat }, ...picked] : picked;
     };
     const writeEvents = picked => {
       if (cs.busy) { notify('Biraz bekle, karşı taraf yazıyor… ⏳', '⏳'); return; }
@@ -11733,6 +11908,9 @@
       // 👯 iki kızlı (üçlü etiketli) olaylar sadece grup sohbetinde
       const trio = !group && picked.filter(x => (x.e.tags || []).some(t => lowTag(t) === 'üçlü'));
       if (trio && trio.length) { notify(`👯 ${trio.map(x => x.e.title).join(', ')} sadece 2 kişilik grup sohbetinde olur`, '👯'); picked = picked.filter(x => !trio.includes(x)); }
+      // 🤰 hamilelik olayları sadece hamile karakterde, kendi hafta aralığında
+      const preg = !group && c && picked.filter(x => pregBlock(c, x.e));
+      if (preg && preg.length) { const ic = isPregEv(preg[0].e) ? '🤰' : '🍼'; notify(`${ic} ${preg.map(x => x.e.title).join(', ')}: ${pregBlock(c, preg[0].e)}`, ic); picked = picked.filter(x => !preg.includes(x)); }
       if (!picked.length) return;
       // 🥶 CarmenAmor: hediye teklifini reddettiysen küs, sevişmek istemez (özür dile ya da gönlünü hediyeyle al)
       if (th.amor && !group && c && amCold(c)) {
@@ -11826,6 +12004,9 @@
         // 🚫 içe izin vermiyorsa (kondom şartı / içe izin yok) korunmasız içe boşalma daha sert
         if (['pulloutkacti', 'riskli'].includes(state) && protGet(ch).ice !== 'var' && protGet(ch).kon && !rawOk) state = 'izinsiz_icine';
         th.izinVerdi = false;
+        // ⏳🤰 ilan seansında hamile kaldıysa saat sınırı kalkar, özel mesajla
+        // cümle kişiliğe göre: bot kuralı "=durum =eschamile" (istediyse) / "=eschamilered" (istemediyse), yoksa PREG_FREE
+        if (preg && th.paid && !group) { const pl = sessLine(ch, ok ? 'hamile' : 'hamilered', PREG_FREE); delete th.paid; save(); setTimeout(() => { if (!$('#botTyping')) sessSay(pl); }, 6500); }
         // bir sonraki önden girişte yine "kondomsuz giriyorsun" tepkisi gelebilir
         if (th.giris) delete th.giris[ch.id];
         th.israr = 0;
@@ -11944,8 +12125,9 @@
     }
     // 💁‍♀️ Lia önerisine dokununca olay yazılır; 📖 kitabın "İdeal bir seans" bölümü; ✕ kapatır
     $('#evQuick').onclick = e => {
-      const b = e.target.closest('[data-qev], [data-q], [data-qpl], [data-qsp], [data-qact]');
+      const b = e.target.closest('[data-qev], [data-q], [data-qpl], [data-qsp], [data-qact], [data-qplan]');
       if (!b || cs.playing) return;
+      if (b.dataset.qplan) { th.plan = null; save(); drawQuick(); notify('📋 Plan bırakıldı', '📋'); return; }
       if (b.dataset.qact) { const d = th.act && actDef(th.act.id); th.act = null; save(); drawQuick(); if (d) notify(`🎬 ${d.name} bitirildi · ödül yok`, '🎬'); return; }
       if (b.dataset.qsp) { const sc = (lastScene() || {}).scene, s = sc && (SITE_SPOTS[sc.place] || []).find(x => x.k === b.dataset.qsp); if (s) goPlace(spotScene(sc.place, s)); return; }
       if (b.dataset.qpl) { const p = allPlaces().find(x => x.id === b.dataset.qpl); if (p) goPlace(plCard(p)); return; }
@@ -12144,7 +12326,8 @@
       if (t === 'tahmin') { tahminOn(!tahminOn()); b.classList.toggle('on', tahminOn()); drawTahmin(); notify(tahminOn() ? 'Tahmin modu açık' : 'Tahmin modu kapalı', '🔮'); }
       if (t === 'lia') { liaOn(!liaOn()); b.classList.toggle('on', liaOn()); drawLia(); notify(liaOn() ? 'Lia önerileri açık' : 'Lia önerileri kapalı', '💁‍♀️'); }
       if (t === 'place') placeSheet(null);
-      if (t === 'event') poolPicker({ title: '📜 Olay yaz', catFirst: CHAT_TOP_TAG, fold: true, ctx: pickerCtx() }, evs => {
+      // 🤰 hamilelik olayları sadece hamileyken (kendi haftasında) listelenir
+      if (t === 'event') poolPicker({ title: '📜 Olay yaz', catFirst: CHAT_TOP_TAG, fold: true, ctx: pickerCtx(), skip: group || !c ? [] : allEvents().filter(e => pregBlock(c, e)).map(e => e.title) }, evs => {
         if (!evs.length) return;
         askSubs(evs, writeEvents);
       });
@@ -13303,7 +13486,8 @@
     const t = String(text || '').trim(), low = t.toLocaleLowerCase('tr');
     if (low.length < 2) return [];
     const all = allEvents(), out = [], bad = new Set((ch || {}).denies || []);
-    const add = e => { if (e && !bad.has(e.id) && !out.includes(e)) out.push(e); };
+    // 🤰 hamilelik olayları sadece hamileyken (kendi haftasında)
+    const add = e => { if (e && !bad.has(e.id) && !out.includes(e) && (group || !ch || !pregBlock(ch, e))) out.push(e); };
     const R = Stories.BOT_RULES, B = Stories.Bot;
     if (R && B) {
       if (!tEvCmd || tEvCmd.R !== R) tEvCmd = { R, rules: (R.rules || []).filter(r => CMD_EV[cmdKey(r.id)]) };
@@ -14215,7 +14399,7 @@
   // evet → th.botAsk.ev olayı (@ask; mekan isteğinde ev yok, mekan kartını botReply ekler)
   BOT_ASK.istek = { ok: () => false, yes: '@ask', no: [] };
   /* 🎬 sahne cümleleri (renderChat actLine): sahneye özel Stories.SCENE_SAY[id][an] %75, yoksa bu genel havuz ({sahne} {ic}).
-   * an: ask (yedek cevapta teklif, actOffer) · open · step · ready · end · fail · early. Bot kuralı "=durum =sahne<id><an>" / "=durum =sahne<an>" önce gelir */
+   * an: ask (onun fikri olarak sahne teklifi, ideaOffer) · open · step · ready · end · fail · early. Bot kuralı "=durum =sahne<id><an>" / "=durum =sahne<an>" önce gelir */
   const ACT_SAY = {
     ask: ['Aklıma bir şey geldi… {sahne} yapalım mı? {ic}', 'Hadi bir oyun oynayalım: {sahne}. Var mısın? {ic}😏', 'Bu gece {sahne} olsun mu? {ic}', 'Canım {sahne} çekti… sen de ister misin? {ic}'],
     open: ['{sahne} başladı… acele etme 😏', 'Tamam, adım adım gidelim {ic}', 'Bu sahneyi sonuna kadar oynayalım 😈'],
@@ -14230,9 +14414,70 @@
     const own = ((Stories.SCENE_SAY || {})[d.id] || {})[k], pool = own && own.length && i % 4 !== 3 ? own : ACT_SAY[k] || ACT_SAY.step;
     return String(pool[i % pool.length]).replace(/\{sahne\}/g, d.name).replace(/\{ic\}/g, d.icon).replace(/\{sen\}/gi, 'canım').replace(/\{ben\}/gi, '');
   };
-  // 🎬 yedek cevapta sahne teklifi (actOffer): evet → açılış olayı (@ask, th.botAsk.ev) → sahne başlar; wantNow bunu kendisi seçmez (ok false)
+  // 🎬 sahne teklifi (ideaOffer): evet → açılış olayı (@ask, th.botAsk.ev) → sahne başlar; wantNow bunu kendisi seçmez (ok false)
   BOT_WANT.sahne = { ok: () => false, ask: ACT_SAY.ask, do: ['{sahne} başlıyor, hazır ol {ic}😈'],
     yes: ['Yaşasın! Başlıyoruz 😈', 'Biliyordum hayır demeyeceğini 😏', 'Hadi o zaman, adım adım 🥵', 'Mmm, gel buraya 😘'], no: ['Peki… ama aklımda kalacak 😌', 'Tamam, başka zaman 😏', 'Hıh, sen kaybedersin 😒'] };
+  // 💭 onun fikrine evet / hayır (ideaOffer): mini plan · iki seçenek ("hayır" → ikisi de olmaz) · son olayın devamı
+  BOT_WANT.plan = { ok: () => false, yes: ['Anlaştık! Önce oraya, gerisi plana göre 😏', 'Yaşasın, planım tuttu 😈', 'Hadi, adım adım gidiyoruz 🥵'], no: ['Planımı beğenmedin mi? 😒', 'Peki… başka bir şey düşünürüm 😌', 'Hıh, ben de çok güzel planlamıştım 😤'] };
+  BOT_WANT.ikili = { ok: () => false, yes: ['Güzel seçim 😏', 'Ben de onu istiyordum 😈'], no: ['İkisi de mi olmaz? 😒', 'Zor beğenirsin sen 🙄', 'Peki… o zaman başka bir şey 😌'] };
+  BOT_WANT.devam = { ok: () => false, yes: ['Mmm, devam 😈', 'Ben de tam bunu istiyordum 🥵', 'Hadi o zaman 😏'], no: ['Peki, acele yok 😌', 'Tamam… sen yönet 😏', 'Hıh, öyle olsun 😒'] };
+  /* 💭 onun fikri cümleleri (ideaOffer): {pl} mekân (küçük harfle, "banyoda") · {ic} simge · {sahne} sahne adı · {olay} olay · {q} iki seçenekli soru ("Banyoda mı, yatakta mı?")
+   *   mekan[why]: tetikleyiciye göre mekân teklifi (sahne: 🎉 sahne bitti · sonra: bitişten sonra · tekdur: bu mekânda 7+ olay · yeni: hiç gidilmemiş mekân); why yoksa BOT_WANT.mekan / kişilik */
+  const IDEA_SAY = {
+    plan: ['Aklımda bir plan var: önce {pl}, orada {sahne}… sonrası sürpriz 😏 Var mısın? {ic}', 'Önce {pl} biraz takılalım, sonra {sahne}? {ic}😈', 'Planım şu: {pl} → {sahne} → sonu sana kalmış 😏{ic} Ne dersin?', 'Hadi bir plan yapalım: önce {pl}, sonra {sahne} {ic} Olur mu?'],
+    ikili: {
+      mekan: ['Nerede devam edelim? {q}', 'Burada sıkıldım… {q} 😏', 'Bir yer seç: {q} 🤭'],
+      sahne: ['Hangisini oynayalım? {q} 😈', 'İki fikrim var: {q} 😏', 'Seç bakalım: {q} 🎬'],
+      olay: ['Şimdi ne yapalım? {q} 😏', 'Hangisi? {q} 🥵', 'Sen seç: {q} 😈']
+    },
+    ikiliDom: ['Seç: {q} Hemen 👑', '{q} Çabuk karar ver, yoksa ben seçerim 😈', 'İki seçeneğin var: {q} Üçüncüsü yok 👑'],
+    do: {
+      mekan: ['Kalk, gidiyoruz! Artık {pl} devam ediyoruz {ic}😈', 'Sormuyorum: {pl} geçiyoruz {ic}👑', 'Elini ver… {pl} devam ediyoruz {ic}'],
+      sahne: ['{sahne} başlıyor, hazır ol {ic}😈', 'Karar verdim: {sahne} {ic}👑', 'Sus ve bırak kendini: {sahne} {ic}'],
+      olay: ['Şimdi {olay}. Tartışma yok 😈', 'Sus ve bırak: {olay} 👑', 'Ben karar verdim: {olay} 😏']
+    },
+    mekan: {
+      sahne: ['Bu sahne bitti ama gece bitmedi… {pl} devam edelim mi? {ic}', 'Mmm, şimdi {pl} biraz soluklanalım mı? {ic}😏', 'Sıradaki perde {pl} olsun mu? {ic}🎬'],
+      sonra: PLACE_FLOW.ask.sonra,
+      tekdur: PLACE_FLOW.ask.tekdur,
+      yeni: ['Hiç {pl} olmadık seninle… gidelim mi? {ic}', 'Bir yer var, daha hiç denemedik: {pl}. Ne dersin? {ic}😏', 'Merak ediyorum… {pl} nasıl olurdu? Gidelim mi? {ic}🙈']
+    },
+    sahne: ['Bu güzeldi… şimdi {sahne} yapalım mı? {ic}😏', 'Daha bitmedi: sırada {sahne} var, ister misin? {ic}😈', 'İkinci perde: {sahne}? {ic}🥵'],
+    devam: ['Şimdi {olay} yapsak mı? 😏', 'Hadi biraz {olay}? 🥵', 'Sırada {olay} var bence… ne dersin? 😈', 'Mmm, şimdi {olay} çok iyi giderdi 😏']
+  };
+  // ➡️ olay sonrası devam haritası (nextEvs): son olayın başlığı (küçük harf) → mantıklı sıradaki olaylar; yoksa NEXT_CAT (kategori → kategoriler)
+  const NEXT_EV = {
+    'kissing': ['Lap Kissing', 'Front Hugging', 'Take Off Top', 'Lick Neck'], 'lap kissing': ['Kissing', 'Take Off Top', 'Lap Strip', 'Show Tits'],
+    'front hugging': ['Kissing', 'Back Hugging', 'Undress Each Other'], 'back hugging': ['Lick Neck', 'Take Off Bra', 'Spooning'],
+    'take off top': ['Take Off Bra', 'Show Tits', 'Lick Tits'], 'take off bra': ['Show Tits', 'Lick Tits', 'Titfuck'], 'strip to underwear': ['Take Off Bra', 'Take Off Panties', 'Lap Strip'],
+    'striptease': ['Lap Strip', 'Get Naked', 'Blowjob'], 'get naked': ['Cunnilingus', 'Blowjob', 'Missionary'], 'show tits': ['Lick Tits', 'Titfuck', 'Slap Boob'],
+    'lick tits': ['Titfuck', 'Cunnilingus', 'Handjob'], 'handjob': ['Blowjob', 'Titfuck', 'Cowgirl'], 'blowjob': ['Deepthroat', '69', 'Cowgirl', 'Missionary'],
+    '69': ['Missionary', 'Cowgirl', 'Cunnilingus'], 'cunnilingus': ['Facesitting', 'Missionary', '69'], 'titfuck': ['Blowjob', 'Tit Cumshot', 'Cowgirl'],
+    'missionary': ['Cowgirl', 'Doggy', 'Lotus', 'Butterfly'], 'cowgirl': ['Reverse Cowgirl', 'Missionary', 'Lap Sex'], 'reverse cowgirl': ['Doggy', 'Cowgirl', 'Prone Bone'],
+    'doggy': ['Prone Bone', 'Standing', 'Missionary'], 'spooning': ['Missionary', 'Doggy', 'Back Hugging'], 'prone bone': ['Doggy', 'Spooning'],
+    'standing': ['Doggy', 'Ondesk', 'Lap Sex'], 'lotus': ['Missionary', 'Cowgirl'],
+    'vaginal creampie': ['Front Hugging', 'Back Hugging', 'Kissing'], 'anal creampie': ['Back Hugging', 'Kissing'], 'face cumming': ['Kissing', 'Front Hugging'], 'tit cumshot': ['Front Hugging', 'Kissing']
+  };
+  const NEXT_CAT = { foreplay: ['undress', 'foreplay', 'outercourse'], undress: ['foreplay', 'outercourse', 'eat'], outercourse: ['forward', 'eat'], eat: ['forward', 'outercourse'],
+    forward: ['forward', 'backward'], backward: ['backward', 'forward'], mode: ['forward', 'backward'], cumming: ['foreplay'] };
+  /* 🎭 fikirde kişilik tonu (WANT_PER[t].idea): pre cümlenin başına (%50, ilk harfi küçülür) · post sonuna (%35) · ikili {q} kalıbı (%50).
+   * Baskınlar (Asi / Kibirli / Özgüvenli / Şımarık) emir verir; sormadan yapma şansı WANT_PER[t].do + Dominance (domLv) */
+  Object.entries({
+    'Utangaç': { pre: ['Ş-şey… ', '*kızararak* ', 'B-bir fikrim var ama… '], post: [' …istersen? 🙈', ' Yani… sadece istersen 😳'], ikili: ['Ş-şey… {q} 🙈 Sen seç', '*fısıldar* {q} 😳'] },
+    'Güvensiz': { pre: ['Bilmiyorum ama… ', 'Belki saçma ama… '], post: [' Sorun olmaz, değil mi? 🥺', ' Hayır dersen anlarım 😟'] },
+    'Çocuksu': { pre: ['Yaa, ', 'Hihi, '], post: [' Lütfen lütfeen 🥺'], ikili: ['Yaa seç seç: {q} 🥺'] },
+    'Romantik': { post: [' Sadece ikimiz 🌹', ' Bu gece özel olsun 💞'], ikili: ['Bu gece nasıl geçsin istersin? {q} 🌹'] },
+    'Duygusal': { post: [' Yanımda ol yeter 🥺', ' Seninle olmak istiyorum 💗'] },
+    'Flörtöz': { post: [' 😉', ' Hayır diyemezsin bence 😘'], ikili: ['Bak, sana iki seçenek: {q} 😉 İkisinde de güzelim'] },
+    'Asi': { pre: ['Kalk. ', 'Tartışma yok: '], post: [' Hadi, kıpırda 😤'], ikili: ['{q} Seç, hemen 😤'] },
+    'Kibirli': { pre: ['Sana bir lütufta bulunuyorum: ', 'Karar verdim: '], post: [' Şanslısın 💅'], ikili: ['{q} İkisi de bana yakışır 💅 Seç'] },
+    'Özgüvenli': { pre: ['Şöyle yapıyoruz: '], post: [' Takip et 😎'], ikili: ['{q} Hangisini seçersen seç, iyi olacak 😎'] },
+    'Şımarık': { pre: ['İstiyorum: ', 'Hmpf, '], post: [' Hemen! 😤', ' Lütfeeen 🥺'], ikili: ['{q} Ama çabuk seç 😤'] },
+    'Gizemli': { pre: ['*fısıldar* '], post: [' Sorma neden 🌒'], ikili: ['İki kapı var: {q} 🌒'] },
+    'Manipülatif': { post: [' Karşılığında bir sürprizim var 😏'], ikili: ['{q} Doğru seçersen ödülün var 😏'] },
+    'Dürüst': { pre: ['Açık konuşayım: '] },
+    'Neşeli': { post: [' Çok eğlenceli olacak 😄'], ikili: ['Yaşasın fikirler! {q} 😆'] }
+  }).forEach(([t, o]) => { if (WANT_PER[t]) WANT_PER[t].idea = o; });
   // 👑 Femdom olaylarına cevap: Dominant buyurgan, diğerleri yeni deniyor gibi
   const DOM_EV = {
     'strap-on': {
@@ -17091,13 +17336,13 @@
     ['ick', '🍷', 'Drinks', ['drinks']],
     ['isin', '💋', 'Isınma', ['foreplay', 'massage', 'protection']],
     ['soy', '👗', 'Soyunma', ['undress']],
-    ['on', '👅', 'Ön sevişme', ['eat', 'outercourse']],
-    ['sut', '🍼', 'Lactation', ['lactation', 'nursing', 'lactation fantasy']],
-    ['poz', '🔥', 'Pozisyon', ['forward', 'backward', 'threesome', 'mode', 'pre-cumming']],
+    ['on', '👅', 'Ön sevişme', ['eat', 'outercourse', 'pregnancy foreplay']],
+    ['sut', '🍼', 'Lactation', ['lactation', 'nursing', 'lactation fantasy', 'milky foreplay']],
+    ['poz', '🔥', 'Pozisyon', ['forward', 'backward', 'threesome', 'pregnancy', 'milky sex', 'mode', 'pre-cumming']],
     ['mekan', '📍', 'Mekân', ['mekanda', 'shower', 'sauna', 'bathtub', 'pool', 'car', 'elevator', 'camping', 'kitchen', 'stairs', 'laundry', 'balcony', 'camera', 'beach', 'office', 'hotel', 'school', 'church', 'gym', 'bar', 'cinema', 'outdoors', 'restaurant', 'rooftop', 'library', 'fair', 'haunted', 'street', 'massage salon', 'clinic', 'pee']],
-    ['fant', '🦄', 'Fantezi', ['fantesy', 'meisove', 'femdom', 'bdsm', 'bull']],
+    ['fant', '🦄', 'Fantezi', ['fantesy', 'meisove', 'femdom', 'bdsm', 'bull', 'affair', 'affair story']],
     ['bit', '💦', 'Bitiş', ['cumming', 'cumming size']],
-    ['son', '🌙', 'Sonrası', ['cool down', 'treatment', 'bull story']]
+    ['son', '🌙', 'Sonrası', ['cool down', 'treatment', 'bull story', 'milky after']]
   ];
   // 📍 Mekân kategorileri ↔ mekan kartları: ids = uyan mekanlar (places.js), to = o olay yazılınca geçilen mekan (places.js id'si ya da kendi kartı)
   const PLACE_EV = {
@@ -17903,6 +18148,24 @@
   const cyclePhase = c => { const d = cycleDay(c); return d <= 5 ? 'regl' : d >= 11 && d <= 16 ? 'riskli' : d <= 10 ? 'erken' : 'gec'; };
   const CYCLE = { regl: { mul: .15, icon: '🩸', label: 'regl' }, erken: { mul: .7, icon: '🌸', label: 'düşük risk' }, riskli: { mul: 1.8, icon: '🔥', label: 'riskli gün' }, gec: { mul: .5, icon: '🌙', label: 'düşük risk' } };
   const pregWeek = c => (c.fields || {}).hamile && c.pregAt != null ? Math.floor(((c.life || 0) - c.pregAt) / PREG_WEEK) + 1 : 0;
+  // 🤰 'hamile' etiketli olay kapısı: hamile değilse ya da hafta e.weeks [min, max] dışındaysa sebep döner ('' = olur)
+  const isPregEv = e => ((e || {}).tags || []).some(t => String(t).toLocaleLowerCase('tr') === 'hamile');
+  // 💡 karakterin durumuna göre öne çıkan olaylar (⚡ / 🎯 Şimdi / 💭 teklif): 🤰 hamileyse hamilelik, 💍 evliyse 🐂 Bull + 💍 Bull Story (bitişler hariç)
+  const focusEv = (c, e) => {
+    const f = (c || {}).fields || {}, tg = ((e || {}).tags || []).map(t => String(t).toLocaleLowerCase('tr'));
+    if (!e || tg.includes('boşalma')) return false;
+    return !!(f.hamile && tg.includes('hamile') || f.evli && (tg.includes('bull') || e.cat === 'c:mvbullstory01x'));
+  };
+  // 🍼 süt kapısı da burada: e.milk (Milk & Cum olayları) → onun 🍼 Süt değeri en az bu kadar olmalı
+  const milkV = c => { const p = allParams().find(x => x.who !== 'me' && String(x.label).toLocaleLowerCase('tr') === 'süt'); return p ? +paramVal(c || {}, p) || 0 : 0; };
+  const pregBlock = (c, e) => {
+    if (e && e.milk != null && milkV(c) < e.milk) return `göğüsleri boş, Süt en az ${e.milk} olmalı`;
+    if (!isPregEv(e)) return '';
+    const w = pregWeek(c || {}) || ((c || {}).fields || {}).hamile && 1;
+    if (!w) return 'sadece hamileyken olur';
+    const [a, b] = e.weeks || [1, 40];
+    return w < a ? `${a}. haftadan önce olmaz` : w > b ? `${b}. haftadan sonra olmaz` : '';
+  };
   // saat ilerleyince (dt dakika): hamilelik haftası, 🍼 Süt artışı, üç ay geçişleri ve doğum; note(metin) sohbete not yazar
   function bodyTick(c, dt, note) {
     c.life = (c.life || 0) + dt;
@@ -18655,14 +18918,26 @@
   let trPos = null;
   // 🎯 sadece bitiş yeri etiketleri eşleşir (vajinal, kalça…); 🎃 temalı olaylar (halloween / kan / slime / tedavi / mekânlar) ancak pozisyon da o temadaysa:
   // vanilla Doggy → Vaginal Creampie, Red Bath / Visible Creampie değil; Blood Bath → Red Bath Creampie da olabilir
-  const EV_THEME = ['halloween', 'kan', 'slime', 'tedavi', 'boşalma', 'duş', 'sauna', 'bull', 'küvet', 'havuz', 'araba', 'asansör', 'kamp', 'mutfak', 'merdiven', 'çamaşır', 'balkon', 'kamera', 'plaj', 'ofis', 'otel', 'okul', 'kilise', 'spor', 'bar', 'sinema', 'doğa', 'restoran', 'çatı', 'kitap', 'lunapark', 'perili', 'sokak', 'masaj', 'üçlü'];
+  const EV_THEME = ['halloween', 'kan', 'slime', 'tedavi', 'boşalma', 'duş', 'sauna', 'bull', 'küvet', 'havuz', 'araba', 'asansör', 'kamp', 'mutfak', 'merdiven', 'çamaşır', 'balkon', 'kamera', 'plaj', 'ofis', 'otel', 'okul', 'kilise', 'spor', 'bar', 'sinema', 'doğa', 'restoran', 'çatı', 'kitap', 'lunapark', 'perili', 'sokak', 'masaj', 'üçlü', 'aldatma', 'hamile', 'süt'];
   // bir kategorideki (ör. Cumming) şu anki pozisyona uyan olayların hepsi (trTarget 'match:' ve olay seçicinin 🎯 Şimdi satırı)
   function matchFinishes(catId, pos) {
     const tags = ((pos || {}).tags || []).map(lowTag), spot = tags.filter(t => !EV_THEME.includes(t));
-    return spot.length ? allEvents().filter(e => {
+    // e.after: bitiş sadece bu başlıklı pozisyonlardan sonra (Lotus Creampie ← Slow Lotus)
+    const pt = lowTag((pos || {}).title || '');
+    const hits = spot.length ? allEvents().filter(e => {
       const et = (e.tags || []).map(lowTag);
-      return (e.cat || 'mine') === catId && et.some(t => spot.includes(t)) && et.every(t => !EV_THEME.includes(t) || t === 'boşalma' || tags.includes(t));
+      return (e.cat || 'mine') === catId && et.some(t => spot.includes(t)) && et.every(t => !EV_THEME.includes(t) || t === 'boşalma' || tags.includes(t))
+        && (!(e.after || []).length || e.after.some(a => lowTag(a) === pt));
     }) : [];
+    // 🤰 hamilelik pozisyonundan sonra: varsa pozisyona özel bitiş, yoksa hamilelik bitişleri (genel Vaginal Creampie değil)
+    // 🤰 hamile / 🍼 süt pozisyonları: kendi bitişleri (genel Vaginal Creampie değil)
+    const th = tags.includes('hamile') ? 'hamile' : tags.includes('süt') ? 'süt' : '';
+    if (!th) return hits;
+    // karna / göğse bitişler (göğüs) vajinal / anal pozisyonla bölge paylaşmaz: bu pozisyonlardan sonra onlar da aday
+    const aft = e => !(e.after || []).length || e.after.some(a => lowTag(a) === pt);
+    const out = [...hits, ...allEvents().filter(e => (e.cat || 'mine') === catId && !hits.includes(e) && aft(e) && [th, 'boşalma', 'göğüs'].every(t => (e.tags || []).map(lowTag).includes(t)))];
+    const own = out.filter(e => (e.after || []).length), hm = out.filter(e => (e.tags || []).map(lowTag).includes(th));
+    return own.length ? own : hm.length ? hm : out;
   }
   function trTarget(id) {
     id = String(id || '');
@@ -18858,6 +19133,21 @@
     });
     mo.triggers = trs;
     S().milkSetup1 = 1;
+    save();
+  }
+  /* 🐍 Affair / 💍 Bull Story kurulumu (bir kez, S().affairSetup1): 🕵️ Şüphe (suphe) ve 📜 Kural İhlali (ihlal) parametreleri,
+   * ⚡ eşikler Şüphe ≥ 80 → Got Caught, Kural İhlali ≥ 3 → Husband Calls It Off. Var olanı silmez */
+  function setupAffair() {
+    const mo = S().monia;
+    if (!mo || S().affairSetup1 || !(mo.events || []).length) return;
+    const add = [{ id: 'suphe', icon: '🕵️', label: 'Şüphe', min: 0, max: 100, start: 0 }, { id: 'ihlal', icon: '📜', label: 'Kural İhlali', min: 0, max: 10, start: 0 }];
+    if (mo.params && add.some(p => !mo.params.some(x => x.id === p.id))) mo.params = [...mo.params, ...add.filter(p => !mo.params.some(x => x.id === p.id))];
+    const trs = JSON.parse(JSON.stringify(allTriggers()));
+    [['p:suphe', 80, 'mvas13caught'], ['p:ihlal', 3, 'mvbs13calloff']].forEach(([p, v, ev]) => {
+      if (mo.events.some(e => e.id === ev) && !trs.some(t => t.ev === ev)) trs.push({ id: Store.uid(), p, op: '>=', v, ev, effects: [] });
+    });
+    mo.triggers = trs;
+    S().affairSetup1 = 1;
     save();
   }
   /* 🤱 Nursing kurulumu (bir kez, S().nurseSetup1): ⚡ "Süt ≥ 95 → Overflow" eşiği kalkar (sohbette önce emzirme ister, 6 mesajda olmazsa taşar: th.fullAt);
@@ -20856,12 +21146,16 @@
   /* 🧠 Olay Hafızası Kitabı: MEM_RULES tablosundan okunur; anlatım memKey / eventMessages / botEventReply davranışını tekrar eder (değişince güncelle) */
   // 🔗 Kombolar bölümü: kombo başına örnek, ipucu ve neyin bozduğu (yeni kombo eklersen buraya da ekle)
   const KMB_BOOK = {
+    kmb_sutkrema: [['🎬 <b>Örnek:</b>', '🤱 Lap Nursing → 🍼🔥 Nursing Ride → 💦🍼 Creampie Let-down.'], ['💡 <b>İpucu:</b>', 'Milk &amp; Cum olayları 🍼 Süt değerine bağlıdır (çoğu en az 30); göğüsleri boşsa yazılmaz. Süt Kalitesi +5 verir.'], ['💔 <b>Bozan:</b>', 'Arada sütsüz bir olay (ör. Kissing) ya da başka mekânın olayı.']],
     kmb_adim: [['🎬 <b>Örnek:</b>', '💋 Kissing → 🫂 Back Hugging (Foreplay) → 👅 bir Eat olayı → ❤️ Missionary.'], ['💡 <b>İpucu:</b>', 'İki ısınma Foreplay, Eat ya da Outercourse olabilir; ilk olay mutlaka Kissing olmalı. Turun başında en güvenli kombo: hem Aşk hem Uyarılma artar.'], ['💔 <b>Bozan:</b>', 'Kissing ile giriş arasına üçüncü bir ısınma koymak (o zaman 🔥 Isınmış tutar).']],
     kmb_gelgit: [['🎬 <b>Örnek:</b>', '❤️ Missionary → 🍑 Missionary Anal → ❤️ önden bir pozisyon daha.'], ['💡 <b>İpucu:</b>', 'Önden pozisyon "vajinal", arkadan pozisyon "anal" etiketlidir; mekân pozisyonları da sayılır (ör. Shower Doggy → Shower Anal → Shower Lift).'], ['💔 <b>Bozan:</b>', 'Arada oral ya da ısınma olayı; Acı +3 getirdiği için Acı zaten yüksekse dikkat.']],
     kmb_tur: [['🎬 <b>Örnek:</b>', 'Üç farklı kategoriden pozisyon: ör. önden bir pozisyon, ardından 🚿 Shower pozisyonu, ardından 🏖️ Pool pozisyonu.'], ['💡 <b>İpucu:</b>', 'Kategori, olay seçicideki başlıktır; aynı kategoriden iki pozisyon arka arkaya gelirse kombo tutmaz. Hızlı tempo sever, Samimiyet de artar.'], ['💔 <b>Bozan:</b>', 'İkinci ya da üçüncü pozisyonun ilkiyle aynı kategoride olması.']],
     kmb_hemen: [['🎬 <b>Örnek:</b>', '💦 Vaginal Creampie → ❤️ hemen Missionary.'], ['💡 <b>İpucu:</b>', 'Boşalmadan sonra hiç ısınmadan yeniden girersen tutar; yeni turun ilk girişi olduğu için 📅 Geçen seferki gibi\'nin yerine geçer.'], ['💔 <b>Bozan:</b>', 'Boşalmadan sonra önce sarılmak, öpmek ya da başka bir olay yazmak.']],
     kmb_mekan: [['🎬 <b>Örnek:</b>', '🚿 Shower Lift → 🚿 Shower Doggy → 💦 Shower Creampie.'], ['💡 <b>İpucu:</b>', 'Üç olayın da aynı mekân etiketini taşıması gerekir (duş, havuz, plaj, ofis, okul, kilise, spor, bar, sinema…). Mekânın bitişleri yalnızca o mekânın pozisyonlarından sonra çıkar, yani doğal sırayla gidersen kendiliğinden tutar.'], ['💔 <b>Bozan:</b>', 'Mekân dışı bir pozisyon ya da başka mekânın bitişi.']],
-    kmb_icsoy: [['🎬 <b>Örnek:</b>', '🍷 Red Wine → 👗 Striptease → ❤️ Missionary.'], ['💡 <b>İpucu:</b>', 'Herhangi bir Drinks olayı ve herhangi bir Undress olayı olur (Skirt Up, Panties Aside gibi çıkarmadan açanlar dahil). Soyan içkiler (Spilled Wine, Ice In Bra, Strip Drinking Game) Drinks kategorisindedir: ardından yine bir Undress olayı gerekir.'], ['💔 <b>Bozan:</b>', 'İçki ile soyunma ya da soyunma ile pozisyon arasına öpüşme, ısınma gibi başka bir olay koymak.']]
+    kmb_icsoy: [['🎬 <b>Örnek:</b>', '🍷 Red Wine → 👗 Striptease → ❤️ Missionary.'], ['💡 <b>İpucu:</b>', 'Herhangi bir Drinks olayı ve herhangi bir Undress olayı olur (Skirt Up, Panties Aside gibi çıkarmadan açanlar dahil). Soyan içkiler (Spilled Wine, Ice In Bra, Strip Drinking Game) Drinks kategorisindedir: ardından yine bir Undress olayı gerekir.'], ['💔 <b>Bozan:</b>', 'İçki ile soyunma ya da soyunma ile pozisyon arasına öpüşme, ısınma gibi başka bir olay koymak.']],
+    kmb_izsiz: [['🎬 <b>Örnek:</b>', '👯‍♀️ Fake Alibi → 🔑 Spare Key → 🌸 Perfume Swap.'], ['💡 <b>İpucu:</b>', 'Ortadaki olay bir 🐍 Affair pozisyonu olmalı (Spare Key, Thin Wall, Our Song…). Kombo 🕵️ Şüphe\'yi 10 düşürür; Got Caught\'tan kaçmanın en iyi yolu.'], ['💔 <b>Bozan:</b>', 'Araya öpüşme ya da başka bir yalan (Delete History gibi) koymak.']],
+    kmb_kural: [['🎬 <b>Örnek:</b>', '📜 House Rules → 💋 Breaking A Rule → 🐂 Bull Doggy.'], ['💡 <b>İpucu:</b>', 'Son olay bir 🐂 Bull pozisyonu (Bull Doggy, Wedding Album…). Ödül 📜 Kural İhlali\'ni de 1 artırır: 3 olunca kocası anlaşmayı bitirir.'], ['💔 <b>Bozan:</b>', 'Kurallarla kural bozma arasına başka bir olay koymak.']],
+    kmb_rapor: [['🎬 <b>Örnek:</b>', '🐂 Bull Doggy → 🐂 Bull Creampie → 🗣️ Report Back.'], ['💡 <b>İpucu:</b>', 'Ortadaki herhangi bir boşalma olur (Marked Wife, Ring Cumshot…).'], ['💔 <b>Bozan:</b>', 'Boşalmadan sonra Report Back\'ten önce sarılma gibi başka bir olay.']]
   };
   const memFx = r =>r.fx.map(([l, d]) => `${d > 0 ? '+' : '−'}${Math.abs(d)} ${l.charAt(0).toLocaleUpperCase('tr') + l.slice(1)}`).join(', ') || '—';
   BOOKS.push({ id: 'hafiza', icon: '🧠', title: 'Olay Hafızası Kitabı', sub: 'olaylar birbirini hatırlar: sıra ve sayı mesajları değiştirir', chips: [`${MEM_RULES.length} kural`, `🔗 ${MEM_RULES.filter(r => r.seq).length} kombo`, `🎬 ${(Stories.SCENES || []).length} sahne`, '🤖 bot modu'], chapters: [
@@ -21468,6 +21762,31 @@
       return `<p>📱 Kesintiler açıkken bu köşelerin olaylarından sonra bazen bir kesinti gelir: Stairs %10, Laundry %10, Balcony %20.</p>
         <h4>🪜 Stairs</h4><ul>${ghInts('yermerdiven')}</ul><h4>🧺 Laundry</h4><ul>${ghInts('yercamasir')}</ul><h4>🌇 Balcony</h4><ul>${ghInts('yerbalkon')}</ul>`;
     } }] });
+  /* 🤰 Hamilelik Kitabı: Pregnancy Foreplay / Pregnancy (c:mvpregfp01x, c:mvpreg01x + 'hamile' bitişleri), hafta kapısı (e.weeks, pregBlock), sahneler */
+  const hmWeeks = evs => `<table class="bk-t"><tr><th>Olay</th><th>Hafta</th><th>Ne olur</th></tr>${evs.map(e => `<tr><td>${e.emojis || ''} <b>${esc(e.title)}</b></td><td>${(e.weeks || [1, 40]).join('–')}</td><td>${esc(e.desc || '')}</td></tr>`).join('')}</table>`;
+  BOOKS.push({ id: 'hamile', icon: '🤰', title: 'Hamilelik Kitabı', sub: 'hamileyken ön sevişme, pozisyonlar, bitişler ve sahneler', chips: ['40 olay', '🎬 4 sahne', '📅 hafta'], chapters: [
+    { icon: '📖', title: 'Hamilelik Kitabı nasıl okunur', sub: 'hafta kapısı, kategoriler, bitişler', get body() {
+      return `<p>🤰 Creampie bitişlerinden sonra hamile kalabilir; durum çubuğunda haftası görünür. Bu kitap o dönemin olaylarını anlatır: <b>💞 Pregnancy Foreplay</b> (<b>📜 Olay yaz → 👅 Ön sevişme</b>) ve <b>🤰 Pregnancy</b> (<b>🔥 Pozisyon</b>). <b>#</b> yazıp olayın adıyla da başlarlar.</p>
+        <ul><li><b>📅 Hafta kapısı</b>: bu olaylar sadece hamile bir karakterle olur. Hepsi 1. haftadan açıktır; karın büyüdükçe bazıları kapanır, geç yazarsan "30. haftadan sonra olmaz" uyarısı gelir ve olay yazılmaz.</li>
+          <li><b>💞 Ön sevişme</b> hamileliğin her haftasında açık. Pozisyon sayılmaz, Uyarılma ve Şehvet verir.</li>
+          <li><b>🔥 Pozisyonlar</b> 1. haftadan açık; karın büyüdükçe bazıları kapanır, son haftalarda sadece yan yatarak olanlar kalır.</li>
+          <li><b>💦 Bitişler</b> sadece hamilelik pozisyonlarından sonra eşleşir. Pozisyonun kendi bitişi varsa o gelir (Slow Lotus → Lotus Creampie, Sofa Edge Missionary → Sofa Bump Cumshot); yoksa içe (Creampie Belly Rub, Milk &amp; Cum, Hormone Multi) ya da karna / göğse (Swollen Tits Cumshot, Oil &amp; Cum Rub) bitişlerden biri. İçe bitişler yeni hamilelik getirmez; zaten hamile.</li>
+          <li><b>💭 Teklifler ve ⚡ Kısayollar</b>: hamile olmayan bir karakter bu olayları ya da sahneleri teklif etmez, kısayollarda da çıkmaz.</li>
+          <li><b>🌹 İlan kızları</b>: seansta hamile kalırsa saat sınırı kalkar; "Ahhh içime bıraktın hamileyim 🤰" der, süre dolmaz. Cümle kişiliğine (utangaç, soğuk, flörtöz, alaycı) ve bunu isteyip istemediğine göre değişir.</li></ul>
+        ${bkChat('🤰 Örnek', [['ev', '📜 🤲🤰 Bump Caress'], ['her', 'Hissettin mi? Tekme attı 🥹'], ['note', '🎬 Karnına Dokun sahnesi başladı: iki adım, sonra bitiş.'], ['ev', '📜 🌙🤰 Slow Lotus'], ['her', 'Yavaş… böyle çok güzel 🥰'], ['ev', '📜 🌙💦 Lotus Creampie']])}`;
+    } },
+    { icon: '💞', title: 'Pregnancy Foreplay', sub: 'karın, ayna, buz, yan yatarak, ilk damlalar', get body() {
+      return `<p>💞 Hassaslaşmış göğüsler, büyüyen karın ve hormonlar. Isınmalar yan yatarak, yastıklara yaslanarak ya da sandalyenin ucunda olur.</p>${hmWeeks(allEvents().filter(e => e.cat === 'c:mvpregfp01x'))}`;
+    } },
+    { icon: '🔥', title: 'Pregnancy', sub: 'lotus, koltuk ucu, pilates topu, yan yatarak', get body() {
+      return `<p>🔥 Karnına ağırlık binmeyen pozisyonlar: üstte o, yan yatarak ya da sen dizlerinin üstünde. Hızı çoğunlukla o belirler.</p>${hmWeeks(allEvents().filter(e => e.cat === 'c:mvpreg01x'))}`;
+    } },
+    { icon: '💦', title: 'Hamilelik bitişleri', sub: 'içe, karnına, göğüslerine, sütle birlikte', get body() {
+      return `<p>💦 Sadece 🤰 hamilelik pozisyonlarından sonra eşleşir. Milk &amp; Cum ayrıca 🍼 Süt'ü azaltır.</p>${hmWeeks(allEvents().filter(e => e.cat !== 'c:mvpreg01x' && isPregEv(e) && (e.tags || []).includes('boşalma')))}`;
+    } },
+    { icon: '🎬', title: 'Hamilelik sahneleri', sub: 'dört hamilelik sahnesi', get body() {
+      return `<p>Açılış olayını yazınca sahne başlar; adımlar ⚡ şeridinde görünür. Hamile değilse açılış olayı yazılmaz, sahne de başlamaz.</p>${evScenes(['hamile'])}`;
+    } }] });
   BOOKS.push({ id: 'kisilik', icon: '🎭', title: 'Kişilik Kitabı', sub: 'her kişilik nasıl konuşur, kıskançlık, yazım tarzı', chips: [`${KP_TRAITS().length} kişilik`, '😤 kıskançlık'], chapters: [
     { icon: '📖', title: 'Kişilik Kitabı nasıl okunur', sub: 'kişilik cevaplara nerede girer', get body() {
       return `<p>Karakter oluştururken seçtiğin <b>💫 Kişilik</b> ve <b>⌨️ Yazım tarzı</b> özellikleri 🤖 bot modundaki her cevabı etkiler. Bir karakterin birden çok kişiliği olabilir; hepsi ayrı ayrı uygulanır.</p>
@@ -21755,7 +22074,46 @@
       ['Condom Trophy', 'Kondomu dikkatle çıkarıp düğümlüyorum. Sen içine boşaldıysan kocama götürürüm, Condom Trophy olur.', 'Dolu kondomu kocasına götürmek için saklar, fotoğrafını atar'],
       ['Ring Cumshot', 'Alyanslı elimi sana uzatıyorum. Sen elime boşalırsan Ring Cumshot olur.', 'Alyanslı eline boşalırsın'],
       ['Marked Wife', 'Sırtüstü uzanıp tenimi sana açıyorum. Sen üstüme boşalırsan Marked Wife olur; izini eve götürürüm.', 'Tenine boşalırsın; izini eve kadar taşır'],
-      ['Husband Thanks', 'Telefonum titriyor, ekranı sana çeviriyorum. Kocam teşekkür yazmış, Husband Thanks olur.', 'Kocasından sana teşekkür mesajı gelir']]],
+      ['Husband Thanks', 'Telefonum titriyor, ekranı sana çeviriyorum. Kocam teşekkür yazmış, Husband Thanks olur.', 'Kocasından sana teşekkür mesajı gelir'],
+      ['Vetting Coffee', 'Kocamla üçümüz kahvedeyiz; o sana soru soruyor, ben masa altından bacağına dokunuyorum. Sen sınavı geçersen Vetting Coffee olur.', 'Üçünüz kahvede tanışırsınız; kocası sana sorular sorar, o masa altından bacağına dokunur'],
+      ['House Rules', 'Kocamın yazdığı kâğıdı uzatıyorum: kondom, dudaktan öpüşme yok, gece yarısı evdeyim. Sen imzalarsan House Rules olur; 📜 Kural İhlali sıfırlanır.', 'Kocası kuralları yazar: kondom, dudaktan öpüşme yok, gece yarısı evde. 📜 Kural İhlali sıfırlanır'],
+      ['Husband Picks Outfit', 'Ceketimi açıp altındakini gösteriyorum; bunu kocam seçti. Sen beğenirsen Husband Picks Outfit olur.', 'Bu geceki iç çamaşırını kocası seçmiş; senin için'],
+      ['Husband Drives Her', 'Kocamın arabasından inip kapını çalıyorum, o aşağıdan el sallıyor. Sen kapıyı açarsan Husband Drives Her olur.', 'Kocası onu arabayla kapına bırakır, alnından öper: "İyi eğlenceler"'],
+      ['Anklet Gift', 'Ayağımı uzatıyorum. Sen halhalı verirsen kocam bileğime takar, Anklet Gift olur.', 'Ona hotwife halhalı hediye edersin; kocası takarken izler'],
+      ['Live Updates', 'Telefonu elimden bırakmıyorum. Sen kucağına alırsan kocama "şimdi kucağında" yazarım, Live Updates olur.', 'Aralarda kocasına mesaj atar: "Başladık", "Şimdi kucağında"'],
+      ['Breaking A Rule', 'Dudaklarına bakıyorum; kuralda yasaktı. Sen yaklaşırsan seni dudağından öperim, Breaking A Rule olur; 📜 Kural İhlali +1, 3 olunca kocam anlaşmayı bitirir.', 'Seni dudağından öper: "Ona söyleme". 📜 Kural İhlali +1 (3 olunca kocası anlaşmayı bitirir)'],
+      ['Code Word Call', 'Telefon çalıyor, kocam. Sen susarsan kod kelimeyi söylerim, Code Word Call olur.', 'Kocası arar; o kod kelimeyi söyler, her şey yolunda demek'],
+      ['Report Back', 'Eve dönünce yatakta kocama her şeyi anlatıyorum. Ertesi gün sana yazarsam Report Back olur.', 'Eve dönünce yatakta kocasına her şeyi anlatır; ertesi gün sana "çok sevindi" yazar'],
+      ['Wears Your Shirt Home', 'Gömleğini yerden alıp giyiyorum. Sen vazgeçersen onunla eve giderim, Wears Your Shirt Home olur.', 'Senin gömleğinle eve gider; kocası kapıda görür'],
+      ['Husband Reclaims', 'Sabah sana sadece bir 😌 atıyorum; dün gece kocam beni geri aldı. Husband Reclaims olur.', 'O gece kocası onu "geri alır"; sabah sana sadece bir 😌 atar'],
+      ['Anniversary Gift', 'Kurdeleli bir kutu getiriyorum; yıldönümü hediyem sensin, kocam ayarladı. Sen kurdeleyi çözersen Anniversary Gift olur.', 'Evlilik yıldönümlerinde kocası ona hediye olarak seni ayarlamış'],
+      ['Husband Calls It Off', 'Kocam "bitti" dedi; kuralları çok bozduk. 📜 Kural İhlali 3 olunca Husband Calls It Off kendiliğinden gelir.', 'Kocasının kıskançlığı patlar, anlaşma biter; 📜 Kural İhlali 3 olunca kendiliğinden olur'],
+      ['Third Ring', 'Kocam küçük bir kutu uzatıyor; içinde senin için bir yüzük. Sen takarsan Third Ring olur.', 'Kocası sana da bir yüzük verir; artık üçünüzün hikâyesi'],
+      ['Wedding Album', 'Düğün albümünü sehpada açıyorum, sayfaları çeviriyorum. Sen arkama geçersen Wedding Album olur.', 'Düğün albümü sehpada açık; o sayfaları çevirirken sen arkasındasın'],
+      ['Husband On Video', 'Telefonu komodine dayıyorum, kocam görüntülü bağlandı. Sen bana gelirsen kameraya bakarım, Husband On Video olur.', 'Telefon komodine dayalı; kocası görüntülü izler, o kameraya bakar'],
+      ['Husband Holds Her', 'Kocam yanıma uzanıp elimi tutuyor. Sen içime girersen Husband Holds Her olur.', 'Kocası yanına uzanıp elini tutar; sen içindesin']]],
+    ['🐍', 'Affair', 'gizli ilişki: yalanlar, izler, sonlar', 'Sevgilisi var ve bilmiyor. İlk Affair olayından önce bir kez Cheating 🐍 gelir. Riskli olaylar 🕵️ Şüphe\'yi artırır, mazeret ve parfüm düşürür; Şüphe 80 olunca Got Caught kendiliğinden olur ve 📱 kesintiler sıklaşır.', [
+      ['Second Phone', 'Çantamın gizli gözünden ikinci telefonu çıkarıyorum. Sen yazarsan "Kuaför Selin" olarak gelirsin, Second Phone olur.', 'Gizli bir telefonu var; seni "Kuaför Selin" diye kaydetmiş, mesajların sessizde gelir'],
+      ['Fake Alibi', 'Arkadaşıma "bu akşam seninleyim de" yazıyorum. Sen beklersen mazeret tutar, Fake Alibi olur; 🕵️ Şüphe −5.', 'Arkadaşına "bu akşam seninleyim de" diye mazeret ayarlatır'],
+      ['Pilates Tuesday', 'Spor çantamla kapındayım, bugün salı. Sen açarsan Pilates Tuesday olur.', 'Salı akşamları "pilatese" gider; o saatler artık sizin'],
+      ['Perfume Swap', 'Eve dönmeden çantamdan onun aldığı parfümü çıkarıyorum. Sen izlersen Perfume Swap olur; 🕵️ Şüphe −3.', 'Senin kokun üstünde kalmasın diye eve dönmeden parfümünü değiştirir'],
+      ['Delete History', 'Telefonu sana çevirip mesajlarımızı tek tek siliyorum. Sen izlersen Delete History olur.', 'Sohbet geçmişinizi gözünün önünde tek tek siler, sonra sana göz kırpar'],
+      ['Wrong Name', 'Doruktayken ağzımdan onun adı kaçıyor. Wrong Name olur; telafi etmem lazım.', 'Doruk anında ağzından sevgilisinin adı kaçar; donup kalır, sonra telafi etmeye çalışır'],
+      ['Receipt In Pocket', 'Otel fişini ceketimin cebinde unuttum. Receipt In Pocket olur; 🕵️ Şüphe +15.', 'Otel fişini ceketinin cebinde unutur; sevgilisi o ceketi sık giyer'],
+      ['Guilt Pause', 'Ortada durup tavana bakıyorum. Sen beklersen ya devam ederim ya giyinirim, Guilt Pause olur.', 'Ortada durup tavana bakar: "Bunu yapmamalıyız"… sonra ya devam eder ya da giyinir'],
+      ['Anniversary Detour', 'Yıldönümü elbisemle kapındayım, yarım saatim var. Sen içeri alırsan Anniversary Detour olur.', 'Yıldönümü yemeğinden önce sana uğrar; elbisesi hazır, rujunu sonra tazeleyecek'],
+      ['Video Call Under', 'Sevgilim görüntülü arıyor, açıyorum. Sen masanın altına inersen Video Call Under olur.', 'Sevgilisiyle görüntülü konuşur; kamera omuzdan yukarıyı gösterir, sen aşağıdasın'],
+      ['Our Song', 'Radyoda bizim şarkımız çalıyor, kapatmıyorum. Sen bana gelirsen Our Song olur.', 'Radyoda sevgilisiyle "bizim şarkımız" çalar; kapatmaz, gözlerini sana diker'],
+      ['Double Date Footsie', 'Dörtlü yemekte masa altından ayağımı bacağına koyuyorum. Sen "lavaboya" kalkarsan Double Date Footsie olur.', 'Dörtlü akşam yemeğinde masa altından ayağıyla oynar; sonra ikiniz de "lavaboya" kalkarsınız'],
+      ['Thin Wall', 'Yan dairede onun arkadaşı var, yastığı ısırıyorum. Sen devam edersen Thin Wall olur.', 'Yan daire sevgilisinin arkadaşının; ses çıkarmamak için yastığı ısırır'],
+      ['Spare Key', 'Sana evimin yedek anahtarını verdim, yataktayım. Sen kapıyı açarsan Spare Key olur.', 'Sana kendi evinin yedek anahtarını verir; kapıyı açtığında yatakta seni bekliyor'],
+      ['Lipstick On Collar', 'Önünde diz çöküyorum, rujum taze. Sen ağzımda bitirirsen yakana iz bırakırım, Lipstick On Collar olur.', 'Ağzında bitirirsin; kalkarken yakana ruj izini bırakır. Bu sefer iz sende'],
+      ['Carry It Home', 'Bacaklarımı beline doluyorum, birazdan sevgilimle yemeğe gideceğim. Sen içime boşalırsan Carry It Home olur; korunmaya göre hamilelik ihtimali var.', 'İçine boşalırsın; aynı akşam sevgilisiyle yemeğe çıkar (korunmaya göre hamilelik ihtimali)'],
+      ['Confession', 'Ona her şeyi anlattım. Confession olur: ya ayrılırız ya affeder; 🕵️ Şüphe sıfırlanır.', 'Sevgilisine her şeyi itiraf eder; ya ayrılırlar ya da affedilir'],
+      ['Choose Me', 'Sen "ya o ya ben" dersen Choose Me olur; %60 seni seçerim.', '"Ya o ya ben" dersin; uzun bir sessizlik olur'],
+      ['Back To Him', 'Ona dönüyorum. Back To Him olur; ama bir ay sonra gece yarısı yazabilirim.', 'Seni bırakıp ona döner; bir ay sonra gece yarısı bir mesaj gelir: "Uyuyor musun?"'],
+      ['Open Secret', 'Her şeyi öğrendi… ve izin verdi. Open Secret olur; artık Hotwife\'ım, Bull olayları açılır.', 'Sevgilisi her şeyi öğrenir… ve izin verir. Artık gizli değil: 🐂 Hotwife olur, Bull olayları açılır'],
+      ['Got Caught', 'Kapı açılıyor, o eşikte. 🕵️ Şüphe 80 olunca Got Caught kendiliğinden gelir.', 'Kapı açılır, sevgilisi eşikte durur; 🕵️ Şüphe 80\'i geçince kendiliğinden olur']]],
     ['✋', 'Tutmak', 'boşalmayı ertele', 'Tutarsan Zevk düşer ama döl birikir; bazen tutamazsın 😏', [
       ['Holding', 'Ritmimi yavaşlatıp gözlerine bakıyorum. Sen derin nefes alıp kendini tutarsan Holding olur.'],
       ['Hard Holding', 'Kalçamı sıkıca sana bastırıp kıpırdamıyorum. Sen dişlerini sıkıp direnirsen Hard Holding olur; daha çok birikir ama zor.'],
@@ -22232,7 +22590,9 @@
     const evRow = e => `<tr><td>${evEmo(e)}<b>${esc(e.title.replace(/^Lactation – /, ''))}</b></td><td>${esc(e.desc || '')}</td><td>${dOf(e, sutId())}</td><td>${dOf(e, 'p:sutkalite')}</td></tr>`;
     const fxName = k => capTr((FANT_KEYS.find(([, x]) => x === k) || [k])[0]);
     const MILK_WHEN = { sutbos: 'Süt 8\'in altında (sağıp bitirdin)', sutaz: 'Süt 8–34', sutdolu: 'Süt 70–89', suttasma: 'Süt 90 ve üstü', sutsulu: 'Kalite 25\'in altında', sutkrema: 'Kalite 55–79', sutaltin: 'Kalite 80 ve üstü' };
-    BOOKS.push({ id: 'sut', icon: '🍼', title: 'Süt Kitabı', sub: 'ne kadar süt verir, kalitesi, fanteziye özel sütler', chips: ['🩺 litre', '✨ özel sütler'], chapters: [
+    // 🥛💦 Milk & Cum tablosu: olay, 🍼 Süt alt sınırı (e.milk), açıklama
+  const mcTb = evs => `<table class="bk-t"><tr><th>Olay</th><th>🍼 en az</th><th>Ne olur</th></tr>${evs.map(e => `<tr><td>${e.emojis || ''} <b>${esc(e.title)}</b></td><td>${e.milk != null ? e.milk : '—'}</td><td>${esc(e.desc || '')}</td></tr>`).join('')}</table>`;
+  BOOKS.push({ id: 'sut', icon: '🍼', title: 'Süt Kitabı', sub: 'ne kadar süt verir, kalitesi, fanteziye özel sütler', chips: ['🩺 litre', '✨ özel sütler'], chapters: [
       { icon: '🍼', title: 'Süt nasıl ölçülür', sub: 'Süt değeri, göğüs kapasitesi, litre', get body() {
         return `<p>Her karakterin <b>🍼 Süt</b> değeri (0–100) göğüslerinin ne kadar dolu olduğudur. 🕰️ Sohbet saatiyle her saat +5 dolar; sağma, emzirme ve onun orgazmı düşürür.</p>
           <p>Litre = Süt % × göğüs kapasitesi. Kapasite 🍒 Boob Size'a göre (iki göğüs toplam):</p>
@@ -22277,6 +22637,21 @@
           <li><b>👗 Kıyafet</b>: Nursing olunca göğsü kendiliğinden açılır. Gardıropta 🍼 Emzirme sütyeni ve 🤱 Önden düğmeli emzirme bluzu (rastgele sadece hamilelere).</li>
           <li><b>📱 Kesintiler</b>: Covered → biri geliyor, Night → telefon, Morning → alarm.</li>
           <li><b>🩺 Klinik</b>: son emzirme, toplam sayı, taşmasına kalan saat · <b>🏙️ CarmenCity</b>: sütü olan kız gündüz 🌳 Park'ta emzirme molasında; dokununca sohbet bankta başlar · <b>💝 CarmenAmor</b>: dileği bazen bir Nursing olayı (sabah Morning Nursing).</li></ul>`;
+      } },
+      { icon: '🥛', title: 'Milk & Cum olayları', sub: 'sütle ön sevişme ve sütlü pozisyonlar', get body() {
+        return `<p>🥛 Süt ve meni bir arada. Üç kategori: <b>🥛 Milky Foreplay</b> (📜 Olay → 🍼 Lactation), <b>🍼 Milky Sex</b> (🔥 Pozisyon) ve <b>🧻 Milky After</b> (🌙 Sonrası). Hamile olması gerekmez; doğumdan sonra ya da Lactation Pills ile de olur.</p>
+          <ul><li><b>🍼 Süt kapısı</b>: her olayın bir alt sınırı var; onun 🍼 Süt değeri altındaysa olay yazılmaz ("göğüsleri boş"), önerilerde ve olay seçicide de çıkmaz.</li>
+          <li>Her olay 🍼 Süt'ü düşürür; <b>Refill Nap</b> ise +20 doldurur.</li>
+          <li><b>💦 Bitişler</b> sadece bu pozisyonlardan sonra eşleşir: içe Creampie Let-down ya da karna / göğse Double Cream Tits, Creamy Belly; Milky Anal'dan sonra Milky Anal Creampie.</li></ul>
+          <h4>🥛 Ön sevişme</h4>${mcTb(allEvents().filter(e => e.cat === 'c:mvmilkcumfp01x'))}<h4>🔥 Pozisyonlar</h4>${mcTb(allEvents().filter(e => e.cat === 'c:mvmilkcum01x'))}`;
+      } },
+      { icon: '💦', title: 'Sütlü bitişler ve sonrası', sub: 'let-down, kokteyl, öpücük, yapış yapış sarılma', get body() {
+        const fin = allEvents().filter(e => /^mvmc2/.test(e.id)), aft = allEvents().filter(e => e.cat === 'c:mvmilkcumaf01x');
+        return `<p>💦 Creampie Let-down korunmaya göre hamilelik ihtimali taşır. Milk &amp; Cum Kiss ve Cocktail ağızla biter; kendiliğinden gelmez, 💋 Sütlü Öpücük, 🍸 Süt Kokteyli ve 🌅 Sabah Sütü sahnelerinin sonunda ⚡ şeridine gelir.</p><h4>💦 Bitişler</h4>${mcTb(fin)}<h4>🌙 Sonrası</h4>${mcTb(aft)}`;
+      } },
+      { icon: '🎬', title: 'Süt sahneleri ve kombo', sub: 'beş süt sahnesi ve 🔗 kombo', get body() {
+        return `<p>Açılış olayını yazınca sahne başlar; göğüsleri boşsa açılış olayı yazılmaz.</p>${evScenes(['süt'])}
+          <h4>🔗 Kombo: Süt ve krema</h4><p>Bir 🤱 Nursing olayı → bir 🍼 Milky Sex pozisyonu → sütlü bir olay ya da bitiş, arka arkaya: 🫂 Samimiyet +2, 🥛 Süt Kalitesi +5.</p>`;
       } }] });
   }
   /* 📚 Kitaplık düzeni: her konu tek kitapta. ✨ Carmen 2.0 ve 🎃 Halloween kitapçıkları konularına dağıtılır; Carmen Kitabı'nda
@@ -22386,7 +22761,7 @@
   const BOOK_VOLS = [
     ['rehber', '📖', 'Carmen Rehberi', 'uygulamanın kullanımı, internet siteleri, oyunlar ve CarmenAmor', ['carmen', 'internet', 'oyun', 'amor'], '#6b2a14', '#3a150a'],
     ['konusma', '🤖', 'Konuşma Rehberi', 'bot nasıl cevap verir: sorular, övgüler, komutlar, nedenler, kişilikler, grup ve memleketler', ['bot', 'soru', 'onun', 'ovgu', 'komut', 'neden', 'yedek', 'kisilik', 'grup', 'ulke'], '#1f3a5f', '#0e1c30'],
-    ['seanslar', '💞', 'Seans ve Olay Rehberi', 'seans türleri ve örnekleri, bütün olaylar, olay hafızası ve süt', ['seans', 'olay', 'hafiza', 'sut'], '#8a2445', '#43101f'],
+    ['seanslar', '💞', 'Seans ve Olay Rehberi', 'seans türleri ve örnekleri, bütün olaylar, olay hafızası ve süt', ['seans', 'olay', 'hafiza', 'sut', 'hamile'], '#8a2445', '#43101f'],
     ['fanteziler', '🦄', 'Fantezi ve Mekân Rehberi', 'fanteziler, Genshin, BDSM, ofis, okul, kilise, gece hayatı, yaz, dışarıda ve ev', ['fantezi', 'genshin', 'bdsm', 'ofis', 'okul', 'kilise', 'gece', 'yaz', 'disari', 'ev'], '#7a1f5c', '#2e0b24']];
   // kısım açıklamaları: [ne anlatır, ne zaman okunur, ilgili kısımlar]
   const BOOK_PART = {
@@ -22407,7 +22782,8 @@
     seans: ['Bir sevişme seansı baştan sona: değerler, seans türleri ve onlarca örnek seans (evde, dışarıda, rollü, oyun ve kontrol, özel), adım adım değer tabloları, akıcı geçişler, pozisyonlar, orgazm, süt, miktar ve meni, korunma ve hamilelik, role-play, atmosfer ve ses efektleri. Etkileşimli 🛠️ seans tasarımcısıyla kendi seansını kurup puanlatabilirsin.', 'Bir seansa hangi sırayla girileceğini bilmediğinde ya da hazır bir sırayı denemek istediğinde.', ['olay', 'hafiza', 'sut', 'bdsm']],
     olay: ['Lia her olayı sahneleyerek anlatır: olay kategorileri, her olayın nasıl tetiklendiği (elle, komutla, karakterin sorusuyla, başka bir pozisyondan, Lia\'dan) ve sonuçları.', 'Bir olayın ne yaptığını ya da nasıl başlatıldığını öğrenmek istediğinde.', ['komut', 'hafiza', 'seans']],
     hafiza: ['Olaylar birbirini hatırlar: aynı olayı kaçıncı kez yaptığın, sırası ve sayısı karakterin mesajlarını değiştirir. Kural tablosu, eşikler, kombolar ve 🎬 sahneler (bir olayın alt olayları).', 'Karakter "yine mi?" ya da "ilk kez" dediğinde nedenini merak ettiğinde.', ['olay', 'seans']],
-    sut: ['🍼 Süt değeri, göğüs kapasitesi ve litre, süt kalitesi, Lactation Fantasy olayları, fantezilere özel sütler ve miktara göre mesajlar.', 'Süt ve emzirme olaylarını kullanmadan önce.', ['seans', 'fantezi']],
+    sut: ['🍼 Süt değeri, göğüs kapasitesi ve litre, süt kalitesi, Lactation Fantasy olayları, fantezilere özel sütler, miktara göre mesajlar ve 🥛💦 Milk & Cum olayları, sahneleri ve kombosu.', 'Süt ve emzirme olaylarını kullanmadan önce.', ['seans', 'fantezi', 'hamile']],
+    hamile: ['🤰 Hamileyken ön sevişme, pozisyonlar ve bitişler; her olayın hafta aralığı ve dört hamilelik sahnesi.', 'Karakterin hamile kaldıktan sonra.', ['sut', 'seans', 'hafiza']],
     fantezi: ['Her fantezinin kendi bölümü: ona özel sorular, 🥚 easter egg\'ler ve retler. Sonda Halloween bölümleri ve 📱 Kesintiler.', 'Bir fanteziyi başlatmadan önce ya da gizli cevapları aradığında.', ['genshin', 'bdsm', 'onun', 'internet']],
     genshin: ['✨ Yelan, Clorinde, Mavuika ve Xianyun: özellikleri, olayları, kesintileri ve fantezi soruları.', 'CarmenImpact\'ten bir karakterle sohbet açmadan önce.', ['internet', 'fantezi']],
     bdsm: ['Duyusal oyunlar, uyarım ve kontrol, acı ve haz, kısıtlama; giyilen aksesuarlar; rıza, güvenli kelime ve aftercare.', 'Bağlama, kurallar ya da duyusal oyunlar içeren bir seanstan önce.', ['komut', 'gece', 'seans']],
@@ -23973,7 +24349,7 @@
     femdom: 'c:mvfemdom01x', uclu: 'c:mvthreesome01x', soyun: 'c:mvundress01x', dus: 'c:mvshower01x', sauna: 'c:mvsauna01x', kuvet: 'c:mvtub01x', havuz: 'c:mvpool01x',
     araba: 'c:mvcar01x', asansor: 'c:mvlift01x', kamp: 'c:mvcamp01x', mutfak: 'c:mvkitchen01x', kamera: 'c:mvcam01x',
     plaj: 'c:mvbeach01x', ofis: 'c:mvoffice01x', otel: 'c:mvhotel01x', gym: 'c:mvgym01x', bar: 'c:mvbar01x', sinema: 'c:mvcinema01x',
-    merdiven: 'c:mvstairs01x', camasir: 'c:mvlaundry01x', balkon: 'c:mvbalcony01x' };
+    merdiven: 'c:mvstairs01x', camasir: 'c:mvlaundry01x', balkon: 'c:mvbalcony01x', affair: 'c:mvaffair01x', affst: 'c:mvaffairstory01x', bullst: 'c:mvbullstory01x' };
   const QPLACES = ['dus', 'sauna', 'kuvet', 'havuz', 'araba', 'asansor', 'kamp', 'mutfak', 'plaj', 'ofis', 'otel', 'gym', 'bar', 'sinema', 'merdiven', 'camasir', 'balkon'];
   const QBODY = /^r_q(_boob|_butt|_pussy|_anal|3_|4_boob|4_butt|4_dar|4_arka|5_)/, QEXP = /^r_q(_exp|_virgin|4_exp|4_dom|2_ilk|2_gecmis|2_son|2_cilgin|2_yakalan|2_kadin)/;
   const QBR = [['ilk', '🌱', 'Tanışma', 'ilk adımlar'], ['soru', '❓', 'Merak', 'sorular sor, onu tanı'], ['yakin', '💋', 'Yakınlaşma', 'öpücükten ilk geceye'],
@@ -24036,6 +24412,12 @@
     ['antrenor', 'fant', '🏋️', 'Kişisel antrenör', 'Personal Trainer – Üye rolünü başlat', ['f1'], x => qn(x.ev('Personal Trainer – Üye')), '#/is/spor', 600],
     ['sonmusteri', 'fant', '🍸', 'Son müşteri', 'Barmen – Son Müşteri rolünü başlat', ['f1'], x => qn(x.ev('Barmen – Son Müşteri')), '#/messages', 600],
     ['guvenli', 'fant', '🛑', 'Güvenli kelime', 'Safe Word ve 3 farklı 🔗 BDSM olayı', ['bagli'], x => qn(x.ev('Safe Word') ? x.cat('bdsm') : 0, 4), '#/messages', 1200],
+    ['gizli1', 'fant', '🐍', 'Gizli ilişki', 'Bir 🐍 Affair olayı: Second Phone, Spare Key, Thin Wall…', ['f1'], x => qn(x.cat('affair') + x.cat('affst')), '#/messages', 600],
+    ['izsiz', 'fant', '🌸', 'İz bırakma', '🕵️ Şüphe\'yi düşüren 3 olay: Fake Alibi, Perfume Swap, Delete History', ['gizli1'], x => qn(x.ev('Fake Alibi', 'Perfume Swap', 'Delete History'), 3), '#/messages', 800],
+    ['yakalandin', 'fant', '🚨', 'Yakalandın', 'Got Caught olsun (🕵️ Şüphe 80\'e çıkınca kendiliğinden gelir)', ['gizli1'], x => qn(x.ev('Got Caught')), '#/messages', 800],
+    ['sonkarar', 'fant', '⚖️', 'Son karar', 'Bir aldatma sonu: Confession, Choose Me, Back To Him ya da Open Secret', ['izsiz'], x => qn(x.ev('Confession', 'Choose Me', 'Back To Him', 'Open Secret')), '#/messages', 1200],
+    ['anlasma', 'fant', '📜', 'Anlaşma', 'House Rules ve 3 farklı 💍 Bull Story olayı', ['f1'], x => qn(x.ev('House Rules') ? x.cat('bullst') : 0, 4), '#/messages', 1000],
+    ['ucyuzuk', 'fant', '💍', 'Üçüncü yüzük', 'Third Ring: kocası sana da yüzük versin', ['anlasma'], x => qn(x.ev('Third Ring')), '#/messages', 1500],
     ['f5', 'fant', '🎭', 'Fantezi koleksiyonu', '5 farklı 🦄/🍓 fantezi', ['meyve'], x => qn(x.cat('fant') + x.cat('meyve'), 5), '#/messages', 2000],
     ['grup', 'fant', '👥', 'Kalabalık', 'Bir grup sohbeti kur', ['klasik'], x => qn(x.groups), '#/messages', 600],
     ['uclu', 'fant', '👯', 'Üçlü', 'Grupta bir 👯 threesome olayı', ['grup'], x => qn(x.cat('uclu')), '#/messages', 1200],
@@ -24593,6 +24975,7 @@
   setupPreCum();
   setupEat();
   setupMilk();
+  setupAffair();
   setupNursing();
   setupBond();
   fixEvents1();
