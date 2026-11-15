@@ -518,6 +518,16 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['👗', 'Soyunma ve içki: 31 yeni olay, komutlar ve 10 sahne', '👗 Undress\'e 16, 🍷 Drinks\'e 15 yeni olay; 3 içki aynı zamanda soyar. Her birinin sohbette yazılan bir komutu var ("fermuarını aç", "kadeh kaldıralım", "külotunu yırtayım"…). 10 yeni sahne ve yeni 🍷 İç, soyun, seviş kombosu. Hepsi 🗣️ Komutlar Kitapçığı\'nda.', '#/kitap/komut/0', [
+      ['👗 Undress', 'Çıkarmadan açanlar: Skirt Up, Top Down, Panties Aside. Tek parça, gerisi üstünde: Bra Under Shirt, Panties Under Skirt. Senin elinden: Unzip Dress, Unbutton Shirt, Teeth Strip, One-Hand Unhook (%40 kopça açılmaz, o güler), Tear Off Panties (yırtılan külot o sohbette geri gelmez). Ve Bra Toss, Pocket Panties, Mirror Strip, Lap Strip, Undress Each Other, Shy Undress.'],
+      ['🍷 Drinks', 'Whiskey On Ice, Mojito, Margarita, Sake, Beer, Shared Glass, Toast, Drink From Her, Champagne Pour; ayıltanlar Hot Chocolate ve Mint Tea. Soyanlar: Spilled Wine üstünü, Ice In Bra sütyenini çıkarır; Strip Drinking Game\'de kaybeden bir parça verir. Truth Or Drink: ya cevap ya kadeh.'],
+      ['🎬 Sahneler', '💃 Özel Gösteri, 🤲 Parça Parça, ⚡ Sabırsız, 🌙 Işıklar Kapalı, 🍷 Şarap Gecesi, 🎲 İçme Oyunu, 🤫 Altında Bir Şey Yok, 💞 Birbirimize ve iki sert sahne: 💥 Vahşi Gece, 🔥 Arkadan Sert.'],
+      ['🔗 Kombo', '🍷 İç, soyun, seviş: bir içki, bir soyunma olayı ve bir pozisyon arka arkaya gelince Uyarılma +8, Samimiyet +1.']]],
+    ['🏠', 'Evin dört köşesi: mutfak, merdiven, çamaşırhane, balkon', 'Mutfağa 7 yeni olay, yeni 🪜 Stairs, 🧺 Laundry ve 🌇 Balcony kategorileri (29 olay), 4 yeni sahne ve 4 yeni ev seansı. Carmen.com ilan kızları bu köşeleri sevebilir. Hepsi yeni 🏠 Ev Kitabı\'nda.', '#/kitap/ev/0', [
+      ['🍳 Kitchen', 'Midnight Snack, Fridge Press, Kitchen Table Missionary, Counter Licking, Kitchen Floor Blowjob, Island Anal; bitiş Kitchen Facial.'],
+      ['🪜 Stairs / 🧺 Laundry / 🌇 Balcony', 'Basamakta, tırabzanda, çalışan makinenin üstünde, kurutucuya eğilmiş, korkulukta ve şezlongda. Her köşenin kendi creampie ve cumshot bitişi var.'],
+      ['🎬 Sahneler', '🌙 Gece Atıştırması, 🪜 Yatağa Varamadan, 🧺 Çamaşır Günü, 🌇 Balkonda Gece.'],
+      ['🗺️ Görevler', 'Yatağa varamadan, Çamaşır günü, Komşular uyurken ve dördünü birden isteyen 🏠 Evin her köşesi.']]],
     ['🏥', 'Muayene odası ve CarmenKlinik check-up', 'Yeni 🏥 Muayene odasında mekânı, 18 yeni tedavi olayı (10 pozisyon, 8 bitiş) ve 2 muayene sahnesi. CarmenKlinik\'te yeni şikayet 🏥 Tam check-up ve 🎬 mesai sonrası muayeneler. Hepsi 🌳 Dışarıda Kitabı\'nın yeni bölümlerinde.', '#/klinik', [
       ['🏥 Clinic', 'Pozisyonlar: Fever Check, Stethoscope Titfuck, Oral Checkup, Exam Bed Missionary, Clinic Cowgirl, Reverse Checkup, Exam Desk Bend, Doctor Chair Ride, Recovery Spoon, Gloved Anal Exam. Bitişler: Sample Cup Finish, Coat Cumshot, Stethoscope Cumshot, Prescription Swallow, Treatment Creampie, Exam Bed Pull Out, Double Glove Milking, Chart Note Finish.'],
       ['🎬 Sahneler', '🩺 Tam Muayene (sırayla 4 adım, önlüğe bitiş) ve 🧤 Mesai Sonrası Kontrol (3 adım, sedyeye bitiş). Muayene odasında geçer; başka mekâna geçersen bozulur.'],
@@ -533,7 +543,7 @@
       ['🎬 Sahneler', '💆 Yağlı Masaj (sırayla 5 adım), 🧖 Masöz Randevusu (3 adım) ve 🛏️ Masaj Masası (2 adım). Hepsi Masaj salonunda geçer; başka mekâna geçersen bozulur.'],
       ['🌐 CarmenMassage', 'Masöz ilanları ve üç paket: 🫗 Yağlı Masaj, 🧴 Nuru Paketi, 🛏️ Mutlu Son Paketi. Paketi seçince sohbet salonda, masöz önlüğüyle ve Masöz – Müşteri rolüyle başlar; paketin açılış olayı ⚡ kısayolda.'],
       ['📱 Kesintiler', 'Masaj salonunda %15 ihtimalle: resepsiyon kapıyı tıklatır, yağ şişesi devrilir, yan odadan sesler gelir…']]],
-    ['🎬', 'Sahneler: olayların alt olayları', 'Bazı olaylar artık bir sahne açar: ⚡ çubuğunun üstünde sahne şeridi çıkar, adımları tek tek yaparsın, sonunda 🏁 bitiş ve 🎉 ödül gelir. Başka mekâna geçersen ya da sahneyi unutursan bozulur. 42 sahne, hepsi 🧠 Olay Hafızası Kitabı\'nın yeni Sahneler bölümünde.', '#/kitap/hafiza/5', [
+    ['🎬', 'Sahneler: olayların alt olayları', 'Bazı olaylar artık bir sahne açar: ⚡ çubuğunun üstünde sahne şeridi çıkar, adımları tek tek yaparsın, sonunda 🏁 bitiş ve 🎉 ödül gelir. Başka mekâna geçersen ya da sahneyi unutursan bozulur. 58 sahne, hepsi 🧠 Olay Hafızası Kitabı\'nın yeni Sahneler bölümünde.', '#/kitap/hafiza/5', [
       ['🚿 Birlikte Duş', 'Soapy Hug ile açılır; üç köpüklü adım, sonra Shower Cumshot: Şehvet +10, Samimiyet +2, Güven +1.'],
       ['🧖‍♀️ Sauna Seansı', 'Towel Drop ile açılır; iki terli adım, sonra Sauna Cumshot: Şehvet +8, Samimiyet +2, Aşk +1.'],
       ['🔗 Yatağa Bağlı', 'Tied To Bed ile açılır; göz bağı, tüy, buz, mum ve Edging sırayla, sonra Permission to Come: Güven +3, Aşk +2, Şehvet +6.'],
@@ -1265,9 +1275,14 @@
       'Popcorn Bucket Trick', 'Dark Scene Touch'],
     // 9. dalga (x.newEv9): 🏖️ Havuz / 🏝️ Plaj gelişiyor
     havuz2: ['Pool Ladder Doggy', 'Wall Pin', 'Jacuzzi Cowgirl', 'Underwater Oral', 'Edge Facesitting', 'Float Missionary', 'Night Swim Sex', 'Cabana Reverse', 'Pool Stairs Spoon', 'Lifeguard Chair'],
-    plaj2: ['Sand Dune Doggy', 'Sunbed Cowgirl', 'Sunset Missionary', 'Beach Hut Standing', 'Rock Cove Lift', 'Shallow Water Doggy', 'Nude Beach Sex', 'Bonfire Spoon', 'Sand 69', 'Beach Shower Sex', 'Boat Deck Sex']
+    plaj2: ['Sand Dune Doggy', 'Sunbed Cowgirl', 'Sunset Missionary', 'Beach Hut Standing', 'Rock Cove Lift', 'Shallow Water Doggy', 'Nude Beach Sex', 'Bonfire Spoon', 'Sand 69', 'Beach Shower Sex', 'Boat Deck Sex'],
+    // 10. dalga (x.newEv10): 🍳🪜🧺🌇 ev köşeleri
+    mutfak2: ['Midnight Snack', 'Fridge Press', 'Kitchen Table Missionary', 'Counter Licking', 'Kitchen Floor Blowjob', 'Island Anal'],
+    merdiven: ['Stair Tease', 'Stairs Doggy', 'Step Ride', 'Banister Standing', 'Step Blowjob', 'Stairs Anal'],
+    camasir: ['Wearing Your Shirt', 'Spin Cycle', 'Dryer Bent Over', 'Washer Licking', 'Laundry Blowjob'],
+    balkon: ['Robe At The Railing', 'Railing Doggy', 'Lounger Cowgirl', 'Balcony Wall Standing', 'Balcony Blowjob']
   };
-  const CM_NEW_ODDS = { kondom: 2, dus: 2, sauna: 3, iseme: 5, kuvet: 3, havuz: 4, araba: 4, asansor: 5, kamp: 4, mutfak: 4, kamera: 5, poz2: 2, bdsm2: 5, plaj: 4, ofis: 4, otel: 4, bdsm3: 4, bdsm4: 4, ofis2: 3, okul: 3, gym: 3, bar: 3, sinema: 4, havuz2: 3, plaj2: 3 };   // 1/n ilan
+  const CM_NEW_ODDS = { kondom: 2, dus: 2, sauna: 3, iseme: 5, kuvet: 3, havuz: 4, araba: 4, asansor: 5, kamp: 4, mutfak: 4, kamera: 5, poz2: 2, bdsm2: 5, plaj: 4, ofis: 4, otel: 4, bdsm3: 4, bdsm4: 4, ofis2: 3, okul: 3, gym: 3, bar: 3, sinema: 4, havuz2: 3, plaj2: 3, mutfak2: 3, merdiven: 4, camasir: 4, balkon: 4 };   // 1/n ilan
   const CM_NEW_V2 = ['kuvet', 'havuz', 'araba', 'asansor', 'kamp', 'mutfak', 'kamera'];
   const CM_NEW_V3 = ['poz2', 'bdsm2', 'plaj', 'ofis', 'otel'];
   const CM_NEW_V4 = ['bdsm3'];
@@ -1276,6 +1291,7 @@
   const CM_NEW_V7 = ['okul'];
   const CM_NEW_V8 = ['gym', 'bar', 'sinema'];
   const CM_NEW_V9 = ['havuz2', 'plaj2'];
+  const CM_NEW_V10 = ['mutfak2', 'merdiven', 'camasir', 'balkon'];
   const cmNewEvs = (k, x) => {
     const low = s => String(s || '').toLocaleLowerCase('tr').trim(), no = new Set([...(x.dislikes || []), ...(x.denies || [])]);
     return [].concat(CM_NEW_EV[k] || k).map(t => allEvents().find(e => low(e.title) === low(t))).filter(e => e && !no.has(e.id));
@@ -1292,7 +1308,7 @@
   function cmNewEv(x) {
     cmHwFix(x);
     const add = k => { if (!cmNum(x, 'nw' + k, CM_NEW_ODDS[k])) x.likes = [...new Set([...(x.likes || []), ...cmPicks(x, 'nwp' + k, cmNewEvs(k, x).map(e => e.id), 2)])]; };
-    if (!x.newEv1) { x.newEv1 = 1; Object.keys(CM_NEW_EV).filter(k => !CM_NEW_V2.includes(k) && !CM_NEW_V3.includes(k) && !CM_NEW_V4.includes(k) && !CM_NEW_V5.includes(k) && !CM_NEW_V6.includes(k) && !CM_NEW_V7.includes(k) && !CM_NEW_V8.includes(k) && !CM_NEW_V9.includes(k)).forEach(add); }
+    if (!x.newEv1) { x.newEv1 = 1; Object.keys(CM_NEW_EV).filter(k => !CM_NEW_V2.includes(k) && !CM_NEW_V3.includes(k) && !CM_NEW_V4.includes(k) && !CM_NEW_V5.includes(k) && !CM_NEW_V6.includes(k) && !CM_NEW_V7.includes(k) && !CM_NEW_V8.includes(k) && !CM_NEW_V9.includes(k) && !CM_NEW_V10.includes(k)).forEach(add); }
     // 🏖️ mekânlar sonradan geldi: kayıtlı ilanlar da bir kez alır
     if (!x.newEv2) { x.newEv2 = 1; CM_NEW_V2.forEach(add); }
     if (!x.newEv3) { x.newEv3 = 1; CM_NEW_V3.forEach(add); }
@@ -1302,6 +1318,7 @@
     if (!x.newEv7) { x.newEv7 = 1; CM_NEW_V7.forEach(add); }
     if (!x.newEv8) { x.newEv8 = 1; CM_NEW_V8.forEach(add); }
     if (!x.newEv9) { x.newEv9 = 1; CM_NEW_V9.forEach(add); }
+    if (!x.newEv10) { x.newEv10 = 1; CM_NEW_V10.forEach(add); }
     return x;
   }
   function cmFix(x) {
@@ -2990,7 +3007,11 @@
     iseme: ['Benim ıslak fantezilerim var, onun yok 😳', 'Başkasına söylemediğim bir şeyi sana yaparım 💦'],
     gym: ['Beni seç, kapanıştan sonra salon ikimize kalsın 🏋️', 'Spot ol bana, gerisini soyunma odasında konuşuruz 😏'],
     bar: ['Benimle bara gel, tuvalet kabininin kilidi sağlam 🍸', 'Masanın altından elimi hissedeceksin, yüzüm hiç bozulmayacak 😈'],
-    sinema: ['Arka sıra benim, mont da 🎬', 'Filmin sonunu hiç hatırlamayacaksın, söz 🍿']
+    sinema: ['Arka sıra benim, mont da 🎬', 'Filmin sonunu hiç hatırlamayacaksın, söz 🍿'],
+    mutfak2: ['Gece yarısı mutfağa gel, tişörtünle beklerim 🌙', 'Tezgâhta, buzdolabında, masada… mutfağın her yeri 🍳'],
+    merdiven: ['Beni seç, yatak odasına kadar dayanamayacaksın 🪜', 'Merdiveni önünden çıkarım, eteğim kısa 😏'],
+    camasir: ['Gömleğini giyip çamaşırhanede beklerim 👕', 'Makine sıkmaya geçince üstüne otururum 🌀'],
+    balkon: ['Bornozumla balkonda beklerim, şehir izlesin 🌇', 'Korkuluğa eğilirim, sesimi sen bastırırsın 😈']
   };
   // 💍 Hotwife ilanlar: "kocam da izliyor" sözleri ve teklifleri
   const CH_PITCH_HW = ['Kocam da izliyor, ona bakma 💍', 'Kocam izin verdi, seni bekliyorum 😈', 'Beni seç, kocama anlatacak bir şeyim olsun 🐂'];
@@ -3623,6 +3644,9 @@
     { k: 'kmb_mekan', icon: '📍', name: 'Mekânın tadı', seq: ['pos', 'pos', 'cum'], same: 'theme', when: 'Kombo: aynı mekânın (duş, havuz, ofis, kilise…) iki pozisyonu ve o mekânın bitişi, arka arkaya', fx: [['aşk', 1], ['samimiyet', 2]],
       say: ['Burayı hiç unutmayacağım {sen} 🥰', 'Burada başladık, burada bitirdik 😩💦', 'Bu yer artık bizim 😏'],
       me: ['Burada başladım, burada bitirdim 😈', 'Bu mekânı sonuna kadar kullandım 💦'] },
+    { k: 'kmb_icsoy', icon: '🍷', name: 'İç, soyun, seviş', seq: ['c:drinks', 'c:undress', 'pos'], when: 'Kombo: bir 🍷 Drinks olayı → bir 👗 Undress olayı → pozisyon, arka arkaya', fx: [['uyarılma', 8], ['samimiyet', 1]],
+      say: ['Önce içirdin, sonra soydun… planın buydu değil mi {sen}? 😏🍷', 'Başım dönüyor, üstümde de bir şey kalmadı 🥵', 'Şarap mı sarhoş etti beni, sen mi? 😩💗'],
+      me: ['Bir kadeh, sonra kıyafetlerin, sonra sen 😈🍷', 'İçtik, soyundun, şimdi gecenin asıl kısmı 🔥'] },
     { k: 'hfz_isinmadan', icon: '🧊', name: 'Isınmadan', when: 'Sohbetin ilk turunda, öncesinde hiç Foreplay / Eat / Outercourse olmadan önden ya da arkadan ilk giriş', fx: [['acı', 6], ['uyarılma', -5]],
       say: ['Dur… hiç ısıtmadan mı? 😣 Biraz yavaş {sen}', 'Ah! Önce biraz öpseydin beni… 😖', 'Daha hazır değildim ama… tamam, yavaş ol 🥺'],
       me: ['Bekleyemedim, hemen içine girdim 😈', 'Öpüşmeyi atladım, seni çok istiyorum 🔥'] },
@@ -10614,24 +10638,41 @@
     function dressDo(ch, k) {
       const und = th.undress = th.undress || {}, u = und[ch.id] = und[ch.id] || {};
       if (DRESS_CMD[k]) {
-        const slots = DRESS_CMD[k], back = slots.filter(s => slotOff(u, s)).map(s => clItem(outfitOf(ch)[s])).filter(Boolean);
+        // 💥 yırtılan parça (Tear Off Panties) bu sohbette geri gelmez
+        const torn = DRESS_CMD[k].some(s => (u.torn || {})[s]), slots = DRESS_CMD[k].filter(s => !(u.torn || {})[s]);
+        const back = slots.filter(s => slotOff(u, s)).map(s => clItem(outfitOf(ch)[s])).filter(Boolean);
         dressSlots(u, slots);
         save();
         if (!outfitItems(ch).length) return '';
-        if (!back.length) return pickOne(['Zaten giyiniğim 😏', 'Hiç çıkarmadım ki 😇', 'Üstümde zaten, bak 🙈']);
+        const tornSay = torn ? ' ' + pickOne(['Külotum yırtık ama, altım çıplak kaldı 😏', 'Yırttığın külotu giyemem ki, onsuz idare ediyorum 😈']) : '';
+        if (!back.length) return pickOne(['Zaten giyiniğim 😏', 'Hiç çıkarmadım ki 😇', 'Üstümde zaten, bak 🙈']) + tornSay;
         const DRESS_L = ['{K} yine üstümde 🙈', 'Giydim işte: {k} 😏', '{K} yerine döndü, mutlu musun? 😇', 'Toparlandım… {k} dahil 😌', '{K} tekrar üstümde, ama aklım sende 😏'];
-        return back.slice(-2).map(x => clFill(pickOne(DRESS_L), x)).join(' ');
+        return back.slice(-2).map(x => clFill(pickOne(DRESS_L), x)).join(' ') + tornSay;
       }
-      const slots = UNDRESS_CMD[k];
+      // 🤏 One-Hand Unhook: %40 kopça açılmaz, hiçbir şey çıkmaz
+      if (k === 'tekel' && !slotOff(u, 'sutyen') && Math.random() < .4) return outfitItems(ch).length ? pickOne(TEKEL_FAIL) : '';
+      const ALREADY = ['Zaten çıkardım, bakmıyor musun? 😏', 'Üstümde öyle bir şey kalmadı ki 🙈', 'Onu çoktan çıkardım 😈'];
+      const z = UNDRESS_ZONE[k];
+      if (z) {
+        const was = slotOff(u, z === 'gogus' ? 'sutyen' : 'tanga');
+        u[z] = 1;
+        save();
+        return !outfitItems(ch).length ? '' : pickOne(was ? ALREADY : ZONE_SAY[k]);
+      }
+      // 🎲 Strip Drinking Game: üstünde kalan parçalardan biri
+      const slots = k === 'oyun' ? [pickOne(WEAR_BASE.filter(s => !slotOff(u, s) && clItem(outfitOf(ch)[s])))].filter(Boolean) : UNDRESS_CMD[k];
       if (!slots) return '';
       const xs = slots.filter(s => !slotOff(u, s)).map(s => clItem(outfitOf(ch)[s])).filter(Boolean);
       undressSlots(u, slots);
+      if (k === 'yirt') u.torn = { ...(u.torn || {}), tanga: 1 };
       save();
       if (!outfitItems(ch).length) return '';
-      if (!xs.length) return pickOne(['Zaten çıkardım, bakmıyor musun? 😏', 'Üstümde öyle bir şey kalmadı ki 🙈', 'Onu çoktan çıkardım 😈']);
+      if (KEY_SAY[k] && xs.length) return clFill(pickOne(KEY_SAY[k]), xs[xs.length - 1]);
+      const pre = k === 'oyun' ? pickOne(['Kaybettim 🙈', 'Yine mi kaybettim? 😤', 'Kural kural… 😏']) + ' ' : '';
+      if (!xs.length) return pre + pickOne(k === 'oyun' ? ['Çıkaracak bir şeyim kalmadı ki 😈', 'Üstümde hiçbir şey yok, başka ceza bul 😏'] : ALREADY);
       const line = x => { const g = genLines(x, 'off'); return pickOne(g.length && Math.random() < .4 ? g : x.off || x.t) || ''; };
       // 💃 striptiz: dıştan içe ilk üç parça, aralarında "…"
-      return k === 'striptiz' ? xs.slice(0, 3).map(line).filter(Boolean).join(' … ') : xs.slice(-2).map(line).filter(Boolean).join(' ');
+      return pre + (k === 'striptiz' ? xs.slice(0, 3).map(line).filter(Boolean).join(' … ') : xs.slice(-2).map(line).filter(Boolean).join(' '));
     }
     // 🔗 aksesuar: ACC_EV olayı parçayı takar (yuvada parça yoksa varsayılanı; gardıroba da girer), anal pozisyon tıpayı çıkarır
     function accWear(ch, e) {
@@ -13236,6 +13277,13 @@
   }
   // 🗣️ bot modunda komut kuralı (bot-rules.js "🗣️ Komutlar", r_cmd_*) → tetiklenecek olaylar (adlarıyla; biri seçilir)
   const CMD_EV = {
+    // 👗🍷 v873 Undress / Drinks olayları
+    r_cmd_fermuar: ['Unzip Dress'], r_cmd_dugme: ['Unbutton Shirt'], r_cmd_etekyukari: ['Skirt Up'], r_cmd_ustasagi: ['Top Down'], r_cmd_kenara: ['Panties Aside'],
+    r_cmd_sutyenalt: ['Bra Under Shirt'], r_cmd_kulotalt: ['Panties Under Skirt'], r_cmd_cep: ['Pocket Panties'], r_cmd_dis: ['Teeth Strip'], r_cmd_tekel: ['One-Hand Unhook'], r_cmd_yirt: ['Tear Off Panties'],
+    r_cmd_sutyenfirlat: ['Bra Toss'], r_cmd_aynasoy: ['Mirror Strip'], r_cmd_kucaksoy: ['Lap Strip'], r_cmd_birbirimizi: ['Undress Each Other'], r_cmd_karanliksoy: ['Shy Undress'],
+    r_cmd_viski: ['Whiskey On Ice'], r_cmd_mojito: ['Mojito'], r_cmd_margarita: ['Margarita'], r_cmd_sake: ['Sake'], r_cmd_bira: ['Beer'], r_cmd_aynikadeh: ['Shared Glass'],
+    r_cmd_kadehkaldir: ['Toast'], r_cmd_tenindenic: ['Drink From Her'], r_cmd_sampanyadok: ['Champagne Pour'], r_cmd_sicakcikolata: ['Hot Chocolate'], r_cmd_nanecayi: ['Mint Tea'],
+    r_cmd_sarapdok: ['Spilled Wine'], r_cmd_stripoyun: ['Strip Drinking Game'], r_cmd_dogrulukic: ['Truth Or Drink'], r_cmd_buzsutyen: ['Ice In Bra'],
     r_cmd_sert: ['Rough', 'Passionate', 'Brutal'], r_cmd_yavas: ['Gentle'], r_cmd_don: ['Doggy', 'Standing doggy'], r_cmd_ustume: ['Cowgirl'],
     r_cmd_gel: ['Lap Kissing', 'Front Hugging'], r_cmd_op: ['Kissing', 'Lap Kissing'], r_cmd_saril: ['Front Hugging', 'Back Hugging'],
     r_cmd_em: ['Blowjob', 'Deepthroat'], r_cmd_yala: ['Cunnilingus'], r_cmd_arka: ['Standing Anal', 'Spooning Anal', 'Cowgirl Anal'],
@@ -17046,7 +17094,7 @@
     ['on', '👅', 'Ön sevişme', ['eat', 'outercourse']],
     ['sut', '🍼', 'Lactation', ['lactation', 'nursing', 'lactation fantasy']],
     ['poz', '🔥', 'Pozisyon', ['forward', 'backward', 'threesome', 'mode', 'pre-cumming']],
-    ['mekan', '📍', 'Mekân', ['mekanda', 'shower', 'sauna', 'bathtub', 'pool', 'car', 'elevator', 'camping', 'kitchen', 'camera', 'beach', 'office', 'hotel', 'school', 'church', 'gym', 'bar', 'cinema', 'outdoors', 'restaurant', 'rooftop', 'library', 'fair', 'haunted', 'street', 'massage salon', 'clinic', 'pee']],
+    ['mekan', '📍', 'Mekân', ['mekanda', 'shower', 'sauna', 'bathtub', 'pool', 'car', 'elevator', 'camping', 'kitchen', 'stairs', 'laundry', 'balcony', 'camera', 'beach', 'office', 'hotel', 'school', 'church', 'gym', 'bar', 'cinema', 'outdoors', 'restaurant', 'rooftop', 'library', 'fair', 'haunted', 'street', 'massage salon', 'clinic', 'pee']],
     ['fant', '🦄', 'Fantezi', ['fantesy', 'meisove', 'femdom', 'bdsm', 'bull']],
     ['bit', '💦', 'Bitiş', ['cumming', 'cumming size']],
     ['son', '🌙', 'Sonrası', ['cool down', 'treatment', 'bull story']]
@@ -17061,6 +17109,9 @@
     elevator: { ids: [], to: { place: '', icon: '🛗', name: 'Asansörde', hint: 'Aynalı duvarlar, kat numaraları akıyor; kapı her an açılabilir.' } },
     camping: { ids: ['kamp'], to: { place: 'kamp' } },
     kitchen: { ids: ['mutfak', 'kahvalti'], to: { place: 'mutfak' } },
+    stairs: { ids: ['onun-evi', 'senin-evin', 'dag-evi', 'yazlik', 'cati-kati'], to: { place: '', icon: '🪜', name: 'Merdivende', hint: 'Yatak odası üst katta ama oraya varamadınız; ahşap basamaklar her adımda gıcırdıyor.' } },
+    laundry: { ids: ['banyo', 'onun-evi', 'senin-evin'], to: { place: '', icon: '🧺', name: 'Çamaşırhanede', hint: 'Makine sıkmaya geçti, oda deterjan kokuyor; sepette senin gömleğin duruyor.' } },
+    balcony: { ids: ['balkon', 'teras'], to: { place: 'balkon' } },
     beach: { ids: ['sahil', 'tatil'], to: { place: 'sahil' } },
     office: { ids: ['ofis', 'calisma', 'is'], to: { place: 'ofis' } },
     hotel: { ids: ['otel', 'tatil'], to: { place: 'otel' } },
@@ -18193,7 +18244,23 @@
     tanga: ['elbise', 'alt', 'tanga'], corap: ['corap'], striptiz: ['elbise', 'ust', 'alt', 'sutyen', 'tanga', 'corap'],
     ickal: ['elbise', 'ust', 'alt'], corapkal: ['elbise', 'ust', 'alt', 'sutyen', 'tanga'], soyben: ['elbise', 'ust', 'alt', 'sutyen', 'tanga'],
     // 📿 Rahibe – Cübbe Altı: cübbe kalır, altındakiler gider
-    cubbealti: ['sutyen', 'tanga'] };
+    cubbealti: ['sutyen', 'tanga'], fermuar: ['elbise', 'alt'],
+    // 🧩 üstündeki kalır / 🤲 senin elinden (tekel: %60 açılır, yirt: külot bu sohbette giyilemez)
+    sutyenalt: ['sutyen'], kulotalt: ['tanga'], cep: ['tanga'], dis: ['tanga'], tekel: ['sutyen'], yirt: ['tanga'] };
+  const KEY_SAY = {
+    sutyenalt: ['Gömleğim üstümde ama {k} artık sende 😏', 'Kolumdan çektim… {k} yok artık, fark ettin mi? 🙈', 'Sihirbaz gibi: {k} çıktı, gömlek yerinde 😈'],
+    kulotalt: ['Eteğim yerinde ama altında {k} yok artık 😏', 'Eteğimin altından {k} kaydı… kimse anlamaz 🙈', '{K} ayak bileğimde, etek hâlâ üstümde 😈'],
+    cep: ['{K} cebinde, akşama kadar sende kalsın 😏', 'Cebine koydum; her dokunduğunda beni düşün 🙈', '{K} sende, ben de böyle geziyorum 😈'],
+    dis: ['Dişlerinle mi? {K} aşağı iniyor… ahh 🥵', 'Nefesin tenimde, {k} dizlerimde 😩', 'Ellerini kullanmadan… {k} gitti 😈'],
+    tekel: ['Tek elle! Usta mısın sen? 😏 {K} düştü', '{K} tek hamlede açıldı… etkilendim 😳', 'Tek parmak, tek hamle… {k} yerde 🥵'],
+    yirt: ['{K} yırtıldı! Bunu ödeyeceksin 😤😈', 'Sabırsız… {k} paramparça 🥵', 'Yırttın mı? Ah… o {k} çok seksiydi 😳'] };
+  const TEKEL_FAIL = ['Hâlâ uğraşıyor musun? 😂 Dur, ben açayım… ama sonra 😏', 'Tek elle olmadı mı? 😆 Kopça kazandı', 'Ahaha, kopça senden güçlü çıktı 🙈', 'Pratik lazım sana 😂 Bir daha dene'];
+  // 👗 çıkarmadan açılan bölge (th.undress gogus / kalca): Top Down / Skirt Up / Panties Aside
+  const UNDRESS_ZONE = { ustasagi: 'gogus', etekyukari: 'kalca', kenara: 'kalca' };
+  const ZONE_SAY = {
+    ustasagi: ['Üstümü aşağı çektim, bak 🙈', 'Çıkarmaya gerek yok, böyle de olur 😏', 'Göğüslerim açıkta, üstüm belimde 😈'],
+    etekyukari: ['Eteğimi belime kadar sıvadım 😏', 'Çıkarmıyorum, sadece yukarı 🙈', 'Eteğim belimde, gerisi senin 😈'],
+    kenara: ['Külotumu kenara çektim, çıkarmaya sabrım yok 😈', 'Sadece kenara… böyle daha heyecanlı 🙈', 'Parmağımla kenarda tutuyorum, hadi 😏'] };
   // 👚 giyinme komutları → geri gelen parçalar
   const DRESS_CMD = { giyin: WEAR_BASE, ustgiy: ['elbise', 'ust', 'sutyen'], altgiy: ['elbise', 'alt', 'tanga'], icgiy: ['sutyen', 'tanga'] };
   // komut kuralı → anahtar (kişilik sürümleri _flortoz / _utangac dahil)
@@ -18201,7 +18268,12 @@
   // 👗 Undress kategorisinin olayları (system.js c:mvundress01x) → anahtar; komut da aynı olayı yazar (cmdEvent)
   const DRESS_EV = { 'Take Off Top': 'ust', 'Take Off Bottom': 'alt', 'Take Off Bra': 'sutyen', 'Take Off Panties': 'tanga', 'Take Off Stockings': 'corap',
     'Strip To Underwear': 'ickal', 'Only Stockings': 'corapkal', 'Get Naked': 'ic', 'Undress Her': 'soyben', 'Striptease': 'striptiz',
-    'Get Dressed': 'giyin', 'Put Top On': 'ustgiy', 'Put Bottom On': 'altgiy', 'Put Underwear On': 'icgiy', 'Rahibe – Cübbe Altı': 'cubbealti' };
+    'Get Dressed': 'giyin', 'Put Top On': 'ustgiy', 'Put Bottom On': 'altgiy', 'Put Underwear On': 'icgiy', 'Rahibe – Cübbe Altı': 'cubbealti',
+    'Unzip Dress': 'fermuar', 'Unbutton Shirt': 'ust', 'Skirt Up': 'etekyukari', 'Top Down': 'ustasagi', 'Panties Aside': 'kenara', 'Bra Toss': 'sutyen',
+    'Mirror Strip': 'striptiz', 'Lap Strip': 'soyben', 'Undress Each Other': 'soyben', 'Shy Undress': 'ic',
+    'Bra Under Shirt': 'sutyenalt', 'Panties Under Skirt': 'kulotalt', 'Pocket Panties': 'cep', 'Teeth Strip': 'dis', 'One-Hand Unhook': 'tekel', 'Tear Off Panties': 'yirt',
+    // 🍷 Drinks + soyunma
+    'Spilled Wine': 'ust', 'Strip Drinking Game': 'oyun', 'Ice In Bra': 'sutyen' };
   const dressEvOf = k => { const t = Object.keys(DRESS_EV).find(x => DRESS_EV[x] === k); return t ? allEvents().find(e => e.title === t) || null : null; };
   // 👚 giyin: şu anki durum u.off'a yazılır, bölge / komut bayrakları silinir (o bölge yeniden açılabilir), istenen parçalar geri gelir
   function dressSlots(u, slots) {
@@ -18467,7 +18539,8 @@
   // 🏖️ mekân etiketi → [etiket, kesinti havuzu (FANT_INTERRUPTS), kesinti olasılığı]
   const PLACE_INT = [['havuz', 'yerhavuz', .2], ['araba', 'yeraraba', .15], ['asansör', 'yerasansor', .2], ['kamp', 'yerkamp', .1], ['plaj', 'yerplaj', .15], ['ofis', 'yerofis', .2], ['otel', 'yerotel', .1], ['okul', 'yerokul', .2],
     ['spor', 'yerspor', .15], ['bar', 'yerbar', .15], ['sinema', 'yersinema', .2], ['doğa', 'yerdoga', .15], ['restoran', 'yerrestoran', .2], ['çatı', 'yercati', .15],
-    ['kitap', 'yerkitap', .2], ['lunapark', 'yerlunapark', .15], ['perili', 'yerperili', .2], ['sokak', 'yersokak', .15], ['masaj', 'yermasaj', .15], ['tedavi', 'yerklinik', .15]];
+    ['kitap', 'yerkitap', .2], ['lunapark', 'yerlunapark', .15], ['perili', 'yerperili', .2], ['sokak', 'yersokak', .15], ['masaj', 'yermasaj', .15], ['tedavi', 'yerklinik', .15],
+    ['merdiven', 'yermerdiven', .1], ['çamaşır', 'yercamasir', .1], ['balkon', 'yerbalkon', .2]];
   // 👀 yakalanma riski olan mekân etiketleri → [etiket, kesinti havuzu, bildirim adı] (renderChat riskStep; 70 / 100 eşiğinde kesinti)
   const RISK_TAG = [['sinema', 'yersinema', '🎬 sinema'], ['bar', 'yerbar', '🍸 bar'], ['kilise', 'yerkilise', '⛪ kilise'], ['restoran', 'yerrestoran', '🍽️ restoran'], ['kitap', 'yerkitap', '📚 kitaplık']];
   // 📳 vibratör kademeleri (renderChat eventMessages, th.vib): 1–5
@@ -18576,7 +18649,7 @@
   let trPos = null;
   // 🎯 sadece bitiş yeri etiketleri eşleşir (vajinal, kalça…); 🎃 temalı olaylar (halloween / kan / slime / tedavi / mekânlar) ancak pozisyon da o temadaysa:
   // vanilla Doggy → Vaginal Creampie, Red Bath / Visible Creampie değil; Blood Bath → Red Bath Creampie da olabilir
-  const EV_THEME = ['halloween', 'kan', 'slime', 'tedavi', 'boşalma', 'duş', 'sauna', 'bull', 'küvet', 'havuz', 'araba', 'asansör', 'kamp', 'mutfak', 'kamera', 'plaj', 'ofis', 'otel', 'okul', 'kilise', 'spor', 'bar', 'sinema', 'doğa', 'restoran', 'çatı', 'kitap', 'lunapark', 'perili', 'sokak', 'masaj', 'üçlü'];
+  const EV_THEME = ['halloween', 'kan', 'slime', 'tedavi', 'boşalma', 'duş', 'sauna', 'bull', 'küvet', 'havuz', 'araba', 'asansör', 'kamp', 'mutfak', 'merdiven', 'çamaşır', 'balkon', 'kamera', 'plaj', 'ofis', 'otel', 'okul', 'kilise', 'spor', 'bar', 'sinema', 'doğa', 'restoran', 'çatı', 'kitap', 'lunapark', 'perili', 'sokak', 'masaj', 'üçlü'];
   // bir kategorideki (ör. Cumming) şu anki pozisyona uyan olayların hepsi (trTarget 'match:' ve olay seçicinin 🎯 Şimdi satırı)
   function matchFinishes(catId, pos) {
     const tags = ((pos || {}).tags || []).map(lowTag), spot = tags.filter(t => !EV_THEME.includes(t));
@@ -19540,6 +19613,10 @@
     { g: 'ev', id: 'kuvet', icon: '🛁', name: 'Köpük banyosu', desc: 'Yavaş, sıcak ve yakın. Küvette kucak kucağa: sohbet romantik tondan çıkmaz, pozisyonların çoğu oturarak ya da yan yatarak.', seq: ['Bubble Bath', 'Kissing', 'Lap Kissing', 'Lick Tits', 'Bubble Titjob', 'Jacuzzi Jets', 'Cunnilingus', 'Condom', 'Tub Ride', 'Tub Spooning', 'Lap Sex', 'Tub Ride', 'Spooning', 'Back Hugging'], fin: ['Tub Creampie', 'Bath Cumshot'], tip: 'Jacuzzi Jets onun Uyarılma\'sını yükseltir; Cunnilingus\'tan hemen önce koymak orgazmı öne çeker.' },
     { g: 'ev', id: 'sauna', icon: '🧖‍♀️', name: 'Sauna ve soğuk havuz', desc: 'Sıcaktan soğuğa iki perde: önce terli bedenler ve havlu, ortada Cold Plunge ile bir nefes, sonra ikinci tur. Sıcak – soğuk geçişi onu her seferinde yeniden uyandırır.', seq: ['Towel Drop', 'Sweaty Hug', 'Kissing', 'Sweaty Titjob', 'Blowjob', 'Cunnilingus', 'Condom', 'Bench Hotdogging', 'Cowgirl', 'Missionary', 'Cold Plunge', 'Ice Tease', 'Doggy', 'Standing', 'Rest Room'], fin: ['Sauna Cumshot'], tip: 'Rest Room seansı sarılma gibi kapatır; sonuna ayrıca Back Hugging de ekleyebilirsin.' },
     { g: 'ev', id: 'mutfak', icon: '🍳', name: 'Mutfakta', desc: 'Sadece önlük, krem şanti ve tezgâh. Oyunbaz başlar, tezgâhın üstünde ve önünde biter.', seq: ['Apron Only', 'Kissing', 'Whipped Cream', 'Lick Tits', 'Sits On The Counter', 'Cunnilingus', 'Blowjob', 'Condom', 'Counter Sex', 'Counter Doggy', 'Standing', 'Standing doggy', 'Counter Sex', 'Front Hugging'], fin: ['Counter Creampie', 'Kitchen Cumshot'], tip: 'Apron Only kıyafet olayıdır: önlük seans boyunca üstünde kalır.' },
+    { g: 'ev', id: 'gecemutfak', icon: '🌙', name: 'Gece yarısı mutfakta', desc: 'Buzdolabının ışığında tişörtle başlar; tezgâhta dil, buzdolabına yaslanmak, masa ve ada. 🏠 Ev Kitabı\'ndaki mutfak olaylarının akıcı sırası.', seq: ['Midnight Snack', 'Kissing', 'Counter Licking', 'Kitchen Floor Blowjob', 'Condom', 'Fridge Press', 'Kitchen Table Missionary', 'Counter Doggy', 'Kitchen Table Missionary', 'Front Hugging'], fin: ['Counter Creampie', 'Kitchen Facial'], tip: 'Island Anal\'ı Counter Doggy\'nin yerine koyarsan Gentle ile ısıt; bitişi genel Anal Creampie olur.' },
+    { g: 'ev', id: 'merdivende', icon: '🪜', name: 'Merdivende', desc: 'Yatak odasına varamazsınız: önünden çıkar, basamakta ağız hizası, kucakta, tırabzanda ve arkadan.', seq: ['Stair Tease', 'Kissing', 'Step Blowjob', 'Condom', 'Step Ride', 'Banister Standing', 'Stairs Doggy', 'Step Ride', 'Back Hugging'], fin: ['Stairs Creampie', 'Stairs Cumshot', 'Step Facial'], tip: 'Stair Tease 🎬 Yatağa Varamadan sahnesini açar: iki merdiven adımı yeter.' },
+    { g: 'ev', id: 'camasirhane', icon: '🧺', name: 'Çamaşırhanede', desc: 'Senin gömleğinle başlar; makinenin üstünde dil, sıkmada üstte, kurutucuda arkadan. Titreşim tempoyu kendisi artırır.', seq: ['Wearing Your Shirt', 'Kissing', 'Washer Licking', 'Laundry Blowjob', 'Condom', 'Spin Cycle', 'Dryer Bent Over', 'Spin Cycle', 'Front Hugging'], fin: ['Laundry Creampie', 'Laundry Cumshot'], tip: 'Wearing Your Shirt → Washer Licking → Spin Cycle → Dryer Bent Over sırası 🎬 Çamaşır Günü sahnesini tamamlar.' },
+    { g: 'ev', id: 'balkonda', icon: '🌇', name: 'Balkonda gece', desc: 'Bornoz rüzgârda açılır; korkuluğun arkasında diz çöker, sonra şezlong, duvar dibi ve korkuluk. Sesinizi bastırmanız gerekir.', seq: ['Robe At The Railing', 'Kissing', 'Balcony Blowjob', 'Condom', 'Lounger Cowgirl', 'Balcony Wall Standing', 'Railing Doggy', 'Lounger Cowgirl', 'Back Hugging'], fin: ['Balcony Creampie', 'Balcony Cumshot'], tip: 'Kesintiler açıkken %20 ihtimalle karşı balkonda ışık yanar; risk sever karakter daha istekli konuşur.' },
     { g: 'ev', id: 'kamera', icon: '🎥', name: 'Kamera önünde', desc: 'Kayıt tuşuna basılır, her şey POV. Gösterişli pozisyonlar ve sonunda kaydı birlikte izlemek.', seq: ['Start Recording', 'Kissing', 'Show Tits', 'POV Blowjob', 'Deepthroat', 'Cunnilingus', 'Condom', 'POV Cowgirl', 'Cowgirl', 'Selfie Doggy', 'Doggy', 'Missionary', 'Watch It Together', 'Back Hugging'], fin: ['Camera Cumshot'], tip: 'Utangaç karakterde Start Recording\'den önce bir sarılma koy; yoksa ilk cevapları çekingen olur.' },
     { g: 'ev', id: 'striptiz', icon: '💃', name: 'Striptiz ve soyunma', desc: 'Parça parça soyunma: üstü, sütyen, sonra külot. 👗 Soyunma olayları kıyafetin gerçekten çıkmasını sağlar; karakter neyin çıktığına göre konuşur.', seq: ['Striptease', 'Take Off Top', 'Take Off Bra', 'Show Tits', 'Kissing', 'Only Stockings', 'Handjob', 'Blowjob', 'Take Off Panties', 'Cunnilingus', 'Condom', 'Cowgirl', 'Missionary', 'Doggy', 'Back Hugging'], tip: 'Only Stockings ile çoraplar seans boyunca kalır; sonunda Get Dressed ile giydirebilirsin.' },
     { g: 'ev', id: 'sarap', icon: '🍷', name: 'Şarap gecesi', desc: 'Kadehler, vücuttan shot ve gevşeyen bir akşam. 🍷 İçkiler Sarhoşluk değerini yükseltir: biraz içmiş karakter daha cesur konuşur, çok içmiş olan dağılır.', seq: ['Red Wine', 'Kissing', 'Champagne', 'Body Shot', 'Lap Kissing', 'Show Tits', 'Cunnilingus', 'Mouth Shot', 'Blowjob', 'Condom', 'Missionary', 'Lap Sex', 'Cowgirl', 'Spooning', 'Water', 'Back Hugging'], tip: 'Sona Water koymak Sarhoşluk\'u düşürür; Passed Out\'a varmadan durmak için iki içkiden fazlasını yan yana koyma.' },
@@ -19919,7 +19996,7 @@
       <h4>🌙 İki turlu bir gece</h4>
       <p>Uzun seanslarda Zevk iki kez 80'i geçmez; tasarımcı tahmini ilk boşalmayı gösterir. Sohbette ise boşalmadan sonra Zevk sıfırlanır ve ikinci tur yeniden birikir:</p>
       ${snWalk('ikitur')}`; } },
-    ...[['🏠', 'Evde seanslar', 'duş, küvet, sauna, mutfak, kamera, striptiz, şarap, tempo', 'ev', 'Ev içinde, her odanın kendi olaylarıyla kurulmuş seanslar. Mekân olayları (duş, küvet, mutfak tezgâhı) karakterin cevabını değiştirir; mekâna uyan bitiş olayları kartın altında 💦 ile yazar. Bitişi elle seçmek istersen sohbette 📜 Olay → Cumming kategorisinden o olayı yaz.'],
+    ...[['🏠', 'Evde seanslar', 'duş, küvet, sauna, mutfak, merdiven, çamaşırhane, balkon, kamera, striptiz, şarap, tempo', 'ev', 'Ev içinde, her odanın kendi olaylarıyla kurulmuş seanslar. Mekân olayları (duş, küvet, mutfak tezgâhı) karakterin cevabını değiştirir; mekâna uyan bitiş olayları kartın altında 💦 ile yazar. Bitişi elle seçmek istersen sohbette 📜 Olay → Cumming kategorisinden o olayı yaz.'],
       ['🗺️', 'Dışarıda seanslar', 'araba, asansör, kamp, havuz, plaj, park, çatı, kütüphane, lunapark, perili ev, yağmur, otel', 'disari', 'Ev dışındaki her mekân için akıcı bir sıra. Açık mekânlarda 👀 yakalanma riski vardır: karakter etrafı kollar, bazen bir kesinti gelir. Mekânların bütün olayları 🌃 Gece Hayatı Kitabı, 🏖️ Yaz Kitabı ve 🌳 Dışarıda Kitabı\'nda tek tek anlatılır.'],
       ['🎭', 'Rollü seanslar', 'patroniçe, sözlü sınav, günah çıkarma, personal trainer, barmen, sinema', 'rol', 'Bir rolle başlayan seanslar: ilk olay rolü ve kostümü açar, sonraki bütün pozisyonlar o rolün ağzından cevaplanır. Rollerin ayrıntıları 🏢 Ofis Kitabı, 🎓 School Kitabı, ⛪ Church Kitabı ve 🌃 Gece Hayatı Kitabı\'nda.'],
       ['🔗', 'Oyun ve kontrol seansları', 'duyusal oyun, bağlama, femdom, edging', 'oyun', 'Duyular, kurallar ve kontrol. Bu seanslarda sıra çok önemli: önce güvenli kelime ve hafif dokunuşlar, sert olanlar ortada, sonda mutlaka sarılma (aftercare). Rıza, güvenli kelime ve aksesuarlar 🔗 BDSM Kitabı\'nda.'],
@@ -20705,8 +20782,10 @@
       '<p>"Devam et / bir daha" şu anki olayı (son pozisyonu) tekrarlar; boşalma, orgazm ve Mode tekrarlanmaz. "Bitirme, uzatalım" şimdiki pozisyonda kalır, "Bir öncekine dön" ondan önceki pozisyona, "Baştan başla" bu sohbetin ilk pozisyonuna döner. "Beni şaşırt" ve "Zar at" rastgele bir pozisyon ya da fantezi başlatır (❤️ sevdikleri öne çıkar, 🚫 / 💔 olanlar atlanır); "En sevdiğini yap" yalnız ❤️ sevdiklerinden, "Hiç yapmadığımız bir şey" bu sohbette olmamışlardan, "Bir fantezi seç" fantezilerden, "Sen seç" pozisyonlardan seçer.</p>'],
     ['🔗', 'Aksesuar tak ve çıkar', 'tasmanı tak, tıpanı sok, mandalları çıkar', /^r_cmd_acc/,
       '<p>Aksesuarın adını ve "tak / giy / sok" ya da "çıkar / çöz / al" yaz: tasma, choker, çanlı ya da çelik tasma; tıpa, kuyruklu ya da silikon tıpa; mandal, vibratör, ben wa. Parçanın adını vermezsen gardırobundakini seçer. Takınca parçanın kendi cümlesini söyler ve parça gardırobuna girer. Çıkarınca sadece bu sohbette çıkmış sayılır. Olay yazılmaz.</p>'],
-    ['👗', 'Soyun ve giyin', 'üstünü / altını çıkar, striptiz, giyin', /^r_cmd_(.*cikar|striptiz|giyin|.*giy|ickal|corapkal|soyben)/,
-      '<p>Soyunma komutları kıyafeti <b>bu sohbette</b> çıkarır; karakter giydiğine göre anlatır. "Striptiz" hepsini sırayla çıkarır (çorap dahil), "İç çamaşırlarını çıkar" çorap hariç hepsini. "Sadece iç çamaşırınla kal" üstü ve altı, "Sadece çoraplarınla kal" çorap dışında her şeyi çıkarır; "Seni ben soyacağım" dersen seni bekler. 👚 Giyin komutları çıkanı geri giydirir; gömleğini, topuklularını ya da seksi bir şey giymesini istersen sadece cevap verir.</p><p>Her soyunma ve giyinme komutu 👗 <b>Undress</b> kategorisinden kendi olayını da yazar (ör. "Sütyenini çıkar" → Take Off Bra, "Striptiz yap" → Striptease, "Giyin" → Get Dressed). Aynı olayları 📜 Olay → 👗 Soyunma sekmesinden de seçebilirsin; karakter yine giydiği parçalara göre anlatır. Önden ya da arkadan bir pozisyona geçtiğinde altı hâlâ üstündeyse önce <b>Take Off Panties</b> kendiliğinden yazılır.</p>'],
+    ['👗', 'Soyun ve giyin', 'üstünü / altını çıkar, striptiz, giyin', /^r_cmd_(.*cikar|striptiz|giyin|.*giy|ickal|corapkal|soyben|fermuar|dugme|etekyukari|ustasagi|kenara|sutyenfirlat|aynasoy|kucaksoy|birbirimizi|karanliksoy|sutyenalt|kulotalt|cep|dis|tekel|yirt)/,
+      '<p>Soyunma komutları kıyafeti <b>bu sohbette</b> çıkarır; karakter giydiğine göre anlatır. "Striptiz" hepsini sırayla çıkarır (çorap dahil), "İç çamaşırlarını çıkar" çorap hariç hepsini. "Sadece iç çamaşırınla kal" üstü ve altı, "Sadece çoraplarınla kal" çorap dışında her şeyi çıkarır; "Seni ben soyacağım" dersen seni bekler. 👚 Giyin komutları çıkanı geri giydirir; gömleğini, topuklularını ya da seksi bir şey giymesini istersen sadece cevap verir.</p><p>Her soyunma ve giyinme komutu 👗 <b>Undress</b> kategorisinden kendi olayını da yazar (ör. "Sütyenini çıkar" → Take Off Bra, "Striptiz yap" → Striptease, "Giyin" → Get Dressed). Aynı olayları 📜 Olay → 👗 Soyunma sekmesinden de seçebilirsin; karakter yine giydiği parçalara göre anlatır. Önden ya da arkadan bir pozisyona geçtiğinde altı hâlâ üstündeyse önce <b>Take Off Panties</b> kendiliğinden yazılır.</p><p>Çıkarmadan da olur: "Eteğini kaldır" (Skirt Up), "Üstünü indir" (Top Down), "Külotunu kenara çek" (Panties Aside) parçayı üstünde bırakır, sadece o bölgeyi açar. "Fermuarını aç", "Düğmelerini aç", "Sütyenini bana at", "Aynanın önünde soyun", "Kucağımda soyun", "Birbirimizi soyalım", "Karanlıkta soyun" de kendi olaylarını yazar.</p><p>Tek parça, gerisi üstünde: "Sütyenini gömleğin altından çıkar" (Bra Under Shirt), "Eteğin altından külotunu çıkar" (Panties Under Skirt), "Külotunu cebime koy" (Pocket Panties). Senin elinden: "Dişlerimle çıkarayım" (Teeth Strip), "Tek elle açayım" (One-Hand Unhook; %40 kopça açılmaz, o güler), "Külotunu yırtayım" (Tear Off Panties; yırtılan külot bu sohbette yeniden giyilmez).</p>'],
+    ['🍷', 'İçki komutları', 'viski, mojito, kadeh kaldır, şarabı dök', /^r_cmd_(viski|mojito|margarita|sake|bira|aynikadeh|kadehkaldir|tenindenic|sampanyadok|sicakcikolata|nanecayi|sarapdok|stripoyun|dogrulukic|buzsutyen)/,
+      '<p>İçkinin adını yazman yeter ("viski", "mojito", "margarita", "sake", "bira"); 🍷 <b>Drinks</b> kategorisinden o olay yazılır ve 🍷 Sarhoşluk artar. "Aynı kadehten içelim", "Kadeh kaldıralım", "Teninden içeyim", "Şampanyayı üstüne dökeyim" yakınlaştırır; "Sıcak çikolata" ve "Nane çayı" ayıltır. Bazıları soyar da: "Şarabı üstüne döktüm" üstünü, "Sütyenine buz attım" sütyenini çıkartır; "Kaybeden soyunur" içme oyununda kaybeden içer ve üstündeki parçalardan biri gider. "Doğruluk mu içki mi" ya cevap ya kadeh.</p>'],
     ['💋', 'Teklifler ve yakınlık', 'öp beni, masaj, banyo, yatağa gel, diz çök', /^r_c2_/,
       '<p>Teklif kabul edilirse uygun bir olay başlar (ör. masaj → göğüs / kalça tutma, yatağa gel → kuru sürtünme, dans → sarılma, tezgaha otur → ayakta sevişme ya da yalama, ayna → ayakta arkadan). 🚫 izin vermediği olay seçilmez, ❤️ sevdiği öne çıkar. Cevap kişiliğe göre değişir: utangaç kızarır, asi kafa tutar.</p>'],
     ['🔗', 'Hakimiyet komutları', 'bana bak, kıpırdama, bağla, ceza, tasma', /^r_c3_/,
@@ -20775,7 +20854,8 @@
     kmb_gelgit: [['🎬 <b>Örnek:</b>', '❤️ Missionary → 🍑 Missionary Anal → ❤️ önden bir pozisyon daha.'], ['💡 <b>İpucu:</b>', 'Önden pozisyon "vajinal", arkadan pozisyon "anal" etiketlidir; mekân pozisyonları da sayılır (ör. Shower Doggy → Shower Anal → Shower Lift).'], ['💔 <b>Bozan:</b>', 'Arada oral ya da ısınma olayı; Acı +3 getirdiği için Acı zaten yüksekse dikkat.']],
     kmb_tur: [['🎬 <b>Örnek:</b>', 'Üç farklı kategoriden pozisyon: ör. önden bir pozisyon, ardından 🚿 Shower pozisyonu, ardından 🏖️ Pool pozisyonu.'], ['💡 <b>İpucu:</b>', 'Kategori, olay seçicideki başlıktır; aynı kategoriden iki pozisyon arka arkaya gelirse kombo tutmaz. Hızlı tempo sever, Samimiyet de artar.'], ['💔 <b>Bozan:</b>', 'İkinci ya da üçüncü pozisyonun ilkiyle aynı kategoride olması.']],
     kmb_hemen: [['🎬 <b>Örnek:</b>', '💦 Vaginal Creampie → ❤️ hemen Missionary.'], ['💡 <b>İpucu:</b>', 'Boşalmadan sonra hiç ısınmadan yeniden girersen tutar; yeni turun ilk girişi olduğu için 📅 Geçen seferki gibi\'nin yerine geçer.'], ['💔 <b>Bozan:</b>', 'Boşalmadan sonra önce sarılmak, öpmek ya da başka bir olay yazmak.']],
-    kmb_mekan: [['🎬 <b>Örnek:</b>', '🚿 Shower Lift → 🚿 Shower Doggy → 💦 Shower Creampie.'], ['💡 <b>İpucu:</b>', 'Üç olayın da aynı mekân etiketini taşıması gerekir (duş, havuz, plaj, ofis, okul, kilise, spor, bar, sinema…). Mekânın bitişleri yalnızca o mekânın pozisyonlarından sonra çıkar, yani doğal sırayla gidersen kendiliğinden tutar.'], ['💔 <b>Bozan:</b>', 'Mekân dışı bir pozisyon ya da başka mekânın bitişi.']]
+    kmb_mekan: [['🎬 <b>Örnek:</b>', '🚿 Shower Lift → 🚿 Shower Doggy → 💦 Shower Creampie.'], ['💡 <b>İpucu:</b>', 'Üç olayın da aynı mekân etiketini taşıması gerekir (duş, havuz, plaj, ofis, okul, kilise, spor, bar, sinema…). Mekânın bitişleri yalnızca o mekânın pozisyonlarından sonra çıkar, yani doğal sırayla gidersen kendiliğinden tutar.'], ['💔 <b>Bozan:</b>', 'Mekân dışı bir pozisyon ya da başka mekânın bitişi.']],
+    kmb_icsoy: [['🎬 <b>Örnek:</b>', '🍷 Red Wine → 👗 Striptease → ❤️ Missionary.'], ['💡 <b>İpucu:</b>', 'Herhangi bir Drinks olayı ve herhangi bir Undress olayı olur (Skirt Up, Panties Aside gibi çıkarmadan açanlar dahil). Soyan içkiler (Spilled Wine, Ice In Bra, Strip Drinking Game) Drinks kategorisindedir: ardından yine bir Undress olayı gerekir.'], ['💔 <b>Bozan:</b>', 'İçki ile soyunma ya da soyunma ile pozisyon arasına öpüşme, ısınma gibi başka bir olay koymak.']]
   };
   const memFx = r =>r.fx.map(([l, d]) => `${d > 0 ? '+' : '−'}${Math.abs(d)} ${l.charAt(0).toLocaleUpperCase('tr') + l.slice(1)}`).join(', ') || '—';
   BOOKS.push({ id: 'hafiza', icon: '🧠', title: 'Olay Hafızası Kitabı', sub: 'olaylar birbirini hatırlar: sıra ve sayı mesajları değiştirir', chips: [`${MEM_RULES.length} kural`, `🔗 ${MEM_RULES.filter(r => r.seq).length} kombo`, `🎬 ${(Stories.SCENES || []).length} sahne`, '🤖 bot modu'], chapters: [
@@ -21351,6 +21431,37 @@
           <li><b>🎬 Mesai sonrası muayeneler</b> (sitenin altında): dokununca rastgele bir doktor (Soğuk olmayan) seçilir, sohbet 19:00'da Muayene odasında, şikayet adımı olmadan başlar; sahnenin açılış olayı ⚡ kısayolda.</li></ul>
         <table class="bk-t"><tr><th>Olay</th><th>Doktor anlatıyor</th></tr>${cu.ev.map(t => `<tr><td><b>${esc(t)}</b></td><td>"${esc((KL_TELL[low(t)] || [''])[0])}"</td></tr>`).join('')}</table>`;
     } }] });
+  /* 🏠 Ev Kitabı: mutfak, merdiven, çamaşırhane, balkon (c:mvkitchen01x, c:mvstairs01x, c:mvlaundry01x, c:mvbalcony01x + bitişleri), sahneleri ve kesintileri */
+  const evScenes = tags => `<table class="bk-t"><tr><th>Sahne</th><th>Açılış → adımlar</th><th>Bitiş</th></tr>${(Stories.SCENES || []).filter(s => tags.includes(s.tag)).map(s => `<tr><td>${s.icon} <b>${esc(s.name)}</b><br><small>${s.mode === 'seq' ? 'sırayla' : `${s.need} adım yeter`}</small></td><td>${esc(s.open)} → ${s.steps.map(esc).join(s.mode === 'seq' ? ' → ' : ', ')}</td><td>${esc(s.fin || '—')}</td></tr>`).join('')}</table>`;
+  BOOKS.push({ id: 'ev', icon: '🏠', title: 'Ev Kitabı', sub: 'mutfak, merdiven, çamaşırhane ve balkon', chips: ['36 olay', '🎬 5 sahne'], chapters: [
+    { icon: '📖', title: 'Ev Kitabı nasıl okunur', sub: 'dört köşe, pozisyonlar, bitişler, sahneler', get body() {
+      return `<p>🏠 Yatak odası her zaman en yakın yer değildir. Bu kitap evin dört köşesini anlatır: <b>🍳 Kitchen</b>, <b>🪜 Stairs</b>, <b>🧺 Laundry</b> ve <b>🌇 Balcony</b>. Sohbette <b>📜 Olay yaz → 📍 Mekân</b> sekmesinden ya da <b>#</b> yazıp olayın adıyla başlarlar.</p>
+        <ul><li><b>🍳 Kitchen</b> <b>Mutfakta / Kahvaltı masasında</b>, <b>🪜 Stairs</b> <b>Onun evinde / Senin evinde / Dağ evinde / Yazlıkta / Çatı katında</b>, <b>🧺 Laundry</b> <b>Banyoda / Onun evinde / Senin evinde</b>, <b>🌇 Balcony</b> <b>Balkonda / Terasta</b> görünür. Başka yerde yazarsan sohbet o köşeye geçer (🪜 Merdivende, 🧺 Çamaşırhanede kendi kartlarıdır).</li>
+          <li><b>🔥 Pozisyonlar</b> yatak cümlesi kullanmaz: tezgâh, buzdolabı, basamak, tırabzan, makine, korkuluk, şezlong.</li>
+          <li><b>💦 Bitişler</b> sadece aynı köşenin pozisyonundan sonra eşleşir; Counter, Stairs, Laundry ve Balcony Creampie korunmaya göre hamilelik ihtimali taşır. Island Anal ve Stairs Anal'dan sonra genel anal bitişleri gelir.</li>
+          <li><b>😏 Isınmalar</b> (Midnight Snack, Stair Tease, Wearing Your Shirt, Robe At The Railing) Uyarılma +15 verir ve sahneleri açar.</li>
+          <li><b>📣 Carmen.com</b> ilan kızlarının bir kısmı bu köşeleri ❤️ sever; ilanda kendi ağzından teklif eder.</li></ul>
+        ${bkChat('🪜 Örnek', [['ev', '📜 🪜😏 Stair Tease'], ['her', 'Önden ben çıkayım 😏'], ['note', '🎬 Yatağa Varamadan sahnesi başladı: iki merdiven adımı, sonra bitiş.'], ['ev', '📜 🪜🍑 Stairs Doggy'], ['her', 'Yatağa varamadık 😂'], ['ev', '📜 🪜💦 Stairs Creampie']])}`;
+    } },
+    { icon: '🍳', title: 'Kitchen', sub: 'tezgâh, buzdolabı, yemek masası, ada', get body() {
+      return ghPlace('c:mvkitchen01x', 'mutfak', 'r_ev_ki_', '🍳 Önlük, krem şanti, gece yarısı buzdolabının ışığı. Tezgâhın üstü ve önü, buzdolabının kapağı, yemek masası ve mutfak adası. Kesinti yok; tabaklar zaten yeterince ses çıkarır.');
+    } },
+    { icon: '🪜', title: 'Stairs', sub: 'basamak, tırabzan, yatak odasına üç adım', get body() {
+      return ghPlace('c:mvstairs01x', 'merdiven', 'r_ev_st_', '🪜 Yatak odası üst katta ama oraya varamadınız. Basamaklarda arkadan, basamakta kucakta, tırabzana tutunarak ve bir basamak farkla ağız hizasında. Halı dizleri yakar; kesinti ihtimali %10.');
+    } },
+    { icon: '🧺', title: 'Laundry', sub: 'çamaşır makinesi, kurutucu, temiz havlular, gömleğin', get body() {
+      return ghPlace('c:mvlaundry01x', 'çamaşır', 'r_ev_la_', '🧺 Deterjan kokusu ve sıkma programının titreşimi. Senin gömleğini giyer; makinenin üstünde, kurutucuya eğilmiş, temiz havluların üstünde. Spin Cycle ayrıca Uyarılma +5 verir; kesinti ihtimali %10.');
+    } },
+    { icon: '🌇', title: 'Balcony', sub: 'korkuluk, şezlong, saksılar, karşı balkon', get body() {
+      return ghPlace('c:mvbalcony01x', 'balkon', 'r_ev_bl_', '🌇 Şehrin ışıkları, serin rüzgâr ve karşı balkonlar. Korkuluğa eğilmiş, şezlongda üstte, saksıların arasında duvar dibinde, korkuluğun arkasında diz çökmüş. Railing Doggy ve Balcony Blowjob riskli olduğu için Uyarılma +5 verir; kesinti ihtimali %20. Otel balkonundaki Balcony Sex 🏨 Hotel olayıdır, bu bitişlerle eşleşmez.');
+    } },
+    { icon: '🎬', title: 'Sahneler', sub: 'tezgâhtan balkona beş sahne', get body() {
+      return `<p>Açılış olayını yazınca sahne başlar; adımlar ⚡ şeridinde görünür. Başka bir mekânın olayı sahneyi bozar.</p>${evScenes(['mutfak', 'merdiven', 'çamaşır', 'balkon'])}`;
+    } },
+    { icon: '📱', title: 'Kesintiler', sub: 'kargocu, kedi, makine, karşı balkon', get body() {
+      return `<p>📱 Kesintiler açıkken bu köşelerin olaylarından sonra bazen bir kesinti gelir: Stairs %10, Laundry %10, Balcony %20.</p>
+        <h4>🪜 Stairs</h4><ul>${ghInts('yermerdiven')}</ul><h4>🧺 Laundry</h4><ul>${ghInts('yercamasir')}</ul><h4>🌇 Balcony</h4><ul>${ghInts('yerbalkon')}</ul>`;
+    } }] });
   BOOKS.push({ id: 'kisilik', icon: '🎭', title: 'Kişilik Kitabı', sub: 'her kişilik nasıl konuşur, kıskançlık, yazım tarzı', chips: [`${KP_TRAITS().length} kişilik`, '😤 kıskançlık'], chapters: [
     { icon: '📖', title: 'Kişilik Kitabı nasıl okunur', sub: 'kişilik cevaplara nerede girer', get body() {
       return `<p>Karakter oluştururken seçtiğin <b>💫 Kişilik</b> ve <b>⌨️ Yazım tarzı</b> özellikleri 🤖 bot modundaki her cevabı etkiler. Bir karakterin birden çok kişiliği olabilir; hepsi ayrı ayrı uygulanır.</p>
@@ -21749,7 +21860,26 @@
       ['Get Dressed', 'Yerdeki kıyafetlerimi topluyorum. Sen "giyin" dersen hepsini yeniden giyerim.'],
       ['Put Top On', 'Sütyenimi alıp kollarımı geçiriyorum. Komut: "üstünü giy".'],
       ['Put Bottom On', 'Külotumu ve eteğimi geri giyiyorum. Komut: "altını giy".'],
-      ['Put Underwear On', 'Sadece iç çamaşırlarımı geri giyiyorum. Komut: "iç çamaşırını giy".']]],
+      ['Put Underwear On', 'Sadece iç çamaşırlarımı geri giyiyorum. Komut: "iç çamaşırını giy".'],
+      ['Unzip Dress', 'Sırtımı dönüp saçımı topluyorum. Sen fermuarı indirirsen elbisem ayaklarımın dibine düşer. Komut: "fermuarını aç".'],
+      ['Unbutton Shirt', 'Gömleğimin ilk düğmesine dokunuyorum. Sen tek tek açarsan omuzlarımdan kayar. Komut: "düğmelerini aç".'],
+      ['Skirt Up', 'Eteğimi çıkarmıyorum, belime kadar sıvıyorum; altım açılır ama etek üstümde kalır. Komut: "eteğini kaldır".'],
+      ['Top Down', 'Üstümü ve sütyenimi çıkarmadan aşağı çekiyorum; göğüslerim açıkta, kıyafetim belimde. Komut: "üstünü indir".'],
+      ['Panties Aside', 'Külotumu çıkarmıyorum, parmağımla kenara çekiyorum. Önden ya da arkadan girersen önce çıkarmam gerekmez. Komut: "külotunu kenara çek".'],
+      ['Bra Toss', 'Sütyenimi çıkarıp gülerek sana fırlatıyorum; yakalarsan hatıra. Komut: "sütyenini bana at".'],
+      ['Mirror Strip', 'Aynanın önüne geçip soyunuyorum, gözlerin aynada benimle buluşuyor. Komut: "aynanın önünde soyun".'],
+      ['Lap Strip', 'Kucağına oturuyorum; her parçayı senin ellerin çıkarır. Komut: "kucağımda soyun".'],
+      ['Undress Each Other', 'Ben senin gömleğini, sen benim elbisemi; öpüşe öpüşe ikimiz de soyunuyoruz. Komut: "birbirimizi soyalım".'],
+      ['Shy Undress', 'Işığı kapatıyorum, örtünün altında utana utana soyunuyorum. Komut: "karanlıkta soyun".'],
+      ['Bra Under Shirt', 'Gömleğim üstümde kalıyor; sütyenimi koldan çekip çıkarıyorum. Komut: "sütyenini gömleğin altından çıkar".'],
+      ['Panties Under Skirt', 'Eteğim üstümde kalıyor; külotumu altından sıyırıyorum. Komut: "eteğin altından külotunu çıkar".'],
+      ['Pocket Panties', 'Külotumu çıkarıp cebine koyuyorum; akşama kadar sende. Komut: "külotunu cebime koy".'],
+      ['Teeth Strip', 'Ellerini arkana koy; külotumu dişlerinle indir. Komut: "dişlerimle çıkarayım".'],
+      ['One-Hand Unhook', 'Kopçamı tek elle açmayı dene; çoğu zaman açılır, açılmazsa gülerim. Komut: "tek elle açayım".'],
+      ['Tear Off Panties', 'Sabredemezsen külotumu yırtarsın; bu sohbette yeniden giyemem. Komut: "külotunu yırtayım".'],
+      ['Spilled Wine', '🍷 Şarap üstüme döküldü; ıslak üstümü çıkarmak zorundayım. Komut: "şarabı üstüne döktüm".'],
+      ['Ice In Bra', '🍷 Kokteyldeki buz sütyenime kaydı; çığlık atıp sütyenimi çıkarıyorum. Komut: "sütyenine buz attım".'],
+      ['Strip Drinking Game', '🍷 İçme oyunu: kaybeden içer ve üstündeki parçalardan biri gider (hangisi olacağı şansa kalmış). Komut: "kaybeden soyunur".']]],
     ['📍', 'Mekanda', 'bulunduğun mekana özel anlar', 'Bunlar sadece o mekandayken görünür: önce 📍 Mekan ile yeri seç, sonra 📜 Olay → 📍 Mekân sekmesine bak 😉', [
       ['Enters The Room', 'Kapıyı arkamdan yavaşça kapatıyorum, gözüm sende. Yatak odası, çalışma odası, salon gibi evin odalarında.'],
       ['Lies On The Desk', 'Masadaki her şeyi kenara itip sırtüstü uzanıyorum. Çalışma odasında, kampüste ya da ofiste.'],
@@ -22242,7 +22372,7 @@
         <li><b>Cevap</b>: bot modunda karakter o duruma uyan cevaplardan biriyle karşılık verir.</li>
         <li>Hepsini görmek ve denemek için 🧭 CarmenGuide → <a href="#/kesinti">📱 Kesinti deneyi</a>.</li></ul>` });
     // 🗂️ raf sırası
-    const ORDER = ['carmen', 'bot', 'seans', 'olay', 'hafiza', 'fantezi', 'bdsm', 'ofis', 'okul', 'kilise', 'gece', 'yaz', 'disari', 'sut', 'soru', 'onun', 'ovgu', 'komut', 'neden', 'yedek', 'kisilik', 'grup', 'ulke', 'internet', 'oyun', 'genshin', 'amor'];
+    const ORDER = ['carmen', 'bot', 'seans', 'olay', 'hafiza', 'fantezi', 'bdsm', 'ofis', 'okul', 'kilise', 'gece', 'yaz', 'disari', 'ev', 'sut', 'soru', 'onun', 'ovgu', 'komut', 'neden', 'yedek', 'kisilik', 'grup', 'ulke', 'internet', 'oyun', 'genshin', 'amor'];
     BOOKS.sort((a, b) => ORDER.indexOf(a.id) - ORDER.indexOf(b.id));
   }
   /* 📚 4 cilt: eski kitaplar birer kısım olur. Her cildin 1. sayfası 📑 İçindekiler, her kısmın başında açılış sayfası (ne anlatır,
@@ -22251,7 +22381,7 @@
     ['rehber', '📖', 'Carmen Rehberi', 'uygulamanın kullanımı, internet siteleri, oyunlar ve CarmenAmor', ['carmen', 'internet', 'oyun', 'amor'], '#6b2a14', '#3a150a'],
     ['konusma', '🤖', 'Konuşma Rehberi', 'bot nasıl cevap verir: sorular, övgüler, komutlar, nedenler, kişilikler, grup ve memleketler', ['bot', 'soru', 'onun', 'ovgu', 'komut', 'neden', 'yedek', 'kisilik', 'grup', 'ulke'], '#1f3a5f', '#0e1c30'],
     ['seanslar', '💞', 'Seans ve Olay Rehberi', 'seans türleri ve örnekleri, bütün olaylar, olay hafızası ve süt', ['seans', 'olay', 'hafiza', 'sut'], '#8a2445', '#43101f'],
-    ['fanteziler', '🦄', 'Fantezi ve Mekân Rehberi', 'fanteziler, Genshin, BDSM, ofis, okul, kilise, gece hayatı, yaz ve dışarıda', ['fantezi', 'genshin', 'bdsm', 'ofis', 'okul', 'kilise', 'gece', 'yaz', 'disari'], '#7a1f5c', '#2e0b24']];
+    ['fanteziler', '🦄', 'Fantezi ve Mekân Rehberi', 'fanteziler, Genshin, BDSM, ofis, okul, kilise, gece hayatı, yaz, dışarıda ve ev', ['fantezi', 'genshin', 'bdsm', 'ofis', 'okul', 'kilise', 'gece', 'yaz', 'disari', 'ev'], '#7a1f5c', '#2e0b24']];
   // kısım açıklamaları: [ne anlatır, ne zaman okunur, ilgili kısımlar]
   const BOOK_PART = {
     carmen: ['Uygulamanın el kitabı: karakter oluşturma, sohbetin temelleri, olaylar ve sonuçları, değerler (🥴 Zevk, 💗 Uyarılma, ❤️ Aşk, Sarhoşluk…), eşikler, tetiklenmeler, araç çubuğu, sade sohbet, içki, dayanıklılık ve soyunma komutları. Sonda 📘 Sözlük bütün terimleri kısaca açıklar.', 'Carmen\'e yeni başladıysan buradan başla. Bir değerin neden değiştiğini ya da bir olayın neden kendiliğinden geldiğini merak ettiğinde de buraya dön.', ['bot', 'seans', 'olay']],
@@ -22280,7 +22410,8 @@
     kilise: ['Rahibe olayları, 👗 Cübbe Altı, ⛪ Başrahibe, CarmenChurch ilanları, sorular ve kesintiler.', 'CarmenChurch\'ten bir rahibeyle sohbet açmadan önce.', ['internet', 'fantezi', 'okul']],
     gece: ['Spor salonu, bar ve sinema olayları; Personal Trainer ve Barmen rolleri; 👀 yakalanma riski ve 📳 vibratör kademesi.', 'Gece dışarıda geçen bir sohbetten önce.', ['yaz', 'disari', 'bdsm']],
     yaz: ['Havuz ve plaj: jakuzi, kabana, kum tepesi, koy ve tekne olayları.', 'Yaz mekânlarında bir sohbetten önce.', ['gece', 'disari', 'seans']],
-    disari: ['Park, restoran, çatı, kütüphane, lunapark, perili ev ve sokak olayları; açık mekânda yakalanma riski.', 'Evin dışında bir mekân seçmeden önce.', ['gece', 'yaz', 'seans']]
+    disari: ['Park, restoran, çatı, kütüphane, lunapark, perili ev ve sokak olayları; açık mekânda yakalanma riski.', 'Evin dışında bir mekân seçmeden önce.', ['gece', 'yaz', 'seans']],
+    ev: ['Evin dört köşesi: mutfak, merdiven, çamaşırhane ve balkon olayları, bitişleri, sahneleri ve kesintileri.', 'Evde ama yatak odası dışında bir sohbetten önce.', ['seans', 'disari', 'hafiza']]
   };
   const BOOK_PARTS = {};
   {
@@ -23835,8 +23966,9 @@
   const QC = { poz: 'c:mvglvwdtam0h7', anal: 'c:mvgm9ihwda8f5', son: 'c:mvgu3rsuko7km', fant: 'c:mvgwj75108lqd', meyve: 'c:mvmeisove01x', bdsm: 'c:mvbdsm01x',
     femdom: 'c:mvfemdom01x', uclu: 'c:mvthreesome01x', soyun: 'c:mvundress01x', dus: 'c:mvshower01x', sauna: 'c:mvsauna01x', kuvet: 'c:mvtub01x', havuz: 'c:mvpool01x',
     araba: 'c:mvcar01x', asansor: 'c:mvlift01x', kamp: 'c:mvcamp01x', mutfak: 'c:mvkitchen01x', kamera: 'c:mvcam01x',
-    plaj: 'c:mvbeach01x', ofis: 'c:mvoffice01x', otel: 'c:mvhotel01x', gym: 'c:mvgym01x', bar: 'c:mvbar01x', sinema: 'c:mvcinema01x' };
-  const QPLACES = ['dus', 'sauna', 'kuvet', 'havuz', 'araba', 'asansor', 'kamp', 'mutfak', 'plaj', 'ofis', 'otel', 'gym', 'bar', 'sinema'];
+    plaj: 'c:mvbeach01x', ofis: 'c:mvoffice01x', otel: 'c:mvhotel01x', gym: 'c:mvgym01x', bar: 'c:mvbar01x', sinema: 'c:mvcinema01x',
+    merdiven: 'c:mvstairs01x', camasir: 'c:mvlaundry01x', balkon: 'c:mvbalcony01x' };
+  const QPLACES = ['dus', 'sauna', 'kuvet', 'havuz', 'araba', 'asansor', 'kamp', 'mutfak', 'plaj', 'ofis', 'otel', 'gym', 'bar', 'sinema', 'merdiven', 'camasir', 'balkon'];
   const QBODY = /^r_q(_boob|_butt|_pussy|_anal|3_|4_boob|4_butt|4_dar|4_arka|5_)/, QEXP = /^r_q(_exp|_virgin|4_exp|4_dom|2_ilk|2_gecmis|2_son|2_cilgin|2_yakalan|2_kadin)/;
   const QBR = [['ilk', '🌱', 'Tanışma', 'ilk adımlar'], ['soru', '❓', 'Merak', 'sorular sor, onu tanı'], ['yakin', '💋', 'Yakınlaşma', 'öpücükten ilk geceye'],
     ['poz', '🔥', 'Pozisyonlar', 'klasiklerden akrobasiye'], ['final', '💦', 'Bitiş', 'boşalma, korunma, hamilelik'], ['mekan', '🗺️', 'Mekanlar', 'duştan arabaya'],
@@ -23885,7 +24017,11 @@
     ['barda', 'mekan', '🍸', 'Son kadeh', 'Bir 🍸 Bar olayı', ['risk'], x => qn(x.cat('bar')), '#/messages', 800],
     ['sinemada', 'mekan', '🎬', 'Arka sıra', 'Bir 🎬 Cinema olayı', ['risk'], x => qn(x.cat('sinema')), '#/messages', 800],
     ['yakalan', 'mekan', '👀', 'Az kalsın', '🍸 Bar ve 🎬 Cinema\'dan 5 farklı olay (gerilim 70\'te kesinti gelir)', ['barda', 'sinemada'], x => qn(x.cat('bar') + x.cat('sinema'), 5), '#/messages', 1500],
-    ['gezgin', 'mekan', '🧭', 'Gezgin âşık', '5 farklı mekanda olay: duş, sauna, küvet, havuz, araba, asansör, kamp, mutfak, plaj, ofis, otel, spor salonu, bar, sinema', ['su', 'ter', 'kamp'], x => qn(x.places, 5), '#/messages', 2500],
+    ['merdiven', 'mekan', '🪜', 'Yatağa varamadan', 'Bir 🪜 merdiven olayı', ['kamp'], x => qn(x.cat('merdiven')), '#/messages', 600],
+    ['camasir', 'mekan', '🧺', 'Çamaşır günü', 'Bir 🧺 çamaşırhane olayı', ['kamp'], x => qn(x.cat('camasir')), '#/messages', 600],
+    ['balkon', 'mekan', '🌇', 'Komşular uyurken', 'Bir 🌇 balkon olayı', ['risk'], x => qn(x.cat('balkon')), '#/messages', 800],
+    ['evturu', 'mekan', '🏠', 'Evin her köşesi', '🍳 mutfak, 🪜 merdiven, 🧺 çamaşırhane ve 🌇 balkonun hepsinde bir olay', ['merdiven', 'camasir', 'balkon'], x => qn(['mutfak', 'merdiven', 'camasir', 'balkon'].filter(k => x.cat(k)).length, 4), '#/kitap/ev/0', 1500],
+    ['gezgin', 'mekan', '🧭', 'Gezgin âşık', '5 farklı mekanda olay: duş, sauna, küvet, havuz, araba, asansör, kamp, mutfak, plaj, ofis, otel, spor salonu, bar, sinema, merdiven, çamaşırhane, balkon',['su', 'ter', 'kamp'], x => qn(x.places, 5), '#/messages', 2500],
     ['f1', 'fant', '🦄', 'Hayal gücü', 'Bir 🦄 fantezi başlat', ['klasik'], x => qn(x.cat('fant')), '#/messages', 600],
     ['meyve', 'fant', '🍓', 'Meyve tabağı', 'Bir 🍓 Meisove kızı fantezisi', ['f1'], x => qn(x.cat('meyve')), '#/messages', 600],
     ['bagli', 'fant', '🔗', 'Bağlı', 'Bir 🔗 BDSM olayı', ['f1'], x => qn(x.cat('bdsm')), '#/messages', 800],

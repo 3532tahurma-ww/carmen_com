@@ -728,6 +728,23 @@ Stories.FANT_INTERRUPTS = {
       { g: '🩺 Stetoskop sedyeden kayıp yere düşüyor', r: ['Kalbim zaten duyuluyor 😂', 'Bırak kalsın 😈', 'Sonra alırız 🙈', 'Nabzım tavan 🥵', 'Eğil de al… 😏'] },
       { g: '🔔 Koridordan anons: "Dr. lütfen acil servise"', r: ['Acil olan burası 😈', 'Duymadık 🙈', 'Bir dakika daha 😳', 'Hızlanalım 🥵', 'Başka doktor gitsin 😏'] }
     ],
+    // 🪜 🧺 🌇 Stairs / Laundry / Balcony kesintileri (PLACE_INT)
+    yermerdiven: [
+      { g: '🔔 Kapı zili çalıyor; kargocu aşağıda bekliyor', r: ['Açmayalım! 😳', 'Kapının önüne bıraksın 🙈', 'Sus, gider 🤫', 'Gitti… devam 😏', 'Paket bekleyebilir 😈'] },
+      { g: '🐈 Kedi merdivenden fırlayıp aranızdan geçiyor', r: ['Ahh! 😱', 'Bize bakıyor 😂', 'Git buradan pisi 🙈', 'Bizi kıskandı 😏', 'Devam, o anlamaz 😈'] },
+      { g: '🪵 Bir basamak koca bir gıcırtıyla inliyor', r: ['Benden önce o inledi 😂', 'Kırılmasın! 😳', 'Bir basamak yukarı çıkalım 😏', 'Sağlam, devam 🥵', 'Halı sonra 🙈'] }
+    ],
+    yercamasir: [
+      { g: '🔔 Makine öttü: yıkama bitti', r: ['Biz bitmedik 😈', 'Bir program daha başlat 😏', 'Çamaşırlar bekleyebilir 🙈', 'Sıkma bitti mi?! 😩', 'Kurutmaya geçelim 😂'] },
+      { g: '🫧 Makinenin kapağından köpük taşıyor', r: ['Çok deterjan koydum 😂', 'Yer kaygan, sıkı tut 😳', 'Köpük partisi 🫧', 'Sonra sileriz 😈', 'Ayağım kaydı! 🙈'] },
+      { g: '🚪 Dışarıdan bir ses: "Çamaşırlar kurudu mu?"', r: ['Henüz değil! 😳', 'Kapı kilitli mi? 🙈', 'Sus 🤫', 'Gitti… 😮‍💨', 'Kurumaya devam 😏'] }
+    ],
+    yerbalkon: [
+      { g: '💡 Karşı balkonda bir ışık yandı; biri sigara içmeye çıktı', r: ['Görüyor mu?! 😳', 'Eğil, eğil 🙈', 'Bıraksana izlesin 😈', 'İçeri girdi… 😮‍💨', 'Yavaş devam 😏'] },
+      { g: '🌬️ Rüzgâr çamaşır ipindeki iç çamaşırını aşağı uçuruyor', r: ['Benimki! 😱', 'Bırak, sonra alırız 😂', 'Komşu bulursa? 🙈', 'Zaten giymiyorum 😈', 'Isıt beni 🥶'] },
+      { g: '🐕 Aşağıda bir köpek havlamaya başlıyor', r: ['Bizi mi duydu? 😳', 'Sus köpüş 🙈', 'Sesimi bastırıyor iyi ki 😏', 'Sahibi bakacak! 😅', 'Devam 😈'] },
+      { g: '🚶 Sokaktan geçen biri yukarı bakıyor', r: ['Bakıyor! 😱', 'Saksının arkasına 🙈', 'Görmedi… galiba 😅', 'Selam ver 😂', 'Kıpırdama 🤫'] }
+    ],
     // 📚 🎡 👻 🌧️ Library / Fair / Haunted / Street kesintileri (PLACE_INT; yerkitap riskStep 70–100 eşiğinde de)
     yerkitap: [
       { g: '🤓 Kütüphaneci gözlüğünün üstünden bakıp "şşşt!" diyor', r: ['Şşş! 😳', 'Kitabı yüzüne tut 🙈', 'Duydu mu? 😅', 'Sessiz olacağım… belki 😈', 'Gitti, devam 😏'] },

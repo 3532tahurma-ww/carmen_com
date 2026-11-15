@@ -2907,6 +2907,21 @@ Stories.ME_EV_LINES = {
     'Başında bekliyorum, iyi olduğundan emin olmak için 💗',
     'Yarın konuşuruz, şimdi dinlen 😌'
   ],
+  'Whiskey On Ice': ['Buzlar şıngırdıyor, şerefe 🥃', 'Yavaş iç, acelemiz yok {o} 😏', 'Viski sana yakışıyor 😈', 'Buzu dudaklarına sürüyorum 🧊', 'Bir yudum daha? 🥃'],
+  'Mojito': ['Nanesi taze, tıpkı sen 🌿', 'Pipetten içişin bile seksi {o} 😏', 'Buz gibi ama içim ısınıyor 🔥', 'Limonu senin için sıktım 🍋', 'Bir tane daha yapayım mı? 🍹'],
+  'Margarita': ['Kenarındaki tuzu yalıyorum 🧂', 'Şerefe {o} 🍸', 'Dudaklarında tuz kaldı, alayım mı? 😏', 'Ekşi, tuzlu, tatlı… tam sen 😈', 'Bir kadeh daha 🍸'],
+  'Sake': ['Kadehini ben dolduruyorum, gelenek bu 🍶', 'Kanpai {o} 😏', 'Ilık ilık içini ısıtıyor 😌', 'Şimdi sen benimkini doldur 🍶', 'Minik kadehler, büyük etki 😈'],
+  'Beer': ['Şişeleri tokuşturuyoruz 🍺', 'Buz gibi, tam zamanında {o} 😌', 'Köpüğü dudağında kaldı 😏', 'Bir tane daha açayım mı? 🍺', 'Rahatla, gece uzun 😈'],
+  'Shared Glass': ['Dudak izinin üstünden içiyorum 💋', 'Bir yudum sen, bir yudum ben {o} 🍷', 'Aynı kadehte buluştuk 😏', 'Şarabın tadı seninle değişiyor 😍', 'Son yudum senin 😈'],
+  'Toast': ['Bize! 🥂', 'Gözlerime bak, yoksa yedi yıl kötü şans 😏', 'Kadehler tokuştu {o} 🥂', 'Bu geceye 😈', 'Bakışların şaraptan daha sarhoş edici 😍'],
+  'Drink From Her': ['Şarabı köprücük kemiğine döküyorum 🍷', 'Oradan içiyorum… mmm {o} 💋', 'Bir damla göğsüne kaçtı, peşinden gidiyorum 😈', 'Tenin şaraptan tatlı 🥵', 'Bir kez daha döküyorum 😏'],
+  'Champagne Pour': ['Şampanyayı göğüslerinden aşağı süzüyorum 🍾', 'Köpükleri tek tek yalıyorum {o} 😈', 'Ürperdin, soğuk mu? 😏', 'Göbeğine kadar indi, ben de iniyorum 🥵', 'En güzel kadeh sensin 🥂'],
+  'Hot Chocolate': ['Sıcak çikolatan hazır ☕', 'Biraz kendine gel {o} 🤍', 'Dudağında çikolata kaldı, öpüyorum 💋', 'Battaniyeye sarıl, iç 😌', 'Isındın mı? 🍫'],
+  'Mint Tea': ['Nane çayı, miden rahatlasın 🍵', 'Yavaş yavaş iç {o} 😌', 'Başın dönüyor mu hâlâ? 🤍', 'Ben buradayım 🌿', 'Biraz dinlenelim 😌'],
+  'Spilled Wine': ['Ups… şarap üstüne döküldü 🍷', 'Islak kalma, çıkar onu {o} 😏', 'Kasten değildi, yemin ederim 😈', 'Lekeyi ben temizlerim… dilimle 👅', 'Kırmızı damlalar teninde 🥵'],
+  'Strip Drinking Game': ['Kaybettin, iç ve bir parça çıkar 😈', 'Kural kural {o} 🎲', 'Bu oyunu kazanmak için oynamıyorum 😏', 'Bir el daha? 🥃', 'Üstünde ne kaldı bakalım 👀'],
+  'Truth Or Drink': ['Ya doğruyu söyle ya da iç 😏', 'Cevap ver {o}… ya da kadeh 🥃', 'İçtin! Demek cevap utandırıcıydı 😂', 'Sıra bende, sor bakalım ❔', 'Bu soruya içmek yok 😈'],
+  'Ice In Bra': ['Buz sütyenine kaydı 🧊', 'Çığlığın çok tatlıydı {o} 😂', 'Çıkar, ben bulurum buzu 😈', 'Eriyen damlaları takip ediyorum 👅', 'Soğuk mu sıcak mı karar veremedin 🥵'],
 
   /* ---------- 💦 Cumming ---------- */
   'Vaginal Creampie': [
@@ -7129,6 +7144,22 @@ Object.assign(Stories.ME_EV_LINES, {
   'Put Top On': ['Sütyenini tutuyorum, kollarını geçir 😌', 'Kopçayı ben takarım {o} 😏', 'Üstünü düzeltiyorum 🤍', 'Yine de çok seksisin 🥵', 'Bu kadar çabuk mu? 😅'],
   'Put Bottom On': ['İç çamaşırını uzatıyorum 😏', 'Fermuarı ben çekerim {o} 🙈', 'Kalçalarına son bir dokunuş 😈', 'Toparlandın bakıyorum 😌', 'Ellerim hâlâ belinde 🤍'],
   'Put Underwear On': ['Sadece iç çamaşırlarını giy, yeter 😏', 'Danteli düzeltiyorum {o} 🥵', 'Böyle de çok güzelsin 😍', 'Uzun sürmez, biliyorum 😈', 'Yanıma gel 🤍'],
+  'Unzip Dress': ['Arkana geçip fermuarı yavaşça indiriyorum 😏', 'Elbisen ayaklarının dibine düştü {o} 🥵', 'Sırtının ortasını öpüyorum 💋', 'Adım at, orada kalsın 😈', 'Bu fermuar hiç bu kadar uzun sürmemişti 🙈'],
+  'Unbutton Shirt': ['Düğmelerini tek tek açıyorum 😏', 'Her düğmede bir öpücük {o} 💋', 'Gömleğin omuzlarından kaydı 🥵', 'Acele etmiyorum, tadını çıkarıyorum 😈', 'Sonuncu da açıldı… offf 🔥'],
+  'Skirt Up': ['Eteğini beline kadar sıvıyorum 😈', 'Çıkarmaya gerek yok {o} 😏', 'Kalçaların ellerimde 🥵', 'Böyle daha heyecanlı 🔥', 'Eteğin belinde, gerisi bende 😏'],
+  'Top Down': ['Üstünü aşağı çekiyorum 😏', 'Göğüslerin açıkta, üstün belinde {o} 🥵', 'Çıkarmaya sabrım yok 😈', 'Avuçlarıma alıyorum 🍒', 'Böyle bile çok güzelsin 😍'],
+  'Panties Aside': ['Külotunu parmağımla kenara çekiyorum 😈', 'Çıkarmaya gerek yok {o} 😏', 'Islaklığını hissediyorum 🥵', 'Kenarda tut, bırakma 🔥', 'Sabırsızız ikimiz de 😩'],
+  'Bra Toss': ['Sütyenini havada yakaladım 😂', 'Bunu hatıra olarak saklıyorum {o} 😏', 'Gülüşün de göğüslerin de çok güzel 😍', 'Bir atış daha yap 😈', 'Yüzüme geldi, şikâyetim yok 🙈'],
+  'Mirror Strip': ['Aynadan gözlerine bakıyorum 👀', 'Hem önünü hem arkanı görüyorum {o} 🥵', 'Her parçayı aynada izliyorum 😏', 'Arkana geçip aynaya bakıyorum 🔥', 'İkimiz aynada, çok güzeliz 😈'],
+  'Lap Strip': ['Kucağıma oturdun, ellerim işinde 😏', 'Her parçayı ben çıkarıyorum {o} 🤲', 'Kıpırdama, daha bitmedi 😈', 'Teninin sıcaklığı kucağımda 🥵', 'Sona kalan en güzeli 🔥'],
+  'Undress Each Other': ['Sen benim gömleğimi, ben senin elbiseni 😏', 'Öpüşe öpüşe soyunuyoruz {o} 💋', 'Kim daha hızlı? 😂', 'Ellerimiz birbirine karışıyor 🥵', 'İkimiz de çırılçıplak kaldık 😈'],
+  'Bra Under Shirt': ['Gömleğin üstünde, sütyenin elimde 😏', 'Bu numarayı nereden öğrendin {o}? 🙈', 'Gömleğinin altında artık hiçbir şey yok 🥵', 'Kumaşın altından göğüslerini hissediyorum 😈', 'Sihirbaz mısın sen? 😂'],
+  'Panties Under Skirt': ['Eteğin yerinde, külotun ayak bileğinde 😏', 'Kimse anlamaz {o}… ben hariç 😈', 'Eteğinin altı bomboş artık 🥵', 'Ayağını kaldır, alayım 🤲', 'Bu gece eteğine çok bakacağım 😏'],
+  'Pocket Panties': ['Külotun cebimde, akşama kadar 😈', 'Elim cebimde, aklım sende {o} 😏', 'Herkesin içinde ikimizin sırrı 🤫', 'Geri istersen gel al 😏', 'Cebimde ılık ılık… offf 🥵'],
+  'Teeth Strip': ['Dişlerimle tutup aşağı çekiyorum 😈', 'Ellerim arkamda {o} 😏', 'Nefesim uyluklarında 🥵', 'Yavaş yavaş… dizlerine kadar 😩', 'Ellerimi kullanmadan başardım 😏'],
+  'One-Hand Unhook': ['Tek elle… dur, dur… 😅', 'Kopçaya tek hamle {o} 😏', 'Bu kopça kim tasarladı? 😂', 'Bir daha deneyeyim 🤏', 'Gülme, oluyordu! 😤'],
+  'Tear Off Panties': ['Sabredemedim, yırttım 💥', 'Yenisini ben alırım {o} 😈', 'Dantel elimde paramparça 🥵', 'Kızma, değdi 😏', 'Bir dahaki sefere çıkarmana fırsat vermem 😈'],
+  'Shy Undress': ['Işığı kapattın, olsun 🌙', 'Örtünün altında bile güzelsin {o} 🤍', 'Utanma, acele yok 😌', 'Elini tutuyorum 🙈', 'Karanlıkta da görüyorum seni 😏'],
   // 📍 Mekanda
   'Enters The Room': ['Peşinden odaya giriyorum 😏', 'Kapı arkamızda kapandı {o} 🚪', 'Sadece ikimiz… 🥵', 'Gözlerin bende 😈', 'Yavaşça sana yaklaşıyorum 🔥'],
   'Lies On The Desk': ['Masaya uzandın, kâğıtlar yere saçıldı 😈', 'Üstüne eğiliyorum {o} 😏', 'Masa hiç bu kadar güzel olmamıştı 🥵', 'Bacaklarını iki yana açıyorum 🔥', 'İş bekleyebilir 😂'],
@@ -8534,3 +8565,58 @@ Object.assign(Stories.ME_EV_LINES, {
 Stories.ME_HUG_LINES.placeFinish.events.push('Happy Ending', 'Oiled Body Cumshot', 'Oiled Back Cumshot');
 Stories.ME_BED_SKIP.push('Oil Drip Grind', 'Shoulder Rub Grind', 'Hug Grind', 'Neck Kiss Grind', 'Thigh Slide', 'Lower Back Press', 'Turn Over Tease', 'Chest Rub Grind', 'Nuru Slide',
   'Tip Tease', 'Oily Handjob', 'Slip In', 'Massage Table Missionary', 'Table Cowgirl', 'Happy Ending', 'Oiled Body Cumshot', 'Oiled Back Cumshot');
+
+/* 🍳🪜🧺🌇 ev köşeleri: mutfak eklemeleri, merdiven, çamaşırhane, balkon */
+Object.assign(Stories.ME_EV_LINES, {
+  'Midnight Snack': ['Buzdolabının ışığında tişörtümle duruyorsun 🌙', 'Kaşığı yalayışına bakıyorum {o} 😏', 'Arkandan sarılıp boynunu öpüyorum 🥰', 'Tişört çok kısa kalmış 😈', 'Ne atıştırıyorsun? Ben de istiyorum 😋', 'Gece yarısı en tatlı şey sensin 🍓'],
+  'Fridge Press': ['Seni buzdolabına yasladım, bacağını kaldırıyorum 🔥', 'Sırtın soğuk kapakta, önün bende ahh {o} 🥵', 'Mıknatıslar yere dökülüyor 😂', 'İçindeki şişeler şıngırdıyor 😈', 'Soğukla sıcak arasında titriyorsun 😩', 'Kapağı açarsan ışık yanar 👀'],
+  'Kitchen Table Missionary': ['Tabakları kenara ittim, masaya uzandın 🍽️', 'Bacakların belimde ahh {o} 😩', 'Masa her itişte gıcırdıyor 😂', 'Bu masada kahvaltı yapamayacağım 😈', 'Ellerin masanın kenarında 🥵', 'Gözlerin gözlerimde 🤍'],
+  'Counter Licking': ['Tezgâhın önünde diz çöktüm, bacakların omuzlarımda 👅', 'Tadın tatlıdan güzel {o} 😋', 'Ellerinle saçımı çekiyorsun ahh 🥵', 'Tezgâhı tutuyorsun, düşeceksin 😂', 'Dilimi yavaşlatıyorum 😈', 'Titremeye başladın 😩'],
+  'Kitchen Floor Blowjob': ['Tezgâha yaslandım, önlüğünle önümde diz çöktün 😈', 'Dudakların ahh {o} 😩', 'Saçını önlüğün ipine doluyorum 🔥', 'Fayans dizlerini acıtmasın 🤍', 'Yemek yanıyor, umurumda değil 😂', 'Gözlerin yukarıda, bana bakıyor 🥵'],
+  'Island Anal': ['Adaya yaslandın, kalçan bana dönük 🍑', 'Zeytinyağı elimde 😏', 'Yavaş yavaş giriyorum ahh {o} 😩', 'Mermer soğuk, sen yanıyorsun 🥵', 'Belini tutuyorum 🔥', 'Sıkı… çok sıkı 😈'],
+  'Kitchen Facial': ['Yüzüne boşalıyorum ahhh {o} 😩💦', 'Dudağını yaladın, "tatlı" dedin 😈', 'Yanağından süzülüyor 🥵', 'Peçete uzatıyorum 😂', 'Alnından öpüyorum 🤍', 'Mutfak bizim artık 🍳'],
+  'Stair Tease': ['Önümden merdiveni çıkıyorsun, eteğin kısa 😏', 'Her basamakta kalçan göz hizamda {o} 🍑', 'Bilerek yavaş çıkıyorsun 😈', 'Bileğini tuttum, durdurdum 🔥', 'Arkana dönüp gülümsedin 😳', 'Yatak odası çok uzak 🪜'],
+  'Stairs Doggy': ['Basamaklara eğildin, bir basamak aşağıdan alıyorum 🪜', 'Kalçana çarpıyorum ahh {o} 🥵', 'Tırabzana tutun 😈', 'Halı dizlerini yakacak 😂', 'Saçını çekiyorum 🔥', 'Yatağa varamadık 😏'],
+  'Step Ride': ['Basamağa oturdum, kucağıma çıktın 🪜', 'Tırabzana tutunup zıplıyorsun ahh {o} 😩', 'Göğüslerin yüzümde 🥵', 'Merdiven gıcırdıyor 😂', 'Kalçanı tutuyorum 🔥', 'Bu basamak bizim artık 😈'],
+  'Banister Standing': ['Tırabzana tutundun, arkandayım 🪵', 'Ahşap her itişte gıcırdıyor {o} 😂', 'Belini kavradım ahh 🥵', 'Parmak uçlarındasın 😈', 'Ensene nefesim değiyor 🔥', 'Bacakların titriyor 😩'],
+  'Step Blowjob': ['Basamağa oturdun, bir aşağıdayım; tam ağız hizanda 😈', 'Dudakların ahh {o} 😩', 'Saçını tutuyorum 🔥', 'Gözlerin yukarıda 🥵', 'Merdivende yankılanıyor 🙈', 'Durma 😏'],
+  'Stairs Anal': ['Dizlerin üst basamakta, kalçan havada 🍑', 'Yavaşça arkana giriyorum ahh {o} 😩', 'Tırabzanı sıkıyorsun 🥵', 'Sıkı… çok sıkı 😈', 'Belini tutuyorum 🔥', 'Nefesin kesildi 😳'],
+  'Stairs Creampie': ['Merdivende içine boşalıyorum… ahhh {o} 😩💦', 'Basamaklara akıyor 😳', 'Sımsıkı tutuyorum seni 🤍', 'Son damlasına kadar 🥵', 'Halıyı temizlememiz lazım 😂', 'Yatağa ben taşıyayım seni 🥰'],
+  'Stairs Cumshot': ['Kalçana, beline boşalıyorum ahhh 😩💦', 'Kıpırdama, halıya damlamasın 😂', 'Hepsini sana bıraktım {o} 😈', 'Belinden aşağı süzülüyor 🥵', 'Havlu getiriyorum 🙈', 'Alnından öpüyorum 🤍'],
+  'Step Facial': ['Yüzün bana kalkık, yüzüne boşalıyorum ahhh {o} 😩💦', 'Gözünü kırptın 😂', 'Dudağından süzülüyor 🥵', 'Gülümsedin, yaladın 😈', 'Yanına oturuyorum 🤍', 'Merdivenden bir daha geçemem 🪜'],
+  'Wearing Your Shirt': ['Gömleğimi sepetten çekip giymişsin 👕', 'Altında hiçbir şey yok {o} 😏', 'Düğmeleri yarıya kadar ilikli 😈', 'Bende daha güzel duruyor diyorsun 😂', 'Bacakların bitmiyor 🥵', 'Yakasını kokluyorsun 🥰'],
+  'Spin Cycle': ['Makine sıkmaya geçti, üstünde oturuyorsun 🌀', 'Titreşim ikimizi de sarsıyor ahh {o} 😩', 'Bacakların belimde 🥵', 'Makine yerinden oynuyor 😂', 'Sesini bastıramıyorsun 😈', 'Sıkma bitmesin 🔥'],
+  'Dryer Bent Over': ['Kurutma makinesine eğildin, sıcak 🧺', 'Arkandan alıyorum ahh {o} 🥵', 'Makine bizimle sallanıyor 😂', 'Gömleğin beline sıyrıldı 😈', 'Saçını çekiyorum 🔥', 'Sıcak çamaşır kokusu 😏'],
+  'Washer Licking': ['Makinenin üstünde bacaklarını açtın 👅', 'Titreşim ve dilim aynı anda {o} 😈', 'Ellerinle makineye tutunuyorsun 😩', 'Kalçan kayıyor 😂', 'Dilimi yavaşlatıyorum 🥵', 'Titremen makineden değil 😏'],
+  'Laundry Blowjob': ['Temiz havluların üstüne diz çöktün 🧺', 'Makineye yaslandım, dudakların ahh {o} 😩', 'Saçını tutuyorum 🔥', 'Makine uğulduyor, sen de 😈', 'Gözlerin yukarıda 🥵', 'Havlular yine yıkanacak 😂'],
+  'Laundry Creampie': ['Makinenin üstünde içine boşalıyorum… ahhh {o} 😩💦', 'Sıkma bitene kadar çıkmıyorum 🌀', 'Sımsıkı sarılıyorum 🤍', 'Titriyorsun, makine de 😂', 'Son damlasına kadar 🥵', 'Çamaşırlar bekleyebilir 😈'],
+  'Laundry Cumshot': ['Gömleğimin üstüne, tenine boşalıyorum ahhh 😩💦', '"Zaten yıkanacaktı" diyorsun 😂', 'Göğsünden aşağı süzülüyor {o} 🥵', 'Hepsini sana bıraktım 😈', 'Gömleği çıkarıp sepete atıyorsun 🧺', 'Sarılıyorum 🤍'],
+  'Robe At The Railing': ['Bornozunla korkuluğa yaslanmışsın 🌇', 'Rüzgâr açıyor, kapatmıyorsun {o} 😏', 'Kuşağını parmağımla çekiyorum 😈', 'Şehrin ışıkları gözlerinde ✨', 'Arkandan sarılıyorum 🥰', 'Komşular uyuyor… umarım 🙈'],
+  'Railing Doggy': ['Korkuluğa eğildin, aşağıda sokak 🌇', 'Arkandan alıyorum ahh {o} 🥵', 'Sesini bastırmaya çalışıyorsun 🙈', 'Karşı balkonda ışık yok… şimdilik 😈', 'Belini tutuyorum 🔥', 'Rüzgâr saçlarını uçuruyor 😩'],
+  'Lounger Cowgirl': ['Şezlongdayım, üstüme çıktın 🌇', 'Gökyüzü arkanda, sen üstümde ahh {o} 😩', 'Şezlong gıcırdıyor 😂', 'Göğüslerin rüzgârda 🥵', 'Kalçanı tutuyorum 🔥', 'Komşuların ışığı yanık 😳'],
+  'Balcony Wall Standing': ['Seni saksıların arasında duvara yasladım 🪴', 'Bacağını belime aldım ahh {o} 🥵', 'Perde rüzgârda uçuşuyor 😈', 'Bir saksı devrildi 😂', 'Kulağına fısıldıyorum 🔥', 'Tırnakların sırtımda 😩'],
+  'Balcony Blowjob': ['Korkuluğun arkasında diz çöktün; dışarıdan sadece ben görünüyorum 😈', 'Yüzümü sakin tutmaya çalışıyorum ahh {o} 😩', 'Karşı balkona el sallıyorum 😂', 'Saçını tutuyorum 🔥', 'Dudakların ahh 🥵', 'Kimse anlamıyor 🤫'],
+  'Balcony Creampie': ['Ağzını kapatıp içine boşalıyorum… ahhh {o} 😩💦', 'Şehrin ışıkları önünde 🌃', 'Sımsıkı sarılıyorum 🤍', 'Son damlasına kadar 🥵', 'Biri duydu mu? 🙈', 'Titriyorsun, içeri girelim 🥰'],
+  'Balcony Cumshot': ['Şehrin önünde tenine boşalıyorum ahhh 😩💦', 'Rüzgâr tenini ürpertiyor {o} 🌬️', 'Göğsünden aşağı süzülüyor 🥵', 'Hepsini sana bıraktım 😈', 'Bornozunu omzuna atıyorum 🤍', 'Karşı balkon gördü mü? 😳']
+});
+Object.assign(Stories.ME_HUG_LINES, {
+  homeHug: {
+    label: '🤗 Sarılma · Merdiven / çamaşırhane / balkon',
+    events: ['Midnight Snack', 'Fridge Press', 'Kitchen Table Missionary', 'Stair Tease', 'Stairs Doggy', 'Step Ride', 'Banister Standing', 'Wearing Your Shirt', 'Spin Cycle', 'Dryer Bent Over', 'Robe At The Railing', 'Railing Doggy', 'Lounger Cowgirl', 'Balcony Wall Standing'],
+    lines: [
+      'Arkandan sımsıkı sarıldım, kalbin göğsüme vuruyor… ahh 🥰',
+      'Kollarımı beline doladım, {kalca} kalçan bana bastırıyor offf 🥵',
+      '{gogusHis}, seni bırakmak istemiyorum 😮‍💨',
+      'Boynunu öpüyorum, tenin sıcacık {o} 🔥',
+      'Kulağına "yatağa kadar dayanamadık" diye fısıldıyorum 😏',
+      'Saçlarını yüzünden çekip alnından öpüyorum 🤍',
+      'Sana sarıldıkça nefesimiz birbirine karışıyor ahh 😩',
+      'Sımsıkı sarılı kalıyoruz, kimse görmesin 🙈'
+    ]
+  }
+});
+Stories.ME_HUG_LINES.placeFinish.events.push('Kitchen Facial', 'Stairs Creampie', 'Stairs Cumshot', 'Step Facial', 'Laundry Creampie', 'Laundry Cumshot', 'Balcony Creampie', 'Balcony Cumshot');
+Stories.ME_BED_SKIP.push('Midnight Snack', 'Fridge Press', 'Kitchen Table Missionary', 'Counter Licking', 'Kitchen Floor Blowjob', 'Island Anal', 'Kitchen Facial',
+  'Stair Tease', 'Stairs Doggy', 'Step Ride', 'Banister Standing', 'Step Blowjob', 'Stairs Anal', 'Stairs Creampie', 'Stairs Cumshot', 'Step Facial',
+  'Wearing Your Shirt', 'Spin Cycle', 'Dryer Bent Over', 'Washer Licking', 'Laundry Blowjob', 'Laundry Creampie', 'Laundry Cumshot',
+  'Robe At The Railing', 'Railing Doggy', 'Lounger Cowgirl', 'Balcony Wall Standing', 'Balcony Blowjob', 'Balcony Creampie', 'Balcony Cumshot');
