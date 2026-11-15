@@ -707,6 +707,38 @@ Stories.FANT_INTERRUPTS = {
       { g: '🎂 Yan masada "İyi ki doğdun" şarkısı başladı, bütün restoran alkışlıyor', r: ['Tam zamanında 😂', 'Kimse duymaz şimdi 😈', 'Sen de alkışla 😅', 'Pastadan bize de var mı? 🍰', 'Sesimi bastırıyor 🥵'] },
       { g: '🍷 Şef masanıza geliyor, yemeği beğenip beğenmediğinizi soruyor', r: ['Şef! 😱', 'Çok lezzetli… her şey 😏', 'Elini çek 🙈', 'Gülümse, gülümse 😅', 'Gitti mi? 😮‍💨'] }
     ],
+    // 🌃 Rooftop kesintileri (PLACE_INT yercati)
+    yercati: [
+      { g: '🚪 Çatı kapısı gıcırdayarak açılıyor; kapıcı çamaşır asmaya çıkıyor', r: ['Kapıcı! 😱', 'Su deposunun arkasına 🙈', 'Kıpırdama 🤫', 'Görmedi, gitti… 😮‍💨', 'Devam, ama yavaş 😈'] },
+      { g: '💡 Karşı binada bir pencerenin ışığı yandı, perde aralanıyor', r: ['Biri bakıyor! 😳', 'Bıraksana, izlesin 😈', 'Eğil, eğil 🙈', 'Perdeyi kapattı mı? 😅', 'Işık söndü… devam 😏'] },
+      { g: '🌬️ Sert bir rüzgâr esiyor, sandalyenin üstündeki giysiler uçmak üzere', r: ['Eteğim! 😆', 'Tut şunu! 🙈', 'Üşüdüm, sarıl 🥶', 'Bıraksın uçsun 😈', 'Isıt beni 🥵'] },
+      { g: '🚁 Tepeden bir helikopter alçaktan geçiyor, projektörü binaları tarıyor', r: ['Işık! 😱', 'Battaniyeye gir 🙈', 'Bizi mi arıyor? 😂', 'Geçti… 😮‍💨', 'Film sahnesi gibi 😈'] }
+    ],
+    // 📚 🎡 👻 🌧️ Library / Fair / Haunted / Street kesintileri (PLACE_INT; yerkitap riskStep 70–100 eşiğinde de)
+    yerkitap: [
+      { g: '🤓 Kütüphaneci gözlüğünün üstünden bakıp "şşşt!" diyor', r: ['Şşş! 😳', 'Kitabı yüzüne tut 🙈', 'Duydu mu? 😅', 'Sessiz olacağım… belki 😈', 'Gitti, devam 😏'] },
+      { g: '📚 Üst raftan bir kitap gürültüyle yere düşüyor', r: ['Ahh! 😱', 'Herkes buraya bakacak 🙈', 'Kıpırdama 🤫', 'Kimse gelmedi… 😮‍💨', 'Devam, yavaş 😈'] },
+      { g: '🔔 Anons: "Kütüphanemiz on dakika içinde kapanacaktır"', r: ['On dakika yeter 😈', 'Hızlanalım 🥵', 'Kilitlensek içeride? 😏', 'Işıkları söndürmesinler 🙈', 'Son sayfa 📖'] },
+      { g: '🖼️ Sergi bekçisi fenerle tabloların önünden geçiyor', r: ['Bekçi! 😱', 'Heykelin arkasına 🙈', 'Tabloya bak, tabloya 😅', 'Geçti mi? 😳', 'Gitti… devam 😈'] }
+    ],
+    yerlunapark: [
+      { g: '🎡 Dönme dolap sarsılarak yeniden hareket etmeye başlıyor', r: ['Dolap kalktı! 😆', 'Aşağıda herkes görecek 🙈', 'Tutun bana 😳', 'Bir tur daha 😈', 'Hızlı ol 🥵'] },
+      { g: '🎆 Gökyüzünde havai fişekler patlıyor, herkes yukarı bakıyor', r: ['Tam zamanında 😈', 'Kimse bize bakmıyor 😏', 'Patlamaları say 😂', 'Sesimi bastırıyor 🥵', 'Çok güzel… sen de 🥰'] },
+      { g: '🧒 Elinde balonlu bir çocuk tezgâhın arkasına koşuyor', r: ['Çocuk! 😱', 'Hemen düzel 🙈', 'Fark etmedi 😮‍💨', 'Başka yere gidelim 😅', 'Gitti 😏'] },
+      { g: '🎤 Anons: "Korku tüneli bakım için durdurulmuştur"', r: ['Tünelde mahsur kaldık 😆', 'Karanlık bizim 😈', 'Işıklar yanmasın 🙈', 'Ne kadar sürer? 😏', 'Daha iyi 🥵'] }
+    ],
+    yerperili: [
+      { g: '🚪 Üst kattan bir kapı kendiliğinden çarpıyor', r: ['O neydi?! 😱', 'Rüzgârdır… değil mi? 😳', 'Sarıl bana 🥶', 'Durma 😈', 'Hayalet kıskandı 😂'] },
+      { g: '🕯️ Mum bir anda söndü; karanlıkta bir şey hışırdıyor', r: ['Göremiyorum! 😱', 'Elini bırakma 🙈', 'Çakmak nerede? 😅', 'Karanlıkta daha güzel 😈', 'Fare mi o?! 🐭'] },
+      { g: '🎹 Aşağıdaki eski piyanodan tek bir nota duyuluyor', r: ['Biri mi var? 😱', 'Kaçalım mı? 😳', 'Sadece kedi… umarım 🐈‍⬛', 'Bizi dinliyor 😈', 'Bir nota daha gelirse koşarım 😆'] },
+      { g: '🪞 Tozlu aynada bir an üçüncü bir gölge belirdi', r: ['Aynaya bakma! 😱', 'Gördün mü?! 😳', 'Işık oyunu… 😅', 'İzlesin 😈', 'Burayı terk ediyoruz 🙈'] }
+    ],
+    yersokak: [
+      { g: '🚗 Köşeden bir arabanın farları ara sokağa vuruyor', r: ['Farlar! 😱', 'Duvara yapış 🙈', 'Geçti… 😮‍💨', 'Kornaya basmasın 😅', 'Devam 😈'] },
+      { g: '🐈 Çöp kutusunun kapağı devriliyor, bir kedi fırlıyor', r: ['Ahh! 😱', 'Kediymiş 😂', 'Kalbim duracaktı 😳', 'Sus, biri gelecek 🤫', 'Devam 😈'] },
+      { g: '⛈️ Gök gürledi, yağmur sağanağa döndü', r: ['Sırılsıklam olduk 😆', 'Böylesi daha güzel 😈', 'Saçağa gel 🙈', 'Islak ve sıcak 🥵', 'Kimse çıkmaz bu havada 😏'] },
+      { g: '🚶 Köpeğini gezdiren biri sokağın başında durdu, bu tarafa bakıyor', r: ['Bakıyor! 😳', 'Sarılıyormuşuz gibi 🥰', 'Montu çek 🙈', 'Gitti mi? 😮‍💨', 'Gitti… devam 😈'] }
+    ],
     yersinema: [
       { g: '🔦 Görevli el feneriyle sıraları dolaşıyor', r: ['Fener! 😱', 'Montu çek üstümüze 🙈', 'Filme bak, filme 😅', 'Geçti mi? 😳', 'Gitti… devam 😈'] },
       { g: '🍿 Ön sıradaki biri dönüp "şşş" diyor', r: ['Duydu! 🙈', 'Pardon… 😅', 'Sessiz olamıyorum ki 😩', 'Daha yavaş 🤫', 'Bırak duysun 😈'] },

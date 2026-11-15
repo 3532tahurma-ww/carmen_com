@@ -1,5 +1,16 @@
 /* 🌐 İngilizce sözlük (bot: selam, sohbet, sorular, iltifat, sevişirken; kişilik şartı olmayan ve yaşa göre kurallar). {v}: sadece balonlarda çalışan yer tutucu; bkz. js/i18n.js */
 Stories.I18n.add({
+  'Tümü': 'All',
+  'Mekan ara… (ör. mutfak, plaj)': 'Search places… (e.g. kitchen, beach)',
+  'Rol ara… (ör. doktor, vampir)': 'Search roles… (e.g. doctor, vampire)',
+  'Sağlık & Bakım': 'Health & Care',
+  'Meslek': 'Jobs',
+  'Okul': 'School',
+  'Gece Hayatı': 'Nightlife',
+  'Kilise': 'Church',
+  'Fantastik': 'Fantasy',
+  'Lezzet Kızları': 'Flavor Girls',
+  'Diğer': 'Other',
   'Bir kadına kilosu sorulmaz': 'You never ask a woman her weight',
   'Gel de kendin gör': 'Come and see for yourself',
   'Arada dikkat ederim, abartmam': 'I watch it now and then, nothing extreme',

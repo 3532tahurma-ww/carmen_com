@@ -1,6 +1,6 @@
-# Amor Stories 💜
+# Carmen 💜
 
-Amor'un görünümüyle, kendi oluşturduğun karakterlerle mesajlaşma şeklinde hikaye yazma uygulaması. Karakterleri profil fotoğrafı ve kişilik özellikleriyle sen oluşturursun; sohbette hem kendi mesajlarını hem karakterin mesajlarını sen yazarsın. Saf HTML + CSS + JS; derleme ya da sunucu gerekmez, GitHub Pages'te doğrudan çalışır.
+Kendi oluşturduğun karakterlerle mesajlaşma şeklinde hikaye yazma uygulaması. Karakterleri profil fotoğrafı, kişilik ve beden özellikleriyle sen oluşturursun; sohbette iki tarafı da sen yazabilir ya da karakterin kurallardan cevap vermesi için **🤖 Bot modu**nu açabilirsin. Sohbetin çevresinde karakter bulduğun sahte bir internet (ilan siteleri, sosyal medya, mağaza, oyunlar…) var. Arayüz EN / TR. Saf HTML + CSS + JS; yapay zeka, derleme ya da sunucu gerekmez, GitHub Pages'te doğrudan çalışır ve internetsiz de açılır.
 
 ## Çalıştırma
 
@@ -12,7 +12,8 @@ Amor'un görünümüyle, kendi oluşturduğun karakterlerle mesajlaşma şeklind
 ```
 index.html          uygulama iskeleti + alt menü
 css/style.css       Amor'un tasarımı (Amor'dan aynen kopyalandı)
-css/stories.css     Amor Stories'e özel eklemeler
+css/stories.css     Carmen'e özel eklemeler
+css/dark.css        karanlık tema (otomatik üretilir: tools/build-dark.js; elle düzenleme css/dark-base.css)
 js/store.js         localStorage ile kalıcı veri
 js/data/traits.js   hazır kişilik / yazım tarzı özellikleri, burçlar, renkler
 js/data/pools.js    🎲 için havuzlar (Amor havuzunu kullanır, erkek isimleri ve durumlar burada)
@@ -24,7 +25,9 @@ mods/dontstop/      Don't Stop karakter görselleri (küçültülmüş)
 mods/carmen/      Carmen: karakter başına bir klasör (resimleri sen eklersin)
 js/data/mod-photos.js  mod klasörlerinin resim listesi (otomatik üretilir)
 tools/build-mods.ps1   mods/<mod>/<karakter>/ klasörlerini tarar
-js/app.js           ekranlar: ana sayfa, mesajlar, profil, sohbet, karakter oluştur, ben
+js/app.js           tüm ekranlar: ana sayfa, mesajlar, profil, sohbet, karakter oluştur, siteler, ben
+js/bot.js           bot modu kural motoru (uygulama ve editör ortak)
+js/i18n.js          EN / TR dil desteği (sözlük: js/data/i18n-en*.js)
 characters/<set>/   hazır karakter fotoğraf setleri (Amor'dan)
 tools/build-photos.ps1, fotograflari-guncelle.bat   js/data/photos.js'i üretir
 ```
@@ -125,7 +128,7 @@ Motor: `js/bot.js` (uygulama ve editör ortak kullanır).
 ## Telefona yükleme (PWA)
 
 GitHub Pages'te açınca tarayıcı "Ana ekrana ekle" önerir (Ben sayfasında da buton çıkar; iPhone'da Safari → Paylaş → Ana Ekrana Ekle). Uygulama internetsiz de açılır.
-Yeni sürüm yayınlarken `sw.js` içindeki `VERSION` değerini artır (`amor-stories-v3` gibi), yoksa telefonlar eski sürümü önbellekten göstermeye devam eder.
+Yeni sürüm yayınlarken `sw.js` içindeki `VERSION` değerini artır (`amor-stories-v853` gibi; önbellek anahtarı eski adla kalıyor, değiştirme), yoksa telefonlar eski sürümü önbellekten göstermeye devam eder.
 
 ## Yeni özellik eklemek
 

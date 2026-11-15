@@ -502,6 +502,14 @@ button.chip { border: 0; cursor: pointer; }
 .pl-grid button span { font-size: 22px; }
 .pl-grid button small { font-size: 11.5px; line-height: 1.2; text-align: center; }
 .pl-grid button.on { border-color: var(--purple); background: var(--purple-soft); }
+.sf-bar { position: sticky; top: -1px; z-index: 2; margin: 0 -4px 8px; padding: 6px 4px; background: var(--card); }
+.sf-q { border: 1px solid var(--line); background: var(--chip); }
+.sf-q input { color: var(--text); }
+.sf-cats { display: flex; gap: 6px; overflow-x: auto; padding-top: 8px; scrollbar-width: none; }
+.sf-cats button { flex: none; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--chip); color: var(--text); font-size: 13px; white-space: nowrap; }
+.sf-cats button.on { border-color: var(--purple); background: var(--purple-soft); }
+.sf-none { text-align: center; opacity: .6; margin: 12px 0; }
+.sf-hide { display: none !important; }
 .pl-own { display: flex; gap: 6px; }
 .pl-own input, #plHint { border: 2px solid #ece9f5; background: #fff; border-radius: 12px; padding: 8px 10px; font-size: 15px; }
 .pl-own #plIcon { width: 54px; text-align: center; }
