@@ -9323,7 +9323,7 @@
       const b = $('#undoBtn');
       if (!b) return;
       const last = stack[stack.length - 1];
-      b.hidden = !last || cs.playing;
+      b.hidden = !last || cs.playing || !editOn();
       if (last) b.innerHTML = `↶ Geri al <small>· ${esc(last.label)}</small>`;
     }
     function undo() {
@@ -10386,37 +10386,24 @@
       if (inSex) { P.st = 'cum'; P.n = 0; say(SESS_TX.hurry); } else { P.st = 'done'; P.saidDone = 1; say(SESS_TX.up); }
       return true;
     }
-    /* 🌿 Gerçekçi Mod · sert tepki ve 🛑 olayı bitirme (th.dis: bu sohbette sevmediği olay sayısı, th.stop { n: o zamandan beri mesajın }):
-     * 💔 sevmediği olay (güven −3 / aşk −2) ya da 🚫 izinsiz olay: ilkinde bot cevabıyla uyarır ("=durum =sertsevmez" / izinsiz cevabı), ikincisinde olayı bitirir ("=sertdur").
-     * Bitirince olay yazılamaz (writeEvents, "=sertbitti"); 2 normal mesajdan sonra yatışır. Dönüş: true → cevap verildi */
+    /* 🌿 Gerçekçi Mod · sert tepki (th.dis: bu sohbette sevmediği olay sayısı):
+     * 💔 sevmediği olay (güven −3 / aşk −2) ya da 🚫 izinsiz olay: her seferinde bot cevabıyla uyarır ("=durum =sertsevmez" / izinsiz cevabı); olay bitirilmez. Dönüş: true → cevap verildi */
     function realGate(userMsg, opts) {
       if (!realOn() || group || !c) return false;
+      if (th.stop) { delete th.stop; save(); }
       if (!opts.events && th.ikna && iknaTry(userMsg)) return true;
-      if (th.stop) {
-        if (!opts.events) { th.stop.n = (th.stop.n || 0) + 1; if (th.stop.n >= 2) { delete th.stop; notify(`${c.name.split(' ')[0]} yatıştı`, '🌿'); } save(); }
-        return false;
-      }
       if (!opts.events) return false;
       const bad = opts.mood === 'sevmez', forced = /^izinsiz_/.test(opts.state || '');
       if (!bad && !forced) return false;
       if (th.iknaOk) return false;   // 🙏 bir kez ikna olduysa bu sohbette bir daha uyarmaz / bitirmez
       if (bad) { cmParam(c, 'güven', -3); cmParam(c, 'aşk', -2); }
       th.dis = (th.dis || 0) + 1;
-      if (th.dis >= 2) { realStop(); return true; }
       th.ikna = { k: forced ? (opts.state === 'izinsiz_kondom' ? 'kondom' : 'icine') : 'sevmez', ev: opts.ev0 || '', n: 0, w: 0 };
       th.whyCtx = { id: 'ret' + th.ikna.k, t: '' };
       save();
       if (forced) return false;   // izinsiz: uyarıyı kendi "=izinsiz_*" cevabı verir
       sessSay(stLine(c, 'sertsevmez', ['Hayır! Bundan hoşlanmıyorum, dur 😠'], fxNow()));
       return true;
-    }
-    function realStop() {
-      th.stop = { n: 0 }; th.dis = 0;
-      th.ikna = { k: 'stop', n: 0, w: 0 };
-      th.whyCtx = { id: 'retstop', t: '' };
-      list.push({ id: Store.uid(), from: 'sys', ts: Math.max(Date.now(), ((list[list.length - 1] || {}).ts || 0) + 1), text: `🛑 ${c.name.split(' ')[0]} olayı bitirdi` });
-      save();
-      sessSay(stLine(c, 'sertdur', ['Yeter! Bitti, dokunma bana 😠'], fxNow()));
     }
     /* 🙏 ikna (th.ikna { k: sevmez|kondom|icine|stop, ev, n: deneme, w: iknasız mesaj }): uyarı / olayı bitirmeden sonra "lütfen", "bir kere", "söz"… yazınca
      * şans = (Güven + Aşk) / 200 × 0.6 (kondom ×0.8, stop ×0.7) + her denemede +0.12 (en çok %85). Razı olursa: sevmez → o olay bu sohbette sevmez sayılmaz (th.iknaEv),
@@ -11031,7 +11018,9 @@
       el.hidden = !quickOn() || cs.playing || (!evs.length && !pls.length && !near.length && !act && !acts.length) || !!(tb && !tb.hidden);
       if (el.hidden) return;
       el.classList.toggle('has-act', !!act);
-      el.innerHTML = `${act}<span class="eq-ic" title="${sug.length ? 'Mekâna ve son olaya göre' : 'Son kullanılan olaylar'}">⚡</span><div class="eq-row">${acts.map(x => `<button type="button" class="mo-chip${evCls(x.e)}"${evStyle(x.e)} data-qev="${esc(x.e.id)}" title="🎬 Sahne başlat: ${esc(x.d.open)}">🎬${x.d.icon} ${esc(x.d.name)}</button>`).join('')}${evs.map(e => `<button type="button" class="mo-chip${evCls(e)}"${evStyle(e)} data-qev="${esc(e.id)}"${actOpen(e) ? ` title="🎬 Sahne açar: ${esc(actOpen(e).name)}"` : ''}>${pins.includes(e) ? '📌' : ''}${actOpen(e) ? '🎬' : ''}${evEmo(e)}${esc(e.title)}</button>`).join('')}${near.map(s => `<button type="button" class="mo-chip" data-qsp="${esc(s.k)}" title="Mekana geç">📍${s.ic} ${esc(s.n)}</button>`).join('')}${plChips(pls, 'qpl')}</div>
+      // 🎬 sahne sürerken sadece sahne çubuğu; ⚡ kısayollar sahne bitince geri gelir
+      if (act) { el.innerHTML = act; return; }
+      el.innerHTML = `<span class="eq-ic" title="${sug.length ? 'Mekâna ve son olaya göre' : 'Son kullanılan olaylar'}">⚡</span><div class="eq-row">${acts.map(x => `<button type="button" class="mo-chip${evCls(x.e)}"${evStyle(x.e)} data-qev="${esc(x.e.id)}" title="🎬 Sahne başlat: ${esc(x.d.open)}">🎬${x.d.icon} ${esc(x.d.name)}</button>`).join('')}${evs.map(e => `<button type="button" class="mo-chip${evCls(e)}"${evStyle(e)} data-qev="${esc(e.id)}"${actOpen(e) ? ` title="🎬 Sahne açar: ${esc(actOpen(e).name)}"` : ''}>${pins.includes(e) ? '📌' : ''}${actOpen(e) ? '🎬' : ''}${evEmo(e)}${esc(e.title)}</button>`).join('')}${near.map(s => `<button type="button" class="mo-chip" data-qsp="${esc(s.k)}" title="Mekana geç">📍${s.ic} ${esc(s.n)}</button>`).join('')}${plChips(pls, 'qpl')}</div>
         <button type="button" class="eq-x" data-q="off" aria-label="Kısayolları kapat">✕</button>`;
     }
     /* 🎬 Sahneler (Stories.SCENES): açılış olayı sahneyi açar (th.act = { id, done: [adım sırası], idle, pl, skip, ready }), adımlar sayılır;
@@ -11066,8 +11055,9 @@
     function actBar(d, a) {
       const need = actNeed(d), n = Math.min(a.done.length, need), want = d.mode === 'seq' ? d.steps.findIndex((s, i) => !a.done.includes(i)) : -1;
       const chip = (t, i) => {
-        const e = actEv(t), ok = a.done.includes(i);
-        return !e ? '' : `<button type="button" class="mo-chip${evCls(e)}${ok ? ' eq-ok' : i === want ? ' eq-next' : ''}"${evStyle(e)}${ok ? ' disabled' : ` data-qev="${esc(e.id)}"`}>${ok ? '✓ ' : ''}${evEmo(e)}${esc(e.title)}</button>`;
+        const e = actEv(t);
+        // ✓ tamamlanan adım gizli (sıradakilere kolay tıklansın); ilerleme ●○ sayacında
+        return !e || a.done.includes(i) ? '' : `<button type="button" class="mo-chip${evCls(e)}${i === want ? ' eq-next' : ''}"${evStyle(e)} data-qev="${esc(e.id)}">${evEmo(e)}${esc(e.title)}</button>`;
       };
       const fe = d.fin && actEv(d.fin);
       return `<div class="eq-act"><span class="eq-at" title="${esc(d.desc || '')}">🎬 ${d.icon} ${esc(d.name)} <b>${'●'.repeat(n)}${'○'.repeat(need - n)} ${n}/${need}</b></span>
@@ -11744,13 +11734,6 @@
       const trio = !group && picked.filter(x => (x.e.tags || []).some(t => lowTag(t) === 'üçlü'));
       if (trio && trio.length) { notify(`👯 ${trio.map(x => x.e.title).join(', ')} sadece 2 kişilik grup sohbetinde olur`, '👯'); picked = picked.filter(x => !trio.includes(x)); }
       if (!picked.length) return;
-      // 🛑 Gerçekçi Mod: olayı bitirdiyse yeni olay yazılmaz, sertçe reddeder (bkz. realGate)
-      if (realOn() && th.stop && !group && c) {
-        snap('Olay reddedildi');
-        sessSay(stLine(c, 'sertbitti', ['Bitti dedim! Dokunma 😠'], fxNow()));
-        notify(`🛑 ${c.name.split(' ')[0]} olayı bitirdi · biraz konuşup yatıştır`, '🛑');
-        return;
-      }
       // 🥶 CarmenAmor: hediye teklifini reddettiysen küs, sevişmek istemez (özür dile ya da gönlünü hediyeyle al)
       if (th.amor && !group && c && amCold(c)) {
         sessSay(pick(AM_COLD_SEX[amType(c)]));
@@ -12369,7 +12352,7 @@
       const mod = e.ctrlKey || e.metaKey;
       if (!mod || cs.playing) return;
       const k = e.key.toLowerCase();
-      if (k === 'z' && !(document.activeElement === input && input.value) && document.activeElement !== $('#sq')) { e.preventDefault(); undo(); }
+      if (k === 'z' && editOn() && !(document.activeElement === input && input.value) && document.activeElement !== $('#sq')) { e.preventDefault(); undo(); }
       if (k === 'f') { e.preventDefault(); openSearch(); }
     };
 
@@ -12833,7 +12816,7 @@
         <button data-a="hero">🖼️ Büyük fotoğrafı </button>
         <button data-a="search">🔍 Sohbette ara</button>
         <button data-a="keywords">🔑 Anahtar kelimeler</button>
-        ${stack.length ? `<button data-a="undo">↶ Geri al · ${esc(stack[stack.length - 1].label)}</button>` : ''}
+        ${stack.length && editOn() ? `<button data-a="undo">↶ Geri al · ${esc(stack[stack.length - 1].label)}</button>` : ''}
         <button data-a="pin">📌 ${isPinned(pinKey) ? 'Sabitlemeyi kaldır' : 'En üste sabitle'}</button>
         <button data-a="play">▶️ Sohbeti oynat</button>
         <button data-a="copy">📋 Metin olarak kopyala</button>
@@ -20844,7 +20827,7 @@
     ['🙈', 'Duygularına neden', 'utandım, korktum, istemiyorum, istiyorum', /^r_why_his_/,
       '<p>Konusu yukarıdakilerden biri değilse cevabındaki duyguya bakar: "utanıyorum", "korkuyorum", "asla", "istiyorum" gibi kelimeler. 🎭 Utangaç karakter kekeleyerek anlatır.</p>'],
     ['🙏', 'Reddine neden ve ikna', '💔 sevmediği, 🚫 izinsiz, 🛑 bitirdi · nasıl ikna edilir', /^r_why_ret_/,
-      `<p>🌿 <b>Gerçekçi Mod</b>'da (tek kişilik sohbet) sevmediği 💔 bir olayda ya da 🚫 izinsiz bir şeyde (kondomsuz giriş, içine boşalma) seni uyarır; ikincisinde 🛑 olayı bitirir. Hemen ardından <b>neden?</b> yazarsan neden reddettiğini anlatır (aşağıdaki tablo).</p>
+      `<p>🌿 <b>Gerçekçi Mod</b>'da (tek kişilik sohbet) sevmediği 💔 bir olayda ya da 🚫 izinsiz bir şeyde (kondomsuz giriş, içine boşalma) her seferinde seni uyarır; olay devam eder. Hemen ardından <b>neden?</b> yazarsan neden reddettiğini anlatır (aşağıdaki tablo).</p>
       <ul><li><b>İkna</b>: uyarıdan ya da olayı bitirdikten sonra "lütfen", "ne olur", "bir kere", "söz", "güven bana", "yavaş olurum", "nazik olurum", "özür dilerim", "affet", "kızma", "hadi ama", "bir şans" gibi bir şey yaz.</li>
         <li><b>Şans</b>: 🤝 Güven ve ❤️ Aşk ne kadar yüksekse o kadar kolay; her yeni denemede biraz artar (en çok %85). Kondomsuz ve olayı bitirdiyse daha zor.</li>
         <li><b>Razı olursa</b>: 💔 o olay bu sohbette artık sevmediği sayılmaz · 🚫 kondomsuz: bu sohbette kondomsuz devam edebilirsin (içine boşalma hâlâ izinsiz) · 🚫 içine: affeder (Güven +4) · 🛑 bitirdi: yatışır, olay yazabilirsin. Bir kez ikna olduysa bu sohbette bir daha uyarmaz, olayı bitirmez.</li>
