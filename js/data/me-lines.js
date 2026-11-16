@@ -8746,3 +8746,20 @@ Object.assign(Stories.ME_EV_LINES, {
   'Wash It Off': ['Birlikte duştayız 🚿', 'Göğüslerini yıkıyorum {o} 😏', 'Ellerim yine kayıyor 😈', 'Temizlenmeye gelmiştik 😂', 'Sırtını da yıkayayım 🥰', 'Bir tur daha mı? 🙈'],
   'Refill Nap': ['Göğsünde uyuyakaldım 🍼', 'Saçımı okşuyorsun {o} 🥰', 'Uyanınca yine dolu olacaksın 😏', 'Biraz dinlenelim 😴', 'Göğüslerin ağırlaşıyor 😳', 'İlk ben emeceğim 😈']
 });
+// 👖 Kıyafetli sürtme (tayt, çorap, etek, kot, pijama)
+Object.assign(Stories.ME_EV_LINES, {
+  'Leggings Grind': ['Kucağımda taytlı kalçanı çeviriyorsun… ahh 😩', 'İnce kumaştan her şeyini hissediyorum {o} 🥵', 'Belini tutup sana bastırıyorum 🔥', 'Taytın ısınıyor offf 😮‍💨', 'Böyle devam edersen pantolonumda biteceğim 💦'],
+  'Leggings Hotdogging': ['Taytlı kalçanın arasında kayıyorum… ahh 😩', 'Kalçanı sıktıkça kumaş geriliyor {o} 🥵', 'Belinden çekip sürtünüyorum 🔥', 'Kaygan kumaşta yukarı aşağı offf 😮‍💨', 'Taytının üstüne bitireceğim 💦'],
+  'Leggings Thighjob': ['Taytlı uyluklarının arasındayım… ahh 😩', 'Bacaklarını sıktıkça daha da daralıyor {o} 🥵', 'Kumaş kaydıkça hızlanıyorum 🔥', 'Uyluklarının sıcaklığı offf 😮‍💨', 'Bacaklarının arasında patlayacağım 💦'],
+  'Seam Rub': ['Taytının dikişi boyunca sürtüyorum… ahh 😩', 'Kumaşta ıslak leke büyüyor {o} 🥵', 'Kalçanı kaldırıp bana bastırıyorsun 🔥', 'Tam oraya, yavaş yavaş offf 😮‍💨', 'Çıkarmadan bitireceğiz böyle 💦'],
+  'Squat Grind': ['Her inişte kalçan bana bastırıyor… ahh 😩', 'Bir tekrar daha {o} 🥵', 'Arkandayım, belini tutuyorum 🔥', 'Taytın terli, ben azgın offf 😮‍💨', 'Bu set bitmeden ben bitiyorum 💦'],
+  'Downward Dog Grind': ['Kalçan havada, arkandan sürtünüyorum… ahh 😩', 'Pozu bozma {o} 🥵', 'Taytın gerildi, her şey ortada 🔥', 'Belini tutup bastırıyorum offf 😮‍💨', 'Matın üstünde biteceğim 💦'],
+  'Pantyhose Rub': ['Naylonun üstünden bacaklarına sürtüyorum… ahh 😩', 'Çorabın parlıyor {o} 🥵', 'Uyluklarının arasına kadar çıkıyorum 🔥', 'Kayan naylon offf 😮‍💨', 'Çorabına boşalacağım 💦'],
+  'Skirt Lift Panty Rub': ['Eteğin belinde, külotunun üstünden sürtüyorum… ahh 😩', 'Dantel ıslanıyor {o} 🥵', 'Kalçanı kaldırıyorsun, bastırıyorum 🔥', 'Külotu kenara itmemek zor offf 😮‍💨', 'Böyle bitireceğim 💦'],
+  'Jeans Lap Grind': ['Kucağımda kotun kotuma sürtünüyor… ahh 😩', 'Fermuarlar birbirine değiyor {o} 🥵', 'Öpüşürken kalçanı çekiyorum 🔥', 'Sert kumaşın arasından offf 😮‍💨', 'Pantolonumun içinde patlayacağım 💦'],
+  'Morning Shorts Spoon': ['Sabah sabah arkandan sarılıp bastırıyorum… ahh 😩', 'Uykulu kalçanı geri itiyorsun {o} 🥰', 'Pijamanın üstünden yavaşça 🔥', 'Battaniyenin altı ısındı offf 😮‍💨', 'Kalkmadan bitireceğim 💦'],
+  'Counter Press': ['Tezgâhta arkandan bastırıyorum… ahh 😩', 'Eşofmanının üstünden kalçana {o} 🥵', 'Elindeki kaşık titriyor 🔥', 'Yemek bekleyebilir offf 😮‍💨', 'Burada, mutfakta bitireceğim 💦'],
+  'Leggings Cumshot': ['Taytlı kalçana boşalıyorum… ahhh 💦', 'Kumaş ıslanıp tenine yapışıyor {o} 🥵', 'Siyah taytta bembeyaz 😈', 'Hepsini kumaşa bıraktım offf 😮‍💨', 'Yıkama onu 😏'],
+  'Waistband Cumshot': ['Bel lastiğini çekip içine boşalıyorum… ahhh 💦', 'Lastik şak diye yerine oturdu {o} 😈', 'Bütün gün içinde taşıyacaksın 😏', 'Kalçandan aşağı süzülüyor offf 😮‍💨', 'Kimse bilmeyecek 🤫']
+});
+Stories.ME_BED_SKIP.push('Squat Grind', 'Downward Dog Grind', 'Counter Press');

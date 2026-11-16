@@ -304,7 +304,11 @@ Stories.SCENES = [
   { id: 'sabahsutu', icon: '🌅', name: 'Sabah Sütü', tag: 'süt', mode: 'free', need: 2, ttl: 4,
     open: 'Refill Nap', steps: ['Suck & Stroke', 'Nipple Squeeze Tease', 'Nursing Ride', 'Milky Cowgirl'], fin: 'Milk & Cum Kiss',
     fx: [['aşk', 3], ['samimiyet', 2], ['güven', 1]], fail: [['güven', -1]],
-    desc: 'Göğsünde uyursunuz, sabah göğüsleri dolu uyanır; iki sütlü adım, sonra sütlü bir günaydın öpücüğü.', end: 'Günaydın… kahvaltı gerekmedi 🌅🥛' }
+    desc: 'Göğsünde uyursunuz, sabah göğüsleri dolu uyanır; iki sütlü adım, sonra sütlü bir günaydın öpücüğü.', end: 'Günaydın… kahvaltı gerekmedi 🌅🥛' },
+  { id: 'tayt', icon: '🩱', name: 'Taytlı Antrenman', tag: '', mode: 'seq', ttl: 4,
+    open: 'Squat Grind', steps: ['Downward Dog Grind', 'Leggings Hotdogging', 'Seam Rub'], fin: 'Leggings Cumshot',
+    fx: [['uyarılma', 10], ['şehvet', 6], ['samimiyet', 1]], fail: [['güven', -1]],
+    desc: 'Sırayla: squat, yoga pozu, kalça arası ve dikiş; hiç soyunmadan, sonra taytının üstüne bitiş. Tayt (ya da eşofman / antrenör kıyafeti) üstünde olmalı.', end: 'Taytı sırılsıklam, antrenman hiç bu kadar uzun sürmemişti 🩱' }
 ];
 Stories.SCENE_SAY = {
   dus: { ask: ['Birlikte duş alalım mı? Sırtımı sen sabunlarsın 🚿😏', 'Üstüm başım ter oldu… duşa benimle gelir misin? 🫧'], open: ['Su sıcacık, köpükler her yerde 🫧', 'Gel, sarıl bana, köpüğü paylaşalım 🚿'], end: ['Buhar hâlâ camda… bir daha mı? 😏', 'Hiç bu kadar temiz ve bu kadar kirli hissetmemiştim 🚿'] },
@@ -379,5 +383,6 @@ Stories.SCENE_SAY = {
   emzirirken: { ask: ['Kucağıma gel, hem emzireyim hem… 🍼😏', 'Sen em, ben de seni okşayayım mı? 🥰'], open: ['Em… ben de elimle seni 🍼', 'Böyle ikimiz de doyacağız 😏'], end: ['Göğsümde uyuyakalacaksın 🥰', 'Karnıma bıraktın, sütümle karıştı 🍼💦'] },
   sutopucuk: { ask: ['Ağzıma biraz sütümü alayım mı? Sonra seni… 💋🥛', 'Sütlü bir öpücük ister misin? Önce kazanman lazım 😏'], open: ['Ağzım sütle dolu, hissediyor musun? 🥛', 'Bir damla bile dökülmesin 😈'], end: ['Dudaklarımız bembeyaz 💋', 'Böyle öpüşmeyi kimse bilmez 🤫'] },
   sutkokteyl: { ask: ['Bu gece sana özel bir kokteyl hazırlayayım mı? 🍸😈', 'Kadehi getir, malzemeler bende 🥛'], open: ['Önce sütümü tat 👅', 'Tarif gizli, adım adım 😏'], end: ['Şerefe 🥂', 'En pahalı kokteyl buydu 😂🍸'] },
-  sabahsutu: { ask: ['Göğsümde uyumak ister misin? Sabaha dolu olurum 🌅🍼', 'Gel yat, uyandığında kahvaltın hazır 😏'], open: ['Günaydın… göğüslerim taştı 🥛', 'Uyan, sıcak süt var 😏'], end: ['Günaydın öpücüğü böyle olur 💋', 'Her sabah böyle uyanalım 🌅'] }
+  sabahsutu: { ask: ['Göğsümde uyumak ister misin? Sabaha dolu olurum 🌅🍼', 'Gel yat, uyandığında kahvaltın hazır 😏'], open: ['Günaydın… göğüslerim taştı 🥛', 'Uyan, sıcak süt var 😏'], end: ['Günaydın öpücüğü böyle olur 💋', 'Her sabah böyle uyanalım 🌅'] },
+  tayt: { ask: ['Antrenmana benimle gelir misin? Taytımı giydim 🩱😏', 'Bugün bacak günü… spot verir misin? 🏋️'], open: ['Arkamda dur, formumu kontrol et 😈', 'Bir… iki… yakın dur 🩱'], end: ['Taytım sırılsıklam, terden değil 💦', 'En iyi antrenmandı bu 🏋️😏'] }
 };

@@ -518,6 +518,12 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['👖', 'Kıyafetli sürtme: 13 yeni olay', 'Hiç soyunmadan: tayt, külotlu çorap, etek, kot ve pijama üstünden sürtme olayları ve 2 yeni bitiş. Her olay o parça üstündeyse yazılır; soyunursa kapanır. Hepsi 🎬 Olay Kitabı\'nın yeni 👖 Kıyafetli Sürtme bölümünde.', '#/kitap/olay/37', [
+      ['🩱 Tayt', 'Leggings Grind, Leggings Hotdogging, Leggings Thighjob, Seam Rub, Squat Grind, Downward Dog Grind.'],
+      ['👗 Diğerleri', 'Pantyhose Rub (külotlu çorap), Skirt Lift Panty Rub (etek), Jeans Lap Grind (kot), Morning Shorts Spoon (pijama), Counter Press (eşofman).'],
+      ['💦 Bitişler', 'Leggings Cumshot ve Waistband Cumshot; sadece tayt / eşofman / kot olaylarından sonra gelir.'],
+      ['🎬 Sahne ve kombo', '🩱 Taytlı Antrenman (sırayla: Squat Grind → Downward Dog Grind, Leggings Hotdogging, Seam Rub → Leggings Cumshot). 🔗 Hiç soyunmadan: üç kıyafetli olay arka arkaya, Uyarılma +8, Samimiyet +2.'],
+      ['👗 Kıyafet şartı', 'Dry Missionary ve Dry Doggy de artık kalçası örtülüyken yazılır; çırılçıplakken önerilmez.']]],
     ['📸', 'CarmenFans: fotoğrafta ne yapıyor?', 'CarmenFans gönderilerinin altında artık o karede ne yaptığı yazıyor: "Kendimi parmaklarken çektim <3", "95D memelerimin arasına dildo koydum"… Satır sevdiği olaylara, bedenine ve haftanın kostümüne göre değişir.', '#/kitap/internet/2', [
       ['❤️ Sevdiklerinden', 'Parmaklama, oyuncak, göğüs, kalça, oral, boşalma, duş, dışarıda, BDSM, süt ve üçlü olayları kendi satırlarını getirir; 💔 sevmedikleri hiç çıkmaz.'],
       ['🍒 Bedeninden', 'Göğüs bedeni 85 ve üstüyse bedeniyle birlikte yazar (ör. 95D); büyük kalçalıların kalça satırları var. Haftanın kostümü ve hotwife satırları da karışır.'],
@@ -3689,6 +3695,9 @@
     { k: 'kmb_sutkrema', icon: '🥛', name: 'Süt ve krema', seq: ['c:nursing', 'c:milky sex', 'tag:süt'], when: 'Kombo: bir 🤱 Nursing olayı → bir 🍼 Milky Sex pozisyonu → sütlü bir olay ya da bitiş, arka arkaya', fx: [['samimiyet', 2], ['süt kalitesi', 5]],
       say: ['Önce emdin, sonra… her yerim süt ve sen 🥛😩', 'Sütüm hiç bu kadar güzel akmamıştı {sen} 🍼', 'Emzirmekle başladı, bak nerede bitti 😏'],
       me: ['Göğsünden başladım, her yerin sütle kaplandı 🥛', 'Emzirdin, ben de seni doyurdum 😈'] },
+    { k: 'kmb_tayt', icon: '👖', name: 'Hiç soyunmadan', seq: ['tag:kıyafet', 'tag:kıyafet', 'tag:kıyafet'], when: 'Kombo: üç kıyafetli olay (sürtme ya da kıyafetin üstüne bitiş), arka arkaya', fx: [['uyarılma', 8], ['samimiyet', 2]],
+      say: ['Hiçbir şey çıkarmadık ve ben bu haldeyim 🥵', 'Kıyafetlerimizle… kimse inanmaz {sen} 😩', 'Üstüm başım buruşuk, ama hâlâ giyinik 😏'],
+      me: ['Hiç soyunmadan seni bu hale getirdim 😈', 'Kıyafetler üstünde kaldı, aklın gitti 🔥'] },
     { k: 'kmb_adim', icon: '🪜', name: 'Adım adım', seq: ['t:kissing', 'warm', 'warm', 'pen'], when: 'Kombo: Kissing → iki ısınma (Foreplay / Eat / Outercourse) → önden ya da arkadan giriş, arka arkaya', fx: [['aşk', 2], ['uyarılma', 8]],
       say: ['Beni ne güzel hazırladın {sen}… 🥰', 'Öpücükle başladın, şimdi tam yerindeyim 😩💗', 'Adım adım… tam istediğim gibi 🥵'],
       me: ['Öpücükten buraya, adım adım geldim 😏', 'Seni yavaş yavaş hazırladım, şimdi sıra bende 🔥'] },
@@ -9059,6 +9068,7 @@
 
   function renderChat(c, th) {
     th.opened = Date.now();
+    openThread = th;
     if (th.amor && !th.group && c) amChatOpen(c, th);
     save();
     const group = !!th.group;
@@ -10788,6 +10798,8 @@
       if (!UNDRESS_CMD.tanga.some(s => clItem(o[s]) && !slotOff(u, s))) return null;
       return allEvents().find(x => x.title === 'Take Off Panties') || null;
     }
+    const CLOTHED_SAY = ['{K} hâlâ üstümde ama her şeyi hissediyorum 🥵', '{K} o kadar ince ki… sanki hiç yok 😩', 'Çıkarmadan, {k} üstünden… daha da tahrik edici 😈',
+      '{K} ıslanmaya başladı, fark ettin mi? 🙈💦', '{K} sürtündükçe yanıyorum 🔥', 'Sakın çıkarma, {k} böyle kalsın 😏'];
     function wearPart(ch, opts, rid) {
       if (!ch) return '';
       const und = th.undress = th.undress || {}, u = und[ch.id] = und[ch.id] || {}, low = s => String(s || '').toLocaleLowerCase('tr');
@@ -10845,6 +10857,8 @@
       if (!e || !isPosEv(e)) return '';
       const cat = low(catOfEv(e).label), tags = (e.tags || []).map(low);
       if (cat === 'foreplay') return !u.gogus && !u.kalca && Math.random() < .3 ? wearLine(ch, 't', 'any') : '';
+      // 👖 kıyafetli sürtme: soyulmaz, üstündeki parçanın adıyla bir cümle
+      if (tags.includes('kıyafet')) { const x = dressedAt(ch, tags.includes('bacak') ? 'bacak' : 'kalca', u); return x && Math.random() < .5 ? clFill(pickOne(CLOTHED_SAY), x) : ''; }
       if (tags.includes('göğüs')) return once('gogus', 'off', true);
       if (tags.includes('vajinal') || tags.includes('anal') || tags.includes('kalça') || cat === 'eat') return once('kalca', 'off', true);
       return '';
@@ -11955,7 +11969,7 @@
       if (trio && trio.length) { notify(`👯 ${trio.map(x => x.e.title).join(', ')} sadece 2 kişilik grup sohbetinde olur`, '👯'); picked = picked.filter(x => !trio.includes(x)); }
       // 🤰 hamilelik olayları sadece hamile karakterde, kendi hafta aralığında
       const preg = !group && c && picked.filter(x => pregBlock(c, x.e));
-      if (preg && preg.length) { const ic = isPregEv(preg[0].e) ? '🤰' : '🍼'; notify(`${ic} ${preg.map(x => x.e.title).join(', ')}: ${pregBlock(c, preg[0].e)}`, ic); picked = picked.filter(x => !preg.includes(x)); }
+      if (preg && preg.length) { const ic = isPregEv(preg[0].e) ? '🤰' : (preg[0].e.wear || []).length ? '👗' : '🍼'; notify(`${ic} ${preg.map(x => x.e.title).join(', ')}: ${pregBlock(c, preg[0].e)}`, ic); picked = picked.filter(x => !preg.includes(x)); }
       if (!picked.length) return;
       // 🥶 CarmenAmor: hediye teklifini reddettiysen küs, sevişmek istemez (özür dile ya da gönlünü hediyeyle al)
       if (th.amor && !group && c && amCold(c)) {
@@ -18203,7 +18217,20 @@
   };
   // 🍼 süt kapısı da burada: e.milk (Milk & Cum olayları) → onun 🍼 Süt değeri en az bu kadar olmalı
   const milkV = c => { const p = allParams().find(x => x.who !== 'me' && String(x.label).toLocaleLowerCase('tr') === 'süt'); return p ? +paramVal(c || {}, p) || 0 : 0; };
+  // 👗 kıyafet kapısı da burada: e.wear (parça id'leri ya da '@kalca' / '@bacak' / '@gogus' bölgesi) → kıyafeti tanımlıysa biri üstünde ve çıkarılmamış olmalı
+  // soyunma durumu açık sohbetten (renderChat → openThread), değilse son sohbetten
+  let openThread = null;
+  const wearBlock = (c, e) => {
+    if (!c || !e || !(e.wear || []).length || !outfitItems(c).length) return '';
+    const th = openThread && threadsOf(c).includes(openThread) ? openThread : currentThread(c);
+    const o = outfitOf(c), u = ((th || {}).undress || {})[c.id] || {};
+    if (e.wear.some(w => w[0] === '@' ? dressedAt(c, w.slice(1), u) : WEAR_ORDER.some(s => o[s] === w && !slotOff(u, s)))) return '';
+    const ns = e.wear.filter(w => w[0] !== '@').map(clItem).filter(Boolean).slice(0, 3).map(x => x.name.toLocaleLowerCase('tr'));
+    return ns.length ? `üstünde ${ns.join(' / ')} yok` : 'üstünde kıyafet yok';
+  };
   const pregBlock = (c, e) => {
+    const wb = wearBlock(c, e);
+    if (wb) return wb;
     if (e && e.milk != null && milkV(c) < e.milk) return `göğüsleri boş, Süt en az ${e.milk} olmalı`;
     if (!isPregEv(e)) return '';
     const w = pregWeek(c || {}) || ((c || {}).fields || {}).hamile && 1;
@@ -21192,6 +21219,7 @@
   /* 🧠 Olay Hafızası Kitabı: MEM_RULES tablosundan okunur; anlatım memKey / eventMessages / botEventReply davranışını tekrar eder (değişince güncelle) */
   // 🔗 Kombolar bölümü: kombo başına örnek, ipucu ve neyin bozduğu (yeni kombo eklersen buraya da ekle)
   const KMB_BOOK = {
+    kmb_tayt: [['🎬 <b>Örnek:</b>', '🩱 Leggings Grind → 🩱 Seam Rub → 💦 Leggings Cumshot.'], ['💡 <b>İpucu:</b>', 'Tayt / çorap / etek olayları ancak o parça üstündeyse yazılır (👗 kıyafet şartı); soyunursa kombo da biter.'], ['💔 <b>Bozan:</b>', 'Arada kıyafetsiz bir olay (ör. Take Off Panties ya da Missionary).']],
     kmb_sutkrema: [['🎬 <b>Örnek:</b>', '🤱 Lap Nursing → 🍼🔥 Nursing Ride → 💦🍼 Creampie Let-down.'], ['💡 <b>İpucu:</b>', 'Milk &amp; Cum olayları 🍼 Süt değerine bağlıdır (çoğu en az 30); göğüsleri boşsa yazılmaz. Süt Kalitesi +5 verir.'], ['💔 <b>Bozan:</b>', 'Arada sütsüz bir olay (ör. Kissing) ya da başka mekânın olayı.']],
     kmb_adim: [['🎬 <b>Örnek:</b>', '💋 Kissing → 🫂 Back Hugging (Foreplay) → 👅 bir Eat olayı → ❤️ Missionary.'], ['💡 <b>İpucu:</b>', 'İki ısınma Foreplay, Eat ya da Outercourse olabilir; ilk olay mutlaka Kissing olmalı. Turun başında en güvenli kombo: hem Aşk hem Uyarılma artar.'], ['💔 <b>Bozan:</b>', 'Kissing ile giriş arasına üçüncü bir ısınma koymak (o zaman 🔥 Isınmış tutar).']],
     kmb_gelgit: [['🎬 <b>Örnek:</b>', '❤️ Missionary → 🍑 Missionary Anal → ❤️ önden bir pozisyon daha.'], ['💡 <b>İpucu:</b>', 'Önden pozisyon "vajinal", arkadan pozisyon "anal" etiketlidir; mekân pozisyonları da sayılır (ör. Shower Doggy → Shower Anal → Shower Lift).'], ['💔 <b>Bozan:</b>', 'Arada oral ya da ısınma olayı; Acı +3 getirdiği için Acı zaten yüksekse dikkat.']],
@@ -22387,7 +22415,24 @@
       ['Oiled Back Cumshot', 'Yüzüstü kalıyorum. Sen yağlı sırtıma ve kalçalarımın arasına boşalırsan Oiled Back Cumshot olur.'],
       ['Oiled Ass Creampie', 'Kalçamı sana uzatıyorum. Sen yağlı kalçalarımın arasından içime boşalırsan Oiled Ass Creampie olur.'],
       ['Titjob Finish', 'Göğüslerimi sıkıca birleştiriyorum. Sen aralarında boşalırsan boynuma kadar sıçrar, Titjob Finish olur.'],
-      ['Thigh Cumshot', 'Uyluklarımı sıkıyorum. Sen aralarında boşalırsan son damlayı da alırım, Thigh Cumshot olur.']]]
+      ['Thigh Cumshot', 'Uyluklarımı sıkıyorum. Sen aralarında boşalırsan son damlayı da alırım, Thigh Cumshot olur.']]],
+    ['👖', 'Kıyafetli Sürtme', 'tayt, çorap, etek, kot, pijama', 'Bunlarda hiçbir şey çıkmaz. Ama o parça üstümde olmalı: taytım yoksa taytlı olay da yok 👗', [
+      ['Dry Missionary', 'Giyinik halde sırtüstü uzanıyorum. Sen üstüme gelip kıyafetlerin üstünden sürtünürsen Dry Missionary olur.'],
+      ['Dry Doggy', 'Giyinik halde dört ayak duruyorum. Sen arkamdan kalçama bastırırsan Dry Doggy olur.'],
+      ['Leggings Grind', 'Taytımla kucağına oturuyorum. Sen belimi tutarsan kalçamı dairesel çevirip sana sürterim, Leggings Grind olur.'],
+      ['Leggings Hotdogging', 'Taytım üstümde, kalçalarımı sıkıyorum. Sen kumaşın üstünden aralarında kayarsan Leggings Hotdogging olur.'],
+      ['Leggings Thighjob', 'Taytlı uyluklarımı açıyorum. Sen aralarına girersen kapatıp sıkıştırırım, Leggings Thighjob olur.'],
+      ['Seam Rub', 'Sırtüstü uzanıp bacaklarımı aralıyorum. Sen taytımın orta dikişi boyunca yavaşça sürtersen Seam Rub olur; kumaşta leke belirir.'],
+      ['Squat Grind', 'Squat yapıyorum. Sen arkama geçersen her inişte kalçam sana bastırır, Squat Grind olur.'],
+      ['Downward Dog Grind', 'Yoga pozunda kalçam havada. Sen arkamdan tayt üstüne sürtünürsen Downward Dog Grind olur.'],
+      ['Pantyhose Rub', 'Külotlu çorabımla bacak bacak üstüne atıyorum. Sen naylonun üstünden bacaklarıma sürtersen Pantyhose Rub olur.'],
+      ['Skirt Lift Panty Rub', 'Eteğimi belime kadar kaldırıyorum. Sen sadece külotumun üstünden sürtersen Skirt Lift Panty Rub olur.'],
+      ['Jeans Lap Grind', 'Kotumla yüz yüze kucağına oturuyorum. Sen beni kendine çekersen kot kota sürtünür, Jeans Lap Grind olur.'],
+      ['Morning Shorts Spoon', 'Sabah, pijamamla kaşık yatıyoruz. Sen arkamdan yavaşça bastırırsan Morning Shorts Spoon olur.'],
+      ['Counter Press', 'Mutfakta tezgâha yaslanıyorum. Sen arkamdan eşofmanımın üstüne bastırırsan Counter Press olur.'],
+      ['Dry Creampie', 'Sürtünmeye dayanamazsan kendi pantolonuna boşalırsın, Dry Creampie olur.'],
+      ['Leggings Cumshot', 'Taytlı olaylardan sonra kalçamı uzatıyorum. Sen taytımın üstüne boşalırsan Leggings Cumshot olur.'],
+      ['Waistband Cumshot', 'Bel lastiğimi aşağı çekmene izin veriyorum. Sen içine boşalıp bırakırsan Waistband Cumshot olur; bütün gün taşırım.']]]
   ];
   BOOKS.push({ id: 'olay', icon: '🎬', title: 'Olay Kitabı', sub: 'Lia her olayı sahneleyerek anlatır', chips: [`${OLAY_BOOK.reduce((n, c) => n + c[4].length, 0)} olay`, '💁‍♀️ Lia anlatıyor'], chapters: [
     { icon: '🎬', title: 'Olay Kitabı nasıl okunur', sub: 'Lia sahneler, sen yaparsın', body: `
