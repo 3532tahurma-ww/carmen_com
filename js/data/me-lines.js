@@ -8560,11 +8560,25 @@ Object.assign(Stories.ME_EV_LINES, {
   'Table Cowgirl': ['Masaya uzandım, üstüme çıktın 🐎', 'Yağlı bedeninle kayıyorsun {o} 🥵', 'Masa sallanıyor 😂', 'Kalçanı tutuyorum 😏', 'Şimdi masaj sende 😈', 'Ahh 😩'],
   'Happy Ending': ['Ellerin ve ağzınla bitiriyorsun… ahhh {o} 😩💦', '"Mutlu son" diye gülümsüyorsun 🫦', 'Son damlasına kadar 😈', 'Tamamen gevşedim 💆', 'Nefes nefeseyim 🥵', 'Bahşişi masaya bırakıyorum 😂'],
   'Oiled Body Cumshot': ['Yağlı göğüslerine ve karnına boşalıyorum ahhh 😩💦', 'Yağla karıştı {o} ✨', 'Parmaklarınla yayıyorsun 😏', 'Sıcacık 🥵', 'Havlu! 🙈', 'Masajın en güzel kısmı 😈'],
-  'Oiled Back Cumshot': ['Yağlı sırtına ve kalçalarının arasına boşalıyorum ahhh 😩💦', 'Yağla karışıp süzülüyor {o} 🫗', 'Kıpırdamıyorsun, aksın diye 😏', 'Bacakların titriyor 🥵', 'Havluyu uzatıyorum 🙈', 'Seans bitti 😈']
+  'Oiled Back Cumshot': ['Yağlı sırtına ve kalçalarının arasına boşalıyorum ahhh 😩💦', 'Yağla karışıp süzülüyor {o} 🫗', 'Kıpırdamıyorsun, aksın diye 😏', 'Bacakların titriyor 🥵', 'Havluyu uzatıyorum 🙈', 'Seans bitti 😈'],
+  'Face Hole Oral': ['Masanın yüz deliğinin altına uzandım 🕳️', 'Yüzüstü yatarken ağzına alıyorsun {o} 🫦', 'Seni göremiyorum ama hissediyorum 🥵', 'Masa sallanıyor 🙈', 'Yavaş 😈', 'Masaj böyle mi sürüyor? 😏'],
+  'Oily Titjob': ['Masanın kenarına diz çöktün 🍈', 'Yağlı göğüslerinin arasında kayıyorum {o} 🥵', 'Sıkıyorsun 😏', 'Göğüslerin parlıyor ✨', 'Gözlerin bende 😈', 'Çok kaygan 😩'],
+  'Inner Thigh Knead': ['İç bacaklarını yoğuruyorum 🦵', 'Başparmaklarım her turda biraz daha yaklaşıyor {o} 😏', 'Bacakların kendiliğinden açılıyor 😳', 'Nefesin hızlandı 🥵', 'Biraz daha yukarı 😈', 'Titriyorsun 😩'],
+  'Table Edge Doggy': ['Masanın kenarında dizlerinin üstündesin 🐕', 'Yağlı kalçan her vuruşta parlıyor {o} 🥵', 'Belinden çekiyorum 😏', 'Kayıyorsun, tutuyorum 😈', 'Masa gıcırdıyor 🙈', 'Daha sert 😩'],
+  'Spoon on Table': ['Yan yattın, arkana uzandım 🥄', 'Masa dar, sıkı sarılıyorum {o} 🫂', 'Ensende nefesim 😳', 'Yavaş ve derin 🥵', 'Düşmeyelim 😂', 'Böyle kalalım 😩'],
+  'Standing Oil Press': ['Seni duvara yasladım 🧱', 'Yağlı bedenin elimden kayıyor {o} 🥵', 'Sıkı tutuyorum 😏', 'Bacakların titriyor 😈', 'Yağ her yerde 😂', 'Bastırıyorum 😩'],
+  'Oiled Ass Creampie': ['Yağlı kalçalarının arasından içine boşalıyorum ahhh 😩💦', 'Dışarı süzülürken parlıyor {o} ✨', 'Kıpırdamıyorsun 😏', 'Bacakların titriyor 🥵', 'Havluyu uzatıyorum 🙈', 'Seans bitti 😈'],
+  'Titjob Finish': ['Yağlı göğüslerinin arasında boşalıyorum ahhh 😩💦', 'Boynuna kadar sıçradı {o} 😳', 'Parmaklarınla yayıyorsun 😏', 'Sıcacık 🥵', 'Havlu! 🙈', 'Gülümsüyorsun 😈'],
+  'Thigh Cumshot': ['Yağlı uyluklarının arasında boşalıyorum ahhh 😩💦', 'Bacaklarını sıkıp son damlayı da alıyorsun {o} 😈', 'Uyluklarından süzülüyor 🫗', 'Sıcacık 🥵', 'Havluyu uzatıyorum 🙈', 'Seans bitti 😏'],
+  'Oil and Gold': ['Sen istedin, yağlı sırtına işiyorum 🫗', 'Yağla karışıp kalçalarından süzülüyor {o} 😳', 'Gülümsüyorsun 😈', 'Sıcacık 🥵', 'Durmamı istersen dururum 🤍', 'Şimdi duşa 🚿'],
+  'Oily Ass Pee': ['Kalçanı kaldırdın, istedin 🍑', 'Yağlı kalçalarına işiyorum {o} 😳', 'Yanaklarının arasından akıyor 🥵', 'Masa ıslandı 🙈', 'Durmamı istersen dururum 🤍', 'Şimdi duşa 🚿'],
+  'Oily Tit Pee': ['Göğüslerini birleştirdin, istedin 🍈', 'Yağlı göğüslerine işiyorum {o} 😳', 'Göğüslerinden süzülüyor 🥵', 'Gülümsüyorsun 😈', 'Durmamı istersen dururum 🤍', 'Şimdi seni yıkarım 🚿']
 });
-Stories.ME_HUG_LINES.placeFinish.events.push('Happy Ending', 'Oiled Body Cumshot', 'Oiled Back Cumshot');
+Stories.ME_HUG_LINES.placeFinish.events.push('Happy Ending', 'Oiled Body Cumshot', 'Oiled Back Cumshot', 'Oiled Ass Creampie', 'Titjob Finish', 'Thigh Cumshot');
 Stories.ME_BED_SKIP.push('Oil Drip Grind', 'Shoulder Rub Grind', 'Hug Grind', 'Neck Kiss Grind', 'Thigh Slide', 'Lower Back Press', 'Turn Over Tease', 'Chest Rub Grind', 'Nuru Slide',
-  'Tip Tease', 'Oily Handjob', 'Slip In', 'Massage Table Missionary', 'Table Cowgirl', 'Happy Ending', 'Oiled Body Cumshot', 'Oiled Back Cumshot');
+  'Tip Tease', 'Oily Handjob', 'Slip In', 'Massage Table Missionary', 'Table Cowgirl', 'Happy Ending', 'Oiled Body Cumshot', 'Oiled Back Cumshot',
+  'Face Hole Oral', 'Oily Titjob', 'Inner Thigh Knead', 'Table Edge Doggy', 'Spoon on Table', 'Standing Oil Press', 'Oiled Ass Creampie', 'Titjob Finish', 'Thigh Cumshot',
+  'Oil and Gold', 'Oily Ass Pee', 'Oily Tit Pee');
 
 /* 🍳🪜🧺🌇 ev köşeleri: mutfak eklemeleri, merdiven, çamaşırhane, balkon */
 Object.assign(Stories.ME_EV_LINES, {

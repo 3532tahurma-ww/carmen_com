@@ -14,6 +14,7 @@ home, messages, me, p/<charId> (profile), chat/<threadId>, create[/<id>], monia[
 `avatar`, `userAvatar`, `fmtTime`, thread helpers (`threads`, `threadsOf`, `groupsOf`, `membersOf`, `msgsOf`, `newThread`, `openChat`), `notify(text, icon)`, `sheet(html)` bottom sheet, `readPhoto`, `pageHero(...)` page header card, `lightbox`, `copyText`.
 - Global toggles: `themePref/applyTheme` (light/dark/auto), `editOn`, `realOn` (🌿 Gerçekçi Mod, forced on when edit mode off), `liaOn`, `quickOn`, `scoreOn`.
 - 💁 Lia helper (`HELPER`, `HELP{route: steps[]}`, `drawHelper`): per-page tips; add a key to `HELP` for new pages.
+- ✨ `splashWhile(promise)`: reuses the `#splash` Carmen intro as a loading screen (`.splash.busy`, looping `carmenBeat`, "Yükleniyor…") until the promise settles; ref-counted (`splashN`). Wrap slow async loads with it (now: Lara Gallery). `render()` also shows it 900 ms on site enter/exit/switch (`ui.siteSet` from `netSites()` + booble/halloween, `ui.lastSite`).
 - Startup: `blink` click sound, `syncMusic`, `initLock` (PIN/WebAuthn), `bossKey` (fake calculator), PWA `installCard`, `onboard` when user has no name.
 
 ## Change safety

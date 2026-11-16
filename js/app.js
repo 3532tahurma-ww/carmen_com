@@ -518,6 +518,15 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['📸', 'CarmenFans: fotoğrafta ne yapıyor?', 'CarmenFans gönderilerinin altında artık o karede ne yaptığı yazıyor: "Kendimi parmaklarken çektim <3", "95D memelerimin arasına dildo koydum"… Satır sevdiği olaylara, bedenine ve haftanın kostümüne göre değişir.', '#/kitap/internet/2', [
+      ['❤️ Sevdiklerinden', 'Parmaklama, oyuncak, göğüs, kalça, oral, boşalma, duş, dışarıda, BDSM, süt ve üçlü olayları kendi satırlarını getirir; 💔 sevmedikleri hiç çıkmaz.'],
+      ['🍒 Bedeninden', 'Göğüs bedeni 85 ve üstüyse bedeniyle birlikte yazar (ör. 95D); büyük kalçalıların kalça satırları var. Haftanın kostümü ve hotwife satırları da karışır.'],
+      ['🔒 Kilitli gönderiler', 'Abone değilsen yalnızca ilk üç kelime görünür. İlk (ücretsiz) gönderi hep yumuşak bir satırla vitrin olur.']]],
+    ['💆', 'Masaj Salonu: 12 yeni olay ve Olay Kitabı bölümü', 'Masaj salonunda yeni pozisyonlar, 3 yağlı bitiş ve 3 ıslak oyun var. Salonun 29 olayının hepsi artık 🎬 Olay Kitabı\'nın yeni 💆 Masaj Salonu bölümünde; Lia her birini sahneleyerek anlatıyor.', '#/kitap/olay/36', [
+      ['🔥 Ön sevişme ve pozisyonlar', 'Face Hole Oral, Oily Titjob, Inner Thigh Knead (Uyarılma +15), Table Edge Doggy, Spoon on Table, Standing Oil Press.'],
+      ['💦 Bitişler', 'Oiled Ass Creampie, Titjob Finish, Thigh Cumshot. Salon olaylarından sonra eşleşir.'],
+      ['🚿 Islak oyunlar', 'Oil and Gold, Oily Ass Pee, Oily Tit Pee. Sadece salonda görünür ve ikinizin de isteğiyle oynanır.'],
+      ['🎬 Yeni sahneler', '🤲 Derin Doku Masajı (sırayla: Inner Thigh Knead → Thigh Slide, Face Hole Oral, Spoon on Table → Thigh Cumshot) ve 🧱 Kapalı Kapı (Oily Titjob ile açılır, 2 adım, Titjob Finish ile biter).']]],
     ['🥛', 'Milk & Cum: süt ve meni bir arada', 'Sütü olan karakterle yeni 🥛 Milky Foreplay (5), 🍼 Milky Sex pozisyonları (6), 6 sütlü bitiş ve 3 sonrası olayı; 5 yeni sahne ve 🔗 Süt ve krema kombosu. Olaylar 🍼 Süt değerine bağlı: göğüsleri boşsa yazılmaz. Hepsi 🍼 Süt Kitabı\'nın yeni bölümlerinde.', '#/kitap/sut/0', [
       ['🥛 Ön sevişme', 'Milk Lick Trail, Suck & Stroke, Milk Lube Handjob, Milk Mouth Blowjob, Nipple Squeeze Tease.'],
       ['🔥 Pozisyonlar', 'Milky Cowgirl, Nursing Ride, Milking Doggy, Spoon & Squeeze, Mirror Milking, Milky Anal. Her biri 🍼 Süt\'ü düşürür.'],
@@ -3194,6 +3203,40 @@
   const FN_CAP = ['Yeni güne böyle uyandım 😴☀️', 'Bu akşam ne giysem? Yorumlara yaz 👇', 'Aynanın karşısında biraz fazla oyalandım 🙈', 'Duştan yeni çıktım 💦', 'Abonelerime özel, kimseye gösterme 🤫',
     'Bugün çok azgınım, biri ilgilensin 😈', 'Sence bu çok mu kısa? 😏', 'Yatakta tek başıma sıkıldım…', 'Yarın canlı yayın var, kaçırma 🔴', 'Bu fotoğrafı silmeden önce gör 👀', 'Bu açıdan nasıl? 🍑',
     'Yeni iç çamaşırı aldım, ilk siz görün 🖤', 'Mesajlarına tek tek bakıyorum, yaz bana 💌', 'Bugün kimseye söylemediğim bir şey yaptım… 🤫', 'Sabah kahvesi ve ben ☕', 'Bu hafta en çok beğeni alan fotoğrafım 🔥'];
+  /* 📸 fotoğrafın altındaki "ne yapıyorum" satırı: fotoğraf az olduğu için aynı kareyi farklı anlar gibi anlatır.
+   * Havuz: sevdiği olayların türü (kategori + başlık), göğüs / kalça bedeni, haftanın kostümü, hotwife; ilk (ücretsiz) gönderi yumuşak */
+  const FN_DO = [
+    [/masturb|finger|\bsolo|\bself|\brub\b|squirt/, ['Kendimi parmaklarken çektim <3', 'Yatakta tek başıma… elim nerede sence? 🙈', 'Bacaklarımı açıp kendime dokunurken çektim 💦', 'Gelmeden hemen önceki halim 😩', 'Parmaklarım ıslandı, fotoğrafı zor çektim 🤭']],
+    [/dildo|vibrat|toy|plug|wand/, ['Yeni dildomu ilk kez denedim, videosu 💎 özel içerikte 😈', 'Vibratör hâlâ çalışıyordu bu kareyi çekerken 📳', 'Oyuncak çekmecemi açtım, hangisiyle başlayayım? 🍆', 'Dildomu yalarken çektim, sence yeterince ıslak mı? 👅']],
+    [/\btit|boob|breast|nipple|paizuri/, ['Göğüslerimi yağladım, parlıyorlar 💧', 'Meme uçlarımı sıkarken çektim 😩', 'Sütyenimi çıkardım, ilk siz görün 🍒']],
+    [/\bass\b|butt|spank|\banal\b|twerk|backward|doggy/, ['Kalçamı aynaya dayayıp çektim 🍑', 'Şaplağın izi hâlâ kalçamda 👋', 'Dört ayak üstündeyim, arkadan nasıl görünüyorum? 🍑', 'Popoma tıpa taktım, bütün gün çıkarmadım 😈']],
+    [/blow|\boral\b|suck|deepthroat|\blick|\beat\b|\bgag/, ['Dudaklarımı yalarken çektim, aklımdaki şeyi tahmin et 👅', 'Ağzımı açtım, dilimi çıkardım… gerisini sen düşün 😮', 'Lolipop emiyorum ama aklımda başka şey var 🍭', 'Diz çöktüm, seni bekliyorum 🙇‍♀️']],
+    [/\bcum|facial|creampie/, ['Yüzüme boşalmışlar gibi poz verdim, gerçeği özel içerikte 💦', 'Göğsümdeki damlalar süt değil 😏', 'İçime boşaldıktan sonraki halim, bacaklarım titriyor 🥵']],
+    [/shower|bath|\bpool|sauna|\bwet\b|\bpee\b/, ['Duşta köpüklenirken çektim 🚿', 'Küvette sudan sadece göğüslerim çıkıyor 🛁', 'Islak tişört, altında hiçbir şey yok 💦', 'Saunada terden sırılsıklam oldum ♨️']],
+    [/outdoor|beach|\bcar\b|balcony|street|rooftop|camping|\bpark\b/, ['Balkonda çırılçıplak, komşular görmüş olabilir 🙈', 'Arabanın arka koltuğunda eteğimi kaldırdım 🚗', 'Plajın ıssız ucunda bikinimi çıkardım 🏖️', 'Dışarıda, herkesin ortasında külotsuzum 😈']],
+    [/bdsm|bound|tied|rope|collar|choke|femdom/, ['Bileklerimi kendim bağladım, çözecek biri lazım ⛓️', 'Tasmamı taktım, sahibimi bekliyorum 🐾', 'Gözlerim bağlı, ne olacağını bilmiyorum 🖤']],
+    [/lactation|milk|nursing/, ['Göğüslerim yine doldu, süt damlıyor 🥛', 'Sütümü sağarken çektim, ister misin? 🍼']],
+    [/threesome|bull|hotwife|affair/, ['Bu kareyi çeken kişi kocam değildi 🤫', 'İkimiz aynı yatakta, biri daha gelse? 👯']]
+  ];
+  const FN_DO_BOOB = ['{} memelerimin arasına dildo koydum', '{} göğüslerimi ellerimle sıktım, avucuma sığmıyor 🍒', '{} memelerim sütyene sığmadı, ben de çıkardım 😏'];
+  const FN_DO_BUTT = ['Koca kalçamı kameraya doğru salladım 🍑', 'Tangam kalçamın arasında kayboldu 😈'];
+  const FN_DO_COS = ['{} kostümüyle yatağa uzandım 😏', '{} kostümümün altında hiçbir şey yok 🤫', '{} kostümüyle dizlerimin üstündeyim 😈'];
+  const FN_DO_HW = ['Bu fotoğrafı kocam çekti 💍', 'Kocam işteyken çektim, ona da gönderdim 😈'];
+  const FN_DO_SOFT = ['Aynanın karşısında iç çamaşırımla poz verdim 🖤', 'Yatağa uzanmış seni düşünüyorum 💭', 'Gömleğimin düğmelerini tek tek açtım 👀', 'Dudağımı ısırırken çektim 😏', 'Çarşafın altında çıplağım, tahmin et 🙈'];
+  const FN_CUP = { 70: 'A', 75: 'B', 80: 'B', 85: 'C', 90: 'C', 95: 'D' };
+  function fnDo(c, n) {
+    if (n < 1) return [];
+    const low = s => String(s || '').toLocaleLowerCase('en'), pool = [];
+    feelEvents(c.likes || []).forEach(e => { const h = low(catOfEv(e).label + ' ' + e.title), g = FN_DO.find(([re]) => re.test(h)); if (g) pool.push(...g[1]); });
+    const b = +bmTr(c, 'Boob Size'), u = bmTr(c, 'Butt Size'), w = fnWeek(c);
+    if (b >= 85) pool.push(...FN_DO_BOOB.map(s => s.replace('{}', b + (FN_CUP[b] || 'C'))));
+    if (['L', 'XL', 'M/L'].includes(u)) pool.push(...FN_DO_BUTT);
+    if (w) pool.push(...FN_DO_COS.map(s => s.replace('{}', `${w.emoji} ${w.name}`)));
+    if ((c.fields || {}).hotwife) pool.push(...FN_DO_HW);
+    const uniq = [...new Set(pool)], hot = cmPicks(c, 'do', uniq, n - 1), rest = cmPicks(c, 'dos', FN_DO_SOFT, n);
+    return [rest[0], ...hot, ...rest.slice(1)].slice(0, n);
+  }
+  const FN_CSS = '<style>.fn-do{margin:6px 2px 2px;font-size:.92em;font-style:italic;opacity:.9}.fn-do.lk{filter:blur(.2px);opacity:.7}</style>';
   // kostümü giydirip sohbete gider
   function fnWear(c, x, text) {
     c = cmAdopt(c, 'fn');
@@ -3241,10 +3284,11 @@
   function renderFansPage(c, st) {
     const rid = fnRid(c), sub = !!st.subs[rid], bought = new Set(st.bought[rid] || []), w = fnWeek(c), items = fnItems(c), first = (c.name || 'Ben').split(' ')[0];
     const pics = (c.album || []).length > 1 ? c.album.slice(1) : [c.photo].filter(Boolean), tab = ui.fnPTab === 'ppv' ? 'ppv' : 'posts';
-    const posts = pics.map((u, i) => ({ u, cap: cmPicks(c, 'cap' + i, FN_CAP, 1)[0], likes: 40 + cmNum(c, 'lk' + i, 900), ago: i * 2 + 1 + cmNum(c, 'ag' + i, 2), free: i === 0 }));
+    const dos = fnDo(c, pics.length), teaser = s => s.split(' ').slice(0, 3).join(' ') + '…';
+    const posts = pics.map((u, i) => ({ u, cap: cmPicks(c, 'cap' + i, FN_CAP, 1)[0], act: dos[i] || '', likes: 40 + cmNum(c, 'lk' + i, 900), ago: i * 2 + 1 + cmNum(c, 'ag' + i, 2), free: i === 0 }));
     const lock = '<span class="fn-lock">🔒<small>Abone ol, gör</small></span>';
     const likedW = w && w.fant && feelEvents(c.likes || []).some(e => isFant(e) && fantKey(e) === w.fant);
-    view.innerHTML = `<div class="fn-site fn-page">${appBar('fn', 'Carmen<i>Fans</i>', 'carmenfans.com/' + fnHandle(c).slice(1), '#/fans')}
+    view.innerHTML = `${FN_CSS}<div class="fn-site fn-page">${appBar('fn', 'Carmen<i>Fans</i>', 'carmenfans.com/' + fnHandle(c).slice(1), '#/fans')}
       <div class="fn-hero" style="--mtbg:${esc(grad(c))}">${pics[0] ? `<img src="${esc(pics[0])}" alt="" onerror="this.remove()">` : ''}</div>
       <div class="fn-head">${avatar(c, 92)}<div><b>${esc(c.name || 'İsimsiz')} ${cmVip(c) ? '<i class="fn-v">✔</i>' : ''}</b><small>${esc(fnHandle(c))} · ${cmOnline(c) ? '<em class="cm-on">● Çevrimiçi</em>' : 'az önce aktifti'}</small>
         <span class="fn-stats">📷 ${posts.length + 40 + cmNum(c, 'pc', 300)} gönderi · ❤️ ${2 + cmNum(c, 'tl', 80)}B beğeni · 🎥 ${10 + cmNum(c, 'vc', 60)} video</span></div></div>
@@ -3256,6 +3300,7 @@
       <div class="fn-tabs"><button type="button" data-fnp="posts" class="${tab === 'posts' ? 'on' : ''}">📷 Gönderiler</button><button type="button" data-fnp="ppv" class="${tab === 'ppv' ? 'on' : ''}">💎 Özel içerik · ${items.length}</button></div>
       ${tab === 'posts' ? `<div class="fn-posts">${posts.map((p, i) => `<article class="fn-post"><div class="fn-ph">${avatar(c, 34)}<b>${esc(first)}</b><small>${p.ago} gün önce</small></div><p>${esc(p.cap)}</p>
           <div class="fn-media${sub || p.free ? '' : ' locked'}"><img src="${esc(p.u)}" alt="" loading="lazy" data-fnz="${i}">${sub || p.free ? '' : lock}</div>
+          ${p.act ? (sub || p.free ? `<p class="fn-do">📸 ${esc(p.act)}</p>` : `<p class="fn-do lk">📸 ${esc(teaser(p.act))} 🔒</p>`) : ''}
           <small class="fn-likes">❤️ ${p.likes} · 💬 ${Math.round(p.likes / 9)}${p.free && !sub ? ' · 🆓 ücretsiz' : ''}</small></article>`).join('')}</div>`
         : `<div class="fn-ppv">${items.map(x => { const own = bought.has(x.k); return `<div class="fn-item${own ? ' own' : ''}"><span class="fn-iic">${x.ic}</span><span class="fn-in"><b>${esc(x.name)}</b><small>${esc(x.sub)}</small>
           ${own && x.ev ? `<em>“${esc(x.ev.title)}… bu videoda kendimi kaybettim, sonuna kadar izle 😈”</em>` : ''}${own && x.cos ? '<em>👗 Gardırobunda · sohbette giyebilir</em>' : ''}</span>
@@ -20467,6 +20512,7 @@
     { icon: '🫦', title: 'CarmenFans', sub: 'abonelik, haftanın kostümü, özel içerik', body: `
       <p><b>⭐ Önerilenler</b>: Keşfet'in üstünde, abone olmadığın üreticiler; aboneliklerine benzer kostüm, karakterlerinin sevdiği fanteziler, VIP, çevrimiçi ve yeni olanlar öne çıkar (kartta nedeni yazar). Üretici sayfasının altında da ona benzeyenler: aynı haftalık kostüm, aynı şehir.</p>
       <p>İçerik üreticisi sayfaları. Abone olmadan yalnızca ilk gönderi açıktır; diğerleri 🔒 bulanık. Abonelik aylık ücretlidir (VIP'lerde daha pahalı).</p>
+      <p><b>📸 Fotoğrafta ne yapıyor</b>: her gönderinin altında o karede ne yaptığını anlatan bir satır var ("Kendimi parmaklarken çektim", "95D memelerimin arasına dildo koydum"…). Satır karakterin <b>sevdiği olaylardan</b> (parmaklama, oyuncak, göğüs, kalça, oral, boşalma, duş, dışarıda, BDSM, süt, üçlü), <b>göğüs / kalça bedeninden</b>, <b>haftanın kostümünden</b> ve hotwife ise kocasından gelir; 💔 sevmediği olaylar hiç çıkmaz. İlk (ücretsiz) gönderi hep yumuşaktır. Abone değilsen kilitli gönderilerde yalnızca ilk üç kelime görünür. Aynı fotoğrafın satırı hep aynıdır.</p>
       <ul><li><b>📢 Bu hafta</b>: her hafta değişen kostüm; karakterin sevdiği fanteziye uyan kostüm (Kedi, Tavşan, Sekreter, Profesör…) önce gelir. Aboneysen <b>💬 Bu kostümle yaz</b> kostümü giydirip sohbeti açar.</li>
         <li><b>💎 Özel içerik</b>: sevdiklerinden 🎥 videolar, 📸 kostüm foto setleri (alınca kostüm <b>gardırobuna girer</b>, "Giydir" ile üstüne), 🎙️ sesli mesaj, 💬 sexting seansı ve 📹 isteğe özel video (ikisi sohbeti açar).</li></ul>` },
     { icon: '📸', title: 'Carmentagram', sub: 'akış, hikayeler, beğeni, yorum', body: `
@@ -22311,13 +22357,43 @@
       ['Room Service', 'Kapıyı bornozla açıyorum. Garson gidince bornozu yere düşürürsem Room Service olur.'],
       ['Balcony Sex', 'Balkonun korkuluğuna tutunuyorum, şehrin ışıkları önümüzde. Sen arkamdan alırsan Balcony Sex olur.'],
       ['Hotel Mirror', 'Boy aynasının karşısında duruyorum. Sen arkama geçip aynadan gözlerime bakarsan Hotel Mirror olur.'],
-      ['Hotel Creampie', 'Otel yatağında bacaklarımı sana doluyorum. Sen içime boşalırsan Hotel Creampie olur; korunmaya göre hamilelik ihtimali var.']]]
+      ['Hotel Creampie', 'Otel yatağında bacaklarımı sana doluyorum. Sen içime boşalırsan Hotel Creampie olur; korunmaya göre hamilelik ihtimali var.']]],
+    ['💆', 'Masaj Salonu', 'yağ, masaj masası, mutlu son', 'Bunlar sadece Masaj salonunda olur. Önce yağla ısınırız, sonra masa bizi taşırsa gerisi gelir 🫗', [
+      ['Oil Drip Grind', 'Masaya yüzüstü uzanıyorum, havlu belimde. Sen sırtıma ılık yağ damlatıp aletinle kalçalarımın arasına yayarsan Oil Drip Grind olur.'],
+      ['Shoulder Rub Grind', 'Yüzüstü yatıyorum. Sen kalçama oturup omuzlarımı ovarken kalçalarımın arasında gidip gelirsen Shoulder Rub Grind olur.'],
+      ['Hug Grind', 'Yağlıyım, kıpırdamıyorum. Sen üstüme uzanıp arkadan sarılırsan Hug Grind olur; göğsün sırtımda, sen kalçalarımın arasında kayarsın.'],
+      ['Neck Kiss Grind', 'Saçlarımı bir yana topluyorum. Sen üstümdeyken ensemi öpersen her öpücükte kalçamı sana iterim, Neck Kiss Grind olur.'],
+      ['Thigh Slide', 'Bacaklarımı hafif aralıyorum. Sen yağlı uyluklarımın arasına kayarsan onları sıkarım, Thigh Slide olur.'],
+      ['Lower Back Press', 'Belimde bir düğüm var. Sen avuçlarınla bastırırsan kalçam yükselir ve sana sürtünür, Lower Back Press olur.'],
+      ['Inner Thigh Knead', 'Sırtüstü dönüp bacaklarımı aralıyorum. Sen iç bacaklarımı yoğururken başparmakların her turda biraz daha yaklaşırsa Inner Thigh Knead olur.'],
+      ['Turn Over Tease', '"Şimdi ön taraf" deyip dönüyorum, havlu kayıyor. Sen durmazsan "devam et" diye fısıldarım, Turn Over Tease olur.'],
+      ['Chest Rub Grind', 'Sırtüstü yatıyorum, göğüslerim yağdan parlıyor. Sen önden ovarken aralarında gidip gelirsen Chest Rub Grind olur.'],
+      ['Nuru Slide', 'Bu sefer ben yağlanıyorum. Sen masaya uzanırsan bütün kaygan bedenimle üstünde kayarım, Nuru Slide olur.'],
+      ['Tip Tease', 'Kalçamı hafif kaldırıyorum. Sen ucunu girişime sürtüp girmezsen sabırsızlanırım, Tip Tease olur.'],
+      ['Oily Handjob', 'Ellerimi yağlıyorum. Sen gözlerini kapatırsan seni yavaşça okşarım; "masaj hâlâ sürüyor", Oily Handjob olur.'],
+      ['Face Hole Oral', 'Masaya yüzüstü uzandım, yüzüm masanın deliğinde. Sen altına uzanırsan ağzıma alırım, Face Hole Oral olur.'],
+      ['Oily Titjob', 'Masanın kenarına diz çöküp göğüslerimi yağlıyorum. Sen aralarına girersen seni sıkarım, Oily Titjob olur.'],
+      ['Slip In', 'Her yerim kaygan. Sen sürtünürken bir an kayıp "kazara" içime girersen Slip In olur; ikimiz de durmayız.'],
+      ['Massage Table Missionary', 'Masanın kenarına sırtüstü uzanıp bacaklarımı omuzlarına koyuyorum. Sen içime girersen Massage Table Missionary olur.'],
+      ['Table Cowgirl', 'Bu sefer sen uzan. Ben yağlı bedenimle üstüne çıkarsam masa gıcırdar, Table Cowgirl olur.'],
+      ['Table Edge Doggy', 'Masanın kenarında dizlerimin üstüne çıkıyorum, kalçam yağdan parlıyor. Sen arkamdan girersen Table Edge Doggy olur.'],
+      ['Spoon on Table', 'Masada yan yatıyorum; masa dar. Sen arkama uzanıp sıkı sarılırsan Spoon on Table olur.'],
+      ['Standing Oil Press', 'Masadan kalkıp duvara yaslanıyorum. Sen beni duvara bastırırsan yağlı bedenim ellerinden kayar, Standing Oil Press olur.'],
+      ['Oil and Gold', 'Yüzüstü yatıyorum, sırtım yağlı. Sen istersen ve ben de istersem sırtıma işersin; yağla karışıp süzülür, Oil and Gold olur.'],
+      ['Oily Ass Pee', 'Kendi isteğimle kalçamı kaldırıyorum. Sen yağlı kalçalarıma işersen Oily Ass Pee olur; durmanı istersem söylerim.'],
+      ['Oily Tit Pee', 'Sırtüstü uzanıp göğüslerimi birleştiriyorum. Sen yağlı göğüslerime işersen Oily Tit Pee olur; durmanı istersem söylerim.'],
+      ['Happy Ending', 'Masaj bitmek üzere. Sen rahatlarsan ellerim ve ağzımla seni son damlana kadar bitiririm, Happy Ending olur.'],
+      ['Oiled Body Cumshot', 'Sırtüstü yatıyorum, göğüslerim parlıyor. Sen göğüslerime ve karnıma boşalırsan Oiled Body Cumshot olur.'],
+      ['Oiled Back Cumshot', 'Yüzüstü kalıyorum. Sen yağlı sırtıma ve kalçalarımın arasına boşalırsan Oiled Back Cumshot olur.'],
+      ['Oiled Ass Creampie', 'Kalçamı sana uzatıyorum. Sen yağlı kalçalarımın arasından içime boşalırsan Oiled Ass Creampie olur.'],
+      ['Titjob Finish', 'Göğüslerimi sıkıca birleştiriyorum. Sen aralarında boşalırsan boynuma kadar sıçrar, Titjob Finish olur.'],
+      ['Thigh Cumshot', 'Uyluklarımı sıkıyorum. Sen aralarında boşalırsan son damlayı da alırım, Thigh Cumshot olur.']]]
   ];
   BOOKS.push({ id: 'olay', icon: '🎬', title: 'Olay Kitabı', sub: 'Lia her olayı sahneleyerek anlatır', chips: [`${OLAY_BOOK.reduce((n, c) => n + c[4].length, 0)} olay`, '💁‍♀️ Lia anlatıyor'], chapters: [
     { icon: '🎬', title: 'Olay Kitabı nasıl okunur', sub: 'Lia sahneler, sen yaparsın', body: `
       <p>Bu kitapta her olayı <b>Lia</b> kendisi sahneliyor: önce nasıl durduğunu anlatır, sonra senin ne yaparsan o olayın olacağını söyler.</p>
       ${bkChat('Örnek', [['her', '💁‍♀️ Bak, ben dört ayak üstüne çıkıp kalçamı sana uzatıyorum. Sen belimden tutup aletinle arkadan girersen…'], ['ev', '#Doggy'], ['note', 'Sohbette olayı # ile yazarsın: <code>#doggy</code>']])}
-      <p>Her bölüm bir olay grubu: ısınma, onu ısıtma, dokunuş, pozisyonlar, tempo, fanteziler, roller, femdom, Halloween, korunma, kondomlu sürtünme, duş, sauna, ıslak oyunlar, bull, tutma, bitiş, soyunma ve mekana özel anlar. Sırayla okursan bir seansın akışını da öğrenmiş olursun.</p>
+      <p>Her bölüm bir olay grubu: ısınma, onu ısıtma, dokunuş, pozisyonlar, tempo, fanteziler, roller, femdom, Halloween, korunma, kondomlu sürtünme, duş, sauna, ıslak oyunlar, bull, tutma, bitiş, soyunma, mekana özel anlar ve masaj salonu. Sırayla okursan bir seansın akışını da öğrenmiş olursun.</p>
       <p>Bir olayın nasıl tetiklendiğini ve sonuçlarını aramak için: 🧭 CarmenGuide → <a href="#/olaylar">📜 Olay rehberi</a>.</p>` },
     ...OLAY_BOOK.map(([icon, title, sub, intro, evs]) => ({ icon, title, sub, body: `<p>${esc(intro)}</p>
       ${evs.map(([ev, say, d = evDescOf(ev)]) => bkChat(esc(ev), [['her', `💁‍♀️ ${esc(say)}`], ['ev', `#${esc(ev)}`], ...(d ? [['note', esc(d)]] : [])])).join('')}` }))] });
