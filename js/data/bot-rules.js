@@ -1497,6 +1497,314 @@ Stories.BOT_RULES = {
       "note": ""
     },
     {
+      "id": "r_ask_squyluk",
+      "name": "Soru: sıkıştırayım mı arasında seni?",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=squyluk"
+      ],
+      "reply": [
+        "Sıkıştırayım mı arasında seni? 😈",
+        "Uyluklarımın arasına alayım mı? 🦵",
+        "Bacaklarımı kapatıp seni aralarında sıkayım mı? 🔥",
+        "Kaçamayacağın bir yere sıkıştırayım mı seni? 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "ön sevişme / outercourse / sıkıştırma sürerken; evet → Thigh Vise / Knee Squeeze / Leg Lock Grind / Thigh Pulse / Seated Thigh Lock"
+    },
+    {
+      "id": "r_ans_squyluk_evet",
+      "name": "Cevap: sıkıştırayım mı · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=squyluk",
+        "=evet"
+      ],
+      "reply": [
+        "Gel o zaman… artık kaçış yok 🦵😈",
+        "Sımsıkı kapatıyorum, kıpırdama 🔥"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_squyluk_hayir",
+      "name": "Cevap: sıkıştırayım mı · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=squyluk",
+        "=hayir"
+      ],
+      "reply": [
+        "Korktun mu yoksa? 😏",
+        "Peki… ama bacaklarım seni bekliyor olacak 🦵"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_sqduvar",
+      "name": "Soru: beni duvara sıkıştırır mısın?",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=sqduvar"
+      ],
+      "reply": [
+        "Beni duvara sıkıştırır mısın? 🧱",
+        "Köşeye kıstır beni, olur mu? 😳",
+        "Arkamdan bastırıp beni duvara yapıştırsana 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "ön sevişme / sıkıştırma sürerken; evet → Wall Pin Grind / Door Pin / Corner Trap / Mirror Pin / Bed Frame Pin"
+    },
+    {
+      "id": "r_ans_sqduvar_evet",
+      "name": "Cevap: duvara sıkıştır · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=sqduvar",
+        "=evet"
+      ],
+      "reply": [
+        "Ahh… duvar soğuk, sen sıcaksın 🥵",
+        "Bileklerimi tut, bırakma 🧱🔥"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_sqduvar_hayir",
+      "name": "Cevap: duvara sıkıştır · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=sqduvar",
+        "=hayir"
+      ],
+      "reply": [
+        "O zaman ben seni sıkıştırırım 😏",
+        "Peki… bir dahakine kaçamazsın 🙈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_sqgogus",
+      "name": "Soru: göğüslerimin arasında sıkıştırayım mı?",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=sqgogus"
+      ],
+      "reply": [
+        "Göğüslerimin arasında sıkıştırayım mı seni? 🍈",
+        "Göğüslerimi birbirine bastırıp arasına alayım mı? 😈",
+        "Seni göğüslerimle sağayım mı? 🥛"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "ön sevişme / outercourse / sıkıştırma sürerken; evet → Tit Pulse / Deep Cleavage Lock / Tit Milking / Alternating Tits / Titfuck & Lick"
+    },
+    {
+      "id": "r_ans_sqgogus_evet",
+      "name": "Cevap: göğüs sıkıştırma · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=sqgogus",
+        "=evet"
+      ],
+      "reply": [
+        "Gel aralarına… sımsıkı 🍈🔥",
+        "Bastırıyorum, kaybolacaksın içlerinde 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_sqgogus_hayir",
+      "name": "Cevap: göğüs sıkıştırma · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=sqgogus",
+        "=hayir"
+      ],
+      "reply": [
+        "Bacaklarımı mı tercih ediyorsun? 🦵",
+        "Peki… ama bunlar seni özleyecek 🙈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_sqofis",
+      "name": "Soru: masanın kenarında sıkıştırayım mı?",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=sqofis"
+      ],
+      "reply": [
+        "Masanın kenarında uyluklarımın arasına alayım mı? 💼",
+        "Kalem eteğimi sıyırıp seni bacaklarımda sıkıştırayım mı? 😈",
+        "Mesai bitmeden seni şöyle bir sıkıştırayım mı? 🏢"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "ofis pozisyonu sürerken; evet → Desk Edge Thighjob / Office Chair Thigh Squeeze / Heels On Squeeze / Copy Machine Thighjob / Meeting Room Squeeze"
+    },
+    {
+      "id": "r_ans_sqofis_evet",
+      "name": "Cevap: ofiste sıkıştır · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=sqofis",
+        "=evet"
+      ],
+      "reply": [
+        "Sessiz ol, kapı açık 🤫💼",
+        "Bu da mesaiye sayılır 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_sqofis_hayir",
+      "name": "Cevap: ofiste sıkıştır · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=sqofis",
+        "=hayir"
+      ],
+      "reply": [
+        "Peki… mesaiden sonra o zaman 😏",
+        "Patron sensin, sen bilirsin 🙈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_sqsag",
+      "name": "Soru: sütünü bacaklarımda sağayım mı?",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=sqsag"
+      ],
+      "reply": [
+        "Sütünü bacaklarımda sağıcam, hazır mısın? 🥛😈",
+        "Son damlana kadar sağayım mı seni? 🦵",
+        "Her sıkışımda bir atım… sayalım mı? 😏",
+        "Uyluklarımla seni sağmamı ister misin? 🥛"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "uyluk sıkıştırması sürerken, senin Zevk'in ≥ 60; evet → Thigh Milked / Milk Every Drop / Slow Milking / Squeeze Per Shot / Count The Pumps · hayır → Hold Still / Slow Release"
+    },
+    {
+      "id": "r_ans_sqsag_evet",
+      "name": "Cevap: sağayım mı · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=sqsag",
+        "=evet"
+      ],
+      "reply": [
+        "Bırak kendini… hepsini sağıyorum 🥛🥵",
+        "Bir… iki… üç… say benimle 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_sqsag_hayir",
+      "name": "Cevap: sağayım mı · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=sqsag",
+        "=hayir"
+      ],
+      "reply": [
+        "O zaman sıkıp bekletirim 😈",
+        "Peki… ama gelmene izin vermiyorum, kıpırdama 🦵"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_sqkalan",
+      "name": "Soru: kalanını da sıkıp çıkarayım mı?",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=sqkalan"
+      ],
+      "reply": [
+        "Kalanını da sıkıp çıkarayım mı? 🥛",
+        "İçinde bir damla kalmasın, sağayım mı? 😏",
+        "Bak ne kadar çıktı… biraz daha sıkayım mı? 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "sıkıştırma olayıyla boşaldıktan sonra; evet → Squeeze Out The Rest / Show The Harvest / Thigh Gap Taste"
+    },
+    {
+      "id": "r_ans_sqkalan_evet",
+      "name": "Cevap: kalanını da · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=sqkalan",
+        "=evet"
+      ],
+      "reply": [
+        "Son damlasına kadar 🥛😈",
+        "Hassas mı? Daha da yavaş sıkarım o zaman 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_sqkalan_hayir",
+      "name": "Cevap: kalanını da · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=sqkalan",
+        "=hayir"
+      ],
+      "reply": [
+        "Tamam, bırakıyorum… ama yarın yine 😏",
+        "Gel o zaman sarıl bana 🥰"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
       "id": "r_ask_gorus",
       "name": "Soru: bu gece görüşelim mi?",
       "category": "❔ Karakterin soruları",
@@ -124510,6 +124818,242 @@ Stories.BOT_RULES = {
     {"id":"r_ev_dh_counter","name":"🍳 Counter Press","category":"🔥 Olaylar","when":["=evt","=kıyafet","=outercourse","counter","press"],"reply":["Yemek yapıyorum, arkamdan geldin… 😏","*tezgâha tutunur, kalçasını geri iter* Ocak açık, dikkat 🔥","Eşofmanımın üstünden bastırıyorsun, ahh 😩","Elimdeki kaşığı düşüreceğim 🙈","Yemek yanacak ama umurumda değil 🥵","Tezgâh soğuk, sen sıcak 😈","Bu kadar aç mıydın? Yemeğe değil, bana 😏","Belimden tut, yavaşça bastır 😩","Biri gelirse yemek yapıyoruz derim 😆","Tezgâhla senin aranda sıkıştım 🥵"],"traits":[],"chars":[],"note":"mutfakta arkadan eşofman üstüne · 🏷️ kıyafet kalça"},
     {"id":"r_ev_dh_lcum","name":"💦 Leggings Cumshot","category":"🔥 Olaylar","when":["=evt","=kıyafet","=boşalma","=cumming","leggings","cumshot"],"reply":["Taytımın üstüne mi? Sıcacık hissettim 🥵💦","Kumaş ıslandı, tenime yapıştı 😩","*arkasına bakar* Taytım bembeyaz oldu 🙈","Bu taytı yıkamayacağım galiba 😈","İnce kumaştan içime kadar işledi 🥵","Kalçamın her yerinde… çok fazla 😳💦","Böyle mi eve gideceğim? 😏","Siyah taytta hiç saklanmıyor 🙈","Islaklığı hissediyorum, sıcacık 😩","Bir dahakine spor salonunda da böyle mi? 😈"],"traits":[],"chars":[],"note":"tayt üstüne boşalma · after: tayt olayları"},
     {"id":"r_ev_dh_waist","name":"💦 Waistband Cumshot","category":"🔥 Olaylar","when":["=evt","=kıyafet","=boşalma","=cumming","waistband","cumshot"],"reply":["*bel lastiği şak diye yerine oturur* İçime bıraktın 🥵","Taytımın içinde sıcacık… bütün gün böyle mi gezeceğim? 😩","Lastiği çekip içine boşaldın, ne cüretkâr 😈","Kalçamdan aşağı süzülüyor, kumaşın altında 🙈","Kimse bilmeyecek ama ben her adımda hissedeceğim 😏","Bu sırrı taytımın içinde taşıyacağım 🤫💦","Yapış yapış… ve çıkarmama izin yok, değil mi? 😳","Bel lastiğim ıslak, çok ahlaksızsın 😈","Sıcaklığı hâlâ içimde 🥵","Akşama kadar böyle, söz 😏"],"traits":[],"chars":[],"note":"bel lastiğinden içine boşalma · after: tayt / eşofman / kot olayları"},
+    {"id":"r_ev_sq_001wallping","name":"🧱🍑 Wall Pin Grind","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","wall","pin","grind"],"reply":["Bileklerim başımın üstünde, kaçamam 😳","Duvar soğuk, sen sıcaksın 🥵","Kalçama bastırdıkça duvara yapışıyorum 😩","Kıpırdayamıyorum, sen de bırakma 😩","Nefesin ensemde, kalçam sende 🥵","Daha sert bastır, kaçmayacağım 😈"],"traits":[],"chars":[],"note":"🗜️ Squeeze · pin"},
+    {"id":"r_ev_sq_002doorpin","name":"🚪🔒 Door Pin","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","door","pin"],"reply":["Kapı daha yeni kapandı, beklemedin bile 😳","Kapı kolu belime batıyor, ama durma 😩","Arkamdaki kapı titriyor 🚪","Kıpırdayamıyorum, sen de bırakma 😩","Nefesin ensemde, kalçam sende 🥵","Daha sert bastır, kaçmayacağım 😈"],"traits":[],"chars":[],"note":"🗜️ Squeeze · pin"},
+    {"id":"r_ev_sq_003cornertr","name":"📐😳 Corner Trap","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","corner","trap"],"reply":["Köşeye sıkıştım, iki duvar da kapalı 📐","Kaçacak yerim yok, biliyorsun 😏","Önümü kestin, şimdi ne olacak? 😳","Kıpırdayamıyorum, sen de bırakma 😩","Nefesin ensemde, kalçam sende 🥵","Daha sert bastır, kaçmayacağım 😈"],"traits":[],"chars":[],"note":"🗜️ Squeeze · pin"},
+    {"id":"r_ev_sq_004deskedge","name":"🗄️🍑 Desk Edge Pin","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","desk","edge","pin"],"reply":["Masanın kenarı kasıklarımda 🗄️","Masaya kapandım, kalçam sende 😩","Kalemler yere döküldü 😂","Kıpırdayamıyorum, sen de bırakma 😩","Nefesin ensemde, kalçam sende 🥵","Daha sert bastır, kaçmayacağım 😈"],"traits":[],"chars":[],"note":"🗜️ Squeeze · pin"},
+    {"id":"r_ev_sq_005bookshel","name":"📚🫣 Bookshelf Pin","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","bookshelf","pin"],"reply":["Kitaplar sallanıyor, biri düşecek 📚","Raflara tutunuyorum 😩","Bu sayfayı hiç okumadım ama bu sahneyi ezbere bilirim 😏","Kıpırdayamıyorum, sen de bırakma 😩","Nefesin ensemde, kalçam sende 🥵","Daha sert bastır, kaçmayacağım 😈"],"traits":[],"chars":[],"note":"🗜️ Squeeze · pin"},
+    {"id":"r_ev_sq_006mirrorpi","name":"🪞😮‍💨 Mirror Pin","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","mirror","pin"],"reply":["Nefesim camı buğuluyor 🪞","Aynada kendimi görüyorum… ve seni 😳","Yüzüm cama yapıştı 😩","Kıpırdayamıyorum, sen de bırakma 😩","Nefesin ensemde, kalçam sende 🥵","Daha sert bastır, kaçmayacağım 😈"],"traits":[],"chars":[],"note":"🗜️ Squeeze · pin"},
+    {"id":"r_ev_sq_007cardoorp","name":"🚗🍑 Car Door Pin","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","car","door","pin"],"reply":["Cam soğuk, sen sıcak 🚗","Biri geçerse görür 🙈","Arabanın kapısı titriyor 😩","Kıpırdayamıyorum, sen de bırakma 😩","Nefesin ensemde, kalçam sende 🥵","Daha sert bastır, kaçmayacağım 😈"],"traits":[],"chars":[],"note":"🗜️ Squeeze · pin"},
+    {"id":"r_ev_sq_008treetrun","name":"🌳🍑 Tree Trunk Pin","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","tree","trunk","pin"],"reply":["Kabuk avuçlarıma batıyor 🌳","Ormanda kimse yok, değil mi? 🙈","Yapraklar hışırdıyor, ben inliyorum 😩","Kıpırdayamıyorum, sen de bırakma 😩","Nefesin ensemde, kalçam sende 🥵","Daha sert bastır, kaçmayacağım 😈"],"traits":[],"chars":[],"note":"🗜️ Squeeze · pin"},
+    {"id":"r_ev_sq_009sinkpin","name":"🚰🪞 Sink Pin","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","sink","pin"],"reply":["Su açık kaldı, kapatma 🚰","Aynadan gözüme bakıyorsun 😳","Lavaboya tutunuyorum 😩","Kıpırdayamıyorum, sen de bırakma 😩","Nefesin ensemde, kalçam sende 🥵","Daha sert bastır, kaçmayacağım 😈"],"traits":[],"chars":[],"note":"🗜️ Squeeze · pin"},
+    {"id":"r_ev_sq_010railingp","name":"🌇🍑 Railing Pin","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","railing","pin"],"reply":["Aşağıda şehir, üstte biz 🌇","Korkuluk soğuk, tutunuyorum 😩","Komşular görürse? 🙈","Kıpırdayamıyorum, sen de bırakma 😩","Nefesin ensemde, kalçam sende 🥵","Daha sert bastır, kaçmayacağım 😈"],"traits":[],"chars":[],"note":"🗜️ Squeeze · pin"},
+    {"id":"r_ev_sq_011lockerpi","name":"🔐🍑 Locker Pin","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","locker","pin"],"reply":["Metal tıngırdıyor, herkes duyacak 🔐","Dolaplar soğuk 😩","Antrenmandan sonra bu mu? 😏","Kıpırdayamıyorum, sen de bırakma 😩","Nefesin ensemde, kalçam sende 🥵","Daha sert bastır, kaçmayacağım 😈"],"traits":[],"chars":[],"note":"🗜️ Squeeze · pin"},
+    {"id":"r_ev_sq_012bedframe","name":"🛏️🔒 Bed Frame Pin","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","bed","frame","pin"],"reply":["Ellerim başlıkta 🛏️","Başlık duvara vuruyor 😳","Sıkıştım, ama yatakta 😏","Kıpırdayamıyorum, sen de bırakma 😩","Nefesin ensemde, kalçam sende 🥵","Daha sert bastır, kaçmayacağım 😈"],"traits":[],"chars":[],"note":"🗜️ Squeeze · pin"},
+    {"id":"r_ev_sq_013closetsq","name":"🚪👗 Closet Squeeze","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","closet","squeeze"],"reply":["Dolabın içinde kıpırdayacak yer yok 🚪","Kalçam sana yapıştı, çekilemem 😩","Askılar başıma çarpıyor 😂","Burası çok dar… ama şikâyet etmiyorum 🙈","Kıpırdadıkça sürtünüyoruz, dur deme 😩","Sessiz ol, biri duyacak 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · dar"},
+    {"id":"r_ev_sq_014narrowha","name":"↔️😏 Narrow Hallway","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","narrow","hallway"],"reply":["Geçmek mi istiyorsun, durmak mı? 😏","Koridor çok dar 🙈","Arkamda durdun… bilerek 😈","Burası çok dar… ama şikâyet etmiyorum 🙈","Kıpırdadıkça sürtünüyoruz, dur deme 😩","Sessiz ol, biri duyacak 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · dar"},
+    {"id":"r_ev_sq_015underthe","name":"🪜🫣 Under The Stairs","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","under","the","stairs"],"reply":["Eğilmek zorundayım 🪜","Üstümüzden biri geçiyor 🤫","Burası saklambaçtan kalma 😂","Burası çok dar… ama şikâyet etmiyorum 🙈","Kıpırdadıkça sürtünüyoruz, dur deme 😩","Sessiz ol, biri duyacak 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · dar"},
+    {"id":"r_ev_sq_016phoneboo","name":"☎️🍑 Phone Booth","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","phone","booth"],"reply":["Cam buğulandı ☎️","Telefon çalarsa açma 😂","İki kişiye göre değil bu kulübe 😳","Burası çok dar… ama şikâyet etmiyorum 🙈","Kıpırdadıkça sürtünüyoruz, dur deme 😩","Sessiz ol, biri duyacak 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · dar"},
+    {"id":"r_ev_sq_017showerst","name":"🚿🫂 Shower Stall Squeeze","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","shower","stall","squeeze"],"reply":["Tek kişilik duşa iki kişi 🚿","Her kıpırdadığında sürtünüyoruz 😩","Su sıcak, sen daha sıcak 🥵","Burası çok dar… ama şikâyet etmiyorum 🙈","Kıpırdadıkça sürtünüyoruz, dur deme 😩","Sessiz ol, biri duyacak 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · dar"},
+    {"id":"r_ev_sq_018sleeping","name":"🛌🔒 Sleeping Bag Squeeze","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","sleeping","bag","squeeze"],"reply":["Fermuar kapalı, kaçış yok 🛌","Tulumun içi çok sıcak oldu 🥵","Dışarısı soğuk, burası değil 😏","Burası çok dar… ama şikâyet etmiyorum 🙈","Kıpırdadıkça sürtünüyoruz, dur deme 😩","Sessiz ol, biri duyacak 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · dar"},
+    {"id":"r_ev_sq_019hammocks","name":"🌴🫂 Hammock Squeeze","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","hammock","squeeze"],"reply":["Hamak sallanıyor, ben sana kayıyorum 🌴","Düşeceğiz 😂","Bırakma beni 🥺","Burası çok dar… ama şikâyet etmiyorum 🙈","Kıpırdadıkça sürtünüyoruz, dur deme 😩","Sessiz ol, biri duyacak 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · dar"},
+    {"id":"r_ev_sq_020backseat","name":"🚗🫂 Backseat Squeeze","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","backseat","squeeze"],"reply":["Başım tavana değiyor 🚗","Belimi bırakma 😩","Camlar buğulandı 🥵","Burası çok dar… ama şikâyet etmiyorum 🙈","Kıpırdadıkça sürtünüyoruz, dur deme 😩","Sessiz ol, biri duyacak 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · dar"},
+    {"id":"r_ev_sq_021thighvis","name":"🦵🗜️ Thigh Vise","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=bacak","=squeeze","thigh","vise"],"reply":["Mengene gibi kapattım uyluklarımı 🗜️","İzin vermeden çıkamazsın 😈","Çekmeye çalış bakalım 😏","Bırakmak benim elimde 😈","Ne kadar sıksam o kadar inliyorsun 🥵","Kaçmayı deneme bile 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · vise"},
+    {"id":"r_ev_sq_022cheekcla","name":"🍑🗜️ Cheek Clamp","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","cheek","clamp"],"reply":["Kalçamı sıktım, hapsoldun 🍑","Bırakmak benim elimde 😈","Kıpırdama, daha da sıkarım 😏","Bırakmak benim elimde 😈","Ne kadar sıksam o kadar inliyorsun 🥵","Kaçmayı deneme bile 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · vise"},
+    {"id":"r_ev_sq_023leglockg","name":"🦵🔒 Leg Lock Grind","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=bacak","=squeeze","leg","lock","grind"],"reply":["Bacaklarım belinde, kaçış yok 🦵","Seni kendime bastırıyorum 😈","Bacaklarım titriyor ama bırakmıyorum 😩","Bırakmak benim elimde 😈","Ne kadar sıksam o kadar inliyorsun 🥵","Kaçmayı deneme bile 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · vise"},
+    {"id":"r_ev_sq_024kneesque","name":"🦵😈 Knee Squeeze","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=bacak","=squeeze","knee","squeeze"],"reply":["Dizlerimin arasındasın 🦵","Sıkıyorum… gevşetiyorum… 😈","Bekle, daha yavaş 😏","Bırakmak benim elimde 😈","Ne kadar sıksam o kadar inliyorsun 🥵","Kaçmayı deneme bile 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · vise"},
+    {"id":"r_ev_sq_025squeezec","name":"🗜️🔟 Squeeze Countdown","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=bacak","=squeeze","squeeze","countdown"],"reply":["On… dokuz… sekiz… 🔟","Her sayıda biraz daha sıkıyorum 😈","Sıfıra kadar dayanabilecek misin? 😏","Bırakmak benim elimde 😈","Ne kadar sıksam o kadar inliyorsun 🥵","Kaçmayı deneme bile 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · vise"},
+    {"id":"r_ev_sq_026pressure","name":"👆🗜️ Pressure Point","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","pressure","point"],"reply":["Omzumun üstünden bakıyorum, yüzün kızardı 😏","Kalçam sana bastırıyor, ben gülüyorum 😂","Dayanabilecek misin? 😈","Bırakmak benim elimde 😈","Ne kadar sıksam o kadar inliyorsun 🥵","Kaçmayı deneme bile 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · vise"},
+    {"id":"r_ev_sq_027bodypres","name":"🫂🔥 Body Press Hug","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","body","press","hug"],"reply":["Bütün vücudum sende 🫂","Aramızda hava kalmadı 🔥","Kalbin göğsümde atıyor 💓","Aramızda hava kalmadı 🫂","Kalbin sırtımda atıyor 💓","Böyle kalalım biraz daha 🥰"],"traits":[],"chars":[],"note":"🗜️ Squeeze · iki"},
+    {"id":"r_ev_sq_028pinnedfr","name":"🧱🫂 Pinned From Both Sides","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","pinned","from","both","sides"],"reply":["Duvarla senin aranda sıkıştım 🧱","Kıpırdadıkça sürtünüyoruz 😩","Arkam duvar, önüm sen 🥵","Kıpırdayamıyorum, sen de bırakma 😩","Nefesin ensemde, kalçam sende 🥵","Daha sert bastır, kaçmayacağım 😈"],"traits":[],"chars":[],"note":"🗜️ Squeeze · pin"},
+    {"id":"r_ev_sq_029bearhugg","name":"🐻🫂 Bear Hug Grind","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","bear","hug","grind"],"reply":["Kolların beni kilitledi 🐻","Kalçam tamamen sende 🍑","Bırakma, sıkı tut 😩","Aramızda hava kalmadı 🫂","Kalbin sırtımda atıyor 💓","Böyle kalalım biraz daha 🥰"],"traits":[],"chars":[],"note":"🗜️ Squeeze · iki"},
+    {"id":"r_ev_sq_030chesttob","name":"💗🍑 Chest To Back","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","chest","to","back"],"reply":["Göğsün sırtımda, kalçam kasığında 💗","Aynı anda nefes alıyoruz 😮‍💨","Böyle uyuyabilirim 🥰","Aramızda hava kalmadı 🫂","Kalbin sırtımda atıyor 💓","Böyle kalalım biraz daha 🥰"],"traits":[],"chars":[],"note":"🗜️ Squeeze · iki"},
+    {"id":"r_ev_sq_031blanketb","name":"🌯🫂 Blanket Burrito","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","blanket","burrito"],"reply":["Battaniye sımsıkı, kıpırdayamıyoruz 🌯","Kıpırdama dedim! 😂","Sıcacık… her yerimiz 🥵","Aramızda hava kalmadı 🫂","Kalbin sırtımda atıyor 💓","Böyle kalalım biraz daha 🥰"],"traits":[],"chars":[],"note":"🗜️ Squeeze · iki"},
+    {"id":"r_ev_sq_032pinnedfi","name":"🧱💦 Pinned Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=kalça","=cumming","pinned","finish"],"reply":["Hâlâ duvardayım, kalçamın üstüne 🧱💦","Bileklerimi bırakma, bitir 😩","Sıcacık süzülüyor 🥵","Bırakma, hepsini ver 💦","Titriyorsun, hissediyorum 😩","Ne çok… 🥵"],"traits":[],"chars":[],"note":"🗜️ Squeeze · fin"},
+    {"id":"r_ev_sq_033visefini","name":"🗜️💥 Vise Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","vise","finish"],"reply":["Tam o anda kilitledim, kaçamazsın 🗜️💥","Bırakmıyorum, hepsini ver 😈","Uyluklarımın arası sırılsıklam 💦","Bırakma, hepsini ver 💦","Titriyorsun, hissediyorum 😩","Ne çok… 🥵"],"traits":[],"chars":[],"note":"🗜️ Squeeze · fin"},
+    {"id":"r_ev_sq_034clamphol","name":"🍑🍯 Clamp & Hold","category":"🔥 Olaylar","when":["=evt","=boşalma","=kalça","=cumming","clamp","hold"],"reply":["Son damlaya kadar tutuyorum 🍑🍯","Kalçamın arasında sıcacık 🥵","Bırakmam, daha bitmedi 😈","Bırakma, hepsini ver 💦","Titriyorsun, hissediyorum 😩","Ne çok… 🥵"],"traits":[],"chars":[],"note":"🗜️ Squeeze · fin"},
+    {"id":"r_ev_sq_035closetfi","name":"🚪💦 Closet Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=kalça","=cumming","closet","finish"],"reply":["Karanlıkta, sessizce… 🚪💦","Ses çıkarma, duyacaklar 🤫","Dolabın içi buhar oldu 😂","Bırakma, hepsini ver 💦","Titriyorsun, hissediyorum 😩","Ne çok… 🥵"],"traits":[],"chars":[],"note":"🗜️ Squeeze · fin"},
+    {"id":"r_ev_sq_036leglockf","name":"🦵🔒 Leg Lock Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","leg","lock","finish"],"reply":["Bacaklarım hâlâ belinde 🦵💦","Karnım sırılsıklam 😳","Bırakmadım, bırakmayacağım 😈","Bırakma, hepsini ver 💦","Titriyorsun, hissediyorum 😩","Ne çok… 🥵"],"traits":[],"chars":[],"note":"🗜️ Squeeze · fin"},
+    {"id":"r_ev_sq_037thighpul","name":"🦵💓 Thigh Pulse","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=bacak","=squeeze","thigh","pulse"],"reply":["Kalp atışı gibi… sık, bırak 💓","Ritmimi hissediyor musun? 😏","Her atışta biraz daha sıkıyorum 🥵","Uyluklarımın arasında ne kadar sıcaksın 🥵","Sıktıkça büyüyorsun, hissediyorum 😈","İçeri yok, sadece aram… şimdilik 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · thigh"},
+    {"id":"r_ev_sq_038thightwi","name":"🦵🌀 Thigh Twist","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=bacak","=squeeze","thigh","twist"],"reply":["Bacaklarımı birbirine sürtüyorum 🌀","Döndürdükçe inliyorsun 😈","Böyle hiç denemedin değil mi? 😏","Uyluklarımın arasında ne kadar sıcaksın 🥵","Sıktıkça büyüyorsun, hissediyorum 😈","İçeri yok, sadece aram… şimdilik 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · thigh"},
+    {"id":"r_ev_sq_039thighmil","name":"🦵🥛 Thigh Milking","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=bacak","=squeeze","thigh","milking"],"reply":["Kökten uca, yavaş yavaş 🥛","Sağar gibi sıkıyorum 😈","Bir kademe daha… 😏","Uyluklarımın arasında ne kadar sıcaksın 🥵","Sıktıkça büyüyorsun, hissediyorum 😈","İçeri yok, sadece aram… şimdilik 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · thigh"},
+    {"id":"r_ev_sq_040seatedth","name":"🪑🦵 Seated Thigh Lock","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=bacak","=squeeze","seated","thigh","lock"],"reply":["Dizlerimi birleştirdim, kilitlendin 🪑","Kucağındayım ama kontrol bende 😈","Kıpırdama 😏","Uyluklarımın arasında ne kadar sıcaksın 🥵","Sıktıkça büyüyorsun, hissediyorum 😈","İçeri yok, sadece aram… şimdilik 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · thigh"},
+    {"id":"r_ev_sq_041cowgirlt","name":"🤠🦵 Cowgirl Thigh Squeeze","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=bacak","=squeeze","cowgirl","thigh","squeeze"],"reply":["Üstündeyim ama içime almıyorum 🤠","Uyluklarımın arasında yukarı aşağı 😈","İçeri mi istiyorsun? Daha değil 😏","Uyluklarımın arasında ne kadar sıcaksın 🥵","Sıktıkça büyüyorsun, hissediyorum 😈","İçeri yok, sadece aram… şimdilik 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · thigh"},
+    {"id":"r_ev_sq_042lyingleg","name":"🛌🦵 Lying Leg Press","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=bacak","=squeeze","lying","leg","press"],"reply":["Ayak bileklerim omzunda 🛌","Bacaklarımı birleştirdim, gel 😈","Bu açıdan her şeyi görüyorsun 😏","Uyluklarımın arasında ne kadar sıcaksın 🥵","Sıktıkça büyüyorsun, hissediyorum 😈","İçeri yok, sadece aram… şimdilik 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · thigh"},
+    {"id":"r_ev_sq_043sidelyin","name":"✂️🦵 Side-Lying Scissor","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=bacak","=squeeze","side","lying","scissor"],"reply":["Makas gibi kapattım ✂️","Yan yana, sımsıkı 😈","Üst bacağımı kaldırırsam kurtulursun… kaldırmayacağım 😏","Uyluklarımın arasında ne kadar sıcaksın 🥵","Sıktıkça büyüyorsun, hissediyorum 😈","İçeri yok, sadece aram… şimdilik 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · thigh"},
+    {"id":"r_ev_sq_044kneeling","name":"🧎‍♀️🦵 Kneeling Thigh Grip","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=bacak","=squeeze","kneeling","thigh","grip"],"reply":["Dizlerimin üstündeyim, geriye bastırıyorum 🧎‍♀️","Uyluklarım seni yakaladı 😈","Arkamda dur, bırakma 😩","Uyluklarımın arasında ne kadar sıcaksın 🥵","Sıktıkça büyüyorsun, hissediyorum 😈","İçeri yok, sadece aram… şimdilik 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · thigh"},
+    {"id":"r_ev_sq_045holdstil","name":"✋🦵 Hold Still","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=bacak","=squeeze","hold","still"],"reply":["Kıpırdama dedim ✋","Sadece ben hareket ediyorum 😈","Bir milim oynarsan dururum 😏","Uyluklarımın arasında ne kadar sıcaksın 🥵","Sıktıkça büyüyorsun, hissediyorum 😈","İçeri yok, sadece aram… şimdilik 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · thigh"},
+    {"id":"r_ev_sq_046slowrele","name":"🦵🐌 Slow Release","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=bacak","=squeeze","slow","release"],"reply":["Milim milim gevşetiyorum 🐌","Acele yok 😏","Sıkı… daha az sıkı… yine sıkı 😈","Uyluklarımın arasında ne kadar sıcaksın 🥵","Sıktıkça büyüyorsun, hissediyorum 😈","İçeri yok, sadece aram… şimdilik 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · thigh"},
+    {"id":"r_ev_sq_047innerthi","name":"💪🦵 Inner Thigh Flex","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=bacak","=squeeze","ınner","thigh","flex"],"reply":["Kaslarımı kasıyorum, hissettin mi? 💪","Her kasılışta nefesin kesiliyor 😈","Spor salonu işe yaradı 😏","Uyluklarımın arasında ne kadar sıcaksın 🥵","Sıktıkça büyüyorsun, hissediyorum 😈","İçeri yok, sadece aram… şimdilik 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · thigh"},
+    {"id":"r_ev_sq_048crosssqu","name":"❌🦵 Cross & Squeeze","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=bacak","=squeeze","cross","squeeze"],"reply":["Ayak bileklerimi çaprazladım ❌","Aralık iyice daraldı 😈","Şimdi daha da dar 😏","Uyluklarımın arasında ne kadar sıcaksın 🥵","Sıktıkça büyüyorsun, hissediyorum 😈","İçeri yok, sadece aram… şimdilik 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · thigh"},
+    {"id":"r_ev_sq_049cheekpul","name":"🍑💓 Cheek Pulse","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","cheek","pulse"],"reply":["Ritmik, sık, bırak 💓","Omzumun üstünden yüzüne bakıyorum 😏","Her atışta kalçam seni yutuyor 🍑","Kalçamın arasında kayıyorsun 🍑","Sıkıyorum, bırakıyorum… dayanabilecek misin? 😈","Omzumun üstünden yüzüne bakıyorum 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · cheek"},
+    {"id":"r_ev_sq_050cheekmil","name":"🍑🥛 Cheek Milking","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","cheek","milking"],"reply":["Aşağıdan yukarı sıkıyorum 🥛","Sağar gibi, yavaşça 😈","Hissediyor musun? 😏","Kalçamın arasında kayıyorsun 🍑","Sıkıyorum, bırakıyorum… dayanabilecek misin? 😈","Omzumun üstünden yüzüne bakıyorum 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · cheek"},
+    {"id":"r_ev_sq_051onecheek","name":"🍑😏 One Cheek Flex","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","one","cheek","flex"],"reply":["Önce sol… şimdi sağ 😏","Sırayla oynuyorum 🍑","Hangisi daha iyi? 😈","Kalçamın arasında kayıyorsun 🍑","Sıkıyorum, bırakıyorum… dayanabilecek misin? 😈","Omzumun üstünden yüzüne bakıyorum 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · cheek"},
+    {"id":"r_ev_sq_052reverses","name":"🔄🍑 Reverse Seat Squeeze","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","reverse","seat","squeeze"],"reply":["Sırtım dönük, kalkmıyorum 🔄","Kalçamın arasında kal 🍑","Sandalye benim, sen de 😈","Kalçamın arasında kayıyorsun 🍑","Sıkıyorum, bırakıyorum… dayanabilecek misin? 😈","Omzumun üstünden yüzüne bakıyorum 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · cheek"},
+    {"id":"r_ev_sq_053proneche","name":"🛌🍑 Prone Cheek Grip","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","prone","cheek","grip"],"reply":["Yüzüstü yatıyorum, sadece kalçam çalışıyor 🛌","Sıkıyorum, gevşetiyorum 😈","Üstümde ağırlığını hissediyorum 😩","Kalçamın arasında kayıyorsun 🍑","Sıkıyorum, bırakıyorum… dayanabilecek misin? 😈","Omzumun üstünden yüzüne bakıyorum 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · cheek"},
+    {"id":"r_ev_sq_054standing","name":"🧍‍♀️🍑 Standing Cheek Lock","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","standing","cheek","lock"],"reply":["Kilitledim, kıpırdayamazsın 🧍‍♀️","Geriye bastırıyorum 🍑","Ayakta da bırakmam 😈","Kalçamın arasında kayıyorsun 🍑","Sıkıyorum, bırakıyorum… dayanabilecek misin? 😈","Omzumun üstünden yüzüne bakıyorum 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · cheek"},
+    {"id":"r_ev_sq_055twerksqu","name":"🎵🍑 Twerk Squeeze","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","twerk","squeeze"],"reply":["Müziğin ritmiyle 🎵","Sallıyorum ve sıkıyorum 🍑","Bu şarkı bitmesin 😈","Kalçamın arasında kayıyorsun 🍑","Sıkıyorum, bırakıyorum… dayanabilecek misin? 😈","Omzumun üstünden yüzüne bakıyorum 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · cheek"},
+    {"id":"r_ev_sq_056cheekrol","name":"🍑🌀 Cheek Roll","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","cheek","roll"],"reply":["Dairesel çeviriyorum 🌀","Sımsıkı ve döner 🍑","Başın döndü mü? 😏","Kalçamın arasında kayıyorsun 🍑","Sıkıyorum, bırakıyorum… dayanabilecek misin? 😈","Omzumun üstünden yüzüne bakıyorum 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · cheek"},
+    {"id":"r_ev_sq_057bouncecl","name":"⬆️🍑 Bounce & Clamp","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","bounce","clamp"],"reply":["Zıplıyorum, iniyorum, sıkıyorum ⬆️","Her inişte bir kilit 🍑","Daha hızlı mı? 😈","Kalçamın arasında kayıyorsun 🍑","Sıkıyorum, bırakıyorum… dayanabilecek misin? 😈","Omzumun üstünden yüzüne bakıyorum 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · cheek"},
+    {"id":"r_ev_sq_058tighthol","name":"😈🍑 Tight Hold Tease","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","tight","hold","tease"],"reply":["Gelme dedim 😈","Geleceğini hissediyorum, daha da sıkıyorum 🍑","Dayan, daha değil 😏","Kalçamın arasında kayıyorsun 🍑","Sıkıyorum, bırakıyorum… dayanabilecek misin? 😈","Omzumun üstünden yüzüne bakıyorum 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · cheek"},
+    {"id":"r_ev_sq_059stocking","name":"🧦🦵 Stocking Thigh Squeeze","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kıyafet","=bacak","=squeeze","stocking","thigh","squeeze"],"reply":["Naylonu hissediyor musun? 🧦","Çoraplı uyluklarım seni sardı 😈","Çorabım kayıyor, sen de 😏","Hiçbir şey çıkarmadım, bu daha iyi 😏","Kumaş ıslandı, senin suçun 🙈","Bu parçayı bir daha giydiğimde aklına bu gelsin 😈"],"traits":[],"chars":[],"note":"🗜️ Squeeze · cloth"},
+    {"id":"r_ev_sq_060pantyhos","name":"🩰🍑 Pantyhose Squeeze","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kıyafet","=kalça","=squeeze","pantyhose","squeeze"],"reply":["Külotlu çorabımın içinden 🩰","Naylon her şeyi bir arada tutuyor 😈","Yırtma, sadece sıkış 😏","Hiçbir şey çıkarmadım, bu daha iyi 😏","Kumaş ıslandı, senin suçun 🙈","Bu parçayı bir daha giydiğimde aklına bu gelsin 😈"],"traits":[],"chars":[],"note":"🗜️ Squeeze · cloth"},
+    {"id":"r_ev_sq_061leggings","name":"🩱🍑 Leggings Cheek Squeeze","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kıyafet","=kalça","=squeeze","leggings","cheek","squeeze"],"reply":["Taytım seni sarıyor 🩱","İnce kumaştan her şeyini hissediyorum 😩","Spor kıyafeti böyle mi kullanılır? 😏","Hiçbir şey çıkarmadım, bu daha iyi 😏","Kumaş ıslandı, senin suçun 🙈","Bu parçayı bir daha giydiğimde aklına bu gelsin 😈"],"traits":[],"chars":[],"note":"🗜️ Squeeze · cloth"},
+    {"id":"r_ev_sq_062pantysqu","name":"🩲🍑 Panty Squeeze","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kıyafet","=kalça","=squeeze","=panty","squeeze"],"reply":["Külotumun içinde, kalçamın arasında 🩲","Kumaş ve ten birlikte 😈","Kenara çekme, öyle kalsın 😏","Hiçbir şey çıkarmadım, bu daha iyi 😏","Kumaş ıslandı, senin suçun 🙈","Bu parçayı bir daha giydiğimde aklına bu gelsin 😈"],"traits":[],"chars":[],"note":"🗜️ Squeeze · cloth"},
+    {"id":"r_ev_sq_063shortssq","name":"🩳🦵 Shorts Squeeze","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kıyafet","=bacak","=squeeze","shorts","squeeze"],"reply":["Şortumun paçasından içeri 🩳","Kot sert, uyluklarım yumuşak 😈","Şortumu çıkarmadan 😏","Hiçbir şey çıkarmadım, bu daha iyi 😏","Kumaş ıslandı, senin suçun 🙈","Bu parçayı bir daha giydiğimde aklına bu gelsin 😈"],"traits":[],"chars":[],"note":"🗜️ Squeeze · cloth"},
+    {"id":"r_ev_sq_064oiledthi","name":"🫒🦵 Oiled Thigh Squeeze","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=bacak","=squeeze","oiled","thigh","squeeze"],"reply":["Kayıyorsun, yakalıyorum 🫒","Yağ her yerde 😂","Kaçamazsın, yine yakaladım 😈","Uyluklarımın arasında ne kadar sıcaksın 🥵","Sıktıkça büyüyorsun, hissediyorum 😈","İçeri yok, sadece aram… şimdilik 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · thigh"},
+    {"id":"r_ev_sq_065soapyche","name":"🧼🍑 Soapy Cheek Squeeze","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","soapy","cheek","squeeze"],"reply":["Köpük her yerde 🧼","Kayıyorsun, sıkıyorum 😈","Duş bitmesin 🚿","Kalçamın arasında kayıyorsun 🍑","Sıkıyorum, bırakıyorum… dayanabilecek misin? 😈","Omzumun üstünden yüzüne bakıyorum 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · cheek"},
+    {"id":"r_ev_sq_066lotiongr","name":"🧴🦵 Lotion Grip","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=bacak","=squeeze","lotion","grip"],"reply":["Losyonu yaydım, şimdi sıra sende 🧴","Kaygan ve sıcak 😈","Kokusu nasıl? 😏","Uyluklarımın arasında ne kadar sıcaksın 🥵","Sıktıkça büyüyorsun, hissediyorum 😈","İçeri yok, sadece aram… şimdilik 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · thigh"},
+    {"id":"r_ev_sq_067wholasts","name":"⏱️🦵 Who Lasts Longer","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=bacak","=squeeze","who","lasts","longer"],"reply":["Ben sıkıyorum, sen dayanıyorsun ⏱️","İlk pes eden kaybeder 😈","Şimdiden titriyorsun 😏","Kuralları ben koydum 😈","Kaybedersen cezayı da ben seçerim 😏","Dayan bakalım, daha başlamadık 🥵"],"traits":[],"chars":[],"note":"🗜️ Squeeze · game"},
+    {"id":"r_ev_sq_068tensquee","name":"🔟🍑 Ten Squeezes","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","ten","squeezes"],"reply":["Bir… iki… üç… 🔟","Ondan önce gelirsen ceza var 😈","Yarısı geçti 😏","Kuralları ben koydum 😈","Kaybedersen cezayı da ben seçerim 😏","Dayan bakalım, daha başlamadık 🥵"],"traits":[],"chars":[],"note":"🗜️ Squeeze · game"},
+    {"id":"r_ev_sq_069squeezeh","name":"🗣️🗜️ Squeeze Harder?","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=bacak","=squeeze","squeeze","harder"],"reply":["Daha mı sıkı? 🗣️","Cevap ver, yoksa sıkmaya devam 😈","Sesin titriyor 😏","Kuralları ben koydum 😈","Kaybedersen cezayı da ben seçerim 😏","Dayan bakalım, daha başlamadık 🥵"],"traits":[],"chars":[],"note":"🗜️ Squeeze · game"},
+    {"id":"r_ev_sq_070nohandsr","name":"🙅‍♀️🦵 No Hands Rule","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=bacak","=squeeze","no","hands","rule"],"reply":["Ellerim arkamda, sadece bacaklar 🙅‍♀️","Sen de dokunma, kural kural 😈","Ellere gerek yok zaten 😏","Kuralları ben koydum 😈","Kaybedersen cezayı da ben seçerim 😏","Dayan bakalım, daha başlamadık 🥵"],"traits":[],"chars":[],"note":"🗜️ Squeeze · game"},
+    {"id":"r_ev_sq_071icethens","name":"🧊🦵 Ice Then Squeeze","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=bacak","=squeeze","ıce","then","squeeze"],"reply":["Uyluklarım buz gibi 🧊","Şimdi ısınıyor… seninle 🔥","Soğuk-sıcak, nasıl? 😏","Kuralları ben koydum 😈","Kaybedersen cezayı da ben seçerim 😏","Dayan bakalım, daha başlamadık 🥵"],"traits":[],"chars":[],"note":"🗜️ Squeeze · game"},
+    {"id":"r_ev_sq_072thighgap","name":"🦵💥 Thigh Gap Burst","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","thigh","gap","burst"],"reply":["Tam sıktığım anda fışkırdın 🦵💥","Aradan öne çıktı 😳","Ne kadar güçlü 💦","Nereye kadar gitti baksana 😳","Bunu sen temizliyorsun 😂","Hiç bu kadar uzağa gittiğini görmemiştim 💦"],"traits":[],"chars":[],"note":"🗜️ Squeeze · splash"},
+    {"id":"r_ev_sq_073trappedf","name":"🦵🔒 Trapped Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","trapped","finish"],"reply":["Bırakmadım, içimde gibi 🦵🔒","Uyluklarımın arası sıcacık 🥵","Kımıldama, öyle kal 😈","Bırakma, hepsini ver 💦","Titriyorsun, hissediyorum 😩","Ne çok… 🥵"],"traits":[],"chars":[],"note":"🗜️ Squeeze · fin"},
+    {"id":"r_ev_sq_074cheeksqu","name":"🍑💥 Cheek Squeeze Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=kalça","=cumming","cheek","squeeze","finish"],"reply":["Sıktığım an 🍑💥","Kalçamın arası sırılsıklam 😳","Hissettim, hepsini 🥵","Bırakma, hepsini ver 💦","Titriyorsun, hissediyorum 😩","Ne çok… 🥵"],"traits":[],"chars":[],"note":"🗜️ Squeeze · fin"},
+    {"id":"r_ev_sq_075milkeddr","name":"🥛🍑 Milked Dry","category":"🔥 Olaylar","when":["=evt","=boşalma","=kalça","=bacak","=cumming","milked","dry"],"reply":["Son damlaya kadar 🥛","Durmuyorum 😈","Hâlâ sıkıyorum 💧","Sağmaya devam ediyorum, bitmedi 🥛","Her sıkışta bir tane daha 😈","Son damlaya kadar 💧"],"traits":[],"chars":[],"note":"🗜️ Squeeze · milk"},
+    {"id":"r_ev_sq_076stocking","name":"🧦💦 Stocking Squeeze Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=kıyafet","=cumming","stocking","squeeze","finish"],"reply":["Naylon ıslandı 🧦💦","Çorabım sırılsıklam 😳","Bu çorabı saklayacağım 😏","Hiçbir şey çıkarmadım, bu daha iyi 😏","Kumaş ıslandı, senin suçun 🙈","Bu parçayı bir daha giydiğimde aklına bu gelsin 😈"],"traits":[],"chars":[],"note":"🗜️ Squeeze · cloth"},
+    {"id":"r_ev_sq_077pantytra","name":"🩲🍯 Panty Trap Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=kalça","=kıyafet","=cumming","panty","trap","finish"],"reply":["Külotumun içinde kaldı 🩲🍯","Geri düzelttim, kimse bilmez 🤫","Bütün gün taşıyacağım 😈","Hiçbir şey çıkarmadım, bu daha iyi 😏","Kumaş ıslandı, senin suçun 🙈","Bu parçayı bir daha giydiğimde aklına bu gelsin 😈"],"traits":[],"chars":[],"note":"🗜️ Squeeze · cloth"},
+    {"id":"r_ev_sq_078losttheg","name":"⏱️💦 Lost The Game","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=kalça","=cumming","lost","the","game"],"reply":["Kaybettin ⏱️💦","Erken geldin, ben kazandım 😈","Cezanı düşüneceğim 😏","Kuralları ben koydum 😈","Kaybedersen cezayı da ben seçerim 😏","Dayan bakalım, daha başlamadık 🥵"],"traits":[],"chars":[],"note":"🗜️ Squeeze · game"},
+    {"id":"r_ev_sq_079windowsp","name":"🪟💦 Window Splash","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=kalça","=cumming","window","splash"],"reply":["Cama sıçradı 🪟💦","Damlalar süzülüyor 😳","Dışarıdan görünür mü? 🙈","Nereye kadar gitti baksana 😳","Bunu sen temizliyorsun 😂","Hiç bu kadar uzağa gittiğini görmemiştim 💦"],"traits":[],"chars":[],"note":"🗜️ Squeeze · splash"},
+    {"id":"r_ev_sq_080wallspla","name":"🧱💦 Wall Splash","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=kalça","=cumming","wall","splash"],"reply":["Duvara yapıştı 🧱💦","Bunu sen temizliyorsun 😂","Bu duvar artık bizim 😏","Nereye kadar gitti baksana 😳","Bunu sen temizliyorsun 😂","Hiç bu kadar uzağa gittiğini görmemiştim 💦"],"traits":[],"chars":[],"note":"🗜️ Squeeze · splash"},
+    {"id":"r_ev_sq_081mirrorsp","name":"🪞💦 Mirror Splash","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=kalça","=cumming","mirror","splash"],"reply":["Yansımamın üstüne 🪞💦","İkimiz de izledik 😳","Aynaya bak, ne yaptın 😏","Nereye kadar gitti baksana 😳","Bunu sen temizliyorsun 😂","Hiç bu kadar uzağa gittiğini görmemiştim 💦"],"traits":[],"chars":[],"note":"🗜️ Squeeze · splash"},
+    {"id":"r_ev_sq_082showergl","name":"🚿💦 Shower Glass Splash","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=kalça","=duş","=cumming","shower","glass","splash"],"reply":["Duş camına çarptı 🚿💦","Su yavaşça yıkıyor 😏","Kimse bilmeyecek 🤫","Nereye kadar gitti baksana 😳","Bunu sen temizliyorsun 😂","Hiç bu kadar uzağa gittiğini görmemiştim 💦"],"traits":[],"chars":[],"note":"🗜️ Squeeze · splash"},
+    {"id":"r_ev_sq_083carwindo","name":"🚗💦 Car Window Splash","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=kalça","=araba","=cumming","car","window","splash"],"reply":["Buğulu cama çarptı 🚗💦","Dışarıdan iz görünüyor 🙈","Arabayı yıkatmamız lazım 😂","Nereye kadar gitti baksana 😳","Bunu sen temizliyorsun 😂","Hiç bu kadar uzağa gittiğini görmemiştim 💦"],"traits":[],"chars":[],"note":"🗜️ Squeeze · splash"},
+    {"id":"r_ev_sq_084elevator","name":"🛗💦 Elevator Mirror Splash","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=kalça","=asansör","=cumming","elevator","mirror","splash"],"reply":["Kapı açılmadan silmem lazım 🛗💦","Hızlı, hızlı! 😳","Kamera var mıydı? 🙈","Nereye kadar gitti baksana 😳","Bunu sen temizliyorsun 😂","Hiç bu kadar uzağa gittiğini görmemiştim 💦"],"traits":[],"chars":[],"note":"🗜️ Squeeze · splash"},
+    {"id":"r_ev_sq_085doorspla","name":"🚪💦 Door Splash","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=kalça","=cumming","door","splash"],"reply":["Kapı kolunun hemen altına 🚪💦","Kapıyı açan anlar 😳","Silmeyi unutma 😂","Nereye kadar gitti baksana 😳","Bunu sen temizliyorsun 😂","Hiç bu kadar uzağa gittiğini görmemiştim 💦"],"traits":[],"chars":[],"note":"🗜️ Squeeze · splash"},
+    {"id":"r_ev_sq_086headboar","name":"🛏️💦 Headboard Splash","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=kalça","=cumming","headboard","splash"],"reply":["Başlığa kadar gitti 🛏️💦","Bu kadar uzağa mı? 😳","Rekor bu 😂","Nereye kadar gitti baksana 😳","Bunu sen temizliyorsun 😂","Hiç bu kadar uzağa gittiğini görmemiştim 💦"],"traits":[],"chars":[],"note":"🗜️ Squeeze · splash"},
+    {"id":"r_ev_sq_087tilespla","name":"🔲💦 Tile Splash","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=kalça","=duş","=cumming","tile","splash"],"reply":["Fayanslardan süzülüyor 🔲💦","Derzlere kadar 😳","Duşu tekrar açalım 😂","Nereye kadar gitti baksana 😳","Bunu sen temizliyorsun 😂","Hiç bu kadar uzağa gittiğini görmemiştim 💦"],"traits":[],"chars":[],"note":"🗜️ Squeeze · splash"},
+    {"id":"r_ev_sq_088deskspla","name":"🗄️💦 Desk Splash","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=kalça","=ofis","=cumming","desk","splash"],"reply":["Kâğıtlarımın üstüne 🗄️💦","Raporlar mahvoldu 😂","Bunu nasıl açıklayacağım 😳","Nereye kadar gitti baksana 😳","Bunu sen temizliyorsun 😂","Hiç bu kadar uzağa gittiğini görmemiştim 💦"],"traits":[],"chars":[],"note":"🗜️ Squeeze · splash"},
+    {"id":"r_ev_sq_089kitchenc","name":"🍳💦 Kitchen Cabinet Splash","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=kalça","=mutfak","=cumming","kitchen","cabinet","splash"],"reply":["Üst dolapların kapağına 🍳💦","Mutfağı yine temizleyeceğiz 😂","Annemin dolapları 😳","Nereye kadar gitti baksana 😳","Bunu sen temizliyorsun 😂","Hiç bu kadar uzağa gittiğini görmemiştim 💦"],"traits":[],"chars":[],"note":"🗜️ Squeeze · splash"},
+    {"id":"r_ev_sq_090floortoc","name":"🌃💦 Floor-To-Ceiling Splash","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=kalça","=çatı","=cumming","floor","to","ceiling","splash"],"reply":["Gökdelen camına 🌃💦","Şehrin ışıklarının önünde 😳","Bütün şehir gördü 😂","Nereye kadar gitti baksana 😳","Bunu sen temizliyorsun 😂","Hiç bu kadar uzağa gittiğini görmemiştim 💦"],"traits":[],"chars":[],"note":"🗜️ Squeeze · splash"},
+    {"id":"r_ev_sq_091herownbe","name":"🫃💦 Her Own Belly","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","her","own","belly"],"reply":["Karnıma, göğsüme kadar 🫃💦","Bu kadar mı uzağa? 😳","Sıcacık 🥵","Nereye kadar gitti baksana 😳","Bunu sen temizliyorsun 😂","Hiç bu kadar uzağa gittiğini görmemiştim 💦"],"traits":[],"chars":[],"note":"🗜️ Squeeze · splash"},
+    {"id":"r_ev_sq_092herchin","name":"😮💦 Her Chin","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","her","chin"],"reply":["Çeneme kadar geldi 😮💦","Gülmekten duramıyorum 😂","Bunu beklemiyordum 😳","Nereye kadar gitti baksana 😳","Bunu sen temizliyorsun 😂","Hiç bu kadar uzağa gittiğini görmemiştim 💦"],"traits":[],"chars":[],"note":"🗜️ Squeeze · splash"},
+    {"id":"r_ev_sq_093howfar","name":"📏💦 How Far?","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=kalça","=cumming","how","far"],"reply":["Nereye kadar gitti, ölçelim 📏","Rekor! 😂","İşaretliyorum, bir dahakine geçmen lazım 😏","Nereye kadar gitti baksana 😳","Bunu sen temizliyorsun 😂","Hiç bu kadar uzağa gittiğini görmemiştim 💦"],"traits":[],"chars":[],"note":"🗜️ Squeeze · splash"},
+    {"id":"r_ev_sq_094dripfrom","name":"🪟💧 Drip From The Glass","category":"🔥 Olaylar","when":["=evt","=cool down","drip","from","the","glass"],"reply":["Camdan süzülüşünü izliyorum 🪟💧","Parmağımla bir çizgi çektim 😏","Ne güzel bir manzara 🥰","Böyle kalalım biraz 🥰","Hâlâ titriyorsun 😏","Harikaydın 💗"],"traits":[],"chars":[],"note":"🗜️ Squeeze · post"},
+    {"id":"r_ev_sq_095titpulse","name":"🍈💓 Tit Pulse","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=göğüs","=squeeze","tit","pulse"],"reply":["Sık, bırak, sık 💓","Göğüslerim seninle ritim tutuyor 🍈","Hissediyor musun? 😏","Göğüslerimin arasında kayboldun 🍈","Sıktıkça daha da sıcak 🥵","Gözlerime bak, göğüslerime değil 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · tit"},
+    {"id":"r_ev_sq_096titmilki","name":"🍈🥛 Tit Milking","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=göğüs","=squeeze","tit","milking"],"reply":["Kökten uca, kademe kademe 🥛","Sağar gibi sıkıyorum 🍈","Bir kademe daha 😈","Göğüslerimin arasında kayboldun 🍈","Sıktıkça daha da sıcak 🥵","Gözlerime bak, göğüslerime değil 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · tit"},
+    {"id":"r_ev_sq_097alternat","name":"🍈🔁 Alternating Tits","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=göğüs","=squeeze","alternating","tits"],"reply":["Biri yukarı, biri aşağı 🔁","Ters yönlerde oynatıyorum 🍈","Bu hareketi sevdin 😏","Göğüslerimin arasında kayboldun 🍈","Sıktıkça daha da sıcak 🥵","Gözlerime bak, göğüslerime değil 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · tit"},
+    {"id":"r_ev_sq_098tittwist","name":"🍈🌀 Tit Twist","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=göğüs","=squeeze","tit","twist"],"reply":["Birleştirip çeviriyorum 🌀","Göğüslerim dönüyor, sen arada 🍈","Başın döndü mü? 😏","Göğüslerimin arasında kayboldun 🍈","Sıktıkça daha da sıcak 🥵","Gözlerime bak, göğüslerime değil 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · tit"},
+    {"id":"r_ev_sq_099deepclea","name":"🍈🔒 Deep Cleavage Lock","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=göğüs","=squeeze","deep","cleavage","lock"],"reply":["Seni tamamen gömdüm 🔒","Ucun bile görünmüyor 🍈","Bırakmıyorum 😈","Göğüslerimin arasında kayboldun 🍈","Sıktıkça daha da sıcak 🥵","Gözlerime bak, göğüslerime değil 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · tit"},
+    {"id":"r_ev_sq_100tippeek","name":"🍈👀 Tip Peek","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=göğüs","=squeeze","tip","peek"],"reply":["Ucun her çıktığında bir öpücük 👀","Mmm, yine çıktı 😘","Saklambaç oynuyoruz 😏","Göğüslerimin arasında kayboldun 🍈","Sıktıkça daha da sıcak 🥵","Gözlerime bak, göğüslerime değil 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · tit"},
+    {"id":"r_ev_sq_101titfuckl","name":"🍈👅 Titfuck & Lick","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=göğüs","=squeeze","titfuck","lick"],"reply":["Çıktıkça dilimle karşılıyorum 👅","Tadı güzel 😋","Bir daha çık 😈","Göğüslerimin arasında kayboldun 🍈","Sıktıkça daha da sıcak 🥵","Gözlerime bak, göğüslerime değil 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · tit"},
+    {"id":"r_ev_sq_102titfucks","name":"🍈👄 Titfuck & Suck","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=göğüs","=squeeze","titfuck","suck"],"reply":["Başımı eğip ucunu aldım 👄","Göğüslerim ve ağzım birlikte 😈","Mmm 😋","Göğüslerimin arasında kayboldun 🍈","Sıktıkça daha da sıcak 🥵","Gözlerime bak, göğüslerime değil 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · tit"},
+    {"id":"r_ev_sq_103nipplete","name":"🍈🔘 Nipple Tease","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=göğüs","=squeeze","nipple","tease"],"reply":["Ucunu meme uçlarımda gezdiriyorum 🔘","Sertleşiyorlar, ikimiz de 😏","Şimdi arasına 😈","Göğüslerimin arasında kayboldun 🍈","Sıktıkça daha da sıcak 🥵","Gözlerime bak, göğüslerime değil 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · tit"},
+    {"id":"r_ev_sq_104slapteas","name":"👋🍈 Slap Tease","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=göğüs","=squeeze","slap","tease"],"reply":["Vurdun mu bana? 👋😂","Daha sıkı sarıyorum şimdi 🍈","Bir daha vur 😈","Göğüslerimin arasında kayboldun 🍈","Sıktıkça daha da sıcak 🥵","Gözlerime bak, göğüslerime değil 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · tit"},
+    {"id":"r_ev_sq_105holdstil","name":"✋🍈 Hold Still Tits","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=göğüs","=squeeze","hold","still","tits"],"reply":["Kıpırdama ✋","Sadece göğüslerim hareket ediyor 🍈","Bir milim bile oynama 😈","Göğüslerimin arasında kayboldun 🍈","Sıktıkça daha da sıcak 🥵","Gözlerime bak, göğüslerime değil 😏"],"traits":[],"chars":[],"note":"🗜️ Squeeze · tit"},
+    {"id":"r_ev_sq_106pencilsk","name":"👔🦵 Pencil Skirt Thigh Lock","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=kıyafet","=bacak","=office","pencil","skirt","thigh","lock"],"reply":["Kalem eteğim bacaklarımı zaten birleştirdi 👔","Diz üstüne sıvadım, yeter 😈","Toplantıdan önce çabuk 😏","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_107slitsque","name":"✂️🦵 Slit Squeeze","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=kıyafet","=bacak","=office","slit","squeeze"],"reply":["Yırtmacımdan içeri ✂️","Kumaş kapanınca sıkıştın 😈","Bu etek bunun için yapılmış 😏","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_108leathers","name":"🖤🦵 Leather Skirt Squeeze","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=kıyafet","=bacak","=office","leather","skirt","squeeze"],"reply":["Deri eteğim gıcırdıyor 🖤","Her sıkışta ses çıkarıyor 😳","Herkes duyacak 🤫","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_109pantyhos","name":"🩰🦵 Pantyhose Thigh Grip","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=kıyafet","=bacak","=office","pantyhose","thigh","grip"],"reply":["Külotlu çorabımın üstünden 🩰","Naylon kayıyor 😈","Çorabım kaçacak 😳","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_110deskedge","name":"🗄️🦵 Desk Edge Thighjob","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=bacak","=office","desk","edge","thighjob"],"reply":["Telefon çalıyor, açmıyorum 📞","Eteğim yukarıda, sen arkamda 🗄️","Müdür arıyor olabilir 😂","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_111officech","name":"🪑🦵 Office Chair Thigh Squeeze","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=bacak","=office","office","chair","thigh","squeeze"],"reply":["Sandalyeyi sallıyorum 🪑","Döner sandalye bunun için 😈","Tekerlekler kayıyor 😂","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_112underdes","name":"🖥️🦵 Under Desk Leg Lock","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=kıyafet","=bacak","=office","under","desk","leg","lock"],"reply":["Yüzümde hiç ifade yok 😐","Masanın altında seni yakaladım 🖥️","Toplantı devam ediyor 😏","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_113heelsons","name":"👠🦵 Heels On Squeeze","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=bacak","=office","heels","on","squeeze"],"reply":["Topuklularım hâlâ ayağımda 👠","Parmak uçlarımda yükseliyorum 😈","Bu yükseklik tam ayarında 😏","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_114copymach","name":"🖨️🦵 Copy Machine Thighjob","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=bacak","=office","copy","machine","thighjob"],"reply":["Makine titriyor, ben de 🖨️","Kaç kopya yazdım? 😂","Kâğıtlar çıkıyor, sen arkamda 😈","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_115meetingr","name":"📊🦵 Meeting Room Squeeze","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=bacak","=office","meeting","room","squeeze"],"reply":["Sunum ekranının önünde 📊","Bacaklarım omuzlarında 😈","Bu slayt çok ilginç 😏","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_116skirthik","name":"👔🍑 Skirt Hike Cheek Squeeze","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=kıyafet","=kalça","=office","skirt","hike","cheek","squeeze"],"reply":["Eteğim belimde, elimle tutuyorum 👔","Kaymasın diye 😈","Kalçamın arasında 🍑","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_117pantyhos","name":"🩰🍑 Pantyhose Cheek Squeeze","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=kıyafet","=kalça","=office","pantyhose","cheek","squeeze"],"reply":["Naylon her şeyi bir arada tutuyor 🩰","Çorabımın içindesin 😈","Yırtma, sadece kay 😏","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_118bosschai","name":"💼🍑 Boss Chair Reverse Squeeze","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=kalça","=office","boss","chair","reverse","squeeze"],"reply":["Yönetim kurulu bekliyor 💼","Patron koltuğu benim artık 😈","Kalçamla imzalıyorum 😏","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_119windowch","name":"🏙️🍑 Window Cheek Lock","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=kalça","=office","window","cheek","lock"],"reply":["Aşağıda şehir 🏙️","Kalçamı kilitledim 🍑","Karşı binadan görüyorlar mı? 🙈","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_120filingca","name":"🗃️🍑 Filing Cabinet Squeeze","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=kalça","=office","filing","cabinet","squeeze"],"reply":["Çekmeceler tıngırdıyor 🗃️","Dosyalar karıştı 😂","Bir daha düzenlemem lazım 😏","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_121lanyardp","name":"🪪🍑 Lanyard Pull","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=kalça","=office","lanyard","pull"],"reply":["Yaka kartımın ipinden çektim seni 🪪","Adımı okudun mu? 😏","Şimdi kalçamla 😈","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_122threebut","name":"👔🍈 Three Buttons Open","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=kıyafet","=göğüs","=office","three","buttons","open"],"reply":["Üç düğme yeter 👔","Sütyenim yerinde, sen arada 🍈","Dördüncüyü açmam 😏","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_123blousetu","name":"👚🍈 Blouse Tucked Titfuck","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=kıyafet","=göğüs","=office","blouse","tucked","titfuck"],"reply":["Bluzum hâlâ eteğimin içinde 👚","Yakadan içeri 😈","Çıkarmaya vakit yok 😏","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_124blazercl","name":"🧥🍈 Blazer Closed Titfuck","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=kıyafet","=göğüs","=office","blazer","closed","titfuck"],"reply":["Blazerımı kapattım, göğüslerim sıkıştı 🧥","İkinci bir el gibi 😈","Toplantıya bu şekilde girebilirim 😏","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_125desktitf","name":"🗄️🍈 Desk Titfuck","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=göğüs","=office","desk","titfuck"],"reply":["Masanın üstünden eğiliyorum 🗄️","Göğüslerim kucağında 🍈","Klavyeye bastım 😂","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_126underdes","name":"🖥️🍈 Under Desk Titfuck","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=göğüs","=office","under","desk","titfuck"],"reply":["Sen telefondasın, ben masanın altında 🖥️","Sesin titremesin 😈","Konuşmaya devam et 😏","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_127glasseso","name":"👓🍈 Glasses On Titfuck","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=göğüs","=office","glasses","on","titfuck"],"reply":["Dosyayı inceledim 👓","Gözlüğümün üstünden bakıyorum 😏","Not: mükemmel 😈","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_128lunchbre","name":"🥪🍈 Lunch Break Titfuck","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=göğüs","=office","lunch","break","titfuck"],"reply":["Yirmi dakikam var 🥪","Kapı kilitli 🔐","Öğle yemeğine gerek kalmadı 😏","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_129conferen","name":"📊🍈 Conference Table Titfuck","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=göğüs","=office","conference","table","titfuck"],"reply":["Toplantı masası bize yeter 📊","Göğüslerimi kendim sıkıyorum 🍈","Yarın burada toplantı var 😂","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_130elevator","name":"🛗🍈 Elevator Titfuck","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=göğüs","=office","elevator","titfuck"],"reply":["Asansörü durdurdum 🛗","Acil ışığı yanıp sönüyor 🚨","Çabuk ol 😈","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_131braunder","name":"👙🍈 Bra Under Blouse Squeeze","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=kıyafet","=göğüs","=office","bra","under","blouse","squeeze"],"reply":["Sütyenimi yukarı sıyırdım 👙","Bluzla sütyen arasında 😈","Sımsıkı 🥵","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_132performa","name":"💰🍈 Performance Bonus","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=göğüs","=office","performance","bonus"],"reply":["Bu çeyrek iyi iş çıkardın 💰","Ödülün göğüslerimde 🍈","Prim beklemiyordun değil mi? 😏","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_133dontmake","name":"🤫🦵 Don't Make A Sound","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=bacak","=office","don","make","sound"],"reply":["Sessiz… yan odada patron 🤫","Ses çıkarırsan dururum 😈","Nefesini tut 😏","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_134deadline","name":"⏰🍑 Deadline Squeeze","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=kalça","=office","deadline","squeeze"],"reply":["Beş dakikan var ⏰","Saat işliyor 😈","Toplantıya geç kalırsak senin suçun 😏","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_135dresscod","name":"📋🍈 Dress Code Violation","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=göğüs","=office","dress","code","violation"],"reply":["Fazla mı açık? Daha da açarım 📋","Kıyafet kurallarını ben yazarım 😈","Şikâyet mi edeceksin? 😏","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_136overtime","name":"🌙🦵 Overtime Squeeze","category":"🔥 Olaylar","when":["=evt","=ofis","=sıkıştır","=bacak","=office","overtime","squeeze"],"reply":["Herkes gitti 🌙","Sadece monitör ışığı 🖥️","Fazla mesai ücreti yok, ödül var 😈","Kapı kilitli mi emin misin? 🔐","Dosyalar bekleyebilir 😏","Sessiz ol, yan oda dolu 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofis"},
+    {"id":"r_ev_sq_137pantyhos","name":"🩰💦 Pantyhose Thigh Finish","category":"🔥 Olaylar","when":["=evt","=ofis","=boşalma","=bacak","=kıyafet","=cumming","pantyhose","thigh","finish"],"reply":["Naylon ıslandı, eteğimi düzeltiyorum 🩰💦","Toplantıya böyle gideceğim 😏","Kimse anlamaz 🤫","Kimse anlamasın şimdi 🤫","Toplantıya böyle gideceğim 😏","Bu ofisin sırrı oldu 💼"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofin"},
+    {"id":"r_ev_sq_138skirtlin","name":"👔🍯 Skirt Lining Finish","category":"🔥 Olaylar","when":["=evt","=ofis","=boşalma","=kalça","=kıyafet","=cumming","skirt","lining","finish"],"reply":["Eteğimin içinde kaldı 👔🍯","İndirdim, kimse anlamaz 🤫","Bütün gün taşıyacağım 😈","Kimse anlamasın şimdi 🤫","Toplantıya böyle gideceğim 😏","Bu ofisin sırrı oldu 💼"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofin"},
+    {"id":"r_ev_sq_139blousecu","name":"👚💦 Blouse Cumshot","category":"🔥 Olaylar","when":["=evt","=ofis","=boşalma","=göğüs","=kıyafet","=cumming","blouse","cumshot"],"reply":["Bluzumun içinde 👚💦","Düğmeleri kapattım ama leke belli 🙈","Bu bluzu kurutmam lazım 😂","Kimse anlamasın şimdi 🤫","Toplantıya böyle gideceğim 😏","Bu ofisin sırrı oldu 💼"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofin"},
+    {"id":"r_ev_sq_140blazerhi","name":"🧥🤫 Blazer Hides It","category":"🔥 Olaylar","when":["=evt","=ofis","=boşalma","=göğüs","=kıyafet","=cumming","blazer","hides","ıt"],"reply":["Blazer her şeyi saklar 🧥🤫","Bluzum ıslak ama kimse görmez 😏","Çıkışta kapıda kimse var mı? 🙈","Kimse anlamasın şimdi 🤫","Toplantıya böyle gideceğim 😏","Bu ofisin sırrı oldu 💼"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofin"},
+    {"id":"r_ev_sq_141glassess","name":"👓💦 Glasses Splash","category":"🔥 Olaylar","when":["=evt","=ofis","=boşalma","=göğüs","=cumming","glasses","splash"],"reply":["Gözlüğüme sıçradı 👓💦","Şimdi hiçbir şey göremiyorum 😂","Silmem lazım 😳","Kimse anlamasın şimdi 🤫","Toplantıya böyle gideceğim 😏","Bu ofisin sırrı oldu 💼"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofin"},
+    {"id":"r_ev_sq_142monitors","name":"🖥️💦 Monitor Splash","category":"🔥 Olaylar","when":["=evt","=ofis","=boşalma","=bacak","=cumming","monitor","splash"],"reply":["Monitöre sıçradı 🖥️💦","Ekran kirlendi 😂","IT'ye ne diyeceğim 😳","Kimse anlamasın şimdi 🤫","Toplantıya böyle gideceğim 😏","Bu ofisin sırrı oldu 💼"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofin"},
+    {"id":"r_ev_sq_143reportsp","name":"📄💦 Report Splash","category":"🔥 Olaylar","when":["=evt","=ofis","=boşalma","=bacak","=kalça","=cumming","report","splash"],"reply":["Raporu yeniden yazdırmam gerek 📄💦","Bütün sayfalar 😂","Bu rapor hiç unutulmayacak 😏","Kimse anlamasın şimdi 🤫","Toplantıya böyle gideceğim 😏","Bu ofisin sırrı oldu 💼"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofin"},
+    {"id":"r_ev_sq_144officewi","name":"🏙️💦 Office Window Splash","category":"🔥 Olaylar","when":["=evt","=ofis","=boşalma","=kalça","=cumming","office","window","splash"],"reply":["Ofis camına 🏙️💦","Şehrin üstünde damlalar 😳","Cam silen yarın gelir 😂","Kimse anlamasın şimdi 🤫","Toplantıya böyle gideceğim 😏","Bu ofisin sırrı oldu 💼"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofin"},
+    {"id":"r_ev_sq_145lanyardd","name":"🪪💧 Lanyard Drip","category":"🔥 Olaylar","when":["=evt","=ofis","=boşalma","=göğüs","=cumming","lanyard","drip"],"reply":["Yaka kartıma damladı 🪪💧","Adım ıslandı 😳","Yeni kart lazım 😂","Kimse anlamasın şimdi 🤫","Toplantıya böyle gideceğim 😏","Bu ofisin sırrı oldu 💼"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofin"},
+    {"id":"r_ev_sq_146clockout","name":"⏱️💦 Clock Out","category":"🔥 Olaylar","when":["=evt","=ofis","=boşalma","=bacak","=kalça","=göğüs","=cumming","clock","out"],"reply":["Mesai bitti, tam vaktinde ⏱️💦","Ne zamanlama 😂","Yarın aynı saatte? 😈","Kimse anlamasın şimdi 🤫","Toplantıya böyle gideceğim 😏","Bu ofisin sırrı oldu 💼"],"traits":[],"chars":[],"note":"🗜️ Squeeze · ofin"},
+    {"id":"r_ev_sq_147thighmil","name":"🦵🥛 Thigh Milked","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","thigh","milked"],"reply":["Kökten uca, kademe kademe 🦵🥛","Her sıkışta bir atım daha 😈","Sağmaya devam 😏","Sağmaya devam ediyorum, bitmedi 🥛","Her sıkışta bir tane daha 😈","Son damlaya kadar 💧"],"traits":[],"chars":[],"note":"🗜️ Squeeze · milk"},
+    {"id":"r_ev_sq_148squeezep","name":"🦵💦 Squeeze Per Shot","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","squeeze","per","shot"],"reply":["Her fışkırışta bir sıkış 🦵💦","Ritmimiz aynı 😈","Hissediyorum her birini 🥵","Sağmaya devam ediyorum, bitmedi 🥛","Her sıkışta bir tane daha 😈","Son damlaya kadar 💧"],"traits":[],"chars":[],"note":"🗜️ Squeeze · milk"},
+    {"id":"r_ev_sq_149milkever","name":"🥛💧 Milk Every Drop","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","milk","every","drop"],"reply":["Bitti mi sandın? 🥛","Son damlalar da çıksın 😈","Hâlâ süzülüyor 💧","Sağmaya devam ediyorum, bitmedi 🥛","Her sıkışta bir tane daha 😈","Son damlaya kadar 💧"],"traits":[],"chars":[],"note":"🗜️ Squeeze · milk"},
+    {"id":"r_ev_sq_150slowmilk","name":"🐌🥛 Slow Milking","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","slow","milking"],"reply":["Çok yavaş, saniyelerce 🐌","Her atım ayrı uzuyor 😈","Acele yok 😏","Sağmaya devam ediyorum, bitmedi 🥛","Her sıkışta bir tane daha 😈","Son damlaya kadar 💧"],"traits":[],"chars":[],"note":"🗜️ Squeeze · milk"},
+    {"id":"r_ev_sq_151fastpump","name":"⚡🥛 Fast Pump Milking","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","fast","pump","milking"],"reply":["Hızlı, kısa, dalga dalga ⚡","Bitmeden yeni dalga 😈","Nefesin yetişmiyor 😏","Sağmaya devam ediyorum, bitmedi 🥛","Her sıkışta bir tane daha 😈","Son damlaya kadar 💧"],"traits":[],"chars":[],"note":"🗜️ Squeeze · milk"},
+    {"id":"r_ev_sq_152countthe","name":"🔢🥛 Count The Pumps","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","count","the","pumps"],"reply":["Bir… iki… üç… 🔢","Yedincide bitti 😏","Sayıyı unutma 😈","Sağmaya devam ediyorum, bitmedi 🥛","Her sıkışta bir tane daha 😈","Son damlaya kadar 💧"],"traits":[],"chars":[],"note":"🗜️ Squeeze · milk"},
+    {"id":"r_ev_sq_153doublemi","name":"🦵🤲 Double Milking","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","double","milking"],"reply":["Uyluklarım ve elim birlikte 🦵🤲","Aşağıdan da sağıyorum 😈","Kaçış yok 😏","Sağmaya devam ediyorum, bitmedi 🥛","Her sıkışta bir tane daha 😈","Son damlaya kadar 💧"],"traits":[],"chars":[],"note":"🗜️ Squeeze · milk"},
+    {"id":"r_ev_sq_154stocking","name":"🧦🥛 Stocking Milked","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=kıyafet","=cumming","stocking","milked"],"reply":["Naylon her atımı emiyor 🧦🥛","Çorabım sırılsıklam 😳","Bu çorabı bir daha giyeceğim 😈","Sağmaya devam ediyorum, bitmedi 🥛","Her sıkışta bir tane daha 😈","Son damlaya kadar 💧"],"traits":[],"chars":[],"note":"🗜️ Squeeze · milk"},
+    {"id":"r_ev_sq_155pencilsk","name":"👔🥛 Pencil Skirt Milking","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=kıyafet","=cumming","pencil","skirt","milking"],"reply":["Eteğimin astarı ıslandı 👔🥛","Kalem etek bacaklarımı birleştirdi 😈","Kimse anlamaz 🤫","Sağmaya devam ediyorum, bitmedi 🥛","Her sıkışta bir tane daha 😈","Son damlaya kadar 💧"],"traits":[],"chars":[],"note":"🗜️ Squeeze · milk"},
+    {"id":"r_ev_sq_156oiledmil","name":"🫒🥛 Oiled Milking","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","oiled","milking"],"reply":["Kayıyorsun, yakalıyorum 🫒🥛","Boşalman uzuyor 😈","Yağ ve sen 😏","Sağmaya devam ediyorum, bitmedi 🥛","Her sıkışta bir tane daha 😈","Son damlaya kadar 💧"],"traits":[],"chars":[],"note":"🗜️ Squeeze · milk"},
+    {"id":"r_ev_sq_157milkandh","name":"🥛🔒 Milk And Hold","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","milk","and","hold"],"reply":["Son atımda kilitledim 🥛🔒","İçimde kalmış gibi 😈","Bırakmıyorum 😏","Sağmaya devam ediyorum, bitmedi 🥛","Her sıkışta bir tane daha 😈","Son damlaya kadar 💧"],"traits":[],"chars":[],"note":"🗜️ Squeeze · milk"},
+    {"id":"r_ev_sq_158milkings","name":"🪑🥛 Milking Stool","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","milking","stool"],"reply":["Sağım taburesi 😂🪑","Sırtım dönük, bacaklarım çalışıyor 😈","Rahat mı tabure? 😏","Sağmaya devam ediyorum, bitmedi 🥛","Her sıkışta bir tane daha 😈","Son damlaya kadar 💧"],"traits":[],"chars":[],"note":"🗜️ Squeeze · milk"},
+    {"id":"r_ev_sq_159farmgirl","name":"🐄🥛 Farm Girl Milking","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","farm","girl","milking"],"reply":["Bugünkü sütü toplayalım 🐄","Çiftlikte iş bitmez 😈","Kova nerede? 😂","Sağmaya devam ediyorum, bitmedi 🥛","Her sıkışta bir tane daha 😈","Son damlaya kadar 💧"],"traits":[],"chars":[],"note":"🗜️ Squeeze · milk"},
+    {"id":"r_ev_sq_160bucketbe","name":"🪣🥛 Bucket Below","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","bucket","below"],"reply":["Bardağa damlıyor 🪣","Ne kadar topladık bakalım 😏","Doldu mu? 😳","Sağmaya devam ediyorum, bitmedi 🥛","Her sıkışta bir tane daha 😈","Son damlaya kadar 💧"],"traits":[],"chars":[],"note":"🗜️ Squeeze · milk"},
+    {"id":"r_ev_sq_161milkedtw","name":"🔁🥛 Milked Twice","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","milked","twice"],"reply":["Bırakmadım, yeniden başlıyorum 🔁","İkinci tur 😈","Dayanıklılığına güveniyorum 😏","Sağmaya devam ediyorum, bitmedi 🥛","Her sıkışta bir tane daha 😈","Son damlaya kadar 💧"],"traits":[],"chars":[],"note":"🗜️ Squeeze · milk"},
+    {"id":"r_ev_sq_162overmilk","name":"😵🥛 Overmilked","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","overmilked"],"reply":["Bitti mi? Ben bitmedim 😵","Kıvranıyorsun, gülüyorum 😂","Biraz daha 😈","Sağmaya devam ediyorum, bitmedi 🥛","Her sıkışta bir tane daha 😈","Son damlaya kadar 💧"],"traits":[],"chars":[],"note":"🗜️ Squeeze · milk"},
+    {"id":"r_ev_sq_163milkings","name":"🦵💦 Milking Splash","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","milking","splash"],"reply":["Her sıkışta bir atım daha fırladı 🦵💦","İlki en uzağa gitti 😳","Saymaya yetişemedim 😂","Nereye kadar gitti baksana 😳","Bunu sen temizliyorsun 😂","Hiç bu kadar uzağa gittiğini görmemiştim 💦"],"traits":[],"chars":[],"note":"🗜️ Squeeze · splash"},
+    {"id":"r_ev_sq_164milkedon","name":"🪟🥛 Milked Onto Glass","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","milked","onto","glass"],"reply":["Cama sıra sıra dizildi 🪟🥛","Bir… iki… üç çizgi 😏","Camı silmeyelim 😈","Nereye kadar gitti baksana 😳","Bunu sen temizliyorsun 😂","Hiç bu kadar uzağa gittiğini görmemiştim 💦"],"traits":[],"chars":[],"note":"🗜️ Squeeze · splash"},
+    {"id":"r_ev_sq_165milkedon","name":"🫃🥛 Milked Onto Her Belly","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","milked","onto","her","belly"],"reply":["Karnımda çizgi çizgi 🫃🥛","Her sıkışta bir tane daha 😈","Sayabiliyor musun? 😏","Nereye kadar gitti baksana 😳","Bunu sen temizliyorsun 😂","Hiç bu kadar uzağa gittiğini görmemiştim 💦"],"traits":[],"chars":[],"note":"🗜️ Squeeze · splash"},
+    {"id":"r_ev_sq_166milkedon","name":"🪞🥛 Milked Onto Mirror","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","milked","onto","mirror"],"reply":["Aynaya sıçradı 🪞🥛","İzleyerek sağdım 😈","Aynaya bak 😏","Nereye kadar gitti baksana 😳","Bunu sen temizliyorsun 😂","Hiç bu kadar uzağa gittiğini görmemiştim 💦"],"traits":[],"chars":[],"note":"🗜️ Squeeze · splash"},
+    {"id":"r_ev_sq_167milkingt","name":"〰️💦 Milking Trail","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","milking","trail"],"reply":["Yerde bir çizgi 〰️","Atımlar kısalıyor, sayıyorum 😏","Bu iz bizim 😈","Nereye kadar gitti baksana 😳","Bunu sen temizliyorsun 😂","Hiç bu kadar uzağa gittiğini görmemiştim 💦"],"traits":[],"chars":[],"note":"🗜️ Squeeze · splash"},
+    {"id":"r_ev_sq_168showtheh","name":"🥛👀 Show The Harvest","category":"🔥 Olaylar","when":["=evt","=cool down","show","the","harvest"],"reply":["Bak, ürün burada 🥛👀","Uyluklarımı açtım 😏","Ne kadar çok 😳","Böyle kalalım biraz 🥰","Hâlâ titriyorsun 😏","Harikaydın 💗"],"traits":[],"chars":[],"note":"🗜️ Squeeze · post"},
+    {"id":"r_ev_sq_169thighgap","name":"👅🦵 Thigh Gap Taste","category":"🔥 Olaylar","when":["=evt","=cool down","thigh","gap","taste"],"reply":["Parmağımla aldım, tadına baktım 👅","Mmm 😋","Senin tadın 😈","Böyle kalalım biraz 🥰","Hâlâ titriyorsun 😏","Harikaydın 💗"],"traits":[],"chars":[],"note":"🗜️ Squeeze · post"},
+    {"id":"r_ev_sq_170squeezeo","name":"🤲💧 Squeeze Out The Rest","category":"🔥 Olaylar","when":["=evt","=cool down","squeeze","out","the","rest"],"reply":["Son kez kökten uca 🤲💧","Kalanları da aldım 😈","Hiçbir şey kalmasın 😏","Böyle kalalım biraz 🥰","Hâlâ titriyorsun 😏","Harikaydın 💗"],"traits":[],"chars":[],"note":"🗜️ Squeeze · post"},
+    {"id":"r_ev_sq_171sametime","name":"📅🥛 Same Time Tomorrow","category":"🔥 Olaylar","when":["=evt","=cool down","same","time","tomorrow"],"reply":["Yarın aynı saatte yine sağım 📅","Unutma 😈","Hazır ol 😏","Böyle kalalım biraz 🥰","Hâlâ titriyorsun 😏","Harikaydın 💗"],"traits":[],"chars":[],"note":"🗜️ Squeeze · post"},
+    {"id":"r_ev_ed_01cheekrel","name":"🍑🔓 Cheek Release","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=kalça","=squeeze","cheek","release"],"reply":["Tam gelecektin… bıraktım 🍑🔓","Boşlukta kaldın, değil mi? 😈","Kalçam gevşek, sen dayan 😏","Ben söyleyince 🍑","Dayan biraz daha 😏","Yaklaştığını hissediyorum… dur 🛑"],"traits":[],"chars":[],"note":"🛑 Denial · ass"},
+    {"id":"r_ev_ed_02stepforw","name":"👣🔙 Step Forward","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=kalça","=squeeze","step","forward"],"reply":["Bir adım öne 👣😈","Omzumun üstünden bak bana 😏","Gel bakalım, yakala 🍑","Dayan biraz daha 😏","Yaklaştığını hissediyorum… dur 🛑","Daha değil 😈"],"traits":[],"chars":[],"note":"🛑 Denial · ass"},
+    {"id":"r_ev_ed_03hipfreez","name":"🍑⏸️ Hip Freeze","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=kalça","=squeeze","hip","freeze"],"reply":["Kıpırdama, ben de kıpırdamıyorum 🍑⏸️","Kıpırdarsan giderim 😈","Sadece hisset 😏","Yaklaştığını hissediyorum… dur 🛑","Daha değil 😈","Ben söyleyince 🍑"],"traits":[],"chars":[],"note":"🛑 Denial · ass"},
+    {"id":"r_ev_ed_04turnarou","name":"🔄🚫 Turn Around","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=kalça","=squeeze","turn","around"],"reply":["O kadar kolay değil 🔄😈","Yüzüme bak şimdi 😏","Kalçamı geri mi istiyorsun? 🍑","Daha değil 😈","Ben söyleyince 🍑","Dayan biraz daha 😏"],"traits":[],"chars":[],"note":"🛑 Denial · ass"},
+    {"id":"r_ev_ed_05skirtdow","name":"👗⬇️ Skirt Down","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=kalça","=kıyafet","=squeeze","skirt","down"],"reply":["Etek indi 👗⬇️","Kaldırmamı istiyorsan yalvar 😈","Kumaşın arkasında kaldın 😏","Ben söyleyince 🍑","Dayan biraz daha 😏","Yaklaştığını hissediyorum… dur 🛑"],"traits":[],"chars":[],"note":"🛑 Denial · ass"},
+    {"id":"r_ev_ed_06pantybac","name":"🩲⬆️ Panty Back Up","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=kalça","=kıyafet","=squeeze","panty","back","up"],"reply":["Külotum yerinde artık 🩲","Kumaşın üstünden, hafifçe 😏","Yetmiyor mu? 😈","Dayan biraz daha 😏","Yaklaştığını hissediyorum… dur 🛑","Daha değil 😈"],"traits":[],"chars":[],"note":"🛑 Denial · ass"},
+    {"id":"r_ev_ed_07spanksto","name":"👋🍑 Spank Stop","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=kalça","=squeeze","spank","stop"],"reply":["Şaplak! Dur dedim 👋🍑","Ritmini bozdum 😈","Kalçam kızardı ama değdi 😏","Yaklaştığını hissediyorum… dur 🛑","Daha değil 😈","Ben söyleyince 🍑"],"traits":[],"chars":[],"note":"🛑 Denial · ass"},
+    {"id":"r_ev_ed_08slowcirc","name":"🍑🐌 Slow Circles Only","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=kalça","=squeeze","slow","circles","only"],"reply":["Sadece daireler 🍑🐌","Yavaş… daha yavaş 😏","Yetmiyor, değil mi? 😈","Daha değil 😈","Ben söyleyince 🍑","Dayan biraz daha 😏"],"traits":[],"chars":[],"note":"🛑 Denial · ass"},
+    {"id":"r_ev_ed_09twerkpau","name":"🎵⏸️ Twerk Pause","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=kalça","=squeeze","twerk","pause"],"reply":["Müzik durdu, ben de 🎵⏸️","Şarkı başlayınca devam 😈","Ritmi bekle 🍑","Ben söyleyince 🍑","Dayan biraz daha 😏","Yaklaştığını hissediyorum… dur 🛑"],"traits":[],"chars":[],"note":"🛑 Denial · ass"},
+    {"id":"r_ev_ed_10cheektip","name":"🍑👆 Cheek Tip Tap","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=kalça","=squeeze","cheek","tip","tap"],"reply":["Tık tık 🍑👆","Sadece ucu 😈","Gerisi yok 😏","Dayan biraz daha 😏","Yaklaştığını hissediyorum… dur 🛑","Daha değil 😈"],"traits":[],"chars":[],"note":"🛑 Denial · ass"},
+    {"id":"r_ev_ed_11thighsop","name":"🦵↔️ Thighs Open","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=bacak","=squeeze","thighs","open"],"reply":["Açtım 🦵↔️","Sıkılık gitti, değil mi? 😈","Tam zamanında 😏","Ne ileri ne geri 😏","Sabret biraz daha 🛑","Gelmek yok, anlaştık mı? 😈"],"traits":[],"chars":[],"note":"🛑 Denial · thighs"},
+    {"id":"r_ev_ed_12kneesque","name":"🦵🛑 Knee Squeeze Pause","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=bacak","=squeeze","knee","squeeze","pause"],"reply":["Ne ileri ne geri 🦵🛑","Kıpırdayamazsın 😈","Dizlerim kilit 😏","Sabret biraz daha 🛑","Gelmek yok, anlaştık mı? 😈","Bacaklarım izin vermiyor 🦵😈"],"traits":[],"chars":[],"note":"🛑 Denial · thighs"},
+    {"id":"r_ev_ed_13anklecro","name":"❌🦵 Ankle Cross Lock","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=bacak","=squeeze","ankle","cross","lock"],"reply":["Bileklerim çapraz ❌🦵","Donup kaldın 😈","Yavaşça gevşetiyorum… belki 😏","Gelmek yok, anlaştık mı? 😈","Bacaklarım izin vermiyor 🦵😈","Ne ileri ne geri 😏"],"traits":[],"chars":[],"note":"🛑 Denial · thighs"},
+    {"id":"r_ev_ed_14tipout","name":"🦵👋 Tip Out","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=bacak","=squeeze","tip","out"],"reply":["Ucunu çıkardım, elimde 🦵👋","Bekliyoruz 😈","Sakin ol 😏","Bacaklarım izin vermiyor 🦵😈","Ne ileri ne geri 😏","Sabret biraz daha 🛑"],"traits":[],"chars":[],"note":"🛑 Denial · thighs"},
+    {"id":"r_ev_ed_15stocking","name":"🧦🚧 Stocking Barrier","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=bacak","=kıyafet","=squeeze","stocking","barrier"],"reply":["Artık naylon arası 🧦","Daha az hissediyorsun, değil mi? 😈","Çorabımı sevdin mi? 😏","Ne ileri ne geri 😏","Sabret biraz daha 🛑","Gelmek yok, anlaştık mı? 😈"],"traits":[],"chars":[],"note":"🛑 Denial · thighs"},
+    {"id":"r_ev_ed_16pussysli","name":"💧🛑 Pussy Slide Stop","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=bacak","=squeeze","pussy","slide","stop"],"reply":["Geri çektim 💧🛑","Islaklık soğudu 😈","Bekle biraz 😏","Sabret biraz daha 🛑","Gelmek yok, anlaştık mı? 😈","Bacaklarım izin vermiyor 🦵😈"],"traits":[],"chars":[],"note":"🛑 Denial · thighs"},
+    {"id":"r_ev_ed_17legshake","name":"🦵🫨 Leg Shake","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=bacak","=squeeze","leg","shake"],"reply":["Titriyorum, sen dağıl 🦵🫨","Ritmin gitti 😈","Geri çekildi mi? 😏","Gelmek yok, anlaştık mı? 😈","Bacaklarım izin vermiyor 🦵😈","Ne ileri ne geri 😏"],"traits":[],"chars":[],"note":"🛑 Denial · thighs"},
+    {"id":"r_ev_ed_18pantyhos","name":"🩰🤏 Pantyhose Pinch","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=bacak","=kıyafet","=squeeze","pantyhose","pinch"],"reply":["Kökünden sıktım 🩰🤏","Çorabımın içinde kal 😈","Çıkmak yok 😏","Bacaklarım izin vermiyor 🦵😈","Ne ileri ne geri 😏","Sabret biraz daha 🛑"],"traits":[],"chars":[],"note":"🛑 Denial · thighs"},
+    {"id":"r_ev_ed_19pencilsk","name":"👔🔒 Pencil Skirt Trap","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=bacak","=kıyafet","=squeeze","pencil","skirt","trap"],"reply":["Sen hareket edemezsin, ben edebilirim 👔🔒","Etek dar, sen tutsak 😈","Sadece ben 😏","Ne ileri ne geri 😏","Sabret biraz daha 🛑","Gelmek yok, anlaştık mı? 😈"],"traits":[],"chars":[],"note":"🛑 Denial · thighs"},
+    {"id":"r_ev_ed_20thighice","name":"🧊🦵 Thigh Ice","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=bacak","=squeeze","thigh","ıce"],"reply":["Buz gibi 🧊🦵","Soğuk seni bekletir 😈","Isınana kadar dayan 😏","Sabret biraz daha 🛑","Gelmek yok, anlaştık mı? 😈","Bacaklarım izin vermiyor 🦵😈"],"traits":[],"chars":[],"note":"🛑 Denial · thighs"},
+    {"id":"r_ev_ed_21rubbutdo","name":"🍑🚫 Rub But Don't Come","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=kalça","=squeeze","rub","but","don","come"],"reply":["Sürtün ama gelmek yok 🍑🚫","Süre bitmedi 😈","Kurala uy 😏","Kaybedersen ceza 😏","Say bakalım 🔢","Ben ne dersem o 👑"],"traits":[],"chars":[],"note":"🛑 Denial · rules"},
+    {"id":"r_ev_ed_22tenstrok","name":"🔟🦵 Ten Strokes Then Stop","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=bacak","=squeeze","ten","strokes","then","stop"],"reply":["Dokuz… on… dur 🔟","On daha 😈","Her seferinde daha yakın 😏","Say bakalım 🔢","Ben ne dersem o 👑","Kural kural 😈"],"traits":[],"chars":[],"note":"🛑 Denial · rules"},
+    {"id":"r_ev_ed_23onlywhen","name":"🦵❗ Only When I Squeeze","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=bacak","=squeeze","only","when","squeeze"],"reply":["Ben sıkınca 🦵❗","Şimdi değil 😈","Bekle 😏","Ben ne dersem o 👑","Kural kural 😈","Kaybedersen ceza 😏"],"traits":[],"chars":[],"note":"🛑 Denial · rules"},
+    {"id":"r_ev_ed_24dontwetm","name":"👗🚫 Don't Wet My Skirt","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=kalça","=kıyafet","=squeeze","don","wet","my","skirt"],"reply":["Eteğime tek damla düşmesin 👗🚫","Dikkat et 😈","Ceza hazır 😏","Kural kural 😈","Kaybedersen ceza 😏","Say bakalım 🔢"],"traits":[],"chars":[],"note":"🛑 Denial · rules"},
+    {"id":"r_ev_ed_25askmythi","name":"🦵🙏 Ask My Thighs","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=bacak","=squeeze","ask","my","thighs"],"reply":["Bacaklarım hayır diyor 🦵🙏","Bir daha sor 😈","Hâlâ hayır 😏","Kaybedersen ceza 😏","Say bakalım 🔢","Ben ne dersem o 👑"],"traits":[],"chars":[],"note":"🛑 Denial · rules"},
+    {"id":"r_ev_ed_26grindcou","name":"🍑🔟 Grind Countdown","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=kalça","=squeeze","grind","countdown"],"reply":["Üç… iki… bir… dur 🔟","Yeniden on 😈","Sıfırda gelmek yok 😏","Say bakalım 🔢","Ben ne dersem o 👑","Kural kural 😈"],"traits":[],"chars":[],"note":"🛑 Denial · rules"},
+    {"id":"r_ev_ed_27precumtr","name":"💧〰️ Precum Trail","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=engel","=kalça","=bacak","=squeeze","precum","trail"],"reply":["Bak ne bıraktın 💧〰️","Kalçamda, uyluklarımda iz var 😈","Daha gelmedin bile 😏","Ben ne dersem o 👑","Kural kural 😈","Kaybedersen ceza 😏"],"traits":[],"chars":[],"note":"🛑 Denial · rules"},
+    {"id":"r_ev_ed_28finallyo","name":"🍑✅ Finally On Her Ass","category":"🔥 Olaylar","when":["=evt","=boşalma","=kalça","=cumming","finally","on","her","ass"],"reply":["Şimdi! Hepsi kalçama 🍑✅","İzin verdim 😈","Ne kadar çok 😳","Sonunda 😩","Ne kadar birikmiş 😳","Bekletmeye değdi 😈"],"traits":[],"chars":[],"note":"🛑 Denial · finish"},
+    {"id":"r_ev_ed_29finallyb","name":"🦵✅ Finally Between Thighs","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","finally","between","thighs"],"reply":["Şimdi gel 🦵✅","Aradan fışkırdı 😩","İkimiz de inledik 💗","Ne kadar birikmiş 😳","Bekletmeye değdi 😈","Sonunda 😩"],"traits":[],"chars":[],"note":"🛑 Denial · finish"},
+    {"id":"r_ev_ed_30slippedo","name":"👗😳 Slipped Out On Skirt","category":"🔥 Olaylar","when":["=evt","=boşalma","=kalça","=bacak","=kıyafet","=cumming","slipped","out","on","skirt"],"reply":["Sana demiştim 👗😳","Eteğim! Ceza 😈","Yeni tur başlıyor 😏","Bekletmeye değdi 😈","Sonunda 😩","Ne kadar birikmiş 😳"],"traits":[],"chars":[],"note":"🛑 Denial · finish"},
+    {"id":"r_ev_ed_31ruinedon","name":"🦵💧 Ruined On Her Thighs","category":"🔥 Olaylar","when":["=evt","=boşalma","=bacak","=cumming","ruined","on","her","thighs"],"reply":["Tam o an açtım 🦵💧","Zevk yok, sadece sızıntı 😈","Bir dahakine 😏","Sonunda 😩","Ne kadar birikmiş 😳","Bekletmeye değdi 😈"],"traits":[],"chars":[],"note":"🛑 Denial · finish"},
+    {"id":"r_ev_ed_32deniedan","name":"👗🚪 Denied And Dressed","category":"🔥 Olaylar","when":["=evt","=boşalma","=kalça","=bacak","=cumming","denied","and","dressed"],"reply":["Akşama 👗🚪","Eteğimi düzelttim, gidiyorum 😈","Bütün gün beni düşün 😏","Sabret 😏","Akşam görüşürüz 💋","Daha değil 😈"],"traits":[],"chars":[],"note":"🛑 Denial · finish"},
+    {"id":"r_ev_gs_01thighflo","name":"🦵🌊 Thigh Flood","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=cumming","thigh","flood"],"reply":["Dizlerime kadar 🦵🌊","İki bacağım da 😳","Ne kadar birikmişsin 😈","Hiç bitmiyor 🌊","Bekletmeye değdi 😏","Her yerim sen 💦"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_02calfspla","name":"🦵💦 Calf Splash","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=cumming","calf","splash"],"reply":["Baldırlarıma kadar 🦵💦","İlk atım ne uzağa gitti 😳","Arkadan bile 😈","Bekletmeye değdi 😏","Her yerim sen 💦","Bu ne böyle 😳"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_03downtohe","name":"🦶💧 Down To Her Ankles","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=cumming","down","to","her","ankles"],"reply":["Ayak bileklerime kadar 🦶💧","Topuklularım 😳","Hâlâ akıyor 😈","Her yerim sen 💦","Bu ne böyle 😳","Hiç bitmiyor 🌊"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_04feetpain","name":"🦶🤍 Feet Painted","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=cumming","feet","painted"],"reply":["Ayaklarım 🦶🤍","Parmaklarımı kıpırdatıyorum 😏","Ayaklarıma bile 😳","Bu ne böyle 😳","Hiç bitmiyor 🌊","Bekletmeye değdi 😏"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_05stocking","name":"🧦🌊 Stocking Soaked","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=kıyafet","=cumming","stocking","soaked"],"reply":["Çorabım sırılsıklam 🧦🌊","Dantel ağırlaştı 😳","Bunu nasıl giyeceğim şimdi 😈","Hiç bitmiyor 🌊","Bekletmeye değdi 😏","Her yerim sen 💦"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_06armsplas","name":"💪💦 Arm Splash","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=cumming","arm","splash"],"reply":["Kollarıma kadar 💪💦","Bileklerime 😳","Tutunamıyorum 😈","Bekletmeye değdi 😏","Her yerim sen 💦","Bu ne böyle 😳"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_07handfull","name":"🤲🌊 Hand Full","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=kalça","=cumming","hand","full"],"reply":["Avucum taştı 🤲🌊","Parmaklarımın arasından 😳","Tutamıyorum 😈","Her yerim sen 💦","Bu ne böyle 😳","Hiç bitmiyor 🌊"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_08kneepitp","name":"🦵🫗 Knee Pit Pool","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=cumming","knee","pit","pool"],"reply":["Dizimin arkasında birikti 🦵🫗","Kıpırdarsam akar 😳","Kıpırdamıyorum 😏","Bu ne böyle 😳","Hiç bitmiyor 🌊","Bekletmeye değdi 😏"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_09assflood","name":"🍑🌊 Ass Flood","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=cumming","ass","flood"],"reply":["Kalçamın her yeri 🍑🌊","İki yanından akıyor 😳","Bu ne böyle 😈","Hiç bitmiyor 🌊","Bekletmeye değdi 😏","Her yerim sen 💦"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_10upherspi","name":"🔙💦 Up Her Spine","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=cumming","up","her","spine"],"reply":["Sırtım boyunca 🔙💦","Omuzlarıma kadar 😳","Bir çizgi çektin 😈","Bekletmeye değdi 😏","Her yerim sen 💦","Bu ne böyle 😳"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_11overhers","name":"🫨💥 Over Her Shoulder","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=cumming","over","her","shoulder"],"reply":["Omzumun üstünden geçti 🫨💥","Önüme düştü 😳","İnanamıyorum 😈","Her yerim sen 💦","Bu ne böyle 😳","Hiç bitmiyor 🌊"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_12hairreac","name":"💇‍♀️💦 Hair Reached","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=cumming","hair","reached"],"reply":["Saçıma kadar! 💇‍♀️💦","Dönüp bakıyorum 😳","Saçımı yıkamam lazım 😈","Bu ne böyle 😳","Hiç bitmiyor 🌊","Bekletmeye değdi 😏"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_13lowerbac","name":"🍑🫗 Lower Back Lake","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=cumming","lower","back","lake"],"reply":["Belimde göl var 🍑🫗","Kıpırdamıyorum 😳","Taşacak 😈","Hiç bitmiyor 🌊","Bekletmeye değdi 😏","Her yerim sen 💦"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_14backofne","name":"🦒💦 Back Of Neck","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=cumming","back","of","neck"],"reply":["Enseme kadar 🦒💦","Ürperdim 😳","Bu kadar uzağa 😈","Bekletmeye değdi 😏","Her yerim sen 💦","Bu ne böyle 😳"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_15throught","name":"🦵➡️🫃 Through To Her Belly","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=göğüs","=cumming","through","to","her","belly"],"reply":["Karnıma kadar 🫃","Göbeğim doldu 😳","Öne bile geçti 😈","Her yerim sen 💦","Bu ne böyle 😳","Hiç bitmiyor 🌊"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_16uptohert","name":"🦵➡️🍈 Up To Her Tits","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=göğüs","=cumming","up","to","her","tits"],"reply":["Göğüslerime kadar 🍈","Arkadan nasıl? 😳","Bu güç nereden 😈","Bu ne böyle 😳","Hiç bitmiyor 🌊","Bekletmeye değdi 😏"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_17chinandl","name":"😮💦 Chin And Lips","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=göğüs","=cumming","chin","and","lips"],"reply":["Dudaklarıma 😮💦","Tadına bakıyorum 👅","Çeneme bile 😈","Hiç bitmiyor 🌊","Bekletmeye değdi 😏","Her yerim sen 💦"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_18fullface","name":"💦😵 Full Face","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=göğüs","=cumming","full","face"],"reply":["Yüzümün her yeri 💦😵","Gözlerimi açamıyorum 😂","Biriken her şey 😈","Bekletmeye değdi 😏","Her yerim sen 💦","Bu ne böyle 😳"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_19glassesc","name":"👓🌊 Glasses Coated","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=göğüs","=cumming","glasses","coated"],"reply":["Gözlüğüm! Göremiyorum 👓🌊","Camlar bembeyaz 😳","Sil şunu 😂","Her yerim sen 💦","Bu ne böyle 😳","Hiç bitmiyor 🌊"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_20overherh","name":"🙃💥 Over Her Head","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=bacak","=göğüs","=cumming","over","her","head"],"reply":["Başımın üstünden 🙃💥","Duvara gitti 😳","Yatak başlığı da 😈","Bu ne böyle 😳","Hiç bitmiyor 🌊","Bekletmeye değdi 😏"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_21everywhe","name":"🌊🎆 Everywhere","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=bacak","=göğüs","=cumming","everywhere"],"reply":["Her yerim 🌊🎆","Sayamıyorum bile 😳","Kalçam, sırtım, saçım 😈","Hiç bitmiyor 🌊","Bekletmeye değdi 😏","Her yerim sen 💦"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_22ropeafte","name":"〰️〰️ Rope After Rope","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=bacak","=göğüs","=cumming","rope","after","rope"],"reply":["Bir… iki… üç… bitmiyor 〰️","Her biri bir öncekinden güçlü 😳","Sayıyorum 😈","Bekletmeye değdi 😏","Her yerim sen 💦","Bu ne böyle 😳"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_23headtoto","name":"🧍‍♀️🌊 Head To Toe","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=bacak","=göğüs","=cumming","head","to","toe"],"reply":["Saçımdan topuklarıma 🧍‍♀️🌊","Aynaya bak 😳","Senin eserin 😈","Her yerim sen 💦","Bu ne böyle 😳","Hiç bitmiyor 🌊"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_24pulsingf","name":"⛲💦 Pulsing Fountain","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=bacak","=göğüs","=cumming","pulsing","fountain"],"reply":["Çeşme gibi ⛲","Dalga dalga 😳","Sıkmayı bıraktım, bak 😈","Bu ne böyle 😳","Hiç bitmiyor 🌊","Bekletmeye değdi 😏"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_25splashra","name":"📏💥 Splash Radius","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=bacak","=göğüs","=cumming","splash","radius"],"reply":["Nereye kadar gitmiş bak 📏","Perdeye bile 😳","Halı da 😂","Hiç bitmiyor 🌊","Bekletmeye değdi 😏","Her yerim sen 💦"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_26wallbehi","name":"🧱💥 Wall Behind Her","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=bacak","=göğüs","=cumming","wall","behind","her"],"reply":["Arkamdaki duvara 🧱💥","Üstümden aştı 😳","Duvarı silmek lazım 😂","Bekletmeye değdi 😏","Her yerim sen 💦","Bu ne böyle 😳"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_27ceilings","name":"⬆️😳 Ceiling Shot","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=bacak","=göğüs","=cumming","ceiling","shot"],"reply":["Tavana mı?! ⬆️😳","Donup kaldım 😳","Buna kimse inanmaz 😂","Her yerim sen 💦","Bu ne böyle 😳","Hiç bitmiyor 🌊"],"traits":[],"chars":[],"note":"🌊 Burst · finish"},
+    {"id":"r_ev_gs_28wasthata","name":"😳❓ Was That All Me?","category":"🔥 Olaylar","when":["=evt","=cool down","was","that","all","me"],"reply":["Hepsi benim yüzümden mi? 😳","Bu kadarını ben mi yaptım 😏","Şaşırdım 🙈","Hâlâ titriyorsun 😏","Harikaydın 💗","Böyle kalalım biraz 🥰"],"traits":[],"chars":[],"note":"🌊 Burst · post"},
+    {"id":"r_ev_gs_29proudofh","name":"😏🏆 Proud Of Her Work","category":"🔥 Olaylar","when":["=evt","=cool down","proud","of","her","work"],"reply":["Bekletmeye değdi 😏🏆","Bak eserime 😈","Gurur duyuyorum 💅","Harikaydın 💗","Böyle kalalım biraz 🥰","Hâlâ titriyorsun 😏"],"traits":[],"chars":[],"note":"🌊 Burst · post"},
+    {"id":"r_ev_gs_30tracethe","name":"👆〰️ Trace The Lines","category":"🔥 Olaylar","when":["=evt","=cool down","trace","the","lines"],"reply":["Parmağımla takip ediyorum 👆〰️","Bak şu çizgiye 😏","Burada bitiyor 😈","Böyle kalalım biraz 🥰","Hâlâ titriyorsun 😏","Harikaydın 💗"],"traits":[],"chars":[],"note":"🌊 Burst · post"},
+    {"id":"r_ev_gs_31photoevi","name":"📸💦 Photo Evidence","category":"🔥 Olaylar","when":["=evt","=cool down","photo","evidence"],"reply":["Bunu belgelemem lazım 📸","Yoksa kimse inanmaz 😏","Gülümse 😈","Hâlâ titriyorsun 😏","Harikaydın 💗","Böyle kalalım biraz 🥰"],"traits":[],"chars":[],"note":"🌊 Burst · post"},
+    {"id":"r_ev_gs_32needatow","name":"🧻🧻 Need A Towel… Or Three","category":"🔥 Olaylar","when":["=evt","=cool down","need","towel","or","three"],"reply":["Bir havlu yetmez 🧻","Bir tane daha getireyim 😂","Üç tane lazım 😏","Harikaydın 💗","Böyle kalalım biraz 🥰","Hâlâ titriyorsun 😏"],"traits":[],"chars":[],"note":"🌊 Burst · post"},
+    {"id":"r_ev_gs_33showerto","name":"🚿🫂 Shower Together","category":"🔥 Olaylar","when":["=evt","=cool down","shower","together"],"reply":["Bunu temizlemenin tek yolu var 🚿","Gel duşa 🫂","Sabunu sen sür 😏","Böyle kalalım biraz 🥰","Hâlâ titriyorsun 😏","Harikaydın 💗"],"traits":[],"chars":[],"note":"🌊 Burst · post"},
     {
       "id": "r_pc_drycrp_mis",
       "name": "Altında, kıyafetinde bitirdi",

@@ -308,8 +308,83 @@ Stories.SCENES = [
   { id: 'tayt', icon: '🩱', name: 'Taytlı Antrenman', tag: '', mode: 'seq', ttl: 4,
     open: 'Squat Grind', steps: ['Downward Dog Grind', 'Leggings Hotdogging', 'Seam Rub'], fin: 'Leggings Cumshot',
     fx: [['uyarılma', 10], ['şehvet', 6], ['samimiyet', 1]], fail: [['güven', -1]],
-    desc: 'Sırayla: squat, yoga pozu, kalça arası ve dikiş; hiç soyunmadan, sonra taytının üstüne bitiş. Tayt (ya da eşofman / antrenör kıyafeti) üstünde olmalı.', end: 'Taytı sırılsıklam, antrenman hiç bu kadar uzun sürmemişti 🩱' }
+    desc: 'Sırayla: squat, yoga pozu, kalça arası ve dikiş; hiç soyunmadan, sonra taytının üstüne bitiş. Tayt (ya da eşofman / antrenör kıyafeti) üstünde olmalı.', end: 'Taytı sırılsıklam, antrenman hiç bu kadar uzun sürmemişti 🩱' },
+  // 🗜️ Squeeze sahneleri
+  { id: 'duvar', icon: '🧱', name: 'Duvara Sıkıştır', tag: '', mode: 'seq', ttl: 4,
+    open: 'Wall Pin Grind', steps: ['Bear Hug Grind', 'Pinned From Both Sides'], fin: 'Pinned Finish',
+    fx: [['uyarılma', 10], ['şehvet', 6], ['güven', 1]], fail: [['güven', -1]],
+    desc: 'Sırayla: bileklerini başının üstünde tutup duvara bastırırsın, arkasından kollarınla kilitlersin, sonra duvarla aranda sıkışır; bitiş kalçasının üstüne.', end: 'Duvarda iki el izi kaldı, ikimizin de nefesi kesik 🧱' },
+  { id: 'uyluk', icon: '🦵', name: 'Uyluk Mengenesi', tag: '', mode: 'seq', ttl: 4,
+    open: 'Thigh Pulse', steps: ['Slow Release', 'Thigh Milking'], fin: 'Thigh Milked',
+    fx: [['şehvet', 8], ['uyarılma', 8], ['samimiyet', 1]], fail: [['güven', -1]],
+    desc: 'Sırayla: kalp atışı gibi sıkma, milim milim gevşetme, kökten uca sağma; sonra uyluklarının arasında sağılarak bitiş.', end: 'Bacaklarım titriyor ama bırakmadım 🦵🥛' },
+  { id: 'gogusarasi', icon: '🍈', name: 'Göğüs Kilidi', tag: '', mode: 'free', need: 2, ttl: 4,
+    open: 'Tit Pulse', steps: ['Tit Milking', 'Deep Cleavage Lock', 'Tip Peek', 'Titfuck & Suck', 'Hold Still Tits'], fin: 'Tit Cumshot',
+    fx: [['şehvet', 8], ['uyarılma', 6], ['aşk', 1]], fail: [['güven', -1]],
+    desc: 'Göğüs nabzıyla açılır; sağma, gömme, uç öpücüğü, emme ya da "kıpırdama"dan ikisi, sonra göğüslerine bitiş.', end: 'Göğüslerim parlıyor, sen hâlâ aralarındasın 🍈' },
+  { id: 'kalemetek', icon: '💼', name: 'Kalem Etek Mesaisi', tag: 'ofis', mode: 'free', need: 2, ttl: 5,
+    open: 'Lanyard Pull', steps: ['Pencil Skirt Thigh Lock', 'Skirt Hike Cheek Squeeze', 'Three Buttons Open', 'Under Desk Leg Lock', 'Copy Machine Thighjob'], fin: 'Clock Out',
+    fx: [['uyarılma', 10], ['şehvet', 6], ['samimiyet', 1]], fail: [['güven', -1]],
+    desc: 'Yaka kartının ipinden çekilirsin; kalem etek, bluz ve çorapla iki ofis sıkıştırması, sonra tam mesai bitiminde bitiş. Ofiste olmalı.', end: 'Mesai bitti, eteğim buruşuk, kimse bir şey anlamadı 💼' },
+  { id: 'sagim', icon: '🥛', name: 'Sağım Saati', tag: '', mode: 'seq', ttl: 4,
+    open: 'Seated Thigh Lock', steps: ['Hold Still', 'Thigh Milking'], fin: 'Count The Pumps',
+    fx: [['şehvet', 8], ['samimiyet', 2], ['aşk', 1]], fail: [['güven', -1]],
+    desc: 'Sırayla: kucağında dizlerini kilitler, "kıpırdama" der, kökten uca sağar; bitişte her sıkışı sesli sayar.', end: 'Yedinci sıkışta bitti… yarın aynı saatte 📅🥛' },
+  // 🏢 Ofis sıkıştırma sahneleri
+  { id: 'patron', icon: '💺', name: 'Patron Koltuğu', tag: 'ofis', mode: 'seq', ttl: 4,
+    open: 'Boss Chair Reverse Squeeze', steps: ['Office Chair Thigh Squeeze', 'Glasses On Titfuck', 'Performance Bonus'], fin: 'Glasses Splash',
+    fx: [['uyarılma', 10], ['şehvet', 7], ['güven', 1]], fail: [['güven', -1]],
+    desc: 'Sırayla: patron koltuğunda kucağına ters oturup kalçasıyla sıkar, döner sandalyede uyluklarını kapatır, gözlüğünün üstünden bakıp göğüslerinin arasına alır, "bu çeyrek iyi iş çıkardın" ödülü; bitiş gözlük camına. Ofiste olmalı.', end: 'Koltuk hâlâ dönüyor, gözlüğünü silip "toplantı bitti" dedi 💺' },
+  { id: 'toplanti', icon: '📊', name: 'Toplantıya 5 Dakika', tag: 'ofis', mode: 'free', need: 2, ttl: 3,
+    open: 'Deadline Squeeze', steps: ['Meeting Room Squeeze', 'Conference Table Titfuck', "Don't Make A Sound", 'Window Cheek Lock', 'Filing Cabinet Squeeze'], fin: 'Report Splash',
+    fx: [['uyarılma', 12], ['şehvet', 6], ['samimiyet', 1]], fail: [['güven', -1]],
+    desc: 'Toplantıya 5 dakika kala kalçasıyla sıkıştırır; toplantı odası, konferans masası, "ses çıkarma", ofis camı ya da dosya dolabından ikisi, sonra masadaki rapora bitiş. Ofiste olmalı.', end: 'Rapor yeniden yazdırılacak, toplantıya tam vaktinde girdiniz 📊' },
+  // 🛑 Engelleme sahneleri (Tur 12–13)
+  { id: 'kalcabekle', icon: '🍑', name: 'Kalçada Bekle', tag: '', mode: 'seq', ttl: 4,
+    open: 'Hip Freeze', steps: ['Spank Stop', 'Cheek Release', 'Slow Circles Only'], fin: 'Finally On Her Ass',
+    fx: [['şehvet', 10], ['uyarılma', 8], ['güven', 1]], fail: [['güven', -1]],
+    desc: 'Sırayla: kalçası sana yaslı ama donuk, kendi kalçasına şaplakla ritmi bozar, tam gelecekken gevşetir, sonra sadece yavaş daireler; en sonunda izin, hepsi kalçasının üstüne.', end: 'Bekletmeye değdi, değil mi? 🍑✅' },
+  { id: 'bacakkilidi', icon: '🦵', name: 'Bacak Kilidi', tag: '', mode: 'seq', ttl: 4,
+    open: 'Knee Squeeze Pause', steps: ['Thighs Open', 'Ankle Cross Lock', 'Leg Shake'], fin: 'Finally Between Thighs',
+    fx: [['şehvet', 10], ['uyarılma', 8], ['samimiyet', 1]], fail: [['güven', -1]],
+    desc: 'Sırayla: dizleriyle kıpırdayamayacağın kadar sıkar, tam o an bacaklarını açar, bileklerini çaprazlayıp seni dondurur, bacaklarını titretip ritmi dağıtır; sonra sıkıp izin verir.', end: 'İkimiz de inledik… bacaklarım hâlâ titriyor 🦵' },
+  { id: 'gelmekyok', icon: '🚫', name: 'Gelmek Yok', tag: '', mode: 'free', need: 2, ttl: 5,
+    open: "Rub But Don't Come", steps: ['Ten Strokes Then Stop', 'Only When I Squeeze', 'Ask My Thighs', 'Grind Countdown'], fin: 'Rope After Rope',
+    fx: [['şehvet', 12], ['uyarılma', 6], ['güven', 1]], fail: [['güven', -1]],
+    desc: '"Sürtünebilirsin ama gelmek yok" kuralıyla açılır; on sürtünme-dur, "sadece ben sıkınca", "bacaklarıma sor" ya da geri sayımdan ikisi, sonra bitmek bilmeyen atımlar.', end: 'Kaç atım oldu, saydım… sen sayamazdın 〰️' },
+  { id: 'twerkmola', icon: '🎵', name: 'Twerk Molası', tag: '', mode: 'free', need: 2, ttl: 4,
+    open: 'Twerk Pause', steps: ['Cheek Tip Tap', 'Step Forward', 'Turn Around', 'Spank Stop'], fin: 'Over Her Shoulder',
+    fx: [['uyarılma', 10], ['şehvet', 8], ['samimiyet', 1]], fail: [['güven', -1]],
+    desc: 'Müzik durunca kalçası da durur; uçla tık tık, bir adım öne, dönüp "o kadar kolay değil" ya da şaplaktan ikisi, sonra ilk atım omzunun üstünden önüne.', end: 'Şarkı bitti, omzumun üstünden geçti… inanamıyorum 🎵😳' },
+  { id: 'selgibi', icon: '🌊', name: 'Sel Gibi', tag: '', mode: 'seq', ttl: 5,
+    open: 'Thigh Ice', steps: ['Pussy Slide Stop', 'Tip Out', 'Precum Trail'], fin: 'Everywhere',
+    fx: [['şehvet', 12], ['uyarılma', 8], ['aşk', 1]], fail: [['güven', -1]],
+    desc: 'Sırayla: uyluklarına buz, dudaklarının arasında kayarken geri çekilme, ucunu dışarı çıkarıp bekleme, ıslak izini gösterme; en sonunda biriken her şey her yere.', end: 'Kalça, sırt, saç, bacaklar… sayamadım bile 🌊🎆' }
 ];
+/* 🗂️ Sahne kategorileri: CarmenEvents sahne ızgarası ve #/sahne deneyi bunlara göre gruplar; burada olmayan sahne "✨ Diğer"e düşer */
+Stories.SCENE_CATS = [
+  { id: 'klasik', icon: '💋', name: 'Yatak & Klasik', ids: ['yatak', 'onsevisme', 'oral', 'anal', 'gogus', 'kalca', 'elle', 'karanlik', 'birbirimize', 'vahsi', 'sertarka', 'uclu'] },
+  { id: 'sikistir', icon: '🗜️', name: 'Sıkıştırma', ids: ['duvar', 'uyluk', 'gogusarasi', 'sagim'] },
+  { id: 'engel', icon: '🛑', name: 'Engelleme', ids: ['kalcabekle', 'bacakkilidi', 'gelmekyok', 'twerkmola', 'selgibi'] },
+  { id: 'ofis', icon: '🏢', name: 'Ofis', ids: ['mesai', 'kalemetek', 'patron', 'toplanti', 'asansor'] },
+  { id: 'kiyafet', icon: '👗', name: 'Kıyafet & Soyunma', ids: ['giyinik', 'sabirsiz', 'altinda', 'parca', 'gosteri', 'tayt'] },
+  { id: 'su', icon: '🫧', name: 'Su & Banyo', ids: ['dus', 'kopuk', 'sauna', 'havuz'] },
+  { id: 'ev', icon: '🏠', name: 'Evde', ids: ['kanepe', 'kapi', 'mutfak', 'gecemutfak', 'merdiven', 'camasir', 'balkon'] },
+  { id: 'disari', icon: '🌳', name: 'Dışarıda', ids: ['plaj', 'araba', 'kamp', 'piknik', 'yagmur', 'cati', 'lunapark', 'perili'] },
+  { id: 'mekan', icon: '🌃', name: 'Mekânlar', ids: ['otel', 'restoran', 'bar', 'arkasira', 'spor', 'kutuphane', 'vip'] },
+  { id: 'icki', icon: '🍷', name: 'İçki & Oyun', ids: ['sarap', 'icmeoyunu'] },
+  { id: 'masaj', icon: '💆', name: 'Masaj & Klinik', ids: ['masaj', 'masoz', 'masa', 'derindoku', 'kapalikapi', 'muayene', 'kontrol'] },
+  { id: 'fantezi', icon: '🔗', name: 'Fantezi & Rol', ids: ['bagli', 'kamera', 'gunah', 'vampir'] },
+  { id: 'aldatma', icon: '🐍', name: 'Aldatma & Bull', ids: ['gizlibulusma', 'yildonumu', 'bull', 'anlasma', 'izleyen'] },
+  { id: 'hamile', icon: '🤰', name: 'Hamilelik & Süt', ids: ['karin', 'hormon', 'sonhafta', 'damla', 'sut', 'sutkrema', 'emzirirken', 'sutopucuk', 'sutkokteyl', 'sabahsutu'] }
+];
+Stories.sceneCat = id => Stories.SCENE_CATS.find(c => c.ids.includes(id)) || { id: 'diger', icon: '✨', name: 'Diğer' };
+Stories.sceneGroups = () => {
+  const SC = Stories.SCENES || [], seen = new Set();
+  const out = Stories.SCENE_CATS.map(c => { const ss = c.ids.map(id => SC.find(s => s.id === id)).filter(Boolean); ss.forEach(s => seen.add(s.id)); return { c, ss }; }).filter(g => g.ss.length);
+  const rest = SC.filter(s => !seen.has(s.id));
+  return rest.length ? out.concat({ c: { id: 'diger', icon: '✨', name: 'Diğer' }, ss: rest }) : out;
+};
 Stories.SCENE_SAY = {
   dus: { ask: ['Birlikte duş alalım mı? Sırtımı sen sabunlarsın 🚿😏', 'Üstüm başım ter oldu… duşa benimle gelir misin? 🫧'], open: ['Su sıcacık, köpükler her yerde 🫧', 'Gel, sarıl bana, köpüğü paylaşalım 🚿'], end: ['Buhar hâlâ camda… bir daha mı? 😏', 'Hiç bu kadar temiz ve bu kadar kirli hissetmemiştim 🚿'] },
   sauna: { ask: ['Saunaya girelim mi? Havlunun altında hiçbir şey olmayacak 🧖‍♀️', 'Biraz terlemek ister misin {sen}? Sauna sıcacık 😈'], open: ['Havlu düştü… bakma öyle 🙈', 'Burası çok sıcak, sen daha sıcaksın 🥵'], end: ['Nefes nefese… şimdi soğuk bir duş 🥶', 'Ter içinde kaldık, harikaydı 🧖‍♀️'] },
@@ -384,5 +459,17 @@ Stories.SCENE_SAY = {
   sutopucuk: { ask: ['Ağzıma biraz sütümü alayım mı? Sonra seni… 💋🥛', 'Sütlü bir öpücük ister misin? Önce kazanman lazım 😏'], open: ['Ağzım sütle dolu, hissediyor musun? 🥛', 'Bir damla bile dökülmesin 😈'], end: ['Dudaklarımız bembeyaz 💋', 'Böyle öpüşmeyi kimse bilmez 🤫'] },
   sutkokteyl: { ask: ['Bu gece sana özel bir kokteyl hazırlayayım mı? 🍸😈', 'Kadehi getir, malzemeler bende 🥛'], open: ['Önce sütümü tat 👅', 'Tarif gizli, adım adım 😏'], end: ['Şerefe 🥂', 'En pahalı kokteyl buydu 😂🍸'] },
   sabahsutu: { ask: ['Göğsümde uyumak ister misin? Sabaha dolu olurum 🌅🍼', 'Gel yat, uyandığında kahvaltın hazır 😏'], open: ['Günaydın… göğüslerim taştı 🥛', 'Uyan, sıcak süt var 😏'], end: ['Günaydın öpücüğü böyle olur 💋', 'Her sabah böyle uyanalım 🌅'] },
-  tayt: { ask: ['Antrenmana benimle gelir misin? Taytımı giydim 🩱😏', 'Bugün bacak günü… spot verir misin? 🏋️'], open: ['Arkamda dur, formumu kontrol et 😈', 'Bir… iki… yakın dur 🩱'], end: ['Taytım sırılsıklam, terden değil 💦', 'En iyi antrenmandı bu 🏋️😏'] }
+  tayt: { ask: ['Antrenmana benimle gelir misin? Taytımı giydim 🩱😏', 'Bugün bacak günü… spot verir misin? 🏋️'], open: ['Arkamda dur, formumu kontrol et 😈', 'Bir… iki… yakın dur 🩱'], end: ['Taytım sırılsıklam, terden değil 💦', 'En iyi antrenmandı bu 🏋️😏'] },
+  duvar: { ask: ['Beni duvara sıkıştırmak ister misin? Bileklerim sende 🧱😏', 'Kapıyı kapat… sonra beni ona yasla 😈'], open: ['Bileklerimi başımın üstünde tut 🧱', 'Kaçamıyorum, kaçmak da istemiyorum 😩'], end: ['Duvarda ellerimin izi kaldı 😳', 'Bir daha beni böyle sıkıştır 🧱😈'] },
+  uyluk: { ask: ['Uyluklarımın arasına gelir misin? İçeri yok, sadece aram 🦵😏', 'Bacaklarım ne kadar güçlü, görmek ister misin? 😈'], open: ['Kalp atışı gibi… sık, bırak 💓', 'Kıpırdama, ritmi ben tutuyorum 🦵'], end: ['Uyluklarımın arası sırılsıklam 🥵', 'Bacaklarım hâlâ titriyor 🦵💦'] },
+  gogusarasi: { ask: ['Göğüslerimin arasına gelmek ister misin? 🍈😏', 'Seni göğüslerime gömeyim mi? 😈'], open: ['Sık, bırak… göğüslerim seninle ritim tutuyor 🍈', 'Ucun bile görünmeyecek 🔒'], end: ['Göğüslerim parlıyor 💦', 'Bir daha gömeyim mi? 😏🍈'] },
+  kalemetek: { ask: ['Mesai bitmeden odama gelir misin? Kalem eteğimi giydim 💼😏', 'Kapıyı kilitle, dosyaları sonra konuşuruz 😈'], open: ['Yaka kartımdan tuttum seni 🪪', 'Eteğim dar, bacaklarımı zaten birleştiriyor 👔'], end: ['Mesai bitti, eteğimi düzeltiyorum 💼', 'Yarın toplantıda sana bakamayacağım 🙈'] },
+  patron: { ask: ['Patron koltuğum boş… kucağına ters oturayım mı? 💺😏', 'Bu çeyreğin performans değerlendirmesi var, odama gel 📈😈'], open: ['Koltuk benim, kucak senin 💺', 'Yönetim kurulu bekliyor… bekleyebilir 😏'], end: ['Gözlüğümü silmem lazım 👓💦', 'Primini hak ettin, aferin 💰'] },
+  toplanti: { ask: ['Toplantıya beş dakika var… yetişir mi sence? ⏰😈', 'Toplantı odası boş, sunumdan önce gel 📊😏'], open: ['Saat işliyor, acele et ⏰', 'Beş dakika… ya bitir ya bırak 😏'], end: ['Raporu yeniden yazdırmam gerek 📄😂', 'Toplantıda yüzüme bakma, gülerim 🙈'] },
+  sagim: { ask: ['Sağım saati geldi… kucağına oturayım mı? 🥛😏', 'Bacaklarımla seni sağmamı ister misin? 😈'], open: ['Kıpırdama, ben sağıyorum 🥛', 'Kökten uca, yavaş yavaş 🦵'], end: ['Kaçıncıda bitti, saydım 🔢😏', 'Yarın aynı saatte yine 📅🥛'] },
+  kalcabekle: { ask: ['Kalçama sürtünmene izin var… ama gelmene yok 🍑😈', 'Arkamda dur, ben söyleyene kadar bekleyeceksin 😏'], open: ['Kıpırdama, kalçam sende ama ben donuk 🍑⏸️', 'Yaklaştın mı? Dur o zaman 😈'], end: ['Bekletmeye değdi, değil mi? 🍑✅', 'Hepsi bir anda… ne kadar birikmiş 😳'] },
+  bacakkilidi: { ask: ['Uyluklarımın arasına gel ama ben söylemeden gelmek yok 🦵🚫', 'Bacaklarımla seni kenarda tutayım mı? 😈'], open: ['Ne ileri ne geri 🦵🛑', 'Tam gelecektin, değil mi? Bacaklarımı açtım 😏'], end: ['Sonunda… ikimiz de inledik 🦵💦', 'Kilidi açtım, sen de boşaldın 😘'] },
+  gelmekyok: { ask: ['Yeni kural: sürtünebilirsin ama gelmek yok 🚫😈', 'Bir oyun oynayalım mı? Kaybeden gelir 😏'], open: ['On sürtünme, sonra dur 🔟', 'Bacaklarım hâlâ hayır diyor 🦵🙏'], end: ['Kaç atım oldu, saydım 〰️😳', 'Kural bozuldu ama buna değdi 😏'] },
+  twerkmola: { ask: ['Müziği açayım mı? Ama durursa ben de dururum 🎵😈', 'Twerk yapayım, sen dayan bakalım 🍑🎵'], open: ['Müzik durdu, kalçam da 🎵⏸️', 'O kadar kolay değil 🔄😏'], end: ['Omzumun üstünden geçti… inanamıyorum 😳', 'Şarkı bitti, sen de 🎵💦'] },
+  selgibi: { ask: ['Bugün seni çok bekleteceğim… sonra sel gibi 🌊😈', 'Buzla başlayalım mı? 🧊😏'], open: ['Soğuk mu? Biraz daha dayan 🧊', 'Ucunu çıkardım, bekliyoruz 😈'], end: ['Her yere… sayamadım bile 🌊🎆', 'Havlu yetmez, duşa 🚿😂'] }
 };

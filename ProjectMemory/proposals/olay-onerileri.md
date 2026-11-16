@@ -1,6 +1,6 @@
 # 🔥 Olay önerileri — emoji + açıklama (uygulanmadı)
 
-> Durum: fikir. Kod yok. 2026-11-16. Format system.js ile uyumlu: `title` · `emojis` · `desc`. Mekanik ayrıntılar: [seks-olaylari-2.md](seks-olaylari-2.md).
+> Durum: fikir. Tur 5–9 (sıkıştırma, uyluk/kalça/göğüs arası, ofis, sağma) v897'de uygulandı (🗜️ Squeeze, `mvsq*`); Tur 12–13 (engelleme, gür fışkırma) v906'da uygulandı (`mved*`, `mvgs*`); gerisi kod yok. 2026-11-16. Format system.js ile uyumlu: `title` · `emojis` · `desc`. Mekanik ayrıntılar: [seks-olaylari-2.md](seks-olaylari-2.md).
 
 ## 🔥 Seks (pozisyonlar)
 
@@ -877,3 +877,78 @@
 | Photo Evidence | 📸💦 | "Bunu belgelemem lazım" der (🎥 Camera kategorisi bağlantısı) |
 | Need A Towel… Or Three | 🧻🧻 | Havlu getirmeye gider, bir daha döner |
 | Shower Together | 🚿🫂 | "Bunu temizlemenin tek yolu var"; birlikte duşa (🧼 Shower kategorisine geçiş) |
+
+---
+
+# Tur 14 — Saç (2026-11-16)
+
+> system.js'de saçla ilgili olay yok. Önceki turlardaki Hair Wrap (Tur 3), Hair Cumshot (v2 genel bitişler), Hair Reached (Tur 13) hariç. Öneri: yeni etiket `saç`; saç uzunluğu/stili karakter özelliğinden okunursa (`Hair:` trait) kısa saçta uzun-saç olayları gizlenir (`wear` kapısı gibi bir `hair` kapısı).
+
+## 💇‍♀️ Ön sevişme
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Hair Down | 💇‍♀️✨ | Tokasını yavaşça çözer, saçları omuzlarına dökülür; başını sallayıp sana bakar |
+| Hair Curtain | 🫥💇‍♀️ | Üstüne eğilir, saçları ikinizin yüzünü perde gibi kapatır; dünya kaybolur |
+| Hair Trail | 💇‍♀️〰️ | Saçının uçlarını göğsünde, karnında, aşağıda gezdirir |
+| Hair Brush For Me | 🪮🫂 | Sana saçını taratır; sırtı sana dönük, her taramada biraz daha yaslanır |
+| Hair Sniff | 👃💇‍♀️ | Ensesine gömülüp saçının kokusunu çekersin; ürperir |
+| Neck Reveal | 💇‍♀️🦒 | Saçını tek yana toplar, boynunu açar: "öp" |
+| Wet Hair | 💧💇‍♀️ | Duştan ıslak saçla çıkar; damlalar teninde |
+| Messy Bun | 🧺💇‍♀️ | Dağınık topuz, kalem saplı; kalemi çekince her şey dağılır |
+| Hair Tie On Your Wrist | 🎗️✋ | Tokasını bileğine takar: "bu artık senin" |
+| Fingers In Your Hair | 🖐️💆 | O senin saçını okşar, sonra hafifçe çeker |
+
+## ✊ Saç çekme / tutma (rızalı, sertlik tercihine göre)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Ponytail Grip | ✊💇‍♀️ | At kuyruğunu dizgin gibi tutarsın; arkadan, başı hafifçe geriye |
+| Gentle Pull | 🤏💇‍♀️ | Kökünden avuçlayıp yavaşça çekersin; ağzı açılır |
+| Hair Pull Doggy | 🐕✊ | Doggy'de saçını tutup başını kaldırırsın (`vajinal`) |
+| Hair Pull Anal | 🍑✊ | Arkadan, saçı avucunda (`anal`) |
+| Pigtail Handles | 🎀✊ | İki örgü ya da iki kuyruk; iki elinle tutarsın (`oral`) |
+| Braid Rein | 🪢💇‍♀️ | Tek kalın örgü, bileğine dolarsın |
+| Guide Her Head | 🫳👄 | Saçından tutup ritmi sen belirlersin (`oral`; dizine vurursa durursun) |
+| Head Back Kiss | 🔙💋 | Saçını çekip başını geriye yatırır, boynunu öpersin |
+| Pull Me Closer | 🫴💇‍♀️ | O ister: "saçımı çek"; Şehvet +, Güven + |
+| She Pulls Yours | 💆✊ | Ters: o senin saçını tutar, seni aşağı yönlendirir (`oral`, femdom) |
+
+## 💇‍♀️🍆 Saçla (hairjob)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Hairjob | 💇‍♀️🌀 | Uzun saçını etrafına sarar, saç tutamıyla yukarı aşağı |
+| Silky Hairjob | ✨💇‍♀️ | Yeni yıkanmış, ipek gibi; her hareket kayar |
+| Braid Job | 🪢🍆 | Örgüsünü sarıp sıkar; örgü dokusu her harekette hissedilir |
+| Ponytail Wrap | 🎗️🍆 | At kuyruğunu etrafına dolar, tokasıyla birlikte sıkar |
+| Oiled Hairjob | 🫒💇‍♀️ | Saç yağı sürer, kaygan ve parlak |
+| Hair + Hand | 💇‍♀️🤲 | Saçı ve eli birlikte; saç sarar, el sıkar |
+| Hair + Mouth | 💇‍♀️👄 | Kökü saçına sarılı, ucu ağzında |
+| Hair Between Tits | 💇‍♀️🍈 | Saçını göğüslerinin arasına döker, sonra seni arasına alır (Tur 7 titfuck bağlantısı) |
+| Hair Over Thighs | 💇‍♀️🦵 | Saçı uyluklarına dökülmüş; bacak arasında sürtünürken saç da sarar |
+| Hair Squeeze Denial | 💇‍♀️🚫 | Saçıyla sıkıca sarıp tam o an gevşetir (`th.edge` +1) |
+
+## 💦 Saç bitişleri
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Hairjob Finish | 💇‍♀️💦 | Saç tutamının içinde; telleri birbirine yapışır |
+| Ponytail Cumshot | 🎗️💦 | At kuyruğunun üstüne; kuyruğu sallayınca damlar |
+| Braid Finish | 🪢💧 | Örgünün arasına işler; "bunu çözmek uzun sürecek" |
+| Hair Mask | 💆💦 | Saçının tamamına; "saç maskesi" diye güler |
+| Bangs Splash | 💇‍♀️😳 | Kahküllerine, alnına; gözünü kırpıştırır |
+| Hair And Face | 💇‍♀️😵 | Hem yüzüne hem saçına; yarısı tellerin arasında |
+| Hairline Drip | 💧💇‍♀️ | Saç diplerinden alnına süzülür |
+| Hair Pulled Finish | ✊💦 | Saçını tutup başını geri çekmişken; yüzüne ve boynuna |
+| Tie It Up After | 🧺💦 | Saçı kirlenince topuz yapar, "kimse anlamaz" |
+
+## 🧻 Sonrası
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Hair Wash Together | 🚿💇‍♀️ | Saçını sen yıkarsın; şampuan, köpük, masaj (🧼 Shower geçişi) |
+| Sticky Strands | 💇‍♀️😩 | Saç telleri yapışmış; aynada açmaya çalışır, söylenir |
+| Brush It Out | 🪮😌 | Sonrasında saçını tarar, yine sana yaslanır |
+| Braid Her Hair | 🪢🫂 | Sen onun saçını örersin; sessiz, yakın bir an (Samimiyet +2) |
+| Hair Messed Up | 🌪️💇‍♀️ | Saçı darmadağın; "herkes anlayacak" diye güler |

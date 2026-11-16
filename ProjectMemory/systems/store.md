@@ -10,7 +10,8 @@ All data lives in the browser. Main state = `Stories.Store.state` under localSto
 - Site states created lazily on S(): `shop` {orders}, `amor` {love{key: pts}, gifts{key: {giftId: n}}, sat{key: {v, ts}}, cold{key: until ts}, log[]} (old `done` unused); threads may carry `amor` / `amAsk` (💝 CarmenAmor, key = `cmRid || id`).
 - Many one-time migration flags in state: `posSetup`, `cumSetup`, `evFix1`, `zevkFix1`, `descV`, `roleV`… (see systems/monia.md).
 - Accounts: `ACC_KEYS = user, threads, chats, side, turns, pinned` are per-account; characters/monia/settings shared.
-- 🔐 Login (app.js `authScreen`): `user.login`, `user.email`, `user.pass` (`pwHash`, local non-crypto). `amor-stories:out` ('1' logged out, 'temp' = remember-me off, paired with sessionStorage `amor-stories:out`).
+- 🔐 Login (app.js `authScreen`): `user.login`, `user.email`, `user.pass` (`pwHash`, local non-crypto). `amor-stories:out` ('1' logged out, 'temp' = remember-me off, paired with sessionStorage `amor-stories:out`). sessionStorage `amor-stories:au` = auth tab + typed id/mail kept across the language-switch reload. Validation helpers `AU_ID_RE`, `AU_MAIL_RE`, `accFind(v, skipId)` are shared with Ben → Profil 🔐 Hesap bilgileri (edit login / email, change password).
+- `user.colors` [a, b]: avatar gradient when there is no photo (`U_COLORS`, picked in onboarding photo step or Profil → 👤 Kişisel). `user.likes` can now be filled in onboarding (❤️ step).
 
 ## Key functions
 `Store.save()` (false when quota full), `replace(data)` (import backup), `reset()`, `uid()`, `accounts/switchAccount/addAccount/removeAccount`. `migrate()` (old per-char chats → threads), `renameMod` (yeni-set → carmen).

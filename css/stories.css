@@ -3393,6 +3393,45 @@ button.cr-and:active { transform: scale(.9); }
 .au-foot { margin: 0; font-size: 14px; opacity: .85; }
 .au-foot .au-link { font-size: 14px; }
 .au-legal { margin: 0; font-size: 11px; opacity: .5; }
+.au-box { position: relative; }
+.au-lang { position: absolute; top: 12px; right: 12px; display: flex; gap: 4px; }
+.au-lang button { padding: 4px 8px; border: 1px solid rgba(255, 255, 255, .14); border-radius: 999px; background: none; color: rgba(255, 255, 255, .6); font-size: 11px; font-weight: 700; cursor: pointer; }
+.au-lang button.on { border-color: #ff4f9a; color: #fff; background: rgba(255, 79, 154, .2); }
+.au-hint { min-height: 0; font-size: 12px; }
+.au-hint:empty { display: none; }
+.au-hint.ok { color: #5fe08f; }
+.au-hint.bad { color: #ff8fb8; }
+.au-caps { font-size: 12px; color: #ffb347; text-align: center; }
+.au-terms-btn { justify-self: start; margin-top: -4px; }
+.au-terms { margin: -4px 0 0; padding: 10px 12px 10px 14px; list-style: none; display: grid; gap: 6px; border-radius: 12px; background: rgba(255, 255, 255, .06); font-size: 12.5px; line-height: 1.4; opacity: .85; }
+.au-shake { animation: auShake .4s ease; }
+@keyframes auShake { 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
+.ob-fields { display: grid; gap: 10px; text-align: left; }
+.ob-fl { display: grid; gap: 4px; }
+.ob-fl > span { font-size: 13px; font-weight: 600; opacity: .8; }
+.ob-fl .ob-in { font-size: 17px; padding: 11px 14px; }
+.ob-pic { position: relative; }
+.ob-pic-in { display: block; font-size: 44px; line-height: 1; margin-bottom: 4px; }
+.ob-sub { opacity: .65; font-size: 13px; }
+.ob-cols { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.ob-cols button { width: 34px; height: 34px; border-radius: 50%; border: 3px solid transparent; cursor: pointer; padding: 0; }
+.ob-cols button.on { border-color: #fff; box-shadow: 0 0 0 2px #ff4f9a; }
+.ob-card .ava { flex: none; }
+.ob-go { display: grid; gap: 8px; }
+.ob-go button { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1.5px solid rgba(255, 255, 255, .14); border-radius: 16px; background: rgba(255, 255, 255, .06); color: #fff; text-align: left; cursor: pointer; transition: border-color .2s, background .2s; }
+.ob-go button:hover, .ob-go button.on { border-color: #ff4f9a; background: rgba(255, 79, 154, .16); }
+.ob-go i { font-style: normal; font-size: 24px; }
+.ob-go b { display: block; font-size: 15px; }
+.ob-go small { display: block; font-size: 12px; opacity: .65; }
+/* 👀 Ben → Profil önizleme (açık / koyu temada) */
+.me-prev { display: grid; gap: 10px; }
+.me-prev .ob-card { background: rgba(255, 79, 154, .07); }
+.me-prev .ob-tags span { background: rgba(127, 127, 127, .14); }
+.me-fill { display: grid; gap: 4px; }
+.me-fill .ob-prog { background: rgba(127, 127, 127, .18); }
+.me-fill small { font-size: 12px; opacity: .7; }
+.me-cols { justify-content: flex-start; }
+.me-cols button.on { border-color: var(--card, #fff); }
 .acc-list { display: grid; gap: 8px; }
 .acc-row { display: flex; align-items: center; gap: 6px; }
 .acc-go { flex: 1; display: flex; align-items: center; gap: 10px; padding: 8px 10px; border: 1px solid var(--line, rgba(0, 0, 0, .1)); border-radius: 14px; background: none; color: inherit; text-align: left; cursor: pointer; }
