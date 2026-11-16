@@ -1,5 +1,9 @@
 # Changelog
 
+- 2026-11-16: 👖 Clothed rubbing follow-up (sw v896): `wearBlock` reads the open chat (`let openThread`, set in `renderChat`; falls back to `currentThread`) and accepts zone tokens `@kalca` / `@bacak` / `@gogus` (`dressedAt`); Dry Missionary / Dry Doggy got `wear: ['@kalca']`. Scene `tayt` 🩱 Taytlı Antrenman (seq: Squat Grind → Downward Dog Grind, Leggings Hotdogging, Seam Rub → Leggings Cumshot) + SCENE_SAY; combo `kmb_tayt` "Hiç soyunmadan" (3× `tag:kıyafet`) + KMB_BOOK; Olay Kitabı chapter 37 👖 Kıyafetli Sürtme (16 events); HOME_NEWS headline → `#/kitap/olay/37`; EN in i18n-en-books.js.
+
+- 2026-11-16: 👖 Clothed rubbing events (sw v895): 11 Outercourse events `mvdh01–11` + 2 finishes `mvdh20–21` (Leggings Cumshot, Waistband Cumshot, `after`-gated) in system.js; new event field `wear` + `wearBlock` (in `pregBlock`, notify icon 👗); `wearPart` no longer undresses / RUSHes on `kıyafet` positions (new `CLOTHED_SAY`); bot `r_ev_dh_*`, ME_EV_LINES + BED_SKIP, EN descs.
+
 - 2026-11-16: 📸 CarmenFans photo action lines (sw v894): `fnDo` / `FN_DO*` in app.js, line under each post photo from liked events, boob/butt size, weekly costume, hotwife; locked posts show a 3-word teaser. HOME_NEWS headline → `#/kitap/internet/2`, İnternet Kitabı CarmenFans chapter paragraph; EN in i18n-en-sites.js (lines) + i18n-en-books.js (news/book).
 
 - 2026-11-16: 🎬 2 Massage Salon scenes (sw v893): `derindoku` 🤲 Derin Doku Masajı (seq: Inner Thigh Knead → Thigh Slide, Face Hole Oral, Spoon on Table → Thigh Cumshot) and `kapalikapi` 🧱 Kapalı Kapı (free, need 2: Oily Titjob → Table Edge Doggy / Standing Oil Press / Slip In / Oil and Gold / Oily Tit Pee → Titjob Finish), tag `masaj`, SCENE_SAY + EN desc/names; news detail row added.

@@ -1,6 +1,7 @@
 # Status
 
 ## Done (as of 2026-11-13, sw VERSION v766)
+- 👖 Clothed rubbing (v895–896): parsed in headless Edge (no SyntaxError, 13 events load, `tayt` scene titles all exist), NOT played. Open: bot routing of `r_ev_dh_*` not tested; `wearBlock` notify text has no EN; SCENE_SAY / combo say-me lines Turkish only; Pumpkin Grind / Masquerade have no `wear` gate; Dry Missionary / Dry Doggy only get `wear` via adoptSystem if the user never edited them; the `kıyafet` branch in `wearPart` also gives Dry Missionary / Dry Doggy / Pumpkin Grind / Masquerade the 50% `CLOTHED_SAY` line.
 - 📸 CarmenFans action lines (v894): NOT syntax-checked by a JS engine (no node) and NOT opened in a browser. Open: EN for the locked 3-word teaser doesn't translate (partial text); book paragraph EN split keys unverified.
 - 🎬 Massage scenes `derindoku` / `kapalikapi` (v893): NOT played in a chat or #/sahne lab.
 - 💆 Massage Salon wave 2 (v892): parsed in headless Edge (no SyntaxError), NOT played. Open: bot routing of the 12 new `r_ev_mz_*` rules not tested; the 3 salon pee events are not in the 🚿 Islak oyunlar book chapter (only in Masaj Salonu).
