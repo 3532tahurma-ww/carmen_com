@@ -257,7 +257,7 @@ Stories.I18n.add({
   'ile seçtiğin parça ana menüde ve sohbet dışındaki sayfalarda çalar · sohbetlere ⋯ Diğer → 🎵 ile ayrı müzik seçebilirsin': 'the track you pick plays on the main menu and pages outside chats · pick separate music for chats with ⋯ More → 🎵',
   'Tıklama sesi': 'Click sound', 'düğmelere dokununca kısa bir ses': 'a short sound when tapping buttons', 'Düzenleme modu': 'Edit mode',
   'Oluştur, 📖 Monia, 🕰️ saat ayarı ve sohbetteki detaylı görünümler (📊 durumlar, 📈 değer değişimleri, 🎯 bot puanları, ✨ efekt, ⇄ sırayla…) sadece bu modda': 'Create, 📖 Monia, 🕰️ clock settings and detailed chat views (📊 states, 📈 value changes, 🎯 bot scores, ✨ effect, ⇄ take turns…) only in this mode',
-  'Gerçekçi Mod': 'Realistic Mode', 'Düzenleme modu kapalıyken hep açık': 'Always on while edit mode is off', 'Karakter oluştur': 'Create character', 'Tema': 'Theme', 'Koyu': 'Dark', 'Sistem': 'System',
+  'Gerçekçi Mod': 'Realistic Mode', 'Düzenleme modu kapalıyken hep açık': 'Always on while edit mode is off', 'Karakter oluştur': 'Create character', 'Tema': 'Theme', 'Renk Teması': 'Color Theme', 'Français sohbet: krem kâğıt, lacivert ve kırmızı': 'Français chat: cream paper, navy and red', 'Français gece': 'Français night', 'Koyu': 'Dark', 'Sistem': 'System',
   'sohbette sıradaki adımı ve tetiklenen olaylara göre öneriler': 'suggestions in chat for the next step and triggered events',
   'sohbet başında otomatik mekan kartı · kapalıyken de senaryo olayları gelir': 'automatic place card at chat start · scenario events still come when off',
   'olay ve sonuç kartlarında ▲▼ değişimler (kapalıyken barlar ve 📊 kart yine gösterir)': '▲▼ changes on event and outcome cards (bars and the 📊 card still show them when off)',

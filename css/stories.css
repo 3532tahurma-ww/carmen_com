@@ -1918,6 +1918,50 @@ summary.lab-h { cursor: pointer; }
 .hl-ad-cta { flex: none; align-self: flex-end; padding: 7px 12px; border-radius: 999px; font-size: 12.5px; font-weight: 900; background: #fff; color: #1d1d28; white-space: nowrap; }
 .hl-more { margin: 18px 10px 0; width: calc(100% - 20px); }
 @media (min-width: 768px) { .hl-news, .hl-sec, .hl-cm-row, .hl-cm-grid, .hl-ad, .hl-more, .hl-conts, .hl-quick { max-width: 940px; margin-left: auto; margin-right: auto; } .hl-more { width: 100%; } }
+/* 🇫🇷 Français renk teması (Ben → Ayarlar → 🎨 Renk Teması): siteler dışında <html data-skin="fr">, app.js applySkin */
+html[data-skin="fr"] { --pink: #d0202e; --pink-soft: #fce9ea; --purple: #14307a; --purple-2: #2a4aa8; --purple-soft: #e6ebf7; --green: #1f6f5c; --teal: #1f6f5c;
+  --bg: #faf6ee; --card: #ffffff; --text: #1a2340; --muted: #5c6479; --line: #e3dccd; --chip: #f0e9dc; --fr-gold: #b08d3f;
+  --fr-serif: 'EB Garamond', Garamond, Georgia, 'Times New Roman', serif;
+  --chat-bg: radial-gradient(circle at 50% 0%, #ffffff 0%, #faf6ee 55%, #f0e9dc 100%); }
+html[data-skin="fr"][data-theme="dark"] { --pink: #ef4a55; --pink-soft: #3a1626; --purple: #aec3ff; --purple-2: #c9d6ff; --purple-soft: #1f2a5a; --green: #4cc7a4; --teal: #4cc7a4;
+  --bg: #0d1530; --card: #161f47; --text: #f5f0e6; --muted: #aab2ca; --line: #2e3b72; --chip: #1f2a5a; --fr-gold: #d6b566;
+  --chat-bg: radial-gradient(circle at 50% 0%, #1f2a5a 0%, #0d1530 60%, #080e22 100%); }
+html[data-skin="fr"] :is(h1, h2, h3, .sec-title) { font-family: var(--fr-serif); }
+:root[data-skin="fr"] .nav { background: var(--bg); border-top: 3px solid; border-image: linear-gradient(90deg, var(--purple) 33.3%, var(--card) 33.3% 66.6%, var(--pink) 66.6%) 1; }
+html[data-skin="fr"] .nav a { color: var(--muted); }
+html[data-skin="fr"] .nav svg { fill: var(--line); }
+html[data-skin="fr"] .nav a.active, html[data-skin="fr"] .nav a.active svg { color: var(--purple); fill: var(--purple); }
+@media (min-width: 1200px) { :root[data-skin="fr"] .nav { border-top: 0; border-right: 4px solid; border-image: linear-gradient(180deg, var(--purple) 33.3%, var(--card) 33.3% 66.6%, var(--pink) 66.6%) 1; } }
+html[data-skin="fr"] :is(.logo, .nav .nav-brand) { font-family: var(--fr-serif); letter-spacing: 0; background: linear-gradient(90deg, var(--purple) 55%, var(--pink)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+html[data-skin="fr"] :is(.pg-hero, .hl-card) { background: linear-gradient(135deg, var(--purple), var(--pink)); border-radius: 8px; }
+html[data-skin="fr"] :is(.card, .btn) { border-radius: 8px; }
+/* 🇫🇷 Ana menü Français teması (Ben → Ayarlar): krem kâğıt üstünde tricolore lacivert / kırmızı, altın ve Paris sokak tabelası yeşili */
+.home-land.hl-fr { --fr-navy: #14307a; --fr-red: #d0202e; --fr-gold: #b08d3f; --fr-green: #1f6f5c; --fr-paper: #faf6ee; --fr-surface: #ffffff; --fr-ink: #1a2340; --fr-soft: #5c6479; --fr-line: #e3dccd;
+  --fr-serif: 'EB Garamond', Garamond, Georgia, 'Times New Roman', serif; --fr-sans: 'Jost', 'Avenir Next', 'Century Gothic', 'Segoe UI', system-ui, sans-serif;
+  background: var(--fr-paper); color: var(--fr-ink); font-family: var(--fr-sans); min-height: 100%; }
+html[data-theme="dark"] .home-land.hl-fr { --fr-navy: #aec3ff; --fr-red: #ef4a55; --fr-gold: #d6b566; --fr-green: #4cc7a4; --fr-paper: #0d1530; --fr-surface: #161f47; --fr-ink: #f5f0e6; --fr-soft: #aab2ca; --fr-line: #2e3b72; }
+.home-land.hl-fr .hl-head { position: relative; padding-bottom: 12px; }
+.home-land.hl-fr .hl-head::after { content: ''; position: absolute; left: 0; bottom: 0; width: 120px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--fr-navy) 33.3%, var(--fr-surface) 33.3% 66.6%, var(--fr-red) 66.6%); box-shadow: 0 0 0 1px var(--fr-line); }
+.home-land.hl-fr .hl-head small { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--fr-soft); }
+.home-land.hl-fr .hl-head h1 { font-family: var(--fr-serif); font-weight: 700; font-size: 40px; letter-spacing: 0; background: none; -webkit-background-clip: initial; background-clip: initial; color: var(--fr-navy); }
+.home-land.hl-fr .hl-news { border-radius: 6px; background: var(--fr-surface); color: var(--fr-ink); border-color: var(--fr-line); box-shadow: inset 3px 0 0 var(--fr-red); }
+.home-land.hl-fr .hl-news-t small { color: var(--fr-navy); }
+.home-land.hl-fr .hl-news-t small em { background: var(--fr-red); }
+.home-land.hl-fr .hl-news-t b { font-family: var(--fr-serif); font-size: 16px; }
+.home-land.hl-fr .hl-news-go { color: var(--fr-red); }
+.home-land.hl-fr .hl-lia { background: linear-gradient(135deg, var(--fr-navy), var(--fr-red)); box-shadow: none; }
+.home-land.hl-fr .hl-sec { border-bottom: 1px solid var(--fr-line); padding-bottom: 6px; }
+.home-land.hl-fr .hl-sec h3 { font-family: var(--fr-serif); font-weight: 700; font-size: 20px; color: var(--fr-navy); }
+.home-land.hl-fr .hl-sec a { color: var(--fr-red); font-weight: 600; letter-spacing: .5px; }
+.home-land.hl-fr .hl-cm { border-radius: 6px; box-shadow: 0 6px 16px rgba(20, 48, 122, .16); }
+.home-land.hl-fr .hl-cm.vip { box-shadow: 0 6px 16px rgba(20, 48, 122, .16), inset 0 0 0 2px var(--fr-gold); }
+.home-land.hl-fr .hl-cm-txt b { font-family: var(--fr-serif); font-size: 17px; font-weight: 700; }
+.home-land.hl-fr .hl-cm-vip { border-radius: 3px; }
+.home-land.hl-fr .hl-cm-carmen .hl-cm-vip { background: var(--fr-gold); color: var(--fr-surface); }
+.home-land.hl-fr .hl-cm-on { color: var(--fr-green); }
+.home-land.hl-fr .hl-meet, .home-land.hl-fr .hl-ad, .home-land.hl-fr .hl-card { border-radius: 6px; }
+.home-land.hl-fr .hl-ad-cta { border-radius: 4px; }
+.home-land.hl-fr .hl-more { border-radius: 6px; background: var(--fr-navy); color: var(--fr-paper); border: 0; }
 /* ⏯️ kaldığın yerden */
 .hl-conts { display: flex; gap: 10px; overflow-x: auto; padding: 0 10px 14px; scroll-snap-type: x mandatory; scrollbar-width: none; }
 .hl-conts::-webkit-scrollbar { display: none; }

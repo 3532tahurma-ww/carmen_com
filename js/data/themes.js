@@ -19,6 +19,9 @@ Stories.Themes = {
     { id: 'pastel-limon', label: 'Limon pastel', light: true, css: 'linear-gradient(180deg, #fffef6 0%, #fbf6d9 100%)' },
     { id: 'pastel-bulut', label: 'Bulut', light: true, css: 'radial-gradient(circle at 20% 0%, #ffffff 0%, #f3f5fa 55%, #e9edf5 100%)' },
     { id: 'pastel-gokkusagi', label: 'Pastel gökkuşağı', light: true, css: 'linear-gradient(160deg, #fff1f5 0%, #f4f0ff 30%, #eaf6ff 60%, #effcf4 85%, #fffbea 100%)' },
+    // 🇫🇷 Français: krem kâğıt üstünde ince tricolore şerit (gece: lacivert)
+    { id: 'francais', label: 'Français', light: true, css: 'linear-gradient(90deg, #14307a 0 33.3%, #ffffff 33.3% 66.6%, #d0202e 66.6%) top / 100% 4px no-repeat, radial-gradient(circle at 50% 0%, #ffffff 0%, #faf6ee 55%, #f0e9dc 100%)' },
+    { id: 'francais-nuit', label: 'Français gece', css: 'linear-gradient(90deg, #aec3ff 0 33.3%, #f5f0e6 33.3% 66.6%, #ef4a55 66.6%) top / 100% 3px no-repeat, radial-gradient(circle at 50% 0%, #1f2a5a 0%, #0d1530 60%, #080e22 100%)' },
     { id: 'amor', label: 'Amor', css: 'linear-gradient(180deg, #3b1d63 0%, #241444 45%, #160d2c 100%)' },
     { id: 'rose', label: 'Gül', css: 'linear-gradient(180deg, #6b1f45 0%, #3f1129 50%, #1f0814 100%)' },
     { id: 'ocean', label: 'Okyanus', css: 'linear-gradient(180deg, #14476e 0%, #0c2a46 50%, #06141f 100%)' },
@@ -45,6 +48,9 @@ Stories.Themes = {
     { id: 'pastel-gokyuzu', label: 'Gökyüzü', me: '#cfe8ff', meFg: '#0d3a66', her: '#ffffff', herFg: '#1d2433', herBorder: '1px solid #dfe7f2', radius: '20px', shadow: '0 2px 8px rgba(20, 50, 100, .08)' },
     { id: 'pastel-gul', label: 'Gül kurusu', me: 'linear-gradient(135deg, #ffd9e6, #f7c8dc)', meFg: '#5a1530', her: '#ffffff', herFg: '#4a2a3a', herBorder: '1px solid #f3dbe5', radius: '22px', shadow: '0 2px 10px rgba(194, 24, 91, .1)' },
     { id: 'pastel-sise', label: 'Pastel karışık', me: 'linear-gradient(135deg, #d6eefa, #e6dcff)', meFg: '#1f2a55', her: 'linear-gradient(135deg, #fde4ee, #fff1e3)', herFg: '#5a2030', radius: '22px', shadow: '0 2px 10px rgba(60, 60, 120, .1)' },
+    // 🇫🇷 Français: lacivert ben, beyaz kâğıt o (kırmızı çizgi), az yuvarlak köşe
+    { id: 'francais', label: 'Français', me: '#14307a', meFg: '#ffffff', her: '#ffffff', herFg: '#1a2340', herBorder: '1px solid #e3dccd', radius: '10px', tail: '2px', shadow: '0 2px 8px rgba(20, 48, 122, .1), inset 3px 0 0 #d0202e' },
+    { id: 'francais-nuit', label: 'Français gece', me: '#d0202e', meFg: '#ffffff', her: '#161f47', herFg: '#f5f0e6', herBorder: '1px solid #2e3b72', radius: '10px', tail: '2px', shadow: '0 2px 10px rgba(0, 0, 0, .3), inset 3px 0 0 #aec3ff' },
     { id: 'amor', label: 'Amor', me: '#ff3d8b', her: '#2c2442' },
     { id: 'imessage', label: 'iMessage', me: '#0a84ff', her: '#3a3a3c', radius: '20px', tail: '20px' },
     { id: 'whatsapp', label: 'WhatsApp', me: '#005c4b', her: '#202c33', radius: '10px', tail: '2px' },
@@ -72,6 +78,7 @@ Stories.Themes = {
   presets: [
     // 🌗 Otomatik (varsayılan): açık temada Lila pastel + Gül kurusu, koyu temada Amor (app.js themeLive)
     { id: 'auto', label: 'Otomatik', icon: '🌗', bg: 'auto', bubble: 'auto', css: 'linear-gradient(135deg, #c9b8ff 0%, #c9b8ff 50%, #241444 50%, #241444 100%)', note: 'Açık temada pastel, koyu temada Amor' },
+    { id: 'francais', label: 'Français', icon: '🇫🇷', bg: 'francais', bubble: 'francais', note: 'Français sohbet: krem kâğıt, lacivert ve kırmızı' },
     { id: 'kalp', label: 'Kalp teması', icon: '💖', bg: 'ucan-kalpler', bubble: 'kalp', note: 'Amor Lv.4: uçan kalpler + kalpli baloncuklar' },
     { id: 'mucevher', label: 'Mücevher kalp', icon: '💎', bg: 'kalp-kolye', bubble: 'kalp', note: 'Amor Lv.5: mücevher kalp + kalpli baloncuklar' },
     { id: 'halloween', label: 'Halloween', icon: '🎃', bg: 'halloween', bubble: 'halloween', note: 'Turuncu-mor, mum ışıklı Cadılar Bayramı' }

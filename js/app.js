@@ -407,6 +407,7 @@
     if (ui.lastSite !== undefined && site !== ui.lastSite) splashWhile(new Promise(res => setTimeout(res, 900)));
     ui.lastSite = site;
     drawSiteNav(site);
+    applySkin(site);
 
     if ((r.name === 'p' && (!c || c.husb)) || (r.name === 'chat' && !(t && (t.group || c)))) { location.hash = '#/home'; return; }
     // kayıtlı karakterin düzenleme taslağı sayfadan çıkınca bırakılır; yeniden açınca güncel hâli gelir (sohbette değişen Hamile vb.)
@@ -526,6 +527,14 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['🎲', 'Bitişin artık sürprizleri var', 'Bitişte sadece hamilelik zarı atılmıyor: kondom yırtılabiliyor ya da içeride kalabiliyor, hap unutulabiliyor, sabah hapı istenebiliyor. Bitişten sonra da gecikme korkusu, süt, kıyafette iz ve titreyen bacaklar var. Hepsini 🎲 Sonuç deneyinde zar atıp görebilirsin.', '#/sonuc', [
+      ['🎈 Kondom', 'Kondom takılıyken %5 💥 yırtık çıkar, %3 🎈 içeride kalır (Güven −5): korunma kalkar, hamilelik ihtimali açılır. ⚡ kısayola Morning-After Pill ya da Pregnancy Test gelir.'],
+      ['💊 Hap', 'Control Pill artık bitişte gerçekten korur (%96); %4 hapını unutmuş olur ve hamilelik açılır. Hap yoksa ve korunmasızsan %20 "Sabah hapı alalım" der, o bitişte hamilelik olmaz.'],
+      ['😰 Gecikme korkusu', 'Korunmasız bittiyse ve hamile kalmadıysa %15 "Ya tuttuysa?" diye endişelenir (Güven −3, ⚡ Pregnancy Test).'],
+      ['🍼 Süt geldi', 'Hamileyse ya da 🍼 Süt 60+ ise %25 süt gelir (Süt +10, ⚡ Breastfeeding).'],
+      ['🧾 İz kaldı', 'Boşaldığın yerde kıyafeti giyiliyse %15 leke kalır; Get Dressed\'te o parçayı lekeli giyer. Evliyse 🕵️ Şüphe +3.'],
+      ['🦵 Bacakları titriyor', 'Rough / Brutal Mode\'da %20: 😣 Acı +5 ve ardından 🕊️ Gentle Mode.'],
+      ['📚 Kitaplar', 'Carmen Kitabı → Korunma ve hamilelik ile Bot Konuşma Kitabı → İzinlere göre tepkiler bölümlerine eklendi.']], 'Manşet'],
     ['💍', 'Evli kızlar kocalarıyla yazışıyor', 'Evli ve Hotwife kızların artık kocaları ve onlarla kendi sohbetleri var. Günlük işler, sevgi, "neredeydin?" soruları ve 🕵️ Şüphe; Hotwife\'ın kocası seni soruyor. Sen izlersin, konu açarsın.', '#/kitap/lezbiyen/11', [
       ['💍 Nerede', 'Sadece 👤 Profil → 👭 İlişkileri → 💍 Kocası (Mesajlar\'da görünmez).'],
       ['🐍 Yalan ve Şüphe', 'Kocası bilmiyorsa "neredeydin" diye sorar; seninle seviştiyse kesin sorar. Şüphe 80\'de yakalanır.'],
@@ -1074,7 +1083,7 @@
         ${s.top(c)}${k !== 'live' && cmOnline(c) ? '<em class="hl-cm-on">●</em>' : ''}
         <span class="hl-cm-txt"><b>${nm(c)}${c.age ? `, ${esc(c.age)}` : ''}</b><small>${esc(cmPick(c, 'hsl', k === 'gothic' ? HOME_HOT_GT : HOME_HOT))}</small></span></a>`; };
     view.innerHTML = `
-      <div class="page-pad home home-land">
+      <div class="page-pad home home-land${homeThemePref() === 'fr' ? ' hl-fr' : ''}">
         <div class="hl-head">
           <div><small>Merhaba${S().user.name ? ' ' + esc(S().user.name) : ''} 💗</small><h1>Carmen</h1></div>
           <span>${new Date().getMonth() === 9 ? '<a class="icon-btn hl-dice" href="#/halloween" aria-label="Halloween" title="Halloween">🎃</a>' : ''}</span>
@@ -8978,6 +8987,10 @@
   const scoreOn = v => { try { if (v != null) localStorage.setItem('amor-stories:botscore', v ? '1' : '0'); return localStorage.getItem('amor-stories:botscore') === '1'; } catch (e) { return false; } };
   // 🌙 tema: light | dark | auto (sistem). index.html başındaki betik açılışta uygular; burada değişince ve sistem teması değişince
   const themePref = v => { try { if (v != null) localStorage.setItem('amor-stories:theme', v); return localStorage.getItem('amor-stories:theme') || 'light'; } catch (e) { return 'light'; } };
+  // 🏠 Ana menü renk teması: carmen (varsayılan) | fr (🇫🇷 Français)
+  const homeThemePref = v => { try { if (v != null) localStorage.setItem('amor-stories:hometheme', v); return localStorage.getItem('amor-stories:hometheme') || 'carmen'; } catch (e) { return 'carmen'; } };
+  // siteler hariç her yerde: <html data-skin="fr"> (css/stories.css değişkenleri, sohbette 🌗 Otomatik → Français)
+  const applySkin = site => { const h = document.documentElement; if (homeThemePref() === 'fr' && !site) h.dataset.skin = 'fr'; else delete h.dataset.skin; };
   const darkMQ = window.matchMedia ? matchMedia('(prefers-color-scheme: dark)') : null;
   // açık sohbetin 🌗 Otomatik teması uygulama teması değişince yenilenir (renderChat atar)
   let chatThemeHook = null;
@@ -10025,8 +10038,8 @@
   const groupOf = p => p.group || (p.tags || []).find(t => BASE_GROUPS.some(g => g.id === t)) || 'yol';
   // varsayılan: 🌗 Otomatik (açık temada Lila pastel + Gül kurusu, koyu temada Amor + Amor)
   const themeOf = (th, c) => Object.assign({ bg: 'auto', bubble: 'auto' }, c.theme || {}, th.theme || {});
-  const themeLive = t => { const d = document.documentElement.getAttribute('data-theme') === 'dark';
-    return { ...t, bg: t.bg === 'auto' ? (d ? 'amor' : 'pastel-lila') : t.bg, bubble: t.bubble === 'auto' ? (d ? 'amor' : 'pastel-gul') : t.bubble }; };
+  const themeLive = t => { const d = document.documentElement.getAttribute('data-theme') === 'dark', fr = document.documentElement.dataset.skin === 'fr';
+    return { ...t, bg: t.bg === 'auto' ? (fr ? (d ? 'francais-nuit' : 'francais') : d ? 'amor' : 'pastel-lila') : t.bg, bubble: t.bubble === 'auto' ? (fr ? (d ? 'francais-nuit' : 'francais') : d ? 'amor' : 'pastel-gul') : t.bubble }; };
   const DARK_BG = () => (TH.backgrounds.find(b => b.id === 'amor') || {}).css || '#160d2c';
 
   function bubbleVars(b, c) {
@@ -11729,7 +11742,10 @@
       if (stage !== 'son' && stage !== 'bit') now.push(...lf(sample(all.filter(e => (here.includes(e.cat) || spotFits(e, sc)) && (!pos || e.id !== pos.id) && ok(e)), 6)).slice(0, 3));
       now.push(...lia.evs);
       if (pos && sexy) now.push(...lf(sample(all.filter(e => e.cat === pos.cat && e.id !== pos.id && ok(e)), 6)).slice(0, 3));
-      return { now: now.filter((e, i) => ok(e) && now.indexOf(e) === i).slice(0, 8), stage, place: sc, likes, dislikes, denies, say: (nu.say && stage !== 'bit' ? nu.say + ' · ' : '') + String(lia.say || '').replace(/<[^>]+>/g, '') };
+      // 🔗 son olayın devamı (NEXT_EV / NEXT_CAT) → seçicide "Buradan gidilir" rafı
+      const lastId = Object.keys(at).reduce((m, id) => (m && at[m] >= at[id] ? m : id), ''), lastE = lastId && all.find(e => e.id === lastId);
+      const next = lastE ? nextEvs(ch, lastE).filter(ok).slice(0, 6) : [];
+      return { now: now.filter((e, i) => ok(e) && now.indexOf(e) === i).slice(0, 8), next, last: lastE || null, stage, place: sc, likes, dislikes, denies, say: (nu.say && stage !== 'bit' ? nu.say + ' · ' : '') + String(lia.say || '').replace(/<[^>]+>/g, '') };
     }
     // 🤱 emzirme isteğinin olayı: 👑 Dominant → Dominant Nursing, Flörtöz → Teasing (%50), yoksa nurseTips, yoksa temel tutuşlar
     function nursePick(ch) {
@@ -12690,8 +12706,41 @@
       const cowF = fantRecent(), cowOn = !!cowF && fantKey(cowF) === 'fxinek';
       const bands = bandPicks(allEvents().find(x => x.id === e.id) || e, ids, cowOn);
       if (!depth) useEvents([e.id]);
-      const res = resolveOutcome(ev.outcomes, ctx), chain = [];
-      spendConds(ev.outcomes, ctx);
+      // 🎈💊 bitiş korunma sonucu (finProtRoll): 💥 yırtık / 🎈 içeride kaldı → korunma kalkar, hamilelik şansı açılır; 💊 sabah hapı → hamilelik sonucu bu bitişte çıkmaz
+      let pcOuts = ev.outcomes, pcCtx = ctx, pcOc = null, pcRisk = false;
+      const pcCh = byId(ids[0]), pcWasH = !!(pcCh && (pcCh.fields || {}).hamile);
+      const pcLow = s => String(s || '').toLocaleLowerCase('tr'), pcEvT = t => allEvents().find(x => pcLow(x.title) === t), pcNm = pcCh ? String(pcCh.name || '').split(' ')[0] : '';
+      const pcPar = l => (allParams().find(x => x.who !== 'me' && pcLow(x.label) === l) || {}).id;
+      if (pcCh) {
+        const kp = protOf(pcCh), nm = pcNm, low = pcLow, evT = pcEvT;
+        const pk = finProtRoll(ev.outcomes, { ...kp, hamile: pcWasH, baby: !!th.babyTry });
+        // 😰 gecikme korkusu için: bu bitişte gerçekten korunmasız içine (yırtık / kaydı / hap unutuldu ya da hiç korunma yok)
+        pcRisk = ['tear', 'slip', 'forgot'].includes(pk) || (pk === '' && finProtOn(ev.outcomes, { ...kp, hamile: pcWasH, baby: !!th.babyTry }) && !kp.condom && !kp.pill);
+        if (pk === 'pillok') pcOuts = ev.outcomes.filter(o => !isPreg(o));
+        else if (pk === 'forgot') {
+          pcOc = { text: `💊 ${nm} hapını unutmuş! Bu sefer hap korumadı · 💊 Morning-After Pill`, pct: 4, ev: 'Forgot Pill' };
+          quickPin(evT('morning-after pill'), th);
+        }
+        if (pk === 'tear' || pk === 'slip') { condomOff(); pcCtx = condCtx(ids); }
+        if (pk === 'tear') {
+          pcOc = { text: `💥 Kondom yırtık çıktı! ${nm} korunmasız kaldı · 💊 Morning-After Pill`, pct: 5, ev: 'Condom Break' };
+          quickPin(evT('morning-after pill'), th);
+        } else if (pk === 'slip') {
+          const gp = (allParams().find(x => x.who !== 'me' && low(x.label) === 'güven') || {}).id;
+          pcOc = { text: `🎈 Kondom içeride kaldı! ${nm} panikledi 😰 · 🧪 Pregnancy Test`, pct: 3, ev: 'Condom Slip', fx: gp ? [{ p: 'p:' + gp, d: -5 }] : [] };
+          quickPin(evT('pregnancy test'), th);
+        } else if (pk === 'pill') {
+          pcOuts = ev.outcomes.filter(o => !isPreg(o));
+          pcOc = { text: `💊 "Sabah hapı alalım" · ${nm} risk almak istemiyor, hamilelik olmayacak`, pct: 20, ev: 'Morning-After Pill' };
+          quickPin(evT('morning-after pill'), th);
+        }
+      }
+      if (pcOc) {
+        const r8 = applyOutcome({ text: '', effects: pcOc.fx || [] }, ids);
+        list.push({ id: Store.uid(), from: 'her', ...(group && ids[0] ? { who: ids[0] } : {}), text: pcOc.text, oc: { pct: pcOc.pct, changes: r8.changes, fired: [], ev: pcOc.ev }, ts: ts + 1 });
+      }
+      const res = resolveOutcome(pcOuts, pcCtx), chain = [];
+      spendConds(pcOuts, pcCtx);
       const who = group && ids[0] ? { who: ids[0] } : {};
       if (res && res.blocked) list.push({ id: Store.uid(), from: 'her', ...who, text: res.blocked.text || '🎲 Sonuç', oc: { pct: res.blocked.pct, blocked: res.blocked.why, ev: live.title }, ts: ts + 1 });
       else if (res) {
@@ -12701,6 +12750,30 @@
         const nx = out.next && allEvents().find(x => x.id === out.next);
         if (nx) chain.push([nx, 'next']);
         r.fired.forEach(f => chain.push([f.ev, f.text]));
+      }
+      // 🎲 bitiş ek sonuçları (finExtraRoll): 😰 gecikme korkusu · 🍼 süt geldi · 🧾 iz kaldı · 🦵 bacakları titriyor
+      if (pcCh && pcLow(catOfEv(e).label) === 'cumming') {
+        const cz = cumZoneOf(e.title), wx = cz && dressedAt(pcCh, cz, /^dressed /i.test(e.title) ? {} : ((th.undress || {})[pcCh.id] || {}));
+        const hmNow = !!(pcCh.fields || {}).hamile, evli = !!(pcCh.fields || {}).evli;
+        const xs = finExtraRoll({ risk: pcRisk, preg: !pcWasH && hmNow, hamile: pcWasH, milk: milkV(pcCh), dressed: !!wx, rough: /rough|brutal/.test(pcLow(th.mode)) });
+        xs.forEach(k => {
+          const fx = [], P = pcPar;
+          let text = '';
+          if (k === 'scare') { if (P('güven')) fx.push({ p: 'p:' + P('güven'), d: -3 }); quickPin(pcEvT('pregnancy test'), th); text = `😰 ${pcNm} endişeli: "Ya tuttuysa?" · 🧪 Pregnancy Test`; }
+          else if (k === 'milk') { if (P('süt')) fx.push({ p: 'p:' + P('süt'), d: 10 }); quickPin(pcEvT('breastfeeding'), th); text = `🍼 ${pcNm}: göğüslerinden süt geldi · 🍼 Breastfeeding`; }
+          else if (k === 'stain') {
+            (th.stain = th.stain || {})[pcCh.id] = wx.name || 'kıyafet';
+            if (evli && P('şüphe')) fx.push({ p: 'p:' + P('şüphe'), d: 3 });
+            text = `🧾 ${wx.name || 'Kıyafeti'} üstünde iz kaldı${evli ? ' · kocası fark edebilir 🕵️' : ''}`;
+          } else if (k === 'shaky') {
+            const pid = painParam(), gen = pcEvT('gentle');
+            if (pid) fx.push({ p: 'p:' + pid, d: 5 });
+            if (gen) chain.push([gen, '🦵 bacakları titriyor']);
+            text = `🦵 ${pcNm}'in bacakları titriyor, biraz yavaşlamak istiyor · 🕊️ Gentle`;
+          }
+          const r9 = applyOutcome({ text: '', effects: fx }, ids);
+          list.push({ id: Store.uid(), from: 'her', ...who, text, oc: { pct: FIN_EXTRA[k].pct, changes: r9.changes, fired: [], ev: FIN_EXTRA[k].label }, ts: ts + 1 });
+        });
       }
       // ⚡ olunca etkileri (sonuçtan sonra): olay kartında görünür
       // 👯 grupta olunca etkileri hedef olmayan kıza da (o da orada, dahil); 🎲 sonuç (hamilelik vb.) sadece hedefte kalır
@@ -12798,6 +12871,8 @@
         const raw = kp.pill || kp.nothing || hm || !!((kc.chDeal || {}).rawFree);
         const al = (kc.allows || []).includes(e.id), dn = (kc.denies || []).includes(e.id), evT = t => allEvents().find(x => lowT(x.title) === t);
         const tg = t => (e.tags || []).some(x => lowT(x) === t), isCumE = lowT(catOfEv(e).label) === 'cumming';
+        // 🧾 bitişte kıyafetinde iz kaldıysa Get Dressed'te onu yine giyer
+        if (edT === 'get dressed' && (th.stain || {})[kc.id]) { edSys(`🧾 ${nm} lekeli ${String(th.stain[kc.id]).toLocaleLowerCase('tr')} parçasını yine giydi; iz hâlâ duruyor 😳`); delete th.stain[kc.id]; }
         if (edT === 'condom break') {
           if (kp.condom) {
             condomOff();
@@ -12934,6 +13009,23 @@
     const sfLow = (...a) => a.filter(Boolean).map(x => `${x} ${Stories.I18n.t(String(x))}`).join(' ').toLocaleLowerCase('tr');
     const sfBar = (ph, cats) => `<div class="sf-bar"><label class="mo-search sf-q"><span>🔍</span><input type="search" placeholder="${esc(ph)}" autocomplete="off"></label>
       ${cats.length > 1 ? `<div class="sf-cats"><button type="button" data-sfc="" class="on">Tümü</button>${cats.map(([k, l]) => `<button type="button" data-sfc="${esc(k)}">${esc(l)}</button>`).join('')}</div>` : ''}</div>`;
+    // ⭐ mekân / rol sabitleme (MO().plPins / MO().rpPins): düğme köşesindeki ☆ (data-pin="anahtar:id")
+    const pinOn = (k, id) => (MO()[k] || []).includes(id);
+    const pinStar = (k, id) => `<i data-pin="${k}:${esc(id)}" role="button" title="Sabitle" aria-label="Sabitle" style="position:absolute;top:2px;right:4px;font-style:normal;font-size:.8rem;line-height:1;opacity:${pinOn(k, id) ? 1 : .45}">${pinOn(k, id) ? '⭐' : '☆'}</i>`;
+    // ☆ tıklanırsa sabitle/çıkar, rafı (box) yeniden çiz, aramayı yeniden uygula → true
+    function pinClick(e, el, box, shelf) {
+      const pn = e.target.closest('[data-pin]');
+      if (!pn) return false;
+      e.stopPropagation();
+      const [k, id] = pn.dataset.pin.split(/:(.*)/), a = MO()[k] || [];
+      MO()[k] = a.includes(id) ? a.filter(x => x !== id) : [id, ...a];
+      save();
+      box.innerHTML = shelf();
+      el.querySelectorAll(`[data-pin="${CSS.escape(pn.dataset.pin)}"]`).forEach(x => { x.outerHTML = pinStar(k, id); });
+      const q = el.querySelector('.sf-q input');
+      if (q) q.dispatchEvent(new Event('input'));
+      return true;
+    }
     function sheetFilter(el) {
       const q = el.querySelector('.sf-q input'), none = el.querySelector('.sf-none');
       let cat = '';
@@ -12959,12 +13051,22 @@
       const cur = m ? { ...m.scene, hint: m.text } : (() => { const p = pickPlace(); return { ...p, hint: fillHint(p.hint) }; })();
       const origPlace = cur.place;
       const gs = allGroups();
+      const plBtn = (p, gid) => `<button type="button" data-pl="${p.id}" class="${p.id === cur.place ? 'on' : ''}" data-sfg="${esc(gid)}" data-sft="${esc(sfLow(p.name, p.icon, ...gs.filter(g => inGroup(p, g)).map(g => g.name), ...(p.tags || [])))}" style="position:relative">${pinStar('plPins', p.id)}<span>${p.icon}</span><small>${esc(p.name)}</small></button>`;
+      // 📌 raf: ⭐ sabitlenen · 🔗 buradan gidilir (PLACE_FLOW.chain) · 🕘 bu sohbette son mekanlar
+      const plShelf = () => {
+        const P = allPlaces(), by = id => P.find(p => p.id === id), here = ((lastScene() || {}).scene || {}).place;
+        const rec = [...new Set(list.filter(x => x.scene && x.scene.place).map(x => x.scene.place).reverse())].filter(id => id !== here).map(by).filter(Boolean).slice(0, 6);
+        const sec = (t, ps) => ps.length ? `<div class="sf-sec"><div class="sec-title">${t}</div><div class="pl-grid">${ps.map(p => plBtn(p, gs.filter(g => inGroup(p, g)).map(g => g.id).join('|'))).join('')}</div></div>` : '';
+        return sec('⭐ Sabitlenenler', (MO().plPins || []).map(by).filter(Boolean)) + sec('🔗 Buradan gidilir', plIds(PLACE_FLOW.chain[placeKey()] || [], plOk()).slice(0, 6)) + sec('🕘 Son mekanlar', rec);
+      };
       const sh = sheet(`
         <div class="sheet-grip"></div>
         <h3>📍 ${m ? 'Mekanı değiştir' : 'Yeni mekan'}</h3>
         ${sfBar('Mekan ara… (ör. mutfak, plaj)', gs.map(g => [g.id, `${g.icon} ${g.name}`]))}
+        <div class="chips mo-filter"><button type="button" class="chip mo-pick" id="plRnd">🎲 Sürpriz</button></div>
+        <div id="plShelf">${plShelf()}</div>
         ${gs.map(g => `<div class="sf-sec"><div class="sec-title">${g.icon} ${esc(g.name)}</div>
-          <div class="pl-grid">${allPlaces().filter(p => inGroup(p, g)).map(p => `<button type="button" data-pl="${p.id}" class="${p.id === cur.place ? 'on' : ''}" data-sfg="${esc(g.id)}" data-sft="${esc(sfLow(p.name, p.icon, g.name, ...(p.tags || [])))}"><span>${p.icon}</span><small>${esc(p.name)}</small></button>`).join('')}</div></div>`).join('')}
+          <div class="pl-grid">${allPlaces().filter(p => inGroup(p, g)).map(p => plBtn(p, g.id)).join('')}</div></div>`).join('')}
         <p class="sf-none sf-hide">Sonuç yok</p>
         <div class="sec-title">Kendi mekanın (isteğe bağlı)</div>
         <div class="pl-own"><input id="plIcon" maxlength="4" placeholder="📍"><input id="plName" maxlength="40" placeholder="ör. Büyükannesinin bahçesinde"></div>
@@ -12980,11 +13082,18 @@
         hintEl.value = pickOf(left.length ? left : p.hints.map(fillHint));
       };
       sh.el.onclick = e => {
+        if (pinClick(e, sh.el, sh.el.querySelector('#plShelf'), plShelf)) return;
+        if (e.target.closest('#plRnd')) {
+          const p = plPick(PLACE_FLOW.chain[placeKey()] || PLACE_FLOW.chain._, byId(chatCharIds()[0]));
+          const b = p && sh.el.querySelector(`[data-pl="${CSS.escape(p.id)}"]:not(.sf-hide)`) || p && sh.el.querySelector(`[data-pl="${CSS.escape(p.id)}"]`);
+          if (b) { b.click(); b.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+          return;
+        }
         const b = e.target.closest('[data-pl]');
         if (b) {
           const p = allPlaces().find(x => x.id === b.dataset.pl);
           Object.assign(cur, { place: p.id, icon: p.icon, name: p.name });
-          sh.el.querySelectorAll('[data-pl]').forEach(x => x.classList.toggle('on', x === b));
+          sh.el.querySelectorAll('[data-pl]').forEach(x => x.classList.toggle('on', x.dataset.pl === b.dataset.pl));
           roll();
           return;
         }
@@ -13915,17 +14024,30 @@
       const roles = fantPool().filter(e => fantKey(e).startsWith('fxrp')).sort((a, b) => hw ? isHw(b) - isHw(a) : 0);
       const catOf = e => { const k = fantKey(e).slice(4); return isHw(e) ? 'hw' : (RP_CATS.find(c => c[2].includes(k)) || ['diger'])[0]; };
       const cats = [...RP_CATS, ['diger', '🎭 Diğer']].filter(c => roles.some(e => catOf(e) === c[0]));
+      const rpBtn = e => { const ct = cats.find(c => c[0] === catOf(e)); return `<button type="button" data-rp="${e.id}" class="${th.rp === e.id ? 'on' : ''}" data-sfg="${ct[0]}" data-sft="${esc(sfLow(e.title, e.emojis, ct[1], ...(e.tags || [])))}" style="position:relative;background:var(--chip);color:var(--text);text-shadow:none">${pinStar('rpPins', e.id)}<b>${esc(e.emojis || '🎭')} ${esc(e.title)}</b></button>`; };
+      // 📌 raf: ⭐ sabitlenen roller · 🕘 bu sohbette son roller
+      const rpShelf = () => {
+        const by = id => roles.find(e => e.id === id);
+        const rec = [...new Set(list.filter(x => x.ev && by(x.ev)).map(x => x.ev).reverse())].filter(id => id !== th.rp).map(by).slice(0, 6);
+        const sec = (t, es) => es.length ? `<div class="sf-sec"><div class="sec-title">${t}</div><div class="preset-row">${es.map(rpBtn).join('')}</div></div>` : '';
+        return sec('⭐ Sabitlenenler', (MO().rpPins || []).map(by).filter(Boolean)) + sec('🕘 Son roller', rec);
+      };
       const sh = sheet(`
         <div class="sheet-grip"></div>
         <h3>🎭 Role-play</h3>
         <p style="margin:0 0 10px;opacity:.75;font-size:.9rem">Seçilen rol sohbet boyunca sürer; cevaplarda o rolün metinleri öncelik alır.</p>
         ${sfBar('Rol ara… (ör. doktor, vampir)', cats)}
-        <div class="preset-row">${roles.map(e => { const ct = cats.find(c => c[0] === catOf(e)); return `<button type="button" data-rp="${e.id}" class="${th.rp === e.id ? 'on' : ''}" data-sfg="${ct[0]}" data-sft="${esc(sfLow(e.title, e.emojis, ct[1], ...(e.tags || [])))}" style="background:var(--chip);color:var(--text);text-shadow:none"><b>${esc(e.emojis || '🎭')} ${esc(e.title)}</b></button>`; }).join('')}</div>
+        <div class="chips mo-filter"><button type="button" class="chip mo-pick" id="rpRnd">🎲 Sürpriz</button></div>
+        <div id="rpShelf">${rpShelf()}</div>
+        <div class="preset-row">${roles.map(rpBtn).join('')}</div>
         <p class="sf-none sf-hide">Sonuç yok</p>
         ${th.rp ? '<button type="button" class="btn ghost sm" id="rpOff" style="margin-top:12px">✖ Role-play\'i kapat</button>' : ''}`, 'light');
       sheetFilter(sh.el);
       const done = () => { const b = $('[data-tool="rp"]'); if (b) b.classList.toggle('on', !!th.rp); save(); draw(); sh.close(); };
-      sh.el.querySelectorAll('[data-rp]').forEach(b => b.onclick = () => {
+      sh.el.onclick = ev => {
+        if (pinClick(ev, sh.el, sh.el.querySelector('#rpShelf'), rpShelf)) return;
+        const b = ev.target.closest('#rpRnd') ? { dataset: { rp: (pickOf(roles.filter(x => x.id !== th.rp)) || {}).id } } : ev.target.closest('[data-rp]');
+        if (!b) return;
         const e = roles.find(x => x.id === b.dataset.rp);
         if (!e) return;
         th.rp = e.id;
@@ -13933,7 +14055,7 @@
         done();
         fantTheme(e);
         notify(`🎭 Role-play: ${e.title}`, '🎭');
-      });
+      };
       const off = sh.el.querySelector('#rpOff');
       if (off) off.onclick = () => { th.rp = null; done(); notify('🎭 Role-play kapalı', '🎭'); };
     }
@@ -19538,6 +19660,11 @@
     const chipOf = e => `<button type="button" class="mo-chip${evCls(e)}"${stl(e)} data-pick="${esc(e.id)}" data-tags="${esc((e.tags || []).join('|'))}" data-desc="${esc((cx && cx.denies.has(e.id) ? '🚫 İzin vermiyor · ' : '') + (e.desc || e.text || ''))}" title="${esc(e.desc || e.text || '')}">${mark(e)}${evEmo(e)}${esc(e.title)}</button>`;
     // 🗂️ çok olaylı kategoride olaylar alt-kategori başlıklarıyla (subGroups)
     const subChips = (cat, evs) => { const g = subGroups(cat, evs); return g ? g.map(({ s, evs: xs }) => `<small class="pk-subh" style="width:100%;margin-top:4px;opacity:.75"${opts.fold ? ` data-pksub="${esc(`${cat.id}:${s.id}`)}" role="button"` : ''}><b>${s.icon} ${esc(s.label)}</b> · ${xs.length}</small>${xs.map(chipOf).join('')}`).join('') : evs.map(chipOf).join(''); };
+    // ⭐ sabitlenen olaylar (MO().pins): her seçicide en üstte; açıklama satırındaki ☆ ile eklenir/çıkar
+    const pinOk = e => (!opts.cats || opts.cats.includes(e.cat || 'mine')) && !(opts.skip || []).includes(e.title) && !awayEv(e);
+    const pinEvs = () => { const pool = allEvents(); return (MO().pins || []).map(id => pool.find(e => e.id === id)).filter(e => e && pinOk(e)); };
+    const pinRow = () => { const p = pinEvs(); return p.length ? `<div class="mo-sub pk-top">⭐ Sabitlenenler <small>· ☆ ile ekle/çıkar</small></div><div class="mo-chips">${p.map(chipOf).join('')}</div>` : ''; };
+    const nextE = cx ? (cx.next || []).filter(e => pinOk(e) && !off(e)) : [];
     let stage = cx ? cx.stage || 'all' : 'all';
     // opts.fold: akordeon, kategoriler kapalı başlar, aynı anda biri açık (son açılan ui.pkFold)
     const foldAt = key => opts.fold ? ` data-pkfold="${esc(key)}" role="button"` : '';
@@ -19546,6 +19673,9 @@
       <div class="sheet-grip"></div>
       <h3>${esc(opts.title)}</h3>
       <input class="pk-search" id="pkSearch" placeholder="# yaz, olay ara…" autocomplete="off">
+      <div id="pkPins">${pinRow()}</div>
+      ${nextE.length ? `<div class="mo-sub pk-top">🔗 Buradan gidilir <small>· son olay: ${esc(cx.last ? cx.last.title : '')}</small></div><div class="mo-chips">${nextE.map(chipOf).join('')}</div>` : ''}
+      ${cx && (cx.now.length || nextE.length) ? `<div class="chips mo-filter"><button type="button" class="chip mo-pick" data-pkrnd="1">🎲 Sürpriz</button></div>` : ''}
       ${cx && cx.now.length ? `<div class="mo-sub pk-top">🎯 Şimdi <small>· ${esc(cx.say || 'sohbetin şu anına göre')}</small></div><div class="mo-chips">${cx.now.map(chipOf).join('')}</div>` : ''}
       ${cx ? `<div class="chips mo-filter">${[...PK_STAGES, ['sahne', '🎬', 'Sahneler'], ['all', '📚', 'Tümü']].map(([k, ic, t]) => `<button type="button" class="chip mo-pick${k === stage ? ' on' : ''}" data-pkstage="${k}">${ic} ${t}</button>`).join('')}</div>` : ''}
       ${rec.length ? `<div class="mo-sub pk-rec">🕘 Önerilen <small>· son kullandıkların</small></div><div class="mo-chips">${rec.map(chipOf).join('')}</div>` : ''}
@@ -19602,6 +19732,24 @@
     sh.el.onclick = e => {
       const st = e.target.closest('[data-pkstage]');
       if (st) { stage = st.dataset.pkstage; stageSync(); foldSync(); return; }
+      const pn = e.target.closest('[data-pkpin]');
+      if (pn) {
+        const id = pn.dataset.pkpin, p = (MO().pins || []).filter(x => x !== id), was = p.length !== (MO().pins || []).length;
+        MO().pins = was ? p : [id, ...p];
+        save();
+        pn.textContent = was ? '☆ Sabitle' : '⭐ Sabitlendi';
+        const box = sh.el.querySelector('#pkPins');
+        box.innerHTML = pinRow();
+        sel.forEach(x => box.querySelectorAll(`[data-pick="${CSS.escape(x)}"]`).forEach(c => c.classList.add('on')));
+        return;
+      }
+      if (e.target.closest('[data-pkrnd]')) {
+        // 🎲 Şimdi + devamı arasından seçili olmayan bir olay
+        const c = [...nextE, ...cx.now].filter(x => !off(x) && !sel.includes(x.id));
+        const r = c.length && sh.el.querySelector(`[data-pick="${CSS.escape(pickOne(c).id)}"]`);
+        if (r) { r.click(); r.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+        return;
+      }
       const sb = e.target.closest('[data-pksub]');
       if (sb) {
         if (ptag) return;
@@ -19640,8 +19788,9 @@
         foldSync();
         // dokunduğun olayın açıklaması altta görünür
         const info = sh.el.querySelector('#poolInfo');
-        info.hidden = i >= 0 || !b.dataset.desc;
-        info.innerHTML = `<b>${esc(b.textContent)}</b> · ${esc(b.dataset.desc)}`;
+        const pid = b.dataset.pick, canPin = !pid.startsWith('grp:'), pinned = (MO().pins || []).includes(pid);
+        info.hidden = i >= 0 || (!b.dataset.desc && !canPin);
+        info.innerHTML = `${canPin ? `<button type="button" class="chip mo-pick" data-pkpin="${esc(pid)}" style="float:right">${pinned ? '⭐ Sabitlendi' : '☆ Sabitle'}</button>` : ''}<b>${esc(b.textContent)}</b>${b.dataset.desc ? ` · ${esc(b.dataset.desc)}` : ''}`;
         return;
       }
       if (!e.target.closest('#poolAdd') || !sel.length) return;
@@ -20264,6 +20413,22 @@
    * %50 olduğu gibi, %0 kısır = hiç, %100 = iki katı. Aradaki fark diğer sonuçlara oranla dağılır (toplam aynı kalır).
    * Değer girilmemişse %50 sayılır; grupta karakterlerin ortalaması */
   const isPreg = o => (o.effects || []).some(ef => ef.p === 'f:hamile' && +ef.d > 0) || /\{\+\d*\s*hamile\}/i.test(o.text || '');
+  /* 🎈💊 bitiş korunma sonucu (hamilelik sonucu olan bitişte, hamile değilken): kondom takılıysa %5 💥 yırtık / %3 🎈 içeride kalır,
+   * hap izni varsa %96 hap korur (👶 gelmez) / %4 💊 hapı unuttu, korunmasızsa (Nothing / bebek denemesi yok) %20 💊 sabah hapı.
+   * p: { hamile, condom, pill, nothing, baby } → 'tear' | 'slip' | 'pillok' | 'forgot' | 'pill' (sabah hapı) | '' */
+  const FIN_PROT = { tear: { pct: 5, ic: '💥', label: 'Kondom yırtık çıktı' }, slip: { pct: 3, ic: '🎈', label: 'Kondom içeride kaldı' },
+    forgot: { pct: 4, ic: '💊', label: 'Hapı unuttu' }, pillok: { pct: 96, ic: '💊', label: 'Hap korudu' }, pill: { pct: 20, ic: '💊', label: 'Sabah hapı alındı' } };
+  const finProtOn = (outs, p) => !p.hamile && (outs || []).some(isPreg) && (p.condom || p.pill || (!p.nothing && !p.baby));
+  const finProtRoll = (outs, p) => {
+    if (!finProtOn(outs, p)) return '';
+    const r = Math.random() * 100;
+    return p.condom ? (r < FIN_PROT.tear.pct ? 'tear' : r < FIN_PROT.tear.pct + FIN_PROT.slip.pct ? 'slip' : '') : p.pill ? (r < FIN_PROT.forgot.pct ? 'forgot' : 'pillok') : r < FIN_PROT.pill.pct ? 'pill' : '';
+  };
+  /* 🎲 bitiş ek sonuçları (Cumming olaylarında, birbirinden bağımsız): s = { risk (korunmasız içine), preg (bu bitişte hamile kaldı), hamile, milk (🍼 Süt), dressed, rough } */
+  const FIN_EXTRA = { scare: { pct: 15, ic: '😰', label: 'Gecikme korkusu', when: 'korunmasız bitişte hamile kalmadıysa' }, milk: { pct: 25, ic: '🍼', label: 'Süt geldi', when: 'hamileyse ya da Süt ≥ 60' },
+    stain: { pct: 15, ic: '🧾', label: 'İz kaldı', when: 'kıyafet giyiliyken bitişte' }, shaky: { pct: 20, ic: '🦵', label: 'Bacakları titriyor', when: 'Rough / Brutal Mode' } };
+  const finExtraOn = (k, s) => k === 'scare' ? !!s.risk && !s.preg && !s.hamile : k === 'milk' ? !!s.hamile || +s.milk >= 60 : k === 'stain' ? !!s.dressed : k === 'shaky' ? !!s.rough : false;
+  const finExtraRoll = s => Object.keys(FIN_EXTRA).filter(k => finExtraOn(k, s) && Math.random() * 100 < FIN_EXTRA[k].pct);
   /* 🩸 döngü takvimi ve 🤰 hamilelik zaman çizelgesi: karakterin "yaşadığı" sohbet dakikaları (c.life; 🕰️ saat ilerledikçe artar).
    * 28 günlük döngü: 1–5 regl, 11–16 riskli (doğurganlık ×1,8), gerisi düşük. Hamilelikte bir hafta = 2 saat sohbet zamanı, 40. haftada doğum */
   const PREG_WEEK = 120;
@@ -22078,7 +22243,21 @@
     { icon: '🛡️', title: 'Korunma ve hamilelik', sub: 'Condom, Vaginal Creampie', body: `
       <p><b>Vaginal Creampie</b>'nin kendi sonucu: %50 "{ben} hamile kaldı" (🔘 Hamile → Evet), şartı <b>🚫 Condom olmadıysa</b>. Condom olduysa 🛡️ olmadı görünür ve Condom harcanır.</p>
       <p>Yüzde 🌱 doğurganlığa göre ölçeklenir. Hamile olunca 📊 kartta parlayan bir çip ve kutlama efekti çıkar; Hamile iken orgazmda süt de gelir.</p>
-      <p>Bir olayın ⚡ olunca etkileri sonuç belirlendikten <b>sonra</b> uygulanır: şartlar olaydan önceki değere bakar.</p>` },
+      <p>Bir olayın ⚡ olunca etkileri sonuç belirlendikten <b>sonra</b> uygulanır: şartlar olaydan önceki değere bakar.</p>
+      <p><b>🎈💊 Bitiş korunma sonuçları</b> (hamile bırakabilen bitişlerde, hamile değilken; sonuç baloncuğu olarak gelir):</p>
+      <table class="bk-t"><tr><th>Sonuç</th><th>Ne zaman</th><th>Ne olur</th></tr>
+        <tr><td>💥 Kondom yırtık çıktı</td><td>kondom takılıyken %5</td><td>Korunma kalkar, 👶 açılır; ⚡ Morning-After Pill</td></tr>
+        <tr><td>🎈 Kondom içeride kaldı</td><td>kondom takılıyken %3</td><td>Aynısı + Güven −5; ⚡ Pregnancy Test</td></tr>
+        <tr><td>💊 Hap korudu</td><td>hap izni varken %96</td><td>👶 o bitişte gelmez (sessiz)</td></tr>
+        <tr><td>💊 Hapı unuttu</td><td>hap izni varken %4</td><td>Hap korumaz, 👶 açılır; ⚡ Morning-After Pill</td></tr>
+        <tr><td>💊 Sabah hapı</td><td>korunmasızken (Nothing / Try for Baby yok) %20</td><td>👶 o bitişte gelmez; ⚡ Morning-After Pill</td></tr></table>
+      <p><b>🎲 Bitiş ek sonuçları</b> (bütün Cumming olaylarında, birbirinden bağımsız):</p>
+      <table class="bk-t"><tr><th>Sonuç</th><th>Ne zaman</th><th>Ne olur</th></tr>
+        <tr><td>😰 Gecikme korkusu</td><td>korunmasız içine bittiyse ve hamile kalmadıysa %15</td><td>"Ya tuttuysa?" · Güven −3; ⚡ Pregnancy Test</td></tr>
+        <tr><td>🍼 Süt geldi</td><td>hamileyse ya da 🍼 Süt ≥ 60 ise %25</td><td>Süt +10; ⚡ Breastfeeding</td></tr>
+        <tr><td>🧾 İz kaldı</td><td>boşaldığın yerde kıyafeti hâlâ giyiliyse %15</td><td>Parçada leke kalır, Get Dressed'te onu lekeli giyer; evliyse 🕵️ Şüphe +3</td></tr>
+        <tr><td>🦵 Bacakları titriyor</td><td>💥 Mode Rough / Brutal iken %20</td><td>😣 Acı +5; ardından 🕊️ Gentle Mode gelir</td></tr></table>
+      <p>Hepsini zar atıp görmek için: <a href="#/sonuc">🎲 Sonuç deneyi</a></p>` },
     { icon: '✅', title: 'İzinler ve kurallar', sub: 'Oluştur kuralları, ✅/🚫', body: `
       <p>Karakterin ✅ <b>izin verdiği</b> / 🚫 <b>vermediği</b> olaylar <code>if</code> etiketli kategorilerden (Protection) seçilir. Bir olay ya bir listede ya ötekinde olur.</p>
       <p><b>📏 Kurallar</b> (Oluştur → 📏, iki sekme): <i>"Eğer şu varsa → şunlar olamaz"</i>. Örn. ✅ Nothing → 🚫 hiçbir şey olamaz: Nothing'e izin veren hiçbir korunmayı reddetmez. Kurala aykırı seçenek seçilemez, 🎲 rastgele de seçmez; kayıtlı karakterlerin izinleri açılışta ve kayıtta kendiliğinden düzelir.</p>
@@ -22538,6 +22717,8 @@
       <table class="bk-t"><tr><th>An</th><th>Tepki</th></tr>
         <tr><td>🛡️ Korunma olayı (Condom, Control Pill, Pull-Out, Nothing…)</td><td>izin verdiyse rahat ("Kondom takman çok iyi 😌"), vermediyse itiraz ("Kondom mu? Hissetmek istiyorum ama 😒", 🤝 Güven −3)</td></tr>
         <tr><td>💥 Condom Break · 🎈 Take It Off</td><td>Yırtılınca korunmasızsınız: hap yoksa "Dur! Kondom yırtıldı 😰" (⚡ kısayola Morning-After Pill gelir), hap varsa "Boş ver, hap içiyorum 😏". Kondomlu önden pozisyonda %2,5 (sert Mode'da %5) kendiliğinden olur. Take It Off: ikiniz de isterseniz (✅ izin, hap ya da Nothing) kondom çıkar, yoksa "Hayır, kondom kalıyor 😤" (Güven −2)</td></tr>
+        <tr><td>🎈💊 Bitişte korunma</td><td>Kondom takılıyken %5 "Kondom yırtık çıktı! 💥", %3 "Kondom içeride kaldı! 😰" (Güven −5): korunma kalkar, hamilelik açılır. Hap içiyorsa %4 "hapını unutmuş"; hap yoksa ve korunmasızsa %20 "Sabah hapı alalım 💊" (hamilelik o bitişte olmaz)</td></tr>
+        <tr><td>😰🍼🧾🦵 Bitişten sonra</td><td>Korunmasız bittiyse ve hamile kalmadıysa %15 "Ya tuttuysa?" (Güven −3, ⚡ Pregnancy Test) · hamileyse ya da Süt 60+ ise %25 süt gelir (Süt +10) · kıyafeti giyiliyse %15 iz kalır (evliyse Şüphe +3; Get Dressed'te lekeli giyer) · Rough / Brutal'da %20 bacakları titrer (Acı +5, Gentle'a geçer)</td></tr>
         <tr><td>🥺 Inside Please · 👶 Try for Baby</td><td>İçine izni o tur için açar (hap / Nothing / hamilelik gerekir). Try for Baby kondomu da çıkarır; o tur içine boşalırsan hamilelik sonucu çıkmadıysa %25 daha şans (Aşk +3, Samimiyet +2)</td></tr>
         <tr><td>😟 Pre-Cum Worry · 🧪 Pregnancy Test</td><td>Kondomsuz önden pozisyonda ön sıvı gelince %35 endişelenir: kondom / hap varsa rahat, Güven 60+ ise "Sana güveniyorum 🥺", değilse "Kondom tak 😟". Test hamileyse pozitif, değilse negatif çıkar</td></tr>
         <tr><td>↩️ Pull-Out bitişleri</td><td>Pull-Out sözü varken Zevk eşiğinde bitiş %60 dışarı olur (karın / sırt / uyluk: "Sözünü tuttun 🥰", Güven +2); bunların %15'i Late Pull-Out: "Çok geç çektin! 😠" (Güven −3, kondom yoksa %15 hamilelik)</td></tr>
@@ -26727,18 +26908,21 @@
     const outsOf = e => { const s = sharedOf(e); return ((s ? s.outs : e.outcomes) || []).filter(o => o && (o.text || (o.effects || []).length || o.next || +o.pct)); };
     const condomCd = o => (o.conds || []).some(cd => cd.k !== 'p' && cd.k !== 'b' && CONDOM_T.includes(lowTag((evById(cd.ev) || {}).title || '').trim()));
     const icOf = o => isPreg(o) ? '👶' : condomCd(o) ? '🎈' : '🎲';
-    const withOuts = all.filter(e => outsOf(e).length);
-    const sugg = withOuts.filter(e => outsOf(e).some(o => isPreg(o) || condomCd(o))).slice(0, 14);
+    // 🎲 bitiş ek sonuçları her Cumming olayında olduğundan sonucu olmayan bitişler de listelenir
+    const isFin = e => lowTag(catOfEv(e).label).trim() === 'cumming';
+    const withOuts = all.filter(e => outsOf(e).length || isFin(e));
+    const pregS = withOuts.filter(e => outsOf(e).some(o => isPreg(o) || condomCd(o))), finS = withOuts.filter(e => isFin(e) && !pregS.includes(e));
+    const sugg = [...pregS.slice(0, 7), ...finS.filter(e => cumZoneOf(e.title)).slice(0, 4), ...finS.filter(e => !cumZoneOf(e.title)).slice(0, 3)];
     view.innerHTML = `<div class="page-pad narrow monia">${pageHero('deneyler', '🎲', 'Sonuç deneyi', [`${withOuts.length} sonuçlu olay`, 'sohbete dokunmaz'], '', { back: '#/deneyler' })}${labNav('sonuc')}
       <div class="about card">Sohbette bir olay olunca 🎲 zar atılır ve sonuçlarından biri gelir. Burada bir olayın bütün sonuçlarını, hangi şartta açıldığını ve ne değiştirdiğini görürsün. 👶 hamilelik, 🎈 korunma sonucudur. Karakterin ve sohbetlerin değişmez.</div>
       <div class="card"><div class="field"><label>👤 Karakter</label><select id="ocCh"><option value="">(karaktersiz · 🌱 %50)</option>${chars().map(k => `<option value="${esc(k.id)}"${k.id === lab.ch ? ' selected' : ''}>${esc(k.name)}</option>`).join('')}</select></div>
         <div class="field"><input id="ocQ" type="search" placeholder="🔍 Olay adı… (ör. creampie)" value="${esc(lab.q)}"></div><div class="lab-chips" id="ocRes" style="margin-top:8px"></div></div>
       <div id="ocBody"></div></div>`;
-    const chip = e => `<button type="button" class="lab-chip${e.id === lab.ev ? ' on' : ''}" data-ocev="${e.id}">${e.emojis || catOfEv(e).icon || ''} ${esc(e.title)} <small>· ${outsOf(e).length} sonuç</small></button>`;
+    const chip = e => `<button type="button" class="lab-chip${e.id === lab.ev ? ' on' : ''}" data-ocev="${e.id}">${e.emojis || catOfEv(e).icon || ''} ${esc(e.title)} <small>· ${outsOf(e).length ? outsOf(e).length + ' sonuç' : '🎲 bitiş'}</small></button>`;
     const drawRes = () => {
       const q = memLow(lab.q.trim());
       const hits = q ? withOuts.filter(x => memLow(x.title).includes(q) || memLow(catOfEv(x).label).includes(q)).slice(0, 14) : sugg;
-      $('#ocRes').innerHTML = (q ? '' : '<small class="lab-hint">👶 / 🎈 sonucu olan olaylar:</small> ') + (hits.map(chip).join('') || '<small class="lab-hint">Sonucu olan olay bulunamadı.</small>');
+      $('#ocRes').innerHTML = (q ? '' : '<small class="lab-hint">👶 / 🎈 sonucu olan olaylar ve 🎲 bitişler:</small> ') + (hits.map(chip).join('') || '<small class="lab-hint">Sonucu olan olay bulunamadı.</small>');
     };
     const draw = () => {
       const e = evById(lab.ev), box = $('#ocBody');
@@ -26750,6 +26934,19 @@
       const cdEvs = [...new Set(raw.flatMap(o => (o.conds || []).filter(cd => cd.k === 'had' || cd.k === 'not').map(cd => cd.ev)))].map(evById).filter(Boolean);
       const fill = t => { try { return evText({ text: t }, sc, true); } catch (x) { return t; } };
       const fert = outs.find(o => o.fert != null);
+      // 🎈💊 bitiş korunma sonucu (sohbetteki finProtRoll): kondom = 📜 Condom oldu, hap / Nothing = karakterin izni
+      const okCh = t => !!ch && (ch.allows || []).includes(protEvId(t));
+      const fp = { condom: !!cid && done.has(cid), pill: okCh('control pill'), nothing: okCh('nothing'), hamile: !!(ch && (ch.fields || {}).hamile), baby: false };
+      const fpOn = finProtOn(raw, fp), fpRow = k => `${FIN_PROT[k].ic} ${FIN_PROT[k].label}`;
+      const fpCtx = { done: new Set([...done].filter(id => !CONDOM_T.some(t => protEvId(t) === id))), chars: ctx.chars };
+      const fpRes = k => k === 'pill' || k === 'pillok' ? resolveOutcome(raw.filter(o => !isPreg(o)), ctx) : k === 'tear' || k === 'slip' ? resolveOutcome(raw, fpCtx) : resolveOutcome(raw, ctx);
+      // 🎲 bitiş ek sonuçları (sohbetteki finExtraRoll, Cumming olaylarında): 👗 giyinik ve 💥 sert Mode deneyde elle açılır
+      const isCumL = lowTag(catOfEv(e).label).trim() === 'cumming';
+      const xsBase = { hamile: fp.hamile, milk: ch ? milkV(ch) : 0, dressed: !!lab.dressed && !!cumZoneOf(e.title), rough: !!lab.rough };
+      const fpRisk = pk => ['tear', 'slip', 'forgot'].includes(pk) || (pk === '' && fpOn && !fp.condom && !fp.pill);
+      const xsRoll = (pk, x) => isCumL ? finExtraRoll({ ...xsBase, risk: fpRisk(pk), preg: !!(x && x.out && isPreg(x.out)) }) : [];
+      const xRow = k => `${FIN_EXTRA[k].ic} ${FIN_EXTRA[k].label}`;
+      const xOn = k => k === 'scare' ? fpOn : finExtraOn(k, xsBase);
       const row = (o, i) => {
         const r0 = raw[i], blk = outcomeBlock(o, ctx), nx = o.next && evById(o.next);
         return `<div class="card" style="margin-top:8px${blk ? ';opacity:.55' : ''}"><b>${icOf(o)} %${+o.pct}${+o.pct !== +r0.pct ? ` <small>(yazılı %${+r0.pct})</small>` : ''}</b>${o.def ? ' <small>· ⭐ varsayılan</small>' : ''}
@@ -26762,24 +26959,28 @@
       const r = lab.roll && lab.roll.ev === e.id ? lab.roll : null;
       let res = '';
       const blkIc = why => /condom|kondom/i.test(why || '') ? '🎈' : '🛡️';
-      if (r && r.one) res = r.one.blocked ? `${blkIc(r.one.blocked.why)} Olmadı · ${esc(r.one.blocked.why)}` : `${icOf(r.one.out)} ${esc(fill(r.one.out.text || '(metinsiz)'))}${r.one.fallback ? ` <small>· ⭐ varsayılana düştü (${esc(r.one.fallback.why)})</small>` : ''}`;
-      if (r && r.dist) res = Object.entries(r.dist).sort((a, b) => b[1] - a[1]).map(([k, n]) => `<div>${k.startsWith('x') ? `${blkIc(k)} Olmadı · ${esc(k.slice(2))}` : k === '-' ? '∅ Sonuç yok (sohbette sonuç baloncuğu gelmez)' : `${icOf(raw[+k])} ${esc(String(fill(raw[+k].text || '(metinsiz)')).slice(0, 80))}`} — <b>%${(n / 10).toFixed(1)}</b></div>`).join('');
+      if (r && r.one) res = (r.fp ? `<div><b>${fpRow(r.fp)}</b></div>` : '') + (r.xs || []).map(k => `<div><b>${xRow(k)}</b></div>`).join('') + (r.one.blocked ? `${blkIc(r.one.blocked.why)} Olmadı · ${esc(r.one.blocked.why)}` : `${icOf(r.one.out)} ${esc(fill(r.one.out.text || '(metinsiz)'))}${r.one.fallback ? ` <small>· ⭐ varsayılana düştü (${esc(r.one.fallback.why)})</small>` : ''}`);
+      if (r && r.dist) res = Object.entries(r.fpDist || {}).map(([k, n]) => `<div><b>${fpRow(k)}</b> — <b>%${(n / 10).toFixed(1)}</b></div>`).join('') + Object.entries(r.xDist || {}).map(([k, n]) => `<div><b>${xRow(k)}</b> — <b>%${(n / 10).toFixed(1)}</b></div>`).join('') + Object.entries(r.dist).sort((a, b) => b[1] - a[1]).map(([k, n]) => `<div>${k.startsWith('x') ? `${blkIc(k)} Olmadı · ${esc(k.slice(2))}` : k === '-' ? '∅ Sonuç yok (sohbette sonuç baloncuğu gelmez)' : `${icOf(raw[+k])} ${esc(String(fill(raw[+k].text || '(metinsiz)')).slice(0, 80))}`} — <b>%${(n / 10).toFixed(1)}</b></div>`).join('');
       box.innerHTML = `<div class="card"><div class="sec-title" style="margin-top:0">${esc(e.emojis || '📜')} ${esc(e.title)} <small>· ${esc(catOfEv(e).label || '')}</small></div>
         ${fert ? `<p class="about">🌱 Doğurganlık %${fert.fert}${ch ? ` · ${CYCLE[cyclePhase(ch)].icon} ${CYCLE[cyclePhase(ch)].label} (döngü ${cycleDay(ch)}. gün)` : ''}: 👶 sonuçların yüzdesi buna göre ayarlandı.</p>` : ''}
         ${(e.onEffects || []).length ? `<p class="about">⚡ Olunca her zaman: ${e.onEffects.map(effLabel).map(esc).join(' · ')}</p>` : ''}
+        ${raw.some(isPreg) ? `<p class="about">🎈💊 Bitiş korunma: ${fp.hamile ? 'hamile, çıkmaz' : fp.condom ? `${fpRow('tear')} %${FIN_PROT.tear.pct} · ${fpRow('slip')} %${FIN_PROT.slip.pct} (korunma kalkar, 👶 açılır)` : fp.pill ? `${fpRow('pillok')} %${FIN_PROT.pillok.pct} (👶 gelmez) · ${fpRow('forgot')} %${FIN_PROT.forgot.pct} (👶 açılır)` : fpOn ? `${fpRow('pill')} %${FIN_PROT.pill.pct} (👶 bu bitişte gelmez)` : 'Nothing var, çıkmaz'}</p>` : ''}
+        ${isCumL ? `<p class="about">🎲 Bitiş ek sonuçları: ${Object.keys(FIN_EXTRA).map(k => `${xOn(k) ? '✅' : '❌'} ${xRow(k)} %${FIN_EXTRA[k].pct} (${FIN_EXTRA[k].when})`).join(' · ')}</p>
+          <div class="lab-chips"><button type="button" class="lab-chip${lab.dressed ? ' on' : ''}" data-ocx="dressed">👗 Giyinik</button><button type="button" class="lab-chip${lab.rough ? ' on' : ''}" data-ocx="rough">💥 Rough / Brutal Mode</button></div>` : ''}
         ${cdEvs.length ? `<div class="lab-chips">${cdEvs.map(x => `<button type="button" class="lab-chip${lab.done.includes(x.id) ? ' on' : ''}" data-ocdone="${x.id}">📜 ${esc(x.title)} ${lab.done.includes(x.id) ? 'oldu' : 'olmadı'}</button>`).join('')}</div>` : ''}
         <div class="lab-chips" style="margin-top:8px"><button type="button" class="btn primary sm" data-ocroll="1">🎲 Zar at</button><button type="button" class="btn ghost sm" data-ocroll="1000">🔁 1000 kez at</button></div>
         ${res ? `<div class="card" style="margin-top:8px">${res}</div>` : ''}</div>
         <div class="sec-title">${outs.length} sonuç</div>${outs.map(row).join('')}`;
       box.onclick = ev => {
-        const d = ev.target.closest('[data-ocdone]'), rb = ev.target.closest('[data-ocroll]');
+        const d = ev.target.closest('[data-ocdone]'), rb = ev.target.closest('[data-ocroll]'), xb = ev.target.closest('[data-ocx]');
+        if (xb) { lab[xb.dataset.ocx] = !lab[xb.dataset.ocx]; lab.roll = null; draw(); }
         if (d) { const id = d.dataset.ocdone; lab.done = lab.done.includes(id) ? lab.done.filter(x => x !== id) : [...lab.done, id]; lab.roll = null; draw(); }
         if (rb) {
-          if (rb.dataset.ocroll === '1') lab.roll = { ev: e.id, one: resolveOutcome(raw, ctx) || { blocked: { why: 'hiçbir sonuç çıkmadı' } } };
+          if (rb.dataset.ocroll === '1') { const pk = finProtRoll(raw, fp), x = fpRes(pk); lab.roll = { ev: e.id, fp: pk, xs: xsRoll(pk, x), one: x || { blocked: { why: 'hiçbir sonuç çıkmadı' } } }; }
           else {
-            const dist = {};
-            for (let i = 0; i < 1000; i++) { const x = resolveOutcome(raw, ctx), k = !x ? '-' : x.blocked ? 'x:' + x.blocked.why : String(outs.findIndex(o => o.text === x.out.text && +o.pct === +x.out.pct && o.next === x.out.next)); dist[k] = (dist[k] || 0) + 1; }
-            lab.roll = { ev: e.id, dist };
+            const dist = {}, fpDist = {}, xDist = {};
+            for (let i = 0; i < 1000; i++) { const pk = finProtRoll(raw, fp); if (pk) fpDist[pk] = (fpDist[pk] || 0) + 1; const x = fpRes(pk); xsRoll(pk, x).forEach(q => { xDist[q] = (xDist[q] || 0) + 1; }); const k =!x ? '-' : x.blocked ? 'x:' + x.blocked.why : String(outs.findIndex(o => o.text === x.out.text && +o.pct === +x.out.pct && o.next === x.out.next)); dist[k] = (dist[k] || 0) + 1; }
+            lab.roll = { ev: e.id, dist, fpDist, xDist };
           }
           draw();
         }
@@ -27786,6 +27987,8 @@
             <div class="theme-pick no-i18n" id="langPick">${[['en', '🇬🇧 English'], ['tr', '🇹🇷 Türkçe']].map(([k, l]) => `<button type="button" data-lang-set="${k}" class="${Stories.I18n.lang() === k ? 'on' : ''}">${l}</button>`).join('')}</div>
             <div class="sec-title">🌙 Tema</div>
             <div class="theme-pick" id="themePick">${[['light', '☀️ Açık'], ['dark', '🌙 Koyu'], ['auto', '📱 Sistem']].map(([k, l]) => `<button type="button" data-theme-set="${k}" class="${themePref() === k ? 'on' : ''}">${l}</button>`).join('')}</div>
+            <div class="sec-title">🎨 Renk Teması</div>
+            <div class="theme-pick" id="homeThemePick">${[['carmen', '🌈 Carmen'], ['fr', '🇫🇷 Français']].map(([k, l]) => `<button type="button" data-home-theme="${k}" class="${homeThemePref() === k ? 'on' : ''}">${l}</button>`).join('')}</div>
             <div class="sec-title">💬 Sohbet</div>
             <label class="flt-row"><span><b>💡 Lia önerileri</b> <small>sohbette sıradaki adımı ve tetiklenen olaylara göre öneriler</small></span><input type="checkbox" id="liaOn"${liaOn() ? ' checked' : ''}></label>
             <label class="flt-row"><span><b>🔔 Efekt sesleri</b> <small>eşleşme, orgazm, hamilelik ve doğumda kısa sesler</small></span><input type="checkbox" id="sfxOn"${sfxOn() ? ' checked' : ''}></label>
@@ -27999,6 +28202,7 @@
     // 🌐 dil değişince sayfa yeniden yüklenir (çevrilmiş metinler geri dönsün)
     $('#langPick').onclick = e => { const b = e.target.closest('[data-lang-set]'); if (!b || b.dataset.langSet === Stories.I18n.lang()) return; Stories.I18n.lang(b.dataset.langSet); location.reload(); };
     $('#themePick').onclick = e => { const b = e.target.closest('[data-theme-set]'); if (!b) return; themePref(b.dataset.themeSet); applyTheme(); $('#themePick').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); };
+    $('#homeThemePick').onclick = e => { const b = e.target.closest('[data-home-theme]'); if (!b) return; homeThemePref(b.dataset.homeTheme); applySkin(''); $('#homeThemePick').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); };
     $('#sysCats').onclick = () => catSheet();
     $('#sysPull').onclick = () => sysPull().then(r => { if (!r) notify('Yerel sunucu yok: yerel-duzenleme.bat ile aç', '⚠️'); }, () => notify('Sistem dosyası okunamadı', '⚠️'));
     $('#moAllOut').onclick = exportAllMonia;
