@@ -34,7 +34,7 @@ html[data-theme="dark"] .sy-hero, html[data-theme="dark"] .sy-go { background: #
 .theme-pick button { flex: 1; padding: 10px 8px; border-radius: 12px; background: var(--chip); color: var(--text); font-weight: 700; font-size: 14px; border: 2px solid transparent; }
 .theme-pick button.on { border-color: var(--purple); background: var(--purple-soft); }
 
-/* ---------- üretilen karşılıklar (501 bildirim) ---------- */
+/* ---------- üretilen karşılıklar (503 bildirim) ---------- */
 html[data-theme="dark"] .splash { background: #181c2e; }
 html[data-theme="dark"] .nav { background: rgba(24, 28, 46, 0.96); }
 html[data-theme="dark"] .badge-count { border: 2px solid #2c3150; }
@@ -318,6 +318,7 @@ html[data-theme="dark"] .bb-logo i:nth-child(4) { color: #e497b5; }
 html[data-theme="dark"] .bb-dym { color: #e59c9a; }
 html[data-theme="dark"] .hl-cm-vip { color: #e9ebf5; }
 html[data-theme="dark"] .hl-ad-cta { background: #181c2e; color: #e9ebf5; }
+html[data-theme="dark"] .hl-pitch-cta { background: #181c2e; color: #e9ebf5; }
 html[data-theme="dark"] .cm-tabs button.on { color: #e9ebf5; }
 html[data-theme="dark"] .cm-badge.vip { color: #e9ebf5; }
 html[data-theme="dark"] .cm-ct b i { color: #e9ebf5; }

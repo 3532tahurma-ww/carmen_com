@@ -1917,6 +1917,95 @@ summary.lab-h { cursor: pointer; }
 .hl-ad-tag { position: absolute; top: 8px; right: 12px; font-style: normal; font-size: 9.5px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; background: rgba(255, 255, 255, .22); }
 .hl-ad-cta { flex: none; align-self: flex-end; padding: 7px 12px; border-radius: 999px; font-size: 12.5px; font-weight: 900; background: #fff; color: #1d1d28; white-space: nowrap; }
 .hl-more { margin: 18px 10px 0; width: calc(100% - 20px); }
+/* 📣 kayan slogan şeridi */
+.hl-tick { margin: 0 0 12px; overflow: hidden; background: linear-gradient(90deg, #7a0c3b, #d81b60, #7a0c3b); box-shadow: 0 4px 14px rgba(122, 12, 59, .25); }
+.hl-tick-in { display: flex; width: max-content; align-items: center; gap: 14px; padding: 8px 0; animation: hlTick 70s linear infinite; }
+.hl-tick:hover .hl-tick-in { animation-play-state: paused; }
+.hl-tick a { color: #fff; font-size: 13px; font-weight: 800; text-decoration: none; white-space: nowrap; }
+.hl-tick a:hover { text-decoration: underline; }
+.hl-tick i { color: #ffd1e3; font-style: normal; font-size: 11px; }
+@keyframes hlTick { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .hl-tick { overflow-x: auto; } .hl-tick-in { animation: none; } }
+/* 🌙 hero slogan + gecenin kızı */
+.hl-hero { margin: 0 10px 16px; padding: 18px 16px 14px; border-radius: 22px; color: #fff; background: radial-gradient(circle at 85% 0, rgba(255, 64, 129, .55), transparent 55%), linear-gradient(135deg, #1a0510, #4a0d2a 60%, #880e4f);
+  box-shadow: 0 14px 30px rgba(74, 13, 42, .3); animation: hlIn .5s both; }
+.hl-hero > small { font-size: 11px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; color: #ff8fb8; }
+.hl-hero h2 { margin: 6px 0 4px; font-size: clamp(24px, 6.5vw, 34px); line-height: 1.1; font-weight: 900; }
+.hl-hero p { margin: 0 0 14px; font-size: 13.5px; opacity: .85; }
+.hl-night { display: flex; align-items: center; gap: 12px; padding: 8px; border-radius: 16px; color: #fff; text-decoration: none; background: rgba(255, 255, 255, .1); border: 1px solid rgba(255, 255, 255, .16); }
+.hl-night:hover { background: rgba(255, 255, 255, .16); }
+.hl-night-pic { position: relative; flex: none; width: 72px; height: 90px; border-radius: 12px; overflow: hidden; background: var(--mtbg, #4a0d2a); box-shadow: 0 0 0 2px #ff4081; }
+.hl-night-pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
+.hl-night-pic .mt-ini { display: grid; place-items: center; height: 100%; font-size: 30px; font-weight: 900; }
+.hl-night-t { flex: 1; min-width: 0; display: grid; gap: 2px; }
+.hl-night-t small { font-size: 11px; font-weight: 900; color: #ffd54f; }
+.hl-night-t b { font-size: 17px; font-weight: 900; }
+.hl-night-t i { font-size: 12.5px; opacity: .9; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hl-night-cd { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 4px; font-size: 11.5px; }
+.hl-night-cd b { font-size: 13px; font-variant-numeric: tabular-nums; padding: 2px 7px; border-radius: 6px; background: #ff4081; }
+.hl-night-cd span { opacity: .8; }
+.hl-night .hl-go { flex: none; font-size: 26px; opacity: .7; }
+/* 🪧 ilan vitrini (masonry) */
+.hl-vt-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 120px; grid-auto-flow: dense; gap: 10px; padding: 0 10px; }
+@media (min-width: 640px) { .hl-vt-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 140px; } }
+.hl-vt { position: relative; grid-row: span 2; border-radius: 18px; overflow: hidden; color: #fff; text-decoration: none; background: var(--mtbg, #4a0d2a);
+  box-shadow: 0 10px 24px rgba(20, 5, 12, .18), inset 0 0 0 2px var(--vt); animation: hlIn .5s calc(var(--i) * 60ms) both; transition: transform .25s; }
+.hl-vt.tall { grid-row: span 3; }
+.hl-vt:hover { transform: translateY(-3px); }
+.hl-vt img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
+.hl-vt .mt-ini { position: absolute; inset: 0; display: grid; place-items: center; font-size: 40px; font-weight: 900; }
+.hl-vt::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, .25), rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, .85)); }
+.hl-vt-site, .hl-vt-tag { position: absolute; z-index: 1; font-style: normal; font-size: 10px; font-weight: 900; padding: 3px 7px; border-radius: 6px; }
+.hl-vt-site { top: 8px; left: 8px; background: var(--vt); color: #fff; }
+.hl-vt-tag { top: 8px; right: 8px; background: rgba(0, 0, 0, .55); color: #ffd54f; }
+.hl-vt .hl-vt-b { font-weight: 800; opacity: 1; }
+/* 🔞 akış arasındaki slogan ilanları */
+.home-land .hl-brk { margin-top: 18px; margin-bottom: 0; background: radial-gradient(circle at 85% 0, rgba(255, 255, 255, .16), transparent 55%), var(--hb); }
+/* 🖼️ ilan fotoğrafları arasında geçiş */
+.home-land img.hl-fade { opacity: 0; transition: opacity 1.2s ease; }
+.home-land img.hl-fade.on { opacity: 1; }
+/* 🔥🐝🫦 slogan kartı şeklindeki Tinder / Bumble / Fans */
+.home-land .hl-mh { margin-top: 0; margin-bottom: 16px; }
+.hl-mh > small i, .hl-mh .hl-night-t small i { font-style: normal; }
+.hl-mh .hl-night-t i { font-style: normal; }
+.hl-mh-tr { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.hl-mh-tr em { font-style: normal; font-size: 10.5px; font-weight: 800; padding: 2px 7px; border-radius: 999px; background: rgba(255, 255, 255, .18); }
+.hl-mh .fn-new { font-style: normal; }
+/* 🗣️ kendini tanıtan ilan */
+.hl-pitch { display: grid; grid-template-columns: 42% 1fr; min-height: 240px; margin: 18px 10px 0; border-radius: 22px; overflow: hidden; color: #fff; text-decoration: none; background: var(--pg);
+  box-shadow: 0 14px 30px rgba(74, 13, 42, .28); animation: hlIn .5s both; transition: transform .25s; }
+.hl-pitch:hover { transform: translateY(-3px); }
+.hl-pitch-pic { position: relative; background: var(--mtbg, #4a0d2a); }
+.hl-pitch-pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
+.hl-pitch-pic .mt-ini { position: absolute; inset: 0; display: grid; place-items: center; font-size: 44px; font-weight: 900; }
+.hl-pitch-t { display: flex; flex-direction: column; gap: 6px; min-width: 0; padding: 14px 14px 14px 12px; }
+.hl-pitch-t small { font-size: 10.5px; font-weight: 900; letter-spacing: .8px; text-transform: uppercase; opacity: .75; }
+.hl-pitch-hi { font-size: 15px; font-weight: 900; color: #ffd54f; }
+.hl-pitch-q { position: relative; padding: 10px 12px; border-radius: 4px 16px 16px 16px; font-size: 17px; font-weight: 900; line-height: 1.2; background: rgba(255, 255, 255, .14); }
+.hl-pitch-p { font-size: 12.5px; opacity: .88; }
+.hl-pitch-m { font-size: 11px; opacity: .8; }
+.hl-pitch-cta { margin-top: auto; align-self: flex-start; padding: 8px 14px; border-radius: 999px; font-size: 12.5px; font-weight: 900; background: #fff; color: #1d1d28; }
+@media (min-width: 768px) { .hl-pitch { max-width: 940px; margin-left: auto; margin-right: auto; } }
+/* 📢 sponsorlu kız kartı (tanıtım kartının düzeni; vitrinde tam satır) */
+.hl-sp { position: relative; }
+.hl-sp .hl-pitch-t { padding-top: 30px; }
+.hl-sp .hl-pitch-t small { opacity: .95; text-transform: none; letter-spacing: 0; font-size: 12px; }
+.hl-vt-grid .hl-sp .hl-pitch-q { font-size: 15px; }
+.hl-vt-grid .hl-sp { grid-column: 1 / -1; grid-row: span 2; margin: 0; min-height: 0; max-width: none; animation-delay: calc(var(--i, 0) * 60ms); }
+/* 🧱 ana sayfadaki tüm kart ızgaraları düzensiz (masonry): 4'lü blokta 1. ve 3. kart uzun, sütunlar eşit biter */
+.home-land .hl-cm-grid { grid-auto-rows: 120px; grid-auto-flow: dense; }
+.home-land .hl-cm-grid > .hl-cm { aspect-ratio: auto; grid-row: span 2; }
+.home-land .hl-cm-grid > .hl-cm:nth-child(4n+1), .home-land .hl-cm-grid > .hl-cm:nth-child(4n+3) { grid-row: span 3; }
+.home-land .hl-cm-vipr { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 120px; }
+.home-land .hl-cm-vipr .hl-cm { aspect-ratio: auto; grid-row: span 2; }
+.home-land .hl-cm-vipr .hl-cm:first-child { grid-row: span 4; }
+@media (min-width: 640px) {
+  .home-land .hl-cm-grid, .home-land .hl-cm-vipr { grid-auto-rows: 140px; }
+  .home-land .hl-cm-vipr { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .home-land .hl-cm-vipr .hl-cm:first-child { grid-row: span 2; }
+  .home-land .hl-cm-vipr .hl-cm:nth-child(2) { grid-row: span 3; }
+}
+@media (min-width: 768px) { .hl-hero, .hl-vt-grid { max-width: 940px; margin-left: auto; margin-right: auto; } .hl-hero { box-sizing: border-box; width: calc(100% - 20px); } }
 @media (min-width: 768px) { .hl-news, .hl-sec, .hl-cm-row, .hl-cm-grid, .hl-ad, .hl-more, .hl-conts, .hl-quick { max-width: 940px; margin-left: auto; margin-right: auto; } .hl-more { width: 100%; } }
 /* 🇫🇷 Français renk teması (Ben → Ayarlar → 🎨 Renk Teması): siteler dışında <html data-skin="fr">, app.js applySkin */
 html[data-skin="fr"] { --pink: #d0202e; --pink-soft: #fce9ea; --purple: #14307a; --purple-2: #2a4aa8; --purple-soft: #e6ebf7; --green: #1f6f5c; --teal: #1f6f5c;
@@ -1962,6 +2051,23 @@ html[data-theme="dark"] .home-land.hl-fr { --fr-navy: #aec3ff; --fr-red: #ef4a55
 .home-land.hl-fr .hl-meet, .home-land.hl-fr .hl-ad, .home-land.hl-fr .hl-card { border-radius: 6px; }
 .home-land.hl-fr .hl-ad-cta { border-radius: 4px; }
 .home-land.hl-fr .hl-more { border-radius: 6px; background: var(--fr-navy); color: var(--fr-paper); border: 0; }
+.home-land.hl-fr .hl-tick { background: linear-gradient(90deg, #14307a 0 33.3%, #1a2340 33.3% 66.6%, #b3141f 66.6%); box-shadow: inset 0 -2px 0 #b08d3f; }
+.home-land.hl-fr .hl-tick a { font-family: var(--fr-serif); font-size: 14px; font-weight: 700; letter-spacing: .3px; }
+.home-land.hl-fr .hl-tick i { color: #d6b566; }
+.home-land.hl-fr .hl-hero { border-radius: 6px; background: radial-gradient(circle at 90% 0, rgba(208, 32, 46, .45), transparent 55%), linear-gradient(135deg, #0b1a48, #14307a 65%, #1f3f96); box-shadow: 0 10px 24px rgba(20, 48, 122, .25), inset 0 -3px 0 #b08d3f; }
+.home-land.hl-fr .hl-hero > small { color: #d6b566; letter-spacing: 3px; }
+.home-land.hl-fr .hl-hero h2 { font-family: var(--fr-serif); font-weight: 700; font-style: italic; }
+.home-land.hl-fr .hl-night, .home-land.hl-fr .hl-night-pic { border-radius: 4px; }
+.home-land.hl-fr .hl-night-pic { box-shadow: 0 0 0 2px #d6b566; }
+.home-land.hl-fr .hl-night-t b { font-family: var(--fr-serif); font-size: 19px; }
+.home-land.hl-fr .hl-night-cd b { border-radius: 3px; background: #d0202e; }
+.home-land.hl-fr .hl-vt { border-radius: 6px; box-shadow: 0 6px 16px rgba(20, 48, 122, .16), inset 0 0 0 2px var(--vt); }
+.home-land.hl-fr .hl-vt-site, .home-land.hl-fr .hl-vt-tag { border-radius: 3px; }
+.home-land.hl-fr .hl-vt-tag { color: #d6b566; }
+.home-land.hl-fr .hl-pitch { border-radius: 6px; background: linear-gradient(135deg, #0b1a48, #14307a 65%, #1f3f96); box-shadow: 0 10px 24px rgba(20, 48, 122, .25), inset 0 -3px 0 #b08d3f; }
+.home-land.hl-fr .hl-pitch-hi { color: #d6b566; font-family: var(--fr-serif); font-size: 18px; }
+.home-land.hl-fr .hl-pitch-q { font-family: var(--fr-serif); font-style: italic; font-size: 19px; border-radius: 2px 10px 10px 10px; }
+.home-land.hl-fr .hl-pitch-cta { border-radius: 4px; }
 /* ⏯️ kaldığın yerden */
 .hl-conts { display: flex; gap: 10px; overflow-x: auto; padding: 0 10px 14px; scroll-snap-type: x mandatory; scrollbar-width: none; }
 .hl-conts::-webkit-scrollbar { display: none; }
