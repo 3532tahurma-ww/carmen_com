@@ -227,5 +227,21 @@ Stories.World = (() => {
   const randCountry = () => pickW(countries.filter(c => c.cities.length));
   const randCity = c => { c = c || randCountry(); return any(c.pick && c.pick.length ? c.pick : c.cities); };
   const randName = (c, g) => { const l = c && (c.names[g] || c.names['♀']); return l && l.length ? any(l) : ''; };
-  return { REGIONS, countries, countryOf, regionOf, randCountry, randCity, randName };
+  /* 💖 memlekete göre sevdikleri (bölge anahtarı → t: sevdiği olay etiketleri, pl: sevdiği mekân id'leri (places.js), no: pek sevmediği etiketler);
+   * ⚡ Kısayollar (quickSuggest) ve 💭 onun fikri (ideaPool) puanlar, profilde 💖 Sever satırı. İkon: TAG_IC */
+  const LIKES = {
+    tr: { t: ['masaj', 'mutfak', 'balkon', 'merdiven', 'aldatma', 'küvet'], pl: ['mutfak', 'balkon', 'masaj-salonu', 'yazlik', 'vapur'], no: ['sokak', 'kamera'] },
+    latin: { t: ['plaj', 'bar', 'havuz', 'gür', 'sokak', 'araba'], pl: ['sahil', 'bar', 'dans', 'konser', 'tatil'], no: ['kitap', 'kilise'] },
+    akdeniz: { t: ['mutfak', 'restoran', 'balkon', 'doğa', 'plaj', 'çatı'], pl: ['restoran', 'mutfak', 'teras', 'yazlik', 'sahil'], no: ['ofis'] },
+    fransiz: { t: ['restoran', 'otel', 'çatı', 'kıyafet', 'küvet', 'sinema'], pl: ['restoran', 'otel', 'cati', 'kafe', 'sergi'], no: ['spor', 'kamp'] },
+    slav: { t: ['sıkıştır', 'engel', 'sauna', 'spor', 'bull', 'gür'], pl: ['dag-evi', 'spor', 'garaj', 'bar'], no: ['lunapark'] },
+    kuzey: { t: ['sauna', 'doğa', 'kamp', 'duş', 'üçlü', 'havuz'], pl: ['dag-evi', 'kamp', 'bahce', 'piknik'], no: ['aldatma'] },
+    anglo: { t: ['spor', 'ofis', 'okul', 'kamera', 'araba', 'bar'], pl: ['spor', 'ofis', 'kampus', 'ev-partisi', 'araba'], no: ['kilise'] },
+    asya: { t: ['okul', 'kıyafet', 'kitap', 'lunapark', 'duş', 'küvet'], pl: ['kampus', 'kitapci', 'lunapark', 'kostum-partisi', 'kafe'], no: ['sokak', 'bull'] },
+    arap: { t: ['otel', 'masaj', 'küvet', 'hamile', 'süt', 'aldatma'], pl: ['otel', 'masaj-salonu', 'tatil', 'yazlik'], no: ['plaj', 'sokak', 'kamera'] }
+  };
+  const TAG_IC = { masaj: '💆', mutfak: '🍳', balkon: '🌇', merdiven: '🪜', aldatma: '🐍', küvet: '🛁', sokak: '🌃', kamera: '📹', plaj: '🏖️', bar: '🍸', havuz: '🏊',
+    gür: '🌊', araba: '🚗', kitap: '📚', kilise: '⛪', restoran: '🍽️', doğa: '🌳', çatı: '🏙️', ofis: '🏢', otel: '🏨', kıyafet: '👗', sinema: '🎬', spor: '🏋️',
+    kamp: '⛺', sıkıştır: '🗜️', engel: '🛑', sauna: '🧖', bull: '🐂', lunapark: '🎡', duş: '🚿', üçlü: '👯', okul: '🎓', hamile: '🤰', süt: '🥛' };
+  return { REGIONS, LIKES, TAG_IC, countries, countryOf, regionOf, randCountry, randCity, randName };
 })();

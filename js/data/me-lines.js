@@ -9229,3 +9229,103 @@ Object.assign(Stories.ME_EV_LINES, {
   'Both Outfits Soaked': ['İkinizin kıyafeti de ıslandı {o} 👗🌊', 'Kumaştan sızıyor 😮‍💨', 'Lekeye bakıp gülüyorsunuz 😂', 'Çıkarmadan bitti 😈', 'Bu kıyafetleri saklayın 😏', 'İkiniz de berbat görünüyorsunuz, çok güzel {o} 😍'],
   'Who Got More': ['Kavga etmeyin, ikinize de bol geldi {o} 😂', 'Hakem benim: berabere 📏', 'Öpüşün de barışın 💋', 'Bir dahakine ölçeriz 😏', 'Sen biraz daha fazla aldın galiba {o} 😈', 'İkiniz de kazandınız 🥰']
 });
+
+/* 🫂🌊🍑💦 Pee Rubbing / Heavy Pee / Anal Pee / Heavy Anal Pee: hepsinde sen işersin, onun isteğiyle */
+Object.assign(Stories.ME_EV_LINES, {
+  'Thigh Gap Pee': ['Uyluklarının arasındayım {o}, sıkı tut 😈', 'Bırakıyorum… ahh 😮‍💨', 'Sürtünmeyi bırakmadan işiyorum 🥵', 'Dizlerine kadar akıyor 💦', 'Bacakların kaygan kaygan 😩', 'Sen istedin, son damlaya kadar 😏', 'Titriyorsun, belini tuttum 🔥', 'Durmamı istersen söyle yeter 🤍'],
+  'Tit Rub Pee': ['Göğüslerinin arasındayım {o} 🍈', 'Bırakıyorum, göğüslerine akıyor ahh 😮‍💨', 'Kaymaya devam ediyorum 🥵', 'Göğüslerin ıslak ıslak parlıyor 😍', 'Göbeğine kadar süzüldü 💦', 'Sıkı bastır, durmuyorum 😈', 'Sen istedin, bakışını kaçırma 😏', 'Durmamı istersen söyle 🤍'],
+  'Slick Slide': ['Önce kalçana işiyorum {o} 🍑', 'Kalçan sırılsıklam oldu 😮‍💨', 'Şimdi yanaklarının arasında kayıyorum 🥵', 'Ne kadar kaygan offf 😩', 'Kalçanı sıkınca daha güzel 😈', 'Bacaklarından aşağı süzülüyor 💦', 'Ritmimi bozmuyorum 🔥', 'Sonra seni ben yıkarım 🚿'],
+  'Belly Slide Pee': ['Karnına bırakıyorum {o} 😈', 'Göbeğinde toplandı 😮‍💨', 'Şimdi üstüne yaslanıyorum 🥵', 'Karın karına kayıyoruz offf 😩', 'Islaklık ikimize yayıldı 💦', 'Sarıl bana, bırakmıyorum 🤍', 'Tenlerimiz yapışıyor 🔥', 'Duşa ikimiz birden {o} 🚿'],
+  'Panty Rub Pee': ['Külotunun üstünde sürtünüyorum {o} 🩲', 'Bırakıyorum, kumaş ıslandı ahh 😮‍💨', 'Dantel tenine yapıştı 🥵', 'Her harekette daha çok yapışıyor 😈', 'İçine kadar geçti 💦', 'Sen istedin, çıkarmadan 😏', 'Bu külot artık benim {o} 🔥', 'Durmamı istersen söyle 🤍'],
+  'Floor Grind Pee': ['Fayansta yüzüstüsün, üstündeyim {o} 🧽', 'Sırtına bırakıyorum ahh 😮‍💨', 'Kalçana kadar süzülüyor 🍑', 'Islak ıslak kayıyoruz 🥵', 'İkimiz de yerde kayıyoruz 😂', 'Kalçanı kaldırdın, deli ediyorsun 😈', 'Sen istedin, durmuyorum 😏', 'Sonra kucağıma alırım seni 🚿'],
+  'Back Slide': ['Sırtına bırakıyorum {o} 💛', 'Belinin çukurunda toplandı 😮‍💨', 'Şimdi üstünde yavaşça kayıyorum 🥵', 'Göğsüm sırtında kayıyor offf 😩', 'Enseni öpüyorum 🤍', 'Tenin parlıyor 😍', 'Kalçana kadar indi 💦', 'Sonra seni sabunlarım 🚿'],
+  'Feet Rub Pee': ['Ayaklarının arasındayım {o} 🦶', 'Bırakıyorum, tabanların ıslandı 😮‍💨', 'Parmak aralarına doldu 💦', 'Ayaklarını oynatmaya devam et 😈', 'Kaygan kaygan daha güzel 🥵', 'Bileklerine kadar aktı 😩', 'Sen istedin, gülme 😏', 'Ayaklarını ben yıkarım 🚿'],
+  'Armpit Rub Pee': ['Kolunun altındayım {o} 💪', 'Bırakıyorum, yanından akıyor 😮‍💨', 'Gıdıklandın, gülüyorsun 😂', 'Kaburgalarına kadar süzüldü 💦', 'Kolunu sıkı bastır 😈', 'Kaydıkça daha güzel 🥵', 'Göğsüne kadar ıslandın 😩', 'Durmamı istersen söyle 🤍'],
+  'Spoon Rub Pee': ['Arkandan sarıldım, kalçana sürtünüyorum {o} 🥄', 'Bırakıyorum… ahh 😮‍💨', 'Aramızdan süzülüyor 💦', 'Çarşaf ıslanacak, umurumda değil 😏', 'Kalçanı bana bastırıyorsun 🥵', 'Kulağına fısıldıyorum 🤍', 'Uyluklarının arasına aktı 😩', 'Böyle sarılı kalalım 🛏️'],
+  'Held All Day': ['Bütün gün tuttum {o}, şimdi bırakıyorum ⏳', 'Ahh… bitmiyor 😮‍💨', 'Ne kadar çok 😩', 'Önünde göl oldu 🌊', 'Hâlâ geliyor 😂', 'Rahatlamamı izliyorsun 🥵', 'Sen istedin, hepsini alıyorsun 😈', 'Durmamı istersen söyle 🤍'],
+  'Endless Stream': ['Bitti sandın değil mi {o} ♾️', 'Devam ediyorum 😏', 'Gülüyorsun, ben de 😂', 'Hâlâ sıcacık geliyor 😮‍💨', 'Her yerin sırılsıklam 💦', 'Bu ne kadar çok, biliyorum 😩', 'Biraz daha var 😈', 'Şimdi duşa 🚿'],
+  'Flooded Floor': ['Önümde diz çöktün {o} 🧎‍♀️', 'Bırakıyorum, göğüslerine akıyor 😮‍💨', 'Dizlerinin etrafı göl oldu 🌊', 'Gözlerin bende 🥵', 'Fayans yüzme havuzu oldu 😂', 'Sen istedin, durmuyorum 😈', 'Ne kadar çok offf 😩', 'Seni ben kaldırırım 🤍'],
+  'Hair to Toes': ['Saçından başlıyorum {o} 💇‍♀️', 'Yüzünden göğüslerine akıyor 😮‍💨', 'Karnına, bacaklarına 💦', 'Ayak parmaklarına kadar 🦶', 'Hiçbir yerin kuru kalmadı 😩', 'Dön, sırtını da 😈', 'Sen istedin, her yerine 😏', 'Seni baştan yıkarım 🚿'],
+  'Bathtub Fill': ['Küvette uzandın {o} 🛁', 'Bırakıyorum, altında birikiyor 😮‍💨', 'Küvet dolmaya başladı 🌊', 'Kalçan yüzüyor 😂', 'Göğüslerine de 💦', 'Ne kadar çok offf 😩', 'Sen istedin, durmuyorum 😈', 'Şimdi suyu açıyorum 🚿'],
+  'Soaked Sheets': ['Yatakta, üstüne {o} 🛏️', 'Çarşaf sırılsıklam oldu 😮‍💨', 'Yorgana kadar geçti 🌊', 'Islak çarşafta kıvranıyorsun 🥵', 'Bu yatakta uyuyamayız 😂', 'Sen istedin, hepsini 😈', 'Ne kadar çok offf 😩', 'Çarşafları ben değiştiririm 🤍'],
+  'Big Gulp Fail': ['Ağzını açtın {o} 😳', 'Bırakıyorum… yetişemiyorsun 😮‍💨', 'Çenenden akıyor 💦', 'Göğüslerine döküldü 🥵', 'Gülüyorsun, ben de 😂', 'Bir daha dene 😈', 'Sen istedin, çok fazla geldi 😩', 'Yüzünü ben silerim 🤍'],
+  'Pressure Burst': ['Tutamıyorum {o}… 💥', 'Birden fışkırdı 😮‍💨', 'Ne kadar sert 😩', 'Şaşkınlıkla gülüyorsun 😂', 'Her yere sıçradı 💦', 'Sen istedin zaten 😈', 'Rahatlıyorum ahh 🥵', 'İkimiz de duşa 🚿'],
+  'Full Coverage': ['Önce göğüslerine {o} 🎯', 'Şimdi karnına 😮‍💨', 'Dön… kalçana 🍑', 'Hiçbir yerini atlamıyorum 😈', 'Yavaşça dönmeye devam et 🥵', 'Her yerin sıcacık 💦', 'Sen istedin, hepsini 😏', 'Aynı sırayla sabunlarım 🚿'],
+  'Overflowing Panties': ['Külotun üstünde {o} 🩲', 'Bırakıyorum, hemen doydu 😮‍💨', 'Kenarlarından taşıyor 🌊', 'Bacaklarından aşağı akıyor 💦', 'Dantel tenine yapıştı 🥵', 'Sen istedin, bakıyorsun bana 😏', 'Ayaklarına kadar indi 😩', 'Şimdi onu ben çıkarırım 😈'],
+  'Deep Release': ['İçindeyim {o}, bırakıyorum 🍑', 'Ahh… derinden 😮‍💨', 'Doluyorsun, hissediyorum 🥵', 'Kıpırdama 😈', 'Sen istedin, son damlaya kadar 😏', 'Titriyorsun, tuttum seni 🔥', 'Karnında hissediyor musun 😩', 'Durmamı istersen söyle 🤍'],
+  'Doggy Pee': ['Dört ayak üstündesin {o} 🐕', 'İçinde bırakıyorum ahh 😮‍💨', 'Belini tuttum, kıpırdama 🔥', 'Derinden doluyorsun 🥵', 'Kalçanı bana bastırıyorsun 😈', 'Dizlerin titriyor 😩', 'Şimdi yavaşça çıkıyorum… kalçandan süzülüyor 💦', 'Durmamı istersen söyle 🤍'],
+  'Prone Bone Pee': ['Yüzüstüsün, üstündeyim {o} 🛏️', 'İçinde bırakıyorum ahh 😮‍💨', 'Yastığa gömüldün 🥵', 'Çarşafa sızıyor 💦', 'Ağırlığım üstünde, kıpırdama 😈', 'Kalçanı biraz kaldırdın 🍑', 'Sen istedin, hepsini 😏', 'Çarşafı sonra değiştiririz 😂'],
+  'Spoon Fill': ['Arkandan sarıldım {o} 🥄', 'İçinde bırakıyorum… ahh 😮‍💨', 'Kollarım belinde 🤍', 'Doluyorsun, hissediyorum 🥵', 'Enseni öpüyorum 😍', 'Uyluklarından sızıyor 💦', 'Sen istedin, fısıldıyorum 😏', 'Böyle sarılı kalalım 🥰'],
+  'Standing Fill': ['Duvara yaslandın {o} 🧍‍♀️', 'İçinde bırakıyorum ahh 😮‍💨', 'Belini sıkı tuttum 🔥', 'Bacaklarından aşağı akıyor 💦', 'Dizlerin titriyor 😩', 'Ayaklarına kadar indi 🥵', 'Sen istedin, durmuyorum 😈', 'Seni ben oturturum 🤍'],
+  'Shower Anal Pee': ['Suyun altında, arkandayım {o} 🚿', 'İçinde bırakıyorum ahh 😮‍💨', 'Fayansa tutunuyorsun 🥵', 'Su hepsini götürüyor 💦', 'Belini büktün 😈', 'Buhar ikimizi sarıyor 😩', 'Sen istedin, son damlaya kadar 😏', 'Şimdi seni sabunlarım 🧼'],
+  'Tub Kneel Pee': ['Küvette diz çöktün {o} 🛁', 'İçinde bırakıyorum ahh 😮‍💨', 'Kenarı tutuyorsun 🥵', 'Doluyorsun 😈', 'Dizlerin kaydı, tuttum seni 🤍', 'Çıkınca küvete boşalacak 💦', 'Sen istedin, hepsini 😏', 'Sonra suyu açarım 🚿'],
+  'Hold It In': ['İçinde bırakıyorum {o} 🤏', 'Ahh… doldun 😮‍💨', 'Şimdi yavaşça çıkıyorum, tut 😈', 'Sıkıyorsun, görüyorum 🥵', 'Ne kadar dayanacaksın 😏', 'Güldürmeyeceğim, söz 😂', 'Az kaldı değil mi 😩', 'Tuvalete koş {o} 🚽'],
+  'Pull Out Pee': ['İçinde başlıyorum {o} 🍑', 'Ahh… şimdi çıkıyorum 😮‍💨', 'Kalçana devam ediyorum 💦', 'Sırtına 🥵', 'Belinin çukurunda toplandı 😈', 'İçin de dışın da ıslak 😩', 'Sen istedin, kıpırdama 😏', 'Seni duşa taşıyorum 🚿'],
+  'Reverse Cowgirl Pee': ['Sırtın bana dönük, üstümdesin {o} 🔄', 'İçinde bırakıyorum ahh 😮‍💨', 'Kalçanı tuttum 🍑', 'Üstüme taşıyor 💦', 'Kalçanı yavaşça oynatıyorsun 🥵', 'Bacakların titriyor 😩', 'Sen istedin 😈', 'İkimiz de sırılsıklamız 😂'],
+  'Toilet Seat Fill': ['Kucağımdasın {o} 🚽', 'İçinde bırakıyorum ahh 😮‍💨', 'Tam yerindeyiz 😂', 'Boynuma sarıldın 🤍', 'Doluyorsun 🥵', 'Kıpırdama 😈', 'Sen istedin, utanma 😏', 'Yavaşça kalk {o} 💦'],
+  'Held All Day Fill': ['Bütün gün tuttum {o}, hepsi içine ⏳', 'Ahh… bitmiyor 😮‍💨', 'Ne kadar çok 😩', 'Karnın doluyor 🥵', 'Hâlâ geliyor 😂', 'Taşmaya başladı 🌊', 'Sen istedin, hepsini alıyorsun 😈', 'Çıkarsam her şey dökülecek 💦'],
+  'Bloated Belly': ['Elini karnına koy {o} 🫃', 'Şişti, hissediyor musun 😮‍💨', 'Hâlâ bırakıyorum 😩', 'Karnın gerildi 🥵', 'Kıpırdarsan taşacak 🌊', 'Sen istedin, devam 😈', 'Ne kadar çok offf 💦', 'Çıkmadan bekleyelim biraz 🤍'],
+  'Overflowing Fill': ['Bitmeden taşıyor {o} 🌊', 'Uyluklarından akıyor 😮‍💨', 'Daha çıkmadım bile 😂', 'Kenarlardan sızıyor 💦', 'Kalçanı sıkıyorsun ama yetmiyor 🥵', 'Dizlerine kadar indi 😩', 'Sen istedin, durmuyorum 😈', 'Yeri ben silerim 🤍'],
+  'Endless Fill': ['Bitti sandın {o} ♾️', 'Devam ediyorum 😏', 'Daha mı var diye gülüyorsun 😂', 'Hâlâ doluyorsun 😮‍💨', 'Karnın dolu dolu 🥵', 'Taşmaya başladı 💦', 'Sen istedin, şikâyet yok 😈', 'Tamam, son damla 🤍'],
+  'Gush Out': ['Çıkıyorum {o}… 💥', 'Hepsi birden boşaldı 😮‍💨', 'Tutamadın 🙈', 'Uyluklarından şelale gibi 🌊', 'Ne kadar çok 😂', 'Yer sırılsıklam 💦', 'Bacakların titriyor 😩', 'Seni ben yıkarım 🚿'],
+  'Puddle Doggy': ['Dört ayak üstündesin {o} 🐕', 'İçinde bırakıyorum ahh 😮‍💨', 'Şimdi çıkıyorum… 😈', 'Dizlerinin arası göl oldu 🌊', 'Ne kadar çok 😂', 'Ellerin kayıyor 🥵', 'Sen istedin, iyice bakıyorum 😏', 'Seni ben taşırım 🚿'],
+  'Soaked Bed': ['Yüzüstüsün, içinde bırakıyorum {o} 🛏️', 'Ahh… bitmiyor 😮‍💨', 'Çarşaf sırılsıklam 🌊', 'Yatağa kadar geçti 😩', 'Yastığa gömüldün 🥵', 'Hâlâ akıyor 💦', 'Sen istedin 😈', 'Bu gece başka yerde yatarız 😂'],
+  'Tub Overflow': ['Küvetteyiz {o}, içinde bırakıyorum 🛁', 'Ahh… doldun 😮‍💨', 'Şimdi çıkıyorum 😈', 'Küvetin dibi doldu 🌊', 'Ne kadar çok 😂', 'Dizlerin, ayakların ıslak 🥵', 'Sen istedin 😏', 'Suyu açıyorum 🚿'],
+  'Hold It Challenge': ['İçinde bıraktım {o}, şimdi tut 🤏', 'Çıktım… tutuyorsun 😈', 'Saniye sayıyorum 😏', 'Karnın dolu, sıkıyorsun 🥵', 'Güldürmeyeceğim 😂', 'Az kaldı 😩', 'Tutamadın… hepsi geliyor 🌊', 'Ödülünü ben veririm {o} 🤍'],
+  'Standing Flood': ['Duvara yaslandın {o} 🧍‍♀️', 'İçinde bırakıyorum ahh 😮‍💨', 'Bacaklarından akıyor 🌊', 'Ayaklarında birikiyor 💦', 'Dizlerin titriyor, tuttum 🔥', 'Ne kadar çok 😂', 'Sen istedin 😈', 'Seni kucağıma alıyorum 🚿'],
+  'Pull Out Spray': ['İçinde başlıyorum {o} 🍑', 'Ahh… şimdi çıkıyorum 😮‍💨', 'Kalçana, sırtına 💦', 'Saçına kadar 😈', 'Bitmiyor 😩', 'Ne kadar çok 😂', 'Her yerin ıslak 🥵', 'Saçını ben yıkarım 🚿'],
+  'Double Round': ['İlkini tuttun {o} 2️⃣', 'Şimdi ikincisi geliyor 😈', 'Ahh… yine doluyorsun 😮‍💨', 'İkisi birden fazla 🥵', 'Taşıyor, taşıyor 🌊', 'Karnın çok dolu 😩', 'Çıkıyorum… hepsi dökülüyor 💦', 'Üçüncüye hazır değilsin, biliyorum 😂']
+});
+Stories.ME_HUG_LINES.peeMe.events.push('Thigh Gap Pee', 'Tit Rub Pee', 'Slick Slide', 'Belly Slide Pee', 'Panty Rub Pee', 'Floor Grind Pee', 'Back Slide', 'Feet Rub Pee', 'Armpit Rub Pee', 'Spoon Rub Pee',
+  'Held All Day', 'Endless Stream', 'Flooded Floor', 'Hair to Toes', 'Bathtub Fill', 'Soaked Sheets', 'Big Gulp Fail', 'Pressure Burst', 'Full Coverage', 'Overflowing Panties');
+Stories.ME_HUG_LINES.peeAnal = {
+  label: '🤗 Sarılma · Pee · içinde',
+  events: ['Deep Release', 'Doggy Pee', 'Prone Bone Pee', 'Spoon Fill', 'Standing Fill', 'Shower Anal Pee', 'Tub Kneel Pee', 'Hold It In', 'Pull Out Pee', 'Reverse Cowgirl Pee', 'Toilet Seat Fill',
+    'Held All Day Fill', 'Bloated Belly', 'Overflowing Fill', 'Endless Fill', 'Gush Out', 'Puddle Doggy', 'Soaked Bed', 'Tub Overflow', 'Hold It Challenge', 'Standing Flood', 'Pull Out Spray', 'Double Round'],
+  lines: [
+    'Sana arkadan sımsıkı sarıldım, içinde bırakırken {kalca} kalçan bana yapıştı… ahh 😩',
+    'Kollarım belinde, doldukça titriyorsun; seni daha sıkı tutuyorum offf 🥵',
+    'Göğsüm sırtına gömüldü; "bırak" diye fısıldıyorsun, bırakıyorum 😮‍💨',
+    '{kalcaHis}, içinde sıcacık doluyorsun ahh 🔥',
+    'Ellerim {gogus} göğüslerinde, sen kalçanı bana bastırıyorsun offf 😩',
+    'Ensene öpücükler bırakırken karnını okşuyorum {o} 🤍',
+    '{gogusHis}, bir yandan da içinde dolduğunu hissediyorum… ahh 🥵',
+    'Başını omzuma attın, gözlerin kapalı; son damlaya kadar sarılıyorum 😮‍💨',
+    'Titrediğini hissedip belini daha sıkı tutuyorum {o} 🥰',
+    'Bitti; çıkmadan önce bir süre böyle sarılı kalıyoruz, sonra seni duşa taşıyorum 🚿'
+  ]
+};
+Stories.ME_BED_SKIP.push('Floor Grind Pee', 'Feet Rub Pee', 'Held All Day', 'Endless Stream', 'Flooded Floor', 'Hair to Toes', 'Bathtub Fill', 'Big Gulp Fail', 'Pressure Burst', 'Full Coverage', 'Overflowing Panties',
+  'Standing Fill', 'Shower Anal Pee', 'Tub Kneel Pee', 'Toilet Seat Fill', 'Gush Out', 'Tub Overflow', 'Standing Flood');
+
+/* ⏳ çok tutup: sürterken / analdan / titfuck (sen işersin, onun isteğiyle) */
+Object.assign(Stories.ME_EV_LINES, {
+  'Bursting Grind': ['Bütün gün tuttum {o}, kalçalarının arasındayım ⏳', 'Dayanamıyorum… ahh 😮‍💨', 'Bitmiyor 😩', 'Yanaklarının arasından taşıyor 🍑', 'Sürtünmeyi bırakmıyorum 🥵', 'Bacaklarından aşağı akıyor 💦', 'Sen istedin, hepsini 😈', 'Sonunda rahatladım 🥰'],
+  'Thigh Flood Rub': ['Uyluklarının arasındayım {o} 🦵', 'Tuttuğum her şey geliyor ahh 😮‍💨', 'Dizlerine indi 💦', 'Ayaklarına kadar akıyor 😩', 'Sürtünmeye devam ediyorum 🥵', 'Yerde göl oldu 😂', 'Sen istedin 😈', 'Şimdi duşa {o} 🚿'],
+  'Desperate Hotdog': ['Zar zor tutuyorum {o} 😣', 'Kalçalarını sıktın… 😈', 'Dayanamadım ahh 😮‍💨', 'Yanaklarının arasından taşıyor 🌭', 'Ne kadar çok 😩', 'Uyluklarının arkasından akıyor 💦', 'Sen istedin 😏', 'Sonunda rahatladım 🥰'],
+  'Belly Lake Rub': ['Karnına bırakıyorum {o} ⏳', 'Göbeğinde göl oldu 😮‍💨', 'Şimdi üstüne yaslanıyorum 🥵', 'Aramızdan taşıyor 💦', 'Ne kadar çok 😩', 'Karın karına kayıyoruz 😈', 'Sen istedin 😏', 'Sarıl bana 🤍'],
+  'Panty Burst Rub': ['Külotunun üstünde sürtünüyorum {o} 🩲', 'Birden bıraktım… ahh 😮‍💨', 'Külot doydu 😩', 'Bacaklarından akıyor 💦', 'Dantel tenine yapıştı 🥵', 'Ayaklarına kadar indi 😈', 'Sen istedin 😏', 'Onu ben çıkarırım 🤍'],
+  'Last Second Grind': ['Son bir sürtünme {o}… ⏱️', 'Patladı 😮‍💨', 'İkimiz de sırılsıklamız 💦', 'Gülüyorsun, ben de 😂', 'Ne kadar çok 😩', 'Sürtünmeye devam ediyorum 🥵', 'Sen istedin 😈', 'Hemen duşa 🚿'],
+  'Spoon Overflow': ['Arkandan sarıldım {o} 🥄', 'Tuttuğum her şey geliyor ahh 😮‍💨', 'Aramızdan akıyor 💦', 'Çarşafta göl oldu 😂', 'Kalçanı bastırıyorsun 🥵', 'Bitmiyor 😩', 'Sen istedin 😈', 'Bu yatakta uyuyamayız 🛏️'],
+  'Floor Slip Flood': ['Fayansta üstündeyim {o} 🧽', 'Bırakıyorum… bitmiyor 😮‍💨', 'Kayıyoruz 😂', 'Sırtından kalçana akıyor 💦', 'Sürtünmeye devam ediyorum 🥵', 'Her yer göl 😩', 'Sen istedin 😈', 'Seni ben kaldırırım 🚿'],
+  'Bursting Inside': ['Girer girmez dayanamadım {o} ⏳', 'İçinde bırakıyorum ahh 😮‍💨', 'Bitmiyor 😩', 'Kıpırdama 😈', 'Karnında hissediyor musun 🥵', 'Taşmaya başladı 💦', 'Sen istedin, hepsini 😏', 'Sonunda rahatladım 🥰'],
+  'Desperate Doggy': ['Zar zor tutuyorum {o} 😣', 'Birkaç itiş daha… 😈', 'Patladı içinde ahh 😮‍💨', 'Belini tuttum 🔥', 'Ne kadar çok 😩', 'Dizlerin titriyor 🥵', 'Çıkınca hepsi akacak 💦', 'Sen istedin 😏'],
+  "Can't Hold Prone": ['Üstündeyim {o}, tutamıyorum ⏳', 'İçinde bırakıyorum ahh 😮‍💨', 'Bitmiyor 😩', 'Karnın şişiyor 🥵', 'Çarşafa sızıyor 💦', 'Yastığa gömüldün 😈', 'Sen istedin 😏', 'Çarşafı ben değiştiririm 😂'],
+  'Belly Full Spoon': ['Arkandan sarıldım {o} 🥄', 'İçinde bırakıyorum ahh 😮‍💨', 'Karnını tutuyorsun 🫃', 'Şişti, hissediyorum 🥵', 'Ne kadar çok 😩', 'Kıpırdama 😈', 'Sen istedin 😏', 'Böyle sarılı kalalım 🥰'],
+  'Standing Burst': ['Duvara yaslandın {o} 🧍‍♀️', 'Tuttuğum her şey içine ahh 😮‍💨', 'Belini sıkı tuttum 🔥', 'Ne kadar çok 😩', 'Çıkıyorum… döküldü 💦', 'Ayaklarına kadar indi 🥵', 'Sen istedin 😈', 'Seni kucağıma alıyorum 🚿'],
+  'Bursting Together': ['İkimiz de tutuyorduk {o} 🤏', 'İçinde bırakıyorum… ahh 😮‍💨', 'Sen de dayanamadın 😳', 'Her yer göl 💦', 'Ne kadar çok 😂', 'Titriyorsun, tuttum seni 🥵', 'İkimiz de istedik 😈', 'İkimiz de rahatladık 🥰'],
+  'Desperate Cowgirl': ['Üstümdesin, zar zor tutuyorum {o} 😣', 'Kalçanı oynattın… 😈', 'Patladı içinde ahh 😮‍💨', 'Üstüme taşıyor 💦', 'Kalçanı tuttum 🍑', 'Ne kadar çok 😩', 'Sen istedin 😏', 'İkimiz de sırılsıklamız 😂'],
+  'Bursting Plug': ['İçinde bırakıyorum {o} ⏳', 'Doldun ahh 😮‍💨', 'Şimdi tıpayı takıyorum 🔌', 'Karnın şişik 🫃', 'Böyle gezeceksin 😈', 'Her adımda hissediyorsun 🥵', 'Sen istedin 😏', 'Tuvalete beraber gideriz 🚽'],
+  'Bursting Titfuck': ['Bütün gün tuttum {o}, göğüslerinin arasındayım ⏳', 'Dayanamıyorum… ahh 😮‍💨', 'Bitmiyor 😩', 'Göğüslerinden akıyor 🍈', 'Kaymaya devam ediyorum 🥵', 'Karnına indi 💦', 'Sen istedin 😈', 'Sonunda rahatladım 🥰'],
+  'Cleavage Lake': ['Göğüslerini birleştirdin {o} 🍈', 'Aralarında göl oldu ahh 😮‍💨', 'Taşıyor 💦', 'Karnından aşağı akıyor 😩', 'Daha sıkı bastır 😈', 'Göbeğinde toplandı 🥵', 'Sen istedin 😏', 'Seni ben yıkarım 🚿'],
+  'Chin Splash Titfuck': ['Göğüslerinin arasından fışkırdı {o} 😳', 'Çenene sıçradı ahh 😮‍💨', 'Dudaklarına kadar 💦', 'Gözlerini kapattın 🙈', 'Ne kadar sert 😂', 'Devam ediyorum 😈', 'Sen istedin 😏', 'Yüzünü ben silerim 🤍'],
+  'Desperate Squeeze': ['Göğüslerini sıkıyorsun {o} 😣', 'Tutamıyorum… 😈', 'Patladı ahh 😮‍💨', 'Göğüslerinden taşıyor 🍈', 'Kazandın 😂', 'Karnına akıyor 💦', 'Sen istedin 😏', 'Sonunda rahatladım 🥰'],
+  'Overflowing Cleavage': ['Göğüslerinin arasından taşıyor {o} 🌊', 'Göbeğine indi ahh 😮‍💨', 'Kalçana kadar 💦', 'Ne kadar çok 😂', 'Kaymaya devam ediyorum 🥵', 'Göğüslerin parlıyor 😈', 'Sen istedin 😏', 'Duşa, hemen 🚿'],
+  'Kneeling Titfuck Flood': ['Önümde diz çöktün {o} 🧎‍♀️', 'Göğüslerinin arasında bırakıyorum ahh 😮‍💨', 'Dizlerinin etrafı göl 🌊', 'Gözlerin bende 🥵', 'Ne kadar çok 😩', 'Fayans yüzme havuzu 😂', 'Sen istedin 😈', 'Seni ben kaldırırım 🤍'],
+  'Soaked Bra Titfuck': ['Sütyenin üstünde {o} 👙', 'Aralarında bırakıyorum ahh 😮‍💨', 'Dantel sırılsıklam 💦', 'Tenine yapıştı 🥵', 'Şeffaflaştı 😈', 'Ne kadar çok 😩', 'Sen istedin 😏', 'Onu ben çıkarırım 🤍'],
+  'Endless Titfuck': ['Bitti sandın {o} ♾️', 'Devam ediyorum 😏', 'Göğüslerini daha sıkı bastırdın 😈', 'Hâlâ geliyor ahh 😮‍💨', 'Gülüyorsun 😂', 'Her yerin ıslak 💦', 'Sen istedin 😩', 'Tamam, şimdi duş 🚿']
+});
+Stories.ME_HUG_LINES.peeMe.events.push('Bursting Grind', 'Thigh Flood Rub', 'Desperate Hotdog', 'Belly Lake Rub', 'Panty Burst Rub', 'Last Second Grind', 'Spoon Overflow', 'Floor Slip Flood',
+  'Bursting Titfuck', 'Cleavage Lake', 'Chin Splash Titfuck', 'Desperate Squeeze', 'Overflowing Cleavage', 'Kneeling Titfuck Flood', 'Soaked Bra Titfuck', 'Endless Titfuck');
+Stories.ME_HUG_LINES.peeAnal.events.push('Bursting Inside', 'Desperate Doggy', "Can't Hold Prone", 'Belly Full Spoon', 'Standing Burst', 'Bursting Together', 'Desperate Cowgirl', 'Bursting Plug');
+Stories.ME_BED_SKIP.push('Floor Slip Flood', 'Standing Burst', 'Kneeling Titfuck Flood');

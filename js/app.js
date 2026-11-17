@@ -527,6 +527,21 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['⏳', 'Bütün gün tuttun: sürterken, analdan, titfuck', '24 yeni işeme olayı: çok tutmuşsun ve onun isteğiyle dayanamayıp bırakıyorsun. ⏳ Held Pee Rubbing, 😣 Held Anal Pee ve 🍈 Held Titfuck Pee artık 📜 olay seçicide; mesajları, cevapları ve Olay Kitabı bölümleriyle.', '#/kitap/olay/52', [
+      ['⏳ Held Pee Rubbing', 'Bursting Grind, Thigh Flood Rub, Desperate Hotdog, Belly Lake Rub, Panty Burst Rub, Last Second Grind, Spoon Overflow ve Floor Slip Flood. İçeri girmeden; 👅 Ön sevişme sekmesinde.'],
+      ['😣 Held Anal Pee', 'Bursting Inside, Desperate Doggy, Can\'t Hold Prone, Belly Full Spoon, Standing Burst, Bursting Together, Desperate Cowgirl ve Bursting Plug. 🔥 Pozisyon sekmesinde.'],
+      ['🍈 Held Titfuck Pee', 'Bursting Titfuck, Cleavage Lake, Chin Splash Titfuck, Desperate Squeeze, Overflowing Cleavage, Kneeling Titfuck Flood, Soaked Bra Titfuck ve Endless Titfuck. 👅 Ön sevişme sekmesinde.'],
+      ['📚 Kitap', 'Olay Kitabı\'na üç bölüm: ⏳ Tutup Sürterken, 😣 Tutup Analdan ve 🍈 Tutup Titfuck.']]],
+    ['🌊', 'Islak oyunlara 4 yeni kategori: sürtünme, gür, anal', '43 yeni işeme olayı geldi; hepsinde sen işersin, o istediği için. 🫂 Pee Rubbing, 🌊 Heavy Pee, 🍑 Anal Pee ve 💦 Heavy Anal Pee artık 📜 olay seçicide. Her olayın kendi mesajları ve onun cevapları var; Olay Kitabı\'nda Lia anlatıyor.', '#/kitap/olay/48', [
+      ['🫂 Pee Rubbing', 'Thigh Gap Pee, Tit Rub Pee, Slick Slide, Belly Slide Pee, Panty Rub Pee, Floor Grind Pee, Back Slide, Feet Rub Pee, Armpit Rub Pee ve Spoon Rub Pee. İçeri girmeden, işerken sürtünmeye devam edersin. 👅 Ön sevişme sekmesinde.'],
+      ['🌊 Heavy Pee', 'Held All Day, Endless Stream, Flooded Floor, Hair to Toes, Bathtub Fill, Soaked Sheets, Big Gulp Fail, Pressure Burst, Full Coverage ve Overflowing Panties. Bitmek bilmez, göl olur. 🦄 Fantezi sekmesinde.'],
+      ['🍑 Anal Pee', 'Deep Release, Doggy Pee, Prone Bone Pee, Spoon Fill, Standing Fill, Shower Anal Pee, Tub Kneel Pee, Hold It In, Pull Out Pee, Reverse Cowgirl Pee ve Toilet Seat Fill. Arkasındayken içinde işersin; 🔥 Pozisyon sekmesinde.'],
+      ['💦 Heavy Anal Pee', 'Held All Day Fill, Bloated Belly, Overflowing Fill, Endless Fill, Gush Out, Puddle Doggy, Soaked Bed, Tub Overflow, Hold It Challenge, Standing Flood, Pull Out Spray ve Double Round. Karnı şişer, taşar, çıkınca dökülür.'],
+      ['📚 Kitap', 'Olay Kitabı\'na dört bölüm eklendi: 🫂 Islak Sürtünme, 🌊 Gür Islak Oyunlar, 🍑 Anal Islak Oyunlar ve 💦 Gür Anal Islak Oyunlar.']]],
+    ['💖', 'Her memleketin sevdiği şeyler var', 'Karakterin memleketi artık sadece konuşmasını değil, zevklerini de belirliyor. Latin kızı plajı ve barı, Fransız restoranı ve oteli, Türk mutfağı ve balkonu, Kuzeyli saunayı ve doğayı sever. Profilinde 💖 Sever ve 🙅 Pek sevmez satırlarında görürsün.', '#/kitap/ulke/1', [
+      ['⚡ Kısayollar', 'Memleketinin sevdiği etiketteki olaylar ⚡ çubuğunda öne çıkar ("🌍 Memleketi sever"), sevmediği etiketler geri düşer.'],
+      ['💭 Onun fikri', 'Kendi teklif ettiği mekân, sahne ve olaylarda memleketinin sevdikleri daha sık gelir: Fransız seni restorana, Asyalı kampüse ya da lunaparka çağırır.'],
+      ['🏠 Profil', 'Memleket satırının altında sevdiği ve pek sevmediği etiketler emojileriyle yazar; 🌍 Ülke Kitabı\'nda tüm bölgelerin tablosu var.']]],
     ['🎲', 'Bitişin artık sürprizleri var', 'Bitişte sadece hamilelik zarı atılmıyor: kondom yırtılabiliyor ya da içeride kalabiliyor, hap unutulabiliyor, sabah hapı istenebiliyor. Bitişten sonra da gecikme korkusu, süt, kıyafette iz ve titreyen bacaklar var. Hepsini 🎲 Sonuç deneyinde zar atıp görebilirsin.', '#/sonuc', [
       ['🎈 Kondom', 'Kondom takılıyken %5 💥 yırtık çıkar, %3 🎈 içeride kalır (Güven −5): korunma kalkar, hamilelik ihtimali açılır. ⚡ kısayola Morning-After Pill ya da Pregnancy Test gelir.'],
       ['💊 Hap', 'Control Pill artık bitişte gerçekten korur (%96); %4 hapını unutmuş olur ve hamilelik açılır. Hap yoksa ve korunmasızsan %20 "Sabah hapı alalım" der, o bitişte hamilelik olmaz.'],
@@ -9746,7 +9761,8 @@
         <button class="btn ghost block" id="newGroup2" style="margin-top:12px">👥 ${esc(c.name)} ile grup kur</button>
         <button class="btn ghost block" id="newChat2" style="margin-top:12px">➕ Yeni sohbet başlat</button>`;
     }
-    const rows = [['🎂 Yaş', c.age], ['🏠 Memleket', c.city && cityFull(c.city)], ['💼 Meslek', c.job], ['✦ Burç', c.zodiac],
+    const RL = regLikes(c), tgIc = t => `${((Stories.World || {}).TAG_IC || {})[t] || '🏷️'} ${t}`;
+    const rows = [['🎂 Yaş', c.age], ['🏠 Memleket', c.city && cityFull(c.city)], ['💖 Sever', RL && RL.t.map(tgIc).join(' · ')], ['🙅 Pek sevmez', RL && RL.no.map(tgIc).join(' · ')], ['💼 Meslek', c.job], ['✦ Burç', c.zodiac],
       ...charFields().filter(f => f.type !== 'toggle' && !cmFieldKey(f)).map(f => [`${f.icon || '🧩'} ${f.label}`, cfValue(f, (c.fields || {})[f.id])]),
       ...allParams().filter(p => (c.params || {})[p.id] != null).map(p => [`${p.icon || '📊'} ${p.label}`, `${paramVal(c, p)} / ${p.max === '' || p.max == null ? 100 : p.max}`])].filter(r => r[1]);
     const group = g => g.values.filter(t => c.traits.includes(t)).map(t => g.items[g.values.indexOf(t)]);
@@ -12198,7 +12214,8 @@
       // 👩‍❤️‍👩 kadın profilde lezbiyen olayları: Zevk ≥ 60 iken Lesbian Finish, altında Lesbian Foreplay öne çıkar
       const les = !group && lesWith(ch), zp = les && allParams().find(x => x.who === 'me' && lowTag(x.label) === 'zevk'), lesHot = !!zp && +paramVal(S().user, zp) >= 60;
       const pool = new Set([...spot, ...nx, ...ctx.now, ...sample(all.filter(isPl), 12), ...sample(all.filter(e => last && e.cat === last.cat), 8),
-        ...sample(all.filter(foc), 6), ...sample(all.filter(e => st && stOf(e) === st), 12), ...(les ? sample(all.filter(isLesEv), 12) : [])]);
+        ...sample(all.filter(foc), 6), ...sample(all.filter(e => st && stOf(e) === st), 12), ...(les ? sample(all.filter(isLesEv), 12) : []),
+        ...sample(all.filter(e => regEv(ch, e) > 0 && (!st || stOf(e) === st)), 8)]);
       const why = {}, score = e => {
         const r = [];
         let s = Math.random() * .5;
@@ -12211,6 +12228,9 @@
         if (foc(e)) add(1.5, 'Duruma uygun');
         if (les && isLesEv(e)) { add(2.5, '👩‍❤️‍👩 Lezbiyen ilişki'); if ((e.cat === LES_FIN) === lesHot) add(1.5, lesHot ? 'Bitiş zamanı' : 'Isınma zamanı'); }
         if (likes.has(e.id)) add(1.5, '❤️ Sevdiği');
+        const rg = regEv(ch, e);
+        if (rg > 0) add(1.2, '🌍 Memleketi sever');
+        else if (rg < 0) s -= 1;
         if (last && e.cat === last.cat) add(1, 'Son olayla aynı tür');
         if (ctx.now.includes(e)) s += 1;
         if (rec.includes(e.id)) s -= 2;
@@ -12220,8 +12240,10 @@
       const ranked = [...pool].filter(ok).map(e => [e, score(e)]).filter(x => x[1] >= 1).sort((a, b) => b[1] - a[1]).map(x => x[0]);
       // 🎬 sahne önerisi (2): açılışı bu mekâna uyan, 🚫/💔 olmayanlar; mekânın kendi sahneleri önce
       const fit = e => isPl(e) || foc(e);
-      const acts = sample(scenesOk().map(d => ({ d, e: actEv(d.open) })).filter(x => x.e && ok(x.e) && !evAway(x.e, sc)), 99);
-      quickActs = [...acts.filter(x => fit(x.e)), ...acts.filter(x => !fit(x.e))].slice(0, 2);
+      const acts = sample(scenesOk().map(d => ({ d, e: actEv(d.open) })).filter(x => x.e && ok(x.e) && !evAway(x.e, sc) && (!x.d.hw || (!group && (ch.fields || {}).hotwife)) && (!x.d.grp || group)), 99);
+      // 🌐 karakterin geldiği sitenin sahneleri (d.site === ch.src) en önde; sevdiği açılışlar onların da önünde
+      const src = !group && ch.src, own = x => !!src && x.d.site === src, mine = acts.filter(own);
+      quickActs = [...mine.filter(x => likes.has(x.e.id)), ...mine.filter(x => !likes.has(x.e.id)), ...acts.filter(x => !own(x) && fit(x.e)), ...acts.filter(x => !own(x) && !fit(x.e))].slice(0, 2);
       quickKey = key;
       quickWhy = why;
       quickList = ranked.slice(0, 6);
@@ -12286,13 +12308,13 @@
       const no = new Set([...(ch.denies || []), ...(ch.dislikes || [])]), like = new Set(ch.likes || []);
       const zp = allParams().find(x => x.who === 'me' && low(x.label) === 'zevk'), zevk = zp ? paramVal(S().user, zp) : 0;
       const F = placeFx(fxNow()), dk = dayKey(plHour()), per = (ch.traits || []).flatMap(t => PLACE_FLOW.per[t] || []);
-      const seen = new Set(list.filter(m => m.scene && m.scene.place).map(m => m.scene.place));
+      const seen = new Set(list.filter(m => m.scene && m.scene.place).map(m => m.scene.place)), RL = regLikes(ch);
       if (sx !== 'sexnow' || F || why === 'sonra') {
         const chain = sx === 'sexsonra' || why === 'sonra' || why === 'sahne' ? PLACE_FLOW.chain[placeKey()] || PLACE_FLOW.chain._ : [];
         allPlaces().filter(plOk()).forEach(p => {
           if (why === 'yeni' && seen.has(p.id)) return;
           const s = (per.includes(p.id) ? 2 : 0) + (dk[3].includes(p.id) ? 1 : 0) + (F && F.pl.includes(p.id) ? 2 : 0) + (chain.includes(p.id) ? 2.5 : 0)
-            + (seen.has(p.id) ? 0 : why === 'yeni' ? 3 : .5) + (why === 'tekdur' ? 1 : 0) + (w >= 3 && (p.lv || 0) >= 3 ? .5 : 0);
+            + (seen.has(p.id) ? 0 : why === 'yeni' ? 3 : .5) + (why === 'tekdur' ? 1 : 0) + (w >= 3 && (p.lv || 0) >= 3 ? .5 : 0) + (RL && RL.pl.includes(p.id) ? 1.5 : 0);
           if (s > 0) out.push({ k: 'mekan', pl: plCard(p), s });
         });
       }
@@ -12303,7 +12325,7 @@
         const fav = [d.open, ...d.steps, d.fin].some(t => { const x = t && actEv(t); return !!x && like.has(x.id); });
         const fit = !!sc && moCats().some(c => c.id === e.cat && placeFits(placeEvOf(c), sc));
         // 💡 🤰 hamile / 💍 evli karakter kendi durumunun sahnelerini daha çok teklif eder
-        out.push({ k: 'sahne', d, e, s: 1 + (fav ? 2 : 0) + (fit ? 1.5 : 0) + (!group && focusEv(ch, e) ? 2 : 0) + Math.min(2, (ch.acts || {})[d.id] || 0) * .75 + (zevk >= 50 ? .5 : 0) });
+        out.push({ k: 'sahne', d, e, s: 1 + (fav ? 2 : 0) + (fit ? 1.5 : 0) + (!group && focusEv(ch, e) ? 2 : 0) + Math.min(2, (ch.acts || {})[d.id] || 0) * .75 + (zevk >= 50 ? .5 : 0) + regEv(ch, e) });
       });
       if (sx || w >= 2) {
         const cats = sx === 'sexnow' ? SEX_CATS : w >= 3 || sx ? ['foreplay', ...SEX_CATS] : ['foreplay'], pos = posNow();
@@ -12312,6 +12334,9 @@
           .forEach(e => out.push({ k: 'olay', e, like: 1, s: 2 + (zevk >= 60 && SEX_CATS.includes(low(catOfEv(e).label)) ? .5 : 0) }));
         const at = lastDone(), lastId = Object.keys(at).reduce((m, id) => (m && at[m] >= at[id] ? m : id), ''), last = lastId && allEvents().find(e => e.id === lastId);
         nextEvs(ch, last).filter(ok).forEach(e => { const o = out.find(x => x.e === e); if (o) o.s += 1.5; else out.push({ k: 'olay', e, s: 1.5 }); });
+        // 🌍 memleketinin sevdiği etiketlerden 3 olay aday
+        if (RL) sample(allEvents().filter(e => ok(e) && regEv(ch, e) > 0 && !isFant(e) && cats.includes(low(catOfEv(e).label))), 3)
+          .forEach(e => { const o = out.find(x => x.e === e); if (o) o.s += 1; else out.push({ k: 'olay', e, s: 1.5 }); });
         // 💡 🤰 hamile / 💍 evli: durumunun olaylarından 3'ü de aday
         if (!group) sample(allEvents().filter(e => focusEv(ch, e) && ok(e)), 3).forEach(e => { const o = out.find(x => x.e === e); if (o) o.s += 1; else out.push({ k: 'olay', e, s: 1.5 }); });
       }
@@ -16582,6 +16607,10 @@
   // karakterin memleket anahtarı (Memleket özelliği, yoksa şehrinden) → WANT_REG
   const regKeyOf = ch => { const R = (Stories.World || {}).REGIONS || {}, n = traitVal(ch || {}, 'Memleket') || ((Stories.World || {}).regionOf ? Stories.World.regionOf((ch || {}).city) : '');
     return Object.keys(R).find(k => R[k] === n) || (R[n] ? n : ''); };
+  // 💖 memleketinin sevdikleri (World.LIKES): olay etiketi sevdiği → 1, sevmediği → -1
+  const regLikes = ch => ((Stories.World || {}).LIKES || {})[regKeyOf(ch)] || null;
+  const regEv = (ch, e) => { const L = regLikes(ch), tg = ((e || {}).tags || []).map(t => String(t).toLocaleLowerCase('tr'));
+    return !L ? 0 : tg.some(t => L.t.includes(t)) ? 1 : tg.some(t => L.no.includes(t)) ? -1 : 0; };
   // evet → th.botAsk.ev olayı (@ask; mekan isteğinde ev yok, mekan kartını botReply ekler)
   BOT_ASK.istek = { ok: () => false, yes: '@ask', no: [] };
   /* 🎬 sahne cümleleri (renderChat actLine): sahneye özel Stories.SCENE_SAY[id][an] %75, yoksa bu genel havuz ({sahne} {ic}).
@@ -19563,11 +19592,11 @@
     ['ick', '🍷', 'Drinks', ['drinks']],
     ['isin', '💋', 'Isınma', ['foreplay', 'massage', 'protection']],
     ['soy', '👗', 'Soyunma', ['undress']],
-    ['on', '👅', 'Ön sevişme', ['eat', 'outercourse', 'squeeze', 'pregnancy foreplay']],
+    ['on', '👅', 'Ön sevişme', ['eat', 'outercourse', 'squeeze', 'pregnancy foreplay', 'pee rubbing', 'held pee rubbing', 'held titfuck pee']],
     ['sut', '🍼', 'Lactation', ['lactation', 'nursing', 'lactation fantasy', 'milky foreplay']],
-    ['poz', '🔥', 'Pozisyon', ['forward', 'backward', 'threesome', 'pregnancy', 'milky sex', 'mode', 'pre-cumming']],
+    ['poz', '🔥', 'Pozisyon', ['forward', 'backward', 'threesome', 'pregnancy', 'milky sex', 'mode', 'pre-cumming', 'anal pee', 'heavy anal pee', 'held anal pee']],
     ['mekan', '📍', 'Mekân', ['mekanda', 'shower', 'sauna', 'bathtub', 'pool', 'car', 'elevator', 'camping', 'kitchen', 'stairs', 'laundry', 'balcony', 'camera', 'beach', 'office', 'hotel', 'school', 'church', 'gym', 'bar', 'cinema', 'outdoors', 'restaurant', 'rooftop', 'library', 'fair', 'haunted', 'street', 'massage salon', 'clinic', 'pee']],
-    ['fant', '🦄', 'Fantezi', ['fantesy', 'meisove', 'femdom', 'bdsm', 'bull', 'affair', 'affair story']],
+    ['fant', '🦄', 'Fantezi', ['fantesy', 'meisove', 'femdom', 'bdsm', 'bull', 'affair', 'affair story', 'heavy pee']],
     ['bit', '💦', 'Bitiş', ['cumming', 'cumming size']],
     ['son', '🌙', 'Sonrası', ['cool down', 'treatment', 'bull story', 'milky after']]
   ];
@@ -21884,6 +21913,94 @@
     const k = String(title || '').toLocaleLowerCase('tr').trim();
     return EV_DESC[k] || EV_DESC[k.replace(/\(.*?\)/g, '').replace(/[^\p{L}\p{N}\s\-\/]/gu, '').replace(/\s+/g, ' ').trim()] || '';
   }
+  /* 📖 evTell(e): olayın ayrıntılı anlatımı (düz metin, birkaç cümle) — açıklama + kategorinin anlamı + etiketlerin anlamı + 📈 etkiler +
+   * 🔒 ne zaman olur + 🎲 sonuçlar + ⬅️➡️ akıştaki yeri. 📜 Olay rehberi, 🎓 CarmenEvents ve kitap tablolarının "Ne olur" sütunu kullanır */
+  const EV_TELL_CAT = {
+    forward: 'Önden bir pozisyon: yüz yüzesiniz ya da önden giriyorsun; olunca sohbette şu anki pozisyon olur ve ❤️ / 💔 listesine girebilir.',
+    backward: 'Arkadan bir pozisyon: sen arkasındasın, o önünde; olunca sohbette şu anki pozisyon olur ve ❤️ / 💔 listesine girebilir.',
+    foreplay: 'Ön sevişmenin bir parçası: acele yok, 💗 Uyarılma yavaş yavaş yükselir ve asıl ana zemin hazırlanır.',
+    outercourse: 'Girişsiz sevişme: her şey sürtünme, baskı ve dokunuşla ilerler; ısı yükselir ama son adım bekletilir.',
+    eat: 'Ağızla, dille yaşanan bir an: tempo, nefes ve göz teması bu olayın yarısıdır.',
+    undress: 'Soyunma anı: kıyafetler tek tek çıkar ve 👗 soyunma durumu değişir; çıkan parça bir sonraki olayları da etkiler.',
+    cumming: 'Bir bitiş: nereye boşaldığın o anki pozisyona bağlıdır, hemen ardından miktar (Cumming Size) gelir.',
+    'cumming size': 'Boşalmanın miktarı: o an ne kadar birikmiş olduğuna (💦 Cum) göre belirlenir.',
+    protection: 'Korunma seçimi: izin verdiyse rahatlar, vermediyse itiraz eder ya da şart koşar.',
+    korunma: 'Korunma seçimi: izin verdiyse rahatlar, vermediyse itiraz eder ya da şart koşar.',
+    drinks: 'Bir içki: 🍷 Sarhoşluk yükselir; dili çözülür, cesareti artar, sınırları gevşer.',
+    mode: 'Tempo ve tarz: sevişmenin hızını ve sertliğini değiştirir, 💥 Zevk çarpanı buna göre işler.',
+    treatment: 'Muayene ve tedavi oyunu: doktor, hasta ve klinik havası.',
+    femdom: 'O yönetir: emreder, sınırı o çizer, sen itaat edersin.',
+    fantesy: 'Bir fantezi: başka bir fantezi gelene kadar sürer ve bütün cevaplarına kendi tonunu verir.',
+    lactation: 'Onun ıslaklığı ya da sütünün ne kadar geldiğini anlatır; şiddeti o anki değerlere bağlıdır.',
+    'pre-cumming': 'Senin ön sıvın: boşalmaya ne kadar yaklaştığını ele verir.',
+    massage: 'Masaj: yağlı eller, gevşeyen kaslar ve her dokunuşta biraz daha artan gerilim.',
+    pee: 'Islak bir fantezi: çişi, utancı ya da cüreti bu anın merkezinde.',
+    shower: 'Duşta: ıslak ten, buhar ve kayan eller.', sauna: 'Saunada: sıcak, buharlı, nefesler ağırlaşmış.',
+    'cool down': 'Sonrası: nefesler yatışır, sarılma, konuşma ve sakinleşme.',
+    bull: 'Bull oyunu: başka bir erkek, sen ve o arasında kuralları önceden konmuş bir oyun.', 'bull story': 'Bull hikâyesinin bir sahnesi: kurallar, raporlar ve izlenen anlar.',
+    squeeze: 'Sıkıştırma: onu kavrayıp bastırdığın, tenin tene kilitlendiği anlar.', nursing: 'Emzirme: göğüslerinden süt emersin, yakın ve şefkatli bir an.'
+  };
+  const EV_TELL_TAG = {
+    vajinal: 'Önden, vajinal bir an: korunmanız neyse tepkisi ona göre şekillenir; içine bitersen hamilelik zarı da atılır.',
+    anal: 'Arkadan, anal bir an: Anal Size\'ı ve anali sevip sevmemesi tepkisini belirler; hazır değilse yavaşlamanı ister.',
+    oral: 'Oral bir an: dudaklar, dil ve nefes; ağzının dolu olması cümlelerini de değiştirir.',
+    göğüs: 'Odak göğüslerinde: boyutu ve hassasiyeti hem onun hem senin cümlelerine yansır.',
+    kalça: 'Odak kalçasında: kalça boyutu onun ve senin cümlelerini değiştirir.', bacak: 'Bacakları işin içinde: uylukları, dizleri ya da bacaklarıyla kurduğu kilit.',
+    boşalma: 'Bu bir bitiş: 💦 Cum boşalır ve ardından ne kadar geldiği anlatılır.',
+    gür: 'Gür bir boşalma: ancak yeterince birikince olur, taşar ve her yere ulaşır.', damla: 'Damla damla, yavaş bir bitiş: gevşemiş, sakin bir anın sonu.',
+    sıkıştır: 'Sıkıştırma var: onu sıkıca kavrar, bastırır, kaçamayacağı kadar yakın tutarsın.', sürtünme: 'Giriş yok, sürtünme var: ısıyı yükselten, bekleten bir an.',
+    kıyafet: 'Kıyafetler çıkmadan olur: kumaşın üstünden sürtünme ya da kıyafetin üstüne bitiş.', engel: 'Boşalmayı engellediği, seni kenarda beklettiği bir an; biriken sonunda çok daha gür gelir.',
+    lezbiyen: 'İki kadın arasında yaşanır.', iseme: 'Islak bir fantezi: çiş bu anın merkezinde.', üçlü: 'Üç kişilik bir an: grup sohbetinde ikisi birlikte katılır.',
+    hamile: 'Hamileliğe özel: büyüyen karnı, hassaslaşan göğüsleri ve hormonları bu anı şekillendirir.', süt: 'Sütlü bir an: göğüslerinde yeterince süt olmalı.',
+    tedavi: 'Muayene ve tedavi havasında geçer.', bdsm: 'Bağlama, hükmetme ve teslimiyet oyunu; güven ve sınırlar burada her şeydir.',
+    roleplay: 'Rol yapma: kostüm ve karakterle oynanır.', femdom: 'O yönetir: emreder, sen itaat edersin.', aldatma: 'Gizli bir ilişki: yakalanma korkusu ve suçluluk heyecanı bir arada.',
+    el: 'Elleriyle yapılır.', yalama: 'Dille, yalayarak.', kondom: 'Kondomla ilgili: kondomun durumu tepkisini doğrudan değiştirir.',
+    halloween: 'Cadılar Bayramı havasında: kostümlü, ürpertici.', kan: 'Vampir ve kan teması.', slime: 'Yapışkan slime teması.'
+  };
+  const EV_TELL_FX = ['Olduğu an {fx}.', 'Etkisi hemen hissedilir: {fx}.', 'Bu anın ardından {fx}.'];
+  const EV_TELL_PREV = ['Genelde {a} sonrasında gelir.', 'Çoğu zaman {a} ardından yaşanır.', 'Akışta sırası genelde {a} sonrasıdır.'];
+  const EV_TELL_NEXT = ['Ardından çoğu zaman {b} gelir.', 'Sonrasında doğal devamı {b} olur.', 'Buradan genelde {b} yoluna geçilir.'];
+  let evTellMemo = null;
+  function evTell(e) {
+    if (!e) return '';
+    const R = MO().events.length + ':' + (MO().cats || []).length;
+    if (!evTellMemo || evTellMemo.R !== R) {
+      const prev = new Map();
+      Object.entries(NEXT_EV).forEach(([a, bs]) => bs.forEach(b => { const k = low(b); if (!prev.has(k)) prev.set(k, []); prev.get(k).push(a); }));
+      evTellMemo = { R, prev, P: new Map(allParams().map(p => ['p:' + p.id, p])), by: new Map(allEvents().map(x => [low(x.title), x])), m: new Map() };
+    }
+    const M = evTellMemo;
+    if (M.m.has(e.id)) return M.m.get(e.id);
+    const h = k => +sysHash([e.id, k]), pick = (a, k) => a[h(k) % a.length], T = x => (M.by.get(low(x)) || {}).title || x;
+    const t = low(e.title), cat = catOfEv(e), cl = low(cat.label || ''), tg = (e.tags || []).map(low), out = [];
+    const d = String(e.desc || evDescOf(e.title) || '').trim();
+    if (d) out.push(/[.!?…]["”]?$/.test(d) ? d : d + '.');
+    out.push(EV_TELL_CAT[cl] || `${cat.icon || ''} ${cat.label || 'Bu'}${subTxt(e)} bölümünden bir an${(cat.tags || []).includes(CHAT_TOP_TAG) ? '; olunca sohbette şu anki pozisyon olur ve ❤️ / 💔 listesine girebilir' : ''}.`.trim());
+    tg.filter(x => EV_TELL_TAG[x] && EV_TELL_TAG[x] !== EV_TELL_CAT[cl] && !(x === 'boşalma' && cl === 'cumming')).slice(0, 3).forEach(x => out.push(EV_TELL_TAG[x]));
+    const pl = tg.filter(x => x !== 'boşalma' && x !== 'hamile' && x !== 'süt' && EV_THEME.includes(x) && !EV_TELL_TAG[x]);
+    if (pl.length || e.place) out.push(`Geçtiği yer: ${[...pl, e.place].filter(Boolean).join(', ')}.`);
+    const fx = (e.onEffects || []).filter(f => +f.d).map(f => { const p = M.P.get(f.p); return `${p ? `${p.icon || ''} ${p.label}`.trim() : f.p} ${f.d > 0 ? '+' : '−'}${Math.abs(+f.d)}`; });
+    if (fx.length && !/[+−]\s?\d/.test(d)) out.push(pick(EV_TELL_FX, 'fx').replace('{fx}', fx.join(', ')));
+    const gate = [];
+    if (e.weeks || tg.includes('hamile')) { const [a, b] = e.weeks || [1, 40]; gate.push(`sadece hamileyken (${a}–${b}. hafta)`); }
+    if (e.milk != null) gate.push(`göğüslerinde en az ${+e.milk} 🍼 Süt varken`);
+    const cm = cumMin(e);
+    if (cm != null) gate.push(`senin 💦 Cum en az ${cm} olunca`);
+    if ((e.wear || []).length) {
+      const ns = e.wear.map(w => w[0] === '@' ? `${({ kalca: 'kalça', bacak: 'bacak', gogus: 'göğüs' })[w.slice(1)] || w.slice(1)} kıyafeti` : (clItem(w) || {}).name).filter(Boolean).slice(0, 4);
+      gate.push(`üstünde ${ns.join(' / ') || 'kıyafet'} çıkarılmamışken`);
+    }
+    if (isLesEv(e)) gate.push('sadece lezbiyen ilişkide');
+    if (gate.length) out.push(`Ancak ${gate.join(', ')} olur.`);
+    const oc = (e.outcomes || []).filter(o => String(o.text || '').trim());
+    if (oc.length) { const top = oc.slice().sort((a, b) => (+b.pct || 0) - (+a.pct || 0))[0]; out.push(`${oc.length > 1 ? `${oc.length} farklı sonucu var; en olası` : 'Sonucu'}: “${String(top.text).trim()}”${+top.pct ? ` (%${+top.pct})` : ''}.`); }
+    const pv = [...new Set(M.prev.get(t) || [])].slice(0, 3).map(T), nx = (NEXT_EV[t] || []).slice(0, 3).map(T);
+    if (pv.length) out.push(pick(EV_TELL_PREV, 'pv').replace('{a}', pv.join(' / ')));
+    if (nx.length) out.push(pick(EV_TELL_NEXT, 'nx').replace('{b}', nx.join(', ')));
+    const s = out.join(' ');
+    M.m.set(e.id, s);
+    return s;
+  }
   function fixDesc1() {
     const mo = S().monia;
     if (!mo || S().descV >= 2 || !(mo.events || []).length) return;
@@ -23253,6 +23370,13 @@
         ${bkChat('🇫🇷 Camille (Paris)', [['ev', '📜 🍑 Doggy'], ['her', 'Ahh… derin 😩'], ['her', 'Oh là là… saçımı çek, chéri 😈'], ['note', 'İkinci baloncuk memleketten: Fransız doggy cümlesi.'], ['ev', '📜 💦 Orgazm'], ['her', 'Mon Dieu! Je viens! 😵‍💫'], ['me', 'dar mısın'], ['her', 'Très serrée… kendin keşfet 😈']])}
         ${bkChat('🇧🇷 Isabela (Rio)', [['ev', '📜 🍑 Doggy'], ['her', 'Ay, papi… sí, así 🔥'], ['ev', '📜 💦 Orgazm'], ['her', '¡Ay, Dios mío! Geliyoruuum 😵‍💫'], ['note', 'Aynı olaylar, başka memleket: bambaşka ağız.']])}`;
     } },
+    { icon: '💖', title: 'Memleket neyi sever', sub: 'sevdiği olaylar ve mekânlar', get body() {
+      const W = Stories.World || {}, L = W.LIKES || {}, ic = t => `${(W.TAG_IC || {})[t] || '🏷️'} ${esc(t)}`;
+      return `<p>Her memleketin sevdiği olay etiketleri, sevdiği mekânlar ve pek sevmedikleri var. Karakterin profilinde 💖 Sever / 🙅 Pek sevmez satırlarında görünür.</p>
+        <ul><li><b>⚡ Kısayollar</b>: sevdiği etiketteki olaylar öne çıkar (ipucu: "🌍 Memleketi sever"); sevmediği etiketteki olaylar geri düşer.</li>
+          <li><b>💭 Onun fikri</b>: kendi teklif ettiği mekânlarda sevdiği mekânlar, sahne ve olaylarda sevdiği etiketler daha sık gelir.</li></ul>
+        <table class="bk-t"><tr><th>Memleket</th><th>💖 Sever</th><th>📍 Mekân</th><th>🙅 Pek sevmez</th></tr>${ULKE_BOOK.filter(([k]) => L[k]).map(([k, i]) => `<tr><td>${i} <b>${esc(ulkeName(k))}</b></td><td>${L[k].t.map(ic).join('<br>')}</td><td>${L[k].pl.map(esc).join('<br>')}</td><td>${L[k].no.map(ic).join('<br>')}</td></tr>`).join('')}</table>`;
+    } },
     ...ULKE_BOOK.map(([k, ic, sub]) => ({ icon: ic, title: ulkeName(k), sub, get body() { return ulkeBookBody(k); } }))
   ] });
   const fantRules = (p, key) => ((Stories.BOT_RULES || {}).rules || []).filter(r => String(r.id).startsWith(`${p}${key}_`));
@@ -23913,7 +24037,7 @@
       ['🌊', 'Grup gür boşalma', '💦 Cum 90+ iken ikisine birden', 41, 51, '<p>Gür bitişler senin 💦 Cum değerin 90 ve üstündeyken açılır. İçine olanlar (Overflow To Her, Pull Out Swap) korunmaya göre hamilelik ihtimali taşır, 🎯 hedef kıza uygulanır. Who Got More bitişten sonraki tatlı kavgadır.</p>']
     ].map(([ic, t, s, a, b, intro]) => ({ icon: ic, title: t, sub: s, get body() {
       const E = ((Stories.SYSTEM || {}).events || []).filter(e => { const n = +(/^mvgr(\d+)/.exec(e.id) || [])[1]; return n >= a && n <= b; });
-      return intro + `<table class="bk-t"><tr><th>Olay</th><th>Ne olur</th></tr>${E.map(e => `<tr><td>${e.emojis || ''} ${esc(e.title)}${(e.wear || []).length ? '<br><small>👗 kıyafetli</small>' : ''}</td><td>${esc(e.desc || '')}</td></tr>`).join('')}</table>`;
+      return intro + `<table class="bk-t"><tr><th>Olay</th><th>Ne olur</th></tr>${E.map(e => `<tr><td>${e.emojis || ''} ${esc(e.title)}${(e.wear || []).length ? '<br><small>👗 kıyafetli</small>' : ''}</td><td>${esc(evTell(e))}</td></tr>`).join('')}</table>`;
     } })),
     { icon: '🎬', title: 'Grup sahneleri', sub: '9 sahne: açılış olayını yazınca başlar', get body() {
       const G = (Stories.SCENE_CATS || []).find(c => c.id === 'grup'), SC = (Stories.SCENES || []).filter(s => G && G.ids.includes(s.id));
@@ -23941,7 +24065,7 @@
     const r = ((Stories.BOT_RULES || {}).rules || []).find(x => String(x.id).startsWith('r_ev_bd_') && String(x.name || '').endsWith(t));
     const me = ((Stories.ME_EV_LINES || {})[t] || []).slice(0, 3).map(x => x.replace(/\s*\{o\}/g, ''));
     const fx = (e.onEffects || []).map(f => `${BD_PN[f.p] || f.p} ${f.d > 0 ? '+' : ''}${f.d}`).join(' · ');
-    return `<h4>${e.emojis || '🔗'} ${esc(t)}</h4><p>${esc(e.desc || '')}</p>
+    return `<h4>${e.emojis || '🔗'} ${esc(t)}</h4><p>${esc(evTell(e))}</p>
       <table class="bk-t"><tr><th>Etki</th><td>${esc(fx || '—')}</td></tr>
         <tr><th>Senin sözün</th><td>${me.map(x => `"${esc(x)}"`).join('<br>') || '—'}</td></tr>
         <tr><th>Onun cevabı</th><td>${((r || {}).reply || []).slice(0, 3).map(x => `"${esc(x)}"`).join('<br>') || '—'}</td></tr></table>`;
@@ -23954,7 +24078,7 @@
           <li><b>🔗 Aksesuarlar</b>: tıpa, tasma, mandal ve vibratör kıyafet gibi giyilir; olay takar, komutla takıp çıkarırsın (bkz. Giyilen aksesuarlar).</li>
           <li><b>Sıra önerisi</b>: Warm Oil Massage ile başla, duyusal oyunlarla devam et, kontrol ve bağlamayla tırman, sonunda mutlaka sarıl.</li>
           <li><b>Kişilik ve rol</b>: cevabı kişiliği değiştirir: utangaç kızarır, flörtöz kışkırtır, romantik güvenir, soğuk küçümser, dominant intikam yemini eder. Bir rol ya da fantezi sürüyorsa (Kraliçe, Vampir, Cat Girl, Limon Kız…) o rolün ağzından cevap verir; şaplak, kürek ve kırbaca ayrı tepkisi vardır.</li></ul>
-        <table class="bk-t"><tr><th>Olay</th><th>Ne olur</th></tr>${bdEvents().map(e => `<tr><td>${e.emojis || '🔗'} <b>${esc(e.title)}</b></td><td>${esc(e.desc || '')}</td></tr>`).join('')}</table>
+        <table class="bk-t"><tr><th>Olay</th><th>Ne olur</th></tr>${bdEvents().map(e => `<tr><td>${e.emojis || '🔗'} <b>${esc(e.title)}</b></td><td>${esc(evTell(e))}</td></tr>`).join('')}</table>
         ${bkChat('🔗 Örnek', [['ev', '📜 🧊 Ice Cube'], ['me', 'Gözlerin bağlı, buzun nereye gideceğini bilmiyorsun 😈'], ['her', 'Göremiyorum, nereye gideceğini bilmiyorum 😈'], ['note', 'Uyarılma +12, Şehvet +8. Göz bağıyla sürpriz daha büyük.']])}`;
     } },
     { icon: '🌡️', title: 'Duyusal oyunlar', sub: 'göz bağı, kulaklık, ruj, tüy, tekerlek, buz, mum, yağ, çikolata ve bal', get body() {
@@ -23996,7 +24120,7 @@
   const ofRule = (pre, name) => ((Stories.BOT_RULES || {}).rules || []).find(x => String(x.id).startsWith(pre) && String(x.name || '').endsWith(name));
   const ofBody = titles => `<table class="bk-t"><tr><th>Olay</th><th>Ne olur</th><th>Onun cevabı</th></tr>${titles.map(ofSysEv).filter(Boolean).map(e => {
     const fx = (e.onEffects || []).map(f => `${BD_PN[f.p] || ''} ${f.d > 0 ? '+' : ''}${f.d}`).filter(x => !/^ /.test(x)).join(' · '), r = ofRule('r_ev_of_', e.title);
-    return `<tr><td>${e.emojis || '🏢'} <b>${esc(e.title)}</b>${fx ? `<br><small>${esc(fx)}</small>` : ''}</td><td>${esc(e.desc || '')}</td><td>${((r || {}).reply || []).slice(0, 2).map(x => `"${esc(x)}"`).join('<br>') || '—'}</td></tr>`;
+    return `<tr><td>${e.emojis || '🏢'} <b>${esc(e.title)}</b>${fx ? `<br><small>${esc(fx)}</small>` : ''}</td><td>${esc(evTell(e))}</td><td>${((r || {}).reply || []).slice(0, 2).map(x => `"${esc(x)}"`).join('<br>') || '—'}</td></tr>`;
   }).join('')}</table>`;
   const OF_POS = ['Under The Desk', 'Office Chair Ride', 'Copy Room Quickie', 'Desk Bent Over', 'On The Desk', 'Boss Chair Reverse', 'Window Press', 'Conference Table', 'Supply Closet', 'Desk Anal', 'Boss Chair Blowjob', 'Desk Licking', 'Stairwell Quickie'];
   const OF_TEASE = ['Desk Tease', 'Under Desk Footsie', 'Panties In Drawer', 'Elevator Glance', 'Late Night Overtime', 'Almost Caught', 'Performance Review'];
@@ -24048,7 +24172,7 @@
   /* 🎓 School Kitabı: okul olayları (c:mvschool01x + okul bitişleri), CarmenSchool rolleri (SC_ROLES), Carmen.com ilan dalgası (x.newEv7) */
   const scBody = titles => `<table class="bk-t"><tr><th>Olay</th><th>Ne olur</th><th>Onun cevabı</th></tr>${titles.map(ofSysEv).filter(Boolean).map(e => {
     const fx = (e.onEffects || []).map(f => `${BD_PN[f.p] || ''} ${f.d > 0 ? '+' : ''}${f.d}`).filter(x => !/^ /.test(x)).join(' · '), r = ofRule('r_ev_sc_', e.title);
-    return `<tr><td>${e.emojis || '🎓'} <b>${esc(e.title)}</b>${fx ? `<br><small>${esc(fx)}</small>` : ''}</td><td>${esc(e.desc || '')}</td><td>${((r || {}).reply || []).slice(0, 2).map(x => `"${esc(x)}"`).join('<br>') || '—'}</td></tr>`;
+    return `<tr><td>${e.emojis || '🎓'} <b>${esc(e.title)}</b>${fx ? `<br><small>${esc(fx)}</small>` : ''}</td><td>${esc(evTell(e))}</td><td>${((r || {}).reply || []).slice(0, 2).map(x => `"${esc(x)}"`).join('<br>') || '—'}</td></tr>`;
   }).join('')}</table>`;
   const SC_POS = ['On The Podium', 'Grading Desk', 'Dean Chair Ride', 'Back Row Spooning', 'Chalkboard Press', 'Library Stacks', 'Under The Lectern', 'Lectern Blowjob', 'Oral Exam', 'Detention Anal', 'Ballet Barre', 'Studio Mirror'];
   const SC_TEASE = ['Glasses Off', 'Red Pen Reward', 'Dean Knocks', 'Grade Appeal', 'Stretch Together'];
@@ -24083,7 +24207,7 @@
       const fb = FANT_BOOK.findIndex(([x]) => x === 'fxrpfakulte') + 1, fq = ((Stories.BOT_RULES || {}).rules || []).filter(x => /^r_f[qe]_fxrpfakulte_/.test(x.id));
       return `<p>Her fakültenin kendi odaları var. Hoca rolündeki kız fakültesinin <b>Fakülte – …</b> fantezisiyle başlar; hepsi <a href="#/kitap/fantezi/${fb}">🏛️ Fakülte Rolleri</a> fantezisini paylaşır. Dans hocası hep Konservatuvar'dadır.</p>
         ${SC_FAC.map(f => { const e = f.ev && evFind(f.ev), st = f.ev && ofRule('r_rp_fakulte_', f.ev);
-          return `<h4>${f.ic} ${esc(f.n)}${f.ev ? ` · ${esc(f.ev)}` : ''}</h4>${e ? `<p>${esc(e.desc || '')}</p>` : ''}
+          return `<h4>${f.ic} ${esc(f.n)}${f.ev ? ` · ${esc(f.ev)}` : ''}</h4>${e ? `<p>${esc(evTell(e))}</p>` : ''}
             <table class="bk-t"><tr><th>Odalar</th><td>${f.room.map(esc).join(', ')}</td></tr>
               ${f.greet ? `<tr><th>İlk sözü</th><td>${f.greet.map(x => `"${esc(x)}"`).join('<br>')}</td></tr>` : ''}
               ${st ? `<tr><th>Rol cevapları</th><td>${(st.reply || []).slice(0, 3).map(x => `"${esc(x)}"`).join('<br>')}</td></tr>` : ''}</table>`; }).join('')}
@@ -24092,7 +24216,7 @@
     } }] });
   /* ⛪ Church Kitabı: Rahibe olay ailesi, 👗 Cübbe Altı, ⛪ Başrahibe – Bahçıvan, CarmenChurch ilanları; olaylar, cevaplar ve sahneler data'dan canlı okunur (KC_EV, KC_ROLES) */
   const kcBkRow = t => { const e = ofSysEv(t), s = KC_EV[t] || {}, r = ofRule('r_rp_' + (t.startsWith('Başrahibe') ? 'basrahibe' : 'rahibe'), t);
-    return e ? `<tr><td>${e.emojis || '🕯️'} <b>${esc(t.replace(/^.*? – /, ''))}</b>${s.spot ? `<br><small>${s.ic} ${esc(s.spot)} · ${hh2(s.h)}</small>` : ''}</td><td>${esc(e.desc || '')}</td><td>${((r || {}).reply || []).slice(0, 2).map(x => `"${esc(x)}"`).join('<br>') || '—'}</td></tr>` : ''; };
+    return e ? `<tr><td>${e.emojis || '🕯️'} <b>${esc(t.replace(/^.*? – /, ''))}</b>${s.spot ? `<br><small>${s.ic} ${esc(s.spot)} · ${hh2(s.h)}</small>` : ''}</td><td>${esc(evTell(e))}</td><td>${((r || {}).reply || []).slice(0, 2).map(x => `"${esc(x)}"`).join('<br>') || '—'}</td></tr>` : ''; };
   const kcBkCombo = id => { const cb = (((Stories.CLOTHES || {}).combos) || []).find(x => x.id === id);
     return cb ? `<tr><td>${cb.emoji} <b>${esc(cb.name)}</b></td><td>${Object.values(cb.parts).map(p => { const x = clItem(p); return x ? `${x.emoji} ${esc(x.name)}` : ''; }).filter(Boolean).join('<br>')}</td><td>${(cb.say || []).slice(0, 1).map(x => `"${esc(x)}"`).join('')}</td></tr>` : ''; };
   BOOKS.push({ id: 'kilise', icon: '⛪', title: 'Church Kitabı', sub: 'rahibe olayları, cübbe altı, başrahibe ve CarmenChurch', chips: [`${Object.keys(KC_EV).length + 22} olay`, '🎭 2 rol'], chapters: [
@@ -24112,7 +24236,7 @@
     { icon: '🔥', title: 'Kilise pozisyonları ve bitişleri', sub: 'sıra, rahle, sunak, kabin, hücre, hamam, bahçe, çan kulesi', get body() {
       const ch = allEvents().filter(e => e.cat === KC_CAT), fin = allEvents().filter(e => (e.tags || []).includes('kilise') && (e.tags || []).includes('boşalma'));
       const tb = evs => `<table class="bk-t"><tr><th>Olay</th><th>Ne olur</th><th>Onun cevabı</th></tr>${evs.map(e => { const r = ofRule('r_ev_ch_', e.title), tg = (e.tags || []).includes('anal') ? '🍑 anal' : (e.tags || []).includes('vajinal') ? '🌸 vajinal' : '';
-        return `<tr><td>${e.emojis || '⛪'} <b>${esc(e.title)}</b>${tg ? `<br><small>${tg}</small>` : ''}</td><td>${esc(e.desc || '')}</td><td>${((r || {}).reply || []).slice(0, 2).map(x => `"${esc(x)}"`).join('<br>') || '—'}</td></tr>`; }).join('')}</table>`;
+        return `<tr><td>${e.emojis || '⛪'} <b>${esc(e.title)}</b>${tg ? `<br><small>${tg}</small>` : ''}</td><td>${esc(evTell(e))}</td><td>${((r || {}).reply || []).slice(0, 2).map(x => `"${esc(x)}"`).join('<br>') || '—'}</td></tr>`; }).join('')}</table>`;
       return `<p>⛪ <b>Church</b> olayları <b>⛪ Kilise</b> mekânına aittir: oradayken olay seçicinin <b>📍 Mekân</b> sekmesinde ve ⚡ Kısayollar'da çıkar; başka yerde Church olayı yazarsan sohbet Kilise'ye geçer. CarmenChurch sohbetleri Kilise'de başlar, ikisi ❤️ ve ⚡'a eklenir. Rahibe sürerken mekân önerilerinde Kilise öne çıkar. Rol sürerken cevapları rahibenin ağzından gelir.</p>
         <ul><li><b>Rosary Bead Tease</b> pozisyon değil ısınmadır: Uyarılma +15, anal'den önce iyi gider.</li>
           <li><b>Bitişler</b> (💦 Bitiş sekmesi) sadece bir kilise pozisyonundan sonra eşleşir; <b>Holy Water Creampie</b> korunmaya göre hamilelik ihtimali taşır.</li>
@@ -24158,7 +24282,7 @@
   const ghTb = (evs, pre) => `<table class="bk-t"><tr><th>Olay</th><th>Ne olur</th><th>Onun cevabı</th></tr>${evs.map(e => {
     const t = e.tags || [], r = ofRule(pre, e.title), tg = t.includes('anal') ? '🍑 anal' : t.includes('vajinal') ? '🌸 vajinal' : t.includes('oral') ? '👄 oral' : t.includes('boşalma') ? '' : '😏 ısınma';
     const fx = (e.onEffects || []).map(f => BD_PN[f.p] ? `${BD_PN[f.p]} ${f.d > 0 ? '+' : ''}${f.d}` : '').filter(Boolean).join(' · ');
-    return `<tr><td>${e.emojis || ''} <b>${esc(e.title)}</b>${tg || fx ? `<br><small>${[tg, fx].filter(Boolean).join(' · ')}</small>` : ''}</td><td>${esc(e.desc || '')}</td><td>${((r || {}).reply || []).slice(0, 2).map(x => `"${esc(x)}"`).join('<br>') || '—'}</td></tr>`; }).join('')}</table>`;
+    return `<tr><td>${e.emojis || ''} <b>${esc(e.title)}</b>${tg || fx ? `<br><small>${[tg, fx].filter(Boolean).join(' · ')}</small>` : ''}</td><td>${esc(evTell(e))}</td><td>${((r || {}).reply || []).slice(0, 2).map(x => `"${esc(x)}"`).join('<br>') || '—'}</td></tr>`; }).join('')}</table>`;
   const ghPlace = (cat, tag, pre, intro) => { const [pos, fin] = ghEvs(cat, tag); return `<p>${intro}</p><h4>🔥 Pozisyonlar ve ısınmalar</h4>${ghTb(pos, pre)}<h4>💦 Bitişler</h4>${ghTb(fin, pre)}`; };
   const ghInts = k => (((Stories.FANT_INTERRUPTS || {})[k]) || []).map(x => `<li>${esc(x.g)}: "${esc((x.r || [])[0] || '')}"</li>`).join('');
   const ghRole = (k, ev) => { const e = ofSysEv(ev), r = ofRule('r_rp_' + k, ev), fq = ((Stories.BOT_RULES || {}).rules || []).filter(x => x.id.startsWith(`r_fq_fxrp${k}_`)), eggs = fantRules('r_fe_', 'fxrp' + k);
@@ -24335,7 +24459,7 @@
         <h4>🪜 Stairs</h4><ul>${ghInts('yermerdiven')}</ul><h4>🧺 Laundry</h4><ul>${ghInts('yercamasir')}</ul><h4>🌇 Balcony</h4><ul>${ghInts('yerbalkon')}</ul>`;
     } }] });
   /* 🤰 Hamilelik Kitabı: Pregnancy Foreplay / Pregnancy (c:mvpregfp01x, c:mvpreg01x + 'hamile' bitişleri), hafta kapısı (e.weeks, pregBlock), sahneler */
-  const hmWeeks = evs => `<table class="bk-t"><tr><th>Olay</th><th>Hafta</th><th>Ne olur</th></tr>${evs.map(e => `<tr><td>${e.emojis || ''} <b>${esc(e.title)}</b></td><td>${(e.weeks || [1, 40]).join('–')}</td><td>${esc(e.desc || '')}</td></tr>`).join('')}</table>`;
+  const hmWeeks = evs => `<table class="bk-t"><tr><th>Olay</th><th>Hafta</th><th>Ne olur</th></tr>${evs.map(e => `<tr><td>${e.emojis || ''} <b>${esc(e.title)}</b></td><td>${(e.weeks || [1, 40]).join('–')}</td><td>${esc(evTell(e))}</td></tr>`).join('')}</table>`;
   BOOKS.push({ id: 'hamile', icon: '🤰', title: 'Hamilelik Kitabı', sub: 'hamileyken ön sevişme, pozisyonlar, bitişler ve sahneler', chips: ['40 olay', '🎬 4 sahne', '📅 hafta'], chapters: [
     { icon: '📖', title: 'Hamilelik Kitabı nasıl okunur', sub: 'hafta kapısı, kategoriler, bitişler', get body() {
       return `<p>🤰 Creampie bitişlerinden sonra hamile kalabilir; durum çubuğunda haftası görünür. Bu kitap o dönemin olaylarını anlatır: <b>💞 Pregnancy Foreplay</b> (<b>📜 Olay yaz → 👅 Ön sevişme</b>) ve <b>🤰 Pregnancy</b> (<b>🔥 Pozisyon</b>). <b>#</b> yazıp olayın adıyla da başlarlar.</p>
@@ -24360,7 +24484,7 @@
       return `<p>Açılış olayını yazınca sahne başlar; adımlar ⚡ şeridinde görünür. Hamile değilse açılış olayı yazılmaz, sahne de başlamaz.</p>${evScenes(['hamile'])}`;
     } }] });
   /* 👩‍❤️‍👩 Lezbiyen Kitabı: kadın profili (u.gender ♀), Lesbian Foreplay / Finish (c:mvlesfp01x, c:mvlesfin01x), 🌸 Tecrübe, ⏱️ Dayanıklılık, gizlenen olaylar (lesNo) */
-  const lsTable = evs => `<table class="bk-t"><tr><th>Olay</th><th>Ne olur</th><th>🗣️</th></tr>${evs.map(e => `<tr><td>${e.emojis || ''} <b>${esc(e.title)}</b></td><td>${esc(e.desc || '')}</td><td>${((Stories.ME_EV_LINES || {})[e.title] || []).length}</td></tr>`).join('')}</table>`;
+  const lsTable = evs => `<table class="bk-t"><tr><th>Olay</th><th>Ne olur</th><th>🗣️</th></tr>${evs.map(e => `<tr><td>${e.emojis || ''} <b>${esc(e.title)}</b></td><td>${esc(evTell(e))}</td><td>${((Stories.ME_EV_LINES || {})[e.title] || []).length}</td></tr>`).join('')}</table>`;
   const lsLines = (rows) => `<table class="bk-t"><tr><th>Seviye</th><th>Ne zaman</th><th>Örnek</th></tr>${rows.map(([lv, w, l]) => `<tr><td><b>${esc(lv)}</b></td><td>${esc(w)}</td><td>${(l || []).slice(0, 3).map(esc).join('<br>')}</td></tr>`).join('')}</table>`;
   const lsScenes = () => { const c = (Stories.SCENE_CATS || []).find(x => x.id === 'lezbiyen') || { ids: [] }, SC = Stories.SCENES || [];
     return `<table class="bk-t"><tr><th>Sahne</th><th>Açılış → adımlar</th><th>Bitiş</th></tr>${c.ids.map(id => SC.find(s => s.id === id)).filter(Boolean).map(s => `<tr><td>${s.icon} <a href="#/events/sahne-${s.id}"><b>${esc(s.name)}</b></a><br><small>${s.mode === 'seq' ? 'sırayla' : `${s.need} adım yeter`}</small></td><td>${bkEv(s.open)} → ${s.steps.map(bkEv).join(s.mode === 'seq' ? ' → ' : ', ')}</td><td>${s.fin ? bkEv(s.fin) : '—'}</td></tr>`).join('')}</table>`; };
@@ -24403,7 +24527,7 @@
     { icon: '👗', title: 'Kıyafetli', sub: 'külot, tayt, kot, etek, çorap, dantel, bikini, elbise', get body() {
       const evs = allEvents().filter(e => isLesEv(e) && (e.tags || []).some(t => lowTag(t) === 'kıyafet'));
       return `<p>👗 Soyunmadan sürtünme. Onun kıyafeti tanımlıysa olaydaki parçalardan biri üstünde ve çıkarılmamış olmalı; yoksa "üstünde … yok" uyarısı gelir. Kıyafeti tanımsız karakterde hep açıktır. Kıyafetli bitişlerden sonra 🌙 Lesbian After iyi gider.</p>
-        <table class="bk-t"><tr><th>Olay</th><th>Ne olur</th><th>👗 Gerekir</th></tr>${evs.map(e => `<tr><td>${e.emojis || ''} <b>${esc(e.title)}</b></td><td>${esc(e.desc || '')}</td><td>${(e.wear || []).map(clItem).filter(Boolean).slice(0, 4).map(x => esc(x.name)).join(', ') || '—'}</td></tr>`).join('')}</table>`;
+        <table class="bk-t"><tr><th>Olay</th><th>Ne olur</th><th>👗 Gerekir</th></tr>${evs.map(e => `<tr><td>${e.emojis || ''} <b>${esc(e.title)}</b></td><td>${esc(evTell(e))}</td><td>${(e.wear || []).map(clItem).filter(Boolean).slice(0, 4).map(x => esc(x.name)).join(', ') || '—'}</td></tr>`).join('')}</table>`;
     } },
     { icon: '🌙', title: 'Lesbian After', sub: 'lekeler, külot değiş tokuşu, toparlanma', get body() {
       return `<p>🌙 Bitişten sonra. Zevk vermez; 🤝 Samimiyet ve ❤️ Aşk getirir.</p>${lsTable(allEvents().filter(e => e.cat === LES_AF))}`;
@@ -25356,7 +25480,81 @@
       ['Lazy Stroke Finish', 'Seni yavaş ve gevşek okşarsam uçta birikip süzülür; Lazy Stroke Finish.'],
       ['Was That It?', 'Az gelince şaşırıp \'Bu kadar mı?\' dersem Was That It?'],
       ['Apology Squeeze', '\'Pardon, bıraktım\' deyip sıkarak kalanını çıkarmaya çalışırsam Apology Squeeze. Ardından bir pozisyon ve gür fışkırma gelirse 🔁 İkinci şans kombosu.'],
-      ['Still Full', 'Boşaldın ama hâlâ dolu olduğunu fark edip gülümsersem Still Full.']]]
+      ['Still Full', 'Boşaldın ama hâlâ dolu olduğunu fark edip gülümsersem Still Full.']]],
+    ['🫂', 'Islak Sürtünme', 'uyluk, göğüs, kalça, karın, ayak', 'Burada sen işersin, ben de istediğim için sürtünmeye devam ederiz; içeri girmeden. Biri durmak isterse dururuz 🤍', [
+      ['Thigh Gap Pee', 'Uyluklarımı sıkıştırıyorum. Sen aralarında sürtünürken bırakırsan Thigh Gap Pee olur.', 'Bacaklarını sıkıştırır; onun isteğiyle uyluklarının arasında sürtünürken işersin'],
+      ['Tit Rub Pee', 'Göğüslerimi birleştiriyorum. Sen aralarında kayarken göğüslerime işersen ve kaymaya devam edersen Tit Rub Pee olur.', 'Göğüslerinin arasında sürtünürken onun isteğiyle göğüslerine işersin, sonra sürtünmeye devam edersin'],
+      ['Slick Slide', 'Kalçamı sana uzatıyorum. Sen önce kalçalarıma işeyip sonra o ıslaklıkla yanaklarımın arasında kayarsan Slick Slide olur.', 'Önce onun isteğiyle kalçalarına işersin, sonra o ıslaklıkla yanaklarının arasında kayarsın'],
+      ['Belly Slide Pee', 'Sırtüstü uzanıyorum. Sen karnıma işeyip üstüme yaslanırsan karın karına kayarız, Belly Slide Pee olur.', 'Onun isteğiyle karnına işersin; ardından karın karına sürtünerek ıslaklığı aranızda yayarsınız'],
+      ['Panty Rub Pee', 'Külotumu çıkarmıyorum. Sen üstünde sürtünürken külotuma işersen Panty Rub Pee olur.', 'Külotunun üstünde sürtünürken onun isteğiyle külotuna işersin; ıslak kumaş her harekette daha çok yapışır'],
+      ['Floor Grind Pee', 'Banyo fayansına yüzüstü uzanıyorum. Sen üstümde sürtünürken sırtıma işersen Floor Grind Pee olur.', 'Islak fayansta yüzüstü yatar; üstünde sürtünürken onun isteğiyle sırtına işersin'],
+      ['Back Slide', 'Sırtımı sana dönüyorum. Sen sırtıma işeyip ıslak tenimde kayarsan Back Slide olur.', 'Onun isteğiyle sırtına işersin, sonra ıslak sırtında yavaşça kayarsın'],
+      ['Feet Rub Pee', 'Ayaklarımı birleştiriyorum. Sen aralarında sürtünürken ayaklarıma işersen Feet Rub Pee olur.', 'Ayaklarının arasında sürtünürken onun isteğiyle ayaklarına işersin'],
+      ['Armpit Rub Pee', 'Kolumu kaldırıp seni koltuk altıma sıkıştırıyorum. Sen sürtünürken bırakırsan Armpit Rub Pee olur.', 'Koltuk altına sıkıştırır; sürtünürken onun isteğiyle bırakırsın'],
+      ['Spoon Rub Pee', 'Yan yatıp kalçamı sana yaslıyorum. Sen arkamdan sarılıp sürtünürken bırakırsan Spoon Rub Pee olur.', 'Kaşık pozisyonunda kalçasına sürtünürken onun isteğiyle bırakırsın; ikinizin arasından süzülür']]],
+    ['🌊', 'Gür Islak Oyunlar', 'bol, uzun, taşan', 'Burada sen çok uzun ve bol işersin; ben istediğim için. Göl olur, çarşaf ıslanır, küvet dolar. Biri durmak isterse dururuz 🤍', [
+      ['Held All Day', 'Bütün gün tuttuğunu biliyorum. Sen önümde bırakırsan bitmek bilmez, Held All Day olur.', 'Bütün gün tutmuşsun; onun isteğiyle önünde bıraktığında bitmek bilmez'],
+      ['Endless Stream', '"Bitti" diyorum ama sen devam edersen gülmeye başlarım; Endless Stream.', '"Bitti" sanır ama sen devam edersin; o da gülerek "bu ne kadar çok" der'],
+      ['Flooded Floor', 'Kendi isteğimle önünde diz çöküyorum. Sen üzerime işerken dizlerimin etrafında göl olursa Flooded Floor.', 'Kendi isteğiyle önünde diz çöker; üzerine işerken dizlerinin etrafında gölcük oluşur'],
+      ['Hair to Toes', 'Ayağa kalkıp kollarımı açıyorum. Sen saçımdan ayak parmaklarıma kadar her yerime işersen Hair to Toes olur.', 'Onun isteğiyle saçından ayak parmaklarına kadar her yerine yetecek kadar işersin'],
+      ['Bathtub Fill', 'Boş küvete uzanıyorum. Sen üzerime işerken küvet dolmaya başlarsa Bathtub Fill olur.', 'Küvette uzanmış; onun isteğiyle üzerine işerken küvet dolmaya başlar'],
+      ['Soaked Sheets', 'Yatağın ortasına uzanıyorum. Sen üzerime işersen çarşaf, yorgan her şey ıslanır; Soaked Sheets.', 'Onun isteğiyle yatakta üzerine işersin; çarşaf, yorgan, her şey sırılsıklam olur'],
+      ['Big Gulp Fail', 'Kendi isteğimle ağzımı açıyorum. Sen bırakırsan yetişemem, çenemden göğüslerime akar; Big Gulp Fail.', 'Kendi isteğiyle ağzına almaya çalışır, yetişemez; çenesinden göğüslerine akar'],
+      ['Pressure Burst', 'Tutmaya çalıştığını görüyorum. Sen birden bırakırsan sert ve bol fışkırır; Pressure Burst.', 'Tutmaya çalışırken birden bırakırsın; sert ve bol fışkırır, o da şaşkınlıkla güler'],
+      ['Full Coverage', 'Önünde yavaşça dönüyorum. Sen göğüslerime, karnıma ve kalçama sırayla işersen Full Coverage olur.', 'Onun isteğiyle yavaşça dönerken göğüslerine, karnına ve kalçasına sırayla işersin'],
+      ['Overflowing Panties', 'Külotumu çıkarmıyorum. Sen üstüne işersen külot hemen doyar, gerisi bacaklarımdan akar; Overflowing Panties.', 'Onun isteğiyle giydiği külotuna işersin; külot ilk saniyede doyar, gerisi bacaklarından akar']]],
+    ['🍑', 'Anal Islak Oyunlar', 'içinde işemek, pozisyonlar', 'Burada arkamdayken içimde işersin; ben istediğim için. Her pozisyonda başka türlü dolarım. Biri durmak isterse dururuz 🤍', [
+      ['Deep Release', 'Arkamdasın, kıpırdamıyorum. Sen içimde bırakırsan derinden dolarım, Deep Release olur.', 'Arkasındayken onun isteğiyle içinde bırakırsın; derinden dolduğunu hisseder'],
+      ['Doggy Pee', 'Dört ayak üstündeyim. Sen içimde işersen, çıkınca kalçamdan süzülür; Doggy Pee.', 'Dört ayak üstündeyken içinde işersin; çıkınca kalçalarından aşağı süzülür'],
+      ['Prone Bone Pee', 'Yüzüstü uzanıyorum, sen üstümdesin. İçimde bırakırsan çarşafa sızar; Prone Bone Pee.', 'Yüzüstü yatarken üstündesin; içinde bırakırsın, çarşafa sızar'],
+      ['Spoon Fill', 'Yan yatıyorum, sen arkamdan sarılıyorsun. İçimde işersen Spoon Fill olur.', 'Kaşık pozisyonunda arkasından sarılıyken içinde işersin'],
+      ['Standing Fill', 'Duvara yaslanıyorum. Sen ayakta içimde bırakırsan bacaklarımdan aşağı akar; Standing Fill.', 'Duvara yaslanmış, ayakta; içinde bırakınca bacaklarından aşağı akar'],
+      ['Shower Anal Pee', 'Suyun altında fayansa tutunuyorum. Sen arkamdayken içimde bırakırsan Shower Anal Pee olur.', 'Duşta, suyun altında arkasındayken içinde bırakırsın'],
+      ['Tub Kneel Pee', 'Küvette dizlerimin üstüne çıkıyorum. Sen içimde işersen, çıkınca küvete boşalır; Tub Kneel Pee.', 'Küvette dizlerinin üstünde; içinde işersin, çıkınca küvete boşalır'],
+      ['Hold It In', 'İçimde işersen sen çıktıktan sonra bir süre tutarım; Hold It In.', 'İçinde işersin; onun isteğiyle sen çıktıktan sonra bir süre tutar'],
+      ['Pull Out Pee', 'Sen içimde başlayıp sonra çıkıp kalçama ve sırtıma devam edersen Pull Out Pee olur.', 'Önce içinde başlarsın, sonra çıkıp kalçasına ve sırtına devam edersin'],
+      ['Reverse Cowgirl Pee', 'Sırtımı dönüp üstüne oturuyorum. Sen içimde bırakırsan senin üzerine taşar; Reverse Cowgirl Pee.', 'Sırtı sana dönük üstünde otururken içinde bırakırsın; senin üzerine taşar'],
+      ['Toilet Seat Fill', 'Tuvalette kucağına oturuyorum. Sen içimde işersen Toilet Seat Fill olur.', 'Tuvalette kucağına oturmuşken içinde işersin']]],
+    ['💦', 'Gür Anal Islak Oyunlar', 'içinde, bol, taşan', 'Burada içimde çok uzun ve bol işersin; ben istediğim için. Karnım şişer, taşar, çıkınca her şey dökülür. Biri durmak isterse dururuz 🤍', [
+      ['Held All Day Fill', 'Bütün gün tuttun. Sen içimde bırakırsan bitmek bilmez; Held All Day Fill.', 'Bütün gün tutmuşsun; içinde bıraktığında bitmek bilmez, o şaşkınlıkla inler'],
+      ['Bloated Belly', 'Elini karnıma koyuyorum. Sen o kadar çok bırakırsan ki şiştiğini hissedersen Bloated Belly.', 'İçinde o kadar çok bırakırsın ki karnının şiştiğini hisseder'],
+      ['Overflowing Fill', 'Sen daha bitirmeden kenarlardan taşıp uyluklarımdan akarsa Overflowing Fill.', 'Daha bitmeden kenarlardan taşmaya başlar, uyluklarından akar'],
+      ['Endless Fill', '"Bitti" sanıyorum ama sen devam edersen "daha mı var?" diye gülerim; Endless Fill.', '"Bitti" sanır ama sen devam edersin; "daha mı var?" diye güler'],
+      ['Gush Out', 'Sen çıktığın anda içimde tuttuğum her şey bir anda boşalırsa Gush Out.', 'Çıktığın anda içinde tuttuğu her şey bir anda boşalır'],
+      ['Puddle Doggy', 'Dört ayak üstündeyim. Sen çıkınca dizlerimin arasında göl olursa Puddle Doggy.', 'Dört ayak üstünde; sen çıkınca dizlerinin arasında gölcük oluşur'],
+      ['Soaked Bed', 'Yüzüstü yatıyorum. Sen içimde bitmeden bırakırsan yatak sırılsıklam olur; Soaked Bed.', 'Yüzüstü yatarken içinde bitmeyen bir akış; çarşaf ve yatak sırılsıklam olur'],
+      ['Tub Overflow', 'Küvetteyiz. Sen içimde bırakıp çıkınca küvetin dibi dolarsa Tub Overflow.', 'Küvette içinde bırakırsın; çıktığında küvetin dibi dolar'],
+      ['Hold It Challenge', 'İçimde bırakırsan olabildiğince tutmaya çalışırım, sonunda dayanamam; Hold It Challenge.', 'Onun isteğiyle içinde olabildiğince tutmaya çalışır, sonunda dayanamayıp boşaltır'],
+      ['Standing Flood', 'Duvara yaslanıyorum. İçimden bacaklarıma, ayaklarıma kadar akıp yerde birikirse Standing Flood.', 'Duvara yaslanmış; içinden bacaklarına, ayaklarına kadar akar, yerde birikir'],
+      ['Pull Out Spray', 'Sen içimde başlayıp çıkınca kalçama, sırtıma ve saçıma kadar devam edersen Pull Out Spray.', 'İçinde başlarsın, çıkıp kalçasına, sırtına ve saçına kadar devam edersin'],
+      ['Double Round', 'İlkini içimde tutuyorum. Sen ikinci kez dolunca ikisi birden taşarsa Double Round.', 'İlkini içinde tutar; sen ikinci kez dolduğunda ikisi birden taşar']]],
+    ['⏳', 'Tutup Sürterken', 'bütün gün tuttun, sürtünürken dayanamazsın', 'Sen bütün gün tuttun; ben istediğim için sürtünürken bırakırsın, içeri girmeden. Bitmek bilmez. Biri durmak isterse dururuz 🤍', [
+      ['Bursting Grind', 'Kalçalarımı birleştiriyorum. Sen aralarında sürtünürken dayanamayıp bırakırsan Bursting Grind olur.', 'Bütün gün tutmuşsun; kalçalarının arasında sürtünürken dayanamayıp bırakırsın, bitmek bilmez'],
+      ['Thigh Flood Rub', 'Uyluklarımı sıkıyorum. Sen aralarında sürtünürken tuttuğun her şey ayaklarıma kadar akarsa Thigh Flood Rub.', 'Uyluklarının arasında sürtünürken tuttuğun her şey akar; dizlerinden ayaklarına iner'],
+      ['Desperate Hotdog', 'Zar zor tuttuğunu görüyorum, kalçalarımı sıkıyorum. Sen dayanamazsan Desperate Hotdog olur.', 'Zar zor tutuyorsun; onun isteğiyle kalçalarını sıkınca dayanamazsın, yanaklarının arasından taşar'],
+      ['Belly Lake Rub', 'Sırtüstü uzanıyorum. Sen karnıma bırakıp üstüme yaslanırsan aramızdan taşar; Belly Lake Rub.', 'Onun isteğiyle karnına bırakırsın, göbeğinde göl olur; karın karına sürtünürken aranızdan taşar'],
+      ['Panty Burst Rub', 'Külotumu çıkarmıyorum. Sen üstünde sürtünürken birden bırakırsan Panty Burst Rub olur.', 'Külotunun üstünde sürtünürken birden bırakırsın; külot doyar, bacaklarından akar'],
+      ['Last Second Grind', '"Son bir sürtünme" dersen ve o anda patlarsa Last Second Grind.', '"Son bir sürtünme" dersin, o anda patlar; ikiniz de sırılsıklam olursunuz'],
+      ['Spoon Overflow', 'Yan yatıp kalçamı sana yaslıyorum. Sen sürtünürken bırakır, çarşafta göl olursa Spoon Overflow.', 'Kaşık pozisyonunda kalçasına sürtünürken bırakırsın; çarşafta göl olur'],
+      ['Floor Slip Flood', 'Fayansa uzanıyorum. Sen üstümde sürtünürken bitmeden bırakırsan ikimiz de kayarız; Floor Slip Flood.', 'Fayansta üstünde sürtünürken bitmeyen bir akış; ikiniz de kayarsınız']]],
+    ['😣', 'Tutup Analdan', 'bütün gün tuttun, içinde dayanamazsın', 'Sen bütün gün tuttun; ben istediğim için içimdeyken bırakırsın. Karnım şişer, çıkınca dökülür. Biri durmak isterse dururuz 🤍', [
+      ['Bursting Inside', 'Sen bütün gün tuttun. İçime girdiğin anda dayanamazsan Bursting Inside olur.', 'Bütün gün tutmuşsun; içine girdiğin anda dayanamayıp onun isteğiyle bırakırsın'],
+      ['Desperate Doggy', 'Dört ayak üstündeyim. Sen birkaç itişten sonra içimde patlarsan Desperate Doggy.', 'Dört ayak üstündeyken zar zor tutuyorsun; birkaç itişten sonra içinde patlar'],
+      ["Can't Hold Prone", 'Yüzüstü uzanıyorum. Sen tutamayıp içimde bitmeden bırakırsan Can\'t Hold Prone.', 'Yüzüstü yatarken içinde bitmeyen bir akış; karnı şişer, çarşafa sızar'],
+      ['Belly Full Spoon', 'Yan yatıyorum. Sen içimde bırakınca şişen karnımı tutarsam Belly Full Spoon.', 'Kaşık pozisyonunda içinde bırakırsın; o eliyle şişen karnını tutar'],
+      ['Standing Burst', 'Duvara yaslanıyorum. Tuttuğun her şey içime dolar, çıkınca dökülürse Standing Burst.', 'Ayakta, duvara yaslıyken tuttuğun her şey içine dolar; çıkınca ayaklarına kadar dökülür'],
+      ['Bursting Together', 'Ben de tutuyordum. Sen içimde bırakınca ben de dayanamazsam Bursting Together.', 'İkiniz de tutmuşsunuz; sen içinde bırakırsın, o da aynı anda dayanamaz'],
+      ['Desperate Cowgirl', 'Sırtımı dönüp üstüne oturuyorum. Sen içimde patlarsan senin üstüne taşar; Desperate Cowgirl.', 'O sırtı dönük üstündeyken içinde patlar; senin üstüne taşar'],
+      ['Bursting Plug', 'Sen içimde bırakıp tıpayla kapatırsan şişmiş karnımla bir süre gezerim; Bursting Plug.', 'İçinde bırakırsın, sonra onun isteğiyle tıpayla kapatırsın; şişmiş karnıyla bir süre gezer']]],
+    ['🍈', 'Tutup Titfuck', 'bütün gün tuttun, göğüslerinin arasında dayanamazsın', 'Sen bütün gün tuttun; ben istediğim için göğüslerimin arasında kayarken bırakırsın. Göl olur, taşar. Biri durmak isterse dururuz 🤍', [
+      ['Bursting Titfuck', 'Göğüslerimi birleştiriyorum. Sen aralarında kayarken dayanamazsan Bursting Titfuck olur.', 'Bütün gün tutmuşsun; göğüslerinin arasında kayarken dayanamayıp onun isteğiyle bırakırsın'],
+      ['Cleavage Lake', 'Göğüslerimi sıkıca birleştiriyorum. Aralarında göl olup taşarsa Cleavage Lake.', 'Göğüslerini birleştirmiş; aralarında göl olur, taşınca karnından aşağı akar'],
+      ['Chin Splash Titfuck', 'Göğüslerimin arasından çeneme, dudaklarıma kadar sıçrarsa Chin Splash Titfuck.', 'Göğüslerinin arasından fışkırır; çenesine, dudaklarına kadar sıçrar'],
+      ['Desperate Squeeze', 'Göğüslerimi sıktıkça daha zor tutarsın. Sonunda patlarsan Desperate Squeeze.', 'O göğüslerini sıktıkça daha zor tutarsın; sonunda birden patlar'],
+      ['Overflowing Cleavage', 'Göğüslerimin arasından taşıp göbeğimden kalçama inerse Overflowing Cleavage.', 'Göğüslerinin arasından taşar, göbeğinden kalçasına kadar iner'],
+      ['Kneeling Titfuck Flood', 'Kendi isteğimle önünde diz çöküyorum. Göğüslerimin arasında bırakınca dizlerimin etrafı göl olursa Kneeling Titfuck Flood.', 'Kendi isteğiyle önünde diz çökmüş, göğüsleri arasındasın; dizlerinin etrafında göl olur'],
+      ['Soaked Bra Titfuck', 'Sütyenimi çıkarmıyorum. Sen aralarında bırakırsan dantel sırılsıklam olur; Soaked Bra Titfuck.', 'Sütyeni üstündeyken aralarında bırakırsın; dantel sırılsıklam olur'],
+      ['Endless Titfuck', '"Bitti" sanıyorum ama sen devam edersen göğüslerimi daha sıkı bastırırım; Endless Titfuck.', '"Bitti" sanır ama sen kaymaya ve bırakmaya devam edersin; gülerek göğüslerini daha sıkı bastırır']]]
   ];
   BOOKS.push({ id: 'olay', icon: '🎬', title: 'Olay Kitabı', sub: 'Lia her olayı sahneleyerek anlatır', chips: [`${OLAY_BOOK.reduce((n, c) => n + c[4].length, 0)} olay`, '💁‍♀️ Lia anlatıyor'], chapters: [
     { icon: '🎬', title: 'Olay Kitabı nasıl okunur', sub: 'Lia sahneler, sen yaparsın', body: `
@@ -25592,7 +25790,7 @@
         <li><b>4 mekan</b>: perili ev, mısır labirenti, kostüm partisi, mezarlığın önünde araba; pozisyonlarda kendi cevapları gelir.</li>
         <li><b>🕯️ Tema</b>: turuncu-mor, köşelerinde mum ışığı olan sohbet teması.</li></ul>` },
     { icon: '🔥', title: 'Pozisyonlar', sub: '29 Halloween pozisyonu (12\'si 🩸 kan, 5\'i 🫠 slime)', get body() {
-      return `<table class="bk-t"><tr><th>Olay</th><th>Kategori</th><th>Ne olur</th><th>Bitiş</th></tr>${HW_POS.map(hwEv).filter(Boolean).map(e => `<tr><td>${evEmo(e)}<b>${esc(e.title)}</b></td><td>${esc(catOfEv(e).icon || '')} ${esc(catOfEv(e).label)}</td><td>${esc(e.desc || '')}</td><td>${esc(HW_END_EV[String(e.title).toLocaleLowerCase('tr')] || HW_END[(e.tags || [])[0]] || '–')}</td></tr>`).join('')}</table>
+      return `<table class="bk-t"><tr><th>Olay</th><th>Kategori</th><th>Ne olur</th><th>Bitiş</th></tr>${HW_POS.map(hwEv).filter(Boolean).map(e => `<tr><td>${evEmo(e)}<b>${esc(e.title)}</b></td><td>${esc(catOfEv(e).icon || '')} ${esc(catOfEv(e).label)}</td><td>${esc(evTell(e))}</td><td>${esc(HW_END_EV[String(e.title).toLocaleLowerCase('tr')] || HW_END[(e.tags || [])[0]] || '–')}</td></tr>`).join('')}</table>
         <p>Her pozisyonun kendi cevapları ve (yalama / ön sevişme olanlar hariç) o pozisyondayken boşalınca gelen ayrı cevapları var. Pumpkin Grind ve Masquerade kıyafetli: 👗 Dressed boşalmalarda karakter giydiği kostüme göre konuşur. Mezarlık önünde arabadayken ayakta ve küvetli pozisyonlar (Vampire Bite, Tombstone, Shoulder Mark, Blood Bath) olmaz.</p>
         <p>🩸 <b>Kan pozisyonları</b> (<code>kan</code> etiketi): ısırık ve boyun (Neck Feast, Jugular Ride, Wrist Offering, Thigh Bite, Shoulder Mark), kadeh ve şarap (Chalice, Red Fountain, Communion, Blood Bath, Bottoms Up), ayin (Sacrifice, Blood Pact).</p>`;
     } },
@@ -25612,7 +25810,7 @@
       <p>Bütün sohbetlere birden uygulamak için <a href="#/halloween">Halloween vitrinindeki</a> <b>🎃 Bütün sohbetlere uygula</b> düğmesi. Sonra her sohbette 🎨 Tema'dan geri değiştirebilirsin.</p>` },
     { icon: '💦', title: 'Boşalmalar', sub: '13 Halloween boşalması', get body() {
       return `<p>💦 Cumming kategorisinde. Her birinin 12 kendi cevabı var; bir Halloween pozisyonundayken boşalınca önce o pozisyonun boşalma cevabı gelir.</p>
-        <table class="bk-t"><tr><th>Olay</th><th>Ne olur</th></tr>${HW_CUM.map(hwEv).filter(Boolean).map(e => `<tr><td>${evEmo(e)}<b>${esc(e.title)}</b></td><td>${esc(e.desc || '')}</td></tr>`).join('')}</table>
+        <table class="bk-t"><tr><th>Olay</th><th>Ne olur</th></tr>${HW_CUM.map(hwEv).filter(Boolean).map(e => `<tr><td>${evEmo(e)}<b>${esc(e.title)}</b></td><td>${esc(evTell(e))}</td></tr>`).join('')}</table>
         <p>Türlere göre: 👻 Shroud Cumshot Hayalet ve Mumya, 🧪 Potion Ingredient Cadı, 🧜‍♀️ Siren's Swallow Deniz Kızı, 💋 Vampire Kiss Finish ve 🩸 Crimson Mix Vampir için; 👀 Visible Creampie, 🫠 Absorption, 💚 Slime Coat ve 🥤 Visible Swallow Slime Girl için. Red Bath Creampie ve Visible Creampie içe boşalmadır: hamilelik ihtimali Vaginal Creampie'yle aynı.</p>`;
     } },
     { icon: '🦇', title: 'Gothic.com', sub: 'türler, Emily kızları, kan kuralları', body: `
@@ -25625,7 +25823,7 @@
         <tr><td>içe izin vermeyen</td><td>Red Bath Creampie 🚫</td></tr>
         <tr><td>içe izin veren</td><td>🩸 Kurallarım'da Pact Seal / Blood Moon Creampie / Red Bath Creampie satırı</td></tr></table>` },
     { icon: '💧', title: 'Boyutlar ve Succubus laneti', sub: 'miktar, atış, ısı, tat', get body() {
-      const row = t => { const e = hwEv(t); return e ? `<tr><td>${evEmo(e)}<b>${esc(e.title)}</b></td><td>${esc(e.desc || '')}</td></tr>` : ''; };
+      const row = t => { const e = hwEv(t); return e ? `<tr><td>${evEmo(e)}<b>${esc(e.title)}</b></td><td>${esc(evTell(e))}</td></tr>` : ''; };
       return `<p>💧 Cumming Size kategorisinde; bir boşalmanın ardından seçilir (ör. <i>Vaginal Creampie + Hot Load</i>). Her birinin 10+ cevabı ve kişiliğe göre iki varyantı var (utangaç, flörtöz, kibirli, alaycı, sayko…).</p>
         <table class="bk-t"><tr><th>Olay</th><th>Ne olur</th></tr>${HW_SIZES.map(row).join('')}</table>
         <p>🧪 <b>Witch's Brew + Potion Ingredient</b> birlikte gelince cadının özel iksir cevapları gelir.</p>
@@ -25636,7 +25834,7 @@
   BOOKS.find(b => b.id === 'carmen').chapters.push(...[{ icon: '🍷', title: 'İçki ve sarhoşluk', sub: '🍷 Drinks olayları, Sarhoşluk değeri', get body() {
     const dr = allEvents().filter(e => low0(catOfEv(e).label) === 'drinks');
     return `<p>🍷 <b>Drinks</b> kategorisindeki olaylarla ona içki içirirsin (📜 Olay → 🍷 Drinks sekmesi). Her içki karakterin <b>🍷 Sarhoşluk</b> değerini artırır, su ve kahve düşürür.</p>
-      <table class="bk-t"><tr><th>Olay</th><th>Ne olur</th><th>🍷</th></tr>${dr.map(e => { const d = ((e.onEffects || []).find(x => x.p === 'p:sarhos') || {}).d; return `<tr><td>${evEmo(e)}<b>${esc(e.title)}</b></td><td>${esc(e.desc || '')}</td><td>${d == null ? '–' : (d > 0 ? '+' : '') + d}</td></tr>`; }).join('')}</table>
+      <table class="bk-t"><tr><th>Olay</th><th>Ne olur</th><th>🍷</th></tr>${dr.map(e => { const d = ((e.onEffects || []).find(x => x.p === 'p:sarhos') || {}).d; return `<tr><td>${evEmo(e)}<b>${esc(e.title)}</b></td><td>${esc(evTell(e))}</td><td>${d == null ? '–' : (d > 0 ? '+' : '') + d}</td></tr>`; }).join('')}</table>
       <table class="bk-t"><tr><th>Sarhoşluk</th><th>Hâli</th></tr><tr><td>30+</td><td>🍷 çakırkeyif: güler, cesaretlenir</td></tr><tr><td>60+</td><td>🥴 sarhoş: hıçkırır, itiraf eder, utanması kalmaz</td></tr>
         <tr><td>85+</td><td>😵‍💫 zil zurna: iki tane seni görür, yatağa taşınmak ister</td></tr><tr><td>95</td><td>💤 <b>Passed Out</b> kendiliğinden gelir, Sarhoşluk 45 düşer</td></tr></table>
       <p>Sarhoşken sohbette ve sevişirken yarı yarıya sarhoş bir baloncuk ekler. Kişiliğe göre değişir: <b>utangaç</b> cesaretlenir ama utanır, <b>soğuk</b> erir ve sarılmak ister, <b>flörtöz</b> iyice yaramazlaşır, <b>kıskanç</b> telefonunu karıştırır.</p>
@@ -25644,7 +25842,7 @@
   } }, { icon: '🍼', title: 'Süt özellikleri', sub: 'Lactation: sıcaklık, tat, fışkırma, damlama', get body() {
     const NEW = ['Warm Milk', 'Cold Milk', 'Sweet Milk', 'Honey Milk', 'Milk Spray', 'Milk Drip', 'Let-down', 'Crimson Milk'];
     return `<p>🍼 Lactation olayları onun orgazmıyla birlikte ya da <b>tek başına</b> seçilebilir (tek başınaysa ve önceden orgazmı olduysa ona bağlanır).</p>
-      <table class="bk-t"><tr><th>Olay</th><th>Ne olur</th></tr>${NEW.map(t => hwEv(t)).filter(Boolean).map(e => `<tr><td>${evEmo(e)}<b>${esc(e.title)}</b></td><td>${esc(e.desc || '')}</td></tr>`).join('')}</table>
+      <table class="bk-t"><tr><th>Olay</th><th>Ne olur</th></tr>${NEW.map(t => hwEv(t)).filter(Boolean).map(e => `<tr><td>${evEmo(e)}<b>${esc(e.title)}</b></td><td>${esc(evTell(e))}</td></tr>`).join('')}</table>
       <p>Her birinin 12 cevabı ve kişiliğe göre iki varyantı var. <b>Sweet / Honey Milk</b>'te tadını sorar. <b>Milk Drip</b> üstü giyinikken (👕 üst ya da elbise) "bluzum ıslandı" der. <b>🩸 Crimson Milk</b> kendiliğinden gelir: sohbette Succubus Curse olduysa ya da Vampir / Succubus (tür ya da rol) bir 🩸 kan olayı yaşadıysa süt pembe-kırmızıdır.</p>
       <p>Ayrıca 🍷 <b>Milk & Wine</b> (Drinks: sütünü şarapla karıştırıp içirir) ve 🎃 <b>Milk Bath</b> (süt dolu küvet, Blood Bath'in beyaz eşi).</p>`;
   } }]);
@@ -25653,11 +25851,11 @@
     const lowS = s => String(s || '').toLocaleLowerCase('tr').trim();
     const sutId = () => { const p = allParams().find(x => x.who !== 'me' && lowS(x.label) === 'süt'); return p ? 'p:' + p.id : ''; };
     const dOf = (e, p) => { const f = (e.onEffects || []).find(x => x.p === p); return f ? (f.d > 0 ? '+' : '') + f.d : '–'; };
-    const evRow = e => `<tr><td>${evEmo(e)}<b>${esc(e.title.replace(/^Lactation – /, ''))}</b></td><td>${esc(e.desc || '')}</td><td>${dOf(e, sutId())}</td><td>${dOf(e, 'p:sutkalite')}</td></tr>`;
+    const evRow = e => `<tr><td>${evEmo(e)}<b>${esc(e.title.replace(/^Lactation – /, ''))}</b></td><td>${esc(evTell(e))}</td><td>${dOf(e, sutId())}</td><td>${dOf(e, 'p:sutkalite')}</td></tr>`;
     const fxName = k => capTr((FANT_KEYS.find(([, x]) => x === k) || [k])[0]);
     const MILK_WHEN = { sutbos: 'Süt 8\'in altında (sağıp bitirdin)', sutaz: 'Süt 8–34', sutdolu: 'Süt 70–89', suttasma: 'Süt 90 ve üstü', sutsulu: 'Kalite 25\'in altında', sutkrema: 'Kalite 55–79', sutaltin: 'Kalite 80 ve üstü' };
     // 🥛💦 Milk & Cum tablosu: olay, 🍼 Süt alt sınırı (e.milk), açıklama
-  const mcTb = evs => `<table class="bk-t"><tr><th>Olay</th><th>🍼 en az</th><th>Ne olur</th></tr>${evs.map(e => `<tr><td>${e.emojis || ''} <b>${esc(e.title)}</b></td><td>${e.milk != null ? e.milk : '—'}</td><td>${esc(e.desc || '')}</td></tr>`).join('')}</table>`;
+  const mcTb = evs => `<table class="bk-t"><tr><th>Olay</th><th>🍼 en az</th><th>Ne olur</th></tr>${evs.map(e => `<tr><td>${e.emojis || ''} <b>${esc(e.title)}</b></td><td>${e.milk != null ? e.milk : '—'}</td><td>${esc(evTell(e))}</td></tr>`).join('')}</table>`;
   BOOKS.push({ id: 'sut', icon: '🍼', title: 'Süt Kitabı', sub: 'ne kadar süt verir, kalitesi, fanteziye özel sütler', chips: ['🩺 litre', '✨ özel sütler'], chapters: [
       { icon: '🍼', title: 'Süt nasıl ölçülür', sub: 'Süt değeri, göğüs kapasitesi, litre', get body() {
         return `<p>Her karakterin <b>🍼 Süt</b> değeri (0–100) göğüslerinin ne kadar dolu olduğudur. 🕰️ Sohbet saatiyle her saat +5 dolar; sağma, emzirme ve onun orgazmı düşürür.</p>
@@ -25928,7 +26126,11 @@
     evs.forEach(s => { const g = sharedOf(s); (g ? g.outs : s.outcomes || []).forEach(o => { if (o.next) add(o.next, { s, o }); }); });
     const P = evParams(), pl = id => (P.find(p => p.id === id) || {}).label || id;
     const cl = id => String(id).startsWith('tag:') ? `🏷️ ${id.slice(4)} etiketli olay` : (c => c ? `${c.icon || ''} ${c.label}` : id)(moCats().find(c => c.id === id));
-    return { next, trig: allTriggers(), bands: bandRules(), pl, cl };
+    // 📖 anlatım için: başlık → olay, başlık → sahneler (rolüyle), NEXT_EV tersi (önce ne gelir), karakterler
+    const byT = new Map(evs.map(x => [low(x.title), x])), sc = new Map(), prev = new Map(), push = (m, k, x) => { if (!m.has(k)) m.set(k, []); m.get(k).push(x); };
+    scenesOk().forEach(s => [[s.open, 'açılış'], ...(s.steps || []).map(x => [x, 'adım']), [s.fin, 'bitiş']].forEach(([t, r]) => { if (t && !(sc.get(low(t)) || []).some(x => x.s === s)) push(sc, low(t), { s, r }); }));
+    Object.entries(NEXT_EV).forEach(([a, bs]) => bs.forEach(b => push(prev, low(b), a)));
+    return { next, trig: allTriggers(), bands: bandRules(), pl, cl, byT, sc, prev, cs: chars() };
   }
   function evbTriggers(e, cx = evbCtx()) {
     const t = e.title, cat = catOfEv(e), cl = String(cat.label || '').toLocaleLowerCase('tr'), ph = evbPhrases(), out = [];
@@ -25964,6 +26166,31 @@
     if (tg.includes('anal')) out.push('🍑 Anal Size ve anal sevmesine göre');
     if (String(e.title).toLocaleLowerCase('tr') === 'orgazm') out.push('💗 onun orgazmı: Woter / Milk ile şiddet');
     return out;
+  }
+  // 📖 Olay rehberi kartı: evTell paragrafının altında karakterlerin ilgisi
+  function evbStory(e, cx) {
+    const out = [];
+    const n = k => cx.cs.filter(c => (c[k] || []).includes(e.id)).length, L = n('likes'), D = n('dislikes'), N = n('denies');
+    if (L || D || N) out.push(`👥 <b>Karakterler</b>: ${[L && `❤️ ${L} sever`, D && `💔 ${D} sevmez`, N && `🚫 ${N} izin vermez`].filter(Boolean).join(' · ')}`);
+    return out;
+  }
+  // 📖 dokununca: olayın akıştaki yeri (önce / sonra), sahneler, kombolar, senin ağzından örnek
+  function evbDeep(e, cx) {
+    const t = low(e.title), out = [], ev = x => { const y = cx.byT.get(low(x)); return y ? `${esc(y.emojis || '')} ${esc(y.title)}` : esc(x); };
+    const pv = [...new Set(cx.prev.get(t) || [])].slice(0, 8);
+    if (pv.length) out.push(`⬅️ <b>Genelde şundan sonra</b>: ${pv.map(ev).join(', ')}`);
+    const nx = NEXT_EV[t] || [], nc = nx.length ? [] : NEXT_CAT[low(catOfEv(e).label)] || [];
+    if (nx.length) out.push(`➡️ <b>Ardından gelir</b> <small>(💭 onun fikri, ⚡ Kısayollar)</small>: ${nx.map(ev).join(', ')}`);
+    else if (nc.length) out.push(`➡️ <b>Ardından gelir</b> <small>(💭 onun fikri, ⚡ Kısayollar)</small>: ${esc(nc.join(', '))} kategorilerinden`);
+    const ox = (e.outcomes || []).filter(o => o.next).map(o => { const y = allEvents().find(x => x.id === o.next); return y ? `${esc(y.emojis || '')} ${esc(y.title)}${+o.pct ? ` <small>%${+o.pct}</small>` : ''}` : ''; }).filter(Boolean);
+    if (ox.length) out.push(`↪ <b>Kendiliğinden ardından</b>: ${ox.join(', ')}`);
+    const sc = cx.sc.get(t) || [];
+    if (sc.length) out.push(`🎬 <b>Sahnelerde</b>: ${sc.slice(0, 8).map(({ s, r }) => `<a href="#/events/sahne-${esc(s.id)}">${s.icon} ${esc(s.name)}</a> <small>(${r})</small>`).join(', ')}${sc.length > 8 ? ` <small>+${sc.length - 8}</small>` : ''}`);
+    const km = MEM_RULES.filter(r => (r.seq || []).some(k => /^(t|c|tag|p):/.test(k) && memTok(e, k))).slice(0, 6);
+    if (km.length) out.push(`🔗 <b>Kombolarda</b>: ${km.map(r => `${r.icon} ${esc(r.name)} <small>(${esc(kmbSteps(r))} → ${esc(memFx(r))})</small>`).join(' · ')}`);
+    const me = (Stories.ME_EV_LINES || {})[e.title] || [];
+    if (me.length) out.push(`🗣️ <b>Senin ağzından</b>: "${esc(me[+sysHash([e.id, 'evb']) % me.length])}"`);
+    return out.length ? `<div class="sec-title">📖 Akıştaki yeri</div><ul>${out.map(x => `<li>${x}</li>`).join('')}</ul>` : '';
   }
   // 📜 olaya dokununca sonuçları: 🎲 olay sonuçları (yüzdeyle) + 💬 karakterin cevapları (olay sorgusuna "evt <etiketler> <kategori> <olay>" uyan =evt kuralları; fantezi / pozisyon / mekan şartlı olanlar hariç)
   // ilk n tanesi görünür, kalanı gizli; "+N daha"ya dokununca açılır (Olay rehberi box.onclick → [data-more])
@@ -26035,9 +26262,9 @@
   function renderEvGuide() {
     const cats = moCats().map(c => ({ c, evs: poolOf(c) })).filter(x => x.evs.length), n = cats.reduce((a, x) => a + x.evs.length, 0), cx = evbCtx();
     const card = (e, c) => {
-      const d = e.desc || evDescOf(e.title), inf = evbInfo(e);
+      const d = evTell(e), inf = evbInfo(e), st = evbStory(e, cx);
       return `<div class="card" data-evg="${esc(e.id)}" style="margin-top:10px;cursor:pointer"><div class="sec-title" style="margin-top:0">${esc(e.emojis || '')} ${esc(e.title)} <small>· ${esc(c.icon || '📜')} ${esc(c.label || '')}${esc(subTxt(e))} · 👆 sonuçlar</small></div>
-        ${d ? `<p class="about">${esc(d)}</p>` : ''}<ul>${evbTriggers(e, cx).map(x => `<li>${x}</li>`).join('')}</ul>${inf.length ? `<p class="about">${inf.join(' · ')}</p>` : ''}
+        ${d ? `<p class="about">${esc(d)}</p>` : ''}${st.length ? `<ul>${st.map(x => `<li>${x}</li>`).join('')}</ul>` : ''}<ul>${evbTriggers(e, cx).map(x => `<li>${x}</li>`).join('')}</ul>${inf.length ? `<p class="about">${inf.join(' · ')}</p>` : ''}
         ${((Stories.ME_EV_LINES || {})[e.title] || []).length ? `<button type="button" class="btn ghost sm" data-evme="${esc(e.id)}">🗣️ Benim mesajlarım · ${Stories.ME_EV_LINES[e.title].length}</button>` : ''}</div>`;
     };
     view.innerHTML = `<div class="page-pad narrow">${pageHero('olaylar', '📜', 'Olay rehberi', [`${n} olay`, `${cats.length} kategori`], '', { back: '#/deneyler' })}${labNav('olaylar')}
@@ -26103,7 +26330,7 @@
       const open = el.querySelector('.evg-res');
       if (open) return open.remove();
       const e = allEvents().find(x => x.id === el.dataset.evg);
-      if (e) el.insertAdjacentHTML('beforeend', `<div class="evg-res">${evbResults(e)}${dkHtml(e)}</div>`);
+      if (e) el.insertAdjacentHTML('beforeend', `<div class="evg-res">${evbDeep(e, cx)}${evbResults(e)}${dkHtml(e)}</div>`);
     };
     draw();
     q.focus();
@@ -26239,7 +26466,7 @@
     const prev = cats[(i - 1 + cats.length) % cats.length].c, next = cats[(i + 1) % cats.length].c;
     const hi = evnFill(EVN_HI[+sysHash([c.id, 'evh']) % EVN_HI.length], { kat: `${c.icon || ''} ${c.label || ''}`, n: evs.length, ad: first });
     const ls = (e, k) => {
-      const d = e.desc || evDescOf(e.title), inf = evbInfo(e), me = (Stories.ME_EV_LINES || {})[e.title] || [];
+      const d = evTell(e), inf = evbInfo(e), me = (Stories.ME_EV_LINES || {})[e.title] || [];
       return `<article class="evn-ls" id="evn-${esc(e.id)}" data-evl="${esc(e.id)}"><h3>${esc(e.emojis || '')} ${esc(e.title)} <small>· Ders ${k + 1}</small></h3>
         ${d ? `<p class="about">${esc(d)}</p>` : ''}
         ${h ? `<div class="evn-bub"><b>👩‍🏫 ${esc(first)}:</b> ${esc(evnTip(e, c))}</div>` : ''}
