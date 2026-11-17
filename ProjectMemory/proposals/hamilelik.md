@@ -191,6 +191,74 @@ Mevcut 731 olay tarandı: Breeding / ovulasyon / hamilelik öncesi olay yok; tek
 | 🧴💦 | Oil & Cum Rub | Karnına boşalırsın, çatlak yağıyla karıştırırsın; Belly Oil'e bağlı |
 | 🍼💦 | Hormone Multi | Hormonlar: o da birkaç kez gelir; Zevk ×2, Aşk +3 |
 
+## Ek öneriler (v4, 2026-11-17): mekanizmalar + seks / bitiş / gür
+Mevcut `hamile` / `gür` etiketli olaylar tarandı; aşağıdakilerin hiçbiri system.js'te yok.
+
+### ⚙️ Mekanizmalar
+| Mekanizma | Ne yapar | Bağlantı |
+|---|---|---|
+| 🌡️ Hormon dalgası (`th.horm`) | Haftaya göre ruh hali: 1–12 bulantı (Uyarılma −), 13–26 libido +, 27+ yorgunluk / şefkat isteği | `PERSONA` bağlamına `preg`, `nextEvs` ağırlıkları |
+| 🤰 Karın boyutu | 13 / 20 / 27 / 36. haftada büyür; görünüş balonu + profil kartı | `looksLine`, `cmBody`, `wearBlock` (dar kıyafet ⚠️) |
+| 👗 Hamile gardırobu | 20. haftadan sonra dar parçalar kapanır, hamile parçaları açılır | `#/kiyafet`, CarmenAmor |
+| 🔮 Belirti çipleri | Durum çubuğunda 🤢 / 🦶 / 💤 / 🍫; her belirti olay önerisi açar | `quickSuggest` puanlama |
+| 📅 Hamilelik günlüğü | Profilde 🤰 sekmesi: hafta çizelgesi, ultrason, ilk tekme, isimler | `profileTab`, `diaryOf` |
+| 🍼 İsim oylaması | Sen önerirsin, o beğenir / reddeder; doğumda `c.kids[]` | bot `r_q_isim_*` |
+| 🏥 Doğum sahnesi | Water Breaks → Hospital Run → Labor → First Hold; 38–42. hafta rastgele | `Stories.SCENES`, `sfx('baby')` |
+| ⚠️ Dikkat kapısı | 30. haftadan sonra Rough mod / sert pozisyon "dikkat" reddi; ikna Güven − | `modeMulOf`, `th.ikna` |
+| 🫙 Lohusa birikimi | 🩹 dönemde Cum dolum hızı ×1.5; Doctor Cleared sonrası ilk bitiş gür havuzundan | `setupCumBurst`, `cumMin` |
+| 🔁 Boşalt-geri gir | Gür bitiş `after` ile normal bitişe zincir (önce dışarı, kalanı içine) | `after`, `trTarget` |
+| 🌐 Site / diğer | 🏥 Klinik kontrol randevuları, 🫦 Fans karın serisi, 📰 dedikodu, 🗺️ görevler, 👭 ikili sohbette haber verme, 🐍 tarih eşleşirse `p:suphe` + | sites.md, chat.md |
+
+### 🔥 Seks olayları (`hamile` + bölge)
+| Emoji | Olay | Açıklama | Hafta / etiket |
+|---|---|---|---|
+| 🛁 | Bathtub Float Ride | Küvette o üstte, su karnı taşır | 20+, vajinal |
+| 🪑 | Rocking Chair Ride | Sallanan sandalyede kucağında, ritmi sandalye verir | 13–34, vajinal |
+| 🛋️ | Bean Bag Sink | Puf mindere yarı yan gömülür, sen arkadan | 20–34, vajinal |
+| 🌙 | Half-Asleep Spoon | Gece yarı uykulu, çok yavaş; Uyarılma düşükken de açık | 13+, vajinal |
+| 🪞 | Bump In The Mirror | Ayakta aynaya dönük, sen arkadan karnını tutarak | 13–30, vajinal |
+| 🤲 | Belly Cradle Doggy | Dizlerinin üstünde, avuçların karnının altında | 13–26, vajinal |
+| 🦵 | Side Leg Lift | Yan yatarken üst bacağını sen kaldırırsın | 13+, vajinal |
+| 🧸 | Pillow Nest Missionary | Yastık yuvasında yarı oturur, karın serbest | 27+, vajinal |
+| 🍑 | Tub Edge Anal | Küvet kenarına tutunur, yavaş | 13–30, anal |
+| 👄 | Headboard Face Sit | Başlığa tutunarak yüzüne oturur | 13–26, oral |
+| 🍓 | Craving You Now | "Aşerdim, seni" hormonla hızlı, kıyafet yarım | 13–26, vajinal, `wear` |
+| 💆 | Massage Turned Sex | Çatlak yağı masajı yan yatarak seks'e döner | 13+, vajinal |
+| ⏸️ | Contraction Pause | Braxton Hicks: durursunuz, geçince devam | 30+, vajinal; 📱 kesinti |
+
+### 💦 Bitişler (`hamile` + `boşalma`)
+| Emoji | Olay | Açıklama | Etki |
+|---|---|---|---|
+| 🫄 | Navel Pool | Göbek çukuruna dolar; 27+ göbek dışa çıkmışsa yanlara akar | Uyarılma +5 |
+| 🌙 | Sleepy Creampie | Yarı uykuda içine, sarılı uyursunuz | Aşk +3, hamilelik sonucu yok |
+| 🤲 | Hands On Bump Creampie | Boşalırken ikiniz de karnını tutarsınız | Aşk +5 |
+| 👅 | Bump Lick Clean | Karnına; parmağıyla toplayıp yalar | Şehvet +5 |
+| 👙 | Maternity Bra Fill | Hamile sütyeninin içine; Süt ≥ 30 ise karışır | Süt −5 |
+| 🧴 | Stretch Mark Oil | Çatlak yağıyla karıştırıp karnına sürer | Samimiyet +2 |
+| 🦶 | Swollen Feet Finish | Şişmiş ayaklarına, sonra ayak masajı | Güven +2 |
+| 🛁 | Bath Bump Float | Küvette karnına, su yüzeyinde süzülür | — |
+
+### 🌊 Gür bitişler (`hamile` + `gür` + `boşalma`, Cum ≥ 90 / `cumMin`)
+| Emoji | Olay | Açıklama | Not |
+|---|---|---|---|
+| 🌋 | Bump Flood | Karnın her yeri, yanlardan çarşafa akar | 20+ |
+| 🫄 | Over The Bump | Karnın üstünden aşıp göğüslerine ve çenesine | 20+ |
+| 🍼 | Maternity Bra Overflow | Sütyenden taşar, sütle karışıp karnına iner | Süt ≥ 50 |
+| 🌊 | Spoon Overflow | Yan yatarken içine, taşar, karın yastığını ıslatır | vajinal sonrası |
+| 🪑 | Rocking Chair Puddle | Kucağında içine; sandalyenin altında göl | Rocking Chair Ride sonrası |
+| 🛁 | Tub Cloud | Küvet suyunda beyaz bulut, ikisi de güler | Bathtub Float Ride sonrası |
+| 🦵 | Swollen Thighs Flood | Dolgunlaşan uyluk arasında, dizlerine kadar | `bacak` |
+| 🔁 | Paint Then Back In | Önce karnını boyar, kalanı içine | 🔁 zincir |
+| 🧺 | Pregnancy Pillow Ruined | U-yastık mahvolur; kişiliğe göre güler / kızar | Samimiyet ± |
+| 🌧️ | Rain On The Bump | O oturur, sen ayakta; yukarıdan karnına yağar | 13+ |
+| 🫙 | Cleared And Bursting | Lohusa birikimi: Doctor Cleared sonrası ilk bitiş | After Birth, 🫙 mekanizması |
+
+### Uygulama sırası (v4)
+1. Açıklar: zincirli bitişlerde `weeks` kapısı, `#` aramasında hamile olayları, After Birth hafta kapısı.
+2. 🌡️ hormon dalgası, 🤰 karın boyutu, 🩹 lohusa + 🫙 birikim.
+3. Seks + bitiş + gür olayları (system.js, bot `r_ev_pg_*`, EN, Hamilelik Kitabı bölümü).
+4. 🏥 doğum sahnesi, Klinik randevuları, site / görev bağlantıları.
+
 ## Uygulama sırası
 1. `weeks` kapısı + `hamile` THEME etiketi + 🩹 dönem (`bodyTick` doğumda `c.postAt`).
 2. Olaylar system.js (Pregnancy / After Birth kategorileri) + EN.

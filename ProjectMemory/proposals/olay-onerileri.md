@@ -1129,3 +1129,194 @@
 | Wet Spot War | 🛏️⚔️ | Islak tarafa kim yatacak; taş-kağıt-makas |
 | Star Rating | ⭐📝 | 5 üzerinden puan + kısa "yorum" yazar |
 | Snack Run | 🍕😋 | "Acıktım"; mutfağa birlikte (🏠 Kitchen geçişi) |
+
+---
+
+# Tur 17 — Dünyaya bağlı olaylar: siteler, fanteziler, saat, görevler, aldatma, grup (2026-11-17)
+
+> Fikir: olaylar uygulamanın diğer sistemlerinden beslenir ve geri yazar. Bağlar: 🫦 CarmenFans (`fnPlay`, `FN_PLANS`), ✨ Genshin, 🐾 hayvan kızlar (`fxkurt/fxseytan/fxkoyun`), 🎰 Gazino (`GA_EV`), 🗺️ Görevler (`QUESTS`), 🔮 Tahmin (`tahminFor`), 📋 `th.plan`, 🐍 `p:suphe`, 😤 kıskançlık, 👯 grup, 🧠 `MEM_RULES`, saat (`hours` kapısı).
+>
+> **Mekanik önerileri:** (1) Element / tür etiketi bitişin "efektini" belirler (❄️ soğuk, 🔥 sıcak, ⚡ titreme) — aynı bitişe ek cümle. (2) Bazı bitişler sonraki seansı değiştirir (sözleşme, rozet, şüphe) → 🧠 hafıza. (3) Fans olayları yalnız `Site:` trait'inde Fans varsa.
+
+## 🫦 CarmenFans canlı yayın
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Live Stream Ride | 🔴🎥 | Canlı yayında kucağında; sohbet akar, bağış geldikçe hızlanır |
+| Tip Goal Switch | 💸🔄 | Bağış hedefi dolunca pozisyonu izleyiciler seçer |
+| POV Cam | 📹👀 | Telefonu sana verir: "çekmeye devam et, titreme" |
+| Ring Light Missionary | 💡🛏️ | Halka ışığın altında; her ayrıntı fazla net |
+| Tip Menu Finish | 📋💦 | Bağış menüsü: en çok bağış alan bölgeye |
+| Stream Freeze | 📴💦 | Yayın tam o an donar; sohbet "NE OLDU?!" diye patlar |
+| Paywall Creampie | 🔒🍯 | "Sonunu görmek isteyen abone olsun" (`FN_PLANS`) |
+| Read The Comments | 💬😳 | Sonrası: yorumları birlikte okursunuz; kişiliğe göre gurur ya da kıskançlık |
+
+## ✨ Genshin elementleri
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Cryo Grip | ❄️✊ | Buz gibi elleri; her dokunuşta irkilirsin |
+| Pyro Heat | 🔥🌡️ | İçi yanar gibi sıcak; ter damlaları buharlaşır |
+| Electro Tingle | ⚡😵‍💫 | Her temasta küçük bir kıvılcım, kasların seğirir |
+| Hydro Flow | 💧🌊 | Su gibi akışkan hareketler, hiç durmaz |
+| Anemo Float | 🌪️🪶 | Rüzgârla havada süzülerek; yere değmezsiniz |
+| Elemental Reaction | 💥🌈 | Bitiş: iki element buluşur — Melt (eriyip akar), Overload (patlama), Freeze (anında donup kalırsın) |
+
+## 🐾 Hayvan kızlar
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Full Moon Heat | 🐺🌕 | Kurt kız dolunayda kızgınlıkta; Şehvet kendiliğinden yükselir (gece `hours`) |
+| Knot Lock | 🐺🔒 | Bitiş: sonra bir süre ayrılamazsınız; sohbet ederek beklersiniz |
+| Tail Wrap | 🦊🌀 | Kuyruğu beline dolanır, kaçmana izin vermez |
+| Purr Vibration | 🐱〰️ | Mırlaması titreşim gibi içinden geçer |
+| Wool Cloud | 🐑☁️ | Koyun kız: yumuşacık yününe gömülüp uykulu, yavaş |
+| Demon Contract | 😈📜 | Bitiş: şeytan kız "sözleşmeyi" mühürler; bir sonraki seans onun kuralıyla başlar (🧠) |
+
+## 🎰 Gazino
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| High Roller Ride | 🎰💰 | Kazanılan her el = bir kat hız |
+| All In | 🃏💥 | Bitiş: "all in" der; ya içeride ya hiç (yazı-tura) |
+| Dealer's Choice | 🎴🐰 | Bunny krupiye kart dağıtır gibi bitiş yerini dağıtır |
+
+## 🕰️ Saate bağlı (`hours`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| 3 AM Half-Asleep | 😴🌙 | Yarı uykuda, yavaş; sabah "rüya mıydı?" diye sorar (🧠) |
+| Sunrise Finish | 🌅💦 | Perde aralığından ilk ışık vurduğu an |
+| Lunch Break Quickie | ⏱️🥪 | 12–14 arası; 10 dakikalık süre sayacı |
+| Last Train | 🚉⌛ | Gece yarısından önce; her dakika saate bakar |
+
+## 🔮 Tahmin / 📋 Plan / 🗺️ Görevler
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Called It | 🔮✅ | Tahmin modunda bitiş yerini bilirsen ödül: o seçer bir sonraki pozisyonu |
+| Plan Broken | 📋💥 | Mini planın son adımına varmadan bitirirsin; "plan böyle değildi!" |
+| Plan B | 📋😈 | Plan biter, o gizli bir ekstra adım ekler |
+| Quest Finish | 🏆💦 | Görev zincirinin son adımı; rozet + Ben sayfasına kayıt |
+| Achievement Unlocked | 🏅✨ | Sonrası: "İlk kez …" başarı kartı (ilk anal, ilk creampie…) |
+
+## 🐍 Aldatma / şüphe (`p:suphe`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Wrong Name | 😨🗣️ | Bitişte yanlış isim kaçar; Güven −, kıskançlık tetiklenir |
+| Lipstick Collar | 💄👔 | Sonrası: yakanda ruj izi; temizlemezsen Şüphe + |
+| Alibi Text | 📱🤥 | Sonrası: partnere birlikte mazeret yazarsınız; tutarsa Şüphe − |
+| Ring Off | 💍🫳 | Ön sevişme: yüzüğünü yavaşça çıkarıp komodine bırakır |
+
+## 👯 Grup
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Pass It On | 🔁👯 | Biri gelince diğeri hiç ara vermeden devralır |
+| Split Between Them | ✌️💦 | Bitiş: yarısı birine, yarısı diğerine |
+| Who Gets It? | ✊✋ | İki kız taş-kağıt-makas oynar; kazanan bitişi alır |
+| Jealous Watcher | 😤👀 | Kıskanç kişilik izler; sırası gelince daha sert ve uzun |
+
+---
+
+# Tur 18 — Kıyafetler + kıyafetli seks / bitişler (2026-11-17)
+
+> Mevcut/önerilmişler hariç (Leggings/Pantyhose/Jeans/Shorts grind `mvdh*`, Through Panties, Stocking/Bra/Shirt/Blouse/Thong/Panty Back cumshot, Tags Still On, Wedding Dress, Skirt Lining, Blazer Hides It…). Bağlar: slotlar `WEAR_BASE` (elbise/ust/alt/sutyen/tanga/corap), olay `wear` alanı → `wearBlock`, `th.undress` / `slotOff`, `CL.cumw` (`cumWearOf`), `CLOTHED_SAY`, clothes.js `L.push`.
+>
+> **Mekanik önerileri:** (1) 🆕 Kıyafet hasar durumu: `th.undress[id][slot] = 'torn' | 'wet' | 'aside'` — parça üstünde kalır ama bölge açık; satırlar "yırtık çorabından…" der. (2) Her yeni parçaya `CL.cumw` satırı (bitişte kıyafete göre cümle). (3) "Giyik kalır" pozisyonlar `undressFirst`'ü atlar. (4) Sonrası olayları leke durumunu (`th.stain`) okur.
+
+## 👗 Yeni kıyafetler (clothes.js)
+
+| Slot | Parça | Emoji | Not |
+|---|---|---|---|
+| elbise | Askılı Yazlık Elbise | 👗☀️ | Askı kayar; etek beline toplanır |
+| elbise | Yırtmaçlı Gece Elbisesi | 🌙🦵 | Yırtmaç = bacak açık, çıkarmaya gerek yok |
+| elbise | Bodycon Mini | 🖤📏 | Dar; ancak beline sıvanarak açılır |
+| elbise | Kazak Elbise | 🧶🤎 | Uzun kollar, eller içinde kaybolur |
+| elbise | Saten Sabahlık (Kimono) | 👘✨ | Tek kuşak; çekince açılır |
+| elbise | Tulum | 🧥🔒 | Çıkarması en zor parça; fermuar sırtta |
+| ust | Çıtçıtlı Body | 🩱🔘 | Alttan çıtçıtlı; açınca gerisi giyik kalır |
+| ust | Crop Top | 👚🫃 | Göbek açık |
+| ust | Senin Hoodie'n | 🧥❤️ | Ona büyük; altında çoğu zaman bir şey yok |
+| ust | Bağcıklı Korse | 🎀⏳ | Bel ince, nefes kısa; bağcıkla açılır |
+| ust | Islak Beyaz Tişört | 👕💧 | Havuz / yağmur sonrası `wet` durumu |
+| alt | Pileli Tenis Eteği | 🎾🩳 | Eğilince her şey görünür |
+| alt | Deri Pantolon | 🖤✨ | Ancak dizlere kadar iner; bacaklar kilitli, dar |
+| alt | Gri Eşofman Altı | 🩶😏 | Rahat; içinden el kolayca girer |
+| sutyen | Önden Kopçalı Sütyen | 🔓👙 | Tek parmakla açılır |
+| sutyen | Bralet | 🤍🌸 | İnce dantel, kenara kolayca çekilir |
+| tanga | Açık Ağlı Külot | 🫣🖤 | Çıkarmaya gerek yok |
+| tanga | Dantel Body | 🕸️💜 | Tek parça; alttan kenara |
+| corap | File Çorap | 🕸️🦵 | Delikten yırtılabilir (`torn`) |
+| corap | Diz Üstü Çorap | 🧦🎀 | Uyluk açık, dantel bant |
+| corap | Dizlik Çorap | 🧦⚪ | Okul / spor havası |
+
+## 🫦 Ön sevişme (kıyafetli)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Front Clasp Pop | 🔓😮 | Önden kopçayı tek parmakla açar, göğüsleri kendiliğinden çıkar |
+| Zipper With Teeth | 🦷🔽 | Sırttaki fermuarı dişlerinle yavaşça indirirsin |
+| Strap Slip | 👗🫳 | Askı omzundan kayar; düzeltmez, gözünü senden ayırmaz |
+| Through The Fabric | 👕👅 | Kumaşın üstünden emersin; ıslak iz kalır (`wet`) |
+| Wet T-Shirt | 👕💦 | Islak tişört yapışmış; çıkarmana izin vermez, sadece bakacaksın |
+| Kimono Belt Pull | 👘🎀 | Kuşağı çekersin, sabahlık kendi kendine açılır |
+| Jumpsuit Struggle | 🧥😩 | Tulumu çıkaramazsınız; gülerek birlikte boğuşursunuz |
+| Fishnet Hole | 🕸️✂️ | File çorabı parmağıyla tek yerden yırtar: "buradan" (`torn`) |
+| Sweatpants Hand | 🩶✋ | Eşofmanının içine elini sokar, dışarıdan hiçbir şey belli olmaz |
+| Snap, Snap, Snap | 🩱🔘 | Body'nin çıtçıtlarını tek tek açarsın; her sesle irkilir |
+
+## 🔥 Seks (giyik kalır)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Snap Crotch Ride | 🩱🤠 | Body'nin altı açık, gerisi üstünde; kucağında |
+| Crotchless Missionary | 🫣🛏️ | Açık ağlı külotuyla; hiç çıkarmadan |
+| Sundress Cowgirl | 👗☀️ | Etek belinde, askılar kollarına inmiş |
+| Slit Dress Standing | 🌙🦵 | Yırtmaçtan bacağını beline dolar, duvara yaslı |
+| Bodycon Doggy | 🖤🐕 | Mini elbise beline sıvanmış; kumaş her itişte daha yukarı |
+| Sweater Dress Lap | 🧶🪑 | Kazak elbisesi içinde kucağında; elleri kollarında kaybolur |
+| Hoodie Only Ride | 🧥❤️ | Senin hoodie'n üstünde; kapüşonu başına çeker, ipleri ısırır |
+| Kimono Spoon | 👘🥄 | Sabahlık açık, saten tenine kayarak arkadan |
+| Corset Grip Doggy | 🎀✊ | Korse bağcıklarından tutarsın; nefesi kısa kısa |
+| Leather Pants Down | 🖤🔒 | Pantolon dizlerde, bacakları birbirine kilitli; dar ve sıkı |
+| Tennis Skirt Bend | 🎾🙇‍♀️ | Masaya eğilir; pileli etek kendiliğinden kalkar |
+| Fishnet Legs Up | 🕸️🦵 | Yırtık file çoraplı bacakları omuzlarında |
+| Knee Socks Legs Up | 🧦⚪ | Dizlik çoraplı ayakları havada, parmakları kıvrılır |
+| Thigh-Highs Mating Press | 🧦🔽 | Diz üstü çorapları; dantel bantlar avuçlarında |
+| Bralet Aside | 🤍👋 | Bralet kenara çekilmiş, tek göğüs dışarıda |
+
+## 💦 Kıyafetli bitişler
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Snap It Shut | 🩱🔒 | Body'nin içine; çıtçıtları geri kapatır, gün boyu içinde kalır |
+| Crotchless Creampie | 🫣🍯 | Açık ağlı külottan içeriye; dantele damlar |
+| Sundress Hem Drip | 👗💧 | Etek iner, altından bacağına akar; kimse fark etmez |
+| Through The Slit | 🌙💦 | Yırtmaçtan açık kalan bacağına |
+| Inside Your Hoodie | 🧥🤍 | Senin hoodie'nin içine, göğsüne: "artık bu benim" |
+| Sweater Knit | 🧶💦 | Örgüye; ilmeklerin arasında kalır |
+| Satin Slide | 👘💧 | Saten sabahlığın üstünde damlalar kayıp gider |
+| Fishnet Pattern | 🕸️🤍 | File deliklerinden geçer, tenine desen çizer |
+| Knee Sock Drip | 🧦💧 | Dizlik çorabının beyaz kenarına süzülür |
+| Crop Top Belly | 👚🫃 | Crop top'un altına, göbeğine; sonra üstünü aşağı çeker |
+| Corset Laces | 🎀💦 | Korsenin bağcıklarına, sırtına doğru |
+| Leather Shine | 🖤✨ | Deri pantolonun üstünde parlar; "en azından silinir" |
+| Tennis Skirt Pleats | 🎾💦 | Pilelerin arasına; eğildiğinde görünür |
+| Wet Tee Mix | 👕💦 | Islak tişörtte hangisi su, hangisi değil belli olmaz |
+| Jumpsuit Zip Up | 🧥🔒 | Bitince tulumun fermuarını çeker, içinde kalır |
+| Dressed Over It | 👗🫣 | Hemen üstünü giyer; az sonra kumaştan sızar |
+| In Your Jeans | 👖😳 | Kotlu kucak sürtünmesinde sen kendi pantolonuna (Jeans Lap Grind sonrası) |
+| Sweatpants Stain | 🩶😳 | Gri eşofmanında koyu leke; o gülmekten ölür |
+
+## 🧻 Sonrası (`th.stain`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Laundry Together | 🧺🫧 | Lekeli parçaları birlikte yıkarsınız (🧺 Laundry geçişi) |
+| Wear It Out | 👗😈 | Lekeli kıyafetiyle dışarı çıkar; `riskStep` +1 |
+| Wear Mine Home | 👕🏠 | Kendi kıyafeti mahvolmuş; senin tişörtünü giyip gider |
+| Stain Inspection | 🔍👗 | Lekeyi ışığa tutar: "çıkmaz bu" |
+| Dress Me | 🧷💞 | Bu sefer onu sen giydirirsin, düğme düğme |
+| Ruined Outfit Bill | 🧾😤 | Brat / Dom: kıyafetin parasını ister (CarmenAmor hediye geçişi) |

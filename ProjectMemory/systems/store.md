@@ -11,7 +11,9 @@ All data lives in the browser. Main state = `Stories.Store.state` under localSto
 - Many one-time migration flags in state: `posSetup`, `cumSetup`, `evFix1`, `zevkFix1`, `descV`, `roleV`… (see systems/monia.md).
 - Accounts: `ACC_KEYS = user, threads, chats, side, turns, pinned` are per-account; characters/monia/settings shared.
 - 🔐 Login (app.js `authScreen`): `user.login`, `user.email`, `user.pass` (`pwHash`, local non-crypto). `amor-stories:out` ('1' logged out, 'temp' = remember-me off, paired with sessionStorage `amor-stories:out`). sessionStorage `amor-stories:au` = auth tab + typed id/mail kept across the language-switch reload. Validation helpers `AU_ID_RE`, `AU_MAIL_RE`, `accFind(v, skipId)` are shared with Ben → Profil 🔐 Hesap bilgileri (edit login / email, change password).
+- Character `likes` / `dislikes` (event ids) are capped at 7 / 3 in `save()` (`FEEL_MAX`, `capFeels`; newest kept).
 - `user.colors` [a, b]: avatar gradient when there is no photo (`U_COLORS`, picked in onboarding photo step or Profil → 👤 Kişisel). `user.likes` can now be filled in onboarding (❤️ step).
+- 👩‍❤️‍👩 `user.gender` '♂' (default when empty) / '♀', asked in onboarding (v934); ♀ = every relationship is lesbian; ♀ → `user.exp` 🌸 Tecrübe (`EXP_LEVELS`), `user.dick` emptied and kept in `user.dickM` until switching back to ♂ (v933).
 
 ## Key functions
 `Store.save()` (false when quota full), `replace(data)` (import backup), `reset()`, `uid()`, `accounts/switchAccount/addAccount/removeAccount`. `migrate()` (old per-char chats → threads), `renameMod` (yeni-set → carmen).

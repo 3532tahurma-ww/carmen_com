@@ -6,6 +6,8 @@ Stories.I18n.add({
   'Şansımı deneyeceğim': 'I\'m feeling lucky',
   'Popüler aramalar': 'Popular searches',
   'Tüm siteler': 'All sites',
+  'İlanlar': 'Ads', 'Abonelik': 'Subscriptions', 'Kaydedilen': 'Saved', 'Oyuncak': 'Toys', 'Siparişler': 'Orders', 'Spor': 'Gym', 'Oyunlar': 'Games',
+  'Dersler': 'Lessons', 'Masözler': 'Masseuses', 'Yağlı': 'Oil', 'Nuru': 'Nuru', 'Buluşma': 'Meetings',
   'Şunu mu demek istediniz': 'Did you mean', 'Sponsorlu': 'Sponsored', 'Taze': 'Fresh', 'Tüm ilanlar': 'All ads', 'Tüm hesaplar': 'All accounts', 'Aboneliklerim': 'My subscriptions',
   'Mutlu yıllar! Yeni yıl partisi başladı': 'Happy New Year! The party has started', 'Sevgililer Günü: eşleşme zamanı': 'Valentine\'s Day: time to match', 'Dünya Kadınlar Günü': 'International Women\'s Day',
   '1 Nisan: şansını dene': 'April Fools\': try your luck', 'Yaz geldi: havuz, plaj ve otel': 'Summer is here: pool, beach and hotel', 'Mutlu Cadılar Bayramı': 'Happy Halloween',
@@ -2942,6 +2944,12 @@ Stories.I18n.add({
   '{} doodle': '{} doodles', 'bugün yayında': 'live today', 'takvim': 'calendar', 'Bugün Booble logosu değişti mi?': 'Did the Booble logo change today?', 'Doodle\'lara bak': 'See the doodles',
   'Bahar geldi: piknik, park ve açık hava': 'Spring is here: picnics, parks and fresh air', 'Yaz öncesi forma gir: spor salonu ilanları': 'Get in shape before summer: gym listings', 'Bağ bozumu: Şarap Kız Meisove\'da': 'Harvest time: Wine Girl on Meisove',
   '11.11: CarmenShop\'ta indirim günü': '11.11: sale day at CarmenShop', 'Sıkıştırma haftası: 171 yeni olay': 'Squeeze week: 171 new events', 'Gizli buluşma haftası: CarmenSecret açıldı': 'Secret meeting week: CarmenSecret is open',
+  // 📰 CarmenNews
+  'Haberler artık CarmenNews\'te': 'The news is now on CarmenNews', 'Bütün haberler yeni sitemiz CarmenNews\'e taşındı: Booble\'da "news" yaz ya da ana sayfadaki haber kartına dokun. Gazete düzeni aynı: manşet, öne çıkanlar, kısa kısa.': 'All news moved to our new site CarmenNews: type "news" on Booble or tap the news card on the home page. Same newspaper layout: headline, featured, briefs.',
+  'Lia\'nın gazetesi: her yeni sürümün haberi burada. Manşet, öne çıkanlar ve kısa kısa; her haber ilgili siteye, sahneye ya da kitap bölümüne götürür. Haber, yeni, güncelleme, gazete.': 'Lia\'s newspaper: news of every new version is here. Headline, featured and briefs; each story takes you to its site, scene or book chapter. News, new, update, paper.',
+  'hepsi okundu': 'all read', 'Son dakika: Lia yeni haberler yazdı': 'Breaking: Lia wrote new stories', 'Oku': 'Read',
+  "CarmenNews · Lia'nın masasından · Haberler kurgusaldır, olaylar gerçek": "CarmenNews · From Lia's desk · The news is fiction, the events are real",
+  'Kar yağdı: sıcak bir otel odası seni bekliyor': 'It snowed: a warm hotel room is waiting for you', 'Kavurucu sıcak: logo bile eridi, havuza kaç': 'Scorching heat: even the logo melted, run to the pool',
   '🔑 Gizli Buluşma': '🔑 Secret Meeting', '🥂 Yıldönümü Sapağı': '🥂 Anniversary Detour', '💍 Hotwife': '💍 Hotwife', '🐍 Tüm ilanlar': '🐍 All ads', 'Noel gecesi: hediyen kostümlü': 'Christmas Eve: your gift comes in costume',
   // 🫦 CarmenFans: more posts, text posts, lines
   'aynı kare, başka an': 'same shot, another moment', 'Abone ol, oku': 'Subscribe to read',

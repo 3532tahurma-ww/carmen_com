@@ -113,7 +113,24 @@ Stories.Bot = (() => {
   const siteTrait = src => SITES[src] ? 'Site: ' + SITES[src] : '';
   // 🛡️ korunma seçiminden gelenler: "Kondom: Var", "İçe: İzin yok", "Hap: Alıyor"… (app.js protTraits)
   const haveOf = ch => new Set([...(ch.traits || []), ageTrait(ch.age), originTrait(ch.city), siteTrait(ch.src), ...(Stories.protTraits ? Stories.protTraits(ch) : [])].filter(Boolean).map(lower));
+  /* 👩‍❤️‍👩 cinsiyet: Stories.lesNow() (app.js: hesabın ♀) iken ilişki lezbiyen. rule.gender '♂' → sadece erkek profilde, '♀' → sadece kadın profilde.
+   * İşaretsiz kuralda erkeğe yönelik satırlar (MALE_RE: penis, döl, kondom, "içime boşal", sertleşmek…) kadın profilde seçilmez;
+   * bütün satırları öyleyse kural hiç yarışmaz */
+  const MALE_RE = /(^|[^a-zçğıöşü])(penis|aleti|aletin|sperm|meni(n|ni|yi|ye|m)?([^a-zçğıöşü]|$)|döl|kondom|prezervatif|sertleş|sertsin|kalktı|yarra|taşak|çük|kocaman|zonkla|sik(im|iş\w*|i|iyor\w*|icem|icik|isin|mek|tir)?([^a-zçğıöşü]|$)|(içime|içimde|ağzıma|yüzüme|üstüme|göğüslerime|karnıma|kalçama|sırtıma|bacaklarıma) (boşal|akıt|fışkırt)|hamile (bırak|kal)|içimi doldur|doldur beni|erkeğim|büyüyorsun|büyüdüğün|sertliğin|ne kadar kalın)/i;
+  const maleLine = x => MALE_RE.test(String(x).toLocaleLowerCase('tr'));
+  const lesNow = () => !!(Stories.lesNow && Stories.lesNow());
+  const maleMemo = new WeakMap();
+  // önbellek cevap dizisine bağlı: editörde satırlar değişince dizi de değişir
+  const allMale = r => {
+    const a = r.reply || r.add;
+    if (!Array.isArray(a)) return false;
+    if (!maleMemo.has(a)) { const ls = a.map(String).filter(x => x.trim()); maleMemo.set(a, ls.length > 0 && ls.every(maleLine)); }
+    return maleMemo.get(a);
+  };
+  const genderOk = (r, les) => r.gender === '♀' ? les : r.gender === '♂' ? !les : !les || !allMale(r);
+  const lesLines = (r, ls) => { if (r.gender === '♀' || !lesNow()) return ls; const f = ls.filter(x => !maleLine(x)); return f.length ? f : ls; };
   function fits(rule, ch, have) {
+    if (!genderOk(rule, lesNow())) return false;
     const traits = (rule.traits || []).filter(Boolean);
     if (traits.length) {
       have = have || haveOf(ch);
@@ -191,7 +208,7 @@ Stories.Bot = (() => {
     });
     return out;
   }
-  const addText = (a, vars) => pick((a.add || []).map(String).filter(x => x.trim()))
+  const addText = (a, vars) => pick(lesLines(a, (a.add || []).map(String).filter(x => x.trim())))
     .replace(/\{sen\}/gi, vars.sen || 'sen').replace(/\{ben\}/gi, vars.ben || '');
 
   /* 🔁 Yönlendirici (yedek cevaptan önce): hiçbir kural tutmayınca mesaj kurallara bulanık puanlanır.
@@ -265,7 +282,7 @@ Stories.Bot = (() => {
   // Kuraldan cevap: baloncuk dizisi. recent (isteğe bağlı): bu kuralın son seçilen cevapları; onlar tekrar seçilmez
   // (en fazla 10, cevapların yarısından fazlası dışlanmaz) ve seçilen sona eklenir
   function reply(rule, vars, recent) {
-    const opts = (rule.reply || []).map(String).filter(x => x.trim());
+    const opts = lesLines(rule, (rule.reply || []).map(String).filter(x => x.trim()));
     const fresh = recent ? opts.filter(x => !recent.includes(x)) : opts;
     const raw = pick(fresh.length ? fresh : opts);
     if (recent) {
@@ -287,7 +304,7 @@ Stories.Bot = (() => {
     return out;
   }
 
-  return { norm, fromEn, expand, inOrder, fits, ageTrait, originTrait, siteTrait, SITES, best, reply, score, looseScore, catches, addons, addText, ADD_MODES, enDict, near, fold };
+  return { norm, fromEn, expand, inOrder, fits, maleLine, allMale, MALE_RE, ageTrait, originTrait, siteTrait, SITES, best, reply, score, looseScore, catches, addons, addText, ADD_MODES, enDict, near, fold };
 })();
 
 if (Stories.BOT_RULES && Stories.I18n) Stories.I18n.add(Stories.Bot.enDict(Stories.BOT_RULES.en));

@@ -1285,6 +1285,10 @@ button.cs-eff { border: 0; cursor: pointer; }
 .mo-sub[data-pkfold].open::before { transform: rotate(90deg); }
 .mo-sub[data-pkfold] + .mo-chips { padding: 8px 2px 4px; }
 .mo-sub[data-pkfold] + .mo-chips.pk-shut { display: none; }
+.pk-subh[data-pksub] { cursor: pointer; padding: 4px 0; }
+.pk-subh[data-pksub]::before { content: '▸'; display: inline-block; margin-right: 4px; transition: transform .15s; }
+.pk-subh[data-pksub].open::before { transform: rotate(90deg); }
+.mo-chips .pk-subx { display: none; }
 .pk-n { margin-left: auto; font-weight: 400; opacity: .6; }
 .pk-cnt { min-width: 20px; height: 20px; padding: 0 5px; border-radius: 10px; background: var(--purple); color: #fff; font-size: 12px; line-height: 20px; text-align: center; }
 

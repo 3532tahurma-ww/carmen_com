@@ -1,5 +1,5 @@
 /*
- * 🍆 Dick Size ve ⏱️ Dayanıklılık: senin profiline (Ben → Profil) göre karakterin baloncukları.
+ * 🍆 Dick Size / 🌸 Tecrübe (kadın) ve ⏱️ Dayanıklılık: senin profiline (Ben → Profil) göre karakterin baloncukları.
  * app.js (dickPool / staminaLine) ve tools/bot-editor.html (🍆⏱️ sekmesi, salt okunur) kullanır.
  * Kişiliğe göre ekler (Utangaç, Kibirli, Alaycı, Virgo) app.js'de.
  */
@@ -53,4 +53,26 @@ Stories.ST_LINES = {
   endless: { in: ['Sen insan mısın makine mi? 😵‍💫', 'Ben kaç kere geldim, sen hâlâ… 🥵', 'Bitmeyecek mi bu? Bitmesin 😈', 'Bacaklarım titriyor, sen hiç yavaşlamadın 😩', 'Sabaha kadar mı böyle? 😳', 'Sonsuz enerjin var 🫠'],
     near: ['Geleceksin sandım, yine durdun 😩', 'Hadi artık, yalvarıyorum 🥺', 'Bırak kendini artık 😈', 'Gerçekten geliyor musun bu sefer? 😳'],
     cum: ['İnanamıyorum, sonunda! 😵‍💫💦', 'Saatler sürdü… ölüyorum 🫠', 'Bunu kutlamamız lazım 😂💦', 'Artık yürüyemem, senin yüzünden 🥵', 'Bu gece unutulmaz 😩💦'] }
+};
+
+/* 🌸 Kadın profili (Ben → Profil, Cinsiyet ♀): Dick Size yerine Tecrübe; ⏱️ Dayanıklılık orgazma karşı (ST_LINES_F).
+ * Tecrübe baloncukları sadece 👩‍❤️‍👩 lezbiyen olaylarında: fp = Lesbian Foreplay · fin = Lesbian Finish. Average'da yok */
+Stories.EXP_LEVELS = ['Virgo', 'Curious', 'Average', 'Experienced', 'Expert'];
+Stories.EXP_KIND = { Virgo: 'new', Curious: 'new', Experienced: 'pro', Expert: 'pro' };
+Stories.EXP_LINES = {
+  new: { fp: ['Elin titriyor… ilk kez mi? 🥰', 'Acele etme, sana göstereyim 😏', 'Utanıyorsun, ne kadar tatlısın 🙈', 'Buraya dokun… evet, tam orası 😳', 'Merak ettiğin her şeyi birlikte deneriz 💜', 'Gözlerini kapatma, bana bak 🥺'],
+    fin: ['İlk kez böyle mi geldin? 😳', 'Titremene bayıldım 🥰', 'Bak, kendini bırakınca nasıl oluyor 😏', 'Yüzündeki şaşkınlık… paha biçilmez 🙈', 'Bundan sonra hep benimle öğreneceksin 💜'] },
+  pro: { fp: ['Nereye dokunacağını nasıl bu kadar iyi biliyorsun? 😩', 'Sen bu işi çok iyi biliyorsun… 🥵', 'Parmakların büyü gibi 😳', 'Kimden öğrendin bunları? Kıskandım 😏', 'Daha hiçbir şey yapmadan ıslattın beni 🫠', 'Ustasın, belli 😈'],
+    fin: ['Beni nasıl bu kadar çabuk bitirdin? 😵‍💫', 'Bacaklarımı hissetmiyorum 🥵', 'Bu yaptığın yasaklanmalı 😩', 'Ben sana öğretecektim, sen bana öğrettin 😳', 'Her seferinde daha iyi oluyor 💜'] }
+};
+Stories.ST_LINES_F = {
+  low: { in: ['Daha yeni başladık, şimdiden titriyorsun 😏', 'Nefesin hızlandı bile 😳', 'Dayan biraz, daha ısınıyorum 😈', 'Bu kadar hassas mısın? 🥰', 'Yavaş… hemen gelme 🥺'],
+    near: ['Şimdiden mi geliyorsun?! 😳', 'Bekle, birlikte gelelim 🥺', 'Bacakların titremeye başladı 😏', 'Tut kendini biraz daha 😩', 'Yüzünden belli, az kaldı 😈'],
+    cum: ['Bu kadar çabuk mu geldin? 😳', 'Daha yeni başlamıştık… ama tatlıydın 🥰', 'Bir dokunuşta bitirdim seni 😏', 'Sonraki turda daha çok dayanırsın 😉', 'Ne hassas şeysin 🙈'] },
+  high: { in: ['Hiç gelmeyecek misin? 🥵', 'Ne kadar dayanıklısın böyle 😳', 'Ben iki kere geldim, sen hâlâ… 🫠', 'Seni bitirmek için daha çok çalışmam lazım 😈', 'Dilim yoruldu ama vazgeçmem 😩'],
+    near: ['Sonunda titriyorsun 🥵', 'Hadi bırak kendini 😈', 'Geliyorsun değil mi? Hissediyorum 😳', 'Bu kadar bekledim, ver artık 🥺'],
+    cum: ['Sonunda! Ne kadar dayandın 😵‍💫', 'Bunu hak ettim 😋', 'Maraton gibiydi 😩', 'Seni bitirmek ödül gibi 💜', 'Önce ben geldim, sonunda sen 🫠'] },
+  endless: { in: ['Sen hiç gelmiyor musun? 😵‍💫', 'Ben kaç kere geldim, sen hâlâ ayaktasın 🥵', 'Sabaha kadar mı böyle? 😳', 'Bitmeyen bir şeysin 🫠'],
+    near: ['Gerçekten geliyor musun bu sefer? 😳', 'Hadi artık, yalvarıyorum 🥺', 'Bırak kendini 😈'],
+    cum: ['İnanamıyorum, sonunda! 😵‍💫', 'Saatler sürdü… 🫠', 'Bunu kutlamamız lazım 😂', 'Artık yürüyemem 🥵'] }
 };

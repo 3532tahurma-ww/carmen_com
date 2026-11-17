@@ -24,6 +24,11 @@ Stories.Traits = (() => {
       id: 'dominance', label: '👑 Dominance', single: true,
       items: ['Submissive', 'Switch', 'Dominant']
     },
+    // 🌈 yönelim: cevaplara ek (app.js ORIENT_LINES); grupta iki Bisexual kız birbirine lezbiyen olay yapabilir (biLesExtra)
+    {
+      id: 'orientation', label: '🌈 Orientation', single: true,
+      items: ['Straight', 'Bisexual']
+    },
     {
       id: 'experience', label: 'Experience', single: true,
       items: ['Virgo' , 'Little','Some','Medium','Much','A lot','Great']

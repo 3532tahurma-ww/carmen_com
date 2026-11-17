@@ -77,8 +77,15 @@ Stories.Store = (() => {
   const fill = data => migrate(Object.assign(defaults(), renameMod(data), data && !data.threads ? { threads: undefined } : {}));
   let state = fill(read(KEY));
 
+  // ❤️/💔 en fazla 7 sevdiği / 3 sevmediği olay; fazlası kayıtta eskiden başlayarak atılır
+  const FEEL_MAX = { likes: 7, dislikes: 3 };
+  const capFeels = () => (state.characters || []).forEach(c => Object.keys(FEEL_MAX).forEach(k => {
+    if (Array.isArray(c[k]) && c[k].length > FEEL_MAX[k]) c[k] = c[k].slice(-FEEL_MAX[k]);
+  }));
+
   // Kota dolarsa false döner
   function save() {
+    capFeels();
     try { localStorage.setItem(KEY, JSON.stringify(state)); return true; }
     catch (e) { return false; }
   }
