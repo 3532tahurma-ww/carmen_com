@@ -34,7 +34,7 @@ html[data-theme="dark"] .sy-hero, html[data-theme="dark"] .sy-go { background: #
 .theme-pick button { flex: 1; padding: 10px 8px; border-radius: 12px; background: var(--chip); color: var(--text); font-weight: 700; font-size: 14px; border: 2px solid transparent; }
 .theme-pick button.on { border-color: var(--purple); background: var(--purple-soft); }
 
-/* ---------- üretilen karşılıklar (483 bildirim) ---------- */
+/* ---------- üretilen karşılıklar (501 bildirim) ---------- */
 html[data-theme="dark"] .splash { background: #181c2e; }
 html[data-theme="dark"] .nav { background: rgba(24, 28, 46, 0.96); }
 html[data-theme="dark"] .badge-count { border: 2px solid #2c3150; }
@@ -313,12 +313,16 @@ html[data-theme="dark"] .cs-tools { background: #181c2e; }
 html[data-theme="dark"] .cs-acts button.on { background: linear-gradient(135deg, #433d35, #ffb72b); color: #e9ebf5; }
 html[data-theme="dark"] .cs-grp-tags select { background: #181c2e; }
 html[data-theme="dark"] .hl-go { background: #181c2e; }
+html[data-theme="dark"] .bm-hot span { color: #e9ebf5; }
 html[data-theme="dark"] .bb-logo i:nth-child(4) { color: #e497b5; }
+html[data-theme="dark"] .bb-dym { color: #e59c9a; }
 html[data-theme="dark"] .hl-cm-vip { color: #e9ebf5; }
 html[data-theme="dark"] .hl-ad-cta { background: #181c2e; color: #e9ebf5; }
 html[data-theme="dark"] .cm-tabs button.on { color: #e9ebf5; }
 html[data-theme="dark"] .cm-badge.vip { color: #e9ebf5; }
 html[data-theme="dark"] .cm-ct b i { color: #e9ebf5; }
+html[data-theme="dark"] .td-res.ok { background: #3d444e; }
+html[data-theme="dark"] .td-res.pas { background: #43404e; color: #dd9d9a; }
 html[data-theme="dark"] .ig-sbars i.done { background: #181c2e; }
 html[data-theme="dark"] .ig-sbars i.run::after { background: #181c2e; }
 html[data-theme="dark"] .ig-stk { background: rgba(24, 28, 46, 0.92); color: #e9ebf5; }
@@ -402,7 +406,6 @@ html[data-theme="dark"] .fn-bar,
 html[data-theme="dark"] .sy-bar { background: #181c2e; border-bottom: 1px solid #2c3150; }
 html[data-theme="dark"] .fn-bar .cm-back,
 html[data-theme="dark"] .sy-bar .cm-back { color: #e9ebf5; background: #20253c; }
-html[data-theme="dark"] .fn-logo i,
 html[data-theme="dark"] .sy-logo i { color: #e9ebf5; }
 html[data-theme="dark"] .fn-bar .cm-url,
 html[data-theme="dark"] .sy-bar .cm-url { color: #a4a9c4; background: #20253c; }
@@ -420,6 +423,13 @@ html[data-theme="dark"] .fn-ph small { color: #a4a9c4; }
 html[data-theme="dark"] .fn-media { background: #282d46; }
 html[data-theme="dark"] .fn-likes { color: #a4a9c4; }
 html[data-theme="dark"] .fn-item { background: #181c2e; }
+html[data-theme="dark"] .fn-sale { background: linear-gradient(135deg, #433c2d, #ff7a00); }
+html[data-theme="dark"] .fn-plan { background: #181c2e; color: #e9ebf5; }
+html[data-theme="dark"] .fn-plan s { color: #a4a9c4; }
+html[data-theme="dark"] .fn-plan.vip { background: #43444e; }
+html[data-theme="dark"] .fn-sv { background: #181c2e; }
+html[data-theme="dark"] .fn-sv > span small { color: #a4a9c4; }
+html[data-theme="dark"] .fn-sv > .fn-save { background: rgba(24, 28, 46, 0.85); }
 html[data-theme="dark"] .fn-in small { color: #a4a9c4; }
 html[data-theme="dark"] .fn-site .cm-foot,
 html[data-theme="dark"] .sy-site .cm-foot { color: #a4a9c4; }
@@ -472,9 +482,14 @@ html[data-theme="dark"] .bk-tip button { color: #e9ebf5; background: #433c38; }
 html[data-theme="dark"] .bk-lia { background: #434445; }
 html[data-theme="dark"] .bk-lia p { color: #e9ebf5; }
 html[data-theme="dark"] .bk-lia-ava { background: #181c2e; }
+html[data-theme="dark"] .ob-cols button.on { border-color: #2c3150; }
+html[data-theme="dark"] .me-cols button.on { border-color: var(--card, #2c3150); }
 html[data-theme="dark"] .lk-dots i { border: 2px solid #2c3150; }
 html[data-theme="dark"] .lk-dots i.on { background: #181c2e; }
 html[data-theme="dark"] .bs-keys button.fn { color: #e9ebf5; }
+html[data-theme="dark"] .cc-ic { border: 2px solid #2c3150; }
+html[data-theme="dark"] .cc-b.on .cc-ic { outline: 3px solid #2c3150; }
+html[data-theme="dark"] .cc-avs .ava { border: 2px solid #2c3150; }
 @media (min-width: 768px) {
 html[data-theme="dark"] .home .row { background: #181c2e; }
 }

@@ -10,6 +10,9 @@ Stories.I18n.add({
   'Boy': 'Height', 'Kilo': 'Weight', 'Vücut': 'Body', 'Saç': 'Hair', 'Göz': 'Eyes', 'Ten': 'Skin', 'Vajina': 'Pussy', 'Anal': 'Anal', 'Deneyim': 'Experience',
   'Sarı': 'Blonde', 'Kumral': 'Light brown', 'Siyah': 'Black', 'Kızıl': 'Red', 'Açık kahve': 'Light brown', 'Koyu kahve': 'Dark brown', 'Platin sarı': 'Platinum blonde', 'Bal köpüğü': 'Honey blonde',
   'Kahverengi': 'Brown', 'Yeşil': 'Green', 'Mavi': 'Blue', 'Bal rengi': 'Amber', 'Beyaz': 'Fair', 'Buğday': 'Olive', 'Bronz': 'Tanned', 'Esmer': 'Dark', 'Porselen': 'Porcelain',
+  'Armut': 'Pear', 'Kaslı': 'Muscular', 'Turuncu kızıl': 'Ginger', 'Boyalı': 'Dyed', 'Koyu esmer': 'Deep dark', 'Saç boyu': 'Hair length', 'Detay': 'Details', 'carmen.com profiliyle aynı': 'same as the carmen.com profile',
+  'Pixie': 'Pixie', 'Kısa': 'Short', 'Omuz hizası': 'Shoulder length', 'Uzun': 'Long', 'Çok uzun': 'Very long',
+  'Çil': 'Freckles', 'Gamze': 'Dimples', 'Güzellik beni': 'Beauty mark', 'Dövme': 'Tattoo', 'Burun piercing': 'Nose piercing', 'Göbek piercing': 'Navel piercing', 'Meme piercing': 'Nipple piercing', 'Dil piercing': 'Tongue piercing', 'Gözlük': 'Glasses', 'Diş teli': 'Braces',
 
   // ---------- kondom kuralları ----------
   'Kondom şartım vardır.': 'Condoms are a must for me.', 'Kondomsuz görüşme yapmıyorum, sağlığım her şeyden önce gelir.': "I don't meet without a condom, my health comes first.",

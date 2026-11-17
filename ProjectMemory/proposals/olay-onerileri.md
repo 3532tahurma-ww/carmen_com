@@ -952,3 +952,180 @@
 | Brush It Out | 🪮😌 | Sonrasında saçını tarar, yine sana yaslanır |
 | Braid Her Hair | 🪢🫂 | Sen onun saçını örersin; sessiz, yakın bir an (Samimiyet +2) |
 | Hair Messed Up | 🌪️💇‍♀️ | Saçı darmadağın; "herkes anlayacak" diye güler |
+
+---
+
+# Tur 15 — Meisove (jöle / meyve-içki kızları, 2026-11-16)
+
+> Meisove kızları (`c:mvmeisove01x`, `MS_TYPES`) yarı saydam, jöle gibi gövdeli; teni kendi tadını/kokusunu taşır. Öneri: olaylar `meisove` etiketiyle; türe özel olanlar `fxrp<id>` kapısıyla (sadece o kızda görünür). Ortak olaylar 9 kızın hepsinde çıkar, açıklamadaki tat/renk `MS_TYPES.name`'den doldurulur.
+
+## 🫠 Ortak — jöle gövde
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Jelly Squeeze | 🫠🤲 | Kalçasını avuçlarsın; parmakların gömülür, bırakınca titreyerek geri gelir |
+| See-Through | 👀🫠 | Yarı saydam teninden içinde ne olduğunu görürsün; o da aşağı bakıp kızarır (`vajinal`) |
+| Jelly Wrap | 🫠🌀 | Gövdesi etrafını sarıp yumuşacık sıkar; her yeri aynı anda kavrar |
+| Melt Into Her | 🔥🫠 | Isındıkça yumuşar; her vuruşta biraz daha derine erirsin |
+| Wobble Ride | 🍮🐎 | Üstüne oturur; her inişte tüm gövdesi jöle gibi dalgalanır |
+| Flavor Lick | 👅🍬 | Tenini yalarsın; her yerinin tadı farklı (tür tadı) |
+| Drip Trail | 💧🫠 | Heyecanlandıkça teninden tatlı damlalar süzülür, çarşafa iz bırakır |
+| Shape Shift Tight | 🫠🔒 | İçini isteğine göre daraltır: "böyle mi, daha mı?" (`th.edge` ile uyumlu) |
+| Cold Then Warm | 🧊🔥 | Önce buz gibi, sonra ısınır; sıcaklık farkı ürpertir |
+| Glow Inside | ✨🫠 | Boşalmaya yaklaştıkça gövdesi içten parlar; gizlenemez |
+
+## 🍋🍓🍊 Meyve kızları
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Lemon Squeeze | 🍋💦 | Limon Kız: sıktıkça suyu fışkırır; ekşi damlalar göğsüne sıçrar (`fxrplimon`) |
+| Salt Lick | 🧂👅 | Limon Kız: boynuna tuz serpip yalarsın, sonra dudağını ısırırsın (`fxrplimon`) |
+| Sour Kiss | 🍋💋 | Limon Kız: dudakları ekşi; öptükçe dilin karıncalanır, bırakamazsın (`fxrplimon`) |
+| Whipped Cream Tits | 🍓🍦 | Çilek Kız: göğüslerine krema sıkıp yalarsın; kızarır ama durdurmaz (`fxrpcilek`) |
+| Strawberry Dip | 🍫🍓 | Çilek Kız: çikolataya batırıp onu yalarsın, sonra o seni (`fxrpcilek`, `oral`) |
+| Gentle Or Jam | 🤏🍓 | Çilek Kız: sert tutarsan "reçel olurum" der; yavaş ama derin (`fxrpcilek`) |
+| Peel Me | 🍊🖐️ | Portakal Kız: kıyafetini kabuk gibi dilim dilim soyarsın (`fxrpportakal`) |
+| Sunny Hammock | ☀️🍊 | Portakal Kız: balkondaki hamakta; her sallanış bir vuruş (`fxrpportakal`) |
+| Juice Burst | 🍊💦 | Portakal Kız: boşalırken suyu fışkırır, ikiniz de turuncu ışıltı (`fxrpportakal`) |
+
+## 🍷🍸🥃🍾 İçki kızları
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Slow Pour | 🍷🫗 | Şarap Kız: acele etmez; her hareket yudum yudum, başın döner (`fxrpsarap`) |
+| Wine Body Shot | 🍷👅 | Şarap Kız: göbek çukurundan şarabı içersin; teni bordolaşır (`fxrpsarap`) |
+| Aged To Perfection | 🕯️🍷 | Şarap Kız: mumlar, yavaş yavaş uzun sevişme; Samimiyet + (`fxrpsarap`) |
+| Ice Cold Grip | 🧊🍸 | Vodka Kız: buz gibi içine girersin, sonra yakar: "Da, moy dorogoy" (`fxrpvodka`) |
+| Na Zdorovye | 🥃🇷🇺 | Vodka Kız: her shot'ta bir pozisyon değişir (`fxrpvodka`, oyun) |
+| Honey Stuck | 🍯🫠 | Bal Kız: yapış yapış teni seni bırakmaz; ayrılmak istedikçe daha çok yapışır (`fxrpbal`) |
+| Honey Drizzle | 🍯💧 | Bal Kız: göğsünden karnına bal akıtır, yolunu dilinle takip edersin (`fxrpbal`) |
+| Tequila Ritual | 🧂🍋🥃 | Tekila Kız: tuz boynunda, limon dudağında, shot göğüs arasında (`fxrptekila`) |
+| ¡Salud! Ride | 🌵🔥 | Tekila Kız: ateşli kovboy kız, "¡Más!" diye bağırır (`fxrptekila`) |
+| Pop The Cork | 🍾💥 | Şampanya Kız: mantarı patlatınca köpürür; kabarcıklar her yerini gıdıklar (`fxrpsampanya`) |
+| Bubbly Inside | 🥂✨ | Şampanya Kız: içindeyken kabarcıklar seni sarar, gıdıklar; kıkır kıkır güler (`fxrpsampanya`) |
+
+## 🥛 Süt Kız
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Milk Drip Tits | 🥛🍈 | Göğüslerini sıktıkça süt damlar; ağzına alırsın (`fxrpsut`) |
+| Milking Ride | 🐄🐎 | Üstünde sallanırken her inişte göğüslerinden süt sıçrar (`fxrpsut`) |
+| Warm Milk Titfuck | 🥛🍈 | Göğüsleri sütle kaygan; arasında kayarsın (Tur 7 bağlantısı, `fxrpsut`) |
+| Barn Hay | 🌾🛖 | Çiftlik evinde saman yığını üstünde (`fxrpsut`, spot Çiftlik evi) |
+
+## 💦 Meisove bitişleri
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Visible Creampie | 👀💦 | Yarı saydam teninin içinde bulutlanıp yayıldığını ikiniz de görürsünüz |
+| Flavor Mix | 🍹💦 | Seninki onun tadıyla karışır; "yeni bir kokteyl" diye güler (tür adıyla) |
+| Absorbed | 🫠💧 | Teni yavaşça emer, iz kalmaz; "beni besledin" der |
+| Jelly Glaze | 🍮💦 | Jöle teninin üstüne; damlalar parlak bir sır gibi kayar |
+| Lemonade | 🍋💦 | Limon Kız: ikinizin suyu karışır, yatak limonata (`fxrplimon`) |
+| Strawberries And Cream | 🍓🍦 | Çilek Kız: göğüslerine; "kremam geldi" (`fxrpcilek`) |
+| Honey And Milk | 🍯🥛 | Bal Kız: balın içine karışır, yapış yapış altın (`fxrpbal`) |
+| Champagne Shower | 🍾💦 | Şampanya Kız: ikisi aynı anda köpürür, her yer ıslak (`fxrpsampanya`) |
+| White On White | 🥛💦 | Süt Kız: sütüne karışır, hangisi kimin belli olmaz (`fxrpsut`) |
+| Last Shot | 🥃💦 | Tekila/Vodka Kız: bardağa toplayıp tek seferde içer (`fxrptekila` / `fxrpvodka`) |
+
+## 🧻 Sonrası
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Reshape | 🫠🪞 | Dağılan şeklini aynada yeniden toplar; "bir kalçam eksik kaldı" diye güler |
+| Sticky Sheets | 🛏️🍯 | Çarşaf onun tadıyla yapış yapış; tür kokusu odada kalır |
+| Refill | 🫗😌 | "Biraz azaldım, beni doldur" — su/meyve suyu içer, yeniden dolgunlaşır |
+| Chill Together | 🧊🫂 | Isınıp eridiği için buzdolabının önünde serinlersiniz |
+| Taste Souvenir | 🍬🎁 | Gitmeden dudağına son bir öpücük bırakır; tadı saatlerce kalır |
+
+---
+
+# Tur 16 — Yaratıcı bitişler: duygu, kişilik, kaza, oyun, mesajlaşma (2026-11-16)
+
+> Mevcut/önerilmişler hariç (Together, Countdown, Hands-Free, Show Me, Cum Writing, Pull Out Fail, Split Load, Dark Finish, Phone Finish, Overflow, Cum Kiss, Multiple/Endless Ropes…). Bağlar: `PERSONA` (sex/after), `Dayanıklılık:` / `Dick Size:` / Süt trait'leri, `th.edge`, 📱 kesintiler, `riskStep` / `RISK_TAG`, 🧠 hafıza (`MEM_RULES`).
+>
+> **Mekanik önerileri:** (1) Kaza şansı = düşük Dayanıklılık + hızlı pozisyon → 😳 bitişleri rastgele araya girer. (2) Aynı bitişe `PERSONA` göre tepki eki (🎭 tablosu ayrı olay değil, bitişe eklenen son cümle olabilir). (3) 📱 bitişler yalnız sexting/kesinti açıkken.
+
+## 💞 Duygusal (Aşk / Güven kapılı)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Eyes Locked | 👁️💞 | Gözünü kaçırmana izin vermez; bakışarak gelirsin (Aşk ≥ 60, Samimiyet +2) |
+| Name On Her Lips | 🗣️💦 | Tam o an adını inler; 🧠 hafızaya yazılır, sonraki seanslarda hatırlatır |
+| Slipped "I Love You" | ❤️😳 | Boşalırken ağzından kaçar; ardından "Did You Mean It?" sonrası olayı açılır |
+| Fingers Laced | 🤝💦 | Parmakları seninkilere kenetli; her atımda sıkar |
+| Forehead To Forehead | 🫂💦 | Alınlar yaslı, nefes nefese; yavaş, içeride |
+| Happy Tears | 🥹💦 | Gözleri dolar: "çok güzeldi" (ilk seks / uzun aradan sonra) |
+
+## 🎭 Kişiliğe göre tepki (`PERSONA` sex/after)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Shy Hide | 🙈💦 | Yüzünü yastığa gömer: "bakma bana" |
+| Brat Complaint | 😤💦 | "Erken!" diye söylenir; Second Round talep eder |
+| Dom Inspection | 🧐💦 | İzini inceler, puan verir: "7/10, gelişmen lazım" |
+| Clingy Lock | 🫂🔒 | Bacaklarıyla kilitler, çekmene izin vermez (dış bitişi creampie'ye çevirir) |
+| Tsundere Denial | 😒💦 | "Hiç de güzel değildi" der ama sana yapışık kalır |
+| Giggle Fit | 🤭💦 | Kahkaha krizine girer; bulaşıcı, sen de gülersin |
+
+## 😳 Kazalar / ıska (komik)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Misfire | 🎯❌ | Hedefi tamamen ıskalarsın; yastığa, halıya. "Nişan dersi lazım" |
+| Eye Shot | 👁️😖 | Bir damla gözüne kaçar; tek gözü kapalı korsan gibi bakar |
+| Up The Nose | 👃🤧 | Burnuna kaçar, hapşırır; ikiniz de donarsınız |
+| Phone Screen | 📱💦 | Yanındaki telefonuna; ekran bulanık, kilidi açamaz |
+| Self Hit | 😵‍💫💦 | Sırtüstüyken kendi göğsüne / çenene; o kahkahayı basar |
+| Early Bird | ⏱️😳 | Düşük Dayanıklılık: daha başlamadan; kişiliğine göre teselli ya da dalga |
+| Sneeze Squeeze | 🤧💥 | Tam o an hapşırır, içi bir anda sıkışır; seni de götürür |
+
+## 📱 Mesajlaşma uygulamasına özel
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Mid-Call Finish | 📞💦 | 📱 kesintide telefonu çalar, açar; konuşurken gelirsin, sesini tutmak zorunda |
+| Voice Note Moan | 🎙️💦 | Sesli mesaj kaydederken; sonra sana gönderir (🧠 hafıza, sonra "dinledin mi?") |
+| Seen ✔️✔️ | ✔️💦 | Sexting: "görüldü" ile aynı anda; tek mesaj: "💦" |
+| Endless Typing | ⌨️💦 | "yazıyor…" hiç bitmez; sonunda tek kelime: "geldim" |
+| Proof Selfie | 🤳💦 | İzleriyle selfie: "sadece sana" (CarmenFans'a koysun mu? Güven testi) |
+
+## 🎲 Oyun / şans
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Roulette Finish | 🎰💦 | Zar: 1 yüz, 2 göğüs, 3 kalça, 4 içeri, 5 ağız, 6 o seçer |
+| Target Practice | 🎯🫃 | Hedef göbek çukuru / bel gamzeleri; tutturursan Şehvet + |
+| Card Draw | 🃏💦 | Kart çeker, kartta yazan yere |
+| Blind Guess | 🙈❓ | Gözü bağlı; nereye geldiğini dokunarak tahmin eder |
+| Quiet Game | 🤫💦 | Ses çıkaran kaybeder; sen kaybedersin, cezayı o seçer |
+
+## 🫣 Yakalanma riski (`riskStep` / `RISK_TAG`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Door Handle Finish | 🚪💥 | Kapı kolu dönerken, son saniyede |
+| Silent Finish | 🤐💦 | Ağzını eliyle kapatır; tek ses yok, sadece titreme |
+| Footsteps Finish | 👣💦 | Ayak sesleri yaklaşırken hızlanırsın |
+| Hide The Evidence | 🧻🏃 | Peçete yok; ne bulursa onunla siler (eşarp, fatura, perde) |
+
+## 🧬 Özelliklere bağlı (trait kapıları)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Tiny Drop | 💧🤏 | Az miktar: tek damla; "bu kadar mı?" (Watery Cumming yanında) |
+| Firehose Surprise | 🚒😳 | High Sperm + ilk kez: hazırlıksız yakalanır, "uyarsaydın!" |
+| Deepest Point | 🍆🎯 | Büyük Dick Size: en derinde; elini karnına koyar, "hissettim" |
+| Marathon Finish | 🏃💦 | Yüksek Dayanıklılık: o üç kez gelir, sen bir kez (Zevk ×) |
+| Aftershock | 〰️💧 | Bitti sanılırken beklenmedik bir dalga daha |
+
+## 🧻 Sonrası
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Did You Mean It? | ❓❤️ | Slipped "I Love You" sonrası; cevaba göre Aşk +5 ya da Güven − |
+| Keep It In | 🩲🔒 | Külotunu giyer, gün boyu taşır; akşam kendiliğinden mesaj: "hâlâ hissediyorum" |
+| Next Morning Text | 🌅📱 | Ertesi sabah o yazar, dünü hatırlatır (🧠 hafıza) |
+| Wet Spot War | 🛏️⚔️ | Islak tarafa kim yatacak; taş-kağıt-makas |
+| Star Rating | ⭐📝 | 5 üzerinden puan + kısa "yorum" yazar |
+| Snack Run | 🍕😋 | "Acıktım"; mutfağa birlikte (🏠 Kitchen geçişi) |

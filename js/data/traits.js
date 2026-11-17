@@ -56,6 +56,32 @@ Stories.Traits = (() => {
       id: 'butt', label: '🍑 Butt Size', single: true,
       items: ['XS','S','M','M/L','L','XL']
     },
+    // 📏 boy / vücut / saç / ten: profil vücut kartında (app.js cmBody) rastgele değer yerine bunlar gösterilir
+    {
+      id: 'height', label: '📏 Height', single: true,
+      items: ['Very Short', 'Short', 'Average', 'Tall', 'Very Tall']
+    },
+    {
+      id: 'bodytype', label: '🧬 Body Type', single: true,
+      items: ['Petite', 'Athletic', 'Toned', 'Hourglass', 'Pear', 'Muscular']
+    },
+    {
+      id: 'haircolor', label: '💇 Hair Color', single: true,
+      items: ['Black', 'Brown', 'Blonde', 'Red', 'Ginger', 'Platinum', 'Dyed']
+    },
+    {
+      id: 'hairlength', label: '✂️ Hair Length', single: true,
+      items: ['Pixie', 'Short', 'Shoulder', 'Long', 'Very Long']
+    },
+    {
+      id: 'skin', label: '🎨 Skin Tone', single: true,
+      items: ['Pale', 'Fair', 'Olive', 'Tan', 'Brown', 'Dark']
+    },
+    // çoklu seçim: değer olduğu gibi saklanır ("Freckles")
+    {
+      id: 'marks', label: '✨ Marks',
+      items: ['Freckles', 'Dimples', 'Beauty Mark', 'Tattoo', 'Nose Piercing', 'Navel Piercing', 'Nipple Piercing', 'Tongue Piercing', 'Glasses', 'Braces']
+    },
   ];
 
   // aynı id iki kez yazılırsa ikincisi ayrı grup olarak kalsın
@@ -82,13 +108,16 @@ Stories.Traits = (() => {
 
   // 📏 hep geçerli kurallar (📏 Kurallar sayfasındakilere eklenir): kiloya göre olamayacak göğüs / kalça bedenleri
   const W_RULES = {
-    'Very Thin': ['Boob Size: 90', 'Boob Size: 95', 'Butt Size: L', 'Butt Size: XL'],
-    'Thin': ['Boob Size: 95', 'Butt Size: XL'],
+    'Very Thin': ['Boob Size: 90', 'Boob Size: 95', 'Butt Size: L', 'Butt Size: XL', 'Body Type: Hourglass', 'Body Type: Pear', 'Body Type: Muscular'],
+    'Thin': ['Boob Size: 95', 'Butt Size: XL', 'Body Type: Muscular'],
     'Curvy': ['Boob Size: 70', 'Butt Size: XS'],
-    'Chubby': ['Boob Size: 70', 'Boob Size: 75', 'Butt Size: XS', 'Butt Size: S'],
-    'Overweight': ['Boob Size: 70', 'Boob Size: 75', 'Boob Size: 80', 'Butt Size: XS', 'Butt Size: S', 'Butt Size: M']
+    'Chubby': ['Boob Size: 70', 'Boob Size: 75', 'Butt Size: XS', 'Butt Size: S', 'Body Type: Petite', 'Body Type: Athletic', 'Body Type: Toned', 'Body Type: Muscular'],
+    'Overweight': ['Boob Size: 70', 'Boob Size: 75', 'Boob Size: 80', 'Butt Size: XS', 'Butt Size: S', 'Butt Size: M', 'Body Type: Petite', 'Body Type: Athletic', 'Body Type: Toned', 'Body Type: Muscular']
   };
-  const rules = Object.entries(W_RULES).map(([w, not]) => ({ id: 'w_' + w.replace(/\s/g, ''), ifs: ['Weight: ' + w], not }));
+  // uzun boylu minyon olamaz (Height, Body Type'tan önce seçilir)
+  const H_RULES = { 'Tall': ['Body Type: Petite'], 'Very Tall': ['Body Type: Petite'] };
+  const rules = [...Object.entries(W_RULES).map(([w, not]) => ({ id: 'w_' + w.replace(/\s/g, ''), ifs: ['Weight: ' + w], not })),
+    ...Object.entries(H_RULES).map(([h, not]) => ({ id: 'h_' + h.replace(/\s/g, ''), ifs: ['Height: ' + h], not }))];
 
   return { groups, zodiacs, colors, all, rules };
 })();

@@ -1,6 +1,7 @@
 # Bot mode & rules
 
 **Files:** `js/bot.js` (engine), `js/data/bot-rules.js` (`Stories.BOT_RULES`, ~2 MB, never read whole), `tools/bot-editor.html` (tab 🍆⏱️ `renderSizes` shows `js/data/user-lines.js` read-only + rules with `Dick Size:` / `Dayanıklılık:` traits), `tools/bot-server.ps1`, `bot-editoru.bat`, app.js `🤖 Bot modu` inside renderChat (~L6676), `renderBot` (~L466), `renderBotLab` (#/deney ~L16268), `docs/BOT-KURALLARI.md`.
+- 📏 Appearance (v911): event bubble `looksLine(ch, e, climax, orgasm)` (%30, after the ⚖️ weight bubble; pools `LK_LINES` by Hair Length / Hair Color / Height / Body Type / Skin Tone + ✨ Marks values) and short-hair filter (`lkShortHair` drops "saçımı çek/tut" parts). `fillTraits` `{bd:<label>}` = `cmBody` row value lowercased (Boy, Saç, Saç boyu, Ten, Vücut, Göz). Look question rules `r_q5_sac_gr/renk/uzun/kisa`, `r_q2_sac_kisa`, `r_sx2_sac_kisa`, `r_q5_boy*`, `r_q5_tenrengi`, `r_q5_vucut*`, `r_q5_dovme_var/_yok`, `r_q5_pc_*`. Trick: a trait repeated twice in `traits` gives +20 so it beats the 1-trait personality variants.
 
 ## Data format
 - 🔗 BDSM reply layering (v807): event query is `evt <tags> <cat label> <title>[ fant <fxkey>]…`, score = when-terms×100 + traits×10. Base `r_ev_bd_<ev>` < personality `r_ev_bd_<ev>_<utangac|flortoz|romantik|soguk|dominant>` (+10) < role `r_ev_bd_rp_<fxkey>` (`=evt =bdsm =bdsm =fant =<key>`, 500) < role impact `_darbe` (600). A new BDSM event needs its base rule + 5 personality rules; the role rules cover it automatically. A new role key needs 2 `r_ev_bd_rp_*` rules.

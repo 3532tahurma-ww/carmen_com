@@ -9007,3 +9007,102 @@ Object.assign(Stories.ME_EV_LINES, {
   'Shower Together': ['Duşa geliyorum {o} 🚿', 'Seni de yıkarım 😈', 'Nefes nefeseyiz {o} 😮‍💨', 'Yanına uzanıyorum 🥰', 'Bir daha mı? 😈']
 });
 Stories.ME_BED_SKIP.push('Step Forward', 'Turn Around', 'Twerk Pause', 'Hip Freeze', 'Skirt Down', 'Spank Stop', 'Pencil Skirt Trap', 'Denied And Dressed', 'Slipped Out On Skirt', 'Down To Her Ankles', 'Wall Behind Her');
+/* 🛡️✋ v921: yeni korunma ve tutma olayları */
+Object.assign(Stories.ME_EV_LINES, {
+  'Ribbed Condom': ['Tırtıklı olanı taktım {o}, hazır mısın? 😈', 'Her girişte o tırtıkları hissedeceksin 🌀', 'Seni deli etmek için seçtim bunu 😏', 'Bak, nasıl kıvranıyorsun {o} 🥵', 'Kondom ama sana hiç kondom gibi gelmeyecek 😈'],
+  'Ultra Thin Condom': ['En incesini taktım {o}, neredeyse yok gibi 🫧', 'Sıcaklığını olduğu gibi hissediyorum 🥵', 'Arada hiçbir şey yok gibi offf 😩', 'İnce ama güvendeyiz {o} 😌', 'Bununla çabuk gelmemem lazım ahh 😳'],
+  'Delay Condom': ['Geciktiricili taktım {o}, bu gece uzun sürecek 😈', 'Jel etkisini gösteriyor, sakinim 😏', 'Bütün gece dayanırım şimdi ⏳', 'Erken bitmek yok bu sefer {o} 😈', 'Hissim azaldı ama sen fazlasıyla hissedeceksin 🥵'],
+  'Condom Break': ['Dur {o}… kondom yırtıldı 😳', 'Bir şey patladı, hissettim 😰', 'Yırtıldı! Ne yapıyoruz şimdi? 😳', 'Kondom gitti {o}, korunmasızız 😣', 'Hemen çekiyorum, dur 😰'],
+  'Take It Off': ['Kondomu çıkarıyoruz {o}, ikimiz de istiyoruz 😈', 'Lastik gitti, şimdi sadece sen ve ben 🥵', 'Çıkarışını izliyorum {o} 😏', 'Artık seni olduğun gibi hissedeceğim 😩', 'Böylesi çok daha güzel {o} 💕'],
+  'Inside Please': ['İçine mi istiyorsun {o}? 🥵', 'Böyle yalvarınca dayanamıyorum 😩', 'Tamam, çekmeyeceğim {o} 😈', 'Hepsini içine vereceğim 💦', 'Gözlerin içine bakarken… evet 🥺'],
+  'Try for Baby': ['Bir bebek {o}… seninle 🥺💞', 'Kondom yok, hiçbir şey yok, sadece biz 👶', 'Bu gece deneyeceğiz {o} 😳', 'Seni anne yapmak istiyorum 💞', 'Sımsıkı sarıl bana {o} 👶'],
+  'Pre-Cum Worry': ['Endişelenme {o}, dikkat ediyorum 😌', 'Ön sıvı mı? Biraz yavaşlayayım 😳', 'Korkma, son anda çekeceğim 🥺', 'Kondom ister misin {o}? 😟', 'Haklısın, dikkatli olalım 😌'],
+  'Pregnancy Test': ['Üç dakika {o}… elini tutuyorum 🥺', 'Çubuğa bakmaya korkuyorum 😳', 'Ne çıkarsa çıksın yanındayım {o} 💕', 'Kalbim küt küt atıyor 🧪', 'Hadi bakalım {o}… birlikte 😰'],
+  'Late Pull-Out': ['Geç kaldım {o}… biraz kaçtı 😳', 'Çektim ama son saniyedeydi 😰', 'Özür dilerim {o}, dayanamadım 😣', 'Biraz içine geldi, hissettim 😳', 'Bir saniye erken çekmeliydim 😩'],
+  'Pull-Out Belly Finish': ['Son anda çektim, karnına {o} 💦', 'Göbeğine boşalıyorum ahh 🥵', 'Sözümü tuttum {o} 😏', 'Karnında sıcacık birikti 😩', 'Tam zamanında çektim offf 💦'],
+  'Pull-Out Back Finish': ['Çektim, sırtına {o} 💦', 'Kalçana ve beline boşalıyorum ahh 🥵', 'Sözümü tuttum {o} 😏', 'Sırtında çizgiler çiziyorum 😩', 'Kıpırdama {o}, akmasın 😂'],
+  'Pull-Out Thigh Finish': ['Çektim, uyluklarının arasına {o} 💦', 'Bacaklarını sık, hepsi orada 🥵', 'Sözümü tuttum {o} 😏', 'Dizlerine kadar akıyor 😩', 'Tam zamanında offf 💦'],
+  'Still Inside': ['İçindeyim {o}, hiç kıpırdamıyorum 😮‍💨', 'Sadece zonkluyorum, sen sarıyorsun 🥵', 'Böyle kalalım biraz {o} 💕', 'Kıpırdarsam biterim, biliyorum 😩', 'Nefesimizi dinliyoruz {o} 😌'],
+  'Stop-Start': ['Çıkıyorum… bekliyorum… {o} 🔁', 'Şimdi yavaşça geri giriyorum 😈', 'Dur-kalk beni de deli ediyor offf 🥵', 'Bir nefes daha {o}… 😮‍💨', 'Her girişte daha da sertim 😩'],
+  'Tease & Deny': ['Yine durdun {o}… 😩', 'Tam gelecektim! 🥵', 'Yalvarıyorum {o} 🙏', 'Bu işkence offf 😣', 'Gülümseyerek bekletiyorsun beni {o} 😈'],
+  'Hold Together': ['Birlikte tutuyoruz {o}, gözlerine bakıyorum 💞', 'Daha değil… seni bekliyorum 🥺', 'Nefesimiz aynı {o} 😮‍💨', 'Sen tut, ben tutayım 🤝', 'Aynı anda olacak {o}, söz 💕'],
+  'Ruined Hold': ['Tutamadım {o}… ama tam da gelemedim 😩', 'Yarım geldim, akıp gitti 😣', 'Bu sayılmaz {o} 😳', 'Offf… tadını çıkaramadım 😩', 'Hâlâ sertim {o}, devam 😈']
+});
+/* 🌊🫙 v923: çok birikince patlama (💦 Cum 90+) + Dry Orgasm */
+Object.assign(Stories.ME_EV_LINES, {
+  'Creampie Overflow': ['İçine sığmadı {o}, taşıyor 🫗', 'Daha çıkmadım bile, akıyor 😳', 'Uyluklarından süzülüyor offf 💦', 'Bu kadar biriktirince olacağı bu 😈', 'Seni ağzına kadar doldurdum {o} 🥵'],
+  'Pulled Out Gushing': ['Çıkardım ve… bak {o} 😳', 'İçinden akın akın geliyor 🌊', 'Hiç durmuyor offf 💦', 'Çarşaf sırılsıklam 😂', 'Bu kadarını ben de beklemiyordum {o} 🥵'],
+  'Mouth Overflow': ['Yetişemiyorsun {o} 😳', 'Dudaklarının kenarından taşıyor 🫗', 'Çenene akıyor offf 💦', 'Bu kadar birikmişti 😈', 'Hepsi sana {o} 🥵'],
+  'Swallow Struggle': ['Yutkunuyorsun, yine geliyor {o} 😳', 'Gözlerin doldu ama bırakmıyorsun 🥵', 'Bir yudum daha {o} 👅', 'Bitmiyor offf 💦', 'Hepsini al 😈'],
+  'Burst While Held': ['Dayanamadım {o}! 💥', 'Tutuyordun ama patladım 😩', 'İzin vermeden geldim, özür dilerim 😳', 'Bu kadar dolu olunca olmuyor 🌊', 'Ceza neyse razıyım {o} 😈'],
+  'Untouched Burst': ['Dokunmadın bile {o} 😳', 'Kendiliğinden geldim 🙌', 'O kadar birikmiş ki taştı 🌊', 'Sadece sana bakarak offf 💦', 'Böyle bir şey olmamıştı hiç {o} 🥵'],
+  'Anal Overflow': ['Arkandan taşıyor {o} 🫗', 'Çarşafa damlıyor 😳', 'Kalçanın arasından sızıyor offf 💦', 'Bu kadarı sığmadı 🍑', 'Seni doldurdum {o} 🥵'],
+  'Anal Flood Pull-Out': ['Çıkardım, tutamıyorsun {o} 😳', 'Sıkıyorsun ama akıyor 🍑', 'Akın akın geliyor 🌊', 'Hiç durmuyor offf 💦', 'Bak ne biriktirmişim {o} 😈'],
+  'Deep Anal Pump': ['En derinde boşalıyorum {o} 💥', 'Her atımı hissediyor musun? 🥵', 'Karnını tutuyorsun… 😩', 'Bir daha… bir daha offf 💦', 'Seni içten doldurdum {o} 🍑'],
+  'Clench And Leak': ['Sıkıyorsun, kıpırdamıyorum {o} 🍑', 'Bıraktın ve… akıyor 💧', 'Uyluklarından aşağı süzülüyor 😳', 'Ne kadar çokmuş offf 🥵', 'Bacaklarına kadar {o} 💦'],
+  'Gape Spill': ['Yavaşça taşıyor {o} 🫗', 'Omzunun üstünden bakıyorsun 😈', 'Hepsi içindeydi 🍑', 'Bu manzara offf 🥵', 'Bırakma, izliyorum {o} 😏'],
+  'Anal Burst While Held': ['İçinde patladım {o}! 💥', 'Tutamadım, özür dilerim 😳', 'Sıçradın resmen 🍑', 'Bu kadar dolu olunca olmuyor 🌊', 'Ceza neyse razıyım {o} 😈'],
+  'Doggy Drip Trail': ['Yürürken damlıyorsun {o} 💧', 'Arkanda iz kalıyor 😳', 'Halıya dikkat 😂', 'İzini takip ediyorum 😈', 'Ne kadar doldurmuşum seni {o} 🍑'],
+  'Anal Fill Then Swallow': ['Arkan doldu, şimdi ağzın {o} 👄', 'Kalanı da senin 😈', 'Hiçbir damla boşa gitmiyor offf 💦', 'Bu kadar çok olunca paylaştık 🥵', 'Hepsini aldın {o} 🍑'],
+  'Dry Orgasm': ['Kasıldım ama hiçbir şey gelmedi {o} 🫙', 'Tamamen boşalttın beni 😩', 'Kupkuru titriyorum offf 😮‍💨', 'Son damlama kadar aldın {o} 😳', 'Biraz dinlenmem lazım 😴']
+});
+/* 🍈 v925: Titfuck / Legjob / Hotdogging taşmaları (tayt, gömlek dahil) */
+Object.assign(Stories.ME_EV_LINES, {
+  'Cleavage Geyser': ['Göğüslerinin arasından fışkırdı {o} ⛲', 'Çenene kadar 😳', 'Bitmiyor offf 💦', 'Ne kadar birikmişim 😈', 'Sıkmaya devam et {o} 🥵'],
+  'Tit Pool': ['Göğüslerinin arasında göl oldu {o} 🫗', 'Bırakma daha 😈', 'Ne kadar çok offf 💦', 'Şimdi karnına akıyor 🌊', 'Bunu izlemek bile yetiyor {o} 🥵'],
+  'Pearl Necklace Flood': ['Boynuna kolye gibi dolandı {o} 📿', 'Köprücük kemiklerinde birikti 😳', 'Bitmiyor offf 💦', 'Sana çok yakıştı 😈', 'Ne kadar birikmişim {o} 🥵'],
+  'Nipple Drip': ['Meme uçlarından damlıyor {o} 🍒', 'Damla damla 💧', 'Ne kadar çok offf 💦', 'Göğüslerin sırılsıklam 🥵', 'Bu manzaraya bayılıyorum {o} 😈'],
+  'Into Her Open Mouth': ['Doğrudan ağzına {o} 👅', 'Ağzını açık tut 😈', 'Ağzın doldu offf 💦', 'Tam isabet 😏', 'Hepsini yut {o} 🥵'],
+  'Cleavage Overflow': ['Göğüslerinden taştı {o} 🌊', 'Göbeğine kadar 😳', 'Bitmiyor offf 💦', 'Hepsi senin için 😈', 'Bu kadar birikmişti {o} 🥵'],
+  'Tit Glaze': ['İki göğsün de kaplandı {o} 🍩', 'Parlıyorlar 😍', 'Avuçlarınla yay 😈', 'Ne kadar çok offf 💦', 'Bu görüntü {o} 🥵'],
+  'Bra Filled': ['Sütyeninin içine doldu {o} 👙', 'Çıkar da görelim 😈', 'Döküldü offf 💦', 'O sütyen artık benim 😏', 'Ne kadar birikmişim {o} 🥵'],
+  'Knee Fountain': ['Dizlerinin arasından fışkırdı {o} ⛲', 'Karnına kadar 😳', 'Bitmiyor offf 💦', 'Bacaklarını sıkmaya devam et 😈', 'Ne kadar birikmişim {o} 🥵'],
+  'Thigh Seal Leak': ['Uyluklarını kilitledin {o} 🦵', 'Açtın ve… akıyor 💧', 'Akın akın offf 💦', 'Ne kadar birikmişim 😳', 'Bacakların sırılsıklam {o} 🥵'],
+  'Sole Flood': ['Ayaklarına doldu {o} 🦶', 'Parmaklarını oynat 😈', 'Süzülüyor offf 💦', 'Ne kadar çok 😳', 'Ayakların bembeyaz {o} 🥵'],
+  'Shin Rope': ['Bacağında upuzun bir ip {o} 🪢', 'Dizinden bileğine 😳', 'Tek atımda offf 💦', 'Ne kadar güçlü 🥵', 'Bir daha {o} 😈'],
+  'Garter Flood': ['Jartiyerine kadar sıçradı {o} 🎀', 'Dantelden damlıyor 😳', 'Bitmiyor offf 💦', 'O jartiyer artık benim 😈', 'Ne kadar birikmişim {o} 🥵'],
+  'Lap Lake': ['Kucağında göl oldu {o} 🫗', 'Sakın kalkma 😈', 'Ne kadar çok offf 💦', 'Taşacak 😳', 'Bunu izlemek bile {o} 🥵'],
+  'Over Her Knees': ['Dizlerinin üstünden yüzüne {o} ⬆️', 'Bu kadar uzağa 😳', 'Bitmiyor offf 💦', 'Yüzün bembeyaz 😈', 'Ne kadar birikmişim {o} 🥵'],
+  'Crack Fountain': ['Kalçanın arasından fışkırdı {o} ⛲', 'Çeşme gibi 😳', 'Bitmiyor offf 💦', 'Sıkmaya devam et 😈', 'Ne kadar birikmişim {o} 🥵'],
+  'Dimple Pools': ['Belindeki gamzeler doldu {o} 🫗', 'İki küçük göl 😍', 'Kıpırdama 😈', 'Ne kadar çok offf 💦', 'Bu manzara {o} 🥵'],
+  'Cheek Glaze': ['İki yanağın da kaplandı {o} 🍩', 'Avucunla yay 😈', 'Parlıyor 😍', 'Ne kadar çok offf 💦', 'Bu kalça {o} 🥵'],
+  'Thong Soaked': ['Tangan sırılsıklam {o} 👙', 'İpi kalçana yapıştı 😈', 'Ne kadar çok offf 💦', 'O tanga artık benim 😏', 'Bu görüntü {o} 🥵'],
+  'Hotdog Overflow': ['Kalçandan taştı {o} 🌊', 'Uyluklarından süzülüyor 😳', 'Bitmiyor offf 💦', 'Sıkmaya devam 😈', 'Ne kadar birikmişim {o} 🥵'],
+  'Twerk Splash': ['Twerk yaparken bıraktım {o} 💃', 'Her sallanışta dağıldı 😳', 'Bitmiyor offf 💦', 'Durma 😈', 'O kalça {o} 🥵'],
+  'Arch And Catch': ['Belini büktün, hepsi orada {o} 🫴', 'Hiç kaçmadı 😈', 'Ne kadar çok offf 💦', 'Sırtının çukuru doldu 😳', 'Bu duruş {o} 🥵'],
+  'Leggings Thigh Flood': ['Taytlı uyluklarına fışkırdı {o} 🧘‍♀️', 'İki bacağında da 😳', 'Bitmiyor offf 💦', 'O tayt bitti 😈', 'Ne kadar birikmişim {o} 🥵'],
+  'Soaked Through': ['Taytın içine geçti {o} 💦', 'Tenine yapıştı 🥵', 'Ne kadar çok offf 😩', 'İnce kumaş dayanamadı 😈', 'Ne kadar birikmişim {o} 😳'],
+  'Knee To Ankle Stripes': ['Taytında şerit şerit {o} 🪢', 'Dizinden bileğine 😳', 'Bitmiyor offf 💦', 'Desen gibi 😈', 'Ne kadar birikmişim {o} 🥵'],
+  'Gym Ruined': ['O taytla spora gidemezsin artık {o} 😂', 'Emekli oldu 🏋️', 'Ne kadar çok offf 💦', 'Yenisini ben alırım 😈', 'Değdi ama {o} 🥵'],
+  'Leggings Ass Glaze': ['Taytlı kalçan kaplandı {o} 🍑', 'Siyah kumaşta parlıyor 😍', 'Bitmiyor offf 💦', 'Bu kalça 😈', 'Ne kadar birikmişim {o} 🥵'],
+  'Seam Overflow': ['Taytının dikişi boyunca {o} 🌊', 'Uyluklarından akıyor 😳', 'Bitmiyor offf 💦', 'O tayt bitti 😈', 'Ne kadar birikmişim {o} 🥵'],
+  'Pulled Down Pool': ['Taytının arasında göl oldu {o} 🫗', 'Sakın yukarı çekme 😈', 'Ne kadar çok offf 💦', 'Çek bakalım 😏', 'Bu manzara {o} 🥵'],
+  'Waistband Catch': ['Taytının lastiğine doldu {o} 👖', 'Sırtından aşağı 😳', 'Bitmiyor offf 💦', 'Öyle kalsın 😈', 'Ne kadar birikmişim {o} 🥵'],
+  'See-Through Stain': ['Taytın şeffaflaştı {o} 👀', 'Stringin görünüyor 😍', 'Ne kadar çok offf 💦', 'Böyle daha güzel 😈', 'Bu görüntü {o} 🥵'],
+  'Through The Buttons': ['Düğmelerin arasından içeri {o} 👔', 'Gömleğinin içinden karnına 😳', 'Bitmiyor offf 💦', 'O gömlek bitti 😈', 'Ne kadar birikmişim {o} 🥵'],
+  'Collar Soaked': ['Yakana kadar ulaştı {o} 👔', 'Yakan sırılsıklam 😳', 'Bitmiyor offf 💦', 'O yaka bitti 😈', 'Ne kadar birikmişim {o} 🥵'],
+  'Transparent White': ['Beyaz gömleğin şeffaflaştı {o} 👀', 'Göğüslerin görünüyor 😍', 'Ne kadar çok offf 💦', 'Böyle kalsın 😈', 'Bu görüntü {o} 🥵'],
+  'Satin Slide': ['Satenin üstünden kaydı {o} 🤍', 'Göğüslerinden aşağı 💧', 'Bitmiyor offf 💦', 'Kumaş parlıyor 😈', 'Ne kadar birikmişim {o} 🥵'],
+  'Tie Ruined': ['Kravatına kadar sıçradı {o} 👔', 'Ucundan damlıyor 😳', 'Bitmiyor offf 💦', 'O kravat bitti 😈', 'Ne kadar birikmişim {o} 🥵'],
+  'Pocket Filled': ['Göğüs cebine bile doldu {o} 🫗', 'Parmağını sok bakalım 😈', 'Ne kadar çok offf 💦', 'Nasıl oldu bu 😳', 'Ne kadar birikmişim {o} 🥵']
+});
+/* 💧 v926: o gevşeyince damla damla boşalma */
+Object.assign(Stories.ME_EV_LINES, {
+  'Loose Grip Dribble': ['Elini gevşettin {o}… damla damla 💧', 'Zar zor geldi 😩', 'Tam o an bıraktın 😣', 'İçimde hâlâ çok var {o} 🫙', 'Sıkı tut bir dahakine 😤'],
+  'Slowed Down Ooze': ['Son anda yavaşladın {o} 🐢', 'Sadece sızdı 💧', 'Tam fışkıracaktım 😩', 'Hâlâ dolu gibiyim {o} 🫙', 'Hızlansaydın keşke 😣'],
+  'Distracted Trickle': ['Telefonuna mı bakıyorsun {o}? 📱', 'İnce bir sızıntı 💧', 'Ritmi bıraktın 😩', 'Bari şimdi bana bak 😤', 'İçimde hâlâ çok var {o} 🫙'],
+  'Too Gentle': ['Çok nazik dokundun {o} 🪶', 'Yarım kaldı 😩', 'Biraz daha sert olsaydın 😣', 'Damla damla geldi 💧', 'Hâlâ sertim {o} 😈'],
+  'Stopped Too Soon': ['Bitti sandın {o} ✋', 'Kalanı yavaş yavaş akıyor 💧', 'Erken bıraktın 😩', 'Daha bitmemişti 😣', 'İçimde hâlâ çok var {o} 🫙'],
+  'Pulse Without Push': ['Kasıldım ama sen durdun {o} 💓', 'Her seferinde tek damla 💧', 'İtiş yoktu 😩', 'Hâlâ doluyum {o} 🫙', 'Kıpırdasaydın keşke 😣'],
+  'Soft Cleavage Seep': ['Göğüslerini gevşettin {o} 🍈', 'Aralarında sadece sızdı 💧', 'Sıkı tutsaydın 😩', 'Zar zor geldi 😣', 'İçimde hâlâ çok var {o} 🫙'],
+  'Breasts Let Go': ['Tam o an bıraktın {o} 🫳', 'Birkaç damla düştü 💧', 'Kötü zamanlama 😩', 'İçimde hâlâ çok var 🫙', 'Bir dahakine bırakma {o} 😤'],
+  'Thighs Relaxed': ['Uyluklarını açtın {o} 🦵', 'Damla damla geldi 💧', 'Sıkışma gitti 😩', 'Kilitleseydin keşke 😣', 'İçimde hâlâ çok var {o} 🫙'],
+  'Lazy Legs': ['Bacaklarını oynatmayı bıraktın {o} 😴', 'Zar zor süzüldü 💧', 'Durmasaydın 😩', 'Yarım kaldı 😣', 'İçimde hâlâ çok var {o} 🫙'],
+  'Cheeks Unclenched': ['Kalçanı gevşettin {o} 🍑', 'İnce bir damla yolu 💧', 'Sıksaydın keşke 😩', 'Zar zor geldi 😣', 'İçimde hâlâ çok var {o} 🫙'],
+  'Hips Stopped': ['Kalçanı oynatmayı bıraktın {o} ⏸️', 'Yarım kaldı 😩', 'Sadece sızdı 💧', 'Devam etseydin 😣', 'İçimde hâlâ çok var {o} 🫙'],
+  'Lips Off Too Early': ['Dudaklarını çektin {o} 👄', 'Birkaç damla 💧', 'Tam o an 😩', 'Bırakmasaydın 😣', 'İçimde hâlâ çok var {o} 🫙'],
+  'Lazy Stroke Finish': ['Yavaş ve gevşek okşadın {o} ✊', 'Ucumda birikti 💧', 'Zar zor süzüldü 😩', 'Hızlansaydın 😣', 'İçimde hâlâ çok var {o} 🫙'],
+  'Was That It?': ['Bu kadar değil {o} 😤', 'Sen gevşettin 😩', 'İçimde hâlâ çok var 🫙', 'Bir tur daha 😈', 'Bu sayılmaz {o} 😣'],
+  'Apology Squeeze': ['Özür kabul {o} 😏', 'Sık bakalım 🤏', 'Hâlâ çok var içimde 🫙', 'Bu sefer bırakma 😈', 'Telafi et {o} 🥵'],
+  'Still Full': ['Hâlâ doluyum {o} 🫙', 'Fark ettin değil mi 😩', 'İkinci tur şart 😈', 'Bu sefer bırakma 😤', 'Hazırım {o} 🥵']
+});

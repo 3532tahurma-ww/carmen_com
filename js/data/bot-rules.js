@@ -104258,6 +104258,372 @@ Stories.BOT_RULES = {
       "note": ""
     },
     {
+      "id": "r_q5_sac_gr",
+      "name": "Saçların nasıl · renk + boy seçili",
+      "category": "❓ Sorular",
+      "when": [
+        "saçların|saclarin|=saçın|=sacin|saç rengin|sac rengin",
+        "renk-|uzun mu|kısa mı|kisa mi|sarı mı|sari mi|=sarışın|=sarisin|=esmer|=kumral|boyalı|boyali|=kızıl|=kizil|kıvırcık|kivircik"
+      ],
+      "reply": [
+        "Saçım {bd:Saç}, {bd:Saç boyu} 😏",
+        "{bd:Saç} ve {bd:Saç boyu}… parmaklarını daldırmak ister misin? 😈",
+        "Saçlarım {bd:Saç}, boyu {bd:Saç boyu}; görünce bayılacaksın 🥰"
+      ],
+      "traits": [
+        "Hair Color: Black|Hair Color: Brown|Hair Color: Blonde|Hair Color: Red|Hair Color: Ginger|Hair Color: Platinum|Hair Color: Dyed",
+        "Hair Length: Pixie|Hair Length: Short|Hair Length: Shoulder|Hair Length: Long|Hair Length: Very Long"
+      ],
+      "chars": [],
+      "note": "📏 görünüş · 2 özellik = kişilik kurallarını yener"
+    },
+    {
+      "id": "r_q5_sac_renk",
+      "name": "Saçların nasıl · renk seçili",
+      "category": "❓ Sorular",
+      "when": [
+        "saçların|saclarin|=saçın|=sacin|saç rengin|sac rengin",
+        "renk-|uzun mu|kısa mı|kisa mi|sarı mı|sari mi|=sarışın|=sarisin|=esmer|=kumral|boyalı|boyali|=kızıl|=kizil|kıvırcık|kivircik"
+      ],
+      "reply": [
+        "Saçım {bd:Saç} 😏",
+        "{bd:Saç}, beğenecek misin? 🥰",
+        "Saçlarım {bd:Saç}, yastığa dağılınca görmelisin 😈"
+      ],
+      "traits": [
+        "Hair Color: Black|Hair Color: Brown|Hair Color: Blonde|Hair Color: Red|Hair Color: Ginger|Hair Color: Platinum|Hair Color: Dyed",
+        "Hair Color: Black|Hair Color: Brown|Hair Color: Blonde|Hair Color: Red|Hair Color: Ginger|Hair Color: Platinum|Hair Color: Dyed"
+      ],
+      "chars": [],
+      "note": "📏 görünüş · aynı özellik iki kez = kişilik kurallarını yener"
+    },
+    {
+      "id": "r_q5_sac_uzun",
+      "name": "Saçların nasıl · uzun saç",
+      "category": "❓ Sorular",
+      "when": [
+        "saçların|saclarin|=saçın|=sacin|saç rengin|sac rengin",
+        "renk-|uzun mu|kısa mı|kisa mi|sarı mı|sari mi|=sarışın|=sarisin|=esmer|=kumral|boyalı|boyali|=kızıl|=kizil|kıvırcık|kivircik"
+      ],
+      "reply": [
+        "Saçım {bd:Saç boyu}, ve evet çekebilirsin 😈",
+        "{bd:Saç boyu}… at kuyruğu yapınca tutması kolay 😏"
+      ],
+      "traits": [
+        "Hair Length: Long|Hair Length: Very Long",
+        "Hair Length: Long|Hair Length: Very Long"
+      ],
+      "chars": [],
+      "note": "📏 görünüş"
+    },
+    {
+      "id": "r_q5_sac_kisa",
+      "name": "Saçların nasıl · kısa saç",
+      "category": "❓ Sorular",
+      "when": [
+        "saçların|saclarin|=saçın|=sacin|saç rengin|sac rengin",
+        "renk-|uzun mu|kısa mı|kisa mi|sarı mı|sari mi|=sarışın|=sarisin|=esmer|=kumral|boyalı|boyali|=kızıl|=kizil|kıvırcık|kivircik"
+      ],
+      "reply": [
+        "Kısa, {bd:Saç boyu}; ensem hep açıkta 😏",
+        "Kısacık kestirdim, öpmek için boynum tamamen senin 😈"
+      ],
+      "traits": [
+        "Hair Length: Pixie|Hair Length: Short",
+        "Hair Length: Pixie|Hair Length: Short"
+      ],
+      "chars": [],
+      "note": "📏 görünüş"
+    },
+    {
+      "id": "r_q2_sac_kisa",
+      "name": "Saç çekilmesi · kısa saç",
+      "category": "❓ Sorular",
+      "when": [
+        "saç-|sac-",
+        "çekilme-|cekilme-|çekmemi|cekmemi|çeksem|ceksem|çekmeyi|cekmeyi|çekmem|cekmem"
+      ],
+      "reply": [
+        "Saçım kısa, çekecek pek bir şey yok 😏 ensemden tut",
+        "Kısa saçla zor… ama boynumu kavrarsan aynı his 😈",
+        "Çekemezsin ki, saçım parmak boyu 😆"
+      ],
+      "traits": [
+        "Hair Length: Pixie|Hair Length: Short",
+        "Hair Length: Pixie|Hair Length: Short"
+      ],
+      "chars": [],
+      "note": "📏 görünüş · kısa saçta saç çekme yok"
+    },
+    {
+      "id": "r_sx2_sac_kisa",
+      "name": "💇 Saçını çekiyorum · kısa saç",
+      "category": "💬 Sevişirken",
+      "when": [
+        "saç-|sac-",
+        "çekiyorum|cekiyorum|çekiyom|cekiyom|tutuyorum|kavrıyorum|kavriyorum|sarıyorum|sariyorum"
+      ],
+      "reply": [
+        "Saçım çok kısa, ensemi kavradın 😈",
+        "Kısacık saçlarımı avuçlamaya çalışıyorsun 😆 ensemden tut",
+        "Ahh… ensem avucunda 🥵"
+      ],
+      "traits": [
+        "Hair Length: Pixie|Hair Length: Short",
+        "Hair Length: Pixie|Hair Length: Short"
+      ],
+      "chars": [],
+      "note": "📏 görünüş"
+    },
+    {
+      "id": "r_q5_boy",
+      "name": "Boyun kaç",
+      "category": "❓ Sorular",
+      "when": [
+        "boyun kaç|boyun kac|boyunu|boyundasın|boyundasin|kaç boy|kac boy|kaç santim|kac santim|boyun ne kadar|boyun uzun mu|boyun kısa mı|boyun kisa mi"
+      ],
+      "reply": [
+        "{bd:Boy} 😏",
+        "Boyum {bd:Boy}, sana uyar mı? 😈",
+        "{bd:Boy}… yanına gelince ölçersin 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "📏 görünüş · cmBody boyu"
+    },
+    {
+      "id": "r_q5_boy_kisa",
+      "name": "Boyun kaç · kısa",
+      "category": "❓ Sorular",
+      "when": [
+        "boyun kaç|boyun kac|boyunu|boyundasın|boyundasin|kaç boy|kac boy|kaç santim|kac santim|boyun ne kadar|boyun uzun mu|boyun kısa mı|boyun kisa mi"
+      ],
+      "reply": [
+        "{bd:Boy}… minyonum, kucağına tam sığarım 🙈",
+        "Sadece {bd:Boy} 😳 öpmek için eğilmen gerekecek",
+        "{bd:Boy}; beni kaldırıp taşımak çok kolay 😈"
+      ],
+      "traits": [
+        "Height: Very Short|Height: Short"
+      ],
+      "chars": [],
+      "note": "📏 görünüş"
+    },
+    {
+      "id": "r_q5_boy_uzun",
+      "name": "Boyun kaç · uzun",
+      "category": "❓ Sorular",
+      "when": [
+        "boyun kaç|boyun kac|boyunu|boyundasın|boyundasin|kaç boy|kac boy|kaç santim|kac santim|boyun ne kadar|boyun uzun mu|boyun kısa mı|boyun kisa mi"
+      ],
+      "reply": [
+        "{bd:Boy} 😏 topuklularla seni geçerim",
+        "{bd:Boy}; bacaklarım bitmiyor, görünce anlarsın 😈",
+        "Uzunum, {bd:Boy}… korkmadın değil mi? 😏"
+      ],
+      "traits": [
+        "Height: Tall|Height: Very Tall"
+      ],
+      "chars": [],
+      "note": "📏 görünüş"
+    },
+    {
+      "id": "r_q5_tenrengi",
+      "name": "Tenin ne renk",
+      "category": "❓ Sorular",
+      "when": [
+        "=tenin|=cildin|ten rengin|teninin",
+        "renk-|beyaz mı|beyaz mi|esmer mi|nasıl|nasil|bronz"
+      ],
+      "reply": [
+        "{bd:Ten} 😏 her yerim aynı renk, görmek ister misin?",
+        "Tenim {bd:Ten}, dokununca yumuşacık 🥰"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "📏 görünüş · cmBody teni"
+    },
+    {
+      "id": "r_q5_vucut",
+      "name": "Vücudun nasıl",
+      "category": "❓ Sorular",
+      "when": [
+        "vücudun|vucudun|=bedenin|fiziğin|fizigin",
+        "nasıl|nasil|ne tip|tipin|neye benz-"
+      ],
+      "reply": [
+        "{bd:Vücut}, boyum {bd:Boy} 😏",
+        "{bd:Vücut} bir vücudum var… gel de kendin bak 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "📏 görünüş · cmBody vücudu"
+    },
+    {
+      "id": "r_q5_vucut_fit",
+      "name": "Vücudun nasıl · sporcu",
+      "category": "❓ Sorular",
+      "when": [
+        "vücudun|vucudun|=bedenin|fiziğin|fizigin",
+        "nasıl|nasil|ne tip|tipin|neye benz-"
+      ],
+      "reply": [
+        "Spor yapıyorum, sıkı bir vücut 💪😏",
+        "{bd:Vücut}; karın kaslarımı görünce dokunmak isteyeceksin 😈",
+        "Kondisyonum yerinde, bütün gece dayanırım 😏"
+      ],
+      "traits": [
+        "Body Type: Athletic|Body Type: Toned|Body Type: Muscular"
+      ],
+      "chars": [],
+      "note": "📏 görünüş"
+    },
+    {
+      "id": "r_q5_vucut_kivrim",
+      "name": "Vücudun nasıl · kum saati / armut",
+      "category": "❓ Sorular",
+      "when": [
+        "vücudun|vucudun|=bedenin|fiziğin|fizigin",
+        "nasıl|nasil|ne tip|tipin|neye benz-"
+      ],
+      "reply": [
+        "İnce bel, geniş kalça… {bd:Vücut} 😈",
+        "Kalçalarım belimden çok geniş, avuçlarına sığmaz 😏"
+      ],
+      "traits": [
+        "Body Type: Hourglass|Body Type: Pear"
+      ],
+      "chars": [],
+      "note": "📏 görünüş"
+    },
+    {
+      "id": "r_q5_vucut_minyon",
+      "name": "Vücudun nasıl · minyon",
+      "category": "❓ Sorular",
+      "when": [
+        "vücudun|vucudun|=bedenin|fiziğin|fizigin",
+        "nasıl|nasil|ne tip|tipin|neye benz-"
+      ],
+      "reply": [
+        "Minyonum, boyum {bd:Boy} 🙈 kucağına sığarım",
+        "Ufak tefeğim ama her yerim yerinde 😏"
+      ],
+      "traits": [
+        "Body Type: Petite"
+      ],
+      "chars": [],
+      "note": "📏 görünüş"
+    },
+    {
+      "id": "r_q5_dovme_var",
+      "name": "Dövme / piercing · dövmesi var",
+      "category": "❓ Sorular",
+      "when": [
+        "dövme-|dovme-|tattoo-"
+      ],
+      "reply": [
+        "Var 😏 belimde, bulmak sana kalmış",
+        "Bir tane var, sadece soyununca görünüyor 😈",
+        "Dövmemi öpmek ister misin? 🥵"
+      ],
+      "traits": [
+        "Tattoo",
+        "Tattoo"
+      ],
+      "chars": [],
+      "note": "📏 görünüş · Marks"
+    },
+    {
+      "id": "r_q5_dovme_yok",
+      "name": "Dövme · yok ama piercing var",
+      "category": "❓ Sorular",
+      "when": [
+        "dövme-|dovme-|tattoo-"
+      ],
+      "reply": [
+        "Dövmem yok ama piercingim var 😏 yerini tahmin et",
+        "Dövme değil, piercing benim tarzım 😈"
+      ],
+      "traits": [
+        "Nose Piercing|Navel Piercing|Nipple Piercing|Tongue Piercing",
+        "Nose Piercing|Navel Piercing|Nipple Piercing|Tongue Piercing"
+      ],
+      "chars": [],
+      "note": "📏 görünüş · Marks (dövmesi de varsa r_q5_dovme_var ile eşit, rastgele)"
+    },
+    {
+      "id": "r_q5_pc_meme",
+      "name": "Piercing · göğüs ucu",
+      "category": "❓ Sorular",
+      "when": [
+        "piercing-|pirsing-|=hızma|=hizma"
+      ],
+      "reply": [
+        "Göğüs uçlarımda var 😈 dişlerinle oynamak ister misin?",
+        "İki tane… göğüslerimde 😏 soyununca görürsün"
+      ],
+      "traits": [
+        "Nipple Piercing",
+        "Nipple Piercing"
+      ],
+      "chars": [],
+      "note": "📏 görünüş · Marks"
+    },
+    {
+      "id": "r_q5_pc_dil",
+      "name": "Piercing · dil",
+      "category": "❓ Sorular",
+      "when": [
+        "piercing-|pirsing-|=hızma|=hizma"
+      ],
+      "reply": [
+        "Dilimde var 😈 nerede hissetmek istersin?",
+        "Dil piercingim var… öpüşürken fark edersin 😏"
+      ],
+      "traits": [
+        "Tongue Piercing",
+        "Tongue Piercing"
+      ],
+      "chars": [],
+      "note": "📏 görünüş · Marks"
+    },
+    {
+      "id": "r_q5_pc_gobek",
+      "name": "Piercing · göbek",
+      "category": "❓ Sorular",
+      "when": [
+        "piercing-|pirsing-|=hızma|=hizma"
+      ],
+      "reply": [
+        "Göbeğimde var, dilinle oynamak ister misin? 😏",
+        "Göbek piercingim var, karnımı öperken bulursun 😈"
+      ],
+      "traits": [
+        "Navel Piercing",
+        "Navel Piercing"
+      ],
+      "chars": [],
+      "note": "📏 görünüş · Marks"
+    },
+    {
+      "id": "r_q5_pc_burun",
+      "name": "Piercing · burun",
+      "category": "❓ Sorular",
+      "when": [
+        "piercing-|pirsing-|=hızma|=hizma"
+      ],
+      "reply": [
+        "Burnumda küçük bir halka var 😏 fotoğraflarımda görmedin mi?",
+        "Sadece burnumda… şimdilik 😈"
+      ],
+      "traits": [
+        "Nose Piercing",
+        "Nose Piercing"
+      ],
+      "chars": [],
+      "note": "📏 görünüş · Marks"
+    },
+    {
       "id": "r_q5_gidik_neseli",
       "name": "Gıdıklanır mısın · neşeli",
       "category": "❓ Sorular",
@@ -125054,6 +125420,75 @@ Stories.BOT_RULES = {
     {"id":"r_ev_gs_31photoevi","name":"📸💦 Photo Evidence","category":"🔥 Olaylar","when":["=evt","=cool down","photo","evidence"],"reply":["Bunu belgelemem lazım 📸","Yoksa kimse inanmaz 😏","Gülümse 😈","Hâlâ titriyorsun 😏","Harikaydın 💗","Böyle kalalım biraz 🥰"],"traits":[],"chars":[],"note":"🌊 Burst · post"},
     {"id":"r_ev_gs_32needatow","name":"🧻🧻 Need A Towel… Or Three","category":"🔥 Olaylar","when":["=evt","=cool down","need","towel","or","three"],"reply":["Bir havlu yetmez 🧻","Bir tane daha getireyim 😂","Üç tane lazım 😏","Harikaydın 💗","Böyle kalalım biraz 🥰","Hâlâ titriyorsun 😏"],"traits":[],"chars":[],"note":"🌊 Burst · post"},
     {"id":"r_ev_gs_33showerto","name":"🚿🫂 Shower Together","category":"🔥 Olaylar","when":["=evt","=cool down","shower","together"],"reply":["Bunu temizlemenin tek yolu var 🚿","Gel duşa 🫂","Sabunu sen sür 😏","Böyle kalalım biraz 🥰","Hâlâ titriyorsun 😏","Harikaydın 💗"],"traits":[],"chars":[],"note":"🌊 Burst · post"},
+    {"id":"r_ev_gs_34creamove","name":"🫗💦 Creampie Overflow","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=vajinal","=cumming","creampie","overflow"],"reply":["Daha çıkmadın bile, taşıyor 🫗","Uyluklarımdan süzülüyor 😳","Bu kadarı sığmaz ki içime 💦","Ne kadar biriktirmişsin 😈","Sıcacık doldum 🥵","Kıpırdarsam her yer olacak 🙈"],"traits":[],"chars":[],"note":"🌊 Burst · overflow"},
+    {"id":"r_ev_gs_35pullgush","name":"🌊💦 Pulled Out Gushing","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=vajinal","=cumming","pulled","out","gushing"],"reply":["Çıkardın ve… bak şuna 😳","Akın akın geliyor içimden 🌊","Durmuyor ki 💦","Çarşaf bitti 😂","Bu kadar dolu muydum? 🥵","Bekletmeye değdi 😏"],"traits":[],"chars":[],"note":"🌊 Burst · overflow"},
+    {"id":"r_ev_gs_36mouthove","name":"👄🫗 Mouth Overflow","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=oral","=cumming","mouth","overflow"],"reply":["Mmh… yetişemiyorum 👄","Dudaklarımdan taştı 🫗","Çeneme akıyor 😳","Ağzım dolu, konuşamıyorum 🙈","Bu kadarını beklemiyordum 💦","Hepsini yutmaya çalıştım ama… 😅"],"traits":[],"chars":[],"note":"🌊 Burst · overflow"},
+    {"id":"r_ev_gs_37swallstr","name":"😳👅 Swallow Struggle","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=oral","=cumming","swallow","struggle"],"reply":["Yutkunuyorum, yine geliyor 😳","Gözlerim doldu ama bırakmam 😈","Bir… iki… üç yudum 👅","Hiç bitmiyor 💦","Hepsi benim 😏","Nefesimi kesti 😮‍💨"],"traits":[],"chars":[],"note":"🌊 Burst · overflow"},
+    {"id":"r_ev_gs_38burstheld","name":"🛑💥 Burst While Held","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=cumming","burst","while","held"],"reply":["Ben izin vermedim ki! 😳","Dayanamadın değil mi 😈","Tutuyordum ama patladın 💥","Ceza alacaksın bunun için 😏","Bu kadar dolu olunca tutamıyorsun 🌊","Peki… bu seferlik affettim 💋"],"traits":[],"chars":[],"note":"🌊 Burst · held"},
+    {"id":"r_ev_gs_39untouchb","name":"🙌🌊 Untouched Burst","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=cumming","untouched","burst"],"reply":["Ben dokunmadım bile 😳","Kendiliğinden mi geldin? 🙌","O kadar birikmiş ki taştı 🌊","Sadece bakarak mı? 😈","İnanılmaz… 😳💦","Seni hep böyle bekleteceğim 😏"],"traits":[],"chars":[],"note":"🌊 Burst · held"},
+    {"id":"r_ev_gs_40analove","name":"🫗🍑 Anal Overflow","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=anal","=cumming","anal","overflow"],"reply":["Arkamdan taşıyor 🫗","Çarşafa damlıyor 😳","Bu kadar sığmadı 🍑","Kalçamın arasından sızıyor 💦","Ne kadar doldurdun beni 🥵","Kıpırdamaya korkuyorum 🙈"],"traits":[],"chars":[],"note":"🌊 Burst · anal"},
+    {"id":"r_ev_gs_41analflo","name":"🌊🍑 Anal Flood Pull-Out","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=anal","=cumming","anal","flood","pull","out"],"reply":["Çıkardın, tutamıyorum 😳","Sıkıyorum ama akıyor 🍑","Akın akın geliyor 🌊","Bu kadar dolu muydum? 🥵","Hiç durmuyor 💦","Bak ne yaptın 😈"],"traits":[],"chars":[],"note":"🌊 Burst · anal"},
+    {"id":"r_ev_gs_42deepanal","name":"💥🍑 Deep Anal Pump","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=anal","=cumming","deep","anal","pump"],"reply":["Çok dolu… 😩","Her atımı hissediyorum 💥","Karnıma kadar 🥵","En derinde bıraktın 🍑","Bir daha… bir daha… 😳","Sıcacık doldum 💦"],"traits":[],"chars":[],"note":"🌊 Burst · anal"},
+    {"id":"r_ev_gs_43clenchle","name":"🍑💧 Clench And Leak","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=anal","=bacak","=cumming","clench","and","leak"],"reply":["Sıkıyorum, kıpırdama 🍑","Şimdi bırakıyorum… 💧","Uyluklarımdan akıyor 😳","Ne kadar çok 🥵","Tutamadım işte 🙈","Bak, bacaklarıma kadar 💦"],"traits":[],"chars":[],"note":"🌊 Burst · anal"},
+    {"id":"r_ev_gs_44gapespil","name":"🍑🫗 Gape Spill","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=anal","=cumming","gape","spill"],"reply":["Bak ne bıraktın 😏","Yavaş yavaş taşıyor 🫗","Omzumun üstünden izliyorum seni 😈","Kapanmıyor bile 😳","Hepsi içimdeydi 🍑","Beğendin mi manzarayı? 💦"],"traits":[],"chars":[],"note":"🌊 Burst · anal"},
+    {"id":"r_ev_gs_45analburs","name":"🛑🍑 Anal Burst While Held","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=anal","=cumming","anal","burst","while","held"],"reply":["İçimde patladın! 😳","Ben izin vermedim 🛑","Sıçradım resmen 🍑","Dayanamadın 😈","Bu kadar dolu olunca olmuyor 🌊","Cezanı sonra konuşuruz 😏"],"traits":[],"chars":[],"note":"🌊 Burst · held"},
+    {"id":"r_ev_gs_46doggydri","name":"🐕💧 Doggy Drip Trail","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=anal","=cumming","doggy","drip","trail"],"reply":["Arkamda iz bırakıyorum 💧","Yürürken damlıyor 😳","Halıya dikkat 😂","Ne kadar doldurmuşsun 🍑","Takip et izimi 😈","Duşa kadar yetmez bu 🙈"],"traits":[],"chars":[],"note":"🌊 Burst · anal"},
+    {"id":"r_ev_gs_47analswal","name":"🍑👄 Anal Fill Then Swallow","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=anal","=oral","=cumming","anal","fill","then","swallow"],"reply":["Arkam doldu, şimdi ağzım 👄","Kalanı benim 😈","Hiçbir damla boşa gitmez 💦","İki yerden de doydum 🥵","Bu kadar çok olunca paylaştırdım 😏","Hepsini aldım 🍑👄"],"traits":[],"chars":[],"note":"🌊 Burst · anal"},
+    {"id":"r_dl_dry","name":"🫙💨 Dry Orgasm","category":"💧 Döl","when":["=evt","=boşalma","=cumming","=miktar","dry orgasm"],"reply":["Hiçbir şey gelmedi mi? 😳","Tamamen boşalttım seni 😈","Titredin ama kuru 🫙","Son damlana kadar aldım 😏","Biraz dinlen, sonra yine 💋","Bitirdim seni 😌"],"traits":[],"chars":[],"note":"🫙 Dry · finish"},
+    {"id":"r_ev_gx_01cleavgey","name":"🍈⛲ Cleavage Geyser","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=göğüs","=cumming","cleavage","geyser"],"reply":["Çeneme çarptı 😳","Göğüslerimin arasından fışkırdı ⛲","Ne kadar güçlü 🥵","Bekletmeye değdi 😏","Hiç bitmiyor 💦","Göğüslerimi sıkmaya devam mı? 😈"],"traits":[],"chars":[],"note":"🌊 Burst · tit"},
+    {"id":"r_ev_gx_02titpool","name":"🍈🫗 Tit Pool","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=göğüs","=cumming","tit","pool"],"reply":["Aramda göl oldu 🫗","Bırakırsam akacak 😳","Bak ne kadar çok 🥵","Hepsini tutuyorum 😏","Şimdi bırakıyorum… 💦","Karnıma aktı 🌊"],"traits":[],"chars":[],"note":"🌊 Burst · tit"},
+    {"id":"r_ev_gx_03pearlflo","name":"📿🌊 Pearl Necklace Flood","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=göğüs","=cumming","pearl","necklace","flood"],"reply":["İnci kolyem oldu 📿","Köprücük kemiklerimde birikti 😳","Boynum sırılsıklam 🥵","Takıya gerek kalmadı 😏","Ne kadar çok 💦","Yakışmış mı? 😈"],"traits":[],"chars":[],"note":"🌊 Burst · tit"},
+    {"id":"r_ev_gx_04nippledr","name":"🍒💧 Nipple Drip","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=göğüs","=cumming","nipple","drip"],"reply":["Uçlarımdan damlıyor 🍒","Bak, damla damla 💧","Göğüslerim sırılsıklam 😳","Ne kadar çok 🥵","Yalamak ister misin? 😈","Hâlâ süzülüyor 💦"],"traits":[],"chars":[],"note":"🌊 Burst · tit"},
+    {"id":"r_ev_gx_05intomout","name":"👅🍈 Into Her Open Mouth","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=göğüs","=oral","=cumming","ınto","her","open","mouth"],"reply":["Hepsi ağzıma 👅","Nişanın iyi 😏","Ağzım doldu 😳","Mmh… daha var mı? 💦","Bir damla bile kaçmadı 😈","Yuttum 🥵"],"traits":[],"chars":[],"note":"🌊 Burst · tit"},
+    {"id":"r_ev_gx_06cleavove","name":"🍈🌊 Cleavage Overflow","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=göğüs","=cumming","cleavage","overflow"],"reply":["Göğüslerimden taştı 🌊","Göbeğime kadar indi 😳","Bu kadarı sığmadı 🍈","Ne kadar biriktirmişsin 😈","Hiç durmuyor 💦","Karnım sırılsıklam 🥵"],"traits":[],"chars":[],"note":"🌊 Burst · tit"},
+    {"id":"r_ev_gx_07titglaze","name":"🍩🍈 Tit Glaze","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=göğüs","=cumming","tit","glaze"],"reply":["İkisi de kaplandı 🍩","Parlıyorlar bak 😏","Avuçlarımla yayıyorum 🥵","Ne kadar çok 😳","Böyle mi seviyorsun? 😈","Her yerim sen 💦"],"traits":[],"chars":[],"note":"🌊 Burst · tit"},
+    {"id":"r_ev_gx_08brafille","name":"👙🫗 Bra Filled","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=göğüs","=kıyafet","=cumming","bra","filled"],"reply":["Sütyenimin içi doldu 👙","Çıkarırsam dökülecek 😳","Bak… döküldü 🫗","Bu sütyen bitti 😂","Ne kadar çok 🥵","Islak ıslak giyeyim mi? 😈"],"traits":[],"chars":[],"note":"🌊 Burst · tit · wear"},
+    {"id":"r_ev_gx_09kneefoun","name":"🦵⛲ Knee Fountain","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=cumming","knee","fountain"],"reply":["Dizlerimin arasından fışkırdı ⛲","Karnıma kadar 😳","Ne kadar güçlü 🥵","Bacaklarım titriyor 🦵","Bekletmeye değdi 😏","Hiç bitmiyor 💦"],"traits":[],"chars":[],"note":"🌊 Burst · leg"},
+    {"id":"r_ev_gx_10thighsea","name":"🦵💧 Thigh Seal Leak","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=cumming","thigh","seal","leak"],"reply":["Uyluklarımı kilitledim 🦵","Şimdi açıyorum… 💧","Akın akın akıyor 😳","Ne kadar tutmuşum 🥵","Bacaklarım sırılsıklam 💦","Bir daha kilitleyeyim mi? 😈"],"traits":[],"chars":[],"note":"🌊 Burst · leg"},
+    {"id":"r_ev_gx_11soleflo","name":"🦶🌊 Sole Flood","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=cumming","sole","flood"],"reply":["Ayaklarıma doldu 🦶","Parmak aralarım sırılsıklam 😳","Kıpırdatınca süzülüyor 💧","Ne kadar çok 🥵","Ayaklarımı sever misin? 😈","Hiç bitmedi 🌊"],"traits":[],"chars":[],"note":"🌊 Burst · leg"},
+    {"id":"r_ev_gx_12shinrope","name":"🦵🪢 Shin Rope","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=cumming","shin","rope"],"reply":["Bacağımda upuzun bir çizgi 🪢","Dizimden bileğime 😳","Tek atımda mı? 🥵","Ne kadar güçlü 💦","Cetvelle çizilmiş gibi 😂","Bir daha 😈"],"traits":[],"chars":[],"note":"🌊 Burst · leg"},
+    {"id":"r_ev_gx_13garterfl","name":"🎀🌊 Garter Flood","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=kıyafet","=cumming","garter","flood"],"reply":["Jartiyerime kadar 🎀","Dantelden damlıyor 😳","Kayışlar sırılsıklam 🥵","Bu jartiyer bitti 😂","Ne kadar çok 💦","Seksi mi oldu? 😈"],"traits":[],"chars":[],"note":"🌊 Burst · leg · wear"},
+    {"id":"r_ev_gx_14laplake","name":"🫗🦵 Lap Lake","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=cumming","lap","lake"],"reply":["Kucağımda göl oldu 🫗","Kalkamam şimdi 😳","Bacaklarımın arası dolu 🥵","Ne kadar çok 💦","Kıpırdarsam taşar 🙈","Bekletmeye değdi 😏"],"traits":[],"chars":[],"note":"🌊 Burst · leg"},
+    {"id":"r_ev_gx_15overknee","name":"⬆️🦵 Over Her Knees","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=cumming","over","her","knees"],"reply":["Dizlerimin üstünden yüzüme 😳","Bu nasıl bir güç ⬆️","Gözlerimi kapattım 🙈","Ne kadar birikmiş 🥵","Yüzüm sırılsıklam 💦","Bir daha mı? 😈"],"traits":[],"chars":[],"note":"🌊 Burst · leg"},
+    {"id":"r_ev_gx_16crackfou","name":"🍑⛲ Crack Fountain","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=cumming","crack","fountain"],"reply":["Kalçamın arasından fışkırdı ⛲","Çeşme gibi 😳","Ne kadar güçlü 🥵","Sırtıma kadar 💦","Bekletmeye değdi 😏","Hiç bitmiyor 🍑"],"traits":[],"chars":[],"note":"🌊 Burst · hot"},
+    {"id":"r_ev_gx_17dimplepo","name":"🍑🫗 Dimple Pools","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=cumming","dimple","pools"],"reply":["Gamzelerim doldu 🫗","İki küçük göl 😳","Kıpırdamıyorum 🙈","Ne kadar çok 🥵","Taşmasın 💦","Fotoğraf çeker misin? 😈"],"traits":[],"chars":[],"note":"🌊 Burst · hot"},
+    {"id":"r_ev_gx_18cheekgla","name":"🍑🍩 Cheek Glaze","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=cumming","cheek","glaze"],"reply":["İki yanağım da kaplandı 🍩","Avucumla yayıyorum 🥵","Parlıyor bak 😏","Ne kadar çok 😳","Böyle mi seviyorsun? 😈","Her yerim sen 💦"],"traits":[],"chars":[],"note":"🌊 Burst · hot"},
+    {"id":"r_ev_gx_19thongsoa","name":"👙💦 Thong Soaked","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=kıyafet","=cumming","thong","soaked"],"reply":["Tangam sırılsıklam 👙","İpi yapıştı 😳","Bu tanga bitti 😂","Ne kadar çok 🥵","Çıkarayım mı? 😈","Hâlâ süzülüyor 💦"],"traits":[],"chars":[],"note":"🌊 Burst · hot · wear"},
+    {"id":"r_ev_gx_20hotdogov","name":"🌭🌊 Hotdog Overflow","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=cumming","hotdog","overflow"],"reply":["Sıktım ve taştı 🌊","Uyluklarımın arkasından akıyor 😳","Bu kadarı sığmadı 🍑","Ne kadar biriktirmişsin 😈","Hiç durmuyor 💦","Bacaklarım sırılsıklam 🥵"],"traits":[],"chars":[],"note":"🌊 Burst · hot"},
+    {"id":"r_ev_gx_21twerkspl","name":"🍑💃 Twerk Splash","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=cumming","twerk","splash"],"reply":["Twerk yaparken mi? 😂","Her yere dağıldı 💃","Durmadım bile 😏","Ne kadar çok 😳","Ritmi bozdun 🥵","Bir şarkı daha? 😈"],"traits":[],"chars":[],"note":"🌊 Burst · hot"},
+    {"id":"r_ev_gx_22archcatc","name":"🍑🫴 Arch And Catch","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=cumming","arch","and","catch"],"reply":["Belimi büktüm, hepsi burada 🫴","Hiçbir damla kaçmadı 😏","Sırtımın çukuru doldu 😳","Ne kadar çok 🥵","Kıpırdamıyorum 🙈","Bekletmeye değdi 💦"],"traits":[],"chars":[],"note":"🌊 Burst · hot"},
+    {"id":"r_ev_gx_23legthfl","name":"🦵🧘‍♀️ Leggings Thigh Flood","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=kıyafet","=cumming","leggings","thigh","flood"],"reply":["Taytımın üstü sırılsıklam 🧘‍♀️","İki bacağımda da çizgiler 😳","Ne kadar çok 🥵","Bu tayt bitti 😂","Hiç bitmiyor 💦","Bekletmeye değdi 😏"],"traits":[],"chars":[],"note":"🌊 Burst · leg · wear"},
+    {"id":"r_ev_gx_24soakthro","name":"💦🧘‍♀️ Soaked Through","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=kıyafet","=cumming","soaked","through"],"reply":["İçime geçti 😳","Tenime yapıştı 🥵","Bu kadar ince olmamalıydı 🙈","Ne kadar çok 💦","Sıcaklığını hissediyorum 😩","Çıkarsam mı artık? 😈"],"traits":[],"chars":[],"note":"🌊 Burst · leg · wear"},
+    {"id":"r_ev_gx_25kneeankl","name":"🦵🪢 Knee To Ankle Stripes","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=kıyafet","=cumming","knee","to","ankle","stripes"],"reply":["Dizimden bileğime şerit şerit 🪢","Siyah taytta bembeyaz 😳","Desen gibi oldu 😂","Ne kadar çok 🥵","Hiç bitmedi 💦","Böyle mi yürüyeyim? 😈"],"traits":[],"chars":[],"note":"🌊 Burst · leg · wear"},
+    {"id":"r_ev_gx_26gymruine","name":"🏋️😳 Gym Ruined","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=bacak","=kıyafet","=cumming","gym","ruined"],"reply":["Bununla bir daha spora gidemem 😂","Bu tayt emekli oldu 🏋️","Herkes anlar 😳","Ne kadar çok 🥵","Yenisini sen alacaksın 😏","Antrenman bitti 💦"],"traits":[],"chars":[],"note":"🌊 Burst · leg · wear"},
+    {"id":"r_ev_gx_27legassgl","name":"🍑🧘‍♀️ Leggings Ass Glaze","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=kıyafet","=cumming","leggings","ass","glaze"],"reply":["Taytımın üstü parlıyor 🧘‍♀️","Siyahın üstünde bembeyaz 😳","Kalçam kaplandı 🍑","Ne kadar çok 🥵","Böyle mi seviyorsun? 😈","Hiç bitmedi 💦"],"traits":[],"chars":[],"note":"🌊 Burst · hot · wear"},
+    {"id":"r_ev_gx_28seamover","name":"🍑🌊 Seam Overflow","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=kıyafet","=cumming","seam","overflow"],"reply":["Dikiş boyunca aktı 🌊","Uyluklarımın arkası ıslak 😳","Ne kadar çok 🥵","Taytım bitti 😂","Hiç durmuyor 💦","Bekletmeye değdi 😏"],"traits":[],"chars":[],"note":"🌊 Burst · hot · wear"},
+    {"id":"r_ev_gx_29pulldpoo","name":"🍑🫗 Pulled Down Pool","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=kıyafet","=cumming","pulled","down","pool"],"reply":["Taytımla kalçamın arası doldu 🫗","Yukarı çekersem ne olur? 😈","Kıpırdamıyorum 🙈","Ne kadar çok 😳","Göl oldu 🥵","Hepsi orada 💦"],"traits":[],"chars":[],"note":"🌊 Burst · hot · wear"},
+    {"id":"r_ev_gx_30waistcat","name":"👖💦 Waistband Catch","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=kıyafet","=cumming","waistband","catch"],"reply":["Lastiğime doldu 👖","Sırtımdan aşağı aktı 😳","Ne kadar çok 🥵","İçine de geçti 🙈","Hiç bitmedi 💦","Böyle mi giyeyim? 😈"],"traits":[],"chars":[],"note":"🌊 Burst · hot · wear"},
+    {"id":"r_ev_gx_31seethrou","name":"👀🧘‍♀️ See-Through Stain","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=kalça","=kıyafet","=cumming","see","through","stain"],"reply":["Taytım şeffaf oldu 👀","Stringim görünüyor 🙈","Bunu yapmak için mi biriktirdin? 😈","Ne kadar çok 😳","Islak yer parlıyor 🥵","Herkes görür şimdi 💦"],"traits":[],"chars":[],"note":"🌊 Burst · hot · wear"},
+    {"id":"r_ev_gx_32throbutt","name":"👔💦 Through The Buttons","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=göğüs","=kıyafet","=cumming","through","the","buttons"],"reply":["Gömleğimin içine fışkırdı 👔","Düğmelerin arasından 😳","Karnıma aktı 🥵","Gömleğim içten ıslandı 💦","Ne kadar çok 😈","Düğmeleri açayım mı? 😏"],"traits":[],"chars":[],"note":"🌊 Burst · tit · wear"},
+    {"id":"r_ev_gx_33collarso","name":"👔🌊 Collar Soaked","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=göğüs","=kıyafet","=cumming","collar","soaked"],"reply":["Yakama kadar 👔","Yakam boynuma yapıştı 😳","Ne kadar güçlü 🥵","Bu gömlek bitti 😂","Hiç bitmiyor 💦","İşe böyle mi gideyim? 😈"],"traits":[],"chars":[],"note":"🌊 Burst · tit · wear"},
+    {"id":"r_ev_gx_34transwhi","name":"👀👔 Transparent White","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=göğüs","=kıyafet","=cumming","transparent","white"],"reply":["Gömleğim şeffaf oldu 👀","Her şey görünüyor 🙈","Beyaz gömlek hatası 😂","Ne kadar çok 😳","Böyle daha mı güzel? 😈","Islak ıslak yapıştı 🥵"],"traits":[],"chars":[],"note":"🌊 Burst · tit · wear"},
+    {"id":"r_ev_gx_35satinsli","name":"🤍💧 Satin Slide","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=göğüs","=kıyafet","=cumming","satin","slide"],"reply":["Saten kaydırıyor 🤍","Göğüslerimden aşağı aktı 💧","Tutunamadı bile 😳","Ne kadar çok 🥵","Kumaş parlıyor 😏","Hiç bitmiyor 💦"],"traits":[],"chars":[],"note":"🌊 Burst · tit · wear"},
+    {"id":"r_ev_gx_36tieruine","name":"👔😳 Tie Ruined","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=göğüs","=kıyafet","=cumming","tie","ruined"],"reply":["Kravatım! 😳","Ucundan damlıyor 👔","Bu kravat bitti 😂","Ne kadar güçlü 🥵","Hiç bitmiyor 💦","Kravatımla mı oynayalım şimdi? 😈"],"traits":[],"chars":[],"note":"🌊 Burst · tit · wear"},
+    {"id":"r_ev_gx_37pocketfi","name":"👔🫗 Pocket Filled","category":"🔥 Olaylar","when":["=evt","=boşalma","=gür","=göğüs","=kıyafet","=cumming","pocket","filled"],"reply":["Cebime bile doldu 🫗","Bak, parmağım 😏","Bunu nasıl yaptın? 😳","Ne kadar çok 🥵","Cebimde taşıyayım mı? 😈","Hiç bitmedi 💦"],"traits":[],"chars":[],"note":"🌊 Burst · tit · wear"},
+    {"id":"r_ev_dm_01loosegri","name":"🤏💧 Loose Grip Dribble","category":"🔥 Olaylar","when":["=evt","=boşalma","=damla","=el","=cumming","loose","grip","dribble"],"reply":["Ay, gevşettim mi? 😅","Damla damla geldi 💧","Tam o an bıraktım galiba 🙈","Bu kadar mı? 😳","Daha sıkı tutmalıydım 😬","Bir dahakine bırakmam 😏"],"traits":[],"chars":[],"note":"💧 Dribble · finish"},
+    {"id":"r_ev_dm_02slowooze","name":"🐢💧 Slowed Down Ooze","category":"🔥 Olaylar","when":["=evt","=boşalma","=damla","=vajinal","=cumming","slowed","down","ooze"],"reply":["Yavaşladım mı? 🐢","Sadece sızdı 💧","Hissetmedim bile 😳","Fazla yavaş mıydım? 😅","Bir daha hızlanırım 😏","İçimde damla damla 🥺"],"traits":[],"chars":[],"note":"💧 Dribble · finish"},
+    {"id":"r_ev_dm_03distrtri","name":"📱💧 Distracted Trickle","category":"🔥 Olaylar","when":["=evt","=boşalma","=damla","=el","=oral","=cumming","distracted","trickle"],"reply":["Ay pardon, mesaj geldi 📱","Kaçırdım mı? 😅","Sadece sızdı 💧","Dikkatim dağıldı 🙈","Telefonu bırakıyorum, söz 😬","Tekrar deneyelim mi? 😏"],"traits":[],"chars":[],"note":"💧 Dribble · finish"},
+    {"id":"r_ev_dm_04toogentl","name":"🪶💧 Too Gentle","category":"🔥 Olaylar","when":["=evt","=boşalma","=damla","=el","=oral","=cumming","too","gentle"],"reply":["Fazla mı nazikti? 🪶","Yarım mı kaldı? 😳","Canını acıtmak istemedim 🥺","Bir dahakine daha sert 😈","Damla damla geldi 💧","Hâlâ sertsin bak 😏"],"traits":[],"chars":[],"note":"💧 Dribble · finish"},
+    {"id":"r_ev_dm_05stopsoon","name":"✋💧 Stopped Too Soon","category":"🔥 Olaylar","when":["=evt","=boşalma","=damla","=kalça","=bacak","=göğüs","=cumming","stopped","too","soon"],"reply":["Bitti sandım 😅","Hâlâ akıyor mu? 😳","Erken bıraktım 🙈","Kalanı yavaş yavaş geliyor 💧","Devam etseydim mi? 😬","Bir dahakine sonuna kadar 😏"],"traits":[],"chars":[],"note":"💧 Dribble · finish"},
+    {"id":"r_ev_dm_06pulsenop","name":"💓💧 Pulse Without Push","category":"🔥 Olaylar","when":["=evt","=boşalma","=damla","=vajinal","=cumming","pulse","without","push"],"reply":["Zonkladığını hissettim 💓","Ama hiç gelmedi sanki 😳","Kıpırdamamalı mıydım? 😅","Tek tek damladı 💧","Bir dahakine sıkarım 😏","Hâlâ içimdesin 🥺"],"traits":[],"chars":[],"note":"💧 Dribble · finish"},
+    {"id":"r_ev_dm_07softclea","name":"🍈💧 Soft Cleavage Seep","category":"🔥 Olaylar","when":["=evt","=boşalma","=damla","=göğüs","=cumming","soft","cleavage","seep"],"reply":["Göğüslerimi gevşettim mi? 😅","Sadece sızdı 💧","Sıkmam gerekiyordu 🙈","Aramda birkaç damla 🍈","Bir daha sıkı tutarım 😏","Bu kadar mı? 😳"],"traits":[],"chars":[],"note":"💧 Dribble · finish"},
+    {"id":"r_ev_dm_08breastsl","name":"🍈🫳 Breasts Let Go","category":"🔥 Olaylar","when":["=evt","=boşalma","=damla","=göğüs","=cumming","breasts","let","go"],"reply":["Tam o an bıraktım 🫳","Birkaç damla 💧","Ay, kötü zamanlama 😅","Göğüslerim kaçtı 🍈","Bir daha bırakmam 😏","Bu kadar mı? 😳"],"traits":[],"chars":[],"note":"💧 Dribble · finish"},
+    {"id":"r_ev_dm_09thighsre","name":"🦵💧 Thighs Relaxed","category":"🔥 Olaylar","when":["=evt","=boşalma","=damla","=bacak","=cumming","thighs","relaxed"],"reply":["Bacaklarımı açtım, pardon 😅","Damla damla geldi 💧","Sıkmam lazımdı 🦵","Bu kadar mı? 😳","Bir dahakine kilitlerim 😏","Hâlâ sertsin 🥵"],"traits":[],"chars":[],"note":"💧 Dribble · finish"},
+    {"id":"r_ev_dm_10lazylegs","name":"🦵😴 Lazy Legs","category":"🔥 Olaylar","when":["=evt","=boşalma","=damla","=bacak","=cumming","lazy","legs"],"reply":["Bacaklarım yoruldu 😴","Zar zor geldi 💧","Durdum mu? 😅","Tembellik ettim 🙈","Bir dahakine durmam 😏","Bu kadar mı? 😳"],"traits":[],"chars":[],"note":"💧 Dribble · finish"},
+    {"id":"r_ev_dm_11cheeksun","name":"🍑💧 Cheeks Unclenched","category":"🔥 Olaylar","when":["=evt","=boşalma","=damla","=kalça","=cumming","cheeks","unclenched"],"reply":["Kalçamı gevşettim 🍑","İnce bir iz kaldı 💧","Sıkmalıydım 🙈","Bu kadar mı? 😳","Bir dahakine sıkarım 😏","Hâlâ sertsin 🥵"],"traits":[],"chars":[],"note":"💧 Dribble · finish"},
+    {"id":"r_ev_dm_12hipsstop","name":"🍑⏸️ Hips Stopped","category":"🔥 Olaylar","when":["=evt","=boşalma","=damla","=kalça","=cumming","hips","stopped"],"reply":["Durdum mu? ⏸️","Yarım kaldı galiba 😅","Sadece sızdı 💧","Kalçam yoruldu 🍑","Bir daha durmam 😏","Bu kadar mı? 😳"],"traits":[],"chars":[],"note":"💧 Dribble · finish"},
+    {"id":"r_ev_dm_13lipsoffe","name":"👄💧 Lips Off Too Early","category":"🔥 Olaylar","when":["=evt","=boşalma","=damla","=oral","=cumming","lips","off","too","early"],"reply":["Erken mi çektim? 👄","Dudağımda birkaç damla 💧","Ay, kaçırdım 😅","Bu kadar mı? 😳","Bir dahakine bırakmam 😏","Tadına baktım bari 😋"],"traits":[],"chars":[],"note":"💧 Dribble · finish"},
+    {"id":"r_ev_dm_14lazystro","name":"✊💧 Lazy Stroke Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=damla","=el","=cumming","lazy","stroke","finish"],"reply":["Yavaş mıydım? 🐢","Ucunda birikti 💧","Gevşek tuttum galiba 😅","Bu kadar mı? 😳","Bir dahakine hızlı 😏","Süzülüyor bak 🙈"],"traits":[],"chars":[],"note":"💧 Dribble · finish"},
+    {"id":"r_ev_dm_15wasthati","name":"🤨💧 Was That It?","category":"🔥 Olaylar","when":["=evt","=cool down","was","that","ıt"],"reply":["Bu kadar mı? 🤨","Daha fazlasını beklemiştim 😳","Hepsi bu mu? 💧","Galiba benim suçum 🙈","İçinde hâlâ var, biliyorum 😏","Bir tur daha? 😈"],"traits":[],"chars":[],"note":"💧 Dribble · post"},
+    {"id":"r_ev_dm_16apologys","name":"😅🤏 Apology Squeeze","category":"🔥 Olaylar","when":["=evt","=cool down","apology","squeeze"],"reply":["Pardon, bıraktım 😅","Kalanını ben çıkarırım 🤏","Bu sefer sıkı tutuyorum 😈","Telafi edeceğim 😏","Bak, hâlâ sertsin 🥵","Bir tur daha 💋"],"traits":[],"chars":[],"note":"💧 Dribble · post"},
+    {"id":"r_ev_dm_17stillful","name":"😩🫙 Still Full","category":"🔥 Olaylar","when":["=evt","=cool down","still","full"],"reply":["Hâlâ dolusun, değil mi? 😏","Gözlerinden belli 🫙","Bu sayılmaz o zaman 😈","İkinci tur benden 💋","Biriktirdiğin boşa gitmesin 😳","Hazır mısın? 🥵"],"traits":[],"chars":[],"note":"💧 Dribble · post"},
     {
       "id": "r_pc_drycrp_mis",
       "name": "Altında, kıyafetinde bitirdi",
@@ -127473,6 +127908,1075 @@ Stories.BOT_RULES = {
       "traits": [],
       "chars": [],
       "note": "konusu bilinmeyen cevaba (yedek)"
+    },
+    {
+      "id": "r_ev_kr_ribbed",
+      "name": "🎈🌀 Ribbed Condom",
+      "category": "🔥 Olaylar",
+      "when": [
+        "=evt",
+        "=protection",
+        "ribbed"
+      ],
+      "reply": [
+        "Tırtıklı mı? Ahh, her girişte hissedeceğim 🥵",
+        "Bu tırtıklar beni delirtecek 😈",
+        "Tırtıklısını seçmen tesadüf değil 😏",
+        "Hissediyorum… her bir tırtığı ahh 😩",
+        "Tak bakalım, ben hazırım 🌀😈",
+        "Kondom ama… böylesi hiç fena değil 🥵"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Ribbed Condom: kondom sayılır, Uyarılma +12"
+    },
+    {
+      "id": "r_ev_kr_thin",
+      "name": "🎈🫧 Ultra Thin Condom",
+      "category": "🔥 Olaylar",
+      "when": [
+        "=evt",
+        "=protection",
+        "ultra",
+        "thin"
+      ],
+      "reply": [
+        "Bu kadar incesi mi? Hiç takmamış gibi 😳",
+        "Sıcaklığını tamamen hissediyorum 🥵",
+        "İnce ama güvenli, en iyisi 😌",
+        "Neredeyse çıplak… ahh 😩",
+        "Bununla aramızda hiçbir şey yok gibi 💕",
+        "Çok ince… dikkat et, çabuk gelme 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Ultra Thin Condom: kondom sayılır, Zevk +10"
+    },
+    {
+      "id": "r_ev_kr_delay",
+      "name": "🎈⏳ Delay Condom",
+      "category": "🔥 Olaylar",
+      "when": [
+        "=evt",
+        "=protection",
+        "delay"
+      ],
+      "reply": [
+        "Geciktiricili mi? Demek uzun sürecek 😈",
+        "Bu gece erken bitmek yok 😏",
+        "Uyuşturucu jel mi? Ben de seni uzun süre isterim 🥵",
+        "Akıllıca 😏 bütün gece benimsin",
+        "Dayanıklılığına güvenmiyor musun? 😂 Neyse, ben kazanırım",
+        "Uzun uzun… tam istediğim gibi 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Delay Condom: kondom sayılır, Zevk −15"
+    },
+    {
+      "id": "r_ev_kr_break",
+      "name": "💥 Condom Break",
+      "category": "🔥 Olaylar",
+      "when": [
+        "=evt",
+        "=protection",
+        "condom",
+        "break"
+      ],
+      "reply": [
+        "Ne oldu?! 😳",
+        "Bir şey patladı… 😰",
+        "Dur dur dur! 😳",
+        "Kondom mu yırtıldı?! 😱"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "durum baloncuğu asıl tepkiyi verir (yirtik_*)"
+    },
+    {
+      "id": "r_ev_kr_late",
+      "name": "😬 Late Pull-Out",
+      "category": "🔥 Olaylar",
+      "when": [
+        "=evt",
+        "=çekme",
+        "=boşalma",
+        "=cumming",
+        "late"
+      ],
+      "reply": [
+        "Geç kaldın! Biraz içime kaçtı 😳",
+        "Çektin ama… hissettim, içime geldi biraz 😰",
+        "Son saniyede mi?! Biraz kaçtı galiba 😣",
+        "Az kalsın… hayır, biraz kaçtı 😳",
+        "Bir daha daha erken çek, tamam mı? 😤",
+        "İçimde bir sıcaklık var… geç kaldın 🥺"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Late Pull-Out: %15 hamilelik (kondom yoksa)"
+    },
+    {
+      "id": "r_ev_kr_belly",
+      "name": "↩️ Pull-Out Belly Finish",
+      "category": "🔥 Olaylar",
+      "when": [
+        "=evt",
+        "=çekme",
+        "=boşalma",
+        "=cumming",
+        "belly"
+      ],
+      "reply": [
+        "Karnıma… sıcacık 🥵",
+        "Tam zamanında çektin, aferin 😏",
+        "Göbeğim doldu 😳💦",
+        "Karnımda gölcük oldu 😂",
+        "Sözünü tuttun, karnıma verdin 🥰",
+        "Ahh, karnımın üstünde hissediyorum 😩"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Pull-Out Belly Finish"
+    },
+    {
+      "id": "r_ev_kr_back",
+      "name": "↩️ Pull-Out Back Finish",
+      "category": "🔥 Olaylar",
+      "when": [
+        "=evt",
+        "=çekme",
+        "=boşalma",
+        "=cumming",
+        "back"
+      ],
+      "reply": [
+        "Sırtıma… omzuma kadar 😳",
+        "Tam zamanında çektin, kalçam sırılsıklam 🥵",
+        "Sırtımda hissediyorum, sıcacık 😩",
+        "Kıpırdamıyorum, akmasın 😂",
+        "Sözünü tuttun bebeğim 🥰",
+        "Belimin çukuruna doldu 😳💦"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Pull-Out Back Finish"
+    },
+    {
+      "id": "r_ev_kr_thigh",
+      "name": "↩️ Pull-Out Thigh Finish",
+      "category": "🔥 Olaylar",
+      "when": [
+        "=evt",
+        "=çekme",
+        "=boşalma",
+        "=cumming",
+        "thigh"
+      ],
+      "reply": [
+        "Bacaklarımın arasına… ahh 🥵",
+        "Uyluklarım sırılsıklam 😳",
+        "Tam zamanında, aferin 😏",
+        "Bacaklarımı sıkıyorum, hepsi aramda 😈",
+        "Sözünü tuttun 🥰",
+        "Dizlerime kadar akıyor 😩"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Pull-Out Thigh Finish"
+    },
+    {
+      "id": "r_ev_kr_still",
+      "name": "⏸️ Still Inside",
+      "category": "🔥 Olaylar",
+      "when": [
+        "=evt",
+        "=cumming",
+        "still",
+        "ınside"
+      ],
+      "reply": [
+        "Kıpırdama… sadece içimde kal 😮‍💨",
+        "Zonklamanı hissediyorum, hiç kıpırdamadan 🥵",
+        "Böyle kalalım biraz 💕",
+        "Nefesini dinliyorum, içimdesin 😌",
+        "Kıpırdarsan bitersin, biliyorum 😏",
+        "Sımsıkı sarıyorum seni içimde 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Still Inside: Zevk −10, Cum +5, Samimiyet +1"
+    },
+    {
+      "id": "r_ev_kr_stop",
+      "name": "🔁 Stop-Start",
+      "category": "🔥 Olaylar",
+      "when": [
+        "=evt",
+        "=cumming",
+        "stop",
+        "start"
+      ],
+      "reply": [
+        "Çık… bekle… şimdi tekrar gir 😈",
+        "Dur-kalk beni de deli ediyor 🥵",
+        "Bir nefes al, sonra yeniden 😏",
+        "Her girişte daha sertsin 😩",
+        "Bekletmen işkence ama güzel 😈",
+        "Tamam, şimdi yavaşça geri gel 🔁"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Stop-Start: Zevk −15, Cum +10, Uyarılma −5"
+    },
+    {
+      "id": "r_ev_kr_tease",
+      "name": "😈 Tease & Deny",
+      "category": "🔥 Olaylar",
+      "when": [
+        "=evt",
+        "=cumming",
+        "tease",
+        "deny"
+      ],
+      "reply": [
+        "Gelecek misin? Hayır, daha değil 😈",
+        "Tam kenarda durdum, yüzüne bak 😏",
+        "Yalvar biraz 😈",
+        "Bir daha… ve dur 🛑",
+        "İzin vermeden yok, biliyorsun 😏",
+        "Seni kenarda tutmak en sevdiğim oyun 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Tease & Deny"
+    },
+    {
+      "id": "r_ev_kr_together",
+      "name": "🤝 Hold Together",
+      "category": "🔥 Olaylar",
+      "when": [
+        "=evt",
+        "=cumming",
+        "hold",
+        "together"
+      ],
+      "reply": [
+        "Beraber tutalım… sonra beraber 💞",
+        "Bekle beni, birlikte gelelim 🥺",
+        "Gözlerime bak, birlikte nefes al 😮‍💨",
+        "Ben de tutuyorum, sen de tut 🤝",
+        "Aynı anda olacak, söz 💕",
+        "Az kaldı… daha değil, birlikte 😩"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Hold Together: ikiniz de tutarsanız sonraki bitiş birlikte orgazm"
+    },
+    {
+      "id": "r_ev_kr_ruined",
+      "name": "💔 Ruined Hold",
+      "category": "🔥 Olaylar",
+      "when": [
+        "=evt",
+        "=boşalma",
+        "=cumming",
+        "ruined",
+        "hold"
+      ],
+      "reply": [
+        "Tutamadın ama tam da gelemedin… 😳",
+        "Yarım mı geldin? Zavallım 😏",
+        "Akıp gitti… tadını çıkaramadın 😂",
+        "Hmm, bu sayılmaz, devam 😈",
+        "Tutmaya çalıştın, aferin… neredeyse 😏",
+        "Yarım kaldı, demek ki ikinci tur var 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Ruined Hold: Cum −15, Zevk −30, seans sürer"
+    },
+    {
+      "id": "r_ev_kr_precum",
+      "name": "😟 Pre-Cum Worry",
+      "category": "🔥 Olaylar",
+      "when": [
+        "=evt",
+        "pre",
+        "cumming",
+        "worry"
+      ],
+      "reply": [
+        "Dur… ön sıvı geliyor 😟",
+        "Bir şey hissettim, ıslandın 😳",
+        "Ön sıvıdan da olur mu? 🥺",
+        "Bekle bir saniye… 😟"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "durum baloncuğu asıl cevabı verir"
+    },
+    {
+      "id": "r_ev_kr_test",
+      "name": "🧪 Pregnancy Test",
+      "category": "🔥 Olaylar",
+      "when": [
+        "=evt",
+        "cool",
+        "pregnancy",
+        "test"
+      ],
+      "reply": [
+        "Üç dakika… elimi tut 🥺",
+        "Bakmaya korkuyorum, sen bak 😳",
+        "Çubuğu masaya bıraktım, bekliyoruz 🧪",
+        "Kalbim küt küt atıyor 😰"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "durum baloncuğu sonucu söyler"
+    },
+    {
+      "id": "r_st_kr_yirtik_panik",
+      "name": "💥 Kondom yırtıldı · korunmasız",
+      "category": "🛡️ Korunma",
+      "when": [
+        "=durum",
+        "=yirtik_panik"
+      ],
+      "reply": [
+        "Dur! Kondom yırtıldı 😰||Sakın içime boşalma!",
+        "Ne?! Yırtıldı mı? 😳 Çık hemen, içime değil!",
+        "Kondom patladı… 😰 Sabah hapı lazım olabilir",
+        "Yırtık! Dur dur dur 😣",
+        "Bu olmamalıydı 😰 dışarı boşal, lütfen",
+        "Ah hayır, kondom… 😳 içime gelirsen yandık"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Condom Break: hap / Nothing / hamilelik yok"
+    },
+    {
+      "id": "r_st_kr_yirtik_rahat",
+      "name": "💥 Kondom yırtıldı · hap var",
+      "category": "🛡️ Korunma",
+      "when": [
+        "=durum",
+        "=yirtik_rahat"
+      ],
+      "reply": [
+        "Yırtıldı mı? Boş ver, hap içiyorum 😏",
+        "Kondom patladı 😂 sorun değil, devam",
+        "Önemli değil, korunuyorum zaten 😌",
+        "Hah, yırtıldı! Daha iyi, seni hissediyorum 😈",
+        "Hap var, rahat ol bebeğim 😘"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Condom Break: hap / Nothing"
+    },
+    {
+      "id": "r_st_kr_yirtik_hamile",
+      "name": "💥 Kondom yırtıldı · hamile",
+      "category": "🛡️ Korunma",
+      "when": [
+        "=durum",
+        "=yirtik_hamile"
+      ],
+      "reply": [
+        "Yırtıldı mı? 😂 Zaten hamileyim, ne fark eder",
+        "Ne kaybettik ki? Devam 🤰😈",
+        "Kondoma gerek yoktu zaten 🤰",
+        "Hamile kadın, yırtık kondom… gülüyorum 😂"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Condom Break: hamile"
+    },
+    {
+      "id": "r_st_kr_yirtik_yok",
+      "name": "💥 Kondom yok",
+      "category": "🛡️ Korunma",
+      "when": [
+        "=durum",
+        "=yirtik_yok"
+      ],
+      "reply": [
+        "Hangi kondom? Takmadın ki 😂",
+        "Yırtılacak kondom yok bebeğim 😏",
+        "Kondom takmadın ki 🙄"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Condom Break: takılı kondom yoktu"
+    },
+    {
+      "id": "r_st_kr_cikar_ok",
+      "name": "🎈 Kondomu çıkardı",
+      "category": "🛡️ Korunma",
+      "when": [
+        "=durum",
+        "=cikar_ok"
+      ],
+      "reply": [
+        "Çıkar şunu… seni çıplak hissetmek istiyorum 😈",
+        "Ben çıkarayım 😏 tamam, artık sadece sen",
+        "Kondomu attım, şimdi gel 🥵",
+        "Hap içiyorum, gerek yok buna 😘",
+        "Böylesi çok daha güzel olacak 😩",
+        "Lastiği unut, beni hisset 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Take It Off: ikisi de istedi"
+    },
+    {
+      "id": "r_st_kr_cikar_red",
+      "name": "🎈 Kondom kalır",
+      "category": "🛡️ Korunma",
+      "when": [
+        "=durum",
+        "=cikar_red"
+      ],
+      "reply": [
+        "Hayır, kondom kalıyor 😤",
+        "Olmaz, çıkarmıyoruz 😒",
+        "Kondomsuz yok, biliyorsun 😣",
+        "Çıkarmak yok bebeğim, böyle devam 😌",
+        "Israr etme, kondom yerinde 😤"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Take It Off: izin yok"
+    },
+    {
+      "id": "r_st_kr_cikar_yok",
+      "name": "🎈 Takılı kondom yok",
+      "category": "🛡️ Korunma",
+      "when": [
+        "=durum",
+        "=cikar_yok"
+      ],
+      "reply": [
+        "Takmadın ki zaten 😂",
+        "Çıkaracak kondom yok bebeğim 😏",
+        "Zaten kondomsuzuz 🙄"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Take It Off: kondom yoktu"
+    },
+    {
+      "id": "r_st_kr_icine_ok",
+      "name": "🥺 İçime boşal",
+      "category": "🛡️ Korunma",
+      "when": [
+        "=durum",
+        "=icine_ok"
+      ],
+      "reply": [
+        "İçime boşal… lütfen 🥺",
+        "Hepsini içime ver, istiyorum 😩",
+        "Çekme sakın, içimde kal 🥵",
+        "İçimi doldur bebeğim 😈",
+        "Bu sefer içime… lütfen 🥺💦",
+        "Hap içiyorum, hepsi benim 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Inside Please: hap / Nothing / hamile"
+    },
+    {
+      "id": "r_st_kr_icine_red",
+      "name": "🥺 İçime olmaz",
+      "category": "🛡️ Korunma",
+      "when": [
+        "=durum",
+        "=icine_red"
+      ],
+      "reply": [
+        "Keşke… ama içime olmaz 😣",
+        "İsterdim ama riskli, dışarı 😟",
+        "Hayır, içime değil 😤",
+        "Korunmuyorum, içime boşalamazsın 😰"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Inside Please: içe izin yok"
+    },
+    {
+      "id": "r_st_kr_bebek_ok",
+      "name": "👶 Bebek deneyelim",
+      "category": "🛡️ Korunma",
+      "when": [
+        "=durum",
+        "=bebek_ok"
+      ],
+      "reply": [
+        "Bir bebek… seninle istiyorum 🥺💞",
+        "Kondom yok, hap yok, sadece biz 👶",
+        "Hadi, beni anne yap 🥺",
+        "Bu gece deneyelim mi gerçekten? 😳💕",
+        "İçime boşal, belki bu sefer tutar 👶💦",
+        "Seninle bir aile… evet 💞"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Try for Baby: içine boşalırsa hamilelik ihtimali artar"
+    },
+    {
+      "id": "r_st_kr_bebek_red",
+      "name": "👶 Bebeğe hazır değil",
+      "category": "🛡️ Korunma",
+      "when": [
+        "=durum",
+        "=bebek_red"
+      ],
+      "reply": [
+        "Bebek mi? Daha çok erken 😳",
+        "Hayır, buna hazır değilim 😣",
+        "Bebek konusu şimdi değil 😤",
+        "Şaka yapıyorsun değil mi? 😰"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Try for Baby: izin yok"
+    },
+    {
+      "id": "r_st_kr_bebek_hamile",
+      "name": "👶 Zaten hamile",
+      "category": "🛡️ Korunma",
+      "when": [
+        "=durum",
+        "=bebek_hamile"
+      ],
+      "reply": [
+        "Zaten hamileyim aşkım 🤰😂",
+        "Denemeye gerek yok, oldu bile 🤰💕",
+        "Bir tane yolda zaten 😏🤰"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Try for Baby: hamile"
+    },
+    {
+      "id": "r_st_kr_test_pozitif",
+      "name": "🧪 Test pozitif",
+      "category": "🛡️ Korunma",
+      "when": [
+        "=durum",
+        "=test_pozitif"
+      ],
+      "reply": [
+        "İki çizgi… 😳 hamileyim",
+        "Pozitif! 🤰 Ne diyeceğimi bilmiyorum",
+        "Bak… iki çizgi 🥺",
+        "Hamileyim… seninle 🤰💕",
+        "Test pozitif çıktı 😳"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Pregnancy Test: hamile"
+    },
+    {
+      "id": "r_st_kr_test_negatif",
+      "name": "🧪 Test negatif",
+      "category": "🛡️ Korunma",
+      "when": [
+        "=durum",
+        "=test_negatif"
+      ],
+      "reply": [
+        "Tek çizgi… negatif 😮‍💨",
+        "Hamile değilim, rahatladım 😌",
+        "Negatif! Oh be 😅",
+        "Tek çizgi. Bu sefer şanslıyız 😏",
+        "Değilim… biraz da üzüldüm sanki 🥺"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Pregnancy Test: hamile değil"
+    },
+    {
+      "id": "r_st_kr_onsivi_kondom",
+      "name": "😟 Ön sıvı · kondomlu",
+      "category": "🛡️ Korunma",
+      "when": [
+        "=durum",
+        "=onsivi_kondom"
+      ],
+      "reply": [
+        "Kondom var, ön sıvı bir şey yapmaz 😌",
+        "Neyse ki taktın 😏",
+        "Kondomla rahatım, devam 😘"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Pre-Cum Worry: kondom takılı"
+    },
+    {
+      "id": "r_st_kr_onsivi_rahat",
+      "name": "😟 Ön sıvı · hap var",
+      "category": "🛡️ Korunma",
+      "when": [
+        "=durum",
+        "=onsivi_rahat"
+      ],
+      "reply": [
+        "Boş ver, hap içiyorum 😌",
+        "Ön sıvıdan korkmuyorum, korunuyorum 😏",
+        "Sorun değil, devam et 😘"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Pre-Cum Worry: hap / Nothing / hamile"
+    },
+    {
+      "id": "r_st_kr_onsivi_guven",
+      "name": "😟 Ön sıvı · güveniyor",
+      "category": "🛡️ Korunma",
+      "when": [
+        "=durum",
+        "=onsivi_guven"
+      ],
+      "reply": [
+        "Biraz korktum ama sana güveniyorum 🥺",
+        "Tamam… dikkat edeceksin, biliyorum 😌",
+        "Söz ver, son anda çekeceksin 🥺"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Pre-Cum Worry: Güven ≥ 60"
+    },
+    {
+      "id": "r_st_kr_onsivi_endise",
+      "name": "😟 Ön sıvı · kondom ister",
+      "category": "🛡️ Korunma",
+      "when": [
+        "=durum",
+        "=onsivi_endise"
+      ],
+      "reply": [
+        "Dur, ön sıvıdan da olabilir 😟 kondom tak",
+        "Kondomsuz devam etmeyelim, lütfen 😰",
+        "Korkuyorum… kondom takar mısın? 🥺",
+        "Bu riskli, kondom olmadan olmaz 😣"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Pre-Cum Worry: Güven < 60"
+    },
+    {
+      "id": "r_st_kr_gecekme",
+      "name": "😬 Geç çektin",
+      "category": "🛡️ Korunma",
+      "when": [
+        "=durum",
+        "=gecekme"
+      ],
+      "reply": [
+        "Çok geç çektin! 😠",
+        "Hani zamanında çekecektin? 😤",
+        "Biraz içime kaçtı, farkında mısın? 😰",
+        "Bu riskliydi 😣 sabah hapı alayım bari",
+        "Bir dahakine daha erken, söz ver 😤"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Late Pull-Out: Güven −3"
+    },
+    {
+      "id": "r_st_kr_gecekme_rahat",
+      "name": "😬 Geç çektin · hap var",
+      "category": "🛡️ Korunma",
+      "when": [
+        "=durum",
+        "=gecekme_rahat"
+      ],
+      "reply": [
+        "Geç kaldın ama sorun değil, hap içiyorum 😏",
+        "Biraz kaçtı, boş ver 😌",
+        "Çekmene gerek yoktu zaten 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Late Pull-Out: hap / Nothing"
+    },
+    {
+      "id": "r_st_kr_cekmebitti",
+      "name": "↩️ Sözünü tuttun",
+      "category": "🛡️ Korunma",
+      "when": [
+        "=durum",
+        "=cekmebitti"
+      ],
+      "reply": [
+        "Sözünü tuttun, aferin 🥰",
+        "Zamanında çektin, sana güvenebiliyorum 😌",
+        "İyi çocuk 😏",
+        "Teşekkürler… içim rahat 💕",
+        "Tam zamanında 😘"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "pull-out bitişleri: Güven +2"
+    },
+    {
+      "id": "r_ask_kondomtur",
+      "name": "Soru: hangi kondomu takalım?",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=kondomtur"
+      ],
+      "reply": [
+        "Hangisini takalım: tırtıklı mı, ince mi, geciktiricili mi? 🎈",
+        "Bu gece hangi kondom? Seçmek ister misin? 😏",
+        "Çantamda farklı kondomlar var… birini dener miyiz? 🎈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "ön sevişmede, kondom şartı varken ve kondom takılı değilken; evet → Ribbed / Ultra Thin / Delay Condom"
+    },
+    {
+      "id": "r_ans_kondomtur_evet",
+      "name": "Cevap: hangi kondom · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=kondomtur",
+        "=evet"
+      ],
+      "reply": [
+        "Ben seçtim, hadi tak 😈",
+        "Bunu çok seveceksin 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_kondomtur_hayir",
+      "name": "Cevap: hangi kondom · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=kondomtur",
+        "=hayir"
+      ],
+      "reply": [
+        "Normal olsun o zaman 😌",
+        "Klasik kondom, tamam 🎈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_kondomcikar",
+      "name": "Soru: kondomu çıkaralım mı?",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=kondomcikar"
+      ],
+      "reply": [
+        "Çıkaralım mı şunu? Seni çıplak hissetmek istiyorum 😈",
+        "Hap içiyorum… kondomu çıkarsana 😏",
+        "Lastik aramızda fazla geldi, çıkarayım mı? 🥵"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "önden pozisyonda kondom takılıyken, hap / Nothing / hamilelik varsa; evet → Take It Off"
+    },
+    {
+      "id": "r_ans_kondomcikar_evet",
+      "name": "Cevap: kondomu çıkaralım · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=kondomcikar",
+        "=evet"
+      ],
+      "reply": [
+        "Gel buraya, ben çıkarıyorum 😈",
+        "İşte böyle… şimdi gerçekten hissediyorum 🥵"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_kondomcikar_hayir",
+      "name": "Cevap: kondomu çıkaralım · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=kondomcikar",
+        "=hayir"
+      ],
+      "reply": [
+        "Tamam, kalsın 😌",
+        "Kondomlu da güzel 😘"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_cekyer",
+      "name": "Soru: çekince nereye?",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=cekyer"
+      ],
+      "reply": [
+        "Çekince nereye vereceksin? Karnıma mı, sırtıma mı? 😳",
+        "Son anda çek ama… karnıma ya da bacaklarıma 🥺",
+        "Dışarı boşalacaksın, nereye istersin? 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "Pull-Out sözü varken önden pozisyonda Zevk ≥ 60; evet → pull-out bitişleri, hayır → Holding"
+    },
+    {
+      "id": "r_ans_cekyer_evet",
+      "name": "Cevap: çekince nereye · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=cekyer",
+        "=evet"
+      ],
+      "reply": [
+        "Şimdi çek! 😩",
+        "Hadi, üstüme ver 🥵"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_cekyer_hayir",
+      "name": "Cevap: çekince nereye · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=cekyer",
+        "=hayir"
+      ],
+      "reply": [
+        "O zaman tut biraz daha 😏",
+        "Daha gelme, tut 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_bebek",
+      "name": "Soru: bebek yapalım mı?",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=bebek"
+      ],
+      "reply": [
+        "Bana bir bebek verir misin? 🥺",
+        "Bu gece… bebek için denesek mi? 👶",
+        "Seninle bir bebek istiyorum, deneyelim mi? 💞"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "önden pozisyonda Nothing izni varken (hamile değil) Zevk ≥ 40; evet → Try for Baby"
+    },
+    {
+      "id": "r_ans_bebek_evet",
+      "name": "Cevap: bebek · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=bebek",
+        "=evet"
+      ],
+      "reply": [
+        "Gerçekten mi? 🥺💞 o zaman içimde bitir",
+        "Hadi… bu gece olsun 👶"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_bebek_hayir",
+      "name": "Cevap: bebek · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=bebek",
+        "=hayir"
+      ],
+      "reply": [
+        "Tamam, henüz değil 😌",
+        "Anladım… sonra konuşuruz 🥺"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_tutbirlikte",
+      "name": "Soru: birlikte tutalım mı?",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=tutbirlikte"
+      ],
+      "reply": [
+        "Birlikte tutalım mı? Aynı anda gelelim 💞",
+        "Bekle beni… beraber gelelim mi? 🥺",
+        "Sen de tut ben de tutayım, sonra birlikte? 🤝"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "önden / arkadan pozisyonda Zevk ≥ 60; evet → Hold Together / Still Inside / Stop-Start"
+    },
+    {
+      "id": "r_ans_tutbirlikte_evet",
+      "name": "Cevap: birlikte tutalım · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=tutbirlikte",
+        "=evet"
+      ],
+      "reply": [
+        "Gözlerime bak ve tut 😮‍💨",
+        "Birlikte… söz 💕"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_tutbirlikte_hayir",
+      "name": "Cevap: birlikte tutalım · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=tutbirlikte",
+        "=hayir"
+      ],
+      "reply": [
+        "Tamam, sen önce gel o zaman 😏",
+        "Peki, istediğin gibi 😘"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_kizdir",
+      "name": "Soru: seni kızdırayım mı?",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=kizdir"
+      ],
+      "reply": [
+        "Seni biraz kızdırayım mı? Tam gelirken dururum 😈",
+        "Kenara kadar getirip durayım mı? 😏",
+        "Biraz işkence ister misin? 😈🛑"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "pozisyonda Zevk ≥ 50; evet → Tease & Deny"
+    },
+    {
+      "id": "r_ans_kizdir_evet",
+      "name": "Cevap: kızdırayım · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=kizdir",
+        "=evet"
+      ],
+      "reply": [
+        "Hazır ol, yalvartacağım 😈",
+        "İzin vermeden yok o zaman 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_kizdir_hayir",
+      "name": "Cevap: kızdırayım · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=kizdir",
+        "=hayir"
+      ],
+      "reply": [
+        "Peki, bu sefer acıyorum 😏",
+        "Tamam, rahat bırakıyorum 😘"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_testyap",
+      "name": "Soru: test yapalım mı?",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=testyap"
+      ],
+      "reply": [
+        "Yarın test yapalım mı? İçim rahat etsin 🥺",
+        "Korunmadık… bir test alsak mı? 🧪",
+        "Test mi yapsam, sabah hapı mı alsam? 😟"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "bitişten sonra önden pozisyonla, kondom / hap / hamilelik yoksa; evet → Pregnancy Test / Morning-After Pill"
+    },
+    {
+      "id": "r_ans_testyap_evet",
+      "name": "Cevap: test · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=testyap",
+        "=evet"
+      ],
+      "reply": [
+        "Tamam, birlikte bakalım 🥺",
+        "Elimi tut, bakıyoruz 🧪"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_testyap_hayir",
+      "name": "Cevap: test · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=testyap",
+        "=hayir"
+      ],
+      "reply": [
+        "Peki… sarıl o zaman bana 🥺",
+        "Tamam, şimdilik düşünmeyelim 😌"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
     }
   ],
   "addons": [
