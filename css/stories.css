@@ -272,6 +272,41 @@
 .msg.fx-ink:not(.shown) .bubble { filter: blur(6px); cursor: pointer; }
 .msg.fx-ink:not(.shown) .bubble::after { content: '👆'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; filter: none; }
 .msg.fx-ink .bubble { transition: filter .5s; }
+/* 🤫 Kulağına: eğik, seyrek harfler; bulanıktan yavaşça netleşir */
+.chat .msg.fx-whisper .bubble { font-style: italic; letter-spacing: .5px; opacity: .88; }
+.msg.fx-whisper.play .bubble { animation: fxWhisper 2.4s ease-out; }
+@keyframes fxWhisper { 0% { filter: blur(5px); opacity: 0; letter-spacing: 3px; } 60% { filter: blur(1px); opacity: .7; } 100% { filter: none; opacity: .88; letter-spacing: .5px; } }
+/* ⌨️ Daktilo: soldan sağa harf harf açılır */
+.msg.fx-typewriter.play .bubble { animation: fxType 1.8s steps(28, end); }
+@keyframes fxType { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+/* 😳 Kızarma: içten pembe ışık (emoji efekti blush ile ortak) */
+.msg.fx-blush .bubble, .msg.efx-blush .bubble { animation: fxBlush 2.2s ease-in-out infinite alternate; }
+@keyframes fxBlush { from { box-shadow: inset 0 0 6px rgba(255, 105, 150, .25); } to { box-shadow: inset 0 0 22px rgba(255, 90, 140, .7), 0 0 10px rgba(255, 120, 170, .35); } }
+/* 🫨 Ürperme: arada bir hafif titrer (titreşim açıkken son baloncuklarda da) */
+.msg.fx-tremble .bubble, .chat.st-vib .msg:nth-last-child(-n+2) .bubble { animation: fxTremble 2.2s linear infinite; }
+@keyframes fxTremble { 0%, 60%, 100% { transform: none; } 63%, 69%, 75% { transform: translateX(-1.5px) rotate(-.4deg); } 66%, 72%, 78% { transform: translateX(1.5px) rotate(.4deg); } }
+/* 💓 Nabız: Zevk arttıkça hızlanır (--zv, 🌡️ Ruh hâli açıkken) */
+.msg.fx-heartbeat .bubble { animation: efxBeat calc(1.5s - .9s * var(--zv, 0)) ease-in-out infinite; box-shadow: 0 0 calc(4px + 14px * var(--zv, 0)) rgba(255, 60, 120, .55); }
+/* 💋 Ruj izi: köşeye basılmış öpücük (emoji efekti smudge ile ortak) */
+.msg.fx-smudge .bubble, .msg.efx-smudge .bubble { position: relative; }
+.msg.fx-smudge .bubble::after, .msg.efx-smudge .bubble::after { content: '💋'; position: absolute; bottom: -10px; right: -8px; font-size: 20px; transform: rotate(-18deg); opacity: .9; pointer-events: none; filter: drop-shadow(0 1px 2px rgba(150, 0, 40, .4)); }
+.msg.fx-smudge.play .bubble::after, .msg.efx-smudge.eplay .bubble::after { animation: fxStamp .5s cubic-bezier(.2, 1.6, .4, 1); }
+@keyframes fxStamp { from { transform: scale(2.6) rotate(-18deg); opacity: 0; } to { transform: scale(1) rotate(-18deg); opacity: .9; } }
+/* ♨️ Buğu: baloncuğun üstünden yükselen sıcak buhar (emoji efekti steam ile ortak) */
+.msg.fx-steam .bubble, .msg.efx-steam .bubble { position: relative; box-shadow: 0 0 12px rgba(255, 140, 120, .35); }
+.msg.fx-steam .bubble::before, .msg.efx-steam .bubble::before {
+  content: ''; position: absolute; left: 15%; right: 15%; top: -18px; height: 26px; pointer-events: none; filter: blur(5px);
+  background: radial-gradient(circle at 25% 70%, rgba(255, 255, 255, .55) 0 22%, transparent 45%), radial-gradient(circle at 70% 60%, rgba(255, 255, 255, .45) 0 20%, transparent 42%);
+  animation: fxSteam 2.6s ease-out infinite;
+}
+@keyframes fxSteam { 0% { transform: translateY(10px) scaleX(.7); opacity: 0; } 30% { opacity: .9; } 100% { transform: translateY(-14px) scaleX(1.2); opacity: 0; } }
+/* 💧 Damla: alt kenardan süzülen beyaz damla */
+.msg.fx-drip .bubble { position: relative; }
+.msg.fx-drip .bubble::after {
+  content: ''; position: absolute; left: 45%; bottom: -3px; width: 7px; height: 10px; pointer-events: none;
+  background: linear-gradient(180deg, #fff, #f3e6ee); border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
+  animation: efxDrip 2.6s ease-in infinite;
+}
 .fx-tag {
   position: absolute; top: -12px; right: -10px; width: 26px; height: 26px; border-radius: 50%;
   background: rgba(255, 255, 255, .95); font-size: 14px; display: flex; align-items: center; justify-content: center;
@@ -456,7 +491,118 @@ button.chip { border: 0; cursor: pointer; }
 .msg.efx-wave .bubble { animation: efxWave 2.4s ease-in-out infinite; transform-origin: center bottom; }
 @keyframes efxWave { 0%, 100% { transform: skewX(0) rotate(0); } 25% { transform: skewX(-4deg) rotate(-1deg); } 75% { transform: skewX(4deg) rotate(1deg); } }
 
-@media (prefers-reduced-motion: reduce) { .msg.efx .bubble, .msg.efx .bubble::before, .msg.efx .bubble::after { animation: none !important; } }
+/* 😂 Zıplar */
+.msg.efx-bounce .bubble { animation: efxBounce 1.4s ease-in-out infinite; }
+.msg.efx-bounce.eplay .bubble { animation: efxBounceIn .7s cubic-bezier(.3, 1.8, .5, 1), efxBounce 1.4s ease-in-out .7s infinite; }
+@keyframes efxBounce { 0%, 60%, 100% { transform: none; } 20% { transform: translateY(-5px); } 40% { transform: translateY(-1px); } }
+@keyframes efxBounceIn { 0% { transform: translateY(18px) scale(.8); } 100% { transform: none; } }
+
+/* 😭 Gözyaşı: üst kenardan süzülen iki damla */
+.msg.efx-tears .bubble::before, .msg.efx-tears .bubble::after {
+  content: ''; position: absolute; top: 4px; width: 6px; height: 9px; pointer-events: none;
+  background: linear-gradient(180deg, #e3f4ff, #7cc4ff); border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
+  animation: efxTear 2.4s ease-in infinite;
+}
+.msg.efx-tears .bubble::before { left: 18%; }
+.msg.efx-tears .bubble::after { right: 22%; animation-delay: 1.2s; }
+@keyframes efxTear { 0% { transform: translateY(0) scale(.3); opacity: 0; } 20% { transform: scale(1); opacity: 1; } 100% { transform: translateY(34px); opacity: 0; } }
+
+/* 😡 Kızarır: kırmızı ışıltı + gönderilince sarsılır */
+.msg.efx-rage .bubble { animation: efxRage 1.2s ease-in-out infinite alternate; }
+.msg.efx-rage.eplay .bubble { animation: fxShake .5s, efxRage 1.2s ease-in-out .5s infinite alternate; }
+@keyframes efxRage { from { box-shadow: 0 0 4px rgba(255, 40, 40, .4); } to { box-shadow: 0 0 18px 4px rgba(255, 20, 20, .8); filter: saturate(1.3) hue-rotate(-12deg); } }
+
+/* 💀 Solar: renk çekilir */
+.msg.efx-fade .bubble { filter: grayscale(1); opacity: .72; }
+.msg.efx-fade.eplay .bubble { animation: efxFade 1.4s ease-out; }
+@keyframes efxFade { from { filter: none; opacity: 1; } to { filter: grayscale(1); opacity: .72; } }
+
+/* 👀 Gözetler: kenara kayıp geri gelir */
+.msg.efx-peek .bubble { animation: efxPeek 4.5s ease-in-out infinite; }
+.msg.efx-peek.eplay .bubble { animation: efxPeekIn .9s ease-out, efxPeek 4.5s ease-in-out .9s infinite; }
+@keyframes efxPeek { 0%, 80%, 100% { transform: none; } 86% { transform: translateX(-6px) rotate(-2deg); } 92% { transform: translateX(4px); } }
+@keyframes efxPeekIn { 0% { transform: translateX(-40px); opacity: 0; } 55% { transform: translateX(6px); opacity: 1; } 100% { transform: none; } }
+
+/* 🍑 Sallanır: jöle gibi */
+.msg.efx-wobble .bubble { animation: efxWobble 1.8s ease-in-out infinite; transform-origin: center bottom; }
+@keyframes efxWobble { 0%, 50%, 100% { transform: none; } 10% { transform: scale(1.06, .94); } 20% { transform: scale(.95, 1.05); } 30% { transform: scale(1.03, .97); } 40% { transform: scale(.99, 1.01); } }
+
+/* 🌹 Yapraklar: dökülen çiçek yaprakları */
+.msg.efx-petals .bubble::before, .msg.efx-petals .bubble::after { content: '🌸'; position: absolute; top: -10px; font-size: 13px; pointer-events: none; animation: efxPetal 3.2s ease-in infinite; }
+.msg.efx-petals .bubble::before { left: 10%; }
+.msg.efx-petals .bubble::after { right: 12%; content: '🌹'; font-size: 11px; animation-delay: 1.6s; }
+@keyframes efxPetal { 0% { transform: translateY(0) rotate(0); opacity: 0; } 15% { opacity: 1; } 100% { transform: translate(14px, 46px) rotate(220deg); opacity: 0; } }
+
+/* 🎉 Kutlama: köşede konfeti ve yanıp sönen renkli noktalar */
+.msg.efx-party .bubble::before { content: '🎉'; position: absolute; top: -14px; right: -8px; font-size: 17px; pointer-events: none; animation: efxFlame .6s ease-in-out infinite alternate; }
+.msg.efx-party .bubble::after {
+  content: ''; position: absolute; inset: -8px; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(circle at 8% 20%, #ffd54f 0 2px, transparent 3px), radial-gradient(circle at 92% 80%, #4dd0e1 0 2px, transparent 3px), radial-gradient(circle at 30% 100%, #f06292 0 2px, transparent 3px), radial-gradient(circle at 70% 0, #81c784 0 2px, transparent 3px);
+  animation: efxTwinkle 1.4s ease-in-out infinite;
+}
+.msg.efx-party.eplay .bubble { animation: fxLoud .7s; }
+
+@media (prefers-reduced-motion: reduce) { .msg.efx .bubble, .msg.efx .bubble::before, .msg.efx .bubble::after, .msg.fx .bubble, .msg.fx .bubble::before, .msg.fx .bubble::after { animation: none !important; } }
+
+/* ---------- 🌡️ Ruh hâli + ⚡ durum efektleri (app.js applyTheme / stateFx) ---------- */
+.chat.mood { box-shadow: inset 0 0 calc(30px + 150px * var(--zv, 0)) rgba(230, 20, 80, calc(.6 * var(--zv, 0))); transition: box-shadow 1.5s ease; }
+.sfx { position: fixed; inset: 0; z-index: 95; pointer-events: none; overflow: hidden; }
+.sfx > span { position: absolute; font-size: 54px; }
+/* 💦 bitiş: beyaz flaş, ardından yumuşak pembe kararma */
+.sfx-finish { animation: sfxFlash 2.6s ease-out forwards; }
+@keyframes sfxFlash { 0% { background: rgba(255, 255, 255, 0); } 6% { background: rgba(255, 255, 255, .92); } 30% { background: rgba(255, 228, 240, .45); } 60% { background: rgba(40, 10, 30, .35); } 100% { background: rgba(40, 10, 30, 0); } }
+/* 👀 kesinti: kenarlarda kırmızı nabız */
+.sfx-alarm { animation: sfxAlarm .8s ease-in-out 3; }
+@keyframes sfxAlarm { 0%, 100% { box-shadow: inset 0 0 0 0 rgba(255, 30, 60, 0); } 50% { box-shadow: inset 0 0 70px 14px rgba(255, 30, 60, .75); } }
+/* 👗 soyunma: ekranı ipek gibi kayan parlak bant + düşen elbise */
+.sfx-undress { background: linear-gradient(100deg, transparent 30%, rgba(255, 205, 230, .38) 50%, transparent 70%) -100% 0 / 200% 100% no-repeat; animation: sfxSilk 1.4s ease-in-out forwards; }
+.sfx-undress > span { left: 50%; top: 16%; animation: sfxDrop 1.8s ease-in forwards; }
+@keyframes sfxSilk { to { background-position: 200% 0; } }
+@keyframes sfxDrop { 0% { transform: translate(-50%, 0) rotate(0); opacity: 0; } 15% { opacity: 1; } 100% { transform: translate(-50%, 60vh) rotate(25deg); opacity: 0; } }
+/* 💜 iz: mor kenar ışığı + üst köşede kalp (karakterin avatarı yanında) */
+.sfx-mark { animation: sfxMark 2.2s ease-out forwards; }
+.sfx-mark > span { left: 46px; top: 8px; font-size: 30px; animation: sfxPop 2s ease-out forwards; }
+@keyframes sfxMark { 0%, 100% { box-shadow: inset 0 0 0 0 rgba(156, 39, 176, 0); } 30% { box-shadow: inset 0 0 60px 10px rgba(156, 39, 176, .55); } }
+@keyframes sfxPop { 0% { transform: scale(.2); opacity: 0; } 20% { transform: scale(1.4); opacity: 1; } 70% { transform: scale(1); opacity: 1; } 100% { transform: translateY(-10px); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .sfx { display: none; } }
+
+/* ---------- 🎞️ hareketli sohbet arka planları (themes.js cls) ---------- */
+@property --fl { syntax: '<number>'; inherits: false; initial-value: .7; }
+.bg-yagmurlu-cam {
+  background:
+    repeating-linear-gradient(100deg, transparent 0 22px, rgba(200, 225, 255, .07) 22px 23px) 0 0 / 240px 240px,
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, .2) 0 2px, transparent 3px) 0 0 / 90px 110px,
+    radial-gradient(circle at 70% 60%, rgba(255, 255, 255, .14) 0 3px, transparent 4px) 0 0 / 130px 150px,
+    linear-gradient(180deg, #2b3a4e 0%, #18222f 100%);
+  animation: bgRain .9s linear infinite;
+}
+@keyframes bgRain { to { background-position: -42px 240px, 0 0, 0 0, 0 0; } }
+.bg-mum-isigi {
+  background:
+    radial-gradient(circle at 50% 105%, rgba(255, 170, 70, calc(.25 + .35 * var(--fl))), transparent 62%),
+    radial-gradient(circle at 12% 100%, rgba(255, 140, 40, calc(.3 * var(--fl))), transparent 35%),
+    radial-gradient(circle at 88% 100%, rgba(255, 150, 50, calc(.25 * var(--fl))), transparent 32%),
+    linear-gradient(180deg, #120a06 0%, #1e120a 60%, #2a170b 100%);
+  animation: bgFlicker 2.8s ease-in-out infinite;
+}
+@keyframes bgFlicker { 0%, 100% { --fl: .7; } 18% { --fl: 1; } 32% { --fl: .55; } 50% { --fl: .9; } 72% { --fl: .45; } 86% { --fl: .85; } }
+.bg-neon-bar {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255, 0, 170, calc(.5 * var(--fl))), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(0, 229, 255, .35), transparent 45%),
+    linear-gradient(180deg, #0b0614 0%, #120822 100%);
+  animation: bgNeon 3.5s steps(1) infinite;
+}
+@keyframes bgNeon { 0%, 100% { --fl: 1; } 61% { --fl: .3; } 63% { --fl: 1; } 66% { --fl: .2; } 68% { --fl: 1; } }
+.bg-havuz-suyu {
+  background:
+    radial-gradient(ellipse at center, rgba(255, 255, 255, .16) 0 10%, transparent 12%) 0 0 / 70px 46px,
+    radial-gradient(ellipse at center, rgba(255, 255, 255, .1) 0 14%, transparent 16%) 20px 14px / 110px 70px,
+    linear-gradient(180deg, #2a9fd0 0%, #1279a8 55%, #0a4d70 100%);
+  animation: bgPool 9s ease-in-out infinite alternate;
+}
+@keyframes bgPool { to { background-position: 35px 18px, -40px 40px, 0 0; } }
+@media (prefers-reduced-motion: reduce) { .bg-yagmurlu-cam, .bg-mum-isigi, .bg-neon-bar, .bg-havuz-suyu { animation: none; } }
 .dice-pair { display: inline-flex; gap: 6px; }
 
 /* ---------- Amor temaları: hazır tema düğmeleri ve kalp mücevheri baloncuğu ---------- */
@@ -3644,6 +3790,71 @@ button.cr-and:active { transform: scale(.9); }
 .au-terms { margin: -4px 0 0; padding: 10px 12px 10px 14px; list-style: none; display: grid; gap: 6px; border-radius: 12px; background: rgba(255, 255, 255, .06); font-size: 12.5px; line-height: 1.4; opacity: .85; }
 .au-shake { animation: auShake .4s ease; }
 @keyframes auShake { 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
+/* 🖼️ kayıt arka planı (kayan fotoğraf sütunları) + slogan + adımlar; profil adımları da aynı cam kartta */
+.au-bg { position: fixed; inset: -10%; z-index: -1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; overflow: hidden; transform: rotate(-8deg); opacity: .5; pointer-events: none; }
+.au-col { display: flex; flex-direction: column; gap: 12px; animation: auCol 70s linear infinite; }
+.au-col:nth-child(even) { animation-direction: reverse; animation-duration: 90s; }
+.au-col img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: center 20%; border-radius: 16px; }
+@keyframes auCol { to { transform: translateY(-50%); } }
+.au-scr::after { content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(ellipse at 50% 45%, rgba(13, 10, 20, .45), rgba(13, 10, 20, .94) 72%), linear-gradient(180deg, rgba(61, 27, 53, .35), transparent 40%); }
+.au-wrap { width: 100%; display: grid; justify-items: center; }
+.au-slogan { margin: -6px 0 0; font-size: 24px; line-height: 1.2; font-weight: 800; letter-spacing: -.3px; }
+.au-slogan em { display: block; font-style: italic; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.au-slogan + .au-tag { margin-top: -6px; }
+.au-steps { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12px; font-weight: 700; }
+.au-steps span { display: flex; align-items: center; gap: 5px; opacity: .45; }
+.au-steps span.on, .au-steps span.ok { opacity: 1; }
+.au-steps i { width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 11px; background: rgba(255, 255, 255, .12); }
+.au-steps .on i { background: var(--grad); box-shadow: 0 0 0 3px rgba(255, 79, 154, .25); }
+.au-steps .ok i { background: #2ecc71; }
+.au-steps b { width: 18px; height: 2px; border-radius: 1px; background: rgba(255, 255, 255, .2); }
+.au-scr .ob-box { box-sizing: border-box; max-width: 400px; padding: 20px 20px 22px; border-radius: 24px; background: rgba(20, 14, 28, .78); border: 1px solid rgba(255, 255, 255, .1); box-shadow: 0 24px 60px rgba(0, 0, 0, .5); backdrop-filter: blur(14px); }
+.au-scr .ob-box .ob-logo { font-size: 26px; margin-top: -4px; }
+.au-scr .ob-say p { font-size: 16px; }
+@media (max-width: 520px) { .au-bg { grid-template-columns: repeat(3, 1fr); } .au-col:nth-child(4) { display: none; } }
+@media (prefers-reduced-motion: reduce) { .au-col { animation: none; } }
+/* 🎬 kayıt sonrası tanıtım (onboard tour) */
+.tr-box { min-height: min(620px, calc(100vh - 32px)); grid-template-rows: auto auto 1fr auto; }
+.tr-bars { display: flex; gap: 4px; }
+.tr-bars i { flex: 1; height: 3px; border-radius: 2px; overflow: hidden; background: rgba(255, 255, 255, .18); }
+.tr-bars b { display: block; height: 100%; width: 0; background: #fff; }
+.tr-bars .ok b { width: 100%; }
+.tr-bars .on b { animation: trBar linear forwards; }
+@keyframes trBar { to { width: 100%; } }
+.tr-top { display: flex; align-items: center; justify-content: space-between; }
+.tr-skip { border: 0; background: rgba(255, 255, 255, .1); color: #fff; padding: 6px 12px; border-radius: 999px; font-size: 13px; font-weight: 700; cursor: pointer; }
+.tr-slide { display: grid; align-content: center; gap: 12px; cursor: pointer; animation: obIn .45s ease both; }
+.tr-ic { font-size: 46px; line-height: 1; animation: trPop .5s ease both; }
+.tr-h { margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -.3px; }
+.tr-p { margin: 0; opacity: .75; font-size: 15px; line-height: 1.4; }
+.tr-fan { position: relative; height: 170px; margin-bottom: 6px; }
+.tr-fan img { position: absolute; left: 50%; top: 0; width: 110px; height: 150px; object-fit: cover; object-position: center 20%; border-radius: 16px; border: 3px solid #fff; box-shadow: 0 12px 30px rgba(0, 0, 0, .5); animation: trFan .7s ease both; }
+.tr-fan img:nth-child(1) { --r: -14deg; --x: -120%; }
+.tr-fan img:nth-child(2) { --r: 0deg; --x: -50%; z-index: 1; top: -8px; animation-delay: .1s; }
+.tr-fan img:nth-child(3) { --r: 14deg; --x: 20%; animation-delay: .2s; }
+@keyframes trFan { from { opacity: 0; transform: translateX(-50%) translateY(30px) rotate(0); } to { opacity: 1; transform: translateX(var(--x)) rotate(var(--r)); } }
+@keyframes trPop { from { opacity: 0; transform: scale(.5); } to { opacity: 1; transform: none; } }
+.tr-ava { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.tr-ava img { width: 58px; height: 58px; border-radius: 50%; object-fit: cover; object-position: center 20%; box-shadow: 0 0 0 2px #ff4f9a; animation: trPop .4s ease both; }
+.tr-ava img:nth-child(2n) { animation-delay: .08s; } .tr-ava img:nth-child(3n) { animation-delay: .16s; }
+.tr-cards { display: grid; gap: 8px; text-align: left; }
+.tr-card { padding: 10px 12px; border-radius: 14px; background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .1); animation: obIn .45s ease both; }
+.tr-card:nth-child(2) { animation-delay: .12s; } .tr-card:nth-child(3) { animation-delay: .24s; }
+.tr-card b { display: block; font-size: 14px; }
+.tr-card small { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-top: 3px; font-size: 12.5px; opacity: .7; line-height: 1.35; }
+.tr-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.tr-chips span { padding: 7px 12px; border-radius: 999px; background: rgba(255, 79, 154, .16); border: 1px solid rgba(255, 79, 154, .4); font-size: 13px; animation: trPop .4s ease both; }
+.tr-chips span:nth-child(even) { animation-delay: .1s; }
+.tr-sites { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; text-align: left; }
+.tr-sites div { display: grid; grid-template-columns: auto 1fr; column-gap: 8px; align-items: center; padding: 10px; border-radius: 14px; background: rgba(255, 255, 255, .08); animation: obIn .45s ease both; }
+.tr-sites div:nth-child(n+3) { animation-delay: .12s; } .tr-sites div:nth-child(n+5) { animation-delay: .24s; }
+.tr-sites i { grid-row: span 2; font-style: normal; font-size: 24px; }
+.tr-sites b { font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tr-sites b i { grid-row: auto; font-size: inherit; font-style: normal; color: #ff8fb8; }
+.tr-sites small { font-size: 11px; opacity: .6; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tr-nav { display: grid; grid-template-columns: 40px 1fr; gap: 10px; align-items: center; }
+.tr-nav .ob-x { width: 40px; height: 40px; }
+@media (prefers-reduced-motion: reduce) { .tr-bars .on b { animation: none; width: 100%; } }
 .ob-fields { display: grid; gap: 10px; text-align: left; }
 .ob-fl { display: grid; gap: 4px; }
 .ob-fl > span { font-size: 13px; font-weight: 600; opacity: .8; }

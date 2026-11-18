@@ -34,7 +34,7 @@ html[data-theme="dark"] .sy-hero, html[data-theme="dark"] .sy-go { background: #
 .theme-pick button { flex: 1; padding: 10px 8px; border-radius: 12px; background: var(--chip); color: var(--text); font-weight: 700; font-size: 14px; border: 2px solid transparent; }
 .theme-pick button.on { border-color: var(--purple); background: var(--purple-soft); }
 
-/* ---------- üretilen karşılıklar (503 bildirim) ---------- */
+/* ---------- üretilen karşılıklar (510 bildirim) ---------- */
 html[data-theme="dark"] .splash { background: #181c2e; }
 html[data-theme="dark"] .nav { background: rgba(24, 28, 46, 0.96); }
 html[data-theme="dark"] .badge-count { border: 2px solid #2c3150; }
@@ -161,6 +161,7 @@ html[data-theme="dark"] .spk-row { background: #20253c; }
 html[data-theme="dark"] .spk-row button { background: #181c2e; color: #a4a9c4; }
 html[data-theme="dark"] .msgs mark { background: #433d35; color: #e9ebf5; }
 html[data-theme="dark"] .undo-pill { background: rgba(24, 28, 46, 0.95); }
+html[data-theme="dark"] .msg.fx-drip .bubble::after { background: linear-gradient(180deg, #181c2e, #282d46); }
 html[data-theme="dark"] .fx-tag { background: rgba(24, 28, 46, 0.95); }
 html[data-theme="dark"] .kw-add input { background: #20253c; }
 html[data-theme="dark"] .chip.utag { background: #43434b; }
@@ -176,6 +177,9 @@ html[data-theme="dark"] .ep-x { border: 2px solid #2c3150; }
 html[data-theme="dark"] .ep-add { border: 1.5px dashed #4a4966; background: #181c2e; }
 html[data-theme="dark"] .ep-foot button { background: #181c2e; }
 html[data-theme="dark"] .msg.efx-wet .bubble::after { background: linear-gradient(180deg, #364053, #4aa3ff); }
+html[data-theme="dark"] .msg.efx-tears .bubble::before,
+html[data-theme="dark"] .msg.efx-tears .bubble::after { background: linear-gradient(180deg, #3d4353, #7cc4ff); }
+html[data-theme="dark"] .msg.efx-party .bubble::after { background: radial-gradient(circle at 8% 20%, #433d30 0 2px, transparent 3px), radial-gradient(circle at 92% 80%, #4dd0e1 0 2px, transparent 3px), radial-gradient(circle at 30% 100%, #f06292 0 2px, transparent 3px), radial-gradient(circle at 70% 0, #81c784 0 2px, transparent 3px); }
 html[data-theme="dark"] .pl-grid button { border: 2px solid #2c3150; background: #181c2e; }
 html[data-theme="dark"] .pl-own input,
 html[data-theme="dark"] #plHint { border: 2px solid #2c3150; background: #181c2e; }
@@ -399,6 +403,8 @@ html[data-theme="dark"] .cr-form select,
 html[data-theme="dark"] .cr-form textarea { border: 1px solid #2c3150; }
 html[data-theme="dark"] .ws-live .kl-bar i { background: linear-gradient(90deg, #ff5252, #433d2d); }
 html[data-theme="dark"] .ws-live .cm-foot { color: #a4a9c4; }
+html[data-theme="dark"] .lv-poll button.on { border-color: #5b512f; }
+html[data-theme="dark"] .hl-lv-bar i { background: linear-gradient(90deg, #433d2d, #ff5252); }
 html[data-theme="dark"] .pt-beam.c { background: linear-gradient(#434120, transparent); }
 html[data-theme="dark"] .pt-left { background: #181c2e; }
 html[data-theme="dark"] .pt-lrow small { color: #a4a9c4; }
@@ -483,6 +489,8 @@ html[data-theme="dark"] .bk-tip button { color: #e9ebf5; background: #433c38; }
 html[data-theme="dark"] .bk-lia { background: #434445; }
 html[data-theme="dark"] .bk-lia p { color: #e9ebf5; }
 html[data-theme="dark"] .bk-lia-ava { background: #181c2e; }
+html[data-theme="dark"] .tr-bars b { background: #181c2e; }
+html[data-theme="dark"] .tr-fan img { border: 3px solid #2c3150; }
 html[data-theme="dark"] .ob-cols button.on { border-color: #2c3150; }
 html[data-theme="dark"] .me-cols button.on { border-color: var(--card, #2c3150); }
 html[data-theme="dark"] .lk-dots i { border: 2px solid #2c3150; }

@@ -17,7 +17,18 @@ Stories.Emojis = {
     '❤️': 'beat', '💓': 'beat', '💗': 'beat', '💖': 'beat',
     '👻': 'ghost', '🫥': 'ghost',
     '✨': 'sparkle', '🌟': 'sparkle', '💫': 'sparkle',
-    '🌊': 'wave', '🫠': 'wave'
+    '🌊': 'wave', '🫠': 'wave',
+    '😂': 'bounce', '🤣': 'bounce',
+    '😭': 'tears', '🥺': 'tears', '😢': 'tears',
+    '😡': 'rage', '🤬': 'rage', '😤': 'rage',
+    '💀': 'fade', '☠️': 'fade',
+    '👀': 'peek', '🫣': 'peek',
+    '🥵': 'steam', '♨️': 'steam',
+    '💋': 'smudge', '😘': 'smudge',
+    '🍑': 'wobble', '🍆': 'wobble',
+    '🌹': 'petals', '💐': 'petals', '🌸': 'petals',
+    '🎉': 'party', '🥳': 'party', '🎊': 'party',
+    '😳': 'blush', '🙈': 'blush', '☺️': 'blush'
   },
   list: [
     { id: 'wet', label: 'Islanır', icon: '💧' },
@@ -27,6 +38,17 @@ Stories.Emojis = {
     { id: 'beat', label: 'Kalp atışı', icon: '❤️' },
     { id: 'ghost', label: 'Hayalet', icon: '👻' },
     { id: 'sparkle', label: 'Parıldar', icon: '✨' },
-    { id: 'wave', label: 'Dalgalanır', icon: '🌊' }
+    { id: 'wave', label: 'Dalgalanır', icon: '🌊' },
+    { id: 'bounce', label: 'Zıplar', icon: '😂' },
+    { id: 'tears', label: 'Gözyaşı', icon: '😭' },
+    { id: 'rage', label: 'Kızarır', icon: '😡' },
+    { id: 'fade', label: 'Solar', icon: '💀' },
+    { id: 'peek', label: 'Gözetler', icon: '👀' },
+    { id: 'steam', label: 'Buğulanır', icon: '🥵' },
+    { id: 'smudge', label: 'Ruj izi', icon: '💋' },
+    { id: 'wobble', label: 'Sallanır', icon: '🍑' },
+    { id: 'petals', label: 'Yapraklar', icon: '🌹' },
+    { id: 'party', label: 'Kutlama', icon: '🎉' },
+    { id: 'blush', label: 'Utanır', icon: '😳' }
   ]
 };

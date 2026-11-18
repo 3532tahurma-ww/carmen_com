@@ -23,6 +23,10 @@ Stories.I18n.add({
   'Nane': 'Mint', 'Nane pastel': 'Mint pastel', 'Neon': 'Neon', 'Not kâğıdı': 'Note paper', 'Okyanus': 'Ocean', 'Orman': 'Forest', 'Pamuk şeker': 'Cotton candy', 'Parıldar': 'Sparkles', 'Parıltı': 'Sparkle',
   'Pastel': 'Pastel', 'Pastel gökkuşağı': 'Pastel rainbow', 'Pastel karışık': 'Pastel mix', 'Pembe pastel': 'Pink pastel', 'Pembe rüya': 'Pink dream', 'Retro': 'Retro', 'Şeftali': 'Peach', 'Şeftali pastel': 'Peach pastel',
   'Siyah beyaz': 'Black & white', 'Terminal': 'Terminal', 'Titreme': 'Shake', 'Uçan kalpler': 'Flying hearts', 'Yanar': 'Burns',
+  'Kulağına': 'In your ear', 'Daktilo': 'Typewriter', 'Kızarma': 'Blush', 'Ürperme': 'Tremble', 'Nabız': 'Pulse', 'Ruj izi': 'Lipstick mark', 'Buğu': 'Steam', 'Damla': 'Drip',
+  'Zıplar': 'Bounces', 'Gözyaşı': 'Tears', 'Kızarır': 'Turns red', 'Solar': 'Fades', 'Gözetler': 'Peeks', 'Buğulanır': 'Steams up', 'Sallanır': 'Wobbles', 'Yapraklar': 'Petals', 'Kutlama': 'Celebration', 'Utanır': 'Blushes',
+  'Yağmurlu cam': 'Rainy window', 'Mum ışığı': 'Candlelight', 'Havuz suyu': 'Pool water', 'Mekâna göre': 'By place', 'Saate göre': 'By time of day',
+  "Ruh hâli: Zevk'in arttıkça kenarlar kızarır": 'Mood: edges glow red as your Pleasure rises',
   // 🗂️ olay alt-kategorileri (subcats.js)
   'İş, okul ve salon': 'Work, school and salon', 'Evde ve suda': 'At home and in water', 'Gür fışkırma': 'Heavy burst', 'Tutma ve geciktirme': 'Holding and delaying', 'Arasında fışkırma': 'Burst in between','Damla damla': 'Drop by drop', 'Giyinikken': 'Clothed',
   'Hamile ve süt': 'Pregnant and milk', 'İçine ve çekme': 'Inside and pull-out', 'Ağza ve yüze': 'Mouth and face', 'Göğüslere': 'On the breasts', 'Bacaklara': 'On the legs', 'Kalçaya': 'On the ass', 'Elle': 'By hand',

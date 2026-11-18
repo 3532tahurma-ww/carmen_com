@@ -70,8 +70,31 @@ Stories.Themes = {
     { id: 'site-massage', site: 1, label: 'CarmenMassage', css: 'radial-gradient(circle at 20% 0, rgba(255, 183, 120, .25), transparent 50%), linear-gradient(180deg, #4a2f22 0%, #2e1d15 60%, #1a100b 100%)' },
     { id: 'site-secret', site: 1, label: 'CarmenSecret', css: 'radial-gradient(circle at 50% 0, rgba(46, 125, 50, .3), transparent 55%), linear-gradient(180deg, #0c1f0d 0%, #050d06 100%)' },
     { id: 'site-stay', site: 1, label: 'CarmenStay', css: 'radial-gradient(circle at 50% 0, rgba(212, 164, 55, .22), transparent 55%), linear-gradient(180deg, #2b2118 0%, #1a140e 100%)' },
-    { id: 'halloween', label: '🎃 Halloween', css: 'radial-gradient(circle at 12% 92%, rgba(255, 170, 60, .45) 0, rgba(255, 120, 20, .12) 12%, transparent 26%), radial-gradient(circle at 90% 86%, rgba(255, 150, 40, .38) 0, rgba(255, 110, 20, .1) 10%, transparent 22%), radial-gradient(circle at 50% -10%, rgba(156, 39, 176, .45) 0, transparent 55%), linear-gradient(180deg, #2a0f3d 0%, #1a0b26 55%, #0d0612 100%)' }
+    { id: 'halloween', label: '🎃 Halloween', css: 'radial-gradient(circle at 12% 92%, rgba(255, 170, 60, .45) 0, rgba(255, 120, 20, .12) 12%, transparent 26%), radial-gradient(circle at 90% 86%, rgba(255, 150, 40, .38) 0, rgba(255, 110, 20, .1) 10%, transparent 22%), radial-gradient(circle at 50% -10%, rgba(156, 39, 176, .45) 0, transparent 55%), linear-gradient(180deg, #2a0f3d 0%, #1a0b26 55%, #0d0612 100%)' },
+    // 🎞️ hareketli arka planlar (cls → css/stories.css; css = tema penceresindeki önizleme)
+    { id: 'yagmurlu-cam', label: '🌧️ Yağmurlu cam', cls: 'bg-yagmurlu-cam', css: 'linear-gradient(180deg, #2b3a4e 0%, #18222f 100%)' },
+    { id: 'mum-isigi', label: '🕯️ Mum ışığı', cls: 'bg-mum-isigi', css: 'radial-gradient(circle at 50% 100%, rgba(255, 170, 70, .55), transparent 60%), #1e120a' },
+    { id: 'neon-bar', label: '🍸 Neon', cls: 'bg-neon-bar', css: 'radial-gradient(circle at 15% 20%, rgba(255, 0, 170, .5), transparent 45%), radial-gradient(circle at 85% 80%, rgba(0, 229, 255, .4), transparent 45%), #0b0614' },
+    { id: 'havuz-suyu', label: '🏊 Havuz suyu', cls: 'bg-havuz-suyu', css: 'linear-gradient(180deg, #4fc3e8 0%, #1279a8 60%, #0a4d70 100%)' },
+    // 🤖 kendiliğinden değişen: auto 'place' = mekâna göre (places), 'hour' = saate göre (hours)
+    { id: 'yer', label: '🗺️ Mekâna göre', auto: 'place', css: 'linear-gradient(135deg, #1d4d38 0 33%, #3b1d63 33% 66%, #14476e 66%)' },
+    { id: 'saat', label: '🕰️ Saate göre', auto: 'hour', css: 'linear-gradient(90deg, #141a3c 0%, #ffecdd 35%, #eef8fd 55%, #7a2e4f 80%, #1e1b4b 100%)' }
   ],
+  // 🗺️ Mekâna göre arka plan ("Mekâna göre" seçiliyken; anahtar = js/data/places.js id). Listede olmayan mekânda Otomatik
+  places: {
+    kilise: 'mum-isigi', somine: 'mum-isigi', 'dag-evi': 'mum-isigi', restoran: 'mum-isigi',
+    bar: 'neon-bar', dans: 'neon-bar', konser: 'neon-bar', 'ev-partisi': 'neon-bar', 'kostum-partisi': 'neon-bar',
+    sahil: 'havuz-suyu', tatil: 'havuz-suyu', yazlik: 'havuz-suyu', vapur: 'ocean',
+    yagmur: 'yagmurlu-cam', banyo: 'yagmurlu-cam',
+    'masaj-salonu': 'site-massage', 'muayene-odasi': 'pastel-mavi', tuvalet: 'pastel-bulut',
+    ofis: 'site-jobs', is: 'site-jobs', kampus: 'site-school', otel: 'site-stay',
+    'perili-ev': 'halloween', 'mezarlik-araba': 'halloween', lunapark: 'site-party',
+    gece: 'night', 'gece-yuruyusu': 'night', cati: 'night', sinema: 'dark', 'ev-sinema': 'dark',
+    park: 'forest', bahce: 'forest', piknik: 'forest', kamp: 'forest', 'misir-labirenti': 'forest', disari: 'forest',
+    kafe: 'coffee'
+  },
+  // 🕰️ Saate göre arka plan ("Saate göre" seçiliyken): [başlangıç saati, arka plan] sohbet saatine (🕰️) göre
+  hours: [[0, 'night'], [5, 'pastel-seftali'], [8, 'carmen-acik'], [17, 'sunset'], [20, 'galaksi']],
   bubbles: [
     // 🍬 pastel baloncuklar (açık arka planlara uygun). Varsayılan: pastel-gul
     { id: 'carmen-pastel', label: 'Carmen pastel', dark: 'carmen-pastel-gece', me: '#d6eefa', meFg: '#0b3d5e', her: '#fde4ee', herFg: '#5a1530', radius: '22px', shadow: '0 2px 8px rgba(30, 60, 100, .08)' },
