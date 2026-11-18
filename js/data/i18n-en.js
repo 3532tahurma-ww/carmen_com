@@ -216,7 +216,7 @@ Stories.I18n.add({
   'Fotoğraf gönder': 'Send photo', '{} olarak gönderilecek{}': 'will be sent as {}{}', 'yazdığın metin açıklama olur': 'your text becomes the caption', 'Cihazdan seç': 'Pick from device',
   "{}'den seç": 'Pick from {}', '{} albümü': "{}'s album", 'Fotoğraf okunamadı': "Couldn't read the photo", 'olarak fotoğraf gönder': 'send a photo as',
   'Seçilen rol sohbet boyunca sürer; cevaplarda o rolün metinleri öncelik alır.': "The chosen role lasts for the whole chat; that role's lines get priority in replies.",
-  "Role-play'i kapat": 'Turn off role-play', 'Role-play kapalı': 'Role-play off', 'Sohbet teması': 'Chat theme', 'Hazır temalar': 'Preset themes', 'Arka plan': 'Background', 'Baloncuklar': 'Bubbles',
+  "Role-play'i kapat": 'Turn off role-play', 'Role-play kapalı': 'Role-play off', 'Sohbet teması': 'Chat theme', 'Hazır temalar': 'Preset themes', 'Site temaları': 'Site themes','Arka plan': 'Background', 'Baloncuklar': 'Bubbles',
   'Fotoğraf yükle': 'Upload photo', 'Selam': 'Hi', 'Merhaba!': 'Hello!', 'Her üye kendi rengi': 'Each member their own color', 'Üye renkleri': 'Member colors', 'Baloncuk stiline göre': 'By bubble style',
   'Seçtiğin renk, baloncuk stilinden bağımsız olarak o üyenin baloncuklarına uygulanır. “–” stile geri döner.': "The color you pick is applied to that member's bubbles regardless of bubble style. “–” goes back to the style.",
   '{} ile açılacak yeni sohbetlerde de kullan': 'Also use for new chats with {}', 'Sohbet arka planı': 'Chat background', 'Arka plan ayarlandı': 'Background set', 'Arka plan değişti': 'Background changed',
