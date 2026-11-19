@@ -30,6 +30,9 @@ Stories.Themes = {
     { id: 'pastel-limon-gece', hide: 1, label: 'Limon gece', css: 'linear-gradient(180deg, #2c2a0f 0%, #1a180a 100%)' },
     { id: 'pastel-bulut-gece', hide: 1, label: 'Bulut gece', css: 'radial-gradient(circle at 20% 0%, #2a2e38 0%, #1d2029 55%, #161922 100%)' },
     { id: 'pastel-gokkusagi-gece', hide: 1, label: 'Gökkuşağı gece', css: 'linear-gradient(160deg, #2a1220 0%, #1e1736 30%, #0f2236 60%, #0f2a1d 85%, #2a2610 100%)' },
+    // 💜 Carmen neon (varsayılan 🌗 Otomatik): lila zeminde lavanta / pembe-mor / gün batımı ışıkları (gece: koyu mor)
+    { id: 'carmen-neon', label: 'Carmen neon', light: true, dark: 'carmen-neon-gece', css: 'radial-gradient(circle at 0% 0%, rgba(181, 127, 214, .32), transparent 55%), radial-gradient(circle at 100% 45%, rgba(215, 123, 175, .22), transparent 50%), radial-gradient(circle at 40% 100%, rgba(246, 166, 103, .22), transparent 55%), #f7eefa' },
+    { id: 'carmen-neon-gece', label: 'Carmen neon gece', css: 'radial-gradient(circle at 0% 0%, rgba(166, 94, 187, .42), transparent 55%), radial-gradient(circle at 100% 45%, rgba(215, 123, 175, .22), transparent 50%), radial-gradient(circle at 40% 100%, rgba(241, 139, 131, .2), transparent 55%), linear-gradient(180deg, #24103a 0%, #170a26 55%, #0f0619 100%)' },
     // 🇫🇷 Français: krem kâğıt üstünde ince tricolore şerit (gece: lacivert)
     { id: 'francais', label: 'Français', light: true, dark: 'francais-nuit', css: 'linear-gradient(90deg, #14307a 0 33.3%, #ffffff 33.3% 66.6%, #d0202e 66.6%) top / 100% 4px no-repeat, radial-gradient(circle at 50% 0%, #ffffff 0%, #faf6ee 55%, #f0e9dc 100%)' },
     { id: 'francais-nuit', label: 'Français gece', css: 'linear-gradient(90deg, #aec3ff 0 33.3%, #f5f0e6 33.3% 66.6%, #ef4a55 66.6%) top / 100% 3px no-repeat, radial-gradient(circle at 50% 0%, #1f2a5a 0%, #0d1530 60%, #080e22 100%)' },
@@ -114,6 +117,9 @@ Stories.Themes = {
     { id: 'pastel-gokyuzu-gece', hide: 1, label: 'Gökyüzü gece', me: '#1e5a99', meFg: '#e6f1ff', her: '#22283a', herFg: '#e6ecf5', herBorder: '1px solid #2f3850', radius: '20px', shadow: '0 2px 10px rgba(0, 0, 0, .3)' },
     { id: 'pastel-gul-gece', hide: 1, label: 'Gül gece', me: 'linear-gradient(135deg, #8a2c55, #6b1f45)', meFg: '#ffe4ef', her: '#2e1a26', herFg: '#ffe4ef', herBorder: '1px solid #4a2a3a', radius: '22px', shadow: '0 2px 10px rgba(0, 0, 0, .3)' },
     { id: 'pastel-sise-gece', hide: 1, label: 'Karışık gece', me: 'linear-gradient(135deg, #1c4a6b, #4a3a8a)', meFg: '#eef2ff', her: 'linear-gradient(135deg, #4a1f33, #4a2e1f)', herFg: '#ffe8ee', radius: '22px', shadow: '0 2px 10px rgba(0, 0, 0, .3)' },
+    // 💜 Carmen neon: lila → pembe-mor → mercan parlayan ben, lavanta kenarlı o
+    { id: 'carmen-neon', label: 'Carmen neon', dark: 'carmen-neon-gece', me: 'linear-gradient(135deg, #a65ebb, #d77baf 60%, #f18b83)', meFg: '#ffffff', her: '#ffffff', herFg: '#2a1d36', herBorder: '1px solid rgba(181, 127, 214, .45)', radius: '22px', shadow: '0 4px 14px -4px rgba(166, 94, 187, .4), 0 0 14px rgba(215, 123, 175, .18)' },
+    { id: 'carmen-neon-gece', label: 'Carmen neon gece', me: 'linear-gradient(135deg, #a65ebb, #d77baf 60%, #f18b83)', meFg: '#ffffff', her: '#231736', herFg: '#f3ecf8', herBorder: '1px solid rgba(196, 140, 224, .45)', radius: '22px', shadow: '0 0 16px rgba(181, 127, 214, .35), 0 0 4px rgba(241, 139, 131, .25)' },
     // 🇫🇷 Français: lacivert ben, beyaz kâğıt o (kırmızı çizgi), az yuvarlak köşe
     { id: 'francais', label: 'Français', dark: 'francais-nuit', me: '#14307a', meFg: '#ffffff', her: '#ffffff', herFg: '#1a2340', herBorder: '1px solid #e3dccd', radius: '10px', tail: '2px', shadow: '0 2px 8px rgba(20, 48, 122, .1), inset 3px 0 0 #d0202e' },
     { id: 'francais-nuit', label: 'Français gece', me: '#d0202e', meFg: '#ffffff', her: '#161f47', herFg: '#f5f0e6', herBorder: '1px solid #2e3b72', radius: '10px', tail: '2px', shadow: '0 2px 10px rgba(0, 0, 0, .3), inset 3px 0 0 #aec3ff' },
@@ -185,8 +191,10 @@ Stories.Themes = {
   ],
   // Hazır temalar: arka plan + baloncuk birlikte (Amor'daki kalp düzeyi temaları)
   presets: [
-    // 🌗 Otomatik (varsayılan): açık temada Lila pastel + Gül kurusu, koyu temada Amor (app.js themeLive)
-    { id: 'auto', label: 'Otomatik', icon: '🌗', bg: 'auto', bubble: 'auto', css: 'linear-gradient(135deg, #c9b8ff 0%, #c9b8ff 50%, #241444 50%, #241444 100%)', note: 'Açık temada pastel, koyu temada Amor' },
+    // 🌗 Otomatik (varsayılan): açık temada Carmen neon, koyu temada Carmen neon gece (app.js themeLive)
+    { id: 'auto', label: 'Otomatik', icon: '🌗', bg: 'auto', bubble: 'auto', css: 'linear-gradient(135deg, #e9d6f3 0%, #e9d6f3 50%, #24103a 50%, #24103a 100%)', note: 'Açık temada Carmen neon, koyu temada neon gece' },
+    { id: 'carmen-neon', label: 'Carmen neon', icon: '💜', bg: 'carmen-neon', bubble: 'carmen-neon', note: 'Lila, lavanta, pembe-mor, mercan ve gün batımı neon ışıkları' },
+    { id: 'carmen-neon-gece', label: 'Carmen neon gece', icon: '🌌', bg: 'carmen-neon-gece', bubble: 'carmen-neon-gece', note: 'Koyu mor gecede parlayan neon baloncuklar' },
     { id: 'francais', label: 'Français', icon: '🇫🇷', bg: 'francais', bubble: 'francais', note: 'Français sohbet: krem kâğıt, lacivert ve kırmızı' },
     { id: 'kalp', label: 'Kalp teması', icon: '💖', bg: 'ucan-kalpler', bubble: 'kalp', note: 'Amor Lv.4: uçan kalpler + kalpli baloncuklar' },
     { id: 'mucevher', label: 'Mücevher kalp', icon: '💎', bg: 'kalp-kolye', bubble: 'kalp', note: 'Amor Lv.5: mücevher kalp + kalpli baloncuklar' },

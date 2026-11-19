@@ -1,24 +1,26 @@
 /* 🌙 Koyu tema: OTOMATİK ÜRETİLDİ (tools/build-dark.js). Elle değişiklik için css/dark-base.css'i düzenle, sonra yeniden üret. */
-/* 🌙 Koyu tema: Carmen renkleri (mavi #0089c4 · pembe #c2185b) gece lacivertinin üstünde. data-theme="dark" (index.html başındaki betik) */
+/* 🌙 Koyu tema: Carmen neon renkleri (lila #a65ebb · pembe-mor #d77baf · mercan · gün batımı) gece morunun üstünde. data-theme="dark" (index.html başındaki betik) */
 html[data-theme="dark"] {
   color-scheme: dark;
-  --pink: #e0457f;
-  --pink-soft: #3a1426;
-  --purple: #29a9e0;
-  --purple-2: #4cc0f0;
-  --purple-soft: #0f2c40;
-  --bg: #0e1120;
-  --card: #181c2e;
-  --text: #eceef7;
-  --muted: #8b90ab;
-  --line: #272c45;
-  --chip: #222741;
-  --chat-bg: linear-gradient(180deg, #0a1730 0%, #0b1226 50%, #070b18 100%);
+  --pink: #e48cc0;
+  --pink-soft: #3a1630;
+  --purple: #c48ce0;
+  --purple-2: #d3a6ea;
+  --purple-soft: #2a1a3d;
+  --coral: #f6968e;
+  --sunset: #f8b47c;
+  --bg: #120b1c;
+  --card: #1c1428;
+  --text: #f3ecf8;
+  --muted: #a194b6;
+  --line: #33264a;
+  --chip: #271c39;
+  --chat-bg: linear-gradient(180deg, #2a1240 0%, #1a0b2a 50%, #0f0619 100%);
 }
 html[data-theme="dark"] body { background: var(--bg); color: var(--text); }
-html[data-theme="dark"] input, html[data-theme="dark"] textarea, html[data-theme="dark"] select { background-color: #1c2136; color: var(--text); border-color: var(--line); }
+html[data-theme="dark"] input, html[data-theme="dark"] textarea, html[data-theme="dark"] select { background-color: #22182f; color: var(--text); border-color: var(--line); }
 html[data-theme="dark"] input::placeholder, html[data-theme="dark"] textarea::placeholder { color: #6f7590; }
-html[data-theme="dark"] .splash { background: radial-gradient(circle at 50% 40%, #1a1030, #0e1120 70%); }
+html[data-theme="dark"] .splash { background: radial-gradient(circle at 50% 40%, #2a1240, #120b1c 70%); }
 html[data-theme="dark"] .nav { background: rgba(14, 17, 32, .92); border-color: var(--line); }
 html[data-theme="dark"] .card, html[data-theme="dark"] .sheet { box-shadow: 0 6px 24px rgba(0, 0, 0, .35); }
 html[data-theme="dark"] ::-webkit-scrollbar-track { background: #0e1120; }
@@ -34,7 +36,7 @@ html[data-theme="dark"] .sy-hero, html[data-theme="dark"] .sy-go { background: #
 .theme-pick button { flex: 1; padding: 10px 8px; border-radius: 12px; background: var(--chip); color: var(--text); font-weight: 700; font-size: 14px; border: 2px solid transparent; }
 .theme-pick button.on { border-color: var(--purple); background: var(--purple-soft); }
 
-/* ---------- üretilen karşılıklar (510 bildirim) ---------- */
+/* ---------- üretilen karşılıklar (507 bildirim) ---------- */
 html[data-theme="dark"] .splash { background: #181c2e; }
 html[data-theme="dark"] .nav { background: rgba(24, 28, 46, 0.96); }
 html[data-theme="dark"] .badge-count { border: 2px solid #2c3150; }
@@ -97,10 +99,10 @@ html[data-theme="dark"] .rewards { background: #181c2e; }
 html[data-theme="dark"] .rw-body { background: #181c2e; }
 html[data-theme="dark"] .day { background: #20253c; }
 html[data-theme="dark"] .day.taken { background: #20253c; }
-html[data-theme="dark"] .day.today { background: #424050; }
+html[data-theme="dark"] .day.today { background: #282d46; }
 html[data-theme="dark"] .t-icon { background: #20253c; }
 html[data-theme="dark"] .uava .ava { border: 3px solid #2c3150; }
-html[data-theme="dark"] .rainbow { background: linear-gradient(90deg, #c2185b, #ff9f1c, #433d2f, #2fd6a0, #60a5fa, #a855f7); }
+html[data-theme="dark"] .rainbow { background: linear-gradient(90deg, #d77baf, #ff9f1c, #433d2f, #2fd6a0, #60a5fa, #a855f7); }
 html[data-theme="dark"] .vip-card .bar i { background: #181c2e; }
 html[data-theme="dark"] .wheel { border: 8px solid #4a4769; }
 html[data-theme="dark"] .hub { background: radial-gradient(circle at 35% 30%, #43403a, #f5b50a 60%, #d48806); border: 4px solid #2c3150; }
@@ -260,8 +262,6 @@ html[data-theme="dark"] .chat-light .chat-head .who small { color: #a4a9c4; }
 html[data-theme="dark"] .chat-light .chat-head .gava .ava { border-color: #2c3150; }
 html[data-theme="dark"] .chat-light .hcard { background: rgba(24, 28, 46, 0.7); }
 html[data-theme="dark"] .chat-light .hcard .meta { color: #a4a9c4; }
-html[data-theme="dark"] .chat-light .hcard .meta.traits,
-html[data-theme="dark"] .chat-light .hcard .lvbar { color: #e497b5; }
 html[data-theme="dark"] .chat-light .stamp { color: #a4a9c4; }
 html[data-theme="dark"] .chat-light .sys { color: #a4a9c4; background: rgba(24, 28, 46, 0.75); }
 html[data-theme="dark"] .chat-light .seen-label { color: #a4a9c4; }
@@ -270,7 +270,7 @@ html[data-theme="dark"] .chat-light .scene-card.has-color { border-color: color-
 html[data-theme="dark"] .chat-light .hcard .mood-btn,
 html[data-theme="dark"] .chat-light .hcard .mood-btn small,
 html[data-theme="dark"] .chat-light .hcard .mood-btn span { color: #a4a9c4; }
-html[data-theme="dark"] .chat-light .scene-card .sc-on .oc-chg { background: color-mix(in srgb, var(--evc, #0089c4) 10%, #181c2e); color: #e9ebf5; }
+html[data-theme="dark"] .chat-light .scene-card .sc-on .oc-chg { background: color-mix(in srgb, var(--evc, #a65ebb) 10%, #181c2e); color: #e9ebf5; }
 html[data-theme="dark"] .on-eff select,
 html[data-theme="dark"] .on-eff input { background: #181c2e; }
 html[data-theme="dark"] .hs-pop { background: #181c2e; color: #e9ebf5; }
@@ -318,7 +318,6 @@ html[data-theme="dark"] .cs-acts button.on { background: linear-gradient(135deg,
 html[data-theme="dark"] .cs-grp-tags select { background: #181c2e; }
 html[data-theme="dark"] .hl-go { background: #181c2e; }
 html[data-theme="dark"] .bm-hot span { color: #e9ebf5; }
-html[data-theme="dark"] .bb-logo i:nth-child(4) { color: #e497b5; }
 html[data-theme="dark"] .bb-dym { color: #e59c9a; }
 html[data-theme="dark"] .hl-cm-vip { color: #e9ebf5; }
 html[data-theme="dark"] .hl-ad-cta { background: #181c2e; color: #e9ebf5; }
@@ -480,7 +479,6 @@ html[data-theme="dark"] .tl-n { background: color-mix(in srgb, var(--evc) 12%, #
 html[data-theme="dark"] .tl-meta em { background: color-mix(in srgb, var(--evc) 10%, #181c2e); color: color-mix(in srgb, var(--evc) 75%, #e9ebf5); }
 html[data-theme="dark"] .tl-text { color: #a4a9c4; }
 html[data-theme="dark"] .tl-oc b { color: color-mix(in srgb, var(--evc) 80%, #e9ebf5); }
-html[data-theme="dark"] .dr-h b { color: var(--pink, #e497b5); }
 html[data-theme="dark"] .bk-search input { background: #42434d; color: #e9ebf5; }
 html[data-theme="dark"] .bk-res { background: #42434d; }
 html[data-theme="dark"] .bk-res button { color: #e9ebf5; }
@@ -503,7 +501,7 @@ html[data-theme="dark"] .cc-avs .ava { border: 2px solid #2c3150; }
 html[data-theme="dark"] .home .row { background: #181c2e; }
 }
 @media (min-width: 1200px) {
-html[data-theme="dark"] .nav a:not(.nav-brand):hover { background: #20253c; }
+html[data-theme="dark"] .nav a:not(.nav-brand):hover { background: #282d46; }
 }
 @media (hover: hover) {
 html[data-theme="dark"] .msg-row:hover { background: #181c2e; }

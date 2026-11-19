@@ -1,23 +1,25 @@
-/* 🌙 Koyu tema: Carmen renkleri (mavi #0089c4 · pembe #c2185b) gece lacivertinin üstünde. data-theme="dark" (index.html başındaki betik) */
+/* 🌙 Koyu tema: Carmen neon renkleri (lila #a65ebb · pembe-mor #d77baf · mercan · gün batımı) gece morunun üstünde. data-theme="dark" (index.html başındaki betik) */
 html[data-theme="dark"] {
   color-scheme: dark;
-  --pink: #e0457f;
-  --pink-soft: #3a1426;
-  --purple: #29a9e0;
-  --purple-2: #4cc0f0;
-  --purple-soft: #0f2c40;
-  --bg: #0e1120;
-  --card: #181c2e;
-  --text: #eceef7;
-  --muted: #8b90ab;
-  --line: #272c45;
-  --chip: #222741;
-  --chat-bg: linear-gradient(180deg, #0a1730 0%, #0b1226 50%, #070b18 100%);
+  --pink: #e48cc0;
+  --pink-soft: #3a1630;
+  --purple: #c48ce0;
+  --purple-2: #d3a6ea;
+  --purple-soft: #2a1a3d;
+  --coral: #f6968e;
+  --sunset: #f8b47c;
+  --bg: #120b1c;
+  --card: #1c1428;
+  --text: #f3ecf8;
+  --muted: #a194b6;
+  --line: #33264a;
+  --chip: #271c39;
+  --chat-bg: linear-gradient(180deg, #2a1240 0%, #1a0b2a 50%, #0f0619 100%);
 }
 html[data-theme="dark"] body { background: var(--bg); color: var(--text); }
-html[data-theme="dark"] input, html[data-theme="dark"] textarea, html[data-theme="dark"] select { background-color: #1c2136; color: var(--text); border-color: var(--line); }
+html[data-theme="dark"] input, html[data-theme="dark"] textarea, html[data-theme="dark"] select { background-color: #22182f; color: var(--text); border-color: var(--line); }
 html[data-theme="dark"] input::placeholder, html[data-theme="dark"] textarea::placeholder { color: #6f7590; }
-html[data-theme="dark"] .splash { background: radial-gradient(circle at 50% 40%, #1a1030, #0e1120 70%); }
+html[data-theme="dark"] .splash { background: radial-gradient(circle at 50% 40%, #2a1240, #120b1c 70%); }
 html[data-theme="dark"] .nav { background: rgba(14, 17, 32, .92); border-color: var(--line); }
 html[data-theme="dark"] .card, html[data-theme="dark"] .sheet { box-shadow: 0 6px 24px rgba(0, 0, 0, .35); }
 html[data-theme="dark"] ::-webkit-scrollbar-track { background: #0e1120; }

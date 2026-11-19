@@ -23,7 +23,7 @@
       document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
     })();
   </script>
-  <meta name="theme-color" content="#0089c4">
+  <meta name="theme-color" content="#a65ebb">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="description" content="Carmen - kendi karakterlerinle mesajlaşma şeklinde hikaye yaz.">
@@ -35,10 +35,11 @@
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:wght@600..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/stories.css">
   <link rel="stylesheet" href="css/dark.css">
+  <link rel="stylesheet" href="css/city.css">
 </head>
 <body>
   <div class="app" id="app">
@@ -62,6 +63,10 @@
       <a href="#/booble" data-tab="booble">
         <svg viewBox="0 0 24 24"><path d="M10.5 3a7.5 7.5 0 0 1 6 12l4.3 4.3a1.2 1.2 0 0 1-1.7 1.7L14.8 16.7A7.5 7.5 0 1 1 10.5 3zm0 2.6a4.9 4.9 0 1 0 0 9.8 4.9 4.9 0 0 0 0-9.8z"/></svg>
         <span>Booble</span>
+      </a>
+      <a href="#/sehir" data-tab="sehir">
+        <svg viewBox="0 0 24 24"><path fill-rule="evenodd" d="M9 2.2l6 2.1c.6.2 1 .8 1 1.4V9h3a1.5 1.5 0 0 1 1.5 1.5V20h.5a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2h.5v-8.5A1.5 1.5 0 0 1 5 10h2.5V3.6A1.5 1.5 0 0 1 9 2.2zM10.5 6v2h2V6zm0 4v2h2v-2zm0 4v2h2v-2zM6 13v2h1.5v-2zm0 4v2h1.5v-2zm11.5-5v2H19v-2zm0 4v2H19v-2z"/></svg>
+        <span>Şehir</span>
       </a>
       <a href="#/monia" data-tab="monia">
         <svg viewBox="0 0 24 24"><path fill-rule="evenodd" d="M6 3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm2 4.5a1 1 0 0 0 0 2h8a1 1 0 0 0 0-2zm0 4a1 1 0 0 0 0 2h8a1 1 0 0 0 0-2zm0 4a1 1 0 0 0 0 2h5a1 1 0 0 0 0-2z"/></svg>
@@ -117,6 +122,7 @@
   <script src="js/gallery.js"></script>
   <script src="js/music.js"></script>
   <script src="js/data/system.js"></script>
+  <script src="js/city.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

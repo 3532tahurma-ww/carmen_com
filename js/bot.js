@@ -117,18 +117,35 @@ Stories.Bot = (() => {
    * İşaretsiz kuralda erkeğe yönelik satırlar (MALE_RE: penis, döl, kondom, "içime boşal", sertleşmek…) kadın profilde seçilmez;
    * bütün satırları öyleyse kural hiç yarışmaz */
   const MALE_RE = /(^|[^a-zçğıöşü])(penis|aleti|aletin|sperm|meni(n|ni|yi|ye|m)?([^a-zçğıöşü]|$)|döl|kondom|prezervatif|sertleş|sertsin|kalktı|yarra|taşak|çük|kocaman|zonkla|sik(im|iş\w*|i|iyor\w*|icem|icik|isin|mek|tir)?([^a-zçğıöşü]|$)|(içime|içimde|ağzıma|yüzüme|üstüme|göğüslerime|karnıma|kalçama|sırtıma|bacaklarıma) (boşal|akıt|fışkırt)|hamile (bırak|kal)|içimi doldur|doldur beni|erkeğim|büyüyorsun|büyüdüğün|sertliğin|ne kadar kalın)/i;
-  const maleLine = x => MALE_RE.test(String(x).toLocaleLowerCase('tr'));
+  /* ⚧️ hitap (app.js Stories.meG): ⚧♂ trans erkekte erkek hitabı kalır, kadın hitabı düşer; ⚧♀ trans kadında erkek hitabı düşer (anatomi satırları kalır) */
+  const M_ADDR_RE = /(^|[^a-zçğıöşü])(erkeğim|adamım|yakışıklı\w*|beyefendi|delikanlı|aslanım|paşam|gerçek erkek|erkeksin)/i;
+  const F_ADDR_RE = /(^|[^a-zçğıöşü])(kızım|kadınım|hanımım|güzel kız|prensesim|kraliçem|iki kadın|kadın kadına|kızlar arası)/i;
+  const meG = () => (Stories.meG && Stories.meG()) || '♂';
+  const maleLine = x => { let s = String(x).toLocaleLowerCase('tr'); if (meG() === '⚧♂') s = s.replace(new RegExp(M_ADDR_RE.source, 'gi'), '$1'); return MALE_RE.test(s); };
   const lesNow = () => !!(Stories.lesNow && Stories.lesNow());
   const maleMemo = new WeakMap();
-  // önbellek cevap dizisine bağlı: editörde satırlar değişince dizi de değişir
+  // önbellek cevap dizisine bağlı: editörde satırlar değişince dizi de değişir (hesap cinsiyeti de anahtarda)
   const allMale = r => {
     const a = r.reply || r.add;
     if (!Array.isArray(a)) return false;
-    if (!maleMemo.has(a)) { const ls = a.map(String).filter(x => x.trim()); maleMemo.set(a, ls.length > 0 && ls.every(maleLine)); }
-    return maleMemo.get(a);
+    const g = meG(), m = maleMemo.get(a);
+    if (!m || m.g !== g) { const ls = a.map(String).filter(x => x.trim()); maleMemo.set(a, { g, v: ls.length > 0 && ls.every(maleLine) }); }
+    return maleMemo.get(a).v;
   };
   const genderOk = (r, les) => r.gender === '♀' ? les : r.gender === '♂' ? !les : !les || !allMale(r);
-  const lesLines = (r, ls) => { if (r.gender === '♀' || !lesNow()) return ls; const f = ls.filter(x => !maleLine(x)); return f.length ? f : ls; };
+  /* ⚧♀ trans kadın KARAKTER (son best() çağrısının karakteri): hamile kalamaz → hamilelik / hap / regl satırları düşer */
+  const TM_PREG_RE = /(hamile|gebe|bebek yap|bebeğimiz|hap(ım|ımı|ı)? ?(al|iç)|hapımı|doğum kontrol|sabah hap|regl|adet)/i;
+  let curCh = null;
+  const isTM = c => (c || {}).gender === '⚧♀';
+  const keep = (ls, bad) => { const f = ls.filter(x => !bad(x)); return f.length ? f : ls; };
+  const lesLines = (r, ls) => {
+    if (r.gender !== '♀' && lesNow()) ls = keep(ls, maleLine);
+    const g = meG();
+    if (g === '⚧♂') ls = keep(ls, x => F_ADDR_RE.test(String(x).toLocaleLowerCase('tr')));
+    if (g === '⚧♀') ls = keep(ls, x => M_ADDR_RE.test(String(x).toLocaleLowerCase('tr')));
+    if (isTM(curCh) && !(r.traits || []).some(t => /^cinsiyet:/i.test(t))) ls = keep(ls, x => TM_PREG_RE.test(String(x).toLocaleLowerCase('tr')));
+    return ls;
+  };
   function fits(rule, ch, have) {
     if (!genderOk(rule, lesNow())) return false;
     const traits = (rule.traits || []).filter(Boolean);
@@ -169,13 +186,16 @@ Stories.Bot = (() => {
   }
   function bestOf(data, text, ch, loose) {
     data = asData(data);
+    curCh = ch || null;
     const msg = norm(text), have = ch && haveOf(ch);
     const usable = (data.rules || []).filter(r => (r.reply || []).some(x => String(x).trim()) && fits(r, ch, have));
-    const hit = usable.filter(r => words(r).length && inOrder(msg, words(r), data)).map(r => ({ r, s: score(r) }));
+    // ⚧️ "Cinsiyet: …" özellikli kural (ör. trans erkeğin hamilelik / kondom cevabı) tutunca genel kurallardan öne geçer
+    const gBoost = r => (r.traits || []).some(t => /^cinsiyet:/i.test(t)) ? 500 : 0;
+    const hit = usable.filter(r => words(r).length && inOrder(msg, words(r), data)).map(r => ({ r, s: score(r) + gBoost(r) }));
     if (loose) usable.forEach(r => {
       if (!words(r).length || hit.some(x => x.r === r)) return;
       const s = looseScore(msg, r, data);
-      if (s > 0) hit.push({ r, s, loose: true });
+      if (s > 0) hit.push({ r, s: s + gBoost(r), loose: true });
     });
     const pool = hit.length ? hit : usable.filter(r => !words(r).length).map(r => ({ r, s: score(r) }));
     if (!pool.length) return null;
@@ -192,8 +212,9 @@ Stories.Bot = (() => {
   const ADD_MODES = ['prepend', 'append', 'before', 'message'];
   function addons(data, text, ch) {
     data = asData(data);
+    curCh = ch || null;
     const msg = norm(text), have = ch && haveOf(ch);
-    const out = { prepend: null, append: null, before: null, message: null };
+    const out ={ prepend: null, append: null, before: null, message: null };
     memo = new Map();
     let hit;
     try {

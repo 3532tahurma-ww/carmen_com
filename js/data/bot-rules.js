@@ -124692,6 +124692,50 @@ Stories.BOT_RULES = {
     { "id": "r_ev_lh_twice", "name": "💗🔁 Twice For Her", "category": "🔥 Olaylar", "when": ["=evt", "=lezbiyen", "=hüpletme", "=lesbian foreplay", "=twice"], "reply": ["Dur, çok hassasım 😳", "Yine… ahh 😩", "İki kere 🙈", "İkincisi daha sert 💥", "Sıra bende şimdi 😈", "Gel, alnını ver 💗"], "traits": [], "chars": [], "gender": "♀", "note": "👩‍❤️‍👩 Lesbian · iki boşalma" },
     { "id": "r_ev_lh_taste", "name": "😘🌸 Taste Of Her", "category": "🔥 Olaylar", "when": ["=evt", "=lezbiyen", "=hüpletme", "=lesbian after", "=taste"], "reply": ["Benim tadım bu mu? 😳", "Dudakların parlıyor 💋", "Şimdi seninkini merak ettim 😏", "Bir daha öp 😘", "Garip ama güzel 🫠", "Sıra bende 😈"], "traits": [], "chars": [], "gender": "♀", "note": "👩‍❤️‍👩 Lesbian · sonrası" },
     { "id": "r_ev_lh_mark", "name": "💜🌸 Petal Mark", "category": "🔥 Olaylar", "when": ["=evt", "=lezbiyen", "=hüpletme", "=iz", "=lesbian after", "=petal", "=mark"], "reply": ["İz mi kaldı? 😳", "Kimse görmez 🤫", "Her baktığımda seni hatırlarım 💜", "Kıkır kıkır 🤭", "Öbür bacağa da 😈", "Benim de sana bırakmam lazım 😏"], "traits": [], "chars": [], "gender": "♀", "note": "👩‍❤️‍👩 Lesbian · iz" },
+    { "id": "r_ev_gb_hands", "name": "🤲🍑 Two Handfuls", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=kalça", "=hand grab", "=two", "=handfuls"], "reply": ["Ellerin… 😳", "Hepsi senin 🍑", "Daha sıkı 😩", "Belim kendiliğinden büküldü 🥵", "Bırakma 🥺", "Avuçların sıcacık 😈"], "traits": [], "chars": [], "note": "🤲 Hand Grab · kalça" },
+    { "id": "r_ev_gb_knead", "name": "🫳↔️ Knead & Spread", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=kalça", "=hand grab", "=knead", "=spread"], "reply": ["Mmm… 😮‍💨", "Hamur gibiyim 🫠", "Açma… aç 😳", "Yastığa gömüldüm 🙈", "Böyle tutma beni 🥵", "Bir tur daha 😈"], "traits": [], "chars": [], "note": "🤲 Hand Grab · kalça" },
+    { "id": "r_ev_gb_jiggle", "name": "🍮😏 Jiggle Check", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=kalça", "=hand grab", "=jiggle", "=check"], "reply": ["Ne yapıyorsun? 😂", "Titredi mi? 🙈", "Bak, ben sallıyorum 🍑", "Kontrol geçti mi? 😏", "Bir daha bırak 😈", "Gülmekten öldüm 🤣"], "traits": [], "chars": [], "note": "🤲 Hand Grab · kalça" },
+    { "id": "r_ev_gb_lift", "name": "⬆️🍑 Lift From Below", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=kalça", "=hand grab", "=lift", "=from", "=below"], "reply": ["Ayaklarım yerden kesildi 😳", "Bırakma 🥺", "Boynuna asıldım 🫂", "Avuçların… 🥵", "Daha yukarı 😈", "Seni bırakmıyorum 💗"], "traits": [], "chars": [], "note": "🤲 Hand Grab · kalça" },
+    { "id": "r_ev_gb_pull", "name": "🫴🔥 Pull Her In", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=kalça", "=hand grab", "=pull", "=her", "=ın"], "reply": ["Ahh 😳", "Kaçmıyordum zaten 😏", "Çok yakınız 🥵", "Hissediyorum 😈", "Bırakma 🥺", "Daha sıkı çek 🔥"], "traits": [], "chars": [], "note": "🤲 Hand Grab · kalça" },
+    { "id": "r_ev_gb_kiss", "name": "💋🤲 Kissing Grab", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=kalça", "=hand grab", "=kissing", "=grab"], "reply": ["Mmm 💋", "Eller… 😳", "Öpmeyi bırakma 🥺", "Sıkı tut 🥵", "İnledim mi ben? 🙈", "Tam orası 😈"], "traits": [], "chars": [], "note": "🤲 Hand Grab · kalça" },
+    { "id": "r_ev_gb_pocket", "name": "👖🫳 Pocket Hands", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=kalça", "=kıyafet", "=hand grab", "=pocket", "=hands"], "reply": ["Ceplerimde ne arıyorsun? 😏", "Kotum dar zaten 🙈", "Ellerin sıcak 🥵", "Böyle yürüyemem 😂", "Sıkmaya devam 😈", "Çıkarayım mı? 😳"], "traits": [], "chars": [], "note": "🤲 Hand Grab · kalça" },
+    { "id": "r_ev_gb_skirt", "name": "👗🤫 Under The Skirt", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=kalça", "=kıyafet", "=hand grab", "=under", "=the", "=skirt"], "reply": ["Burada mı?! 😳", "Herkes görecek 🙈", "Yüzümü düz tutamıyorum 🫣", "Elin… 🥵", "Çekme ama 😈", "Eve gidelim 🔥"], "traits": [], "chars": [], "note": "🤲 Hand Grab · kalça" },
+    { "id": "r_ev_gb_oil", "name": "🫒✨ Oiled Knead", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=kalça", "=hand grab", "=oiled", "=knead"], "reply": ["Mmm, sıcak 🫠", "Kayıyor 😩", "Parladım mı? ✨", "Bırakma, yakala 😈", "Ahh 🥵", "Hiç durma 🥺"], "traits": [], "chars": [], "note": "🤲 Hand Grab · kalça" },
+    { "id": "r_ev_gb_thigh", "name": "🤲🦵 Thigh Handful", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=bacak", "=iz", "=hand grab", "=thigh", "=handful"], "reply": ["Ahh 😳", "Sıkı tut 🥵", "İz mi kaldı? 🙈", "Gitmez bu 😏", "Öbür bacak da 😈", "Parmakların… 🫠"], "traits": [], "chars": [], "note": "🤲 Hand Grab · bacak" },
+    { "id": "r_ev_gb_climb", "name": "🫳⬆️ Inner Thigh Climb", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=bacak", "=hand grab", "=ınner", "=thigh", "=climb"], "reply": ["Yukarı… 😩", "Daha yukarı 🥺", "Neden durdun?! 😤", "Bacaklarım açılıyor 🙈", "Lütfen 🥵", "Az kaldı 😈"], "traits": [], "chars": [], "note": "🤲 Hand Grab · bacak" },
+    { "id": "r_ev_gb_table", "name": "🍽️🦵 Under The Table", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=bacak", "=restoran", "=hand grab", "=under", "=the", "=table"], "reply": ["Bir salata… ahh 😳", "Burada olmaz 🙈", "Yüzümü bozmuyorum 😤", "Bunu ödeyeceksin 😏", "Elini çekme ama 😈", "Eve gidelim hemen 🔥"], "traits": [], "chars": [], "note": "🤲 Hand Grab · bacak" },
+    { "id": "r_ev_gb_car", "name": "🚗🫳 Car Thigh Hold", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=bacak", "=hand grab", "=car", "=thigh", "=hold"], "reply": ["Yola bak 😳", "Elin… 🥵", "Bir kırmızı daha 🙈", "Yeşil yansın artık 😤", "Daha yukarı 😈", "Eve çabuk 🔥"], "traits": [], "chars": [], "note": "🤲 Hand Grab · bacak" },
+    { "id": "r_ev_gb_stock", "name": "🧦🤏 Stocking Top Grip", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=bacak", "=kıyafet", "=hand grab", "=stocking", "=top", "=grip"], "reply": ["Lastiğe takıldın 😏", "Tam orası 🥵", "Naylon mu ten mi? 😈", "Sıkı 😩", "Bacağım senin 🦵", "Çıkarma çorabı 🙈"], "traits": [], "chars": [], "note": "🤲 Hand Grab · bacak" },
+    { "id": "r_ev_gb_spread", "name": "↔️🦵 Spread & Hold", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=bacak", "=hand grab", "=spread", "=hold"], "reply": ["Utanıyorum 🙈", "Kapatacağım… 😳", "Bırakmıyorsun 😩", "Tamam, açık 🥵", "Bakma öyle 🫣", "Böyle mi? 😈"], "traits": [], "chars": [], "note": "🤲 Hand Grab · bacak" },
+    { "id": "r_ev_gb_knee", "name": "🦵😖 Back Of Knee", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=bacak", "=hand grab", "=back", "=of", "=knee"], "reply": ["Orası olmaz! 😖", "Gıdıklanıyorum 😂", "Ahh 😳", "Bacağım kendiliğinden 🥵", "Seni yakaladım 😈", "Bir daha… 🥺"], "traits": [], "chars": [], "note": "🤲 Hand Grab · bacak" },
+    { "id": "r_ev_hs_pat", "name": "🫲😜 Playful Pat", "category": "🔥 Olaylar", "when": ["=evt", "=şaplak", "=kalça", "=hand spank", "=playful", "=pat"], "reply": ["Hey! 😳", "Bunu not ettim 😏", "Elin kaydı tabii 🙄", "Bir daha geç bakalım 😈", "Kıkır 🤭", "Ödeşeceğiz 😜"], "traits": [], "chars": [], "note": "👋 Hand Spank · kalça" },
+    { "id": "r_ev_hs_count", "name": "🔢👋 Count Them", "category": "🔥 Olaylar", "when": ["=evt", "=şaplak", "=kalça", "=hand spank", "=count", "=them"], "reply": ["Bir! 😳", "İki… ahh 😩", "Beş… altı… 🥵", "Yedi… sekiz? 🙈", "Şaşırdım! 😂", "Baştan… tamam 😈"], "traits": [], "chars": [], "note": "👋 Hand Spank · kalça" },
+    { "id": "r_ev_hs_alt", "name": "↔️👋 Alternating Cheeks", "category": "🔥 Olaylar", "when": ["=evt", "=şaplak", "=kalça", "=hand spank", "=alternating", "=cheeks"], "reply": ["Ahh! 😳", "Sağ… sol… 😩", "Çok hızlı 🥵", "İkisi de yanıyor 🍑", "Durma 😈", "Ritmi bozma 🥺"], "traits": [], "chars": [], "note": "👋 Hand Spank · kalça" },
+    { "id": "r_ev_hs_knee", "name": "🦵🍑 Over Your Knee", "category": "🔥 Olaylar", "when": ["=evt", "=şaplak", "=kalça", "=iz", "=hand spank", "=over", "=your", "=knee"], "reply": ["Tamam… geldim 🙈", "Ahh! 😩", "Kıpırdamadan duramıyorum 🥵", "Bastırma… bastır 😈", "Yanıyor 🔴", "Bir daha 🥺"], "traits": [], "chars": [], "note": "👋 Hand Spank · kalça" },
+    { "id": "r_ev_hs_rub", "name": "👋🫳 Spank & Rub", "category": "🔥 Olaylar", "when": ["=evt", "=şaplak", "=kalça", "=hand spank", "=spank", "=rub"], "reply": ["Ahh! 😳", "Mmm, ovma kısmı 🫠", "Acı tatlı 🥵", "Bir daha vur, sonra ov 😈", "Gevşedim 😮‍💨", "Hiç bitmesin 🥺"], "traits": [], "chars": [], "note": "👋 Hand Spank · kalça" },
+    { "id": "r_ev_hs_squeeze", "name": "👋🤲 Slap & Squeeze", "category": "🔥 Olaylar", "when": ["=evt", "=şaplak", "=elsık", "=kalça", "=hand spank", "=slap", "=squeeze"], "reply": ["Ahh! 😩", "Sıkma… sık 😳", "İkisi birden 🥵", "Öbür yanak da 😈", "Nefesim kesildi 😮‍💨", "Bir daha 🥺"], "traits": [], "chars": [], "note": "👋 Hand Spank · kalça" },
+    { "id": "r_ev_hs_panty", "name": "🩲👋 Through The Panty", "category": "🔥 Olaylar", "when": ["=evt", "=şaplak", "=kalça", "=kıyafet", "=hand spank", "=through", "=the", "=panty"], "reply": ["Çıkarayım mı? 🥺", "Kumaşın üstünden bile… 😩", "Ahh 😳", "Kenarları batıyor 🥵", "Henüz değil mi? 😤", "Bir daha 😈"], "traits": [], "chars": [], "note": "👋 Hand Spank · kalça" },
+    { "id": "r_ev_hs_bare", "name": "🍑🔴 Bare Bottom", "category": "🔥 Olaylar", "when": ["=evt", "=şaplak", "=kalça", "=hand spank", "=bare", "=bottom"], "reply": ["Utanıyorum 🙈", "Ahh! Çınladı 😳", "Komşular duyacak 😂", "Yanıyor 🔴", "Bir daha 🥵", "Duysunlar 😈"], "traits": [], "chars": [], "note": "👋 Hand Spank · kalça" },
+    { "id": "r_ev_hs_wet", "name": "💦👋 Wet Skin Slap", "category": "🔥 Olaylar", "when": ["=evt", "=şaplak", "=kalça", "=hand spank", "=wet", "=skin", "=slap"], "reply": ["Ahh! 😳", "Çok sesli 🙈", "Islakken daha çok yanıyor 🥵", "Duvara yaslandım 😩", "Bir daha 😈", "Havluyu unuttum 😂"], "traits": [], "chars": [], "note": "👋 Hand Spank · kalça" },
+    { "id": "r_ev_hs_ask", "name": "🥺👋 Ask For Another", "category": "🔥 Olaylar", "when": ["=evt", "=şaplak", "=kalça", "=hand spank", "=ask", "=for", "=another"], "reply": ["Bir daha… 🥺", "Lütfen 😩", "Bir daha! 😳", "Daha sert, lütfen 🥵", "İstiyorum 😈", "Durma 🔥"], "traits": [], "chars": [], "note": "👋 Hand Spank · kalça" },
+    { "id": "r_ev_hs_print", "name": "🖐️🔴 Handprint", "category": "🔥 Olaylar", "when": ["=evt", "=şaplak", "=kalça", "=iz", "=hand spank", "=handprint"], "reply": ["AHH! 😫", "İzi çıktı mı? 😳", "Beş parmak… 🙈", "İmzanı attın 😏", "Yarın da görünecek 🔴", "Öbür tarafa da 😈"], "traits": [], "chars": [], "note": "👋 Hand Spank · kalça" },
+    { "id": "r_ev_hs_thigh", "name": "🦵👋 Thigh Smack", "category": "🔥 Olaylar", "when": ["=evt", "=şaplak", "=bacak", "=iz", "=hand spank", "=thigh", "=smack"], "reply": ["Ahh! 😳", "Bacağım titredi 🥵", "Burası da senin 😏", "Kızardı mı? 🙈", "Öbürü de 😈", "Bir daha 🥺"], "traits": [], "chars": [], "note": "👋 Hand Spank · bacak" },
+    { "id": "r_ev_hs_inner", "name": "🤏🦵 Inner Thigh Tap", "category": "🔥 Olaylar", "when": ["=evt", "=şaplak", "=bacak", "=hand spank", "=ınner", "=thigh", "=tap"], "reply": ["Hassas orası 😳", "Kapanıyor… 😩", "Açık tutuyorum 😤", "Yukarı… 🥺", "Ahh 🥵", "Bir tane daha 😈"], "traits": [], "chars": [], "note": "👋 Hand Spank · bacak" },
+    { "id": "r_ev_hs_open", "name": "↔️👋 Open Up Slap", "category": "🔥 Olaylar", "when": ["=evt", "=şaplak", "=bacak", "=hand spank", "=open", "=up", "=slap"], "reply": ["Açmıyorum 😜", "Ahh! 😳", "Hâlâ hayır 😤", "Tamam tamam 😂", "Zaten açacaktım 😏", "Şimdi ne olacak? 😈"], "traits": [], "chars": [], "note": "👋 Hand Spank · bacak" },
+    { "id": "r_ev_hs_snap", "name": "🧦💥 Stocking Snap", "category": "🔥 Olaylar", "when": ["=evt", "=şaplak", "=bacak", "=kıyafet", "=hand spank", "=stocking", "=snap"], "reply": ["Ahh! Lastik 😳", "Sıçradım 🙈", "Aynı yere mi?! 😩", "Bunu nereden öğrendin? 😏", "Bir daha 😈", "Bacağım senin 🦵"], "traits": [], "chars": [], "note": "👋 Hand Spank · bacak" },
+    { "id": "r_ev_hs_back", "name": "🍑🦵 Back Of Thigh", "category": "🔥 Olaylar", "when": ["=evt", "=şaplak", "=bacak", "=kalça", "=hand spank", "=back", "=of", "=thigh"], "reply": ["Orası olmaz! 😩", "Dizlerim… 🥵", "Haksızlık 😤", "Duvara tutundum 😳", "Bir daha 🥺", "Tam orası 😈"], "traits": [], "chars": [], "note": "👋 Hand Spank · bacak" },
+    { "id": "r_ev_gp_doggy", "name": "🐕🤲 Doggy Grip", "category": "🔥 Olaylar", "when": ["=evt", "=vajinal", "=elsık", "=kalça", "=grip sex", "=doggy", "=grip"], "reply": ["Tut beni 😩", "Çek… 🥵", "Parmakların… 😳", "Daha sert 😈", "Bırakma 🥺", "Ahh 🔥"], "traits": [], "chars": [], "note": "🫴 Grip Sex · kalça" },
+    { "id": "r_ev_gp_spank", "name": "🐕👋 Doggy Spank Rhythm", "category": "🔥 Olaylar", "when": ["=evt", "=vajinal", "=şaplak", "=kalça", "=grip sex", "=doggy", "=spank", "=rhythm"], "reply": ["Ahh! 😩", "Her seferinde… 🥵", "Ritim… 😳", "Daha sert 😈", "Yanıyor 🔴", "Durma 🔥"], "traits": [], "chars": [], "note": "🫴 Grip Sex · kalça" },
+    { "id": "r_ev_gp_cowpull", "name": "🤠🍑 Cowgirl Cheek Pull", "category": "🔥 Olaylar", "when": ["=evt", "=vajinal", "=elsık", "=kalça", "=grip sex", "=cowgirl", "=cheek", "=pull"], "reply": ["Çok derin 😩", "Ahh 😳", "Bastır… 🥵", "Sen yönet 😈", "Nefesim kesildi 😮‍💨", "Bırakma 🔥"], "traits": [], "chars": [], "note": "🫴 Grip Sex · kalça" },
+    { "id": "r_ev_gp_cowthigh", "name": "🤠🦵 Cowgirl Thigh Hold", "category": "🔥 Olaylar", "when": ["=evt", "=vajinal", "=elsık", "=bacak", "=grip sex", "=cowgirl", "=thigh", "=hold"], "reply": ["Kalkamıyorum 😩", "Tutuşun… 🥵", "Sadece sallanıyorum 😳", "En derinde 😈", "Bırakma 🥺", "Ahh 🔥"], "traits": [], "chars": [], "note": "🫴 Grip Sex · bacak" },
+    { "id": "r_ev_gp_prone", "name": "🛏️↔️ Prone Spread", "category": "🔥 Olaylar", "when": ["=evt", "=vajinal", "=elsık", "=kalça", "=grip sex", "=prone", "=spread"], "reply": ["Mmmf 😩", "Çok dar 😳", "Açık tut 🥵", "Yastığa gömüldüm 🙈", "Ahh 😈", "Durma 🔥"], "traits": [], "chars": [], "note": "🫴 Grip Sex · kalça" },
+    { "id": "r_ev_gp_lift", "name": "🧍‍♀️⬆️ Standing Lift Grip", "category": "🔥 Olaylar", "when": ["=evt", "=vajinal", "=elsık", "=kalça", "=grip sex", "=standing", "=lift", "=grip"], "reply": ["Düşürme beni 😳", "Bacaklarım sarıldı 🫂", "Duvar soğuk 🥶", "Avuçların… 🥵", "Daha sert 😈", "Ahh 🔥"], "traits": [], "chars": [], "note": "🫴 Grip Sex · kalça" },
+    { "id": "r_ev_gp_spoon", "name": "🥄🦵 Spoon Thigh Lift", "category": "🔥 Olaylar", "when": ["=evt", "=vajinal", "=elsık", "=bacak", "=grip sex", "=spoon", "=thigh", "=lift"], "reply": ["Mmm 😮‍💨", "Bacağım havada 😳", "Sıkı tut 🥵", "Omzundayım 🫂", "Derin… 😩", "Durma 💗"], "traits": [], "chars": [], "note": "🫴 Grip Sex · bacak" },
+    { "id": "r_ev_gf_red", "name": "🔴💦 Red Cheek Finish", "category": "🔥 Olaylar", "when": ["=evt", "=boşalma", "=şaplak", "=kalça", "=cumming", "=red", "=cheek", "=finish"], "reply": ["Kızarık yere… 😳", "Sıcacık 🥵", "Titriyorum 😩", "Yanan yere bir de bu 😂", "Hepsi üstümde 💦", "Güzel oldu mu? 😈"], "traits": [], "chars": [], "note": "💦 Cumming · kalça" },
+    { "id": "r_ev_gf_print", "name": "🖐️💦 Handprint Finish", "category": "🔥 Olaylar", "when": ["=evt", "=boşalma", "=kalça", "=iz", "=cumming", "=handprint", "=finish"], "reply": ["Tam izin üstüne mi? 😳", "Sıcacık 🥵", "Aynaya bakıyorum 🪞", "İmza ve mühür 😏", "Hepsi senin 💦", "Fotoğrafını çekeyim mi? 😈"], "traits": [], "chars": [], "note": "💦 Cumming · kalça" },
+    { "id": "r_ev_gf_thighs", "name": "🤲💦 Squeezed Thighs Finish", "category": "🔥 Olaylar", "when": ["=evt", "=boşalma", "=elsık", "=bacak", "=cumming", "=squeezed", "=thighs", "=finish"], "reply": ["Sıkı tut 😩", "Uyluklarım… 🥵", "Arasından… 😳", "Karnıma aktı 💦", "Sıcacık 🫠", "Bir daha mı? 😈"], "traits": [], "chars": [], "note": "💦 Cumming · bacak" },
+    { "id": "r_ev_gf_cream", "name": "🫴💦 Grip & Pull Creampie", "category": "🔥 Olaylar", "when": ["=evt", "=vajinal", "=boşalma", "=elsık", "=kalça", "=cumming", "=grip", "=pull", "=creampie"], "reply": ["Çek beni 😩", "En derinde… 🥵", "Kıpırdayamıyorum 😳", "Sıcacık 💦", "Hepsini içimde tuttun 🫠", "Bırakma daha 🥺"], "traits": [], "chars": [], "note": "💦 Cumming · kalça" },
+    { "id": "r_ev_gf_slap", "name": "👋💥 Final Slap", "category": "🔥 Olaylar", "when": ["=evt", "=boşalma", "=şaplak", "=kalça", "=cumming", "=final", "=slap"], "reply": ["Ahh! 💥", "Ben de… 😩", "Titriyorum 🫠", "O şaplak… 😳", "Tam zamanında 😂", "Bir daha böyle 😈"], "traits": [], "chars": [], "note": "💦 Cumming · kalça" },
     {
       "id": "r_ev_cr_buttjob",
       "name": "🎈 Condom Buttjob",
@@ -125457,6 +125501,26 @@ Stories.BOT_RULES = {
     {"id":"r_ev_sq_010railingp","name":"🌇🍑 Railing Pin","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","railing","pin"],"reply":["Aşağıda şehir, üstte biz 🌇","Korkuluk soğuk, tutunuyorum 😩","Komşular görürse? 🙈","Kıpırdayamıyorum, sen de bırakma 😩","Nefesin ensemde, kalçam sende 🥵","Daha sert bastır, kaçmayacağım 😈"],"traits":[],"chars":[],"note":"🗜️ Squeeze · pin"},
     {"id":"r_ev_sq_011lockerpi","name":"🔐🍑 Locker Pin","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","locker","pin"],"reply":["Metal tıngırdıyor, herkes duyacak 🔐","Dolaplar soğuk 😩","Antrenmandan sonra bu mu? 😏","Kıpırdayamıyorum, sen de bırakma 😩","Nefesin ensemde, kalçam sende 🥵","Daha sert bastır, kaçmayacağım 😈"],"traits":[],"chars":[],"note":"🗜️ Squeeze · pin"},
     {"id":"r_ev_sq_012bedframe","name":"🛏️🔒 Bed Frame Pin","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","bed","frame","pin"],"reply":["Ellerim başlıkta 🛏️","Başlık duvara vuruyor 😳","Sıkıştım, ama yatakta 😏","Kıpırdayamıyorum, sen de bırakma 😩","Nefesin ensemde, kalçam sende 🥵","Daha sert bastır, kaçmayacağım 😈"],"traits":[],"chars":[],"note":"🗜️ Squeeze · pin"},
+    {"id":"r_ev_bh_01backhug","name":"🤗🍈 Back Hug Grope","category":"🔥 Olaylar","when":["=evt","=göğüs","=arkadan","back","hug","grope"],"reply":["Arkadan mı geldin? Korkuttun beni 🙈","Ellerin tam yerinde 😏","Bırakma, böyle kal 🤗","Kumaşın üstünden bile hissediyorum 🥵","Kalçam kendiliğinden sana gidiyor 😈"],"traits":[],"chars":[],"note":"🤗 Arkadan Sarılma"},
+    {"id":"r_ev_bh_02kitchen","name":"🍳🤗 Kitchen Counter Grope","category":"🔥 Olaylar","when":["=evt","=göğüs","=arkadan","kitchen","counter","grope"],"reply":["Ellerim köpük içinde, sana dokunamam 🫧","Bulaşıklar kaldı ama… 😏","Önlüğün altına mı girdin? 🙈","Tabak elimden kayacak 😂","Kalçamı tezgâha sıkıştırdın 🥵"],"traits":[],"chars":[],"note":"🤗 Arkadan Sarılma · mutfak"},
+    {"id":"r_ev_bh_03mirror","name":"🪞🤲 Mirror Fondle Squeeze","category":"🔥 Olaylar","when":["=evt","=göğüs","=arkadan","mirror","fondle","squeeze"],"reply":["Aynada her şeyi görüyorum 🪞","Ellerini izliyorum 😏","Yüzüm kızardı, değil mi? 🙈","Bir daha sık… 🥵","Saçımı taramayı unuttum 😂"],"traits":[],"chars":[],"note":"🤗 Arkadan Sarılma · ayna"},
+    {"id":"r_ev_bh_04undershirt","name":"👕🤲 Under Shirt Squeeze","category":"🔥 Olaylar","when":["=evt","=göğüs","=arkadan","under","shirt","squeeze"],"reply":["Ellerin tişörtümün altında 👕","Sütyen giymedim, fark ettin 😏","Avuçların sıcacık 🥵","Kalçamı sana bastırıyorum, durma 😈","Tişörtümü esnettin ama olsun 😂"],"traits":[],"chars":[],"note":"🤗 Arkadan Sarılma · tişört"},
+    {"id":"r_ev_bh_05bracup","name":"👙🤏 Bra Cup Slip","category":"🔥 Olaylar","when":["=evt","=göğüs","=arkadan","bra","cup","slip"],"reply":["Parmakların sütyenimin içinde 👙","Uçlarımı buldun… ahh 🥵","Nefesim kesildi 😳","Sana yaslanıyorum, tut beni 😩","Sütyeni çıkarmaya gerek yok 😏"],"traits":[],"chars":[],"note":"🤗 Arkadan Sarılma · sütyen"},
+    {"id":"r_ev_bh_06sweater","name":"🧶🤗 Sweater Grope Grind","category":"🔥 Olaylar","when":["=evt","=göğüs","=arkadan","sweater","grope","grind"],"reply":["Kazağımın içi senin oldu 🧶","Kazağımı esnetiyorsun 😤","Ama elini çıkarma 😏","Kalçam daire çiziyor, hissediyor musun? 🥵","Üşümüyorum artık 🥰"],"traits":[],"chars":[],"note":"🤗 Arkadan Sarılma · kazak"},
+    {"id":"r_ev_bh_07shower","name":"🚿🧼 Shower Soap Squeeze","category":"🔥 Olaylar","when":["=evt","=göğüs","=arkadan","shower","soap","squeeze"],"reply":["Sabunlu ellerin kayıyor 🧼","Elinden kaçıyorlar 😂","Islak kalçam sana kayıyor 🥵","Su aramızdan akıyor 🚿","Bir daha köpürt 😏"],"traits":[],"chars":[],"note":"🤗 Arkadan Sarılma · duş"},
+    {"id":"r_ev_bh_08dance","name":"💃🎶 Dance Floor Back Grind","category":"🔥 Olaylar","when":["=evt","=göğüs","=arkadan","dance","floor","grind"],"reply":["Ellerini ben götürdüm 😈","Kimse bakmıyor, merak etme 😏","Müzik çok yüksek, kimse duymaz 🎶","Her basta sana çarpıyorum 🥵","Şarkı bitmesin 💃"],"traits":[],"chars":[],"note":"🤗 Arkadan Sarılma · dans"},
+    {"id":"r_ev_bh_09morning","name":"🌅🥄 Morning Spoon Grope","category":"🔥 Olaylar","when":["=evt","=göğüs","=arkadan","morning","spoon","grope"],"reply":["Mmm… günaydın 🌅","Elin gece boyu oradaydı 😏","Beş dakika daha… 🥱","Ama uyku için değil 😈","Kalçamı geri itiyorum, hissettin mi? 🥵"],"traits":[],"chars":[],"note":"🤗 Arkadan Sarılma · sabah"},
+    {"id":"r_ev_bh_10holdfin","name":"🤗💦 Hold & Grind Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=göğüs","hold","grind","finish"],"reply":["Göğüslerimi bırakma, sıkı tut 🤗","Sıcacık… kıyafetimin üstüne 💦","Leke kaldı ama değdi 😏","Ellerin hâlâ bende 🥵","Dönüp sana gülümsüyorum 😌"],"traits":[],"chars":[],"note":"🤗 Arkadan Sarılma · bitiş"},
+    {"id":"r_ev_wh_01croptap","name":"🏇🍈 Crop Tap Tease","category":"🔥 Olaylar","when":["=evt","=kırbaç","=göğüs","crop","tap","tease"],"reply":["Ucu göğsümde geziyor 😳","Tık… bir daha 🥵","Nefesimi tuttum 😮‍💨","Göğüslerim titriyor 😏","Daha fazla 😈"],"traits":[],"chars":[],"note":"🏇 Kırbaç"},
+    {"id":"r_ev_wh_02cropcount","name":"🏇🔢 Crop Count","category":"🔥 Olaylar","when":["=evt","=kırbaç","=kalça","crop","count"],"reply":["Bir… 😳","Sayıyorum, sayıyorum 🥵","Şaşırdım, baştan mı? 😩","Kalçam yanıyor 🔥","On… sonunda 😮‍💨"],"traits":[],"chars":[],"note":"🏇 Kırbaç"},
+    {"id":"r_ev_wh_03flogwarm","name":"🏇🌧️ Flogger Warm-Up","category":"🔥 Olaylar","when":["=evt","=kırbaç","=kalça","flogger","warm"],"reply":["Yağmur gibi 😌","Ritmini bozma 🥵","Isınıyorum 🔥","Biraz daha sert 😈","Kalçamı kaldırdım, gördün mü? 😏"],"traits":[],"chars":[],"note":"🏇 Kırbaç"},
+    {"id":"r_ev_wh_04thigh","name":"🏇🦵 Thigh Line","category":"🔥 Olaylar","when":["=evt","=kırbaç","thigh","line"],"reply":["Yukarı çıkıyor 😳","Bacaklarım kendiliğinden açılıyor 🥵","Bir karış daha 😮‍💨","Durma orada 😩","Neden durdun? 😈"],"traits":[],"chars":[],"note":"🏇 Kırbaç"},
+    {"id":"r_ev_wh_05skirtlash","name":"🏇👗 Over-The-Skirt Lash","category":"🔥 Olaylar","when":["=evt","=kırbaç","=kalça","skirt","lash"],"reply":["Sesi çok yüksek 😳","Kumaş korumuyor ki 🥵","Eteği kaldır artık 😩","Kıvranıyorum 😈","Lütfen 🙏"],"traits":[],"chars":[],"note":"🏇 Kırbaç"},
+    {"id":"r_ev_wh_06deskcrop","name":"🏇🪑 Bent Over Desk Crop","category":"🔥 Olaylar","when":["=evt","=kırbaç","=kalça","desk","bent","crop"],"reply":["Masanın kenarını bırakmıyorum 😤","Belimi sıkı tut 🥵","Kalemler düşecek 😳","Bir seri daha 😈","Masada iz kalacak 😏"],"traits":[],"chars":[],"note":"🏇 Kırbaç"},
+    {"id":"r_ev_wh_07blindwhip","name":"🏇🙈 Blindfold Whip","category":"🔥 Olaylar","when":["=evt","=kırbaç","blindfold","whip"],"reply":["Neredesin? 🙈","Her seste irkiliyorum 😳","Bekletme beni 😩","Ah… oraya 🥵","Tekrar 😈"],"traits":[],"chars":[],"note":"🏇 Kırbaç"},
+    {"id":"r_ev_wh_08whipkiss","name":"🏇💋 Whip & Kiss","category":"🔥 Olaylar","when":["=evt","=kırbaç","whip","kiss"],"reply":["Acıttı… sonra öptün 🥺","Öpücüğü bekliyorum 💋","Bir vuruş, bir öpücük 😏","Kafam karıştı, devam 🥵","Böyle sırayla 😈"],"traits":[],"chars":[],"note":"🏇 Kırbaç"},
+    {"id":"r_ev_wh_09wristflog","name":"🏇⛓️ Wrist-Tied Flogging","category":"🔥 Olaylar","when":["=evt","=kırbaç","wrist","tied","flogging"],"reply":["Kaçamıyorum 😳","Yavaş… ağır 🥵","Bileklerim bağlı, sen bilirsin 😈","Teslim oldum 😮‍💨","Bitmesin 😩"],"traits":[],"chars":[],"note":"🏇 Kırbaç"},
+    {"id":"r_ev_wh_10markfin","name":"🏇💦 Mark & Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=kalça","mark","finish"],"reply":["İzlerimin üstüne mi? 😳","Sıcacık… acıyı aldı 💦","İz de leke de senin 😏","Göster bana 😈","Dokunduğunda inliyorum 🥵"],"traits":[],"chars":[],"note":"🏇 Kırbaç · bitiş"},
     {"id":"r_ev_sq_013closetsq","name":"🚪👗 Closet Squeeze","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","closet","squeeze"],"reply":["Dolabın içinde kıpırdayacak yer yok 🚪","Kalçam sana yapıştı, çekilemem 😩","Askılar başıma çarpıyor 😂","Burası çok dar… ama şikâyet etmiyorum 🙈","Kıpırdadıkça sürtünüyoruz, dur deme 😩","Sessiz ol, biri duyacak 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · dar"},
     {"id":"r_ev_sq_014narrowha","name":"↔️😏 Narrow Hallway","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","narrow","hallway"],"reply":["Geçmek mi istiyorsun, durmak mı? 😏","Koridor çok dar 🙈","Arkamda durdun… bilerek 😈","Burası çok dar… ama şikâyet etmiyorum 🙈","Kıpırdadıkça sürtünüyoruz, dur deme 😩","Sessiz ol, biri duyacak 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · dar"},
     {"id":"r_ev_sq_015underthe","name":"🪜🫣 Under The Stairs","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","under","the","stairs"],"reply":["Eğilmek zorundayım 🪜","Üstümüzden biri geçiyor 🤫","Burası saklambaçtan kalma 😂","Burası çok dar… ama şikâyet etmiyorum 🙈","Kıpırdadıkça sürtünüyoruz, dur deme 😩","Sessiz ol, biri duyacak 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · dar"},
@@ -126827,6 +126891,90 @@ Stories.BOT_RULES = {
       "note": ""
     },
     {
+      "id": "r_cmd_saplak_kalca_small",
+      "name": "Kalçana şaplak · küçük kalça",
+      "category": "🗣️ Komutlar",
+      "when": [
+        "kalça-|kalca-|popo-|kıç-|kic-|göt-|got-",
+        "şaplak|saplak|tokat",
+        "at-|vur-|patlat-|yiyecek|yersin|hak-|ister"
+      ],
+      "reply": [
+        "Sıkı kalçam pek sallanmaz, sert vur 😈",
+        "Kemiğe yakın, acıtır… ama vur 😩",
+        "Minik kalçamı kaldırdım, hadi 🙈",
+        "Elinin izi bütün kalçamı kaplar 😏"
+      ],
+      "traits": [
+        "Butt Size: XS|Butt Size: S"
+      ],
+      "chars": [],
+      "note": "🍑 Butt Size'a göre (r_cmd_saplak_kalca ile aynı tetikleyici)"
+    },
+    {
+      "id": "r_cmd_saplak_kalca_big",
+      "name": "Kalçana şaplak · dolgun kalça",
+      "category": "🗣️ Komutlar",
+      "when": [
+        "kalça-|kalca-|popo-|kıç-|kic-|göt-|got-",
+        "şaplak|saplak|tokat",
+        "at-|vur-|patlat-|yiyecek|yersin|hak-|ister"
+      ],
+      "reply": [
+        "Vur da dalga dalga sallansın 🍑",
+        "Bu kalça şaplak için yaratılmış, hadi 😈",
+        "Avucun gömülsün, sert vur 🥵",
+        "Sallanması bitmeden bir daha 😏"
+      ],
+      "traits": [
+        "Butt Size: L|Butt Size: XL"
+      ],
+      "chars": [],
+      "note": "🍑 Butt Size'a göre (r_cmd_saplak_kalca ile aynı tetikleyici)"
+    },
+    {
+      "id": "r_cmd_saplak_meme_small",
+      "name": "Memene şaplak · küçük göğüs",
+      "category": "🗣️ Komutlar",
+      "when": [
+        "meme-|göğüs-|gogus-|göğs-|gogs-",
+        "şaplak|saplak|tokat",
+        "at-|vur-|patlat-|yiyecek|yersin|hak-|ister"
+      ],
+      "reply": [
+        "Küçükler ama çok hassas, hafif başla 😳",
+        "Uçlarıma denk getirme… ya da getir 😈",
+        "Minicikler ama dayanıklı 🙈",
+        "Hemen kızarırlar, bak 😩"
+      ],
+      "traits": [
+        "Boob Size: 70|Boob Size: 75"
+      ],
+      "chars": [],
+      "note": "🍒 Boob Size'a göre (r_cmd_saplak_meme ile aynı tetikleyici)"
+    },
+    {
+      "id": "r_cmd_saplak_meme_big",
+      "name": "Memene şaplak · büyük göğüs",
+      "category": "🗣️ Komutlar",
+      "when": [
+        "meme-|göğüs-|gogus-|göğs-|gogs-",
+        "şaplak|saplak|tokat",
+        "at-|vur-|patlat-|yiyecek|yersin|hak-|ister"
+      ],
+      "reply": [
+        "Vur da birbirine çarpsınlar 😈",
+        "Sallanmalarını izlemeye hazır mısın? 🥵",
+        "Ağır göğüslerim şaplağı yutar, sert vur 😏",
+        "İkisine birden 😩"
+      ],
+      "traits": [
+        "Boob Size: 90|Boob Size: 95"
+      ],
+      "chars": [],
+      "note": "🍒 Boob Size'a göre (r_cmd_saplak_meme ile aynı tetikleyici)"
+    },
+    {
       "id": "r_cmd_saplak",
       "name": "Şaplak atayım",
       "category": "🗣️ Komutlar",
@@ -127477,6 +127625,46 @@ Stories.BOT_RULES = {
       "note": ""
     },
     {
+      "id": "r_sx2_kalca_small",
+      "name": "🍑 Kalçanı sıkıyorum · küçük kalça",
+      "category": "💬 Sevişirken",
+      "when": [
+        "kalça-|kalca-|götünü|gotunu|=götün|kıçını|kicini|popo-|poponu",
+        "sıkıyorum|sikiyorum|sıkıyom|sıkıcam|sikicam|avuçluyorum|avucluyorum|tutuyorum|şaplak|saplak|vuruyorum|ısırıyorum|isiriyorum|okşuyorum|oksuyorum|yoğuruyorum|yoguruyorum|açıyorum|aciyorum"
+      ],
+      "reply": [
+        "Küçük ama sıkı, iki avucuna tam sığıyor 😩",
+        "Parmakların gömülmüyor, öyle sıkı 😏",
+        "Minik kalçam kıpkırmızı oldu 🙈",
+        "Sık, daha sıkı… dayanırım 😈"
+      ],
+      "traits": [
+        "Butt Size: XS|Butt Size: S"
+      ],
+      "chars": [],
+      "note": "🍑 Butt Size'a göre (r_sx2_kalca ile aynı tetikleyici)"
+    },
+    {
+      "id": "r_sx2_kalca_big",
+      "name": "🍑 Kalçanı sıkıyorum · dolgun kalça",
+      "category": "💬 Sevişirken",
+      "when": [
+        "kalça-|kalca-|götünü|gotunu|=götün|kıçını|kicini|popo-|poponu",
+        "sıkıyorum|sikiyorum|sıkıyom|sıkıcam|sikicam|avuçluyorum|avucluyorum|tutuyorum|şaplak|saplak|vuruyorum|ısırıyorum|isiriyorum|okşuyorum|oksuyorum|yoğuruyorum|yoguruyorum|açıyorum|aciyorum"
+      ],
+      "reply": [
+        "Avuçların kalçamda kayboldu 😩",
+        "İki elin yetmiyor değil mi? 😏",
+        "Yoğurdukça dalga dalga oynuyor 🥵",
+        "Bu kalçaya doyamıyorsun 😈"
+      ],
+      "traits": [
+        "Butt Size: L|Butt Size: XL"
+      ],
+      "chars": [],
+      "note": "🍑 Butt Size'a göre (r_sx2_kalca ile aynı tetikleyici)"
+    },
+    {
       "id": "r_sx2_meme_sik",
       "name": "🍒 Memelerini sıkıyorum",
       "category": "💬 Sevişirken",
@@ -127509,6 +127697,46 @@ Stories.BOT_RULES = {
       "traits": [],
       "chars": [],
       "note": ""
+    },
+    {
+      "id": "r_sx2_meme_sik_small",
+      "name": "🍒 Memelerini sıkıyorum · küçük göğüs",
+      "category": "💬 Sevişirken",
+      "when": [
+        "meme-|göğüs-|gogus-|=memeni|memelerini|göğüslerini|goguslerini|uçların-|uclarin-|meme uç-|meme uc-",
+        "sıkıyorum|sikiyorum|sıkıyom|sıkıcam|avuçluyorum|avucluyorum|okşuyorum|oksuyorum|yoğuruyorum|yoguruyorum|tutuyorum|mıncıklıyorum|minciklıyorum|minciklıyorum|çimdikliyorum|cimdikliyorum"
+      ],
+      "reply": [
+        "Küçükler ama çok hassas, ahh 😩",
+        "Tek avucunda ikisi birden 🙈",
+        "Uçlarım hemen sertleşti 😳",
+        "Minik ama senin 😈"
+      ],
+      "traits": [
+        "Boob Size: 70|Boob Size: 75"
+      ],
+      "chars": [],
+      "note": "🍒 Boob Size'a göre (r_sx2_meme_sik ile aynı tetikleyici)"
+    },
+    {
+      "id": "r_sx2_meme_sik_big",
+      "name": "🍒 Memelerini sıkıyorum · büyük göğüs",
+      "category": "💬 Sevişirken",
+      "when": [
+        "meme-|göğüs-|gogus-|=memeni|memelerini|göğüslerini|goguslerini|uçların-|uclarin-|meme uç-|meme uc-",
+        "sıkıyorum|sikiyorum|sıkıyom|sıkıcam|avuçluyorum|avucluyorum|okşuyorum|oksuyorum|yoğuruyorum|yoguruyorum|tutuyorum|mıncıklıyorum|minciklıyorum|minciklıyorum|çimdikliyorum|cimdikliyorum"
+      ],
+      "reply": [
+        "Avuçlarına sığmıyor, taşıyor 🥵",
+        "İki elinle bile zor tutuyorsun 😏",
+        "Parmaklarının arasından taşıyor, ahh 😩",
+        "Ağırlar değil mi? Kaldır onları 😈"
+      ],
+      "traits": [
+        "Boob Size: 90|Boob Size: 95"
+      ],
+      "chars": [],
+      "note": "🍒 Boob Size'a göre (r_sx2_meme_sik ile aynı tetikleyici)"
     },
     {
       "id": "r_sx2_sac",
@@ -129397,6 +129625,142 @@ Stories.BOT_RULES = {
       "traits": [],
       "chars": [],
       "note": ""
+    },
+    {
+      "id": "r_tk_hamile_soru",
+      "name": "Trans kadın: hamilelik / bebek sorusu",
+      "category": "⚧️ Trans Kadın",
+      "when": [
+        "hamile|gebe|bebek ister|bebeğimiz olsun|bebek yap|çocuk ister|çocuğumuz olsun|doğum kontrol|hap kullan|hap iç|hap al"
+      ],
+      "reply": [
+        "Ben trans kadınım canım; hamile kalamam 🙂",
+        "Hamilelik bizim için söz konusu değil; bebek konusu bizde farklı işliyor 😌",
+        "Hamile kalmak mı? Yok, o bana göre değil… ama seninle olmak tam bana göre 😏",
+        "Hap mı? Bana gerek yok, hamile kalamam ki 😌",
+        "Bebek mi? Belki bir gün evlat ediniriz 😊",
+        "O derdimiz yok bizim; benim için önemli olan sağlığımız 🩺"
+      ],
+      "traits": [
+        "Cinsiyet: Trans Kadın"
+      ],
+      "chars": [],
+      "note": "⚧♀ trans kadın karakter: hamile kalamaz (fertAdjust doğurganlık 0)"
+    },
+    {
+      "id": "r_tk_kondom_soru",
+      "name": "Trans kadın: kondom / korunma sorusu",
+      "category": "⚧️ Trans Kadın",
+      "when": [
+        "kondom|prezervatif|korunuyor mu|korunalım|korunmamız|korunma"
+      ],
+      "reply": [
+        "Kondom benim için sadece sağlık meselesi; hamilelik derdimiz yok 🩺",
+        "Testlerimizi görene kadar kondom şart, sağlığım önemli 😌",
+        "Korunalım ama bebek için değil, ikimizin sağlığı için 🩺",
+        "Test sonuçların temizse konuşuruz; o zamana kadar kondom 😏"
+      ],
+      "traits": [
+        "Cinsiyet: Trans Kadın"
+      ],
+      "chars": [],
+      "note": "⚧♀: kondom isteği sadece sağlık (cinsel yolla bulaşan hastalık) sebebiyle"
+    },
+    {
+      "id": "r_tk_st_kondomsuz",
+      "name": "Trans kadın: kondomsuz giriş (izin yok)",
+      "category": "⚧️ Trans Kadın",
+      "when": [
+        "=durum",
+        "=izinsiz_kondom|=girisdikkat"
+      ],
+      "reply": [
+        "DUR! Kondom şartım var, sağlığım için 😠🩺",
+        "Kondomsuz olmaz; test sonuçlarını görmeden asla 😤",
+        "Hastalık riskine girmem, tak şunu 🚫",
+        "Kondom benim için sağlık meselesi, pazarlık yok 😠"
+      ],
+      "traits": [
+        "Cinsiyet: Trans Kadın"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_tk_st_kondomlu",
+      "name": "Trans kadın: kondomlu, rahat",
+      "category": "⚧️ Trans Kadın",
+      "when": [
+        "=durum",
+        "=korkondom|=giriskondomlu|=kondomkorudu|=hold_kondom|=izin_ok_kondom"
+      ],
+      "reply": [
+        "Kondom var, içim rahat… ikimiz de güvendeyiz 😏",
+        "Korunuyoruz, sağlığımız yerinde; bırak kendini 😈",
+        "İyi ki taktın, temkinli olmayı severim 🩺😏"
+      ],
+      "traits": [
+        "Cinsiyet: Trans Kadın"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_tk_st_korunmasiz",
+      "name": "Trans kadın: korunmasız bitirdi",
+      "category": "⚧️ Trans Kadın",
+      "when": [
+        "=durum",
+        "=riskli|=pulloutkacti|=izinsiz_icine"
+      ],
+      "reply": [
+        "İçime mi?! Test yaptırmadan bunu yapmayacaktık 😣🩺",
+        "Hamilelik derdim yok ama sağlık derdim var… dikkat etseydin 😠",
+        "Korunmasız bitirdin; ikimiz de test olacağız, ona göre 😤"
+      ],
+      "traits": [
+        "Cinsiyet: Trans Kadın"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_tk_st_dikkat",
+      "name": "Trans kadın: korunmuyoruz, dikkat",
+      "category": "⚧️ Trans Kadın",
+      "when": [
+        "=durum",
+        "=kordikkat|=korpullout|=girispullout|=hold_pullout|=hold_dikkat"
+      ],
+      "reply": [
+        "Korunmuyoruz, dikkatli ol… sağlık önce 😳",
+        "Hamilelik değil derdim, sağlığımız; dışarıda bitir 😏",
+        "Test olmadık daha, içimde bitirme tamam mı? 😳"
+      ],
+      "traits": [
+        "Cinsiyet: Trans Kadın"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_tk_st_hap",
+      "name": "Trans kadın: hap / içine (hamilelik yok)",
+      "category": "⚧️ Trans Kadın",
+      "when": [
+        "=durum",
+        "=korhap|=korsabah|=haplakorundu|=sabahhap|=girishap|=girissabah|=hold_hap|=hold_sabah|=icineistedi|=koricine|=hold_icine|=izin_ok_hap|=izin_red_hap|=izin_notr_hap|=izin_ok_sabah|=izin_red_sabah|=izin_notr_sabah"
+      ],
+      "reply": [
+        "Hap mı? Bana gerek yok canım, hamilelik bende söz konusu değil 😏",
+        "Hamilelik kafamda değil… testlerimiz temiz, içime gel 😈",
+        "Doğum kontrol hapına ihtiyacım yok; sabah hapına da 😌"
+      ],
+      "traits": [
+        "Cinsiyet: Trans Kadın"
+      ],
+      "chars": [],
+      "note": "⚧♀: hap / sabah hapı durumları: hamile kalamaz"
     }
   ],
   "addons": [
