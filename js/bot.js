@@ -135,6 +135,7 @@ Stories.Bot = (() => {
   const genderOk = (r, les) => r.gender === '♀' ? les : r.gender === '♂' ? !les : !les || !allMale(r);
   /* ⚧♀ trans kadın KARAKTER (son best() çağrısının karakteri): hamile kalamaz → hamilelik / hap / regl satırları düşer */
   const TM_PREG_RE = /(hamile|gebe|bebek yap|bebeğimiz|hap(ım|ımı|ı)? ?(al|iç)|hapımı|doğum kontrol|sabah hap|regl|adet)/i;
+  const LIVE_MATE_RE = /ev arkadaş/, LIVE_KOCA_RE = /(^|[^a-zçğıöşü])kocam/;
   let curCh = null;
   const isTM = c => (c || {}).gender === '⚧♀';
   const keep = (ls, bad) => { const f = ls.filter(x => !bad(x)); return f.length ? f : ls; };
@@ -144,6 +145,10 @@ Stories.Bot = (() => {
     if (g === '⚧♂') ls = keep(ls, x => F_ADDR_RE.test(String(x).toLocaleLowerCase('tr')));
     if (g === '⚧♀') ls = keep(ls, x => M_ADDR_RE.test(String(x).toLocaleLowerCase('tr')));
     if (isTM(curCh) && !(r.traits || []).some(t => /^cinsiyet:/i.test(t))) ls = keep(ls, x => TM_PREG_RE.test(String(x).toLocaleLowerCase('tr')));
+    // 🏠 Yaşam (app.js liveOf = şehirdeki hanesi): tek / kocasıyla yaşayan "ev arkadaşım" demez, evli olmayan "kocam" demez
+    const lv = !(r.traits || []).some(t => /^(yaşam|evli):/i.test(t)) && Stories.liveOf ? Stories.liveOf(curCh) : '';
+    if (lv && lv !== 'ev') ls = keep(ls, x => LIVE_MATE_RE.test(String(x).toLocaleLowerCase('tr')));
+    if (lv && lv !== 'koca') ls = keep(ls, x => LIVE_KOCA_RE.test(String(x).toLocaleLowerCase('tr')));
     return ls;
   };
   function fits(rule, ch, have) {

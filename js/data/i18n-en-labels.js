@@ -7,7 +7,7 @@ Stories.I18n.add({
   'Kişilik': 'Personality', 'Neşeli': 'Cheerful', 'Utangaç': 'Shy', 'Alaycı': 'Sarcastic', 'Soğuk': 'Cold', 'Flörtöz': 'Flirty', 'Romantik': 'Romantic', 'Kıskanç': 'Jealous', 'Asi': 'Rebellious',
   'Sakin': 'Calm', 'Gergin': 'Tense', 'Meraklı': 'Curious', 'Gizemli': 'Mysterious', 'Dürüst': 'Honest', 'Sadık': 'Loyal', 'İnatçı': 'Stubborn', 'Şımarık': 'Spoiled', 'Olgun': 'Mature',
   'Çocuksu': 'Childlike', 'Kibirli': 'Arrogant', 'Alçakgönüllü': 'Humble', 'Duygusal': 'Emotional', 'Mantıklı': 'Rational', 'Komik': 'Funny', 'Ciddi': 'Serious', 'Korumacı': 'Protective',
-  'Manipülatif': 'Manipulative', 'Güvensiz': 'Insecure', 'Özgüvenli': 'Confident',
+  'Manipülatif': 'Manipulative', 'Güvensiz': 'Insecure', 'Özgüvenli': 'Confident', 'Anaç': 'Nurturing',
   // ⌨️ yazım tarzı
   'Yazım tarzı': 'Writing style', 'Kısa yazar': 'Writes short', 'Uzun yazar': 'Writes long', 'Hep küçük harf': 'All lowercase', 'Emoji sever': 'Loves emoji', 'Emoji kullanmaz': 'No emoji',
   'Harf uzatır (canımmm)': 'Stretches letters (babyyy)', 'Noktalama kullanmaz': 'No punctuation', 'Resmi konuşur': 'Formal', 'Argo kullanır': 'Uses slang', 'Çok güler (sjsjsj)': 'Laughs a lot (hahaha)',

@@ -10,7 +10,7 @@ Stories.Traits = (() => {
       id: 'personality', label: '💫 Kişilik',
       items: ['Neşeli', 'Utangaç', 'Alaycı', 'Soğuk', 'Flörtöz', 'Romantik', 'Kıskanç', 'Asi', 'Sakin', 'Gergin',
         'Meraklı', 'Gizemli', 'Dürüst', 'Sadık', 'İnatçı', 'Şımarık', 'Olgun', 'Çocuksu', 'Kibirli', 'Alçakgönüllü',
-        'Duygusal', 'Mantıklı', 'Komik', 'Ciddi', 'Korumacı', 'Manipülatif', 'Güvensiz', 'Özgüvenli']
+        'Duygusal', 'Mantıklı', 'Komik', 'Ciddi', 'Korumacı', 'Manipülatif', 'Güvensiz', 'Özgüvenli', 'Anaç']
     },
     {
       id: 'style', label: '⌨️ Yazım tarzı',
@@ -37,6 +37,11 @@ Stories.Traits = (() => {
     {
       id: 'willing', label: '🔥 İsteklilik', single: true,
       items: ['Çok Yüksek', 'Yüksek', 'Orta', 'Düşük', 'İstemiyor']
+    },
+    // 🏠 kiminle yaşıyor: şehirdeki hanesiyle aynı (app.js liveOf / setupLive); Kocasıyla Yaşıyor = 💍 Evli
+    {
+      id: 'living', label: '🏠 Yaşam', single: true,
+      items: ['Tek Yaşıyor', 'Ev Arkadaşıyla', 'Kocasıyla Yaşıyor']
     },
     // single: true -> bu gruptan tek seçim yapılır, karakterde "Pussy Size: Tight" diye saklanır
     // (böylece farklı gruplarda aynı seçenek, ör. 'Tight', karışmaz)

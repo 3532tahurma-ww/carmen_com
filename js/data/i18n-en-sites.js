@@ -2854,6 +2854,9 @@ Stories.I18n.add({
   'kocasının yanında uyuyor 😴': 'sleeping next to her husband 😴', 'kocasıyla yemek yiyor 🍽️': 'having dinner with her husband 🍽️', 'kocasıyla dizi izliyor 📺': 'watching a series with her husband 📺',
   'kocası maç izlerken telefonla yazışıyor 📱': 'texting while her husband watches the match 📱', 'kocasıyla kahve içiyor ☕': 'having coffee with her husband ☕', 'kocası duştayken aynada hazırlanıyor 💄': 'getting ready at the mirror while her husband showers 💄',
   'ev arkadaşıyla film izliyor 🍿': 'watching a movie with her housemate 🍿', 'ev arkadaşıyla dedikodu yapıyor 🛋️': 'gossiping with her housemate 🛋️', 'ev arkadaşlarıyla yemek yapıyor 🍝': 'cooking with her housemates 🍝', 'ev arkadaşının kıyafetini deniyor 👗': 'trying on her housemate\'s clothes 👗',
+  '{} ev arkadaşıyla yaşıyor': '{} lives with a housemate', 'evde tek başına, müziği açmış dans ediyor 💃': 'home alone, dancing with the music up 💃', 'tek başına köpük banyosunda 🛁': 'alone in a bubble bath 🛁',
+  'evde yalnız, canı sıkılmış telefonla oynuyor 📱': 'home alone and bored, scrolling her phone 📱', 'kimse yok diye evde iç çamaşırıyla geziyor 🙈': 'walking around in her underwear since nobody is home 🙈',
+  'Taksiyle git': 'Take a taxi', 'Karşılık ver': 'Talk back', 'Taksi çağrıldı': 'Taxi called', '🚕 Taksiye bindin': '🚕 You got in the taxi', '🚕 Taksidesin, varınca inersin': '🚕 You are in a taxi, you get out on arrival', '🚕 Taksi iptal': '🚕 Taxi cancelled',
   'bar arkasında kokteyl yapıyor 🍸': 'mixing cocktails behind the bar 🍸', 'sahnede, gece onun 🎧': 'on stage, the night is hers 🎧', 'iş başında': 'at work',
   // 🎭 rol ilanları, kostüm partisi, rol dizileri
   '{} rol ilanı': '{} role ad', 'Rol ilanı · {}': 'Role ad · {}', 'Rolüyle başla · {}': 'Start in her role · {}', '{} olarak başla · {}': 'Start as {} · {}',

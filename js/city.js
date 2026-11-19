@@ -448,7 +448,7 @@ Stories.City = (() => {
   /* 🎭 konuşma tarzı: kişilik özelliği → tarz. p = tür başına şans farkı, i = başlangıç ilgisi farkı, hi / ok / bad = tarzın kendi cümleleri (%65) */
   const STYLE_OF = { 'Utangaç': 'utangac', 'Güvensiz': 'utangac', 'Alçakgönüllü': 'utangac', 'Flörtöz': 'flort', 'Özgüvenli': 'flort', 'Şımarık': 'flort', 'Asi': 'flort',
     'Alaycı': 'alayci', 'Kibirli': 'alayci', 'Manipülatif': 'alayci', 'İnatçı': 'alayci', 'Soğuk': 'soguk', 'Ciddi': 'soguk', 'Mantıklı': 'soguk', 'Gizemli': 'soguk', 'Olgun': 'soguk',
-    'Neşeli': 'nese', 'Komik': 'nese', 'Çocuksu': 'nese', 'Meraklı': 'nese', 'Romantik': 'romantik', 'Duygusal': 'romantik', 'Sadık': 'romantik', 'Dürüst': 'romantik' };
+    'Neşeli': 'nese', 'Komik': 'nese', 'Çocuksu': 'nese', 'Meraklı': 'nese', 'Romantik': 'romantik', 'Duygusal': 'romantik', 'Sadık': 'romantik', 'Dürüst': 'romantik', 'Anaç': 'romantik' };
   const STYLE = {
     utangac: { l: '🙈 Utangaç', p: { iltifat: .1, espri: .05, davet: -.05, cesur: -.25 }, i: -4,
       hi: ['Ş-şey… merhaba 🙈', 'Bana mı baktın? 😳', '*gözlerini kaçırır* Selam…'],
@@ -484,6 +484,21 @@ Stories.City = (() => {
       me: { iltifat: ['Bugün her zamankinden güzelsin', 'Seni görünce günüm güzelleşti'], espri: ['Beni takip etmekten vazgeçmiyorsun 😄', 'Yine mi sen? Kader bu 😄'], davet: ['Hadi bize gidelim', 'Bu akşamı beraber geçirelim mi? 🍷'], cesur: ['Seni hemen burada öpmek istiyorum', 'Şu an sana sarılmak istiyorum 🔥'] },
       win: ['Hadi gidelim o zaman 😘', 'Akşama sende miyim? 💋', 'Mesajlaşalım, sana bir sürprizim var 😏'] }
   };
+  /* 📣 laf atma: yakınından (LAF_R) geçen karakter bazen sana laf atar (baloncuk); tanışıklığa, tarzına, geceye, evliliğe göre. Dokunup karşılık verirsen konuşma o sözle ve +LAF_I ilgiyle başlar */
+  const LAF_R = 170, LAF_I = 10;
+  const LAF = {
+    yeni: ['Hey yakışıklı, kaybolmuş gibisin 😏', 'Bakmaya devam edersen ücret alırım 😉', 'Psst! Evet, sen 👀', 'Bu kadar tatlı yürümek yasak olmalı 😘', 'Saat kaç biliyor musun? Yoksa numaranı mı versen 😏', 'Ooo, kim bu böyle? 😳', 'Gülümse biraz, çok ciddisin 😄', 'Yolun buradan mı geçiyordu, yoksa benden mi? 😏'],
+    tanis: ['Yine mi sen? Beni takip ediyorsun bence 😏', 'Heey! Selam vermeden mi geçiyorsun? 😤', 'Tanıdık bir yüz 😊 gel buraya!', 'Bak sen kimi gördüm 😄'],
+    yakin: ['Bana yazmayı unuttun mu? 😒', 'Gel bir sarılayım! 🤗', 'Seni burada görmek ne güzel 💕', 'Hey! Bu akşam ne yapıyorsun? 😏'],
+    sevgili: ['Aşkııım! 😍 buraya gel!', 'Bebeğim! Öpücük vermeden geçemezsin 😘', 'Sevgilim! Beni mi arıyordun? 💋', 'Hey! Görmezden mi geliyorsun beni? 😤💕']
+  };
+  const LAF_ST = {
+    utangac: ['*sana bakıp kızarır* M-merhaba… 🙈', '*el sallar, sonra saklanır* 😳'], flort: ['Bakıyordun, yakaladım 😘', 'Bu tarafa gel yakışıklı 😏', 'Bana bakarken çok tatlı oluyorsun 😉'],
+    alayci: ['Ne o, yolunu mu kaybettin? 🙄', 'Çok bakıyorsun, fotoğraf çek istersen 😏'], soguk: ['…sen. Evet, sen. Bakıp durma.', 'Hm. Fena değilsin.'],
+    nese: ['Heeey! 😄 neşeni nereye bıraktın?', 'Selaaam yabancı! 🌞'], romantik: ['Ne güzel bir gün, değil mi? ✨', 'Gözlerin… çok güzel 🌹']
+  };
+  const LAF_NIGHT = ['Gece daha yeni başlıyor, katılsana 🍸', 'Yalnız mısın bu gece? 😏', 'Dans etmeyi biliyor musun? 💃', 'Bir içki ısmarlasana 🍹'];
+  const LAF_WED = ['Kocam görmeden geç yanımdan 🤫', 'Psst… yüzüğüme bakma, bana bak 😏'];
   const WED_T = { bad: ['Kocam buralarda olabilir 😳', 'Evliyim, unuttun mu? 😅'], ok: ['Kocam duymasın ama… 😏', 'Yüzüğüme bakma 🤫'] };
   /* 🎉 şehir etkinlikleri: her gün 5 tanesi (gün + id hash); h = [başlangıç, bitiş) saat (24+ = ertesi gece). Boştaki karakterler ve yabancılar oraya akar, tavlama şansı artar */
   const EVENTS = [
@@ -555,7 +570,7 @@ Stories.City = (() => {
     const homes = api.homes();
     const mkAg = (c, str) => ({ id: c.id, c, str, skin: SKIN_C[api.skin(c)] || '#e0b48e', w: null, k: null, to: null, st: 'in', x: 0, y: 0, a: 0, path: null, pi: 0, sp: 40 + hash(c.id + 's') % 16, leaveAt: 0, idle: 0, next: 0, hold: false });
     const day = Math.floor(Date.now() / 864e5);
-    const strs = api.strangers().filter(x => x.photo).sort((a, b) => hash([a.id, day]) - hash([b.id, day])).slice(0, 32);
+    const strs = api.strangers().filter(x => x.photo).sort((a, b) => hash([a.id, day]) - hash([b.id, day])).slice(0, 56);
     const ag = [...api.chars().map(c => mkAg(c, false)), ...strs.map(c => mkAg(c, true))];
     // 🎉 bugünün etkinlikleri (5 tane, saate göre sıralı) + 🪧 pano reklamları
     const evDay = EVENTS.slice().sort((p, q) => hash([p.id, day]) - hash([q.id, day])).slice(0, 5).sort((p, q) => p.h[0] - q.h[0]);
@@ -618,13 +633,71 @@ Stories.City = (() => {
     const R = rng(hash(Date.now()));
     const CAR_C = ['#e53935', '#1e88e5', '#fdd835', '#43a047', '#f5f5f5', '#212121', '#8e24aa', '#fb8c00'];
     const rndRoad = () => wd.roadNodes[(R() * wd.roadNodes.length) | 0];
+    // ⚡ yaya / araba yeni rotası: yayalar yakındaki bir düğüme gider (kısa A*); kare başına en çok ROUTE_N rota, gerisi sırada bekler
+    const ROUTE_N = 4;
+    let routeLeft = ROUTE_N;
     const newTrip = o => {
-      const from = wd.nearest(o.x, o.y, o.car), to = o.car ? rndRoad() : (R() * wd.nodes.length) | 0;
+      const from = wd.nearest(o.x, o.y, o.car);
+      let to = o.car ? rndRoad() : (R() * wd.nodes.length) | 0;
+      if (!o.car) for (let k = 0; k < 6; k++) { const j = (R() * wd.nodes.length) | 0; if (Math.hypot(wd.nodes[j].x - o.x, wd.nodes[j].y - o.y) < 700) { to = j; break; } }
       o.path = offPath(route(from, to, o.car), o.car ? n => n.hw * .5 : n => walkSide(n) * o.side); o.pi = 0;
     };
-    const cars = Array.from({ length: 32 }, (_, i) => { const n = wd.nodes[rndRoad()], o = { car: 1, x: n.x, y: n.y, a: 0, sa: 0, sp: 95 + R() * 45, col: CAR_C[i % CAR_C.length], taxi: i % 5 === 0 }; newTrip(o); return o; });
+    const cars = Array.from({ length: 44 }, (_, i) => { const n = wd.nodes[rndRoad()], o = { car: 1, x: n.x, y: n.y, a: 0, sa: 0, sp: 95 + R() * 45, col: CAR_C[i % CAR_C.length], taxi: i % 5 === 0 }; newTrip(o); return o; });
     const PED_C = ['#ef9a9a', '#90caf9', '#a5d6a7', '#ffe082', '#ce93d8', '#ffab91', '#80cbc4', '#f48fb1'];
-    const peds = Array.from({ length: 90 }, (_, i) => { const n = wd.nodes[(R() * wd.nodes.length) | 0], o = { x: n.x, y: n.y, a: 0, sa: 0, sp: 24 + R() * 16, col: PED_C[i % PED_C.length], side: R() < .5 ? 1 : -1 }; newTrip(o); return o; });
+    const peds = Array.from({ length: 220 }, (_, i) => { const n = wd.nodes[(R() * wd.nodes.length) | 0], o = { x: n.x, y: n.y, a: 0, sa: 0, sp: 24 + R() * 16, col: PED_C[i % PED_C.length], side: R() < .5 ? 1 : -1, path: [], pi: 0 }; return o; });
+    const pedBy = PED_C.map(c => peds.filter(o => o.col === c));
+    const movers = [...cars, ...peds];
+    // 🚕 taksi: kartta "Taksiyle git" → yakındaki bir yoldan sarı taksi gelir, binersin, hedefin önünde inersin (yürümekten ~2,5× hızlı)
+    let taxi = null;
+    const TAXI_SP = 240;
+    const carPath = (a, b) => offPath(route(a, b, 1), n => n.hw * .5);
+    const roadOf = i => (wd.nodes[i].foot ? wd.nearest(wd.nodes[i].x, wd.nodes[i].y, 1) : i);
+    const pathLen = P => P.reduce((s, q, i) => (i ? s + Math.hypot(q[0] - P[i - 1][0], q[1] - P[i - 1][1]) : 0), 0);
+    function taxiGo() { if (!taxi) return; taxi.st = 'leave'; taxi.path = carPath(wd.nearest(taxi.x, taxi.y, 1), rndRoad()); taxi.pi = 0; }
+    function callTaxi(k) {
+      const p = PL[k] || wd.FM[k];
+      if (!p || inside || (taxi && taxi.st === 'ride')) return;
+      if (taxi) taxiGo();
+      closeCard(); me.chase = null; me.enter = null; me.path = null; me.dest = null; follow0 = true;
+      const at = wd.nearest(me.x, me.y, 1), to = PL[k] ? roadOf(PL[k].node) : wd.nearest(p.x, p.y, 1);
+      if (at === to) { walkTo(p.x, p.y, k); return; }
+      let from = rndRoad();
+      for (let i = 0; i < 16; i++) { const j = rndRoad(), d = Math.hypot(wd.nodes[j].x - me.x, wd.nodes[j].y - me.y); if (d > 250 && d < 700) { from = j; break; } }
+      const n = wd.nodes[from];
+      taxi = { car: 1, x: n.x, y: n.y, a: 0, sa: 0, path: carPath(from, at), pi: 0, st: 'come', k, at, to };
+      api.notify(`🚕 ${tr('Taksi çağrıldı')} · ${p.ic} ${tr(p.n)}`, '🚕');
+    }
+    function stepTaxi(dt) {
+      const T = taxi;
+      if (!T) return;
+      const done = follow(T, (T.st === 'leave' ? 130 : TAXI_SP) * dt);
+      let d = T.a - T.sa; d = Math.atan2(Math.sin(d), Math.cos(d)); T.sa += d * Math.min(1, dt * 8);
+      if (T.st === 'ride') { me.x = T.x; me.y = T.y; }
+      if (!done) return;
+      if (T.st === 'come') { T.st = 'ride'; me.taxi = true; me.x = T.x; me.y = T.y; T.path = carPath(T.at, T.to); T.pi = 0; T.len = pathLen(T.path); api.notify(tr('🚕 Taksiye bindin'), '🚕'); return; }
+      if (T.st === 'ride') {
+        const k = T.k, p = PL[k] || wd.FM[k];
+        me.taxi = false; me.node = null;
+        [me.x, me.y] = PL[k] ? (p.area ? sidePt(p.node) : towardB(p.node, p.x, p.y)) : doorOf(k);
+        api.notify(`🚕 ${p.ic} ${tr(p.n)} · ${(T.len / 1000).toFixed(1)} km`, '📍');
+        taxiGo(); openCard(k);
+        return;
+      }
+      taxi = null;
+    }
+    function drawTaxi() {
+      const T = taxi;
+      if (!T || !vis(T.x, T.y, 40)) return;
+      if (T.st === 'ride') { ctx.strokeStyle = 'rgba(255,61,139,.7)'; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(T.x, T.y, 24 + (tNow / 100) % 7, 0, Math.PI * 2); ctx.stroke(); }
+      ctx.save(); ctx.translate(T.x, T.y); ctx.rotate(T.sa);
+      ctx.fillStyle = 'rgba(0,0,0,.25)'; rr(-15, -6, 32, 17, 4); ctx.fill();
+      ctx.fillStyle = '#ffd400'; rr(-16, -8.5, 32, 17, 4); ctx.fill();
+      ctx.fillStyle = '#222'; for (let i = 0; i < 6; i++) { ctx.fillRect(-12 + i * 4, i % 2 ? -8.5 : -6.5, 4, 2); ctx.fillRect(-12 + i * 4, i % 2 ? 6.5 : 4.5, 4, 2); }
+      ctx.fillStyle = 'rgba(30,40,60,.75)'; ctx.fillRect(5, -5.5, 5, 11); ctx.fillRect(-11, -5.5, 4, 11);
+      ctx.fillStyle = '#fff'; rr(-3, -3, 6, 6, 1.5); ctx.fill();
+      ctx.restore();
+      if (cam.z >= .7) nameTag(T.st === 'ride' ? `🚕 ${tr('Sen')}` : '🚕', T.x, T.y - 22 * tagK(), T.st === 'ride' ? '#ff3d8b' : undefined);
+    }
     const boats = [[900, 2040, 260, 60, .05], [2250, 1990, 200, 70, -.07], [2880, 950, 50, 260, .04]].map(([cx, cy, rx, ry, s], i) => ({ cx, cy, rx, ry, s, ph: i * 2 }));
 
     /* 🎨 çizim */
@@ -849,10 +922,14 @@ Stories.City = (() => {
         ctx.fillStyle = '#ff7043'; ctx.beginPath(); ctx.moveTo(4, 0); ctx.lineTo(-10, -6); ctx.lineTo(-10, 6); ctx.closePath(); ctx.fill();
         ctx.restore();
       });
+      if (!me.taxi) drawTaxi();
+      // ⚡ yayalar renk başına tek yol: 8 fill + 8 stroke (çok uzaktayken kenarsız)
       ctx.lineWidth = 2; ctx.strokeStyle = 'rgba(0,0,0,.35)';
-      peds.forEach(o => {
-        if (!vis(o.x, o.y, 20)) return;
-        ctx.fillStyle = o.col; ctx.beginPath(); ctx.arc(o.x, o.y, 4, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      const far = cam.z < .6, pr = far ? 5 : 4;
+      pedBy.forEach((L, i) => {
+        ctx.beginPath();
+        for (const o of L) if (vis(o.x, o.y, 20)) { ctx.moveTo(o.x + pr, o.y); ctx.arc(o.x, o.y, pr, 0, Math.PI * 2); }
+        ctx.fillStyle = PED_C[i]; ctx.fill(); if (!far) ctx.stroke();
       });
     }
     function drawNight(dk, hf, t) {
@@ -898,13 +975,23 @@ Stories.City = (() => {
       });
       ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
     }
+    // ⚡ avatar bir kez yuvarlak köşeli küçük tuvale kırpılır (her karede clip + kırpma yok); foto yüklenince yenisi yapılır
+    const thumbs = new Map(), TS = 96;
+    function thumbOf(c, photo) {
+      const im = imgOf(photo), key = im ? photo : `${(c.name || '?').charAt(0)}|${(c.colors || []).join()}`;
+      let t = thumbs.get(key);
+      if (t) return t;
+      t = document.createElement('canvas'); t.width = t.height = TS;
+      const g = t.getContext('2d');
+      g.beginPath(); if (g.roundRect) g.roundRect(0, 0, TS, TS, TS * .3); else g.rect(0, 0, TS, TS); g.clip();
+      if (im) { const r = Math.min(im.naturalWidth, im.naturalHeight); g.drawImage(im, (im.naturalWidth - r) / 2, (im.naturalHeight - r) * .2, r, r, 0, 0, TS, TS); }
+      else { const gr = g.createLinearGradient(0, 0, TS, TS), cl = c.colors || ['#a65ebb', '#d77baf']; gr.addColorStop(0, cl[0]); gr.addColorStop(1, cl[1]); g.fillStyle = gr; g.fillRect(0, 0, TS, TS); g.fillStyle = '#fff'; g.font = `bold ${TS / 2}px Nunito,sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText((c.name || '?').charAt(0).toLocaleUpperCase('tr'), TS / 2, TS / 2 + 2); }
+      thumbs.set(key, t);
+      return t;
+    }
     function drawSquare(x, y, s, c, photo, border, bw) {
       ctx.fillStyle = 'rgba(0,0,0,.28)'; rr(x - s / 2 + 3, y - s / 2 + 4, s, s, 6); ctx.fill();
-      ctx.save(); rr(x - s / 2, y - s / 2, s, s, 6); ctx.clip();
-      const im = imgOf(photo);
-      if (im) { const r = Math.min(im.naturalWidth, im.naturalHeight); ctx.drawImage(im, (im.naturalWidth - r) / 2, (im.naturalHeight - r) * .2, r, r, x - s / 2, y - s / 2, s, s); }
-      else { const g = ctx.createLinearGradient(x - s / 2, y - s / 2, x + s / 2, y + s / 2), cl = c.colors || ['#a65ebb', '#d77baf']; g.addColorStop(0, cl[0]); g.addColorStop(1, cl[1]); ctx.fillStyle = g; ctx.fillRect(x - s / 2, y - s / 2, s, s); ctx.fillStyle = '#fff'; ctx.font = `bold ${Math.round(s * .5)}px Nunito,sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText((c.name || '?').charAt(0).toLocaleUpperCase('tr'), x, y + 1); }
-      ctx.restore();
+      ctx.drawImage(thumbOf(c, photo), x - s / 2, y - s / 2, s, s);
       ctx.strokeStyle = border; ctx.lineWidth = bw; rr(x - s / 2, y - s / 2, s, s, 6); ctx.stroke();
     }
     const emoOf = s => { const m = String(s || '').match(/\p{Extended_Pictographic}/gu); return m ? m[m.length - 1] : ''; };
@@ -922,6 +1009,8 @@ Stories.City = (() => {
         if (a.st !== 'walk' && a.w) { ctx.font = `10px ${EMO}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(emoOf(a.w.doing), a.x + CS / 2, a.y - CS / 2); }
         if (lbl) nameTag(shownName(a) || '❔', a.x, a.y + CS / 2 + 9 * tagK());
       });
+      drawLaf();
+      if (me.taxi) { drawTaxi(); return; }
       const u = api.user(), bob = me.path ? Math.abs(Math.sin(t * 9)) * 1.5 : 0;
       ctx.strokeStyle = 'rgba(255,61,139,.6)'; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(me.x, me.y, CS * .75 + (t * 10) % 7, 0, Math.PI * 2); ctx.stroke();
       drawSquare(me.x, me.y - bob, CS + 3, { name: u.name || 'Sen', colors: u.colors || ['#0089c4', '#c2185b'] }, u.photo, '#ff3d8b', 3);
@@ -1103,10 +1192,14 @@ Stories.City = (() => {
           else if (tNow > a.idle) { a.path = [areaPt(plOf(a.k), [a.x, a.y])]; a.pi = 0; }
         }
       });
-      [...cars, ...peds].forEach(o => {
-        if (follow(o, o.sp * dt)) newTrip(o);
-        let d = o.a - o.sa; d = Math.atan2(Math.sin(d), Math.cos(d)); o.sa += d * Math.min(1, dt * 8);
-      });
+      routeLeft = ROUTE_N;
+      for (const o of movers) {
+        if (o.pi >= o.path.length) { if (routeLeft > 0) { routeLeft--; newTrip(o); } continue; }
+        follow(o, o.sp * dt);
+        if (o.car) { let d = o.a - o.sa; d = Math.atan2(Math.sin(d), Math.cos(d)); o.sa += d * Math.min(1, dt * 8); }
+      }
+      stepTaxi(dt);
+      lafStep();
       if (me.path && follow(me, 95 * dt)) {
         me.path = null;
         const k = me.dest && me.dest.k, ch2 = me.chase;
@@ -1215,6 +1308,8 @@ Stories.City = (() => {
     // yol dışına dokunduysan: hedefe bina olmadan düz gidilebilen en yakın düğümden oraya; yoksa en yakın düğümde durur
     // gap: hedefin üstüne değil, bu kadar önünde dur (birinin yanına giderken)
     function walkTo(x, y, k, gap) {
+      if (me.taxi) return;
+      if (taxi && taxi.st === 'come') { taxiGo(); api.notify(tr('🚕 Taksi iptal'), '🚕'); }
       const a = !me.path && me.node != null ? me.node : wd.nearest(me.x, me.y);
       let b = wd.nearest(x, y), leg = false;
       if (!k && !wd.inSea(x, y) && !wd.solid(x, y)) {
@@ -1244,6 +1339,7 @@ Stories.City = (() => {
     }
     function onTap(x, y) {
       if (talk) return;
+      if (me.taxi) { api.notify(tr('🚕 Taksidesin, varınca inersin'), '🚕'); return; }
       const hit = ag.filter(a => a.st !== 'in').find(a => Math.abs(a.x - x) < CS / 2 + 8 && Math.abs(a.y - y) < CS / 2 + 8);
       if (hit) { if (me.chase && me.chase !== hit) { me.chase.hold = false; me.chase = null; me.path = null; me.dest = null; } openChar(hit); return; }
       const bl = wd.bills.find(b => Math.abs(b.x - x) < 80 && Math.abs(b.y - y) < 80 && inRect({ ...b, w: b.w + 12, d: b.d + 12 }, x, y));
@@ -1276,6 +1372,7 @@ Stories.City = (() => {
     let held = null;
     function release() { if (held && !(talk && talk.a === held) && me.chase !== held) held.hold = false; held = null; }
     function holdA(a) { if (held !== a) release(); a.hold = true; held = a; }
+    const taxiBtn = (b, k) => (!inside && !me.taxi && Math.hypot(b.x - me.x, b.y - me.y) > 450 ? `<button type="button" class="btn ghost sm" data-taxi="${k}">🚕 Taksiyle git</button>` : '');
     function openCard(k) {
       const b = PL[k] || wd.FM[k];
       if (!b) return;
@@ -1283,7 +1380,7 @@ Stories.City = (() => {
       sel = k;
       if (!PL[k]) {
         card.innerHTML = `<button type="button" class="ct-x" data-x aria-label="Kapat">✕</button><h3>${b.ic} ${esc(b.n)}</h3><p>${ZONE_N[b.z]}</p>
-          <div class="ct-acts"><button type="button" class="btn sm" data-enter="${k}">🚪 İçeri gir</button><button type="button" class="btn ghost sm" data-walk="${k}">🚶 Buraya yürü</button></div>`;
+          <div class="ct-acts"><button type="button" class="btn sm" data-enter="${k}">🚪 İçeri gir</button><button type="button" class="btn ghost sm" data-walk="${k}">🚶 Buraya yürü</button>${taxiBtn(b, k)}</div>`;
         card.hidden = false;
         return;
       }
@@ -1291,7 +1388,7 @@ Stories.City = (() => {
       let home = '';
       if (/^ev\d|^apt$/.test(k)) {
         const hs = homes.hs.filter(x => x.k === k), fn = c => esc(c.name.split(' ')[0]);
-        const line = x => `${k === 'apt' ? `<b>🚪 Daire ${x.flat}</b> · ` : ''}${x.koca ? `💍 ${fn(x.m[0])} kocasıyla yaşıyor` : x.m.length === 1 ? `🧍 ${fn(x.m[0])} tek yaşıyor` : `👭 Ev arkadaşları: ${x.m.map(fn).join(', ')}`}`;
+        const line = x => `${k === 'apt' ? `<b>🚪 Daire ${x.flat}</b> · ` : ''}${x.koca ? `💍 ${fn(x.m[0])} kocasıyla yaşıyor` : x.mate ? `👭 ${fn(x.m[0])} ev arkadaşıyla yaşıyor` : x.m.length === 1 ? `🧍 ${fn(x.m[0])} tek yaşıyor` : `👭 Ev arkadaşları: ${x.m.map(fn).join(', ')}`}`;
         home = hs.length ? `<ul class="ct-ul">${hs.map(x => `<li>${line(x)}</li>`).join('')}</ul>` : '<p>🪧 Boş ev · satılık</p>';
       }
       const ev = evAt(k, lastH), evLater = !ev && evDay.find(e => e.k === k && e.h[0] > lastH);
@@ -1299,7 +1396,7 @@ Stories.City = (() => {
         <h3>${b.ic} ${esc(b.n)} <small>· ${hh()} · ${here.length} kişi</small></h3>${home}
         ${ev ? `<p class="ct-ev">🎉 Şimdi: ${ev.ic} ${esc(ev.n)} · tavlama şansı yüksek</p>` : evLater ? `<p class="ct-ev soon">🗓️ ${String(evLater.h[0] % 24).padStart(2, '0')}:00 · ${evLater.ic} ${esc(evLater.n)}</p>` : ''}
         ${b.mine ? '<p>🏡 Burası senin evin. İçeri girebilir ya da tanıdığın birini davet edebilirsin; sohbet evinde başlar.</p>' : ''}
-        <div class="ct-acts">${b.area ? '' : `<button type="button" class="btn sm" data-enter="${k}">${b.party ? '🎉 Partiye katıl' : '🚪 İçeri gir'}</button>`}${b.mine ? '<button type="button" class="btn sm" data-invite>💌 Eve davet et</button>' : ''}<button type="button" class="btn ghost sm" data-walk="${k}">🚶 Buraya yürü</button>${b.s && !b.party ?`<a class="btn ghost sm" href="${b.s}">🌐 Siteye git <b>${esc(b.sn)}</b></a>` : ''}</div>
+        <div class="ct-acts">${b.area ? '' : `<button type="button" class="btn sm" data-enter="${k}">${b.party ? '🎉 Partiye katıl' : '🚪 İçeri gir'}</button>`}${b.mine ? '<button type="button" class="btn sm" data-invite>💌 Eve davet et</button>' : ''}<button type="button" class="btn ghost sm" data-walk="${k}">🚶 Buraya yürü</button>${taxiBtn(b, k)}${b.s && !b.party ?`<a class="btn ghost sm" href="${b.s}">🌐 Siteye git <b>${esc(b.sn)}</b></a>` : ''}</div>
         ${here.length ? `<div class="ct-list">${here.map(row).join('')}</div>` : home ? '' : '<p>Şu an burada kimse yok.</p>'}
         ${coming.length ? `<p class="ct-coming">🚶 Yolda: ${coming.map(a => shownName(a) ? esc(first(a)) : '❔').join(', ')}</p>` : ''}`;
       card.hidden = false;
@@ -1330,7 +1427,8 @@ Stories.City = (() => {
         <div class="ct-list">${row(a).replace('data-ag', 'data-noop')}</div>
         <div class="ct-chips"><em>${TIER[tier].l}</em>${st && tier !== 'yeni' ? `<em>${st.l}</em>` : ''}${far ? '<em class="far">🔭 Uzakta · durduramazsın</em>' : '<em class="stop">✋ Durdu, seni bekliyor</em>'}</div>
         <p>${where}${m.ilgi ? ` · 💗 ${Math.round(m.ilgi)}` : ''}${cool ? ' · 😒 Seninle konuşmak istemiyor' : ''}</p>
-        <div class="ct-acts">${direct ? `<button type="button" class="btn sm" data-direct="${esc(a.id)}">💬 Sohbete geç</button>` : ''}<button type="button" class="btn ${direct ? 'ghost ' : ''}sm" data-talk="${esc(a.id)}"${cool ? ' disabled' : ''}>${far ? '🏃 Peşinden git' : '🗣️ Ayaküstü konuş'}</button>${a.str || direct ? '' : `<button type="button" class="btn ghost sm" data-ccc="${esc(a.id)}"${w.nurse ? ' data-ccn="1"' : ''}>💬 Mesaj at</button>`}${far || inside ? '' : `<button type="button" class="btn ghost sm" data-near="${esc(a.id)}">🚶 Yanına git</button>`}</div>`;
+        ${lafRecent(a) ? `<p class="ct-ev">📣 “${esc(a.lafTxt)}” · karşılık verirsen 💗 +${LAF_I}</p>` : ''}
+        <div class="ct-acts">${direct ? `<button type="button" class="btn sm" data-direct="${esc(a.id)}">💬 Sohbete geç</button>` : ''}<button type="button" class="btn ${direct && !lafRecent(a) ? 'ghost ' : ''}sm" data-talk="${esc(a.id)}"${cool ? ' disabled' : ''}>${far ? '🏃 Peşinden git' : lafRecent(a) ? '😏 Karşılık ver' : '🗣️ Ayaküstü konuş'}</button>${a.str || direct ? '' : `<button type="button" class="btn ghost sm" data-ccc="${esc(a.id)}"${w.nurse ? ' data-ccn="1"' : ''}>💬 Mesaj at</button>`}${far || inside ? '' : `<button type="button" class="btn ghost sm" data-near="${esc(a.id)}">🚶 Yanına git</button>`}</div>`;
       card.hidden = false;
     }
     // 💬 tanıdığına doğrudan: sohbetine mekân kartı + onun selamıyla geçilir
@@ -1361,6 +1459,46 @@ Stories.City = (() => {
       if (inside || distTo(a) < 110) startTalk(a);
       else { me.tries = 0; chase(a); api.notify(`${shownName(a) || tr('Yabancı kız')} ${tr(a.hold ? 'seni bekliyor' : '· peşinden gidiyorsun')}`, a.hold ? '✋' : '🏃'); }
     }
+    // 📣 laf: 5–12 sn'de bir yakındaki (LAF_R) bir karakter %55 (gece / etkinlikte daha sık) şansla laf atar; aynı kişi 60 sn'de bir
+    let lafNext = 4000;
+    const lafRecent = a => a.lafT && tNow - a.lafT < 30000;
+    function lafLine(a) {
+      const tier = tierOf(a), st = styleOf(a), h = hourOf(), ev = evAt(a.k, lastH), g = (api.user() || {}).gender;
+      const pools = [LAF[tier] || LAF.yeni];
+      if (st && LAF_ST[st]) pools.push(LAF_ST[st]);
+      if (h >= 20 || h < 4 || NIGHT_PL.includes(a.k)) pools.push(LAF_NIGHT);
+      if (!a.str && api.rel(a.c).wed) pools.push(LAF_WED);
+      if (ev) pools.push([`${ev.ic} ${ev.n} başladı, gelsene! 😄`]);
+      const s = pickA(pickA(pools));
+      return g === '♀' || g === '⚧♀' ? s.replace(/yakışıklı/g, 'güzelim') : s;
+    }
+    function lafStep() {
+      if (inside || talk || me.taxi || tNow < lafNext) return;
+      lafNext = tNow + 5000 + Math.random() * 7000;
+      const h = hourOf(), p = .55 + (h >= 20 || h < 4 ? .2 : 0) + (evNow(h).length ? .1 : 0);
+      if (Math.random() > p) return;
+      const near = ag.filter(a => a.st !== 'in' && !a.hold && !(a.lafT && tNow - a.lafT < 60000) && !((met[a.id] || {}).cool > Date.now()) && (d => d > 25 && d < LAF_R)(distTo(a)));
+      if (!near.length) return;
+      const a = pickA(near);
+      a.lafT = tNow; a.lafTxt = lafLine(a);
+    }
+    function drawLaf() {
+      const k = tagK();
+      ctx.font = `700 ${11 * k}px Nunito,${EMO}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ag.forEach(a => {
+        const age = a.lafT ? tNow - a.lafT : 1e9;
+        if (age > 5500 || a.st === 'in' || !vis(a.x, a.y, 120)) return;
+        const s = tr(a.lafTxt), w = ctx.measureText(s).width + 16 * k, h2 = 20 * k, x = a.x, y = a.y - CS / 2 - 8 * k, pop = Math.min(1, age / 180);
+        ctx.globalAlpha = Math.min(1, (5500 - age) / 600);
+        ctx.save(); ctx.translate(x, y); ctx.scale(pop, pop);
+        ctx.fillStyle = '#fff'; rr(-w / 2, -h2, w, h2, 9 * k); ctx.fill();
+        ctx.beginPath(); ctx.moveTo(-5 * k, -1); ctx.lineTo(0, 6 * k); ctx.lineTo(5 * k, -1); ctx.closePath(); ctx.fill();
+        ctx.strokeStyle = '#ff3d8b'; ctx.lineWidth = 1.5 * k; rr(-w / 2, -h2, w, h2, 9 * k); ctx.stroke();
+        ctx.fillStyle = '#2a1636'; ctx.fillText(s, 0, -h2 / 2 + .5 * k);
+        ctx.restore();
+      });
+      ctx.globalAlpha = 1;
+    }
     // tarz cümlesi %65, yoksa genel havuz
     const lineOf = (own, gen) => own && own.length && Math.random() < .65 ? pickA(own) : pickA(gen);
     function startTalk(a) {
@@ -1370,7 +1508,9 @@ Stories.City = (() => {
       talk = { a, tier, TI, st, ev, wed, known: tier !== 'yeni', last: '', bad: 0, log: [], done: '', wait: false,
         ilgi: Math.max(5, Math.min(90, TI.i + (st ? st.i : 0) + (tier === 'tanis' ? (m.ilgi || 0) * .3 : 0) + (ev ? 6 : 0))),
         mood: (hash(a.id + ':' + day) % 35 - 15) / 100, named: !a.str || !!m.n };
-      talk.log.push(['her', lineOf(st && st.hi, TI.hi || (tier === 'yeni' ? TK.hi : TK.hiK))]);
+      // 📣 sana laf attıysa konuşma o sözle ve daha yüksek ilgiyle başlar
+      if (lafRecent(a)) { talk.ilgi = Math.min(90, talk.ilgi + LAF_I); talk.log.push(['her', a.lafTxt]); a.lafT = 0; }
+      else talk.log.push(['her', lineOf(st && st.hi, TI.hi || (tier === 'yeni' ? TK.hi : TK.hiK))]);
       follow0 = true;
       drawTalk();
     }
@@ -1462,6 +1602,8 @@ Stories.City = (() => {
       if (t.closest('[data-noop]')) { e.preventDefault(); return; }
       const tk = t.closest('[data-talk]');
       if (tk) { const a = ag.find(x => x.id === tk.dataset.talk); if (a) wantTalk(a); return; }
+      const tx = t.closest('[data-taxi]');
+      if (tx) { callTaxi(tx.dataset.taxi); return; }
       const wk = t.closest('[data-walk]');
       if (wk) { const k = wk.dataset.walk, p = PL[k] || wd.FM[k]; walkTo(p.x, p.y, k); follow0 = true; card.hidden = true; return; }
       const nr = t.closest('[data-near]');
@@ -1481,5 +1623,5 @@ Stories.City = (() => {
     requestAnimationFrame(n => { t0 = n; requestAnimationFrame(frame); });
   }
   // 📚 Şehir Kitabı tabloları canlı veriden okur
-  return { mount, world, BLD, AREAS, EVENTS, STYLE, STYLE_OF, TIER, STOP_R };
+  return { mount, world, BLD, AREAS, EVENTS, STYLE, STYLE_OF, TIER, STOP_R, LAF_R, LAF_I };
 })();

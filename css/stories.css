@@ -2115,19 +2115,17 @@ summary.lab-h { cursor: pointer; }
 /* 🖼️ ilan fotoğrafları arasında geçiş */
 .home-land img.hl-fade { opacity: 0; transition: opacity 1.2s ease; }
 .home-land img.hl-fade.on { opacity: 1; }
-/* 🔥🐝🫦 slogan kartı şeklindeki Tinder / Bumble / Fans */
-.home-land .hl-mh { margin-top: 0; margin-bottom: 16px; }
-.hl-mh > small i, .hl-mh .hl-night-t small i { font-style: normal; }
-.hl-mh .hl-night-t i { font-style: normal; }
-.hl-mh-tr { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
-.hl-mh-tr em { font-style: normal; font-size: 10.5px; font-weight: 800; padding: 2px 7px; border-radius: 999px; background: rgba(255, 255, 255, .18); }
-.hl-mh .fn-new { font-style: normal; }
-.hl-mh { padding: 12px 12px 10px; }
-.hl-mh h2 { margin: 4px 0 2px; font-size: clamp(19px, 5vw, 25px); }
-.hl-mh p { margin-bottom: 10px; font-size: 12.5px; }
-.hl-mh .hl-night { padding: 6px; gap: 10px; }
-.hl-mh .hl-night-pic { width: 56px; height: 70px; }
-.hl-mh .hl-night-t b { font-size: 15px; }
+/* 🔥🐝🫦 ilan vitrini gibi yan yana 3'lü Tinder / Bumble / Fans */
+.hl-vt-grid.hl-mh-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: auto; gap: 8px; margin-bottom: 16px; }
+.hl-mh-grid .hl-vt { grid-row: auto; aspect-ratio: 3 / 4.4; }
+.hl-mh-grid .hl-vt-site i { font-style: normal; }
+.hl-mh-grid .hl-vt-site, .hl-mh-grid .hl-vt-tag { font-size: 9px; padding: 2px 5px; max-width: calc(100% - 16px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hl-mh-grid .hl-vt-tag { top: 30px; left: 8px; right: auto; }
+.hl-mh-grid .hl-cm-txt { padding: 8px; }
+.hl-mh-grid .hl-cm-txt b { font-size: 13px; }
+.hl-mh-grid .hl-cm-txt small { font-size: 10.5px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+html:not([data-skin]) .home-land .hl-mh-grid .hl-vt-site { background: var(--vt); }
+@media (min-width: 640px) { .hl-mh-grid .hl-vt-site, .hl-mh-grid .hl-vt-tag { font-size: 10px; } .hl-mh-grid .hl-cm-txt b { font-size: 15px; } .hl-mh-grid .hl-cm-txt small { font-size: 11.5px; } }
 /* 🗣️ kendini tanıtan ilan */
 .hl-pitch { display: grid; grid-template-columns: 42% 1fr; min-height: 240px; margin: 18px 10px 0; border-radius: 22px; overflow: hidden; color: #fff; text-decoration: none; background: var(--pg);
   box-shadow: 0 14px 30px rgba(74, 13, 42, .28); animation: hlIn .5s both; transition: transform .25s; }
