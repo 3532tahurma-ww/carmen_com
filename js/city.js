@@ -75,7 +75,7 @@ Stories.City = (() => {
     { k: 'magaza', n: 'AVM', ic: '🛍️', x: 885, y: 1000, w: 100, h: 70, c: '#ec6fa0', t: 'duz', s: '#/shop', sn: 'CarmenShop' },
     { k: 'masaj', n: 'Masaj Salonu', ic: '💆', x: 900, y: 1440, w: 104, h: 66, c: '#f08bb0', t: 'duz', s: '#/masaj', sn: 'CarmenMassage' },
     { k: 'pub', n: 'Pub', ic: '🍺', x: 1880, y: 965, w: 90, h: 70, c: '#b8862e', t: 'duz', fx: 'neon', glow: '#ffcc55' },
-    { k: 'kulup', n: 'Gece Kulübü', ic: '🪩', x: 1935, y: 1150, w: 116, h: 76, c: '#5e35b1', t: 'duz', fx: 'beams', glow: '#c77dff', s: '#/parti', sn: 'CarmenParty' },
+    { k: 'kulup', n: 'Gece Kulübü', ic: '🪩', x: 1935, y: 1150, w: 116, h: 76, c: '#5e35b1', t: 'duz', fx: 'beams', glow: '#c77dff', s: '#/parti', sn: 'CarmenParty', party: 1 },
     { k: 'gazino', n: 'Gazino', ic: '🎰', x: 2235, y: 960, w: 140, h: 104, c: '#b8902a', t: 'duz', fx: 'bulbs', glow: '#ffd54f', s: '#/gasino', sn: 'CarmenGasino' },
     { k: 'sinema', n: 'Sinema', ic: '🍿', x: 2135, y: 625, w: 104, h: 76, c: '#a33a4a', t: 'duz', fx: 'bulbs', glow: '#ff8a80', s: '#/flix', sn: 'CarmenFlix' },
     { k: 'otel', n: 'Otel', ic: '🏨', x: 2350, y: 1150, w: 104, h: 116, c: '#e9e2d0', t: 'kule', fx: 'pool', s: '#/otel', sn: 'CarmenStay' },
@@ -975,8 +975,16 @@ Stories.City = (() => {
       [me.x, me.y] = doorOf(k); me.node = null;
       exitBtn.hidden = false; root.querySelector('.ct-side').style.display = 'none';
       api.notify(`${p.ic} ${tr(p.n)} · ${tr('içeridesin')}`, '🚪');
+      if (p.party && api.party) openParty();
     }
-    function exitB() { if (talk) endTalk(); closeCard(); inside = null; exitBtn.hidden = true; root.querySelector('.ct-side').style.display = ''; follow0 = true; }
+    // 🎉 kulüpte parti paneli: dans eden kartlar şehrin üstünde açılır, ✕ kulüpten çıkarır
+    function openParty() {
+      let box = root.querySelector('.ct-party');
+      if (!box) { box = document.createElement('div'); box.className = 'ct-party'; root.appendChild(box); }
+      box.onclick = e => { if (e.target.closest('[data-ptclose]')) { box.remove(); exitB(); } };
+      api.party(box);
+    }
+    function exitB() {if (talk) endTalk(); closeCard(); inside = null; exitBtn.hidden = true; root.querySelector('.ct-side').style.display = ''; follow0 = true; }
     exitBtn.onclick = exitB;    const inAgents = () => inside ? ag.filter(a => a.k === inside.k && (a.st === 'in' || (talk && talk.a === a && a.st !== 'walk'))) : [];
     const inBlocked = (x, y) => inside.L.it.some(([, ix, iy, w, h]) => x > ix - 8 && x < ix + w + 8 && y > iy - 8 && y < iy + h + 8);
     // 🧭 odada yürüme: duvar içi + mobilya dışı; gidilemeyen yere dokununca en yakın boş nokta, düz gidilemiyorsa bir ara noktadan dolaş
@@ -1291,7 +1299,7 @@ Stories.City = (() => {
         <h3>${b.ic} ${esc(b.n)} <small>· ${hh()} · ${here.length} kişi</small></h3>${home}
         ${ev ? `<p class="ct-ev">🎉 Şimdi: ${ev.ic} ${esc(ev.n)} · tavlama şansı yüksek</p>` : evLater ? `<p class="ct-ev soon">🗓️ ${String(evLater.h[0] % 24).padStart(2, '0')}:00 · ${evLater.ic} ${esc(evLater.n)}</p>` : ''}
         ${b.mine ? '<p>🏡 Burası senin evin. İçeri girebilir ya da tanıdığın birini davet edebilirsin; sohbet evinde başlar.</p>' : ''}
-        <div class="ct-acts">${b.area ? '' : `<button type="button" class="btn sm" data-enter="${k}">🚪 İçeri gir</button>`}${b.mine ? '<button type="button" class="btn sm" data-invite>💌 Eve davet et</button>' : ''}<button type="button" class="btn ghost sm" data-walk="${k}">🚶 Buraya yürü</button>${b.s ? `<a class="btn ghost sm" href="${b.s}">🌐 Siteye git <b>${esc(b.sn)}</b></a>` : ''}</div>
+        <div class="ct-acts">${b.area ? '' : `<button type="button" class="btn sm" data-enter="${k}">${b.party ? '🎉 Partiye katıl' : '🚪 İçeri gir'}</button>`}${b.mine ? '<button type="button" class="btn sm" data-invite>💌 Eve davet et</button>' : ''}<button type="button" class="btn ghost sm" data-walk="${k}">🚶 Buraya yürü</button>${b.s && !b.party ?`<a class="btn ghost sm" href="${b.s}">🌐 Siteye git <b>${esc(b.sn)}</b></a>` : ''}</div>
         ${here.length ? `<div class="ct-list">${here.map(row).join('')}</div>` : home ? '' : '<p>Şu an burada kimse yok.</p>'}
         ${coming.length ? `<p class="ct-coming">🚶 Yolda: ${coming.map(a => shownName(a) ? esc(first(a)) : '❔').join(', ')}</p>` : ''}`;
       card.hidden = false;

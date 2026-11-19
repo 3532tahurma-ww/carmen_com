@@ -1442,7 +1442,7 @@ Stories.I18n.add({
   'üstteki yuvarlaklar (çevrimiçi olanlar). Her kişinin 2–4 karelik hikayesi var; üstteki çubuklar o kişinin kareleri. Dokunarak ileri / geri, bitince sıradaki kişi; izlediklerinin halkası griye döner.': 'the circles at the top (those online). Each has a 2–4 frame story; the bars at the top are her frames. Tap for forward / back, then the next person; watched rings turn gray.',
   'Yanıt yaz': 'Write a reply',
   'sohbet açılır.': 'a chat opens.',
-  'bütün hesapların gönderileri karışık ızgarada (gün boyu aynı sıra). Üstteki kutuyla isim, şehir ya da meslek ara.': 'all accounts\' posts in a mixed grid (same order all day). Search name, city or job in the top box.',
+  'bütün hesapların gönderileri karışık ızgarada (her açılışta rastgele sıra). Üstteki kutuyla isim, şehir ya da meslek ara.': 'all accounts\' posts in a mixed grid (random order on every visit). Search name, city or job in the top box.',
   'gönderiden ya da profilden sohbete geçer.': 'moves to chat from a post or profile.',
   'Sohbetten gelen gönderiler': 'Posts from chat',
   'kayıtlı karakterin ilk gönderisi yaşadıklarına göre değişir: hamileyse "{w}. hafta 🤰", son iki günde sevişme olduysa "Dün gece hiç uyumadım 😴🔥", Kıskançlık yüksekse sitem, Aşk yüksekse "Biri beni çok mutlu ediyor 🥰".': 'a saved character\'s first post changes by what you lived: pregnant "Week {w} 🤰", sex in the last two days "Didn\'t sleep at all last night 😴🔥", high Jealousy a reproach, high Love "Someone makes me very happy 🥰".',
