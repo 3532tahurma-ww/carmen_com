@@ -1486,6 +1486,10 @@ button.cs-cond { border: 0; cursor: pointer; }
 .chat-light .st-bool { background: rgba(20, 40, 80, .07); }
 .chat-light .st-bool.on { background: var(--pink); color: #fff; }
 .chat-light .st-tr { background: var(--purple-soft); color: #075f87; }
+/* 📰 durum notu (stateStep): kesinti gibi .sys; dokununca 📊 durum kartı yanıp söner */
+.st-sys { cursor: pointer; }
+.st-card.st-flash { animation: stFlash .9s ease-out; }
+@keyframes stFlash { 0% { box-shadow: 0 0 0 3px var(--pink); } 100% { box-shadow: 0 0 0 0 transparent; } }
 .chat-light .st-card .pv-bar { background: rgba(20, 40, 80, .07); }
 .chat-head .st-btn { font-size: 17px; opacity: .6; }
 .chat-head .st-btn.on { opacity: 1; }

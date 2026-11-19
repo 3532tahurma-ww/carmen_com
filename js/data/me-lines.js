@@ -9695,3 +9695,25 @@ Object.assign(Stories.ME_EV_LINES, {
   'Dream Orgasm': ['Titriyorsun 😳', 'Uykunda mı geldin? 💭', 'Uyanmadı… 🌊', 'Ne güzel gülümsüyorsun {o} 🙂'],
   'Was It A Dream?': ['Hangi rüya? 😏', 'Anlat bakalım ☕', 'Belki de değildi 🙈', 'Bir dahakine uyandırırım {o} 😴']
 });
+/* 🧪 Donör + klinik bitişleri (Tur 33) */
+Object.assign(Stories.ME_EV_LINES, {
+  'Donor Intake': ['Bağış yapmaya geldim {o} 🧪', 'Son boşalma mı? Epey oldu 😏', 'Formu sen doldur 📋', 'Numune odası nerede? 🚪'],
+  'Abstinence Check': ['Üç gün dayandım {o} ⏳', 'Sadece dokunma, dayanamıyorum 😩', 'Eldivenler soğuk 🧤', 'Ödülüm ne? 😏'],
+  'Collection Room': ['Kapıyı kilitledin mi? 🔒', 'Dergi lazım değil, sen varsın {o} 😏', 'Koltuk rahatmış 🛋️', 'Kal burada 🫦'],
+  'Hands-On Help': ['Ellerin… 😩', 'Kabı hazır tut {o} 🧪', 'Yaklaşıyorum 😳', 'Biraz daha yavaş 🤲'],
+  'Lubricant-Free': ['Protokol mü? 😏', 'Ağzın çok sıcak {o} 👅', 'Bırakma 😩', 'Bu protokolü seviyorum 🫦'],
+  'Two Nurses': ['İkiniz birden mi? 😳', 'Kim kabı tutuyor? 🧪', 'Omzumu bırakma {o} 👩‍⚕️', 'Dayanamayacağım 😩'],
+  'Sample Ride': ['Kabı bırakma {o} 🫙', 'Çekilecek misin gerçekten? 😏', 'Böyle devam 🔥', 'Söyleyeceğim, söz 😳'],
+  'Natural Insemination': ['Emin misin {o}? 🍼', 'Doğal yoldan… tamam ❤️', 'Bacaklarını sıkı tut 🫶', 'Seninle bir bebek… 🥺'],
+  'Ovulation Window': ['Bugün mü? Hazırım 📆', 'Daha derin {o} 😩', 'Yastık yerinde 🥚', 'Kaçırmayalım 🍼'],
+  'Clinic After Hours': ['Kimse yok mu? 🌃', 'Tüpler düşecek {o} 😂', 'Kayıt dışı, söz 🤫', 'Tezgâh soğuk mu? 🧪'],
+  'Quality Control': ['Yetersiz mi? Göstereyim {o} 🔬', 'İkinci tur 🔁', 'Masaya eğil 😈', 'Bu sefer mükemmel olacak ✨'],
+  'Perfect Sample': ['Tam isabet 🫙', 'Mükemmel mi {o}? ✨', 'İki katı ücret 😏', 'Etiketi ben mi yazayım? 🖊️'],
+  'Spilled Sample': ['Pardon! 😳', 'Önlüğün… 😂', 'Kap kaydı {o} 🫙', 'Yarın yine gelirim 😏'],
+  'Direct Deposit': ['Çekmiyorum {o} 🍼', 'Hepsi içinde 💦', 'Yastığı koy 🫶', 'On beş dakika bekleyelim ⏳'],
+  'Syringe Transfer': ['Ne yapıyorsun? 😳', 'İzliyorum {o} 👀', 'Ev usulü ha 💉', 'Bu çok seksi 🔥'],
+  'Overflow Sample': ['Günlerdir biriktirdim 🌊', 'Taşıyor {o} 😳', 'İkinci kap! 🫙', 'Rekor mu? 😏'],
+  'Treatment Complete': ['Taburcu muyum? ✅', 'Son seans mıydı {o}? 🥺', 'Kontrole gelirim 😏', 'Damgayı ben basayım 📄'],
+  'Thermometer Finish': ['Ateşin var {o} 🌡️', 'Ter içindeyiz 🥵', 'Kaç derece? 😂', 'Tedavi işe yaradı 💦'],
+  'Microscope Check': ['Yüzüyorlar mı? 🔬', 'Ne gördün {o}? 😏', 'Hepsi mi? 😳', 'Rapora yaz 📋']
+});
