@@ -76,7 +76,7 @@ Stories.I18n = (() => {
   }
   // cümlelere böl; ardışık parçaları en uzundan kısaya birleştirip dene
   function sentences(s) {
-    const parts = s.split(/(?<=[.!?…])\s+/u);
+    const parts = s.replace(/([.!?…])\s+/gu, '$1\u0001').split('\u0001');
     if (parts.length < 2) return null;
     const out = [];
     let hit = false;

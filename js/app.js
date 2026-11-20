@@ -4451,7 +4451,7 @@
   function phCard(x, title) {
     if (!document.getElementById('tphCss')) document.head.insertAdjacentHTML('beforeend', `<style id="tphCss">${PH_CSS}</style>`);
     const P = PT(), k = P.kinds[x.k] || {}, pl = P.places.find(p => p.id === x.pl) || {};
-    return `<div class="tph"><div class="tph-ph"><span>${esc(k.ic || '📸')}</span><em>${'🔥'.repeat(x.lv || 1)}</em><small>📷 ${esc(pl.ic || '')} ${esc(pl.n || 'Fotoğraf')}</small></div><b class="tph-t">${esc(title || x.t)}</b><p class="tph-d">${String(x.d || '').split(/(?<=[.!?])\s+/).map(s => `<span>${esc(s)}</span>`).join(' ')}</p></div>`;
+    return `<div class="tph"><div class="tph-ph"><span>${esc(k.ic || '📸')}</span><em>${'🔥'.repeat(x.lv || 1)}</em><small>📷 ${esc(pl.ic || '')} ${esc(pl.n || 'Fotoğraf')}</small></div><b class="tph-t">${esc(title || x.t)}</b><p class="tph-d">${String(x.d || '').replace(/([.!?])\s+/g, '$1\u0001').split('\u0001').map(s => `<span>${esc(s)}</span>`).join(' ')}</p></div>`;
   }
   /* 🖼️ gönderinin "karede ne var" anlatımı (Stories.PHOTO_TXT, karaktere sabit): tür "ne yapıyorum" satırından (göğüs, kalça, duş…),
    * yoksa sabit rastgele; ilk (ücretsiz) gönderi 🔥, diğerleri 1–3. Satırda ayna geçiyorsa aynalı mekan */
@@ -4461,7 +4461,7 @@
     const ks = phKinds(phLow(act)), kind = ks.find(k => k !== 'ayna') || ks[0] || all[cmNum(c, key + 'k', all.length)], lv = free ? 1 : 1 + cmNum(c, key + 'lv', 3);
     return phMake(c, kind, lv, { seed: key, tag: ks.includes('ayna') && kind !== 'ayna' ? 'ayna' : '' }) || phMake(c, 'ayna', lv, { seed: key });
   }
-  const fnScnHtml = x => { const pl = PT().places.find(p => p.id === x.pl) || {}; return `<div class="fn-scn"><small>🖼️ ${esc(pl.ic || '')} ${esc(pl.n || '')} · ${'🔥'.repeat(x.lv || 1)}</small><b>${esc(x.t)}</b><p>${String(x.d || '').split(/(?<=[.!?])\s+/).map(s => `<span>${esc(s)}</span>`).join(' ')}</p></div>`; };
+  const fnScnHtml = x => { const pl = PT().places.find(p => p.id === x.pl) || {}; return `<div class="fn-scn"><small>🖼️ ${esc(pl.ic || '')} ${esc(pl.n || '')} · ${'🔥'.repeat(x.lv || 1)}</small><b>${esc(x.t)}</b><p>${String(x.d || '').replace(/([.!?])\s+/g, '$1\u0001').split('\u0001').map(s => `<span>${esc(s)}</span>`).join(' ')}</p></div>`; };
   // 🖼️ satın alınan foto seti: her kare ayrı anlatım (aynı kare tekrar gelmez, kareler bitince dekor / beden değişerek)
   function fnSetView(c, x) {
     const seen = [], cards = [];
@@ -31953,7 +31953,9 @@
             ${editOn() ? `<label class="flt-row"><span><b>🌿 Gerçekçi Mod</b> <small>Düzenleme modu kapalıyken hep açık</small></span><input type="checkbox" id="realOn"${realOn() ? ' checked' : ''}></label>` : ''}
             ${editOn() ? `<div class="sec-title">✨ Oluştur</div>
             <a class="btn primary block" href="#/create">✨ Karakter oluştur</a>
-            <a class="btn ghost block" href="#/kurallar" style="margin-top:8px">📏 Oluştur kuralları</a>` : ''}
+            <a class="btn ghost block" href="#/kurallar" style="margin-top:8px">📏 Oluştur kuralları</a>
+            <div class="sec-title">🔄 Fabrika ayarları</div>
+            <button type="button" class="btn ghost block" id="factoryReset" style="color:#ff2d55">🔄 Uygulamayı baştan başlat <small>(hesaplar, karakterler, sohbetler, ayarlar silinir)</small></button>` : ''}
           </div>
           <div class="card">
             <div class="sec-title no-i18n" style="margin-top:0">🌐 Language · Dil</div>
@@ -32197,6 +32199,17 @@
       ui.create = null;
       location.hash = '#/home';
       render();
+    };
+    const fr = $('#factoryReset');
+    if (fr) fr.onclick = async () => {
+      if (!confirm('Uygulama ilk açılış haline dönsün mü? Tüm hesaplar, karakterler, sohbetler ve ayarlar silinir. Bu geri alınamaz.')) return;
+      clearTimeout(saveT); saveT = 0;
+      Store.save = () => true;
+      try { Object.keys(localStorage).filter(k => k.startsWith('amor-stories')).forEach(k => localStorage.removeItem(k)); } catch (e) {}
+      try { sessionStorage.clear(); } catch (e) {}
+      try { if (window.caches) await Promise.all((await caches.keys()).map(k => caches.delete(k))); } catch (e) {}
+      try { if (navigator.serviceWorker) await Promise.all((await navigator.serviceWorker.getRegistrations()).map(r => r.unregister())); } catch (e) {}
+      location.replace(location.pathname);
     };
   }
 
