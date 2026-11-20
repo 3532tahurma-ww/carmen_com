@@ -15,6 +15,29 @@
     })();
   </script>
   <script>
+    // 🩺 açılışta bir hata olursa ekranda göster (telefonda konsol yok)
+    (function () {
+      var shown = 0;
+      function show(msg) {
+        if (shown++ > 4) return;
+        var b = document.getElementById('bootErr');
+        if (!b) {
+          b = document.createElement('pre'); b.id = 'bootErr';
+          b.style.cssText = 'position:fixed;left:8px;right:8px;bottom:8px;z-index:99999;max-height:45vh;overflow:auto;margin:0;padding:10px;background:#300;color:#fff;font:12px/1.4 monospace;white-space:pre-wrap;border-radius:8px';
+          (document.body || document.documentElement).appendChild(b);
+        }
+        b.textContent += (b.textContent ? '\n\n' : '⚠️ Hata (ekran görüntüsü alıp gönder):\n') + msg;
+      }
+      window.addEventListener('error', function (e) {
+        var t = e.target;
+        if (t && t !== window && (t.src || t.href)) { if (t.tagName === 'SCRIPT') show('Yüklenemedi: ' + t.src); return; }
+        show((e.message || 'Error') + '\n' + String(e.filename || '').split('/').pop() + ':' + e.lineno + ':' + e.colno);
+      }, true);
+      window.addEventListener('unhandledrejection', function (e) { show('Promise: ' + (e.reason && (e.reason.stack || e.reason.message) || e.reason)); });
+      window.__bootErr = show;
+    })();
+  </script>
+  <script>
     // 🌙 tema (Ben → Ayarlar): light | dark | auto (sistem); sayfa çizilmeden önce uygulanır, beyaz parlama olmaz
     (function () {
       var t = 'light';

@@ -60,6 +60,9 @@
     .bd.fb { background: var(--teal-soft); color: var(--teal); }
     .bd.tr { background: var(--amber-soft); color: var(--amber); }
     .bd.ch { background: var(--purple-soft); color: var(--purple); }
+    .bd.gf { background: rgba(240, 98, 146, .16); color: #d81b60; }
+    .bd.gm { background: rgba(66, 133, 244, .16); color: #1e66d0; }
+    .male-l { margin: 4px 0 0; padding-left: 18px; font-size: 12px; color: #1e66d0; }
 
     /* Orta: seçili kural */
     .detail { padding: 18px 22px 40px; }
@@ -139,6 +142,20 @@
     .side .res { margin-top: 10px; font-size: 13.5px; font-weight: 700; line-height: 1.6; }
     .ok { color: var(--teal); } .no { color: #e0334f; }
 
+    /* 🧪 Üret */
+    #vGen { grid-template-columns: 330px minmax(0, 1fr) 300px; }
+    @media (max-width: 1100px) { #vGen { grid-template-columns: 300px minmax(0, 1fr); } #vGen .side { display: none; } }
+    @media (max-width: 760px) { #vGen { grid-template-columns: 1fr; } #vGen .list { max-height: 40vh; } }
+    .gn-meta { color: var(--muted); font-weight: 700; font-size: 12.5px; }
+    .gn-bar { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 12px 0; }
+    .gn-n { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 800; color: #6f6f80; }
+    .gn-n input { width: 64px; height: 30px; border-radius: 10px; border: 1px solid var(--line); padding: 0 8px; font-weight: 800; }
+    .gn-c { display: flex; gap: 8px; align-items: center; padding: 3px 0; }
+    .gn-c.off .in { opacity: .45; }
+    .gn-c .bd { flex: none; font-size: 11px; font-weight: 900; padding: 2px 8px; border-radius: 999px; }
+    .gn-old { margin-top: 10px; }
+    .gn-old summary { cursor: pointer; font-weight: 800; color: #6f6f80; font-size: 13px; }
+
     .modal { position: fixed; inset: 0; z-index: 50; background: rgba(15, 8, 30, .45); display: flex; align-items: center; justify-content: center; padding: 16px; }
     .modal[hidden] { display: none; }
     .modal-box { background: #fff; border-radius: 20px; padding: 20px 22px; width: 100%; max-width: 480px; box-shadow: 0 20px 60px rgba(0, 0, 0, .3); }
@@ -159,6 +176,7 @@
       <button data-tab="groups">Kelime grupları <small id="nGroups"></small></button>
       <button data-tab="verbs">Fiiller <small id="nVerbs"></small></button>
       <button data-tab="sizes">🍆⏱️ Boyut · Dayanıklılık</button>
+      <button data-tab="gen">🧪 Üret</button>
     </nav>
     <span id="status"></span>
     <button class="btn" id="exportBtn" title="Kuralları, grupları ve fiilleri JSON olarak indir">⬇️ Dışa aktar</button>
@@ -192,6 +210,12 @@
           <option value="name">İsim</option>
           <option value="score">Özgüllük</option>
           <option value="new">Son eklenen</option>
+        </select>
+        <select id="gen" title="Cinsiyet: kimin profilinde çıkar">
+          <option value="">👫 Hepsi</option>
+          <option value="♂">♂ Erkek</option>
+          <option value="♀">♀ Kadın (lezbiyen)</option>
+          <option value="n">⚪ Ortak</option>
         </select>
         <div class="add"><button class="btn sm" id="addRule">+ Kural</button><button class="btn sm" id="addFb">+ Yedek cevap</button><button class="btn sm" id="enMiss" hidden>Sadece eksikler</button></div>
       </div>
@@ -277,6 +301,32 @@
     </aside>
   </div>
 
+  <!-- 🧪 Üret: seçili kuralın cevaplarından yeni cevaplar -->
+  <div class="view" id="vGen">
+    <aside class="list pane">
+      <div class="list-tools">
+        <input id="gnQ" type="search" placeholder="Kural ara…">
+        <select id="gnScope" title="Kapsam">
+          <option value="poz">🔥 Pozisyonlar</option>
+          <option value="soru">❓ Sorular</option>
+        </select>
+      </div>
+      <div id="gnList"></div>
+    </aside>
+    <section class="detail pane" id="gnOut"></section>
+    <aside class="side pane">
+      <h2>🧪 Nasıl çalışır?</h2>
+      <div class="help">
+        Seçili kuralın <b>kendi cevaplarından</b> yeni cevaplar üretir; başka kurallarla karıştırmaz, böylece olay ve kişilik tonu korunur.<br><br>
+        <b>Cümle karıştır</b>: bir cevabın başı + başka cevabın sonu.<br>
+        <b>Baloncuk karıştır</b>: ilk baloncuk + başka cevabın son baloncuğu (<code>||</code>).<br>
+        <b>Eş anlamlı</b>: <i>çok → aşırı</i> gibi kelime değişimi; <code>{…}</code> yer tutucularına dokunmaz.<br>
+        <b>Emoji değiştir</b>: sondaki emojiyi başka cevabınkiyle değiştirir.<br><br>
+        Satırları düzenleyebilirsin; işaretliler <b>✅</b> ile kurala eklenir, sonra <b>Kaydet</b>. İngilizce çevirileri <b>İngilizce kurallar</b> sekmesinde eksik olarak görünür.
+      </div>
+    </aside>
+  </div>
+
   <datalist id="traitList"></datalist>
   <datalist id="catList"></datalist>
   <datalist id="termList"></datalist>
@@ -299,7 +349,7 @@
     const uid = () => 'r_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
     const BOT = Stories.Bot;
     // + senin profil özelliklerin (uygulama Stories.protTraits ile ekler): Dick Size / Dayanıklılık
-    const allTraits = [...(Stories.Traits ? Stories.Traits.all : []), ...(Stories.DICK_SIZES || []).map(v => 'Dick Size: ' + v), ...(Stories.STAMINA_LEVELS || []).map(v => 'Dayanıklılık: ' + v)];
+    const allTraits = [...(Stories.Traits ? Stories.Traits.all : []), ...(Stories.DICK_SIZES || []).map(v => 'Dick Size: ' + v), ...(Stories.STAMINA_LEVELS || []).map(v => 'Dayanıklılık: ' + v), ...Object.values((Stories.Bot && Stories.Bot.SITES) || {}).map(v => 'Site: ' + v)];
     const FB = 'Yedek';
 
     let data = { rules: [], addons: [], groups: [], verbs: [] };
@@ -384,7 +434,7 @@
       document.querySelectorAll('#tabs button').forEach(x => x.classList.toggle('on', x === b));
       const listTab = ui.tab === 'rules' || ui.tab === 'en' || ui.tab === 'addons';
       const kind = ui.tab === 'addons' ? 'addons' : 'rules';
-      ['rules', 'groups', 'verbs', 'sizes'].forEach(t => $('#v' + t[0].toUpperCase() + t.slice(1)).classList.toggle('on', t === (listTab ? 'rules' : ui.tab)));
+      ['rules', 'groups', 'verbs', 'sizes', 'gen'].forEach(t => $('#v' + t[0].toUpperCase() + t.slice(1)).classList.toggle('on', t === (listTab ? 'rules' : ui.tab)));
       if (ui.tab === 'rules' || EN()) { try { localStorage.setItem(EN_KEY, EN() ? 'en' : 'tr'); } catch (e) {} }
       if (listTab && ui.kind !== kind) {
         ui.selBy[ui.kind] = ui.sel;
@@ -405,6 +455,7 @@
       if (ui.tab === 'groups') renderGroups();
       if (ui.tab === 'verbs') renderVerbs();
       if (ui.tab === 'sizes') renderSizes();
+      if (ui.tab === 'gen') renderGen();
     };
 
     /* ---------- 🍆⏱️ Boyut · Dayanıklılık (js/data/user-lines.js, salt okunur) + bu özellikleri kullanan kurallar ---------- */
@@ -439,7 +490,14 @@
     };
 
     /* ================= KURALLAR ================= */
-    const matchesQ = r => (!EN() || !ui.enMiss || enDone(r) < r.reply.length) &&
+    /* 👫 cinsiyet (js/bot.js genderOk): r.gender '♀' / '♂' elle; işaretsizde '=lezbiyen' tetiği ♀, bütün satırları erkeğe yönelikse (BOT.allMale) ♂.
+     * Kısmen erkeğe yönelik kuralda o satırlar kadın profilde atlanır (BOT.maleLine) */
+    const genOf = r => r.gender || (r.when.some(w => lower(w) === '=lezbiyen') ? '♀' : BOT.allMale(r) ? '♂' : '');
+    const maleN = r => genOf(r) === '♀' ? 0 : (A() ? r.add : r.reply).filter(BOT.maleLine).length;
+    const genOk = r => !ui.gen || (ui.gen === 'n' ? !genOf(r) && !maleN(r) : ui.gen === '♂' ? genOf(r) === '♂' || maleN(r) > 0 : genOf(r) === '♀');
+    const genBadge = r => { const g = genOf(r), m = maleN(r);
+      return g === '♀' ? '<span class="bd gf">♀</span>' : g === '♂' ? '<span class="bd gm">♂</span>' : m ? `<span class="bd gm" title="${m} satır kadın profilde atlanır">♂ ${m}</span>` : ''; };
+    const matchesQ = r => genOk(r) && (!EN() || !ui.enMiss || enDone(r) < r.reply.length) &&
       (!ui.q || lower([r.name, r.category, r.when.join(' '), r[TX()].join(' '), EN() ? r.reply.map(l => lineEn(l).s).join(' ') : '', r.traits.join(' '), r.chars.join(' '), r.note].join(' ')).includes(ui.q));
 
     function sorted(list) {
@@ -462,7 +520,7 @@
           <button class="cat-h" data-cath><span class="car">▾</span>${esc(c)}<span class="n">${cats[c].length}</span></button>
           <div class="rows">${sorted(cats[c]).map(r => `
             <button class="row${r.id === ui.sel ? ' on' : ''}" data-id="${r.id}">
-              <b>${esc(title(r))}${isFb(r) ? '<span class="bd fb">yedek</span>' : ''}${r.traits.length ? `<span class="bd tr">💫 ${r.traits.length}</span>` : ''}${r.chars.length ? '<span class="bd ch">👤</span>' : ''}</b>
+              <b>${esc(title(r))}${isFb(r) ? '<span class="bd fb">yedek</span>' : ''}${genBadge(r)}${r.traits.length ? `<span class="bd tr">💫 ${r.traits.length}</span>` : ''}${r.chars.length ? '<span class="bd ch">👤</span>' : ''}</b>
               <small>${isFb(r) ? 'hiçbir kural eşleşmezse' : r.when.length ? esc(r.when.join(' → ')) : 'her mesaj'} · ${A() ? `${MODES[r.mode] || MODES.append} · %${r.chance}` : EN() ? `${enDone(r)}/${r.reply.length} çevrili` : `${r.reply.length} cevap`}</small>
             </button>`).join('')}</div>
         </div>`).join('') : `<div class="empty">${coll().length ? 'Aramaya uyan kayıt yok' : A() ? 'Henüz ek yok. “+ Ek” ile başla.' : 'Henüz kural yok'}</div>`;
@@ -559,6 +617,9 @@
           <div><label class="lb">Karakter <small>(virgülle; boşsa herkes)</small></label>
             <input class="in" data-f="chars" value="${esc(r.chars.join(', '))}" placeholder="ör. Vesper, Mia"></div>
         </div>
+        <label class="lb">👫 Cinsiyet <small>(senin profilin: hangisinde çıkar · şu an ${genOf(r) || 'ortak'}${r.gender ? '' : ' (otomatik)'})</small></label>
+        <select class="in" data-f="gender">${[['', '👫 Otomatik: ortak; erkeğe yönelik satırlar kadın profilde atlanır'], ['♂', '♂ Sadece erkek profil'], ['♀', '♀ Sadece kadın profil (lezbiyen)']].map(([v, l]) => `<option value="${v}"${(r.gender || '') === v ? ' selected' : ''}>${l}</option>`).join('')}</select>
+        ${maleN(r) ? `<div class="syntax">♂ Bu satırlar erkeğe yönelik, kadın profilde seçilmez:<ul class="male-l">${(A() ? r.add : r.reply).filter(BOT.maleLine).map(l => `<li>${esc(l)}</li>`).join('')}</ul></div>` : ''}
       </div>`;
     }
 
@@ -578,6 +639,9 @@
     };
     $('#q').oninput = e => { ui.q = lower(e.target.value); renderList(); };
     $('#sort').onchange = e => { ui.sort = e.target.value; renderList(); };
+    // ♀ seçiliyken denemeler kadın profil gibi çalışır (bot.js Stories.lesNow)
+    $('#gen').onchange = e => { ui.gen = e.target.value; renderList(); if (typeof runTest === 'function') runTest(); };
+    window.Stories.lesNow = () => ui.gen === '♀';
 
     $('#detail').addEventListener('click', e => {
       const r = ruleById(ui.sel);
@@ -634,6 +698,7 @@
       else if (f === 'chance') r.chance = Math.max(0, Math.min(100, +e.target.value || 0));
       else if (f === 'chars') r.chars = e.target.value.split(',').map(s => s.trim()).filter(Boolean);
       else r[f] = e.target.value;
+      if (f === 'gender') renderRules();
       setDirty(); runTest();
     });
     $('#enMiss').onclick = e => { ui.enMiss = !ui.enMiss; e.target.classList.toggle('on', ui.enMiss); renderList(); };
@@ -841,7 +906,7 @@
       return [...enMap].filter(([k]) => used.has(k));
     };
     const cleanData = () => ({
-      rules: data.rules.map(r => ({ id: r.id, name: r.name || '', category: r.category || '', when: r.when.filter(Boolean), reply: r.reply.filter(Boolean), traits: r.traits, chars: r.chars, note: r.note || '' })),
+      rules: data.rules.map(r => ({ id: r.id, name: r.name || '', category: r.category || '', when: r.when.filter(Boolean), reply: r.reply.filter(Boolean), traits: r.traits, chars: r.chars, note: r.note || '', ...(r.gender ? { gender: r.gender } : {}) })),
       addons: data.addons.map(a => ({ id: a.id, name: a.name || '', category: a.category || '', when: a.when.filter(Boolean), add: a.add.filter(Boolean), mode: okMode(a.mode), chance: Math.max(0, Math.min(100, +a.chance)), traits: a.traits, chars: a.chars, note: a.note || '' })),
       groups: data.groups.filter(g => g.name).map(g => ({ name: g.name, words: g.words.filter(Boolean) })),
       verbs: data.verbs.filter(v => v.verb).map(v => ({ verb: v.verb, stems: v.stems.filter(Boolean) })),
@@ -866,7 +931,7 @@
       if (!d || typeof d !== 'object' || !['rules', 'addons', 'groups', 'verbs'].some(k => Array.isArray(d[k]))) throw new Error('Dosyada "rules", "addons", "groups" ya da "verbs" listesi yok.');
       const warns = [];
       const rules = arr(d.rules).filter(r => r && typeof r === 'object').map((r, i) => {
-        const x = { id: r.id ? String(r.id) : uid(), name: String(r.name || ''), category: String(r.category || ''), when: arr(r.when).map(String), reply: arr(r.reply).map(String), traits: arr(r.traits).map(String), chars: arr(r.chars).map(String), note: String(r.note || '') };
+        const x = { id: r.id ? String(r.id) : uid(), name: String(r.name || ''), category: String(r.category || ''), when: arr(r.when).map(String), reply: arr(r.reply).map(String), traits: arr(r.traits).map(String), chars: arr(r.chars).map(String), note: String(r.note || ''), ...(['♂', '♀'].includes(r.gender) ? { gender: r.gender } : {}) };
         if (!x.reply.length) warns.push(`“${x.name || x.when.join(' → ') || '#' + (i + 1)}” kuralında cevap yok (kullanılmaz)`);
         return x;
       });
@@ -956,6 +1021,169 @@
         alert('Kaydedilemedi: ' + (e.message || 'sunucu kapalı mı?'));
       }
     }
+    /* ================= 🧪 ÜRET: seçili kuralın cevaplarından yeni cevaplar ================= */
+    const GEN_SCOPES = {
+      poz: ['🔥 Olaylar', 'Pozisyon geçişi', '💬 Sevişirken', '💦 Pozisyonda boşalma'],
+      soru: ['❓ Sorular', '❔ Karakterin soruları']
+    };
+    // Eş anlamlılar: küçük harf, tam kelime/öbek olarak değişir
+    const SYN = [
+      ['çok', 'aşırı', 'fena'], ['güzel', 'harika', 'şahane', 'muhteşem'], ['hoşuma gidiyor', 'bayılıyorum'],
+      ['biraz', 'azıcık', 'birazcık'], ['şimdi', 'hemen', 'şu an'], ['canım', 'aşkım', 'bebeğim', 'tatlım', 'sevgilim'],
+      ['ahh', 'ohh', 'ahhh', 'aahh'], ['mmm', 'mmh', 'hmm'], ['yavaş', 'ağır ağır', 'usulca'], ['durma', 'devam et'],
+      ['gerçekten', 'cidden', 'resmen'], ['inanılmaz', 'akıl almaz'], ['sıkı', 'sımsıkı'], ['titriyorum', 'ürperiyorum'],
+      ['eriyorum', 'eriyip gidiyorum'], ['deli ediyorsun', 'çıldırtıyorsun'], ['nefesim kesiliyor', 'nefessiz kalıyorum'],
+      ['evet', 'tabii', 'elbette'], ['bilmem', 'bilmiyorum'], ['açıkçası', 'doğrusu', 'itiraf edeyim'],
+      ['neden sordun', 'niye sordun', 'neden merak ettin'], ['bayağı', 'epey', 'oldukça'], ['hep', 'her zaman']
+    ];
+    const GEN_M = { cumle: 'Cümle karıştır', balon: 'Baloncuk karıştır', esan: 'Eş anlamlı', emoji: 'Emoji değiştir' };
+    const gen = { scope: 'poz', q: '', sel: null, n: 20, on: new Set(Object.keys(GEN_M)), cands: [] };
+    const rnd = a => a[Math.floor(Math.random() * a.length)];
+    const genKey = s => lower(s).replace(/[^\p{L}\p{N}{}]+/gu, ' ').trim();
+    const EMO = /(?:\s*(?:\p{Extended_Pictographic}|️|‍)+)+\s*$/u;
+    const capTr = s => (s ? s[0].toLocaleUpperCase('tr') + s.slice(1) : s);
+    const sents = b => (b.match(/[^.!?…]+(?:[.!?…]+|$)(?:\s*(?:\p{Extended_Pictographic}|️|‍)+)*\s*/gu) || [b]).map(x => x.trim()).filter(Boolean);
+    const reEsc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const genRule = () => data.rules.find(x => x.id === gen.sel);
+
+    function synSwap(s) {
+      const parts = s.split(/(\{[^}]*\})/), hits = [];
+      parts.forEach((p, i) => {
+        if (i % 2) return;
+        const lp = p.toLocaleLowerCase('tr');
+        SYN.forEach(g => g.forEach(w => {
+          const m = new RegExp('(^|[^\\p{L}])(' + reEsc(w) + ')(?![\\p{L}])', 'u').exec(lp);
+          if (m) hits.push({ i, g, w, at: m.index + m[1].length });
+        }));
+      });
+      if (!hits.length) return null;
+      const h = rnd(hits), p = parts[h.i];
+      let to = rnd(h.g.filter(x => x !== h.w));
+      if (p[h.at] !== p[h.at].toLocaleLowerCase('tr')) to = capTr(to);
+      parts[h.i] = p.slice(0, h.at) + to + p.slice(h.at + h.w.length);
+      return parts.join('');
+    }
+
+    function genOne(rs, m) {
+      const A = rnd(rs), B = rnd(rs);
+      if (m === 'esan') return synSwap(A);
+      if (A === B) return null;
+      const ba = A.split('||').map(x => x.trim()), bb = B.split('||').map(x => x.trim());
+      if (m === 'balon') return bb.length < 2 ? null : [ba[0], bb[bb.length - 1]].join('||');
+      if (m === 'emoji') {
+        const L = ba.length - 1, ea = (ba[L].match(EMO) || [''])[0].trim(), eb = (bb[bb.length - 1].match(EMO) || [''])[0].trim();
+        if (!eb || ea === eb) return null;
+        ba[L] = ba[L].replace(EMO, '') + ' ' + eb;
+        return ba.join('||');
+      }
+      const sa = sents(ba[0]), sb = sents(bb[0]);
+      if (sa.length < 2 && sb.length < 2) return null;
+      const head = (sa.length > 1 ? sa.slice(0, 1 + Math.floor(Math.random() * (sa.length - 1))) : sa).join(' ');
+      let tail = (sb.length > 1 ? sb.slice(1 + Math.floor(Math.random() * (sb.length - 1))) : sb).join(' ');
+      if (genKey(head).includes(genKey(tail)) || genKey(tail).includes(genKey(head))) return null;
+      if (!/[…,]$/.test(head.replace(EMO, ''))) tail = capTr(tail);
+      ba[0] = head + ' ' + tail;
+      return ba.join('||');
+    }
+
+    function genRun() {
+      const r = genRule();
+      gen.cands = [];
+      if (!r) return;
+      const rs = r.reply.filter(Boolean), ms = [...gen.on];
+      if (rs.length < 2 || !ms.length) return;
+      const seen = new Set(rs.map(genKey));
+      for (let k = 0; k < gen.n * 60 && gen.cands.length < gen.n; k++) {
+        const m = rnd(ms);
+        let s = genOne(rs, m);
+        if (!s) continue;
+        if (m !== 'esan' && gen.on.has('esan') && Math.random() < 0.25) s = synSwap(s) || s;
+        s = s.replace(/[ \t]{2,}/g, ' ').trim();
+        const key = genKey(s);
+        if (!key || seen.has(key) || s.length > 180) continue;
+        seen.add(key);
+        gen.cands.push({ s, m, ok: true });
+      }
+    }
+
+    const genRules = () => data.rules.filter(r => GEN_SCOPES[gen.scope].includes(r.category) && r.reply.length > 1 &&
+      (!gen.q || lower([r.name, r.id, r.when.join(' '), r.traits.join(' ')].join(' ')).includes(gen.q)))
+      .sort((a, b) => title(a).localeCompare(title(b), 'tr'));
+
+    function renderGenList() {
+      const by = {};
+      genRules().forEach(r => (by[r.category] = by[r.category] || []).push(r));
+      $('#gnList').innerHTML = Object.keys(by).map(c => `<div class="cat"><div class="cat-h">${esc(c)}<span class="n">${by[c].length}</span></div><div class="rows">${by[c].map(r =>
+        `<button class="row${r.id === gen.sel ? ' on' : ''}" data-gid="${esc(r.id)}"><b>${esc(title(r))}</b><small>${esc([r.when.join(' → '), r.traits.join(', ')].filter(Boolean).join(' · '))} · ${r.reply.length}</small></button>`).join('')}</div></div>`).join('')
+        || '<div class="empty">Kural yok</div>';
+    }
+    const genCount = () => { const k = $('#gnK'); if (k) k.textContent = gen.cands.filter(c => c.ok).length; };
+
+    function renderGenOut() {
+      const r = genRule();
+      if (!r) { $('#gnOut').innerHTML = '<div class="empty">Soldan bir kural seç.</div>'; return; }
+      $('#gnOut').innerHTML = `<div class="card">
+        <div class="card-h"><b class="name">${esc(title(r))}</b><button class="btn sm" data-gact="open">Kuralı aç</button></div>
+        <small class="gn-meta">${esc(r.category)}${r.traits.length ? ' · ' + esc(r.traits.join(', ')) : ''} · ${r.reply.length}</small>
+        <div class="gn-bar">${Object.keys(GEN_M).map(k => `<button class="btn sm${gen.on.has(k) ? ' on' : ''}" data-gm="${k}">${GEN_M[k]}</button>`).join('')}
+          <label class="gn-n">Kaç tane <input type="number" id="gnN" min="1" max="100" value="${gen.n}"></label>
+          <button class="btn sm primary" data-gact="run">🎲 Üret</button></div>
+        ${gen.cands.length ? `<div>${gen.cands.map((c, i) => `<div class="gn-c${c.ok ? '' : ' off'}"><input type="checkbox" data-gi="${i}"${c.ok ? ' checked' : ''}><input class="in" data-gt="${i}" value="${esc(c.s)}"><span class="bd tr">${GEN_M[c.m]}</span></div>`).join('')}</div>
+          <div class="gn-bar"><button class="btn sm" data-gact="all">Tümünü seç / bırak</button><button class="btn primary" data-gact="add">✅ Seçilenleri kurala ekle <small id="gnK"></small></button></div>`
+          : '<div class="empty">Yeni cevap çıkmadı. Yöntemleri değiştir ya da tekrar 🎲 Üret.</div>'}
+        <details class="gn-old"><summary>Mevcut cevaplar (${r.reply.length})</summary><ul class="slines">${r.reply.map(l => `<li>${esc(l)}</li>`).join('')}</ul></details>
+      </div>`;
+      genCount();
+    }
+    function renderGen() { renderGenList(); renderGenOut(); }
+
+    $('#gnQ').oninput = e => { gen.q = lower(e.target.value); renderGenList(); };
+    $('#gnScope').onchange = e => { gen.scope = e.target.value; gen.sel = null; gen.cands = []; renderGen(); };
+    $('#gnList').onclick = e => {
+      const b = e.target.closest('[data-gid]');
+      if (!b) return;
+      gen.sel = b.dataset.gid;
+      document.querySelectorAll('#gnList .row.on').forEach(x => x.classList.remove('on'));
+      b.classList.add('on');
+      genRun(); renderGenOut();
+    };
+    $('#gnOut').addEventListener('click', e => {
+      const m = e.target.closest('[data-gm]');
+      if (m) { const k = m.dataset.gm; gen.on.has(k) ? gen.on.delete(k) : gen.on.add(k); m.classList.toggle('on', gen.on.has(k)); return; }
+      const a = e.target.closest('[data-gact]'), r = genRule();
+      if (!a || !r) return;
+      const act = a.dataset.gact;
+      if (act === 'run') { genRun(); renderGenOut(); }
+      else if (act === 'all') { const v = !gen.cands.every(c => c.ok); gen.cands.forEach(c => (c.ok = v)); renderGenOut(); }
+      else if (act === 'add') {
+        const have = new Set(r.reply.map(genKey));
+        const add = gen.cands.filter(c => c.ok && c.s.trim() && !have.has(genKey(c.s))).map(c => c.s.trim());
+        if (!add.length) return;
+        r.reply.push(...add);
+        gen.cands = gen.cands.filter(c => !c.ok);
+        setDirty(); renderGen();
+        $('#status').textContent = `● +${add.length} · kaydedilmedi`;
+      } else if (act === 'open') {
+        $('[data-tab=rules]').click();
+        ui.sel = r.id; ui.q = ''; $('#q').value = '';
+        renderRules();
+        const row = document.querySelector(`.row[data-id="${CSS.escape(ui.sel)}"]`);
+        if (row) row.scrollIntoView({ block: 'nearest' });
+      }
+    });
+    $('#gnOut').addEventListener('input', e => {
+      if (e.target.id === 'gnN') { gen.n = Math.max(1, Math.min(100, +e.target.value || 20)); return; }
+      const t = e.target.dataset.gt;
+      if (t != null && gen.cands[t]) gen.cands[t].s = e.target.value;
+    });
+    $('#gnOut').addEventListener('change', e => {
+      const i = e.target.dataset.gi;
+      if (i == null || !gen.cands[i]) return;
+      gen.cands[i].ok = e.target.checked;
+      e.target.parentNode.classList.toggle('off', !e.target.checked);
+      genCount();
+    });
+
     $('#save').onclick = save;
     document.addEventListener('keydown', e => { if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') { e.preventDefault(); save(); } });
     window.addEventListener('beforeunload', e => { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
