@@ -534,6 +534,18 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['📔', 'Seni unutmuyor: anılar defteri', 'Karakterler artık seninle yaşadıklarını kalıcı olarak hatırlıyor: ilk öpüşmenizi, ilk sevişmenizi, en çok yaptığınız pozisyonu, en sık gittiğiniz mekânı, verdiğin sözleri. Yıldönümünüzü kutluyor, doğum gününü unutmuyor, yalan söylersen yakalıyor. Hepsini profilindeki yeni 🧠 Hafıza sekmesinde görebilirsin.', '#/kitap/hafiza/7', [
+      ['📔 İlkler', 'İlk öpüşme, ilk oral, ilk sevişme, ilk anal, ilk boşalma, ilk fantezi, ilk iz. Her biri hangi olayla, hangi mekânda ve hangi gün olduğuyla kaydedilir. Eski karakterlerin defteri eski sohbetlerinden geriye doğru dolar.'],
+      ['🔁 Sayaçlar ve 📍 mekânlar', 'Her olayın kaç kez yapıldığını ve hangi mekânda kaç olay olduğunu sayar. "Doggy… 7 kez yaptık ve hâlâ doymadım", "Banyo artık bizim yerimiz gibi".'],
+      ['🤝 Sözler', 'Onun sorularına verdiğin cevapları tarihiyle saklar. Evet deyip yapmadığın bir şeyi bir kez hatırlatır: "Memleketime gelecektin, unutmadın değil mi?" Hayır deyip sonra yaptığında yakalar: "Hani Kissing istemiyordun? 😏"'],
+      ['📅 Yıldönümü ve 🎂 doğum günü', 'Tanışmanızın 1., 3., 7., 14., 30., 60., 100., 180. ve 365. gününde kendiliğinden anar. "Doğum günüm 14 şubat" dersen o gün kutlar.'],
+      ['🤨 Çelişki ve 🫥 unutma', 'Adını, yaşını, şehrini ya da işini farklı söylersen fark eder: "Hani 25 yaşındaydın?" Aşk\'ı 20\'nin altındaysa bazen karıştırır ya da unutur.'],
+      ['🧠 Hafıza sekmesi', '👤 Profil → 🧠 Hafıza: senin hakkında öğrendikleri, ilkler, en çok yaptıklarınız, mekânlarınız, sözler ve unutulmaz anlar. Yanlış öğrendiği bir şeyi 🗑️ ile silebilirsin.'],
+      ['📚 Kitap', 'Olay Hafızası Kitabı\'nda yeni bölüm: 📔 Anılar defteri.']], 'Hafıza', [
+      'Bir ilişkiyi ilişki yapan şey, geride bıraktıklarınızdır. Şimdiye kadar karakterler seninle ilgili birkaç bilgiyi tutuyordu, adını, şehrini, kahveyi sevdiğini; ama birlikte yaşadıklarınız sohbet bitince kayboluyordu. Yeni bir sohbet açtığında her şey sıfırdan başlıyordu.',
+      'Artık her karakterin bir anılar defteri var. İlk öpüşmenizin mutfakta mı salonda mı olduğunu, ilk kez hangi gün seviştiğinizi, ilk izini nereye bıraktığını yazıyor. Kaç kez Doggy yaptığınızı sayıyor, en çok hangi mekânda buluştuğunuzu biliyor. Grup sohbetinde yaşananlar da deftere giriyor. Eski karakterlerin defteri de boş başlamıyor: ilk açıldığında eski sohbetlerinden geriye doğru doluyor.',
+      'Defter sadece kayıt tutmuyor, konuşuyor da. Sohbetin ortasında "Bugün tanışmamızın yedinci günü, hatırladın mı?" diyebilir. Ona memleketine gelmeye söz verip unuttuysan, birkaç saat sonra nazikçe hatırlatır. Cesaretliğe hayır deyip sonra yine de öpüştüyseniz gülümseyerek yakalar. Doğum gününü söylediysen o sabah ilk o kutlar.',
+      'Seni de dinliyor. Bir gün yirmi beş yaşında olduğunu, ertesi gün yirmi sekiz olduğunu söylersen "Hani yirmi beş yaşındaydın?" diye kaşlarını kaldırır. Ama aşkı azken hafızası da zayıf: bazen adını karıştırır, bazen söylediğin bir şeyi unutur. Bütün bunları profilindeki 🧠 Hafıza sekmesinden görebilir, yanlış öğrendiği bir şeyi tek dokunuşla silebilirsin.']],
     ['💬', 'O da seni merak ediyor: yeni sorular', 'Sohbetler artık tek yönlü değil. Karakterler geçen seferi hatırlıyor, gece yarısı uyanık olup olmadığını soruyor, arkadaşını beğenip beğenmediğini merak ediyor, seni memleketine davet ediyor. Cevabından sonra konuyu bırakmayıp bir soru daha soruyorlar. Senin de soracak yeni şeylerin var: "Biz neyiz?", "Günün nasıl geçti?", "Piyango çıksa ne yapardın?"', '#/kitap/onun/7', [
       ['💭 Hatıra', 'Bu sohbette yaşadığınız bir olayı anar: "Geçen sefer Doggy yaptığımızı düşünüp duruyorum… yine yapalım mı?" Evet dersen o olay yeniden olur. Hayır dersen %45 "O zaman yeni bir şey mi deneyelim?" diye sorar.'],
       ['🌙 Saat ve 👀 mekân', 'Sohbet saati gece yarısını geçtiyse "Bu saatte hâlâ uyanık mısın?", sabahsa "Günaydın, yeni mi uyandın?" der; cevabı da saate göre değişir. Bir mekândaysanız "Burada biri bizi duyar mı?" diye sorar, evet dersen sesini kısmayı teklif eder.'],
@@ -10647,7 +10659,7 @@
     const cover = c.album[0] || c.photo;
     const list = threadsOf(c);
     const kwN = keywords().filter(k => k.charId === c.id).length;
-    const tabs = [['profile', 'Profil'], ['wear', '👗 Giyim'], ['diary', '📔 Günlük'], ['chats', `Sohbetler (${list.length})`], ['rel', `👭 İlişkileri (${duoOf(c).length + (husbThreadOf(c) ? 1 : 0)})`],['keys', `Kelimeler${kwN ? ` (${kwN})` : ''}`], ['album', 'Albüm']];
+    const tabs = [['profile', 'Profil'], ['wear', '👗 Giyim'], ['diary', '📔 Günlük'], ['chats', `Sohbetler (${list.length})`], ['rel', `👭 İlişkileri (${duoOf(c).length + (husbThreadOf(c) ? 1 : 0)})`], ['mem', '🧠 Hafıza'], ['keys', `Kelimeler${kwN ? ` (${kwN})` : ''}`], ['album', 'Albüm']];
     const cur = list[0];
 
     view.innerHTML = `<div class="profile">
@@ -10766,6 +10778,9 @@
       const z = e.target.closest('[data-zoom]');
       if (z) lightbox(c.album.length ? c.album : [c.photo], +z.dataset.zoom);
       if (e.target.closest('#delChar')) removeChar(c);
+      // 🧠 Hafıza: satırı sil
+      const md = e.target.closest('[data-memdel]');
+      if (md) { memDel(c, md.dataset.memdel); ui.profileTab = 'mem'; refresh(); return; }
       // 👭 tanıdıklar: ✕ ayır · 👯 ikisiyle grup · ➕ tanıştır (karakter seç)
       const kr = e.target.closest('[data-knrm]'), kg = e.target.closest('[data-kngrp]'), kd = e.target.closest('[data-knduo]');
       if (kd && byId(kd.dataset.knduo)) { location.hash = `#/chat/${duoThread(c, byId(kd.dataset.knduo)).id}`; return; }
@@ -10837,7 +10852,47 @@
       <p class="kw-help">⭐ Genelde giydikleri (${w.length}): ${w.length ? w.map(x => `${x.emoji} ${esc(x.name)}`).join(' · ') : 'henüz yok, 👗 Giydir → ⭐ Gardırop'}</p>
       <p class="kw-help">Bot modunda karakter giydiklerine göre konuşur: "Gömleğimin üst düğmelerini açtım…", "Tangamı kenara çektim…"</p>`;
   }
+  /* 🧠 profil → Hafıza (v1087): senin hakkında öğrendikleri (c.memory) + 📔 anılar defteri (c.anilar); her satır 🗑️ ile silinir (data-memdel) */
+  const AN_SOZ_LAB = { gorus: '🌙 Bu gece görüşmek', yarin: '📅 Yarın için plan', yarinyer: '📍 Yeri onun seçmesi', memleket: '🌍 Memleketine gitmek', memleketgit: '🌙 Orada baş başa kalmak',
+    gelecek: '🏡 Birlikte bir gelecek', gelecekev: '🐱 Evimiz', oyun: '🎲 Cesaretlik', oyunsira: '💃 Onun dansı', hatira: '💭 Anıyı tekrarlamak', hatirayeni: '✨ Yeni bir şey denemek',
+    kiz: '👭 Arkadaşını beğenmek', kizkiskan: '😤 Kıskanmalı mı', iz: '💜 İzini beğenmek', izyeni: '💜 Bir iz daha', saril: '🤗 Sarılmak', sarilkal: '🥱 Sarılı uyumak' };
+  function memTab(c) {
+    const m = c.memory || {}, A = anOf(c), d = Math.floor((Date.now() - A.start) / 864e5), nx = AN_YD.find(n => n > d);
+    const del = k => `<button type="button" class="chip" data-memdel="${esc(k)}" aria-label="Sil" title="Sil">🗑️</button>`;
+    const row = (ic, t, s, k) => `<div class="kw-row" style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--line)"><span>${ic}</span><span style="flex:1;min-width:0"><b>${esc(t)}</b>${s ? `<br><small class="muted">${esc(s)}</small>` : ''}</span>${k ? del(k) : ''}</div>`;
+    const sec = (h, rows, empty) => `<h4 style="margin:14px 0 4px">${h}</h4>${rows.length ? rows.join('') : `<p class="kw-help">${empty}</p>`}`;
+    const F = [['ad', '👤', 'Adın'], ['yas', '🎂', 'Yaşın'], ['sehir', '📍', 'Şehrin'], ['is', '💼', 'İşin'], ['pet', '🐾', 'Evcil hayvanın'], ['dogum', '🎉', 'Doğum günün'], ['hobi', '🎸', 'Hobin']];
+    const facts = [...F.filter(([k]) => m[k]).map(([k, ic, l]) => row(ic, `${l}: ${m[k]}`, '', 'f|' + k)),
+      ...Object.entries(m.fav || {}).map(([k, v]) => row('⭐', `En sevdiğin ${k}: ${v}`, '', 'fav|' + k)),
+      ...(m.sever || []).map(v => row('❤️', `Seviyorsun: ${v}`, '', 'sever|' + v)), ...(m.sevmez || []).map(v => row('💔', `Sevmiyorsun: ${v}`, '', 'sevmez|' + v)),
+      ...(m.aile || []).map(v => row('👨‍👩‍👧', capTr(v), '', 'aile|' + v))];
+    const ilk = AN_ILK.filter(([k]) => A.ilk[k]).map(([k, ic, l]) => { const x = A.ilk[k]; return row(ic, `${l}: ${x.t}`, [x.pl, anDay(x.at)].filter(Boolean).join(' · '), 'i|' + k); });
+    const say = Object.entries(A.say).sort((a, b) => b[1] - a[1]).slice(0, 8).map(([t, n]) => row('🔁', t, `${n} kez`, 's|' + t));
+    const yer = Object.entries(A.yer).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([t, n]) => row('📍', t, `${n} olay`, 'y|' + t));
+    const soz = A.soz.map((x, i) => row(x.yn === 'evet' ? '🤝' : '🙅', AN_SOZ_LAB[x.t] || x.t, `${x.yn === 'evet' ? 'evet dedin' : 'hayır dedin'} · ${anDay(x.at)} · ${x.done ? (x.yn === 'evet' ? '✅ tutuldu' : '😏 sonra yaptınız') : x.rem ? '🔔 hatırlattı' : '⏳ bekliyor'}`, 'z|' + i));
+    const an = A.an.map((x, i) => row(x.ic, x.n, anDay(x.at), 'a|' + i));
+    return `<p class="kw-help" style="margin-top:4px">🧠 <span>${esc(c.name.split(' ')[0])} seni ${anDay(A.start)} gününden beri tanıyor</span> · <span>${d} gün</span>${nx ? ` · <span>sonraki yıldönümü: ${nx}. gün</span>` : ''}</p><p class="kw-help">Yanlış öğrendiği bir şeyi 🗑️ ile sil.</p>
+      ${sec('🙋 Senin hakkında', facts, 'Henüz bir şey öğrenmedi. Sohbette "adım …", "… yaşındayım", "doğum günüm 14 şubat", "hobim …" yaz.')}
+      ${sec('📔 İlkler', ilk, 'Henüz bir ilk yok.')}
+      ${sec('🔁 En çok yaptıklarınız', say, 'Henüz olay yok.')}
+      ${sec('📍 Mekânlarınız', yer, 'Henüz mekân yok.')}
+      ${sec('🤝 Sözler', soz, 'Onun sorularına verdiğin cevaplar burada birikir.')}
+      ${sec('🔗 Unutulmaz anlar', an, 'Kombolar burada birikir.')}`;
+  }
+  function memDel(c, k) {
+    const [t, ...r] = String(k).split('|'), v = r.join('|'), m = c.memory || {}, A = anOf(c);
+    if (t === 'f') delete m[v];
+    if (t === 'fav') delete (m.fav || {})[v];
+    if (['sever', 'sevmez', 'aile'].includes(t)) m[t] = (m[t] || []).filter(x => x !== v);
+    if (t === 'i') delete A.ilk[v];
+    if (t === 's') delete A.say[v];
+    if (t === 'y') delete A.yer[v];
+    if (t === 'z') A.soz.splice(+v, 1);
+    if (t === 'a') A.an.splice(+v, 1);
+    save();
+  }
   function profileTab(c) {
+    if (ui.profileTab === 'mem') return memTab(c);
     if (ui.profileTab === 'wear') return wearTab(c);
     if (ui.profileTab === 'diary') return diaryOf(c);
     // 👭 İlişkileri: arkadaşlarıyla kendi aralarındaki (ikili) sohbetler; tanıdığı ama konuşmadığı kızlar 💬 ile başlar
@@ -11840,6 +11895,8 @@
     function pastEv(ch) {
       const low = s => String(s || '').toLocaleLowerCase('tr'), all = allEvents(), at = lastDone(), no = new Set([...(ch.denies || []), ...(ch.dislikes || [])]);
       const l = Object.keys(at).map(id => all.find(e => e.id === id)).filter(e => e && !no.has(e.id) && !isFant(e) && [...SEX_CATS, 'foreplay'].includes(low(catOfEv(e).label)));
+      // 📔 bu sohbette yoksa anılar defterinden (başka sohbetlerde yaşananlar, sayaca göre)
+      if (!l.length && ch.id && ch !== GHOST) Object.keys(anOf(ch).say).forEach(t => { const e = all.find(x => x.title === t); if (e && !no.has(e.id) && !isFant(e) && [...SEX_CATS, 'foreplay'].includes(low(catOfEv(e).label))) l.push(e); });
       const lk = l.filter(e => (ch.likes || []).includes(e.id));
       return lk.length && Math.random() < .6 ? pickOne(lk) : l.length ? pickOne(l) : null;
     }
@@ -12261,6 +12318,8 @@
       // 🗣️ komut kuralı (ör. "dön" → Doggy): olay hemen olur, cevap ardından gelir
       let cmdAdded = null;
       const ask = yn && BOT_ASK[pend.t], ansList = ask && ask[yn === 'evet' ? 'yes' : 'no'];
+      // 📔 sözler: sohbet / takip sorusuna cevabın (olay sonradan olursa tutuldu ya da "hani hayır demiştin?")
+      if (yn && pend && !group) anSoz(ch, pend.t, yn, pend.ev ? (allEvents().find(e => e.id === pend.ev) || {}).title : '');
       const ansEv = ansList === '@pos' ? posNow() : ansList === '@other' ? otherPosition(ch) : ansList === '@harder' ? harderMode(ch)
         : ansList === '@ask' ? allEvents().find(e => e.id === pend.ev && !(ch.denies || []).includes(e.id)) || null : ask && pickByTitles(ansList, ch);
       // 👗 "Üstümdekileri çıkarayım mı?" → evet: hepsi bu sohbette çıkar (çorap hariç)
@@ -12341,6 +12400,9 @@
       if (/^r_q9_/.test(m.rule.id)) {
         const pe = pastEv(ch), fr = knowsOf(ch)[0];
         parts = parts.map(p => /\{olay\}/.test(p) && !pe ? pickOne(HAFIZA_NONE) : p.replace(/\{olay\}/g, pe ? pe.title : '').replace(/\{diger\}/g, fr ? fr.name.split(' ')[0] : 'bir arkadaşım').replace(/\{sehir\}/g, ch.city || ''));
+        // 📔 hatıra sorusunda %40 defterden bir anı daha (ilk öpüşme, en çok yapılan…)
+        const al = /^r_q9_hafiza/.test(m.rule.id) && Math.random() < .4 && anLine(ch);
+        if (al) parts.push(al);
       }
       // 🍑 pozisyon grubu sorusunda en sevdiği pozisyon
       if (m.evqFav && Math.random() < .7) parts.push(pickOne(['En çok {f} 😈', 'Özellikle {f}… 🥵', '{f} en sevdiğim 😏']).replace('{f}', m.evqFav));
@@ -12550,6 +12612,12 @@
           const qm = only.rules.length && BOT.best(only, `sor ${t}${ks ? ' ' + ks : ''}`, ch);
           if (qm && !qm.fallback) { parts.push(...BOT.reply(qm.rule, vars, botRecent(qm.rule.id))); th.botAsk = ks ? { t, ks } : { t }; }
         }
+      }
+      // 📔 kendiliğinden anma (anOffer): sevişmiyorken, en az 10 mesaj arayla; çelişki / doğum günü / yıldönümü varsa %60, yoksa %6 (söz ya da anı)
+      if (!opts.events && !isQ && !cmdEv && !yn && !group && !m.teyit && th.botAsk === ask0 && !sexPhase() && ch !== GHOST && list.length - (th.anAt == null ? -99 : th.anAt) >= 10) {
+        const A = anOf(ch), d = Math.floor((Date.now() - A.start) / 864e5), md = String((ch.memory || {}).dogum || '').toLocaleLowerCase('tr');
+        const due = A.celiski || AN_YD.some(n => n <= d && !A.yd.includes(n)) || (md && md === new Date().toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' }).toLocaleLowerCase('tr') && A.bday !== new Date().getFullYear());
+        if (Math.random() < (due ? .6 : .06)) { const l = anOffer(ch, th); if (l) { parts.push(l); th.anAt = list.length; } }
       }
       // 👑 onun emri (bu tur başka soru sorulmadıysa): kafa tuttuysa %60, olaydan sonra Dominant %35 / Switch %15, sevişirken sohbette Dominant %20
       const dc = lv && lv !== 'sub' && !m.teyit && th.botAsk === ask0 ? (defy ? .6 : opts.events ? (lv === 'dom' ? .35 : .15) : lv === 'dom' && sexPhase() === 'sexnow' ? .2 : 0) : 0;
@@ -14101,7 +14169,12 @@
       const mem = !depth || memCum(e) ? memKey(e, dch) : null, memT = memCum(e) && memTop(memTur().tur);
       if (!depth) { th.memLast = null; th.krSay = null; }
       if (mem) th.memLast = mem.k;
+      // 📔 defter yoksa olay eklenmeden kurulsun (geriye dönük doldurma bu olayı iki kez saymasın)
+      ids.forEach(id => { const k = byId(id); if (k && k !== GHOST) anOf(k); });
       list.push({ id: mid, from: 'me', text: evText(live, sc, true), ts, ev: e.id, evc, ...(root ? { chain: root } : {}) });
+      // 📔 anılar defteri: olay (ilkler, sayaç), mekân, tutan kombo (kmb_*)
+      const anK = mem && /^kmb_/.test(mem.k) ? MEM_RULES.find(r => r.k === mem.k) : null, anPl = anPlName((lastScene() || {}).scene);
+      ids.forEach(id => anRecord(byId(id), e, anPl, anK));
       // 💥 sohbetin modu: son 20 mesajdaki son Mode olayı (yoksa boş); 🥴 Zevk çarpanı için zevkCtx
       th.mode = modeTitleNow();
       zevkCtx.mode = th.mode;
@@ -17030,8 +17103,15 @@
     ['is', /(\p{L}{3,}(?:\s\p{L}{3,})?)\s+olarak\s+çalışıyorum/u], ['is', /mesleğim\s+(\p{L}{3,}(?:\s\p{L}{3,})?)/u],
     ['pet', /(kedim|köpeğim|kuşum|tavşanım|balığım)\s+var/u], ['fav', /en\s+sevdiğim\s+(\p{L}{3,})\s+(\p{L}{2,}(?:\s\p{L}{2,})?)/u],
     ['sever', /(\p{L}{3,}(?:\s(?!çok\s)\p{L}{3,})?)\s+(?:çok\s+)?(?:severim|seviyorum|bayılırım|bayılıyorum)/u],
-    ['sevmez', /(\p{L}{3,}(?:\s(?!hiç\s)\p{L}{3,})?)\s+(?:hiç\s+)?(?:sevmem|sevmiyorum|nefret ederim)/u]
+    ['sevmez', /(\p{L}{3,}(?:\s(?!hiç\s)\p{L}{3,})?)\s+(?:hiç\s+)?(?:sevmem|sevmiyorum|nefret ederim)/u],
+    // v1087: 🎂 doğum günü ("doğum günüm 14 şubat") · 👨‍👩‍👧 aile ("ablam var") · 🎸 hobi ("hobim gitar çalmak", "boş zamanlarımda yüzerim")
+    ['dogum', /doğum\s+günüm\s+(\d{1,2}\s+(?:ocak|şubat|mart|nisan|mayıs|haziran|temmuz|ağustos|eylül|ekim|kasım|aralık))/u],
+    ['aile', /(kız kardeşim|erkek kardeşim|ablam|abim|ikiz kardeşim|kardeşim)\s+var/u],
+    ['hobi', /(?:hobim|en sevdiğim hobi)\s+(\p{L}{3,}(?:\s\p{L}{3,})?)/u], ['hobi', /boş\s+zamanlarımda\s+(\p{L}{3,}(?:\s\p{L}{3,})?)/u]
   ];
+  // 🤨 çelişki (v1087): ad / yaş / şehir / iş önce başka söylendiyse
+  const MEM_LIE = { ad: (o, n) => `Hani adın ${o} idi? 🤨 Neyse, ${n} olsun`, yas: (o, n) => `Hani ${o} yaşındaydın? 🤨 Şimdi ${n} mı oldun?`,
+    sehir: (o, n) => `${trEk(o, 'de')} yaşamıyor muydun? 🤨 Şimdi ${n} diyorsun, taşındın mı?`, is: (o, n) => `Hani ${o} olarak çalışıyordun? 🤨 İş mi değiştirdin?` };
   const capTr = s => String(s).charAt(0).toLocaleUpperCase('tr') + String(s).slice(1);
   // öğren: yeni bir şey öğrendiyse "not ettim" cümlesi, yoksa ''
   function learnFacts(c, text) {
@@ -17042,10 +17122,14 @@
       const r = re.exec(t);
       if (!r || ack) return;
       const v = r[1];
-      if (k === 'ad' && ok(v) && m.ad !== capTr(v)) { m.ad = capTr(v); ack = pickOne([`${m.ad}… güzel isim, unutmam 😊`, `${m.ad} demek 😏 aklımda`]); }
-      if (k === 'yas' && m.yas !== v) { m.yas = v; ack = `${v} yaşındasın demek, not ettim 😏`; }
-      if (k === 'sehir' && ok(v) && m.sehir !== capTr(v)) { m.sehir = capTr(v); ack = `${trEk(m.sehir, 'de')}… not ettim 📍`; }
-      if (k === 'is' && ok(v) && m.is !== v) { m.is = v; ack = pickOne([`${capTr(v)} demek… etkileyici 😏`, `${capTr(v)} olarak çalışıyorsun, aklımda 💼`]); }
+      const lie = (key, nv) => m[key] && m[key] !== nv ? MEM_LIE[key](m[key], nv) : '';
+      if (k === 'ad' && ok(v) && m.ad !== capTr(v)) { const l = lie('ad', capTr(v)); m.ad = capTr(v); ack = l || pickOne([`${m.ad}… güzel isim, unutmam 😊`, `${m.ad} demek 😏 aklımda`]); }
+      if (k === 'yas' && m.yas !== v) { const l = lie('yas', v); m.yas = v; ack = l || `${v} yaşındasın demek, not ettim 😏`; }
+      if (k === 'sehir' && ok(v) && m.sehir !== capTr(v)) { const l = lie('sehir', capTr(v)); m.sehir = capTr(v); ack = l || `${trEk(m.sehir, 'de')}… not ettim 📍`; }
+      if (k === 'is' && ok(v) && m.is !== v) { const l = lie('is', v); m.is = v; ack = l || pickOne([`${capTr(v)} demek… etkileyici 😏`, `${capTr(v)} olarak çalışıyorsun, aklımda 💼`]); }
+      if (k === 'dogum' && m.dogum !== v) { m.dogum = v; ack = `${v}… doğum gününü takvimime yazdım 🎂`; }
+      if (k === 'aile' && !(m.aile || []).includes(v)) { m.aile = [v, ...(m.aile || [])].slice(0, 5); ack = `${capTr(v)} var demek, tanışmak isterim 😊`; }
+      if (k === 'hobi' && ok(v) && m.hobi !== v) { m.hobi = v; ack = pickOne([`${capTr(v)}… bana da öğretir misin? 😏`, `${capTr(v)} demek, not ettim 🎸`]); }
       if (k === 'pet' && m.pet !== v) { m.pet = v; ack = `${capTr(v)} var demek, onu da seveceğim 🐾`; }
       if (k === 'fav' && ok(r[2]) && m.fav[v] !== r[2]) { m.fav[v] = r[2]; ack = `En sevdiğin ${v} ${r[2]}… aklımda 😌`; }
       if (k === 'sever' && ok(v) && !m.sever.includes(v)) { m.sever = [v, ...m.sever].slice(0, 8); ack = pickOne([`${capTr(v)} seviyorsun… not ettim 😏`, `Demek ${v} seviyorsun 😊 unutmam`]); }
@@ -17063,7 +17147,109 @@
     Object.entries(m.fav || {}).forEach(([k, v]) => out.push(`En sevdiğin ${k} ${v}, değil mi? 😊`));
     (m.sever || []).forEach(v => out.push(`${capTr(v)} sevdiğini unutmadım 😏`));
     (m.sevmez || []).forEach(v => out.push(`${capTr(v)} sevmediğini biliyorum 🙈`));
+    if (m.dogum) out.push(`Doğum günün ${m.dogum}, takvimime yazdım 🎂`);
+    (m.aile || []).forEach(v => out.push(`${capTr(v)} nasıl? Ondan hiç bahsetmiyorsun 😊`));
+    if (m.hobi) out.push(`Hâlâ ${m.hobi} ile uğraşıyor musun? 😏`);
+    // 📔 anılar defterinden (ilkler, en çok yapılan, sözler) yarı yarıya
+    const an = anLine(c);
+    if (an && (!out.length || Math.random() < .5)) return an;
+    // 🫥 ❤️ Aşk < 20: bazen karıştırır / unutur
+    if (out.length && c && c.id && relV(c, 'aşk') < 20 && Math.random() < .3) return pickOne(m.ad ? [`Adın… ${m.ad} değil miydi? Şaka şaka, biliyorum 😅`, ...AN_FORGET] : AN_FORGET);
     return out.length ? pickOne(out) : '';
+  }
+  const AN_FORGET = ['Şey… pardon, aklımda tam kalmamış 🙈', 'Bir şey söylemiştin ama… unuttum galiba 😅', 'Hatırlamam lazım ama kafam çok dolu 🙈'];
+  /* 📔 Anılar defteri (v1087): karakterin seninle yaşadıkları, sohbetten bağımsız ve kalıcı.
+   * c.anilar = { start (tanışma), ilk: { k: { t: olay, pl: mekân, at } }, say: { olay başlığı: kaç kez }, yer: { mekân: kaç olay },
+   *   soz: [{ t: soru konusu, yn, at, ev: [olay başlıkları], done, rem }], an: [{ k, n, ic, at }] kombolar, yd: [görülmüş yıldönümü günleri], celiski, bday }.
+   * Yazan: eventMessages → anRecord, sohbet sorusuna cevap → anSoz. Okuyan: hatira() / anLine, pastEv, anOffer (kendiliğinden anma), 👤 Profil → 🧠 Hafıza */
+  const AN_ILK = [
+    ['opus', '💋', 'İlk öpüşme', (e, tg) => /kiss/i.test(e.title)],
+    ['oral', '👄', 'İlk oral', (e, tg) => tg.includes('oral')],
+    ['sevis', '🔥', 'İlk sevişme', (e, tg) => isPosEv(e) && (tg.includes('vajinal') || tg.includes('anal'))],
+    ['anal', '🍑', 'İlk anal', (e, tg) => isPosEv(e) && tg.includes('anal')],
+    ['bosal', '💦', 'İlk boşalma', (e, tg) => String(catOfEv(e).label || '') === 'Cumming'],
+    ['fant', '🦄', 'İlk fantezi', e => isFant(e)],
+    ['iz', '💜', 'İlk iz', e => !!e.mark]];
+  const AN_SOZ_T = ['gorus', 'yarin', 'yarinyer', 'memleket', 'memleketgit', 'gelecek', 'gelecekev', 'oyun', 'oyunsira', 'hatira', 'hatirayeni', 'kiz', 'kizkiskan', 'iz', 'izyeni', 'saril', 'sarilkal'];
+  const AN_YD = [1, 3, 7, 14, 30, 60, 100, 180, 365];
+  const anCountable = e => isPosEv(e) || ['foreplay', 'cumming', 'eat', 'outercourse'].includes(String(catOfEv(e).label || '').toLocaleLowerCase('tr'));
+  const anPlName = sc => { if (!sc) return ''; const p = allPlaces().find(x => x.id === sc.place); return String(sc.name || (p && p.name) || ''); };
+  // 📔 defter (yoksa kurulur; eski karakter için bütün sohbetlerinden geriye dönük doldurulur)
+  function anOf(c) {
+    if (c.anilar) return c.anilar;
+    const A = c.anilar = { start: Date.now(), ilk: {}, say: {}, yer: {}, soz: [], an: [], yd: [] }, all = allEvents();
+    threads().filter(t => t.charId === c.id || (t.members || []).includes(c.id)).forEach(t => {
+      let sc = null;
+      msgsOf(t).forEach(m => {
+        if (m.ts && m.ts < A.start) A.start = m.ts;
+        if (m.scene) sc = m.scene;
+        const e = m.ev && all.find(x => x.id === m.ev);
+        if (e) anAdd(A, e, anPlName(sc), m.ts || Date.now());
+      });
+    });
+    // geriye dönük: geçmiş yıldönümleri görülmüş sayılır (hepsi birden dökülmesin)
+    const d = Math.floor((Date.now() - A.start) / 864e5);
+    A.yd = AN_YD.filter(n => n <= d);
+    return A;
+  }
+  function anAdd(A, e, pl, at) {
+    const tg = (e.tags || []).map(lowTag);
+    AN_ILK.forEach(([k, , , f]) => { if (!A.ilk[k] && f(e, tg)) A.ilk[k] = { t: e.title, pl: pl || '', at }; });
+    if (anCountable(e)) A.say[e.title] = (A.say[e.title] || 0) + 1;
+    if (pl && anCountable(e)) A.yer[pl] = (A.yer[pl] || 0) + 1;
+  }
+  // 📔 olay oldu: ilkler / sayaçlar / mekân; 🔁 hayır dediği sözün olayı şimdi olduysa bir dahaki sohbette "Hani hayır demiştin?" · evet dediği tutuldu
+  function anRecord(c, e, pl, combo) {
+    if (!c || !e || c === GHOST) return;
+    const A = anOf(c), now = Date.now();
+    anAdd(A, e, pl, now);
+    if (combo && !A.an.some(x => x.k === combo.k)) A.an = [...A.an, { k: combo.k, n: combo.name, ic: combo.icon, at: now }].slice(-30);
+    const s = A.soz.find(x => !x.done && (x.ev || []).includes(e.title));
+    if (s) { s.done = now; if (s.yn === 'hayir') A.celiski = { t: s.t, ev: e.title }; }
+  }
+  // 📔 onun sorusuna cevabın (sözler): son 20
+  function anSoz(c, t, yn, ev) {
+    if (!c || c === GHOST || !AN_SOZ_T.includes(t)) return;
+    const A = anOf(c), l = (BOT_ASK[t] || {}).yes;
+    A.soz = [...A.soz.filter(x => x.t !== t || x.done), { t, yn, at: Date.now(), ev: [...(Array.isArray(l) ? l : []), ...(ev ? [ev] : [])] }].slice(-20);
+  }
+  const anTop = o => Object.entries(o || {}).sort((a, b) => b[1] - a[1])[0];
+  const anDay = at => new Date(at).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' });
+  // 📔 bir anı cümlesi (ilk, en çok yapılan, en sevdiği mekân, kombo) ya da ''
+  function anLine(c) {
+    if (!c || !c.id || c === GHOST) return '';
+    const A = anOf(c), out = [], I = A.ilk;
+    if (I.opus) out.push(`İlk öpüşmemiz${I.opus.pl ? ' ' + I.opus.pl.toLocaleLowerCase('tr') + ' oldu' : ''}… hâlâ dudaklarımda 💋`);
+    if (I.sevis) out.push(`İlk kez ${anDay(I.sevis.at)} günü seviştik, ${I.sevis.t} ile başladık 🥵`, `İlk seferimizi unutur muyum hiç… ${I.sevis.t} 😳`);
+    if (I.anal) out.push(`Arkamı ilk sana verdim, ${anDay(I.anal.at)} günü 🙈`);
+    if (I.fant) out.push(`İlk fantezimiz ${I.fant.t} oldu… sonra hep daha fazlasını istedim 😈`);
+    if (I.iz) out.push(`Bana bıraktığın ilk izi hatırlıyorum, ${anDay(I.iz.at)} 💜`);
+    const tp = anTop(A.say);
+    if (tp && tp[1] >= 3) out.push(`${tp[0]}… ${tp[1]} kez yaptık ve hâlâ doymadım 😈`, `En çok ${tp[0]} yaptık, ${tp[1]} kez 🥵 Sayıyorum, evet`);
+    const yp = anTop(A.yer);
+    if (yp && yp[1] >= 3) out.push(`${yp[0]} artık bizim yerimiz gibi 😏`);
+    const k = A.an.length && pickOne(A.an);
+    if (k) out.push(`${k.ic} "${k.n}" anını hatırlıyor musun? Ben hâlâ düşünüyorum 😳`);
+    return out.length ? pickOne(out) : '';
+  }
+  /* 📔 kendiliğinden anma (sohbette, sevişmiyorken): 🔁 çelişki ("hani hayır demiştin?") · 🎂 doğum günün · 📅 yıldönümü (tanışmanın 1, 3, 7… günü) ·
+   * 🤝 tutulmamış söz (6 saatten eski, bir kez) · 💭 bir anı. Döner: cümle ya da '' */
+  const AN_SOZ_SAY = { gorus: 'Hani görüşecektik? Hâlâ bekliyorum 😒', yarin: 'Plan yapmıştık, unuttun mu yoksa? 🥺', yarinyer: 'Yeri bana bırakmıştın, ben hâlâ düşünüyorum 😏',
+    memleket: 'Memleketime gelecektin, unutmadın değil mi? ✈️', memleketgit: 'Orada baş başa kalacaktık, söz vermiştin 😏', gelecek: 'Birlikte bir gelecek demiştin… hâlâ öyle mi? 🥺',
+    gelecekev: 'Evimizin kedisinin adını düşündün mü? 🐱', oyun: 'Cesaretlik oynayacaktık, kaçtın mı? 😈', oyunsira: 'Bana bir dans borcun var, unutma 💃', saril: 'Sarılacaktık ama sarılmadık 🥺',
+    sarilkal: 'Sarılıp uyuyacaktık, hâlâ geçerli 🥱', iz: 'İzimi beğenmiştin… yenisini ne zaman bırakacaksın? 💜', izyeni: 'Bir iz daha bırakacaktın, bekliyorum 😏', hatira: 'O anı tekrarlayacaktık, unuttun mu? 😏' };
+  const AN_CELISKI = ['Hani {o} istemiyordun? 😏 Ama bayağı hoşuna gitti', '{o} için hayır demiştin… sonra ne oldu öyle? 😈', 'Bir hayır dedin, sonra {o}… seni çözdüm 😏'];
+  function anOffer(c, th) {
+    if (!c || !c.id || c === GHOST) return '';
+    const A = anOf(c), now = Date.now(), m = c.memory || {};
+    if (A.celiski) { const x = A.celiski; A.celiski = null; return pickOne(AN_CELISKI).replace(/\{o\}/g, x.ev); }
+    const tr = new Date(now).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' }).toLocaleLowerCase('tr'), y = new Date(now).getFullYear();
+    if (m.dogum && String(m.dogum).toLocaleLowerCase('tr') === tr && A.bday !== y) { A.bday = y; return pickOne(['Doğum günün kutlu olsun! 🎂🥳 Bugün senin günün', 'Bugün ne günü biliyor musun? Doğum günün! 🎂 Hediyen bende 😏']); }
+    const d = Math.floor((now - A.start) / 864e5), nd = AN_YD.filter(n => n <= d && !A.yd.includes(n)).pop();
+    if (nd) { A.yd = AN_YD.filter(n => n <= d); return nd === 1 ? 'Tanışalı tam bir gün oldu… şimdiden alıştım sana 🥺' : nd === 365 ? 'Bugün tanışmamızın yıldönümü! 🎉 Bir yıl oldu, inanabiliyor musun? 💞' : `Bugün tanışmamızın ${nd}. günü 🥺 Hatırladın mı?`; }
+    const s = A.soz.find(x => x.yn === 'evet' && !x.done && !x.rem && now - x.at > 6 * 36e5 && AN_SOZ_SAY[x.t]);
+    if (s) { s.rem = now; return AN_SOZ_SAY[s.t]; }
+    return Math.random() < .5 ? anLine(c) : '';
   }
   // 😤 başka bir kızdan / karakterden bahsetti mi? (adı ya da "eski sevgilim", "başka bir kız"…) → anılan ad
   const jealousOf = c => (c.traits || []).includes('Kıskanç') || relV(c, 'kıskançlık') >= 50;
@@ -26317,7 +26503,26 @@
         <table class="bk-t"><tr><th>Bölüm</th><th>Sahneler</th><th>Kapı şartı</th><th>Ödül</th></tr>${EP.map(x => `<tr><td>${x.icon} <b>${esc(x.name)}</b></td><td>${x.scenes.map(scN).join(' → ')}</td><td>${esc(epGate(x))}</td><td>${esc(memFx({ fx: x.fx }))}</td></tr>`).join('')}</table>
         ${EP.map(x => `<h4>${x.icon} ${esc(x.name)}</h4><p>${esc(x.desc || '')}</p><p>🙋 <b>Teklifi:</b> "${esc((x.ask || [])[0] || '')}" · ▶ "${esc((x.next || [])[0] || '')}"</p>${x.end ? `<p>💬 "${esc(x.end)}"</p>` : ''}`).join('')}
         <p>🎓 <a href="#/events/bolumler">CarmenEvents → 📖 Bölümler</a> <span>sayfasında her bölümün hangi karakterinde açık olduğu da yazar.</span></p>`;
-    } }] });
+    } },
+    { icon: '📔', title: 'Anılar defteri', sub: 'ilkler, sayaçlar, sözler, yıldönümleri', body: `<p>Olay hafızası tur bitince sıfırlanır; <b>anılar defteri</b> ise kalıcıdır. Her karakter seninle yaşadıklarını bütün sohbetlerden (grup sohbetleri dahil) toplar ve unutmaz. Eski karakterlerin defteri, ilk açıldığında eski sohbetlerinden geriye doğru doldurulur.</p>
+      <h4>📒 Neyi kaydeder</h4>
+      <table class="bk-t"><tr><th>Kayıt</th><th>Ne</th></tr>
+        <tr><td>📔 İlkler</td><td>${AN_ILK.map(([, ic, l]) => `${ic} ${esc(l)}`).join(', ')}: hangi olayla, hangi mekânda, hangi gün</td></tr>
+        <tr><td>🔁 Sayaçlar</td><td>ön sevişme, pozisyon ve boşalma olaylarının her biri kaç kez yapıldı</td></tr>
+        <tr><td>📍 Mekânlar</td><td>hangi mekânda kaç olay oldu (en çok olan "bizim yerimiz")</td></tr>
+        <tr><td>🤝 Sözler</td><td>onun sohbet ve takip sorularına verdiğin evet / hayır, tarihiyle</td></tr>
+        <tr><td>🔗 Unutulmaz anlar</td><td>tutan kombolar ("🌊 Bekletmeye değdi")</td></tr>
+        <tr><td>🙋 Senin hakkında</td><td>adın, yaşın, şehrin, işin, evcil hayvanın, en sevdiklerin, sevdiğin / sevmediğin şeyler; yeni: 🎂 doğum günün ("doğum günüm 14 şubat"), 👨‍👩‍👧 kardeşlerin ("ablam var"), 🎸 hobin ("hobim gitar", "boş zamanlarımda yüzerim")</td></tr></table>
+      <h4>💬 Nasıl kullanır</h4>
+      <ul><li><b>Hatıra</b>: "Beni hatırlıyor musun?" ve <code>{hatıra}</code> cevaplarının yarısı defterden gelir: "İlk öpüşmemiz mutfakta oldu… hâlâ dudaklarımda", "Doggy… 7 kez yaptık ve hâlâ doymadım". "O geceyi hatırlıyor musun?" sorusuna %40 bir anı ekler; 💭 hatıra sorusu bu sohbette olay yoksa defterden seçer.</li>
+        <li><b>Kendiliğinden anma</b>: sevişmiyorken, en az 10 mesaj arayla. Bekleyen bir şey varsa %60, yoksa %6:
+          <ul><li>🔁 <b>Çelişki</b>: bir soruya hayır dedin ama o olay sonra oldu → "Hani Kissing istemiyordun? 😏 Ama bayağı hoşuna gitti".</li>
+            <li>🎂 <b>Doğum günün</b> (yılda bir) ve 📅 <b>yıldönümü</b>: tanışmanın ${AN_YD.join(', ')}. günü.</li>
+            <li>🤝 <b>Söz</b>: evet dediğin ama 6 saattir olmayan bir şeyi bir kez hatırlatır ("Memleketime gelecektin, unutmadın değil mi?").</li>
+            <li>💭 Yoksa yarı yarıya bir anı.</li></ul></li>
+        <li><b>🤨 Çelişki yakalama</b>: adını, yaşını, şehrini ya da işini farklı söylersen fark eder: "Hani 25 yaşındaydın? 🤨 Şimdi 28 mi oldun?"</li>
+        <li><b>🫥 Unutma</b>: ❤️ Aşk 20'nin altındaysa hatırlarken %30 karıştırır ya da unutur ("Bir şey söylemiştin ama… unuttum galiba 😅").</li></ul>
+      <p>👤 <b>Profil → 🧠 Hafıza</b> sekmesinde hepsini görürsün; yanlış öğrendiği bir şeyi 🗑️ ile silebilirsin.</p>` }] });
   /* 🔁 Anlamadığında Kitapçığı: yazdığın mesaja kural tutmayınca ne olur (🔁 yönlendirici BOT.near, 🙈 teyit sorusu, 💬 yedek cevap, 📭 eksik cevaplar).
    * Örnek tablosu canlı hesaplanır (YD_EX mesajları, özelliksiz bir karakterle); eşikler botReply → moodBest sonundaki yönlendiriciyle aynı olmalı */
   const YD_EX = ['donsene artik', 'gogslerin cok guzel', 'opusmek istiyorum', 'dudaklarını ozledim', 'nerelsin', 'nasılsn', 'kalcani kaldir', 'yeni araba aldım', 'bugün işe gittim'];
