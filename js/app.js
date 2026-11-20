@@ -177,6 +177,15 @@
     tickMemo.set(k, { sig, v });
     return v;
   };
+  // ⚡ toLocaleLowerCase('tr') Safari'de çok yavaş: sonuç önbellekte; başlık → ilk olay haritası iş başına bir kez kurulur
+  const lowTrMemo = new Map();
+  const lowTr = s => {
+    s = String(s || '');
+    let v = lowTrMemo.get(s);
+    if (v === undefined) { v = s.toLocaleLowerCase('tr').trim(); if (lowTrMemo.size > 50000) lowTrMemo.clear(); lowTrMemo.set(s, v); }
+    return v;
+  };
+  const evByLowTitle = t => tickGet('evLowT', () => { const m = new Map(); allEvents().forEach(e => { const k = lowTr(e.title); if (!m.has(k)) m.set(k, e); }); return m; }, [MO().events, MO().events.length, ...catSig()]).get(t);
   function save() {
     tickMemo = null;
     // tarayıcı boşalınca yazılır (yazarken / cevap gelirken araya girmez); en geç ~2 sn
@@ -257,7 +266,7 @@
    * Aynı kimlik: prefer 'incoming' ise gelen, 'local' ise buradaki kalır. Kimliği farklı ama içeriği aynıysa (moKey) eklenmez. */
   const MONIA_KEYS = ['cats', 'groups', 'places', 'events', 'evGroups', 'scenarios'];
   function moKey(k, x) {
-    const n = s => String(s || '').toLocaleLowerCase('tr').trim();
+    const n = lowTr;
     if (k === 'evGroups') return n(x.title);
     if (k === 'charFields') return n(x.label);
     if (k === 'events') return [x.cat || 'mine', n(x.title), n(x.text), (x.mix || []).join('+')].join('|');
@@ -1923,8 +1932,8 @@
   const CM_NEW_V11 = ['sikistir', 'sagma', 'ofis3'];
   const CM_NEW_V12 = ['engel', 'kural'];
   const cmNewEvs = (k, x) => {
-    const low = s => String(s || '').toLocaleLowerCase('tr').trim(), no = new Set([...(x.dislikes || []), ...(x.denies || [])]);
-    return [].concat(CM_NEW_EV[k] || k).map(t => allEvents().find(e => low(e.title) === low(t))).filter(e => e && !no.has(e.id));
+    const no = new Set([...(x.dislikes || []), ...(x.denies || [])]);
+    return [].concat(CM_NEW_EV[k] || k).map(t => evByLowTitle(lowTr(t))).filter(e => e && !no.has(e.id));
   };
   // 💍 "Kocamın izniyle" ilanları: 6 ilandan biri bir kez (x.hw1) Evli + Hotwife olur, 2 Bull olayı ❤️
   const CM_HW_EV = ['Bull Doggy', 'Compare Talk', 'Husband In Room'];
@@ -1954,7 +1963,7 @@
     return x;
   }
   function cmFix(x) {
-    const low = s => String(s || '').toLocaleLowerCase('tr').trim(), byT = t => allEvents().find(e => low(e.title) === t);
+    const low = lowTr, byT = evByLowTitle;
     x.likes = x.likes || []; x.dislikes = x.dislikes || [];
     CM_MUST.map(byT).filter(Boolean).forEach(e => { x.dislikes = x.dislikes.filter(id => id !== e.id); if (!x.likes.includes(e.id)) x.likes.push(e.id); });
     if (cmNum(x, 'raw', 10) > 2) {
@@ -5103,7 +5112,7 @@
   }
 
   /* ---------- 🌐 diğer siteler: ortak parçalar ---------- */
-  const low = s => String(s || '').toLocaleLowerCase('tr').trim();
+  const low = lowTr;
   // olay adına göre (tam ya da başı tutan)
   const evFind = t => {
     const mo = MO(), ix = tickGet('evFind', () => { const all = allEvents(), ls = all.map(e => low(e.title)), m = new Map(); ls.forEach((l, i) => { if (!m.has(l)) m.set(l, all[i]); }); return { all, ls, m }; }, [mo.events, mo.events.length, ...catSig()]);
@@ -5685,7 +5694,7 @@
     return out;
   }
   const klDoc = c => ({ spec: cmPick(c, 'kls', KL_SPEC), room: 100 + cmNum(c, 'klr', 300) });
-  const klEv = t => allEvents().find(e => low(e.title) === low(t));
+  const klEv = t => evByLowTitle(low(t));
   /* 😔 penetrasyon tedavisi, Carmen.com izinleriyle: 🚫 izin vermediği olay ya da Soğuk → yok; Utangaç → sadece arkadan (Intimate Doggy).
    * Kondomsuzlar: doktorun kondom şartı yoksa ve hasta kondomla rahat değilse (S.nokon); Bareback Therapy sadece içe izin verende */
   const KL_PEN = ['intimate therapy', 'intimate doggy', 'bareback therapy', 'bareback pull out'];
@@ -20366,7 +20375,7 @@
     // 🍓 Meisove (meyve) kızları
     ['limon kız', 'fxrplimon'], ['çilek kız', 'fxrpcilek'], ['portakal kız', 'fxrpportakal'], ['şarap kız', 'fxrpsarap'], ['vodka kız', 'fxrpvodka'],
     ['bal kız', 'fxrpbal'], ['tekila kız', 'fxrptekila'], ['şampanya kız', 'fxrpsampanya'], ['süt kız', 'fxrpsut']];
-  const fantKey = e => (FANT_KEYS.find(([t]) => String(e.title || '').toLocaleLowerCase('tr').startsWith(t)) || [, 'fxdiger'])[1];
+  const fantKey = e => { const s = lowTr(e.title); return (FANT_KEYS.find(([t]) => s.startsWith(t)) || [, 'fxdiger'])[1]; };
   const isFant = e => !!e &&((catOfEv(e).tags || []).includes(FANT_TAG) || String(catOfEv(e).label || '').toLocaleLowerCase('tr') === FANT_TAG);
   // ✅/🚫 karakterin izin verdiği / vermediği olaylar: 'if' etiketli kategorilerden (c.allows / c.denies)
   const PERM_TAG = 'if';
