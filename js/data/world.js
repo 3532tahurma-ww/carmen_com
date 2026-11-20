@@ -215,7 +215,14 @@ Stories.World = (() => {
   const pickW = list => { let r = Math.random() * list.reduce((a, c) => a + c.w, 0); return list.find(c => (r -= c.w) < 0) || list[0]; };
   const any = a => a[Math.floor(Math.random() * a.length)];
   // şehirden (ya da "Şehir, Ülke" / ülke adından) ülke; bilinmeyen şehir → null
+  // ⚡ aynı şehir sohbette her olay için soruluyordu: sonuç şehir metnine göre önbellekte
+  const countryMemo = new Map();
   function countryOf(city) {
+    const k = String(city || '');
+    if (!countryMemo.has(k)) countryMemo.set(k, countryOf0(k));
+    return countryMemo.get(k);
+  }
+  function countryOf0(city) {
     const parts = String(city || '').split(/[,/·]/).map(low).filter(Boolean);
     if (!parts.length) return null;
     // Türkiye listesinde yabancı şehirler de var (pools.js moreCities): önce kendi ülkesi

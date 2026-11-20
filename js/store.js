@@ -74,8 +74,47 @@ Stories.Store = (() => {
     return s.includes('yeni-set') ? JSON.parse(s.split('mods/yeni-set/').join('mods/carmen/')
       .split('"yeni-set:').join('"carmen:').split('"mod":"yeni-set"').join('"mod":"carmen"')) : data;
   };
+  /* ⚡ Bölünmüş kayıt: aktif hesabın sohbetleri ayrı anahtarlarda (KEY:c:<sohbet id>), ana kayıtta chats yok + __split listesi.
+   * Kayıtta sadece metni değişen anahtarlar yazılır (written: anahtar → son yazılan metin).
+   * __split yoksa (eski format / eski sürüm yazdı) ayrı anahtarlardaki mesajlar id'ye göre birleştirilir: veri kaybolmaz. */
+  const CPRE = KEY + ':c:';
+  // büyük ve sohbette nadiren değişen alanlar da ayrı anahtarda (KEY:p:<alan>); ana kayıtta null
+  const PARTS = ['monia'], PPRE = KEY + ':p:';
+  const written = new Map();
+  const chatKeys = () => { const a = []; try { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.startsWith(CPRE)) a.push(k); } } catch (e) {} return a; };
+  function readSplit() {
+    let raw = null;
+    try { raw = localStorage.getItem(KEY); } catch (e) {}
+    let data = null;
+    try { data = JSON.parse(raw); } catch (e) {}
+    if (!data) return data;
+    const split = Array.isArray(data.__split);
+    data.chats = data.chats || {};
+    chatKeys().forEach(k => {
+      const id = k.slice(CPRE.length);
+      let s = null;
+      try { s = localStorage.getItem(k); } catch (e) {}
+      const msgs = (() => { try { return JSON.parse(s); } catch (e) { return null; } })();
+      if (!Array.isArray(msgs)) return;
+      if (split) { if (data.__split.includes(id)) { data.chats[id] = msgs; written.set(k, s); } return; }
+      // eski format: satır içi mesajlarla birleştir (aynı id bir kez, zamana göre)
+      const have = data.chats[id] || [], ids = new Set(have.map(m => m.id));
+      data.chats[id] = [...have, ...msgs.filter(m => !ids.has(m.id))].sort((a, b) => (a.ts || 0) - (b.ts || 0));
+    });
+    if (split) {
+      written.set(KEY, raw);
+      PARTS.forEach(p => {
+        if (data[p] != null) return;   // eski format alanı ana kayıtta
+        let s = null;
+        try { s = localStorage.getItem(PPRE + p); } catch (e) {}
+        try { const v = JSON.parse(s); if (v != null) { data[p] = v; written.set(PPRE + p, s); } else delete data[p]; } catch (e) { delete data[p]; }
+      });
+    }
+    delete data.__split;
+    return data;
+  }
   const fill = data => migrate(Object.assign(defaults(), renameMod(data), data && !data.threads ? { threads: undefined } : {}));
-  let state = fill(read(KEY));
+  let state = fill(readSplit());
 
   // ❤️/💔 en fazla 7 sevdiği / 3 sevmediği olay; fazlası kayıtta eskiden başlayarak atılır
   const FEEL_MAX = { likes: 7, dislikes: 3 };
@@ -86,8 +125,27 @@ Stories.Store = (() => {
   // Kota dolarsa false döner
   function save() {
     capFeels();
-    try { localStorage.setItem(KEY, JSON.stringify(state)); return true; }
-    catch (e) { return false; }
+    try {
+      const chats = state.chats || {}, ids = Object.keys(chats), keep = new Set([KEY]);
+      // önce sohbetler, sonra ana kayıt (yarıda kota dolarsa ana kayıt eski listeyi gösterir)
+      ids.forEach(id => {
+        const k = CPRE + id, s = JSON.stringify(chats[id] || []);
+        keep.add(k);
+        if (written.get(k) !== s) { localStorage.setItem(k, s); written.set(k, s); }
+      });
+      const nul = {};
+      PARTS.forEach(p => {
+        const k = PPRE + p, s = JSON.stringify(state[p] == null ? null : state[p]);
+        keep.add(k); nul[p] = null;
+        if (written.get(k) !== s) { localStorage.setItem(k, s); written.set(k, s); }
+      });
+      const main = JSON.stringify(Object.assign({}, state, nul, { chats: {}, __split: ids }));
+      if (written.get(KEY) !== main) { localStorage.setItem(KEY, main); written.set(KEY, main); }
+      // silinen sohbetlerin anahtarları
+      [...written.keys()].forEach(k => { if (!keep.has(k)) { localStorage.removeItem(k); written.delete(k); } });
+      if (!save.swept) { save.swept = true; chatKeys().forEach(k => { if (!keep.has(k)) localStorage.removeItem(k); }); }
+      return true;
+    } catch (e) { return false; }
   }
 
   function replace(data) {

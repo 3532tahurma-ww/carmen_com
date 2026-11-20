@@ -46,6 +46,7 @@ Stories.I18n = (() => {
       PH.lastIndex = 0;
     });
     T.P.sort((a, b) => b.w - a.w);     // en özel (en çok sabit metinli) desen önce
+    memo = new Map();
     schedule(document.body);
   }
   const fill = (out, vals) => {
@@ -86,8 +87,19 @@ Stories.I18n = (() => {
     }
     return hit ? out.join(' ') : null;
   }
+  // ⚡ aynı metin her çizimde yeniden gelir (yeni düğüm): sonuç önbellekte; sözlük değişince (add) boşalır
+  let memo = new Map();
   function translate(s) {
-    if (!s || !/\p{L}/u.test(s)) return null;
+    if (!s) return null;
+    const mk = (S === side ? 's' : 'm') + (ci ? 1 : 0) + s;
+    if (memo.has(mk)) return memo.get(mk);
+    if (memo.size > 30000) memo = new Map();
+    const r = translate0(s);
+    memo.set(mk, r);
+    return r;
+  }
+  function translate0(s) {
+    if (!/\p{L}/u.test(s)) return null;
     const lead = s.match(/^\s*/)[0], tail = s.match(/\s*$/)[0], body = s.trim();
     let r = look(body) || sentences(body);
     // "a · b · c" gibi birleşik satırlar: parça parça

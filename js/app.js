@@ -167,8 +167,20 @@
   addEventListener('pagehide', flushSave);
   addEventListener('beforeunload', flushSave);
   document.addEventListener('visibilitychange', () => { if (document.hidden) flushSave(); });
+  // ⚡ aynı görev (tık) içindeki tekrar hesaplar bir kez yapılır (allEvents / moCats); save() ve sonraki tık temizler
+  let tickMemo = null;
+  const tickGet = (k, f, sig = []) => {
+    if (!tickMemo) { tickMemo = new Map(); setTimeout(() => { tickMemo = null; }, 0); }
+    const m = tickMemo.get(k);
+    if (m && m.sig.length === sig.length && m.sig.every((x, i) => x === sig[i])) return m.v;
+    const v = f();
+    tickMemo.set(k, { sig, v });
+    return v;
+  };
   function save() {
-    if (!saveT) saveT = setTimeout(() => { saveT = -1; flushSave(); }, 400);
+    tickMemo = null;
+    // tarayıcı boşalınca yazılır (yazarken / cevap gelirken araya girmez); en geç ~2 sn
+    if (!saveT) saveT = setTimeout(() => { const run = () => { saveT = -1; flushSave(); }; if (window.requestIdleCallback) requestIdleCallback(run, { timeout: 1600 }); else run(); }, 400);
     if (sysCfg().on) { clearTimeout(sysTimer); sysTimer = setTimeout(() => sysPush().catch(() => notify('Sistem kaydı yapılamadı', '⚠️')), 1500); }
   }
 
@@ -383,6 +395,21 @@
   }
 
   function render() {
+    // ✨ bir siteye girip çıkarken (veya siteler arası geçişte) Carmen yükleme ekranı
+    if (!ui.siteSet) { const ns = netSites(); ui.siteSet = new Set(['booble', 'halloween', ...ns.map(s => s.href.split('/')[1])]); ui.siteInfo = Object.fromEntries(ns.map(s => [s.href.split('/')[1], s])); }
+    const rn = parseRoute().name, site = ui.siteSet.has(rn) ? rn : '';
+    // 🏷️ siteye girerken yükleme ekranında o sitenin logosu (çıkarken Carmen)
+    // ⚡ önce yükleme ekranı belirir (opaklık geçişi .5 sn), sayfa ~320 ms sonra onun arkasında kurulur: dokununca eski sayfa donuk kalmaz.
+    // Yükleme ekranı zaten 900 / 1400 ms sürdüğü için toplam süre uzamaz.
+    if (ui.lastSite !== undefined && site !== ui.lastSite) {
+      const sp = $('#splash'), shown = sp && !sp.classList.contains('hide');
+      splashBrand(site); splashWhile(new Promise(res => setTimeout(res, site ? 1400 : 900)), site ? (ui.siteInfo[site] || SITE_EXTRA[site] || {}).url : '');
+      ui.lastSite = site;
+      const h = location.hash;
+      setTimeout(() => { if (location.hash === h) render(); }, shown ? 0 : 320);
+      return;
+    }
+    ui.lastSite = site;
     const r = ui.route = parseRoute();
     const t = r.name === 'chat' ? threadById(r.id) : null;
     const c = t ? (t.group ? null : byId(t.charId)) : r.id ? byId(r.id) : null;
@@ -401,16 +428,9 @@
     if (ui.lastPage !== location.hash) {
       ui.prevPage = ui.lastPage;
       ui.lastPage = location.hash;
-      view.classList.remove('page-in');
-      void view.offsetWidth;
+      // ⚡ yeni sayfanın çocukları yeni öğeler: animasyon kendiliğinden başlar (eski sayfayı zorla yeniden düzenlemeye gerek yok)
       view.classList.add('page-in');
     }
-    // ✨ bir siteye girip çıkarken (veya siteler arası geçişte) Carmen yükleme ekranı
-    if (!ui.siteSet) { const ns = netSites(); ui.siteSet = new Set(['booble', 'halloween', ...ns.map(s => s.href.split('/')[1])]); ui.siteInfo = Object.fromEntries(ns.map(s => [s.href.split('/')[1], s])); }
-    const site = ui.siteSet.has(r.name) ? r.name : '';
-    // 🏷️ siteye girerken yükleme ekranında o sitenin logosu (çıkarken Carmen)
-    if (ui.lastSite !== undefined && site !== ui.lastSite) { splashBrand(site); splashWhile(new Promise(res => setTimeout(res, site ? 1400 : 900)), site ? (ui.siteInfo[site] || SITE_EXTRA[site] || {}).url : ''); }
-    ui.lastSite = site;
     drawSiteNav(site);
     applySkin(site);
 
@@ -1801,7 +1821,8 @@
   // cmRid: ilan kızı kaydedilince eski ilan id'si; puan / ücret / yorumlar değişmesin
   const cmNum = (c, k, n) => +sysHash((c.cmRid || c.id) + ':' + k) % n;
   const cmPick = (c, k, a) => a[cmNum(c, k, a.length)];
-  const cmPicks = (c, k, a, n) => [...a].sort((x, y) => +sysHash((c.cmRid || c.id) + k + x) - +sysHash((c.cmRid || c.id) + k + y)).slice(0, n);
+  // ⚡ hash her öğe için bir kez (karşılaştırmada her seferinde değil); sıra aynı
+  const cmPicks = (c, k, a, n) => { const p = (c.cmRid || c.id) + k; return [...a].map((x, i) => [+sysHash(p + x), i, x]).sort((u, v) => u[0] - v[0] || u[1] - v[1]).slice(0, n).map(z => z[2]); };
   const CM_N = 100;
   // her ilanın kendi fotoğraf seti var: kayıtlı karakterlerin ve diğer ilanların setleri / fotoğrafları kullanılmaz
   const CM_KEY = 'amor-stories:carmen-ads2';
@@ -2745,8 +2766,9 @@
    * metinler, seanslar, yorumlar ve ön görüşme (Halloween mekanlarında) kendine ait. Kaydedilen kız (c.goth) rolünün kostümüyle gelir */
   const GT_N = 100, GT_KEY = 'amor-stories:gothic-ads';
   const GT_BD_N = { vampir: 5, succubus: 5, cadi: 4, kurt: 4, rahibe: 4, kedi: 4 };
-  const gtBdEvs = () => allEvents().filter(e => e.cat === 'c:mvbdsm01x');
-  const gtHw = () => allEvents().filter(e => (e.tags || []).some(t => lowTag(t) === 'halloween'));
+  const gtSig = () => { const mo = MO(); return [mo.events, mo.events.length, ...catSig()]; };
+  const gtBdEvs = () => tickGet('gtBdEvs', () => allEvents().filter(e => e.cat === 'c:mvbdsm01x'), gtSig()).slice();
+  const gtHw = () => tickGet('gtHw', () => allEvents().filter(e => (e.tags || []).some(t => lowTag(t) === 'halloween')), gtSig()).slice();
   function gtFix(x) {
     cmNewEv(x);
     const hw = gtHw(), pos = hw.filter(isPosEv).map(e => e.id), roles = hw.filter(isFant);
@@ -3791,6 +3813,8 @@
     if (!nav) return;
     let box = nav.querySelector('.nav-site');
     if (!box) {
+      // ⚡ sitelerde ekran dışındaki ilan kartlarının düzeni / boyaması atlanır (görünür olunca çizilir, boyutu hatırlanır)
+      document.head.insertAdjacentHTML('beforeend', `<style>html[data-site] #view [class*=grid] > *, html[data-site] #view [class*=vrow] > * { content-visibility: auto; contain-intrinsic-size: auto 220px; }</style>`);
       document.head.insertAdjacentHTML('beforeend', `<style>.nav-site{display:none}.app.site-nav .nav-site{display:contents}.app.site-nav .nav>a[data-tab]{display:none!important}
         .nav-site a b{font-size:24px;line-height:28px;height:28px;transition:transform .2s}.nav-site a.active b{transform:scale(1.12)}</style>`);
       box = document.createElement('span');
@@ -4017,7 +4041,9 @@
   const fnRid = c => c.cmRid || c.id;
   const fnHandle = c => '@' + String((c.name || 'kiz').split(' ')[0]).toLocaleLowerCase('tr').replace(/[^a-zçğıöşü0-9]/g, '') + (cmNum(c, 'hd', 90) + 10);
   const fnSub = c => Math.round((99 + cmNum(c, 'fs', 16) * 10) * (cmVip(c) ? 2.5 : 1) / 10) * 10 - 1;
-  function fnCostumes(c) {
+  // ⚡ aynı tık içinde karakter başına bir kez (fnSuggest her ilan için defalarca soruyor)
+  const fnCostumes = c => { const m = tickGet('fnCos', () => new Map(), gtSig()), k = (c.cmRid || c.id) + '|' + (c.likes || []).join(','); if (!m.has(k)) m.set(k, fnCostumes0(c)); return m.get(k).slice(); };
+  function fnCostumes0(c) {
     const keys = new Set(feelEvents(c.likes || []).filter(isFant).map(fantKey));
     const all = [...CL.items.filter(x => x.style === 'k').map(x => ({ id: x.id, name: x.name, emoji: x.emoji, fant: x.fant, parts: { elbise: x.id } })),
       ...(CL.combos || []).filter(x => x.fant).map(x => ({ id: 'cb:' + x.id, name: x.name, emoji: x.emoji, fant: x.fant, parts: x.parts }))];
@@ -5079,7 +5105,13 @@
   /* ---------- 🌐 diğer siteler: ortak parçalar ---------- */
   const low = s => String(s || '').toLocaleLowerCase('tr').trim();
   // olay adına göre (tam ya da başı tutan)
-  const evFind = t => { const all = allEvents(), l = low(t); return all.find(e => low(e.title) === l) || all.find(e => low(e.title).startsWith(l)); };
+  const evFind = t => {
+    const mo = MO(), ix = tickGet('evFind', () => { const all = allEvents(), ls = all.map(e => low(e.title)), m = new Map(); ls.forEach((l, i) => { if (!m.has(l)) m.set(l, all[i]); }); return { all, ls, m }; }, [mo.events, mo.events.length, ...catSig()]);
+    const l = low(t);
+    if (ix.m.has(l)) return ix.m.get(l);
+    const i = ix.ls.findIndex(x => x.startsWith(l));
+    return i < 0 ? undefined : ix.all[i];
+  };
   // 📊 karakterin parametresini etiketine göre değiştir (sınırlar içinde)
   function cmParam(c, label, d) {
     const p = allParams().find(x => x.who !== 'me' && low(x.label) === label);
@@ -12025,8 +12057,9 @@
       const all = allEvents(), low = s => String(s || '').toLocaleLowerCase('tr').trim(), msgs = list.filter(m => m.from !== 'sys');
       // olay en son kaç mesaj önce oldu (hiç olmadıysa Infinity)
       const ago = id => { for (let i = msgs.length - 1; i >= 0; i--) if (msgs[i].ev === id) return msgs.length - 1 - i; return Infinity; };
+      const lt = all.map(e => low(e.title)), md = all.map(e => low(catOfEv(e).label) === 'mode');
       const hits = FLAVOR.map(f => {
-        const evs = all.filter(e => f.mode ? low(catOfEv(e).label) === 'mode' && low(e.title) === f.key : low(e.title).startsWith(f.key));
+        const evs = all.filter((e, i) => f.mode ? md[i] && lt[i] === f.key : lt[i].startsWith(f.key));
         return { f, a: Math.min(Infinity, ...evs.map(e => ago(e.id))) };
       }).filter(h => h.a !== Infinity);
       // Mode'lardan ve fantezilerden sadece en sonuncusu geçerli (fantezi başkası gelene kadar sürer)
@@ -13776,8 +13809,11 @@
     const actLow = s => String(s || '').toLocaleLowerCase('tr');
     const actDef = id => (Stories.SCENES || []).find(s => s.id === id);
     const actNeed = d => d.need || d.steps.length;
-    const actEv = t => allEvents().find(x => actLow(x.title) === actLow(t));
-    const actOpen = e => scenesOk().find(s => actLow(s.open) === actLow(e.title));
+    // ⚡ küçük harfli başlık → ilk olay / açılışı o olay olan ilk sahne (tık içinde bir kez kurulur)
+    const evSig = () => { const mo = MO(); return [mo.events, mo.events.length, ...catSig()]; };
+    const firstBy = (list, key) => { const m = new Map(); list.forEach(x => { const k = key(x); if (!m.has(k)) m.set(k, x); }); return m; };
+    const actEv = t => tickGet('actEv', () => firstBy(allEvents(), x => actLow(x.title)), evSig()).get(actLow(t));
+    const actOpen = e => tickGet('actOpen', () => firstBy(scenesOk(), s => actLow(s.open)), [...evSig(), meG(), Stories.SCENES, (Stories.SCENES || []).length]).get(actLow(e.title));
     const actPl = () => ((lastScene() || {}).scene || {}).place || '';
     const actTh = e => (e.tags || []).map(actLow).filter(t => EV_THEME.includes(t) && t !== 'boşalma' && t !== 'üçlü');
     // 🎬 onun sahne cümlesi (ACT_SAY): sahneye özel %75, kural "=durum =sahne<id><an>" / "=durum =sahne<an>" önce
@@ -19177,10 +19213,27 @@
       for (let i = start; i < msgs.length; i++) { const x = msgs[i]; if (ctx.merged.has(x.id) && idx.get(x.chain) < start) start = idx.get(x.chain); }
       ctx.win = Math.max(ctx.win, msgs.length - start);
     }
-    box.innerHTML = msgs.length
-      ? (start ? `<button type="button" class="sys" data-older style="display:block;margin:6px auto;border:0;cursor:pointer">⬆️ Önceki mesajlar (${start})</button>` : '')
-        + msgs.slice(start).map((m, i) => itemHtml(ctx, m, msgs[start + i - 1])).join('')
-      : `<div class="sys">${ctx.group ? 'Grupta' : `${esc(ctx.speaker({ from: 'her' }).name)} ile`} hikayeni yazmaya başla 💌<br>Alttaki avatara dokunarak kimin yazdığını değiştirebilirsin.</div>`;
+    // ⚡ artımlı çizim: her mesajın HTML'i öncekiyle aynıysa düğümü korunur; sadece yeni / değişen mesajlar DOM'a girer.
+    // Kutuya dışarıdan eklenenler (yazıyor… göstergeleri vb.) eskisi gibi her çizimde atılır.
+    const items = msgs.length
+      ? [...(start ? [{ k: '\u0000older', h: `<button type="button" class="sys" data-older style="display:block;margin:6px auto;border:0;cursor:pointer">⬆️ Önceki mesajlar (${start})</button>` }] : []),
+        ...msgs.slice(start).map((m, i) => ({ k: m.id, h: itemHtml(ctx, m, msgs[start + i - 1]) }))]
+      : [{ k: '\u0000empty', h: `<div class="sys">${ctx.group ? 'Grupta' : `${esc(ctx.speaker({ from: 'her' }).name)} ile`} hikayeni yazmaya başla 💌<br>Alttaki avatara dokunarak kimin yazdığını değiştirebilirsin.</div>` }];
+    const prevMc = !ctx.query && box._mc && box._mc.ctx === ctx ? box._mc.map : new Map();
+    const tpl = document.createElement('template'), map = new Map(), fresh = [];
+    items.forEach(it => {
+      const old = prevMc.get(it.k);
+      if (old && old.h === it.h) { map.set(it.k, old); return; }
+      tpl.innerHTML = it.h;
+      const nodes = [...tpl.content.childNodes];
+      map.set(it.k, { h: it.h, nodes });
+      fresh.push(...nodes);
+    });
+    let cur = box.firstChild;
+    items.forEach(it => map.get(it.k).nodes.forEach(n => { if (n === cur) cur = cur.nextSibling; else box.insertBefore(n, cur); }));
+    while (cur) { const nx = cur.nextSibling; cur.remove(); cur = nx; }
+    box._mc = ctx.query ? null : { ctx, map };
+    box.querySelectorAll('.target').forEach(x => x.classList.remove('target'));
     const older = box.querySelector('[data-older]');
     if (older) older.onclick = e => {
       e.stopPropagation();
@@ -19195,7 +19248,7 @@
     else if (!ctx.query) {
       box.scrollTop = box.scrollHeight;
       // fotoğraflar sonradan yüklenip yüksekliği değiştirince yine en alta in
-      box.querySelectorAll('img.ph').forEach(img => img.addEventListener('load', () => { box.scrollTop = box.scrollHeight; }, { once: true }));
+      fresh.forEach(n => n.nodeType === 1 && n.querySelectorAll('img.ph').forEach(img => img.addEventListener('load', () => { box.scrollTop = box.scrollHeight; }, { once: true })));
     }
   }
 
@@ -20229,10 +20282,22 @@
   const catEdits = () => Object.assign({}, ((Stories.SYSTEM || {}).catEdits) || {}, MO().catEdits || {});
   // sıra: monia.catOrder (yoksa sistem dosyasındaki); listede olmayanlar sona
   const catOrder = () => MO().catOrder || (Stories.SYSTEM || {}).catOrder || [];
-  const moCats = () => {
-    const ed = catEdits(), ord = catOrder(), at = c => { const i = ord.indexOf(c.id); return i < 0 ? 1e6 : i; };
-    return [...MD.cats, ...(MO().cats || []), MINE].map((c, i) => ({ c: ed[c.id] ? { ...c, ...ed[c.id] } : c, i }))
+  // ⚡ sıralı liste girdileri (hesap, kategoriler, düzenlemeler, sıra) değişmedikçe önbellekten; catOfEv binlerce kez çağrılıyor
+  let catMemo = null;
+  const catSig = () => { const mo = MO(); return [mo, mo.cats, (mo.cats || []).length, mo.catEdits, mo.catOrder, MD.cats.length]; };
+  const moCats = () => tickGet('moCats', moCats0, catSig()).slice();
+  const moCats0 = () => {
+    const mo = MO(), mc = mo.cats || [], ed = catEdits(), ord = catOrder();
+    const sig = MD.cats.length + '|' + mc.map(c => [c.id, c.label, c.icon, (c.tags || []).join(';')].join(':')).join(',') + '|' + ord.join(',') + '|' + JSON.stringify(ed);
+    if (catMemo && catMemo.mo === mo && catMemo.sig === sig) return catMemo.list.slice();
+    const ix = new Map();
+    ord.forEach((id, i) => { if (!ix.has(id)) ix.set(id, i); });
+    const at = c => ix.has(c.id) ? ix.get(c.id) : 1e6;
+    const list = [...MD.cats, ...mc, MINE].map((c, i) => ({ c: ed[c.id] ? { ...c, ...ed[c.id] } : c, i }))
       .sort((a, b) => at(a.c) - at(b.c) || a.i - b.i).map(x => x.c);
+    catMemo = { mo, sig, list, byId: new Map() };
+    list.forEach(c => { if (!catMemo.byId.has(c.id)) catMemo.byId.set(c.id, c); });
+    return list.slice();
   };
   // Kategorideki olaylar: hazırlar (b:...) + senin kalıpların (cat'e göre)
   function poolOf(cat, over, mine) {
@@ -20244,7 +20309,8 @@
     return [...built.filter(b => !over.has(b.id)), ...(mine instanceof Map ? mine.get(cat.id) || [] : MO().events.filter(e => (e.cat || 'mine') === cat.id))];
   }
   // ⚡ kalıp olaylar tek geçişte kategorilere dağıtılır (kategori başına tüm olayları taramak yerine)
-  const allEvents = () => {
+  const allEvents = () => { const mo = MO(), cs = catSig(); return tickGet('allEvents', allEvents0, [mo.events, mo.events.length, ...cs]).slice(); };
+  const allEvents0 = () => {
     const evs = MO().events, over = new Set(evs.map(e => e.base).filter(Boolean)), mine = new Map();
     evs.forEach(e => { const k = e.cat || 'mine'; if (!mine.has(k)) mine.set(k, []); mine.get(k).push(e); });
     return moCats().flatMap(c => poolOf(c, over, mine));
@@ -20270,10 +20336,10 @@
   const FEELS = [{ key: 'likes', icon: '❤️', label: 'Sevdiği olaylar' }, { key: 'dislikes', icon: '💔', label: 'Sevmediği olaylar' }];
   // kategori etiketi harfi harfine (küçük harf 'event'; büyük harfli 'Event' sayılmaz)
   const tagCats = t => moCats().filter(c => (c.tags || []).includes(t));
-  const feelPool = () => tagCats(CHAT_TOP_TAG).flatMap(poolOf);
+  const feelPool = () => tickGet('feelPool', () => tagCats(CHAT_TOP_TAG).flatMap(poolOf), gtSig()).slice();
   // 🦄 fanteziler ('fantesy' etiketli kategoriler) de ❤️/💔 listelerine girer; rastgelede en fazla 2 tane
   const FANT_TAG = 'fantesy';
-  const fantPool = () => tagCats(FANT_TAG).flatMap(poolOf);
+  const fantPool = () => tickGet('fantPool', () => tagCats(FANT_TAG).flatMap(poolOf), gtSig()).slice();
   // bot sorgusunda süren fantezi bir anahtarla gider ("fant fxkopek"): adındaki "Doggy" gibi kelimeler pozisyon kurallarını tutmasın
   const FANT_KEYS = [['cat girl', 'fxkedi'], ['cow girl', 'fxinek'],['bunny girl', 'fxtavsan'], ['fox girl', 'fxtilki'], ['doggy girl', 'fxkopek'], ['unicorn girl', 'fxunikorn'],
     ['wolf girl', 'fxkurt'], ['demon girl', 'fxseytan'], ['sheep girl', 'fxkoyun'],
@@ -20382,7 +20448,8 @@
       isTransF(ch) && 'Cinsiyet: Trans Kadın'].filter(Boolean);
   };
   const feelSet = key => FEELS.some(f => f.key === key) ? { list: FEELS, tag: CHAT_TOP_TAG } : { list: PERMS, tag: PERM_TAG };
-  const feelEvents = ids => { const pool = allEvents(); return (ids || []).map(id => pool.find(e => e.id === id)).filter(Boolean); };
+  const evById = () => { const mo = MO(); return tickGet('evById', () => { const m = new Map(); allEvents().forEach(e => { if (!m.has(e.id)) m.set(e.id, e); }); return m; }, [mo.events, mo.events.length, ...catSig()]); };
+  const feelEvents = ids => { const m = evById(); return (ids || []).map(id => m.get(id)).filter(Boolean); };
   const partOf = sc => MD.parts.find(p => p.id === sc.part);
   const placeOfSc = sc => allPlaces().find(p => p.id === sc.place);
   const scPlaceName = sc => sc.placeName || (placeOfSc(sc) || {}).name || '';
@@ -21808,7 +21875,7 @@
     MO().recent = r;
   }
   const recentEvents = () => { const pool = allEvents(); return recentIds().map(id => pool.find(e => e.id === id)).filter(Boolean); };
-  const catOfEv = e => moCats().find(c => c.id === (e.cat || 'mine')) || MINE;
+  const catOfEv = e => { tickGet('moCats', moCats0, catSig()); return catMemo.byId.get(e.cat || 'mine') || MINE; };
 
   /* # ile olay ara: başlık ve alt derece adlarında; başta geçenler, sonra 🕘 son kullanılanlar ve "event" etiketli kategoriler öne çıkar.
    * Dönüş: [{ e, sub }] (sub: alt derecenin id'si ya da undefined) */
