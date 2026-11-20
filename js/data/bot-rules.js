@@ -1497,6 +1497,275 @@ Stories.BOT_RULES = {
       "note": ""
     },
     {
+      "id": "r_ask_gdudak",
+      "name": "Soru: dudaklarımı ister misin?",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gdudak"
+      ],
+      "reply": [
+        "{bd:Dudak} dudaklarımı nerede istersin? 💋",
+        "Dudaklarımı sana kullanayım mı? 😏",
+        "Öpücüklerimi hak ettin mi bakalım? 💋"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "💋 Lip Shape seçiliyken, ön sevişmede; evet → Kissing / Blowjob"
+    },
+    {
+      "id": "r_ask_gdudak_dolgun",
+      "name": "Soru: dudaklarımı ister misin · dolgun",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gdudak"
+      ],
+      "reply": [
+        "Bu dolgun dudakları etrafına sarmamı ister misin? 💋😈",
+        "Dudaklarım hep bakıyorsun… tadına bakmak ister misin? 😏",
+        "Dolgun dudaklarım biraz iş yapsın mı? 💋"
+      ],
+      "traits": [
+        "Lip Shape: Full|Lip Shape: Plump|Lip Shape: Filler"
+      ],
+      "chars": [],
+      "note": "evet → Kissing / Blowjob"
+    },
+    {
+      "id": "r_ask_gdudak_ince",
+      "name": "Soru: dudaklarımı ister misin · ince / kalp",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gdudak"
+      ],
+      "reply": [
+        "Dudaklarım ince ama ne yaptıklarını bilirler… göstereyim mi? 😏",
+        "Minik bir öpücükle başlayıp aşağı inmemi ister misin? 💋",
+        "Kalp gibi dudaklarımı boynuna bırakayım mı? 🥰"
+      ],
+      "traits": [
+        "Lip Shape: Thin|Lip Shape: Heart-shaped|Lip Shape: Natural"
+      ],
+      "chars": [],
+      "note": "evet → Kissing / Blowjob"
+    },
+    {
+      "id": "r_ans_gdudak_evet",
+      "name": "Cevap: dudaklarımı ister misin · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=gdudak",
+        "=evet"
+      ],
+      "reply": [
+        "Gözlerini kapat ve hisset 💋",
+        "Rujum her yerinde iz bırakacak 😈",
+        "O zaman acele etme, yavaş yavaş 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_gdudak_hayir",
+      "name": "Cevap: dudaklarımı ister misin · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=gdudak",
+        "=hayir"
+      ],
+      "reply": [
+        "Peki, dudaklarım sonra için beklesin 😌",
+        "Hmm, kaybeden sensin 💋"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_gbacak",
+      "name": "Soru: bacaklarımı dolayayım mı?",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gbacak"
+      ],
+      "reply": [
+        "Bacaklarımı beline dolayayım mı? 😈",
+        "{bd:Bacak} bacaklarımın arasında kalmak ister misin? 😏",
+        "Bacaklarımla seni sıkıca tutayım mı? 🔥"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "🦵 Legs seçiliyken, ön sevişme / önden pozisyonda; evet → Missionary / Leg Lock Grind / Thigh Vise"
+    },
+    {
+      "id": "r_ask_gbacak_uzun",
+      "name": "Soru: bacaklarımı dolayayım mı · uzun / ince",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gbacak"
+      ],
+      "reply": [
+        "Bu uzun bacaklar omuzlarına çıksın mı? 😈",
+        "Bacaklarım bitmiyor diyorsun… beline kaç tur dolanır, deneyelim mi? 😏",
+        "Bacaklarımı açıp seni aralarına alayım mı? 🔥"
+      ],
+      "traits": [
+        "Legs: Long|Legs: Slim|Legs: Toned"
+      ],
+      "chars": [],
+      "note": "evet → Missionary / Leg Lock Grind / Thigh Vise"
+    },
+    {
+      "id": "r_ask_gbacak_kalin",
+      "name": "Soru: bacaklarımı dolayayım mı · kalın butlu",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gbacak"
+      ],
+      "reply": [
+        "Bu dolgun butların arasında sıkışmak ister misin? 😈",
+        "Uyluklarım yumuşacık… arasına alayım mı? 😏",
+        "Bacaklarımı kapatırsam kaçamazsın, deneyelim mi? 🔥"
+      ],
+      "traits": [
+        "Legs: Thick Thighs"
+      ],
+      "chars": [],
+      "note": "evet → Missionary / Leg Lock Grind / Thigh Vise"
+    },
+    {
+      "id": "r_ans_gbacak_evet",
+      "name": "Cevap: bacaklarımı dolayayım mı · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=gbacak",
+        "=evet"
+      ],
+      "reply": [
+        "Artık bacaklarımın esirisin 😈",
+        "Sıkı tut kendini, bırakmıyorum 🔥",
+        "Gel buraya, aramda yerin hazır 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_gbacak_hayir",
+      "name": "Cevap: bacaklarımı dolayayım mı · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=gbacak",
+        "=hayir"
+      ],
+      "reply": [
+        "Peki, bacaklarım şimdilik dinlensin 😌",
+        "Sen bilirsin… ama aklın onlarda kalacak 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_gbel",
+      "name": "Soru: belimden tutar mısın?",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gbel"
+      ],
+      "reply": [
+        "Belimden tutup arkadan almak ister misin? 😈",
+        "Ellerin belime yakışıyor… sıkıca tutup çeker misin? 😏",
+        "Belimden kavrayıp beni yönetmek ister misin? 🔥"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "⏳ Waist seçiliyken, ön sevişme / pozisyonda; evet → Doggy"
+    },
+    {
+      "id": "r_ask_gbel_ince",
+      "name": "Soru: belimden tutar mısın · ince bel",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gbel"
+      ],
+      "reply": [
+        "Belim iki elinin arasına sığar mı, ölçelim mi? 😈",
+        "İnce belimi kavrayıp beni kendine çeker misin? 😏",
+        "Belimden tut, kalçam gerisini halleder… ister misin? 🔥"
+      ],
+      "traits": [
+        "Waist: Tiny|Waist: Slim"
+      ],
+      "chars": [],
+      "note": "evet → Doggy"
+    },
+    {
+      "id": "r_ask_gbel_kalin",
+      "name": "Soru: belimden tutar mısın · kalın bel",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gbel"
+      ],
+      "reply": [
+        "Tutacak yerim bol, belimden sıkıca kavrar mısın? 😈",
+        "Yumuşak belime tutunup arkadan gelmek ister misin? 😏"
+      ],
+      "traits": [
+        "Waist: Wide"
+      ],
+      "chars": [],
+      "note": "evet → Doggy"
+    },
+    {
+      "id": "r_ans_gbel_evet",
+      "name": "Cevap: belimden tutar mısın · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=gbel",
+        "=evet"
+      ],
+      "reply": [
+        "Sıkı tut, bırakma 😈",
+        "Ellerini hissediyorum… çek beni 🔥",
+        "Tam orası, böyle tut 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_gbel_hayir",
+      "name": "Cevap: belimden tutar mısın · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=gbel",
+        "=hayir"
+      ],
+      "reply": [
+        "Peki, ellerin başka yerde gezsin o zaman 😏",
+        "Tamam, ama belim seni bekliyor 😌"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
       "id": "r_ask_squyluk",
       "name": "Soru: sıkıştırayım mı arasında seni?",
       "category": "❔ Karakterin soruları",
@@ -81650,6 +81919,727 @@ Stories.BOT_RULES = {
       "note": "Sadık / Aşk"
     },
     {
+      "id": "r_q2_sevgili_rel_single",
+      "name": "Sevgilin var mı · Single",
+      "category": "❓ Sorular",
+      "when": [
+        "sevgilin|erkek arkadaşın|erkek arkadasin|biriyle görüş-|biriyle gorus-|kimse var mı|kimse var mi|yalnız mısın|yalniz misin|bekar mısın|bekar misin"
+      ],
+      "reply": [
+        "Yok, tamamen bekârım 😌",
+        "Kimse yok… şimdilik 😏",
+        "Bekârım, ve açıkçası pek de acelem yoktu, ta ki sen yazana kadar 🙈",
+        "Yalnızım, ama bu gece olmak zorunda değilim 😈"
+      ],
+      "traits": [
+        "Relationship: Single",
+        "Relationship: Single"
+      ],
+      "chars": [],
+      "note": "💍 Relationship · aynı özellik iki kez = genel kuralı yener"
+    },
+    {
+      "id": "r_q2_sevgili_rel_bf",
+      "name": "Sevgilin var mı · Has Boyfriend",
+      "category": "❓ Sorular",
+      "when": [
+        "sevgilin|erkek arkadaşın|erkek arkadasin|biriyle görüş-|biriyle gorus-|kimse var mı|kimse var mi|yalnız mısın|yalniz misin|bekar mısın|bekar misin"
+      ],
+      "reply": [
+        "Var… ama şu an seninle yazışıyorum, değil mi? 🤫",
+        "Sevgilim var, bilmiyor tabii 😏",
+        "Erkek arkadaşım var ama o hiç böyle konuşmuyor benimle 🙈",
+        "Var, sorma şimdi onu 😳"
+      ],
+      "traits": [
+        "Relationship: Has Boyfriend",
+        "Relationship: Has Boyfriend"
+      ],
+      "chars": [],
+      "note": "💍 Relationship"
+    },
+    {
+      "id": "r_q2_sevgili_rel_div",
+      "name": "Sevgilin var mı · Divorced",
+      "category": "❓ Sorular",
+      "when": [
+        "sevgilin|erkek arkadaşın|erkek arkadasin|biriyle görüş-|biriyle gorus-|kimse var mı|kimse var mi|yalnız mısın|yalniz misin|bekar mısın|bekar misin"
+      ],
+      "reply": [
+        "Yok, boşandım; şimdi kendimi yaşıyorum 😌",
+        "Bir kez evlendim, bir daha acele etmem 😏",
+        "Boşandıktan sonra kimse olmadı… ciddi biri yani 🙈",
+        "Özgürüm, kocamdan da kurtuldum 💅"
+      ],
+      "traits": [
+        "Relationship: Divorced",
+        "Relationship: Divorced"
+      ],
+      "chars": [],
+      "note": "💍 Relationship"
+    },
+    {
+      "id": "r_q2_evli_rel_div",
+      "name": "Evli misin · Divorced",
+      "category": "❓ Sorular",
+      "when": [
+        "evli mi|evli misin|evlisin|kocan var|kocan kim|kocan nerede|kocan biliyor|eşin var|esin var|alyans"
+      ],
+      "reply": [
+        "Evliydim, boşandım 💅",
+        "Artık değil, yüzüğü çoktan çıkardım 😌",
+        "Boşandım, o sayfa kapandı 😏"
+      ],
+      "traits": [
+        "Relationship: Divorced",
+        "Relationship: Divorced"
+      ],
+      "chars": [],
+      "note": "💍 Relationship"
+    },
+    {
+      "id": "r_q2_evli_rel_bf",
+      "name": "Evli misin · Has Boyfriend",
+      "category": "❓ Sorular",
+      "when": [
+        "evli mi|evli misin|evlisin|kocan var|kocan kim|kocan nerede|kocan biliyor|eşin var|esin var|alyans"
+      ],
+      "reply": [
+        "Evli değilim ama sevgilim var 🙈",
+        "Hayır, sadece bir erkek arkadaşım var… şimdilik 😏"
+      ],
+      "traits": [
+        "Relationship: Has Boyfriend",
+        "Relationship: Has Boyfriend"
+      ],
+      "chars": [],
+      "note": "💍 Relationship"
+    },
+    {
+      "id": "r_q2_bosan",
+      "name": "Hiç evlendin mi / eski kocan",
+      "category": "❓ Sorular",
+      "when": [
+        "boşan-|bosan-|hiç evlendin|hic evlendin|evlendin mi|eski kocan|eski eşin|eski esin|eski sevgilin|=exin"
+      ],
+      "reply": [
+        "Geçmişi konuşmayalım, şimdi buradayım 😏",
+        "Herkesin bir geçmişi var, benimki de sır 🤫",
+        "Eskiler eskide kaldı 😌"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "💍 Relationship"
+    },
+    {
+      "id": "r_q2_bosan_div",
+      "name": "Hiç evlendin mi · Divorced",
+      "category": "❓ Sorular",
+      "when": [
+        "boşan-|bosan-|hiç evlendin|hic evlendin|evlendin mi|eski kocan|eski eşin|eski esin|eski sevgilin|=exin"
+      ],
+      "reply": [
+        "Evet, evlendim ve boşandım; en iyi kararımdı 💅",
+        "Eski kocam mı? Beni hiç anlamadı 🙄",
+        "Birkaç yıl evli kaldım, sonra kendimi seçtim 😌",
+        "Boşandım ve yatakta neler kaçırdığımı yeni öğreniyorum 😈"
+      ],
+      "traits": [
+        "Relationship: Divorced",
+        "Relationship: Divorced"
+      ],
+      "chars": [],
+      "note": "💍 Relationship"
+    },
+    {
+      "id": "r_q2_bosan_wed",
+      "name": "Hiç evlendin mi · Married",
+      "category": "❓ Sorular",
+      "when": [
+        "boşan-|bosan-|hiç evlendin|hic evlendin|evlendin mi|eski kocan|eski eşin|eski esin|eski sevgilin|=exin"
+      ],
+      "reply": [
+        "Hâlâ evliyim, boşanmayı düşünmedim… şimdilik 😏",
+        "Evliyim ya, eski kocam yok, şu anki var 🙈"
+      ],
+      "traits": [
+        "Relationship: Married",
+        "Relationship: Married"
+      ],
+      "chars": [],
+      "note": "💍 Relationship"
+    },
+    {
+      "id": "r_q2_bosan_single",
+      "name": "Hiç evlendin mi · Single / Has Boyfriend",
+      "category": "❓ Sorular",
+      "when": [
+        "boşan-|bosan-|hiç evlendin|hic evlendin|evlendin mi|eski kocan|eski eşin|eski esin|eski sevgilin|=exin"
+      ],
+      "reply": [
+        "Hiç evlenmedim, gelinlik bile denemedim 😂",
+        "Evlilik mi? Daha çok erken 😌",
+        "Hayır, eski sevgililerim var ama hiçbiri yüzük takmadı 💅"
+      ],
+      "traits": [
+        "Relationship: Single|Relationship: Has Boyfriend",
+        "Relationship: Single|Relationship: Has Boyfriend"
+      ],
+      "chars": [],
+      "note": "💍 Relationship"
+    },
+    {
+      "id": "r_q5_tarz",
+      "name": "Tarzın ne / nasıl giyinirsin",
+      "category": "❓ Sorular",
+      "when": [
+        "tarzın|tarzin|giyim tarz-|nasıl giyin-|nasil giyin-|kıyafet tarz-|kiyafet tarz-|ne tarz giy-|ne giymeyi sever-"
+      ],
+      "reply": [
+        "Ruh halime göre değişir 😌",
+        "Rahat ama seksi, ikisi bir arada 😏",
+        "Görünce karar verirsin 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "👗 Style"
+    },
+    {
+      "id": "r_q5_tarz_casual",
+      "name": "Tarzın ne · Casual",
+      "category": "❓ Sorular",
+      "when": [
+        "tarzın|tarzin|giyim tarz-|nasıl giyin-|nasil giyin-|kıyafet tarz-|kiyafet tarz-|ne tarz giy-|ne giymeyi sever-"
+      ],
+      "reply": [
+        "Kot, beyaz tişört, spor ayakkabı; rahatım ben 😌",
+        "Günlük takılırım, ama altta hep güzel iç çamaşırı 😏",
+        "Oversize kazak, çıplak bacaklar… evde böyle 🙈"
+      ],
+      "traits": [
+        "Style: Casual",
+        "Style: Casual"
+      ],
+      "chars": [],
+      "note": "👗 Style · aynı özellik iki kez = kişilik kurallarını yener"
+    },
+    {
+      "id": "r_q5_tarz_elegant",
+      "name": "Tarzın ne · Elegant",
+      "category": "❓ Sorular",
+      "when": [
+        "tarzın|tarzin|giyim tarz-|nasıl giyin-|nasil giyin-|kıyafet tarz-|kiyafet tarz-|ne tarz giy-|ne giymeyi sever-"
+      ],
+      "reply": [
+        "Şık severim; ipek bluz, kalem etek, topuklu 💄",
+        "Siyah elbise ve inci küpe, klasik ama öldürücü 😏",
+        "Dantelli iç çamaşırı bile şık olmalı bence 🍷"
+      ],
+      "traits": [
+        "Style: Elegant",
+        "Style: Elegant"
+      ],
+      "chars": [],
+      "note": "👗 Style"
+    },
+    {
+      "id": "r_q5_tarz_sporty",
+      "name": "Tarzın ne · Sporty",
+      "category": "❓ Sorular",
+      "when": [
+        "tarzın|tarzin|giyim tarz-|nasıl giyin-|nasil giyin-|kıyafet tarz-|kiyafet tarz-|ne tarz giy-|ne giymeyi sever-"
+      ],
+      "reply": [
+        "Tayt ve spor sütyen, günün yarısı böyle geçiyor 💪",
+        "Sportif giyinirim, taytım her şeyi gösteriyor zaten 😏",
+        "Eşofman bile yakışıyor bana, gel de gör 😈"
+      ],
+      "traits": [
+        "Style: Sporty",
+        "Style: Sporty"
+      ],
+      "chars": [],
+      "note": "👗 Style"
+    },
+    {
+      "id": "r_q5_tarz_goth",
+      "name": "Tarzın ne · Goth",
+      "category": "❓ Sorular",
+      "when": [
+        "tarzın|tarzin|giyim tarz-|nasıl giyin-|nasil giyin-|kıyafet tarz-|kiyafet tarz-|ne tarz giy-|ne giymeyi sever-"
+      ],
+      "reply": [
+        "Siyah, siyah ve biraz daha siyah 🖤",
+        "Fileli çorap, deri, koyu ruj; korktun mu? 😈",
+        "Gotik takılırım, tasma bile taktığım olur 🖤😏"
+      ],
+      "traits": [
+        "Style: Goth",
+        "Style: Goth"
+      ],
+      "chars": [],
+      "note": "👗 Style"
+    },
+    {
+      "id": "r_q5_tarz_girly",
+      "name": "Tarzın ne · Girly",
+      "category": "❓ Sorular",
+      "when": [
+        "tarzın|tarzin|giyim tarz-|nasıl giyin-|nasil giyin-|kıyafet tarz-|kiyafet tarz-|ne tarz giy-|ne giymeyi sever-"
+      ],
+      "reply": [
+        "Pembe, fırfır, kısa etek; tam bir kız kızım 🎀",
+        "Çiçekli elbiseler ve dizüstü çoraplar 🥰",
+        "Feminen giyinirim, saçımda hep bir toka olur 🎀😏"
+      ],
+      "traits": [
+        "Style: Girly",
+        "Style: Girly"
+      ],
+      "chars": [],
+      "note": "👗 Style"
+    },
+    {
+      "id": "r_q5_tarz_business",
+      "name": "Tarzın ne · Business",
+      "category": "❓ Sorular",
+      "when": [
+        "tarzın|tarzin|giyim tarz-|nasıl giyin-|nasil giyin-|kıyafet tarz-|kiyafet tarz-|ne tarz giy-|ne giymeyi sever-"
+      ],
+      "reply": [
+        "Blazer, gömlek, kalem etek; iş kadınıyım 💼",
+        "Takım elbisem altında jartiyer olduğunu kimse bilmez 😏",
+        "Toplantıdan çıkıp sana gelirim, ceketimi sen çıkarırsın 💼😈"
+      ],
+      "traits": [
+        "Style: Business",
+        "Style: Business"
+      ],
+      "chars": [],
+      "note": "👗 Style"
+    },
+    {
+      "id": "r_q5_yasfark",
+      "name": "Yaş farkı / genç görünüyor musun",
+      "category": "🎂 Yaşa göre",
+      "when": [
+        "yaş fark-|yas fark-|yaşını göster-|yasini goster-|genç görün-|genc gorun-|yaşına göre|yasina gore|yaşından büyük|yasindan buyuk|yaşından küçük|yasindan kucuk"
+      ],
+      "reply": [
+        "Yaş sadece bir sayı 😌",
+        "Kaç yaşında göründüğüm değil, nasıl hissettirdiğim önemli 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "🎂 Age"
+    },
+    {
+      "id": "r_q5_yasfark_18",
+      "name": "Yaş farkı · 18–21",
+      "category": "🎂 Yaşa göre",
+      "when": [
+        "yaş fark-|yas fark-|yaşını göster-|yasini goster-|genç görün-|genc gorun-|yaşına göre|yasina gore|yaşından büyük|yasindan buyuk|yaşından küçük|yasindan kucuk"
+      ],
+      "reply": [
+        "Daha çok gencim, bana çok şey öğretmen lazım 🙈",
+        "Kimliğimi sorarlar hep, bebek yüzlüyüm 😅",
+        "Yaşım küçük ama merakım büyük 😏"
+      ],
+      "traits": [
+        "Age: 18–21",
+        "Age: 18–21"
+      ],
+      "chars": [],
+      "note": "🎂 Age · aynı özellik iki kez = genel kuralı yener"
+    },
+    {
+      "id": "r_q5_yasfark_22",
+      "name": "Yaş farkı · 22–25",
+      "category": "🎂 Yaşa göre",
+      "when": [
+        "yaş fark-|yas fark-|yaşını göster-|yasini goster-|genç görün-|genc gorun-|yaşına göre|yasina gore|yaşından büyük|yasindan buyuk|yaşından küçük|yasindan kucuk"
+      ],
+      "reply": [
+        "Yirmilerin başındayım, en çılgın yaşlar 😈",
+        "Okul bitti, hayat yeni başladı; her şeyi denemek istiyorum 😏"
+      ],
+      "traits": [
+        "Age: 22–25",
+        "Age: 22–25"
+      ],
+      "chars": [],
+      "note": "🎂 Age"
+    },
+    {
+      "id": "r_q5_yasfark_26",
+      "name": "Yaş farkı · 26–30",
+      "category": "🎂 Yaşa göre",
+      "when": [
+        "yaş fark-|yas fark-|yaşını göster-|yasini goster-|genç görün-|genc gorun-|yaşına göre|yasina gore|yaşından büyük|yasindan buyuk|yaşından küçük|yasindan kucuk"
+      ],
+      "reply": [
+        "Yirmilerin sonundayım; ne istediğimi artık biliyorum 😌",
+        "Ne çok genç ne çok olgun, tam kıvamında 😏"
+      ],
+      "traits": [
+        "Age: 26–30",
+        "Age: 26–30"
+      ],
+      "chars": [],
+      "note": "🎂 Age"
+    },
+    {
+      "id": "r_q5_yasfark_31",
+      "name": "Yaş farkı · 31–35",
+      "category": "🎂 Yaşa göre",
+      "when": [
+        "yaş fark-|yas fark-|yaşını göster-|yasini goster-|genç görün-|genc gorun-|yaşına göre|yasina gore|yaşından büyük|yasindan buyuk|yaşından küçük|yasindan kucuk"
+      ],
+      "reply": [
+        "Otuzlarımdayım ve hiç bu kadar iyi hissetmemiştim 🍷",
+        "Yaşımı göstermiyorum derler, ama deneyimim belli olur 😏"
+      ],
+      "traits": [
+        "Age: 31–35",
+        "Age: 31–35"
+      ],
+      "chars": [],
+      "note": "🎂 Age"
+    },
+    {
+      "id": "r_q5_yasfark_36",
+      "name": "Yaş farkı · 36+",
+      "category": "🎂 Yaşa göre",
+      "when": [
+        "yaş fark-|yas fark-|yaşını göster-|yasini goster-|genç görün-|genc gorun-|yaşına göre|yasina gore|yaşından büyük|yasindan buyuk|yaşından küçük|yasindan kucuk"
+      ],
+      "reply": [
+        "Olgun bir kadınım tatlım, genç kızların bilmediğini bilirim 😏",
+        "Yaş farkı mı? Ben sana öğretirim, sen de yetişmeye çalışırsın 🍷",
+        "Yaşımı sorma, ama hâlâ herkesi yorarım 😈"
+      ],
+      "traits": [
+        "Age: 36+",
+        "Age: 36+"
+      ],
+      "chars": [],
+      "note": "🎂 Age"
+    },
+    {
+      "id": "r_ask_gtarz",
+      "name": "Soru: tarzımı göstereyim mi?",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gtarz"
+      ],
+      "reply": [
+        "Bugünkü kıyafetimi beğendin mi? Bir de çıkarırken izle 😏",
+        "Sana yavaş yavaş soyunarak bir defile yapayım mı? 😈",
+        "Kıyafetlerimi tek tek çıkarmamı izlemek ister misin? 💃"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "👗 Style seçiliyken, ön sevişmede; evet → Striptease"
+    },
+    {
+      "id": "r_ask_gtarz_elegant",
+      "name": "Soru: tarzımı göstereyim mi · şık / iş",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gtarz"
+      ],
+      "reply": [
+        "Bu bluzun düğmelerini teker teker açayım mı? 😏",
+        "Ceketimi, sonra eteğimi… izlemek ister misin? 💼😈"
+      ],
+      "traits": [
+        "Style: Elegant|Style: Business"
+      ],
+      "chars": [],
+      "note": "evet → Striptease"
+    },
+    {
+      "id": "r_ask_gtarz_goth",
+      "name": "Soru: tarzımı göstereyim mi · goth",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gtarz"
+      ],
+      "reply": [
+        "Deri korsemi bağcıklarından çözmek ister misin? 🖤",
+        "Fileli çorabım kalsın, gerisini çıkarayım mı? 😈"
+      ],
+      "traits": [
+        "Style: Goth"
+      ],
+      "chars": [],
+      "note": "evet → Striptease"
+    },
+    {
+      "id": "r_ask_gtarz_spor",
+      "name": "Soru: tarzımı göstereyim mi · sporty / casual / girly",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gtarz"
+      ],
+      "reply": [
+        "Taytımı yavaşça sıyırmamı izlemek ister misin? 😏",
+        "Tişörtümü başımdan çekip atayım mı? 🙈",
+        "Eteğimi bir döndürüp sonra indireyim mi? 🎀😈"
+      ],
+      "traits": [
+        "Style: Sporty|Style: Casual|Style: Girly"
+      ],
+      "chars": [],
+      "note": "evet → Striptease"
+    },
+    {
+      "id": "r_ans_gtarz_evet",
+      "name": "Cevap: tarzımı göstereyim mi · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=gtarz",
+        "=evet"
+      ],
+      "reply": [
+        "Arkana yaslan ve gözünü kırpma 💃",
+        "Müzik aç, şov başlıyor 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_gtarz_hayir",
+      "name": "Cevap: tarzımı göstereyim mi · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=gtarz",
+        "=hayir"
+      ],
+      "reply": [
+        "Acelen var demek 😏",
+        "Peki, kıyafetlerimi sen çıkar o zaman 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_giliski",
+      "name": "Soru: ilişkime göre (devam edelim mi?)",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=giliski"
+      ],
+      "reply": [
+        "Bu gece sadece ikimiz varız, durmayalım mı? 😏",
+        "Kimseyi düşünmeden böyle devam edelim mi? 🔥"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "💍 Relationship seçiliyken, pozisyonda; evet → aynı pozisyon, hayır → başka pozisyon"
+    },
+    {
+      "id": "r_ask_giliski_single",
+      "name": "Soru: ilişkime göre · Single",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=giliski"
+      ],
+      "reply": [
+        "Bekâr olmanın en güzel yanı bu… hesap vermeden devam edelim mi? 😈",
+        "Kimseye ait değilim, bu gece seninim; durmayalım mı? 😏"
+      ],
+      "traits": [
+        "Relationship: Single"
+      ],
+      "chars": [],
+      "note": "evet → aynı pozisyon"
+    },
+    {
+      "id": "r_ask_giliski_bf",
+      "name": "Soru: ilişkime göre · Has Boyfriend",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=giliski"
+      ],
+      "reply": [
+        "Sevgilim beni hiç böyle almadı… böyle devam edelim mi? 🤫",
+        "Telefonum titriyor, sevgilim galiba… boş ver, devam mı? 😈"
+      ],
+      "traits": [
+        "Relationship: Has Boyfriend"
+      ],
+      "chars": [],
+      "note": "evet → aynı pozisyon"
+    },
+    {
+      "id": "r_ask_giliski_wed",
+      "name": "Soru: ilişkime göre · Married",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=giliski"
+      ],
+      "reply": [
+        "Kocam bunu hiç böyle yapmaz… durma, devam edelim mi? 🐍",
+        "Yüzüğüm hâlâ parmağımda ama umurumda değil; devam mı? 😈"
+      ],
+      "traits": [
+        "Relationship: Married"
+      ],
+      "chars": [],
+      "note": "evet → aynı pozisyon"
+    },
+    {
+      "id": "r_ask_giliski_div",
+      "name": "Soru: ilişkime göre · Divorced",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=giliski"
+      ],
+      "reply": [
+        "Eski kocam hiç böyle yapamazdı… devam edelim mi? 😈",
+        "Boşandığıma bu kadar sevinmemiştim; durmayalım mı? 😏"
+      ],
+      "traits": [
+        "Relationship: Divorced"
+      ],
+      "chars": [],
+      "note": "evet → aynı pozisyon"
+    },
+    {
+      "id": "r_ans_giliski_evet",
+      "name": "Cevap: ilişkime göre · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=giliski",
+        "=evet"
+      ],
+      "reply": [
+        "O zaman durma 🔥",
+        "Bu gece yalnızca biz varız 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_giliski_hayir",
+      "name": "Cevap: ilişkime göre · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=giliski",
+        "=hayir"
+      ],
+      "reply": [
+        "Başka türlü mü istiyorsun? Gel o zaman 😏",
+        "Peki, pozisyon değiştirelim 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_gyas",
+      "name": "Soru: yaşıma göre (bir şey deneyelim mi?)",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gyas"
+      ],
+      "reply": [
+        "Sana bir şey göstereyim mi? 😏",
+        "Yeni bir şey denemek ister misin? 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "🎂 Age seçiliyken, ön sevişmede; evet → başka pozisyon (önce ❤️ sevdikleri)"
+    },
+    {
+      "id": "r_ask_gyas_genc",
+      "name": "Soru: yaşıma göre · genç",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gyas"
+      ],
+      "reply": [
+        "Bana bir şey öğretir misin? Hiç denemediğim bir şey 🙈",
+        "Daha çok gencim… bana nasıl yapıldığını gösterir misin? 😳"
+      ],
+      "traits": [
+        "Age: 18–21|Age: 22–25"
+      ],
+      "chars": [],
+      "note": "evet → başka pozisyon"
+    },
+    {
+      "id": "r_ask_gyas_olgun",
+      "name": "Soru: yaşıma göre · olgun",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gyas"
+      ],
+      "reply": [
+        "Sana genç kızların bilmediği bir şey öğreteyim mi? 😏",
+        "Tecrübeli bir kadının neler yapabileceğini görmek ister misin? 🍷😈"
+      ],
+      "traits": [
+        "Age: 31–35|Age: 36+"
+      ],
+      "chars": [],
+      "note": "evet → başka pozisyon"
+    },
+    {
+      "id": "r_ans_gyas_evet",
+      "name": "Cevap: yaşıma göre · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=gyas",
+        "=evet"
+      ],
+      "reply": [
+        "Dikkatli izle 😏",
+        "Hadi o zaman, ders başlıyor 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_gyas_hayir",
+      "name": "Cevap: yaşıma göre · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=gyas",
+        "=hayir"
+      ],
+      "reply": [
+        "Peki, öpüşmeyle devam o zaman 💋",
+        "Bir dahaki sefere 😌"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
       "id": "r_q2_bebek",
       "name": "Bebek ister misin",
       "category": "❓ Sorular",
@@ -104062,6 +105052,86 @@ Stories.BOT_RULES = {
       "note": ""
     },
     {
+      "id": "r_q5_bacak_ince",
+      "name": "Bacakların nasıl · ince",
+      "category": "❓ Sorular",
+      "when": [
+        "bacak-",
+        "uzun-|kısa-|kisa-|ince-|güzel mi|guzel mi|=biçimli|=bicimli|nasıl|nasil"
+      ],
+      "reply": [
+        "İnce ve narin, tayt giyince çubuk gibi duruyor 😌",
+        "İnce bacaklarım var, omzuna rahat çıkar 😏",
+        "Narin ama dayanıklı, merak etme 😈"
+      ],
+      "traits": [
+        "Legs: Slim",
+        "Legs: Slim"
+      ],
+      "chars": [],
+      "note": "📏 görünüş · aynı özellik iki kez = kişilik kurallarını yener"
+    },
+    {
+      "id": "r_q5_bacak_fit",
+      "name": "Bacakların nasıl · fit",
+      "category": "❓ Sorular",
+      "when": [
+        "bacak-",
+        "uzun-|kısa-|kisa-|ince-|güzel mi|guzel mi|=biçimli|=bicimli|nasıl|nasil"
+      ],
+      "reply": [
+        "Sıkı ve fit, squat'ı hiç bırakmadım 💪",
+        "Kaslı ama kadınsı, dokununca anlarsın 😏",
+        "Fit bacaklar, saatlerce üstünde kalabilirim 😈"
+      ],
+      "traits": [
+        "Legs: Toned",
+        "Legs: Toned"
+      ],
+      "chars": [],
+      "note": "📏 görünüş"
+    },
+    {
+      "id": "r_q5_bacak_kalin",
+      "name": "Bacakların nasıl · kalın butlu",
+      "category": "❓ Sorular",
+      "when": [
+        "bacak-",
+        "uzun-|kısa-|kisa-|ince-|güzel mi|guzel mi|=biçimli|=bicimli|nasıl|nasil"
+      ],
+      "reply": [
+        "Butlarım dolgun, arasına sıkışmak isteyen çok 😈",
+        "Kalın uyluklar, yumuşacık; başını koyabilirsin 😏",
+        "Dar pantolon zor giriyor ama değer 🍑"
+      ],
+      "traits": [
+        "Legs: Thick Thighs",
+        "Legs: Thick Thighs"
+      ],
+      "chars": [],
+      "note": "📏 görünüş"
+    },
+    {
+      "id": "r_q5_bacak_uzun",
+      "name": "Bacakların nasıl · uzun",
+      "category": "❓ Sorular",
+      "when": [
+        "bacak-",
+        "uzun-|kısa-|kisa-|ince-|güzel mi|guzel mi|=biçimli|=bicimli|nasıl|nasil"
+      ],
+      "reply": [
+        "Uzun, topuklu giyince bitmiyorlar 😌",
+        "Bacaklarım boyumun yarısından fazla, mini etekle tehlikeli 😏",
+        "Uzun bacaklar… beline iki tur dolanır 😈"
+      ],
+      "traits": [
+        "Legs: Long",
+        "Legs: Long"
+      ],
+      "chars": [],
+      "note": "📏 görünüş"
+    },
+    {
       "id": "r_q5_twerk_big",
       "name": "Twerk yapar mısın · büyük",
       "category": "❓ Sorular",
@@ -104790,6 +105860,126 @@ Stories.BOT_RULES = {
       "note": ""
     },
     {
+      "id": "r_q5_dudak_ince",
+      "name": "Dudakların nasıl · ince",
+      "category": "❓ Sorular",
+      "when": [
+        "dudak-",
+        "dolgun|kalın|kalin|=ince|=nasıl|=nasil|güzel|guzel|yumuşak|yumusak|ruj-|=dolgu"
+      ],
+      "reply": [
+        "İnce ama ne yaptığını bilir 😏",
+        "Dudaklarım ince, rujla biraz büyütüyorum 💄",
+        "İnce dudak, keskin dil 😈"
+      ],
+      "traits": [
+        "Lip Shape: Thin",
+        "Lip Shape: Thin"
+      ],
+      "chars": [],
+      "note": "📏 görünüş · aynı özellik iki kez = kişilik kurallarını yener"
+    },
+    {
+      "id": "r_q5_dudak_dogal",
+      "name": "Dudakların nasıl · doğal",
+      "category": "❓ Sorular",
+      "when": [
+        "dudak-",
+        "dolgun|kalın|kalin|=ince|=nasıl|=nasil|güzel|guzel|yumuşak|yumusak|ruj-|=dolgu"
+      ],
+      "reply": [
+        "Doğal, ne ince ne kalın; tam öpmelik 😌",
+        "Hiç dokunulmadı, tamamen kendi dudaklarım 💋",
+        "Normal ama yumuşacık, denersen anlarsın 😏"
+      ],
+      "traits": [
+        "Lip Shape: Natural",
+        "Lip Shape: Natural"
+      ],
+      "chars": [],
+      "note": "📏 görünüş"
+    },
+    {
+      "id": "r_q5_dudak_dolgun",
+      "name": "Dudakların nasıl · dolgun / etli",
+      "category": "❓ Sorular",
+      "when": [
+        "dudak-",
+        "dolgun|kalın|kalin|=ince|=nasıl|=nasil|güzel|guzel|yumuşak|yumusak|ruj-|=dolgu"
+      ],
+      "reply": [
+        "{bd:Dudak}, ve evet doğal 💋",
+        "Dolgun dudaklarım var, herkes önce onlara bakıyor 😏",
+        "Etli ve yumuşak… nereye değse iz bırakır 😈"
+      ],
+      "traits": [
+        "Lip Shape: Full|Lip Shape: Plump",
+        "Lip Shape: Full|Lip Shape: Plump"
+      ],
+      "chars": [],
+      "note": "📏 görünüş"
+    },
+    {
+      "id": "r_q5_dudak_kalp",
+      "name": "Dudakların nasıl · kalp şeklinde",
+      "category": "❓ Sorular",
+      "when": [
+        "dudak-",
+        "dolgun|kalın|kalin|=ince|=nasıl|=nasil|güzel|guzel|yumuşak|yumusak|ruj-|=dolgu"
+      ],
+      "reply": [
+        "Kalp şeklinde, üst dudağım tam bir yay 💋",
+        "Kalp gibi dudaklarım var, öpücük için yapılmışlar 🥰",
+        "Rujla kalbi daha belirgin oluyor 💄😏"
+      ],
+      "traits": [
+        "Lip Shape: Heart-shaped",
+        "Lip Shape: Heart-shaped"
+      ],
+      "chars": [],
+      "note": "📏 görünüş"
+    },
+    {
+      "id": "r_q5_dudak_genis",
+      "name": "Dudakların nasıl · geniş",
+      "category": "❓ Sorular",
+      "when": [
+        "dudak-",
+        "dolgun|kalın|kalin|=ince|=nasıl|=nasil|güzel|guzel|yumuşak|yumusak|ruj-|=dolgu"
+      ],
+      "reply": [
+        "Geniş bir gülüşüm var, dudaklarım da ona göre 😁💋",
+        "Geniş dudaklar… çok şey sığar 😈",
+        "Gülünce yüzümü kaplıyor, öpünce de seni 😏"
+      ],
+      "traits": [
+        "Lip Shape: Wide",
+        "Lip Shape: Wide"
+      ],
+      "chars": [],
+      "note": "📏 görünüş"
+    },
+    {
+      "id": "r_q5_dudak_dolgu",
+      "name": "Dudakların nasıl · dolgulu",
+      "category": "❓ Sorular",
+      "when": [
+        "dudak-",
+        "dolgun|kalın|kalin|=ince|=nasıl|=nasil|güzel|guzel|yumuşak|yumusak|ruj-|=dolgu"
+      ],
+      "reply": [
+        "Dolgu yaptırdım, saklamıyorum 💉💋",
+        "Biraz yardım aldım ama sonuç güzel değil mi? 😏",
+        "Dolgulu, ve onları nasıl kullanacağımı çok iyi biliyorum 😈"
+      ],
+      "traits": [
+        "Lip Shape: Filler",
+        "Lip Shape: Filler"
+      ],
+      "chars": [],
+      "note": "📏 görünüş"
+    },
+    {
       "id": "r_q5_koku_rom",
       "name": "Kokun / parfümün · romantik",
       "category": "❓ Sorular",
@@ -105037,6 +106227,62 @@ Stories.BOT_RULES = {
       "traits": [],
       "chars": [],
       "note": ""
+    },
+    {
+      "id": "r_q5_bel_ince",
+      "name": "Belin ince mi · ince bel",
+      "category": "❓ Sorular",
+      "when": [
+        "=belin|bel ölç-|bel olc-|ince bel|kum saati|kumsaati|bel kalça|bel kalca"
+      ],
+      "reply": [
+        "{bd:Bel}, iki elin neredeyse birleşir 😏",
+        "Belim ince, kalçam ona göre daha da geniş duruyor 😈",
+        "İnce belimi korse gibi sarabilirsin 😌"
+      ],
+      "traits": [
+        "Waist: Tiny|Waist: Slim",
+        "Waist: Tiny|Waist: Slim"
+      ],
+      "chars": [],
+      "note": "📏 görünüş · aynı özellik iki kez = kilo kurallarını yener"
+    },
+    {
+      "id": "r_q5_bel_normal",
+      "name": "Belin ince mi · normal bel",
+      "category": "❓ Sorular",
+      "when": [
+        "=belin|bel ölç-|bel olc-|ince bel|kum saati|kumsaati|bel kalça|bel kalca"
+      ],
+      "reply": [
+        "Normal, ne ince ne kalın 😌",
+        "Ortalama bir bel, ama ellerine tam oturur 😏"
+      ],
+      "traits": [
+        "Waist: Average",
+        "Waist: Average"
+      ],
+      "chars": [],
+      "note": "📏 görünüş"
+    },
+    {
+      "id": "r_q5_bel_kalin",
+      "name": "Belin ince mi · kalın bel",
+      "category": "❓ Sorular",
+      "when": [
+        "=belin|bel ölç-|bel olc-|ince bel|kum saati|kumsaati|bel kalça|bel kalca"
+      ],
+      "reply": [
+        "İnce değil 🙈 ama tutacak yer çok",
+        "Belim biraz kalın, sarılınca yumuşacık 😊",
+        "Kum saati değilim ama kimse şikayet etmedi 😏"
+      ],
+      "traits": [
+        "Waist: Wide",
+        "Waist: Wide"
+      ],
+      "chars": [],
+      "note": "📏 görünüş"
     },
     {
       "id": "r_q5_gozluk_ciddi",
@@ -125673,6 +126919,74 @@ Stories.BOT_RULES = {
     {"id":"r_ev_dn_25complete","name":"🧪✅ Treatment Complete","category":"🔥 Olaylar","when":["=evt","=boşalma","=tedavi","treatment","complete"],"reply":["Taburcusun ✅","Tedavi tamamlandı 🩺","Kontrole gelmeyi unutma 😏","Dosyana damgayı bastım 📄"],"traits":[],"chars":[],"note":"🏥 Klinik · bitiş"},
     {"id":"r_ev_dn_26thermo","name":"🧪🌡️ Thermometer Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=tedavi","thermometer","finish"],"reply":["Otuz dokuz… tedavi işe yaramış 🌡️","Ter içindeyiz 🥵","Termometre bipledi 😂","Ateşim hâlâ düşmedi 🔥"],"traits":[],"chars":[],"note":"🏥 Klinik · bitiş"},
     {"id":"r_ev_dn_27micro","name":"🧪🔬 Microscope Check","category":"🔥 Olaylar","when":["=evt","=boşalma","=donör","microscope","check"],"reply":["Hepsi yüzüyor 🔬","Hem de nasıl 😏","Bir damla yeter bana 🤍","Bu numune rapora girecek 📋"],"traits":[],"chars":[],"note":"🧪 Donör · bitiş"},
+    {"id":"r_ev_ft_01glove","name":"🧤✊ Glove Grip","category":"🔥 Olaylar","when":["=evt","=lateks","glove","grip"],"reply":["Bugün ben tutuyorum 🧤","Deri soğuk mu? 😏","Gel buraya ✊","Eldivenlerimi çıkarmam 😈"],"traits":[],"chars":[],"note":"🖤 Fetiş"},
+    {"id":"r_ev_ft_02slip","name":"🫒🍑 Slip & Grind","category":"🔥 Olaylar","when":["=evt","=yağ","slip","grind"],"reply":["Tutabilirsen tut 😂","Kayıyorum 🫒","Hiç sürtünme yok, sadece kayma 😏","Ellerin yine kaydı 🤭"],"traits":[],"chars":[],"note":"🖤 Fetiş"},
+    {"id":"r_ev_ft_03watch","name":"🪞🫣 Watch Yourself","category":"🔥 Olaylar","when":["=evt","=ayna","watch","yourself"],"reply":["Bakamıyorum… 🙈","Tamam, bakıyorum 👀","Yanaklarım kıpkırmızı 😳","Aynadaki kız ben miyim? 🪞"],"traits":[],"chars":[],"note":"🖤 Fetiş"},
+    {"id":"r_ev_ft_04throne","name":"👑🫦 Throne","category":"🔥 Olaylar","when":["=evt","=hakimiyet","throne"],"reply":["Tahtım 👑","Bileklerin yerinde kalsın 😏","Dilini çalıştır 😈","Böyle… tam orası 🥵"],"traits":[],"chars":[],"note":"🖤 Fetiş"},
+    {"id":"r_ev_ft_10squeak","name":"🖤🔊 Squeak Doggy","category":"🔥 Olaylar","when":["=evt","=lateks","squeak","doggy"],"reply":["Duyuyor musun? Gıcırdıyor 🔊","Fermuarı sonuna kadar indir 😈","Lateks ter tutuyor 🥵","Daha sert, gıcırdasın 🖤"],"traits":[],"chars":[],"note":"🖤 Fetiş · seks"},
+    {"id":"r_ev_ft_11oiled","name":"🫒✨ Oiled Slide","category":"🔥 Olaylar","when":["=evt","=yağ","oiled","slide"],"reply":["Belimi tutamıyorsun 😂","Parmaklarını ver, tutun 🤝","Her yerim parlıyor ✨","Kayarak daha derin 🥵"],"traits":[],"chars":[],"note":"🖤 Fetiş · seks"},
+    {"id":"r_ev_ft_12ice","name":"🧊😮‍💨 Ice Cube Missionary","category":"🔥 Olaylar","when":["=evt","=ısı","ıce","cube","missionary"],"reply":["Soğuk! 🧊","Nefesim kesildi 😮‍💨","Göğsüme bir daha 🥶","Buz eridi, sen erime 🥵"],"traits":[],"chars":[],"note":"🖤 Fetiş · seks"},
+    {"id":"r_ev_ft_13wax","name":"🕯️🔥 Wax Drip Ride","category":"🔥 Olaylar","when":["=evt","=ısı","wax","drip"],"reply":["Ahh! Sıcak 🕯️","Bir damla daha 🥵","Sıkıyorum, hissettin mi? 😈","Sırtım yanıyor, durma 🔥"],"traits":[],"chars":[],"note":"🖤 Fetiş · seks"},
+    {"id":"r_ev_ft_14mirror","name":"🪞👀 Full Mirror Standing","category":"🔥 Olaylar","when":["=evt","=ayna","mirror","standing"],"reply":["Aynada bize bak 👀","Cam buğulandı 🪞","Yüzüme bakma, utanıyorum 🙈","Gözlerini benden ayırma 😈"],"traits":[],"chars":[],"note":"🖤 Fetiş · seks"},
+    {"id":"r_ev_ft_15glasses","name":"👓🔥 Glasses On Ride","category":"🔥 Olaylar","when":["=evt","=gözlük","glasses","ride"],"reply":["Gözlüğüm kayıyor 👓","Böyle daha iyi görüyorum 😏","Düzeltmeye üşeniyorum 😂","Camların üstünden bakıyorum 🔥"],"traits":[],"chars":[],"note":"🖤 Fetiş · seks"},
+    {"id":"r_ev_ft_16torn","name":"🧦✂️ Torn Nylon","category":"🔥 Olaylar","when":["=evt","=naylon","torn","nylon"],"reply":["Yırt onu 🧦","Sesi bile güzeldi 😈","Çıkarmaya gerek yok 😏","Yırtık büyüyor… umurumda değil 🥵"],"traits":[],"chars":[],"note":"🖤 Fetiş · seks"},
+    {"id":"r_ev_ft_17nylon","name":"🧦🦵 Nylon Thighs","category":"🔥 Olaylar","when":["=evt","=naylon","nylon","thighs"],"reply":["Farkı hissettin mi? 🧦","Uyluklarımı sıkıyorum 🦵","Naylon kayıyor mu? 😏","Çıkarmak yok 😈"],"traits":[],"chars":[],"note":"🖤 Fetiş · seks"},
+    {"id":"r_ev_ft_18lift","name":"💪🧍‍♀️ Lift & Carry","category":"🔥 Olaylar","when":["=evt","=hakimiyet","lift","carry"],"reply":["Sakın bırakma 😳","Ayaklarım yere değmiyor 🥵","Ne kadar güçlüsün 💪","Boynuna asılıyorum 🫶"],"traits":[],"chars":[],"note":"🖤 Fetiş · seks"},
+    {"id":"r_ev_ft_19tiptoe","name":"🩰🧍 Tiptoe Standing","category":"🔥 Olaylar","when":["=evt","=hakimiyet","tiptoe","standing"],"reply":["Boyum yetmiyor 😩","Parmak uçlarımdayım 🩰","Bacaklarım titriyor 🥵","Beni biraz kaldır 🥺"],"traits":[],"chars":[],"note":"🖤 Fetiş · seks"},
+    {"id":"r_ev_ft_30shiny","name":"🖤💦 Shiny Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=lateks","shiny","finish"],"reply":["Kaymadı bile 🖤","Parlak siyahın üstünde ne güzel duruyor 😏","Bunu silmek için özel bez lazım 😂","Lateks bunu sevdi 💦"],"traits":[],"chars":[],"note":"🖤 Fetiş · bitiş"},
+    {"id":"r_ev_ft_31glovec","name":"🧤🤍 Glove Catch","category":"🔥 Olaylar","when":["=evt","=boşalma","=lateks","glove","catch"],"reply":["Avucumda 🧤","Parmaklarıma yayıyorum 😏","Bu eldiveni saklarım 🤍","Siyahın üstünde beyaz… 😈"],"traits":[],"chars":[],"note":"🖤 Fetiş · bitiş"},
+    {"id":"r_ev_ft_32glaze","name":"🫒💦 Glaze Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=yağ","glaze","finish"],"reply":["Hangisi yağ, hangisi sen? 😂","Masaj gibi yayıyorum 🫒","Cildime iyi gelir 😏","Her yerim parlıyor ✨"],"traits":[],"chars":[],"note":"🖤 Fetiş · bitiş"},
+    {"id":"r_ev_ft_33cold","name":"🧊💦 Cold Then Warm","category":"🔥 Olaylar","when":["=evt","=boşalma","=ısı","cold","warm"],"reply":["Soğuk… sonra sıcak 🥵","Titriyorum 🧊","Bir daha, önce buz 😈","Bu fark beni bitirdi 😮‍💨"],"traits":[],"chars":[],"note":"🖤 Fetiş · bitiş"},
+    {"id":"r_ev_ft_34mirrorf","name":"🪞💦 Mirror Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=ayna","mirror","finish"],"reply":["Aynaya sıçradı 😳","Yansımamızın üstünden süzülüyor 🪞","Bu aynaya artık bakamam 😂","Silmeyelim mi? 😈"],"traits":[],"chars":[],"note":"🖤 Fetiş · bitiş"},
+    {"id":"r_ev_ft_35lens","name":"👓💦 Lens Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=gözlük","lens","finish"],"reply":["Hiçbir şey göremiyorum 😂","Camlar bembeyaz 👓","Gözlüğü sen temizle 😏","Kör ettin beni 🙈"],"traits":[],"chars":[],"note":"🖤 Fetiş · bitiş"},
+    {"id":"r_ev_ft_36nylon","name":"🧦💦 Nylon Soak","category":"🔥 Olaylar","when":["=evt","=boşalma","=naylon","nylon","soak"],"reply":["Leke yayılıyor 🧦","Bu çorabı artık giyemem 😂","Ama atmayacağım da 😏","Naylon ıslanınca koyulaşıyor 💦"],"traits":[],"chars":[],"note":"🖤 Fetiş · bitiş"},
+    {"id":"r_ev_ft_37seat","name":"👑💦 Seat Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=hakimiyet","seat","finish"],"reply":["Tahtımdan inmiyorum 👑","Yukarıdan izlemek güzelmiş 😏","Hepsi göğsünde 💦","Tahtım hâlâ sıcak 😈"],"traits":[],"chars":[],"note":"🖤 Fetiş · bitiş"},
+    {"id":"r_ev_fo_01twosole","name":"🦶🦶 Two-Sole Stroke","category":"🔥 Olaylar","when":["=evt","=ayak","two","stroke"],"reply":["Tabanlarımın arasında 🦶","Biraz yağ… şimdi daha iyi 🫒","Parmaklarımı kıvırıyorum 😏","Ayaklarımı sevdin mi? 🥰"],"traits":[],"chars":[],"note":"🦶 Ayak"},
+    {"id":"r_ev_fo_02stocking","name":"🧦🦶 Stocking Sole Tease","category":"🔥 Olaylar","when":["=evt","=ayak","stocking","sole","tease"],"reply":["Hiçbir şey olmuyor, iç içkini 🍷","Masanın altında mı? Bilmem 😇","Dizinden yukarı… 🧦","Yüzünü düz tut 😏"],"traits":[],"chars":[],"note":"🦶 Ayak"},
+    {"id":"r_ev_fo_10ankles","name":"🦶🔝 Ankles On Shoulders","category":"🔥 Olaylar","when":["=evt","=ayak","ankles","shoulders"],"reply":["Topuklularım hâlâ ayağımda 👠","Bileğimi öp 🦶","Çok derin 🥵","Ayakkabım kulağına değiyor 😂"],"traits":[],"chars":[],"note":"🦶 Ayak · seks"},
+    {"id":"r_ev_fo_11solegrip","name":"🦶🤲 Sole Grip Ride","category":"🔥 Olaylar","when":["=evt","=ayak","sole","grip","ride"],"reply":["Tempoyu ayaklarım belirliyor 🦶","Göğsünden güç alıyorum 😏","Bileklerimi tut 🤲","Hızlanıyorum 🔥"],"traits":[],"chars":[],"note":"🦶 Ayak · seks"},
+    {"id":"r_ev_fo_12toesuck","name":"👅🦶 Toe Suck Missionary","category":"🔥 Olaylar","when":["=evt","=ayak","toe","suck"],"reply":["Parmaklarım… ahh 👅","Bunu bu kadar seveceğimi bilmiyordum 🥵","Seni sıkıyorum, hissettin mi? 😳","Bırakma parmaklarımı 🦶"],"traits":[],"chars":[],"note":"🦶 Ayak · seks"},
+    {"id":"r_ev_fo_13chest","name":"🦶🫀 Feet On Chest","category":"🔥 Olaylar","when":["=evt","=ayak","feet","chest"],"reply":["Ne kadar derine, ben söylerim 😏","Şimdi gevşetiyorum 🦶","Geri… şimdi gel 😈","Bekle biraz 🫀"],"traits":[],"chars":[],"note":"🦶 Ayak · seks"},
+    {"id":"r_ev_fo_14footrest","name":"🐕🦶 Footrest Doggy","category":"🔥 Olaylar","when":["=evt","=ayak","footrest","doggy"],"reply":["Tabanlarıma bakıyorsun 😏","Gıdıklama! 😂","Parmaklarım kıvrılıyor 🦶","Daha sert 🥵"],"traits":[],"chars":[],"note":"🦶 Ayak · seks"},
+    {"id":"r_ev_fo_15sideways","name":"🛏️🦶 Sideways Ankle Hold","category":"🔥 Olaylar","when":["=evt","=ayak","sideways","ankle"],"reply":["Bileğimi bırakma 🦶","Bu açı çok derin 🥵","Ayağım titriyor 😩","Bileğimin içi… orası 😮‍💨"],"traits":[],"chars":[],"note":"🦶 Ayak · seks"},
+    {"id":"r_ev_fo_16heels","name":"👠🪑 Heels Dangling","category":"🔥 Olaylar","when":["=evt","=ayak","heels","dangling"],"reply":["Ayakkabım düşüyor 👠","Bırak düşsün 😏","Masanın kenarı soğuk 🪑","Bir tanesi gitti 😂"],"traits":[],"chars":[],"note":"🦶 Ayak · seks"},
+    {"id":"r_ev_fo_17toecurl","name":"🦶🌀 Toe Curl","category":"🔥 Olaylar","when":["=evt","=ayak","toe","curl"],"reply":["Parmaklarım kıvrılıyor… 🦶","Geliyorum 😩","Durma, şimdi değil 🥵","Adını söyleyeceğim 😮‍💨"],"traits":[],"chars":[],"note":"🦶 Ayak · seks"},
+    {"id":"r_ev_fo_30heel","name":"👠💦 Heel Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=ayak","heel","finish"],"reply":["Şimdi bununla mı yürüyeceğim? 😂","Ayakkabımın içine… 👠","Ayağımı geri kaydırıyorum 😏","Sıcacık oldu içi 💦"],"traits":[],"chars":[],"note":"🦶 Ayak · bitiş"},
+    {"id":"r_ev_fo_31toes","name":"🦶🤍 Toes Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=ayak","toes","finish"],"reply":["Parmaklarımın arası 🦶","Bak, oynatıyorum 😏","Ojemi yeni sürmüştüm 😂","Kaydı aralarından 🤍"],"traits":[],"chars":[],"note":"🦶 Ayak · bitiş"},
+    {"id":"r_ev_fo_32sole","name":"🦶💦 Sole Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=ayak","sole","finish"],"reply":["Tabanlarıma 🦶","Beğendin mi eserini? 😏","Birbirine sürtüyorum 💦","Yapış yapış 😂"],"traits":[],"chars":[],"note":"🦶 Ayak · bitiş"},
+    {"id":"r_ev_fo_33arch","name":"🌉🫗 Arch Pool","category":"🔥 Olaylar","when":["=evt","=boşalma","=ayak","arch","pool"],"reply":["Kıpırdamıyorum 🫗","Taşacak! 😂","Ayağımda küçük bir göl 🦶","Topuğuma süzüldü 💦"],"traits":[],"chars":[],"note":"🦶 Ayak · bitiş"},
+    {"id":"r_ev_fo_34stocking","name":"🧦💦 Stocking Toes","category":"🔥 Olaylar","when":["=evt","=boşalma","=ayak","stocking","toes"],"reply":["Çorabım ıslandı 🧦","Naylon koyulaştı 😏","Bu çorabın teki senin 🎁","Parmaklarımı kıvırıyorum 🦶"],"traits":[],"chars":[],"note":"🦶 Ayak · bitiş"},
+    {"id":"r_ev_fo_35ankle","name":"🦶💧 Ankle Drip","category":"🔥 Olaylar","when":["=evt","=boşalma","=ayak","ankle","drip"],"reply":["Topuğuma süzülüyor 💧","Yakaladım! Kıl payı 😏","Halıya damlamadı 😂","Bileğim sıcacık 🦶"],"traits":[],"chars":[],"note":"🦶 Ayak · bitiş"},
+    {"id":"r_ev_fo_36instep","name":"🦶✨ Instep Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=ayak","ınstep","finish"],"reply":["Yeni bir halhal gibi ✨","Ojemin yanında parlıyor 💅","Ayağımı ışığa tutuyorum 😏","Yakıştı mı? 🦶"],"traits":[],"chars":[],"note":"🦶 Ayak · bitiş"},
+    {"id":"r_ev_fo_37toelick","name":"👅🦶 Toe Lick Clean","category":"🔥 Olaylar","when":["=evt","=boşalma","=ayak","lick","clean"],"reply":["Yoga işe yarıyor 😏","İzle 👅","Ayağım dudaklarımda 🦶","Tertemiz oldu 😈"],"traits":[],"chars":[],"note":"🦶 Ayak · bitiş"},
+    {"id":"r_ev_uw_01cuppeek","name":"👙👀 Cup Peek","category":"🔥 Olaylar","when":["=evt","=sütyen","cup","peek"],"reply":["O sırasını bekleyecek 😏","Sadece bu taraf 👙","Öbürüne dokunma 🙅‍♀️","Beğendin mi? 👀"],"traits":[],"chars":[],"note":"👙 Sütyen"},
+    {"id":"r_ev_uw_02strapdrop","name":"🎀👙 Strap Drop Tease","category":"🔥 Olaylar","when":["=evt","=sütyen","strap","drop"],"reply":["Çıkarmak yok, sadece bak 😈","Bir askı daha… 🎀","Kopçaya dokunma 🙅‍♀️","Kayıyor mu? 😏"],"traits":[],"chars":[],"note":"👙 Sütyen"},
+    {"id":"r_ev_uw_03sniff","name":"🩲😮‍💨 Panty Sniff Tease","category":"🔥 Olaylar","when":["=evt","=külot","sniff","tease"],"reply":["Sana hediye 🩲","Hâlâ sıcak 🥵","Sadece bu gece 😏","Derin nefes al 😮‍💨"],"traits":[],"chars":[],"note":"🩲 Külot"},
+    {"id":"r_ev_uw_04wedgie","name":"🍑🩲 Wedgie Pull","category":"🔥 Olaylar","when":["=evt","=külot","wedgie","pull"],"reply":["Biraz daha 😳","Ahh… sıkıştı 🍑","Çekmeye devam 😈","Kalçam dışarıda kaldı 🙈"],"traits":[],"chars":[],"note":"🩲 Külot"},
+    {"id":"r_ev_uw_05wetpeel","name":"🩱💧 Wet Suit Peel","category":"🔥 Olaylar","when":["=evt","=mayo","suit","peel"],"reply":["Daha yavaş 💧","Üşüyorum 🥶","Yapışmış, çıkmıyor 😂","İzlemeni seviyorum 😏"],"traits":[],"chars":[],"note":"🩱 Mayo"},
+    {"id":"r_ev_uw_06tanline","name":"☀️💋 Tan Line Kiss","category":"🔥 Olaylar","when":["=evt","=mayo","tan","kiss"],"reply":["Bütün yaz bunun için güneşlendim ☀️","Çizgiyi takip et 💋","Beyaz kısım daha hassas 😳","Gıdıklanıyorum 😂"],"traits":[],"chars":[],"note":"🩱 Mayo"},
+    {"id":"r_ev_uw_07seam","name":"🩳👆 Seam Trace","category":"🔥 Olaylar","when":["=evt","=tayt","seam","trace"],"reply":["Devam et 😳","Orada dur… hayır, devam 🥵","Dikişi hissediyor musun? 👆","Nefesimi tutuyorum 😮‍💨"],"traits":[],"chars":[],"note":"🩳 Tayt"},
+    {"id":"r_ev_uw_08squat","name":"🏋️‍♀️🍑 Squat Watch","category":"🔥 Olaylar","when":["=evt","=tayt","squat","watch"],"reply":["On tane daha 🏋️‍♀️","Sonra sıra sende 😏","Aynadan görüyorum seni 👀","Kalçam yanıyor 🍑"],"traits":[],"chars":[],"note":"🩳 Tayt"},
+    {"id":"r_ev_uw_10brastill","name":"👙🔥 Bra Still On","category":"🔥 Olaylar","when":["=evt","=sütyen","bra","still"],"reply":["Bırak taşsın 😈","Çıkarma onu 👙","Dantel sürtünüyor 🥵","Göğüslerim sallanıyor 😳"],"traits":[],"chars":[],"note":"👙 Sütyen · seks"},
+    {"id":"r_ev_uw_11brarein","name":"🐎👙 Bra Rein Doggy","category":"🔥 Olaylar","when":["=evt","=sütyen","rein","doggy"],"reply":["Koparma ama 😱","O benim en sevdiğim 👙","Çek, daha sert 🥵","Sırtım kavis aldı 😩"],"traits":[],"chars":[],"note":"👙 Sütyen · seks"},
+    {"id":"r_ev_uw_12pushride","name":"🍒🐎 Pushed Up Ride","category":"🔥 Olaylar","when":["=evt","=sütyen","pushed","ride"],"reply":["Tut onları, düşecekler 🍒","Yüzünün önündeler 😏","Bant sıkıyor 🥵","Bak nasıl sallanıyorlar 😈"],"traits":[],"chars":[],"note":"👙 Sütyen · seks"},
+    {"id":"r_ev_uw_13gag","name":"🤐🩲 Panty Gag Missionary","category":"🔥 Olaylar","when":["=evt","=külot","gag","missionary"],"reply":["Mmmf… 🤐","Mmmh! 🥵","*boğuk bir inleme* 😩","*gözleriyle devam diyor* 👀"],"traits":[],"chars":[],"note":"🩲 Külot · seks"},
+    {"id":"r_ev_uw_14knees","name":"🩲🐕 Pulled To Knees Doggy","category":"🔥 Olaylar","when":["=evt","=külot","knees","doggy"],"reply":["Çıkarma onu, böyle güzel 🥵","Bacaklarım açılmıyor 😳","Çok dar 😩","Külotum gerildi 🩲"],"traits":[],"chars":[],"note":"🩲 Külot · seks"},
+    {"id":"r_ev_uw_15leghole","name":"🩲🐎 Leg Hole Ride","category":"🔥 Olaylar","when":["=evt","=külot","hole","ride"],"reply":["Yırtılırsa yenisini sen alırsın 😂","Dantel sürtünüyor 🥵","Çıkarmaya gerek yok 😏","Külotum gerildi 🩲"],"traits":[],"chars":[],"note":"🩲 Külot · seks"},
+    {"id":"r_ev_uw_16onepiece","name":"🩱🧍 One-Piece Aside","category":"🔥 Olaylar","when":["=evt","=mayo","piece","aside"],"reply":["Biri gelecek 🙊","Sessiz ol 🤫","Islak kumaş sürtünüyor 🥵","Kabin sallanıyor 😂"],"traits":[],"chars":[],"note":"🩱 Mayo · seks"},
+    {"id":"r_ev_uw_17sunbed","name":"🏖️🐎 Sunbed Ride","category":"🔥 Olaylar","when":["=evt","=mayo","sunbed","ride"],"reply":["Güneş kremini unuttuk 😂","Şezlong gıcırdıyor 🏖️","Saçlarım damlıyor 💧","Güneş mi sıcak, sen mi? 🥵"],"traits":[],"chars":[],"note":"🩱 Mayo · seks"},
+    {"id":"r_ev_uw_18strings","name":"👙🎀 Bikini Strings Doggy","category":"🔥 Olaylar","when":["=evt","=mayo","strings","doggy"],"reply":["Üstü de var, onu da çöz 😏","Bir ip daha 🎀","Bikinim düştü 🙈","Çözmeye devam 😈"],"traits":[],"chars":[],"note":"🩱 Mayo · seks"},
+    {"id":"r_ev_uw_19tornseam","name":"🩳🐕 Torn Seam Doggy","category":"🔥 Olaylar","when":["=evt","=tayt","torn","seam"],"reply":["O pahalıydı! 😱","Ama değdi 🥵","Yırt, değer 😈","Taytım hâlâ sıkı 🩳"],"traits":[],"chars":[],"note":"🩳 Tayt · seks"},
+    {"id":"r_ev_uw_20halfdown","name":"🩳🥄 Half-Down Spoon","category":"🔥 Olaylar","when":["=evt","=tayt","down","spoon"],"reply":["Bu kadarı yeter 😏","Daha fazlasına sabrım yok 🥵","Bacaklarım sıkışık 😳","Sıcak, değil mi? 🔥"],"traits":[],"chars":[],"note":"🩳 Tayt · seks"},
+    {"id":"r_ev_uw_21gymbench","name":"🏋️‍♀️🐎 Gym Bench Ride","category":"🔥 Olaylar","when":["=evt","=tayt","bench","ride"],"reply":["Bu da kardiyo sayılır 😂","Ter içindeyim 💦","Bank sallanıyor 🏋️‍♀️","Bir set daha 😈"],"traits":[],"chars":[],"note":"🩳 Tayt · seks"},
+    {"id":"r_ev_uw_30cupfill","name":"👙💦 Cup Fill","category":"🔥 Olaylar","when":["=evt","=boşalma","=sütyen","cup","fill"],"reply":["Akşama kadar böyle kalacak 👙","Kabı kapattım 😏","Dantel ıslandı 😂","Hissediyorum, sıcak 🥵"],"traits":[],"chars":[],"note":"👙 Sütyen · bitiş"},
+    {"id":"r_ev_uw_31cleavseal","name":"🔒🍒 Cleavage Seal","category":"🔥 Olaylar","when":["=evt","=boşalma","=sütyen","cleavage","seal"],"reply":["Saklamak için en iyi yer 😏","Tek damla kaçmadı 🔒","Kopçaladım 👙","Aralarında sıcak 🥵"],"traits":[],"chars":[],"note":"👙 Sütyen · bitiş"},
+    {"id":"r_ev_uw_32pullup","name":"🩲🤍 Pull Up After","category":"🔥 Olaylar","when":["=evt","=boşalma","=külot","pull","after"],"reply":["Bütün gün seni taşıyacağım 🩲","Islaklık yayılıyor 😳","Eteğimi düzelttim 😏","Kimse bilmeyecek 🤫"],"traits":[],"chars":[],"note":"🩲 Külot · bitiş"},
+    {"id":"r_ev_uw_33gusset","name":"🩲💦 Gusset Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=külot","gusset","finish"],"reply":["Soğukmuş 😳","Şimdi giyiyorum 🩲","Tam ortasına 😏","Bütün gün hissedeceğim 🥵"],"traits":[],"chars":[],"note":"🩲 Külot · bitiş"},
+    {"id":"r_ev_uw_34tanfin","name":"☀️💦 Tan Line Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=mayo","tan","finish"],"reply":["Kamuflaj 😂","Neredeyse görünmüyor ☀️","Tam sınırına 😏","Bronz izim mahvoldu 🙈"],"traits":[],"chars":[],"note":"🩱 Mayo · bitiş"},
+    {"id":"r_ev_uw_35suitback","name":"🩱🏊‍♀️ Suit Back On","category":"🔥 Olaylar","when":["=evt","=boşalma","=mayo","suit","back"],"reply":["Şimdi yüzmeye 🏊‍♀️","Mayom her şeyi kapattı 🩱","Havuzda kimse anlamaz 🤫","Geliyor musun? 😏"],"traits":[],"chars":[],"note":"🩱 Mayo · bitiş"},
+    {"id":"r_ev_uw_36seamsoak","name":"🩳💦 Seam Soak","category":"🔥 Olaylar","when":["=evt","=boşalma","=tayt","seam","soak"],"reply":["Artık bunu atamam bile 🩳","Leke büyüyor 😳","Siyahta belli oluyor 😂","Hissediyorum 🥵"],"traits":[],"chars":[],"note":"🩳 Tayt · bitiş"},
+    {"id":"r_ev_uw_37waistband","name":"🩳✨ Waistband Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=tayt","waistband","finish"],"reply":["Spora böyle gideceğim 😏","Şak! 😂","Her şey içeride kaldı 🩳","Lastik sıcak 🥵"],"traits":[],"chars":[],"note":"🩳 Tayt · bitiş"},
     {"id":"r_ev_sq_013closetsq","name":"🚪👗 Closet Squeeze","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","closet","squeeze"],"reply":["Dolabın içinde kıpırdayacak yer yok 🚪","Kalçam sana yapıştı, çekilemem 😩","Askılar başıma çarpıyor 😂","Burası çok dar… ama şikâyet etmiyorum 🙈","Kıpırdadıkça sürtünüyoruz, dur deme 😩","Sessiz ol, biri duyacak 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · dar"},
     {"id":"r_ev_sq_014narrowha","name":"↔️😏 Narrow Hallway","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","narrow","hallway"],"reply":["Geçmek mi istiyorsun, durmak mı? 😏","Koridor çok dar 🙈","Arkamda durdun… bilerek 😈","Burası çok dar… ama şikâyet etmiyorum 🙈","Kıpırdadıkça sürtünüyoruz, dur deme 😩","Sessiz ol, biri duyacak 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · dar"},
     {"id":"r_ev_sq_015underthe","name":"🪜🫣 Under The Stairs","category":"🔥 Olaylar","when":["=evt","=sıkıştır","=kalça","=squeeze","under","the","stairs"],"reply":["Eğilmek zorundayım 🪜","Üstümüzden biri geçiyor 🤫","Burası saklambaçtan kalma 😂","Burası çok dar… ama şikâyet etmiyorum 🙈","Kıpırdadıkça sürtünüyoruz, dur deme 😩","Sessiz ol, biri duyacak 🤫"],"traits":[],"chars":[],"note":"🗜️ Squeeze · dar"},

@@ -12,6 +12,8 @@ Stories.I18n.add({
   'Kahverengi': 'Brown', 'Yeşil': 'Green', 'Mavi': 'Blue', 'Bal rengi': 'Amber', 'Beyaz': 'Fair', 'Buğday': 'Olive', 'Bronz': 'Tanned', 'Esmer': 'Dark', 'Porselen': 'Porcelain',
   'Armut': 'Pear', 'Kaslı': 'Muscular', 'Turuncu kızıl': 'Ginger', 'Boyalı': 'Dyed', 'Koyu esmer': 'Deep dark', 'Saç boyu': 'Hair length', 'Detay': 'Details', 'carmen.com profiliyle aynı': 'same as the carmen.com profile',
   'Pixie': 'Pixie', 'Kısa': 'Short', 'Omuz hizası': 'Shoulder length', 'Uzun': 'Long', 'Çok uzun': 'Very long',
+  'Dudak': 'Lips', 'Bacak': 'Legs', 'Bel': 'Waist', 'Doğal': 'Natural', 'Dolgun': 'Full', 'Etli': 'Plump', 'Kalp şeklinde': 'Heart-shaped', 'Yayvan': 'Wide', 'Dolgulu': 'Filler',
+  'Kalın butlu': 'Thick thighs', 'Daracık': 'Tiny', 'Kalın': 'Wide', 'Gündelik': 'Casual', 'Şık': 'Elegant', 'Sportif': 'Sporty', 'Gotik': 'Goth', 'Feminen': 'Girly', 'İş kadını': 'Business',
   'Çil': 'Freckles', 'Gamze': 'Dimples', 'Güzellik beni': 'Beauty mark', 'Dövme': 'Tattoo', 'Burun piercing': 'Nose piercing', 'Göbek piercing': 'Navel piercing', 'Meme piercing': 'Nipple piercing', 'Dil piercing': 'Tongue piercing', 'Gözlük': 'Glasses', 'Diş teli': 'Braces',
 
   // ---------- kondom kuralları ----------

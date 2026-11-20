@@ -532,6 +532,27 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['👙', 'Sütyen, külot, mayo, tayt', '28 yeni olay geldi, hiçbirinde üstündekiler tam çıkmıyor. Tek kabı inmiş bir sütyen, dizlerinde kalmış bir külot, yana çekilmiş ıslak bir mayo, dikişinden yırtılan bir tayt. Her birinin kendi bitişi var.', '#/kitap/olay/74', [
+      ['👙 Oyunlar', 'Cup Peek, Strap Drop Tease, Panty Sniff Tease, Wedgie Pull, Wet Suit Peel, Tan Line Kiss, Seam Trace ve Squat Watch.'],
+      ['🩱 Seks', 'Bra Still On, Bra Rein Doggy, Pushed Up Ride, Panty Gag Missionary, Pulled To Knees Doggy, Leg Hole Ride, One-Piece Aside, Sunbed Ride, Bikini Strings Doggy, Torn Seam Doggy, Half-Down Spoon ve Gym Bench Ride.'],
+      ['💦 Bitişler', 'Cup Fill, Cleavage Seal, Pull Up After, Gusset Finish, Tan Line Finish, Suit Back On, Seam Soak ve Waistband Finish. Her biri yalnızca kendi kıyafetinin olaylarından sonra gelir.'],
+      ['🎬 Sahneler', '👙 Dantel Sabahı, 🩲 Dizdeki Külot, 🏖️ Havuz Başı ve 🩳 Yırtık Tayt. CarmenEvents → 🎬 Sahneler → 👙 İç çamaşırı.'],
+      ['📚 Kitap', 'Olay Kitabı\'nda yeni bölüm: 👙 Sütyen, külot, mayo, tayt.']]],
+    ['💋', 'Yeni karakter özellikleri', 'Oluştur ekranında altı yeni özellik var: dudak yapısı, bacak, bel, giyim tarzı, ilişki durumu ve yaş aralığı. Seçtiklerin profil kartında görünür; 🎲 Rastgele bunları kilosuna, yaşına ve evliliğine uygun seçer.', '#/kitap/yeni/14', [
+      ['💋 Lip Shape', 'Thin, Natural, Full, Plump, Heart-shaped, Wide ve Filler.'],
+      ['🦵 Legs · ⏳ Waist', 'Slim, Toned, Thick Thighs, Long · Tiny, Slim, Average, Wide. Kiloyla uyumsuz olanlar seçilemez.'],
+      ['👗 Style', 'Casual, Elegant, Sporty, Goth, Girly ve Business.'],
+      ['💍 Relationship', 'Single, Has Boyfriend, Married ve Divorced. Married, 💍 Evli ve 🏠 Kocasıyla Yaşıyor ile bağlı.'],
+      ['🎂 Age', '18–21, 22–25, 26–30, 31–35 ve 36+. Yaşla uyumlu gelir.'],
+      ['📚 Kitap', '📏 Görünüş bölümünde tablo ve uyum kuralları.']]],
+    ['🖤', 'Fetişler ve ayaklar', '40 yeni olay geldi. Lateks tulumun gıcırtısı, baştan aşağı yağlı bir ten, buzla mum, boy aynası, burnundan kayan gözlük, yırtılan çorap; yüzüne oturan ya da havaya kaldırdığın bir kız. Ayaklar için de ayrı bir set: bilekleri omuzlarında, tabanları göğsünde, parmakları ağzında. Her fetişin kendi bitişi var.', '#/kitap/olay/72', [
+      ['🧤 Fetiş oyunları', 'Glove Grip, Slip & Grind, Watch Yourself ve Throne.'],
+      ['🖤 Fetiş seks', 'Squeak Doggy, Oiled Slide, Ice Cube Missionary, Wax Drip Ride, Full Mirror Standing, Glasses On Ride, Torn Nylon, Nylon Thighs, Lift & Carry ve Tiptoe Standing.'],
+      ['💦 Fetiş bitişleri', 'Shiny Finish, Glove Catch, Glaze Finish, Cold Then Warm, Mirror Finish, Lens Finish, Nylon Soak ve Seat Finish. Her biri kendi fetişinin pozisyonundan sonra gelir.'],
+      ['🦶 Ayak', 'Two-Sole Stroke, Stocking Sole Tease, Ankles On Shoulders, Sole Grip Ride, Toe Suck Missionary, Feet On Chest, Footrest Doggy, Sideways Ankle Hold, Heels Dangling ve Toe Curl.'],
+      ['👠 Ayak bitişleri', 'Heel Finish, Toes Finish, Sole Finish, Arch Pool, Stocking Toes, Ankle Drip, Instep Finish ve Toe Lick Clean.'],
+      ['🎬 Sahneler', '🖤 Lateks Gecesi, 🫒 Yağlı Beden, 🧊 Sıcak Soğuk, 🪞 Boy Aynası, 🧦 Yırtık Çorap, 👑 Hükümdar, 👠 Topuklu Gece, 🍷 Masa Altından, 👅 Parmak Ucu ve 🦶 Tabanlar. CarmenEvents → 🎬 Sahneler → 🖤 Fetiş / 🦶 Ayak.'],
+      ['📚 Kitap', 'Olay Kitabı\'nda iki yeni bölüm: 🖤 Fetişler ve 🦶 Ayak.']]],
     ['📰', 'Sohbette durum kartları', 'Sohbet artık nabzını gösteriyor. Bluzu yere düşünce, Zevk\'in 80\'i geçince, tempo Rough\'a dönünce ya da bitince akışa ince bir durum kartı düşer: ne oldu, hangi değer ne oldu, tek bakışta. Rastgele gelmez; her eşik bir kez. Karta dokununca 📊 durum kartı açılır.', '#/kitap/carmen', [
       ['💦 Bitiş özeti', 'Hangi bitiş oldu, 🫙 Cum ne kadar boşaldı, kondom ya da hap sonucu.'],
       ['👗 Soyunma ve 💜 izler', 'Çıkan her parça ve yeni bıraktığın her iz kendi kartıyla gelir.'],
@@ -670,7 +691,7 @@
       ['🤏 Değdirme', 'Kalçasına: Cheek Trace, Panty Line Trace, Crack Slide, Lower Back Rest, Jeans Press. Bacaklarına: Inner Thigh Trail, Thigh Gap Rest, Stocking Rub, Under Table Touch, Calf to Knee.'],
       ['👗 Kıyafet', 'Panty Slap, Bra Slap, Stocking Slap, Panty Line Trace, Stocking Rub ve Jeans Press o parça üstündeyken olur.'],
       ['📚 Kitap', 'Olay Kitabı\'na iki bölüm: 👋 Aletle Vurma ve 🤏 Aletle Değdirme.']]],
-    ['📖', 'Daha iyi anlatımlar!', 'Olaylar artık tek cümleyle geçiştirilmiyor: her olay birkaç cümlelik küçük bir sahne olarak anlatılıyor. Ne yaptığın, onun nasıl tepki verdiği, o anın sonunda ne kaldığı. 📜 Olay rehberinde, Olay Kitabı\'nda ve diğer kitaplarda.', '#/kitap/olay/72', [
+    ['📖', 'Daha iyi anlatımlar!', 'Olaylar artık tek cümleyle geçiştirilmiyor: her olay birkaç cümlelik küçük bir sahne olarak anlatılıyor. Ne yaptığın, onun nasıl tepki verdiği, o anın sonunda ne kaldığı. 📜 Olay rehberinde, Olay Kitabı\'nda ve diğer kitaplarda.', '#/kitap/olay/75', [
       ['✒️ Uzun anlatım', 'Her olayın kısa açıklaması olay seçicide duruyor; uzun anlatımı rehberde ve kitaplarda ilk sırada.'],
       ['📚 Kitap', 'Olay Kitabı\'nda yeni bölüm: 📖 Daha iyi anlatımlar; kaç olayın yeni anlatımı olduğunu canlı sayar.']]],
     ['💜', 'İzler artık kalıyor', 'Bıraktığın izler sayılıyor: durum kartında 💜 kaç iz olduğunu görürsün, sohbet saatiyle önce morarır sonra solar. Kocası bilmeyen evli kızın kocası görünür izi sorar ve 🕵️ Şüphe artar; Hotwife\'ın kocası görmek ister. 17 yeni iz olayı da geldi.', '#/kitap/olay/58', [
@@ -1936,6 +1957,21 @@
   // kökene göre sabit (id hash'li) değer: map dizi ise değerin kendisi, nesne ise Türkçe karşılığı; köken yoksa ''
   const cmLookV = (c, g, map) => { const w = lookW(c, g); if (!w) return ''; const ks = Array.isArray(map) ? map : Object.keys(map), k = ks[wPick(w, cmNum(c, 'lk' + g, 1000) / 1000)]; return Array.isArray(map) ? k : map[k]; };
   const CM_MARKS = { Freckles: 'Çil', Dimples: 'Gamze', 'Beauty Mark': 'Güzellik beni', Tattoo: 'Dövme', 'Nose Piercing': 'Burun piercing', 'Navel Piercing': 'Göbek piercing', 'Nipple Piercing': 'Meme piercing', 'Tongue Piercing': 'Dil piercing', Glasses: 'Gözlük', Braces: 'Diş teli' };
+  const CM_LIPS = { Thin: 'İnce', Natural: 'Doğal', Full: 'Dolgun', Plump: 'Etli', 'Heart-shaped': 'Kalp şeklinde', Wide: 'Yayvan', Filler: 'Dolgulu' };
+  const CM_LEGS = { Slim: 'İnce', Toned: 'Fit', 'Thick Thighs': 'Kalın butlu', Long: 'Uzun' };
+  const CM_WAIST = { Tiny: 'Daracık', Slim: 'İnce', Average: 'Normal', Wide: 'Kalın' };
+  const CM_STYLE = { Casual: 'Gündelik', Elegant: 'Şık', Sporty: 'Sportif', Goth: 'Gotik', Girly: 'Feminen', Business: 'İş kadını' };
+  // 🎂 Age özelliği → yaş aralığı; 🎲 rastgele yaşla uyumlu seçer
+  const AGE_R = { '18–21': [18, 21], '22–25': [22, 25], '26–30': [26, 30], '31–35': [31, 35], '36+': [36, 45] };
+  // 🦵⏳ seçilmediyse kiloya uygun (W_RULES'a aykırı olmayan), id'ye göre sabit değer
+  const CM_LEGS_W = { 'Very Thin': ['Slim', 'Long', 'Toned'], Thin: ['Slim', 'Long', 'Toned'], Curvy: ['Thick Thighs', 'Toned', 'Long'], Chubby: ['Thick Thighs', 'Long', 'Toned'], Overweight: ['Thick Thighs', 'Long', 'Toned'] };
+  const CM_WAIST_W = { 'Very Thin': ['Tiny', 'Slim', 'Average'], Thin: ['Tiny', 'Slim', 'Average'], Curvy: ['Slim', 'Average'], Chubby: ['Average', 'Wide', 'Slim'], Overweight: ['Average', 'Wide'] };
+  const cmLegs = c => CM_LEGS[cmTrait(c, 'Legs')] || CM_LEGS[cmPick(c, 'bc', CM_LEGS_W[cmTrait(c, 'Weight')] || Object.keys(CM_LEGS))];
+  const cmWaist = c => CM_WAIST[cmTrait(c, 'Waist')] || CM_WAIST[cmPick(c, 'bl', CM_WAIST_W[cmTrait(c, 'Weight')] || Object.keys(CM_WAIST))];
+  // 💇‍♀️ saç rengi / ✂️ saç boyu: özellik, yoksa köken ağırlıklı / id'ye göre sabit değer (profil kartı ve şehir aynı)
+  const cmHairC = c => CM_HAIR[cmTrait(c, 'Hair Color')] || cmLookV(c, 'hair', CM_HAIR) || cmPick(c, 'sa', ['Sarı', 'Kumral', 'Siyah', 'Kızıl', 'Açık kahve', 'Koyu kahve', 'Platin sarı', 'Bal köpüğü']);
+  const cmHlen = c => CM_HLEN[cmTrait(c, 'Hair Length')] || CM_HLEN[cmPick(c, 'sb', ['Short', 'Shoulder', 'Long', 'Long', 'Very Long'])];
+  const ageOk = (v, a) => { const r = AGE_R[String(v).replace(/^[^:]+:\s*/, '')]; return !a || !r || (+a >= r[0] && +a <= r[1]); };
   // 🧩 karakterin ek alanları (Boy, Kilo, Göz rengi…) kartta özellik/rastgele değerin önüne geçer
   const CM_FIELD = { boy: 'Boy', kilo: 'Kilo', 'göz': 'Göz', 'göz rengi': 'Göz', 'saç': 'Saç', 'saç rengi': 'Saç', 'saç boyu': 'Saç boyu', ten: 'Ten', 'ten rengi': 'Ten', 'vücut': 'Vücut', 'vücut tipi': 'Vücut' };
   const cmFieldKey = f => f.type !== 'toggle' && CM_FIELD[String(f.label || '').toLocaleLowerCase('tr').trim()];
@@ -1950,11 +1986,13 @@
     const big = ['L', 'XL'].includes(butt), small = ['XS', 'S'].includes(butt), w = cmTrait(c, 'Weight');
     // ⚖️ Weight seçildiyse kilo ondan (vücut kitle endeksi × boy²), yoksa boy ve bedenden tahmin
     const kg = CM_BMI[w] ? Math.round(CM_BMI[w] * (h / 100) ** 2 + cmNum(c, 'kg', 5) - 2) : Math.round(h - 112 + (boob ? (boob - 80) / 4 : 0) + (big ? 5 : small ? -4 : 0) + cmNum(c, 'kg', 7) - 3);
-    const hl = CM_HLEN[cmTrait(c, 'Hair Length')], mk = (c.traits || []).filter(t => CM_MARKS[t]).map(t => CM_MARKS[t]);
+    const hl = cmHlen(c), mk = (c.traits || []).filter(t => CM_MARKS[t]).map(t => CM_MARKS[t]);
     const shape = CM_BTYPE[cmTrait(c, 'Body Type')] || CM_WEIGHT[w] || (boob >= 90 || big ? 'Kıvrımlı' : small && boob && boob <= 75 ? 'Minyon' : cmPick(c, 'vu', ['Fit', 'İnce', 'Atletik', 'Balık etli', 'Kum saati']));
     const rows = [['📏', 'Boy', h + ' cm'], ['⚖️', 'Kilo', kg + ' kg'], ['✨', 'Vücut', shape],
-      ['💇‍♀️', 'Saç', (CM_HAIR[cmTrait(c, 'Hair Color')] || cmLookV(c, 'hair', CM_HAIR) || cmPick(c, 'sa', ['Sarı', 'Kumral', 'Siyah', 'Kızıl', 'Açık kahve', 'Koyu kahve', 'Platin sarı', 'Bal köpüğü']))], hl && ['✂️', 'Saç boyu', hl],
+      ['💇‍♀️', 'Saç', cmHairC(c)], hl && ['✂️', 'Saç boyu', hl],
       ['👁️', 'Göz', cmLookV(c, 'eye', CM_EYE) || cmPick(c, 'go', CM_EYE)], ['🧴', 'Ten', CM_SKIN[cmTrait(c, 'Skin Tone')] || cmLookV(c, 'skin', CM_SKIN) || cmPick(c, 'te', ['Beyaz', 'Buğday', 'Bronz', 'Esmer', 'Porselen'])],
+      (v => v && ['💋', 'Dudak', v])(CM_LIPS[cmTrait(c, 'Lip Shape')]), ['🦵', 'Bacak', cmLegs(c)],
+      ['⏳', 'Bel', cmWaist(c)], (v => v && ['👗', 'Tarz', v])(CM_STYLE[cmTrait(c, 'Style')]),
       mk.length && ['✨', 'Detay', mk.join(' · ')],
       boob && ['🍒', 'Göğüs', `${boob} ${CM_CUP[boob] || ''}`.trim()], butt && ['🍑', 'Kalça', butt], pus && ['🌸', 'Vajina', CM_SIZE[pus] || pus], an && ['🍑', 'Anal', CM_SIZE[an] || an],
       ex && ['🔥', 'Deneyim', CM_EXP[ex] || ex]].filter(Boolean).map(r => fd[r[1]] ? [r[0], r[1], fd[r[1]]] : r);
@@ -7084,6 +7122,7 @@
   const ccWed = c => !!((c.fields || {}).evli || (c.fields || {}).hotwife);
   /* 🏠 Yaşam özelliği (traits.js 'living') = şehirdeki hanesi: 'koca' (💍 Evli / Hotwife), 'tek', 'ev' (ev arkadaşıyla).
    * setupLive özelliği ve Evli anahtarını eşitler: hangisi son değiştiyse o kazanır (c.live = son eşitlenen { w, t }) */
+  const REL_WED = 'Relationship: Married';
   const LIVE_KOCA = 'Yaşam: Kocasıyla Yaşıyor', LIVE_K = { 'Tek Yaşıyor': 'tek', 'Ev Arkadaşıyla': 'ev', 'Kocasıyla Yaşıyor': 'koca' };
   const liveAuto = c => +sysHash(['ev', c.id]) % 10 < 4 ? 'Tek Yaşıyor' : 'Ev Arkadaşıyla';
   const liveOf = c => ccWed(c) ? 'koca' : ({ tek: 'tek', ev: 'ev' })[LIVE_K[cmTrait(c, 'Yaşam')]] || LIVE_K[liveAuto(c)];
@@ -7091,7 +7130,13 @@
   function setupLive() {
     let n = 0;
     chars().forEach(c => {
-      const w = ccWed(c), t = cmTrait(c, 'Yaşam'), L = c.live || {};
+      // 💍 Relationship değiştiyse Evli anahtarı ona uyar (Married ↔ evli), ardından Yaşam aşağıda eşitlenir
+      const r = cmTrait(c, 'Relationship'), L = c.live || {};
+      if ((L.r == null ? r === 'Married' : r !== L.r) && (r === 'Married') !== ccWed(c)) {
+        c.fields = { ...(c.fields || {}) };
+        if (r === 'Married') c.fields.evli = true; else { delete c.fields.evli; delete c.fields.hotwife; }
+      }
+      const w = ccWed(c), t = cmTrait(c, 'Yaşam');
       let nt = t;
       if (L.w != null && w !== L.w) nt = w ? 'Kocasıyla Yaşıyor' : t === 'Kocasıyla Yaşıyor' ? liveAuto(c) : t;
       else if (L.t != null && t !== L.t && w && t !== 'Kocasıyla Yaşıyor') { c.fields = { ...(c.fields || {}) }; delete c.fields.evli; delete c.fields.hotwife; }
@@ -7099,8 +7144,14 @@
       else if (w) nt = 'Kocasıyla Yaşıyor';
       if (!LIVE_K[nt]) nt = liveAuto(c);
       if (nt !== t) c.traits = [...(c.traits || []).filter(x => !x.startsWith('Yaşam:')), 'Yaşam: ' + nt];
-      const nl = { w: ccWed(c), t: nt };
-      if (L.w !== nl.w || L.t !== nl.t) { c.live = nl; n++; }
+      // evliyse Married; evli değilken Married kalmışsa özellik kalkar
+      let nr = cmTrait(c, 'Relationship');
+      if (ccWed(c) ? nr && nr !== 'Married' : nr === 'Married') {
+        nr = ccWed(c) ? 'Married' : '';
+        c.traits = [...(c.traits || []).filter(x => !x.startsWith('Relationship:')), ...(nr ? ['Relationship: ' + nr] : [])];
+      }
+      const nl = { w: ccWed(c), t: nt, r: nr };
+      if (L.w !== nl.w || L.t !== nl.t || L.r !== nl.r) { c.live = nl; n++; }
     });
     if (n) save();
   }
@@ -7212,7 +7263,8 @@
   // 📏 kıyafetin yanında bedenleri (profil kartındaki gibi): 🍒 göğüs + kupa, 🍑 kalça
   // 📏 boy: profil kartındaki gibi (ek alan Boy > Height özelliği > id'ye göre)
   const ccHeight = c => { const fh = parseInt(cmFields(c).Boy, 10), hr = CM_HEIGHT[cmTrait(c, 'Height')]; return fh > 0 ? fh : hr ? hr[0] + cmNum(c, 'boy', hr[1]) : 155 + cmNum(c, 'boy', 26); };
-  const ccSize = c => { const b = +cmTrait(c, 'Boob Size') || 0, t = cmTrait(c, 'Butt Size'); return [`📏 ${ccHeight(c)} cm`, b && `🍒 ${b} ${CM_CUP[b] || ''}`.trim(), t && `🍑 ${t}`].filter(Boolean).join(' · '); };
+  const ccSize = c => { const b = +cmTrait(c, 'Boob Size') || 0, t = cmTrait(c, 'Butt Size'), lg = cmLegs(c), ws = cmWaist(c);
+    return [`📏 ${ccHeight(c)} cm`, b && `🍒 ${b} ${CM_CUP[b] || ''}`.trim(), t && `🍑 ${t}`].filter(Boolean).join(' · ') + `\n💇‍♀️ ${cmHairC(c)} · ✂️ ${cmHlen(c)}` + ((lg || ws) ? '\n' + [lg && `🦵 ${lg}`, ws && `⏳ ${ws}`].filter(Boolean).join(' · ') : ''); };
   // 🏙️ alt menüdeki Şehir sekmesi: canlı harita js/city.js (Stories.City); burası sadece veriyi ve sohbete geçişi verir
   function renderCity() {
     view.innerHTML = '<div class="city" id="city"></div>';
@@ -11415,7 +11467,9 @@
       if (kch) {
         const kp = protOf(kch), hm = !!(kch.fields || {}).hamile;
         Object.assign(ctx, { kon: protGet(kch).kon === 'var', cond: !!kp.condom, raw: !!(kp.pill || kp.nothing || hm), bare: !!kp.nothing && !hm,
-          pull: !!kp.pullout && !kp.condom && !kp.pill && !kp.nothing && !hm, risk: !kp.condom && !kp.pill && !hm });
+          pull: !!kp.pullout && !kp.condom && !kp.pill && !kp.nothing && !hm, risk: !kp.condom && !kp.pill && !hm,
+          lip: cmTrait(kch, 'Lip Shape'), legs: cmTrait(kch, 'Legs'), waist: cmTrait(kch, 'Waist'),
+          style: cmTrait(kch, 'Style'), rel: cmTrait(kch, 'Relationship'), agr: cmTrait(kch, 'Age') });
       }
       // 👩‍❤️‍👩 lezbiyen ilişkide sadece ls* konuları (ve fantezi sorusu); bitişten sonra bir tur daha / lekeler / sarılalım
       ctx.les = !!kch && !group && lesWith(kch);
@@ -16314,6 +16368,14 @@
     kiyafet: { ok: c => c.cat === 'foreplay', yes: [], no: [] },
     // 🤗 bitişten sonra "Sarılalım mı?"
     saril: { ok: c => c.done, yes: ['Front Hugging', 'Back Hugging'], no: [] },
+    // 💋🦵⏳ görünüşe göre (c.lip / c.legs / c.waist: karakterin Lip Shape / Legs / Waist özelliği seçiliyse)
+    gdudak: { ok: c => !!c.lip && ['foreplay', 'outercourse'].includes(c.cat), yes: ['Kissing', 'Blowjob'], no: [] },
+    gbacak: { ok: c => !!c.legs && ['foreplay', 'forward'].includes(c.cat), yes: ['Missionary', 'Leg Lock Grind', 'Thigh Vise'], no: [] },
+    gbel: { ok: c => !!c.waist && ['foreplay', 'forward', 'backward'].includes(c.cat), yes: ['Doggy'], no: [] },
+    // 👗💍🎂 Style / Relationship / Age seçiliyse: soyunma şovu · ilişkisine göre "devam edelim mi?" · yaşına göre "öğreteyim / öğretir misin?"
+    gtarz: { ok: c => !!c.style && c.cat === 'foreplay', yes: ['Striptease'], no: [] },
+    giliski: { ok: c => !!c.rel && ['forward', 'backward'].includes(c.cat), yes: '@pos', no: '@other' },
+    gyas: { ok: c => !!c.agr && c.cat === 'foreplay', yes: '@other', no: ['Kissing'] },
     // 🗜️ sıkıştırma (c.sq: şu anki pozisyon `sıkıştır` etiketli, c.bacak: `bacak` etiketli): uyluk · duvar · göğüs · ofiste · 🥛 sağma (Zevk ≥ 60) · bitişten sonra kalanı
     squyluk: { ok: c => ['foreplay', 'outercourse'].includes(c.cat) || (c.sq && !c.bacak), yes: ['Thigh Vise', 'Knee Squeeze', 'Leg Lock Grind', 'Thigh Pulse', 'Seated Thigh Lock'], no: [] },
     sqduvar: { ok: c => c.cat === 'foreplay' || (c.cat === 'squeeze' && c.sq), yes: ['Wall Pin Grind', 'Door Pin', 'Corner Trap', 'Mirror Pin', 'Bed Frame Pin'], no: [] },
@@ -19037,6 +19099,7 @@
     }
     if (k === 'name') d.name = worldName(d);
     if (k === 'all' || k === 'age') d.age = randAge(d.name);
+    { const r = k === 'age' && AGE_R[cmTrait(d, 'Age')]; if (r && !ageOk('Age: ' + cmTrait(d, 'Age'), d.age)) d.age = String(randInt(r[0], r[1])); }
     if (k === 'place') d.city = W ? W.randCity(W.countryOf(d.city) || W.randCountry()) : pick(P.cities);
     if (k === 'all' || k === 'place') d.job = randJob(d.age);
     if (k === 'all' || k === 'zodiac') d.zodiac = pick(T.zodiacs);
@@ -19047,7 +19110,8 @@
       d.traits = d.traits.filter(t => !g.values.includes(t));
       // 📏 kurala göre olamayacaklar seçilmez
       // 🏠 Yaşam: evliyse Kocasıyla Yaşıyor, değilse tek / ev arkadaşı
-      const bl = crBlocked(d), ok = g.values.filter(v => !bl.has(v) && (g.id !== 'living' || (v === LIVE_KOCA) === ccWed(d)));
+      const bl = crBlocked(d), ok = g.values.filter(v => !bl.has(v) && (g.id !== 'living' || (v === LIVE_KOCA) === ccWed(d))
+        && (g.id !== 'relationship' || (v === REL_WED) === ccWed(d)) && (g.id !== 'agerange' || ageOk(v, d.age)));
       // 🌍 Skin Tone / Hair Color memlekete göre ağırlıklı (ORIGIN_LOOK)
       const pool = ok.length ? ok : g.values, lk = g.single && { skin: 'skin', haircolor: 'hair' }[g.id], lw = lk && lookW(d, lk);
       if (lw) {
@@ -21233,9 +21297,9 @@
     ['ick', '🍷', 'Drinks', ['drinks']],
     ['isin', '💋', 'Isınma', ['foreplay', 'massage', 'protection']],
     ['soy', '👗', 'Soyunma', ['undress']],
-    ['on', '👅', 'Ön sevişme', ['eat', 'outercourse', 'squeeze', 'pregnancy foreplay', 'nurturing foreplay', 'pee rubbing', 'held pee rubbing', 'held titfuck pee', 'licking', 'biting', 'her licks and bites', 'dick slap', 'dick touch', 'slurping', 'plug play', 'toy play', 'hand grab', 'hand spank', 'hair wrap', 'sleep foreplay', 'donor room']],
+    ['on', '👅', 'Ön sevişme', ['eat', 'outercourse', 'squeeze', 'pregnancy foreplay', 'nurturing foreplay', 'pee rubbing', 'held pee rubbing', 'held titfuck pee', 'licking', 'biting', 'her licks and bites', 'dick slap', 'dick touch', 'slurping', 'plug play', 'toy play', 'hand grab', 'hand spank', 'hair wrap', 'sleep foreplay', 'donor room', 'fetish play', 'foot play', 'lingerie play']],
     ['sut', '🍼', 'Lactation', ['lactation', 'nursing', 'lactation fantasy', 'milky foreplay']],
-    ['poz', '🔥', 'Pozisyon', ['forward', 'backward', 'threesome', 'pregnancy', 'milky sex', 'nurturing sex', 'mode', 'pre-cumming', 'anal pee', 'heavy anal pee', 'held anal pee', 'plugged sex', 'grip sex', 'hair sex', 'sleep sex', 'donor sex']],
+    ['poz', '🔥', 'Pozisyon', ['forward', 'backward', 'threesome', 'pregnancy', 'milky sex', 'nurturing sex', 'mode', 'pre-cumming', 'anal pee', 'heavy anal pee', 'held anal pee', 'plugged sex', 'grip sex', 'hair sex', 'sleep sex', 'donor sex', 'fetish sex', 'foot sex', 'lingerie sex']],
     ['mekan', '📍', 'Mekân', ['mekanda', 'shower', 'sauna', 'bathtub', 'pool', 'car', 'elevator', 'camping', 'kitchen', 'stairs', 'laundry', 'balcony', 'camera', 'beach', 'office', 'hotel', 'school', 'church', 'gym', 'bar', 'cinema', 'outdoors', 'restaurant', 'rooftop', 'library', 'fair', 'haunted', 'street', 'massage salon', 'clinic', 'pee']],
     ['fant', '🦄', 'Fantezi', ['fantesy', 'meisove', 'femdom', 'bdsm', 'bull', 'affair', 'affair story', 'heavy pee', 'toys out']],
     ['bit', '💦', 'Bitiş', ['cumming', 'cumming size']],
@@ -22177,7 +22241,7 @@
   const LES_NO_RE = /blowjob|deepthroat|handjob|titfuck|titjob|footjob|legjob|buttjob|hotdog|cum|creampie|condom|cock|dick|pull-out|bulge|size comparison|unplug flood|keep it in overnight|milked by toy/i;
   // lezbiyen ilişkide gizlenen olay mı (🧪 #/lezbiyen ve 📚 Lezbiyen Kitabı da sayar)
   // penisli kategoriler: Cumming, sperm ölçüsü (Cumming Size), onu sıkıştırma (Squeeze), kuru sürtünme (Outercourse)
-  const LES_NO_CAT = ['Cumming', 'Cumming Size', 'Squeeze', 'Outercourse', 'Her Licks And Bites', 'Dick Slap', 'Dick Touch', 'Slurping', 'Plugged Sex', 'Grip Sex', 'Nurturing Sex', 'Hair Sex', 'Hair Wrap', 'Sleep Sex', 'Donor Room', 'Donor Sex'];
+  const LES_NO_CAT = ['Cumming', 'Cumming Size', 'Squeeze', 'Outercourse', 'Her Licks And Bites', 'Dick Slap', 'Dick Touch', 'Slurping', 'Plugged Sex', 'Grip Sex', 'Nurturing Sex', 'Hair Sex', 'Hair Wrap', 'Sleep Sex', 'Donor Room', 'Donor Sex', 'Fetish Play', 'Fetish Sex', 'Foot Play', 'Foot Sex', 'Lingerie Sex'];
   const lesNo = e => (e.tags || []).some(t => LES_NO_TAG.includes(String(t).toLocaleLowerCase('tr'))) || LES_NO_RE.test(e.title || '') || LES_NO_CAT.includes(catOfEv(e).label);
   // 🎬 sahne cinsiyete göre: kadın hesapta penisli olay (lesNo) içeren sahne, erkek hesapta lezbiyen olay içeren sahne gizli.
   // Sonuç hesap cinsiyeti + olay sayısına göre önbellekte; scenes.js sceneGroups da Stories.sceneHide ile süzer
@@ -23741,7 +23805,13 @@
     'hair wrap': 'Saçını aletine dolar: spiral, örgü, fiyonk ya da halka; ıslak, kremli ya da ipekle. Omuz hizası ya da daha uzun saç gerekir.',
     'sleep foreplay': 'O uyurken, önceden verdiği izinle: çarşafı indirir, tenine dokunur, öpersin. Sadece gece 23:00–07:00 arası.',
     'sleep sex': 'Uykusunda, çok yavaş sevişme. Her olayda kıpırdayabilir ya da uyanabilir; uyanınca kuralına göre katılır ya da durursun.',
-    'sleep after': 'Ertesi sabah: gece olanları hatırlar, rüya mı gerçek mi, emin olamaz.'
+    'sleep after': 'Ertesi sabah: gece olanları hatırlar, rüya mı gerçek mi, emin olamaz.',
+    'fetish play': 'Fetiş oyunları: deri eldiven, yağ, ayna ya da yüzüne oturan bir kız; ısınma fetişin kendisiyle başlar.',
+    'fetish sex': 'Fetişle sevişme: lateks, yağ, buz ve mum, ayna, gözlük, yırtık çorap ya da boy farkı; her biri kendi bitişine bağlanır.',
+    'foot play': 'Ayakla oyun: iki tabanının arasında ya da masanın altından tırmanan çoraplı bir ayak.',
+    'foot sex': 'Ayakların hep işin içinde olduğu sevişme: omuzlarında bilekler, göğsünde tabanlar, ağzında parmaklar.',
+    'lingerie play': 'Sütyen, külot, mayo ya da tayt: indirilen bir kap, çekilen bir külot, soyulan ıslak bir mayo, takip edilen bir dikiş.',
+    'lingerie sex': 'Üstündekiler çıkmadan sevişme: sütyen yerinde, külot dizlerde, mayo yana çekili, tayt yırtık; her birinin kendi bitişi var.'
   };
   const EV_TELL_TAG = {
     vajinal: 'Önden, vajinal bir an: korunmanız neyse tepkisi ona göre şekillenir; içine bitersen hamilelik zarı da atılır.',
@@ -23761,6 +23831,9 @@
     halloween: 'Cadılar Bayramı havasında: kostümlü, ürpertici.', kan: 'Vampir ve kan teması.', slime: 'Yapışkan slime teması.',
     tıpa: 'Tıpa işin içinde: takılıyken her an 💎 Açılma\'yı artırır; arkası doluyken pozisyonlar daha dar, bitişler tıpaya göre seçilir.', oyuncak: 'Oyuncakla: 📳 titreşim kademesi, kumanda ve takılı oyuncaklar bu anı şekillendirir.',
     saç: 'Saçla: saçı sarılır, tutulur ya da saçına boşalırsın; saçının boyu ve rengi bu anı belirler.',
+    ayak: 'Ayaklarıyla: tabanları, parmakları ya da bilekleri bu anın merkezinde.', sütyen: 'Sütyeniyle: kapları, askıları ya da kopçası bu anın parçası.', külot: 'Külotuyla: çekilen, indirilen ya da hiç çıkmayan bir külot.', mayo: 'Mayoyla: ıslak kumaş, bronz izleri ve havuz kokusu.', tayt: 'Taytla: tenine yapışık, gergin ve yırtılmaya hazır.',lateks: 'Lateks ya da deri: parlak, sıkı ve her harekette gıcırdayan.',
+    yağ: 'Yağlı: her şey kayar, hiçbir yer tutulmaz.', ısı: 'Sıcak ve soğuk: buz ya da mum damlası tenine değer.', ayna: 'Ayna karşısında: ikiniz de kendinizi izlersiniz.',
+    gözlük: 'Gözlüğü takılı kalır.', naylon: 'Çoraplı: naylonun dokusu her şeyi değiştirir.', hakimiyet: 'Güç ve boy farkı: biri öbürünü taşır, oturur ya da yukarıdan izler.',
     uyku: 'O uyurken: önceden izin verdiyse ve gece 23:00–07:00 arasıysa; uyku derinliği 😴 3\'ten 0\'a iner, uyanınca kuralı geçerli.'
   };
   const EV_TELL_FX = ['Olduğu an {fx}.', 'Etkisi hemen hissedilir: {fx}.', 'Bu anın ardından {fx}.'];
@@ -27816,7 +27889,78 @@
       ['Overflow Sample', 'Günlerdir biriktirdin. Sen kaba gelirsen kap taşar, eldivenlerimden bileğime akar, Overflow Sample olur. Sadece çok doluyken.'],
       ['Treatment Complete', 'Kürünün son seansı. Sen karnıma ve göğsüme gelirsen dosyana "TABURCU" damgasını basarım, Treatment Complete olur.'],
       ['Thermometer Finish', 'Ateş seansı, ikimiz de ter içindeyiz. Sen terli karnıma gelirsen termometre tam o an bipler, Thermometer Finish olur.'],
-      ['Microscope Check', 'Eldivenli avucumu uzatıyorum. Sen avucuma gelirsen bir damlayı lama alıp mikroskopta bakarım, Microscope Check olur: "hepsi yüzüyor."']]]
+      ['Microscope Check', 'Eldivenli avucumu uzatıyorum. Sen avucuma gelirsen bir damlayı lama alıp mikroskopta bakarım, Microscope Check olur: "hepsi yüzüyor."']]],
+    ['🖤', 'Fetişler', 'lateks, yağ, buz ve mum, ayna, gözlük, çorap, hâkimiyet', 'Her fetişin kendi dokusu var: lateksin gıcırtısı, yağın kayganlığı, buzla mumun farkı, aynadaki yansıma, burnumdan kayan gözlük, yırtılan naylon. Bir de hâkimiyet: yüzüne otururum ya da beni havaya kaldırırsın. Her fetişin bitişi de kendine özel.', [
+      ['Glove Grip', 'Deri eldivenlerimi taktım. Sen arkanı dönersen kalçanı avuçlarımla kavrayıp seni kendime çekerim, Glove Grip olur.'],
+      ['Slip & Grind', 'Baştan aşağı yağlıyım. Sen beni tutmaya çalışırken kalçamı üstünde gezdiririm, Slip & Grind olur; hiçbir yer tutulmaz.'],
+      ['Watch Yourself', 'Aynanın karşısındayım, gözlerimi kaçırıyorum. Sen çenemden tutup yüzümü aynaya çevirirsen Watch Yourself olur.'],
+      ['Throne', 'Bileklerin başının üstünde, ben dizlerimin üstündeyim. Sen sırtüstü kalırsan yüzüne otururum, Throne olur.'],
+      ['Squeak Doggy', 'Lateks tulumumun sadece arkadaki fermuarı açılıyor. Sen fermuarı indirip arkadan girersen her vuruşta lateks gıcırdar, Squeak Doggy olur.'],
+      ['Oiled Slide', 'Tenim yağdan parlıyor, üstüne çıkıyorum. Sen belimi tutmaya çalışıp kaydırırsan Oiled Slide olur.'],
+      ['Ice Cube Missionary', 'Sırtüstü yatıyorum. Sen ağzında buzla içime girip buzu göğsümde gezdirirsen Ice Cube Missionary olur.'],
+      ['Wax Drip Ride', 'Kucağındayım, sana dönüğüm. Sen sırtıma mum damlatırsan her damlada seni sıkarım, Wax Drip Ride olur.'],
+      ['Full Mirror Standing', 'Ellerim boy aynasında. Sen arkamdan girersen aynada göz göze geliriz, Full Mirror Standing olur.'],
+      ['Glasses On Ride', 'Gözlüğümü çıkarmadan üstüne çıkıyorum. Sen beni sallarken gözlüğüm burnumun ucuna kayarsa Glasses On Ride olur.'],
+      ['Torn Nylon', 'Çorabımı çıkarma. Sen onu tam ortadan yırtıp oradan girersen Torn Nylon olur.'],
+      ['Nylon Thighs', 'Çoraplı uyluklarımı birleştirdim. Sen aralarına girersen naylonun dokusunu hissedersin, Nylon Thighs olur.'],
+      ['Lift & Carry', 'Bacaklarım belinde, kollarım boynunda. Sen beni tamamen havaya kaldırıp içine indirirsen Lift & Carry olur.'],
+      ['Tiptoe Standing', 'Duvardayım, boyum sana yetmiyor. Sen ayakta girersen parmak uçlarımda yükselirim, Tiptoe Standing olur.'],
+      ['Shiny Finish', 'Lateksli kalçam sana dönük. Sen üstüne gelirsen damlalar parlak siyahta öylece kalır, Shiny Finish olur.'],
+      ['Glove Catch', 'Eldivenli avucumu uzatıyorum. Sen avucuma gelirsen parmaklarıma yayarım, Glove Catch olur.'],
+      ['Glaze Finish', 'Kalçam yağdan parlıyor. Sen üstüne gelirsen hangisi hangisi belli olmaz, Glaze Finish olur.'],
+      ['Cold Then Warm', 'Göğsüm buzdan hâlâ serin. Sen tam oraya gelirsen soğukla sıcak birden değer, Cold Then Warm olur.'],
+      ['Mirror Finish', 'Aynadayız. Sen çıkıp gelirsen bir kısmı aynaya sıçrar, Mirror Finish olur.'],
+      ['Lens Finish', 'Önünde diz çöktüm, gözlüğüm hâlâ burnumda. Sen yüzüme gelirsen camlar görünmez olur, Lens Finish olur.'],
+      ['Nylon Soak', 'Çorabım hâlâ bacaklarımda. Sen uyluklarıma gelirsen naylonda koyu bir leke yayılır, Nylon Soak olur.'],
+      ['Seat Finish', 'Göğsünün üstüne oturdum, elim sende. Sen ben izlerken gelirsen Seat Finish olur; tahtımdan inmem.']]],
+    ['🦶', 'Ayak', 'tabanlar, parmaklar, bilekler, topuklular', 'Ayaklarım bu sefer işin tam ortasında: bileklerim omuzlarında, tabanlarım göğsünde, parmaklarım ağzında. Masanın altından tırmanan çoraplı ayağım da benim. Bitişte de ayaklarımı seçersin: topuklumun içi, parmaklarımın arası, tabanım ya da kavisim.', [
+      ['Two-Sole Stroke', 'Yatağın ucundayım, iki tabanımı birleştirdim. Sen aralarına girersen yağla kaydırırım, Two-Sole Stroke olur.'],
+      ['Stocking Sole Tease', 'Masada karşındayım, ayakkabımdan sıyrıldım. Sen kıpırdamazsan çoraplı tabanım kucağına kadar tırmanır, Stocking Sole Tease olur.'],
+      ['Ankles On Shoulders', 'Topuklularım hâlâ ayağımda. Sen bileklerimi omuzlarına alıp girersen Ankles On Shoulders olur.'],
+      ['Sole Grip Ride', 'Üstündeyim, geriye yaslandım. Sen tabanlarımı göğsüne bastırmama izin verirsen oradan güç alırım, Sole Grip Ride olur.'],
+      ['Toe Suck Missionary', 'Bacağımı kaldırıyorum. Sen içimdeyken parmaklarımı ağzına alırsan seni daha sıkı sararım, Toe Suck Missionary olur.'],
+      ['Feet On Chest', 'İki ayağım göğsünde. Sen ne kadar derine gireceğini bana bırakırsan Feet On Chest olur.'],
+      ['Footrest Doggy', 'Dizlerimin üstündeyim, tabanlarım sana dönük. Sen arkadan girersen parmaklarım her vuruşta kıvrılır, Footrest Doggy olur.'],
+      ['Sideways Ankle Hold', 'Yan yattım, bacağım havada. Sen bileğimi tutup sabitlersen Sideways Ankle Hold olur.'],
+      ['Heels Dangling', 'Masanın kenarındayım, topuklularım yarı düşmüş. Sen bacaklarımın arasına girersen Heels Dangling olur.'],
+      ['Toe Curl', 'Ayaklarım yatakta. Sen parmaklarımın kıvrıldığını görüp hızlanırsan Toe Curl olur; adını söyleyerek gelirim.'],
+      ['Heel Finish', 'Ayakkabımı sana uzattım. Sen içine gelirsen ayağımı geri kaydırırım, Heel Finish olur.'],
+      ['Toes Finish', 'Parmaklarımı araladım. Sen aralarına gelirsen oynatıp gösteririm, Toes Finish olur.'],
+      ['Sole Finish', 'Tabanlarım havada, sana dönük. Sen üstlerine gelirsen birbirine sürterim, Sole Finish olur.'],
+      ['Arch Pool', 'Ayağımın kavisini gösteriyorum. Sen tam oraya gelirsen küçük bir gölcük birikir, Arch Pool olur.'],
+      ['Stocking Toes', 'Çorabım hâlâ ayağımda. Sen parmak uçlarıma gelirsen naylon koyulaşır, Stocking Toes olur.'],
+      ['Ankle Drip', 'Bileğim elinde. Sen bileğime gelirsen damlalar topuğuma süzülür, Ankle Drip olur.'],
+      ['Instep Finish', 'Ayağımın üstünü sana çevirdim. Sen oraya gelirsen ojeli parmaklarımın yanında parlar, Instep Finish olur.'],
+      ['Toe Lick Clean', 'Ayağıma geldin. Sen izlersen ayağımı dudaklarıma kadar kaldırıp temizlerim, Toe Lick Clean olur.']]],
+    ['👙', 'Sütyen, külot, mayo, tayt', 'üstümdekiler çıkmadan', 'Bu sefer üstümdekileri çıkarmıyorum, ya da yarısına kadar çıkarıyorum. Sütyenim yerinde, külotum dizlerimde, mayom yana çekili, taytım yırtık. Her birinin kendi bitişi var: sütyenimin kabı, külotumun ağı, bronz izim ya da taytımın lastiği.', [
+      ['Cup Peek', 'Sütyenimin bir kabını indirdim, öteki kapalı. Sen yalnızca açık olanı öpersen Cup Peek olur.'],
+      ['Strap Drop Tease', 'Askılarımı teker teker düşürüyorum. Sen dokunmadan izlersen Strap Drop Tease olur.'],
+      ['Panty Sniff Tease', 'Külotumu çıkardım, hâlâ sıcak. Sen yüzüne yaklaştırmama izin verirsen Panty Sniff Tease olur.'],
+      ['Wedgie Pull', 'Arkanı dönüyorum. Sen külotumu belinden yukarı çekersen Wedgie Pull olur.'],
+      ['Wet Suit Peel', 'Havuzdan yeni çıktım, mayom yapışık. Sen omuzlarımdan yavaşça soyarsan Wet Suit Peel olur.'],
+      ['Tan Line Kiss', 'Mayomu indirdim, izlerim beyaz. Sen o çizgiyi dudaklarınla takip edersen Tan Line Kiss olur.'],
+      ['Seam Trace', 'Taytım tenime yapışık. Sen dikişini parmağınla aşağı takip edersen Seam Trace olur.'],
+      ['Squat Watch', 'Taytımla önünde squat yapıyorum. Sen izlersen Squat Watch olur; sonra sıra sende.'],
+      ['Bra Still On', 'Sırtüstündeyim ama sütyenimi çıkarmıyorum. Sen öyle girersen Bra Still On olur.'],
+      ['Bra Rein Doggy', 'Dört ayak üstündeyim. Sen sütyenimin kopçasından çekerek girersen Bra Rein Doggy olur.'],
+      ['Pushed Up Ride', 'Kaplarımı yukarı ittim, üstündeyim. Sen göğüslerimi tutarsan Pushed Up Ride olur.'],
+      ['Panty Gag Missionary', 'Külotumu ağzıma aldım, bacaklarım açık. Sen girersen sesim boğuk çıkar, Panty Gag Missionary olur.'],
+      ['Pulled To Knees Doggy', 'Külotum dizlerimde, bacaklarım açılmıyor. Sen arkadan girersen Pulled To Knees Doggy olur.'],
+      ['Leg Hole Ride', 'Külotumu çıkarmıyorum, kenarını araladım. Sen bacak deliğinden girersen Leg Hole Ride olur.'],
+      ['One-Piece Aside', 'Kabindeyim, mayom üstümde. Sen altını yana çekip girersen One-Piece Aside olur.'],
+      ['Sunbed Ride', 'Şezlongdasın, ben ıslak bikinimle üstündeyim. Sen beni içine alırsan Sunbed Ride olur.'],
+      ['Bikini Strings Doggy', 'Dört ayak üstündeyim, bikinim üstümde. Sen girerken iplerimi çözersen Bikini Strings Doggy olur.'],
+      ['Torn Seam Doggy', 'Taytım kalçamda gergin. Sen dikişini yırtıp girersen Torn Seam Doggy olur.'],
+      ['Half-Down Spoon', 'Yan yattım, taytım yarıya kadar inik. Sen arkadan sokulursan Half-Down Spoon olur.'],
+      ['Gym Bench Ride', 'Spor bankındasın, taytımın bir bacağını çıkardım. Sen uzanırsan Gym Bench Ride olur.'],
+      ['Cup Fill', 'Sütyenimin kabını indirdim. Sen içine gelirsen kabı geri kapatırım, Cup Fill olur.'],
+      ['Cleavage Seal', 'Göğüslerim açık. Sen aralarına gelirsen sütyenimi kopçalayıp hapsederim, Cleavage Seal olur.'],
+      ['Pull Up After', 'İçimdesin. Sen içime gelirsen külotumu yukarı çekip gün boyu öyle gezerim, Pull Up After olur.'],
+      ['Gusset Finish', 'Külotumun ağını sana uzattım. Sen oraya gelirsen onu öyle giyerim, Gusset Finish olur.'],
+      ['Tan Line Finish', 'Beyaz izimi gösteriyorum. Sen tam oraya gelirsen Tan Line Finish olur.'],
+      ['Suit Back On', 'Mayomun altını araladım. Sen içine gelirsen geri kapatıp yüzmeye giderim, Suit Back On olur.'],
+      ['Seam Soak', 'Taytım yırtık. Sen yırtığın içine gelirsen siyah kumaşta leke büyür, Seam Soak olur.'],
+      ['Waistband Finish', 'Taytımın lastiğini açtım. Sen içine gelirsen bırakırım, Waistband Finish olur.']]]
   ];
   BOOKS.push({ id: 'olay', icon: '🎬', title: 'Olay Kitabı', sub: 'Lia her olayı sahneleyerek anlatır', chips: [`${OLAY_BOOK.reduce((n, c) => n + c[4].length, 0)} olay`, '💁‍♀️ Lia anlatıyor'], chapters: [
     { icon: '🎬', title: 'Olay Kitabı nasıl okunur', sub: 'Lia sahneler, sen yaparsın', body: `
@@ -28036,9 +28180,14 @@
         <tr><td>💇 Hair Color</td><td>Black, Brown, Blonde, Red, Ginger, Platinum, Dyed</td></tr>
         <tr><td>✂️ Hair Length</td><td>Pixie, Short, Shoulder, Long, Very Long</td></tr>
         <tr><td>🎨 Skin Tone</td><td>Pale, Fair, Olive, Tan, Brown, Dark</td></tr>
+        <tr><td>💋 Lip Shape</td><td>Thin, Natural, Full, Plump, Heart-shaped, Wide, Filler</td></tr>
+        <tr><td>🦵 Legs</td><td>Slim, Toned, Thick Thighs, Long</td></tr>
+        <tr><td>⏳ Waist</td><td>Tiny, Slim, Average, Wide</td></tr>
+        <tr><td>👗 Style</td><td>Casual, Elegant, Sporty, Goth, Girly, Business</td></tr>
         <tr><td>✨ Marks <small>(çoklu)</small></td><td>Freckles, Dimples, Beauty Mark, Tattoo, Nose / Navel / Nipple / Tongue Piercing, Glasses, Braces</td></tr></table>
-      <p><b>Uyum</b>: Chubby / Overweight karakter Petite, Athletic, Toned ya da Muscular olamaz; Very Thin Hourglass, Pear ya da Muscular olamaz; Tall / Very Tall Petite olamaz. 🎲 Rastgele bunları hiç seçmez.</p>
-      <p><b>Profil kartında</b> boy seçilen aralıktan cm olarak, vücut tipi kilonun yerine, saç, saç boyu, ten ve ✨ detaylar seçtiğin gibi görünür. Seçmediklerin eskisi gibi karaktere özel rastgele kalır.</p>
+      <p><b>Uyum</b>: Chubby / Overweight karakter Petite, Athletic, Toned ya da Muscular olamaz; Very Thin Hourglass, Pear ya da Muscular olamaz; Tall / Very Tall Petite olamaz. Very Thin / Thin karakterin bacağı Thick Thighs, beli Wide olamaz; Chubby / Overweight karakterin bacağı Slim, beli Tiny olamaz (Overweight'in Slim de olamaz). 🎲 Rastgele bunları hiç seçmez.</p>
+      <p><b>💍 Relationship</b> (Single, Has Boyfriend, Married, Divorced) ve <b>🎂 Age</b> (18–21, 22–25, 26–30, 31–35, 36+) de geldi. Married, 💍 Evli anahtarı ve 🏠 Kocasıyla Yaşıyor ile birbirine bağlıdır: Married seçersen evli olur, Evli'yi kapatırsan Married kalkar; kocasıyla yaşayan Single, Has Boyfriend ya da Divorced olamaz. 🎲 Rastgele yaş aralığını yaşına uygun seçer, Age seçiliyken yaşı rastgelersen o aralıktan gelir.</p>
+      <p><b>Profil kartında</b> boy seçilen aralıktan cm olarak, vücut tipi kilonun yerine, saç, saç boyu, ten, 💋 dudak, 🦵 bacak, ⏳ bel, 👗 tarz ve ✨ detaylar seçtiğin gibi görünür. Seçmediklerin eskisi gibi karaktere özel rastgele kalır.</p>
       <p>🌍 <b>Köken</b>: ten rengi, saç rengi ve göz rengi memleketiyle uyumlu gelir. 🎲 Rastgele, Skin Tone ve Hair Color'ı memleketine göre ağırlıklı seçer; profil kartında seçilmemiş ten, saç ve göz de aynı ağırlıkla gelir. Yine de her köken her rengi alabilir, yalnızca bazıları daha sık:</p>
       <table class="bk-t"><tr><th>Memleket</th><th>Ten</th><th>Saç</th><th>Göz</th></tr>
         <tr><td>Türk</td><td>Beyaz, Buğday</td><td>Kahverengi, Siyah</td><td>Kahverengi, Ela</td></tr>
@@ -28055,7 +28204,9 @@
       ${bkChat('📏 Görünüşe göre', [['note', 'Hair Length: Long · Hair Color: Blonde · Doggy'], ['her', 'Uzun sarı saçlarımı yumruğuna dola, çek 😈'], ['note', 'Hair Length: Pixie · Doggy'], ['her', 'Saçım kısa, çekemezsin; belimden tut 😏'], ['note', 'Body Type: Athletic · Cowgirl'], ['her', 'Bütün gece üstünde kalabilirim, kondisyonum var 😏'], ['note', 'Tongue Piercing · Blowjob'], ['her', 'Dilimdeki piercingi hissediyor musun? 😈'], ['note', 'Skin Tone: Pale · orgazm'], ['her', 'Boynuma kadar kızardım 🫠']])}
       <p><b>Sohbette</b> sorarsan profilindeki değerle cevap verir: "boyun kaç", "saçların ne renk", "tenin ne renk", "vücudun nasıl", "dövmen var mı", "piercingin var mı". Kısa saçlıya "saçını çekmemi ister misin" dersen ensesini önerir. Hepsi ❓ Sorular Kitabı'nın 👙 Vücut bölümünde.</p>
       ${bkChat('💬 Sorunca', [['me', 'Boyun kaç?'], ['note', 'Height: Short'], ['her', '156 cm… minyonum, kucağına tam sığarım 🙈'], ['me', 'Dövmen var mı?'], ['note', 'Tattoo'], ['her', 'Var 😏 belimde, bulmak sana kalmış']])}
-      <p>Kendi kuralına görünüş şartı koymak için özelliklere <code>Hair Length: Long|Hair Length: Very Long</code> ya da <code>Tattoo</code> yaz. Cevapta <code>{bd:Boy}</code>, <code>{bd:Saç}</code>, <code>{bd:Saç boyu}</code>, <code>{bd:Ten}</code>, <code>{bd:Vücut}</code>, <code>{bd:Göz}</code> profil kartındaki değeri yazar.</p>
+      <p>Kendi kuralına görünüş şartı koymak için özelliklere <code>Hair Length: Long|Hair Length: Very Long</code> ya da <code>Tattoo</code> yaz. Cevapta <code>{bd:Boy}</code>, <code>{bd:Saç}</code>, <code>{bd:Saç boyu}</code>, <code>{bd:Ten}</code>, <code>{bd:Vücut}</code>, <code>{bd:Göz}</code>, <code>{bd:Dudak}</code>, <code>{bd:Bacak}</code>, <code>{bd:Bel}</code>, <code>{bd:Tarz}</code> profil kartındaki değeri yazar.</p>
+      <p>💋 <b>Dudak, bacak, bel</b>: "dudakların nasıl", "bacakların nasıl", "belin ince mi" diye sorarsan seçili Lip Shape / Legs / Waist'e göre cevap verir. Bu özellikler seçiliyse kendisi de sorar: ön sevişmede "dudaklarımı ister misin?" (evet → Kissing / Blowjob), "bacaklarımı beline dolayayım mı?" (evet → Missionary / Leg Lock Grind / Thigh Vise), "belimden tutar mısın?" (evet → Doggy).</p>
+      <p>👗 <b>Style</b>: "tarzın ne", "nasıl giyinirsin" diye sorunca seçili tarza göre cevap verir; ön sevişmede "soyunurken izlemek ister misin?" diye sorar (evet → Striptease). 💍 <b>Relationship</b>: "sevgilin var mı", "evli misin", "hiç evlendin mi / eski kocan" cevapları Single, Has Boyfriend, Married ve Divorced'a göre değişir; pozisyondayken ilişkisine göre "devam edelim mi?" der (evet → aynı pozisyon, hayır → başka pozisyon). 🎂 <b>Age</b>: "kaç yaşındasın" eskisi gibi gerçek yaşı söyler; "yaş farkı", "genç görünüyor musun" gibi sorulara aralığa göre cevap verir. Ön sevişmede gençse "bana bir şey öğretir misin?", olgunsa "sana bir şey öğreteyim mi?" diye sorar (evet → başka pozisyon).</p>
       <p>💇‍♀️ <b>Saç olayları</b> Hair Length ve Hair Color'a bakar: Pixie Grip kısa saçta, Rapunzel Wrap çok uzun saçta, Ruined Dye boyalı saçta açılır. Saçı uymayan kızda olay seçicide görünmez. Özellik boşsa hepsi açık. Hepsi 🎬 <a href="#/kitap/olay/69">Olay Kitabı → 💇‍♀️ Saç</a> bölümünde.</p>
       <p><b>🍒🍑 Sıkma ve şaplak bedene göre</b>: göğüs ya da kalçaya sıkma, arasına sıkıştırma ve şaplak olaylarında <b>Boob Size</b> (küçük 70–75 · orta 80–85 · büyük 90–95) ve <b>Butt Size</b> (küçük XS–S · orta M–M/L · büyük L–XL) fark yaratır. Olay kartının altına bedene göre bir cümle gelir, cevabına da bazen bedenine göre bir baloncuk eklenir.</p>
       ${bkChat('🍑 Aynı şaplak, farklı kalça', [['note', 'Butt Size: XS · Spanking'], ['her', 'Kemiğe yakın, acıttı ama dur deme 😩'], ['note', 'Butt Size: XL · Spanking'], ['her', 'Dalga dalga titredi, izledin mi? 🍑'], ['note', 'Boob Size: 95 · Boob Grab'], ['her', 'Avucuna sığmıyor, iki elini birden kullan 😈']])}

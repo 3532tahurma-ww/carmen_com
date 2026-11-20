@@ -43,6 +43,16 @@ Stories.Traits = (() => {
       id: 'living', label: '🏠 Yaşam', single: true,
       items: ['Tek Yaşıyor', 'Ev Arkadaşıyla', 'Kocasıyla Yaşıyor']
     },
+    // 💍 ilişki durumu: Married = 💍 Evli anahtarı ve Kocasıyla Yaşıyor ile eşit (app.js setupLive)
+    {
+      id: 'relationship', label: '💍 Relationship', single: true,
+      items: ['Single', 'Has Boyfriend', 'Married', 'Divorced']
+    },
+    // 🎂 yaş aralığı: 🎲 rastgele yaşla uyumlu seçer (app.js AGE_R)
+    {
+      id: 'agerange', label: '🎂 Age', single: true,
+      items: ['18–21', '22–25', '26–30', '31–35', '36+']
+    },
     // single: true -> bu gruptan tek seçim yapılır, karakterde "Pussy Size: Tight" diye saklanır
     // (böylece farklı gruplarda aynı seçenek, ör. 'Tight', karışmaz)
     {
@@ -87,6 +97,22 @@ Stories.Traits = (() => {
       id: 'skin', label: '🎨 Skin Tone', single: true,
       items: ['Pale', 'Fair', 'Olive', 'Tan', 'Brown', 'Dark']
     },
+    {
+      id: 'lips', label: '💋 Lip Shape', single: true,
+      items: ['Thin', 'Natural', 'Full', 'Plump', 'Heart-shaped', 'Wide', 'Filler']
+    },
+    {
+      id: 'legs', label: '🦵 Legs', single: true,
+      items: ['Slim', 'Toned', 'Thick Thighs', 'Long']
+    },
+    {
+      id: 'waist', label: '⏳ Waist', single: true,
+      items: ['Tiny', 'Slim', 'Average', 'Wide']
+    },
+    {
+      id: 'fashion', label: '👗 Style', single: true,
+      items: ['Casual', 'Elegant', 'Sporty', 'Goth', 'Girly', 'Business']
+    },
     // çoklu seçim: değer olduğu gibi saklanır ("Freckles")
     {
       id: 'marks', label: '✨ Marks',
@@ -118,16 +144,18 @@ Stories.Traits = (() => {
 
   // 📏 hep geçerli kurallar (📏 Kurallar sayfasındakilere eklenir): kiloya göre olamayacak göğüs / kalça bedenleri
   const W_RULES = {
-    'Very Thin': ['Boob Size: 90', 'Boob Size: 95', 'Butt Size: L', 'Butt Size: XL', 'Body Type: Hourglass', 'Body Type: Pear', 'Body Type: Muscular'],
-    'Thin': ['Boob Size: 95', 'Butt Size: XL', 'Body Type: Muscular'],
+    'Very Thin': ['Boob Size: 90', 'Boob Size: 95', 'Butt Size: L', 'Butt Size: XL', 'Body Type: Hourglass', 'Body Type: Pear', 'Body Type: Muscular', 'Legs: Thick Thighs', 'Waist: Wide'],
+    'Thin': ['Boob Size: 95', 'Butt Size: XL', 'Body Type: Muscular', 'Legs: Thick Thighs', 'Waist: Wide'],
     'Curvy': ['Boob Size: 70', 'Butt Size: XS'],
-    'Chubby': ['Boob Size: 70', 'Boob Size: 75', 'Butt Size: XS', 'Butt Size: S', 'Body Type: Petite', 'Body Type: Athletic', 'Body Type: Toned', 'Body Type: Muscular'],
-    'Overweight': ['Boob Size: 70', 'Boob Size: 75', 'Boob Size: 80', 'Butt Size: XS', 'Butt Size: S', 'Butt Size: M', 'Body Type: Petite', 'Body Type: Athletic', 'Body Type: Toned', 'Body Type: Muscular']
+    'Chubby': ['Boob Size: 70', 'Boob Size: 75', 'Butt Size: XS', 'Butt Size: S', 'Body Type: Petite', 'Body Type: Athletic', 'Body Type: Toned', 'Body Type: Muscular', 'Legs: Slim', 'Waist: Tiny'],
+    'Overweight': ['Boob Size: 70', 'Boob Size: 75', 'Boob Size: 80', 'Butt Size: XS', 'Butt Size: S', 'Butt Size: M', 'Body Type: Petite', 'Body Type: Athletic', 'Body Type: Toned', 'Body Type: Muscular', 'Legs: Slim', 'Waist: Tiny', 'Waist: Slim']
   };
   // uzun boylu minyon olamaz (Height, Body Type'tan önce seçilir)
   const H_RULES = { 'Tall': ['Body Type: Petite'], 'Very Tall': ['Body Type: Petite'] };
   const rules = [...Object.entries(W_RULES).map(([w, not]) => ({ id: 'w_' + w.replace(/\s/g, ''), ifs: ['Weight: ' + w], not })),
-    ...Object.entries(H_RULES).map(([h, not]) => ({ id: 'h_' + h.replace(/\s/g, ''), ifs: ['Height: ' + h], not }))];
+    ...Object.entries(H_RULES).map(([h, not]) => ({ id: 'h_' + h.replace(/\s/g, ''), ifs: ['Height: ' + h], not })),
+    // 💍 kocasıyla yaşayan evlidir
+    { id: 'r_koca', ifs: ['Yaşam: Kocasıyla Yaşıyor'], not: ['Relationship: Single', 'Relationship: Has Boyfriend', 'Relationship: Divorced'] }];
 
   return { groups, zodiacs, colors, all, rules };
 })();

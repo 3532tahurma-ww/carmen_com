@@ -9,7 +9,10 @@
 Stories.City = (() => {
   const KEY = 'amor-stories:city';
   // dünya sınırları: X0..W, Y0..H (batı mahallesi ve kuzey tepeleri eksi koordinatlarda)
-  const W = 3000, H = 2200, X0 = -1300, Y0 = -900, CS = 20, SW = 16;
+  // SC: dünya ölçeği (konumlar/mesafeler büyür, bina/yol/karakter boyutu aynı kalır)
+  const SC = 1.4, sc = p => [p[0] * SC, p[1] * SC];
+  const W = 3000 * SC, H = 2200 * SC, X0 = -1300 * SC, Y0 = -900 * SC, CS = 14, SW = 16;
+  const PKX = 600 * SC, PKY = 1150 * SC, LNX = 2140 * SC, LNY = 1450 * SC, RGX = 1350 * SC, RGY = 850 * SC;
   const tr = s => (Stories.I18n ? Stories.I18n.t(s) : s);
   const rng = seed => () => { seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
   const hash = s => { s = String(s); let h = 5381; for (let i = 0; i < s.length; i++) h = (h * 33 + s.charCodeAt(i)) | 0; return h >>> 0; };
@@ -18,7 +21,7 @@ Stories.City = (() => {
   const EMO = '"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';
 
   /* 🗺️ harita: kıyı (deniz güneyde ve doğuda), yol kontrol noktaları, binalar */
-  const COAST = [[-1300, 1745], [-800, 1790], [-400, 1775], [0, 1760], [400, 1800], [800, 1760], [1200, 1820], [1600, 1880], [2000, 1840], [2350, 1700], [2600, 1450], [2700, 1100], [2760, 700], [2820, 300], [2860, 0], [2890, -450], [2920, -900]];
+  const COAST = [[-1300, 1745], [-800, 1790], [-400, 1775], [0, 1760], [400, 1800], [800, 1760], [1200, 1820], [1600, 1880], [2000, 1840], [2350, 1700], [2600, 1450], [2700, 1100], [2760, 700], [2820, 300], [2860, 0], [2890, -450], [2920, -900]].map(sc);
   const P = {
     C0: [0, 1560], C1: [420, 1600], C2: [820, 1570], C3: [1200, 1630], C4: [1600, 1690], C5: [2000, 1650], C6: [2300, 1500], C7: [2470, 1300], C8: [2560, 1050], C9: [2610, 700], C10: [2650, 330], C11: [2680, 0],
     B0: [560, 260], B1: [880, 500], B2: [1150, 690], B3: [1600, 1080], B4: [1850, 1300], B5: [1980, 1480],
@@ -36,7 +39,8 @@ Stories.City = (() => {
     K8: [600, -800], K9: [1000, -760], K10: [2000, -800]
   };
   // 🔄 Meydan göbeği: 16 nokta (RG0 doğu, RG4 güney, RG8 batı, RG12 kuzey)
-  for (let i = 0; i < 16; i++) P['RG' + i] = [1350 + 90 * Math.cos(i * Math.PI / 8), 850 + 90 * Math.sin(i * Math.PI / 8)];
+  for (const k in P) P[k] = sc(P[k]);
+  for (let i = 0; i < 16; i++) P['RG' + i] = [RGX + 90 * Math.cos(i * Math.PI / 8), RGY + 90 * Math.sin(i * Math.PI / 8)];
   const ROAD_W = { coast: 60, main: 52, ring: 46, st: 40 };
   const ROADS = [
     ['coast', 'C0 C1 C2 C3 C4 C5 C6 C7 C8 C9 C10 C11'],
@@ -88,10 +92,11 @@ Stories.City = (() => {
     { k: 'lunapark', n: 'Lunapark', ic: '🎡', x: 2140, y: 1450, rx: 105, ry: 105, area: 1 },
     { k: 'sahil', n: 'Sahil', ic: '🏖️', x: 1600, y: 1790, area: 1, beach: [1150, 2050] }
   ];
+  [...BLD, ...AREAS].forEach(b => { b.x *= SC; b.y *= SC; if (b.beach) b.beach = b.beach.map(v => v * SC); });
   // 🏠 ek hane evleri (dolgu evlerden seçilir): [anahtar, ad, ikon]; app.js CC_HOMES ile aynı sıra
   const HOME_X = [['ev6', 'Beyaz Villa', '🏡'], ['ev7', 'Taş Ev', '🏠'], ['ev8', 'Sarı Ev', '🏠'], ['ev9', 'Yalı', '🏡'], ['ev10', 'Bahçeli Villa', '🏡'], ['ev11', 'Çatı Katı', '🏠'],
     ['ev12', 'Mavi Panjurlu Ev', '🏠'], ['ev13', 'Güllü Ev', '🏡'], ['ev14', 'Ahşap Ev', '🏠'], ['ev15', 'Tepe Evi', '🏡'], ['ev16', 'Limon Ağaçlı Ev', '🏡'], ['ev17', 'Kırmızı Kapılı Ev', '🏠']];
-  const FIELDS = [[240, 20, 170, 100, '#d9c27a', '#c9ae5f'], [430, 40, 110, 80, '#a9c96c', '#93b458']];
+  const FIELDS = [[240 * SC, 20 * SC, 170, 100, '#d9c27a', '#c9ae5f'], [430 * SC, 40 * SC, 110, 80, '#a9c96c', '#93b458']];
   // 🏘️ dolgu binalar: bölgeye göre tür [ad, ikon, yüksek mi]; çatı renkleri
   const FT = {
     ev: [['Ev', '🏠'], ['Villa', '🏡'], ['Dubleks', '🏠'], ['Bahçeli Ev', '🏡'], ['Müstakil Ev', '🏠'], ['Bakkal', '🏪']],
@@ -185,7 +190,7 @@ Stories.City = (() => {
     };
     const inBld = (x, y, m) => BLD.some(b => Math.abs(x - b.x) < b.w / 2 + m && Math.abs(y - b.y) < b.h / 2 + m);
     const inField = (x, y, m) => FIELDS.some(f => x > f[0] - m && x < f[0] + f[2] + m && y > f[1] - m && y < f[1] + f[3] + m);
-    const freeZone = (x, y) => !ell(x, y, 600, 1150, 222, 282) && !ell(x, y, 2140, 1450, 128, 128) && !ell(x, y, 1350, 850, 70, 70) && !inField(x, y, 10);
+    const freeZone = (x, y) => !ell(x, y, PKX, PKY, 222, 282) && !ell(x, y, LNX, LNY, 128, 128) && !ell(x, y, RGX, RGY, 70, 70) && !inField(x, y, 10);
     const R = rng(11), bRects = BLD.map(b => ({ x: b.x, y: b.y, w: b.w + (b.yard ? 44 : 22), d: b.h + (b.yard ? 40 : 22), a: 0 }));
     // 🚶 yaya yolları: bir caddenin kaldırımından dik çıkıp blok içinden karşıdaki caddeye varan ara yollar (araç girmez)
     const foots = [], FOOT_HW = 7;
@@ -258,7 +263,7 @@ Stories.City = (() => {
     });
     // 🏘️ dolgu binalar: her araç yolunun ve yaya yolunun iki yanına, yola dönük (her binanın önünde yol var)
     const fill = [];
-    const zoneOf = (x, y) => coastDist(x, y) < 380 ? 'cs' : (x < 950 && y < 1000) || x < 0 || y < 0 ? 'ev' : x > 1830 && y < 1500 ? 'ex' : ell(x, y, 1650, 860, 820, 540) ? 'dt' : R() < .5 ? 'ev' : 'dt';
+    const zoneOf = (x, y) => coastDist(x, y) < 380 ? 'cs' : (x < 950 * SC && y < 1000 * SC) || x < 0 || y < 0 ? 'ev' : x > 1830 * SC && y < 1500 * SC ? 'ex' : ell(x, y, 1650 * SC, 860 * SC, 820 * SC, 540 * SC) ? 'dt' : R() < .5 ? 'ev' : 'dt';
     // gap: yol kenarından binaya boşluk (araç yolunda kaldırım + 7, yaya yolunda 6)
     function tryPlace(x, y, a, s, hw, gap) {
       const z = zoneOf(x, y), types = FT[z], ty = types[(R() * types.length) | 0], tall = !!ty[2];
@@ -290,12 +295,12 @@ Stories.City = (() => {
     const inFill = (x, y, m) => fill.some(f => Math.abs(f.x - x) < 90 && Math.abs(f.y - y) < 90 && inRect({ ...f, w: f.w + m * 2, d: f.d + m * 2 }, x, y));
     // 🌳 ağaçlar: parkta sık, boşluklarda orta
     const trees = [];
-    for (let i = 0; i < 5400; i++) {
+    for (let i = 0; i < 5400 * SC * SC; i++) {
       const x = X0 + R() * (W - X0), y = Y0 + R() * (H - Y0);
-      const park = ell(x, y, 600, 1150, 195, 255);
-      let p = park ? .9 : x < 950 && y < 1000 ? .45 : ell(x, y, 1650, 850, 780, 500) ? .12 : .3;
-      if (park && (ell(x, y, 600, 1150, 110, 140) || (ell(x, y, 600, 1150, 146, 184) && !ell(x, y, 600, 1150, 114, 154)))) p = 0;
-      if (ell(x, y, 2140, 1450, 120, 120) || ell(x, y, 1350, 850, 60, 60)) p = 0;
+      const park = ell(x, y, PKX, PKY, 195, 255);
+      let p = park ? .9 : x < 950 * SC && y < 1000 * SC ? .45 : ell(x, y, 1650 * SC, 850 * SC, 780 * SC, 500 * SC) ? .12 : .3;
+      if (park && (ell(x, y, PKX, PKY, 110, 140) || (ell(x, y, PKX, PKY, 146, 184) && !ell(x, y, PKX, PKY, 114, 154)))) p = 0;
+      if (ell(x, y, LNX, LNY, 120, 120) || ell(x, y, RGX, RGY, 60, 60)) p = 0;
       if (R() > p) continue;
       if (inSea(x, y) || coastDist(x, y) < 150 || nearRoad(x, y, SW + 8) || inBld(x, y, 14) || inField(x, y, 8) || inFill(x, y, 10)) continue;
       trees.push([x, y, 10 + R() * 8, R() < .5 ? 0 : 1]);
@@ -303,8 +308,8 @@ Stories.City = (() => {
     // 🌴 palmiyeler + ⛱️ şemsiyeler kıyı boyunca, 💡 lambalar kaldırım kenarında
     const palms = [], umbs = [], lamps = [];
     coastN.forEach((c, i) => {
-      if (i % 3 === 0) { const x = c.x + c.lx * 140, y = c.y + c.ly * 140; if (!nearRoad(x, y, SW + 4) && !inBld(x, y, 10) && !inFill(x, y, 6) && !ell(x, y, 2140, 1450, 120, 120)) palms.push([x, y, R() * 6]); }
-      if (c.x > 1150 && c.x < 2050 && i % 2 === 0) { const d = 45 + R() * 40; umbs.push([c.x + c.lx * d, c.y + c.ly * d, ['#ff6b6b', '#ffd93d', '#4dabf7', '#ff8cc6', '#69db7c'][i % 5]]); }
+      if (i % 3 === 0) { const x = c.x + c.lx * 140, y = c.y + c.ly * 140; if (!nearRoad(x, y, SW + 4) && !inBld(x, y, 10) && !inFill(x, y, 6) && !ell(x, y, LNX, LNY, 120, 120)) palms.push([x, y, R() * 6]); }
+      if (c.x > PL.sahil.beach[0] && c.x < PL.sahil.beach[1] && i % 2 === 0) { const d = 45 + R() * 40; umbs.push([c.x + c.lx * d, c.y + c.ly * d, ['#ff6b6b', '#ffd93d', '#4dabf7', '#ff8cc6', '#69db7c'][i % 5]]); }
     });
     roads.forEach(r => r.t !== 'ring' && r.pts.forEach((p, i) => {
       if (i % 2) return;
@@ -499,6 +504,14 @@ Stories.City = (() => {
   };
   const LAF_NIGHT = ['Gece daha yeni başlıyor, katılsana 🍸', 'Yalnız mısın bu gece? 😏', 'Dans etmeyi biliyor musun? 💃', 'Bir içki ısmarlasana 🍹'];
   const LAF_WED = ['Kocam görmeden geç yanımdan 🤫', 'Psst… yüzüğüme bakma, bana bak 😏'];
+  // 🚗 arabadan laf / 📯 korna / 💡 selektör
+  const LAF_CAR = ['Atla da gezdireyim 😏🚗', 'Yürümekten yorulmadın mı? Bin hadi 😉', 'Bu kadar güzel yürüme, kaza yapacağım 😳', 'Nereye böyle? Bırakayım seni 😘', 'Camı açtım sırf senin için 😏', 'Yan koltuk boş, haberin olsun 💋'];
+  const LAF_HONK = ['📯 Düt düt! 😏', '📯 Bip bip! Bakar mısın? 😘', '📯 Düüüt! Hey, sana diyorum 😄', '📯 *iki kez korna çalar* 😉'];
+  const LAF_FLASH = ['💡💡 *selektör yapar* 😏', '💡 *farları yakıp söndürür* Hey sen! 😉', '💡💡 *göz kırpar gibi selektör* 😘'];
+  // araç türleri: [uzunluk, genişlik]
+  const CAR_K = { sedan: [28, 15], hatch: [23, 14], suv: [31, 17], spor: [30, 14], van: [34, 17], pickup: [32, 16], cabrio: [28, 15], polis: [29, 15], bus: [52, 18] };
+  const CAR_MIX = ['sedan', 'sedan', 'sedan', 'hatch', 'hatch', 'suv', 'suv', 'spor', 'van', 'pickup', 'cabrio', 'polis', 'bus'];
+  const OWN_K = ['sedan', 'hatch', 'suv', 'spor', 'cabrio', 'pickup', 'van'];
   const WED_T = { bad: ['Kocam buralarda olabilir 😳', 'Evliyim, unuttun mu? 😅'], ok: ['Kocam duymasın ama… 😏', 'Yüzüğüme bakma 🤫'] };
   /* 🎉 şehir etkinlikleri: her gün 5 tanesi (gün + id hash); h = [başlangıç, bitiş) saat (24+ = ertesi gece). Boştaki karakterler ve yabancılar oraya akar, tavlama şansı artar */
   const EVENTS = [
@@ -562,7 +575,8 @@ Stories.City = (() => {
     const hourOf = () => Math.floor(gm / 60) % 24;
     // 🏡 ilk açılışta evinin önünde başlarsın
     const home0 = sidePt(PL.benim.node);
-    const me = { x: sv.px || home0[0], y: sv.py || home0[1], a: 0, path: null, pi: 0, dest: null, chase: null, tries: 0, ix: RW / 2, iy: RH - 30, itx: RW / 2, ity: RH - 30 };
+    const svK = SC / (sv.sc || 1);
+    const me = { x: sv.px ? sv.px * svK : home0[0], y: sv.py ? sv.py * svK : home0[1], a: 0, path: null, pi: 0, dest: null, chase: null, tries: 0, ix: RW / 2, iy: RH - 30, itx: RW / 2, ity: RH - 30 };
     let cw = 0, ch = 0, dpr = 1, follow0 = true, sel = null, lastH = -1, t0 = performance.now(), tNow = 0, savedAt = 0, alive = true, talk = null;
     const cam = { x: me.x, y: me.y, z: 1.5 };
 
@@ -591,9 +605,18 @@ Stories.City = (() => {
     function depart(a) {
       const ex = exitOf(a);
       a.k = a.to; a.to = null;
-      const pl = plOf(a.k), ids = route(ex.s, pl.node), from = ex.pre[0] || [a.x, a.y], pts = [...ex.pre, ...walkPath(ids, ...from)];
-      if (!pl.area) pts[pts.length - 1] = towardB(pl.node, pl.x, pl.y);
-      if (pl.area) pts.push(areaPt(pl, pts[pts.length - 1]));
+      const pl = plOf(a.k), from = ex.pre[0] || [a.x, a.y];
+      // 🚗 arabası olan uzak yere arabayla gider (alana varınca iner, yürür)
+      a.drive = !!a.car && Math.hypot(pl.x - a.x, pl.y - a.y) > 650;
+      let pts;
+      if (a.drive) {
+        pts = [...ex.pre, ...carPath(roadOf(ex.s), roadOf(pl.node))];
+        pts.push(pl.area ? sidePt(pl.node) : towardB(pl.node, pl.x, pl.y));
+      } else {
+        pts = [...ex.pre, ...walkPath(route(ex.s, pl.node), ...from)];
+        if (!pl.area) pts[pts.length - 1] = towardB(pl.node, pl.x, pl.y);
+        if (pl.area) pts.push(areaPt(pl, pts[pts.length - 1]));
+      }
       a.path = pts; a.pi = 0; a.st = 'walk';
     }
     function replan(h, instant) {
@@ -642,7 +665,16 @@ Stories.City = (() => {
       if (!o.car) for (let k = 0; k < 6; k++) { const j = (R() * wd.nodes.length) | 0; if (Math.hypot(wd.nodes[j].x - o.x, wd.nodes[j].y - o.y) < 700) { to = j; break; } }
       o.path = offPath(route(from, to, o.car), o.car ? n => n.hw * .5 : n => walkSide(n) * o.side); o.pi = 0;
     };
-    const cars = Array.from({ length: 44 }, (_, i) => { const n = wd.nodes[rndRoad()], o = { car: 1, x: n.x, y: n.y, a: 0, sa: 0, sp: 95 + R() * 45, col: CAR_C[i % CAR_C.length], taxi: i % 5 === 0 }; newTrip(o); return o; });
+    const cars = Array.from({ length: 60 }, (_, i) => {
+      const n = wd.nodes[rndRoad()], taxi = i % 6 === 0, kind = taxi ? 'sedan' : CAR_MIX[(R() * CAR_MIX.length) | 0];
+      const o = { car: 1, x: n.x, y: n.y, a: 0, sa: 0, sp: kind === 'bus' ? 70 + R() * 15 : kind === 'spor' ? 140 + R() * 40 : 95 + R() * 45, col: CAR_C[i % CAR_C.length], taxi, kind };
+      newTrip(o); return o;
+    });
+    // 🚘 bazı karakterlerin arabası var (id'ye göre sabit: tanıdıklar %40, yabancılar %25)
+    ag.forEach(a => {
+      const h = hash(a.id + ':car');
+      a.car = h % 100 < (a.str ? 25 : 40) ? { kind: OWN_K[(h >>> 7) % OWN_K.length], col: CAR_C[(h >>> 11) % CAR_C.length], sp: 110 + (h >>> 3) % 40 } : null;
+    });
     const PED_C = ['#ef9a9a', '#90caf9', '#a5d6a7', '#ffe082', '#ce93d8', '#ffab91', '#80cbc4', '#f48fb1'];
     const peds = Array.from({ length: 220 }, (_, i) => { const n = wd.nodes[(R() * wd.nodes.length) | 0], o = { x: n.x, y: n.y, a: 0, sa: 0, sp: 24 + R() * 16, col: PED_C[i % PED_C.length], side: R() < .5 ? 1 : -1, path: [], pi: 0 }; return o; });
     const pedBy = PED_C.map(c => peds.filter(o => o.col === c));
@@ -707,19 +739,21 @@ Stories.City = (() => {
     const tagK = () => 1.15 / Math.pow(cam.z, .65);
     function drawGround(t) {
       ctx.fillStyle = '#d3e4bb'; ctx.fillRect(X0 - 400, Y0 - 400, W - X0 + 800, H - Y0 + 800);
+      ctx.save(); ctx.scale(SC, SC);
       ctx.fillStyle = '#cfe5b3'; ctx.beginPath(); ctx.ellipse(-650, 820, 720, 820, 0, 0, Math.PI * 2); ctx.fill(); ctx.beginPath(); ctx.ellipse(1300, -470, 1550, 470, 0, 0, Math.PI * 2); ctx.fill();
       ctx.fillStyle = '#e6e0d5'; ctx.beginPath(); ctx.ellipse(1650, 860, 820, 540, -.08, 0, Math.PI * 2); ctx.fill();
       ctx.fillStyle = '#cfe5b3'; ctx.beginPath(); ctx.ellipse(430, 470, 470, 430, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
       FIELDS.forEach(([x, y, w, h, a, b]) => { ctx.fillStyle = a; ctx.fillRect(x, y, w, h); ctx.strokeStyle = b; ctx.lineWidth = 4; ctx.beginPath(); for (let i = 8; i < w; i += 14) { ctx.moveTo(x + i, y + 4); ctx.lineTo(x + i, y + h - 4); } ctx.stroke(); });
       // 🌳 park + göl
-      ctx.fillStyle = '#a7d38b'; ctx.beginPath(); ctx.ellipse(600, 1150, 205, 265, 0, 0, Math.PI * 2); ctx.fill();
-      ctx.strokeStyle = '#efe3c4'; ctx.lineWidth = 14; ctx.beginPath(); ctx.ellipse(600, 1150, 130, 169, 0, 0, Math.PI * 2); ctx.stroke();
-      ctx.fillStyle = '#7cc3e8'; ctx.beginPath(); ctx.ellipse(600, 1150, 88, 118, 0, 0, Math.PI * 2); ctx.fill();
-      ctx.strokeStyle = 'rgba(255,255,255,.5)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(600, 1150, 60 + (t * 6) % 24, 85 + (t * 8) % 30, 0, 0, Math.PI * 2); ctx.stroke();
+      ctx.fillStyle = '#a7d38b'; ctx.beginPath(); ctx.ellipse(PKX, PKY, 205, 265, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = '#efe3c4'; ctx.lineWidth = 14; ctx.beginPath(); ctx.ellipse(PKX, PKY, 130, 169, 0, 0, Math.PI * 2); ctx.stroke();
+      ctx.fillStyle = '#7cc3e8'; ctx.beginPath(); ctx.ellipse(PKX, PKY, 88, 118, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = 'rgba(255,255,255,.5)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(PKX, PKY, 60 + (t * 6) % 24, 85 + (t * 8) % 30, 0, 0, Math.PI * 2); ctx.stroke();
       // 🏖️ kum + deniz
       ctx.lineJoin = ctx.lineCap = 'round';
       ctx.strokeStyle = '#f1dea6'; ctx.lineWidth = 260; ctx.stroke(wd.coastPath);
-      const sg = ctx.createLinearGradient(1500, 1700, 2600, 2400); sg.addColorStop(0, '#4fb0e0'); sg.addColorStop(1, '#2a77b3');
+      const sg = ctx.createLinearGradient(1500 * SC, 1700 * SC, 2600 * SC, 2400 * SC); sg.addColorStop(0, '#4fb0e0'); sg.addColorStop(1, '#2a77b3');
       ctx.fillStyle = sg; ctx.fill(wd.seaPath);
       ctx.strokeStyle = 'rgba(255,255,255,.55)'; ctx.lineWidth = 3;
       ctx.beginPath();
@@ -730,8 +764,9 @@ Stories.City = (() => {
       });
       ctx.stroke();
       // iskele
+      ctx.save(); ctx.translate(1410 * (SC - 1), 1840 * (SC - 1));
       ctx.fillStyle = '#a47148'; ctx.fillRect(1395, 1840, 30, 230); ctx.fillRect(1370, 2050, 80, 26);
-      ctx.strokeStyle = '#7d5232'; ctx.lineWidth = 2; ctx.beginPath(); for (let y = 1850; y < 2070; y += 12) { ctx.moveTo(1395, y); ctx.lineTo(1425, y); } ctx.stroke();
+      ctx.strokeStyle = '#7d5232'; ctx.lineWidth = 2; ctx.beginPath(); for (let y = 1850; y < 2070; y += 12) { ctx.moveTo(1395, y); ctx.lineTo(1425, y); } ctx.stroke(); ctx.restore();
     }
     function drawRoads() {
       ctx.lineJoin = ctx.lineCap = 'round';
@@ -767,11 +802,11 @@ Stories.City = (() => {
       });
     }
     function drawPlaza(t) {
-      ctx.fillStyle = '#b5d99a'; ctx.beginPath(); ctx.arc(1350, 850, 48, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = '#e9e2d2'; ctx.beginPath(); ctx.arc(1350, 850, 30, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = '#6ec6ff'; ctx.beginPath(); ctx.arc(1350, 850, 23, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#b5d99a'; ctx.beginPath(); ctx.arc(RGX, RGY, 48, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#e9e2d2'; ctx.beginPath(); ctx.arc(RGX, RGY, 30, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#6ec6ff'; ctx.beginPath(); ctx.arc(RGX, RGY, 23, 0, Math.PI * 2); ctx.fill();
       ctx.strokeStyle = 'rgba(255,255,255,.8)'; ctx.lineWidth = 2;
-      for (let i = 0; i < 2; i++) { ctx.beginPath(); ctx.arc(1350, 850, 4 + ((t * 10 + i * 10) % 19), 0, Math.PI * 2); ctx.stroke(); }
+      for (let i = 0; i < 2; i++) { ctx.beginPath(); ctx.arc(RGX, RGY, 4 + ((t * 10 + i * 10) % 19), 0, Math.PI * 2); ctx.stroke(); }
     }
     function drawLuna(t) {
       const L = PL.lunapark;
@@ -863,7 +898,7 @@ Stories.City = (() => {
         ctx.strokeStyle = `rgba(255,61,139,${.6 - g / 70})`; ctx.lineWidth = 4;
         ctx.beginPath(); ctx.ellipse(p.x, p.y, rx, ry, 0, 0, Math.PI * 2); ctx.stroke();
         if (e.id === 'kopuk') { ctx.fillStyle = 'rgba(255,255,255,.75)'; for (let i = 0; i < 14; i++) { const q = (t * .4 + i * .13) % 1, ang = i * 2.4; ctx.beginPath(); ctx.arc(p.x + Math.cos(ang) * (30 + q * 60), p.y + Math.sin(ang) * (20 + q * 40) - q * 30, 4 + (i % 3) * 2, 0, Math.PI * 2); ctx.fill(); } }
-        if (e.id === 'konser') { ctx.fillStyle = '#2b2140'; rr(1480, 1745, 90, 34, 6); ctx.fill(); ['#ff4fd8', '#4fc3ff', '#ffd400'].forEach((c, i) => { ctx.fillStyle = c; ctx.beginPath(); ctx.arc(1495 + i * 30, 1752 + Math.sin(t * 6 + i) * 2, 5, 0, Math.PI * 2); ctx.fill(); }); }
+        if (e.id === 'konser') { ctx.fillStyle = '#2b2140'; rr(1525 * SC - 45, 1762 * SC - 17, 90, 34, 6); ctx.fill(); ['#ff4fd8', '#4fc3ff', '#ffd400'].forEach((c, i) => { ctx.fillStyle = c; ctx.beginPath(); ctx.arc(1525 * SC - 30 + i * 30, 1762 * SC - 10 + Math.sin(t * 6 + i) * 2, 5, 0, Math.PI * 2); ctx.fill(); }); }
         const by = p.rx ? p.y - (p.ry || p.rx) - 26 : p.k === 'sahil' ? p.y - 70 : p.y - p.h / 2 - 34, k = tagK();
         ctx.font = `${26 * k}px ${EMO}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
         ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(p.x, by + Math.sin(t * 3) * 4, 18 * k, 0, Math.PI * 2); ctx.fill();
@@ -904,15 +939,53 @@ Stories.City = (() => {
       ctx.font = `${Math.round(Math.min(b.w, b.h) * .42)}px ${EMO}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
       ctx.fillText(b.ic, b.x, b.y + 2);
     }
+    function drawCar(x, y, sa, kind, col, taxi) {
+      const [L, Wd] = CAR_K[kind] || CAR_K.sedan, l = L / 2, w = Wd / 2, gl = 'rgba(30,40,60,.72)';
+      ctx.save(); ctx.translate(x, y); ctx.rotate(sa);
+      ctx.fillStyle = 'rgba(0,0,0,.25)'; rr(-l + 1, -w + 2.5, L, Wd, 4); ctx.fill();
+      ctx.fillStyle = kind === 'polis' ? '#f5f5f5' : col; rr(-l, -w, L, Wd, kind === 'bus' || kind === 'van' ? 3 : 4.5); ctx.fill();
+      if (kind === 'bus') {
+        ctx.fillStyle = gl; ctx.fillRect(l - 6, -w + 2, 4, Wd - 4);
+        ctx.fillStyle = 'rgba(200,230,255,.8)'; for (let i = -l + 4; i < l - 10; i += 7) { ctx.fillRect(i, -w + 1, 5, 2.5); ctx.fillRect(i, w - 3.5, 5, 2.5); }
+      } else if (kind === 'pickup') {
+        ctx.fillStyle = gl; ctx.fillRect(l * .3, -w + 2, 5, Wd - 4);
+        ctx.fillStyle = 'rgba(0,0,0,.3)'; ctx.fillRect(-l + 2.5, -w + 2.5, l * .95, Wd - 5);
+      } else if (kind === 'cabrio') {
+        ctx.fillStyle = gl; ctx.fillRect(l * .3, -w + 2, 3, Wd - 4);
+        ctx.fillStyle = '#4e342e'; rr(-l * .5, -w + 2.5, l * .75, Wd - 5, 2); ctx.fill();
+      } else {
+        ctx.fillStyle = gl; ctx.fillRect(kind === 'van' ? l - 8 : l * .28, -w + 2, kind === 'spor' ? 6 : 5, Wd - 4);
+        if (kind !== 'van') ctx.fillRect(-l + 3.5, -w + 2, kind === 'spor' ? 3 : 4, Wd - 4);
+      }
+      if (kind === 'spor') { ctx.fillStyle = 'rgba(255,255,255,.85)'; ctx.fillRect(-l + 2, -1.5, L - 4, 3); }
+      if (kind === 'suv' || kind === 'van') { ctx.strokeStyle = 'rgba(0,0,0,.25)'; ctx.lineWidth = 1; ctx.strokeRect(-l * .4, -w + 3, l * .8, Wd - 6); }
+      if (kind === 'polis') {
+        ctx.fillStyle = '#1a237e'; ctx.fillRect(-l + 4, -w, L - 10, 2.5); ctx.fillRect(-l + 4, w - 2.5, L - 10, 2.5);
+        const on = ((tNow / 250) | 0) % 2; ctx.fillStyle = on ? '#e53935' : '#1e88e5'; ctx.fillRect(-2, -w + 2, 3, w - 2); ctx.fillStyle = on ? '#1e88e5' : '#e53935'; ctx.fillRect(-2, 0, 3, w - 2);
+      }
+      if (taxi) { ctx.fillStyle = '#fff'; rr(-3, -3, 6, 6, 1.5); ctx.fill(); }
+      ctx.restore();
+    }
+    // 🚘 karakterin arabası: araba + üstünde küçük fotoğrafı; 💡 selektör ve 📯 korna efekti
+    function drawDriver(a, t) {
+      const fa = a.flashT ? tNow - a.flashT : 1e9, ha = a.honkT ? tNow - a.honkT : 1e9, cx = Math.cos(a.sa || 0), sy = Math.sin(a.sa || 0), l = (CAR_K[a.car.kind] || CAR_K.sedan)[0] / 2;
+      if (ha < 1400) {
+        ctx.strokeStyle = 'rgba(255,61,139,.75)'; ctx.lineWidth = 2;
+        for (let i = 0; i < 3; i++) { const r = 12 + ((ha / 9 + i * 14) % 42); ctx.globalAlpha = Math.max(0, 1 - r / 54); ctx.beginPath(); ctx.arc(a.x + cx * l, a.y + sy * l, r, (a.sa || 0) - .7, (a.sa || 0) + .7); ctx.stroke(); }
+        ctx.globalAlpha = 1;
+      }
+      drawCar(a.x, a.y, a.sa || 0, a.car.kind, a.car.col);
+      if (fa < 1600 && ((fa / 200) | 0) % 2 === 0) {
+        ctx.globalCompositeOperation = 'lighter';
+        const g = glow('#fff6d0'), px = -sy * 5, py = cx * 5, fx = a.x + cx * (l + 10), fy = a.y + sy * (l + 10);
+        ctx.drawImage(g, fx + px - 14, fy + py - 14, 28, 28); ctx.drawImage(g, fx - px - 14, fy - py - 14, 28, 28);
+        ctx.drawImage(g, a.x + cx * (l + 34) - 26, a.y + sy * (l + 34) - 26, 52, 52);
+        ctx.globalCompositeOperation = 'source-over';
+      }
+      drawSquare(a.x, a.y, CS * .8, a.c, a.c.photo, borderOf(a), 2);
+    }
     function drawVehicles() {
-      cars.forEach(o => {
-        if (!vis(o.x, o.y, 30)) return;
-        ctx.save(); ctx.translate(o.x, o.y); ctx.rotate(o.sa);
-        ctx.fillStyle = 'rgba(0,0,0,.25)'; rr(-13, -5, 28, 15, 4); ctx.fill();
-        ctx.fillStyle = o.taxi ? '#ffd400' : o.col; rr(-14, -7.5, 28, 15, 4); ctx.fill();
-        ctx.fillStyle = 'rgba(30,40,60,.7)'; ctx.fillRect(4, -5.5, 5, 11); ctx.fillRect(-10, -5.5, 4, 11);
-        ctx.restore();
-      });
+      cars.forEach(o => { if (vis(o.x, o.y, 40)) drawCar(o.x, o.y, o.sa, o.kind, o.taxi ? '#ffd400' : o.col, o.taxi); });
       boats.forEach(b => {
         const a = tNow / 1000 * b.s + b.ph, x = b.cx + Math.cos(a) * b.rx, y = b.cy + Math.sin(a) * b.ry, dir = a + (b.s > 0 ? Math.PI / 2 : -Math.PI / 2);
         if (!vis(x, y, 40)) return;
@@ -954,7 +1027,7 @@ Stories.City = (() => {
         ctx.drawImage(g, b.x - s / 2, b.y - s / 2, s, s);
       });
       ctx.globalAlpha = .5 * k;
-      cars.forEach(o => { if (!vis(o.x, o.y, 60)) return; ctx.drawImage(glow('#fff6d0'), o.x + Math.cos(o.sa) * 30 - 22, o.y + Math.sin(o.sa) * 30 - 22, 44, 44); });
+      [...cars, ...ag.filter(a => a.drive)].forEach(o => { if (!vis(o.x, o.y, 60)) return; const l = (CAR_K[o.kind || o.car.kind] || CAR_K.sedan)[0] / 2 + 16; ctx.drawImage(glow('#fff6d0'), o.x + Math.cos(o.sa || 0) * l - 22, o.y + Math.sin(o.sa || 0) * l - 22, 44, 44); });
       ctx.globalAlpha = .7 * k; const L = PL.lunapark; ctx.drawImage(glow('#ff8cc6'), L.x - 140, L.y - 140, 280, 280);
       // 🪧 panolar gece ışıklı
       ctx.globalAlpha = .45 * k; wd.bills.forEach(b => { if (vis(b.x, b.y, 80)) ctx.drawImage(glow('#ffb3dd'), b.x - 80, b.y - 50, 160, 100); });
@@ -1005,6 +1078,7 @@ Stories.City = (() => {
         if (!vis(a.x, a.y, 40)) return;
         const bob = a.st === 'walk' ? Math.abs(Math.sin(t * 9 + a.sp)) * 2 : 0;
         if (talk && talk.a === a) { ctx.strokeStyle = 'rgba(255,61,139,.7)'; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(a.x, a.y, CS * .8 + Math.sin(t * 4) * 2, 0, Math.PI * 2); ctx.stroke(); }
+        if (a.drive) { drawDriver(a, t); if (lbl) nameTag(`🚗 ${shownName(a) || '❔'}`, a.x, a.y + CS / 2 + 9 * tagK()); return; }
         drawSquare(a.x, a.y - bob, CS, a.c, a.c.photo, borderOf(a), 2.5);
         if (a.st !== 'walk' && a.w) { ctx.font = `10px ${EMO}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(emoOf(a.w.doing), a.x + CS / 2, a.y - CS / 2); }
         if (lbl) nameTag(shownName(a) || '❔', a.x, a.y + CS / 2 + 9 * tagK());
@@ -1181,8 +1255,10 @@ Stories.City = (() => {
         if (a.leaveAt && tNow >= a.leaveAt) { a.leaveAt = 0; depart(a); }
         if (a.str && a.st !== 'walk' && tNow > a.next && !(a.st === 'wander' && a.path)) strNext(a);
         if (a.st === 'walk') {
-          if (follow(a, a.sp * dt)) {
-            a.path = null;
+          const done = follow(a, (a.drive ? a.car.sp : a.sp) * dt);
+          if (a.drive) { let d = a.a - (a.sa || 0); d = Math.atan2(Math.sin(d), Math.cos(d)); a.sa = (a.sa || 0) + d * Math.min(1, dt * 8); }
+          if (done) {
+            a.path = null; a.drive = false;
             if (a.k === '~') { a.st = 'stand'; a.next = tNow + 1500 + Math.random() * 4000; }
             else if (plOf(a.k).area) { a.st = 'wander'; a.idle = tNow + 1500 + Math.random() * 4000; a.next = tNow + 20000 + Math.random() * 30000; }
             else { a.st = 'in'; a.next = tNow + 15000 + Math.random() * 25000; }
@@ -1225,7 +1301,7 @@ Stories.City = (() => {
       if (follow0) { cam.x += (me.x - cam.x) * Math.min(1, dt * 4); cam.y += (me.y - cam.y) * Math.min(1, dt * 4); }
       if (tNow - savedAt > 2000) persist();
     }
-    function persist() { savedAt = tNow; try { localStorage.setItem(KEY, JSON.stringify({ gm, at: Date.now(), sp, px: Math.round(me.x), py: Math.round(me.y), met })); } catch (e) {} }
+    function persist() { savedAt = tNow; try { localStorage.setItem(KEY, JSON.stringify({ gm, at: Date.now(), sp, px: Math.round(me.x), py: Math.round(me.y), sc: SC, met })); } catch (e) {} }
     let lastClk = '';
     function hud() {
       const m = Math.floor(gm), s = `${String(Math.floor(m / 60) % 24).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
@@ -1256,7 +1332,7 @@ Stories.City = (() => {
       hud();
       requestAnimationFrame(frame);
     }
-    function stop() { alive = false; if (talk) talk.a.hold = false; persist(); ro.disconnect(); }
+    function stop() { alive = false; if (talk) talk.a.hold = false; persist(); ro.disconnect(); if (actx) actx.close().catch(() => {}); }
     function resize() {
       const d2 = Math.min(2, window.devicePixelRatio || 1);
       if (cv.width && cw === root.clientWidth && ch === root.clientHeight && dpr === d2) return;
@@ -1268,7 +1344,7 @@ Stories.City = (() => {
     ro.observe(root);
     resize();
     cam.z = cw < 600 ? 1.9 : 2.2;
-    const clampCam = () => { cam.z = Math.max(.35, Math.min(4, cam.z)); cam.x = Math.max(X0, Math.min(W, cam.x)); cam.y = Math.max(Y0, Math.min(H, cam.y)); };
+    const clampCam = () => { cam.z = Math.max(.25, Math.min(4, cam.z)); cam.x = Math.max(X0, Math.min(W, cam.x)); cam.y = Math.max(Y0, Math.min(H, cam.y)); };
 
     /* 👆 dokunma: sürükle, iki parmakla yakınlaş, dokun → kişi / bina / yürü */
     const ptrs = new Map();
@@ -1366,7 +1442,7 @@ Stories.City = (() => {
     function row(a) {
       const w = a.w || {};
       return `<a class="ct-row" href="#/sehir" data-ag="${esc(a.id)}">${api.avatar(shownName(a) ? a.c : { name: '?', photo: a.c.photo, colors: a.c.colors }, 42)}<span class="ct-rin"><b>${nameOf(a)}${shownName(a) && a.c.age ? `<small>, ${esc(a.c.age)}</small>` : ''}</b>
-        <small>${a.str ? '🙋‍♀️ yabancı' : w.job ? '💼 iş başında' : '🌿 boş zaman'}${!a.str && a.c.job ? ` · ${esc(a.c.job)}` : ''}</small><small>${esc(w.doing || '')}</small><small class="ct-wear">${esc(api.wear(a.c, a.to || a.k, !!w.job, lastH))}${(sz => sz ? ` <b class="ct-size">${esc(sz)}</b>` : '')(api.size(a.c))}</small></span><i class="ct-go">›</i></a>`;
+        <small>${a.str ? '🙋‍♀️ yabancı' : w.job ? '💼 iş başında' : '🌿 boş zaman'}${!a.str && a.c.job ? ` · ${esc(a.c.job)}` : ''}</small><small>${esc(w.doing || '')}</small><small class="ct-wear">${esc(api.wear(a.c, a.to || a.k, !!w.job, lastH))}${(sz => sz ? String(sz).split('\n').map((s, i) => `${i ? '<br>' : ' '}<b class="ct-size${i ? ' ct-size2' : ''}">${esc(s)}</b>`).join('') : '')(api.size(a.c))}</small></span><i class="ct-go">›</i></a>`;
     }
     // ✋ dokunulan karakter yolda durur (kart açıkken, konuşurken ya da yanına giderken); başka yere dokununca yoluna devam eder
     let held = null;
@@ -1469,6 +1545,7 @@ Stories.City = (() => {
       if (h >= 20 || h < 4 || NIGHT_PL.includes(a.k)) pools.push(LAF_NIGHT);
       if (!a.str && api.rel(a.c).wed) pools.push(LAF_WED);
       if (ev) pools.push([`${ev.ic} ${ev.n} başladı, gelsene! 😄`]);
+      if (a.drive) pools.push(LAF_CAR, LAF_CAR, LAF_CAR);
       const s = pickA(pickA(pools));
       return g === '♀' || g === '⚧♀' ? s.replace(/yakışıklı/g, 'güzelim') : s;
     }
@@ -1477,10 +1554,29 @@ Stories.City = (() => {
       lafNext = tNow + 5000 + Math.random() * 7000;
       const h = hourOf(), p = .55 + (h >= 20 || h < 4 ? .2 : 0) + (evNow(h).length ? .1 : 0);
       if (Math.random() > p) return;
-      const near = ag.filter(a => a.st !== 'in' && !a.hold && !(a.lafT && tNow - a.lafT < 60000) && !((met[a.id] || {}).cool > Date.now()) && (d => d > 25 && d < LAF_R)(distTo(a)));
+      const near = ag.filter(a => a.st !== 'in' && !a.hold && !(a.lafT && tNow - a.lafT < 60000) && !((met[a.id] || {}).cool > Date.now()) && (d => d > 25 && d < (a.drive ? LAF_R + 90 : LAF_R))(distTo(a)));
       if (!near.length) return;
-      const a = pickA(near);
-      a.lafT = tNow; a.lafTxt = lafLine(a);
+      const drv = near.filter(a => a.drive), a = drv.length && Math.random() < .6 ? pickA(drv) : pickA(near), r = Math.random();
+      a.lafT = tNow;
+      // 🚗 arabadakiler: korna / selektör / camdan laf
+      if (a.drive && r < .35) { a.honkT = tNow; a.lafTxt = pickA(LAF_HONK); honk(); }
+      else if (a.drive && r < .65) { a.flashT = tNow; a.lafTxt = pickA(LAF_FLASH); }
+      else a.lafTxt = lafLine(a);
+    }
+    // 📯 kısa çift korna sesi (WebAudio, kısık)
+    let actx = null;
+    function honk() {
+      try {
+        actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+        if (actx.state === 'suspended') actx.resume();
+        const t = actx.currentTime;
+        [0, .24].forEach(d => {
+          const o = actx.createOscillator(), g = actx.createGain();
+          o.type = 'square'; o.frequency.value = 392;
+          g.gain.setValueAtTime(.0001, t + d); g.gain.exponentialRampToValueAtTime(.04, t + d + .02); g.gain.exponentialRampToValueAtTime(.0001, t + d + .17);
+          o.connect(g); g.connect(actx.destination); o.start(t + d); o.stop(t + d + .2);
+        });
+      } catch (e) {}
     }
     function drawLaf() {
       const k = tagK();

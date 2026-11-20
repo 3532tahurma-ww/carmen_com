@@ -52,6 +52,7 @@
 .ct-rin small.ct-wear { color: #c2185b; font-weight: 700; }
 .ct-size { display: inline-block; margin-left: 4px; padding: 0 6px; border-radius: 4px; background: #fde4ef; color: #8e1450; font-size: 11px; font-weight: 800; white-space: nowrap; }
 [data-theme="dark"] .ct-size { background: #4a2a3d; color: #ffc1dc; }
+.ct-size2 { margin: 3px 0 0; }
 [data-theme="dark"] .ct-rin small.ct-wear { color: #ff8cc6; }
 .ct-go { font-style: normal; font-size: 20px; color: #b3a6c6; }
 .ct-coming { font-style: italic; }
