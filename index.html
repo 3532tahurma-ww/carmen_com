@@ -26,8 +26,33 @@
           b.style.cssText = 'position:fixed;left:8px;right:8px;bottom:8px;z-index:99999;max-height:45vh;overflow:auto;margin:0;padding:10px;background:#300;color:#fff;font:12px/1.4 monospace;white-space:pre-wrap;border-radius:8px';
           (document.body || document.documentElement).appendChild(b);
         }
-        b.textContent += (b.textContent ? '\n\n' : '⚠️ Hata (ekran görüntüsü alıp gönder):\n') + msg;
+        if (!b.firstChild) {
+          var fix = document.createElement('button');
+          fix.textContent = '🧹 Önbelleği temizle ve yenile (veriler kalır)';
+          fix.style.cssText = 'display:block;margin:0 0 8px;padding:8px 10px;border:0;border-radius:6px;background:#fff;color:#300;font:600 13px sans-serif';
+          fix.onclick = function () {
+            var p = [];
+            try { if (window.caches) p.push(caches.keys().then(function (k) { return Promise.all(k.map(function (x) { return caches.delete(x); })); })); } catch (e) {}
+            try { if (navigator.serviceWorker) p.push(navigator.serviceWorker.getRegistrations().then(function (r) { return Promise.all(r.map(function (x) { return x.unregister(); })); })); } catch (e) {}
+            Promise.all(p).then(function () { location.replace(location.pathname + '?r=' + Date.now()); }, function () { location.reload(); });
+          };
+          b.appendChild(fix);
+          b.appendChild(document.createTextNode('⚠️ Hata (ekran görüntüsü alıp gönder):'));
+        }
+        b.appendChild(document.createTextNode('\n\n' + msg));
       }
+      // ⏱️ sayfa yüklendikten 6 sn sonra (ya da yükleme 60 sn'de bitmezse) açılış ekranı hâlâ duruyorsa teşhis bilgisi
+      var checked = 0;
+      function watch(why) {
+        var sp = document.getElementById('splash');
+        if (checked++ || !sp || sp.classList.contains('hide') || sp.classList.contains('busy')) return;
+        var S = window.Stories || {}, miss = [];
+        ['Store', 'I18n', 'Bot', 'MONIA', 'SCENES', 'PHOTO_TXT', 'City'].forEach(function (k) { if (!S[k]) miss.push(k); });
+        var ls = 0; try { for (var i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); ls += k.length + (localStorage.getItem(k) || '').length; } } catch (e) { ls = -1; }
+        show('Açılış bitmedi (' + why + ').\nEksik: ' + (miss.join(', ') || 'yok') + '\nlocalStorage: ' + ls + ' karakter\nSW: ' + (navigator.serviceWorker && navigator.serviceWorker.controller ? 'açık' : 'yok') + '\n' + navigator.userAgent);
+      }
+      window.addEventListener('load', function () { setTimeout(function () { watch('yüklendi + 6 sn'); }, 6000); });
+      setTimeout(function () { if (document.readyState !== 'complete') watch('60 sn, yükleme sürüyor'); }, 60000);
       window.addEventListener('error', function (e) {
         var t = e.target;
         if (t && t !== window && (t.src || t.href)) { if (t.tagName === 'SCRIPT') show('Yüklenemedi: ' + t.src); return; }
