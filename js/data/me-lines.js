@@ -9794,3 +9794,38 @@ Object.assign(Stories.ME_EV_LINES, {
   'Waistband Finish': ['Lastiğinin içine {o} 🩳', 'Şak! 😂', 'Spora böyle mi? 😳', 'Her şey içeride 😈']
 });
 Stories.ME_BED_SKIP.push('Squat Watch', 'Wet Suit Peel', 'One-Piece Aside', 'Sunbed Ride', 'Gym Bench Ride', 'Suit Back On');
+
+/* 🪑 Kucakta (Tur 38) */
+Object.assign(Stories.ME_EV_LINES, {
+  'Armchair Face-To-Face': ['Kucağıma gel {o} 🛋️', 'Alnını alnıma daya 🫂', 'Gözlerimi kapatmıyorum 👀', 'Yavaş yavaş 😮‍💨'],
+  'Reverse Lap Bounce': ['Arkanı dön, kucağıma otur 🍑', 'İzliyorum {o} 👀', 'Daha hızlı 😈', 'Kalçana bayılıyorum 🥵'],
+  'Legs Over Armrests': ['Bacaklarını koltuğun kollarına at {o} 🛋️', 'Belinden aşağı çekiyorum 😈', 'Koltuk dayanır mı? 😂', 'Tamamen açıksın 🥵'],
+  'Knees Up Lap': ['Dizlerini topla {o} 🦵', 'Seni ben kaldırırım 💪', 'Tüy gibisin 😇', 'İndiriyorum… kaldırıyorum 😈'],
+  'Slow Sink': ['Acele etme {o} 😮‍💨', 'Santim santim 🤍', 'Bekliyorum 😏', 'Sonuna kadar otur 🥵'],
+  'Still Seat': ['Kıpırdamıyorum, söz 🙈', 'İçten mi sıkıyorsun {o}? 😳', 'Bu işkence 😩', 'Oyun senin 😈'],
+  'Lean Back Lap': ['Yaslan {o}, tutuyorum 🤲', 'Seni bırakmam 🌙', 'Göğüslerin sallanıyor 🥵', 'Belin elimde 😏'],
+  'Side-Saddle Lap': ['Yan otur {o} 🐴', 'Boynuma sarıl 🫂', 'Bütün gece böyle 💞', 'Hiç acelemiz yok 🤍'],
+  'Desk Chair Spin': ['Sandalyeme gel {o} 💺', 'Bir tur dön 🌀', 'Başın mı dönüyor? 😏', 'Tekerlekleri kilitlemedim 😂'],
+  'Rocking Chair': ['Sallanan sandalyeye {o} 🪑', 'Bir kez ittim, gerisi kendiliğinden 😇', 'Hiçbir şey yapmıyoruz 😏', 'Bak bana 🥵'],
+  'Wrists Behind Back': ['Bileklerini arkana ver {o} 🔒', 'Tek elimle tutuyorum 😈', 'Sadece kalçanla 🍑', 'Bırakmayacağım 🤲'],
+  'Breast Height Lap': ['Dizlerinin üstüne kalk {o} 🍒', 'Göğsün tam dudaklarımda 👄', 'Aşağı inme 😈', 'Yakaladım 😏'],
+  'Bouncing Count': ['Say bakalım {o} 🔢', 'Kaç oldu? 😏', 'Durdurmuyorum 😈', 'Sayıları karıştırdın 😂'],
+  'Blanket Lap': ['Battaniyenin altına gel {o} 🧣', 'Kimse anlamaz 🤫', 'Filmi izliyormuş gibi yap 😇', 'Yavaş, çok yavaş 🫣'],
+  'Park Bench Lap': ['Bankta kucağıma otur {o} 🌳', 'Eteğin her şeyi örtüyor 👗', 'Biri geçiyor, kıpırdama 🤫', 'Gitti, devam 😈'],
+  'Bathtub Lap': ['Küvete gel {o} 🛁', 'Su taşacak 😂', 'Köpükler göğsünde 🫧', 'Bırak taşsın 😈'],
+  'Reverse Anal Sink': ['Arkadan, yavaşça {o} 🍩', 'Sen söyleyene kadar 🙈', 'Nefes al 😮‍💨', 'Sonuna kadar oturdun 🥵'],
+  'Pulled Down Finish': ['Belinden bastırıyorum {o} ⬇️', 'Hiçbir yere gitme 😈', 'Hepsi içine 💦', 'Sonuna kadar 🥵'],
+  'Lift Off Finish': ['Kalk {o}, geliyorum ⬆️', 'Karnına 💦', 'Az kalsın 😂', 'Uyluklarına kadar 😳'],
+  'Lap Pool': ['Kalkma {o} 🫗', 'Kucağım ıslandı 😂', 'Süzülüyor 💧', 'Öyle kal 🤍'],
+  'Stay Seated': ['Kalkma {o} 🤍', 'Sarıl bana 🫂', 'Böyle kalalım 😌', 'İçindeyim hâlâ 😏'],
+  'Reverse Drip': ['İçine {o} 🔄', 'Kalkınca göster 😏', 'Dizlerine kadar süzülüyor 💧', 'Eserim 😈'],
+  'Between Us': ['Aramıza {o} 🫂', 'Yapıştık 😂', 'Ayrılma 🤍', 'Sıcacık 🥵'],
+  'Arched Finish': ['Kıpırdama {o} 🌙', 'Karnından göğsüne 💦', 'Seni yavaşça kaldırıyorum 🤲', 'Akacak 😂'],
+  'Squeeze Out': ['Sık {o} 🗜️', 'Son damlaya kadar 😩', 'Kaçamıyorum 🥵', 'Hepsini aldın 😈'],
+  'Last Bounce': ['Son bir kez {o} 🍑', 'Aynı anda! 💥', 'Titriyorsun 🥵', 'Bir daha 😈'],
+  'Chair Drip': ['Sandalyeye bak {o} 💺', 'Damlıyor 😂', 'Temizlerim, söz 🧻', 'Kimse oturmasın 😏'],
+  'Skirt Covers It': ['Yüzünü bozma {o} 👗', 'Eteğin halletti 🤫', 'Kimse anlamadı 😏', 'Şimdi kalk 😇'],
+  'Bathwater Finish': ['Suya {o} 🛁', 'Köpüklerin arasına 🫧', 'Suyu değiştiririz 😂', 'Hepsi suya 💦']
+});
+Stories.ME_BED_SKIP.push('Armchair Face-To-Face', 'Reverse Lap Bounce', 'Legs Over Armrests', 'Knees Up Lap', 'Slow Sink', 'Still Seat', 'Lean Back Lap', 'Side-Saddle Lap', 'Desk Chair Spin', 'Rocking Chair', 'Wrists Behind Back', 'Breast Height Lap', 'Bouncing Count', 'Blanket Lap', 'Park Bench Lap', 'Bathtub Lap', 'Reverse Anal Sink',
+  'Pulled Down Finish', 'Lift Off Finish', 'Lap Pool', 'Stay Seated', 'Reverse Drip', 'Between Us', 'Arched Finish', 'Squeeze Out', 'Last Bounce', 'Chair Drip', 'Skirt Covers It', 'Bathwater Finish');

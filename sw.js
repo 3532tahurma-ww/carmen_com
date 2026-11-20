@@ -1,13 +1,13 @@
-﻿/*
+/*
  * Amor Stories - Service worker (ÃƒÆ’Ã‚Â§evrimdÃƒâ€žÃ‚Â±Ãƒâ€¦Ã…Â¸Ãƒâ€žÃ‚Â± ÃƒÆ’Ã‚Â§alÃƒâ€žÃ‚Â±Ãƒâ€¦Ã…Â¸ma)
  * Uygulama dosyalarÃƒâ€žÃ‚Â± kurulumda ÃƒÆ’Ã‚Â¶nbelleÃƒâ€žÃ…Â¸e alÃƒâ€žÃ‚Â±nÃƒâ€žÃ‚Â±r; aÃƒÆ’Ã‚Â§Ãƒâ€žÃ‚Â±lÃƒâ€žÃ‚Â±Ãƒâ€¦Ã…Â¸ta ÃƒÆ’Ã‚Â¶nbellekten gelir,
  * arka planda gÃƒÆ’Ã‚Â¼ncellenir (stale-while-revalidate). FotoÃƒâ€žÃ…Â¸raflar ilk gÃƒÆ’Ã‚Â¶rÃƒÆ’Ã‚Â¼ldÃƒÆ’Ã‚Â¼klerinde saklanÃƒâ€žÃ‚Â±r.
  * Yeni sÃƒÆ’Ã‚Â¼rÃƒÆ’Ã‚Â¼m yayÃƒâ€žÃ‚Â±nlarken VERSION'Ãƒâ€žÃ‚Â± artÃƒâ€žÃ‚Â±r, eski ÃƒÆ’Ã‚Â¶nbellek silinir.
  */
-const VERSION = 'amor-stories-v1079';
+const VERSION = 'amor-stories-v1085';
 const CORE = [
   './', './index.html', './manifest.json', './css/style.css', './css/stories.css', './css/dark.css', './css/city.css', './js/city.js',
-  './js/store.js', './js/i18n.js', './js/data/i18n-en.js', './js/data/i18n-en-ads.js', './js/data/i18n-en-ads2.js', './js/data/i18n-en-ads3.js', './js/data/i18n-en-labels.js', './js/data/i18n-en-ui2.js', './js/data/i18n-en-sites.js', './js/data/i18n-en-books.js', './js/data/i18n-en-misc.js', './js/data/i18n-en-events.js', './js/data/i18n-en-stories.js', './js/data/i18n-en-bot.js', './js/data/i18n-en-chat.js', './js/data/bot-en.js','./js/data/traits.js', './js/data/amor-pools.js', './js/data/pools.js', './js/data/world.js', './js/data/photos.js', './js/data/mod-photos.js', './js/data/mods.js', './js/data/themes.js', './js/data/me-lines.js', './js/data/user-lines.js', './js/data/fant-interrupts.js','./js/data/places.js', './js/data/scenes.js', './js/data/episodes.js','./js/data/monia.js', './js/data/subcats.js', './js/data/effects.js', './js/data/emojis.js', './js/data/bot-rules.js', './js/data/clothes.js', './js/data/fiery.js','./js/bot.js', './js/gallery.js', './js/music.js','./js/data/system.js', './js/app.js',
+  './js/store.js', './js/i18n.js', './js/data/i18n-en.js', './js/data/i18n-en-ads.js', './js/data/i18n-en-ads2.js', './js/data/i18n-en-ads3.js', './js/data/i18n-en-labels.js', './js/data/i18n-en-ui2.js', './js/data/i18n-en-sites.js', './js/data/i18n-en-books.js', './js/data/i18n-en-misc.js', './js/data/i18n-en-events.js', './js/data/i18n-en-stories.js', './js/data/i18n-en-bot.js', './js/data/i18n-en-chat.js', './js/data/bot-en.js','./js/data/traits.js', './js/data/amor-pools.js', './js/data/pools.js', './js/data/world.js', './js/data/photos.js', './js/data/mod-photos.js', './js/data/mods.js', './js/data/themes.js', './js/data/me-lines.js', './js/data/photo-texts.js', './js/data/user-lines.js', './js/data/fant-interrupts.js','./js/data/places.js', './js/data/scenes.js', './js/data/episodes.js','./js/data/monia.js', './js/data/subcats.js', './js/data/effects.js', './js/data/emojis.js', './js/data/bot-rules.js', './js/data/clothes.js', './js/data/fiery.js','./js/bot.js', './js/gallery.js', './js/music.js','./js/data/system.js', './js/app.js',
   './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png'
 ];
 const IMG_CACHE = 'amor-stories-img';

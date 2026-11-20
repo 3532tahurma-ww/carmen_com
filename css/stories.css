@@ -2219,6 +2219,23 @@ html:not([data-skin]) .home-land :is(.hl-card, .hl-meet, .hl-news, .hl-hero, .hl
 html:not([data-skin]) .home-land :is(.hl-night, .hl-news-ic) { border-radius: 6px; }
 html:not([data-skin]) .home-land :is(.hl-night-pic, .hl-vt-site, .hl-vt-tag, .hl-cm-vip, .hl-cm-on, .hl-ad-cta, .hl-ad-tag) { border-radius: 4px; }
 html:not([data-skin]) .home-land .hl-news-row { grid-auto-columns: 100%; }
+/* 🌈 kart hangi siteye götürüyorsa neon şerit, parıltı ve zemin o sitenin renginde */
+.home-land .hl-s { --sc-ink: #fff; }
+.home-land .hl-s-carmen { --sc: #ff2e88; } .home-land .hl-s-jobs { --sc: #3d8bff; } .home-land .hl-s-school { --sc: #9d7bff; }
+.home-land .hl-s-gothic { --sc: #ff7a18; } .home-land .hl-s-fans { --sc: #00aff0; } .home-land .hl-s-live { --sc: #ff3040; }
+.home-land .hl-s-gram { --sc: #e1306c; } .home-land .hl-s-massage { --sc: #e0a96d; } .home-land .hl-s-farm { --sc: #ff8a00; }
+.home-land .hl-s-secret { --sc: #39ff88; --sc-ink: #06210f; } .home-land .hl-s-church { --sc: #ffd54f; --sc-ink: #2b1d00; }
+.home-land .hl-s-tinder { --sc: #ff4458; } .home-land .hl-s-bumble { --sc: #ffc400; --sc-ink: #2a1a00; }
+html:not([data-skin]) .home-land .hl-s::before { background: var(--sc); box-shadow: 0 0 10px var(--sc), 0 0 18px color-mix(in srgb, var(--sc) 60%, transparent); }
+html:not([data-skin]) .home-land .hl-s:is(.hl-cm, .hl-vt) { box-shadow: 0 10px 24px -8px color-mix(in srgb, var(--sc) 45%, transparent), 0 0 16px color-mix(in srgb, var(--sc) 35%, transparent), inset 0 0 0 2px var(--sc); }
+html:not([data-skin]) .home-land .hl-s.hl-cm::after { background: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, color-mix(in srgb, var(--sc) 30%, rgba(10, 4, 14, .88))); }
+html:not([data-skin]) .home-land .hl-s.hl-vt::after { background: linear-gradient(180deg, rgba(10, 4, 14, .3), rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 45%, color-mix(in srgb, var(--sc) 30%, rgba(10, 4, 14, .88))); }
+html:not([data-skin]) .home-land .hl-s .hl-vt-site { background: var(--sc); color: var(--sc-ink); }
+html:not([data-skin]) .home-land .hl-s:is(.hl-brk, .hl-pitch, .hl-lv) { background: radial-gradient(circle at 88% 0, color-mix(in srgb, var(--sc) 45%, transparent), transparent 55%), linear-gradient(135deg, #0e0614, color-mix(in srgb, var(--sc) 45%, #0e0614));
+  box-shadow: 0 14px 30px -8px color-mix(in srgb, var(--sc) 45%, transparent), 0 0 22px color-mix(in srgb, var(--sc) 30%, transparent); }
+html:not([data-skin]) .home-land .hl-s .hl-night-pic { box-shadow: 0 0 0 2px var(--sc), 0 0 12px var(--sc); }
+html:not([data-skin]) .home-land .hl-s .hl-night-cd b { background: var(--sc); color: var(--sc-ink); }
+html:not([data-skin]) .home-land .hl-s.hl-brk > small { color: var(--sc); text-shadow: 0 0 10px color-mix(in srgb, var(--sc) 60%, transparent); }
 /* 🇫🇷 Français renk teması (Ben → Ayarlar → 🎨 Renk Teması): siteler dışında <html data-skin="fr">, app.js applySkin */
 html[data-skin="fr"] { --pink: #d0202e; --pink-soft: #fce9ea; --purple: #14307a; --purple-2: #2a4aa8; --purple-soft: #e6ebf7; --green: #1f6f5c; --teal: #1f6f5c;
   --bg: #faf6ee; --card: #ffffff; --text: #1a2340; --muted: #5c6479; --line: #e3dccd; --chip: #f0e9dc; --fr-gold: #b08d3f;

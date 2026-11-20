@@ -953,4 +953,6 @@ Stories.I18n.add({
   'Gözlüğü takılı kalır.': 'Her glasses stay on.',
   'Çoraplı: naylonun dokusu her şeyi değiştirir.': 'In stockings: the texture of the nylon changes everything.',
   'Güç ve boy farkı: biri öbürünü taşır, oturur ya da yukarıdan izler.': 'Power and height difference: one carries the other, sits on them or watches from above.',
+  'Sen oturuyorsun, o kucağında: koltukta, sallanan sandalyede, battaniye altında ya da küvette; yüz yüze, ters ya da yan.': 'You sit, she\'s on your lap: in an armchair, a rocking chair, under a blanket or in the tub; face to face, reverse or sideways.',
+  'Kucağında: sen oturuyorsun, tempoyu onun kalçası belirliyor.': 'On your lap: you sit, her hips set the pace.',
 });
