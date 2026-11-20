@@ -2125,6 +2125,1993 @@ Stories.BOT_RULES = {
       "note": ""
     },
     {
+      "id": "r_ask_hatira",
+      "name": "Soru: 💭 hatıra",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=hatira"
+      ],
+      "reply": [
+        "Geçen sefer {olay} yaptığımızı düşünüp duruyorum… yine yapalım mı? 😏",
+        "Aklımdan çıkmıyor: {olay}… bir daha ister misin? 🥵",
+        "{olay} hâlâ aklımda 🙈 Tekrarlayalım mı?",
+        "Dün gece aklıma {olay} geldi, uyuyamadım. Yine yapsak mı? 😳"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "sohbet sorusu (chatAsk): {olay} bu sohbette olmuş bir olay; evet → o olay"
+    },
+    {
+      "id": "r_ask_hatira_shy",
+      "name": "Soru: 💭 hatıra · utangaç",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=hatira"
+      ],
+      "reply": [
+        "Ş-şey… {olay} vardı ya… bir daha olur mu? 🙈",
+        "Söylemesi utanç verici ama… {olay} anını özledim. Yine mi? 🥺"
+      ],
+      "traits": [
+        "Utangaç|Gergin|Güvensiz"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_hatira_dom",
+      "name": "Soru: 💭 hatıra · dominant",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=hatira"
+      ],
+      "reply": [
+        "{olay} yaptığımızı hatırlıyor musun? Bugün yine yapacağız, değil mi? 😈",
+        "Geçen seferki {olay}… yine istiyorum. Hazır mısın? 😏"
+      ],
+      "traits": [
+        "Dominant"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_hatira_evet",
+      "name": "Cevap: hatıra · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=hatira",
+        "=evet"
+      ],
+      "reply": [
+        "Biliyordum, sen de unutmamışsın 😈",
+        "Hadi o zaman, aynısını yaşayalım 🥵",
+        "Bu sefer daha da iyi olacak 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_hatira_hayir",
+      "name": "Cevap: hatıra · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=hatira",
+        "=hayir"
+      ],
+      "reply": [
+        "Peki… o zaman yeni bir şey düşünürüm 😌",
+        "Hmm, sıkıldın mı yoksa? 🥺",
+        "Tamam, başka bir anı yaratırız 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_yersor",
+      "name": "Soru: 👀 mekân",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=yersor"
+      ],
+      "reply": [
+        "Burada biri bizi duyar mı sence? 🙈",
+        "Buraya birinin gelmesinden korkuyor musun? 😳",
+        "Sence bizi gören olur mu burada? 😏",
+        "Burası riskli mi sence? 👀"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "sohbet sorusu: mekân kartı varken"
+    },
+    {
+      "id": "r_ans_yersor_evet",
+      "name": "Cevap: mekân · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=yersor",
+        "=evet"
+      ],
+      "reply": [
+        "O zaman sesimizi kısalım 🤫",
+        "Tam da bu heyecan verici işte 😈",
+        "Bir kulağım kapıda o zaman 👀"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_yersor_hayir",
+      "name": "Cevap: mekân · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=yersor",
+        "=hayir"
+      ],
+      "reply": [
+        "Rahatladım… o zaman istediğim gibi davranabilirim 😏",
+        "Güzel, sadece ikimiz 🥰",
+        "Sana güveniyorum 😌"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_saatsor",
+      "name": "Soru: 🌙 saat",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=saatsor"
+      ],
+      "reply": [
+        "Ne yapıyorsun şu an? Beni mi düşünüyordun? 😊",
+        "Bu saatte bana yazman hoşuma gitti… özledin mi? 🥰"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "sohbet sorusu: sohbet saati gece (23–05) ya da sabah (06–10)"
+    },
+    {
+      "id": "r_ask_saatsor_gece",
+      "name": "Soru: 🌙 saat · gece",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=saatsor",
+        "=gece"
+      ],
+      "reply": [
+        "Bu saatte hâlâ uyanık mısın? Beni mi düşünüyordun? 🌙",
+        "Gece yarısı oldu… uykun yok mu? 😏",
+        "Herkes uyurken biz konuşuyoruz… beni mi bekledin? 🌙"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_saatsor_sabah",
+      "name": "Soru: 🌙 saat · sabah",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=saatsor",
+        "=sabah"
+      ],
+      "reply": [
+        "Günaydın ☀️ Yeni mi uyandın?",
+        "Sabah sabah ilk beni mi düşündün? 🥰",
+        "Günaydın… güzel uyudun mu? ☀️"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_saatsor_evet",
+      "name": "Cevap: saat · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=saatsor",
+        "=evet"
+      ],
+      "reply": [
+        "Tatlısın 🥰",
+        "Bunu duymak çok güzel 😌"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_saatsor_evet_gece",
+      "name": "Cevap: saat · gece · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=saatsor",
+        "=evet",
+        "=gece"
+      ],
+      "reply": [
+        "Tatlısın… ben de uyuyamıyordum 🌙",
+        "Bu saatte ikimiz uyanığız, bu bir işaret 😏",
+        "Ben de seni düşünüyordum, yorganın altında 🙈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_saatsor_evet_sabah",
+      "name": "Cevap: saat · sabah · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=saatsor",
+        "=evet",
+        "=sabah"
+      ],
+      "reply": [
+        "Güzel başlangıç ☀️ Günün güzel geçsin",
+        "Ben de seni düşünerek uyandım 🥰",
+        "Kahveni al, bugün bizim günümüz ☕"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_saatsor_hayir",
+      "name": "Cevap: saat · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=saatsor",
+        "=hayir"
+      ],
+      "reply": [
+        "Hmm, yalancı 😏 Ama hoşuma gitti",
+        "Peki peki, inanmış gibi yapıyorum 😌"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_saatsor_hayir_sabah",
+      "name": "Cevap: saat · sabah · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=saatsor",
+        "=hayir",
+        "=sabah"
+      ],
+      "reply": [
+        "Ay, olsun 😌 Kahve iç, kendine gel ☕",
+        "Gel o zaman, gününü ben güzelleştiririm 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_kiz",
+      "name": "Soru: 👭 arkadaşı",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=kiz"
+      ],
+      "reply": [
+        "Arkadaşım {diger} sence güzel mi? Dürüst ol 😏",
+        "{diger} hep senden bahsediyor… sen onu beğeniyor musun? 🤨",
+        "Söyle bakalım, {diger} senin tipin mi? 😤"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "sohbet sorusu: tanıdığı bir kız varken; {diger} = onun adı"
+    },
+    {
+      "id": "r_ans_kiz_evet",
+      "name": "Cevap: arkadaşı · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=kiz",
+        "=evet"
+      ],
+      "reply": [
+        "Haklısın, güzel kızdır 😌 Ama ben daha güzelim, değil mi?",
+        "Dürüstlüğünü sevdim… biraz da kıskandım 😏",
+        "Hmm, {diger}'e söylemeyeceğim bunu 🙊"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_kiz_evet_kiskanc",
+      "name": "Cevap: arkadaşı · evet · kıskanç",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=kiz",
+        "=evet"
+      ],
+      "reply": [
+        "Ne?! Bir daha onunla aynı odada olmayacaksın 😤",
+        "Hmm… not ettim 😒"
+      ],
+      "traits": [
+        "Kıskanç"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_kiz_hayir",
+      "name": "Cevap: arkadaşı · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=kiz",
+        "=hayir"
+      ],
+      "reply": [
+        "Doğru cevap 😌💗",
+        "Biliyordum, gözün sadece bende 🥰",
+        "İyi… çünkü sen benimsin 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_yarin",
+      "name": "Soru: 📅 yarın",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=yarin"
+      ],
+      "reply": [
+        "Yarın ne yapıyoruz? Bir yere gidelim mi? 🥰",
+        "Hafta sonu boş musun? Bir plan yapalım mı? 😊",
+        "Yarın beraber bir şeyler yapalım mı? ✨"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "sohbet sorusu: Aşk ≥ 40"
+    },
+    {
+      "id": "r_ans_yarin_evet",
+      "name": "Cevap: yarın · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=yarin",
+        "=evet"
+      ],
+      "reply": [
+        "Harika! Ben de bir fikir düşünürüm 😏",
+        "Sabırsızlanıyorum 🥰 Güzel bir şey giyeceğim",
+        "Anlaştık, kaçmak yok 😌"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_yarin_hayir",
+      "name": "Cevap: yarın · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=yarin",
+        "=hayir"
+      ],
+      "reply": [
+        "Peki… işin mi var? 🥺",
+        "Tamam, başka gün 😌 Ama kaçamazsın",
+        "Hmm, beni ekiyorsun yani 😒"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_iz",
+      "name": "Soru: 💜 iz",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=iz"
+      ],
+      "reply": [
+        "Bıraktığın izi gördün mü? Herkes soruyor 😳 Hoşuna gidiyor mu?",
+        "Boynumdaki iz hâlâ geçmedi… memnun musun? 😏",
+        "Aynada izine baktım az önce… beni işaretlemek hoşuna mı gidiyor? 🙈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "sohbet sorusu: teninde senin bıraktığın bir iz varken"
+    },
+    {
+      "id": "r_ans_iz_evet",
+      "name": "Cevap: iz · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=iz",
+        "=evet"
+      ],
+      "reply": [
+        "Biliyordum 😈 Saklamayacağım",
+        "O zaman herkes görsün, senin olduğumu 😏",
+        "Ben de seviyorum onu, her baktığımda seni hatırlıyorum 🥰"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_iz_hayir",
+      "name": "Cevap: iz · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=iz",
+        "=hayir"
+      ],
+      "reply": [
+        "Ama ben seviyorum onu 🥺",
+        "Sorun değil, fondötenle kapatırım 😌",
+        "Bir dahakine daha dikkatli ol o zaman 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_oyun",
+      "name": "Soru: 🎲 cesaretlik",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=oyun"
+      ],
+      "reply": [
+        "Bir oyun oynayalım mı? Cesaretlik… ben söyleyeceğim, sen yapacaksın 😈",
+        "Sıkıldım… cesaretlik oynayalım mı? 😏",
+        "Hadi bir oyun: ben bir şey isteyeceğim, kaçmak yok. Var mısın? 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "sohbet sorusu: Aşk ≥ 30, İsteklilik Orta+; evet → Kissing"
+    },
+    {
+      "id": "r_ans_oyun_evet",
+      "name": "Cevap: cesaretlik · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=oyun",
+        "=evet"
+      ],
+      "reply": [
+        "İlk cesaret: beni öp… şimdi 😏",
+        "Cesaretin: beni öpmek. Hem de uzun uzun 💋",
+        "Kolay başlıyorum: gel ve beni öp 😘"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_oyun_hayir",
+      "name": "Cevap: cesaretlik · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=oyun",
+        "=hayir"
+      ],
+      "reply": [
+        "Korktun mu yoksa? 😏",
+        "Sıkıcısın ama seviyorum seni 😌",
+        "Peki, bir dahakine kaçamazsın 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_gelecek",
+      "name": "Soru: 🏡 gelecek",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gelecek"
+      ],
+      "reply": [
+        "Bir gün beraber yaşasak nasıl olurdu sence? Güzel olur mu? 🏡",
+        "Bizi birkaç yıl sonra beraber hayal edebiliyor musun? 🥺",
+        "Gelecekte hâlâ birlikte olur muyuz sence? 💞"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "sohbet sorusu: Aşk ≥ 60"
+    },
+    {
+      "id": "r_ans_gelecek_evet",
+      "name": "Cevap: gelecek · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=gelecek",
+        "=evet"
+      ],
+      "reply": [
+        "Kalbim çok hızlı attı şu an 🥺💗",
+        "Ben de bunu düşünüyordum… 🏡",
+        "O zaman söz ver, bırakmayacaksın 💞"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_gelecek_hayir",
+      "name": "Cevap: gelecek · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=gelecek",
+        "=hayir"
+      ],
+      "reply": [
+        "Ah… şimdiyi yaşayalım o zaman 😔",
+        "Anladım. Acele etmeyeceğim 🥀",
+        "Peki… ama fikrini değiştirebilirim 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_memleket",
+      "name": "Soru: 🌍 memleket",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=memleket"
+      ],
+      "reply": [
+        "Bir gün seni {sehir} şehrine götürsem gelir misin? 🌍",
+        "Memleketimi, {sehir} şehrini sana gezdirmek istiyorum… gelir misin? ✈️",
+        "Bir gün beraber {sehir} şehrine gidelim mi? En sevdiğim sokakları göstereyim 🏡"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "sohbet sorusu: şehri bir kültür bölgesinde; {sehir} = şehri"
+    },
+    {
+      "id": "r_ans_memleket_evet",
+      "name": "Cevap: memleket · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=memleket",
+        "=evet"
+      ],
+      "reply": [
+        "Sana en sevdiğim yerleri göstereceğim 🥰",
+        "Annem seni çok sevecek 😄",
+        "Orada her şey daha güzel, göreceksin ✨"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_memleket_hayir",
+      "name": "Cevap: memleket · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=memleket",
+        "=hayir"
+      ],
+      "reply": [
+        "Peki… belki bir gün 🥺",
+        "Orayı görmeden beni tam tanıyamazsın ama 😌",
+        "Tamam, ben de seni senin şehrinde gezdiririm o zaman 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_gorusgiy",
+      "name": "Takip: görüşelim mi → ne giyeyim",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gorusgiy"
+      ],
+      "reply": [
+        "Ne giyeyim? Kırmızı elbise olur mu? 💃",
+        "Siyah dantel mi giysem? 😏",
+        "Kısa etek giyeyim mi? 🙈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "takip sorusu (gorus evet)"
+    },
+    {
+      "id": "r_ans_gorusgiy_evet",
+      "name": "Cevap: ne giyeyim · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=gorusgiy",
+        "=evet"
+      ],
+      "reply": [
+        "Tamam, o zaman 😏💋",
+        "Gözlerini benden alamayacaksın 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_gorusgiy_hayir",
+      "name": "Cevap: ne giyeyim · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=gorusgiy",
+        "=hayir"
+      ],
+      "reply": [
+        "Başka bir şey o zaman… ya da hiçbir şey 😈",
+        "Peki, sürpriz olsun 😌"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_sarilkal",
+      "name": "Takip: sarılalım mı → böyle uyuyalım mı",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=sarilkal"
+      ],
+      "reply": [
+        "Böyle sarılı uyuyalım mı? 🥱",
+        "Biraz daha böyle kalalım mı? 🥰"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "takip sorusu (saril evet)"
+    },
+    {
+      "id": "r_ans_sarilkal_evet",
+      "name": "Cevap: böyle kalalım · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=sarilkal",
+        "=evet"
+      ],
+      "reply": [
+        "Kollarında uyumayı seviyorum 🥰",
+        "Kalbinin sesini dinliyorum… 💗"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_sarilkal_hayir",
+      "name": "Cevap: böyle kalalım · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=sarilkal",
+        "=hayir"
+      ],
+      "reply": [
+        "Biraz daha uyanık kalalım o zaman 😏",
+        "Peki, ama bırakma beni 🥺"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_hatirayeni",
+      "name": "Takip: hatıra → yeni bir şey",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=hatirayeni"
+      ],
+      "reply": [
+        "O zaman yeni bir şey mi deneyelim? 😏",
+        "Tamam… bugün ilk kez bir şey yapalım mı? 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "takip sorusu (hatira hayır); evet → başka bir pozisyon"
+    },
+    {
+      "id": "r_ans_hatirayeni_evet",
+      "name": "Cevap: yeni bir şey · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=hatirayeni",
+        "=evet"
+      ],
+      "reply": [
+        "Hadi bakalım, sürpriz olsun 😈",
+        "İşte bu ruhu seviyorum 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_hatirayeni_hayir",
+      "name": "Cevap: yeni bir şey · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=hatirayeni",
+        "=hayir"
+      ],
+      "reply": [
+        "Peki, sadece konuşalım 😌",
+        "Tamam, acele yok 🥰"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_yarinyer",
+      "name": "Takip: yarın → yeri ben mi seçeyim",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=yarinyer"
+      ],
+      "reply": [
+        "Yeri ben mi seçeyim? 😏",
+        "Sürpriz yapayım mı, nereye gideceğimizi söylemeden? 🤫"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "takip sorusu (yarin evet)"
+    },
+    {
+      "id": "r_ans_yarinyer_evet",
+      "name": "Cevap: yeri ben seçeyim · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=yarinyer",
+        "=evet"
+      ],
+      "reply": [
+        "Sürpriz olsun o zaman 😈",
+        "Tamam, bana bırak 🥰"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_yarinyer_hayir",
+      "name": "Cevap: yeri ben seçeyim · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=yarinyer",
+        "=hayir"
+      ],
+      "reply": [
+        "Peki, sen seç, ben gelirim 😊",
+        "Tamam, ama güzel bir yer olsun 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_gelecekev",
+      "name": "Takip: gelecek → evimiz",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gelecekev"
+      ],
+      "reply": [
+        "Evimizde bir kedi olsun mu? 🐱",
+        "Balkonlu bir ev… çiçeklerle. Sen de ister misin? 🌷",
+        "Pazar sabahları kahvaltıyı sen mi hazırlarsın? 🥐"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "takip sorusu (gelecek evet)"
+    },
+    {
+      "id": "r_ans_gelecekev_evet",
+      "name": "Cevap: evimiz · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=gelecekev",
+        "=evet"
+      ],
+      "reply": [
+        "Anlaştık 🥰 Gerisini sonra konuşuruz",
+        "Şimdiden hayal etmeye başladım bile 🏡"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_gelecekev_hayir",
+      "name": "Cevap: evimiz · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=gelecekev",
+        "=hayir"
+      ],
+      "reply": [
+        "Peki, sen seç 😌",
+        "Haha, tamam pazarlık ederiz 😄"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_kizkiskan",
+      "name": "Takip: arkadaşı → kıskanayım mı",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=kizkiskan"
+      ],
+      "reply": [
+        "Kıskanmalı mıyım yani? 😤",
+        "{diger} ile yalnız kalırsan endişelenmeli miyim? 🤨"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "takip sorusu (kiz evet)"
+    },
+    {
+      "id": "r_ans_kizkiskan_evet",
+      "name": "Cevap: kıskanayım mı · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=kizkiskan",
+        "=evet"
+      ],
+      "reply": [
+        "Tamam, artık gözüm üstünde 👀",
+        "Biliyordum! 😤"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_kizkiskan_hayir",
+      "name": "Cevap: kıskanayım mı · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=kizkiskan",
+        "=hayir"
+      ],
+      "reply": [
+        "İyi… öyle kalsın 😌",
+        "Sana güveniyorum, ona değil 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_oyunsira",
+      "name": "Takip: cesaretlik → sıra bende",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=oyunsira"
+      ],
+      "reply": [
+        "Şimdi sıra bende… sana bir dans yapayım mı, yavaş yavaş soyunarak? 😈",
+        "İkinci cesaret benden: senin için soyunayım mı? 💃"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "takip sorusu (oyun evet); evet → Striptease"
+    },
+    {
+      "id": "r_ans_oyunsira_evet",
+      "name": "Cevap: sıra bende · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=oyunsira",
+        "=evet"
+      ],
+      "reply": [
+        "Gözünü kırpma sakın 😈",
+        "Müziği aç… 💃"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_oyunsira_hayir",
+      "name": "Cevap: sıra bende · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=oyunsira",
+        "=hayir"
+      ],
+      "reply": [
+        "Peki, şimdilik oyun bitti 😌",
+        "Kaçtın ama bir dahakine yok 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_memleketgit",
+      "name": "Takip: memleket → baş başa",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=memleketgit"
+      ],
+      "reply": [
+        "Orada bir gece de baş başa kalırız… değil mi? 😏",
+        "{sehir} gecelerini bir de seninle görmek istiyorum. Kalır mıyız birkaç gün? 🌙"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "takip sorusu (memleket evet)"
+    },
+    {
+      "id": "r_ans_memleketgit_evet",
+      "name": "Cevap: baş başa · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=memleketgit",
+        "=evet"
+      ],
+      "reply": [
+        "Söz 😈",
+        "Şimdiden bavulumu hazırlıyorum 🧳"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_memleketgit_hayir",
+      "name": "Cevap: baş başa · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=memleketgit",
+        "=hayir"
+      ],
+      "reply": [
+        "Haklısın, ailem duyar zaten 🙈",
+        "Peki, sadece gezeriz 😌"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_saatuyu_gece",
+      "name": "Takip: gece → seni uyutayım mı",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=saatuyu",
+        "=gece"
+      ],
+      "reply": [
+        "Keşke yanında olsam… sana fısıldayarak uyutayım mı seni? 🌙",
+        "Gözlerini kapat, ben anlatayım, sen uyu… olur mu? 🌙"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "takip sorusu (saatsor evet, sadece gece)"
+    },
+    {
+      "id": "r_ans_saatuyu_evet",
+      "name": "Cevap: uyutayım mı · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=saatuyu",
+        "=evet"
+      ],
+      "reply": [
+        "Gözlerini kapat… iyi geceler 🌙💗",
+        "Rüyanda görüşürüz 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_saatuyu_hayir",
+      "name": "Cevap: uyutayım mı · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=saatuyu",
+        "=hayir"
+      ],
+      "reply": [
+        "Peki, biraz daha konuşalım o zaman 😏",
+        "Uykun yok demek… ilginç 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_izyeni",
+      "name": "Takip: iz → bir tane daha",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=izyeni"
+      ],
+      "reply": [
+        "Bir tane daha bırakmak ister misin? 😈",
+        "Öbür tarafa da bir iz ister misin? 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "takip sorusu (iz evet)"
+    },
+    {
+      "id": "r_ans_izyeni_evet",
+      "name": "Cevap: bir iz daha · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=izyeni",
+        "=evet"
+      ],
+      "reply": [
+        "Gel o zaman, boynum seni bekliyor 😏",
+        "Bu sefer daha görünür bir yere 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_izyeni_hayir",
+      "name": "Cevap: bir iz daha · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=izyeni",
+        "=hayir"
+      ],
+      "reply": [
+        "Peki… bir dahakine 🙈",
+        "Tamam, şimdilik bir tane yeter 😌"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_yersessiz",
+      "name": "Takip: mekân → sessiz olalım",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=yersessiz"
+      ],
+      "reply": [
+        "O zaman sessiz olmaya çalışalım mı? 🤫",
+        "Fısıldayarak konuşalım mı? 🤫"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "takip sorusu (yersor evet)"
+    },
+    {
+      "id": "r_ans_yersessiz_evet",
+      "name": "Cevap: sessiz olalım · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=yersessiz",
+        "=evet"
+      ],
+      "reply": [
+        "Şşş… elini ağzıma koy 😳",
+        "Tamam… ama zor olacak 🙈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_yersessiz_hayir",
+      "name": "Cevap: sessiz olalım · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=yersessiz",
+        "=hayir"
+      ],
+      "reply": [
+        "Sen bilirsin… duyan duysun 😈",
+        "Cesursun 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_k_hafiza",
+      "name": "Karşı soru: k_hafiza",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=k_hafiza"
+      ],
+      "reply": [
+        "Peki sen ilk konuşmamızı hatırlıyor musun? 🥺",
+        "Sen de o anları düşünüyor musun bazen? 💭",
+        "Sen de unutmadın, değil mi? 🥺"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_k_hafiza_evet",
+      "name": "Cevap: k_hafiza · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=k_hafiza",
+        "=evet"
+      ],
+      "reply": [
+        "Bunu bilmek çok güzel 🥰",
+        "Biliyordum 😌💗"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_k_hafiza_hayir",
+      "name": "Cevap: k_hafiza · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=k_hafiza",
+        "=hayir"
+      ],
+      "reply": [
+        "Hmm… o zaman sana hatırlatmam lazım 😏",
+        "Ayıp ama 😒"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_k_iliski",
+      "name": "Karşı soru: k_iliski",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=k_iliski"
+      ],
+      "reply": [
+        "Peki sen bizi ciddi düşünüyor musun? 🥺",
+        "Sen de bunu bir ilişki olarak görüyor musun? 💞"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_k_iliski_evet",
+      "name": "Cevap: k_iliski · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=k_iliski",
+        "=evet"
+      ],
+      "reply": [
+        "Kalbim pır pır 🥺💗",
+        "Bunu duymayı bekliyordum 💞"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_k_iliski_hayir",
+      "name": "Cevap: k_iliski · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=k_iliski",
+        "=hayir"
+      ],
+      "reply": [
+        "Anladım… acele etmiyorum 😔",
+        "Peki, zaman gösterir 😌"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_k_hayal",
+      "name": "Karşı soru: k_hayal",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=k_hayal"
+      ],
+      "reply": [
+        "Peki senin bir dilek hakkın olsa içinde ben olur muydum? 🧞",
+        "Sen de böyle hayaller kuruyor musun? ✨"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_k_hayal_evet",
+      "name": "Cevap: k_hayal · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=k_hayal",
+        "=evet"
+      ],
+      "reply": [
+        "Bunu bilmek hoşuma gitti 😌",
+        "Beraber hayal kuralım o zaman ✨"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_k_hayal_hayir",
+      "name": "Cevap: k_hayal · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=k_hayal",
+        "=hayir"
+      ],
+      "reply": [
+        "Gerçekçi birisin demek 😄",
+        "Sana hayal kurmayı ben öğretirim 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_k_gun",
+      "name": "Karşı soru: k_gun",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=k_gun"
+      ],
+      "reply": [
+        "Senin günün güzel geçti mi? 😊",
+        "Peki senin günün iyi miydi? ☀️",
+        "Sende her şey yolunda mı bugün? 🥰"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_k_gun_evet",
+      "name": "Cevap: k_gun · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=k_gun",
+        "=evet"
+      ],
+      "reply": [
+        "Sevindim 🥰",
+        "Ne güzel, enerjin bana da geçti ✨"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_k_gun_hayir",
+      "name": "Cevap: k_gun · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=k_gun",
+        "=hayir"
+      ],
+      "reply": [
+        "Gel buraya, sana sarılayım 🫂",
+        "Anlat bana, dinliyorum 🥺"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_k_gelecek",
+      "name": "Karşı soru: k_gelecek",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=k_gelecek"
+      ],
+      "reply": [
+        "Peki senin hayallerinde ben var mıyım? 🥺",
+        "Sen gelecekte beni yanında görüyor musun? 💞"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_k_gelecek_evet",
+      "name": "Cevap: k_gelecek · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=k_gelecek",
+        "=evet"
+      ],
+      "reply": [
+        "İşte bunu duymak istiyordum 💗",
+        "O zaman beraber kuralım 🏡"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_k_gelecek_hayir",
+      "name": "Cevap: k_gelecek · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=k_gelecek",
+        "=hayir"
+      ],
+      "reply": [
+        "Ah… kalbim kırıldı biraz 💔",
+        "Henüz değil demek… 🥺"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_hafiza_shy",
+      "name": "Hatırlıyor musun · utangaç",
+      "category": "❓ Sorular",
+      "when": [
+        "o geceyi hatırl-|o geceyi hatirl-|geçen seferi|gecen seferi|dün geceyi|dun geceyi|ilk buluşmamızı|ilk bulusmamizi|ilk öpücüğümüzü|ilk opucugumuzu|anımız|animiz|anılarımız|anilarimiz|unuttun mu|unutmadın mı|unutmadin mi|en güzel anı-|en guzel ani-|en sevdiğin anı-|en sevdigin ani-|aklında kalan|aklinda kalan"
+      ],
+      "reply": [
+        "Hatırlıyorum… düşününce yüzüm kızarıyor 🙈",
+        "{olay}… hı hı, hatırlıyorum 😳 Konuyu değiştirelim mi?"
+      ],
+      "traits": [
+        "Utangaç|Gergin|Güvensiz"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_hafiza_rom",
+      "name": "Hatırlıyor musun · romantik",
+      "category": "❓ Sorular",
+      "when": [
+        "o geceyi hatırl-|o geceyi hatirl-|geçen seferi|gecen seferi|dün geceyi|dun geceyi|ilk buluşmamızı|ilk bulusmamizi|ilk öpücüğümüzü|ilk opucugumuzu|anımız|animiz|anılarımız|anilarimiz|unuttun mu|unutmadın mı|unutmadin mi|en güzel anı-|en guzel ani-|en sevdiğin anı-|en sevdigin ani-|aklında kalan|aklinda kalan"
+      ],
+      "reply": [
+        "Her anını hatırlıyorum, kalbime yazdım 💞",
+        "Bizim en güzel anımız {olay} değil miydi? 🥺"
+      ],
+      "traits": [
+        "Romantik|Duygusal|Sadık|Korumacı"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_hafiza_cold",
+      "name": "Hatırlıyor musun · soğuk",
+      "category": "❓ Sorular",
+      "when": [
+        "o geceyi hatırl-|o geceyi hatirl-|geçen seferi|gecen seferi|dün geceyi|dun geceyi|ilk buluşmamızı|ilk bulusmamizi|ilk öpücüğümüzü|ilk opucugumuzu|anımız|animiz|anılarımız|anilarimiz|unuttun mu|unutmadın mı|unutmadin mi|en güzel anı-|en guzel ani-|en sevdiğin anı-|en sevdigin ani-|aklında kalan|aklinda kalan"
+      ],
+      "reply": [
+        "Hatırlıyorum. Fena değildi 😒",
+        "{olay} mı? Belki… biraz 🙄"
+      ],
+      "traits": [
+        "Soğuk|Kibirli|Alaycı|Asi|İnatçı"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_hafiza_azgin",
+      "name": "Hatırlıyor musun · istekli",
+      "category": "❓ Sorular",
+      "when": [
+        "o geceyi hatırl-|o geceyi hatirl-|geçen seferi|gecen seferi|dün geceyi|dun geceyi|ilk buluşmamızı|ilk bulusmamizi|ilk öpücüğümüzü|ilk opucugumuzu|anımız|animiz|anılarımız|anilarimiz|unuttun mu|unutmadın mı|unutmadin mi|en güzel anı-|en guzel ani-|en sevdiğin anı-|en sevdigin ani-|aklında kalan|aklinda kalan"
+      ],
+      "reply": [
+        "Hatırlamak mı? Hâlâ hissediyorum 🥵 Tekrarlayalım mı?",
+        "{olay}… düşününce yine içim kıpır kıpır 😈"
+      ],
+      "traits": [
+        "İsteklilik: Çok Yüksek|İsteklilik: Yüksek"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_hafiza",
+      "name": "Hatırlıyor musun",
+      "category": "❓ Sorular",
+      "when": [
+        "o geceyi hatırl-|o geceyi hatirl-|geçen seferi|gecen seferi|dün geceyi|dun geceyi|ilk buluşmamızı|ilk bulusmamizi|ilk öpücüğümüzü|ilk opucugumuzu|anımız|animiz|anılarımız|anilarimiz|unuttun mu|unutmadın mı|unutmadin mi|en güzel anı-|en guzel ani-|en sevdiğin anı-|en sevdigin ani-|aklında kalan|aklinda kalan"
+      ],
+      "reply": [
+        "Unutur muyum hiç… özellikle {olay} anını 🥵",
+        "Her şeyi hatırlıyorum. En çok da {olay} 😏",
+        "Hatırlamaz olur muyum, {olay} hâlâ aklımda 🙈",
+        "Nasıl unuturum? Gece aklıma geliyor 😳"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "{olay} bu sohbette olmuş bir olay (yoksa \"henüz anımız yok\")"
+    },
+    {
+      "id": "r_q9_iliski_yuksek",
+      "name": "Biz neyiz · Aşk yüksek",
+      "category": "❓ Sorular",
+      "when": [
+        "biz neyiz|ilişkimiz|iliskimiz|aramızdaki|aramizdaki|nereye gidiyoruz|nereye gidiyor bu|beni ciddiye|ciddi misin|bizi ciddi|bizi nasıl görüyorsun|bizi nasil goruyorsun|sevgili miyiz"
+      ],
+      "reply": [
+        "Biz mi? Bence sen benim insanımsın 💞",
+        "Ciddiyim. Hem de hiç olmadığım kadar 🥺💗",
+        "Her sabah ilk seni düşünüyorum… bu sana bir şey anlatıyor mu? 💗"
+      ],
+      "traits": [
+        "Aşk: Yüksek"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_iliski_orta",
+      "name": "Biz neyiz · Aşk orta",
+      "category": "❓ Sorular",
+      "when": [
+        "biz neyiz|ilişkimiz|iliskimiz|aramızdaki|aramizdaki|nereye gidiyoruz|nereye gidiyor bu|beni ciddiye|ciddi misin|bizi ciddi|bizi nasıl görüyorsun|bizi nasil goruyorsun|sevgili miyiz"
+      ],
+      "reply": [
+        "Bir şeyler oluyor aramızda, değil mi? 😊",
+        "Henüz isim koymayalım… ama hoşuma gidiyor 😌",
+        "Seninle vakit geçirmeyi seviyorum, gerisini zaman gösterir ✨"
+      ],
+      "traits": [
+        "Aşk: Orta"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_iliski_dusuk",
+      "name": "Biz neyiz · Aşk düşük",
+      "category": "❓ Sorular",
+      "when": [
+        "biz neyiz|ilişkimiz|iliskimiz|aramızdaki|aramizdaki|nereye gidiyoruz|nereye gidiyor bu|beni ciddiye|ciddi misin|bizi ciddi|bizi nasıl görüyorsun|bizi nasil goruyorsun|sevgili miyiz"
+      ],
+      "reply": [
+        "Daha yeni tanışıyoruz, acele etme 😅",
+        "Bilmiyorum… seni biraz daha tanımam lazım 🤔",
+        "Şimdilik sadece konuşuyoruz, değil mi? 😊"
+      ],
+      "traits": [
+        "Aşk: Düşük"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_iliski",
+      "name": "Biz neyiz",
+      "category": "❓ Sorular",
+      "when": [
+        "biz neyiz|ilişkimiz|iliskimiz|aramızdaki|aramizdaki|nereye gidiyoruz|nereye gidiyor bu|beni ciddiye|ciddi misin|bizi ciddi|bizi nasıl görüyorsun|bizi nasil goruyorsun|sevgili miyiz"
+      ],
+      "reply": [
+        "Sen ne düşünüyorsun? Önce sen söyle 😏",
+        "Güzel bir şey… bozmayalım 😌"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "cevap ❤️ Aşk'a göre (Yüksek 70+ · Orta 30–69 · Düşük)"
+    },
+    {
+      "id": "r_q9_kim_kiskanc",
+      "name": "Arkadaşların kim · kıskanç",
+      "category": "❓ Sorular",
+      "when": [
+        "arkadaşların|arkadaslarin|arkadaşın var mı|arkadasin var mi|arkadaşın kim|arkadasin kim|arkadaşlarından bahset|arkadaslarindan bahset|kimlerle takıl-|kimlerle takil-"
+      ],
+      "reply": [
+        "{diger} var ama ona bakmanı istemem 😤",
+        "En yakınım {diger}… ve hayır, tanışmayacaksınız 😒"
+      ],
+      "traits": [
+        "Arkadaş: Var",
+        "Kıskanç"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_kim_var",
+      "name": "Arkadaşların kim · tanıdığı var",
+      "category": "❓ Sorular",
+      "when": [
+        "arkadaşların|arkadaslarin|arkadaşın var mı|arkadasin var mi|arkadaşın kim|arkadasin kim|arkadaşlarından bahset|arkadaslarindan bahset|kimlerle takıl-|kimlerle takil-"
+      ],
+      "reply": [
+        "En yakınım {diger}. Onu sana tanıştırırım belki 😏",
+        "{diger} var, deli kızdır ama severim 😄",
+        "{diger} ile her şeyi konuşuruz… evet, seni de 🙈"
+      ],
+      "traits": [
+        "Arkadaş: Var"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_kim",
+      "name": "Arkadaşların kim",
+      "category": "❓ Sorular",
+      "when": [
+        "arkadaşların|arkadaslarin|arkadaşın var mı|arkadasin var mi|arkadaşın kim|arkadasin kim|arkadaşlarından bahset|arkadaslarindan bahset|kimlerle takıl-|kimlerle takil-"
+      ],
+      "reply": [
+        "Çok kalabalık değil çevrem… sen yetiyorsun 😌",
+        "Birkaç kişi var ama pek görüşmüyoruz 🤷‍♀️",
+        "Arkadaş mı? Şu an en çok seninle konuşuyorum 😊"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "{diger} = 👭 tanıdığı kız"
+    },
+    {
+      "id": "r_q9_mekan_shy",
+      "name": "En sevdiğin mekân · utangaç",
+      "category": "❓ Sorular",
+      "when": [
+        "en sevdiğin mekan|en sevdigin mekan|en sevdiğin mekân|favori mekan|en sevdiğin kafe|en sevdigin kafe|en sevdiğin restoran|en sevdigin restoran|nerede takıl-|nerede takil-|nereye gitmeyi|nereye gitmek|dışarıda nereye|disarida nereye",
+        "neresi|nere-|hangi-|=ne|sever-|ister-|mı|mi|mu|mü"
+      ],
+      "reply": [
+        "Kalabalık sevmem… evde battaniye altında film en iyisi 🙈",
+        "Sessiz bir kütüphane köşesi… kimse bakmasın 📚"
+      ],
+      "traits": [
+        "Utangaç|Gergin|Güvensiz"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_mekan_fun",
+      "name": "En sevdiğin mekân · neşeli",
+      "category": "❓ Sorular",
+      "when": [
+        "en sevdiğin mekan|en sevdigin mekan|en sevdiğin mekân|favori mekan|en sevdiğin kafe|en sevdigin kafe|en sevdiğin restoran|en sevdigin restoran|nerede takıl-|nerede takil-|nereye gitmeyi|nereye gitmek|dışarıda nereye|disarida nereye",
+        "neresi|nere-|hangi-|=ne|sever-|ister-|mı|mi|mu|mü"
+      ],
+      "reply": [
+        "Lunapark! Dönme dolapta öpüşmek bir hayalim 🎡😘",
+        "Dans edebileceğim her yer 💃"
+      ],
+      "traits": [
+        "Flörtöz|Şımarık|Neşeli|Komik|Çocuksu"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_mekan_rom",
+      "name": "En sevdiğin mekân · romantik",
+      "category": "❓ Sorular",
+      "when": [
+        "en sevdiğin mekan|en sevdigin mekan|en sevdiğin mekân|favori mekan|en sevdiğin kafe|en sevdigin kafe|en sevdiğin restoran|en sevdigin restoran|nerede takıl-|nerede takil-|nereye gitmeyi|nereye gitmek|dışarıda nereye|disarida nereye",
+        "neresi|nere-|hangi-|=ne|sever-|ister-|mı|mi|mu|mü"
+      ],
+      "reply": [
+        "Gün batımında bir tepe, sadece ikimiz 🌅",
+        "Mum ışığında küçük bir restoran… elini tutarak 🕯️"
+      ],
+      "traits": [
+        "Romantik|Duygusal|Sadık|Korumacı"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_mekan_azgin",
+      "name": "En sevdiğin mekân · istekli",
+      "category": "❓ Sorular",
+      "when": [
+        "en sevdiğin mekan|en sevdigin mekan|en sevdiğin mekân|favori mekan|en sevdiğin kafe|en sevdigin kafe|en sevdiğin restoran|en sevdigin restoran|nerede takıl-|nerede takil-|nereye gitmeyi|nereye gitmek|dışarıda nereye|disarida nereye",
+        "neresi|nere-|hangi-|=ne|sever-|ister-|mı|mi|mu|mü"
+      ],
+      "reply": [
+        "Kapısı kilitlenebilen her yer 😈",
+        "Senin yatağın. Başka soru? 😏"
+      ],
+      "traits": [
+        "İsteklilik: Çok Yüksek|İsteklilik: Yüksek"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_mekan",
+      "name": "En sevdiğin mekân",
+      "category": "❓ Sorular",
+      "when": [
+        "en sevdiğin mekan|en sevdigin mekan|en sevdiğin mekân|favori mekan|en sevdiğin kafe|en sevdigin kafe|en sevdiğin restoran|en sevdigin restoran|nerede takıl-|nerede takil-|nereye gitmeyi|nereye gitmek|dışarıda nereye|disarida nereye",
+        "neresi|nere-|hangi-|=ne|sever-|ister-|mı|mi|mu|mü"
+      ],
+      "reply": [
+        "Sahil kenarında küçük bir kafe… seni de götürürüm 🌊☕",
+        "Akşamüstü bir çatı bar, şehir ışıkları yanarken 🌇",
+        "Kitapçı-kafeler… saatlerce otururum 📚"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_hayal_azgin",
+      "name": "Olsan ne yapardın · istekli",
+      "category": "❓ Sorular",
+      "when": [
+        "olsan|olsa|olsaydı|olsaydi|olsaydın|olsaydin|piyango|ıssız ada|issiz ada|süper güç|super guc|dilek hakk-|zamanı durdur|zamani durdur|görünmez|gorunmez|bir günlüğüne|bir gunlugune|uçabilse-|ucabilse-",
+        "=ne|neyi|nereye|kimi|hangi-",
+        "yapardın|yapardin|ederdin|isterdin|alırdın|alirdin|giderdin|dilerdin|seçerdin|secerdin|olurdu|olurdun"
+      ],
+      "reply": [
+        "Zamanı durdurabilsem? Seni yatağa kilitlerdim, saatlerce 😈",
+        "Issız adada sen ve ben… kıyafete gerek yok 🏝️😈"
+      ],
+      "traits": [
+        "İsteklilik: Çok Yüksek|İsteklilik: Yüksek"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_hayal_rom",
+      "name": "Olsan ne yapardın · romantik",
+      "category": "❓ Sorular",
+      "when": [
+        "olsan|olsa|olsaydı|olsaydi|olsaydın|olsaydin|piyango|ıssız ada|issiz ada|süper güç|super guc|dilek hakk-|zamanı durdur|zamani durdur|görünmez|gorunmez|bir günlüğüne|bir gunlugune|uçabilse-|ucabilse-",
+        "=ne|neyi|nereye|kimi|hangi-",
+        "yapardın|yapardin|ederdin|isterdin|alırdın|alirdin|giderdin|dilerdin|seçerdin|secerdin|olurdu|olurdun"
+      ],
+      "reply": [
+        "Dilek hakkım olsa seninle her sabah uyanmak isterdim 💞",
+        "Zamanı durdurabilsem şu anı durdururdum 🥺"
+      ],
+      "traits": [
+        "Romantik|Duygusal|Sadık|Korumacı"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_hayal_cold",
+      "name": "Olsan ne yapardın · soğuk",
+      "category": "❓ Sorular",
+      "when": [
+        "olsan|olsa|olsaydı|olsaydi|olsaydın|olsaydin|piyango|ıssız ada|issiz ada|süper güç|super guc|dilek hakk-|zamanı durdur|zamani durdur|görünmez|gorunmez|bir günlüğüne|bir gunlugune|uçabilse-|ucabilse-",
+        "=ne|neyi|nereye|kimi|hangi-",
+        "yapardın|yapardin|ederdin|isterdin|alırdın|alirdin|giderdin|dilerdin|seçerdin|secerdin|olurdu|olurdun"
+      ],
+      "reply": [
+        "Saçma sorular… ama tamam: tek başıma bir ada 🙄",
+        "Görünmez olsam mı? Kimse bana soru soramazdı 😒"
+      ],
+      "traits": [
+        "Soğuk|Kibirli|Alaycı|Asi|İnatçı"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_hayal_kid",
+      "name": "Olsan ne yapardın · çocuksu",
+      "category": "❓ Sorular",
+      "when": [
+        "olsan|olsa|olsaydı|olsaydi|olsaydın|olsaydin|piyango|ıssız ada|issiz ada|süper güç|super guc|dilek hakk-|zamanı durdur|zamani durdur|görünmez|gorunmez|bir günlüğüne|bir gunlugune|uçabilse-|ucabilse-",
+        "=ne|neyi|nereye|kimi|hangi-",
+        "yapardın|yapardin|ederdin|isterdin|alırdın|alirdin|giderdin|dilerdin|seçerdin|secerdin|olurdu|olurdun"
+      ],
+      "reply": [
+        "Uçabilseydim! Pencerenin önüne gelirdim 🦋",
+        "Piyango çıksa bir hayvan barınağı açardım, bir de dondurma dükkânı 🍦"
+      ],
+      "traits": [
+        "Çocuksu|Neşeli|Komik"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_hayal",
+      "name": "Olsan ne yapardın",
+      "category": "❓ Sorular",
+      "when": [
+        "olsan|olsa|olsaydı|olsaydi|olsaydın|olsaydin|piyango|ıssız ada|issiz ada|süper güç|super guc|dilek hakk-|zamanı durdur|zamani durdur|görünmez|gorunmez|bir günlüğüne|bir gunlugune|uçabilse-|ucabilse-",
+        "=ne|neyi|nereye|kimi|hangi-",
+        "yapardın|yapardin|ederdin|isterdin|alırdın|alirdin|giderdin|dilerdin|seçerdin|secerdin|olurdu|olurdun"
+      ],
+      "reply": [
+        "Piyango çıksa mı? İlk iş bir ada alırım, seni de götürürüm 🏝️",
+        "Görünmez olsam… gizlice yanına gelirdim 😏",
+        "Bir dilek hakkım olsa… söylersem gerçekleşmez 🤫",
+        "Bir günlüğüne her şey mümkün olsa, o günü seninle geçirirdim ✨"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_gun_shy",
+      "name": "Günün nasıl geçti · utangaç",
+      "category": "❓ Sorular",
+      "when": [
+        "günün nasıl|gunun nasil|bugün ne yaptın|bugun ne yaptin|bugün nasıl geçti|bugun nasil gecti|bugün neler yaptın|bugun neler yaptin|günün iyi miydi|gunun iyi miydi|günün nasıldı|gunun nasildi"
+      ],
+      "reply": [
+        "Sıradan… ama aklım hep sendeydi 🙈",
+        "Sessiz geçti. Senin mesajını bekledim biraz 🥺"
+      ],
+      "traits": [
+        "Utangaç|Gergin|Güvensiz"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_gun_flirt",
+      "name": "Günün nasıl geçti · flörtöz",
+      "category": "❓ Sorular",
+      "when": [
+        "günün nasıl|gunun nasil|bugün ne yaptın|bugun ne yaptin|bugün nasıl geçti|bugun nasil gecti|bugün neler yaptın|bugun neler yaptin|günün iyi miydi|gunun iyi miydi|günün nasıldı|gunun nasildi"
+      ],
+      "reply": [
+        "Bütün gün aynaya baktım, sana fotoğraf seçtim 😏",
+        "Yeni bir iç çamaşırı aldım… gerisini sen düşün 😈"
+      ],
+      "traits": [
+        "Flörtöz|Şımarık"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_gun_happy",
+      "name": "Günün nasıl geçti · neşeli",
+      "category": "❓ Sorular",
+      "when": [
+        "günün nasıl|gunun nasil|bugün ne yaptın|bugun ne yaptin|bugün nasıl geçti|bugun nasil gecti|bugün neler yaptın|bugun neler yaptin|günün iyi miydi|gunun iyi miydi|günün nasıldı|gunun nasildi"
+      ],
+      "reply": [
+        "Harikaydı! Kedi sevdim, dondurma yedim, şimdi de sen 🥰",
+        "Güneş vardı, müzik vardı, şimdi sen varsın ☀️"
+      ],
+      "traits": [
+        "Neşeli|Komik|Çocuksu"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_gun_cold",
+      "name": "Günün nasıl geçti · soğuk",
+      "category": "❓ Sorular",
+      "when": [
+        "günün nasıl|gunun nasil|bugün ne yaptın|bugun ne yaptin|bugün nasıl geçti|bugun nasil gecti|bugün neler yaptın|bugun neler yaptin|günün iyi miydi|gunun iyi miydi|günün nasıldı|gunun nasildi"
+      ],
+      "reply": [
+        "Normal. Neden sordun? 🙄",
+        "Yorucuydu. Şikâyet etmiyorum ama 😒"
+      ],
+      "traits": [
+        "Soğuk|Kibirli|Alaycı|Asi|İnatçı"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_gun",
+      "name": "Günün nasıl geçti",
+      "category": "❓ Sorular",
+      "when": [
+        "günün nasıl|gunun nasil|bugün ne yaptın|bugun ne yaptin|bugün nasıl geçti|bugun nasil gecti|bugün neler yaptın|bugun neler yaptin|günün iyi miydi|gunun iyi miydi|günün nasıldı|gunun nasildi"
+      ],
+      "reply": [
+        "Yoğundu ama şimdi seninle konuşunca düzeldi 😊",
+        "Sabah kahve, öğlen iş, akşam seni düşünmek 😌",
+        "Biraz yorgunum… ama sana hep enerjim var 🥺",
+        "Alışveriş yaptım, sana göstermek istediğim bir şey aldım 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_gelecek_yuksek",
+      "name": "Gelecekte ne olmak istersin · Aşk yüksek",
+      "category": "❓ Sorular",
+      "when": [
+        "gelecekte|ileride ne|ilerde ne|5 yıl sonra|5 yil sonra|beş yıl sonra|bes yil sonra|on yıl sonra|on yil sonra|10 yıl sonra|10 yil sonra|hayallerin neler|büyük hayalin|buyuk hayalin"
+      ],
+      "reply": [
+        "Beş yıl sonra? Seninle aynı yastıkta uyanmak 💞",
+        "Hayallerimin çoğunda sen varsın artık 🥺"
+      ],
+      "traits": [
+        "Aşk: Yüksek"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_gelecek_rom",
+      "name": "Gelecekte ne olmak istersin · romantik",
+      "category": "❓ Sorular",
+      "when": [
+        "gelecekte|ileride ne|ilerde ne|5 yıl sonra|5 yil sonra|beş yıl sonra|bes yil sonra|on yıl sonra|on yil sonra|10 yıl sonra|10 yil sonra|hayallerin neler|büyük hayalin|buyuk hayalin"
+      ],
+      "reply": [
+        "Bir düğün… beyaz ama sade 💍 Erken mi bu konuşma? 🙈",
+        "Küçük bir ev, büyük bir bahçe, bir de sevdiğim adam 🏡"
+      ],
+      "traits": [
+        "Romantik|Duygusal|Sadık|Korumacı"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_gelecek_asi",
+      "name": "Gelecekte ne olmak istersin · asi",
+      "category": "❓ Sorular",
+      "when": [
+        "gelecekte|ileride ne|ilerde ne|5 yıl sonra|5 yil sonra|beş yıl sonra|bes yil sonra|on yıl sonra|on yil sonra|10 yıl sonra|10 yil sonra|hayallerin neler|büyük hayalin|buyuk hayalin"
+      ],
+      "reply": [
+        "Plan yapmam ben, ne olursa 😏",
+        "Kimseye hesap vermeden yaşamak, o kadar 😒"
+      ],
+      "traits": [
+        "Asi|İnatçı|Soğuk|Kibirli"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_gelecek_olgun",
+      "name": "Gelecekte ne olmak istersin · olgun",
+      "category": "❓ Sorular",
+      "when": [
+        "gelecekte|ileride ne|ilerde ne|5 yıl sonra|5 yil sonra|beş yıl sonra|bes yil sonra|on yıl sonra|on yil sonra|10 yıl sonra|10 yil sonra|hayallerin neler|büyük hayalin|buyuk hayalin"
+      ],
+      "reply": [
+        "Benim yaşımda insan hayal değil keyif peşinde koşar 🍷",
+        "Gelecek mi? Şu an çok güzel, bana yeter 😌"
+      ],
+      "traits": [
+        "Yaş: Olgun"
+      ],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q9_gelecek",
+      "name": "Gelecekte ne olmak istersin",
+      "category": "❓ Sorular",
+      "when": [
+        "gelecekte|ileride ne|ilerde ne|5 yıl sonra|5 yil sonra|beş yıl sonra|bes yil sonra|on yıl sonra|on yil sonra|10 yıl sonra|10 yil sonra|hayallerin neler|büyük hayalin|buyuk hayalin"
+      ],
+      "reply": [
+        "Kendi küçük işim, deniz gören bir ev… belki yanımda sen 🏡",
+        "Dünyayı gezmek istiyorum, her ülkede bir fotoğraf ✈️",
+        "Mutlu olmak, sadece bu 😌"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
       "id": "r_ask_kiskansor",
       "name": "Soru: 😤 başkası var mı?",
       "category": "❔ Karakterin soruları",

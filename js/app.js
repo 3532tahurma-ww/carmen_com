@@ -446,7 +446,7 @@
       case 'gothic': return renderGothic(r.id, r.extra);
       case 'meisove': return renderMeisove(r.id);
       case 'internet': return renderBooble();
-      case 'news': return renderNews();
+      case 'news': return renderNews(r.id);
       case 'haberler': location.replace('#/news'); return;
       case 'olaylar': return renderEvGuide();
       case 'events': return renderEvents(r.id);
@@ -534,24 +534,53 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['💬', 'O da seni merak ediyor: yeni sorular', 'Sohbetler artık tek yönlü değil. Karakterler geçen seferi hatırlıyor, gece yarısı uyanık olup olmadığını soruyor, arkadaşını beğenip beğenmediğini merak ediyor, seni memleketine davet ediyor. Cevabından sonra konuyu bırakmayıp bir soru daha soruyorlar. Senin de soracak yeni şeylerin var: "Biz neyiz?", "Günün nasıl geçti?", "Piyango çıksa ne yapardın?"', '#/kitap/onun/7', [
+      ['💭 Hatıra', 'Bu sohbette yaşadığınız bir olayı anar: "Geçen sefer Doggy yaptığımızı düşünüp duruyorum… yine yapalım mı?" Evet dersen o olay yeniden olur. Hayır dersen %45 "O zaman yeni bir şey mi deneyelim?" diye sorar.'],
+      ['🌙 Saat ve 👀 mekân', 'Sohbet saati gece yarısını geçtiyse "Bu saatte hâlâ uyanık mısın?", sabahsa "Günaydın, yeni mi uyandın?" der; cevabı da saate göre değişir. Bir mekândaysanız "Burada biri bizi duyar mı?" diye sorar, evet dersen sesini kısmayı teklif eder.'],
+      ['👭 Arkadaşı ve 💜 izler', 'Tanıdığı bir kız varsa "Arkadaşım Ayşe sence güzel mi?" diye sorar. Kıskanç karakter evet\'e kızar, sonra "Kıskanmalı mıyım yani?" der. Teninde senin izin varsa "Boynumdaki iz hâlâ geçmedi… memnun musun?" diye sorar.'],
+      ['🎲 Cesaretlik ve 🔀 ikili seçim', 'Aşk ve isteklilik yeterliyse cesaretlik oynamak ister: ilk cesaret bir öpücük, sonra sıra onda, "Senin için soyunayım mı?" İsteklilik Orta ve üstündeyse iki ön sevişme olayı arasında seçim yaptırır; "ilki", "ikincisi" ya da adıyla seçersin.'],
+      ['🏡 Gelecek, 📅 yarın, 🌍 memleket', 'Aşk 40\'ı geçince yarın için plan, 60\'ı geçince birlikte bir gelecek ister. Şehri bir kültür bölgesindeyse seni oraya, adıyla davet eder: "Bir gün seni İstanbul şehrine götürsem gelir misin?"'],
+      ['🔗 Takip soruları', '11 sorunun bir devamı var. "Bu gece görüşelim mi?"ye evet dersen "Ne giyeyim? Kırmızı elbise olur mu?", "Sarılalım mı?"ya evet dersen "Böyle uyuyalım mı?" diye sorar. Arkadaşın adı, saat ve şehir bir sonraki soruya taşınır.'],
+      ['❓ Senin yeni soruların', '"O geceyi hatırlıyor musun?", "Biz neyiz?", "Arkadaşların kim?", "En sevdiğin mekân?", "Görünmez olsan ne yapardın?", "Günün nasıl geçti?", "Beş yıl sonra ne olmak istersin?" Cevaplar kişiliğine, isteğine ve Aşk\'ına göre değişir. Sonra çoğu zaman o da aynı soruyu sana sorar.'],
+      ['📚 Kitaplar', '❔ Onun Soruları kitapçığında iki yeni bölüm var: 🗨️ Sohbet soruları ve 🔗 Takip soruları. ❓ Sorular Kitabı\'nda da yeni bölüm: 💭 Hafıza, gün ve hayal soruları.']], 'Bot modu', [
+      'Bot modunda konuşmanın bir sorunu vardı: hep sen soruyordun. Karakter cevap veriyor, bazen sevişirken ya da bir olaydan sonra bir şey soruyordu ama normal sohbette çoğu zaman seni bekliyordu. Bu sürümde bu değişti. Karakterler artık seni tanımak, aranızda olanı konuşmak ve bir sonraki adımı birlikte seçmek istiyor.',
+      'Sorular gelişigüzel gelmiyor; o an uyan konu seçiliyor. Bu sohbette bir olay yaşadıysanız onu hatırlıyor. Gece yarısıysa uykun olup olmadığını, sabahsa nasıl uyandığını soruyor. Teninde bıraktığın iz geçmediyse onu soruyor. Tanıdığı bir kız varsa onu beğenip beğenmediğini öğrenmek istiyor. Aşkı arttıkça sorular da derinleşiyor: önce yarın için bir plan, sonra birlikte bir ev, balkonda çiçekler ve bir kedi.',
+      'En sevdiğim yeni şey takip soruları. Bir soruya cevap verdiğinde karakter artık hemen konuyu değiştirmiyor. "Görüşelim mi?" dedi, evet dedin; şimdi ne giyeceğini soruyor. Cesaretlik oynamayı kabul ettin, seni öptürdü; şimdi sıra onda ve senin için dans etmek istiyor. Konuşma böylece birkaç adım boyunca akıyor, sen de nereye gideceğini her adımda seçiyorsun.',
+      'Senin soruların da çoğaldı. "Biz neyiz?" diye sorduğunda cevap ona ne kadar yakın olduğuna göre değişiyor: Aşk\'ı yüksekse "Sen benim insanımsın", düşükse "Daha yeni tanışıyoruz, acele etme." Utangaç karakter hatıraları anlatırken kızarıyor, soğuk olan "Fena değildi" deyip geçiyor, istekli olan hatırlarken yine kıpır kıpır oluyor. Sorunu cevapladıktan sonra çoğu zaman o da dönüp aynı şeyi sana soruyor.']],
+    ['📰', 'CarmenNews yenilendi: başlık kartları', 'Gazete artık bir kart duvarı. Her haber bir başlık kartı; tıklayınca kendi sayfası açılıyor, uzun anlatımı, ayrıntıları ve önceki / sonraki haber bağlantılarıyla. Haberler de eskisinden daha uzun ve anlatımlı.', '#/news', [
+      ['🗂️ Kartlar', 'En yeni haber geniş manşet kartı olur. Diğerleri yan yana küçük kartlar: simge, konu, başlık, kısa özet. Okumadıkların "Yeni" etiketiyle işaretli.'],
+      ['📖 Haber sayfası', 'Her haberin kendi adresi var: #/news/<sayı>. Sayfada özet, Lia\'nın uzun anlatımı, ara başlıklı ayrıntılar ve "Hemen dene" düğmesi bulunur. Altta "Daha eski" ve "Daha yeni" ile haberler arasında gezersin.'],
+      ['🏠 Ana sayfa', 'Ana sayfadaki CarmenNews kartı artık doğrudan son haberin sayfasını açar.']], 'CarmenNews', [
+      'Gazete büyüdükçe okuması zorlaşıyordu. Yüzü aşkın haber tek bir uzun sayfada, manşet, öne çıkanlar ve kısa kısa olarak alt alta diziliyordu. Aradığın haberi bulmak için kaydırmak, ayrıntılarını görmek için küçük "Haberin devamı" kutularını açmak gerekiyordu.',
+      'Şimdi her haber bir başlık kartı. Kartların duvarına bakıp ilgini çekeni seçiyorsun, tıklayınca o haberin kendi sayfası açılıyor. Orada aceleye gelmiş bir özet değil, oturup okunacak bir yazı var: neyin değiştiği, neden değiştiği ve sohbetinde nasıl karşına çıkacağı.',
+      'Her haberin altında bir önceki ve bir sonraki haberin bağlantısı duruyor; gazeteyi sayfa sayfa çevirir gibi geriye doğru okuyabilirsin. Bundan sonraki haberler de böyle uzun anlatımlarla gelecek. Kahveni al, otur 😌']],
     ['📸', 'Sohbette fotoğraf: anlatımlı kareler', 'Artık sohbette karakterler sana fotoğraf atıyor, resim yerine anlatımlı: "Kırmızı jartiyerli fotom", "Aynada sütyenimle poz verdim", "Salonumda çıplak fotom". Her karede mekanın dekoru, pozu ve bedeni var. İste, sürpriz bekle ya da iltifat et.', '#/kitap/foto/0', [
       ['🙏 İste', '"Bana meme fotosu atar mısın?", "aynada bir selfie at", "kalçanın fotosunu gönder". İstediğin tür henüz fazla açıksa daha hafif bir kare atar.'],
       ['🎁 Sürpriz ve övgü', '"Senden bir sürpriz bekliyorum" dersen türü kendisi seçer. İltifat edince bazen, Şehvet ya da Uyarılma yükselince kendiliğinden atar.'],
       ['🔥 Seviye', 'Samimiyet, Şehvet, Uyarılma, Aşk ve kişiliği ne kadar açık olacağını belirler: giyinik, açık, çıplak.'],
       ['🏠 Mekan ve beden', 'Mutfak masası, salon kanepesi, boy aynası, duş, balkon, şömine önü… 17 mekan. Anlatım göğüs bedenine, kalçasına, boyuna, saçına, tenine ve çil / dövme / piercinglerine göre değişir.'],
-      ['🧪 Foto Deneyleri', 'Yeni deney sayfasında karakter seç, tür ve seviye seçip çek, bir mesaj yazıp foto isteği sayılıp sayılmadığını gör.']]],
+      ['🧪 Foto Deneyleri', 'Yeni deney sayfasında karakter seç, tür ve seviye seçip çek, bir mesaj yazıp foto isteği sayılıp sayılmadığını gör.']], 'Sohbet', [
+      'Bir mesajlaşmada en heyecanlı an, ekranda bir fotoğrafın belirdiği andır. Carmen\'de bu an artık var, ama bir resim olarak değil: her kare kelimelerle çekiliyor. Karakter sana bir fotoğraf attığında nerede durduğunu, nasıl poz verdiğini, üstünde ne olduğunu ve neyin olmadığını okuyorsun.',
+      'Kareler onun bedenine göre yazılıyor. Göğüs bedeni, kalçası, boyu, saçının rengi ve uzunluğu, ten rengi, çilleri, dövmeleri ve piercingleri anlatıma giriyor. Mutfak masasından şömine önüne kadar 17 mekânın her birinin kendi dekoru var; aynı poz salonda başka, duşta başka görünüyor.',
+      'Ne kadar açık olacağına o karar veriyor. Samimiyetiniz, şehveti, uyarılması, aşkı ve kişiliği kareyi giyinik, açık ya da çıplak yapar. Fazla erken, fazla açık bir şey istersen kırılmaz, daha hafif bir kare atar ve sana biraz daha zaman tanır. İltifat ettiğinde ya da ateşi yükseldiğinde ise sen istemeden kendisi gönderebilir.']],
     ['🪑', 'Kucakta: 29 yeni olay', 'Sen oturuyorsun, o kucağında. Koltukta yüz yüze, ters dönüp zıplayarak, sallanan sandalyede, battaniyenin altında, parkta bir bankta ya da taşan bir küvette. Yeni 🪑 Lap Positions kategorisi ve kucağa özel 12 bitiş.', '#/kitap/olay/75', [
       ['🔥 Seks', 'Armchair Face-To-Face, Reverse Lap Bounce, Legs Over Armrests, Knees Up Lap, Slow Sink, Still Seat, Lean Back Lap, Side-Saddle Lap, Desk Chair Spin, Rocking Chair, Wrists Behind Back, Breast Height Lap, Bouncing Count, Blanket Lap, Park Bench Lap, Bathtub Lap ve Reverse Anal Sink.'],
       ['💦 Bitişler', 'Pulled Down Finish, Lift Off Finish, Lap Pool, Stay Seated, Reverse Drip, Between Us, Arched Finish, Squeeze Out, Last Bounce, Chair Drip, Skirt Covers It ve Bathwater Finish. Yalnızca kucak olaylarından sonra gelir.'],
       ['👗 Etek şartı', 'Park Bench Lap ve Skirt Covers It yalnızca etek ya da elbise üstündeyse yazılır.'],
       ['🎬 Sahneler', '🛋️ Koltukta, ⬇️ Yavaş İniş, 🧣 Battaniyede Kucak, 🛁 Küvette Kucak ve 🌳 Park Bankı. CarmenEvents → 🎬 Sahneler → 🪑 Kucakta.'],
-      ['📚 Kitap', 'Olay Kitabı\'nda yeni bölüm: 🪑 Kucakta.']]],
+      ['📚 Kitap', 'Olay Kitabı\'nda yeni bölüm: 🪑 Kucakta.']], 'Yeni olaylar', [
+      'Kucak, sevişmenin en yakın hâli. Yüz yüzesiniz, nefesiniz birbirine karışıyor, o hem senin üstünde hem kollarının arasında. Yeni 🪑 Lap Positions kategorisi bu yakınlığı 29 olaya dağıtıyor: koltuktan sallanan sandalyeye, ofis koltuğundan taşan bir küvete.',
+      'Her olayın kendi ritmi var. Slow Sink\'te santim santim iner, Still Seat\'te sonuna kadar oturup hiç kıpırdamadan içten sıkar. Bouncing Count\'ta her zıplayışı sayar, Rocking Chair\'de sandalyenin sallanmasına bırakır kendini. Battaniyenin altında, parkta bir bankta ya da sırtı sana dönük ters oturarak da olabilir.',
+      'Bitişler de kucağa özel ve yalnızca kucak olaylarından sonra gelir: kalkmayıp sana sarılarak, son anda kalkıp karnına, sandalyeye damlayarak ya da eteğinin her şeyi örttüğü bir köşede. Beş yeni sahne bütün bunları adım adım bir hikâyeye bağlıyor.']],
     ['👙', 'Sütyen, külot, mayo, tayt', '28 yeni olay geldi, hiçbirinde üstündekiler tam çıkmıyor. Tek kabı inmiş bir sütyen, dizlerinde kalmış bir külot, yana çekilmiş ıslak bir mayo, dikişinden yırtılan bir tayt. Her birinin kendi bitişi var.', '#/kitap/olay/74', [
       ['👙 Oyunlar', 'Cup Peek, Strap Drop Tease, Panty Sniff Tease, Wedgie Pull, Wet Suit Peel, Tan Line Kiss, Seam Trace ve Squat Watch.'],
       ['🩱 Seks', 'Bra Still On, Bra Rein Doggy, Pushed Up Ride, Panty Gag Missionary, Pulled To Knees Doggy, Leg Hole Ride, One-Piece Aside, Sunbed Ride, Bikini Strings Doggy, Torn Seam Doggy, Half-Down Spoon ve Gym Bench Ride.'],
       ['💦 Bitişler', 'Cup Fill, Cleavage Seal, Pull Up After, Gusset Finish, Tan Line Finish, Suit Back On, Seam Soak ve Waistband Finish. Her biri yalnızca kendi kıyafetinin olaylarından sonra gelir.'],
       ['🎬 Sahneler', '👙 Dantel Sabahı, 🩲 Dizdeki Külot, 🏖️ Havuz Başı ve 🩳 Yırtık Tayt. CarmenEvents → 🎬 Sahneler → 👙 İç çamaşırı.'],
-      ['📚 Kitap', 'Olay Kitabı\'nda yeni bölüm: 👙 Sütyen, külot, mayo, tayt.']]],
+      ['📚 Kitap', 'Olay Kitabı\'nda yeni bölüm: 👙 Sütyen, külot, mayo, tayt.']], 'Yeni olaylar', [
+      'Bazen en çekici şey tamamen çıkmamış olandır. Bu 28 olayın hiçbirinde üstündekiler tam çıkmıyor: sütyenin tek kabı aşağı inmiş, külot dizlerinde kalmış, ıslak mayo yana çekilmiş, tayt dikişinden yırtılmış.',
+      'Oyunlar bakışla başlar. Kabın kenarından göğsünü gösterir, askısını omzundan düşürür, bronz izini öptürür, taytın dikişini parmağınla izletir. Seks olaylarında kıyafet işin içinde kalır: sütyen dizgin olur, külot dizlerde bir kelepçe, bikini ipleri tutacak bir yer.',
+      'Her kıyafetin kendi bitişi var ve yalnızca o kıyafetin olaylarından sonra gelir: kabın içine, dekolteye, külotun tam ortasına, bronz izinin üstüne ya da taytın belinden içeri. Dört yeni sahne de bu anları sabah dantelinden havuz başına kadar uzatıyor.']],
     ['💋', 'Yeni karakter özellikleri', 'Oluştur ekranında altı yeni özellik var: dudak yapısı, bacak, bel, giyim tarzı, ilişki durumu ve yaş aralığı. Seçtiklerin profil kartında görünür; 🎲 Rastgele bunları kilosuna, yaşına ve evliliğine uygun seçer.', '#/kitap/yeni/14', [
       ['💋 Lip Shape', 'Thin, Natural, Full, Plump, Heart-shaped, Wide ve Filler.'],
       ['🦵 Legs · ⏳ Waist', 'Slim, Toned, Thick Thighs, Long · Tiny, Slim, Average, Wide. Kiloyla uyumsuz olanlar seçilemez.'],
@@ -1125,8 +1154,6 @@
     .np-mast { text-align: center; padding: 10px 0 8px; border-bottom: 4px double var(--np-rule); }
     .np-mast h2 { margin: 0; font: 900 clamp(30px, 8vw, 46px)/1 'Old English Text MT', 'UnifrakturCook', Georgia, 'Times New Roman', serif; letter-spacing: .5px; }
     .np-mast small { display: block; margin-top: 6px; font: italic 12px/1.3 Georgia, serif; color: var(--muted); }
-    .np-nav { display: flex; justify-content: center; gap: 4px 14px; flex-wrap: wrap; padding: 6px 0; border-bottom: 1px solid var(--np-rule); font: 800 11px/1.4 system-ui, sans-serif; text-transform: uppercase; letter-spacing: .7px; }
-    .np-nav a { color: inherit; text-decoration: none; }
     .np-tick { display: flex; gap: 8px; align-items: center; margin: 8px 0 2px; overflow: hidden; white-space: nowrap; font: 600 12.5px/1.6 Georgia, serif; }
     .np-tick b { flex: none; padding: 1px 8px; background: #c2185b; color: #fff; font: 900 10.5px/1.7 system-ui, sans-serif; text-transform: uppercase; letter-spacing: .6px; }
     .np-tick span { display: inline-block; animation: npTick 40s linear infinite; }
@@ -1144,59 +1171,61 @@
     .np-go { display: inline-block; margin-top: 10px; }
     .np-h { display: flex; align-items: center; gap: 10px; margin: 16px 0 8px; font: 900 12px/1 system-ui, sans-serif; text-transform: uppercase; letter-spacing: 1.2px; }
     .np-h::before, .np-h::after { content: ''; flex: 1; border-top: 1px solid var(--np-ink); }
-    .np-feat { display: grid; grid-template-columns: repeat(3, 1fr); }
-    .np-feat > div { padding: 0 12px; border-left: 1px solid var(--np-rule); }
-    .np-feat > div:first-child { padding-left: 0; border-left: 0; }
-    .np-feat > div:last-child { padding-right: 0; }
-    .np-feat .np-ic { font-size: 26px; line-height: 1; }
-    .np-feat h3 { margin: 6px 0 4px; font: 900 17px/1.2 Georgia, serif; }
-    .np-feat h3 a, .np-brief a.np-t { color: inherit; text-decoration: none; }
-    .np-feat p { margin: 0; font: 13.5px/1.55 Georgia, serif; }
-    .np-brief { columns: 3 200px; column-gap: 20px; column-rule: 1px solid var(--np-rule); }
-    .np-brief > div { break-inside: avoid; padding: 0 0 10px; margin: 0 0 10px; border-bottom: 1px dotted var(--np-rule); }
-    .np-brief .np-t { display: block; font: 800 14.5px/1.3 Georgia, serif; }
-    .np-brief small { display: block; margin-top: 3px; font: 13px/1.5 Georgia, serif; color: var(--muted); }
     .np-new { display: inline-block; margin-right: 6px; padding: 0 5px; font: 900 9.5px/1.6 system-ui, sans-serif; letter-spacing: .5px; text-transform: uppercase; color: #fff; background: #c2185b; vertical-align: 2px; }
     .np-cat { display: block; font: 800 10px/1.5 system-ui, sans-serif; color: var(--muted); text-transform: uppercase; letter-spacing: .6px; }
-    .np-more { margin-top: 6px; }
-    .np-more summary { cursor: pointer; font: 700 12px/1.6 system-ui, sans-serif; color: #c2185b; }
-    .np-more .np-sec { margin-top: 6px; font: 13px/1.55 Georgia, serif; }
+    .np-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; }
+    .np-card { display: flex; flex-direction: column; gap: 6px; min-width: 0; padding: 12px 14px; border: 1px solid var(--np-rule); border-radius: 8px; background: var(--card); color: inherit; text-decoration: none; transition: transform .15s, box-shadow .15s; }
+    .np-card:hover, .np-card:focus-visible { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.1); }
+    .np-card.lead { grid-column: 1 / -1; padding: 16px 18px; border-top: 3px solid #c2185b; }
+    .np-card-top { display: flex; align-items: center; gap: 8px; }
+    .np-card .np-ic { font-size: 26px; line-height: 1; }
+    .np-card.lead .np-ic { font-size: 34px; }
+    .np-card h3 { margin: 0; font: 900 17px/1.25 Georgia, serif; overflow-wrap: anywhere; }
+    .np-card.lead h3 { font-size: clamp(21px, 5vw, 30px); line-height: 1.12; }
+    .np-card p { margin: 0; font: 13.5px/1.5 Georgia, serif; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .np-card.lead p { font-size: 15px; -webkit-line-clamp: 4; }
+    .np-read { margin-top: auto; padding-top: 4px; font: 800 11px/1.4 system-ui, sans-serif; color: #c2185b; text-transform: uppercase; letter-spacing: .6px; }
+    .np-back { display: inline-block; margin-top: 10px; font: 700 12.5px/1.4 system-ui, sans-serif; color: #c2185b; text-decoration: none; }
+    .np-story p { margin: 0 0 12px; font: 15.5px/1.75 Georgia, 'Times New Roman', serif; }
+    .np-story p:first-child::first-letter { float: left; font: 900 52px/.85 Georgia, serif; margin: 5px 7px 0 0; color: #c2185b; }
+    .np-pn { display: flex; justify-content: space-between; gap: 12px; margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--np-rule); }
+    .np-pn a { max-width: 48%; color: inherit; text-decoration: none; font: 700 13px/1.4 Georgia, serif; }
+    .np-pn a small { display: block; font: 800 10px/1.5 system-ui, sans-serif; color: var(--muted); text-transform: uppercase; letter-spacing: .6px; }
+    .np-pn a:last-child { margin-left: auto; text-align: right; }
     .np-foot { margin-top: 12px; padding-top: 8px; border-top: 4px double var(--np-rule); text-align: center; font: italic 11.5px/1.5 Georgia, serif; color: var(--muted); }
-    @media (max-width: 620px) {
-      .np { padding: 12px 12px 16px; }
-      .np-feat { grid-template-columns: 1fr; }
-      .np-feat > div { padding: 0 0 12px; margin-bottom: 12px; border-left: 0; border-bottom: 1px solid var(--np-rule); }
-      .np-feat > div:last-child { border-bottom: 0; margin-bottom: 0; }
-    }
+    @media (max-width: 620px) { .np { padding: 12px 12px 16px; } .np-grid { grid-template-columns: 1fr; } }
   </style>`;
   const newsBody = sec => (sec || []).map(([h, p]) => `<div class="np-sec"><h3>${esc(h)}</h3><p>${esc(p)}</p></div>`).join('');
-  /* 📰 gazete düzeni: üst şerit + logo + bölüm çubuğu + son dakika bandı → manşet (iki sütun, büyük ilk harf) → 3 öne çıkan → kısa kısa (sütunlu) */
-  function renderNews() {
-    const nw = newsUnseen(), [lic, lt, ld, lh, lb, lc] = HOME_NEWS[0];
+  // 📰 haber numarası (Sayı): en eskisi 1, yeni haber eklenince eskilerinki değişmez → #/news/<no>
+  const newsNo = i => HOME_NEWS.length - i;
+  /* 📰 gazete düzeni: üst şerit + logo + son dakika bandı → başlık kartları (ilki manşet, geniş). Karta tıklayınca #/news/<no> detay:
+   * geniş anlatım (7. alan: paragraflar; yoksa özet), ara başlıklı bölümler, "Hemen dene", önceki / sonraki haber */
+  function renderNews(no) {
+    const nw = newsUnseen(), i = no ? HOME_NEWS.length - parseInt(no, 10) : -1;
     newsSeen(HOME_NEWS.length);
     const today = new Date().toLocaleDateString('tr-TR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-    const isNew = i => i < nw ? '<em class="np-new">Yeni</em>' : '';
-    const feat = HOME_NEWS.slice(1, 4), brief = HOME_NEWS.slice(4);
-    view.innerHTML = NEWS_CSS + wsPage('news', 'Carmen<i>News</i>', 'carmennews.com', '#/booble', `<div class="page-pad narrow">
-      <div class="np">
-        <div class="np-top"><span>Sayı ${HOME_NEWS.length}</span><span>${esc(today)}</span><span>Fiyatı: 1 öpücük 💋</span></div>
-        <div class="np-mast"><h2>CarmenNews</h2><small>Lia 💁‍♀️ yazdı · Her yeni sürümde yeni haber</small></div>
-        <nav class="np-nav"><a href="#np-lead">Manşet</a><a href="#np-feat">Öne çıkanlar</a><a href="#np-brief">Kısa kısa</a><a href="#/guide">Kitaplık</a></nav>
-        <div class="np-tick"><b>Son dakika</b><span>${HOME_NEWS.slice(0, 6).map(n => `${n[0]} ${esc(n[1])}`).join(' &nbsp;•&nbsp; ')}</span></div>
-        <article class="np-lead" id="np-lead"><span class="np-kick">${lic} ${esc(lc || 'Manşet')}</span><h1>${esc(lt)}</h1><p class="np-lede">${esc(ld)}</p>
-          ${lb && lb.length ? `<div class="np-cols">${newsBody(lb)}</div>` : ''}
-          <a class="btn primary sm np-go" href="${lh}">Hemen dene ›</a></article>
-        <div class="np-h" id="np-feat">Öne çıkanlar</div>
-        <div class="np-feat">${feat.map(([ic, t, d, h, body, cat], j) => `<div><span class="np-ic">${ic}</span>${cat ? `<span class="np-cat">${esc(cat)}</span>` : ''}
-          <h3>${isNew(j + 1)}<a href="${h}">${esc(t)}</a></h3><p>${esc(d)}</p>
-          ${body ? `<details class="np-more"><summary>Haberin devamı</summary>${newsBody(body)}</details>` : ''}</div>`).join('')}</div>
-        <div class="np-h" id="np-brief">Kısa kısa</div>
-        <div class="np-brief">${brief.map(([ic, t, d, h, body, cat], j) => `<div>${cat ? `<span class="np-cat">${esc(cat)}</span>` : ''}<a class="np-t" href="${h}">${isNew(j + 4)}${ic} ${esc(t)}</a><small>${esc(d)}</small>
-          ${body ? `<details class="np-more"><summary>Haberin devamı</summary>${newsBody(body)}</details>` : ''}</div>`).join('')}</div>
-        <div class="np-foot">CarmenNews · Lia'nın masasından · Haberler kurgusaldır, olaylar gerçek 😏</div>
-      </div></div>`);
-    // bölüm çubuğu: sayfa içi kaydırma (hash'i değiştirmez, yönlendirici tetiklenmez)
-    view.querySelectorAll('.np-nav a[href^="#np-"]').forEach(a => a.onclick = e => { e.preventDefault(); const el = document.getElementById(a.getAttribute('href').slice(1)); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    const isNew = j => j < nw ? '<em class="np-new">Yeni</em>' : '';
+    const head = `<div class="np-top"><span>Sayı ${HOME_NEWS.length}</span><span>${esc(today)}</span><span>Fiyatı: 1 öpücük 💋</span></div>
+        <div class="np-mast"><h2>CarmenNews</h2><small>Lia 💁‍♀️ yazdı · Her yeni sürümde yeni haber</small></div>`;
+    const page = inner => { view.innerHTML = NEWS_CSS + wsPage('news', 'Carmen<i>News</i>', 'carmennews.com', '#/booble', `<div class="page-pad narrow"><div class="np">${head}${inner}
+        <div class="np-foot">CarmenNews · Lia'nın masasından · Haberler kurgusaldır, olaylar gerçek 😏</div></div></div>`); };
+    const n = HOME_NEWS[i];
+    if (n) {
+      const [ic, t, d, h, body, cat, long] = n, pv = HOME_NEWS[i + 1], nx = HOME_NEWS[i - 1];
+      const pn = (x, j, lab) => x ? `<a href="#/news/${newsNo(j)}"><small>${lab}</small>${x[0]} ${esc(x[1])}</a>` : '';
+      page(`<a class="np-back" href="#/news">‹ Tüm haberler</a>
+        <article class="np-lead"><span class="np-kick">${ic} ${esc(cat || 'Haber')} · Sayı ${newsNo(i)}</span><h1>${esc(t)}</h1><p class="np-lede">${esc(d)}</p>
+          ${long && long.length ? `<div class="np-story">${long.map(p => `<p>${esc(p)}</p>`).join('')}</div>` : ''}
+          ${body && body.length ? `<div class="np-h">Ayrıntılar</div><div class="np-cols">${newsBody(body)}</div>` : ''}
+          <a class="btn primary sm np-go" href="${h}">Hemen dene ›</a></article>
+        <nav class="np-pn">${pn(pv, i + 1, '‹ Daha eski')}${pn(nx, i - 1, 'Daha yeni ›')}</nav>`);
+      return;
+    }
+    page(`<div class="np-tick"><b>Son dakika</b><span>${HOME_NEWS.slice(0, 6).map(x => `${x[0]} ${esc(x[1])}`).join(' &nbsp;•&nbsp; ')}</span></div>
+        <div class="np-h">Haberler</div>
+        <div class="np-grid">${HOME_NEWS.map(([ic, t, d, h, body, cat], j) => `<a class="np-card${j ? '' : ' lead'}" href="#/news/${newsNo(j)}">
+          <span class="np-card-top"><span class="np-ic">${ic}</span><span class="np-cat">${esc(cat || (j ? 'Haber' : 'Manşet'))}</span></span>
+          <h3>${isNew(j)}${esc(t)}</h3><p>${esc(d)}</p><span class="np-read">Haberi oku ›</span></a>`).join('')}</div>`);
   }
   // 📢 sponsorlu kız kartları: site → [logo, kızın o sitedeki sayfası, çağrılar [büyük, alt], düğme, renkler]
   const HOME_SP = {
@@ -1415,7 +1444,7 @@
         </div>
         <div class="hl-tick" aria-label="Sloganlar"><div class="hl-tick-in">${[0, 1].map(r => HOME_TICKER.map(([t, h]) => `<a href="${h}"${r ? ' aria-hidden="true" tabindex="-1"' : ''}>${esc(t)}</a>`).join('<i>✦</i>')).join('<i>✦</i>')}<i>✦</i></div></div>
         ${(() => { const nw = newsUnseen(); return `<div class="hl-sec"><h3>📰 CarmenNews${nw ? ` · <em class="hl-news-nw">${nw} yeni</em>` : ''}</h3><a href="#/news">Tümü ›</a></div>
-          <div class="hl-news-row">${HOME_NEWS.slice(0, 1).map(([ic, t, d], i) => `<a class="hl-news" href="#/news" style="--i:${i}">
+          <div class="hl-news-row">${HOME_NEWS.slice(0, 1).map(([ic, t, d], i) => `<a class="hl-news" href="#/news/${newsNo(i)}" style="--i:${i}">
             <span class="hl-news-ic">${ic}</span>${i < nw ? '<em class="hl-news-nw">Yeni</em>' : ''}
             <span class="hl-news-t"><b>${esc(t)}</b><small>${esc(d)}</small></span></a>`).join('')}</div>`; })()}
         <div class="hl-hero">
@@ -3722,7 +3751,7 @@
       { k: 'cr', href: '#/creative', ic: '✨', logo: 'Carmen<i>Creative</i>', url: 'carmencreative.com', desc: 'Yeni pozisyon ve olay üret: her olayın mekan, tempo, rol, açı… türevleri, yepyeni fikirler ve 🎲 fikir makinesi. Beğendiğini Monia\'ya ekle.', chips: [`${CR_IDEAS.length} yeni fikir`, `🔬 ${CR_LENS.length + 1} mercek`] },
       { k: 'ch', href: '#/choise', ic: '👑', logo: 'Carmen<i>Choise</i>', url: 'carmenchoise.com', desc: '4, 8, 16 ya da 32 kız: her turda ikisi seni ikna etmeye çalışır, teklifler yağdırır. Birini tercih et, onayla; diğeri elenir. Kazananla sohbet başlar.', chips: [`👥 ${cmAll().length} aday`, ui.ch ? (ui.ch.champ ? '🏆 şampiyon belli' : `🏆 ${chRoundName(ui.ch.q.length + 2 * ui.ch.win.length)}`) : '⚔️ eleme turnuvası'] },
       { k: 'events', href: '#/events', ic: '🎓', logo: 'Carmen<i>Events</i>', url: 'carmenevents.com', desc: 'Olaylar okulu: bütün olaylar kategorilere göre ders ders anlatılır. Her kategorinin bir hocası var; ne olduğunu, nasıl tetiklendiğini ve sonunda ne olduğunu öğretir, istersen pratiği onunla yaparsın.', chips: [`📚 ${allEvents().length} olay`, `👩‍🏫 ${Math.min(EVN_N, cmAll().length)} hoca`] },
-      { k: 'news', href: '#/news', ic: '📰', logo: 'Carmen<i>News</i>', url: 'carmennews.com', desc: 'Lia\'nın gazetesi: her yeni sürümün haberi burada. Manşet, öne çıkanlar ve kısa kısa; her haber ilgili siteye, sahneye ya da kitap bölümüne götürür. Haber, yeni, güncelleme, gazete.', chips: [`📰 ${HOME_NEWS.length} haber`, newsUnseen() ? `🆕 ${newsUnseen()} yeni` : '✅ hepsi okundu'] },
+      { k: 'news', href: '#/news', ic: '📰', logo: 'Carmen<i>News</i>', url: 'carmennews.com', desc: 'Lia\'nın gazetesi: her yeni sürümün haberi burada. Başlık kartlarından birine tıkla, haberin uzun anlatımını oku; her haber ilgili siteye, sahneye ya da kitap bölümüne götürür. Haber, yeni, güncelleme, gazete.', chips: [`📰 ${HOME_NEWS.length} haber`, newsUnseen() ? `🆕 ${newsUnseen()} yeni` : '✅ hepsi okundu'] },
       { k: 'doodle', href: '#/doodle', ic: '🎨', logo: 'Doodle<i>Booble</i>', url: 'doodlebooble.com', desc: 'Booble\'ın özel gün logoları tek sayfada: bugünün doodle\'ı, sıradaki için geri sayım ve ay ay doodle takvimi. Her doodle ilgili siteye ya da yeni olaylara götürür.', chips: [`🎨 ${BB_DOODLES.length} doodle`, bbDoodle() ? '🟢 bugün yayında' : '🗓️ takvim'] },
       { k: 'guide', href: '#/guide', ic: '🧭', logo: 'Carmen<i>Guide</i>', url: 'carmenguide.com', desc: 'Yardım sitesi: kitaplık, olay rehberi, bot deneyi ve benim mesajlarım. Bir şey nasıl yapılır, buradan bak.', chips: [`📚 ${BOOKS.length} kitap`, '🧪 bot deneyi'] },
       { k: 'play', href: '#/oyun', ic: '🎮', logo: 'Carmen<i>Play</i>', url: 'carmenplay.com', desc: 'Adult Game: 🗂️ Problematic Subjects (ofiste ricaları karşıla, zevk puanı topla) ve 🔥 Fiery Passions (erkeksiz köyde sandbox görsel roman).', chips: [`🗂️ Bölüm ${psData().level}`, `🔥 Gün ${fpData().day}`] }
@@ -11791,6 +11820,8 @@
       const tryLiked = (cats, p) => { const l = liked(cats); if (l.length && Math.random() < p) { ev = pickOne(l); t = 'sevdigim'; } };
       // 👩‍❤️‍👩 lezbiyen ilişkide: sevdiği lezbiyen olay, ls* konuları; boyut / dayanıklılık yerine "hiç bir kızla oldun mu?"
       const les = !group && lesWith(ch), LSC = ['lesbian foreplay', 'lesbian sex'];
+      // 💬 sevişmiyorken %35 sohbet sorusu (hatıra, mekân, saat, arkadaşı, yarın, iz, oyun, gelecek, memleket, ikili seçim)
+      if (!sx && w >= 1 && Math.random() < .35) { const ca = chatAsk(ch, vars); if (ca) return ca; }
       if (les && sx === 'sexnow') { tryLiked(LSC, .4); if (!t) t = askTopic({}) || 'lsmakas'; }
       else if (les && sx === 'sexsonra') t = pickOne(['lstekrar', 'lsleke', 'saril']);
       else if (les && w >= 3) { tryLiked(LSC, .55); if (!t) t = pickOne(['lstecrube', 'gorus', 'opus']); }
@@ -11804,6 +11835,45 @@
       if (!qm || qm.fallback) return null;
       const parts = BOT.reply(qm.rule, vars, botRecent(qm.rule.id)).map(p => ev ? p.replace(/\{olay\}/g, ev.title) : p);
       return { parts, ask: ev ? { t, ev: ev.id } : { t } };
+    }
+    // 💭 bu sohbette olmuş, şimdi de olabilecek bir olay (sevişme / ön sevişme; 🚫 / 💔 / fantezi hariç; ❤️ sevdiği önce)
+    function pastEv(ch) {
+      const low = s => String(s || '').toLocaleLowerCase('tr'), all = allEvents(), at = lastDone(), no = new Set([...(ch.denies || []), ...(ch.dislikes || [])]);
+      const l = Object.keys(at).map(id => all.find(e => e.id === id)).filter(e => e && !no.has(e.id) && !isFant(e) && [...SEX_CATS, 'foreplay'].includes(low(catOfEv(e).label)));
+      const lk = l.filter(e => (ch.likes || []).includes(e.id));
+      return lk.length && Math.random() < .6 ? pickOne(lk) : l.length ? pickOne(l) : null;
+    }
+    /* 💬 sohbet sorusu (v1086): sevişmiyorken, tekli sohbette, şu an uyan konulardan biri → { parts, ask } ya da null.
+     * hatira: bu sohbette olay olduysa · yersor: mekân kartı varsa · saatsor: sohbet saati gece (23–05) / sabah (06–10) · kiz: 👭 tanıdığı kız ·
+     * yarin: ❤️ Aşk ≥ 40 · iz: 💜 tenimde iz · oyun: Aşk ≥ 30 ve İsteklilik Orta+ · gelecek: Aşk ≥ 60 · memleket: şehri bir bölgede · sec: İsteklilik Orta+, iki ön sevişme olayı */
+    function chatAsk(ch, vars) {
+      if (!ch || group || sexPhase()) return null;
+      const low = s => String(s || '').toLocaleLowerCase('tr'), a = relV(ch, 'aşk'), w = willOf(ch, th), no = new Set([...(ch.denies || []), ...(ch.dislikes || [])]);
+      const h = Math.floor((((thMin(th) % 1440) + 1440) % 1440) / 60), C = [];
+      const pe = pastEv(ch); if (pe) C.push(['hatira', { ev: pe }]);
+      if (placeKey()) C.push(['yersor', {}]);
+      if (h >= 23 || h < 5) C.push(['saatsor', { tok: 'gece' }]); else if (h >= 6 && h < 10) C.push(['saatsor', { tok: 'sabah' }]);
+      const fr = knowsOf(ch); if (fr.length) C.push(['kiz', { d: pickOne(fr).name.split(' ')[0] }]);
+      if (a >= 40) C.push(['yarin', {}]);
+      if (marksOf(ch).length) C.push(['iz', {}]);
+      if (a >= 30 && w >= 2) C.push(['oyun', {}]);
+      if (a >= 60) C.push(['gelecek', {}]);
+      if (ch.city && BOT.originTrait(ch.city)) C.push(['memleket', {}]);
+      const fp = w >= 2 ? allEvents().filter(e => !no.has(e.id) && !isFant(e) && low(catOfEv(e).label) === 'foreplay') : [];
+      if (fp.length >= 2) C.push(['sec', {}]);
+      if (!C.length) return null;
+      const [t, o] = pickOne(C);
+      if (t === 'sec') {
+        const lk = fp.filter(e => (ch.likes || []).includes(e.id)), A = lk.length ? pickOne(lk) : pickOne(fp), B = pickOne(fp.filter(e => e !== A));
+        const q = `${A.title} ${qMi(A.title)}, ${B.title} ${qMi(B.title)}?`;
+        return { parts: [pickOne(SEC_SAY).replace('{q}', q)], ask: { t: 'istek', w: 'ikili', idea: 1, opts: [A, B].map(e => ({ t: 'istek', w: 'sevdigi', ev: e.id, idea: 1, n: e.title })) } };
+      }
+      const R = Stories.BOT_RULES || { rules: [] };
+      const only = { ...R, rules: (R.rules || []).filter(r => (r.when || []).includes('=sor') && (r.when || []).includes('=' + t)) };
+      const qm = only.rules.length && BOT.best(only, `sor ${t}${o.tok ? ' ' + o.tok : ''}`, ch);
+      if (!qm || qm.fallback) return null;
+      const fill = s => String(s).replace(/\{olay\}/g, o.ev ? o.ev.title : '').replace(/\{diger\}/g, o.d || '').replace(/\{sehir\}/g, ch.city || '');
+      return { parts: BOT.reply(qm.rule, vars, botRecent(qm.rule.id)).map(fill), ask: { t, ...(o.ev ? { ev: o.ev.id } : {}), ...(o.d ? { d: o.d } : {}), ...(o.tok ? { tok: o.tok } : {}) } };
     }
     /* 💡 kendi isteği (BOT_WANT): en az 8 mesaj arayla, şans %6 + İsteklilik×%3 (+%5 Dominant). Dominant %60 / Switch ya da Çok Yüksek %30 /
      * Submissive %0 / diğerleri %10 sormadan yapar (olay ya da mekan kartı hemen); yoksa sorar. Döner: baloncuklar ya da null */
@@ -12055,7 +12125,7 @@
         if (yn === 'hayir' && pend.t === 'teyit') return { rule: { id: '_teyityok', reply: TEYIT_NO }, score: 0, fallback: false };
         if (yn) {
           const only = { ...rules, rules: (rules.rules || []).filter(r => (r.when || []).includes('=cevap') && (r.when || []).includes('=' + pend.t)) };
-          const m = only.rules.length && BOT.best(only, `cevap ${pend.t} ${yn} ${korToken(ch)}${pend.fx ? ' ' + pend.fx : ''}${pend.ks ? ' ' + pend.ks : ''}`, ch);
+          const m = only.rules.length && BOT.best(only, `cevap ${pend.t} ${yn} ${korToken(ch)}${pend.fx ? ' ' + pend.fx : ''}${pend.ks ? ' ' + pend.ks : ''}${pend.tok ? ' ' + pend.tok : ''}`, ch);
           if (m && !m.fallback) return m;
         }
         if (why) {
@@ -12265,6 +12335,13 @@
       if (dEv) parts.push(pickOne(dEv));
       if (hardEv && cmdEv === hardEv) parts.push(pickOne(HARD_SAY));
       if (m.evq) parts = parts.map(p => p.replace(/\{olay\}/g, m.evq));
+      // 💬 sohbet sorusuna cevapta {diger} (sorulan arkadaş) · {sehir} · {olay} (hatıra)
+      if (yn && pend) { const pe = pend.ev && allEvents().find(e => e.id === pend.ev); parts = parts.map(p => p.replace(/\{diger\}/g, pend.d || '').replace(/\{sehir\}/g, ch.city || '').replace(/\{olay\}/g, pe ? pe.title : '{olay}')); }
+      // 💭 senin sohbet soruların (r_q9_*): {olay} bu sohbetten bir olay (yoksa o cümle yerine HAFIZA_NONE) · {diger} 👭 tanıdığı kız
+      if (/^r_q9_/.test(m.rule.id)) {
+        const pe = pastEv(ch), fr = knowsOf(ch)[0];
+        parts = parts.map(p => /\{olay\}/.test(p) && !pe ? pickOne(HAFIZA_NONE) : p.replace(/\{olay\}/g, pe ? pe.title : '').replace(/\{diger\}/g, fr ? fr.name.split(' ')[0] : 'bir arkadaşım').replace(/\{sehir\}/g, ch.city || ''));
+      }
       // 🍑 pozisyon grubu sorusunda en sevdiği pozisyon
       if (m.evqFav && Math.random() < .7) parts.push(pickOne(['En çok {f} 😈', 'Özellikle {f}… 🥵', '{f} en sevdiğim 😏']).replace('{f}', m.evqFav));
       // 😤 kıskançlık: anılan ad cevaba girer, 😤 Kıskançlık +6 (başkasıyla seks: kıskançsa +10, değilse +4)
@@ -12444,6 +12521,16 @@
         const add = so || wn || (fb && fb.parts) || alt;
         if (add) { parts = [...parts.filter(p => !fbTxt.has(p)), ...add]; if (fb) th.botAsk = fb.ask; }
       }
+      // 🔗 sorusuna cevap verdin: %45 takip sorusu (ASK_FOLLOW; ör. görüşelim mi → evet → "Ne giyeyim?"), arkadaş / saat / şehir bilgisi taşınır
+      const fw = yn && pend && !opts.events && !group && th.botAsk === ask0 && (ASK_FOLLOW[pend.t] || {})[yn];
+      if (fw && Math.random() < .45) {
+        const only = { ...rules, rules: (rules.rules || []).filter(r => (r.when || []).includes('=sor') && (r.when || []).includes('=' + fw)) };
+        const qm = only.rules.length && BOT.best(only, `sor ${fw}${pend.tok ? ' ' + pend.tok : ''}`, ch);
+        if (qm && !qm.fallback) {
+          parts.push(...BOT.reply(qm.rule, vars, botRecent(qm.rule.id)).map(p => p.replace(/\{diger\}/g, pend.d || '').replace(/\{sehir\}/g, ch.city || '')));
+          th.botAsk = { t: fw, ...(pend.d ? { d: pend.d } : {}), ...(pend.tok ? { tok: pend.tok } : {}) };
+        }
+      }
       // ❓ soruya cevap verdiyse bazen karşı soru ("=sor" + k_konu); senin evet / hayır'ın dinlenir
       if (isQ && !intimate && Math.random() < .4) {
         const t = (QCOUNTER.find(([p]) => qid.startsWith(p)) || [, 'k_genel'])[1];
@@ -12452,13 +12539,17 @@
         if (qm && !qm.fallback) { parts.push(...BOT.reply(qm.rule, vars, botRecent(qm.rule.id))); th.botAsk = { t }; }
       }
       // 🙋 normal sohbette bazen senin hakkında soru (boyutun, dayanıklılığın): %8, ❤️ Aşk ≥ 30, bu tur başka soru yoksa
-      if (!opts.events && !isQ && !cmdEv && !yn && !group && !m.teyit && th.botAsk === ask0 && !sexPhase() && relV(ch, 'aşk') >= 30 && Math.random() < .08) {
-        // 😤 kıskançsa %35 "Benden başka biriyle de yatıyor musun?" (ksSub: değerlerine göre)
+      if (!opts.events && !isQ && !cmdEv && !yn && !group && !m.teyit && th.botAsk === ask0 && !sexPhase() && relV(ch, 'aşk') >= 30 && Math.random() < .1) {
+        // 😤 kıskançsa %35 "Benden başka biriyle de yatıyor musun?" (ksSub: değerlerine göre) · 💬 yoksa %60 sohbet sorusu (chatAsk)
         const ks = jealousOf(ch) && Math.random() < .35 ? ksSub(false) : '';
-        const t = ks ? 'kiskansor' : pickOne(lesWith(ch) ? ['lstecrube', 'gorus'] : ['boyut', 'dayan', 'gorus']);
-        const only = { ...rules, rules: (rules.rules || []).filter(r => (r.when || []).includes('=sor') && (r.when || []).includes('=' + t)) };
-        const qm = only.rules.length && BOT.best(only, `sor ${t}${ks ? ' ' + ks : ''}`, ch);
-        if (qm && !qm.fallback) { parts.push(...BOT.reply(qm.rule, vars, botRecent(qm.rule.id))); th.botAsk = ks ? { t, ks } : { t }; }
+        const ca = !ks && Math.random() < .6 ? chatAsk(ch, vars) : null;
+        if (ca) { parts.push(...ca.parts); th.botAsk = ca.ask; }
+        else {
+          const t = ks ? 'kiskansor' : pickOne(lesWith(ch) ? ['lstecrube', 'gorus'] : ['boyut', 'dayan', 'gorus']);
+          const only = { ...rules, rules: (rules.rules || []).filter(r => (r.when || []).includes('=sor') && (r.when || []).includes('=' + t)) };
+          const qm = only.rules.length && BOT.best(only, `sor ${t}${ks ? ' ' + ks : ''}`, ch);
+          if (qm && !qm.fallback) { parts.push(...BOT.reply(qm.rule, vars, botRecent(qm.rule.id))); th.botAsk = ks ? { t, ks } : { t }; }
+        }
       }
       // 👑 onun emri (bu tur başka soru sorulmadıysa): kafa tuttuysa %60, olaydan sonra Dominant %35 / Switch %15, sevişirken sohbette Dominant %20
       const dc = lv && lv !== 'sub' && !m.teyit && th.botAsk === ask0 ? (defy ? .6 : opts.events ? (lv === 'dom' ? .35 : .15) : lv === 'dom' && sexPhase() === 'sexnow' ? .2 : 0) : 0;
@@ -16690,8 +16781,38 @@
     sevdigim: { ok: () => false, yes: '@ask', no: [] },
     tanis: { ok: () => false, yes: [], no: [] },
     // 😤 kıskanç karakterin sorusu ("Başka biri seni hiç böyle boşalttı mı?"; ksSub alt konusu th.botAsk.ks): evet → Kıskançlık +8, hayır → ❤️ Aşk +3 (olay yok)
-    kiskansor: { ok: () => false, yes: [], no: [] }
+    kiskansor: { ok: () => false, yes: [], no: [] },
+    // 💬 sohbet soruları (v1086; chatAsk seçer, sevişmiyorken): 💭 hatıra ({olay} bu sohbette olmuş bir olay, evet → o olay) · 👀 mekân · 🌙 saat (tok gece / sabah) ·
+    // 👭 arkadaşı ({diger}) · 📅 yarın · 💜 iz · 🎲 cesaretlik · 🏡 gelecek · 🌍 memleket ({sehir})
+    hatira: { ok: () => false, yes: '@ask', no: [] },
+    yersor: { ok: () => false, yes: [], no: [] },
+    saatsor: { ok: () => false, yes: [], no: [] },
+    kiz: { ok: () => false, yes: [], no: [] },
+    yarin: { ok: () => false, yes: [], no: [] },
+    iz: { ok: () => false, yes: [], no: [] },
+    oyun: { ok: () => false, yes: ['Kissing'], no: [] },
+    gelecek: { ok: () => false, yes: [], no: [] },
+    memleket: { ok: () => false, yes: [], no: [] },
+    // 🔗 takip soruları (ASK_FOLLOW: bir cevaptan sonra %45)
+    gorusgiy: { ok: () => false, yes: [], no: [] },
+    sarilkal: { ok: () => false, yes: ['Front Hugging', 'Back Hugging'], no: [] },
+    hatirayeni: { ok: () => false, yes: '@other', no: [] },
+    yarinyer: { ok: () => false, yes: [], no: [] },
+    gelecekev: { ok: () => false, yes: [], no: [] },
+    kizkiskan: { ok: () => false, yes: [], no: [] },
+    oyunsira: { ok: () => false, yes: ['Striptease'], no: [] },
+    memleketgit: { ok: () => false, yes: [], no: [] },
+    saatuyu: { ok: () => false, yes: [], no: [] },
+    izyeni: { ok: () => false, yes: [], no: [] },
+    yersessiz: { ok: () => false, yes: [], no: [] }
   };
+  // 🔗 cevaba bağlı takip sorusu: konu → { evet | hayir: takip konusu }; takip kuralı yoksa (ör. saatuyu sadece =gece) sorulmaz
+  const ASK_FOLLOW = { gorus: { evet: 'gorusgiy' }, saril: { evet: 'sarilkal' }, hatira: { hayir: 'hatirayeni' }, yarin: { evet: 'yarinyer' }, gelecek: { evet: 'gelecekev' },
+    kiz: { evet: 'kizkiskan' }, oyun: { evet: 'oyunsira' }, memleket: { evet: 'memleketgit' }, saatsor: { evet: 'saatuyu' }, iz: { evet: 'izyeni' }, yersor: { evet: 'yersessiz' } };
+  // 🎲 ikili seçim sorusu (chatAsk 'sec'): iki ön sevişme olayı, cevap ideaPick ile
+  const SEC_SAY = ['{q} 😏', 'Sen seç: {q} 😈', 'Canım bir şey istiyor… {q} 🙈', 'Karar veremedim, {q} 🤭'];
+  // 💭 hatıra sorusuna cevap ({olay}) ama bu sohbette henüz olay yoksa
+  const HAFIZA_NONE = ['Henüz birlikte pek anımız yok… ama yaratabiliriz 😏', 'Hatırlanacak bir şey yapmadık ki daha 🙈', 'İlk anımızı hâlâ bekliyorum 🥺'];
   // 🦄 fantezi sorusu kuralları: ["=fsor", "=fx…"] (genel: sadece "=fsor"); cevapları ["=cevap", "=fsor", "=evet|=hayir", "=fx…"].
   // "=sor" / "=fant" taşımazlar: kullanıcının yazdığına (… fant fx…) gevşek eşleşip karışmasınlar
   const FSOR_Q = r => (r.when || []).includes('=fsor') && !(r.when || []).includes('=cevap');
@@ -16762,7 +16883,8 @@
     ['r_q2_disaribosal', 'k_icine'], ['r_q2_kondomsuz', 'k_icine'], ['r_q2_hamilebirak', 'k_bebek'], ['r_q2_kiyas', 'k_kiyas'], ['r_q2_boy', 'k_boy'],
     ['r_q2_yut', 'k_oral'], ['r_q2_arkadan', 'k_anal'], ['r_q2_oyuncak', 'k_fantezi'], ['r_q2_baglan', 'k_fantezi'], ['r_q2_yer', 'k_yer'],
     ['r_q3_meme', 'k_buyuk'], ['r_q3_sut', 'k_bebek'], ['r_q3_kalca', 'k_kalca'],
-    ['r_q4_dar', 'k_dar'], ['r_q4_arka', 'k_anal'], ['r_q4_boob', 'k_buyuk'], ['r_q4_butt', 'k_kalca'], ['r_q4_exp', 'k_deneyim']];
+    ['r_q4_dar', 'k_dar'], ['r_q4_arka', 'k_anal'], ['r_q4_boob', 'k_buyuk'], ['r_q4_butt', 'k_kalca'], ['r_q4_exp', 'k_deneyim'],
+    ['r_q9_hafiza', 'k_hafiza'], ['r_q9_iliski', 'k_iliski'], ['r_q9_kim', 'k_kiskanc'], ['r_q9_mekan', 'k_yer'], ['r_q9_hayal', 'k_hayal'], ['r_q9_gun', 'k_gun'], ['r_q9_gelecek', 'k_gelecek']];
   // 🎭 soru cevabının kişiliğe göre çerçevesi (pre başa, add cevabın sonuna)
   const QFRAME = {
     'Utangaç': { pre: ['S-söylemem gerekiyor mu? 🙈 ', 'Utanıyorum ama… ', 'Ş-şey… '] }, 'Kibirli': { add: [' kıskandın mı? 💅', ' etkilendin değil mi? 💁‍♀️'] },
@@ -18136,7 +18258,7 @@
     if (/^sq/.test(t)) return 'sq';
     if (t === 'icine') return 'kor';
     const g = Object.keys(ASK_GROUPS).find(k => ASK_GROUPS[k].includes(t));
-    if (g) return g === 'yedek' ? 'tanis' : g;
+    if (g) return ['yedek', 'sohbet', 'takip'].includes(g) ? 'tanis' : g;
     return ['sert', 'devam', 'agiz', 'arka', 'yala', 'begen'].includes(t) ? 'sx' : 'soru';
   };
   // ❓ senin sorun (r_q* kural id) → ST_QME grubu: 🔒 QPRIVATE önce (ozel), sonra Sorular Kitabı bölümü (QB_CH sırası)
@@ -20062,6 +20184,10 @@
       (S().user || {}).stamina && 'Dayanıklılık: ' + S().user.stamina,
       // 🍼 sütü var mı (memeAns ile aynı: hamile ve 🍼 Süt ≥ 50)
       ((ch || {}).fields || {}).hamile && relV(ch, 'süt') >= 50 ? 'Süt: Var' : 'Süt: Yok',
+      // 💞 "biz neyiz?" / gelecek cevapları için ❤️ Aşk kovası (r_q9_*): ≥ 70 Yüksek · ≥ 30 Orta · altı Düşük
+      ch && ch.id ? 'Aşk: ' + (a => a >= 70 ? 'Yüksek' : a >= 30 ? 'Orta' : 'Düşük')(relV(ch, 'aşk')) : '',
+      // 👭 "arkadaşların kim?" (r_q9_kim): tanıdığı kız var mı
+      ch && ch.id ? 'Arkadaş: ' + (knowsOf(ch).length ? 'Var' : 'Yok') : '',
       // 💍 "evli misin?" cevapları için
       ((ch || {}).fields || {}).hotwife ? 'Evli: Hotwife' : ((ch || {}).fields || {}).evli ? 'Evli: Evet' : 'Evli: Hayır',
       // 🏠 "kiminle yaşıyorsun?" cevapları için (şehirdeki hanesiyle aynı)
@@ -25730,9 +25856,15 @@
     ['🛡️', 'Korunma ve boşalma soruları', 'kondom, hap, içine, hamilelik, dayanıklı mıyım', ['r_q4_st', 'r_q_korunma', 'r_q_hamile', 'r_q2_kondom', 'r_q2_korunmak', 'r_q2_hap', 'r_q2_bosal', 'r_q2_disaribosal', 'r_q2_hamile', 'r_q2_bebek']],
     // 👩‍❤️‍👩 r_q8_ls_*: gender ♀, sadece kadın hesapta (erkek hesapta "kadınla öpüştün mü" r_q2_kadin ♂ cevap verir); 'r_q' hepsini yakaladığı için ondan önce
     ['👩‍❤️‍👩', 'Lezbiyen soruları', 'kızla oldun mu, ilk kız öpücüğün, makas, strap-on, kız arkadaşım olur musun', ['r_q8_']],
+    ['💭', 'Hafıza, gün ve hayal soruları', 'hatırlıyor musun, biz neyiz, günün nasıldı, olsan ne yapardın', ['r_q9_']],
     ['💞', 'Hayatı ve ilişki soruları', 'adın, yaşın, şehrin, sevgilin var mı', ['r_q']]
   ];
-  const QB_INTRO = { 5: `<p>👩‍❤️‍👩 Bu sorular sadece <b>♀ kadın hesapta</b> (lezbiyen ilişkide) cevaplanır. Erkek hesapta "bir kızla öpüştün mü" gibi sorulara eski cevaplar gelir.</p>`, 1: `<p><b>Olay ve pozisyon soruları</b>: "Doggy sever misin?", "Blowjob ister misin?", "Cowgirl denedin mi?", <b>"Arkadan sever misin?"</b>, <b>"Önden sever misin?"</b>, <b>"Oral ister misin?"</b>. Cevap karakterin ❤️ sevdiği / 💔 sevmediği / 🚫 izin vermediği listelerinden gelir; olay başlamaz.</p>
+  const QB_INTRO = { 6: `<p>💭 Bu sorular onun <b>sohbetinizi</b> ve <b>hayatını</b> anlatır, cevabı o an aranızda olana göre değişir:</p>
+      <ul><li><b>"Hatırlıyor musun?"</b>: bu sohbette olmuş bir olayı anar ("Özellikle Doggy anını…"; ❤️ sevdiği önce). Henüz olay yoksa "Hatırlanacak bir şey yapmadık ki daha 🙈" der.</li>
+        <li><b>"Biz neyiz?"</b>, <b>"Gelecekte ne olmak istersin?"</b>: cevap onun <b>❤️ Aşk</b> değerine göre değişir: 70+ çok yakın, 30–69 temkinli, altı mesafeli.</li>
+        <li><b>"Arkadaşların kim?"</b>: 👭 tanıdığı bir kız varsa adını söyler; kıskançsa "ona bakmanı istemem 😤" der.</li>
+        <li>Cevaptan sonra %40 o da sorar: "Peki sen ilk konuşmamızı hatırlıyor musun?", "Senin günün güzel geçti mi?" (bkz. ❔ Onun Soruları → 💬 Karşı sorular).</li></ul>`,
+    5: `<p>👩‍❤️‍👩 Bu sorular sadece <b>♀ kadın hesapta</b> (lezbiyen ilişkide) cevaplanır. Erkek hesapta "bir kızla öpüştün mü" gibi sorulara eski cevaplar gelir.</p>`, 1: `<p><b>Olay ve pozisyon soruları</b>: "Doggy sever misin?", "Blowjob ister misin?", "Cowgirl denedin mi?", <b>"Arkadan sever misin?"</b>, <b>"Önden sever misin?"</b>, <b>"Oral ister misin?"</b>. Cevap karakterin ❤️ sevdiği / 💔 sevmediği / 🚫 izin vermediği listelerinden gelir; olay başlamaz.</p>
     <p><b>Pozisyon grupları</b> (o gruptaki bütün pozisyonlara bakar): ${EVQ_CAT.map(([ws, , t]) => `<b>${esc(t)}</b> <small>("${esc(ws[0].trim())} sever misin")</small>`).join(', ')}. Grup sorusunda biri ❤️ ise sever ve çoğu zaman en sevdiğini söyler, yarısı 💔/🚫 ise sevmez, hepsi 🚫 ise reddeder.</p>` };
   const qbRules = i => ((Stories.BOT_RULES || {}).rules || []).filter(r => /^r_q\d?_/.test(r.id) && QB_CH.findIndex(c => c[3].some(p => String(r.id).startsWith(p))) === i);
   function qbBody(i) {
@@ -25766,7 +25898,9 @@
    * bot-rules.js "❔ Karakterin soruları"; evet / hayır'da olan olaylar BOT_ASK'tan. Konu grupları ASK_GROUPS (kalanlar 🔥 Sevişirken'e) */
   const ASK_GROUPS = { sonra: ['tekrar', 'arkaistek', 'pozistek', 'saril'], sen: ['boyut', 'dayan', 'istek', 'gorus'], yedek: ['sevdigim', 'tanis'], sq: ['squyluk', 'sqduvar', 'sqgogus', 'sqofis', 'sqsag', 'sqkalan'],
     kor: ['kondomtur', 'kondomcikar', 'cekyer', 'bebek', 'tutbirlikte', 'kizdir', 'testyap'],
-    ls: ['lsmakas', 'lsotur', 'lsoyuncak', 'lskiyafet', 'lsayna', 'lskuvet', 'lsparmak', 'lsdil', 'lsbirlikte', 'lstekrar', 'lsleke', 'lstecrube'] };
+    ls: ['lsmakas', 'lsotur', 'lsoyuncak', 'lskiyafet', 'lsayna', 'lskuvet', 'lsparmak', 'lsdil', 'lsbirlikte', 'lstekrar', 'lsleke', 'lstecrube'],
+    sohbet: ['hatira', 'yersor', 'saatsor', 'kiz', 'yarin', 'iz', 'oyun', 'gelecek', 'memleket'],
+    takip: ['gorusgiy', 'sarilkal', 'hatirayeni', 'yarinyer', 'gelecekev', 'kizkiskan', 'oyunsira', 'memleketgit', 'saatuyu', 'izyeni', 'yersessiz'] };
   // 🦄 fanteziye özel sorular (r_fsor_<fx> + r_fans_<fx>_evet|hayir): fantezi adı kural adından ("🦄 Fantezi sorusu · Cat Girl")
   function fsorBody() {
     const R = ((Stories.BOT_RULES || {}).rules || []), W = r => r.when || [], fxOf = r => (W(r).find(t => /^=fx/.test(t)) || '').slice(1);
@@ -25785,12 +25919,13 @@
     const by = t => [...new Set(R.filter(x => W(x).includes('=cevap') && topicOf(x) === t).flatMap(x => (x.traits || []).flatMap(s => String(s).split('|').map(v => v.includes(':') ? v.split(':')[0].trim() : ''))).filter(Boolean))];
     const row = t => {
       const asks = R.filter(r => W(r).includes('=sor') && topicOf(r) === t), q = ((asks.find(r => !(r.traits || []).length) || asks[0]).reply || [])[0] || t, a = BOT_ASK[t], b = by(t);
-      const cell = (yn, k) => `${esc(ans(t, yn) || '—')}${a && evs(a[k]) ? `<br><small>→ ${esc(evs(a[k]))}</small>` : ''}`;
-      return `<tr><td><b>${esc(q)}</b>${asks.length > 1 ? ` <small>· ${asks.length} söyleyiş</small>` : ''}${b.length ? `<br><small>cevaba bakan: ${esc(b.join(', '))}</small>` : ''}</td><td>✅ ${cell('evet', 'yes')}</td><td>❌ ${cell('hayir', 'no')}</td></tr>`;
+      const ph = s => String(s || '').replace(/\{olay\}/g, 'Doggy').replace(/\{diger\}/g, 'Ayşe').replace(/\{sehir\}/g, 'İstanbul');
+      const cell = (yn, k) => `${esc(ph(ans(t, yn)) || '—')}${a && evs(a[k]) ? `<br><small>→ ${esc(evs(a[k]))}</small>` : ''}`;
+      return `<tr><td><b>${esc(ph(q))}</b>${asks.length > 1 ? ` <small>· ${asks.length} söyleyiş</small>` : ''}${b.length ? `<br><small>cevaba bakan: ${esc(b.join(', '))}</small>` : ''}</td><td>✅ ${cell('evet', 'yes')}</td><td>❌ ${cell('hayir', 'no')}</td></tr>`;
     };
     const table = ts => ts.length ? `<table class="bk-t"><tr><th>Onun sorusu</th><th>Evet dersen</th><th>Hayır dersen</th></tr>${ts.map(row).join('')}</table>` : '<p>Bu grupta soru yok.</p>';
-    const grouped = [...ASK_GROUPS.sonra, ...ASK_GROUPS.sen, ...ASK_GROUPS.yedek, ...ASK_GROUPS.sq, ...ASK_GROUPS.kor, ...ASK_GROUPS.ls];
-    return { table, topics, ls: topics.filter(t => ASK_GROUPS.ls.includes(t)), sex: topics.filter(t => !t.startsWith('k_') && !grouped.includes(t)), sonra: topics.filter(t => ASK_GROUPS.sonra.includes(t)), sen: topics.filter(t => ASK_GROUPS.sen.includes(t)), yedek: topics.filter(t => ASK_GROUPS.yedek.includes(t)), sq: topics.filter(t => ASK_GROUPS.sq.includes(t)), kor: topics.filter(t => ASK_GROUPS.kor.includes(t)), kq: topics.filter(t => t.startsWith('k_')) };
+    const grouped = [...ASK_GROUPS.sonra, ...ASK_GROUPS.sen, ...ASK_GROUPS.yedek, ...ASK_GROUPS.sq, ...ASK_GROUPS.kor, ...ASK_GROUPS.ls, ...ASK_GROUPS.sohbet, ...ASK_GROUPS.takip];
+    return { table, topics, sohbet: topics.filter(t => ASK_GROUPS.sohbet.includes(t)), takip: topics.filter(t => ASK_GROUPS.takip.includes(t)), ls: topics.filter(t => ASK_GROUPS.ls.includes(t)), sex: topics.filter(t => !t.startsWith('k_') && !grouped.includes(t)), sonra: topics.filter(t => ASK_GROUPS.sonra.includes(t)), sen: topics.filter(t => ASK_GROUPS.sen.includes(t)), yedek: topics.filter(t => ASK_GROUPS.yedek.includes(t)), sq: topics.filter(t => ASK_GROUPS.sq.includes(t)), kor: topics.filter(t => ASK_GROUPS.kor.includes(t)), kq: topics.filter(t => t.startsWith('k_')) };
   }
   BOOKS.push({ id: 'onun', icon: '❔', title: 'Onun Soruları', sub: 'karakterin sana sorduğu sorular, evet / hayır cevabın ve ne olduğu', chips: ['kitapçık', '🤖 bot modu'], chapters: [
     { icon: '📖', title: 'Nasıl çalışır', sub: 'ne zaman sorar, nasıl cevaplarsın', get body() {
@@ -25803,6 +25938,8 @@
         <li><b>Senin hakkında</b>: ön sevişmede ve normal sohbette (%8, ❤️ Aşk ≥ 30) boyutunu, ne kadar dayandığını ya da ne istediğini sorar; normal sohbette "Bu gece görüşelim mi?" de diyebilir. Cevabı senin 🍆 Dick Size ve ⏱️ Dayanıklılık'ına göre değişir (Ben → 👤 Profil).</li>
         <li><b>😤 Kıskançsa</b> bazen senin Zevk / Cum / Cumming sayısı'na göre "Başka biri seni hiç böyle boşalttı mı?" diye sorar; evet dersen kızar, hayır dersen sevinir.</li>
         <li><b>Senin soruna cevap verince</b> %40 sana karşı soru sorar ("Sen büyük göğüs sever misin?").</li>
+        <li><b>💬 Sohbet soruları</b>: sevişmiyorken o an uyan bir konu seçer: geçen seferki bir olayı anar, bulunduğunuz yeri, saati, arkadaşını, yarını, bıraktığın izi, memleketini, geleceği sorar ya da cesaretlik oynamak ister (bkz. 💬 Sohbet soruları).</li>
+        <li><b>🔗 Takip soruları</b>: bazı cevaplarından sonra %45 bir soru daha sorar: "görüşelim mi?" → evet → "Ne giyeyim? Kırmızı elbise olur mu?" (bkz. 🔗 Takip soruları).</li>
         <li><b>Cevabın</b>: en fazla 6 kelimelik, evet (evet, olur, tabii, tamam, isterim, hadi, lütfen…) ya da hayır (hayır, yok, istemem, olmaz, sonra, başka…) anlamına gelen bir mesaj. Uzun ya da başka bir şey yazarsan soru düşer, mesajın normal cevaplanır.</li>
         <li><b>Olay</b>: evet / hayır'a göre tablolardaki olaylardan biri kendiliğinden olur (❤️ sevdiği öne çıkar, 🚫 izin vermediği atlanır).</li>
         <li><b>"İçime mi boşalacaksın?"</b> sorusuna evet dersen cevap korunmasına göre değişir: dışarı boşalma şartı varsa "Hayır, dışarı!", korunmuyorsa "Olmaz!", hap / sabah hapı / kondom varsa razı, içine istiyorsa sevinir.</li>
@@ -25856,6 +25993,27 @@
       <h4>🦄 Fantezide</h4><table class="bk-t"><tr><th>Fantezi</th><th>Örnek istek</th></tr>${Object.keys(WANT_FX).map(f => `<tr><td><b>${esc(capTr((FANT_KEYS.find(([, x]) => x === f) || [f])[0]))}</b></td><td>${ex(WANT_FX[f].icki[0])}<br>${ex(WANT_FX[f].opus[1])}</td></tr>`).join('')}</table>`;
     } },
     { icon: '💬', title: 'Karşı sorular', sub: 'senin sorunu cevapladıktan sonra', get body() { const d = askData(); return d.table(d.kq); } },
+    { icon: '🗨️', title: 'Sohbet soruları', sub: 'hatıra, mekân, saat, arkadaşı, yarın, iz, oyun, gelecek, memleket', get body() {
+      const d = askData();
+      return `<p>Sevişmiyorken karakter seni tanımak ve aranızdakini konuşmak ister. Normal sohbette (%10, ❤️ Aşk ≥ 30) ya da anlamadığı bir mesajdan sonra (%35) <b>o an uyan</b> konulardan birini seçer:</p>
+      <table class="bk-t"><tr><th>Konu</th><th>Ne zaman sorar</th></tr>
+        <tr><td>💭 Hatıra</td><td>bu sohbette bir olay olduysa ("Geçen sefer Doggy yaptığımızı düşünüp duruyorum…"); evet → o olay yine olur</td></tr>
+        <tr><td>👀 Mekân</td><td>bir mekân kartı varken ("Burada biri bizi duyar mı?")</td></tr>
+        <tr><td>🌙 Saat</td><td>sohbet saati gece (23–05) ya da sabah (06–10); cevabı da saate göre</td></tr>
+        <tr><td>👭 Arkadaşı</td><td>tanıdığı bir kız varsa onu sorar; kıskançsa evet'e kızar</td></tr>
+        <tr><td>📅 Yarın</td><td>❤️ Aşk ≥ 40</td></tr>
+        <tr><td>💜 İz</td><td>teninde senin bıraktığın bir iz varken</td></tr>
+        <tr><td>🎲 Cesaretlik</td><td>❤️ Aşk ≥ 30 ve İsteklilik Orta+; evet → Kissing</td></tr>
+        <tr><td>🏡 Gelecek</td><td>❤️ Aşk ≥ 60</td></tr>
+        <tr><td>🌍 Memleket</td><td>şehri bir kültür bölgesindeyse; şehrinin adını söyler</td></tr>
+        <tr><td>🔀 İkili seçim</td><td>İsteklilik Orta+: iki ön sevişme olayı sunar ("Kissing mi, Striptease mi?"); "ilki", "ikincisi" ya da adıyla seçersin</td></tr></table>${d.table(d.sohbet)}`;
+    } },
+    { icon: '🔗', title: 'Takip soruları', sub: 'cevabından sonra bir soru daha', get body() {
+      const R = (Stories.BOT_RULES || {}).rules || [], q1 = t => String(((R.find(r => (r.when || []).includes('=sor') && (r.when || []).includes('=' + t)) || {}).reply || [])[0] || t).replace(/\{diger\}/g, 'Ayşe').replace(/\{sehir\}/g, 'İstanbul');
+      const d = askData(), lab = t => ({ gorus: 'Görüşelim mi', saril: 'Sarılalım mı', hatira: 'Hatıra', yarin: 'Yarın', gelecek: 'Gelecek', kiz: 'Arkadaşı', oyun: 'Cesaretlik', memleket: 'Memleket', saatsor: 'Saat (gece)', iz: 'İz', yersor: 'Mekân' })[t] || t;
+      return `<p>Bazı sorularına verdiğin cevaptan sonra %45 konuyu bırakmaz, bir soru daha sorar. Takip sorusunun da evet / hayır cevabı var; arkadaşın adı, saat ve şehir bilgisi taşınır.</p>
+      <table class="bk-t"><tr><th>İlk soru</th><th>Cevabın</th><th>Takip</th></tr>${Object.keys(ASK_FOLLOW).map(t => Object.keys(ASK_FOLLOW[t]).map(yn => `<tr><td>${esc(lab(t))}</td><td>${yn === 'evet' ? '✅ evet' : '❌ hayır'}</td><td>${esc(q1(ASK_FOLLOW[t][yn]))}</td></tr>`).join('')).join('')}</table>${d.table(d.takip)}`;
+    } },
     { icon: '🦄', title: 'Fantezilerde', sub: 'her fanteziye ve role özel sorular', get body() { return fsorBody(); } },
     { icon: '🔁', title: 'Sohbet kopmasın', sub: 'anlamadığı mesajdan sonra soru sorar', get body() {
       const d = askData();
