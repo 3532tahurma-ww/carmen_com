@@ -189,6 +189,51 @@ Stories.Themes = {
     { id: 'clinic', icon: '🏥', label: 'CarmenKlinik', routes: ['klinik'], bg: 'pastel-mavi', bubble: 'site-clinic' },
     { id: 'amor', icon: '💘', label: 'Amor', routes: ['amor'], bg: 'amor', bubble: 'amor' }
   ],
+  // 💬 Site mesaj kaplamaları: aynı sohbet motoru, sitenin kendi görünümü + kendi gelen kutusu (#/<route>/x-mesaj).
+  // route = sohbetin açıldığı site adresi, title = eski sohbetleri başlığından tanıma, tag = sohbet başlığındaki rozet
+  chatSkins: [
+    // ph = yazma kutusu ipucu, tool = siteye özel araç [data-tool, ikon, ad] (Amor 🎁 hediye kendi bayrağıyla, t.amor)
+    { id: 'amor', icon: '💝', label: 'CarmenAmor', route: 'amor', title: 'CarmenAmor', tag: 'Kalbin burada', ph: 'Kalbinden geçeni yaz…', empty: 'Henüz Amor sohbetin yok. Bir isteğe dokunup sohbet aç 💝' },
+    { id: 'fans', icon: '🫦', label: 'CarmenFans', route: 'fans', title: 'CarmenFans', tag: 'Özel DM', ph: 'Özel mesaj gönder…', tool: ['fntip', '💸', 'Bahşiş'], sheet: '💸 {} için bahşiş', empty: 'Henüz DM yok. Bir üreticiye abone ol ya da mesaj at 🫦' },
+    { id: 'live', icon: '🔴', label: 'CarmenLive', route: 'canli', title: 'CarmenLive', tag: 'Özel yayın', ph: 'Yayında ona yaz…', tool: ['lvtip', '🔴', 'Özel istek'], sheet: "🔴 {}'den özel istek", empty: 'Henüz özel yayın sohbetin yok. Bir yayına girip özele geç 🔴' },
+    // title dizi olabilir; src = karakterin c.src'si de tutmalı (Tinder ile aynı "Eşleşme" başlığı)
+    { id: 'bumble', icon: '🐝', label: 'CarmenBumble', route: 'bumble', title: ['Eşleşme', 'Süper eşleşme'], src: 'bm', tag: 'Eşleşme', ph: 'Sıra sende, cevap yaz…', tool: ['sktool', '🐝', 'Hamle'], sheet: '🐝 {} ile hamle', empty: 'Henüz Bumble eşleşmen yok. Kaydır, eşleş; ilk mesajı o atar 🐝' },
+    { id: 'secret', icon: '🐍', label: 'CarmenSecret', route: 'gizli', title: 'CarmenSecret', tag: 'Uçtan uca gizli', ph: 'Kimse görmeden yaz…', tool: ['sktool', '🤫', 'Gizli'], sheet: '🤫 {} ile gizli plan', empty: 'Henüz gizli sohbetin yok. Bir ilana dokun, kimse bilmeyecek 🐍' },
+    { id: 'gram', icon: '📸', label: 'Carmentagram', route: 'gram', title: 'Carmentagram', tag: 'DM', ph: 'Mesaj…', tool: ['sktool', '📸', 'Hikaye'], sheet: '📸 {} · hikaye', empty: 'Henüz DM yok. Bir gönderiye ya da hikayeye yanıt ver 📸' },
+    // pal = ortak kaplamanın renkleri (h/hf başlık, a/af vurgu, c/cf kart, bar alt alan, i yazma kutusu, b çizgi, f yazı tipi; dk = koyu tema)
+    { id: 'meisove', icon: '🍓', label: 'Meisove', route: 'meisove', title: '*', src: 'ms', tag: 'Taze meyve', ph: 'Tatlı bir şey yaz…', tool: ['sktool', '🍓', 'Sepet'], sheet: '🍓 {} · sepet', empty: 'Henüz Meisove sohbetin yok. Vitrinden bir kız seç 🍓',
+      pal: { h: 'linear-gradient(90deg,#ff7a9c,#ffb38a)', hf: '#fff', a: '#e94e77', af: '#fff', c: '#fff4f0', cf: '#4a2330', bar: '#fff8f5', i: '#fff', b: '#ffd2c4', dk: { c: '#2a1a1e', cf: '#ffe1e8', bar: '#1c1215', i: '#2e1d22', b: '#5a2c38' } } },
+    { id: 'stay', icon: '🏨', label: 'CarmenStay', route: 'otel', title: '*', src: 'sy', tag: 'Rezervasyon', ph: 'Resepsiyona değil, ona yaz…', tool: ['sktool', '🛎️', 'Oda servisi'], sheet: '🛎️ {} · oda servisi', empty: 'Henüz otel rezervasyonun yok. Bir mekan seç 🏨',
+      pal: { h: '#0f2a44', hf: '#f5e6c4', a: '#c9a24b', af: '#0f2a44', c: '#f7f3ea', cf: '#1f2a36', bar: '#fbf8f1', i: '#fff', b: '#e4d6b4', f: 'Georgia,serif', dk: { c: '#16222e', cf: '#f0e6cf', bar: '#0e1821', i: '#1a2836', b: '#3a4a5a' } } },
+    { id: 'shop', icon: '🛍️', label: 'CarmenShop', route: 'shop', title: '*', src: 'shop', tag: 'Sipariş', ph: 'Siparişin hakkında yaz…', tool: ['sktool', '📦', 'Sipariş'], sheet: '📦 {} · sipariş', empty: 'Henüz sipariş sohbetin yok. Bir ürün al, kurye o olsun 🛍️',
+      pal: { h: '#ff6f00', hf: '#fff', a: '#ff6f00', af: '#fff', c: '#fff6ec', cf: '#3b2412', bar: '#fffaf4', i: '#fff', b: '#ffd9b0', dk: { c: '#2a1d10', cf: '#ffe6cc', bar: '#1a130b', i: '#2e2113', b: '#5c3a18' } } },
+    { id: 'jobs', icon: '💼', label: 'CarmenJobs', route: 'is', title: '*', src: 'job', tag: 'İş yazışması', ph: 'Profesyonel ol… ya da olma', tool: ['sktool', '💼', 'Ofis'], sheet: '💼 {} · ofis', empty: 'Henüz iş yazışman yok. Bir ilana başvur 💼',
+      pal: { h: '#1f3b57', hf: '#fff', a: '#2e7dd7', af: '#fff', c: '#f1f5fa', cf: '#1a2633', bar: '#f7f9fc', i: '#fff', b: '#d5e0ec', dk: { c: '#16202b', cf: '#e3ecf5', bar: '#0f161e', i: '#1b2733', b: '#2c3e52' } } },
+    { id: 'school', icon: '🎓', label: 'CarmenSchool', route: 'okul', title: '*', src: 'sc', tag: 'Kampüs', ph: 'Dersten sonra yaz…', tool: ['sktool', '📚', 'Kampüs'], sheet: '📚 {} · kampüs', empty: 'Henüz kampüs sohbetin yok. Bir fakülte seç 🎓',
+      pal: { h: '#3949ab', hf: '#fff', a: '#ffb300', af: '#1a237e', c: '#eef0fb', cf: '#1a237e', bar: '#f6f7fd', i: '#fff', b: '#c5cae9', dk: { c: '#191c33', cf: '#e3e6ff', bar: '#11132a', i: '#1d2140', b: '#323a6e' } } },
+    { id: 'impact', icon: '✨', label: 'CarmenImpact', route: 'impact', title: '*', src: 'gi', tag: 'Teyvat', ph: 'Gezgin olarak yaz…', tool: ['sktool', '🌠', 'Macera'], sheet: '🌠 {} · macera', empty: 'Henüz Teyvat sohbetin yok. Bir karakter çek ✨',
+      pal: { h: 'linear-gradient(90deg,#3b2f63,#6a4fb3)', hf: '#fff', a: '#e8c46a', af: '#3b2f63', c: '#f4f0fb', cf: '#2d2350', bar: '#f9f7fd', i: '#fff', b: '#dcd0f2', dk: { c: '#1e1833', cf: '#ece4ff', bar: '#151027', i: '#231c3d', b: '#40336b' } } },
+    { id: 'gasino', icon: '🎰', label: 'CarmenGasino', route: 'gasino', title: '*', src: 'ga', tag: 'VIP masa', ph: 'Masaya bir laf at…', tool: ['sktool', '🪙', 'Masa'], sheet: '🪙 {} ile masa', empty: 'Henüz gazino sohbetin yok. Salona gir 🎰',
+      pal: { h: '#0f3d2a', hf: '#ffd700', a: '#d4af37', af: '#0f3d2a', c: '#13261c', cf: '#f3e6b0', bar: '#0d2219', i: '#183427', b: '#2f5a43', f: 'Georgia,serif' } },
+    { id: 'church', icon: '⛪', label: 'CarmenChurch', route: 'kilise', title: '*', src: 'kc', tag: 'İtiraf odası', ph: 'Günahını fısılda…', tool: ['sktool', '🙏', 'İtiraf'], sheet: '🙏 {} · itiraf', empty: 'Henüz kilise sohbetin yok. Bir rahibe ilanına dokun ⛪',
+      pal: { h: '#3e2723', hf: '#f3e5c0', a: '#a1887f', af: '#fff', c: '#f8f1e4', cf: '#3e2723', bar: '#fbf6ec', i: '#fff', b: '#e0d2b8', f: 'Georgia,serif', dk: { c: '#231916', cf: '#f3e5c0', bar: '#18110f', i: '#2a1e1a', b: '#4e3a32' } } },
+    { id: 'farm', icon: '🚜', label: 'CarmenFarm', route: 'ciftlik', title: '*', src: 'fm', tag: 'Çiftlik', ph: 'Ahırdan seslen…', tool: ['sktool', '🥕', 'Bakım'], sheet: '🥕 {} · bakım', empty: 'Henüz çiftlik sohbetin yok. Bir ilan seç 🚜',
+      pal: { h: '#558b2f', hf: '#fff', a: '#8d6e63', af: '#fff', c: '#f3f8ec', cf: '#2e3d1f', bar: '#f8fbf3', i: '#fff', b: '#d4e4c0', dk: { c: '#1a2412', cf: '#e6f2d8', bar: '#121a0c', i: '#1f2b16', b: '#38502a' } } },
+    { id: 'massage', icon: '💆', label: 'CarmenMassage', route: 'masaj', title: '*', src: 'mz', tag: 'Spa', ph: 'Rahatla ve yaz…', tool: ['sktool', '🫒', 'Spa'], sheet: '🫒 {} · spa', empty: 'Henüz spa sohbetin yok. Bir masöz seç 💆',
+      pal: { h: 'linear-gradient(90deg,#8e5a3c,#c68b59)', hf: '#fff', a: '#c68b59', af: '#fff', c: '#f6ebe0', cf: '#4a2f22', bar: '#fbf5ee', i: '#fff', b: '#e6cfb8', dk: { c: '#261a13', cf: '#f6ebe0', bar: '#1a120d', i: '#2c1f17', b: '#56392a' } } },
+    { id: 'clinic', icon: '🏥', label: 'CarmenKlinik', route: 'klinik', title: '*', src: 'kl', tag: 'Hasta mesajı', ph: 'Şikayetini yaz…', tool: ['sktool', '🩺', 'Muayene'], sheet: '🩺 {} · muayene', empty: 'Henüz klinik sohbetin yok. Muayene formunu doldur 🏥',
+      pal: { h: '#0277bd', hf: '#fff', a: '#0288d1', af: '#fff', c: '#fff', cf: '#0d2c40', bar: '#f4f9fd', i: '#fff', b: '#d3e6f2', dk: { c: '#13283a', cf: '#e3f2fd', bar: '#0c1b28', i: '#173248', b: '#1f3d55' } } },
+    { id: 'flix', icon: '🍿', label: 'CarmenFlix', route: 'flix', title: [], tag: 'Film gecesi', ph: 'Filmin ortasında yaz…', tool: ['sktool', '🍿', 'Film'], sheet: '🍿 {} ile film gecesi', empty: 'Henüz film gecen yok. Bir film seç 🍿',
+      pal: { h: '#141414', hf: '#fff', a: '#e50914', af: '#fff', c: '#1f1f1f', cf: '#eee', bar: '#141414', i: '#2a2a2a', b: '#333' } },
+    { id: 'choise', icon: '👑', label: 'CarmenChoise', route: 'choise', title: 'CarmenChoise', tag: 'Seçilen', ph: 'Seçtiğin kıza yaz…', tool: ['sktool', '👑', 'Taç'], sheet: '👑 {} · seçilen', empty: 'Henüz seçtiğin biri yok. Bir yarışmada seç 👑',
+      pal: { h: 'linear-gradient(90deg,#4a148c,#7b1fa2)', hf: '#ffe082', a: '#ffc107', af: '#4a148c', c: '#f6effb', cf: '#311b4f', bar: '#faf6fd', i: '#fff', b: '#e1cdf0', dk: { c: '#21142e', cf: '#f3e5ff', bar: '#170e20', i: '#281836', b: '#4a2c66' } } },
+    { id: 'events', icon: '🎓', label: 'CarmenEvents', route: 'events', title: 'CarmenEvents', tag: 'Ders', ph: 'Hocana yaz…', tool: ['sktool', '📚', 'Ders'], sheet: '📚 {} · ders', empty: 'Henüz ders sohbetin yok. Bir dersten pratik iste 🎓',
+      pal: { h: '#002395', hf: '#fff', a: '#ed2939', af: '#fff', c: '#f5f3ea', cf: '#1c2340', bar: '#faf9f4', i: '#fff', b: '#dcd8c6', f: 'Georgia,serif', dk: { c: '#161b33', cf: '#ecebff', bar: '#0f1326', i: '#1b2140', b: '#2f3a6b' } } },
+    // route dizi olabilir (ilki gelen kutusu); title '*' = her başlık, '/…' = düzenli ifade. Sıra önemli: genel eşleşenler en sonda
+    { id: 'tinder', icon: '🔥', label: 'CarmenTinder', route: ['tinder', 'esles'], title: ['Eşleşme', 'Süper eşleşme'], src: 'tn', tag: "It's a match", ph: 'Bir şey yaz…', tool: ['sktool', '🔥', 'Flört'], sheet: '🔥 {} ile flört', empty: 'Henüz eşleşmen yok. Sağa kaydır, ilk selamı o verir 🔥' },
+    { id: 'gothic', icon: '🦇', label: 'Gothic.com', route: 'gothic', title: '*', src: 'gt', tag: 'Gece görüşmesi', ph: 'Karanlıkta fısılda…', tool: ['sktool', '🕯️', 'Ritüel'], sheet: '🕯️ {} ile ritüel', empty: 'Henüz gece görüşmen yok. Kapılar 22:00\'de açılır 🦇' },
+    { id: 'carmen', icon: '🌹', label: 'Carmen.com', route: 'carmen', title: ['/^Sohbet \\d+$'], src: 'cm', tag: 'Seçkin ilan', ph: 'Zarifçe yaz…', tool: ['sktool', '🌹', 'Seans'], sheet: '🌹 {} ile seans', empty: 'Henüz Carmen.com görüşmen yok. Bir ilana gir, mesaj at 🌹' }
+  ],
   // Hazır temalar: arka plan + baloncuk birlikte (Amor'daki kalp düzeyi temaları)
   presets: [
     // 🌗 Otomatik (varsayılan): açık temada Carmen neon, koyu temada Carmen neon gece (app.js themeLive)

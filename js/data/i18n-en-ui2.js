@@ -955,4 +955,10 @@ Stories.I18n.add({
   'Güç ve boy farkı: biri öbürünü taşır, oturur ya da yukarıdan izler.': 'Power and height difference: one carries the other, sits on them or watches from above.',
   'Sen oturuyorsun, o kucağında: koltukta, sallanan sandalyede, battaniye altında ya da küvette; yüz yüze, ters ya da yan.': 'You sit, she\'s on your lap: in an armchair, a rocking chair, under a blanket or in the tub; face to face, reverse or sideways.',
   'Kucağında: sen oturuyorsun, tempoyu onun kalçası belirliyor.': 'On your lap: you sit, her hips set the pace.',
+  // 😭 Kökle, ağlat, inlet (Tur 39)
+  'Sonuna kadar kökleyen, gözleri dolduran ya da inleten seks; her olay ya vajinal ya anal, bitişler de aynı delikten sonra gelir.': 'Sex that goes all the way, fills her eyes with tears or makes her moan; every event is either vaginal or anal, and finishes follow the same hole.',
+  'Yoğun bir sevişmenin ardından: gözyaşlarını silmek, kısılan sesi, titreyen bacakları, ertesi sabahki komşu notu.': 'After intense sex: wiping her tears, her lost voice, her shaking legs, the neighbor\'s note the next morning.',
+  'Sonuna kadar: dibe kadar girip orada kalmak.': 'All the way: bottoming out and staying there.',
+  'Zevkten dolan gözler: acıdan değil, taşmaktan.': 'Eyes filling with pleasure: not from pain, from overflowing.',
+  'Sesini tutamıyor: inleme, çığlık ya da kısık bir ah.': 'She can\'t hold her voice: a moan, a scream or a hoarse ah.',
 });
