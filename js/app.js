@@ -488,6 +488,7 @@
       case 'esles': case 'tinder': case 'bumble': return renderMatch();
       case 'booble': return renderBooble();
       case 'doodle': return renderDoodle();
+      case 'dergi': return renderMag(r.id);
       case 'carmen': return renderCarmen(r.id, r.extra);
       case 'gothic': return renderGothic(r.id, r.extra);
       case 'meisove': return renderMeisove(r.id);
@@ -580,6 +581,16 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['📖', 'CarmenMag: erotik dergiler bayide', 'Yeni dergi bayii açıldı: Velvet, Ateş, Noir ve Ten. Sayfaları gerçek bir dergi gibi çevir; kapak kızlarının anlatımlı fotoğraf setleri, röportajlar, adım adım seanslar, pozisyon önerileri, seks eğitimi ve site reklamları seni bekliyor. Her ay yeni sayı.', '#/dergi', [
+      ['🗞️ Dört dergi', '🥀 Velvet lüks fotoğraf, 🔥 Ateş seanslar ve pozisyonlar, 🖤 Noir fetiş ve BDSM, 🌸 Ten seks eğitimi. Rafta her derginin son altı sayısı durur.'],
+      ['📖 Gerçek dergi gibi', 'Geniş ekranda çift sayfa, telefonda tek sayfa. Kenara dokun, kaydır ya da ok tuşlarını kullan; yaprak dönerken gölgesi düşer. Kaldığın sayfa hatırlanır.'],
+      ['📸 Kapak kızı', 'Fans\'taki gibi kare kare anlatılan fotoğraf seti, ölçüleriyle bir röportaj ve 💬 ona yazma butonu.'],
+      ['🎬 Seans ve 🧭 pozisyonlar', 'Bir sahnenin her adımı uzun uzun anlatılır; beğendiysen onunla yaşa. Pozisyon sayfalarında zorluk, kime uygun olduğu ve bir ipucu.'],
+      ['🎓 Seks eğitimi', 'Rıza, iletişim, ön sevişme, kayganlaştırıcı, kondom, klitoris, anal güvenlik, BDSM, aftercare ve test: on yazı, hepsi Eğitim arşivinde.'],
+      ['📚 Kitap', 'İnternet Kitabı\'nda yeni 📖 CarmenMag bölümü.']], 'Yeni site', [
+      'Şehrin bayisinde artık dört yeni dergi var. Velvet ağır kağıdı ve altın yaldızlı kapağıyla bir koleksiyon dergisi gibi duruyor; Ateş kırmızı-sarı manşetleriyle bağırıyor; Noir siyah sayfalarında fetişleri fısıldıyor; Ten ise pastel sayfalarında bilmenin hazzı nasıl büyüttüğünü anlatıyor.',
+      'Dergiyi açınca sayfalar gerçekten dönüyor. Kapağı kaldırıyorsun, içindekiler sayfasından istediğin bölüme atlıyorsun, editörün mektubunu okuyorsun. Araya sitelerin tam sayfa reklamları giriyor; birine dokunursan o siteye geçiyorsun.',
+      'Kapak kızının çekimi Fans\'taki gibi kare kare anlatılıyor; röportajında en sevdiği pozisyonu ve kimseye söylemediği fantezisini anlatıyor. Seans sayfalarında bir sahnenin bütün adımları uzun uzun yazılı, pozisyon sayfalarında da her birine bir ipucu var. Beğendiğin seansı tek dokunuşla onunla yaşayabilirsin.']],
     ['🌱', 'Karakterler artık yaşıyor', 'Sohbet sadece seks değil. Karakterlerin kendi hayatı, kendi dertleri ve kendi fikirleri var: işte zor bir hafta geçiriyor, annesiyle küsüyor, ehliyet sınavına giriyor. Seni tanımak için derin sorular soruyor, yarınki sınavını unutmuyor, kırılınca özür bekliyor. Ve seninle konuştukça kişiliği değişiyor.', '#/kitap/hafiza/8', [
       ['☕ Gündelik anlar', 'Yeni ☕ Daily Life kategorisinde 24 olay: Cook Together, Movie Night, Evening Walk, Deep Talk, Argument, Make Up, Surprise Gift, Sick Day Care, Stargazing ve daha fazlası. Olay seçicide yeni ☕ Gündelik sekmesi.'],
       ['📅 Onun gündemi', '12 hayat konusu günler içinde ilerler: iş stresi, annesiyle küslük, ehliyet sınavı, taşınma, sokak kedisi (adını sen koyarsın), koşu hedefi, tatil hayali… Fikrini sorar, bazen seni bir gündelik ana davet eder.'],
@@ -1251,9 +1262,9 @@
     .np-mast small { display: block; margin-top: 6px; font: italic 12px/1.3 Georgia, serif; color: var(--muted); }
     .np-tick { display: flex; gap: 8px; align-items: center; margin: 8px 0 2px; overflow: hidden; white-space: nowrap; font: 600 12.5px/1.6 Georgia, serif; }
     .np-tick b { flex: none; padding: 1px 8px; background: #c2185b; color: #fff; font: 900 10.5px/1.7 system-ui, sans-serif; text-transform: uppercase; letter-spacing: .6px; }
-    .np-tick span { display: inline-block; animation: npTick 40s linear infinite; }
+    .np-tick > span { display: inline-block; animation: npTick 40s linear infinite; }
     @keyframes npTick { from { transform: translateX(30%); } to { transform: translateX(-100%); } }
-    @media (prefers-reduced-motion: reduce) { .np-tick span { animation: none; } }
+    @media (prefers-reduced-motion: reduce) { .np-tick > span { animation: none; } }
     .np-lead { padding: 12px 0 14px; border-bottom: 2px solid var(--np-ink); }
     .np-kick { display: inline-block; font: 900 10.5px/1.6 system-ui, sans-serif; text-transform: uppercase; letter-spacing: .8px; color: #c2185b; }
     .np-lead h1 { margin: 4px 0 8px; font: 900 clamp(24px, 6vw, 34px)/1.08 Georgia, 'Times New Roman', serif; }
@@ -1316,7 +1327,7 @@
         <nav class="np-pn">${pn(pv, i + 1, '‹ Daha eski')}${pn(nx, i - 1, 'Daha yeni ›')}</nav>`);
       return;
     }
-    page(`<div class="np-tick"><b>Son dakika</b><span>${HOME_NEWS.slice(0, 6).map(x => `${x[0]} ${esc(x[1])}`).join(' &nbsp;•&nbsp; ')}</span></div>
+    page(`<div class="np-tick"><b>Son dakika</b><span>${HOME_NEWS.slice(0, 6).map(x => `<span>${x[0]} ${esc(x[1])}</span>`).join(' &nbsp;•&nbsp; ')}</span></div>
         <div class="np-h">Haberler</div>
         <div class="np-grid">${HOME_NEWS.map(([ic, t, d, h, body, cat], j) => `<a class="np-card${j ? '' : ' lead'}" href="#/news/${newsNo(j)}">
           <span class="np-card-top"><span class="np-ic">${ic}</span><span class="np-cat">${esc(cat || (j ? 'Haber' : 'Manşet'))}</span></span>
@@ -1561,6 +1572,8 @@
             ph ? `<img src="${esc(ph)}" alt="" onerror="this.remove()"${hAlb(ph, c.album)}>` : '', `${esc(c.name || 'İsimsiz')}${c.age ? `, ${esc(c.age)}` : ''}`, '⭐ Önerilen üretici',
             nl.length ? `Yeni gönderi paylaştı${nl.length > 1 ? ` · +${nl.length - 1} kişi daha` : ''}` : `${esc(fnHandle(c))} · ${fnPlanPrice(c, 1, 0)} ₺/ay`,
             [f.why && f.why[1], w && `📢 ${w.emoji} ${w.name}`, fnSale() && `🎉 %${fnSale()} indirim`].filter(Boolean)); })()}</div>
+        ${mgHomeCard()}
+        ${fxHomeCard()}
         ${hot.length ? `<div class="hl-sec"><h3>${esc(HOME_SLOGAN[ui.homeSlogan % HOME_SLOGAN.length])}</h3><a href="#/carmen">Tümü ›</a></div>
         <div class="hl-cm-grid">${hot.map(hotCard).join('')}</div>` : ''}
         ${vit.length ? `<div class="hl-sec"><h3>🪧 İlan vitrini · bu gece</h3><a href="#/carmen">Tüm ilanlar ›</a></div><div class="hl-vt-grid">${vitHtml}</div>` : ''}
@@ -3770,6 +3783,382 @@
     view.querySelectorAll('[data-ddp]').forEach(b => b.onclick = e => { e.preventDefault(); e.stopPropagation(); ui.ddPrev = b.dataset.ddp; renderDoodle(); window.scrollTo(0, 0); });
     if ($('#ddReset')) $('#ddReset').onclick = () => { ui.ddPrev = null; renderDoodle(); };
   }
+  /* 📖 CarmenMag (v1112): erotik dergi bayii, Stories.MAGS (js/data/mags.js). #/dergi bayi · #/dergi/<k>-<no> okuyucu · #/dergi/egitim · #/dergi/devam
+   * Gerçek dergi gibi: geniş ekranda çift sayfa (yaprağın arkası sol sayfa), dar ekranda tek sayfa; kenara dokun / kaydır / ← → ile yaprak döner.
+   * Sayı içeriği sayı anahtarıyla sabit (sysHash): kapak kızı Fans gibi anlatımlı kareler (phMake), röportaj, seans (scenesOk), pozisyon (olay story), eğitim, site reklamları, kişisel ilanlar */
+  const MG = () => Stories.MAGS || { titles: [], edu: [], talk: [], ads: {}, hi: ['📖'], shoots: [''], ed: { open: [''], a: [''], b: [''], close: [''] }, pos: { tip: [''], who: [''], lv: ['', '', ''] } };
+  const MG_MON = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'], MG_M0 = 2024 * 12;
+  const mgState = v => {
+    try {
+      if (v) localStorage.setItem('amor-stories:mags', JSON.stringify(v));
+      const s = JSON.parse(localStorage.getItem('amor-stories:mags') || '{}') || {};
+      return { last: s.last || {}, read: s.read || {}, at: s.at || '' };
+    } catch (e) { return { last: {}, read: {}, at: '' }; }
+  };
+  const mgN = (k, m) => +sysHash(['mg', k]) % Math.max(1, m);
+  const mgPk = (k, a) => a[mgN(k, a.length)];
+  const mgSort = (k, a) => a.map((x, i) => [+sysHash(['mg', k, x && typeof x === 'object' ? x.cmRid || x.id || x.k || i : x]), x]).sort((u, v) => u[0] - v[0]).map(z => z[1]);
+  const mgNow = () => { const d = new Date(); return d.getFullYear() * 12 + d.getMonth(); };
+  const mgIssue = (m, mi) => ({ m, mi, no: mi - MG_M0 + m.base, y: Math.floor(mi / 12), mo: mi % 12, id: `${m.k}-${mi - MG_M0 + m.base}`, now: mi === mgNow() });
+  const mgIssues = m => Array.from({ length: 6 }, (_, j) => mgIssue(m, mgNow() - j));
+  const mgFind = id => { const [k, no] = String(id || '').split('-'), m = MG().titles.find(x => x.k === k), mi = m ? +no - m.base + MG_M0 : NaN; return m && mi <= mgNow() && mi > mgNow() - 12 ? mgIssue(m, mi) : null; };
+  const mgDate = is => `<span>${MG_MON[is.mo]}</span> <span>${is.y}</span>`;
+  const mgVars = m => `--m1:${m.c[0]};--m2:${m.c[1]};--mp:${m.c[2]};--mi:${m.c[3]}`;
+  const mgGirls = key => mgSort(key, cmAll().filter(c => c.photo && !c.husb));
+  const mgPics = c => c ? [...new Set([c.photo, ...(c.album || [])].filter(Boolean))] : [];
+  const mgImg = (src, cls = '') => src ? `<img class="${cls}" src="${esc(src)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">` : '';
+  const mgName = m => `<bdi class="no-i18n">${esc(m.n)}</bdi>`;
+  const mgFirst = c => String((c && c.name) || 'İsimsiz').split(' ')[0];
+  const mgSplit = s => String(s || '').replace(/([.!?])\s+/g, '$1\u0001').split('\u0001').map(x => `<span>${esc(x)}</span>`).join(' ');
+  const mgHref = c => c.goth ? `#/gothic/${c.id}` : c.meisove || String(c.id).startsWith('ms') ? `#/meisove/${c.id}` : `#/carmen/${c.id}`;
+  const mgShot = ph => { const pl = PT().places.find(p => p.id === ph.pl) || {}; return `<div class="mg-shot"><small>📷 ${esc(pl.ic || '')} ${esc(pl.n || '')} · ${'🔥'.repeat(ph.lv || 1)}</small><b>${esc(ph.t)}</b><p>${mgSplit(ph.d)}</p></div>`; };
+  const mgEduH = (a, w) => `<div class="mg-kick">🎓 Seks eğitimi</div><h2 class="mg-h">${a.ic} ${esc(a.t)}</h2><p class="mg-deck">${esc(a.lead)}</p>
+    ${w ? `<div class="mg-mod">${avatar(w, 36)}<span><small>Yazan</small><b>${esc(w.name || '')}</b><small>Cinsel sağlık editörü</small></span></div>` : ''}
+    <div class="mg-cols">${a.p.map(p => `<p>${esc(p)}</p>`).join('')}</div>
+    <div class="mg-box"><b>✅ Kısaca</b><ul>${a.tips.map(t => `<li>${esc(t)}</li>`).join('')}</ul></div>`;
+  const mgAdH = (x, j, next) => {
+    const s = x.ads[j % Math.max(1, x.ads.length)];
+    if (!s) return '';
+    const b = SITE_BRAND[s.k] || ['#e91e63', '#ff8a80', '#1a0610'], t = MG().ads[s.k] || [bbPlain(s.logo), s.desc], c = x.g(5 + j);
+    return `<a class="mg-ad" href="${s.href}" style="--a1:${b[0]};--a2:${b[1]};--a3:${b[2]}"><small class="mg-adl">Reklam</small>${mgImg(mgPics(c)[0], 'mg-adi')}
+      ${next ? `<span class="mg-next"><small>Gelecek sayı</small> <b>${MG_MON[(next.mo + 1) % 12]}</b></span>` : ''}
+      <span class="mg-adw"><span class="mg-adlogo">${s.ic} ${s.logo}</span><b>${esc(t[0])}</b><span>${esc(t[1])}</span><em>Hemen gir ›</em><small>${esc(s.url)}</small></span></a>`;
+  };
+  // 📄 bir sayfa: { ty, title, sub, h } · ty = plan adımı, j = o türün kaçıncısı
+  function mgPage(m, is, x, ty, j) {
+    const D = MG(), key = is.id;
+    if (ty === 'toc') return { ty, title: 'İçindekiler', sub: '', h: '' };
+    if (ty === 'cover') {
+      const c = x.cov, lines = [[`${x.pos.length} yeni pozisyon`, x.pos.slice(0, 2).map(e => e.title).join(' · ')], x.ses[0] && ['Seans', `${x.ses[0].icon} ${x.ses[0].name}`],
+        x.edu[0] && ['Seks eğitimi', `${x.edu[0].ic} ${x.edu[0].t}`], ['Röportaj', `${mgFirst(c)} ile baş başa`]].filter(Boolean);
+      return { ty, title: 'Kapak', sub: c.name || '', h: `<div class="mg-cv">${mgImg(mgPics(c)[0], 'mg-cvi')}<div class="mg-cvs"></div>
+        <div class="mg-mast">${mgName(m)}</div><div class="mg-tagl">${esc(m.tag)}</div><div class="mg-iss"><span>Sayı ${is.no}</span><span>${mgDate(is)}</span><span>${m.price} ₺</span></div>
+        <ul class="mg-cl">${lines.map(([a, b], i) => `<li class="l${i}"><b>${esc(a)}</b><small>${esc(b)}</small></li>`).join('')}</ul>
+        <div class="mg-cvn"><small>Kapakta</small><b>${esc(c.name || '')}</b>${c.age ? `<small>${esc(c.age)}${c.city ? ` · ${esc(c.city)}` : ''}</small>` : ''}</div>
+        <i class="mg-18">18+</i><i class="mg-bc"><span></span><small>86${String(is.no).padStart(4, '0')}${m.price}</small></i></div>` };
+    }
+    if (ty === 'ed') {
+      const c = x.ed, E = D.ed;
+      return { ty, title: 'Editörden', sub: c.name || '', h: `<div class="mg-kick">Editörden</div><h2 class="mg-h">Editörün mektubu</h2>
+        <p>${esc(mgPk(key + 'e0', E.open))}</p><p>${esc(mgPk(key + 'e1', E.a))}</p><p>${esc(mgPk(key + 'e2', E.b))}</p><p><i>${esc(mgPk(key + 'e3', E.close))}</i></p>
+        <div class="mg-sig">${avatar(c, 52)}<span><b>${esc(c.name || '')}</b><small>Genel Yayın Yönetmeni</small></span></div>` };
+    }
+    if (ty === 'ad' || ty === 'back') { const h = mgAdH(x, ty === 'back' ? 7 : j, ty === 'back' && is); const s = x.ads[(ty === 'back' ? 7 : j) % Math.max(1, x.ads.length)]; return h ? { ty, title: ty === 'back' ? 'Arka kapak' : 'Reklam', sub: s ? bbPlain(s.logo) : '', h } : null; }
+    if (ty === 'shoot' || ty === 'face') {
+      const face = ty === 'face', c = face ? x.face : x.cov, pics = mgPics(c), pic = pics[(face ? 0 : 1 + j) % Math.max(1, pics.length)];
+      const kinds = face ? [['ayna', 2], ['bacak', 2]] : j ? [['gogus', 2], ['ciplak', 3]] : [['kiyafet', 1], ['ic', 1]], seen = [];
+      const shots = kinds.map(([k, lv], n) => { const ph = PT().kinds[k] ? phMake(c, k, lv, { seed: `${key}:${ty}${j}${n}`, seen }) : null; if (ph) seen.push(ph.key); return ph; }).filter(Boolean);
+      const name = mgPk(key + ty + j, D.shoots);
+      return { ty, title: face ? 'Ayın yüzü' : 'Kapak çekimi', sub: `${name} · ${c.name || ''}`, h: `<div class="mg-sh${j % 2 ? ' alt' : ''}"><div class="mg-shp">${mgImg(pic)}<span class="mg-shc"><small>${face ? 'Ayın yüzü' : `Kapak çekimi · ${j + 1}`}</small><b>${esc(name)}</b><i>${esc(c.name || '')}</i></span></div>
+        <div class="mg-shots">${shots.map(mgShot).join('')}</div>${face || j ? `<a class="mg-cta" href="#/fans/${esc(c.id)}">🫦 Setin tamamı CarmenFans'ta ›</a>` : ''}</div>` };
+    }
+    if (ty === 'talk') {
+      const c = x.cov, f = mgFirst(c), qs = mgSort(key + ':q', D.talk).slice(0, 4), body = cmBody(c).filter(r => ['Boy', 'Vücut', 'Saç', 'Göz', 'Göğüs', 'Kalça', 'Bel'].includes(r[1]));
+      return { ty, title: 'Röportaj', sub: `${f} ile baş başa`, h: `<div class="mg-kick">Röportaj</div><h2 class="mg-h">${esc(f + ' ile baş başa')}</h2>
+        <div class="mg-tk">${avatar(c, 60)}<p class="mg-deck">Kapak kızımız çekimden sonra sorularımızı yanıtladı.</p></div>
+        <dl class="mg-dl">${body.map(r => `<div><dt>${r[0]} ${esc(r[1])}</dt><dd>${esc(r[2])}</dd></div>`).join('')}</dl>
+        ${qs.map(([q, A], i) => `<p class="mg-q">${esc(q)}</p><p class="mg-a"><b>${esc(f)}:</b> <span>${esc(mgPk(key + 'a' + i, A))}</span></p>`).join('')}
+        <button type="button" class="mg-cta" data-mgchat="${esc(c.id)}">💬 Ona yaz</button>` };
+    }
+    if (ty === 'ses') {
+      const s = x.ses[j];
+      if (!s) return null;
+      const c = x.g(8 + j), evs = [s.open, ...(s.steps || []), s.fin].filter(Boolean);
+      return { ty, title: 'Seans', sub: `${s.icon} ${s.name}`, h: `<div class="mg-kick">🎬 Seans</div><h2 class="mg-h">${s.icon} ${esc(s.name)}</h2><p class="mg-deck">${esc(s.desc || '')}</p>
+        <div class="mg-mod">${avatar(c, 40)}<span><small>Modelimiz</small><b>${esc(c.name || '')}</b></span></div>
+        <ol class="mg-st">${evs.map((t, i) => { const e = evFind(t); return `<li${e ? ` data-mgev="${esc(e.id)}"` : ''}><i>${i + 1}</i><div><b>${esc((e && e.emojis) || '')} ${esc(t)}</b>${e && (e.story || e.desc) ? `<p>${esc(e.story || e.desc)}</p>` : ''}</div></li>`; }).join('')}</ol>
+        <div class="mg-box"><b>🎉 Sonunda</b> <span>${esc(memFx(s))}</span></div>
+        <button type="button" class="mg-cta" data-mgses="${esc(s.id)}" data-cid="${esc(c.id)}">💬 Bu seansı onunla yaşa</button><a class="mg-cta ghost" href="#/events/sahne-${esc(s.id)}">🎓 Ders</a>` };
+    }
+    if (ty === 'pos') {
+      const L = x.pos.slice(j * 3, j * 3 + 3);
+      if (!L.length) return null;
+      const t = j ? 'Okurların favorileri' : 'Bu ayın pozisyonları';
+      return { ty, title: 'Pozisyonlar', sub: t, h: `<div class="mg-kick">🧭 Pozisyonlar</div><h2 class="mg-h">${t}</h2><div class="mg-pos">${L.map(e => { const lv = mgN(key + e.id + 'lv', 3);
+        return `<article data-mgev="${esc(e.id)}"><span class="mg-pe">${esc(e.emojis || '💞')}</span><div><b>${esc(e.title)}</b><p>${esc(e.story || e.desc)}</p>
+          <span class="mg-pm"><span class="mg-lv l${lv}"><i></i><i></i><i></i></span><small>Zorluk</small> <b>${esc(D.pos.lv[lv])}</b> · <small>${esc(mgPk(key + e.id + 'w', D.pos.who))}</small></span>
+          <p class="mg-tip">💡 <span>${esc(mgPk(key + e.id + 't', D.pos.tip))}</span></p></div></article>`; }).join('')}</div>` };
+    }
+    if (ty === 'edu') { const a = x.edu[j]; return a ? { ty, title: 'Seks eğitimi', sub: a.t, h: mgEduH(a, x.wr) } : null; }
+    if (ty === 'class') {
+      const L = x.cls;
+      return L.length ? { ty, title: 'Kişisel ilanlar', sub: `${L.length} yeni ilan`, h: `<div class="mg-kick">Kişisel ilanlar</div><h2 class="mg-h">Seni bekleyenler</h2><p class="mg-deck">Dokun, ilanı aç; sohbet onun sayfasından başlar.</p>
+        <div class="mg-cls">${L.map(c => `<a href="${mgHref(c)}"><span>${mgImg(c.photo)}</span><b>${esc(mgFirst(c))}${c.age ? `, ${esc(c.age)}` : ''}</b><small>${esc(c.city || c.job || '')}</small><i>${esc(cmPick(c, 'hsl', c.goth ? HOME_HOT_GT : HOME_HOT))}</i></a>`).join('')}</div>` } : null;
+    }
+    return null;
+  }
+  const mgToc = P => `<div class="mg-kick">İçindekiler</div><h2 class="mg-h">Bu sayıda</h2><ol class="mg-toc">${P.map((p, i) => ['toc', 'cover'].includes(p.ty) ? '' : `<li data-mggo="${i}"><b>${i + 1}</b><span><span>${esc(p.title)}</span>${p.sub ? `<small>${esc(p.sub)}</small>` : ''}</span></li>`).join('')}</ol>`;
+  // 📚 sayının bütün sayfaları (çift sayıda: arka kapak son yaprağın arkası olur)
+  function mgBuild(m, is) {
+    const D = MG(), key = is.id, G = mgGirls(key), g = i => G.length ? G[i % G.length] : null;
+    if (!G.length) return [];
+    const SC = scenesOk().filter(s => evFind(s.open)), scp = SC.filter(s => !m.scat || m.scat.includes(scCatId(s)));
+    const ep = D.edu.filter(a => !a.only || a.only === m.k);
+    const x = { g, cov: g(0), face: g(1), ed: g(2), wr: g(3), cls: G.length > 4 ? G.slice(4, 12) : G.slice(0, 8),
+      ses: mgSort(key + ':s', scp.length >= 2 ? scp : SC).slice(0, 2),
+      pos: mgSort(key + ':p', allEvents().filter(e => (m.pcat || []).includes(e.cat) && (e.story || e.desc))).slice(0, 6),
+      edu: [...ep.filter(a => a.k === m.edu), ...mgSort(key + ':e', ep.filter(a => a.k !== m.edu))].slice(0, 3),
+      ads: mgSort(key + ':a', netSites().filter(s => D.ads[s.k])) };
+    const cnt = {}, P = [];
+    m.plan.forEach(ty => { const j = cnt[ty] = (cnt[ty] || 0) + 1, pg = mgPage(m, is, x, ty, j - 1); if (pg) P.push(pg); });
+    if (P.length % 2) { const ad = mgPage(m, is, x, 'ad', 5); if (ad) P.splice(P.length - 1, 0, ad); }
+    const toc = P.find(p => p.ty === 'toc');
+    if (toc) toc.h = mgToc(P);
+    return P;
+  }
+  const mgPg = (p, i, m, is) => p ? `<div class="mg-p mg-p-${p.ty}"><div class="mg-pc">${p.h}</div>${['cover', 'ad', 'back', 'ncover', 'ntitle', 'nblank', 'nback'].includes(p.ty) ? '' : p.fo != null ? `<header class="mg-nrh">${p.fo}</header><footer class="mg-nfo">${i + 1}</footer>` : `<footer class="mg-fo"><span>${mgName(m)}</span><span>${mgDate(is)}</span><b>${i + 1}</b></footer>`}</div>` : '<div class="mg-p mg-blank"></div>';
+  // 📕 raftaki kapak (bayi + ana sayfa kartı)
+  const mgCov = (is, big, st) => { const c = mgGirls(is.id)[0], lp = st.last[is.id];
+    return `<a class="mg-rk${big ? ' big' : ''} mg-${is.m.k}" href="#/dergi/${is.id}" style="${mgVars(is.m)}"><span class="mg-mini">${mgImg(mgPics(c)[0])}<b>${mgName(is.m)}</b><small>Sayı ${is.no}</small>${is.now ? '<em>Yeni sayı</em>' : ''}${st.read[is.id] ? `<i>${lp ? `🔖 s. ${lp + 1}` : '✓'}</i>` : ''}</span><small>${mgDate(is)}</small></a>`; };
+  // 🏠 ana sayfa kartı: bu ayın dört kapağı + kaldığın yer
+  function mgHomeCard() {
+    const T = MG().titles, st = mgState(), at = mgFind(st.at), unread = T.filter(m => !st.read[mgIssues(m)[0].id]).length;
+    if (!T.length || !cmAll().some(c => c.photo)) return '';
+    return `${MG_CSS}<div class="hl-sec"><h3>📖 Carmen<i>Mag</i> · bu ayın sayıları${unread ? ` · <em class="hl-news-nw">${unread} yeni</em>` : ''}</h3><a href="#/dergi">Bayi ›</a></div>
+      <div class="mg-home"><div class="mg-hrow">${T.map(m => mgCov(mgIssues(m)[0], false, st)).join('')}</div>
+        <div class="mg-hfoot"><span>Sayfaları gerçek dergi gibi çevir: seanslar, pozisyonlar, seks eğitimi</span>${at ? `<a class="btn primary sm" href="#/dergi/devam">🔖 Kaldığın yerden: ${mgName(at.m)} · Sayı ${at.no}</a>` : '<a class="btn primary sm" href="#/dergi">📖 Bayiye git</a>'}</div></div>`;
+  }
+  function renderMag(id) {
+    const T = MG().titles;
+    if (id === 'devam') { const at = mgState().at, is = mgNovFind(at) ? { id: at } : mgFind(at) || (T[0] && mgIssues(T[0])[0]); location.replace(is ? `#/dergi/${is.id}` : '#/dergi'); return; }
+    const nb = mgNovFind(id);
+    if (nb) return renderNovel(nb);
+    if (id === 'egitim') return renderMagEdu();
+    const is = id && mgFind(id);
+    if (is) return renderMagRead(is);
+    const st = mgState(), at = mgFind(st.at), atN = mgNovFind(st.at), cov = (is, big) => mgCov(is, big, st), NV = mgNovels();
+    view.innerHTML = MG_CSS + wsPage('mag', 'Carmen<i>Mag</i>', 'carmenmag.com', '#/booble', `<div class="page-pad">
+      <div class="mg-hero"><h1>📖 Dergi bayii</h1><p>${T.length} dergi · her ay yeni sayı · sayfaları gerçek dergi gibi çevir</p>${at ? `<a class="btn primary sm" href="#/dergi/devam">🔖 Kaldığın yerden: ${mgName(at.m)} · Sayı ${at.no}</a>` : atN ? `<a class="btn primary sm" href="#/dergi/devam">🔖 Kaldığın yerden: <bdi class="no-i18n">${esc(atN.t)}</bdi></a>` : ''}</div>
+      ${NV.length ? `<section class="mg-shelf"><header><b>📚 Romanlar</b><small>Kitap gibi oku: ciltli kapak, bölümler, sayfa sayfa</small><span>${NV.length} roman</span></header><div class="mg-row mg-nrow">${NV.map(b => mgNovCov(b, st)).join('')}</div></section>` : ''}
+      ${T.map(m => `<section class="mg-shelf" style="${mgVars(m)}"><header><b>${m.ic} ${mgName(m)}</b><small>${esc(m.tag)}</small><span>${m.price} ₺</span></header><div class="mg-row">${mgIssues(m).map((is, i) => cov(is, !i)).join('')}</div></section>`).join('')}
+      <a class="mg-edulink" href="#/dergi/egitim"><span>🎓 Seks eğitimi arşivi</span> · <span>${MG().edu.length} yazı</span> ›</a></div>`);
+  }
+  function renderMagEdu() {
+    const E = MG().edu, m = MG().titles.find(x => x.k === 'ten') || MG().titles[0];
+    view.innerHTML = MG_CSS + wsPage('mag', 'Carmen<i>Mag</i>', 'carmenmag.com/egitim', '#/dergi', `<div class="page-pad narrow">
+      <div class="mg-hero"><h1>🎓 Seks eğitimi</h1><p>Dergilerimizin eğitim köşelerindeki bütün yazılar. Bilmek, hazzı büyütür.</p></div>
+      <div class="mg-elist">${E.map((a, i) => `<button type="button" class="mg-eit" data-mgedu="${i}"><span>${a.ic}</span><div><b>${esc(a.t)}</b><small>${esc(a.lead)}</small></div></button>`).join('')}</div></div>`);
+    view.querySelectorAll('[data-mgedu]').forEach(b => b.onclick = () => sheet(`<div class="sheet-grip"></div>${MG_CSS}<div class="mg-sheetp" style="${m ? mgVars(m) : ''}">${mgEduH(E[+b.dataset.mgedu])}</div>`, 'light'));
+  }
+  function renderMagRead(is) {
+    const m = is.m, P = mgBuild(m, is);
+    if (!P.length) { view.innerHTML = MG_CSS + wsPage('mag', 'Carmen<i>Mag</i>', 'carmenmag.com', '#/dergi', '<div class="page-pad"><p class="mg-hint">Dergide çekim yapacak model yok: önce bir karakter ya da ilan gerekli.</p></div>'); return; }
+    mgReader(m, is, P, `<b>${m.ic} ${mgName(m)}</b><span>Sayı ${is.no}</span><span>${mgDate(is)}</span>`, `carmenmag.com/${m.k}/${is.no}`);
+  }
+  // 📚 romanlar (v1115): Stories.MAGS.novels, #/dergi/roman-<k> → aynı okuyucu, kitap görünümü (.mg-nov). Metin çevrilmez (.no-i18n), sadece Türkçe
+  const mgNovels = () => MG().novels || [];
+  const mgNovFind = id => /^roman-/.test(id || '') ? mgNovels().find(b => b.k === id.slice(6)) : null;
+  function mgNovPages(b) {
+    const P = [{ ty: 'ncover', title: '', h: `<div class="mg-ncv"><small>${esc(b.au)}</small><b>${esc(b.t)}</b><i>${b.ic}</i><span>${esc(b.tag)}</span><em>CarmenMag Yayınları</em></div>` },
+      { ty: 'ntitle', title: '', h: `<div class="mg-ntp"><small>${esc(b.au)}</small><h1>${esc(b.t)}</h1><span>Roman</span><p>${esc(b.epi)}</p><em>CarmenMag Yayınları · 18+</em></div>` }];
+    b.ch.forEach(([t, ps], i) => { for (let j = 0; j < ps.length; j += 2) P.push({ ty: 'nch', title: j ? '' : `${i + 1}. ${t}`, fo: esc(b.t), h: `${j ? '' : `<div class="mg-nch"><small>Bölüm ${i + 1}</small><h2>${esc(t)}</h2></div>`}<div class="mg-ntx${j ? '' : ' first'}">${ps.slice(j, j + 2).map(p => `<p>${esc(p)}</p>`).join('')}</div>${j + 2 >= ps.length && i === b.ch.length - 1 ? '<div class="mg-nend">— Son —</div>' : ''}` }); });
+    if (P.length % 2 === 0) P.push({ ty: 'nblank', title: '', h: '' });
+    P.push({ ty: 'nback', title: '', h: `<div class="mg-nbk"><b>${esc(b.t)}</b><p>${esc(b.blurb)}</p><small>${esc(b.au)}</small><em>CarmenMag Yayınları · 18+</em><i class="mg-bc"><span></span><small>978605${String(+sysHash(b.k) % 1e6).padStart(6, '0')}</small></i></div>` });
+    return P;
+  }
+  // 📕 raftaki roman (sırtı olan ciltli kitap)
+  const mgNovCov = (b, st) => { const id = 'roman-' + b.k, lp = st.last[id];
+    return `<a class="mg-nb" href="#/dergi/${id}" style="--m1:${b.c[0]};--m2:${b.c[1]}"><span class="mg-nbc no-i18n"><small>${esc(b.au)}</small><b>${esc(b.t)}</b><i>${b.ic}</i>${st.read[id] ? `<em>${lp ? `🔖 s. ${lp + 1}` : '✓'}</em>` : ''}</span><small class="no-i18n">${esc(b.tag)}</small></a>`; };
+  function renderNovel(b) {
+    mgReader({ k: 'nov', n: b.t, c: b.c, ic: b.ic }, { id: 'roman-' + b.k }, mgNovPages(b), `<b class="no-i18n">${b.ic} ${esc(b.t)}</b><span class="no-i18n">${esc(b.au)}</span>`, `carmenmag.com/roman/${b.k}`);
+  }
+  // 📖 ortak okuyucu (dergi sayısı + roman): üst satır, sahne, alt kontroller, içindekiler, klavye / yeniden boyut
+  function mgReader(m, is, P, head, url) {
+    const st = mgState(), nov = m.k === 'nov';
+    st.read[is.id] = 1; st.at = is.id; mgState(st);
+    view.innerHTML = MG_CSS + wsPage('mag', 'Carmen<i>Mag</i>', url, '#/dergi', `<div class="mg-rd mg-${m.k}" style="${mgVars(m)}">
+      <div class="mg-hd">${head}<button type="button" class="btn ghost sm" id="mgToc">📑 İçindekiler</button></div>
+      <div class="mg-stage" id="mgStage"><div class="mg-book${nov ? ' no-i18n' : ''}" id="mgBook"></div></div>
+      <div class="mg-ctl"><button type="button" id="mgPrev" aria-label="Önceki sayfa">‹</button><input type="range" id="mgRng" min="1" max="${P.length}" value="1" aria-label="Sayfa"><span id="mgNo"></span><button type="button" id="mgNext" aria-label="Sonraki sayfa">›</button></div>
+      <small class="mg-hint">Sayfanın kenarına dokun, kaydır ya da ← → tuşlarını kullan</small></div>`);
+    $('#mgToc').onclick = () => { const sh = sheet(`<div class="sheet-grip"></div>${MG_CSS}<div class="mg-sheetp${nov ? ' mg-nov' : ''}" style="${mgVars(m)}">${nov ? `<div class="mg-kick">İçindekiler</div><ol class="mg-toc no-i18n">${P.map((p, i) => p.title ? `<li data-mggo="${i}"><b>${i + 1}</b><span><span>${esc(p.title)}</span></span></li>` : '').join('')}</ol>` : mgToc(P)}</div>`, 'light');
+      sh.el.onclick = e => { const g = e.target.closest('[data-mggo]'); if (g) { sh.close(); ui.mgGoP && ui.mgGoP(+g.dataset.mggo); } }; };
+    mgBook(m, is, P, st.last[is.id] || 0);
+    if (!ui.mgWired) {
+      ui.mgWired = 1;
+      let tm;
+      addEventListener('resize', () => { clearTimeout(tm); tm = setTimeout(() => { if ($('#mgBook') && ui.mgRe) ui.mgRe(); }, 180); });
+      document.addEventListener('keydown', e => {
+        if (!$('#mgBook') || !ui.mgStep || /INPUT|TEXTAREA|SELECT/.test((e.target && e.target.tagName) || '') || document.querySelector('.sheet-wrap')) return;
+        if (e.key === 'ArrowRight') ui.mgStep(1); else if (e.key === 'ArrowLeft') ui.mgStep(-1);
+      });
+    }
+  }  // 📖 kitap: yapraklar üst üste; çevrilen yaprak sol kenarından −180° döner (çift sayfada arkası sol sayfa olur)
+  function mgBook(m, is, P, start) {
+    const book = $('#mgBook'), stage = $('#mgStage');
+    if (!book || !stage) return;
+    const n = P.length, aw = stage.clientWidth, two = aw >= 760, ah = Math.max(340, innerHeight - stage.getBoundingClientRect().top - 130);
+    const w = Math.floor(Math.min(two ? aw / 2 - 8 : aw, ah * .7)), h = Math.floor(w / .7), L = two ? Math.ceil(n / 2) : n;
+    ui.mgDim = [two, w];
+    book.style.cssText = `--pw:${w}px;--ph:${h}px;--fs:${Math.max(12, Math.min(15.5, w / 27)).toFixed(1)}px`;
+    book.className = `mg-book${two ? ' two' : ''}${w >= 430 ? ' wide' : ''}${book.classList.contains('no-i18n') ? ' no-i18n' : ''}`;
+    stage.classList.toggle('one', !two);
+    book.innerHTML = Array.from({ length: L }, (_, j) => { const a = two ? 2 * j : j, b = two ? 2 * j + 1 : -1;
+      return `<div class="mg-lf"><div class="mg-fc fr">${mgPg(P[a], a, m, is)}</div><div class="mg-fc bk">${b >= 0 && P[b] ? mgPg(P[b], b, m, is) : mgPg(null)}</div></div>`; }).join('');
+    const lfs = [...book.children], maxF = two ? L : L - 1, rng = $('#mgRng'), no = $('#mgNo');
+    const fOf = p => two ? Math.ceil(p / 2) : p, cur = () => two ? Math.max(0, 2 * f - 1) : f;
+    let f = Math.min(maxF, fOf(Math.max(0, start)));
+    const draw = () => {
+      lfs.forEach((el, j) => { el.classList.toggle('on', j < f); el.style.zIndex = j < f ? j + 1 : L - j; });
+      book.classList.toggle('cf', two && f === 0); book.classList.toggle('cb', two && f === L);
+      const p = cur(), q = two && f > 0 && f < L && 2 * f < n ? 2 * f : -1;
+      no.textContent = `${p + 1}${q > 0 ? `–${q + 1}` : ''} / ${n}`;
+      rng.value = p + 1; $('#mgPrev').disabled = f <= 0; $('#mgNext').disabled = f >= maxF;
+      const st = mgState(); st.last[is.id] = p; mgState(st);
+    };
+    const go = nf => {
+      nf = Math.max(0, Math.min(maxF, nf));
+      if (nf === f) return;
+      const a = Math.min(f, nf), b = Math.max(f, nf), fwd = nf > f;
+      lfs.slice(a, b).forEach((el, k) => { el.classList.add('mv'); el.style.transitionDelay = (fwd ? k : b - a - 1 - k) * 70 + 'ms'; clearTimeout(el._t); el._t = setTimeout(() => { el.classList.remove('mv'); el.style.transitionDelay = ''; }, 850 + (b - a) * 70); });
+      f = nf; draw(); sfx('page');
+    };
+    ui.mgStep = d => go(f + d);
+    ui.mgGoP = p => go(fOf(p));
+    ui.mgRe = () => { const aw2 = stage.clientWidth, two2 = aw2 >= 760; if (two2 !== ui.mgDim[0] || Math.abs(Math.floor(Math.min(two2 ? aw2 / 2 - 8 : aw2, Math.max(340, innerHeight - stage.getBoundingClientRect().top - 130) * .7)) - ui.mgDim[1]) > 12) mgBook(m, is, P, cur()); };
+    $('#mgPrev').onclick = () => go(f - 1);
+    $('#mgNext').onclick = () => go(f + 1);
+    rng.oninput = () => go(fOf(+rng.value - 1));
+    let sx = null, sy = 0, swiped = false;
+    stage.onpointerdown = e => { sx = e.clientX; sy = e.clientY; swiped = false; };
+    stage.onpointercancel = () => { sx = null; };
+    stage.onpointerup = e => { if (sx == null) return; const dx = e.clientX - sx, dy = e.clientY - sy; sx = null; if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.3) { swiped = true; go(f + (dx < 0 ? 1 : -1)); } };
+    book.onclick = e => {
+      if (swiped) { swiped = false; return; }
+      const g = e.target.closest('[data-mggo]'), ss = e.target.closest('[data-mgses]'), ch = e.target.closest('[data-mgchat]'), ev = e.target.closest('[data-mgev]');
+      if (g) return go(fOf(+g.dataset.mggo));
+      if (ss) { const s = (Stories.SCENES || []).find(y => y.id === ss.dataset.mgses), c = cmFind(ss.dataset.cid); if (s && c) { const t = cmChat(c, 'CarmenMag', `Dergide ${s.name} seansımı okudun mu? 😏 ${actDemo(s, 'ask', 0)}`, true); quickPin(evFind(s.open), t); save(); } return; }
+      if (ch) { const c = cmFind(ch.dataset.mgchat); if (c) cmChat(c, 'CarmenMag', pickOne(MG().hi), true); return; }
+      if (e.target.closest('a, button, input')) return;
+      const r = book.getBoundingClientRect(), xr = (e.clientX - r.left) / r.width;
+      if (xr > (two ? .86 : .78)) return go(f + 1);
+      if (xr < (two ? .14 : .22)) return go(f - 1);
+      if (ev) { const y = allEvents().find(z => z.id === ev.dataset.mgev); if (y) evWin(y); }
+    };
+    draw();
+  }
+  const MG_CSS = `<style>
+    .mg-hero { text-align: center; padding: 20px 14px 14px; border-radius: 18px; margin: 12px 0; background: linear-gradient(135deg, #1a0609, #3b0d1a 60%, #6b1530); color: #fbe9d0; border: 1px solid rgba(212, 175, 55, .35); }
+    .mg-hero h1 { margin: 0 0 6px; font: 800 26px/1.15 Georgia, 'Times New Roman', serif; letter-spacing: .5px; } .mg-hero p { margin: 0 0 10px; opacity: .85; font-size: 13.5px; }
+    .mg-shelf { margin: 14px 0 22px; } .mg-shelf header { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+    .mg-shelf header b { font: 800 19px Georgia, serif; } .mg-shelf header small { color: var(--muted); } .mg-shelf header span { margin-left: auto; font-weight: 800; font-size: 12px; color: var(--muted); }
+    .mg-row { display: flex; gap: 14px; overflow-x: auto; padding: 8px 6px 20px; scroll-snap-type: x mandatory; background: linear-gradient(transparent calc(100% - 14px), #6d4c33 calc(100% - 14px), #3e281b); border-radius: 4px; }
+    .mg-rk { flex: 0 0 auto; width: 112px; scroll-snap-align: start; color: inherit; text-decoration: none; text-align: center; } .mg-rk.big { width: 150px; }
+    .mg-mini { position: relative; display: block; aspect-ratio: .7; border-radius: 2px 4px 4px 2px; overflow: hidden; background: var(--m1); box-shadow: inset 5px 0 6px -3px rgba(0,0,0,.5), 0 8px 14px rgba(0,0,0,.4); transform: perspective(600px) rotateY(-10deg); transition: transform .25s; }
+    .mg-rk:hover .mg-mini, .mg-rk:focus-visible .mg-mini { transform: perspective(600px) rotateY(0) translateY(-5px); }
+    .mg-mini img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .mg-mini b { position: absolute; left: 0; right: 0; top: 6px; font: 900 22px/1 Georgia, serif; letter-spacing: 1px; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,.7); text-transform: uppercase; } .mg-rk.big .mg-mini b { font-size: 28px; }
+    .mg-mini small { position: absolute; left: 6px; bottom: 6px; font: 700 10px system-ui; color: #fff; background: rgba(0,0,0,.5); padding: 1px 6px; border-radius: 99px; }
+    .mg-mini em { position: absolute; right: -26px; top: 14px; transform: rotate(35deg); background: var(--m2); color: #111; font: 900 9px system-ui; padding: 2px 26px; font-style: normal; text-transform: uppercase; }
+    .mg-mini i { position: absolute; right: 6px; bottom: 6px; font: 700 10px system-ui; font-style: normal; color: #fff; background: var(--m1); padding: 1px 6px; border-radius: 99px; }
+    .mg-rk > small { display: block; margin-top: 7px; font-size: 11.5px; color: var(--muted); }
+    .mg-home { padding: 14px 12px 12px; border-radius: 18px; margin-bottom: 18px; background: linear-gradient(135deg, #1a0609, #3b0d1a 60%, #6b1530); color: #fbe9d0; border: 1px solid rgba(212, 175, 55, .35); }
+    .mg-hrow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; padding: 4px 2px 16px; background: linear-gradient(transparent calc(100% - 10px), #6d4c33 calc(100% - 10px), #3e281b); border-radius: 4px; }
+    .mg-hrow .mg-rk { width: auto; } .mg-hrow .mg-mini b { font-size: clamp(12px, 3.6vw, 20px); } .mg-hrow .mg-rk > small { color: rgba(251, 233, 208, .75); font-size: 10.5px; }
+    .mg-hfoot { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: space-between; margin-top: 10px; font-size: 12.5px; } .mg-hfoot span { opacity: .85; }
+    .mg-nrow { gap: 18px; } .mg-nb { flex: 0 0 auto; width: 128px; color: inherit; text-decoration: none; text-align: center; scroll-snap-align: start; }
+    .mg-nbc { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; aspect-ratio: .68; padding: 14px 10px; box-sizing: border-box; border-radius: 3px 6px 6px 3px; color: var(--m2);
+      background: var(--m1) repeating-linear-gradient(45deg, rgba(255,255,255,.035) 0 2px, transparent 2px 4px); box-shadow: inset 7px 0 0 rgba(0,0,0,.28), inset 9px 0 6px -2px rgba(255,255,255,.12), inset 0 0 0 4px var(--m1), inset 0 0 0 5px var(--m2), 0 8px 16px rgba(0,0,0,.45); transform: perspective(600px) rotateY(-12deg); transition: transform .25s; }
+    .mg-nb:hover .mg-nbc { transform: perspective(600px) rotateY(0) translateY(-5px); } .mg-nbc small { font: 700 9px system-ui; letter-spacing: .18em; text-transform: uppercase; opacity: .85; }
+    .mg-nbc b { font: italic 800 17px/1.1 Georgia, serif; } .mg-nbc i { font-style: normal; font-size: 26px; } .mg-nbc em { position: absolute; right: 6px; bottom: 6px; font: 700 10px system-ui; font-style: normal; color: #fff; background: rgba(0,0,0,.45); padding: 1px 6px; border-radius: 99px; }
+    .mg-nb > small { display: block; margin-top: 8px; font-size: 11.5px; color: var(--muted); }
+    .mg-nov .mg-p { font: 1em/1.6 Georgia, 'Times New Roman', serif; } .mg-nov .mg-fc.fr::before { background: linear-gradient(315deg, rgba(0,0,0,0) 48%, rgba(0,0,0,.2) 50%, #eee3cc 54%, #fbf6ea 80%); }
+    .mg-p-nch .mg-pc, .mg-p-ntitle .mg-pc, .mg-p-nblank .mg-pc { inset: 2.4em 0 2.4em; padding: .2em 1.8em; }
+    .mg-nrh { position: absolute; top: 1em; left: 0; right: 0; text-align: center; font: italic .72em Georgia, serif; letter-spacing: .08em; opacity: .55; } .mg-nfo { position: absolute; bottom: .9em; left: 0; right: 0; text-align: center; font: .75em Georgia, serif; opacity: .6; }
+    .mg-nch { text-align: center; margin: 2.2em 0 1.6em; } .mg-nch small { display: block; font: 600 .7em system-ui; letter-spacing: .3em; text-transform: uppercase; color: var(--m1); } .mg-nch h2 { margin: .3em 0 0; font: italic 700 1.6em/1.15 Georgia, serif; }
+    .mg-nch h2::after { content: '❦'; display: block; margin-top: .4em; font-size: .6em; color: var(--m2); }
+    .mg-ntx p { margin: 0; text-align: justify; text-indent: 1.5em; -webkit-hyphens: auto; hyphens: auto; } .mg-ntx.first p:first-child { text-indent: 0; }
+    .mg-ntx.first p:first-child::first-letter { float: left; font: 700 3.1em/.82 Georgia, serif; color: var(--m1); padding: .06em .08em 0 0; }
+    .mg-nend { margin-top: 1.6em; text-align: center; font: italic 1em Georgia, serif; letter-spacing: .2em; opacity: .7; }
+    .mg-ncv, .mg-nbk { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .8em; padding: 2em 1.6em; text-align: center; color: var(--m2);
+      background: var(--m1) repeating-linear-gradient(45deg, rgba(255,255,255,.035) 0 2px, transparent 2px 4px); box-shadow: inset 0 0 0 .9em var(--m1), inset 0 0 0 1em var(--m2), inset 0 0 0 1.35em var(--m1), inset 0 0 0 1.42em var(--m2); }
+    .mg-ncv small { font: 700 .75em system-ui; letter-spacing: .3em; text-transform: uppercase; } .mg-ncv b { font: italic 800 2.4em/1.05 Georgia, serif; text-shadow: 0 1px 0 rgba(0,0,0,.35); } .mg-ncv i { font-style: normal; font-size: 3em; }
+    .mg-ncv span { font: italic .9em Georgia, serif; opacity: .85; } .mg-ncv em, .mg-nbk em { position: absolute; bottom: 2.2em; font: 700 .6em system-ui; font-style: normal; letter-spacing: .25em; text-transform: uppercase; opacity: .8; }
+    .mg-nbk b { font: italic 800 1.5em Georgia, serif; } .mg-nbk p { margin: 0; font: italic .95em/1.55 Georgia, serif; color: #f3e9d2; } .mg-nbk small { font: 700 .7em system-ui; letter-spacing: .2em; text-transform: uppercase; } .mg-nbk .mg-bc { bottom: 3.6em; right: 2em; }
+    .mg-ntp { display: flex; flex-direction: column; align-items: center; text-align: center; gap: .6em; padding-top: 3em; } .mg-ntp small { font: 700 .72em system-ui; letter-spacing: .3em; text-transform: uppercase; opacity: .7; }
+    .mg-ntp h1 { margin: 0; font: italic 800 2em/1.1 Georgia, serif; color: var(--m1); } .mg-ntp span { font: .8em system-ui; letter-spacing: .4em; text-transform: uppercase; opacity: .6; }
+    .mg-ntp p { margin: 2.4em 0 0; font: italic .95em Georgia, serif; opacity: .8; } .mg-ntp em { margin-top: 3em; font: 700 .6em system-ui; font-style: normal; letter-spacing: .25em; text-transform: uppercase; opacity: .55; }
+    .mg-edulink { display: block; text-align: center; padding: 12px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); color: inherit; text-decoration: none; font-weight: 700; margin: 6px 0 16px; }
+    .mg-rd { padding: 6px 8px 4px; } .mg-hd { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 4px 4px 8px; font-size: 13px; } .mg-hd b { font: 800 17px Georgia, serif; } .mg-hd span { color: var(--muted); } .mg-hd button { margin-left: auto; }
+    .mg-stage { position: relative; display: flex; justify-content: center; touch-action: pan-y; user-select: none; -webkit-user-select: none; padding: 4px 0 12px; } .mg-stage.one { overflow: hidden; }
+    .mg-book { position: relative; width: var(--pw); height: var(--ph); perspective: 2400px; transition: transform .6s cubic-bezier(.45,.05,.3,1); font-size: var(--fs); }
+    .mg-book.two { width: calc(var(--pw) * 2); } .mg-book.two.cf { transform: translateX(-25%); } .mg-book.two.cb { transform: translateX(25%); }
+    .mg-lf { position: absolute; top: 0; left: 0; width: var(--pw); height: 100%; transform-origin: left center; transform-style: preserve-3d; transition: transform .8s cubic-bezier(.45,.05,.3,1); }
+    .mg-book.two .mg-lf { left: 50%; } .mg-lf.on { transform: rotateY(-180deg); } .mg-lf.mv { z-index: 900 !important; }
+    .mg-fc { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; overflow: hidden; border-radius: 0 4px 4px 0; box-shadow: 0 8px 22px rgba(0,0,0,.35); }
+    .mg-fc.bk { transform: rotateY(180deg); border-radius: 4px 0 0 4px; }
+    .mg-lf.mv .mg-fc::after { content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 7; animation: mgSh .8s ease; }
+    .mg-lf.mv .fr::after { background: linear-gradient(90deg, rgba(0,0,0,.4), rgba(0,0,0,0) 45%, rgba(255,255,255,.18) 80%, rgba(0,0,0,.1)); } .mg-lf.mv .bk::after { background: linear-gradient(270deg, rgba(0,0,0,.4), rgba(0,0,0,0) 45%, rgba(255,255,255,.18) 80%); }
+    @keyframes mgSh { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
+    .mg-book.two .fr .mg-p::after, .mg-book.two .bk .mg-p::after { content: ''; position: absolute; top: 0; bottom: 0; width: 26px; pointer-events: none; z-index: 6; }
+    .mg-book.two .fr .mg-p::after { left: 0; background: linear-gradient(90deg, rgba(0,0,0,.28), transparent); } .mg-book.two .bk .mg-p::after { right: 0; background: linear-gradient(270deg, rgba(0,0,0,.28), transparent); }
+    .mg-fc.fr::before { content: ''; position: absolute; right: 0; bottom: 0; width: 28px; height: 28px; z-index: 8; pointer-events: none; background: linear-gradient(315deg, rgba(0,0,0,0) 48%, rgba(0,0,0,.25) 50%, #efe6d8 54%, #fff 80%); border-top-left-radius: 6px; transition: width .2s, height .2s; }
+    .mg-stage:hover .mg-fc.fr::before { width: 40px; height: 40px; }
+    .mg-p { position: absolute; inset: 0; background: var(--mp) radial-gradient(rgba(0,0,0,.035) 1px, transparent 1px) 0 0 / 4px 4px; color: var(--mi); font: 1em/1.5 Georgia, 'Times New Roman', serif; }
+    .mg-pc { position: absolute; inset: 0 0 2.3em 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: none; padding: 1.4em 1.35em .6em; box-sizing: border-box; } .mg-pc::-webkit-scrollbar { display: none; }
+    .mg-p-cover .mg-pc, .mg-p-ad .mg-pc, .mg-p-back .mg-pc { inset: 0; padding: 0; overflow: hidden; }
+    .mg-pc p { margin: 0 0 .75em; }
+    .mg-fo { position: absolute; left: 1.35em; right: 1.35em; bottom: .75em; display: flex; gap: .8em; font: 600 .62em/1 system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; opacity: .6; border-top: 1px solid currentColor; padding-top: .55em; } .mg-fo b { margin-left: auto; font-size: 1.2em; }
+    .mg-kick { font: 800 .68em/1 system-ui, sans-serif; letter-spacing: .22em; text-transform: uppercase; color: var(--m1); border-bottom: 2px solid var(--m1); display: inline-block; padding-bottom: .35em; margin-bottom: .6em; }
+    .mg-h { font: 900 1.75em/1.08 Georgia, 'Times New Roman', serif; margin: .1em 0 .45em; letter-spacing: -.01em; } .mg-deck { font-style: italic; font-size: 1.02em; opacity: .85; margin: 0 0 .9em; }
+    .mg-cols p:first-child::first-letter { float: left; font: 900 3.2em/.8 Georgia, serif; color: var(--m1); padding: .08em .1em 0 0; } .mg-book.wide .mg-cols { column-count: 2; column-gap: 1.2em; }
+    .mg-box { background: color-mix(in srgb, var(--m1) 10%, var(--mp)); border-left: 4px solid var(--m1); padding: .7em .9em; margin: .9em 0; font: .9em/1.45 system-ui, sans-serif; } .mg-box ul { margin: .4em 0 0; padding-left: 1.1em; }
+    .mg-mod, .mg-sig { display: flex; align-items: center; gap: .6em; margin: .2em 0 .9em; font-family: system-ui, sans-serif; } .mg-mod > span, .mg-sig > span { display: flex; flex-direction: column; line-height: 1.2; }
+    .mg-mod small, .mg-sig small { font-size: .7em; opacity: .7; text-transform: uppercase; letter-spacing: .1em; } .mg-sig { margin-top: 1.2em; } .mg-sig b { font: italic 700 1.35em Georgia, serif; }
+    .mg-cta { display: inline-block; margin: .6em .4em 0 0; padding: .55em 1em; border-radius: 99px; border: 0; background: var(--m1); color: #fff; font: 700 .85em system-ui, sans-serif; text-decoration: none; cursor: pointer; }
+    .mg-cta.ghost { background: transparent; color: var(--m1); box-shadow: inset 0 0 0 1.5px var(--m1); }
+    .mg-cv { position: absolute; inset: 0; color: #fff; background: var(--m1); overflow: hidden; font-family: system-ui, sans-serif; }
+    .mg-cvi { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; } .mg-cvs { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.5), rgba(0,0,0,0) 30%, rgba(0,0,0,0) 52%, rgba(0,0,0,.75)); }
+    .mg-mast { position: absolute; top: .12em; left: 0; right: 0; text-align: center; font: 900 4.3em/1 Didot, 'Bodoni MT', Georgia, serif; letter-spacing: .04em; text-transform: uppercase; text-shadow: 0 3px 14px rgba(0,0,0,.45); }
+    .mg-tagl { position: absolute; top: 6.2em; left: 0; right: 0; text-align: center; font: 700 .6em system-ui; letter-spacing: .3em; text-transform: uppercase; opacity: .92; }
+    .mg-iss { position: absolute; top: 8em; left: 0; right: 0; display: flex; justify-content: center; gap: .9em; font: 700 .58em system-ui; letter-spacing: .15em; text-transform: uppercase; }
+    .mg-cl { position: absolute; left: .9em; top: 40%; list-style: none; margin: 0; padding: 0; width: 56%; display: grid; gap: .65em; }
+    .mg-cl b { display: block; font: 900 1.02em/1.05 system-ui, sans-serif; text-transform: uppercase; color: var(--m2); text-shadow: 0 2px 8px rgba(0,0,0,.7); } .mg-cl .l0 b { font-size: 1.55em; }
+    .mg-cl small { display: block; font-size: .72em; font-weight: 600; text-shadow: 0 1px 6px rgba(0,0,0,.9); }
+    .mg-cvn { position: absolute; left: .9em; bottom: .9em; right: 5.6em; } .mg-cvn small { display: block; font: 700 .6em system-ui; letter-spacing: .22em; text-transform: uppercase; opacity: .88; } .mg-cvn b { display: block; font: italic 900 1.9em/1.02 Georgia, serif; }
+    .mg-18 { position: absolute; right: .9em; bottom: 4em; width: 2.5em; height: 2.5em; border-radius: 50%; display: grid; place-items: center; background: var(--m1); border: 2px solid #fff; font: 900 .72em system-ui; font-style: normal; }
+    .mg-bc { position: absolute; right: .9em; bottom: .9em; width: 4.4em; height: 2.6em; background: #fff; padding: .25em; box-sizing: border-box; display: flex; flex-direction: column; font-style: normal; }
+    .mg-bc span { flex: 1; background: repeating-linear-gradient(90deg, #111 0 1px, transparent 1px 3px, #111 3px 5px, transparent 5px 6px, #111 6px 7px, transparent 7px 9px); } .mg-bc small { font: 600 .42em/1.2 monospace; color: #111; text-align: center; }
+    .mg-velvet .mg-mast { color: var(--m2); font-style: italic; text-transform: none; letter-spacing: .01em; }
+    .mg-ates .mg-mast { top: 0; background: var(--m1); padding: .06em 0 .1em; font-family: Impact, 'Arial Black', system-ui, sans-serif; letter-spacing: .08em; } .mg-ates .mg-tagl { top: 5.3em; } .mg-ates .mg-iss { top: 7.2em; }
+    .mg-ates .mg-cl b { display: inline; background: var(--m2); color: #111; padding: 0 .2em; text-shadow: none; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+    .mg-noir .mg-cvi { filter: grayscale(.85) contrast(1.15); } .mg-noir .mg-mast { color: var(--m1); letter-spacing: .3em; } .mg-noir .mg-cl b { color: #fff; } .mg-noir .mg-cl .l0 b { color: var(--m1); }
+    .mg-ten .mg-mast { font-family: 'Trebuchet MS', system-ui, sans-serif; font-weight: 300; text-transform: lowercase; letter-spacing: .14em; } .mg-ten .mg-cl b { color: #fff; } .mg-ten .mg-cl .l0 b { color: #ffd1dc; }
+    .mg-sh { display: flex; flex-direction: column; gap: .8em; } .mg-shp { position: relative; margin: -1.4em -1.35em 0; height: calc(var(--ph, 520px) * .56); background: var(--m1); overflow: hidden; }
+    .mg-shp img { width: 100%; height: 100%; object-fit: cover; display: block; } .mg-shc { position: absolute; left: 0; right: 0; bottom: 0; padding: 2.4em 1em .8em; background: linear-gradient(transparent, rgba(0,0,0,.78)); color: #fff; display: flex; flex-direction: column; }
+    .mg-shc small { font: 700 .6em system-ui; letter-spacing: .25em; text-transform: uppercase; opacity: .85; } .mg-shc b { font: italic 900 1.7em/1.05 Georgia, serif; } .mg-shc i { font: 600 .8em system-ui; font-style: normal; opacity: .9; } .mg-sh.alt .mg-shc { text-align: right; }
+    .mg-shot { border-top: 1px solid color-mix(in srgb, var(--mi) 20%, transparent); padding-top: .6em; } .mg-shot small { display: block; font: 700 .64em system-ui; letter-spacing: .08em; opacity: .65; margin-bottom: .2em; }
+    .mg-shot b { display: block; font-size: 1.02em; margin-bottom: .2em; } .mg-shot p { margin: 0; font-size: .92em; }
+    .mg-tk { display: flex; gap: .8em; align-items: center; } .mg-tk .mg-deck { margin: 0; }
+    .mg-dl { display: grid; grid-template-columns: repeat(auto-fill, minmax(7.2em, 1fr)); gap: .35em .8em; margin: .8em 0; padding: .6em .8em; background: color-mix(in srgb, var(--m2) 16%, var(--mp)); font: .78em/1.3 system-ui, sans-serif; border-radius: 4px; }
+    .mg-dl dt { opacity: .7; } .mg-dl dd { margin: 0; font-weight: 700; } .mg-q { font: 800 .95em/1.35 system-ui, sans-serif; color: var(--m1); margin: .9em 0 .25em !important; } .mg-a b { font-style: italic; }
+    .mg-st { list-style: none; margin: 0; padding: 0; } .mg-st li { display: flex; gap: .6em; padding: .5em 0; border-top: 1px dashed color-mix(in srgb, var(--mi) 25%, transparent); cursor: pointer; }
+    .mg-st li > i { flex: 0 0 1.7em; height: 1.7em; border-radius: 50%; background: var(--m1); color: #fff; display: grid; place-items: center; font: 800 .8em system-ui; font-style: normal; }
+    .mg-st b { display: block; font-family: system-ui, sans-serif; } .mg-st p { margin: .15em 0 0; font-size: .9em; }
+    .mg-pos { display: grid; gap: .8em; } .mg-pos article { display: flex; gap: .7em; padding: .7em; border-radius: 6px; background: color-mix(in srgb, var(--m1) 8%, var(--mp)); cursor: pointer; }
+    .mg-pe { font-size: 1.6em; line-height: 1; } .mg-pos b { font-family: system-ui, sans-serif; } .mg-pos p { margin: .25em 0; font-size: .9em; }
+    .mg-pm { display: flex; align-items: center; gap: .35em; flex-wrap: wrap; font: .72em system-ui, sans-serif; } .mg-lv { display: inline-flex; gap: 2px; } .mg-lv i { width: .6em; height: .6em; border-radius: 50%; background: color-mix(in srgb, var(--mi) 22%, transparent); }
+    .mg-lv.l0 i:nth-child(1), .mg-lv.l1 i:nth-child(-n+2), .mg-lv.l2 i { background: var(--m1); } .mg-tip { font: italic .86em/1.4 Georgia, serif; opacity: .9; }
+    .mg-cls { display: grid; grid-template-columns: repeat(2, 1fr); gap: .55em; font-family: system-ui, sans-serif; }
+    .mg-cls a { display: grid; grid-template-columns: 2.8em 1fr; column-gap: .5em; padding: .45em; border: 1px solid color-mix(in srgb, var(--mi) 22%, transparent); color: inherit; text-decoration: none; font-size: .78em; line-height: 1.25; }
+    .mg-cls a > span { grid-row: span 3; width: 2.8em; height: 2.8em; border-radius: 4px; overflow: hidden; background: var(--m1); } .mg-cls img { width: 100%; height: 100%; object-fit: cover; } .mg-cls small { opacity: .7; } .mg-cls i { font-size: .92em; opacity: .85; }
+    .mg-toc { list-style: none; margin: 0; padding: 0; } .mg-toc li { display: flex; gap: .8em; align-items: baseline; padding: .5em 0; border-bottom: 1px solid color-mix(in srgb, var(--mi) 15%, transparent); cursor: pointer; }
+    .mg-toc li > b { font: 900 1.5em/1 Georgia, serif; color: var(--m1); min-width: 1.6em; } .mg-toc li > span { display: flex; flex-direction: column; } .mg-toc small { opacity: .65; font-size: .8em; }
+    .mg-ad { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; background: radial-gradient(120% 80% at 50% 0%, var(--a1), var(--a3) 75%); color: #fff; text-decoration: none; overflow: hidden; font-family: system-ui, sans-serif; }
+    .mg-adi { position: absolute; top: 0; left: 0; width: 100%; height: 66%; object-fit: cover; -webkit-mask-image: linear-gradient(#000 60%, transparent); mask-image: linear-gradient(#000 60%, transparent); }
+    .mg-adl { position: absolute; top: .6em; right: .8em; z-index: 1; font: 700 .58em system-ui; letter-spacing: .2em; text-transform: uppercase; opacity: .75; }
+    .mg-adw { position: relative; padding: 1.2em 1.3em 1.6em; display: flex; flex-direction: column; gap: .35em; } .mg-adlogo { font: 900 1.45em/1 system-ui; color: var(--a2); } .mg-adlogo i { font-style: normal; color: #fff; }
+    .mg-adw b { font: 900 1.6em/1.08 Georgia, serif; } .mg-adw em { align-self: flex-start; margin-top: .4em; padding: .5em 1.1em; border-radius: 99px; background: var(--a1); font: 800 .85em system-ui; font-style: normal; box-shadow: 0 4px 14px rgba(0,0,0,.35); } .mg-adw small { opacity: .7; font-size: .7em; }
+    .mg-next { position: absolute; top: .8em; left: .8em; z-index: 1; background: rgba(0,0,0,.55); padding: .35em .7em; border-radius: 4px; font-size: .78em; }
+    .mg-ctl { display: flex; align-items: center; gap: 10px; justify-content: center; padding: 4px 8px; }
+    .mg-ctl button { width: 40px; height: 40px; flex: 0 0 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--card); color: var(--text); font-size: 22px; line-height: 1; cursor: pointer; } .mg-ctl button:disabled { opacity: .35; cursor: default; }
+    .mg-ctl input { flex: 1; min-width: 0; max-width: 340px; accent-color: var(--m1); } .mg-ctl span { min-width: 64px; text-align: center; font: 700 13px system-ui; color: var(--muted); }
+    .mg-hint { display: block; text-align: center; color: var(--muted); font-size: 11.5px; margin-top: 2px; }
+    .mg-elist { display: grid; gap: 10px; } .mg-eit { display: flex; gap: 12px; text-align: left; padding: 12px 14px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); color: inherit; cursor: pointer; font: inherit; }
+    .mg-eit > span { font-size: 28px; } .mg-eit b { display: block; font: 800 16px Georgia, serif; } .mg-eit small { color: var(--muted); font-size: 12.5px; line-height: 1.4; }
+    .mg-sheetp { position: relative; padding: 1.2em; border-radius: 12px; font: 15px/1.55 Georgia, serif; background: var(--mp); color: var(--mi); } .mg-sheetp p { margin: 0 0 .75em; }
+    @media (prefers-reduced-motion: reduce) { .mg-lf, .mg-book, .mg-mini { transition-duration: .01s; } .mg-lf.mv .mg-fc::after { animation: none; } }
+  </style>`;
   // 🔗 site bağlantıları: ilk sonucun altında [etiket, bağlantı, (ui ayarı: sitedeki filtre)]
   const BB_LINKS = {
     carmen: [['👑 VIP', '#/carmen', { cmF: 'vip' }], ['✨ Yeni ilanlar', '#/carmen', { cmF: 'new' }], ['● Çevrimiçi', '#/carmen', { cmF: 'on' }], ['🔥 Kondomsuz', '#/carmen', { cmF: 'raw' }]],
@@ -3778,6 +4167,7 @@
     fans: [['🫦 Tüm hesaplar', '#/fans', { fnTab: 'all' }], ['⭐ Aboneliklerim', '#/fans', { fnTab: 'subs' }]],
     jobs: [['💼 Tüm ilanlar', '#/is'], ['🏢 Ofis İlanları', '#/is/ofis'], ['🏋️ Spor Salonu İlanları', '#/is/spor']],
     doodle: [['🎨 Bugünün doodle\'ı', '#/doodle'], ['🗓️ Doodle takvimi', '#/doodle']],
+    mag: [['📚 Dergi bayii', '#/dergi'], ['🔖 Kaldığım yer', '#/dergi/devam'], ['🎓 Seks eğitimi', '#/dergi/egitim']],
     secret: [['🔑 Gizli Buluşma', '#/gizli', { seF: 'gizli' }], ['🥂 Yıldönümü Sapağı', '#/gizli', { seF: 'yil' }], ['💍 Hotwife', '#/gizli', { seF: 'hw' }], ['🐍 Tüm ilanlar', '#/gizli', { seF: '' }]]
   };
   // ✏️ "Şunu mu demek istediniz": site adı / adresi / anahtarı arasında en yakın yazım (Levenshtein)
@@ -3868,9 +4258,10 @@
       { k: 'tinder', href: '#/tinder', ic: '🔥', logo: 'Carmen<i>Tinder</i>', url: 'carmentinder.com', desc: 'Kaydır, eşleş, yaz: sağa kaydırırsan sohbet açılır ve ilk selamı o verir. 💘 Seni beğenenler ilk mesajlarını çoktan yazmış. ⭐ süper beğeni, filtreler, geri al.', chips: [`💘 ${chars().length} eşleşme`, '👆 kaydır'] },
       { k: 'bumble', href: '#/bumble', ic: '🐝', logo: 'Carmen<i>Bumble</i>', url: 'carmenbumble.com', desc: 'Tinder\'ın ateşli kardeşi: kızlar şehvetli, profilleri açık sözlü ("şu an çıplağım", "favori pozisyonum…"). İlk mesajı hep o atar.', chips: [`🐝 ${chars().filter(x => x.src === 'bm').length} eşleşme`, '🔥 18+'] },
       { k: 'fans', href: '#/fans', ic: '🫦', logo: 'Carmen<i>Fans</i>', url: 'carmenfans.com', desc: 'Abone ol, kilitli gönderileri aç; haftanın kostümü ve özel içerikler.', chips: [`${Object.keys(fnState().subs).length} abonelik`, '📢 haftalık kostüm'] },
+      { k: 'mag', href: '#/dergi', ic: '📖', logo: 'Carmen<i>Mag</i>', url: 'carmenmag.com', desc: 'Erotik dergi bayii: Velvet, Ateş, Noir ve Ten. Sayfaları gerçek dergi gibi çevir; kapak kızlarının anlatımlı fotoğraf setleri, röportajlar, seanslar, pozisyon önerileri, seks eğitimi ve site reklamları. Dergi, magazin.', chips: [`📖 ${MG().titles.length} dergi`, '🆕 her ay yeni sayı'] },
       { k: 'stay', href: '#/otel', ic: '🏨', logo: 'Carmen<i>Stay</i>', url: 'carmenstay.com', desc: 'Otel odası, jakuzili süit, VIP loca… rezervasyon yap, sohbet orada başlasın.', chips: [`${SY_VENUES.length} mekan`, `🗓️ ${syRes().length} rezervasyon`] },
       { k: 'gram', href: '#/gram', ic: '📸', logo: 'Carmen<i>tagram</i>', url: 'carmentagram.com', desc: 'Instagram gibi: akış, hikayeler, profiller. Beğen, yorum yap (o da cevap verir), takip et, DM at.', chips: [`${cmAll().length} hesap`, `➕ ${Object.keys(grState().follow).length} takip`] },
-      { k: 'flix', href: '#/flix', ic: '🍿', logo: 'Carmen<i>Flix</i>', url: 'carmenflix.com', desc: 'Netflix gibi: film ve diziler yazışma olarak oynar. Aldatma, iş yeri, fantezi, komşular…', chips: [`${fxAll().filter(t => t.k === 'film').length} film`, `${fxAll().filter(t => t.k === 'dizi').length} dizi`] },
+      { k: 'flix', href: '#/flix', ic: '🍿', logo: 'Carmen<i>Flix</i>', url: 'carmenflix.com', desc: 'Netflix gibi: filmler yazışma olarak oynar. Lezbiyen, aldatma, grup; olay olay, güçlü anlatımla.', chips: [`${fxAll().filter(t => t.k === 'film').length} film`, '👩‍❤️‍👩 Lezbiyen'] },
       { k: 'live', href: '#/canli', ic: '🎥', logo: 'Carmen<i>Live</i>', url: 'carmenlive.com', desc: 'Canlı yayınlar: bahşiş gönder, dans ettir, kostüm değiştirt, özel yayına geç.', chips: [`🔴 ${cmAll().filter(cmOnline).length} canlı`, '🎯 bahşiş hedefi'] },
       { k: 'shop', href: '#/shop', ic: '🛍️', logo: 'Carmen<i>Shop</i>', url: 'carmenshop.com', desc: 'Oyuncak, iç çamaşırı, kostüm. Kargo gelince sohbette "Paketin geldi, açayım mı? 😏"', chips: [`${shopProds().length} ürün`, `📦 ${shopData().orders.filter(o => !o.done).length} yolda`] },
       { k: 'jobs', href: '#/is', ic: '💼', logo: 'Carmen<i>Jobs</i>', url: 'carmenjobs.com', desc: 'Onun iş yerine başvur: mülakat Patron – Sekreter, Doktor, Hoca gibi rol fantezileriyle başlar.', chips: [`${cmAll().filter(c => c.job).length} ilan`, '🎭 rol hazır'] },
@@ -3915,6 +4306,7 @@
     bumble: [['🐝', 'Eşleş', '#/bumble'], ['💬', 'Mesajlar', '#/bumble/x-mesaj']],
     oyun: [['🎮', 'Oyunlar', '#/oyun'], ['🗂️', 'Problematic', '#/oyun/ps'], ['🔥', 'Passions', '#/oyun/fp']],
     events: [['📚', 'Dersler', '#/events'], ['🎬', 'Sahneler', '#/events/sahneler'], ['📖', 'Bölümler', '#/events/bolumler']],
+    dergi: [['📚', 'Bayi', '#/dergi'], ['🔖', 'Kaldığım yer', '#/dergi/devam'], ['🎓', 'Eğitim', '#/dergi/egitim']],
     kilise: [['🕯️', 'İlanlar', '#/kilise', { kcF: '' }], ['🙏', 'İtiraf', '#/kilise/x-itiraf'], ['📅', 'Ayinler', '#/kilise/x-ayin']],
     masaj: [['💆', 'Masözler', '#/masaj', { mzF: '' }], ['📅', 'Randevu', '#/masaj/x-randevu'], ['🎟️', 'Spa kartı', '#/masaj/x-kart']],
     gizli: [['🐍', 'İlanlar', '#/gizli', { seF: '' }], ['🔐', 'Kutu', '#/gizli/x-kutu'], ['🕵️', 'Şüphe', '#/gizli/x-iz'], ['💬', 'Mesajlar', '#/gizli/x-mesaj']]
@@ -10096,56 +10488,12 @@
     re();
   }
   /* 🎬 CarmenFlix (#/flix, #/flix/<id>, #/flix/<id>/<bölüm>): Netflix gibi; film ve diziler yazışma olarak sırayla oynar.
+   * v1116: hazır yapımlar sadece js/data/flix.js'teki elle yazılmış filmler (x.lines); FX_TROPE üreteci stüdyonun 🎲 doldurması için kalır.
    * Başrol: ilanlardan / karakterlerinden bir kadın (fotoğraf) + bir erkek adı. Senaryo konuya göre (FX_TROPE) ve genel havuzlardan
    * tohumla kurulur: aynı bölüm hep aynı. İzleme durumu bu tarayıcıda: amor-stories:flix { last: {id, ep}, seen: {id: [ep]}, list: [id] } */
   const FX_MEN = ['Kerem', 'Mert', 'Emre', 'Can', 'Burak', 'Ozan', 'Deniz', 'Arda', 'Kaan', 'Tolga', 'Cem', 'Onur', 'Barış', 'Selim', 'Efe'];
-  const FX_TITLES = [
-    { id: 'komsu', k: 'film', t: 'Kapı Komşusu', tr: 'komsu', g: ['komsu', 'aldatma'], p: 'Yan daire', tag: 'Duvarlar ince, geceler uzun.', desc: 'Yanlış kapıya gelen bir kargo, iki komşuyu aynı duvarın iki yanından tek bir yatağa taşır. Kocası şehir dışındayken her ses bir davettir.' },
-    { id: 'mesai', k: 'film', t: 'Mesai Sonrası', tr: 'patron', g: ['is'], p: 'Plaza, 32. kat', tag: 'Herkes gitti. Rapor bahaneydi.', desc: 'Genç asistan ve soğuk patronu; boş bir plazada bitmeyen bir rapor ve kilitlenen bir kapı.' },
-    { id: 'ders', k: 'film', t: 'Son Ders', tr: 'hoca', g: ['is', 'fantezi'], p: 'Kampüs, ofis 214', tag: 'Ofis saati 18:00\'de başlar.', desc: 'Final haftası. Notu sınırda bir öğrenci ve gözünü ondan alamayan hocası. Ekstra ödev hiç bu kadar uzun sürmemişti.' },
-    { id: 'muayene', k: 'film', t: 'Muayene', tr: 'doktor', g: ['is', 'fantezi'], p: 'Özel klinik', tag: 'Tam muayene. Sütyen dahil.', desc: 'Göğsündeki ağrıyı anlatmaya gelen kadın, doktorun stetoskopunu tenine değdirdiği an teşhisi değiştirir.' },
-    { id: 'yasakoda', k: 'film', t: 'Yasak Oda', tr: 'otel', g: ['aldatma', 'romantik'], p: 'Otel Lumière, 507', tag: 'Kocası yan odada uyuyor.', desc: 'Balayı süitinin yanındaki odada jakuzi bozulur; tamire gelen resepsiyonist aletleriyle değil, dudaklarıyla gelir.' },
-    { id: 'asansor', k: 'film', t: 'Asansör', tr: 'yabanci', g: ['yabanci'], p: 'Asansör, 14. kat', tag: '40 dakika. İki yabancı. Sıcak.', desc: 'Asansör katlar arasında durur. İki yabancı, bir karar ve buğulanan aynalar.' },
-    { id: 'eski', k: 'film', t: 'Düğünden Önceki Gece', tr: 'eski', g: ['aldatma', 'romantik'], p: 'Eski evleri', tag: 'Bir son kez. Belki.', desc: 'Yarın evleniyor. Bu gece ise eski sevgilisinin kapısında; aynı parfüm, aynı bakış, aynı hata.' },
-    { id: 'kar', k: 'film', t: 'Kar Fırtınası', tr: 'tatil', g: ['romantik', 'yabanci'], p: 'Dağ evi', tag: 'Elektrik yok. Battaniye tek.', desc: 'Kar iki yabancıyı aynı dağ evine kapatır. Şömine yanar, battaniye paylaşılır, kimse üşümez.' },
-    { id: 'kostum', k: 'film', t: 'Maskeli Balo', tr: 'kostum', g: ['fantezi'], p: 'Kostüm partisi', tag: 'Maske kalır. Gerisi çıkar.', desc: 'Kedi kulaklı bir kadın ve tasmalı bir yabancı. Kimse kimsenin adını bilmez; sabaha kadar bilmeyecekler de.' },
-    { id: 'masaj', k: 'film', t: 'Özel Paket', tr: 'masaj', g: ['fantezi', 'is'], p: 'Lotus Spa', tag: 'Havlu isteğe bağlıdır.', desc: 'Sırtı gergin bir müşteri, yağları ısıtan bir masöz ve menüde olmayan "özel paket".' },
-    { id: 'nedime', k: 'film', t: 'Nedime', tr: 'aldatma', g: ['aldatma'], p: 'Düğün salonu, vestiyer', tag: 'Buket havada, nedime kayıp.', desc: 'Düğünün ortasında damadın sağdıcı ve gelinin nedimesi vestiyerde kaybolur. Yemin edenler başkaları, yemini bozanlar onlar.' },
-    { id: 'tren', k: 'film', t: 'Gece Treni', tr: 'yabanci', g: ['yabanci', 'romantik'], p: 'Kompartıman 7', tag: 'Sabaha kadar sadece ikisi.', desc: 'Doğu Ekspresi, tek kompartıman, iki yabancı. Raylar sallar, onlar durmaz.' },
-    { id: 'evarkadasi', k: 'dizi', eps: 6, t: 'Ev Arkadaşları', tr: 'oda', g: ['komsu', 'romantik'], p: 'Kadıköy, 3+1', tag: 'Kural: ev arkadaşları arasında asla.', desc: 'Üç kişilik bir evde tek bir kural vardır ve ilk hafta yıkılır. Banyo kapısı, gece mutfağı, ince duvarlar.' },
-    { id: 'plaza', k: 'dizi', eps: 5, t: 'Plaza', tr: 'patron', g: ['is', 'aldatma'], p: 'Atlas Holding', tag: 'Terfi listesinde adın var.', desc: 'Evli CEO ve yeni asistanı. Toplantı odaları, iş seyahatleri ve bir türlü ters çevrilmeyen bir aile fotoğrafı.' },
-    { id: 'komsular', k: 'dizi', eps: 5, t: 'Komşular', tr: 'komsu', g: ['komsu', 'aldatma'], p: 'Bahçeli site', tag: 'Her ev bir sır saklar.', desc: 'Bahçeli bir sitede kocalar işe gider, kapılar aralanır. Balkonlar, havuz ve herkesin herkesi duyduğu geceler.' },
-    { id: 'sadakatsiz', k: 'dizi', eps: 6, t: 'Sadakatsiz Kalpler', tr: 'aldatma', g: ['aldatma', 'romantik'], p: 'Nişantaşı', tag: 'Yüzüğünü çıkarmadı. Bilsin diye.', desc: 'Mükemmel görünen bir evlilik, bir yabancının mesajıyla çatlar. Her bölümde yalan biraz daha büyür, tutku biraz daha ateşlenir.' },
-    { id: 'kampus', k: 'dizi', eps: 5, t: 'Kampüs', tr: 'hoca', g: ['is', 'fantezi'], p: 'Kuzey Üniversitesi', tag: 'Final sınavı yarın.', desc: 'Genç bir akademisyen ve parlak öğrencisi. Ofis saatleri, kütüphane rafları ve kimsenin bilmemesi gereken notlar.' },
-    { id: 'lumiere', k: 'dizi', eps: 5, t: 'Otel Lumière', tr: 'otel', g: ['aldatma', 'fantezi'], p: 'Otel Lumière', tag: 'Her odanın bir hikayesi var.', desc: 'Lüks bir otelin resepsiyonisti her gece başka bir odaya çağrılır. Oda servisi asla sadece şampanya değildir.' },
-    { id: 'yaz', k: 'dizi', eps: 4, t: 'Yaz Aşkı', tr: 'tatil', g: ['romantik', 'yabanci'], p: 'Bodrum', tag: 'Tatil bitmedi daha.', desc: 'Bir yaz, bir otel, bir animatör. Gece kapalı havuzlar, mayosuz yüzmeler ve dönüş bileti olmayan bir aşk.' },
-    { id: 'kulup', k: 'dizi', eps: 6, t: 'Fantezi Kulübü', tr: 'fantezi', g: ['fantezi'], p: 'Kırmızı Kulüp', tag: 'Kural basit: hayır demek yok.', desc: 'Maskeli bir kulüpte her hafta yeni bir rol: polis, hizmetçi, öğretmen… Gözler bağlı, kelepçeler hazır.' },
-    { id: 'hastane', k: 'dizi', eps: 4, t: 'Gece Vardiyası', tr: 'doktor', g: ['is', 'aldatma'], p: 'Şifa Hastanesi', tag: 'Koridorda sadece ikisi.', desc: 'Evli bir doktor ve gece vardiyasındaki hemşire. Boş muayene odaları, nöbet odası ve hızlanan kalp atışları.' },
-    { id: 'mesajlar', k: 'dizi', eps: 4, t: 'Kayıp Mesajlar', tr: 'eski', g: ['romantik', 'aldatma'], p: 'İstanbul', tag: '"Hâlâ o dövmen var mı?"', desc: 'Yıllar sonra gelen tek bir mesaj, iki eski sevgiliyi evliliklerinin ortasında yeniden buluşturur.' },
-    { id: 'salon', k: 'dizi', eps: 4, t: 'Spor Salonu', tr: 'spor', g: ['is', 'fantezi'], p: 'FitLife', tag: 'Son set. Son tekrar.', desc: 'Kişisel antrenör ve en hevesli öğrencisi. Kapanıştan sonra soyunma odası, duşlar ve "özel program".' },
-    { id: 'kostumgece', k: 'dizi', eps: 3, t: 'Kostüm Gecesi', tr: 'kostum', g: ['fantezi'], p: 'Amour Otel', tag: 'Kuyruğun gerçek mi?', desc: 'Kedi, tavşan, hemşire, polis… Her bölüm yeni bir kostüm, aynı iki kişi ve aynı açlık.' }
-  ];
-  FX_TITLES.push(
-    { id: 'uclu', k: 'film', t: 'Üçümüz', tr: 'grupK', g: ['grup', 'fantezi'], p: 'Çatı katı', tag: 'Bir sürpriz, iki kadın.', desc: 'Sevgilisi ona bir sürpriz hazırlamıştır: kapıda en yakın arkadaşı durmaktadır. Bir yatak, üç kişi, sabaha kadar süren bir gece.' },
-    { id: 'ikiadam', k: 'film', t: 'İki Kat Arzu', tr: 'grupE', g: ['grup', 'fantezi'], p: 'Otel süiti', tag: 'Bu gece biri yetmez.', desc: 'Kocasına itiraf ettiği fanteziyi gerçeğe dönüştürür: kapı çalar ve odaya ikinci bir adam girer.' },
-    { id: 'izleyici', k: 'film', t: 'İzleyici', tr: 'izle', g: ['grup', 'fantezi'], p: 'Yatak odaları', tag: 'Kocası koltukta. Gözleri karısında.', desc: 'Yıllardır konuştukları fantezi: kocası koltuğa oturur, karısı bir yabancıyla yatağa uzanır. O sadece izleyecektir… belki.' },
-    { id: 'erkengeldi', k: 'film', t: 'Kocam Erken Geldi', tr: 'basma', g: ['aldatma'], p: 'Evleri', tag: 'Anahtar kilitte döndü.', desc: 'Kocası iş seyahatindedir, sevgilisi yatağındadır. Ta ki anahtar kilitte dönene kadar.' },
-    { id: 'swing', k: 'dizi', eps: 4, t: 'Swing Kulübü', tr: 'grupK', g: ['grup', 'fantezi'], p: 'Kırmızı Kulüp', tag: 'Her hafta yeni bir çift.', desc: 'Bir çift, bir kulüp ve her hafta yatağa katılan yeni biri. Kıskançlık mı, tutku mu; sınırlar her bölümde biraz daha bulanıklaşır.' },
-    { id: 'ciftler', k: 'dizi', eps: 4, t: 'Seyirci Koca', tr: 'izle', g: ['grup', 'aldatma'], p: 'Nişantaşı', tag: '"Sadece izleyeceğim" dedi.', desc: 'Evliliklerini canlandırmak için bir anlaşma yaparlar: o izleyecek, karısı yaşayacak. Her bölümde kural biraz daha esner.' },
-    { id: 'yakalandik', k: 'dizi', eps: 4, t: 'Yakalandık', tr: 'basma', g: ['aldatma'], p: 'Bahçeli site', tag: 'Her bölüm bir kapı açılır.', desc: 'Komşuyla başlayan bir yasak aşk. Her bölüm yeni bir sevişme, her bölüm biraz daha yakın bir yakalanma.' }
-  );
-  // 🎭 rol dizileri (rp: fantezi anahtarı): "💬 Rolü oyna" sohbeti o rolle, kostümüyle açar (rpOpen)
-  FX_TITLES.push(
-    { id: 'rpmelek', k: 'dizi', eps: 3, t: 'Düşen Melek', tr: 'rp_melek', rp: 'fxrpmelek', g: ['fantezi', 'rol'], p: 'Çatı katı', tag: 'Cennetten düştü. Seninle kaldı.', desc: 'Kanadı yaralı bir melek bir çatı katına düşer. Onu bulan adam ona dünyayı öğretir; o da ona ilk günahını.' },
-    { id: 'rpkaptan', k: 'dizi', eps: 3, t: 'Fırtınalı Sular', tr: 'rp_kaptan', rp: 'fxrpkaptan', g: ['fantezi', 'rol'], p: 'Kızıl Martı gemisi', tag: 'Kaptanın emri: kamaraya.', desc: 'Sert bir kadın kaptan ve gemiye yeni katılan tayfa. Fırtına dışarıda, asıl dalgalar kamarada.' },
-    { id: 'rpkral', k: 'dizi', eps: 3, t: 'Taç', tr: 'rp_kral', rp: 'fxrpkral', g: ['fantezi', 'rol'], p: 'Kraliyet sarayı', tag: 'Diz çök. Sonra kalk.', desc: 'Kibirli bir kraliçe ve sadık hizmetkârı. Taht odasında her emir biraz daha yakın, biraz daha yasak.' },
-    { id: 'rprobot', k: 'dizi', eps: 3, t: 'Protokol', tr: 'rp_robot', rp: 'fxrprobot', g: ['fantezi', 'rol'], p: 'Harabe şehir', tag: 'Duygular yasak. Sistem ısınıyor.', desc: 'Savaş sonrası harabelerde bir komutan ve göz bantlı androidi. Her görevden sonra protokolün bir satırı daha siliniyor.' },
-    { id: 'rpelf', k: 'dizi', eps: 3, t: 'Ay Ormanı', tr: 'rp_elf', rp: 'fxrpelf', g: ['fantezi', 'rol', 'romantik'], p: 'Ay tapınağı', tag: 'Bin yıl bekledi. Bir gece yeter.', desc: 'Ölümsüz bir elf prensesi ve onu korumaya yemin etmiş bir şövalye. Yemin ay doğduğunda bozulur.' },
-    { id: 'rphostes', k: 'dizi', eps: 3, t: 'Gece Uçuşu', tr: 'rp_hostes', rp: 'fxrphostes', g: ['fantezi', 'rol', 'yabanci'], p: 'Uçuş 707, birinci sınıf', tag: 'Işıklar söndü. Servis başlıyor.', desc: 'Gece uçuşunda uyuyamayan tek yolcu ve kırmızı üniformalı hostes. On iki saat, bir battaniye ve dar bir lavabo.' },
-    { id: 'rprahibe', k: 'dizi', eps: 3, t: 'Günah Çıkarma', tr: 'rp_rahibe', rp: 'fxrprahibe', g: ['fantezi', 'rol'], p: 'Eski manastır', tag: 'İtiraf et. Sonra tekrar et.', desc: 'Gece yarısı manastırın kapısını çalan bir günahkâr ve masum görünen genç rahibe. Mumlar söner, yeminler bozulur.' },
-    { id: 'rptaksi', k: 'dizi', eps: 3, t: 'Gece Taksisi', tr: 'rp_taksi', rp: 'fxrptaksi', g: ['fantezi', 'rol', 'yabanci'], p: 'Sarı taksi, 34 GT 07', tag: 'Taksimetre çalışıyor.', desc: 'Şehrin tek kadın gece şoförü ve arka koltuktaki yolcu. Her gece başka bir yol, her gece aynı sapak.' }
-  );
-  const FX_GENRE = { rol: '🎭 Rol dizileri', grup: '👥 Grup & izleyici', aldatma: '💔 Aldatma', is: '💼 İş yerinde', fantezi: '🎭 Fantezi & kostüm', romantik: '🌹 Romantik', komsu: '🏠 Komşular & ev', yabanci: '🌙 Yabancılar' };
+  const FX_TITLES = (Stories.FLIX || []).slice(); // 🍿 elle yazılmış filmler: js/data/flix.js
+  const FX_GENRE = { lezbiyen: '👩‍❤️‍👩 Lezbiyen', rol: '🎭 Rol dizileri', grup: '👥 Grup & izleyici', aldatma: '💔 Aldatma', is: '💼 İş yerinde', fantezi: '🎭 Fantezi & kostüm', romantik: '🌹 Romantik', komsu: '🏠 Komşular & ev', yabanci: '🌙 Yabancılar' };
   const FX_TROPE = {
     komsu: { open: [[['b', 'Merhaba, ben yan daireden {b}. Kargonuz yanlışlıkla bana gelmiş 📦'], ['a', 'Aa teşekkürler! İçinde ne olduğunu sormadın değil mi? 🙈'], ['b', 'Kutunun üstünde "gizli paket" yazıyordu… merak etmedim desem yalan olur 😏'], ['a', 'Gel bir kahve iç, belki gösteririm ☕']],
       [['a', 'Komşu, gece müziğin çok yüksekti 😤'], ['b', 'Özür dilerim… senin sesin de çok yüksekti ama ben şikâyet etmedim 😏'], ['a', 'Duydun mu?! 😳'], ['b', 'Duvarlar ince {a}. Her şeyi duyuyorum.']]],
@@ -10283,7 +10631,8 @@
   const fxAll = () => [...fxOwn(), ...FX_TITLES];
   const fxEps = x => x.own ? Math.max(1, (x.eps || []).length) : x.k === 'film' ? 1 : x.eps;
   const fxEpName = (x, i) => x.own ? ((x.eps[i - 1] || {}).name || (x.k === 'film' ? x.t : `Bölüm ${i}`)) : x.k === 'film' ? x.t : i === fxEps(x) ? 'Final' : i === 1 ? FX_EPN[0] : FX_EPN[1 + (i - 2 + +sysHash(x.id) % 3) % (FX_EPN.length - 1)];
-  const fxLen = (x, i) => x.k === 'film' ? `1 sa ${20 + +sysHash('fl' + x.id) % 40} dk` : `${22 + +sysHash(`fl${x.id}${i}`) % 18} dk`;
+  const fxLen = (x, i) => x.len || (x.k === 'film' ? `1 sa ${20 + +sysHash('fl' + x.id) % 40} dk` : `${22 + +sysHash(`fl${x.id}${i}`) % 18} dk`);
+  const fxTx = (x, t) => String(t || '').replace(/\{([abcmk])\}/g, (_, k) => fxCast(x)[k]);
   function fxCast(x) {
     const all = cmAll(), cast = x.cast || {}, her = (cast.her && cmFind(cast.her)) || (all.length ? all[+sysHash('fxc' + x.id) % all.length] : null);
     // 👥 ikinci kadın (fotoğraflı), ikinci erkek ve koca: kalabalık konularda
@@ -10298,6 +10647,7 @@
   function fxScript(x, ep, raw) {
     const c = fxCast(x), fill = t => raw ? t : t.replace(/\{([abcmk])\}/g, (_, k) => c[k]);
     if (x.own) return ((x.eps[ep - 1] || {}).lines || []).filter(l => l[1]).map(([w, t]) => [w, fill(t)]);
+    if (x.lines) return x.lines.map(([w, t]) => [w, fill(t)]);
     const r = fxRnd(x.id + ':' + ep), pk = a => a[Math.floor(r() * a.length)], sh = a => a.map(v => [r(), v]).sort((p, q) => p[0] - q[0]).map(v => v[1]);
     const T = FX_TROPE[x.tr] || FX_TROPE.aldatma, film = x.k === 'film', out = [];
     const add = rows => rows.forEach(([w, t]) => out.push([w, fill(t)]));
@@ -10332,6 +10682,27 @@
       ${x.k === 'dizi' ? '<em class="fx-tag">DİZİ</em>' : ''}${seen && seen < fxEps(x) ? `<i class="fx-pb" style="--w:${seen / fxEps(x) * 100}%"></i>` : ''}</a>`; };
   const fxRow = (title, list, cls) => list.length ? `<section class="fx-row"><h3>${title}</h3><div class="fx-scroll">${list.map((x, i) => cls === 'top' ? `<span class="fx-top"><b>${i + 1}</b>${fxPoster(x)}</span>` : fxPoster(x)).join('')}</div></section>` : '';
   const fxBar = back => `<div class="fx-bar"><a class="cm-back" href="${back}" aria-label="Geri">${ICON.arrowLeft}</a><a class="fx-logo" href="#/flix">CARMENFLIX</a><span></span>${ctxHelp('cm-back')}</div>`;
+  // 🏠 ana sayfa: CarmenFlix film reklamları (her film bir afiş kartı)
+  const FX_HOME_CSS = `<style>
+    .fx-home { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(230px, 1fr); gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 4px; margin-bottom: 18px; }
+    .fx-ad { position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 250px; padding: 14px; border-radius: 16px; overflow: hidden; color: #fff; text-decoration: none; scroll-snap-align: start; background: var(--mtbg, #300); box-shadow: 0 6px 18px rgba(0,0,0,.35); }
+    .fx-ad > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .fx-ad::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.25) 35%, rgba(10,0,0,.92)); }
+    .fx-ad > * { position: relative; z-index: 1; } .fx-ad > img { z-index: 0; }
+    .fx-ad .fx-adtop { position: absolute; top: 10px; left: 12px; right: 12px; display: flex; justify-content: space-between; align-items: center; font: 900 11px system-ui; letter-spacing: .14em; color: #e50914; text-shadow: 0 1px 3px #000; }
+    .fx-ad .fx-adtop em { font-style: normal; letter-spacing: .04em; color: #fff; background: rgba(0,0,0,.55); padding: 2px 8px; border-radius: 99px; font-weight: 700; }
+    .fx-ad small { font: 700 11px system-ui; opacity: .85; } .fx-ad b { font: 900 24px/1.05 system-ui; margin: 3px 0 4px; text-transform: uppercase; letter-spacing: .02em; }
+    .fx-ad p { margin: 0 0 10px; font-size: 13px; line-height: 1.35; opacity: .92; }
+    .fx-ad .fx-adgo { align-self: flex-start; background: #fff; color: #111; font: 800 13px system-ui; padding: 6px 14px; border-radius: 6px; }
+  </style>`;
+  function fxHomeCard() {
+    if (!FX_TITLES.length) return '';
+    const st = fxState();
+    return `${FX_HOME_CSS}<div class="hl-sec"><h3>🍿 Carmen<i>Flix</i> · şimdi yayında <em class="hl-news-nw">Reklam</em></h3><a href="#/flix">Tümü ›</a></div>
+      <div class="fx-home">${FX_TITLES.map(x => { const c = fxCast(x), seen = (st.seen[x.id] || []).length; return `<a class="fx-ad" href="#/flix/${x.id}" style="--mtbg:${esc(c.her ? grad(c.her) : 'linear-gradient(135deg,#e50914,#300)')}">
+        ${c.her && c.her.photo ? `<img src="${esc(c.her.photo)}" alt="" loading="lazy" onerror="this.remove()">` : ''}<span class="fx-adtop">CARMENFLIX<em>${seen ? '✓ izlendi' : '🆕 Yeni film'}</em></span>
+        <small>${[...x.g.map(g => FX_GENRE[g]), fxLen(x, 1)].map(s => `<span>${esc(s)}</span>`).join(' · ')}</small><b>${esc(x.t)}</b><p>${esc(x.tag)}</p><span class="fx-adgo">▶ ${seen ? 'Tekrar izle' : 'Şimdi izle'}</span></a>`; }).join('')}</div>`;
+  }
   function renderFlix(id, ep) {
     clearTimeout(ui.fxT);
     const ALL = fxAll(), x = id && ALL.find(t => t.id === id);
@@ -10361,8 +10732,8 @@
       <div class="fx-body">
         <div class="fx-acts"><a class="fx-play" href="#/flix/${x.id}/${next}">▶ ${seen.length ? 'Devam et' : 'Oynat'}${x.k === 'dizi' ? ` · B${next}` : ''}</a>
           <button type="button" class="fx-info" id="fxList">${inList ? '✓ Listemde' : '➕ Listem'}</button>${c.her ? '<button type="button" class="fx-info" id="fxRole">💬 Rolü oyna</button>' : ''}</div>
-        <p class="fx-desc">${esc(x.desc)}</p>
-        <p class="fx-cast"><small>Başrol:</small> ${esc(c.her ? c.her.name : c.a)}, ${esc(c.b)}${(() => { const sp = new Set(Array.from({ length: fxEps(x) }, (_, i) => fxScript(x, i + 1)).flat().map(l => l[0])); return [sp.has('c') && (c.her2 ? c.her2.name : c.c), sp.has('m') && c.m, sp.has('k') && `${c.k} (koca 💍)`].filter(Boolean).map(n => ', ' + esc(n)).join(''); })()} · <small>Tür:</small> ${x.g.map(g => FX_GENRE[g]).join(', ')} · <small>Mekan:</small> ${esc(x.p)}</p>
+        <p class="fx-desc">${esc(fxTx(x, x.desc))}</p>
+        <p class="fx-cast"><small>Başrol:</small> ${esc(c.her ? c.her.name : c.a)}${(() => { const sp = new Set(Array.from({ length: fxEps(x) }, (_, i) => fxScript(x, i + 1)).flat().map(l => l[0])); return [(!x.lines || sp.has('b')) && c.b, sp.has('c') && (c.her2 ? c.her2.name : c.c), sp.has('m') && c.m, sp.has('k') && `${c.k} (koca 💍)`].filter(Boolean).map(n => ', ' + esc(n)).join(''); })()} · <small>Tür:</small> ${x.g.map(g => FX_GENRE[g]).join(', ')} · <small>Mekan:</small> ${esc(x.p)}</p>
         ${x.k === 'dizi' ? `<h3>Bölümler</h3><div class="fx-eps">${Array.from({ length: n }, (_, i) => i + 1).map(i => `<a class="fx-ep${seen.includes(i) ? ' seen' : ''}" href="#/flix/${x.id}/${i}">
           <b>${i}</b><span><strong>${esc(fxEpName(x, i))}</strong><small>${fxLen(x, i)}${seen.includes(i) ? ' · ✓ izlendi' : ''}</small><small>${esc((fxScript(x, i).find(l => l[0] === 'a' || l[0] === 'b') || [, ''])[1])}</small></span><i>▶</i></a>`).join('')}</div>` : ''}
         <h3>Benzer içerikler</h3><div class="fx-scroll">${fxAll().filter(t => t !== x && t.g.some(g => x.g.includes(g))).slice(0, 8).map(t => fxPoster(t)).join('')}</div>
@@ -11266,6 +11637,7 @@
   const helperMin = v => { try { if (v != null) localStorage.setItem('amor-stories:helper', v ? 'min' : ''); return localStorage.getItem('amor-stories:helper') === 'min'; } catch (e) { return false; } };
   function drawHelper(open) {
     let el = document.getElementById('helper');
+    if (!open) { if (el) el.remove(); return; }
     if (!el) { el = document.createElement('div'); el.id = 'helper'; document.body.appendChild(el); }
     const key = helpKey(), tips = HELP[key], chap = HELP_BOOK[key] || 'Sohbetin temelleri';
     if (ui.helpKey !== key) { ui.helpKey = key; ui.helpI = 0; }
@@ -11829,7 +12201,7 @@
     const yer = Object.entries(A.yer).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([t, n]) => row('📍', t, `${n} olay`, 'y|' + t));
     const soz = A.soz.map((x, i) => row(x.yn === 'evet' ? '🤝' : '🙅', AN_SOZ_LAB[x.t] || x.t, `${x.yn === 'evet' ? 'evet dedin' : 'hayır dedin'} · ${anDay(x.at)} · ${x.done ? (x.yn === 'evet' ? '✅ tutuldu' : '😏 sonra yaptınız') : x.rem ? '🔔 hatırlattı' : '⏳ bekliyor'}`, 'z|' + i));
     const an = A.an.map((x, i) => row(x.ic, x.n, anDay(x.at), 'a|' + i));
-    // 🌱 yaşayan karakter (c.life)
+    // 🌱 yaşayan karakter (c.lf)
     const L = lfOf(c), X = LF(), bar = v => `<span style="display:inline-block;width:90px;height:6px;border-radius:3px;background:var(--line);vertical-align:middle;overflow:hidden"><i style="display:block;height:100%;width:${v}%;background:var(--accent,#c2185b)"></i></span>`;
     const grow = (X.GROW || []).map(([k, ic, l]) => `<div class="kw-row" style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--line)"><span>${ic}</span><span style="flex:1"><b>${esc(l)}</b></span>${bar(L.grow[k] || 0)}<small class="muted" style="width:28px;text-align:right">${L.grow[k] || 0}</small></div>`);
     const evo = (L.evo || []).map(x => row('🌱', `${x.f} → ${x.t}`, anDay(x.at)));
@@ -12373,7 +12745,7 @@
     #view .csk-v .csk-tag{background:var(--ska);color:var(--skaf)}
     #view .csk-v .hcard{background:var(--skc);border:1px solid var(--skb);color:var(--skcf);font-family:var(--skf,inherit)}
     #view .csk-v .composer,#view .csk-v .chat-tools{background:var(--skbar)}
-    #view .csk-v .composer input{background:var(--ski);border:1px solid var(--skb);color:var(--skcf);font-family:var(--skf,inherit)}
+    #view .csk-v .composer input{background:var(--ski,#fff);border:1px solid var(--skb,transparent);color:var(--skcf,#2a1d36);font-family:var(--skf,inherit)}
     #view .csk-v .send-btn{background:var(--ska);box-shadow:none}
     #view .csk-v .ct-main button{color:var(--ska)}
     html[data-theme=dark] #view .csk-v .hcard{background:var(--skc-d,var(--skc));color:var(--skcf-d,var(--skcf));border-color:var(--skb-d,var(--skb))}
@@ -12409,6 +12781,7 @@
     #view .csk-carmen .composer input::placeholder{color:#8a7346}
     #view .csk-carmen .send-btn{background:linear-gradient(135deg,#d4af37,#9c7a1c);box-shadow:none}
     #view .csk-carmen .ct-main button{color:#d4af37}
+    #view :is(.csk-live,.csk-secret,.csk-gothic,.csk-carmen) .ct-more{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);box-shadow:none}
     .sk-tinder .sk-row{background:#fff;border:1px solid #ffd3e2;color:#21262e}.sk-tinder .sk-row .ava{box-shadow:0 0 0 2px #fd267a}
     html[data-theme=dark] .sk-tinder .sk-row{background:#1d2229;border-color:#3a2430;color:#f0f0f0}
     .sk-gothic .sk-row{background:#140a1a;border:1px solid #3b1f4a;border-radius:4px;color:#e8dcef;font-family:Georgia,serif}.sk-gothic .sk-row b::after{content:" 🦇"}
@@ -12585,7 +12958,6 @@
             <button type="button" data-tool="tahmin" class="${tahminOn() ? 'on' : ''}"><span>🔮</span>Tahmin modu</button>
             <button type="button" data-tool="chg" class="${chgOn() ? 'on' : ''}"><span>📈</span>Değer değişimleri</button>
             <button type="button" data-tool="score" class="${scoreOn() ? 'on' : ''}"><span>🎯</span>Bot puanları</button>
-            <button type="button" data-tool="help"><span>💁‍♀️</span>Yardım</button>
             <button type="button" data-tool="boss"><span>🙈</span>Patron geldi</button>
           </div>
           <div class="ct-main"${(th.amor || (sk && sk.tool)) && !group ? '' : ' style="grid-template-columns:repeat(4,1fr)"'}>
@@ -13071,7 +13443,7 @@
      * Submissive %0 / diğerleri %10 sormadan yapar (olay ya da mekan kartı hemen); yoksa sorar. Döner: baloncuklar ya da null */
     function wantNow(ch, force, doIt) {
       const w = willOf(ch, th), lv = domLv(ch), n = list.length;
-      if (!force && (n - (th.wantAt == null ? -99 : th.wantAt) < 8 || Math.random() >= .06 + w * .03 + (lv === 'dom' ? .05 : 0) + ((((ch || {}).life || {}).grow || {}).cesur >= 60 ? .03 : 0))) return null;
+      if (!force && (n - (th.wantAt == null ? -99 : th.wantAt) < 8 || Math.random() >= .06 + w * .03 + (lv === 'dom' ? .05 : 0) + ((((ch || {}).lf || {}).grow || {}).cesur >= 60 ? .03 : 0))) return null;
       const low = s => String(s || '').toLocaleLowerCase('tr'), all = allEvents();
       const drunk = list.slice(-12).some(m => { const e = m.ev && all.find(x => x.id === m.ev); return !!e && low(catOfEv(e).label) === 'drinks'; });
       // 🦄 süren fantezi (sevişirken / hemen sonra) · 🌍 memleket · 🎭 kişilik (WANT_FX / WANT_REG / WANT_PER)
@@ -13545,7 +13917,7 @@
       const dEv = opts.events && domEvPool(ch, opts.olay);
       if (dEv) parts.push(pickOne(dEv));
       // ☕ gündelik olay: cevap r_ev_dl_* kuralından; life.js EV cümlesi %50 ikinci baloncuk (kural tutmazsa tek cevap). Gelişim eşiği cümlesi hep eklenir
-      const lfGr = opts.events && !group && ((ch || {}).life || {}).evGrow, lfE = opts.events && !group && opts.ev0 ? lfEvSay(ch, opts.ev0) : '';
+      const lfGr = opts.events && !group && ((ch || {}).lf || {}).evGrow, lfE = opts.events && !group && opts.ev0 ? lfEvSay(ch, opts.ev0) : '';
       if (lfE) parts = m.fallback ? [lfE] : [...parts.slice(0, 2), ...(Math.random() < .5 || lfGr ? [lfE] : [])];
       if (hardEv && cmdEv === hardEv) parts.push(pickOne(HARD_SAY));
       if (m.evq) parts = parts.map(p => p.replace(/\{olay\}/g, m.evq));
@@ -16550,7 +16922,6 @@
         draw();
         if (r.e) setTimeout(() => askSubs([r.e], writeEvents), 700);
       });
-      if (t === 'help') drawHelper(true);
       if (t === 'score') { scoreOn(!scoreOn()); b.classList.toggle('on', scoreOn()); draw(); notify(scoreOn() ? '🎯 Bot puanları görünüyor' : '🎯 Bot puanları gizli', '🤖'); }
       if (t === 'interrupts') { interruptsOn(!interruptsOn()); b.classList.toggle('on', interruptsOn()); notify(interruptsOn() ? '📱 Kesintiler açık · telefon, kapı, komşu… fantezilerde daha sık' : '📱 Kesintiler kapalı', '📱'); }
       if (t === 'stnote') { const v = (stNoteLvl() + 1) % 3, lb = ['Durum kartları: Kapalı', 'Durum kartları: Az', 'Durum kartları: Çok'][v]; stNoteLvl(v); b.classList.toggle('on', !!v); b.innerHTML = `<span>📰</span>${lb}`; notify(`📰 ${lb}`, '📰'); }
@@ -17048,7 +17419,9 @@
       const ab = (TH.backgrounds.find(b => b.id === t0.bg) || {}).auto;
       if (ab === 'place') { const ai = arriveIdx(), sc = ai >= 0 ? list[ai].scene : null; t.bg = (sc && (TH.places || {})[sc.place || sc.name]) || themeLive({ bg: 'auto' }).bg; }
       if (ab === 'hour') { const h = Math.floor((clockNow() % 1440) / 60); t.bg = ((TH.hours || []).filter(x => h >= x[0]).pop() || [0, 'night'])[1]; }
-      el.style.cssText = themeCss(t, look);
+      // site kaplamasının renk değişkenleri (pal) tema stiliyle silinmesin: giriş kutusu yazısı görünür kalsın
+      const skv = skVars(skinOf(th));
+      el.style.cssText = themeCss(t, look) + (skv ? ';' + skv : '');
       themeClasses(el, t);
       // 🌡️ Ruh hâli: senin Zevk'in arttıkça kenarlardan kızıl ışık (--zv 0–1), bitişte Zevk düşünce söner
       const zp = t0.mood && allParams().find(x => x.who === 'me' && String(x.label || '').toLocaleLowerCase('tr') === 'zevk');
@@ -17957,7 +18330,7 @@
     const name = ((ch || {}).memory || {}).ad || userName(), has = t => ((ch || {}).traits || []).includes(t);
     if (has('Soğuk') || has('Resmi konuşur')) return name;
     // 🏷️ taktığı lakap (🌱 c.life.lakap)
-    const lk = ((ch || {}).life || {}).lakap;
+    const lk = ((ch || {}).lf || {}).lakap;
     if (lk && Math.random() < .35) return lk;
     const p = allParams().find(x => x.who !== 'me' && String(x.label).toLocaleLowerCase('tr') === 'aşk'), ask = p && ch ? paramVal(ch, p) : 0;
     return ask >= 70 ? pickOne(['aşkım', 'bebeğim', 'canım', 'aşkım', 'hayatım', 'sevgilim']) : ask >= 30 ? pickOne([name, 'canım', 'tatlım']) : name;
@@ -18465,7 +18838,7 @@
     if (s) { s.rem = now; return AN_SOZ_SAY[s.t]; }
     return Math.random() < .5 ? anLine(c) : '';
   }
-  /* 🌱 Yaşayan karakter (v1108, veriler js/data/life.js Stories.LIFE). c.life = {
+  /* 🌱 Yaşayan karakter (v1108, veriler js/data/life.js Stories.LIFE). c.lf = {  (v1118'e kadar c.life; c.life sohbet dakikası sayacıdır)
    *   g: { k, s, at, mc } süren gündem · gdone: [{ k, at, mc }] · cat: kedinin adı (sen koydun) · mc: ona yazdığın mesaj sayısı
    *   grow: { guven, acik, bag, cesur } 0–100 kişilik gelişimi · ms: { 'acik50': at } eşik cümleleri · evo: [{ a, f, t, at }] özellik değişimi
    *   views: { k: onun cevabı, u_k: senin cevabın, d_k: ikilemde seçimin } · asked: { k: at }
@@ -18475,7 +18848,9 @@
   const LF = () => Stories.LIFE || {};
   const lfFill = (s, o) => String(s || '').replace(/\{(\w+)\}/g, (m, k) => o && o[k] != null ? o[k] : m);
   function lfOf(c) {
-    const L = c.life = c.life || {};
+    // v1118: hafıza c.lf'te; c.life sohbet dakikası (sayı). Eski kayıtta nesne / bozuk metin ise taşı ve sayacı sıfırla
+    if (c.life != null && typeof c.life !== 'number') { if (typeof c.life === 'object' && !c.lf) c.lf = c.life; c.life = 0; }
+    const L = c.lf = c.lf || {};
     if (!L.grow) L.grow = { guven: 20, acik: 20, bag: 20, cesur: 20 };
     ['views', 'asked', 'wc', 'seen', 'ms'].forEach(k => { if (!L[k]) L[k] = {}; });
     ['plans', 'emo', 'jokes', 'gdone', 'fbRecent'].forEach(k => { if (!L[k]) L[k] = []; });
@@ -18515,7 +18890,7 @@
     L.mood = k === 'baris' ? null : { k, at: now };
   }
   // 💔 kırgınlık 3 saat, 💞 mutluluk 2 saat sürer (özür ya da Make Up kırgınlığı bitirir)
-  const lfMood = c => { const m = ((c || {}).life || {}).mood; return m && Date.now() - m.at < (m.k === 'kirgin' ? 3 : 2) * 36e5 ? m : null; };
+  const lfMood = c => { const m = ((c || {}).lf || {}).mood; return m && Date.now() - m.at < (m.k === 'kirgin' ? 3 : 2) * 36e5 ? m : null; };
   const lfYou = s => String(s).replace(/([aeıioöuü])m$/u, '$1n');   // sınavım → sınavın
   function lfPlan(t) {
     for (const [w, h] of LF().PLAN_WHEN || []) {
@@ -20826,7 +21201,7 @@
     farm: ['#8bc34a', '#ffeb3b', '#0d1406'], massage: ['#26a69a', '#b2dfdb', '#06140f'], secret: ['#00e676', '#1de9b6', '#04120a'], amor: ['#ff4f81', '#ffb3c6', '#1a0710'],
     clinic: ['#29b6f6', '#b3e5fc', '#05131c'], conf: ['#ab47bc', '#ce93d8', '#12071a'], cr: ['#ff6f00', '#ffca28', '#1a0d00'], ch: ['#ffd54f', '#ff8a65', '#1a1006'],
     events: ['#5c6bc0', '#ef5350', '#0b0d1c'], news: ['#212121', '#8d6e63', '#f5f1e8', '#5d4037'], doodle: ['#4285f4', '#ea4335', '#ffffff', '#5f6368'], guide: ['#00897b', '#4db6ac', '#061412'],
-    play: ['#7c4dff', '#00e5ff', '#0a0618'], booble: ['#4285f4', '#34a853', '#ffffff', '#5f6368'], halloween: ['#ff6d00', '#8e24aa', '#0d0610']
+    play: ['#7c4dff', '#00e5ff', '#0a0618'], mag: ['#d4af37', '#e0607e', '#140609'], booble: ['#4285f4', '#34a853', '#ffffff', '#5f6368'], halloween: ['#ff6d00', '#8e24aa', '#0d0610']
   };
   function splashBrand(site) {
     const sp = $('#splash'), lg = sp && sp.querySelector('.logo');
@@ -24521,6 +24896,7 @@
   };
   // saat ilerleyince (dt dakika): hamilelik haftası, 🍼 Süt artışı, üç ay geçişleri ve doğum; note(metin) sohbete not yazar
   function bodyTick(c, dt, note) {
+    if (c.life != null && typeof c.life !== 'number') lfOf(c);
     c.life = (c.life || 0) + dt;
     const f = c.fields || (c.fields = {}), first = String(c.name || '').split(' ')[0];
     if (f.hamile && c.pregAt == null) { c.pregAt = c.life; c.pregW = 1; if (!c.babyBy) c.babyBy = 'me'; note(`🤰 ${first} hamile · ${babyDad(c)}`); sfx('preg'); }
@@ -24558,7 +24934,7 @@
   const CHAR_KIND = 'carmen-char';
   function charPack(c, lite) {
     const d = JSON.parse(JSON.stringify(c));
-    ['id', 'life', 'pregAt', 'pregW', 'created'].forEach(k => delete d[k]);
+    ['id', 'life', 'lf', 'pregAt', 'pregW', 'created'].forEach(k => delete d[k]);
     if (lite) { if (/^data:/.test(d.photo || '')) d.photo = ''; d.album = (d.album || []).filter(u => !/^data:/.test(u)); }
     const names = {};
     ['likes', 'dislikes', 'allows', 'denies'].forEach(k => { names[k] = feelEvents(d[k] || []).map(e => e.title); });
@@ -24637,7 +25013,7 @@
       if (!b) return;
       sh.close();
       const d = JSON.parse(JSON.stringify(c)), k = b.dataset.cl, mod = ui.createMod;
-      ['life', 'pregAt', 'pregW', 'births'].forEach(x => delete d[x]);
+      ['life', 'lf', 'pregAt', 'pregW', 'births'].forEach(x => delete d[x]);
       Object.assign(d, { id: Store.uid(), created: Date.now() });
       ui.createMod = 'amor';
       if (k === 'pers') randomize(d, 'personality');
@@ -26196,7 +26572,7 @@
     'Carmen.com': 'Kondom şartını ilandan oku, sohbette sürpriz yaşama 🛡️',
     'CarmenFans': 'Haftanın kostümünü kaçırma; her pazartesi değişiyor 📢',
     'CarmenStay': 'Gece 22:00 rezervasyonu en romantiği 🌙',
-    'CarmenFlix': 'Sadakatsiz Kalpler\'i 3x hızda izleme, tadını çıkar 🍿',
+    'CarmenFlix': 'Islak Boya\'yı 3x hızda izleme, tadını çıkar 🍿',
     'Carmentagram': 'Dün geceki sevişmeden sonra onun profiline bir bak 😏📸',
     'CarmenLive': 'Hedefi doldur, sürprizi gör 🎯',
     'CarmenParty': 'Utangaç bir kıza önce selam ver, sonra iltifat… dansa sonra kaldır 💃',
@@ -27137,7 +27513,7 @@
         <li><b>Sohbetten gelen gönderiler</b>: kayıtlı karakterin ilk gönderisi yaşadıklarına göre değişir: hamileyse "{w}. hafta 🤰", son iki günde sevişme olduysa "Dün gece hiç uyumadım 😴🔥", Kıskançlık yüksekse sitem, Aşk yüksekse "Biri beni çok mutlu ediyor 🥰".</li></ul>
       <p>Beğeni, takip ve yorumların bu tarayıcıda saklanır.</p>` },
     { icon: '🍿', title: 'CarmenFlix', sub: 'film ve diziler, yazışma olarak', body: `
-      <p>Netflix gibi: ${FX_TITLES.filter(t => t.k === 'film').length} film ve ${FX_TITLES.filter(t => t.k === 'dizi').length} dizi. Her yapımın başrolünde ilanlardan ya da karakterlerinden bir kadın (fotoğrafıyla) ve bir erkek var. Hikaye yazışma olarak sırayla akar: mesajlar "yazıyor…" ile gelir, aralara 📜 olay kartları ve anlatım satırları girer. Ortada onun 💗 <b>Orgazm</b>'ı, sonda son pozisyona göre 💦 <b>boşalma</b> (Vaginal Creampie, Face Cumming, Oral Creampie, Tit / Ass / Leg Cumshot) ve miktarı (Thick White, High Sperm…) pembe parlayan kartlarla görünür.</p>
+      <p>Netflix gibi: ${FX_TITLES.length} elle yazılmış film (🎨 Islak Boya, ✈️ Aktarma, 🍇 Bağ Evi). Başrollerde ilanlardan ya da karakterlerinden kadınlar (fotoğrafıyla) ve bir erkek var; lezbiyen filmlerde iki kadın. Hikaye yazışma olarak sırayla akar: mesajlar "yazıyor…" ile gelir, aralara 📜 olay kartları ve anlatım satırları girer. Ortada onun 💗 <b>Orgazm</b>'ı, sonda son pozisyona göre 💦 <b>boşalma</b> (Vaginal Creampie, Face Cumming, Oral Creampie, Tit / Ass / Leg Cumshot) ve miktarı (Thick White, High Sperm…) pembe parlayan kartlarla görünür.</p>
       <ul><li><b>Ana sayfa</b>: günün öne çıkanı, ▶️ İzlemeye devam et, ➕ Listem, 🔥 Bugün Top 10, Diziler, Filmler ve türler (💔 Aldatma, 💼 İş yerinde, 🎭 Fantezi, 🌹 Romantik, 🏠 Komşular, 🌙 Yabancılar).</li>
         <li><b>Oynatıcı</b>: ⏸ duraklat, 1x / 2x / 3x hız, ⏮ baştan, ⏭ hepsini göster. Dizide bölüm bitince 6 saniye sonra sonraki bölüm başlar; çoğu bölüm bir merakla biter (telefon çalar, kapı vurulur…).</li>
         <li><b>👥 Kalabalık yapımlar</b>: iki kadın + bir erkek (Üçümüz, Swing Kulübü), kadın + iki erkek (İki Kat Arzu), kocası izler (İzleyici, Seyirci Koca), koca evi basar (Kocam Erken Geldi, Yakalandık). İkinci kadının mesajları mor, ikinci erkeğinkiler koyu mavi, kocanınkiler ortada altın çerçeveli. Aldatma hikayelerinin bazı bölümleri de doruktan sonra kocanın kapıdan girmesiyle biter 🔑.</li>
@@ -27256,6 +27632,26 @@
         <tr><td>💦 İçe izin veren</td><td>💊 önlemi (hap, ertesi sabah hapı, hiç) · içine boşalırken ne ister</td></tr>
         <tr><td>🚫 İzin vermediği olaylar</td><td>her biri için bir gerekçe ("Bir kere denedim, sevmedim", "Ekstra ücretle bile yok"…)</td></tr></table>
       <p>Carmen.com, Gothic ve Meisove profillerinde, ayrıca Ofis, Spor, School, Church, Farm, Massage ve Secret ilan sayfalarında görünür. Kondom şartı olan kızda içe boşalma kondomla olduğu için o kıza kondom ayrıntıları gösterilir.</p>` },
+    { icon: '📖', title: 'CarmenMag', sub: 'erotik dergi bayii ve sayfa çevirme', body: `
+      <p><a href="#/dergi">📖 CarmenMag</a> bir dergi bayii: dört dergi, her ay yeni sayı, rafta her derginin son altı sayısı. Bir kapağa dokun, dergi açılsın. Sayının içeriği hep aynıdır; ay değişince yeni sayı gelir.</p>
+      <table class="bk-t"><tr><th>Dergi</th><th>Öne çıkan</th></tr>
+        <tr><td>🥀 Velvet</td><td>lüks fotoğraf: iki kapak çekimi ve ayın yüzü</td></tr>
+        <tr><td>🔥 <bdi class="no-i18n">Ateş</bdi></td><td>iki seans ve iki pozisyon sayfası</td></tr>
+        <tr><td>🖤 Noir</td><td>fetiş ve BDSM seansları, güvenli kelime yazısı</td></tr>
+        <tr><td>🌸 <bdi class="no-i18n">Ten</bdi></td><td>seks eğitimi: üç eğitim yazısı</td></tr></table>
+      <p><b>📖 Nasıl okunur?</b></p>
+      <ul><li>Geniş ekranda çift sayfa açılır, telefonda tek sayfa.</li><li>Sayfanın kenarına dokun, sağa sola kaydır ya da ← → tuşlarını kullan. Alttaki çubukla istediğin sayfaya git.</li><li>📑 İçindekiler'den bir bölüme dokun, oraya atlarsın.</li><li>Kaldığın sayfa hatırlanır: alt bardaki 🔖 Kaldığım yer seni oraya götürür.</li></ul>
+      <table class="bk-t"><tr><th>Sayfa</th><th>Ne var</th></tr>
+        <tr><td>Kapak</td><td>kapak kızı, manşetler, sayı ve fiyat</td></tr>
+        <tr><td>Editörden</td><td>genel yayın yönetmeninin mektubu</td></tr>
+        <tr><td>Reklam</td><td>sitelerin tam sayfa reklamları; dokununca o siteye gidersin</td></tr>
+        <tr><td>Kapak çekimi</td><td>Fans gibi kare kare anlatılan fotoğraflar ve setin tamamına bağlantı</td></tr>
+        <tr><td>Röportaj</td><td>ölçüleri ve soru-cevap; 💬 Ona yaz sohbeti açar</td></tr>
+        <tr><td>Seans</td><td>bir sahnenin bütün adımları uzun anlatımla; 💬 Bu seansı onunla yaşa sohbeti açar ve açılış olayını kısayola koyar</td></tr>
+        <tr><td>Pozisyonlar</td><td>her sayfada üç pozisyon: zorluk, kime uygun, ipucu; dokununca olay penceresi açılır</td></tr>
+        <tr><td>Seks eğitimi</td><td>rıza, iletişim, ön sevişme, kayganlaştırıcı, kondom, klitoris, anal güvenlik, BDSM, aftercare, test</td></tr>
+        <tr><td>Kişisel ilanlar</td><td>ilan kızları; dokununca ilanı açılır</td></tr></table>
+      <p><a href="#/dergi/egitim">🎓 Eğitim arşivi</a>: bütün eğitim yazıları tek sayfada.</p>` },
     { icon: '🗄️', title: 'Nerede saklanır?', sub: 'kayıt ve yedek', body: `
       <table class="bk-t"><tr><th>Ne</th><th>Nerede</th></tr>
         <tr><td>Karakterler, sohbetler, gardırop, Güven / Aşk, CarmenShop siparişleri, oyuncak olayları</td><td>normal kayıt (💾 yedeğe girer)</td></tr>
@@ -33958,20 +34354,7 @@
   };
   ['pointerdown', 'touchend', 'keydown'].forEach(t => document.addEventListener(t, unlockMusic, true));
 
-  // 🎵 çalan müzik: her sayfada küçük bir düğme (dokununca Ben → Ses, ■ durdurur)
-  if (MU) {
-    const pill = document.createElement('div');
-    pill.className = 'mini-mu';
-    pill.hidden = true;
-    app.appendChild(pill);
-    MU.onChange(tr => {
-      pill.hidden = !tr;
-      if (!tr) return;
-      pill.innerHTML = `<button type="button" class="mm-go"><span class="mm-ic">${esc(tr.icon)}</span><span class="mm-eq"><i></i><i></i><i></i></span><b>${esc(tr.name)}</b></button><button type="button" class="mm-stop" aria-label="Durdur">■</button>`;
-      pill.querySelector('.mm-go').onclick = () => { ui.meTab = 'ses'; if (location.hash === '#/me') render(); else location.hash = '#/me'; };
-      pill.querySelector('.mm-stop').onclick = () => MU.stop();
-    });
-  }
+  // v1117: çalan müzik düğmesi (mini-mu) ve Lia köşe balonu kaldırıldı; müzik Ben → Ses'ten yönetilir
 
   adoptSystem();
   setupPositions();

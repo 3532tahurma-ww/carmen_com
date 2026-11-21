@@ -14,12 +14,19 @@ Stories.Pools = (() => {
   const own = {
   names: {
     '♀': ['Elif', 'Zeynep', 'Defne', 'Ece', 'Azra', 'Duru', 'Nehir', 'Melis', 'Ceren', 'Selin', 'İpek', 'Derin',
-      'Asya', 'Lara', 'Ada', 'Su', 'Buse', 'Gizem', 'Yaren', 'Damla', 'Irmak', 'Naz', 'Beren', 'Esila'],
+      'Asya', 'Lara', 'Ada', 'Su', 'Buse', 'Gizem', 'Yaren', 'Damla', 'Irmak', 'Naz', 'Beren', 'Esila',
+      'Ela', 'Eylül', 'Ilgın', 'Mira', 'Nil', 'Öykü', 'Pelin', 'Sude', 'Tuana', 'Yağmur', 'Zehra', 'Berra',
+      'Cansu', 'Dilara', 'Ebru', 'Feride', 'Gamze', 'Hande', 'Işıl', 'Jale', 'Kumsal', 'Lal', 'Melisa', 'Nisan',
+      'Özge', 'Pınar', 'Rüya', 'Sena', 'Şule', 'Tuğçe', 'Ülkü', 'Vildan', 'Yasemin', 'Zümra', 'Aslı', 'Bade',
+      'Ceyda', 'Deniz', 'Esra', 'Fulya', 'Gülce', 'Hazal', 'İlayda', 'Kübra', 'Leyla', 'Merve', 'Nazlı', 'Serra'],
     '♂': ['Mert', 'Emir', 'Kerem', 'Arda', 'Can', 'Deniz', 'Ege', 'Kaan', 'Alp', 'Barış', 'Efe', 'Yiğit',
       'Onur', 'Burak', 'Doruk', 'Aras', 'Tuna', 'Umut', 'Ozan', 'Batu', 'Emre', 'Cem', 'Volkan', 'Serkan', 'Tolga', 'Koray',
       'Berk', 'Çağan', 'Kuzey', 'Atlas', 'Görkem', 'Selim', 'Hakan', 'Murat', 'Oğuz', 'Eren', 'Baran', 'Furkan', 'Sarp', 'Tarık',
       'Ali', 'Mehmet', 'Ahmet', 'Yusuf', 'Ömer', 'Kemal', 'Cenk', 'Erdem', 'Levent', 'Sinan', 'Uğur', 'Gökhan', 'Taylan', 'Berkay',
-      'Alper', 'Anıl', 'Bora', 'Çınar', 'Utku', 'Tuncay', 'Engin', 'Ercan', 'Harun', 'İlker', 'Kağan', 'Mustafa', 'Okan', 'Rüzgar', 'Taner', 'Yavuz']
+      'Alper', 'Anıl', 'Bora', 'Çınar', 'Utku', 'Tuncay', 'Engin', 'Ercan', 'Harun', 'İlker', 'Kağan', 'Mustafa', 'Okan', 'Rüzgar', 'Taner', 'Yavuz',
+      'Abdullah', 'Bulut', 'Cihan', 'Demir', 'Emirhan', 'Fatih', 'Hasan', 'İbrahim', 'Kadir', 'Metin', 'Necati', 'Orhan',
+      'Poyraz', 'Ramazan', 'Sadık', 'Şahin', 'Tamer', 'Ufuk', 'Vedat', 'Yasin', 'Zafer', 'Arif', 'Bekir', 'Cemil',
+      'Doğan', 'Erkan', 'Ferhat', 'Halil', 'İsmail', 'Kenan', 'Mahir', 'Nihat', 'Oktay', 'Rıza', 'Suat', 'Tayfun']
   },
   age: [18, 32],
   cities: ['İstanbul', 'İzmir', 'Ankara', 'Antalya', 'Bursa', 'Eskişehir', 'Muğla', 'Trabzon', 'Mersin', 'Çanakkale',
@@ -129,7 +136,7 @@ Stories.Pools = (() => {
   };
   return Object.assign(own, {
     jobGroupOf,
-    names: { '♀': allAmor.length ? allAmor : own.names['♀'], '♂': own.names['♂'] },
+    names: { '♀': allAmor.length ? [...new Set([...allAmor, ...own.names['♀']])] : own.names['♀'], '♂': own.names['♂'] },
     eras,
     eraAge: A.NAME_AGE || {},
     cities: [...new Set([...(A.CITIES ? A.CITIES.map(c => c.name) : own.cities), ...own.moreCities])],
