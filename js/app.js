@@ -3963,7 +3963,7 @@
     const T = MG().titles, st = mgState(), at = mgFind(st.at), unread = T.filter(m => !st.read[mgIssues(m)[0].id]).length;
     if (!T.length || !cmAll().some(c => c.photo)) return '';
     return `${MG_CSS}<div class="hl-sec"><h3>📖 Carmen<i>Mag</i> · bu ayın sayıları${unread ? ` · <em class="hl-news-nw">${unread} yeni</em>` : ''}</h3><a href="#/dergi">Bayi ›</a></div>
-      <div class="mg-home"><div class="mg-hrow">${T.map(m => mgCov(mgIssues(m)[0], false, st)).join('')}</div>
+      <div class="mg-home"><div class="mg-hrow">${mgSort('home:' + new Date().toDateString(), T).sort((a, b) => !!st.read[mgIssues(a)[0].id] - !!st.read[mgIssues(b)[0].id]).slice(0, 2).map(m => mgCov(mgIssues(m)[0], false, st)).join('')}</div>
         <div class="mg-hfoot"><span>Sayfaları gerçek dergi gibi çevir: seanslar, pozisyonlar, seks eğitimi</span>${at ? `<a class="btn primary sm" href="#/dergi/devam">🔖 Kaldığın yerden: ${mgName(at.m)} · Sayı ${at.no}</a>` : '<a class="btn primary sm" href="#/dergi">📖 Bayiye git</a>'}</div></div>`;
   }
   function renderMag(id) {
@@ -4059,7 +4059,16 @@
       no.textContent = `${p + 1}${q > 0 ? `–${q + 1}` : ''} / ${n}`;
       rng.value = p + 1; $('#mgPrev').disabled = f <= 0; $('#mgNext').disabled = f >= maxF;
       const st = mgState(); st.last[is.id] = p; mgState(st);
+      fit();
     };
+    const fit = () => {
+      if (two) return;
+      book.style.height = '';
+      const pc = lfs[f] && lfs[f].querySelector('.mg-fc.fr .mg-pc');
+      if (pc && getComputedStyle(pc).overflowY !== 'hidden' && pc.scrollHeight > pc.clientHeight) book.style.height = book.offsetHeight + pc.scrollHeight - pc.clientHeight + 'px';
+    };
+    if (book._fit) book.removeEventListener('load', book._fit, true);
+    book._fit = fit; book.addEventListener('load', fit, true);
     const go = nf => {
       nf = Math.max(0, Math.min(maxF, nf));
       if (nf === f) return;
@@ -4108,8 +4117,8 @@
     .mg-mini i { position: absolute; right: 6px; bottom: 6px; font: 700 10px system-ui; font-style: normal; color: #fff; background: var(--m1); padding: 1px 6px; border-radius: 99px; }
     .mg-rk > small { display: block; margin-top: 7px; font-size: 11.5px; color: var(--muted); }
     .mg-home { padding: 14px 12px 12px; border-radius: 18px; margin-bottom: 18px; background: linear-gradient(135deg, #1a0609, #3b0d1a 60%, #6b1530); color: #fbe9d0; border: 1px solid rgba(212, 175, 55, .35); }
-    .mg-hrow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; padding: 4px 2px 16px; background: linear-gradient(transparent calc(100% - 10px), #6d4c33 calc(100% - 10px), #3e281b); border-radius: 4px; }
-    .mg-hrow .mg-rk { width: auto; } .mg-hrow .mg-mini b { font-size: clamp(12px, 3.6vw, 20px); } .mg-hrow .mg-rk > small { color: rgba(251, 233, 208, .75); font-size: 10.5px; }
+    .mg-hrow { display: grid; grid-template-columns: repeat(2, minmax(0, 170px)); justify-content: center; gap: 10px; padding: 4px 2px 16px; background: linear-gradient(transparent calc(100% - 10px), #6d4c33 calc(100% - 10px), #3e281b); border-radius: 4px; }
+    .mg-hrow .mg-rk { width: auto; } .mg-hrow .mg-mini b { font-size: clamp(18px, 6vw, 26px); } .mg-hrow .mg-rk > small { color: rgba(251, 233, 208, .75); font-size: 10.5px; }
     .mg-hfoot { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: space-between; margin-top: 10px; font-size: 12.5px; } .mg-hfoot span { opacity: .85; }
     .mg-nrow { gap: 18px; } .mg-nb { flex: 0 0 auto; width: 128px; color: inherit; text-decoration: none; text-align: center; scroll-snap-align: start; }
     .mg-nbc { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; aspect-ratio: .68; padding: 14px 10px; box-sizing: border-box; border-radius: 3px 6px 6px 3px; color: var(--m2);
