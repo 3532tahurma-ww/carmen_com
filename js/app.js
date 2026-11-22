@@ -3848,8 +3848,9 @@
   const mgSort = (k, a) => a.map((x, i) => [+sysHash(['mg', k, x && typeof x === 'object' ? x.cmRid || x.id || x.k || i : x]), x]).sort((u, v) => u[0] - v[0]).map(z => z[1]);
   const mgNow = () => { const d = new Date(); return d.getFullYear() * 12 + d.getMonth(); };
   const mgIssue = (m, mi) => ({ m, mi, no: mi - MG_M0 + m.base, y: Math.floor(mi / 12), mo: mi % 12, id: `${m.k}-${mi - MG_M0 + m.base}`, now: mi === mgNow() });
-  const mgIssues = m => Array.from({ length: 6 }, (_, j) => mgIssue(m, mgNow() - j));
-  const mgFind = id => { const [k, no] = String(id || '').split('-'), m = MG().titles.find(x => x.k === k), mi = m ? +no - m.base + MG_M0 : NaN; return m && mi <= mgNow() && mi > mgNow() - 12 ? mgIssue(m, mi) : null; };
+  const MG_FROM = 2026 * 12, mgOld = () => Math.min(MG_FROM, mgNow() - 5);
+  const mgIssues = m => Array.from({ length: mgNow() - mgOld() + 1 }, (_, j) => mgIssue(m, mgNow() - j));
+  const mgFind = id => { const [k, no] = String(id || '').split('-'), m = MG().titles.find(x => x.k === k), mi = m ? +no - m.base + MG_M0 : NaN; return m && mi <= mgNow() && mi >= Math.min(mgOld(), mgNow() - 11) ? mgIssue(m, mi) : null; };
   const mgDate = is => `<span>${MG_MON[is.mo]}</span> <span>${is.y}</span>`;
   const mgVars = m => `--m1:${m.c[0]};--m2:${m.c[1]};--mp:${m.c[2]};--mi:${m.c[3]}`;
   const mgGirls = key => mgSort(key, cmAll().filter(c => c.photo && !c.husb));
