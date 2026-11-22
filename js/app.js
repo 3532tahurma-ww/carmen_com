@@ -4054,7 +4054,7 @@
     const fOf = p => two ? Math.ceil(p / 2) : p, cur = () => two ? Math.max(0, 2 * f - 1) : f;
     let f = Math.min(maxF, fOf(Math.max(0, start)));
     const draw = () => {
-      lfs.forEach((el, j) => { el.classList.toggle('on', j < f); el.style.zIndex = j < f ? j + 1 : L - j; });
+      lfs.forEach((el, j) => { el.classList.toggle('on', j < f); el.style.zIndex = j < f ? j + 1 : L - j; el.style.display = j >= f - (two ? 2 : 1) && j <= f + 1 ? '' : 'none'; });
       book.classList.toggle('cf', two && f === 0); book.classList.toggle('cb', two && f === L);
       const p = cur(), q = two && f > 0 && f < L && 2 * f < n ? 2 * f : -1;
       no.textContent = `${p + 1}${q > 0 ? `–${q + 1}` : ''} / ${n}`;
@@ -4105,7 +4105,7 @@
   const MG_CSS = `<style>
     .mg-hero { text-align: center; padding: 20px 14px 14px; border-radius: 18px; margin: 12px 0; background: linear-gradient(135deg, #1a0609, #3b0d1a 60%, #6b1530); color: #fbe9d0; border: 1px solid rgba(212, 175, 55, .35); }
     .mg-hero h1 { margin: 0 0 6px; font: 800 26px/1.15 Georgia, 'Times New Roman', serif; letter-spacing: .5px; } .mg-hero p { margin: 0 0 10px; opacity: .85; font-size: 13.5px; }
-    .mg-shelf { margin: 14px 0 22px; } .mg-shelf header { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+    .mg-shelf { margin: 14px 0 22px; content-visibility: auto; contain-intrinsic-size: auto 300px; } .mg-shelf header { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
     .mg-shelf header b { font: 800 19px Georgia, serif; } .mg-shelf header small { color: var(--muted); } .mg-shelf header span { margin-left: auto; font-weight: 800; font-size: 12px; color: var(--muted); }
     .mg-row { display: flex; gap: 14px; overflow-x: auto; padding: 8px 6px 20px; scroll-snap-type: x mandatory; background: linear-gradient(transparent calc(100% - 14px), #6d4c33 calc(100% - 14px), #3e281b); border-radius: 4px; }
     .mg-rk { flex: 0 0 auto; width: 112px; scroll-snap-align: start; color: inherit; text-decoration: none; text-align: center; } .mg-rk.big { width: 150px; }
