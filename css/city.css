@@ -8,6 +8,8 @@
 .ct-brand, .ct-clock, .ct-btn { background: rgba(22, 16, 40, .78); color: #fff; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: 0 6px 18px rgba(10, 6, 30, .3); }
 .ct-brand { padding: 8px 12px; border-radius: 8px; font-weight: 900; font-size: 14px; }
 .ct-brand i { font-style: normal; color: #ff8cc6; }
+.ct-brand small { display: block; font-size: 10px; font-weight: 700; opacity: .8; white-space: nowrap; }
+.ct-brand small:empty { display: none; }
 .ct-clock { display: flex; align-items: baseline; gap: 6px; margin-left: auto; padding: 6px 12px; border-radius: 8px; }
 .ct-clock b { font-size: 18px; font-variant-numeric: tabular-nums; }
 .ct-clock small { font-size: 12px; opacity: .85; }

@@ -9177,7 +9177,7 @@ Object.assign(Stories.ME_EV_LINES, {
   'Classic Scissor': ['Bacaklarımız çapraz, bileğini tutup seni kendime çekiyorum ✂️', 'Tam ortada buluştuk {o} 🥵', 'Daha sıkı bastır, kaçma 😈', 'Bu açıdan seni izlemek… 🔥', 'Aynı ritimde, bırakma {o} 💜', 'Bacaklarım titremeye başladı 😩'],
   'Cowgirl Grind': ['Üstüne oturuyorum, kasığımı kasığına bastırıyorum 🤠', 'İleri geri… yavaş mı, hızlı mı {o}? 😏', 'Ellerin kalçamda, yönü sen ver 🔥', 'Altımda kıvranman çok güzel 😈', 'Her kayışta biraz daha ıslanıyorum 💦', 'Gözlerini kapatma, bana bak {o} 🥵'],
   'Spoon Scissor': ['Arkandan sarılıp bacağını kaldırıyorum 🥄', 'Yan yana, hiç acele etmeden {o} 💜', 'Ensene nefesimi veriyorum 😏', 'Böyle sabaha kadar kalırız 🥰', 'Kalçanı bana doğru itiyorsun, hissediyorum 🔥', 'Kulağını ısırırken sürtünüyorum {o} 😈'],
-  'Leg Lock Grind': ['Bacaklarımı beline doluyorum, kaçamazsın {o} 🔒', 'Bu kadar yakın… nefesimiz karıştı 🥵', 'Kilitledim seni, artık benimsin 😈', 'Sıkıca sarıl, bırakma 💜', 'Her hareketin içimde yankılanıyor 😩', 'Tam böyle kal {o} 🔥'],
+  'Leg Lock Tribbing': ['Bacaklarımı beline doluyorum, kaçamazsın {o} 🔒', 'Bu kadar yakın… nefesimiz karıştı 🥵', 'Kilitledim seni, artık benimsin 😈', 'Sıkıca sarıl, bırakma 💜', 'Her hareketin içimde yankılanıyor 😩', 'Tam böyle kal {o} 🔥'],
   'Knee Ride': ['Dizini bacaklarımın arasına alıyorum 🦵', 'Dizinin üstünde gidip geliyorum {o} 😳', 'Dizini biraz kaldır… evet, öyle 🥵', 'Utandım ama duramıyorum 🙈', 'Dizin ıslandı, fark ettin mi? 💦', 'Beni izlemeyi bırakma {o} 😈'],
   'Butt Grind': ['Yüzüstü yat, kalçana oturuyorum 🍑', 'Islaklığımı tenine sürüyorum {o} 😈', 'Sırtın ne kadar güzel 💜', 'Kıpırdama, keyfini ben çıkarıyorum 😏', 'Kalçan sıcacık, ben daha sıcağım 🔥', 'Ensene eğilip fısıldıyorum {o} 🤫'],
   'Wall Thigh Ride': ['Seni duvara yaslıyorum 🧱', 'Uyluğumu bacaklarının arasına bastırıp kaldırıyorum {o} 😈', 'Ayakların yerden kesildi, tutundun bana 🥵', 'Duvar soğuk, ben sıcağım 🔥', 'Bacakların titriyor, düşürmem seni {o} 💜', 'Daha sert mi? Söyle 😏'],
@@ -9197,7 +9197,7 @@ Object.assign(Stories.ME_EV_LINES, {
   'Wet T-Shirt Grind': ['Tişörtlerimiz ıslak, yapıştı 👕💦', 'Kumaşın arkasından göğüslerimiz sürtünüyor {o} 🥵', 'Her şey görünüyor, utanma 😏', 'Su soğuk ama ben yanıyorum 🔥', 'Islak tişört sana çok yakışmış {o} 😈', 'Çıkarmayalım daha 🙈'],
   'Bikini Grind': ['Havuz kenarında kucağına oturuyorum 👙', 'Su damlaları aramızda {o} 💦', 'Bikinim çok küçük, değil mi? 😏', 'Biri görebilir… umurumda değil 😈', 'Güneş tenimizi ısıttı 🏖️', 'Sırtımdaki ipi çözme {o}… ya da çöz 🔥'],
   'Uniform Desk Grind': ['Seni masanın kenarına oturtuyorum 🪑', 'Eteğimle arana giriyorum {o} 🎓', 'Ders bitti, şimdi başka bir ders 😈', 'Kapı kilitli mi? 🙈', 'Bu üniforma bir daha aynı olmayacak {o} 😏', 'Masa gıcırdıyor, sessiz ol 🤫'],
-  'Dance Floor Grind': ['Dans pistinde uyluğumu bacaklarının arasına sokuyorum 💃', 'Müzik yüksek, kimse duymaz {o} 😈', 'Kalabalığın ortasında sadece biz varız 🔥', 'Ritme uy, bana yaslan 🥵', 'Elbisen çok kısa {o} 😏', 'Işıklar kararınca daha da yaklaşıyorum 🌃'],
+  'Dance Floor Girl Grind': ['Dans pistinde uyluğumu bacaklarının arasına sokuyorum 💃', 'Müzik yüksek, kimse duymaz {o} 😈', 'Kalabalığın ortasında sadece biz varız 🔥', 'Ritme uy, bana yaslan 🥵', 'Elbisen çok kısa {o} 😏', 'Işıklar kararınca daha da yaklaşıyorum 🌃'],
   'Couch Blanket Grind': ['Battaniyenin altında kucağına kayıyorum 🛋️', 'Filme bak {o}… bakabiliyorsan 😏', 'Sessiz ol, film en güzel yerinde 🤫', 'Battaniye her şeyi saklıyor 🫣', 'Eşofmanın üstünden hissediyorum {o} 🥵', 'Filmi hiç izlemedik, değil mi? 😂'],
   'Dress Still On': ['Elbiselerimiz hâlâ üstümüzde {o} 👗', 'Soyunmaya vakit yok 😈', 'Bütün gece seni istedim 🥵', 'Fermuarı açma, böyle kalsın 🔥', 'Topuklularımı bile çıkarmadım {o} 😏', 'Elbisen buruşacak, umurumda değil 💜'],
   'Through The Fabric': ['Giyinik geldik {o} 🩲🌊', 'İkimizin külotunda da ıslak leke var 🙈', 'Çıkarmadan bile… inanamıyorum 😩', 'Kumaş sırılsıklam {o} 💦', 'Bir daha bu külotu giyemem 😂', 'Çok güzeldi 🥰'],
@@ -9578,7 +9578,7 @@ Object.assign(Stories.ME_EV_LINES, {
   'Oiled Knead': ['Yağ geliyor {o} 🫒', 'Parlıyorsun ✨', 'Kayıyor elimden 😏', 'Yakaladım yine 🤲', 'Kalçan kalkıyor 🥵', 'Uzun bir masaj {o} 😈'],
   'Thigh Handful': ['Uyluğun… {o} 🦵', 'Avucuma aldım 🤲', 'Sıkıyorum 😏', 'İz kaldı 🖐️', 'Beğendin mi? 😈', 'Benim izim {o} 😘'],
   'Inner Thigh Climb': ['Dizinden başlıyorum {o} 🫳', 'Biraz yukarı ⬆️', 'Bir daha sıkıyorum 😏', 'Neredeyse… 🥵', 'Durdum 😈', 'İste bakalım {o} 😘'],
-  'Under The Table': ['Ne yiyeceksin {o}? 🍽️', 'Elim masanın altında 😏', 'Sıkıyorum 🦵', 'Garson bakıyor 👀', 'Sesin titredi 😈', 'Hesabı ben öderim {o} 😘'],
+  'Under The Table Squeeze': ['Ne yiyeceksin {o}? 🍽️', 'Elim masanın altında 😏', 'Sıkıyorum 🦵', 'Garson bakıyor 👀', 'Sesin titredi 😈', 'Hesabı ben öderim {o} 😘'],
   'Car Thigh Hold': ['Kemerin takılı mı {o}? 🚗', 'Elim uyluğunda 🫳', 'Kırmızı yandı 🔴', 'Biraz yukarı 😏', 'Bir ışık daha 😈', 'Eve az kaldı {o} 🔥'],
   'Stocking Top Grip': ['Çorapların {o} 🧦', 'Naylon bitti 😏', 'Şimdi ten 🤏', 'Tam burası 🥵', 'Sıkıyorum 😈', 'Bacağın kucağımda {o} 😘'],
   'Spread & Hold': ['Aç bakalım {o} ↔️', 'Kapatmak yok 😏', 'Tutuyorum 🦵', 'Utandın mı? 🥵', 'Kendin tut şimdi 😈', 'Aferin {o} 😘'],
@@ -9670,7 +9670,7 @@ Object.assign(Stories.ME_EV_LINES, {
   'Bow Ruined': ['Dayanamadım {o} 😩', 'Fiyonkun içine 💦', 'Paket açıldı 😂', 'Kanatlar yapıştı 😳', 'Dişlerinle çöz 😏', 'Hediyen beğenildi {o} 🎀'],
   'Rapunzel Flood': ['Geliyorum {o} 😩', 'Saç yumağının içine 💦', 'Her yere bulaştı 😳', 'Saatler sürer mi? 😂', 'Duşa geliyorum 🚿', 'Ben yıkarım {o} 🫶']
 });
-Stories.ME_BED_SKIP.push('Pocket Hands', 'Under The Skirt', 'Under The Table', 'Car Thigh Hold', 'Playful Pat', 'Standing Lift Grip');
+Stories.ME_BED_SKIP.push('Pocket Hands', 'Under The Skirt', 'Under The Table Squeeze', 'Car Thigh Hold', 'Playful Pat', 'Standing Lift Grip');
 Stories.ME_BED_SKIP.push('Warm Soup', 'Bath Is Ready', 'Lay In My Lap', 'Warm Tub Sex', 'Lap Rock');
 /* 😴 Uykuda (Tur 29) */
 Object.assign(Stories.ME_EV_LINES, {

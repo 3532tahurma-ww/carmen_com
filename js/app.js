@@ -372,6 +372,8 @@
   }
 
   function notify(text, icon = '💜') {
+    // 🔔 3.0 bildirim merkezi: son 60 bildirim (sayfasıyla) kaydedilir
+    try { const L = JSON.parse(localStorage.getItem('amor-stories:notif') || '[]') || []; L.unshift({ t: String(text), ic: icon, ts: Date.now(), h: location.hash }); localStorage.setItem('amor-stories:notif', JSON.stringify(L.slice(0, 60))); } catch (e) {}
     const el = document.createElement('div');
     el.className = 'toast';
     el.innerHTML = `<span style="font-size:28px">${icon}</span><div class="info"><b>${esc(text)}</b></div>`;
@@ -467,6 +469,10 @@
     ui.lastRoute = r.name;
     histPush(location.hash);
     try { questSync(r.name !== 'me'); } catch (e) { console.warn('questSync', e); }
+    try { c3Tick(); } catch (e) { console.warn('c3Tick', e); }
+    if (r.id) setTimeout(() => { try { if (ui.route === r) c3SiteBadge(r); } catch (e) {} }, 60);
+    // 📇 alt menüde Rehber rozeti: okunmamış sohbetler + yeni bildirimler
+    try { const nb = $('#navRh'), n = r.name === 'rehber' ? 0 : c3NCount(); if (nb) { nb.hidden = !n; nb.textContent = n > 9 ? '9+' : n; } } catch (e) {}
     drawHelper(false);
     // 🌟 site artısı: özellik sayfaları + Gothic gece kilidi + bant izleyici
     spWatch();
@@ -476,6 +482,13 @@
       case 'bot': return renderBot();
       case 'kurallar': return r.id === 'izin' ? renderPermRulesPage() : renderRulesPage();
       case 'deneyler': return renderLabHub();
+      case 'ara': return renderSearch();
+      case 'rehber': return renderRehber();
+      case 'ag': return renderNet();
+      case 'sahneyap': return renderSceneMaker();
+      case 'botsaglik': return renderBotHealth();
+      case 'duman': return renderSmokeLab();
+      case 'dogrula': return renderCheckLab();
       case 'deney': return renderBotLab();
       case 'kesinti': return renderFantIntLab();
       case 'durum': return renderStateLab();
@@ -536,7 +549,7 @@
         if (r.id != null && !isNaN(+r.id)) { location.replace(`#/kitap/carmen/${+r.id}`); return; }
         return renderBook(r.id == null ? 'rehber' : r.id, r.extra == null ? NaN : +r.extra);
       case 'hikayeler': return renderHomeMonia();
-      case 'messages': return renderMessages();
+      case 'messages': location.replace('#/rehber'); return;
       case 'me': if (r.id) ui.meTab = r.id; return renderMe();
       case 'monia':
         if (!editOn()) { notify('Monia için Ben → ⚙️ Ayarlar → ✏️ Düzenleme modunu aç', '✏️'); ui.meTab = 'ayar'; location.replace('#/me'); return; }
@@ -574,6 +587,670 @@
     });
   }
 
+  /* ---------- 🚀 Carmen 3.0: dünya saati, takvim, hava, doğum günleri, Bugün paneli, 🔎 arama, 🎟️ haftalık görevler, 🏅 rozetler ---------- */
+  // veri js/data/c3.js (Stories.C3); durum S().user.c3 (hesaba özel), 📚 okunan sayfalar amor-stories:bookread (bu tarayıcı)
+  const C3 = Stories.C3 || { SEASONS: [['son', '🍂', 'Sonbahar', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]]], WX: {}, WX_W: {}, TEMP: {}, WX_SAY: {}, WX_NEWS: {}, WEEKLY: [], BADGES: [], HOME_SECS: [] };
+  // 📅 tarih metni uygulamanın dilinde (EN: en-GB, TR: tr-TR)
+  const c3Date = (d, o) => d.toLocaleDateString(Stories.I18n && Stories.I18n.lang() === 'en' ? 'en-GB' : 'tr-TR', o || { day: 'numeric', month: 'long' });
+  const c3DateW = d => c3Date(d, { day: 'numeric', month: 'long', weekday: 'long' }), c3DateY = d => c3Date(d, { day: 'numeric', month: 'long', year: 'numeric' });
+  const c3H = s => +sysHash(s);
+  const c3Day = (d = new Date()) => Math.floor((d.getTime() - d.getTimezoneOffset() * 6e4) / 864e5); // yerel gün numarası
+  const c3Week = () => Math.floor((c3Day() + 3) / 7); // haftalar pazartesi başlar
+  const c3Season = (d = new Date()) => C3.SEASONS.find(s => s[3].includes(d.getMonth())) || C3.SEASONS[0];
+  // ⛅ günün havası: mevsimin ağırlıklarından tarihe göre sabit (aynı gün herkes aynı havayı görür)
+  function c3Wx(day = c3Day()) {
+    const se = c3Season(new Date(day * 864e5 + 12 * 36e5)), W = C3.WX_W[se[0]] || { sun: 1 }, ks = Object.keys(W), tot = ks.reduce((n, k) => n + W[k], 0);
+    let r = c3H('wx' + day) % tot, k = ks[0];
+    for (const x of ks) { if (r < W[x]) { k = x; break; } r -= W[x]; }
+    const [lo, hi] = C3.TEMP[se[0]] || [10, 20], [ic, n] = C3.WX[k] || ['☀️', 'Güneşli'];
+    return { k, ic, n, temp: lo + c3H('tp' + day) % (hi - lo + 1) + (k === 'hot' ? 3 : k === 'rain' || k === 'storm' ? -2 : 0) };
+  }
+  // 🧵 dünya saati: gün / mevsim / hava gerçek tarihten, saat şehirden (Stories.City.clock; şehir hiç açılmadıysa gerçek saat)
+  function worldNow() {
+    const d = new Date(), ck = Stories.City && Stories.City.clock ? Stories.City.clock() : { gm: d.getHours() * 60 + d.getMinutes(), real: true };
+    return { d, day: c3Day(d), min: Math.floor(ck.gm), hm: hhmm(ck.gm), season: c3Season(d), wx: c3Wx(c3Day(d)), real: !!ck.real };
+  }
+  function c3St() {
+    const u = S().user;
+    u.c3 = u.c3 || {};
+    const D = { start: c3Day(), last: 0, days: 0, wx: {}, zones: {}, nZone: 0, shifts: {}, nShift: 0, bd: {}, nBd: 0, wk: null, weeks: 0, search: 0 };
+    for (const k in D) if (u.c3[k] == null) u.c3[k] = D[k];
+    return u.c3;
+  }
+  // 🎂 doğum günü: c.bday ("A-G") yoksa karaktere göre sabit bir gün
+  const BD_DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  const bdayOf = c => { if (/^\d{1,2}-\d{1,2}$/.test(c.bday || '')) return c.bday.split('-').map(Number); const m = 1 + cmNum(c, 'bdm', 12); return [m, 1 + cmNum(c, 'bdd', BD_DAYS[m - 1])]; };
+  const bdayTxt = c => { const [m, d] = bdayOf(c); return c3Date(new Date(2000, m - 1, d)); };
+  const bdayIn = c => { const [m, d] = bdayOf(c), n = new Date(); n.setHours(0, 0, 0, 0); const t = new Date(n.getFullYear(), m - 1, d); if (t < n) t.setFullYear(t.getFullYear() + 1); return Math.round((t - n) / 864e5); };
+  // yaş büyüyünce 🎂 Age özelliği aralığına uymuyorsa sıradaki aralığa geçer
+  function c3AgeTrait(c) {
+    const cur = cmTrait(c, 'Age'), a = +c.age;
+    if (!cur || !AGE_R[cur] || (a >= AGE_R[cur][0] && (a <= AGE_R[cur][1] || cur === '36+'))) return;
+    const nx = Object.keys(AGE_R).find(k => a >= AGE_R[k][0] && a <= AGE_R[k][1]) || '36+';
+    c.traits = c.traits.map(t => t.startsWith('Age:') ? `Age: ${nx}` : t);
+  }
+  // 📅 günde bir kez (render): gün sayacı, görülen hava, doğum günleri (yaş +1), haftalık görevler
+  function c3Tick() {
+    const u = S().user;
+    if (!u || !u.name) return;
+    const st = c3St(), day = c3Day();
+    if (st.last === day) return;
+    st.last = day; st.days++;
+    st.wx[c3Wx(day).k] = 1;
+    const d = new Date(), y = d.getFullYear();
+    chars().forEach(c => {
+      const [m, dd] = bdayOf(c);
+      if (c.husb || m !== d.getMonth() + 1 || dd !== d.getDate() || st.bd[c.id] === y) return;
+      st.bd[c.id] = y; st.nBd++;
+      const a = parseInt(c.age, 10), grow = a >= 18 && a < 99;
+      if (grow) { c.age = typeof c.age === 'number' ? a + 1 : String(a + 1); c3AgeTrait(c); }
+      notify(grow ? `🎂 Bugün ${c.name.split(' ')[0]}'in doğum günü · artık ${a + 1} yaşında` : `🎂 Bugün ${c.name.split(' ')[0]}'in doğum günü`, '🎂');
+    });
+    c3WeekSync();
+    save();
+  }
+  // 📚 okunan kitap sayfaları (bu tarayıcıda): { cilt: [sayfa…] }
+  function c3Read(vol, j) {
+    let s = {};
+    try { s = JSON.parse(localStorage.getItem('amor-stories:bookread') || '{}') || {}; } catch (e) {}
+    if (vol != null && !(s[vol] = s[vol] || []).includes(j)) { s[vol].push(j); try { localStorage.setItem('amor-stories:bookread', JSON.stringify(s)); } catch (e) {} }
+    return { s, n: Object.values(s).reduce((n, a) => n + a.length, 0) };
+  }
+  // 🎟️ haftalık görevler: her pazartesi tarihe göre 3 görev; ilerleme = ölçünün hafta başından beri artışı
+  function c3Metric(m) {
+    const st = c3St(), sites = netSites();
+    if (m === 'msg') return threads().reduce((n, t) => n + msgsOf(t).filter(x => x.from === 'me').length, 0);
+    if (m === 'ev') return questCtx().evN;
+    if (m === 'site') return Object.entries(meHist().sites).filter(([k]) => sites.some(s => s.href === '#/' + k)).reduce((n, [, v]) => n + v, 0);
+    if (m === 'shift') return st.nShift;
+    if (m === 'page') return c3Read().n;
+    if (m === 'zone') return st.nZone;
+    if (m === 'meet') return threads().filter(t => t.city).length;
+    if (m === 'char') return chars().length;
+    return 0;
+  }
+  function c3WeekSync() {
+    const st = c3St(), w = c3Week();
+    if (st.wk && st.wk.w === w) return st.wk;
+    const ids = C3.WEEKLY.slice().sort((a, b) => c3H(a[0] + w) - c3H(b[0] + w)).slice(0, 3).map(x => x[0]);
+    st.wk = { w, ids, base: Object.fromEntries(ids.map(id => [id, c3Metric(C3.WEEKLY.find(x => x[0] === id)[4])])), paid: {} };
+    save();
+    return st.wk;
+  }
+  const c3WeekRows = () => { const wk = c3WeekSync(); return wk.ids.map(id => C3.WEEKLY.find(x => x[0] === id)).filter(Boolean).map(([id, ic, t, d, m, n, pay]) => {
+    const cur = Math.max(0, Math.min(n, c3Metric(m) - (wk.base[id] || 0))); return { id, ic, t, d, n, pay, cur, done: cur >= n, paid: !!wk.paid[id] }; }); };
+  function c3WeekPay(id) {
+    const st = c3St(), wk = c3WeekSync(), rows = c3WeekRows(), q = rows.find(r => r.id === id && r.done && !r.paid);
+    if (!q) return;
+    wk.paid[id] = 1;
+    bankAdd(q.pay, `🎟️ Haftalık görev: ${q.t}`);
+    notify(`+${q.pay.toLocaleString('tr-TR')}₺ · haftalık görev`, '🎟️');
+    if (rows.every(r => r.paid || r.id === id) && !wk.star) { wk.star = 1; st.weeks++; notify('🎟️ Haftanın 3 görevini de bitirdin · 🏅 Haftanın yıldızı', '🏅'); }
+    save();
+  }
+  const c3Stats = () => { const st = c3St(); return { days: st.days, wx: Object.keys(st.wx).length, zones: Object.keys(st.zones).length, shifts: st.nShift, bdays: st.nBd, pages: c3Read().n, weeks: st.weeks, search: st.search }; };
+  // 🏙️ şehirden gelenler: semt değişti / vardiya
+  function c3Zone(z) { const st = c3St(); st.zones[z] = 1; st.nZone++; save(); }
+  function c3Shift(k, pay, name) {
+    const st = c3St(), day = c3Day(), key = day + ':' + k;
+    if (st.shifts[key]) { notify(`Bugün ${name} vardiyanı yaptın, yarın gel`, '💼'); return false; }
+    Object.keys(st.shifts).forEach(x => { if (+x.split(':')[0] < day) delete st.shifts[x]; });
+    st.shifts[key] = 1; st.nShift++;
+    bankAdd(pay, `💼 Vardiya: ${name}`);
+    notify(`+${pay.toLocaleString('tr-TR')}₺ · ${name} vardiyası bitti (4 saat)`, '💼');
+    return true;
+  }
+  // 🏠 ana sayfa bölümlerini gizle (⚙️, bu tarayıcıda)
+  const homeHide = v => { try { if (v) localStorage.setItem('amor-stories:homehide', JSON.stringify(v)); return JSON.parse(localStorage.getItem('amor-stories:homehide') || '{}') || {}; } catch (e) { return v || {}; } };
+  function homeEditSheet() {
+    const h = homeHide();
+    const sh = sheet(`<div class="sheet-grip"></div><h3>⚙️ Ana sayfayı düzenle</h3><p class="about">Görmek istemediğin bölümleri kapat. Ayar bu tarayıcıda kalır.</p>
+      ${C3.HOME_SECS.map(([k, n]) => `<label class="flt-row"><span><b>${esc(n)}</b></span><input type="checkbox" data-hsec="${k}"${h[k] ? '' : ' checked'}></label>`).join('')}
+      <button type="button" class="btn primary block" data-hdone style="margin-top:12px">Tamam</button>`, 'light');
+    sh.el.onchange = e => { const b = e.target.closest('[data-hsec]'); if (!b) return; const v = homeHide(); v[b.dataset.hsec] = !b.checked; homeHide(v); };
+    sh.el.onclick = e => { if (e.target.closest('[data-hdone]')) { sh.close(); renderHome(); } };
+  }
+  // 📅 ana sayfanın 3.0 parçaları (v1154): ince Bugün başlığı + şerit, 💬 Kaldığın yerden, 💡 öneriler (3 büyük kart), ☀️ Günün kızı (gündüz; gece 🌙 Gecenin kızı renderHome'da)
+  const C3_HOME_CSS = `<style>
+      .c3-head { margin: 10px 0 2px; display: flex; flex-direction: column; gap: 6px; }
+      .c3-t-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; font-size: 13px; }
+      .c3-t-head b { font-size: 15px; }
+      .c3-t-head small, .c3-sug small, .c3-ct small { color: var(--muted); }
+      .c3-chips, .c3-conts, .c3-media { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; scroll-snap-type: x proximity; }
+      .c3-chips::-webkit-scrollbar, .c3-conts::-webkit-scrollbar, .c3-media::-webkit-scrollbar { display: none; }
+      .c3-chips > * { flex: none; padding: 5px 10px; border-radius: 999px; background: var(--chip); border: 1px solid var(--line); font-size: 12px; color: inherit; text-decoration: none; white-space: nowrap; }
+      .c3-chips .on { border-color: #ff4d8d; }
+      .c3-ct { flex: none; width: 92px; scroll-snap-align: start; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 6px; border-radius: 14px; background: var(--chip); border: 1px solid var(--line); color: inherit; text-decoration: none; text-align: center; position: relative; }
+      .c3-ct b { font-size: 13px; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .c3-ct small { font-size: 11px; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .c3-ct.dim { opacity: .65; }
+      .c3-ct .c3-dot { position: absolute; top: 8px; right: 10px; width: 10px; height: 10px; border-radius: 50%; background: #2f8cff; box-shadow: 0 0 0 2px var(--card, #fff); }
+      .c3-ct .c3-tag { position: absolute; top: 6px; left: 8px; font-size: 13px; }
+      .c3-ct.more { justify-content: center; font-weight: 800; }
+      .c3-sugs { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+      .c3-sug { display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 14px; background: var(--chip); border: 1px solid var(--line); color: inherit; text-decoration: none; min-width: 0; }
+      .c3-sug > i { font-style: normal; font-size: 26px; flex: none; }
+      .c3-sug span { display: flex; flex-direction: column; min-width: 0; flex: 1; gap: 2px; }
+      .c3-sug b { font-size: 14px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+      .c3-sug small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .c3-spot { display: flex; position: relative; min-height: 190px; border-radius: 16px; overflow: hidden; background: var(--mtbg); color: #fff; text-decoration: none; margin: 8px 0; }
+      .c3-spot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .c3-spot::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.75)); }
+      .c3-spot > span { position: relative; z-index: 1; align-self: flex-end; padding: 14px 16px; display: flex; flex-direction: column; gap: 3px; }
+      .c3-spot small { opacity: .9; font-size: 12px; } .c3-spot b { font-size: 20px; } .c3-spot i { font-style: normal; font-size: 14px; }
+      .c3-spot em { font-style: normal; font-size: 11px; opacity: .8; margin-top: 4px; }
+      .c3-m { flex: none; width: 150px; scroll-snap-align: start; border-radius: 14px; overflow: hidden; background: var(--chip); border: 1px solid var(--line); color: inherit; text-decoration: none; display: flex; flex-direction: column; position: relative; }
+      .c3-m.c3-mn { padding: 12px; gap: 6px; width: 210px; }
+      .c3-m.c3-mn > span:first-child { font-size: 26px; }
+      .c3-m.c3-mn b { font-size: 13px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+      .c3-m.c3-mn small { color: var(--muted); font-size: 12px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+      .c3-m em { position: absolute; top: 8px; right: 8px; font-style: normal; font-size: 10px; font-weight: 800; padding: 2px 6px; border-radius: 6px; background: #ff2d55; color: #fff; z-index: 2; }
+      .c3-m.c3-mg { width: 130px; } .c3-m.c3-mg > * { width: 100%; }
+      .c3-m.c3-mf { width: 170px; min-height: 230px; background: var(--mtbg); color: #fff; justify-content: flex-end; }
+      .c3-m.c3-mf img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .c3-m.c3-mf::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.1), rgba(0,0,0,.8)); }
+      .c3-m.c3-mf > span { position: relative; z-index: 1; padding: 10px; display: flex; flex-direction: column; gap: 2px; }
+      .c3-m.c3-mf small { font-size: 10px; letter-spacing: .08em; color: #e50914; font-weight: 900; } .c3-m.c3-mf b { font-size: 14px; } .c3-m.c3-mf i { font-style: normal; font-size: 11px; opacity: .85; }
+      .home.hl-t-sabah { background-image: linear-gradient(180deg, rgba(255, 196, 120, .22), transparent 360px); }
+      .home.hl-t-gun { background-image: linear-gradient(180deg, rgba(120, 190, 255, .16), transparent 360px); }
+      .home.hl-t-aksam { background-image: linear-gradient(180deg, rgba(255, 120, 90, .2), transparent 360px); }
+      .home.hl-t-gece { background-image: linear-gradient(180deg, rgba(60, 50, 140, .28), transparent 360px); }
+      .c3-new { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: linear-gradient(135deg, #6a1b9a, #ff4d8d); color: #fff; }
+      .c3-new a { color: #fff; font-weight: 800; flex: 1; text-decoration: none; }
+      .c3-new button { background: none; border: 0; color: #fff; font-size: 16px; cursor: pointer; }
+    </style>`;
+  // 📅 ince başlık: tarih · hava · şehir saati · gün + şerit (manşet, doğum günleri, şehrin programı) + 🚀 karşılama bandı
+  function c3Head() {
+    const W = worldNow(), st = c3St(), cs = chars().filter(c => !c.husb), h = Math.floor(W.min / 60) % 24, fn = c => esc(c.name.split(' ')[0]);
+    const bd = cs.map(c => [c, bdayIn(c)]).filter(x => x[1] <= 7).sort((a, b) => a[1] - b[1]).slice(0, 3);
+    const evs = Stories.City && Stories.City.today ? Stories.City.today() : [], on = e => (h >= e.h[0] && h < e.h[1]) || (h + 24 >= e.h[0] && h + 24 < e.h[1]), hh2 = x => String(x % 24).padStart(2, '0') + ':00';
+    let seen = false; try { seen = !!localStorage.getItem('amor-stories:c3seen'); } catch (e) {}
+    return `<div class="c3-head">
+        ${seen ? '' : '<div class="c3-new"><a href="#/kitap/carmen3/2">🚀 Carmen 3.0 geldi! Yenilikleri Carmen 3.0 Kitabı\'nda oku ›</a><button type="button" data-c3x aria-label="Kapat">✕</button></div>'}
+        <div class="c3-t-head"><b>📅 ${c3DateW(W.d)}</b><small>${W.wx.ic} ${esc(W.wx.n)} ${W.wx.temp}° · 🏙️ ${W.hm}</small><small>· Carmen'de ${Math.max(1, st.days)}. günün</small></div>
+        <div class="c3-chips"><span>📰 ${esc(C3.WX_NEWS[W.wx.k] || '')}</span>${bd.map(([c, n]) => `<a href="#/p/${c.id}"${n ? '' : ' class="on"'}>🎂 ${fn(c)} · ${n ? `${n} gün sonra` : 'bugün'}</a>`).join('')}${evs.map(e => `<a href="#/sehir"${on(e) ? ' class="on"' : ''}>${e.ic} ${hh2(e.h[0])} ${esc(e.n)}${on(e) ? ' 🔴' : ''}</a>`).join('')}</div>
+      </div>`;
+  }
+  // 💬 Kaldığın yerden: son 8 sohbet (🔵 okunmamış, 👀 izleme sohbetleri soluk) + 📇 Rehber
+  function c3Cont() {
+    const act = threads().filter(t => msgsOf(t).length).sort((a, b) => activity(b) - activity(a)).slice(0, 8);
+    if (!act.length) return '';
+    return `<div class="hl-sec"><h3>💬 Kaldığın yerden</h3><a href="#/rehber">Rehber ›</a></div>
+      <div class="c3-conts">${act.map(t => { const mb = membersOf(t), c = mb[0] || GHOST, m = lastOf(t), w = c3Watch(t);
+        const nm = t.group ? String(t.title || 'Grup').replace(/^\S+\s/, '') : c.name.split(' ')[0];
+        return `<a class="c3-ct${w ? ' dim' : ''}" href="#/chat/${t.id}">${w ? '<span class="c3-tag">👀</span>' : t.group ? '<span class="c3-tag">👥</span>' : ''}${!w && c3Unread(t) ? '<span class="c3-dot"></span>' : ''}
+          ${avatar(c, 56)}<b>${esc(nm)}</b><small>${m ? esc(String(preview(m) || '').slice(0, 40)) : ''}</small><small>${m ? fmtTime(m.ts) : ''}</small></a>`; }).join('')}
+        <a class="c3-ct more" href="#/rehber">📇<b>Rehber</b><small>herkes</small></a></div>`;
+  }
+  // 💡 Şimdi ne yapsam? (en fazla 3 büyük kart; sohbetler 💬 Kaldığın yerden şeridinde olduğu için burada yok)
+  function c3Sugs() {
+    const W = worldNow(), cs = chars().filter(c => !c.husb), h = Math.floor(W.min / 60) % 24, sug = [];
+    const evs = Stories.City && Stories.City.today ? Stories.City.today() : [], on = e => (h >= e.h[0] && h < e.h[1]) || (h + 24 >= e.h[0] && h + 24 < e.h[1]), hh2 = x => String(x % 24).padStart(2, '0') + ':00';
+    if (!cs.length) sug.push(['💘', 'Biriyle eşleş', 'CarmenTinder\'da sağa kaydır, ilk mesajı o atar', '#/tinder']);
+    cs.filter(c => !bdayIn(c)).forEach(c => { const t = currentThread(c); sug.push(['🎂', `Bugün ${c.name.split(' ')[0]}'in doğum günü`, 'Ona bir mesaj at', t ? `#/chat/${t.id}` : `#/p/${c.id}`]); });
+    const epc = cs.find(c => c.ep && c.ep.id), E = epc && (Stories.EPISODES || []).find(e => e.id === epc.ep.id);
+    if (E) sug.push(['📖', `${E.icon} ${E.name} sürüyor`, `${epc.name.split(' ')[0]} ile · ${Math.min((epc.ep.i || 0) + 1, E.scenes.length)}/${E.scenes.length}. sahne`, currentThread(epc) ? `#/chat/${currentThread(epc).id}` : `#/p/${epc.id}`]);
+    const got = S().user.quests || {}, unpaid = QUESTS.filter(q => got[q.id] && !got[q.id].paid).length;
+    const wr = c3WeekRows(), wOpen = wr.find(r => !r.done), wPay = wr.find(r => r.done && !r.paid);
+    if (unpaid || wPay) sug.push(['🎁', 'Görev ödülün seni bekliyor', 'Ben → 🗺️ Görevler', '#/me/gorev']);
+    else if (wOpen) sug.push(['🎟️', `Haftalık: ${wOpen.t}`, `${wOpen.d} · ${wOpen.cur}/${wOpen.n}`, '#/me/gorev']);
+    const en = evs.find(on), enx = evs.find(e => e.h[0] > h);
+    if (en) sug.push(['🎉', `Şehirde şimdi: ${en.ic} ${en.n}`, 'tavlama şansı yüksek', '#/sehir']);
+    else if (enx) sug.push(['🗓️', `${hh2(enx.h[0])} · ${enx.ic} ${enx.n}`, 'bugün şehirde', '#/sehir']);
+    if (sug.length < 3 && cs.length) { const de = c3DayEvent(); if (de) sug.push(['🎲', `Günün olayı: ${de.title}`, String(de.desc || '').slice(0, 70), 'ev:' + de.id]); }
+    if (sug.length < 3) { const x = questCtx(), q = QUESTS.find(q => !got[q.id] && q.need.every(n => got[n])); if (q) { const [a, b] = q.c(x); sug.push(['🗺️', `Görev: ${q.t}`, `${q.d} · ${Math.min(a, b)}/${b}`, q.go || '#/me/gorev']); } }
+    if (!sug.length) return '';
+    return `<div class="hl-sec"><h3>💡 Şimdi ne yapsam?</h3></div><div class="c3-sugs">${sug.slice(0, 3).map(([ic, t, s, href]) => `<a class="c3-sug" ${href.startsWith('ev:') ? `href="#/home" data-c3ev="${esc(href.slice(3))}"` : `href="${esc(href)}"`}><i>${ic}</i><span><b>${esc(t)}</b>${s ? `<small>${esc(s)}</small>` : ''}</span></a>`).join('')}</div>`;
+  }
+  // ☀️ Günün kızı (gündüz vitrini): büyük fotoğraf, havaya göre cümlesi, altında gecenin sloganı
+  function c3Spot(slogan) {
+    const W = worldNow(), all = cmAll(), gk = all.length ? all[c3H('gk' + W.day) % all.length] : null, says = C3.WX_SAY[W.wx.k] || [''];
+    if (!gk) return '';
+    return `<a class="c3-spot" href="${byId(gk.id) ? `#/p/${esc(gk.id)}` : `#/carmen/${esc(gk.id)}`}" style="--mtbg:${esc(grad(gk))}">${gk.photo ? `<img src="${esc(gk.photo)}" alt="" loading="lazy" onerror="this.remove()">` : ''}
+      <span><small>☀️ Günün kızı · ${W.wx.ic} ${W.wx.temp}°</small><b>${esc(gk.name || 'İsimsiz')}${gk.age ? `, ${esc(gk.age)}` : ''}</b><i>“${esc(says[c3H('gs' + W.day) % says.length])}”</i>${slogan ? `<em>🔞 ${esc(slogan)}</em>` : ''}</span></a>`;
+  }
+  const c3Night = () => { const h = Math.floor(worldNow().min / 60) % 24; return h >= 20 || h < 6; };
+  // 🕰️ saate göre ana sayfa (şehir saati): sabah öneriler ve haberler önde, gece 🌙 Gecenin kızı önde
+  const c3Part = () => { const h = Math.floor(worldNow().min / 60) % 24; return h >= 6 && h < 11 ? 'sabah' : h >= 11 && h < 17 ? 'gun' : h >= 17 && h < 20 ? 'aksam' : 'gece'; };
+  const C3_ORDER = { sabah: ['c3', 'sug', 'cont', 'media', 'spot', 'meet'], gun: ['c3', 'cont', 'sug', 'spot', 'meet', 'media'], aksam: ['c3', 'cont', 'spot', 'sug', 'meet', 'media'], gece: ['c3', 'spot', 'cont', 'sug', 'meet', 'media'] };
+  const C3_HELLO = { sabah: '☀️ Günaydın', gun: '🌤️ İyi günler', aksam: '🌇 İyi akşamlar', gece: '🌙 İyi geceler' };
+  // 📰📖🍿 tek şerit: son 2 haber + bu ayın 2 dergisi + filmler
+  function c3Media() {
+    const items = [];
+    try { const nw = newsUnseen(); HOME_NEWS.slice(0, 2).forEach(([ic, t, d], i) => items.push(`<a class="c3-m c3-mn" href="#/news/${newsNo(i)}"><span>${ic}</span>${i < nw ? '<em>Yeni</em>' : ''}<b>${esc(t)}</b><small>${esc(d)}</small></a>`)); } catch (e) {}
+    let mg = '';
+    try { const T = MG().titles, st = mgState(); if (T.length && cmAll().some(c => c.photo)) { mg = MG_CSS; mgSort('home:' + new Date().toDateString(), T).sort((a, b) => !!st.read[mgIssues(a)[0].id] - !!st.read[mgIssues(b)[0].id]).slice(0, 2).forEach(m => items.push(`<div class="c3-m c3-mg">${mgCov(mgIssues(m)[0], false, st)}</div>`)); } } catch (e) {}
+    try { const st = fxState(); FX_TITLES.forEach(x => { const c = fxCast(x), seen = (st.seen[x.id] || []).length; items.push(`<a class="c3-m c3-mf" href="#/flix/${x.id}" style="--mtbg:${esc(c.her ? grad(c.her) : 'linear-gradient(135deg,#e50914,#300)')}">${c.her && c.her.photo ? `<img src="${esc(c.her.photo)}" alt="" loading="lazy" onerror="this.remove()">` : ''}${seen ? '' : '<em>Yeni</em>'}<span><small>CARMENFLIX</small><b>${esc(x.t)}</b><i>▶ ${seen ? 'Tekrar izle' : 'Şimdi izle'}</i></span></a>`); }); } catch (e) {}
+    if (!items.length) return '';
+    return `${mg}<div class="hl-sec"><h3>📰 Haber · 📖 Dergi · 🍿 Flix</h3><a href="#/news">Haberler ›</a></div><div class="c3-media">${items.join('')}</div>`;
+  }
+  /* 🔎 Global arama (#/ara): karakterler, ilanlar, olaylar, sahneler, bölümler, siteler, kitap sayfaları ve deneyler tek kutuda (Türkçe harfsiz de bulur) */
+  function renderSearch() {
+    const st = c3St();
+    view.innerHTML = `<div class="page-pad narrow">${pageHero('ara', '🔎', 'Arama', ['karakter', 'olay', 'sahne', 'site', 'kitap'], '', { back: ui.prevPage || '#/home' })}
+      <div class="bk-search" style="margin-top:12px"><input id="c3Q" type="search" placeholder="🔎 Karakter, olay, sahne, site, kitap sayfası…" autocomplete="off" value="${esc(ui.c3Q || '')}"></div>
+      <div id="c3Res"></div></div>`;
+    const q = $('#c3Q'), res = $('#c3Res'), f = evbFold, evs = allEvents();
+    const groupsOf = s => {
+      const has = (...xs) => xs.some(x => f(x).includes(s)), G = [];
+      const add = (h, rows) => { if (rows.length) G.push([h, rows.slice(0, 8), rows.length]); };
+      add('👩 Karakterlerin', chars().filter(c => !c.husb && has(c.name, c.job || '', c.city || '')).map(c => [`#/p/${c.id}`, avatar(c, 32), c.name, [c.age, c.city, c.job].filter(Boolean).join(' · ')]));
+      add('🌹 İlanlar', cmAds().filter(c => has(c.name, c.city || '')).map(c => [`#/carmen/${c.id}`, avatar(c, 32), c.name, [c.age, c.city].filter(Boolean).join(' · ')]));
+      add('📜 Olaylar', evs.filter(e => has(e.title, e.desc || '')).map(e => [`ev:${e.id}`, '<i>' + evEmo(e) + '</i>', e.title, e.desc || '']));
+      add('🎬 Sahneler', (Stories.SCENES || []).filter(c => has(c.name || '', c.desc || '')).map(c => [`#/events/sahne-${c.id}`, `<i>${c.icon || '🎬'}</i>`, c.name, c.desc || '']));
+      add('📖 Bölümler', (Stories.EPISODES || []).filter(c => has(c.name || '', c.desc || '')).map(c => [`#/events/bolum-${c.id}`, `<i>${c.icon || '📖'}</i>`, c.name, c.desc || '']));
+      add('🌐 Siteler', netSites().filter(x => has(x.logo.replace(/<[^>]+>/g, ''), x.desc || '')).map(x => [x.href, `<i>${x.ic}</i>`, x.logo.replace(/<[^>]+>/g, ''), x.desc || '']));
+      add('📚 Kitap sayfaları', BOOKS.flatMap(b => b.chapters.map((c, j) => [b, c, j])).filter(([, c]) => !c.toc && has(c.title, c.sub || '')).map(([b, c, j]) => [`#/kitap/${b.id}/${j}`, `<i>${c.icon}</i>`, c.title, `${b.icon} ${b.title} · s. ${j + 1}`]));
+      add('🧪 Deneyler', LABS.filter(l => has(l[2], l[4])).map(l => [`#/${l[0]}`, `<i>${l[1]}</i>`, l[2], l[4]]));
+      return G;
+    };
+    const draw = () => {
+      const s = f(q.value.trim());
+      ui.c3Q = q.value;
+      if (s.length < 2) { res.innerHTML = '<div class="about card" style="margin-top:12px">En az 2 harf yaz. Karakter adı, olay (ör. Doggy), sahne, site (ör. Fans), kitap sayfası ya da deney bulunur.</div>'; return; }
+      if (!st.search) { st.search = 1; save(); }
+      const G = groupsOf(s);
+      res.innerHTML = G.length ? G.map(([h, rows, n]) => `<div class="sec-title">${h} <small>· ${n}</small></div><div class="card" style="padding:4px 8px">${rows.map(([href, ic, t, sub]) => `<a class="me-hist c3-hit" ${href.startsWith('ev:') ? `href="#/ara" data-c3ev="${esc(href.slice(3))}"` : `href="${esc(href)}"`}>${ic}<span><b>${esc(t)}</b>${sub ? `<small>${esc(String(sub).slice(0, 90))}</small>` : ''}</span></a>`).join('')}</div>`).join('')
+        : '<div class="about card" style="margin-top:12px">Bulunamadı</div>';
+    };
+    q.oninput = draw;
+    res.onclick = e => { const b = e.target.closest('[data-c3ev]'); if (!b) return; e.preventDefault(); const ev = evs.find(x => x.id === b.dataset.c3ev); if (ev) evWin(ev); };
+    draw();
+    q.focus();
+  }
+  // 🌟 profil → Özet (düzenleme modu kapalıyken de): doğum günü, tanışıklık, ilkler, en çok yaşananlar, yerler, süren bölüm
+  function c3ProfSum(c) {
+    const A = anOf(c), days = Math.max(1, Math.round((Date.now() - A.start) / 864e5)), n = bdayIn(c), d0 = new Date(A.start);
+    const ilk = Object.entries(A.ilk || {}).sort((a, b) => a[1].at - b[1].at), say = Object.entries(A.say || {}).sort((a, b) => b[1] - a[1]).slice(0, 5), yer = Object.entries(A.yer || {}).sort((a, b) => b[1] - a[1]).slice(0, 3);
+    const E = c.ep && (Stories.EPISODES || []).find(e => e.id === c.ep.id), done = (c.eps || []).length;
+    const row = (ic, t, s) => `<div class="me-hist"><span><b>${ic} ${t}</b>${s ? `<small>${s}</small>` : ''}</span></div>`;
+    const a = c3ArcSync(c), wh = c3Where(c), D = c3DreamOf(c), dp = D ? D.st.p : 0;
+    return `<div class="card" style="margin-top:8px">
+        ${row(a.ic, `İlişkiniz: ${esc(a.n)}${a.kriz ? ' · 💔 kırgın' : ''}`, a.next ? `Sıradaki ${esc(a.next)}` : 'En derin aşamadasınız')}
+        ${wh ? row('📍', `Şu an: ${esc(wh)}`, 'şehir saatine göre') : ''}
+        ${D ? `<div class="me-hist"><span style="flex:1"><b>${D.ic} Hayali: ${esc(D.t)}</b><small>${D.st.done ? '✨ Gerçekleşti!' : `%${dp} · destek ${Math.max(200, Math.round(D.cost / 5)).toLocaleString('tr-TR')}₺`}</small>
+          <span class="qs-bar" style="display:block;height:6px;border-radius:3px;background:var(--chip);overflow:hidden;margin-top:4px"><span style="display:block;height:100%;width:${dp}%;background:linear-gradient(90deg,#7b1fa2,#ff4d8d)"></span></span></span>${D.st.done ? '' : `<button type="button" class="btn ghost sm" data-c3dream="${esc(c.id)}">💝 Destekle</button>`}</div>` : ''}
+        <div class="me-hist"><span><b>🌐 Siteleri</b>${c3SiteRow(c)}</span></div>
+        ${row('🎂', `Doğum günü: ${bdayTxt(c)}`, n ? `${n} gün sonra` : '🎉 Bugün!')}
+        ${msgCount(c) ? row('🗓️', `${c3DateY(d0)} tarihinde tanıştınız`, `${days} gün · ${msgCount(c)} mesaj`) : row('🌱', 'Henüz tanışmadınız', 'İlk mesajı yaz, hikâyeniz başlasın')}
+        ${E ? row('📖', `${esc(E.icon)} ${esc(E.name)} sürüyor`, `${Math.min((c.ep.i || 0) + 1, E.scenes.length)}/${E.scenes.length}. sahne`) : ''}${done ? row('🏁', `${done} bölüm bitirdiniz`, '') : ''}
+        ${ilk.length ? `<div class="sec-title">✨ İlkleriniz <small>· ${ilk.length}</small></div>${ilk.slice(0, 8).map(([k, v]) => { const L = AN_ILK.find(x => x[0] === k) || [k, '✨', k]; return row(L[1], esc(L[2]), `${esc(v.t)}${v.pl ? ` · ${esc(v.pl)}` : ''}`); }).join('')}` : ''}
+        ${say.length ? `<div class="sec-title">🔁 En çok yaşadıklarınız</div>${say.map(([t, k]) => row('•', esc(t), `×${k}`)).join('')}` : ''}
+        ${yer.length ? `<div class="sec-title">📍 Yerleriniz</div>${yer.map(([t, k]) => row('•', esc(t), `×${k}`)).join('')}` : ''}
+        ${c3LookHist(c)}
+        <a class="btn ghost block sm" href="#/kitap/carmen3/${BOOK_C3_STORY}" style="margin-top:10px">📕 Benim hikâyem</a>
+      </div>`;
+  }
+  // 📊 Ben → Özet: saat ısı haritası, en sevdiğin olay kategorileri ve mekânlar
+  function c3StatsCard() {
+    const hrs = Array(24).fill(0), cats = {}, evMap = new Map(allEvents().map(e => [e.id, e])), catOf = new Map(moCats().map(c => [c.id, c])), yer = {};
+    threads().forEach(t => msgsOf(t).forEach(m => { if (m.from === 'me' && m.ts) hrs[new Date(m.ts).getHours()]++; const e = m.ev && evMap.get(m.ev); if (e) cats[e.cat] = (cats[e.cat] || 0) + 1; }));
+    chars().forEach(c => { const A = c.anilar; if (A && A.yer) Object.entries(A.yer).forEach(([k, n]) => { yer[k] = (yer[k] || 0) + n; }); });
+    const mx = Math.max(1, ...hrs), top = (o, n) => Object.entries(o).sort((a, b) => b[1] - a[1]).slice(0, n);
+    const tc = top(cats, 3), ty = top(yer, 3);
+    return `<div class="card" style="margin-top:12px">
+        <div class="sec-title" style="margin-top:0">🕰️ Ne zaman yazıyorsun? <small>· mesajlarının saatleri</small></div>
+        <div style="display:flex;align-items:flex-end;gap:2px;height:64px">${hrs.map((n, i) => `<span title="${String(i).padStart(2, '0')}:00 · ${n}" style="flex:1;border-radius:3px 3px 0 0;background:linear-gradient(180deg,var(--pink, #ff4d8d),var(--purple, #7b1fa2));opacity:${n ? .35 + .65 * n / mx : .12};height:${Math.max(4, Math.round(n / mx * 64))}px"></span>`).join('')}</div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted)"><span>00</span><span>06</span><span>12</span><span>18</span><span>23</span></div>
+        ${tc.length ? `<div class="sec-title">🔥 En sevdiğin olay türleri</div>${tc.map(([k, n], i) => { const c = catOf.get(k) || {}; return `<div class="me-hist"><span><b>${['🥇', '🥈', '🥉'][i]} ${esc(c.icon || '')} ${esc(c.label || k)}</b><small>${n} olay</small></span></div>`; }).join('')}` : ''}
+        ${ty.length ? `<div class="sec-title">📍 En çok buluştuğunuz yerler</div>${ty.map(([k, n], i) => `<div class="me-hist"><span><b>${['🥇', '🥈', '🥉'][i]} ${esc(k)}</b><small>${n} olay</small></span></div>`).join('')}` : ''}
+      </div>`;
+  }
+  // 📕 Benim hikâyem (Carmen 3.0 Kitabı): her karakterle ilk tanışma, süre, ilkler, en çok yaşananlar, yerler; 🖨️ yazdırılabilir
+  function c3StoryBody() {
+    const cs = chars().filter(c => !c.husb && msgCount(c)).sort((a, b) => msgCount(b) - msgCount(a));
+    if (!cs.length) return '<p>Henüz yazılacak bir hikâyen yok. Bir karakterle sohbet et, olaylar yaşa; bu sayfa her açılışta senin geçmişinden yeniden yazılır.</p>';
+    const dt = ts => c3DateY(new Date(ts));
+    return `<p>Bu sayfa senin hikâyen: Carmen'de tanıştığın herkes, ne zaman tanıştığınız, ilk'leriniz ve en çok nerede buluştuğunuz. Her açılışta güncel verinden yeniden yazılır.</p>
+      <p><button type="button" class="btn ghost sm" data-bkprint>🖨️ Yazdır / PDF olarak kaydet</button></p>
+      ${cs.slice(0, 20).map(c => {
+        const A = anOf(c), days = Math.max(1, Math.round((Date.now() - A.start) / 864e5));
+        const ilk = Object.entries(A.ilk || {}).sort((a, b) => a[1].at - b[1].at).slice(0, 8), say = Object.entries(A.say || {}).sort((a, b) => b[1] - a[1]).slice(0, 5), yer = Object.entries(A.yer || {}).sort((a, b) => b[1] - a[1]).slice(0, 3);
+        return `<h4>${esc(c.icon || '')} ${esc(c.name)}</h4>
+          <p>${dt(A.start)} tarihinde tanıştınız · ${days} gün · ${msgCount(c)} mesaj · 🎂 ${bdayTxt(c)}${c.age ? ` · ${esc(c.age)} yaşında` : ''}</p>
+          ${ilk.length ? `<p><b>✨ İlkleriniz</b></p><ul>${ilk.map(([k, v]) => { const L = AN_ILK.find(x => x[0] === k) || [k, '✨', k]; return `<li>${L[1]} ${esc(L[2])}: <b>${esc(v.t)}</b>${v.pl ? ` · ${esc(v.pl)}` : ''} <small>(${dt(v.at)})</small></li>`; }).join('')}</ul>` : ''}
+          ${say.length ? `<p><b>🔁 En çok yaşadıklarınız:</b> ${say.map(([t, n]) => `${esc(t)} ×${n}`).join(', ')}</p>` : ''}
+          ${yer.length ? `<p><b>📍 Yerleriniz:</b> ${yer.map(([t, n]) => `${esc(t)} ×${n}`).join(', ')}</p>` : ''}`;
+      }).join('')}`;
+  }
+
+  /* ---------- 🚀 Carmen 3.0 (3): 🎨🌍 ten / köken kapıları, 🪞 görünüm geçmişi, ⏩ sabaha geç, 🧠 öğrenen cümleler,
+   * 🤖 bot eşleşme sayacı + 🩺 bot sağlığı, 🎭 ruh hâline göre ton ---------- */
+  // 🎨 ten kapısı: e.skin = Skin Tone anahtarları (Pale…Dark); özellik yoksa görünen tenden (ccSkin) bulunur
+  const c3SkinKey = c => cmTrait(c, 'Skin Tone') || Object.keys(CM_SKIN).find(k => CM_SKIN[k] === ccSkin(c)) || '';
+  const skinBlock = (c, e) => { if (!c || !e || !(e.skin || []).length || c.husb) return ''; const k = c3SkinKey(c); return !k || e.skin.includes(k) ? '' : `sadece ${e.skin.map(v => String(CM_SKIN[v] || v).toLocaleLowerCase('tr')).join(' / ')} tenli kızda olur`; };
+  // 🌍 köken kapısı: e.origin = World.REGIONS anahtarları (tr, latin…); karakterin şehrinden bölge (World.regionOf)
+  const c3Region = c => { const W = Stories.World || {}, lb = W.regionOf ? W.regionOf((c || {}).city) : ''; return Object.keys(W.REGIONS || {}).find(k => W.REGIONS[k] === lb) || ''; };
+  const originBlock = (c, e) => { if (!c || !e || !(e.origin || []).length || c.husb) return ''; const R = (Stories.World || {}).REGIONS || {}; return e.origin.includes(c3Region(c)) ? '' : `sadece ${e.origin.map(k => R[k] || k).join(' / ')} kökenli kızda olur`; };
+  // 🪞 görünüm geçmişi (🌟 Özet): gündem değişimleri (c.lf.chg; 3.0'dan beri o anki fotoğrafla)
+  function c3LookHist(c) {
+    const H = ((c.lf || {}).chg || []).slice().reverse();
+    if (!H.length) return '';
+    return `<div class="sec-title">🪞 Görünüm geçmişi <small>· ${H.length} değişim</small></div>
+      <div class="c3-lk">${H.slice(0, 10).map(x => `<div class="c3-lk-r">${x.ph ? `<img src="${esc(x.ph)}" alt="" loading="lazy" onerror="this.remove()">` : '<span class="c3-lk-n">🪞</span>'}<span><b>${esc(x.t)}</b><small>${c3DateY(new Date(x.at))}${x.ph && x.ph !== c.photo ? ' · önceki fotoğraf' : ''}</small></span></div>`).join('')}
+        ${c.photo ? `<div class="c3-lk-r"><img src="${esc(c.photo)}" alt=""><span><b>Şimdi</b><small>${esc([cmHairC(c), cmHlen(c)].filter(Boolean).join(' · '))}</small></span></div>` : ''}</div>`;
+  }
+  { const st = document.createElement('style'); st.textContent = '.c3-lk{display:flex;flex-direction:column;gap:6px}.c3-lk-r{display:flex;gap:10px;align-items:center}.c3-lk-r img,.c3-lk-n{width:44px;height:44px;border-radius:10px;object-fit:cover;flex:none;display:grid;place-items:center;background:var(--chip)}.c3-lk-r span{display:flex;flex-direction:column;min-width:0}.c3-lk-r small{color:var(--muted)}'; document.head.appendChild(st); }
+  // ⏩ sohbette sabaha geç: sohbet saati bir sonraki 08:00'e atlar, 🌅 özet notu yazılır (saat kapalıysa olmaz)
+  function c3SkipChat(th, c) {
+    const cf = clockCfg();
+    if (cf.on === false || (th.clock && th.clock.off)) { notify('Sohbet saati kapalı: saat açıkken sabaha geçilir', '⏩'); return false; }
+    const cur = thMin(th), d = ((480 - (((cur % 1440) + 1440) % 1440)) + 1440) % 1440 || 1440, ck = th.clock;
+    const n = msgsOf(th).filter(m => m.from !== 'sys').length, s = ck && ck.step !== '' && ck.step != null ? +ck.step : +cf.step || 0;
+    th.clock = Object.assign({}, ck, { start: (ck ? ck.start : cur - s * n) + d, done: n });
+    const nm = c ? c.name.split(' ')[0] : '', L = C3.SKIP || [''], md = c && lfMood(c);
+    if (c && md && md.k === 'kirgin') c.lf.mood = null; // bir gece uyuyunca kırgınlık geçer
+    msgsOf(th).push({ id: Store.uid(), from: 'sys', ts: Date.now(), text: `🌅 ${hhmm(cur + d)} · ⏩ ${Math.round(d / 60)} saat sonra · Sabah oldu${nm ? `\n${pickOne(L).replace(/\{o\}/g, nm)}` : ''}${md && md.k === 'kirgin' ? `\n🕊️ ${nm}'in kırgınlığı geçti` : ''}` });
+    c3St().skips = (c3St().skips || 0) + 1;
+    save();
+    return true;
+  }
+  // ⏩ şehirde sabaha geçince (city.js api.skip): kaçırdığın etkinlikler + günün havası özeti
+  function c3CitySkip(hours, missed) {
+    const W = worldNow();
+    c3St().skips = (c3St().skips || 0) + 1; save();
+    const sh = sheet(`<div class="sheet-grip"></div><h3>🌅 Sabah oldu</h3><p class="about">⏩ ${hours} saat geçti. Şehir saati 08:00.</p>
+      <div class="me-hist"><span><b>${W.wx.ic} Bugün ${esc(W.wx.n)}, ${W.wx.temp}°</b><small>${esc(C3.WX_NEWS[W.wx.k] || '')}</small></span></div>
+      ${missed.length ? `<div class="sec-title">🎉 Kaçırdıkların</div>${missed.map(e => `<div class="me-hist"><span><b>${e.ic} ${esc(e.n)}</b><small>${String(e.h[0] % 24).padStart(2, '0')}:00</small></span></div>`).join('')}` : ''}
+      ${chars().filter(c => !c.husb && !bdayIn(c)).map(c => `<div class="me-hist"><span><b>🎂 Bugün ${esc(c.name.split(' ')[0])}'in doğum günü</b></span></div>`).join('')}
+      <button type="button" class="btn primary block" data-skok style="margin-top:12px">Günaydın ☀️</button>`, 'light');
+    sh.el.onclick = e => { if (e.target.closest('[data-skok]')) sh.close(); };
+  }
+  // 🧠 öğrenen cümleler: sohbette sık yazdıkların (bu tarayıcıda) 🔮 Tahmin önerilerinin başına gelir (2+ kez yazılmış)
+  const c3Phr = v => { try { if (v) localStorage.setItem('amor-stories:myphr', JSON.stringify(v)); return JSON.parse(localStorage.getItem('amor-stories:myphr') || '{}') || {}; } catch (e) { return v || {}; } };
+  function c3PhrAdd(t) {
+    const d = String(t || '').trim();
+    if (d.length < 4 || d.length > 60 || /^[#*]/.test(d)) return;
+    const P = c3Phr(), f = tFold(d);
+    P[f] = { d, n: ((P[f] || {}).n || 0) + 1, at: Date.now() };
+    const ks = Object.keys(P);
+    if (ks.length > 300) ks.sort((a, b) => P[a].n - P[b].n || P[a].at - P[b].at).slice(0, ks.length - 300).forEach(k => delete P[k]);
+    c3Phr(P);
+  }
+  // 🤖 hangi kural kaç kez kazandı (sadece sohbette, bu tarayıcıda) → 🩺 Bot sağlığı
+  let c3HitMem = null, c3HitT = 0;
+  const c3Hits = () => { if (!c3HitMem) { try { c3HitMem = JSON.parse(localStorage.getItem('amor-stories:bothits') || '{}') || {}; } catch (e) { c3HitMem = {}; } } return c3HitMem; };
+  if (Stories.Bot && Stories.Bot.best && !Stories.Bot.best.c3) {
+    const best0 = Stories.Bot.best;
+    Stories.Bot.best = function (...a) {
+      const m = best0.apply(this, a);
+      try {
+        if (m && !m.fallback && m.rule && m.rule.id && ui.route && ui.route.name === 'chat') {
+          const H = c3Hits(); H[m.rule.id] = (H[m.rule.id] || 0) + 1; if (!H._at) H._at = Date.now();
+          clearTimeout(c3HitT); c3HitT = setTimeout(() => { try { localStorage.setItem('amor-stories:bothits', JSON.stringify(H)); } catch (e) {} }, 1500);
+        }
+      } catch (e) {}
+      return m;
+    };
+    Stories.Bot.best.c3 = 1;
+  }
+  // 🎭 ruh hâline göre ton: 😤 kırgınken soğuk başlar, kalpler düşer · 😊 mutluyken arada bir gülümseme
+  function c3Tone(ch, parts) {
+    const md = ch && lfMood(ch);
+    if (!md || !parts.length || typeof parts[0] !== 'string') return parts;
+    if (md.k === 'kirgin' && Math.random() < .5) parts[0] = pickOne(['Hmm. ', 'Peki. ', 'Neyse. ', 'Tamam. ']) + parts[0].replace(/\s*[❤️💕💖😘🥰😍💗💞]+/gu, '');
+    else if (md.k === 'mutlu' && Math.random() < .3 && !/[😊☺️✨]$/u.test(parts[parts.length - 1])) parts[parts.length - 1] += ' 😊';
+    return parts;
+  }
+  /* 🩺 Bot sağlığı (#/botsaglik): eşleşme sayaçları, hiç kazanmayan kurallar, aynı şartlı (gölgelenen) kurallar, aynı cevaplı kurallar, boş kurallar, 📭 eksik cevaplar */
+  function renderBotHealth() {
+    const R = botRules(), H = c3Hits(), since = H._at, key = r => JSON.stringify([(r.when || []).map(w => String(w).toLocaleLowerCase('tr')), (r.traits || []).slice().sort(), (r.chars || []).slice().sort(), r.gender || '']);
+    const grp = f => { const m = new Map(); R.forEach(r => { const k = f(r); if (!k) return; m.set(k, [...(m.get(k) || []), r]); }); return [...m.values()].filter(a => a.length > 1); };
+    const same = grp(r => (r.when || []).length ? key(r) : ''), dupRep = grp(r => (r.reply || []).length >= 2 ? JSON.stringify((r.reply || []).slice().sort()) : '');
+    const empty = R.filter(r => !(r.reply || []).some(x => String(x).trim())), hit = R.filter(r => H[r.id]), top = [...hit].sort((a, b) => H[b.id] - H[a.id]).slice(0, 15);
+    const cats = {}; R.forEach(r => { const c = r.category || '—'; cats[c] = cats[c] || [0, 0]; cats[c][0]++; if (H[r.id]) cats[c][1]++; });
+    const miss = (S().botMiss || []).slice().sort((a, b) => b.n - a.n).slice(0, 12);
+    const rl = r => `<div class="me-hist"><span><b>${esc(r.name || r.id)}</b><small class="no-i18n">${esc(r.id)} · ${esc((r.when || []).join(' '))}</small></span>${H[r.id] ? `<time>×${H[r.id]}</time>` : ''}</div>`;
+    view.innerHTML = `<div class="page-pad narrow monia">${pageHero('deneyler', '🩺', 'Bot sağlığı', [`${R.length} kural`, `${hit.length} kazandı`, since ? `${c3DateY(new Date(since))}'den beri` : 'sayım yeni başladı'], '<button type="button" class="btn ghost sm pg-act" id="bhReset">↺</button>', { back: '#/deneyler' })}${labNav('botsaglik')}
+      <div class="about card" style="margin-top:10px">Sohbette kazanan her kural bu tarayıcıda sayılır (3.0'dan beri). Az kullanılan, birbirini gölgeleyen ya da aynı cevabı veren kuralları bul; düzeltmeyi 🤖 Bot editöründe yap.</div>
+      <div class="card" style="margin-top:10px"><div class="sec-title" style="margin-top:0">🏆 En çok kazananlar</div>${top.length ? top.map(rl).join('') : '<div class="about">Henüz sayım yok: biraz sohbet et.</div>'}</div>
+      <div class="card" style="margin-top:10px"><div class="sec-title" style="margin-top:0">🗂️ Kategoriler <small>· kazanan / toplam</small></div>
+        ${Object.entries(cats).sort((a, b) => b[1][0] - a[1][0]).slice(0, 30).map(([c, [n, h]]) => `<div class="me-hist"><span style="flex:1"><b>${esc(c)}</b><span class="qs-bar" style="display:block;height:6px;border-radius:3px;background:var(--chip);overflow:hidden;margin-top:4px"><span style="display:block;height:100%;width:${Math.round(h / n * 100)}%;background:linear-gradient(90deg,#7b1fa2,#ff4d8d)"></span></span></span><time>${h}/${n}</time></div>`).join('')}</div>
+      ${[['💤', 'Hiç kazanmamış kurallar', R.filter(r => !H[r.id]), 'Sayım başladığından beri sohbette hiç seçilmedi. Şartı çok dar olabilir ya da başka bir kural önüne geçiyor.', 0],
+        ['👥', 'Aynı şartlı kurallar', same, 'Kelimeleri, özellikleri ve karakterleri aynı: aynı yarışa girer, biri ötekini gölgeler. Birleştirmek iyi olur.', 1],
+        ['🔁', 'Aynı cevaplı kurallar', dupRep, 'Cevap havuzu birebir aynı: kopya olabilir.', 1],
+        ['🕳️', 'Cevabı boş kurallar', empty, 'Kazanırsa karakter hiçbir şey demez.', 0]].map(([ic, t, L, hint, isG]) => `<details class="card" style="margin-top:10px"><summary style="cursor:pointer"><b>${L.length ? '⚠️' : '✅'} ${ic} ${esc(t)}</b> <small>· ${L.length}</small></summary><p class="about">${esc(hint)}</p>
+          ${L.slice(0, 40).map(x => isG ? `<div style="border-left:3px solid var(--line);padding-left:8px;margin:6px 0">${x.map(rl).join('')}</div>` : rl(x)).join('')}${L.length > 40 ? `<p class="about">… +${L.length - 40}</p>` : ''}</details>`).join('')}
+      <div class="card" style="margin-top:10px"><div class="sec-title" style="margin-top:0">📭 Eksik cevaplar <small>· karakterin anlamadığı mesajlar</small></div>${miss.length ? miss.map(x => `<a class="me-hist" href="#/deney" data-bhtry="${esc(x.t)}"><span><b>“${esc(x.t)}”</b><small>×${x.n} · 🧪 Bot deneyinde dene</small></span></a>`).join('') : '<div class="about">Yok 🎉</div>'}</div></div>`;
+    $('#bhReset').onclick = () => { if (!confirm('Eşleşme sayaçları sıfırlansın mı?')) return; c3HitMem = {}; try { localStorage.removeItem('amor-stories:bothits'); } catch (e) {} renderBotHealth(); };
+    view.onclick = e => { const b = e.target.closest('[data-bhtry]'); if (b) ui.botLabText = b.dataset.bhtry; };
+  }
+
+  /* ---------- 🚀 Carmen 3.0 (2): 📇 Rehber, 💞 ilişki aşaması, 🕸️ ilişki ağı, ✨ hayaller, 🌐 siteler arası kimlik, 🔔 bildirim merkezi,
+   * 📖 sohbet özeti, ⌨️ yazma hızı, 🎲 günün olayı, ✏️ sahne editörü ---------- */
+  { const st = document.createElement('style'); st.textContent = '.c3-sites{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}.c3-sites a{font-size:11px;padding:2px 8px;border-radius:999px;background:var(--chip);border:1px solid var(--line);color:inherit;text-decoration:none}'
+    + '.nav a[data-tab="rehber"]{position:relative}.nav-badge{position:absolute;top:2px;left:calc(50% + 6px);min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#ff2d55;color:#fff;font:700 10px/16px system-ui;font-style:normal;text-align:center;pointer-events:none}.nav-badge[hidden]{display:none}'; document.head.appendChild(st); }
+  const c3Watch = t => !!(t && (t.husb || t.duo)); // 💍 / 👭 izleme sohbeti (sana yazmazlar)
+  const c3Unread = t => { const m = lastOf(t); return !!m && m.from !== 'me' && m.from !== 'sys' && (m.ts || 0) > (t.opened || 0); };
+  // 💞 ilişki aşaması: mesaj sayısı + ilkler (📔 anılar) + tanışıklık günü; 😤 kırgınsa 💔 kriz
+  function c3Arc(c) {
+    const A = anOf(c), n = msgCount(c), il = Object.keys(A.ilk || {}).length, d = (Date.now() - A.start) / 864e5, ARC = C3.ARC || [['🌱', 'Tanışma', 0, 0, 0]];
+    let i = 0;
+    ARC.forEach(([, , m, f, dd], k) => { if (n >= m && il >= f && d >= dd) i = k; });
+    const nx = ARC[i + 1], md = lfMood(c);
+    return { i, ic: ARC[i][0], n: ARC[i][1], kriz: !!(md && md.k === 'kirgin'), next: nx ? `${nx[0]} ${nx[1]}: ${Math.max(0, nx[2] - n)} mesaj${nx[3] > il ? ` · ${nx[3] - il} ilk` : ''}` : '' };
+  }
+  function c3ArcSync(c) {
+    const a = c3Arc(c);
+    if (c.arc3 == null) { c.arc3 = a.i; save(); }
+    else if (a.i > c.arc3) { c.arc3 = a.i; save(); notify(`${c.name.split(' ')[0]} ile ilişkiniz ${a.ic} ${a.n} aşamasına geçti`, '💞'); }
+    return a;
+  }
+  // 📍 şu an nerede (şehir saatine göre şehirdeki rutini)
+  function c3Where(c) {
+    try {
+      const cs = chars().filter(x => !x.husb), H = ccHomes(cs), w = ccPlan(cs, H, Math.floor(worldNow().min / 60) % 24).find(x => x.c === c);
+      if (!w) return '';
+      const B = [...((Stories.City || {}).BLD || []), ...((Stories.City || {}).AREAS || [])].find(b => b.k === w.k);
+      return `${B ? `${B.ic} ${B.n}` : /^ev\d|^apt$/.test(w.k || '') ? '🏠 Evinde' : '📍 Şehirde'}${w.doing ? ` · ${w.doing}` : ''}`;
+    } catch (e) { return ''; }
+  }
+  // 🌐 aynı kız hangi sitelerde (Carmen.com ilanı, CarmenFans, Carmentagram, çevrimiçiyse CarmenLive)
+  const c3Sites = c => [['🌹', 'Carmen.com', `#/carmen/${c.id}`], ['🫦', 'Fans', `#/fans/${c.id}`], ['📸', 'Gram', `#/gram/${c.id}`], ...(cmOnline(c) ? [['🔴', 'Live', `#/canli/${c.id}`]] : [])];
+  const c3SiteRow = c => `<span class="c3-sites">${c3Sites(c).map(([ic, n, h]) => `<a href="${h}">${ic} ${n}</a>`).join('')}</span>`;
+  // 🌐 bir sitede tanıdığın kızın sayfasındaysan üstte "tanıyorsun" bandı
+  function c3SiteBadge(r) {
+    if (!r.id || !ui.siteSet || !ui.siteSet.has(r.name) || $('.c3-know')) return;
+    const c = byId(String(r.id).replace(/^of-/, ''));
+    if (!c || c.husb) return;
+    const t = currentThread(c), b = document.createElement('a');
+    b.className = 'c3-know'; b.href = t ? `#/chat/${t.id}` : `#/p/${c.id}`;
+    b.style.cssText = 'display:flex;gap:8px;align-items:center;margin:8px 12px;padding:8px 12px;border-radius:12px;background:linear-gradient(135deg,#6a1b9a,#ff4d8d);color:#fff;font-weight:700;font-size:13px;text-decoration:none;position:relative;z-index:5';
+    b.innerHTML = `<span>💬</span><span style="flex:1">${esc(c.name.split(' ')[0])} seni tanıyor · ${msgCount(c)} mesaj · ${esc(c3Arc(c).n)}</span><span>›</span>`;
+    view.prepend(b);
+  }
+  // ✨ hayal: karaktere göre sabit, 💝 Destekle (maliyetin %20'si) → %100'de gerçekleşir
+  const c3DreamOf = c => { const D = C3.DREAMS || []; if (!D.length) return null; const d = D[cmNum(c, 'dream', D.length)]; return { id: d[0], ic: d[1], t: d[2], cost: d[3], st: c.dream3 && c.dream3.k === d[0] ? c.dream3 : { k: d[0], p: 0 } }; };
+  function c3DreamPay(c) {
+    const D = c3DreamOf(c);
+    if (!D || D.st.done) return;
+    const amt = Math.max(200, Math.round(D.cost / 5)), u = S().user;
+    if ((u.money != null ? +u.money : START_MONEY) < amt) { notify(`Bunun için ${amt.toLocaleString('tr-TR')}₺ gerekiyor`, '💸'); return; }
+    bankAdd(-amt, `✨ ${c.name.split(' ')[0]}: ${D.t}`);
+    c.dream3 = { k: D.id, p: Math.min(100, D.st.p + 20) };
+    if (c.dream3.p >= 100) { c.dream3.done = Date.now(); notify(`✨ ${c.name.split(' ')[0]}'in hayali gerçekleşti: ${D.t}!`, D.ic); }
+    else notify(`💝 ${D.t} · %${c.dream3.p}`, D.ic);
+    save();
+  }
+  // 🔔 bildirim merkezi: notify() son 60 bildirimi kaydeder (bu tarayıcıda) + 🔔 çekmecede "şimdi" satırları
+  const c3NLog = v => { try { if (v) localStorage.setItem('amor-stories:notif', JSON.stringify(v.slice(0, 60))); return JSON.parse(localStorage.getItem('amor-stories:notif') || '[]') || []; } catch (e) { return v || []; } };
+  const c3NSeen = v => { try { if (v != null) localStorage.setItem('amor-stories:notifseen', String(v)); return +localStorage.getItem('amor-stories:notifseen') || 0; } catch (e) { return 0; } };
+  function c3NowRows() {
+    const R = [];
+    threads().filter(t => !c3Watch(t) && c3Unread(t)).sort((a, b) => activity(b) - activity(a)).slice(0, 6).forEach(t => {
+      const c = t.group ? null : byId(t.charId), m = lastOf(t);
+      R.push(['💬', `${t.group ? t.title || 'Grup' : c ? c.name.split(' ')[0] : '?'} sana yazdı`, String(preview(m) || '').slice(0, 60), `#/chat/${t.id}`]);
+    });
+    try { const nl = fnNewList(); if (nl.length) R.push(['🫦', `CarmenFans · ${nl.reduce((n, x) => n + x.n, 0)} yeni gönderi`, nl.slice(0, 3).map(x => x.c.name.split(' ')[0]).join(', '), `#/fans/${nl[0].c.id}`]); } catch (e) {}
+    const on = chars().filter(c => !c.husb && cmOnline(c)).slice(0, 3);
+    if (on.length) R.push(['🔴', `CarmenLive · ${on.map(c => c.name.split(' ')[0]).join(', ')} yayında`, 'Tanıdığın kızlar şu an canlı', `#/canli/${on[0].id}`]);
+    try { const nw = newsUnseen(); if (nw) R.push(['📰', `CarmenNews · ${nw} yeni haber`, '', '#/news']); } catch (e) {}
+    chars().filter(c => !c.husb && !bdayIn(c)).forEach(c => R.push(['🎂', `Bugün ${c.name.split(' ')[0]}'in doğum günü`, 'Ona bir mesaj at', `#/p/${c.id}`]));
+    return R;
+  }
+  // 🔔 Rehber'in en üstü: ⚡ Şimdi + son bildirimler (ilk 4, gerisi katlı); açılınca görüldü sayılır
+  function c3NotifHtml() {
+    const L = c3NLog(), seen = c3NSeen(), now = c3NowRows();
+    const row = ([ic, t, s, h]) => `<a class="me-hist" href="${esc(h || '#/home')}"><span style="font-size:20px">${ic}</span><span><b>${esc(t)}</b>${s ? `<small>${esc(s)}</small>` : ''}</span></a>`;
+    const lrow = n => `<a class="me-hist" href="${esc(n.h || '#/home')}"><span style="font-size:20px">${n.ic}</span><span><b>${esc(n.t)}</b><small>${n.ts > seen ? '🆕 · ' : ''}${fmtTime(n.ts)}</small></span></a>`;
+    c3NSeen(Date.now());
+    return `<div class="sec-title">🔔 Bildirimler</div><div class="card" style="padding:4px 8px">
+        ${now.length ? now.map(row).join('') : ''}
+        ${L.length ? `${L.slice(0, 4).map(lrow).join('')}${L.length > 4 ? `<details><summary style="cursor:pointer;padding:6px 4px"><small>🕘 ${L.length - 4} bildirim daha</small></summary>${L.slice(4).map(lrow).join('')}</details>` : ''}
+          <button type="button" class="btn ghost sm" data-nclear style="margin:6px 4px">🧹 Temizle</button>` : now.length ? '' : '<div class="about">Henüz bildirim yok.</div>'}</div>`;
+  }
+  // 📇 alt menü rozeti: okunmamış sohbet + bugün doğum günü olanlar (diğer bildirimler Rehber'de 🆕 ile)
+  const c3NCount = () => threads().filter(t => !c3Watch(t) && c3Unread(t)).length + chars().filter(c => !c.husb && !bdayIn(c)).length;
+  // 📖 uzun sohbetin başında "Şimdiye kadar" özeti (60+ mesaj; ✕ ile bu oturumda gizlenir)
+  function c3Recap(c, th, list) {
+    if (!c || th.group || list.length < 60 || (ui.c3Rc || {})[th.id]) return '';
+    const all = allEvents(), evs = [];
+    for (let i = list.length - 1; i >= 0 && evs.length < 4; i--) { const e = list[i].ev && all.find(x => x.id === list[i].ev); if (e && !evs.includes(e.title)) evs.push(e.title); }
+    const A = anOf(c), d = Math.max(1, Math.round((Date.now() - (list[0].ts || Date.now())) / 864e5)), il = Object.entries(A.ilk || {}).sort((a, b) => b[1].at - a[1].at)[0], a = c3Arc(c);
+    const yer = Object.entries(A.yer || {}).sort((x, y) => y[1] - x[1])[0];
+    return `<details class="c3-recap" style="margin:6px 10px 0;padding:8px 12px;border-radius:12px;background:var(--chip);border:1px solid var(--line);font-size:13px">
+      <summary style="cursor:pointer"><b>📖 Şimdiye kadar</b> <small>· ${list.length} mesaj · ${d} gün · ${a.ic} ${esc(a.n)}</small></summary>
+      <div style="margin-top:6px;display:flex;flex-direction:column;gap:3px">${evs.length ? `<span>🔁 Son olaylar: ${evs.map(esc).join(', ')}</span>` : ''}${il ? `<span>✨ Son ilk: ${esc((AN_ILK.find(x => x[0] === il[0]) || [, , il[0]])[2])} · ${esc(il[1].t)}</span>` : ''}${yer ? `<span>📍 En çok: ${esc(yer[0])}</span>` : ''}
+        <button type="button" class="btn ghost sm" data-c3rc="${esc(th.id)}" style="align-self:flex-start;margin-top:4px">✕ Gizle</button></div></details>`;
+  }
+  document.addEventListener('click', e => { const b = e.target.closest('[data-c3dream]'); if (!b) return; const c = byId(b.dataset.c3dream), p = $('#ptab'); if (!c) return; c3DreamPay(c); if (p) p.innerHTML = c3ProfSum(c); });
+  document.addEventListener('click', e => { const b = e.target.closest('[data-c3rc]'); if (!b) return; (ui.c3Rc = ui.c3Rc || {})[b.dataset.c3rc] = 1; const d = b.closest('.c3-recap'); if (d) d.remove(); });
+  // ⌨️ yazma hızı: kişiliğe göre çarpan (C3.TYPE_K, en yavaş olanı)
+  const c3TypeK = ch => { const ks = ((ch && ch.traits) || []).map(t => (C3.TYPE_K || {})[t]).filter(Boolean); return ks.length ? Math.max(...ks) : 1; };
+  // 🎲 günün olayı: hiç yaşamadığın olaylardan tarihe göre biri (📅 Bugün paneli)
+  function c3DayEvent() {
+    const done = new Set();
+    threads().forEach(t => { (t.evDone || []).forEach(id => done.add(id)); msgsOf(t).forEach(m => { if (m.ev) done.add(m.ev); }); });
+    const pool = allEvents().filter(e => !done.has(e.id) && e.story && !(e.tags || []).includes('roleplay'));
+    return pool.length ? pool[c3H('dev' + c3Day()) % pool.length] : null;
+  }
+  // ✏️ kendi sahnelerin (S().myScenes): açılışta ve kaydedince Stories.SCENES'e eklenir, 🎬 kategori ✏️ Benim sahnelerim
+  function c3LoadScenes() {
+    const SC = Stories.SCENES, CATS = Stories.SCENE_CATS;
+    if (!SC || !CATS) return;
+    for (let i = SC.length - 1; i >= 0; i--) if (SC[i].mine) SC.splice(i, 1);
+    let cat = CATS.find(x => x.id === 'benim');
+    if (!cat) { cat = { id: 'benim', icon: '✏️', name: 'Benim sahnelerim', ids: [] }; CATS.push(cat); }
+    cat.ids = [];
+    (S().myScenes || []).forEach(s => { SC.push(Object.assign({ tag: '', ttl: 4, fx: [['şehvet', 6], ['samimiyet', 2]], fail: [['güven', -1]] }, s, { mine: 1 })); cat.ids.push(s.id); });
+  }
+  function renderSceneMaker() {
+    const evs = allEvents(), tl = new Map(evs.map(e => [String(e.title).toLocaleLowerCase('tr'), e.title])), my = S().myScenes = S().myScenes || [];
+    const d = ui.scMk = ui.scMk || { id: '', name: '', icon: '🎬', mode: 'free', need: 3, open: '', steps: [], fin: '', desc: '' };
+    const fix = t => tl.get(String(t || '').trim().toLocaleLowerCase('tr')) || '';
+    view.innerHTML = `<div class="page-pad narrow monia">${pageHero('deneyler', '✏️', 'Sahne yap', [`${my.length} sahnen`, `${evs.length} olay`], '', { back: '#/deneyler' })}${labNav('sahneyap')}
+      <datalist id="scEvs">${evs.map(e => `<option value="${esc(e.title)}">`).join('')}</datalist>
+      <div class="card" style="margin-top:10px">
+        <div class="sec-title" style="margin-top:0">${d.id ? '✏️ Sahneyi düzenle' : '➕ Yeni sahne'}</div>
+        <div class="field"><label>Ad</label><input id="mkName" maxlength="40" value="${esc(d.name)}" placeholder="ör. Balkonda Gece"></div>
+        <div class="field"><label>Simge</label><input id="mkIcon" maxlength="4" value="${esc(d.icon)}"></div>
+        <div class="field"><label>🚪 Açılış olayı</label><input id="mkOpen" list="scEvs" value="${esc(d.open)}" placeholder="olay adı yaz, listeden seç"></div>
+        <div class="field"><label>👣 Adımlar <small>· en az 1</small></label><div class="presets" id="mkSteps">${d.steps.map((s, i) => `<button type="button" data-mkdel="${i}">${esc(s)} ✕</button>`).join('')}</div>
+          <div style="display:flex;gap:6px;margin-top:6px"><input id="mkStep" list="scEvs" placeholder="adım ekle" style="flex:1"><button type="button" class="btn ghost sm" id="mkAdd">＋</button></div></div>
+        <div class="field"><label>🏁 Bitiş olayı <small>· isteğe bağlı</small></label><input id="mkFin" list="scEvs" value="${esc(d.fin)}"></div>
+        <div class="field"><label>Sıra</label><div class="presets">${[['free', '🔀 Serbest'], ['seq', '➡️ Sırayla']].map(([k, l]) => `<button type="button" data-mkmode="${k}" class="${d.mode === k ? 'on' : ''}">${l}</button>`).join('')}</div></div>
+        ${d.mode === 'free' ? `<div class="field"><label>Kaç adım yeter?</label><input id="mkNeed" inputmode="numeric" maxlength="1" value="${esc(d.need)}"></div>` : ''}
+        <div class="field"><label>📝 Açıklama</label><input id="mkDesc" maxlength="120" value="${esc(d.desc)}"></div>
+        <button type="button" class="btn primary block" id="mkSave">💾 Kaydet</button>
+        ${d.id ? '<button type="button" class="btn ghost block" id="mkNew" style="margin-top:8px">➕ Yeni sahneye başla</button>' : ''}
+      </div>
+      <div class="sec-title">🎬 Sahnelerin</div>
+      ${my.length ? my.map(s => `<div class="card" style="margin-top:8px"><b>${esc(s.icon)} ${esc(s.name)}</b><p class="about">${esc(s.open)} → ${s.steps.map(esc).join(', ')}${s.fin ? ` → 🏁 ${esc(s.fin)}` : ''}</p>
+        <div style="display:flex;gap:6px;flex-wrap:wrap"><a class="btn ghost sm" href="#/events/sahne-${esc(s.id)}">🎓 CarmenEvents'te aç</a><button type="button" class="btn ghost sm" data-mked="${esc(s.id)}">✏️ Düzenle</button><button type="button" class="btn ghost sm" data-mkrm="${esc(s.id)}">🗑️ Sil</button></div></div>`).join('')
+        : '<div class="about card">Henüz kendi sahnen yok. Yukarıda bir açılış olayı, adımlar ve isteğe bağlı bir bitiş seç; sahne sohbette 🎬 şeridinde ve 🎓 CarmenEvents\'te ✏️ Benim sahnelerim altında görünür.</div>'}</div>`;
+    const keep = () => { d.name = $('#mkName').value; d.icon = $('#mkIcon').value || '🎬'; d.open = $('#mkOpen').value; d.fin = $('#mkFin').value; d.desc = $('#mkDesc').value; if ($('#mkNeed')) d.need = Math.max(1, Math.min(9, +$('#mkNeed').value || 3)); };
+    const addStep = () => { const t = fix($('#mkStep').value); if (!t) { notify('Böyle bir olay yok, listeden seç', '⚠️'); return; } keep(); d.steps.push(t); renderSceneMaker(); };
+    $('#mkAdd').onclick = addStep;
+    $('#mkStep').onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); addStep(); } };
+    view.onclick = e => {
+      const b = e.target.closest('[data-mkdel],[data-mkmode],[data-mked],[data-mkrm]');
+      if (!b) return;
+      if (b.dataset.mkdel != null) { keep(); d.steps.splice(+b.dataset.mkdel, 1); }
+      if (b.dataset.mkmode) { keep(); d.mode = b.dataset.mkmode; }
+      if (b.dataset.mked) { const s = my.find(x => x.id === b.dataset.mked); if (s) ui.scMk = JSON.parse(JSON.stringify(s)); }
+      if (b.dataset.mkrm && confirm('Bu sahne silinsin mi?')) { S().myScenes = my.filter(x => x.id !== b.dataset.mkrm); save(); c3LoadScenes(); if (ui.scMk && ui.scMk.id === b.dataset.mkrm) ui.scMk = null; }
+      renderSceneMaker();
+    };
+    if ($('#mkNew')) $('#mkNew').onclick = () => { ui.scMk = null; renderSceneMaker(); };
+    $('#mkSave').onclick = () => {
+      keep();
+      const open = fix(d.open), fin = d.fin.trim() ? fix(d.fin) : '';
+      if (!d.name.trim()) return notify('Sahneye bir ad ver', '⚠️');
+      if (!open) return notify('Açılış olayı bulunamadı, listeden seç', '⚠️');
+      if (!d.steps.length) return notify('En az bir adım ekle', '⚠️');
+      if (d.fin.trim() && !fin) return notify('Bitiş olayı bulunamadı', '⚠️');
+      const s = { id: d.id || 'my' + Store.uid(), icon: d.icon, name: d.name.trim(), mode: d.mode, ...(d.mode === 'free' ? { need: Math.min(d.need, d.steps.length) } : {}), open, steps: d.steps.slice(), ...(fin ? { fin } : {}), desc: d.desc.trim() || `${open} ile başlar; ${d.steps.length} adım${fin ? ', sonra bitiş' : ''}.`, end: `${d.name.trim()} tamamlandı 🎬` };
+      const i = my.findIndex(x => x.id === s.id);
+      if (i >= 0) my[i] = s; else my.push(s);
+      save(); c3LoadScenes(); ui.scMk = null;
+      notify(`🎬 ${s.name} kaydedildi`, '✏️');
+      renderSceneMaker();
+    };
+  }
+  /* 📇 Rehber (#/rehber, eski #/messages): tanıdığın herkes; aşama, şu an nerede, son sohbet, siteleri; gruplar ve izlediğin sohbetler */
+  function renderRehber() {
+    const q = ui.rhQ || '', f = evbFold, cs = chars().filter(c => !c.husb && (!q || f(c.name).includes(f(q)))).sort((a, b) => (currentThread(b) ? activity(currentThread(b)) : 0) - (currentThread(a) ? activity(currentThread(a)) : 0));
+    const gs = threads().filter(t => t.group && !c3Watch(t)).sort((a, b) => activity(b) - activity(a)), ws = threads().filter(c3Watch).sort((a, b) => activity(b) - activity(a));
+    const tRow = t => { const m = lastOf(t); return `<a class="me-hist" href="#/chat/${t.id}">${avatar(membersOf(t)[0] || GHOST, 36)}<span><b>${esc(t.title || 'Grup')}${c3Unread(t) ? ' 🔵' : ''}</b><small>${m ? esc(String(preview(m) || '').slice(0, 60)) : 'henüz mesaj yok'}</small></span>${m ? `<time>${fmtTime(m.ts)}</time>` : ''}</a>`; };
+    view.innerHTML = `<style>.c3-sites{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}.c3-sites a{font-size:11px;padding:2px 8px;border-radius:999px;background:var(--chip);border:1px solid var(--line);color:inherit;text-decoration:none}
+        .rh-row{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}.rh-row:last-child{border:0}.rh-in{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.rh-in small{color:var(--muted)}.rh-acts{display:flex;flex-direction:column;gap:4px}</style>
+      <div class="page-pad narrow">${pageHero('rehber', '📇', 'Rehber', [`${chars().filter(c => !c.husb).length} kişi`, `${gs.length} grup`, `${ws.length} izlenen`], '<a class="btn ghost sm pg-act" href="#/ag">🕸️ İlişki ağı</a>', { back: '#/home' })}
+      ${q ? '' : c3NotifHtml()}
+      <div class="bk-search" style="margin-top:12px"><input id="rhQ" type="search" placeholder="🔍 İsimle ara…" value="${esc(q)}" autocomplete="off"></div>
+      <div class="sec-title">👩 Tanıdıkların</div>
+      <div class="card" style="padding:4px 12px">${cs.length ? cs.map(c => { const t = currentThread(c), a = c3ArcSync(c), m = t && lastOf(t), wh = c3Where(c);
+        return `<div class="rh-row">${avatar(c, 46)}<div class="rh-in"><b>${esc(c.name)}${t && c3Unread(t) ? ' 🔵' : ''}</b>
+          <small>${a.ic} ${esc(a.n)}${a.kriz ? ' · 💔 kırgın' : ''}${m ? ` · 💬 ${fmtTime(m.ts)}` : ''}</small>${wh ? `<small>📍 ${esc(wh)}</small>` : ''}${c3SiteRow(c)}</div>
+          <div class="rh-acts"><a class="btn primary sm" href="${t ? `#/chat/${t.id}` : `#/p/${c.id}`}">💬</a><a class="btn ghost sm" href="#/p/${c.id}">👤</a></div></div>`; }).join('') : '<div class="about">Henüz kimseyi tanımıyorsun. 🏙️ Şehirde ya da 🔥 Tinder\'da biriyle tanış.</div>'}</div>
+      ${gs.length ? `<div class="sec-title">👥 Gruplar</div><div class="card" style="padding:4px 8px">${gs.map(tRow).join('')}</div>` : ''}
+      ${ws.length ? `<div class="sec-title">👀 İzlediğin sohbetler <small>· 💍 karı-koca ve 👭 ikili; sana yazmazlar</small></div><div class="card" style="padding:4px 8px">${ws.map(tRow).join('')}</div>` : ''}</div>`;
+    const qi = $('#rhQ'), nc = view.querySelector('[data-nclear]');
+    if (nc) nc.onclick = () => { c3NLog([]); renderRehber(); };
+    qi.oninput = () => { ui.rhQ = qi.value; const p = qi.selectionStart; renderRehber(); const n = $('#rhQ'); n.focus(); n.setSelectionRange(p, p); };
+  }
+  /* 🕸️ İlişki ağı (#/ag): karakterlerin birbirleriyle ilişkisi (🤝 arkadaş = c.knows, 💍 koca, 👭 ikili sohbet, c.rel3 türleri); iki kişiye dokun → türü seç */
+  function renderNet() {
+    const cs = chars().filter(c => !c.husb).slice(0, 24), N = cs.length, R = 150, cx = 180, cy = 180, pos = new Map(cs.map((c, i) => [c.id, [cx + R * Math.cos(i / Math.max(1, N) * 2 * Math.PI - Math.PI / 2), cy + R * Math.sin(i / Math.max(1, N) * 2 * Math.PI - Math.PI / 2)]]));
+    const T = C3.REL3 || {}, E = [], key = (a, b) => [a, b].sort().join('|'), seen = new Set();
+    cs.forEach(a => {
+      (a.knows || []).forEach(id => { const k = key(a.id, id); if (pos.has(id) && !seen.has(k)) { seen.add(k); E.push([a.id, id, ((a.rel3 || {})[id]) || 'arkadas']); } });
+      Object.entries(a.rel3 || {}).forEach(([id, ty]) => { const k = key(a.id, id); if (pos.has(id) && !seen.has(k)) { seen.add(k); E.push([a.id, id, ty]); } });
+    });
+    threads().filter(t => t.duo).forEach(t => { const [a, b] = t.members, k = key(a, b); if (pos.has(a) && pos.has(b) && !seen.has(k)) { seen.add(k); E.push([a, b, 'duo']); } });
+    const col = { arkadas: '#2fd6a0', ev: '#4fc3ff', akraba: '#ffb74d', rakip: '#ff5252', eski: '#ba68c8', duo: '#ff4d8d' }, sel = ui.netSel || [];
+    const lbl = ty => ty === 'duo' ? '👭 İkili sohbet' : (T[ty] || ['🔗', ty]).join(' ');
+    view.innerHTML = `<div class="page-pad narrow">${pageHero('rehber', '🕸️', 'İlişki ağı', [`${N} kişi`, `${E.length} bağ`], '', { back: '#/rehber' })}
+      <div class="about card" style="margin-top:10px">İki kişiye sırayla dokun, aralarındaki ilişkiyi seç. 🤝 Arkadaş olanlar birbirini tanır: kıskançlık, söylenti ve grup davetleri bu bağa bakar. 💍 kocalar profillerinde, 👭 ikili sohbetler kendiliğinden çizilir.</div>
+      ${N < 2 ? '<div class="about card" style="margin-top:10px">Ağ için en az 2 karakter gerekli.</div>' : `<div class="card" style="margin-top:10px;padding:6px"><svg viewBox="0 0 360 360" style="width:100%;max-width:440px;display:block;margin:auto" id="netSvg">
+        ${E.map(([a, b, ty]) => { const [x1, y1] = pos.get(a), [x2, y2] = pos.get(b); return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col[ty] || '#999'}" stroke-width="3" stroke-linecap="round" opacity=".8"${ty === 'eski' || ty === 'rakip' ? ' stroke-dasharray="6 5"' : ''}/>`; }).join('')}
+        ${cs.map(c => { const [x, y] = pos.get(c.id), on = sel.includes(c.id), [g1, g2] = c.colors || ['#a65ebb', '#d77baf']; return `<g data-net="${esc(c.id)}" style="cursor:pointer"><circle cx="${x}" cy="${y}" r="${on ? 21 : 18}" fill="${g1}" stroke="${on ? '#fff' : g2}" stroke-width="${on ? 4 : 2}"/>
+          <text x="${x}" y="${y + 5}" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">${esc((c.name || '?')[0])}</text><text x="${x}" y="${y + 34}" text-anchor="middle" font-size="11" fill="currentColor">${esc(c.name.split(' ')[0])}</text></g>`; }).join('')}
+      </svg><div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;font-size:12px">${[...Object.keys(T), 'duo'].map(k => `<span><i style="display:inline-block;width:14px;height:3px;background:${col[k]};vertical-align:middle"></i> ${lbl(k)}</span>`).join('')}</div></div>`}
+      ${E.length ? `<div class="sec-title">🔗 Bağlar</div><div class="card" style="padding:4px 8px">${E.map(([a, b, ty]) => `<div class="me-hist"><span><b>${esc(byId(a).name.split(' ')[0])} ↔ ${esc(byId(b).name.split(' ')[0])}</b><small>${lbl(ty)}</small></span></div>`).join('')}</div>` : ''}</div>`;
+    const svg = $('#netSvg');
+    if (svg) svg.onclick = e => {
+      const g = e.target.closest('[data-net]');
+      if (!g) return;
+      const id = g.dataset.net, s = (ui.netSel || []).filter(x => x !== id);
+      if (s.length === (ui.netSel || []).length) s.push(id);
+      ui.netSel = s.slice(-2);
+      if (ui.netSel.length < 2) return renderNet();
+      const [a, b] = ui.netSel.map(byId), cur = (a.rel3 || {})[b.id] || ((a.knows || []).includes(b.id) ? 'arkadas' : '');
+      const sh = sheet(`<div class="sheet-grip"></div><h3>🔗 ${esc(a.name.split(' ')[0])} ↔ ${esc(b.name.split(' ')[0])}</h3>
+        ${Object.entries(T).map(([k, [ic, n]]) => `<button class="act${cur === k ? ' on' : ''}" data-rel="${k}">${ic} ${esc(n)}${cur === k ? ' ✓' : ''}</button>`).join('')}
+        <button class="act" data-rel="">🚫 Bağ yok</button>`, 'light');
+      sh.el.onclick = ev => {
+        const r = ev.target.closest('[data-rel]');
+        if (!r) return;
+        const ty = r.dataset.rel;
+        [[a, b], [b, a]].forEach(([x, y]) => { x.rel3 = x.rel3 || {}; if (ty) x.rel3[y.id] = ty; else delete x.rel3[y.id]; });
+        knowLink(a, b, ty === 'arkadas' || ty === 'ev' || ty === 'akraba');
+        save(); ui.netSel = []; sh.close(); renderNet();
+        notify(ty ? `${a.name.split(' ')[0]} ↔ ${b.name.split(' ')[0]}: ${lbl(ty)}` : 'Bağ kaldırıldı', '🕸️');
+      };
+    };
+  }
+
   /* ---------- Ana sayfa ---------- */
   /* Ana sayfa bir site gibi: 📰 Lia'nın haber kartı → 💘 Eşleş → 🌐 Siteler → akış (🌹 Carmen.com ilanları arasında site reklamları).
    * Resim havuzu: hazır fotoğraf setleri + karakterlerin fotoğrafları. İlan sırası oturum boyunca aynı kalır, 🎲 ile değişir */
@@ -584,6 +1261,21 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['🌍', 'Memleket olayları ve sabaha geç', 'Kızlar artık memleketlerini de getiriyor: Türk kızıyla hamam kurnası, Latin kızıyla salsa, Fransızla Paris çatı katı, Japonla kaplıca… Her bölgenin bir sahnesi ve bitişi, tenine göre özel anlar da var. Sohbette ve şehirde ⏩ sabaha geçebiliyor, ana sayfa saatine göre değişiyor.', '#/kitap/carmen3/17', [
+      ['🌍 9 memleket', 'Türk, Latin, Akdeniz, Fransız, Slav, Kuzey, Anglo, Doğu Asya ve Arap: sahne + bitiş.'],
+      ['🎨 Ten', 'Shea Butter Glow, Tan Lines, Porcelain Blush: sadece o tende.'],
+      ['⏩ Sabaha geç', 'Sohbette ⋯ Diğer, şehirde 🌙: sabah notu ve kaçırdıkların.'],
+      ['🕰️ Saatine göre', 'Sabah haberler önde, gece Gecenin kızı.']]],
+    ['📇', 'Rehber, ilişki ağı ve bildirimler', 'Tanıdığın herkes artık 📇 Rehber\'de: ilişki aşamanız, şu an şehirde nerede olduğu ve hangi sitelerde olduğu tek satırda. 🕸️ İlişki ağında kızları arkadaş, rakip ya da eski sevgili yap; 🔔 bildirim merkezi sana yazanları ve sitelerdeki yenilikleri toplar. Kendi sahneni de artık sen kuruyorsun.', '#/kitap/carmen3/13', [
+      ['💞 Aşamalar', 'Tanışma, Arkadaşlık, Flört, İlişki, Derin bağ: mesajlarınız ve ilklerinizle ilerler.'],
+      ['✨ Hayaller', 'Her kızın bir hayali var; 💝 Destekle ile gerçekleşmesine yardım et.'],
+      ['✏️ Sahne yap', 'Açılış, adımlar, bitiş: sahnen sohbette 🎬 şeridinde.'],
+      ['🌐 Her sitede', 'Tanıdığın kızın Fans, Gram ya da Live sayfasında "seni tanıyor" bandı çıkar.']]],
+    ['🚀', 'Carmen 3.0 geldi', 'Büyük güncelleme: dünyanın tek bir saati, takvimi ve havası var. Karakterlerin doğum günleri kutlanıyor, şehirde yağmur ve kar yağıyor, vardiyada para kazanıyorsun. Ana sayfanın tepesindeki 📅 Bugün paneli ne yapacağını söylüyor. Haftalık görevler, yeni rozetler ve senin geçmişinden yazılan 📕 Benim hikâyem de geldi.', '#/kitap/carmen3/2', [
+      ['⛅ Hava', 'Her gün tarihe göre bir hava; şehirde efektiyle, ana sayfada manşetiyle.'],
+      ['🎂 Doğum günleri', 'O gün yaşı bir artar, sana hatırlatılır.'],
+      ['🎟️ Haftalık görevler', 'Her pazartesi 3 yeni görev; üçünü bitir, 🏅 Haftanın yıldızı ol.'],
+      ['🔎 Arama', 'Karakter, olay, sahne, site ve kitap sayfası tek kutuda.']]],
     ['🚗', 'Şehirde artık araban var', 'Evinin önünde pembe bir SUV seni bekliyor. Bin, şehrin yollarında sür, istediğin kızı yanına al; eve davet ettiğin kız arabana biniyor ve beraber eve sürüyorsunuz. Ayaküstü konuşmada kızlar artık profillerine uygun konuşuyor: evliyse evli olduğunu söylüyor.', '#/kitap/sehir', [
       ['🚗 Sür', 'Sağdaki 🚗 ile bin, haritaya dokun ya da basılı tut; 🅿️ ile park et, in.'],
       ['👫 Kız bindir', 'Yanındaki ya da eve davet ettiğin kızlar arabana biner; yolda "Müziği açsana 🎶" der.'],
@@ -816,7 +1508,7 @@
       ['🎬 Sahneler', '🤗 Arkadan Sarıl, 🍳 Bulaşık Molası (mutfakta), 🚿 Köpüklü Sarılma (duşta) ve 🌅 Uykulu Sabah. CarmenEvents → 🎬 Sahneler → 🤗 Arkadan Sarılma.']]],
     ['🤲', 'Elle sıkma ve şaplak', '44 yeni olay: kalçasını avuçlar, yoğurur, kendine çekersin; uyluğunu sıkar, bacaklarını açık tutarsın; dizine yatırıp şaplak atar, saydırırsın. Sevişirken de ellerin bırakmıyor, bitişler de var. 🤲 Hand Grab ve 👋 Hand Spank 📜 olay seçicinin 👅 Ön sevişme sekmesinde, 🫴 Grip Sex 🔥 Pozisyon sekmesinde. Her olayın uzun anlatımı, mesajları ve onun cevapları var.', '#/kitap/olay/64', [
       ['🍑 Kalça sıkma', 'Two Handfuls, Knead & Spread, Jiggle Check, Lift From Below, Pull Her In, Kissing Grab, Pocket Hands, Under The Skirt ve Oiled Knead.'],
-      ['🦵 Bacak sıkma', 'Thigh Handful, Inner Thigh Climb, Under The Table, Car Thigh Hold, Stocking Top Grip, Spread & Hold ve Back Of Knee.'],
+      ['🦵 Bacak sıkma', 'Thigh Handful, Inner Thigh Climb, Under The Table Squeeze, Car Thigh Hold, Stocking Top Grip, Spread & Hold ve Back Of Knee.'],
       ['👋 Kalçaya şaplak', 'Playful Pat, Count Them, Alternating Cheeks, Over Your Knee, Spank & Rub, Slap & Squeeze, Through The Panty, Bare Bottom, Wet Skin Slap, Ask For Another ve Handprint.'],
       ['👋 Bacağa şaplak', 'Thigh Smack, Inner Thigh Tap, Open Up Slap, Stocking Snap ve Back Of Thigh.'],
       ['🔥 Sevişirken', 'Grip Sex: Doggy Grip, Doggy Spank Rhythm, Cowgirl Cheek Pull, Cowgirl Thigh Hold, Prone Spread, Standing Lift Grip ve Spoon Thigh Lift.'],
@@ -1577,26 +2269,21 @@
         <span class="hl-cm-txt"><b>${nm(c)}${c.age ? `, ${esc(c.age)}` : ''}</b><small class="hl-vt-b">${v.b(c)}</small><small>“${esc(cmPick(c, 'vsl', v.sl))}”</small></span></a>`; };
     const vit = ui.homeVit.map(([k, id]) => [k, all.find(c => c.id === id)]).filter(v => v[1]);
     const vitHtml = vit.map((v, i) => vtCard(v, i) + (i === 3 ? spAd(0) : '')).join('') + (vit.length > 4 ? spAd(1) : '');
-    view.innerHTML = `
-      <div class="page-pad home home-land${homeThemePref() === 'fr' ? ' hl-fr' : ''}">
-        <div class="hl-head">
-          <div><small>Merhaba${S().user.name ? ' ' + esc(S().user.name) : ''} 💗</small><h1>Carmen</h1></div>
-          <span>${new Date().getMonth() === 9 ? '<a class="icon-btn hl-dice" href="#/halloween" aria-label="Halloween" title="Halloween">🎃</a>' : ''}</span>
-        </div>
-        <div class="hl-tick" aria-label="Sloganlar"><div class="hl-tick-in">${[0, 1].map(r => HOME_TICKER.map(([t, h]) => `<a href="${h}"${r ? ' aria-hidden="true" tabindex="-1"' : ''}>${esc(t)}</a>`).join('<i>✦</i>')).join('<i>✦</i>')}<i>✦</i></div></div>
-        ${(() => { const nw = newsUnseen(); return `<div class="hl-sec"><h3>📰 CarmenNews${nw ? ` · <em class="hl-news-nw">${nw} yeni</em>` : ''}</h3><a href="#/news">Tümü ›</a></div>
-          <div class="hl-news-row">${HOME_NEWS.slice(0, 1).map(([ic, t, d], i) => `<a class="hl-news" href="#/news/${newsNo(i)}" style="--i:${i}">
-            <span class="hl-news-ic">${ic}</span>${i < nw ? '<em class="hl-news-nw">Yeni</em>' : ''}
-            <span class="hl-news-t"><b>${esc(t)}</b><small>${esc(d)}</small></span></a>`).join('')}</div>`; })()}
-        <div class="hl-hero">
+    const hid = homeHide(), hs = k => !hid[k]; // ⚙️ gizlenen bölümler
+    // 🕰️ 3.0 saate göre ana sayfa: bölümler HB'de, sıra c3Part() ile (sabah / gündüz / akşam / gece)
+    const HB = {
+      c3: () => hs('c3') ? (() => { try { return c3Head(); } catch (e) { console.warn('c3 home', e); return ''; } })() : '',
+      cont: () => hs('cont') ? (() => { try { return c3Cont(); } catch (e) { console.warn('c3 home', e); return ''; } })() : '',
+      sug: () => hs('sug') ? (() => { try { return c3Sugs(); } catch (e) { console.warn('c3 home', e); return ''; } })() : '',
+      spot: () => hs('spot') ? (c3Night() ?         `<div class="hl-hero">
           <small>🔞 Bu gecenin sloganı</small><h2>${esc(hero[0])}</h2><p>${esc(hero[1])}</p>
           ${ng ? (() => { const e = ngEnd(), hm = `${String(e.getHours()).padStart(2, '0')}:${String(e.getMinutes()).padStart(2, '0')}`; return `<a class="hl-night" href="#/carmen/${esc(ng.id)}" style="--mtbg:${esc(grad(ng))}">
             <span class="hl-night-pic">${pic(ng)}</span>
             <span class="hl-night-t"><small>🌙 Gecenin kızı</small><b>${nm(ng)}${ng.age ? `, ${esc(ng.age)}` : ''}</b><i>“${esc(cmPick(ng, 'hsl', HOME_HOT))}”</i>
               <span class="hl-night-cd">⏳ <b id="hlCd">--:--:--</b> <span>Çevrimiçi · bitiş ${hm}</span></span></span>
             <span class="hl-go">›</span></a>`; })() : ''}
-        </div>
-        <div class="hl-vt-grid hl-mh-grid">${(() => { const m = meetDraft(), img = m.photo ? `<img src="${esc(m.photo)}" alt="" onerror="this.remove()"${hAlb(m.photo, m.album)}>` : '';
+        </div>` : (() => { try { return c3Spot(hero[0]); } catch (e) { console.warn('c3 home', e); return ''; } })()) : '',
+      meet: () => hs('meet') ? `<div class="hl-vt-grid hl-mh-grid">${(() => { const m = meetDraft(), img = m.photo ? `<img src="${esc(m.photo)}" alt="" onerror="this.remove()"${hAlb(m.photo, m.album)}>` : '';
           return meetHero('hl-mh-tinder', '🔥 Carmen<i>Tinder</i>', 'Sağa kaydır, gerisi kendiliğinden gelir', 'Seni beğenenler ilk mesajlarını çoktan yazdı', '#5a0b24, #ff4458', '#/tinder', img,
             `${esc(m.name || 'Yeni biri')}${m.age ? `, ${esc(m.age)}` : ''}`, '💘 Yeni eşleşme', esc([m.city, m.job].filter(Boolean).join(' · ')), persOf(m).slice(0, 3)); })()}
         ${(() => { const m = matchDeck('bmDeck')[0], img = m.photo ? `<img src="${esc(m.photo)}" alt="" onerror="this.remove()"${hAlb(m.photo, m.album)}>` : '';
@@ -1606,20 +2293,33 @@
           return meetHero('hl-mh-fans', `🫦 Carmen<i>Fans</i>${nw ? ` · 🆕 ${nw}` : ''}`, 'Kilidi aç, gerisini gör', 'Bu haftanın kostümü yayında, kilitli albümler seni bekliyor', '#002a45, #00aff0', `#/fans/${esc(c.id)}`,
             ph ? `<img src="${esc(ph)}" alt="" onerror="this.remove()"${hAlb(ph, c.album)}>` : '', `${esc(c.name || 'İsimsiz')}${c.age ? `, ${esc(c.age)}` : ''}`, '⭐ Önerilen üretici',
             nl.length ? `Yeni gönderi paylaştı${nl.length > 1 ? ` · +${nl.length - 1} kişi daha` : ''}` : `${esc(fnHandle(c))} · ${fnPlanPrice(c, 1, 0)} ₺/ay`,
-            [f.why && f.why[1], w && `📢 ${w.emoji} ${w.name}`, fnSale() && `🎉 %${fnSale()} indirim`].filter(Boolean)); })()}</div>
-        ${mgHomeCard()}
-        ${fxHomeCard()}
-        ${hot.length ? `<div class="hl-sec"><h3>${esc(HOME_SLOGAN[ui.homeSlogan % HOME_SLOGAN.length])}</h3><a href="#/carmen">Tümü ›</a></div>
+            [f.why && f.why[1], w && `📢 ${w.emoji} ${w.name}`, fnSale() && `🎉 %${fnSale()} indirim`].filter(Boolean)); })()}</div>` : '',
+      media: () => hs('media') ? (() => { try { return c3Media(); } catch (e) { console.warn('c3 home', e); return ''; } })() : ''
+    };
+    view.innerHTML = `
+      <div class="page-pad home home-land hl-t-${c3Part()}${homeThemePref() === 'fr' ? ' hl-fr' : ''}">
+        <div class="hl-head">
+          <div><small><span>${C3_HELLO[c3Part()]}</span>${S().user.name ? ' ' + esc(S().user.name) : ''} 💗</small><h1>Carmen</h1></div>
+          <span><a class="icon-btn hl-dice" href="#/ara" aria-label="Arama" title="Arama">🔎</a><button type="button" class="icon-btn hl-dice" id="hlEdit" aria-label="Ana sayfayı düzenle" title="Ana sayfayı düzenle">⚙️</button>${new Date().getMonth() === 9 ? '<a class="icon-btn hl-dice" href="#/halloween" aria-label="Halloween" title="Halloween">🎃</a>' : ''}</span>
+        </div>
+        <div class="hl-tick" aria-label="Sloganlar"><div class="hl-tick-in">${[0, 1].map(r => HOME_TICKER.map(([t, h]) => `<a href="${h}"${r ? ' aria-hidden="true" tabindex="-1"' : ''}>${esc(t)}</a>`).join('<i>✦</i>')).join('<i>✦</i>')}<i>✦</i></div></div>
+        ${C3_HOME_CSS}
+        ${(C3_ORDER[c3Part()] || C3_ORDER.gun).map(k => HB[k] ? HB[k]() : '').join('')}
+        ${hot.length && hs('hot') ? `<div class="hl-sec"><h3>${esc(HOME_SLOGAN[ui.homeSlogan % HOME_SLOGAN.length])}</h3><a href="#/carmen">Tümü ›</a></div>
         <div class="hl-cm-grid">${hot.map(hotCard).join('')}</div>` : ''}
-        ${vit.length ? `<div class="hl-sec"><h3>🪧 İlan vitrini · bu gece</h3><a href="#/carmen">Tüm ilanlar ›</a></div><div class="hl-vt-grid">${vitHtml}</div>` : ''}
-        ${vip.length ? `<div class="hl-sec"><h3>👑 VIP vitrin</h3><a href="#/carmen">Carmen.com ›</a></div><div class="hl-cm-row hl-cm-vipr">${vip.map(cmCard).join('')}</div>` : ''}
-        ${spAd(2)}
+        ${vit.length && hs('vit') ? `<div class="hl-sec"><h3>🪧 İlan vitrini · bu gece</h3><a href="#/carmen">Tüm ilanlar ›</a></div><div class="hl-vt-grid">${vitHtml}</div>` : ''}
+        ${vip.length && hs('vip') ? `<div class="hl-sec"><h3>👑 VIP vitrin</h3><a href="#/carmen">Carmen.com ›</a></div><div class="hl-cm-row hl-cm-vipr">${vip.map(cmCard).join('')}</div>` : ''}
+        ${hs('feed') ? `${spAd(2)}
         ${blocks.join('')}
-        ${left ? '<button type="button" class="btn ghost block hl-more" id="hlMore">Daha fazla ↓</button>' : ''}
+        ${left ? '<button type="button" class="btn ghost block hl-more" id="hlMore">Daha fazla ↓</button>' : ''}` : ''}
         <footer class="cm-foot">© Carmen · Tüm profiller ve ilanlar kurgusaldır, 18+</footer>
       </div>`;
     const mb = $('#hlMore');
     if (mb) mb.onclick = () => { const y = window.scrollY; ui.homeMore = more + 1; ui.homeKeep = true; renderHome(); window.scrollTo(0, y); };
+    $('#hlEdit').onclick = homeEditSheet;
+    view.onclick = e => { const b = e.target.closest('[data-c3ev]'); if (!b) return; e.preventDefault(); const ev = allEvents().find(x => x.id === b.dataset.c3ev); if (ev) evWin(ev); };
+    const c3x = view.querySelector('[data-c3x]');
+    if (c3x) c3x.onclick = () => { try { localStorage.setItem('amor-stories:c3seen', '1'); } catch (e) {} c3x.parentElement.remove(); };
     // 🖼️ ekrandaki ilan fotoğrafları albümleri arasında fade ile değişir (her turda 2 kart)
     clearInterval(ui.homeFadeT);
     const fimgs = [...view.querySelectorAll('img[data-alb]')];
@@ -9007,6 +9707,7 @@
     setupLive();
     const cs = chars(), H = ccHomes(cs), doing = k => { const d = (CC_B.find(b => b.k === k) || {}).d || ['geziniyor 🚶‍♀️']; return d[Math.floor(Math.random() * d.length)]; };
     Stories.City.mount($('#city'), { chars: () => cs, homes: () => H, plan: h => ccPlan(cs, H, h), strangers: () => cmAll().filter(x => !byId(x.id)), doing, meet: ccMeet, chats: ccChats, meetGroup: ccMeetGroup, skin: ccSkin, wear: ccWear, size: ccSize, pers: ccPers, rel: ccRel, ads: ccAds,
+      wx: () => c3Wx(), zone: c3Zone, shift: c3Shift, skip: c3CitySkip,
       textAt: (c, min) => { const t = currentThread(c) || newThread(c); ccClock(t, min); save(); location.hash = `#/chat/${t.id}`; },
       avatar, esc, byId, openChat, ccNurse, notify, user: () => S().user, party: renderParty });
   }
@@ -11683,6 +12384,8 @@
     const part = sp ? '' : tFold(toks[toks.length - 1][0]), from0 = sp ? text.length : toks[toks.length - 1].index;
     const done = ' ' + tFold(sp ? text : text.slice(0, from0)) + ' ';
     const all = tFold(text) + (sp && toks.length ? ' ' : '');
+    // 🧠 3.0: sık yazdığın cümleler önce (2+ kez)
+    if (all.trim().length >= 2) Object.entries(c3Phr()).filter(([f, o]) => o.n >= 2 && f.length > all.trim().length && f.startsWith(all.trim())).sort((a, b) => b[1].n - a[1].n).slice(0, 2).forEach(([, o]) => out.push({ d: o.d, from: 0, ic: '🧠' }));
     if (all.trim().length >= 2) {
       const ws = all.trim().split(' '), fit = o => TAHMIN_SEXY.has(o.ic) === sexy ? 1 : 0;
       const head = v.tpl.filter(o => o.f.length > all.length && o.f.startsWith(all));
@@ -12074,7 +12777,7 @@
     const cover = c.album[0] || c.photo;
     const list = threadsOf(c);
     const kwN = keywords().filter(k => k.charId === c.id).length;
-    const tabs = [['profile', 'Profil'], ['wear', '👗 Giyim'], ['diary', '📔 Günlük'], ['chats', `Sohbetler (${list.length})`], ['rel', `👭 İlişkileri (${duoOf(c).length + (husbThreadOf(c) ? 1 : 0)})`], ['mem', '🧠 Hafıza'], ['keys', `Kelimeler${kwN ? ` (${kwN})` : ''}`], ['album', 'Albüm']].filter(([k]) => editOn() || !['diary', 'mem', 'keys'].includes(k));
+    const tabs = [['profile', 'Profil'], ['sum', '🌟 Özet'], ['wear', '👗 Giyim'], ['diary', '📔 Günlük'], ['chats', `Sohbetler (${list.length})`], ['rel', `👭 İlişkileri (${duoOf(c).length + (husbThreadOf(c) ? 1 : 0)})`], ['mem', '🧠 Hafıza'], ['keys', `Kelimeler${kwN ? ` (${kwN})` : ''}`], ['album', 'Albüm']].filter(([k]) => editOn() || !['diary', 'mem', 'keys'].includes(k));
     if (!tabs.some(([k]) => k === ui.profileTab)) ui.profileTab = 'profile';
     const cur = list[0];
 
@@ -12337,6 +13040,7 @@
     save();
   }
   function profileTab(c) {
+    if (ui.profileTab === 'sum') return c3ProfSum(c);
     if (ui.profileTab === 'mem') return memTab(c);
     if (ui.profileTab === 'wear') return wearTab(c);
     if (ui.profileTab === 'diary') return diaryOf(c);
@@ -12915,6 +13619,9 @@
   function renderChat(c, th) {
     th.opened = Date.now();
     openThread = th;
+    // ⚙️ 3.0 sohbete özel ayar (th.opt): yoksa genel ayar (Ben → ⚙️ Ayarlar) geçerli
+    const optOn = (k, g) => th.opt && th.opt[k] != null ? !!th.opt[k] : g();
+    const optSet = (k, v) => { th.opt = Object.assign({}, th.opt, { [k]: v ? 1 : 0 }); save(); };
     if (th.amor && !th.group && c) amChatOpen(c, th);
     save();
     const group = !!th.group;
@@ -12996,6 +13703,7 @@
         ${th.kd ? '<button type="button" class="kd-bar" id="kdBar"></button>' : ''}
         ${th.job && !group ? '<button type="button" class="kd-bar" id="jobBar"></button>' : ''}
         <div class="st-card" id="stCard" hidden></div>
+        ${c3Recap(c, th, list)}
 
         <div class="msgs-wrap">
           <div class="msgs" id="msgs"></div>
@@ -13037,7 +13745,9 @@
             <button type="button" data-tool="fx"><span>✨</span>Efekt</button>
             ${editOn() ? '<button type="button" data-tool="turns"><span>⇄</span>Sırayla</button>' : ''}
             <button type="button" data-tool="rp" class="${th.rp ? 'on' : ''}"><span>🎭</span>Role-play</button>
-            <button type="button" data-tool="interrupts" class="${interruptsOn() ? 'on' : ''}"><span>📱</span>Kesintiler</button>
+            <button type="button" data-tool="interrupts" class="${optOn('int', interruptsOn) ? 'on' : ''}"><span>📱</span>Kesintiler · bu sohbet</button>
+            <button type="button" data-tool="simple3" class="${optOn('simple', simpleOn) ? 'on' : ''}"><span>🧘</span>Sade mesajlar · bu sohbet</button>
+            <button type="button" data-tool="skip3"><span>⏩</span>Sabaha geç</button>
             <button type="button" data-tool="stnote" class="${stNoteLvl() ? 'on' : ''}"><span>📰</span>${['Durum kartları: Kapalı', 'Durum kartları: Az', 'Durum kartları: Çok'][stNoteLvl()]}</button>
             <small class="ct-sec">🎨 Görünüm ve ses</small>
             <button type="button" data-tool="theme"><span>🎨</span>Tema</button>
@@ -13277,6 +13987,7 @@
     // Yeni mesaj ekler ya da düzenlenen mesajı günceller. extra: fotoğraf için { type, src }
     function send(text, extra) {
       const editing = cs.mode && cs.mode.type === 'edit';
+      if (!editing && !extra && cs.side === 'me') c3PhrAdd(text); // 🧠 3.0 öğrenen cümleler
       let newId = null;
       snap(editing ? 'Mesaj düzenlendi' : extra ? 'Fotoğraf gönderildi' : cs.side === 'sys' ? 'Not eklendi' : 'Mesaj gönderildi');
       let target = null;
@@ -14301,10 +15012,11 @@
       const fctx = { kor: kor0, israr: th.israr || 0, olay: opts.olay, pos: posNow(), text: opts.events ? '' : userMsg.text, orgN: list.filter(x => lowA((evOf(x) || {}).title) === 'orgazm').length,
         cumN: list.filter(x => x.from === 'me' && ((evOf(x) || {}).tags || []).includes('boşalma')).length };
       // 🧘 Sade mesajlar: ana cevap + en fazla 1 ek (önce bu turun sorusu / emri, sonra öne konan önemli ek, yoksa %50 diğerlerinden biri)
-      const simple = simpleOn();
+      const simple = optOn('simple', simpleOn);
       if (simple && parts.length > 1) parts = simpleParts(parts, mainSet, th.botAsk !== ask0);
       if (!parts.length) return;
       parts.forEach((p, i) => { parts[i] = fillTraits(fillYer(p), ch, fctx); });
+      if (!group) c3Tone(ch, parts); // 🎭 3.0 ruh hâline göre ton
       th.whyCtx = opts.events && /^izinsiz_/.test(opts.state || '') && th.ikna ? { id: 'ret' + th.ikna.k, t: '' } : { id: qid, t: parts.join(' ').slice(0, 300) };
       // 🎭 soru cevabında kişiliğe göre çerçeve (Utangaç "S-söylemem gerekiyor mu? 🙈 …", Kibirli "… kıskandın mı? 💅")
       // 🧘 cümle içi ekler (soru çerçevesi, hitap, canım, inleme, kişilik eki): Sade mesajlarda turda biri
@@ -14388,7 +15100,7 @@
           }
         }
       }
-      const slow = (ch.traits || []).includes('Geç cevap verir') ? 2.5 : 1;
+      const slow = ((ch.traits || []).includes('Geç cevap verir') ? 2.5 : 1) * c3TypeK(ch); // ⌨️ 3.0: kişiliğe göre hız
       // 👯 ardından diğer üyelerin baloncukları, en son finish
       const stepX = (k, i) => {
         const x = extra[k];
@@ -14424,7 +15136,7 @@
       const step1 = i => {
         box.insertAdjacentHTML('beforeend', `<div class="msg her" id="botTyping">${avatar(ch, 36)}<div class="bubble"><span class="typing-dots"><i></i><i></i><i></i></span></div></div>`);
         box.scrollTop = box.scrollHeight;
-        setStatus(group ? `${ch.name} yazıyor…` : 'yazıyor…', 'typing');
+        setStatus(group ? `${ch.name} yazıyor…` : !i && Math.random() < .12 ? 'yazdı, sildi… yeniden yazıyor' : 'yazıyor…', 'typing'); // ⌨️ 3.0: bazen yazıp siler
         botTimer = setTimeout(() => {
           const t = $('#botTyping');
           if (t) t.remove();
@@ -15238,7 +15950,7 @@
       r.v = Math.min(100, v0 + d);
       const hit = PLACE_FLOW.risk.filter(([t]) => v0 < t && r.v >= t).pop();
       if (!hit) { if (d) notify(`👀 Gerilim ${r.v}/100 · ${rt ? rt[2] : 'açık mekân'}`, '👀'); return; }
-      const fp = rt && hit[0] >= 70 && interruptsOn() && !cs.playing && (Stories.FANT_INTERRUPTS || {})[rt[1]];
+      const fp = rt && hit[0] >= 70 && optOn('int', interruptsOn) && !cs.playing && (Stories.FANT_INTERRUPTS || {})[rt[1]];
       if (fp && fp.length) {
         const i = Math.floor(Math.random() * fp.length);
         if (hit[0] === 100) list.push({ id: Store.uid(), from: 'sys', text: pickOf(hit[1]), ts: nowTs() + 1 });
@@ -15315,7 +16027,7 @@
       // 🤱 Nursing olayları da kesilebilir (NURSE_INT: Covered → biri geliyor, Night → telefon, Morning → alarm)
       const nk = NURSE_INT[e.id] || (lowTag(catOfEv(e).label) === 'nursing' ? NURSE_INT._ : null);
       const et = (e.tags || []).map(lowTag), af = et.includes('aldatma');
-      if (!interruptsOn() || !(isPosEv(e) || isFant(e) || nk || af) || cs.playing) return;
+      if (!optOn('int', interruptsOn) || !(isPosEv(e) || isFant(e) || nk || af) || cs.playing) return;
       const n = msgCount();
       if (th.intAt && n - th.intAt < 8) return;
       const fr = fantRecent(), fk = af ? 'fxgizli' : fr && fantKey(fr), gizli = fk === 'fxgizli';
@@ -17002,7 +17714,7 @@
       if (!b) return;
       const t = b.dataset.tool;
       // ⋯ Diğer: açıp kapatılan ayarlar dışında bir araç seçilince menü kapanır
-      if (b.closest('#ctMore') && !['turns', 'places', 'modemusic', 'interrupts', 'sfx', 'lia', 'quick', 'tahmin', 'chg', 'score'].includes(t)) { $('#ctMore').hidden = true; $('[data-tool=more]').classList.remove('on'); }
+      if (b.closest('#ctMore') && !['turns', 'places', 'modemusic', 'interrupts', 'simple3', 'sfx', 'lia', 'quick', 'tahmin', 'chg', 'score'].includes(t)) { $('#ctMore').hidden = true; $('[data-tool=more]').classList.remove('on'); }
       if (t === 'theme') themeSheet();
       if (t === 'rp') rpSheet();
       if (t === 'turns') {
@@ -17034,7 +17746,9 @@
         if (r.e) setTimeout(() => askSubs([r.e], writeEvents), 700);
       });
       if (t === 'score') { scoreOn(!scoreOn()); b.classList.toggle('on', scoreOn()); draw(); notify(scoreOn() ? '🎯 Bot puanları görünüyor' : '🎯 Bot puanları gizli', '🤖'); }
-      if (t === 'interrupts') { interruptsOn(!interruptsOn()); b.classList.toggle('on', interruptsOn()); notify(interruptsOn() ? '📱 Kesintiler açık · telefon, kapı, komşu… fantezilerde daha sık' : '📱 Kesintiler kapalı', '📱'); }
+      if (t === 'interrupts') { optSet('int', !optOn('int', interruptsOn)); b.classList.toggle('on', optOn('int', interruptsOn)); notify(optOn('int', interruptsOn) ? '📱 Bu sohbette kesintiler açık · telefon, kapı, komşu… fantezilerde daha sık' : '📱 Bu sohbette kesintiler kapalı', '📱'); }
+      if (t === 'skip3') { if (cs.busy) { notify('Biraz bekle, karşı taraf yazıyor… ⏳', '⏳'); return; } if (c3SkipChat(th, group ? null : c)) { draw(); refreshList(); } }
+      if (t === 'simple3') { optSet('simple', !optOn('simple', simpleOn)); b.classList.toggle('on', optOn('simple', simpleOn)); notify(optOn('simple', simpleOn) ? '🧘 Bu sohbette sade mesajlar: en fazla 2 baloncuk' : '🧘 Bu sohbette zengin mesajlar', '🧘'); }
       if (t === 'stnote') { const v = (stNoteLvl() + 1) % 3, lb = ['Durum kartları: Kapalı', 'Durum kartları: Az', 'Durum kartları: Çok'][v]; stNoteLvl(v); b.classList.toggle('on', !!v); b.innerHTML = `<span>📰</span>${lb}`; notify(`📰 ${lb}`, '📰'); }
       if (t === 'modemusic') { modeMusicOn(!modeMusicOn()); b.classList.toggle('on', modeMusicOn()); notify(modeMusicOn() ? '🎼 Mode olunca müzik kendiliğinden değişir' : '🎼 Moda göre müzik kapalı', '🎵'); }
       if (t === 'sfx') { sfxOn(!sfxOn()); b.classList.toggle('on', sfxOn()); notify(sfxOn() ? '🔔 Efekt sesleri açık' : '🔔 Efekt sesleri kapalı', '🔔'); if (sfxOn()) sfx('match'); }
@@ -19118,7 +19832,7 @@
       const fr = lfGFx(c, st.fx, L.g);
       L.g.v = { ...(L.g.v || {}), ...fr.v };
       if (fr.log.length) {
-        L.chg = [...(L.chg || []), { k: r.g.k, t: fr.log.join(' · '), at: now }].slice(-20);
+        L.chg = [...(L.chg || []), { k: r.g.k, t: fr.log.join(' · '), at: now, ...(c.photo && !/^data:/.test(c.photo) ? { ph: c.photo } : {}) }].slice(-20); // 🪞 3.0: o anki fotoğraf
         if (st.fx.set && st.fx.set.Relationship) setupLive();
         notify(`${r.g.icon} ${c.name.split(' ')[0]}: ${fr.log.join(' · ')}`, r.g.icon);
         if (r.g.ph) L.phPend = { k: r.g.k, at: now, v: L.g.v };
@@ -25142,7 +25856,7 @@
     return '';
   };
   const pregBlock = (c, e) => {
-    const pb = persBlock(c, e) || hairBlock(c, e) || sleepBlock(c, e);
+    const pb = persBlock(c, e) || hairBlock(c, e) || skinBlock(c, e) || originBlock(c, e) || sleepBlock(c, e);
     if (pb) return pb;
     const lb = e ? lesBlock(c, e) : '';
     if (lb) return lb;
@@ -25977,7 +26691,7 @@
   // 💧 damla bitişler sadece o gevşediyse aday; öyleyse %45 ihtimalle gür'ün de önüne geçer
   const cumPick = hits => {
     const v = myCumV(), relax = relaxedNow();
-    const ok = hits.filter(e => { const m = cumMin(e); return (relax || !isDamla(e)) && (m == null || v >= m) && !(trCh && (wearBlock(trCh, e) || toyBlock(trCh, e) || persBlock(trCh, e) || hairBlock(trCh, e) || sleepBlock(trCh, e))); });
+    const ok = hits.filter(e => { const m = cumMin(e); return (relax || !isDamla(e)) && (m == null || v >= m) && !(trCh && (wearBlock(trCh, e) || toyBlock(trCh, e) || persBlock(trCh, e) || hairBlock(trCh, e) || skinBlock(trCh, e) || originBlock(trCh, e) || sleepBlock(trCh, e))); });
     if (!ok.length) return hits;
     const dm = ok.filter(isDamla), rest = ok.filter(e => !isDamla(e));
     if (dm.length && (!rest.length || Math.random() < .45)) return dm;
@@ -26464,6 +27178,34 @@
     save();
   }
   // 🍼 bir kez (S().breastSetup1): Eat'e "Breastfeeding" (göğüslerini emersin): Uyarılma +30 → orgazma götürür; 🍼 Süt −10
+  // 📖 3.0: açılışta oluşturulan olayların anlatımı (story) yoksa eklenir (🩺 Veri doğrulayıcı bulmuştu)
+  const STORY3 = {
+    'Avukat – Müvekkil': 'Hukuk bürosunun kapısı kilitli, dosyalar masaya dağılmış. O avukat, sen ücretini ödeyemeyen müvekkil; gözlüğünü indirip seni süzer. “Başka bir ödeme şekli konuşabiliriz” der ve sözleşmeyi kenara iter. Pazarlık masanın üstünde başlar.',
+    'Psikolog – Danışan': 'Seans odası loş, divan yumuşak. O psikolog, sen bastırdığın arzuları anlatan danışan; not defterini bırakıp yanına oturur. “Bunu sadece konuşarak çözemeyiz” diye fısıldar. Seans terapinin sınırlarını aşar.',
+    'Gardiyan – Mahkum': 'Cezaevinde gece nöbeti, kameralar kapalı, koridor sessiz. O gardiyan, sen mahkum; anahtarları şıngırdatarak hücreni açar. Kuralları o koyar, sen uyarsın. Sabah sayımına kadar kimse bir şey bilmeyecek.',
+    'Pizza Kuryesi – Müşteri': 'Gece yarısı kapın çalar; elinde sıcak bir kutu, kaskının altından gülümseyen bir kurye. Parayı sayarken eksik çıkar, o da kapı eşiğine yaslanır. “Farkı başka türlü kapatabiliriz” der. Pizza soğurken içeri girer.',
+    'Ressam – Çıplak Model': 'Atölyede terebentin kokusu var, tuvalin başında o; sen kürsüde çıplak poz veriyorsun. Fırçasını bırakıp vücudunun çizgisini ölçmek için yaklaşır. Parmakları seni boyadığından daha cesur dolaşır. Resim yarım kalır, poz değişir.',
+    'Dans Hocası – Öğrenci': 'Boş dans stüdyosunda aynalar ikinizi çoğaltır. O dans hocası, sen özel ders alan öğrenci; kalçanı tutup ritmi bedeniyle gösterir. Her adımda biraz daha yakın, biraz daha yavaş. Müzik bitse de ders bitmez.',
+    'Fizyoterapist – Sporcu': 'Tedavi odasında masaj masasına uzanmışsın, sakat bacağın onun ellerinde. O fizyoterapist; kaslarını gevşetirken parmakları uyluğunun yukarısına kayar. “Gerginlik burada birikmiş” der gülümseyerek. Tedavi beklediğinden çok daha iyi gelir.',
+    'Taksi Şoförü – Gece Yolcusu': 'Gece yarısı taksinin arka koltuğundasın, taksimetre işliyor. Cebinden para çıkmayınca o aynadan sana bakıp arabayı ıssız bir sokağa çeker. Arka koltuğa geçip ücretin nasıl ödeneceğini kendisi söyler. Camlar buğulanır, taksimetre kapanır.',
+    'Breastfeeding': 'Göğsünü avucuna verip başını kucağına yaslar. Dudakların meme ucunu bulunca nefesi titrer; hamileyse sıcak sütü diline akar. Her emişte uyarılması büyür, parmakları saçlarına gömülür. Bırakmanı istemez, sonunda kendini orgazma bırakır.',
+    'Dry Orgasm': 'Son damlana kadar boşaltılmışsın, yine de doruğa ulaşırsın. Kasıkların kasılır, bedenin titrer ama hiçbir şey gelmez. O şaşkın ve gururlu bir gülüşle seni izler. “Seni tamamen kuruttum” diye fısıldar.'
+  };
+  // 🔤 3.0: aynı başlıklı olaylar ayrıldı (bar / sıkıştırma olanı aynı kaldı); kayıtta elle değişmiş olsa da id ile yeni başlık
+  const TITLE3 = { mvgb12table: ['Under The Table', 'Under The Table Squeeze'], mvlc13dance: ['Dance Floor Grind', 'Dance Floor Girl Grind'], mvlg05leglock: ['Leg Lock Grind', 'Leg Lock Tribbing'] };
+  function fixStory3() {
+    const mo = S().monia;
+    if (!mo || !(mo.events || []).length) return;
+    let n = 0;
+    mo.events.forEach(e => {
+      if (!e.story && STORY3[e.title]) { e.story = STORY3[e.title]; n++; }
+      const T = TITLE3[e.id];
+      if (T && e.title === T[0]) { e.title = T[1]; n++; }
+      // lezbiyen bitişlerinin after listesi de yeni başlığa
+      if (/^mvl[cg]/.test(e.id) && Array.isArray(e.after)) e.after = e.after.map(t => { const r = Object.entries(TITLE3).find(([id, [o]]) => o === t && id !== 'mvgb12table'); if (r && t !== r[1][1]) { n++; return r[1][1]; } return t; });
+    });
+    if (n) save();
+  }
   function fixBreast1() {
     const mo = S().monia, low = s => String(s || '').toLocaleLowerCase('tr');
     if (!mo || S().breastSetup1 || !(mo.events || []).length) return;
@@ -30746,7 +31488,7 @@
       ['Oiled Knead', 'Yüzüstü uzanıp kalçamı yağlamanı bekliyorum. Sen kayan kalçamı avuçlarınla yoğurursan Oiled Knead olur.'],
       ['Thigh Handful', 'Yanına oturuyorum. Sen uyluğumun etli yerini avuçlayıp sıkarsan Thigh Handful olur; parmaklarının 💜 izi kalır.'],
       ['Inner Thigh Climb', 'Sırtüstü uzanıp dizimi bükerim. Sen iç bacağımı sıka sıka yukarı tırmanıp en üstte durursan Inner Thigh Climb olur.'],
-      ['Under The Table', 'Restoranda yan yana oturuyoruz. Sen masanın altında uyluğumu sıkarsan Under The Table olur; garsonla konuşurken yüzümü bozmam.'],
+      ['Under The Table Squeeze', 'Restoranda yan yana oturuyoruz. Sen masanın altında uyluğumu sıkarsan Under The Table Squeeze olur; garsonla konuşurken yüzümü bozmam.'],
       ['Car Thigh Hold', 'Sen sürüyorsun, ben yanında oturuyorum. Elin uyluğumda durur, her kırmızı ışıkta biraz daha yukarı çıkarsa Car Thigh Hold olur.'],
       ['Stocking Top Grip', 'Çoraplarımla bacak bacak üstüne oturuyorum. Sen naylonun bittiği yerden çıplak tene geçip sıkarsan Stocking Top Grip olur.'],
       ['Spread & Hold', 'Sırtüstü uzanıp dizlerimi birleştiriyorum. Sen bacaklarımı açıp kapatmama izin vermezsen Spread & Hold olur; sonunda kendim açık tutarım.'],
@@ -31718,13 +32460,146 @@
         <table class="bk-t"><tr><th>Etkinlik</th><th>Mekân</th><th>Saat</th></tr>${E.map(e => `<tr><td>${e.ic} ${esc(e.n)}</td><td>${esc(((CITY_B().BLD || []).concat(CITY_B().AREAS || [])).find(b => b.k === e.k)?.n || e.k)}</td><td>${hh(e.h[0])}–${hh(e.h[1])}</td></tr>`).join('')}</table>`;
     } }
   ] });
+  // 🚀 Carmen 3.0 Kitabı: güncellemenin tanıtımı; tablolar uygulamanın güncel verisinden (js/data/c3.js, şehir, karakterlerin) okunur
+  const c3Tbl = (head, rows) => `<table class="bk-t"><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr>${rows.map(r => `<tr>${r.map(x => `<td>${x}</td>`).join('')}</tr>`).join('')}</table>`;
+  BOOKS.push({ id: 'c3', icon: '🚀', title: 'Carmen 3.0', sub: 'zaman, hava, şehir, ana sayfa, görevler, kitaplar ve teknik temel', chips: ['yeni', 'güncelleme'], chapters: [
+    { icon: '🚀', title: 'Carmen 3.0\'a hoş geldin', sub: 'bu güncellemede neler var', get body() { return `
+      <p>Carmen 2.x boyunca çok büyüdü: binlerce olay, yüzlerce sahne, otuzdan fazla site ve canlı bir şehir. <b>Carmen 3.0</b> bu parçaları birbirine bağlıyor: hepsi aynı takvimde, aynı havada, aynı şehir saatinde yaşıyor. Ana sayfa artık sana <b>ne yapabileceğini</b> söylüyor.</p>
+      <ul><li><b>🧵 Dünya saati ve takvim</b>: gün sayacı, mevsimler, şehir saati her yerde aynı.</li>
+        <li><b>⛅ Hava</b>: her gün tarihe göre bir hava (güneş, yağmur, fırtına, kar, sis…). Şehirde yağmur ve kar yağar, Günün kızı havadan söz eder.</li>
+        <li><b>🎂 Doğum günleri</b>: her karakterin bir doğum günü var. O gün yaşı bir artar, ana sayfa sana hatırlatır.</li>
+        <li><b>🏙️ Şehir</b>: semt göstergesi, hava efektleri, 💼 vardiya ile para kazanma.</li>
+        <li><b>🏠 Ana sayfa</b>: 📅 Bugün paneli, 💡 Şimdi ne yapsam?, ☀️ Günün kızı, 🔎 global arama, ⚙️ bölüm gizleme.</li>
+        <li><b>🗺️ Ben</b>: 🎟️ haftalık görevler, 8 yeni 🏅 rozet, 🕰️ saat ısı haritası, en sevdiğin olay türleri ve yerler.</li>
+        <li><b>👩 Profil</b>: herkese açık 🌟 Özet sekmesi.</li>
+        <li><b>📚 Kitaplar</b>: okuduğun sayfalar ✓ ile işaretlenir; 📕 Benim hikâyem senin geçmişinden yazılır.</li>
+        <li><b>📇 Rehber</b>: tanıdığın herkes, 💞 ilişki aşamaları, 🕸️ ilişki ağı, ✨ hayaller, 📍 şu an nerede.</li>
+        <li><b>💬 Sohbet</b>: sohbete özel ayarlar, 📖 Şimdiye kadar özeti, kişiliğe göre yazma hızı.</li>
+        <li><b>🎬 Olaylar</b>: 🎲 günün olayı ve ✏️ kendi sahneni yap.</li>
+        <li><b>🔔 Bildirimler</b> ve 🌐 siteler arası kimlik: tanıdığın kız her sitede seni tanır.</li>
+        <li><b>⚙️ Teknik temel</b>: 🧯 Duman testi ve 🩺 Veri doğrulayıcı deneyleri, yeni veri dosyası <code>js/data/c3.js</code>.</li></ul>
+      <p>Bugün Carmen'deki <b>${Math.max(1, c3St().days)}.</b> günün. İyi eğlenceler 💜</p>`; } },
+    { icon: '🧵', title: 'Dünya saati ve takvim', sub: 'gün, mevsim, şehir saati', get body() { const W = worldNow(); return `
+      <p>3.0'da dünyanın tek bir saati var. <b>Gün, ay ve mevsim</b> gerçek takvimden gelir. <b>Saat</b> ise şehrin saatidir: 🏙️ Şehir'de seçtiğin hız (⏩ 60×, 240×, ▶️ 1×, ⏸️) şehir kapalıyken de işler. Şehri hiç açmadıysan gerçek saat kullanılır.</p>
+      ${c3Tbl(['Şu an', 'Değer'], [['📅 Tarih', c3DateW(W.d)], ['🍂 Mevsim', `${W.season[1]} ${esc(W.season[2])}`], ['🏙️ Şehir saati', W.hm + (W.real ? ' (gerçek saat)' : '')], ['⛅ Hava', `${W.wx.ic} ${esc(W.wx.n)} · ${W.wx.temp}°`], ['🗓️ Carmen\'de', `${Math.max(1, c3St().days)}. gün`]])}
+      <p>Uygulamayı her gün ilk açtığında <b>📅 günlük işler</b> yapılır: gün sayacı artar, günün havası kaydedilir (⛅ Meteorolog rozeti), doğum günleri kutlanır ve pazartesiyse 🎟️ haftalık görevler yenilenir.</p>
+      <p>Sohbetlerin kendi 🕰️ saati olduğu gibi kalır. Şehirde biriyle tanışıp sohbete geçtiğinde sohbet saati şehir saatine eşitlenir.</p>`; } },
+    { icon: '⛅', title: 'Hava ve mevsimler', sub: 'günün havası, 7 günlük tahmin', get body() { const day = c3Day(), sn = c3Season(); return `
+      <p>Her günün bir havası var. Mevsimin olasılıklarından <b>tarihe göre</b> seçilir; aynı gün her açılışta aynıdır. Hava şunları etkiler:</p>
+      <ul><li>🏙️ <b>Şehir</b>: yağmurda damlalar, fırtınada şimşek, karda kar taneleri, siste ve bulutta gri bir perde. Üstteki saatin yanında havanın simgesi görünür.</li>
+        <li>🏠 <b>Ana sayfa</b>: 📅 Bugün panelinde hava, sıcaklık ve günün manşeti; ☀️ Günün kızı havaya göre konuşur.</li></ul>
+      <h4>🗓️ 7 günlük tahmin</h4>
+      ${c3Tbl(['Gün', 'Hava', '°C'], Array.from({ length: 7 }, (_, i) => { const w = c3Wx(day + i), d = new Date((day + i) * 864e5 + 12 * 36e5); return [i ? c3DateW(d) : '<b>Bugün</b>', `${w.ic} ${esc(w.n)}`, w.temp]; }))}
+      <h4>${sn[1]} Mevsimlere göre hava</h4>
+      ${c3Tbl(['Mevsim', 'Olası havalar', '°C'], C3.SEASONS.map(([k, ic, n]) => { const W = C3.WX_W[k] || {}, tot = Object.values(W).reduce((a, b) => a + b, 0) || 1, [lo, hi] = C3.TEMP[k] || [0, 0];
+        return [`${ic} ${esc(n)}`, Object.entries(W).map(([x, v]) => `${(C3.WX[x] || [''])[0]} %${Math.round(v / tot * 100)}`).join(' · '), `${lo}–${hi}`]; }))}`; } },
+    { icon: '🎂', title: 'Doğum günleri', sub: 'her karakterin bir günü var', get body() { const cs = chars().filter(c => !c.husb).sort((a, b) => bdayIn(a) - bdayIn(b)); return `
+      <p>Her karakterin bir <b>doğum günü</b> var: karakterin kimliğinden sabit bir gün seçilir (karakter kartında <code>bday</code> alanı varsa o kullanılır). Doğum gününde:</p>
+      <ul><li>🎂 Carmen'i açınca bildirim gelir ve ana sayfadaki <b>💡 Şimdi ne yapsam?</b> ona yazmanı önerir.</li>
+        <li>Yaşı <b>bir artar</b>. 🎂 Age özelliği yeni yaşa uymuyorsa sıradaki aralığa geçer (ör. 21 → 22: 18–21 → 22–25).</li>
+        <li>Önümüzdeki 7 gün içindeki doğum günleri 📅 Bugün panelinde sayılır.</li></ul>
+      ${cs.length ? c3Tbl(['Karakter', 'Doğum günü', 'Kalan'], cs.slice(0, 30).map(c => [esc(c.name), bdayTxt(c), bdayIn(c) ? `${bdayIn(c)} gün` : '🎉 bugün'])) : '<p><i>Henüz karakterin yok.</i></p>'}`; } },
+    { icon: '🏙️', title: 'Şehir 3.0', sub: 'semtler, hava, vardiya, günün programı', get body() { const CB = CITY_B(), Z = CB.ZONE_N || {}, SH = CB.SHIFT || {}, BL = (CB.BLD || []), ev = CB.today ? CB.today() : [], hh = h => String(h % 24).padStart(2, '0') + ':00'; return `
+      <p>Şehir dört semte ayrılır. Yürüdükçe bulunduğun semt <b>🏙️ CarmenCity</b> yazısının altında görünür. Semtler sokak sohbetlerini ve kalabalığı değiştirir; 4 semti gezince 🗺️ <b>Semt semt</b> rozetini alırsın.</p>
+      ${c3Tbl(['Semt'], Object.values(Z).map(z => [esc(z)]))}
+      <h4>💼 Vardiya</h4>
+      <p>Bazı binaların kartında <b>💼 Vardiya</b> düğmesi var. Kapıdaysan 4 saat çalışırsın: şehir saati 4 saat ilerler, kazancın 💰 bakiyene eklenir. Her binada günde bir kez çalışılır. Uzaktaysan önce oraya yürürsün.</p>
+      ${c3Tbl(['Bina', 'Kazanç'], Object.entries(SH).sort((a, b) => b[1] - a[1]).map(([k, v]) => { const b = BL.find(x => x.k === k); return [b ? `${b.ic} ${esc(b.n)}` : esc(k), `${v.toLocaleString('tr-TR')}₺`]; }))}
+      <h4>🎉 Bugünün programı</h4>
+      ${ev.length ? c3Tbl(['Etkinlik', 'Saat'], ev.map(e => [`${e.ic} ${esc(e.n)}`, `${hh(e.h[0])}–${hh(e.h[1])}`])) : ''}
+      <p>Program 📅 Bugün panelinde de görünür. Süren etkinliğin yanında 🔴 vardır.</p>`; } },
+    { icon: '🏠', title: 'Ana sayfa 3.0', sub: 'yukarıdan aşağı: sen, sonra vitrin', body: `
+      <p>Ana sayfa artık <b>önce sen, sonra vitrin</b> sırasında:</p>
+      <ol><li><b>📅 Bugün başlığı</b>: tek satırda tarih, hava ve sıcaklık, şehir saati ve Carmen'deki kaçıncı günün olduğu. Altındaki şeritte 📰 günün manşeti, yaklaşan 🎂 doğum günleri ve şehrin 🎉 programı var.</li>
+        <li><b>💬 Kaldığın yerden</b>: son 8 sohbetin büyük avatarlarla yan yana. 🔵 okunmamış, 👥 grup; 👀 soluk olanlar izlediğin karı-koca ve ikili sohbetler. Sondaki 📇 Rehber'e gider.</li>
+        <li><b>💡 Şimdi ne yapsam?</b>: en fazla 3 büyük kart. Doğum günü, süren 📖 bölüm, görev ödülü ya da haftalık görev, şehirdeki etkinlik, 🎲 günün olayı ve sıradaki 🗺️ görev.</li>
+        <li><b>☀️ Günün kızı</b> (gündüz) ya da <b>🌙 Gecenin kızı</b> (şehir saati 20:00–06:00): büyük fotoğraflı vitrin. Gecenin sloganı da bu kartta.</li>
+        <li><b>🔥 Tinder / Bumble / Fans</b>, sonra <b>📰 Haber · 📖 Dergi · 🍿 Flix</b>: üçü tek bir kaydırmalı şeritte.</li>
+        <li>En altta ilan vitrini, VIP vitrin ve ilan akışı (aynı kaldı).</li></ol>
+      <p>Sağ üstte iki düğme var:</p>
+      <ul><li><b>🔎 Arama</b>: karakterlerin, ilanlar, olaylar, sahneler, bölümler, siteler, kitap sayfaları ve deneyler tek kutuda. Türkçe harfsiz yazsan da bulur; olaya dokununca ⓘ bilgi penceresi açılır.</li>
+        <li><b>⚙️ Ana sayfayı düzenle</b>: yukarıdaki bölümlerden istemediklerini kapat. Ayar bu tarayıcıda kalır.</li></ul>
+      <p>📇 Rehber ve 🔔 bildirimler alt menüdeki <b>Rehber</b> sekmesinde.</p>` },
+    { icon: '🗺️', title: 'Ben 3.0', sub: 'haftalık görevler, yeni rozetler, istatistikler', get body() { return `
+      <p><b>🎟️ Haftalık görevler</b> (Ben → 🗺️ Görevler): her pazartesi aşağıdakilerden 3'ü seçilir. İlerleme haftanın başından sayılır. Bitirince 🎁 ödülünü al. Üçünü de bitirirsen 🏅 <b>Haftanın yıldızı</b> olursun.</p>
+      ${c3Tbl(['Görev', 'Hedef', 'Ödül'], C3.WEEKLY.map(([, ic, t, d, , , p]) => [`${ic} ${esc(t)}`, esc(d), `${p.toLocaleString('tr-TR')}₺`]))}
+      <p><b>🏅 Yeni rozetler</b> (Ben → 📊 Özet):</p>
+      ${c3Tbl(['Rozet', 'Nasıl'], C3.BADGES.map(([ic, n, d]) => [`${ic} ${esc(n)}`, esc(d)]))}
+      <p><b>📊 Özet</b> sekmesine üç yeni bölüm geldi: 🕰️ mesajlarını hangi saatlerde yazdığın (24 sütunluk ısı haritası), 🔥 en çok yaşadığın olay türleri ve 📍 en çok buluştuğunuz yerler.</p>`; } },
+    { icon: '👩', title: 'Profil Özeti', sub: 'herkese açık 🌟 Özet sekmesi', body: `
+      <p>Karakter profilinde <b>🌟 Özet</b> sekmesi var. 🧠 Hafıza ve 📔 Günlük gibi düzenleme moduna bağlı değildir. Gösterdikleri:</p>
+      <ul><li>🎂 Doğum günü ve kaç gün kaldığı.</li><li>🗓️ Ne zaman tanıştığınız, kaç gündür ve kaç mesajdır yazıştığınız.</li>
+        <li>📖 Süren bölüm ve bitirdiğiniz bölümler.</li><li>✨ İlkleriniz (ilk öpüşme, ilk oral…), 🔁 en çok yaşadıklarınız ve 📍 yerleriniz.</li></ul>
+      <p>Karakteri başka bir cihaza taşımak için profildeki <b>📤 Paylaş</b> düğmesi dosya ya da kod verir; içe aktarınca yeni bir karakter olarak eklenir.</p>` },
+    { icon: '📚', title: 'Kitaplar 3.0', sub: 'okundu işaretleri, Benim hikâyem', get body() { const R = c3Read(); return `
+      <p>Açtığın her kitap sayfası <b>okundu</b> sayılır. Üstteki sayfa şeridinde ve içindekilerde okunan sayfalar ✓ ile işaretlenir, kitabın başlığında kaç sayfa okuduğun yazar. Şu ana kadar <b>${R.n}</b> sayfa okudun. 30 sayfada 📚 <b>Kitap kurdu</b> rozetini alırsın.</p>
+      <p><b>📕 Benim hikâyem</b> bu kitabın bir sayfası. Senin geçmişinden yazılır: tanıştığın her karakter, tanışma tarihin, ilk'lerin ve yerlerin. 🖨️ düğmesiyle yazdırabilir ya da PDF olarak kaydedebilirsin.</p>`; } },
+    { icon: '📕', title: 'Benim hikâyem', sub: 'senin geçmişinden yazılan sayfa', get body() { return c3StoryBody(); } },
+    { icon: '⚙️', title: 'Teknik temel', sub: 'duman testi, veri doğrulayıcı, yeni veri dosyası', body: `
+      <p>3.0'ın ilk adımı <b>sağlamlaştırma</b>. 🧪 Deneyler sayfasında yeni bir <b>⚙️ Bakım ve test</b> grubu var:</p>
+      <ul><li><b>🧯 Duman testi</b> (<code>#/duman</code>): uygulamanın bütün ana sayfalarını, sitelerini, kitaplarını ve deneylerini sırayla açar. Bir sayfada hata olursa yakalar ve sonunda rapor verir. Sohbetlerin değişmez.</li>
+        <li><b>🩺 Veri doğrulayıcı</b> (<code>#/dogrula</code>): olay verisini tarar. Tekrarlanan kimlik ve başlıklar, anlatımı (<code>story</code>) olmayan olaylar, olmayan bir olaya işaret eden <code>after</code> ve sahne adımları, bölümü olmayan sahneler, eksik bölüm sahneleri, tekrarlanan bot kuralları ve İngilizcesi eksik açıklamalar.</li></ul>
+      <p>3.0'ın verileri (mevsimler, hava, haftalık görevler, rozetler) yeni <code>js/data/c3.js</code> dosyasında, İngilizcesi <code>js/data/i18n-en-c3.js</code>'te. Böylece büyük <code>app.js</code> dosyasına sadece mantık ekleniyor; yeni sistemlerin verisi ayrı dosyalarda büyüyecek.</p>` },
+    { icon: '📇', title: 'Rehber ve ilişkiler', sub: 'tanıdıkların, aşamalar, ilişki ağı, hayaller', get body() { const T = C3.REL3 || {}; return `
+      <p><b>📇 Rehber</b> artık alt menüde kendi sekmesinde (eski Mesajlar sayfasının yerine). Sekmedeki kırmızı rozet okunmamış sohbetleri ve bugünkü doğum günlerini sayar. En üstte 🔔 bildirimler var. Tanıdığın herkes son konuştuğun sıraya göre dizilir. Her satırda:</p>
+      <ul><li><b>💞 İlişki aşaması</b> ve kırgınsa 💔.</li><li><b>📍 Şu an nerede</b>: şehir saatine göre rutini (spor salonunda, işte, evinde…).</li>
+        <li><b>🌐 Siteleri</b>: aynı kızın Carmen.com, Fans, Gram ve çevrimiçiyse Live sayfaları.</li><li>💬 sohbete ve 👤 profile kısayol; 🔵 okunmamış mesaj.</li></ul>
+      <p>Altta <b>👥 Gruplar</b> (şehir grupları dahil) ve <b>👀 İzlediğin sohbetler</b> var: 💍 karı-koca ve 👭 ikili sohbetlerde karakterler birbirleriyle konuşur, sana yazmaz. Ana sayfanın önerileri de bunları "sana yazdı" diye değil, "👀 konuşuyor · izle" diye gösterir.</p>
+      <h4>💞 İlişki aşamaları</h4>
+      ${c3Tbl(['Aşama', 'En az mesaj', 'En az ilk', 'En az gün'], (C3.ARC || []).map(([ic, n, m, f, d]) => [`${ic} ${esc(n)}`, m, f, d]))}
+      <p>İlkler 📔 anılar defterinden gelir (ilk öpüşme, ilk oral…). Aşama yükselince bildirim gelir; 🌟 profil özetinde sıradaki aşamaya ne kaldığı yazar.</p>
+      <h4>🕸️ İlişki ağı</h4>
+      <p>Rehber'den <b>🕸️ İlişki ağı</b>: karakterlerin bir çemberde, aralarında bağlar. İki kişiye sırayla dokun ve ilişkiyi seç:</p>
+      ${c3Tbl(['Bağ', 'Ne yapar'], Object.entries(T).map(([k, [ic, n]]) => [`${ic} ${esc(n)}`, k === 'rakip' || k === 'eski' ? 'ağda kesik çizgi; birbirlerini tanımaz' : 'birbirlerini tanır: 😤 kıskançlık, söylenti ve 👥 grup davetleri bu bağa bakar']))}
+      <h4>✨ Hayaller</h4>
+      <p>Her karakterin bir hayali var (tatil, kendi evi, bir köpek, Paris…). 🌟 Özet'te <b>💝 Destekle</b> her seferinde maliyetin beşte birini öder ve hayali %20 ilerletir; %100'de hayali gerçekleşir.</p>`; } },
+    { icon: '💬', title: 'Sohbet 3.0', sub: 'sohbete özel ayarlar, özet, yazma hızı', body: `
+      <ul><li><b>⚙️ Sohbete özel ayar</b>: ⋯ Diğer'deki <b>📱 Kesintiler</b> ve <b>🧘 Sade mesajlar</b> artık sadece o sohbeti değiştirir. Hiç dokunmadığın sohbetler Ben → ⚙️ Ayarlar'daki genel ayarı kullanır.</li>
+        <li><b>📖 Şimdiye kadar</b>: 60 mesajı geçen sohbetlerin başında katlanır bir özet var. Mesaj ve gün sayısı, ilişki aşaması, son olaylar, son ilk ve en çok buluştuğunuz yer. ✕ ile o oturumda gizlenir.</li>
+        <li><b>⌨️ Yazma hızı</b>: utangaç, sakin ve gergin karakterler daha yavaş, neşeli olanlar daha hızlı yazar. Bazen "yazdı, sildi… yeniden yazıyor" görürsün.</li></ul>` },
+    { icon: '🎬', title: 'Olaylar 3.0', sub: 'günün olayı, kendi sahnen', body: `
+      <ul><li><b>🎲 Günün olayı</b>: 📅 Bugün panelinin önerilerinde, hiç yaşamadığın olaylardan her gün biri. Dokununca ⓘ bilgi penceresi açılır.</li>
+        <li><b>✏️ Sahne yap</b> (🧪 Deneyler → 🎬 Olaylar → ✏️ Sahne yap): kendi sahneni kur. Bir açılış olayı, adımlar ve isteğe bağlı bir bitiş seç; 🔀 serbest ya da ➡️ sıralı. Kaydettiğin sahne sohbette 🎬 şeridinde ve 🎓 CarmenEvents'te <b>✏️ Benim sahnelerim</b> altında çıkar.</li>
+        <li><b>🩺 Veri doğrulayıcı</b>'da yeni bir 💡 kart var: hiçbir sahnede geçmeyen olaylar. Hata değil; yeni sahnelere aday.</li></ul>` },
+    { icon: '🔔', title: 'Bildirimler ve siteler', sub: 'bildirim merkezi, siteler arası kimlik', body: `
+      <ul><li><b>🔔 Bildirimler</b> (📇 Rehber'in en üstünde; alt menüdeki Rehber sekmesinde rozet): önce şu anki durum: sana yazanlar, CarmenFans'ta yeni gönderiler, CarmenLive'da yayında olan tanıdıkların, yeni haberler, doğum günleri. Altında son bildirimler (ilk 4, gerisi katlı, en fazla 60).</li>
+        <li><b>🌐 Siteler arası kimlik</b>: tanıdığın bir kızın Carmen.com, Fans, Gram ya da Live sayfasını açınca en üstte "💬 … seni tanıyor · N mesaj" bandı çıkar; dokununca sohbetine gidersin. Rehber'de ve 🌟 Özet'te o kızın bütün siteleri yan yana.</li></ul>` },
+    { icon: '🌍', title: 'Zaman, köken ve bot', sub: 'sabaha geç, saate göre ana sayfa, memleket olayları, görünüm geçmişi, bot sağlığı', get body() {
+      const R = (Stories.World || {}).REGIONS || {}, evs = allEvents().filter(e => (e.origin || []).length || (e.skin || []).length);
+      return `
+      <h4>⏩ Sabaha geç</h4>
+      <ul><li><b>Sohbette</b> ⋯ Diğer → ⏩ <b>Sabaha geç</b>: sohbet saati bir sonraki 08:00'e atlar, 🌅 bir sabah notu düşer. Karakter kırgınsa bir gece uyuyunca kırgınlığı geçer. Sohbet saati kapalıysa çalışmaz.</li>
+        <li><b>Şehirde</b> sağdaki 🌙: şehir saati 08:00 olur; 🌅 özet kartında bugünün havası, gece kaçırdığın etkinlikler ve doğum günleri.</li></ul>
+      <h4>🕰️ Saate göre ana sayfa</h4>
+      <p>Selamlama, üstteki renk tonu ve bölümlerin sırası şehir saatine göre değişir:</p>
+      ${c3Tbl(['Saat', 'Sıra'], [['☀️ 06–11', 'Bugün · 💡 öneriler · 💬 sohbetler · 📰 haber / dergi / flix · ☀️ Günün kızı'], ['🌤️ 11–17', 'Bugün · 💬 sohbetler · 💡 öneriler · ☀️ Günün kızı · 🔥 Tinder…'], ['🌇 17–20', 'Bugün · 💬 sohbetler · ☀️ Günün kızı · 💡 öneriler'], ['🌙 20–06', 'Bugün · 🌙 Gecenin kızı · 💬 sohbetler · 💡 öneriler']])}
+      <h4>🌍 Memleket ve 🎨 ten olayları</h4>
+      <p>Yeni <b>🌍 Hometown & Skin</b> kategorisi. Memleket olayları sadece o bölgeden gelen kızda, ten olayları sadece o tende açılır (köken şehrinden, ten Skin Tone özelliğinden ya da görünen teninden). Her bölgenin bir sahnesi ve ardından gelen bir bitişi var. Kalıp yargı yok: mekân, gelenek ve hava üzerine kurulu.</p>
+      ${c3Tbl(['Olay', 'Kimde'], evs.map(e => [`${evEmo(e)}${esc(e.title)}`, (e.origin || []).map(k => R[k] || k).concat((e.skin || []).map(k => CM_SKIN[k] || k)).join(' / ')]))}
+      <h4>🪞 Görünüm geçmişi</h4>
+      <p>🌟 Özet'te karakterin değişimleri (saç, estetik…) tarihleriyle sıralanır. 3.0'dan sonraki değişimlerde o anki fotoğraf da saklanır, en altta bugünkü hâli.</p>
+      <h4>🤖 Bot</h4>
+      <ul><li><b>🩺 Bot sağlığı</b> (🧪 Deneyler → 🤖 Konuşma): sohbette hangi kuralın kaç kez kazandığı, hiç kazanmayanlar, aynı şartla birbirini gölgeleyenler, aynı cevabı verenler, boş kurallar ve 📭 eksik cevaplar.</li>
+        <li><b>🧠 Öğrenen cümleler</b>: sohbette iki kez yazdığın bir cümle 🔮 Tahmin önerilerinin başına 🧠 ile gelir.</li>
+        <li><b>🎭 Ruh hâline göre ton</b>: kırgınken cevapları soğuk başlar ve kalpler düşer; mutluyken arada bir 😊 ekler.</li></ul>`; } },
+    { icon: '🗓️', title: 'Sırada ne var?', sub: '3.1 ve sonrası', body: `
+      <p>Carmen 3.0 öneri listesinin geri kalanı sıradaki güncellemelere kaldı:</p>
+      <ul><li>🎙️ Sesli not ve 📞 arama, ↩️ mesaja yanıt / tepki / sabitleme.</li>
+        <li>🤖 Bot kurallarını parçalara bölmek, İngilizce bot cevapları, kural editöründe canlı önizleme.</li>
+        <li>🌱 Gündem kararlarına 👭 ikili, 💍 koca ve 👥 grup tepkileri.</li>
+        <li>📖 Sezonlar ve dallanan bölümler; açık kalan durum sayaçları (gözyaşı, inilti…).</li>
+        <li>🧭 Hikâye yönetmeni, 🤝 sınır haritası, 🎁 hediye ekonomisi, ✈️ seyahat.</li></ul>
+      <p>Tam liste: <code>ProjectMemory/proposals/carmen-3.0.md</code>.</p>` }
+  ] });
   const BOOK_VOLS = [
     ['rehber', '📖', 'Carmen Rehberi', 'uygulamanın kullanımı, internet siteleri, şehir, oyunlar ve CarmenAmor', ['carmen', 'internet', 'sehir', 'oyun', 'amor'], '#6b2a14', '#3a150a'],
     ['konusma', '🤖', 'Konuşma Rehberi', 'bot nasıl cevap verir: sorular, övgüler, komutlar, nedenler, kişilikler, grup ve memleketler', ['bot', 'soru', 'onun', 'ovgu', 'komut', 'neden', 'yedek', 'kisilik', 'grup', 'ulke'], '#1f3a5f', '#0e1c30'],
     ['seanslar', '💞', 'Seans ve Olay Rehberi', 'seans türleri ve örnekleri, bütün olaylar, olay hafızası ve süt', ['seans', 'olay', 'hafiza', 'sut', 'hamile', 'lezbiyen', 'trans'], '#8a2445', '#43101f'],
-    ['fanteziler', '🦄', 'Fantezi ve Mekân Rehberi', 'fanteziler, Genshin, BDSM, ofis, okul, kilise, gece hayatı, yaz, dışarıda ve ev', ['fantezi', 'genshin', 'bdsm', 'ofis', 'okul', 'kilise', 'gece', 'yaz', 'disari', 'ev'], '#7a1f5c', '#2e0b24']];
+    ['fanteziler', '🦄', 'Fantezi ve Mekân Rehberi', 'fanteziler, Genshin, BDSM, ofis, okul, kilise, gece hayatı, yaz, dışarıda ve ev', ['fantezi', 'genshin', 'bdsm', 'ofis', 'okul', 'kilise', 'gece', 'yaz', 'disari', 'ev'], '#7a1f5c', '#2e0b24'],
+    ['carmen3', '🚀', 'Carmen 3.0 Kitabı', 'yeni güncellemenin tanıtımı: dünya saati, hava, doğum günleri, şehir, ana sayfa, görevler ve kitaplar', ['c3'], '#4a148c', '#1a0533']];
   // kısım açıklamaları: [ne anlatır, ne zaman okunur, ilgili kısımlar]
   const BOOK_PART = {
+    c3: ['🚀 Carmen 3.0 ile gelen her şey: tek dünya saati ve takvim, günlük hava ve mevsimler, karakterlerin doğum günleri, şehirde semtler, hava efektleri ve vardiya, ana sayfanın 📅 Bugün paneli ve 🔎 arama, haftalık görevler ve yeni rozetler, profil özeti, okundu işaretleri, 📕 Benim hikâyem ve yeni bakım deneyleri. Tablolar uygulamanın güncel verisinden okunur.', 'Güncellemeden sonra ilk açtığında. Bir 3.0 özelliğinin nasıl çalıştığını merak ettiğinde de buraya dön.', ['carmen', 'sehir']],
     carmen: ['Uygulamanın el kitabı: karakter oluşturma, sohbetin temelleri, olaylar ve sonuçları, değerler (🥴 Zevk, 💗 Uyarılma, ❤️ Aşk, Sarhoşluk…), eşikler, tetiklenmeler, araç çubuğu, sade sohbet, içki, dayanıklılık ve soyunma komutları. Sonda 📘 Sözlük bütün terimleri kısaca açıklar.', 'Carmen\'e yeni başladıysan buradan başla. Bir değerin neden değiştiğini ya da bir olayın neden kendiliğinden geldiğini merak ettiğinde de buraya dön.', ['bot', 'seans', 'olay']],
     internet: ['Carmen\'in içindeki internet: Booble arama motoru, ilan siteleri (Carmen.com, Gothic.com, Meisove.com), CarmenJobs, CarmenSchool, CarmenCity, CarmenImpact, CarmenGasino, CarmenChurch, CarmenFarm ve diğerleri. Her bölüm bir siteyi anlatır: ne işe yarar, ilana dokununca sohbet nasıl başlar, karakter hangi rol ve kıyafetle gelir.', 'Yeni biriyle tanışmak, bir rolle sohbet başlatmak ya da bir sitenin ne yaptığını öğrenmek istediğinde.', ['fantezi', 'genshin', 'amor', 'ofis', 'okul', 'kilise']],
     sehir: ['🏙️ Alt menüdeki canlı şehir: binalar ve siteleri, karakterlerin rutini, yabancılar, durdurma ve ayaküstü konuşma, kişiliğe ve tanışıklığa göre cevaplar, sohbete geçiş ve günün etkinlikleri. Tablolar şehrin güncel verisinden okunur.', 'Şehirde birini tavlamak, bir etkinliğe gitmek ya da bir binanın hangi siteye açıldığını öğrenmek istediğinde.', ['internet', 'kisilik', 'amor']],
@@ -31796,7 +32671,9 @@
     BOOKS.splice(0, BOOKS.length, ...vols);
   }
   // 📚 raflar (🧭 CarmenGuide): [başlık, açıklama, ciltler]
-  const BOOK_SHELVES = [['📚 Kitaplık', '4 cilt, her biri içindekilerle başlar', BOOK_VOLS.map(v => v[0])]];
+  const BOOK_SHELVES = [['📚 Kitaplık', `${BOOK_VOLS.length} cilt, her biri içindekilerle başlar`, BOOK_VOLS.map(v => v[0])]];
+  // 📕 Benim hikâyem sayfası (🌟 profil özetinden bağlantı)
+  const BOOK_C3_STORY = Math.max(0, ((BOOKS.find(b => b.id === 'carmen3') || { chapters: [] }).chapters).findIndex(c => c.title === 'Benim hikâyem'));
   /* 📜 Olay Kitabı: her olay nasıl tetiklenir (📜 elle, 🗣️ komut, ❔ karakterin sorusu, 🔄 başka pozisyon, 💡 Lia).
    * Bölümler olay kategorileri (senin eklediklerin de); 🔍 arama olay adıyla bulur. Komut cümleleri bot-rules.js'teki komut kurallarından okunur */
   const EVB_ASK = { sert: 'Daha sert mi istiyorsun?', devam: 'Devam edelim mi?', agiz: 'Ağzıma almamı ister misin?', arka: 'Arkadan denemek ister misin?', yala: 'Beni yalar mısın?',
@@ -32463,8 +33340,9 @@
     const partOf = j => (bk.parts || []).find(p => j >= p.start && j <= p.end);
     view.innerHTML = `<style>.bk-part-h{margin:16px 2px 6px;font-family:Georgia,serif;font-variant:small-caps;color:var(--leather)}.bk-part-h small{font-variant:normal;opacity:.7;font-size:12px}
       .bk-pno input{width:4.2em;padding:2px 4px;border-radius:8px;border:1px solid rgba(140,90,30,.45);background:rgba(255,255,255,.5);color:inherit;font:inherit;text-align:center}
-      .bk-nav .bk-nav-p{flex:none;align-self:center;padding:0 4px;opacity:.6;font-size:16px}</style>
-      <div class="page-pad narrow book-page" data-book="${bk.id}"${bk.c1 ? ` style="--leather:${bk.c1};--leather2:${bk.c2}"` : ''}>${pageHero('kitap-' + bk.id, bk.icon, bk.title, [`${BOOK.length} bölüm`, ...bk.chips], `<button type="button" class="btn ghost sm pg-act" id="bkSnd" title="Sayfa çevirme sesi">${pageSfxOn() ? '🔊' : '🔇'}</button>`, { back: ui.bookBack || '#/me' })}
+      .bk-nav .bk-nav-p{flex:none;align-self:center;padding:0 4px;opacity:.6;font-size:16px}
+      .bk-nav button.rd small::after,.book-toc button.rd .bk-n::after{content:' ✓';color:#2fd6a0}</style>
+      <div class="page-pad narrow book-page" data-book="${bk.id}"${bk.c1 ? ` style="--leather:${bk.c1};--leather2:${bk.c2}"` : ''}>${pageHero('kitap-' + bk.id, bk.icon, bk.title, [`${BOOK.length} bölüm`, ...bk.chips, '<span id="bkRd"></span>'], `<button type="button" class="btn ghost sm pg-act" id="bkSnd" title="Sayfa çevirme sesi">${pageSfxOn() ? '🔊' : '🔇'}</button>`, { back: ui.bookBack || '#/me' })}
       <div class="bk-shelf-mini">${BOOKS.map(b => `<a class="${b === bk ? 'on' : ''}" href="#/kitap/${b.id}/${bookAt(b.id)}">${b.icon} ${esc(b.title)}</a>`).join('')}</div>
       <div class="bk-search"><input id="bkQ" type="search" placeholder="🔍 Kitapta ara… (ör. eşik, kondom, puan)" autocomplete="off"><div id="bkRes" class="bk-res" hidden></div></div>
       <div class="bk-nav" id="bkNav"></div>
@@ -32587,7 +33465,10 @@
       bookAt(bk.id, at);
       if (dir) sfx('page');
       history.replaceState(null, '', `#/kitap/${bk.id}/${at}`);
-      nav.innerHTML = BOOK.map((c, j) => `${c.part ? '<i class="bk-nav-p" aria-hidden="true">┃</i>' : ''}<button type="button" data-bkgo="${j}" class="${j === at ? 'on' : ''}" title="${esc(c.title)}"><span>${c.icon}</span><small>${j + 1}</small></button>`).join('');
+      const rd = new Set(c3Read(bk.id, at).s[bk.id] || []); // 📚 3.0 okundu işaretleri
+      nav.innerHTML = BOOK.map((c, j) => `${c.part ? '<i class="bk-nav-p" aria-hidden="true">┃</i>' : ''}<button type="button" data-bkgo="${j}" class="${j === at ? 'on' : ''}${rd.has(j) ? ' rd' : ''}" title="${esc(c.title)}"><span>${c.icon}</span><small>${j + 1}</small></button>`).join('');
+      const rdn = $('#bkRd');
+      if (rdn) rdn.textContent = `✓ ${rd.size}/${BOOK.length} okundu`;
       const on = nav.querySelector('.on');
       if (on) on.scrollIntoView({ block: 'nearest', inline: 'center' });
       const ch = BOOK[at], pt = partOf(at);
@@ -32605,6 +33486,9 @@
         </div>`;
       if (!ch.toc) decorate(pg.querySelector('.bk-body'));
       if (!ch.glossary) glossify(pg.querySelector('.bk-body'));
+      pg.querySelectorAll('.bk-body [data-bkgo]').forEach(b => { if (rd.has(+b.dataset.bkgo)) b.classList.add('rd'); });
+      const prn = pg.querySelector('[data-bkprint]');
+      if (prn) prn.onclick = () => window.print();
       const pin = $('#bkPin'), jump = () => { const n = Math.round(+pin.value); if (n >= 1 && n <= BOOK.length && n - 1 !== at) go(n - 1); else pin.value = at + 1; };
       pin.onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); jump(); } };
       pin.onchange = jump;
@@ -32982,7 +33866,7 @@
   }
   /* 🧪 Deneyler: hepsi tek listede (#/deneyler merkezi, her deneyin üstünde ortak sekme çubuğu + ❓ nasıl kullanılır).
    * [rota, ikon, ad, grup, kısa, adımlar, ne zaman, ilgili kitap kısımları (BOOK_PARTS id)] */
-  const LAB_GROUPS = [['konus', '🤖 Konuşma'], ['olay', '🎬 Olaylar'], ['kar', '👗 Kıyafet ve ilan']];
+  const LAB_GROUPS = [['konus', '🤖 Konuşma'], ['olay', '🎬 Olaylar'], ['kar', '👗 Kıyafet ve ilan'], ['bakim', '⚙️ Bakım ve test']];
   const LABS = [
     ['deney', '🧪', 'Bot deneyi', 'konus', 'Bir mesaj, olay ya da durum ver; karakterin söyleyebileceği bütün cevapları ve sohbette hangisinin kazanacağını gör.',
       ['Üstte 👤 deney karakterini kur: kayıtlı birinden kopyala, 🎲 rastgele ya da ↺ boş başla. 🧬 Özellikler, ❤️ / 💔, ✅ / 🚫, 👗 Giyim ve 📊 Değerler sekmelerinden değiştir. Kayıtlı karakterin değişmez.',
@@ -32990,6 +33874,9 @@
         'Sonuç üç sekmede: 🏆 Özet sohbette büyük ihtimalle kazanacak kuralı ve örnek cevabı, 📋 Bütün kurallar puanlarıyla yarışan her kuralı, 💬 Ek baloncuklar kıyafet, kilo, boyut, meslek, site ve baskınlık eklerini gösterir.',
         'En altta 📭 Eksik cevaplar: sohbette hiçbir kuralın tutmadığı mesajların. Dokun, burada dene; sonra Bot editöründe kuralını yaz.'],
       'Karakter beklemediğin bir şey dediğinde, yeni bir kural yazmadan önce ya da bir özelliğin cevabı nasıl değiştirdiğini görmek istediğinde.', ['bot', 'yedek', 'kisilik']],
+    ['botsaglik', '🩺', 'Bot sağlığı', 'konus', 'Hangi kural sohbette kaç kez kazandı, hangileri hiç kazanmadı, hangileri aynı şartla birbirini gölgeliyor ya da aynı cevabı veriyor.',
+      ['Sohbet ettikçe kazanan kurallar sayılır (bu tarayıcıda). 🏆 en çok kazananlar ve 🗂️ kategorilere göre oran.', '💤 hiç kazanmayan, 👥 aynı şartlı, 🔁 aynı cevaplı ve 🕳️ boş kuralları aç; düzeltmeyi 🤖 Bot editöründe yap.', '📭 Eksik cevaplar: karakterin anlamadığı mesajlar; dokun, 🧪 Bot deneyinde dene. ↺ sayacı sıfırlar.'],
+      'Kural yazmadan ya da silmeden önce, botun neden hep aynı şeyi söylediğini merak ettiğinde.', ['bot', 'yedek']],
     ['gundem', '📅', 'Gündem deneyi', 'konus', 'Onun gündemi: hayatındaki konular adım adım nasıl ilerler, ne sorar, hangi gündelik ana davet eder ve ✨ değişim gündemleri karakterini nasıl değiştirir (saç, estetik, evlilik, boşanma…).',
       ['Üstten bir karakter seç: hangi konuların ona uygun olduğu (✅) ya da şartı tutmadığı (🚫) görünür. Karakterin değişmez, deney bir kopyada çalışır.',
         '🎭 Soru tarzı karakterin kişiliğinden gelir; başka bir tarzı denemek için 🎭 listesinden seç. ✨ adımlarının altında 📸 değişim fotoğrafı.',
@@ -33049,7 +33936,17 @@
         '🔍 kutusuna olay adı yaz ya da 👶 / 🎈 önerilerinden birine dokun.',
         'Şartlarda geçen olayları 📜 oldu / olmadı diye aç kapa: hangi sonucun açılıp kapandığı hemen görünür.',
         '🎲 Zar at: sohbetteki gibi tek sonuç. 🔁 1000 kez at: her sonucun gerçekte ne sıklıkla geldiği.'],
-      'Bir olayın (ör. Vaginal Creampie) ne zaman hamile bıraktığını, kondomun neyi engellediğini ya da bir sonucun neden hiç gelmediğini görmek istediğinde.', ['olay', 'seans']]
+      'Bir olayın (ör. Vaginal Creampie) ne zaman hamile bıraktığını, kondomun neyi engellediğini ya da bir sonucun neden hiç gelmediğini görmek istediğinde.', ['olay', 'seans']],
+    ['sahneyap', '✏️', 'Sahne yap', 'olay', 'Kendi 🎬 sahneni kur: açılış olayı, adımlar ve bitiş. Sohbette 🎬 şeridinde ve 🎓 CarmenEvents\'te ✏️ Benim sahnelerim altında görünür.',
+      ['Ad ve simge yaz.', '🚪 Açılış olayını listeden seç (yazmaya başla, öneriler çıkar).', '👣 Adımları tek tek ekle; ✕ ile çıkar. İstersen 🏁 bitiş olayı seç.', '🔀 Serbest: kaç adım yeteceğini yaz · ➡️ Sırayla: adımların hepsi sırayla.', '💾 Kaydet. 🎓 CarmenEvents\'te aç ile sahne sayfasını gör; ✏️ Düzenle ve 🗑️ Sil.'],
+      'Hazır sahnelerde istediğin sırayı bulamadığında.', ['hafiza', 'c3']],
+    ['duman', '🧯', 'Duman testi', 'bakim', 'Uygulamanın ana sayfalarını, sitelerini, kitaplarını ve deneylerini sırayla açar; hata veren ya da boş kalan sayfaları raporlar.',
+      ['🧯 Testi başlat\'a dokun. Sayfalar kendiliğinden sırayla açılır, alttaki şeritte ilerleme görünür. ⏹️ ile durdurabilirsin.',
+        'Bitince bu sayfaya dönülür: ✅ sorunsuz, ❌ hata veren sayfalar ve hata mesajları.', 'Sohbet sayfaları açılmaz; karakterlerin ve sohbetlerin değişmez.'],
+      'Bir güncellemeden sonra ya da bir sayfa bozuk göründüğünde.', ['c3']],
+    ['dogrula', '🩺', 'Veri doğrulayıcı', 'bakim', 'Olay, sahne, bölüm ve bot verisini tarar: tekrarlar, kırık bağlantılar, eksik anlatımlar ve eksik İngilizce.',
+      ['Sayfa açılınca tarama yapılır. Her kontrol bir kart: ✅ temiz ya da ⚠️ kaç sorun olduğu.', 'Karta dokun: sorunlu kayıtların listesi (ilk 60) açılır.', '🔄 ile yeniden tara (Monia\'da olay ekledikten sonra).'],
+      'Yeni olay ya da sahne ekledikten sonra, ya da bir olay sohbette hiç gelmiyorsa.', ['c3', 'olay', 'hafiza']]
   ];
   const labPartLink = id => { const p = BOOK_PARTS[id]; if (!p) return ''; const [v, j] = bookPos(id); return `<a href="#/kitap/${v}/${j}">${p.icon} ${esc(p.title)}</a>`; };
   // ortak üst kısım: bütün deneyler arasında sekme + bu deneyin ❓ nasıl kullanılır kutusu
@@ -33068,6 +33965,91 @@
         <details><summary style="cursor:pointer"><b>👣 Adım adım</b></summary><ol>${steps.map(x => `<li>${x}</li>`).join('')}</ol></details>
         ${parts.length ? `<p class="about">📚 ${parts.map(labPartLink).filter(Boolean).join(' · ')}</p>` : ''}
         <a class="btn primary block sm" href="#/${r}">${ic} ${esc(t)} aç ›</a></div>`).join('')}`).join('')}</div>`;
+  }
+  /* 🧯 Duman testi (#/duman): sayfaları sırayla açar, window hata / reddedilen söz / console.error / boş sayfa yakalar; sonuç ui.smoke (oturumda) */
+  function smokeRoutes() {
+    const R = ['#/home', '#/ara', '#/rehber', '#/ag', '#/sehir', '#/me', '#/me/ozet', '#/me/gorev', '#/guide', '#/deneyler', '#/olaylar', '#/events', '#/events/sahneler', '#/events/bolumler', '#/news', '#/dergi', '#/booble', '#/oyun', '#/flix'];
+    netSites().forEach(s => R.push(s.href));
+    BOOKS.forEach(b => R.push(`#/kitap/${b.id}/0`, `#/kitap/${b.id}/${b.chapters.length - 1}`));
+    LABS.forEach(l => { if (l[0] !== 'duman') R.push('#/' + l[0]); });
+    const c = chars().find(x => !x.husb);
+    if (c) R.push(`#/p/${c.id}`);
+    return [...new Set(R)];
+  }
+  function smokeRun(R) {
+    const errs = [], res = [], t0 = Date.now(), ce = console.error;
+    let cur = '', i = 0;
+    const onErr = e => errs.push({ h: cur, m: String((e.reason && (e.reason.message || e.reason)) || e.message || 'hata') + (e.filename ? ` (${e.filename.split('/').pop()}:${e.lineno})` : '') });
+    console.error = (...a) => { errs.push({ h: cur, m: 'console.error: ' + a.map(x => (x && x.message) || String(x)).join(' ').slice(0, 200) }); ce.apply(console, a); };
+    window.addEventListener('error', onErr); window.addEventListener('unhandledrejection', onErr);
+    const ov = document.createElement('div');
+    ov.style.cssText = 'position:fixed;left:8px;right:8px;bottom:calc(env(safe-area-inset-bottom) + 8px);z-index:99999;display:flex;gap:8px;align-items:center;padding:10px 12px;border-radius:12px;background:rgba(20,12,40,.92);color:#fff;font:600 13px system-ui';
+    ov.innerHTML = '<span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></span><button type="button" style="background:#ff4d8d;color:#fff;border:0;border-radius:8px;padding:6px 10px">⏹️ Durdur</button>';
+    document.body.appendChild(ov);
+    let stop = false;
+    ov.querySelector('button').onclick = () => { stop = true; };
+    const done = () => {
+      console.error = ce; window.removeEventListener('error', onErr); window.removeEventListener('unhandledrejection', onErr); ov.remove();
+      ui.smoke = { at: Date.now(), ms: Date.now() - t0, res, n: R.length, stopped: stop };
+      location.hash = '#/duman';
+    };
+    const next = () => {
+      if (i > 0) {
+        const h = R[i - 1], be = document.getElementById('bootErr'), m = errs.filter(x => x.h === h).map(x => x.m);
+        if (!view.textContent.trim() && !view.querySelector('canvas, img')) m.push('sayfa boş');
+        if (be && be.offsetParent) m.push('bootErr: ' + be.textContent.slice(0, 200));
+        res.push({ h, m: [...new Set(m)] });
+      }
+      if (i >= R.length || stop) return done();
+      cur = R[i++];
+      ov.firstElementChild.textContent = `🧯 ${i}/${R.length} · ${cur}`;
+      const site = ui.siteSet && (ui.siteSet.has(cur.split('/')[1]) || ui.siteSet.has(location.hash.split('/')[1]));
+      location.hash = cur;
+      setTimeout(next, site ? 2000 : 700);
+    };
+    next();
+  }
+  function renderSmokeLab() {
+    const R = smokeRoutes(), L = ui.smoke, bad = L ? L.res.filter(r => r.m.length) : [];
+    view.innerHTML = `<div class="page-pad narrow monia">${pageHero('deneyler', '🧯', 'Duman testi', [`${R.length} sayfa`, 'sohbete dokunmaz'], '', { back: '#/deneyler' })}${labNav('duman')}
+      <div class="card" style="margin-top:10px"><p>Ana sayfa, şehir, Ben, ${netSites().length} site, ${BOOKS.length} kitap ve ${LABS.length - 1} deney sırayla açılır (~${Math.round(R.length * 1.2)} sn). Her sayfada çıkan hata, reddedilen söz, <code>console.error</code> ya da boş sayfa yakalanır.</p>
+        <button type="button" class="btn primary block" id="smGo">🧯 Testi başlat</button></div>
+      ${L ? `<div class="card" style="margin-top:12px"><div class="sec-title" style="margin-top:0">${bad.length ? `❌ ${bad.length} sorunlu sayfa` : '✅ Bütün sayfalar sorunsuz'} <small>· ${L.res.length}/${L.n} sayfa · ${Math.round(L.ms / 1000)} sn${L.stopped ? ' · ⏹️ durduruldu' : ''} · ${fmtTime(L.at)}</small></div>
+        ${bad.map(r => `<div class="me-hist"><span><b>❌ <a class="no-i18n" href="${esc(r.h)}">${esc(r.h)}</a></b>${r.m.map(x => `<small>${esc(x)}</small>`).join('')}</span></div>`).join('')}
+        <details${bad.length ? '' : ' open'}><summary style="cursor:pointer"><b>✅ Sorunsuz sayfalar</b> · ${L.res.length - bad.length}</summary><div class="about no-i18n">${L.res.filter(r => !r.m.length).map(r => esc(r.h)).join(' · ')}</div></details></div>` : ''}</div>`;
+    $('#smGo').onclick = () => smokeRun(R);
+  }
+  /* 🩺 Veri doğrulayıcı (#/dogrula): olay / sahne / bölüm / bot verisini tarar */
+  function checkData() {
+    const evs = allEvents(), low = s => String(s || '').toLocaleLowerCase('tr'), out = [];
+    const add = (ic, t, list, hint) => out.push({ ic, t, list, hint });
+    const dups = keys => { const m = new Map(); keys.filter(Boolean).forEach(k => m.set(k, (m.get(k) || 0) + 1)); return [...m].filter(([, n]) => n > 1).map(([k, n]) => `${k} ×${n}`); };
+    const titles = new Set(evs.map(e => low(e.title))), has = t => titles.has(low(t)), cats = new Set(moCats().map(c => c.id));
+    add('🆔', 'Tekrarlanan olay kimliği', dups(evs.map(e => e.id)), 'Aynı id iki olayda: biri ötekini ezer.');
+    add('🔤', 'Tekrarlanan olay başlığı', dups(evs.map(e => low(e.title))), 'Başlıklar anahtar olarak kullanılır (sahneler, after, i18n).');
+    add('📖', 'Anlatımı (story) olmayan olay', evs.filter(e => !e.story).map(e => e.title), 'Her yeni olay 3–4 cümlelik story ile gelmeli.');
+    add('↪️', 'after: olmayan olaya işaret', evs.flatMap(e => (e.after || []).filter(t => !has(t)).map(t => `${e.title} → ${t}`)), 'Bitiş sadece bu pozisyonlardan sonra açılır; yanlış başlık bitişi kilitler.');
+    add('🗂️', 'Kategorisi olmayan olay', evs.filter(e => e.cat && !cats.has(e.cat)).map(e => `${e.title} (${e.cat})`), 'Olay seçicide görünmez.');
+    const SC = Stories.SCENES || [], scIds = new Set(SC.map(s => s.id));
+    add('🎬', 'Sahne: bulunamayan adım', SC.flatMap(s => [s.open, ...(s.steps || []), s.fin].flatMap(x => [].concat(x || [])).filter(t => typeof t === 'string' && !has(t)).map(t => `${s.id}: ${t}`)), 'Bu adım sohbette hiç gelmez; sahne tamamlanamaz.');
+    add('🆔', 'Tekrarlanan sahne kimliği', dups(SC.map(s => s.id)), '');
+    add('🗃️', 'Kategorisiz sahne', Stories.sceneCat ? SC.filter(s => Stories.sceneCat(s.id).id === 'diger').map(s => s.id) : [], 'CarmenEvents\'te ✨ Diğer altında kalır.');
+    add('📖', 'Bölüm: olmayan sahne', (Stories.EPISODES || []).flatMap(e => (e.scenes || []).filter(id => !scIds.has(id)).map(id => `${e.id}: ${id}`)), 'Bölüm o sahnede takılır.');
+    { const used = new Set(); SC.forEach(s => [s.open, ...(s.steps || []), s.fin].flatMap(x => [].concat(x || [])).forEach(t => used.add(low(t))));
+      add('💤', 'Hiçbir sahnede olmayan olay', evs.filter(e => !used.has(low(e.title)) && !(e.tags || []).includes('roleplay')).map(e => e.title), 'Hata değil: bu olaylar sadece elle, komutla ya da önerilerle gelir. Yeni sahnelere aday (✏️ Sahne yap).'); out[out.length - 1].info = 1; }
+    add('🤖', 'Tekrarlanan bot kuralı kimliği', dups(((Stories.BOT_RULES || {}).rules || []).map(r => r.id)), 'Editör son kaydı tutar; biri kaybolur.');
+    const I = Stories.I18n, miss = s => { if (!s || !I || !I.translate) return false; const r = I.translate(s); return !r || r === s; };
+    add('🇬🇧', 'İngilizcesi olmayan olay açıklaması', I && I.translate ? evs.filter(e => e.desc && miss(e.desc)).map(e => e.title) : [], 'EN modunda Türkçe görünür (js/data/i18n-en-events.js).');
+    add('🇬🇧', 'İngilizcesi olmayan olay anlatımı', I && I.translate ? evs.filter(e => e.story && miss(e.story)).map(e => e.title) : [], 'js/data/i18n-en-stories.js (tools/apply-stories.ps1).');
+    return { out, n: evs.length, sc: SC.length };
+  }
+  function renderCheckLab() {
+    const t0 = performance.now(), R = checkData(), ms = Math.round(performance.now() - t0), bad = R.out.filter(x => x.list.length && !x.info);
+    view.innerHTML = `<div class="page-pad narrow monia">${pageHero('deneyler', '🩺', 'Veri doğrulayıcı', [`${R.n} olay`, `${R.sc} sahne`, `${ms} ms`], '<button type="button" class="btn ghost sm pg-act" id="ckAgain">🔄</button>', { back: '#/deneyler' })}${labNav('dogrula')}
+      <div class="about card" style="margin-top:10px">${bad.length ? `⚠️ ${R.out.length} kontrolden ${bad.length} tanesinde sorun var.` : `✅ ${R.out.length} kontrolün hepsi temiz.`} Listeler ilk 60 kaydı gösterir.</div>
+      ${R.out.map(x => `<details class="card" style="margin-top:10px"${x.list.length && x.list.length < 6 ? ' open' : ''}><summary style="cursor:pointer"><b>${x.info ? '💡' : x.list.length ? '⚠️' : '✅'} ${x.ic} ${esc(x.t)}</b> <small>· ${x.list.length}</small></summary>
+        ${x.hint ? `<p class="about">${esc(x.hint)}</p>` : ''}${x.list.length ? `<div class="about">${x.list.slice(0, 60).map(esc).join(' · ')}${x.list.length > 60 ? ` · … +${x.list.length - 60}` : ''}</div>` : ''}</details>`).join('')}</div>`;
+    $('#ckAgain').onclick = renderCheckLab;
   }
   /* 🎲 Sonuç deneyi (#/sonuc): bir olayın bütün sonuçları (yüzde, 🔒 şart, 📈 etki, ↪ sonraki), seçilen karaktere göre 🌱 doğurganlık ayarı
    * ve şart durumu; 🎲 tek zar / 🔁 1000 zar dağılımı (resolveOutcome, sohbetteki hesap). Sohbete ve karaktere dokunmaz; seçim bu oturumda (ui.ocLab) */
@@ -33977,12 +34959,16 @@
       ['👥', 'Kalabalık', 'bir grup sohbeti kur', groups().length >= 1], ['🫦', 'Abone', 'CarmenFans\'ta abone ol', subs >= 1], ['➕', 'Takipçi', '5 hesap takip et', follow >= 5],
       ['🧭', 'Gezgin', '5 farklı site gez', Object.keys(hist.sites).filter(k => sites.some(s => s.href === '#/' + k)).length >= 5], ['🤰', 'Baba adayı', 'biri hamile kalsın', preg >= 1],
       ['🎮', 'Oyuncu', 'PS bölüm 3 ya da FP gün 7', ps.level >= 3 || fp.day >= 7], ['🛍️', 'Müşteri', 'CarmenShop\'tan sipariş ver', orders >= 1], ['🏨', 'Rezervasyon', 'CarmenStay\'de oda tut', res >= 1]];
+    // 🚀 3.0 rozetleri (js/data/c3.js)
+    const c3s = c3Stats();
+    C3.BADGES.forEach(([ic, n, d, m, k]) => BADGES.push([ic, n, d, (c3s[m] || 0) >= k]));
     const got = BADGES.filter(b => b[3]).length;
     return `<div class="card">
         <div class="sec-title" style="margin-top:0">📊 İstatistikler</div>
         <div class="me-stats">${STATS.map(([ic, v, l]) => `<span><i>${ic}</i><b>${v}</b><small>${l}</small></span>`).join('')}</div>
         ${top.length ? `<div class="sec-title">🏆 En çok yazıştıkların</div>${top.map((c, i) => `<a class="me-hist" href="#/p/${c.id}">${avatar(c, 36)}<span><b>${['🥇', '🥈', '🥉'][i]} ${esc(c.name)}</b><small>${msgCount(c)} mesaj</small></span></a>`).join('')}` : ''}
       </div>
+      ${c3StatsCard()}
       <div class="card" style="margin-top:12px">
         <div class="sec-title" style="margin-top:0">🏅 Rozetler <small>· ${got}/${BADGES.length}</small></div>
         <div class="me-badges">${BADGES.map(([ic, n, d, ok]) => `<span class="me-badge${ok ? ' on' : ''}" title="${esc(d)}"><i>${ok ? ic : '🔒'}</i><b>${esc(n)}</b><small>${esc(d)}</small></span>`).join('')}</div>
@@ -34169,6 +35155,12 @@
         <div class="about">Görevler olayları ve uygulamadaki her şeyi denemen için. Bir görevi bitirince altındaki dallar açılır. Olayları sohbette # ile ya da 💡 Lia önerileriyle başlatabilirsin.</div>
         ${unpaid.length > 1 ? `<button type="button" class="btn primary block" data-qpay="*" style="margin-top:10px">🎁 <span>Hepsini al</span> · ${fmt(unpaid.reduce((n, q) => n + q.pay, 0))}₺</button>` : ''}
       </div>
+      ${(() => { const W = c3WeekRows(), d0 = new Date(), left = 7 - ((d0.getDay() + 6) % 7);
+        return `<div class="card" style="margin-top:12px">
+        <div class="sec-title" style="margin-top:0">🎟️ Bu haftanın görevleri <small>· her pazartesi yenilenir · ${left} gün kaldı</small></div>
+        <div class="qs-grid">${W.map(r => `<div class="qs-row qs-${r.paid ? 'paid' : r.done ? 'done' : 'open'}"><i class="qs-ic">${r.ic}</i>
+          <div class="qs-info"><b>${esc(r.t)}</b><small>${esc(r.d)}</small>${r.done ? '' : `<div class="qs-bar"><span style="width:${Math.round(r.cur / r.n * 100)}%"></span></div><small class="qs-num">${r.cur}/${r.n}</small>`}</div>
+          ${r.paid ? '<span class="qs-ok">✅</span>' : r.done ? `<button type="button" class="btn primary sm" data-wpay="${r.id}">🎁 ${fmt(r.pay)}₺</button>` : `<small class="qs-pay">💰 ${fmt(r.pay)}₺</small>`}</div>`).join('')}</div></div>`; })()}
       ${QBR.map(([k, ic, t, sub]) => {
         const qs = QUESTS.filter(q => q.br === k), n = qs.filter(q => got[q.id]).length;
         return `<div class="card" style="margin-top:12px">
@@ -34423,6 +35415,7 @@
       notify(`+${sum.toLocaleString('tr-TR')}₺ · görev ödülü`, '🎁');
       renderMe();
     });
+    view.querySelectorAll('[data-wpay]').forEach(b => b.onclick = () => { c3WeekPay(b.dataset.wpay); renderMe(); });
     bindMusic();
 
     const ib = $('#installBtn');
@@ -34705,6 +35698,8 @@
   setupBotOuts();
   initLock();
   dedupeAuto();
+  fixStory3();
+  c3LoadScenes();
   // 🔞 kayıtlı / içe aktarılan karakterlerde de alt sınır 18
   { const young = chars().filter(c => c.age && +c.age < 18); young.forEach(c => { c.age = '18'; }); if (young.length) save(); }
   // 📏 kural sonradan eklendiyse kayıtlı karakterlerin ✅/🚫 listeleri de uysun

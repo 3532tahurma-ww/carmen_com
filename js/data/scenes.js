@@ -510,7 +510,7 @@ Stories.SCENES = [
     desc: 'Tembel bir okşayışla başlar; "bu kadar mı?", "hâlâ dolusun", kaşık pozisyonu ve yine damla damla.', end: 'Bugün ikimiz de tembeliz… damla damla da olsa 🥱💧' },
   /* 👩‍❤️‍👩 Lezbiyen sahneleri: olaylar 'lezbiyen' etiketli, bu yüzden sadece kadın profilde (lesWith) başlar */
   { id: 'makas', icon: '✂️', name: 'Makas', tag: '', mode: 'free', need: 2, ttl: 4,
-    open: 'Slow Clit Kiss', steps: ['Classic Scissor', 'Spoon Scissor', 'Leg Lock Grind'], fin: 'Scissor Finish',
+    open: 'Slow Clit Kiss', steps: ['Classic Scissor', 'Spoon Scissor', 'Leg Lock Tribbing'], fin: 'Scissor Finish',
     fx: [['şehvet', 10], ['samimiyet', 2]], fail: [['güven', -1]],
     desc: 'Yavaş bir dokunuşla başlar; iki makas adımı, sonra birlikte bitiş.', end: 'Bacaklarımız hâlâ birbirine geçmiş ✂️💜' },
   { id: 'aynaayna', icon: '🪞', name: 'Ayna Ayna', tag: '', mode: 'seq', ttl: 4,
@@ -518,7 +518,7 @@ Stories.SCENES = [
     fx: [['şehvet', 8], ['aşk', 2]], fail: [['güven', -1]],
     desc: 'Aynanın önünde arkadan öpücükle başlar; saç, aynada sürtünme, el arada ve öpüşerek bitiş.', end: 'Aynada ikimizi izlemek… unutamayacağım 🪞' },
   { id: 'danspisti', icon: '💃', name: 'Dans Pisti', tag: '', mode: 'seq', ttl: 4,
-    open: 'Dance Floor Grind', steps: ['Whisper Wishes', 'Knee Ride'], fin: 'Dance Floor Secret',
+    open: 'Dance Floor Girl Grind', steps: ['Whisper Wishes', 'Knee Ride'], fin: 'Dance Floor Secret',
     fx: [['şehvet', 10], ['uyarılma', 6]], fail: [['güven', -1]],
     desc: 'Kalabalık pistte uyluk arasında başlar; kulağına fısıltı, dizinde ve kimse fark etmeden bitiş. Elbise üstünde olmalı.', end: 'Kimse fark etmedi… ya da etti mi? 💃🤫' },
   { id: 'battaniye', icon: '🛋️', name: 'Battaniye Altı', tag: '', mode: 'free', need: 2, ttl: 4,

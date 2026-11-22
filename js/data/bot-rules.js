@@ -68850,7 +68850,7 @@ Stories.BOT_RULES = {
       "note": ""
     },
     {
-      "id": "r_bd_any",
+      "id": "r_bd_any_sevmez",
       "name": "Sevmediği olay",
       "category": "💔 Sevmediği olaylar",
       "when": [
@@ -68884,7 +68884,7 @@ Stories.BOT_RULES = {
       "note": ""
     },
     {
-      "id": "r_bd_anal",
+      "id": "r_bd_anal_sevmez",
       "name": "Sevmediği · anal",
       "category": "💔 Sevmediği olaylar",
       "when": [
@@ -68919,7 +68919,7 @@ Stories.BOT_RULES = {
       "note": ""
     },
     {
-      "id": "r_bd_oral",
+      "id": "r_bd_oral_sevmez",
       "name": "Sevmediği · oral",
       "category": "💔 Sevmediği olaylar",
       "when": [
@@ -68954,7 +68954,7 @@ Stories.BOT_RULES = {
       "note": ""
     },
     {
-      "id": "r_bd_vag",
+      "id": "r_bd_vag_sevmez",
       "name": "Sevmediği · pozisyon",
       "category": "💔 Sevmediği olaylar",
       "when": [
@@ -75100,7 +75100,7 @@ Stories.BOT_RULES = {
       "note": "bu sohbette 3+ orgazm"
     },
     {
-      "id": "r_st_sutdolu",
+      "id": "r_st_sutdolu_durum",
       "name": "Süt dolu",
       "category": "📊 Durumlar",
       "when": [
@@ -127036,7 +127036,7 @@ Stories.BOT_RULES = {
     { "id": "r_ev_po_jacuzzi", "name": "🫧 Jacuzzi Cowgirl", "category": "🔥 Olaylar", "when": ["=evt", "pool", "jacuzzi", "cowgirl"], "reply": ["Kabarcıklar her yerimi gıdıklıyor 😂", "Kucağındayım, yüzüme bak 😏", "Su da ben de çok sıcağız 🥵", "Yavaş… ritmi ben tutuyorum 😈", "Jakuzi taşacak 💦", "Bu jakuzi bizim 🫧"], "traits": [], "chars": [], "note": "jakuzide üstte" },
     { "id": "r_ev_po_underoral", "name": "👅 Underwater Oral", "category": "🔥 Olaylar", "when": ["=evt", "pool", "underwater", "oral"], "reply": ["Ne kadar nefes tutabiliyorsun? 😏", "Ahh… suyun altında ne yapıyorsun 😳", "Çıkma! Daha çıkma 🥵", "Saçlarını tutuyorum 😈", "Bacaklarım titriyor 😩", "Nefes al, sonra yine dal 💦"], "traits": [], "chars": [], "note": "suyun altından ona oral" },
     { "id": "r_ev_po_facesit", "name": "👅 Edge Facesitting", "category": "🔥 Olaylar", "when": ["=evt", "pool", "edge", "facesitting"], "reply": ["Bikinimi kenara çektim, nefesini tut 😈", "Islak mıyım, havuzdan mı? 😏", "Dilin… ahh 🥵", "Ayaklarım suda, aklım sende 😩", "Kımıldama, ben oturuyorum 😏", "Biri gelirse kalkmam 🔥"], "traits": [], "chars": [], "note": "havuz kenarında yüzüne oturma" },
-    { "id": "r_ev_po_float", "name": "🛟 Float Missionary", "category": "🔥 Olaylar", "when": ["=evt", "pool", "float", "missionary"], "reply": ["Yatak sallanıyor! Düşeceğiz 😂", "Sana sarılıyorum, bırakma 😳", "Gökyüzü üstümüzde 🤍", "Yavaş yoksa suya devriliriz 😏", "Her vuruşta dalga oluyor 💦", "Devrilsek de umurumda değil 🥵"], "traits": [], "chars": [], "note": "şişme yatakta misyoner" },
+    { "id": "r_ev_po_floatmis", "name": "🛟 Float Missionary", "category": "🔥 Olaylar", "when": ["=evt", "pool", "float", "missionary"], "reply": ["Yatak sallanıyor! Düşeceğiz 😂", "Sana sarılıyorum, bırakma 😳", "Gökyüzü üstümüzde 🤍", "Yavaş yoksa suya devriliriz 😏", "Her vuruşta dalga oluyor 💦", "Devrilsek de umurumda değil 🥵"], "traits": [], "chars": [], "note": "şişme yatakta misyoner" },
     { "id": "r_ev_po_night", "name": "🌙 Night Swim Sex", "category": "🔥 Olaylar", "when": ["=evt", "pool", "night", "swim"], "reply": ["Fener! Dal, çabuk 😱", "Çitten atladık, geri dönüş yok 😈", "Karanlıkta seni hissediyorum sadece 🥵", "Sessiz ol… ahh 🤫", "Bekçi gitti mi? 😳", "Yasak olunca daha güzel 🌙"], "traits": [], "chars": [], "note": "kapanış sonrası gizli havuz" },
     { "id": "r_ev_po_cabana", "name": "⛱️ Cabana Reverse", "category": "🔥 Olaylar", "when": ["=evt", "pool", "cabana", "reverse"], "reply": ["Perde yarı açık… görüyorlar mı? 😳", "Sırtım sana dönük, kalçamı izle 😏", "Şezlonglar dolu, sesimi kısıyorum 🤫", "Minder ıslandı 😂", "Daha hızlı 😈", "Garson gelirse? 🥵"], "traits": [], "chars": [], "note": "kabanada ters kovboy" },
     { "id": "r_ev_po_stairs", "name": "🤍 Pool Stairs Spoon", "category": "🔥 Olaylar", "when": ["=evt", "pool", "stairs", "spoon"], "reply": ["Basamaklar sığ, su belimize kadar 🤍", "Sarıl bana arkadan 🥺", "Yavaş… böyle iyi 😌", "Ensemi öp 😏", "Su ılık, sen ılık 💦", "Hiç çıkmayalım 🥵"], "traits": [], "chars": [], "note": "havuz basamaklarında kaşık" },
@@ -128232,7 +128232,7 @@ Stories.BOT_RULES = {
     { "id": "r_ev_gb_oil", "name": "🫒✨ Oiled Knead", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=kalça", "=hand grab", "=oiled", "=knead"], "reply": ["Mmm, sıcak 🫠", "Kayıyor 😩", "Parladım mı? ✨", "Bırakma, yakala 😈", "Ahh 🥵", "Hiç durma 🥺"], "traits": [], "chars": [], "note": "🤲 Hand Grab · kalça" },
     { "id": "r_ev_gb_thigh", "name": "🤲🦵 Thigh Handful", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=bacak", "=iz", "=hand grab", "=thigh", "=handful"], "reply": ["Ahh 😳", "Sıkı tut 🥵", "İz mi kaldı? 🙈", "Gitmez bu 😏", "Öbür bacak da 😈", "Parmakların… 🫠"], "traits": [], "chars": [], "note": "🤲 Hand Grab · bacak" },
     { "id": "r_ev_gb_climb", "name": "🫳⬆️ Inner Thigh Climb", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=bacak", "=hand grab", "=ınner", "=thigh", "=climb"], "reply": ["Yukarı… 😩", "Daha yukarı 🥺", "Neden durdun?! 😤", "Bacaklarım açılıyor 🙈", "Lütfen 🥵", "Az kaldı 😈"], "traits": [], "chars": [], "note": "🤲 Hand Grab · bacak" },
-    { "id": "r_ev_gb_table", "name": "🍽️🦵 Under The Table", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=bacak", "=restoran", "=hand grab", "=under", "=the", "=table"], "reply": ["Bir salata… ahh 😳", "Burada olmaz 🙈", "Yüzümü bozmuyorum 😤", "Bunu ödeyeceksin 😏", "Elini çekme ama 😈", "Eve gidelim hemen 🔥"], "traits": [], "chars": [], "note": "🤲 Hand Grab · bacak" },
+    { "id": "r_ev_gb_table", "name": "🍽️🦵 Under The Table Squeeze", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=bacak", "=restoran", "=hand grab", "=under", "=the", "=table"], "reply": ["Bir salata… ahh 😳", "Burada olmaz 🙈", "Yüzümü bozmuyorum 😤", "Bunu ödeyeceksin 😏", "Elini çekme ama 😈", "Eve gidelim hemen 🔥"], "traits": [], "chars": [], "note": "🤲 Hand Grab · bacak" },
     { "id": "r_ev_gb_car", "name": "🚗🫳 Car Thigh Hold", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=bacak", "=hand grab", "=car", "=thigh", "=hold"], "reply": ["Yola bak 😳", "Elin… 🥵", "Bir kırmızı daha 🙈", "Yeşil yansın artık 😤", "Daha yukarı 😈", "Eve çabuk 🔥"], "traits": [], "chars": [], "note": "🤲 Hand Grab · bacak" },
     { "id": "r_ev_gb_stock", "name": "🧦🤏 Stocking Top Grip", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=bacak", "=kıyafet", "=hand grab", "=stocking", "=top", "=grip"], "reply": ["Lastiğe takıldın 😏", "Tam orası 🥵", "Naylon mu ten mi? 😈", "Sıkı 😩", "Bacağım senin 🦵", "Çıkarma çorabı 🙈"], "traits": [], "chars": [], "note": "🤲 Hand Grab · bacak" },
     { "id": "r_ev_gb_spread", "name": "↔️🦵 Spread & Hold", "category": "🔥 Olaylar", "when": ["=evt", "=elsık", "=bacak", "=hand grab", "=spread", "=hold"], "reply": ["Utanıyorum 🙈", "Kapatacağım… 😳", "Bırakmıyorsun 😩", "Tamam, açık 🥵", "Bakma öyle 🫣", "Böyle mi? 😈"], "traits": [], "chars": [], "note": "🤲 Hand Grab · bacak" },
@@ -129734,7 +129734,7 @@ Stories.BOT_RULES = {
     {"id":"r_ev_lg_02scissor","name":"✂️🦵 Classic Scissor","category":"🔥 Olaylar","when":["=evt","=lezbiyen","=sürtünme","=lesbian sex","classic","scissor"],"reply":["Bileğimi tuttun, kaçamıyorum ✂️","Tam ortada buluştuk 🥵","Daha sıkı çek beni 😩","Bacaklarım titriyor 🦵","Aynı ritim, bırakma 💜","Bu açı… inanılmaz 🔥"],"traits":[],"chars":[],"gender":"♀","note":"👩‍❤️‍👩 Lesbian · grind"},
     {"id":"r_ev_lg_03cowgrind","name":"🤠🌊 Cowgirl Grind","category":"🔥 Olaylar","when":["=evt","=lezbiyen","=sürtünme","=lesbian sex","cowgirl","grind"],"reply":["Üstündeyim, kontrol bende 🤠","İleri geri… yavaş mı istersin? 😏","Ellerin kalçamda kalsın 🔥","Altımda kıvranman çok güzel 😈","Her kayışta daha ıslağım 💦","Bana bak, gözlerini kapatma 🥵"],"traits":[],"chars":[],"gender":"♀","note":"👩‍❤️‍👩 Lesbian · grind"},
     {"id":"r_ev_lg_04spoonsc","name":"🥄✂️ Spoon Scissor","category":"🔥 Olaylar","when":["=evt","=lezbiyen","=sürtünme","=lesbian sex","spoon","scissor"],"reply":["Arkandan sarıldım 🥄","Yan yana, hiç acele yok 💜","Kalçanı bana itiyorsun 😏","Ensene nefesimi veriyorum 🔥","Sabaha kadar böyle kalalım 🥰","Kulağını ısırayım mı? 😈"],"traits":[],"chars":[],"gender":"♀","note":"👩‍❤️‍👩 Lesbian · grind"},
-    {"id":"r_ev_lg_05leglock","name":"🦵🔒 Leg Lock Grind","category":"🔥 Olaylar","when":["=evt","=lezbiyen","=sürtünme","=lesbian sex","leg","lock","grind"],"reply":["Kilitledim seni 🔒","Kaçamazsın artık 😈","Bu kadar yakın… 🥵","Sıkıca sarıl bana 💜","Her hareketini hissediyorum 😩","Tam böyle kal 🔥"],"traits":[],"chars":[],"gender":"♀","note":"👩‍❤️‍👩 Lesbian · grind"},
+    {"id":"r_ev_lg_05leglock","name":"🦵🔒 Leg Lock Tribbing","category":"🔥 Olaylar","when":["=evt","=lezbiyen","=sürtünme","=lesbian sex","leg","lock","tribbing"],"reply":["Kilitledim seni 🔒","Kaçamazsın artık 😈","Bu kadar yakın… 🥵","Sıkıca sarıl bana 💜","Her hareketini hissediyorum 😩","Tam böyle kal 🔥"],"traits":[],"chars":[],"gender":"♀","note":"👩‍❤️‍👩 Lesbian · grind"},
     {"id":"r_ev_lg_06knee","name":"🦵🐎 Knee Ride","category":"🔥 Olaylar","when":["=evt","=lezbiyen","=sürtünme","=lesbian sex","knee","ride"],"reply":["Dizimde gidip gelmeni izliyorum 😏","Dizimi biraz kaldırayım mı? 🦵","Utanma, devam et 😈","Dizim ıslandı bile 💦","Çok güzel görünüyorsun böyle 🥵","Ritmi sen bul 💜"],"traits":[],"chars":[],"gender":"♀","note":"👩‍❤️‍👩 Lesbian · grind"},
     {"id":"r_ev_lg_07butt","name":"🍑🔥 Butt Grind","category":"🔥 Olaylar","when":["=evt","=lezbiyen","=sürtünme","=lesbian sex","butt","grind"],"reply":["Kıpırdama, keyfini ben çıkarıyorum 😏","Kalçan sıcacık 🍑","Islaklığımı hissediyor musun? 💦","Sırtın ne kadar güzel 💜","Ensene fısıldıyorum… 🤫","Biraz daha bastırayım 🔥"],"traits":[],"chars":[],"gender":"♀","note":"👩‍❤️‍👩 Lesbian · grind"},
     {"id":"r_ev_lg_08wall","name":"🧱🦵 Wall Thigh Ride","category":"🔥 Olaylar","when":["=evt","=lezbiyen","=sürtünme","=lesbian sex","wall","thigh","ride"],"reply":["Duvara yaslan 🧱","Seni kaldırıyorum, tutun bana 😈","Ayakların yerden kesildi 🥵","Uyluğumu hissediyor musun? 🦵","Düşürmem seni 💜","Daha sert mi? 🔥"],"traits":[],"chars":[],"gender":"♀","note":"👩‍❤️‍👩 Lesbian · grind"},
@@ -129754,7 +129754,7 @@ Stories.BOT_RULES = {
     {"id":"r_ev_lc_10wetshirt","name":"👕💦 Wet T-Shirt Grind","category":"🔥 Olaylar","when":["=evt","=lezbiyen","=kıyafet","=sürtünme","=lesbian foreplay","wet","shirt","grind"],"reply":["Tişörtüm yapıştı 👕","Her şey görünüyor 🙈","Kumaşın arkasından bile… 🥵","Su soğuk ama ben yanıyorum 🔥","Islak tişört sana yakışmış 😈","Çıkarmayalım daha 💦"],"traits":[],"chars":[],"gender":"♀","note":"👩‍❤️‍👩 Lesbian · clothed"},
     {"id":"r_ev_lc_11bikini","name":"👙🏖️ Bikini Grind","category":"🔥 Olaylar","when":["=evt","=lezbiyen","=kıyafet","=sürtünme","=lesbian foreplay","bikini","grind"],"reply":["Bikinim küçük mü? 😏","Su damlaları aramızda 💦","Biri görebilir… 🙈","Umurumda değil 😈","İpi çözme… ya da çöz 🔥","Güneş tenimizi ısıttı 🏖️"],"traits":[],"chars":[],"gender":"♀","note":"👩‍❤️‍👩 Lesbian · clothed"},
     {"id":"r_ev_lc_12desk","name":"🎓🪑 Uniform Desk Grind","category":"🔥 Olaylar","when":["=evt","=lezbiyen","=kıyafet","=sürtünme","=lesbian foreplay","uniform","desk","grind"],"reply":["Kapı kilitli mi? 🙈","Ders bitti, şimdi başka ders 😈","Eteğim kısa, değil mi? 🎓","Masa gıcırdıyor, sessiz 🤫","Bu üniforma bir daha aynı olmaz 😏","Arana giriyorum 🥵"],"traits":[],"chars":[],"gender":"♀","note":"👩‍❤️‍👩 Lesbian · clothed"},
-    {"id":"r_ev_lc_13dance","name":"💃🔥 Dance Floor Grind","category":"🔥 Olaylar","when":["=evt","=lezbiyen","=kıyafet","=sürtünme","=lesbian foreplay","dance","floor","grind"],"reply":["Müzik yüksek, kimse duymaz 💃","Bana yaslan 😈","Kalabalıkta sadece biziz 🔥","Ritme uy 🥵","Elbisen çok kısa 😏","Işıklar karardı… 🌃"],"traits":[],"chars":[],"gender":"♀","note":"👩‍❤️‍👩 Lesbian · clothed"},
+    {"id":"r_ev_lc_13dance","name":"💃🔥 Dance Floor Girl Grind","category":"🔥 Olaylar","when":["=evt","=lezbiyen","=kıyafet","=sürtünme","=lesbian foreplay","dance","floor","girl","grind"],"reply":["Müzik yüksek, kimse duymaz 💃","Bana yaslan 😈","Kalabalıkta sadece biziz 🔥","Ritme uy 🥵","Elbisen çok kısa 😏","Işıklar karardı… 🌃"],"traits":[],"chars":[],"gender":"♀","note":"👩‍❤️‍👩 Lesbian · clothed"},
     {"id":"r_ev_lc_14couch","name":"🛋️🫣 Couch Blanket Grind","category":"🔥 Olaylar","when":["=evt","=lezbiyen","=kıyafet","=sürtünme","=lesbian foreplay","couch","blanket","grind"],"reply":["Filme bak 😏","Battaniye her şeyi saklıyor 🫣","Sessiz, en güzel yeri 🤫","Kucağına kaydım, fark etmedin mi? 😇","Eşofmanın çok ince 🥵","Film umurumda değil 😂"],"traits":[],"chars":[],"gender":"♀","note":"👩‍❤️‍👩 Lesbian · clothed"},
     {"id":"r_ev_lc_15dress","name":"👗🔥 Dress Still On","category":"🔥 Olaylar","when":["=evt","=lezbiyen","=kıyafet","=sürtünme","=lesbian foreplay","dress","still"],"reply":["Soyunmaya vakit yok 😈","Bütün gece seni istedim 🥵","Fermuarı açma 👗","Topuklular da kalsın 😏","Elbisen buruşacak, umurumda değil 🔥","Kapıyı kapattın mı? 🙈"],"traits":[],"chars":[],"gender":"♀","note":"👩‍❤️‍👩 Lesbian · clothed"},
     {"id":"r_ev_lg_31fabric","name":"🩲🌊 Through The Fabric","category":"🔥 Olaylar","when":["=evt","=lezbiyen","=kıyafet","=sürtünme","=lesbian finish","through","fabric"],"reply":["Giyinik geldik 🙈","Külotum sırılsıklam 💦","Çıkarmadan bile… 😩","İkimizde de leke var 😂","Bir daha bu külotu giyemem 🩲","Çok güzeldi 🥰"],"traits":[],"chars":[],"gender":"♀","note":"👩‍❤️‍👩 Lesbian · clothed finish"},

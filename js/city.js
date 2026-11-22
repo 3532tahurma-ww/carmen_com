@@ -713,9 +713,9 @@ Stories.City = (() => {
   function mount(root, api) {
     const wd = world(), PL = wd.PL, esc = api.esc;
     root.innerHTML = `<canvas class="ct-cv"></canvas>
-      <div class="ct-top"><span class="ct-brand">🏙️ Carmen<i>City</i></span><span class="ct-clock"><b id="ctClk">--:--</b><small id="ctPh"></small></span><button type="button" class="ct-btn" id="ctSp"></button></div>
+      <div class="ct-top"><span class="ct-brand">🏙️ Carmen<i>City</i><small id="ctZn"></small></span><span class="ct-clock"><b id="ctClk">--:--</b><small id="ctPh"></small></span><button type="button" class="ct-btn" id="ctSp"></button></div>
       <button type="button" class="ct-tick" id="ctTick"><span></span></button>
-      <div class="ct-side"><button type="button" class="ct-btn ct-phone" data-ct="phone" title="Şehir sohbetleri">📱<i class="ct-dot" hidden></i></button><button type="button" class="ct-btn" data-ct="car" title="Araban">🚗</button><button type="button" class="ct-btn" data-ct="me" title="Bana odaklan">🎯</button><button type="button" class="ct-btn" data-ct="in">＋</button><button type="button" class="ct-btn" data-ct="out">－</button></div>
+      <div class="ct-side"><button type="button" class="ct-btn ct-phone" data-ct="phone" title="Şehir sohbetleri">📱<i class="ct-dot" hidden></i></button><button type="button" class="ct-btn" data-ct="car" title="Araban">🚗</button><button type="button" class="ct-btn" data-ct="me" title="Bana odaklan">🎯</button><button type="button" class="ct-btn" data-ct="skip" title="Sabaha geç">🌙</button><button type="button" class="ct-btn" data-ct="in">＋</button><button type="button" class="ct-btn" data-ct="out">－</button></div>
       <button type="button" class="ct-btn ct-exit" id="ctExit" hidden>🚪 Dışarı çık</button>
       <div class="ct-card" id="ctCard" hidden></div>`;
     const cv = root.querySelector('.ct-cv'), ctx = cv.getContext('2d'), card = root.querySelector('#ctCard'), clk = root.querySelector('#ctClk'), phEl = root.querySelector('#ctPh'), spBtn = root.querySelector('#ctSp');
@@ -1750,13 +1750,41 @@ Stories.City = (() => {
       if (tNow - savedAt > 2000) persist();
     }
     function persist() { savedAt = tNow; try { localStorage.setItem(KEY, JSON.stringify({ gm, at: Date.now(), sp, px: Math.round(me.x), py: Math.round(me.y), sc: SC, met, wth: withIds, wthAt, car: [Math.round(myCar.x), Math.round(myCar.y), +(myCar.sa || 0).toFixed(2)], dr: me.drive ? 1 : 0 })); } catch (e) {} }
-    let lastClk = '';
+    let lastClk = '', lastZ = '', zAt = -1e9;
+    const znEl = root.querySelector('#ctZn');
     function hud() {
+      // 🗺️ 3.0 semt: bulunduğun bölge markanın altında; değişince uygulamaya bildirilir (🏅 rozet)
+      if (!inside && tNow - zAt > 800) {
+        zAt = tNow;
+        const z = zoneAt(me.x, me.y);
+        if (z !== lastZ) { lastZ = z; znEl.textContent = tr(ZONE_N[z] || ''); if (api.zone) api.zone(z); }
+      }
       const m = Math.floor(gm), s = `${String(Math.floor(m / 60) % 24).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
       if (s === lastClk) return;
       lastClk = s; clk.textContent = s;
-      const hf = gm / 60, ph = hf >= 5 && hf < 8 ? '🌅 Sabah' : hf >= 8 && hf < 17 ? '☀️ Gündüz' : hf >= 17 && hf < 20 ? '🌇 Akşam' : '🌙 Gece';
-      if (phEl.dataset.ph !== ph) { phEl.dataset.ph = ph; phEl.textContent = ph; }
+      const hf = gm / 60, ph = (hf >= 5 && hf < 8 ? '🌅 Sabah' : hf >= 8 && hf < 17 ? '☀️ Gündüz' : hf >= 17 && hf < 20 ? '🌇 Akşam' : '🌙 Gece') + (wx ? ' · ' + wx.ic : '');
+      if (phEl.dataset.ph !== ph) { phEl.dataset.ph = ph; phEl.textContent = ph; phEl.title = wx ? tr(wx.n) : ''; }
+    }
+    // ⛅ 3.0 hava (api.wx, günlük): yağmur / fırtına / kar / sis / bulut ekranın üstünde; gece karanlığından sonra, etiketlerden önce
+    const wx = api.wx ? api.wx() : null;
+    const WXP = Array.from({ length: 90 }, (_, i) => [hash('wx' + i) % 1000 / 1000, hash('wy' + i) % 1000 / 1000, .6 + hash('ws' + i) % 100 / 250]);
+    function drawWeather(t) {
+      const k = wx && wx.k;
+      if (!k || !/^(rain|storm|snow|fog|cloud)$/.test(k)) return;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const veil = { fog: 'rgba(225,228,238,.30)', cloud: 'rgba(90,100,120,.12)', snow: 'rgba(205,215,235,.12)', rain: 'rgba(40,55,80,.16)', storm: 'rgba(25,30,55,.26)' }[k];
+      ctx.fillStyle = veil; ctx.fillRect(0, 0, cw, ch);
+      if (k === 'snow') {
+        ctx.fillStyle = 'rgba(255,255,255,.85)';
+        WXP.forEach(([x, y, s]) => { const px = ((x * cw + Math.sin(t * s + x * 9) * 14) % cw + cw) % cw, py = (y * ch + t * 38 * s) % ch; ctx.beginPath(); ctx.arc(px, py, 1.2 + s, 0, Math.PI * 2); ctx.fill(); });
+      } else if (k === 'rain' || k === 'storm') {
+        ctx.strokeStyle = 'rgba(190,210,255,.5)'; ctx.lineWidth = 1; ctx.beginPath();
+        WXP.slice(0, k === 'storm' ? 90 : 60).forEach(([x, y, s]) => { const px = (x * cw + t * 60 * s) % cw, py = (y * ch + t * 520 * s) % ch; ctx.moveTo(px, py); ctx.lineTo(px - 3, py - 12); });
+        ctx.stroke();
+        // ⚡ ara sıra şimşek
+        if (k === 'storm' && hash('lt' + Math.floor(t * 4)) % 90 === 0) { ctx.fillStyle = 'rgba(255,255,255,.35)'; ctx.fillRect(0, 0, cw, ch); }
+      }
+      setCam();
     }
     function frame(now) {
       if (!alive) return;
@@ -1776,6 +1804,7 @@ Stories.City = (() => {
       drawVehicles();
       drawNight(dk, hf, t);
       drawPeople(t);
+      drawWeather(t);
       drawLabels();
       drawBubbles();
       hud();
@@ -1946,7 +1975,7 @@ Stories.City = (() => {
         <h3>${b.ic} ${esc(b.n)} <small>· ${hh()} · ${here.length} kişi</small></h3>${home}
         ${ev ? `<p class="ct-ev">🎉 Şimdi: ${ev.ic} ${esc(ev.n)} · tavlama şansı yüksek</p>` : evLater ? `<p class="ct-ev soon">🗓️ ${String(evLater.h[0] % 24).padStart(2, '0')}:00 · ${evLater.ic} ${esc(evLater.n)}</p>` : ''}
         ${b.mine ? '<p>🏡 Burası senin evin. İçeri girebilir ya da tanıdığın birini davet edebilirsin; sohbet evinde başlar.</p>' : ''}
-        <div class="ct-acts">${b.area ? '' : `<button type="button" class="btn sm" data-enter="${k}">${b.party ? '🎉 Partiye katıl' : '🚪 İçeri gir'}</button>`}${b.mine ? '<button type="button" class="btn sm" data-invite>💌 Eve davet et</button>' : ''}<button type="button" class="btn ghost sm" data-walk="${k}">🚶 Buraya yürü</button>${taxiBtn(b, k)}${b.s && !b.party ?`<a class="btn ghost sm" href="${b.s}">🌐 Siteye git <b>${esc(b.sn)}</b></a>` : ''}</div>
+        <div class="ct-acts">${b.area ? '' : `<button type="button" class="btn sm" data-enter="${k}">${b.party ? '🎉 Partiye katıl' : '🚪 İçeri gir'}</button>`}${SHIFT[k] && api.shift ? `<button type="button" class="btn ghost sm" data-shift="${k}">💼 Vardiya · 4 sa · +${SHIFT[k]}₺</button>` : ''}${b.mine ? '<button type="button" class="btn sm" data-invite>💌 Eve davet et</button>' : ''}<button type="button" class="btn ghost sm" data-walk="${k}">🚶 Buraya yürü</button>${taxiBtn(b, k)}${b.s && !b.party ?`<a class="btn ghost sm" href="${b.s}">🌐 Siteye git <b>${esc(b.sn)}</b></a>` : ''}</div>
         ${here.length ? `<div class="ct-list">${here.map(row).join('')}</div>` : home ? '' : '<p>Şu an burada kimse yok.</p>'}
         ${coming.length ? `<p class="ct-coming">🚶 Yolda: ${coming.map(a => shownName(a) ? esc(first(a)) : '❔').join(', ')}</p>` : ''}`;
       card.hidden = false;
@@ -2527,6 +2556,13 @@ Stories.City = (() => {
       if (tk) { const a = ag.find(x => x.id === tk.dataset.talk); if (a) wantTalk(a); return; }
       const tx = t.closest('[data-taxi]');
       if (tx) { callTaxi(tx.dataset.taxi); return; }
+      const sf = t.closest('[data-shift]');
+      if (sf) {
+        const k = sf.dataset.shift, [dx, dy] = doorOf(k);
+        if (Math.hypot(dx - me.x, dy - me.y) >= 150) { walkTo(dx, dy, k); follow0 = true; card.hidden = true; api.notify(tr('💼 Önce işe yürü, kapıda vardiyaya başla'), '💼'); return; }
+        if (api.shift(k, SHIFT[k], PL[k].n)) { gm = (gm + 240) % 1440; lastClk = ''; persist(); card.hidden = true; }
+        return;
+      }
       const wk = t.closest('[data-walk]');
       if (wk) { const k = wk.dataset.walk, p = PL[k] || wd.FM[k]; walkTo(p.x, p.y, k); follow0 = true; card.hidden = true; return; }
       const gj = t.closest('[data-gjoin]');
@@ -2548,6 +2584,14 @@ Stories.City = (() => {
       if (b.dataset.ct === 'phone') openPhone();
       else if (b.dataset.ct === 'car') { if (me.drive) exitCar(); else enterCar(); }
       else if (b.dataset.ct === 'me') follow0 = true;
+      // ⏩ 3.0 sabaha geç: saat 08:00'e atlar, kaçırılan etkinlikler uygulamanın özet kartında
+      else if (b.dataset.ct === 'skip') {
+        if (talk || me.taxi || inside) { api.notify(tr('⏩ Önce konuşmayı / yolculuğu bitir'), '⏩'); return; }
+        const d = ((480 - Math.floor(gm)) % 1440 + 1440) % 1440 || 1440, h0 = Math.floor(gm / 60);
+        const missed = evDay.filter(e => { for (let x = 0; x < d / 60; x++) { if (evOn(e, (h0 + x) % 24)) return true; } return false; });
+        gm = 480; lastClk = ''; lastH = -1; persist();
+        if (api.skip) api.skip(Math.round(d / 60), missed);
+      }
       else { cam.z *= b.dataset.ct === 'in' ? 1.3 : 1 / 1.3; clampCam(); }
     };
     const spLbl = () => { spBtn.textContent = (SPEEDS.find(s => s[0] === sp) || SPEEDS[0])[1]; };
@@ -2570,5 +2614,18 @@ Stories.City = (() => {
     requestAnimationFrame(n => { t0 = n; requestAnimationFrame(frame); });
   }
   // 📚 Şehir Kitabı tabloları canlı veriden okur
-  return { mount, world, BLD, AREAS, EVENTS, STYLE, STYLE_OF, TIER, STOP_R, LAF_R, LAF_I };
+  // 💼 3.0 vardiya: bu binada 4 saat çalış (şehir saati ilerler, ₺ kazanırsın; günde bir kez, kontrol api.shift'te)
+  const SHIFT = { ofis: 900, hastane: 1100, okul: 700, otel: 650, pub: 600, spor: 550, magaza: 500, kafe: 450, sinema: 400 };
+  // 🧵 3.0 dünya saati: kayıtlı şehir saatini (hızıyla ilerletip) şehir açık değilken de okur; şehir hiç açılmadıysa gerçek saat
+  function clock() {
+    let sv = null;
+    try { sv = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
+    const d = new Date();
+    if (!sv || sv.gm == null) return { gm: d.getHours() * 60 + d.getMinutes(), sp: 1, real: true };
+    const sp = SPEEDS.some(s => s[0] === sv.sp) ? sv.sp : 60;
+    return { gm: (sv.gm + (Date.now() - (sv.at || Date.now())) / 1000 * sp / 60) % 1440, sp };
+  }
+  // 🎉 bugünün 5 etkinliği (mount'taki evDay ile aynı sıra)
+  const today = () => { const day = Math.floor(Date.now() / 864e5); return EVENTS.slice().sort((p, q) => hash([p.id, day]) - hash([q.id, day])).slice(0, 5).sort((p, q) => p.h[0] - q.h[0]); };
+  return { mount, world, BLD, AREAS, EVENTS, STYLE, STYLE_OF, TIER, STOP_R, LAF_R, LAF_I, ZONE_N, SHIFT, clock, today };
 })();
