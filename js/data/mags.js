@@ -19,7 +19,10 @@ Stories.MAGS = {
       scat: ['bdsm', 'fetis', 'kirbac', 'engel', 'tipa', 'ayak', 'sac', 'saplak', 'fantezi'], pcat: ['c:mvfetishsex01x', 'c:mvbdsm01x', 'c:mvhairsex01x', 'c:mvdeepsex01x'], edu: 'bdsm' },
     { k: 'ten', n: 'Ten', ic: '🌸', tag: 'Seks eğitimi ve bilinçli haz', price: 69, base: 1, c: ['#d9486b', '#3f9e8c', '#fffaf6', '#2b2230'],
       plan: ['cover', 'toc', 'ed', 'edu', 'edu', 'pos', 'ad', 'shoot', 'talk', 'ses', 'edu', 'class', 'back'],
-      scat: ['klasik', 'arkadan', 'gundelik', 'masaj', 'yalama', 'elkalca'], pcat: ['c:mvglvwdtam0h7', 'c:mvlapsex01x', 'c:mvgm5g7q1xopl'] }
+      scat: ['klasik', 'arkadan', 'gundelik', 'masaj', 'yalama', 'elkalca'], pcat: ['c:mvglvwdtam0h7', 'c:mvlapsex01x', 'c:mvgm5g7q1xopl'] },
+    { k: 'sir', n: 'Sır', ic: '🤫', tag: 'Yasak aşklar, gizli kaçamaklar ve itiraflar', price: 99, base: 7, c: ['#1f3a5f', '#e6b8a2', '#f6f3ee', '#141a24'],
+      plan: ['cover', 'toc', 'ed', 'ad', 'talk', 'ses', 'shoot', 'pos', 'ad', 'face', 'edu', 'ses', 'class', 'back'],
+      scat: ['aldatma', 'ofis', 'disari', 'mekan', 'icki', 'kiyafet', 'fantezi', 'ev'], pcat: ['c:mvaffair01x', 'c:mvaffairstory01x', 'c:mvhotel01x', 'c:mvcar01x', 'c:mvoffice01x'], edu: 'gizli' }
   ],
   // 📚 romanlar (#/dergi/roman-<k>): kitap gibi okunur; her bölüm 4 paragraf = 2 sayfa. c: [cilt, yaldız, kağıt, mürekkep]
   novels: [
@@ -168,6 +171,11 @@ Stories.MAGS = {
         'Bir güvenli kelime seçin; trafik ışığı sistemi kolaydır: yeşil devam, sarı yavaşla, kırmızı hemen dur. Ağız bağlıysa elde tutulan bir eşyayı düşürmek de işaret olabilir.',
         'Boyuna baskı uygulamayın, bağları dolaşımı kesecek kadar sıkmayın ve bağlı birini asla yalnız bırakmayın. Makas başucunda olsun, ara ara "Renk ne?" diye sorun.'],
       tips: ['Sınırları önceden konuşun.', 'Yeşil, sarı, kırmızı.', 'Boyna baskı yok.', 'Bağlı birini yalnız bırakma.'] },
+    { k: 'gizli', ic: '🤫', t: 'Yasak fanteziler: sırrı paylaşmak', lead: 'Yasak olanı hayal etmek çok yaygındır; bir fantezi, onu gerçekleştirmek zorunda olduğun anlamına gelmez. Asıl heyecan, sırrı güvendiğin kişiyle paylaşınca başlar.', only: 'sir',
+      p: ['Aldatma, bir yabancıyla tanışma ya da yakalanma korkusu en sık görülen fantezilerdendir. Bunları düşünmek seni kötü bir partner yapmaz; beyin yasak olanı sever, çünkü yasak gerilim demektir.',
+        'Fantezini partnerinle paylaşacaksan sakin bir an seç ve "Bunu yapmak istiyorum" yerine "Bunu düşünmek beni heyecanlandırıyor" diye başla. Karşındakinin önce dinlemesine, sonra karar vermesine izin ver.',
+        'Rol yapmak güvenli bir yoldur: bir barda iki yabancı gibi buluşun, sahte isimler kullanın, otel odasında "ilk kez" tanışın. Kurallar ve güvenli kelime yine geçerli; oyun bitince sarılmayı unutmayın.'],
+      tips: ['Fantezi bir suç değildir.', '"İstiyorum" değil, "heyecanlandırıyor" de.', 'Yabancı rolüyle buluşun.', 'Fotoğrafları ve mesajları ikinizden başkası görmesin.'] },
     { k: 'sonra', ic: '🫂', t: 'Aftercare: sevişmeden sonra', lead: 'Gece boşalmayla bitmez. Sonraki dakikalar, ikinizin de kendini güvende ve değerli hissetmesi için en az sevişme kadar önemlidir.',
       p: ['Sarılmak, su içmek, bir battaniye altında konuşmak bedenin ve zihnin sakinleşmesine yardım eder. Özellikle yoğun bir oyundan sonra bu ihtiyaç daha da büyür.',
         'Sevişmeden sonra tuvalete gitmek, idrar yolu enfeksiyonu riskini azaltmaya yardımcı olur. Ilık suyla yıkanmak yeterlidir; parfümlü ürünler hassas bölgeyi tahriş edebilir.',

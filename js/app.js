@@ -4035,7 +4035,9 @@
   function mgBook(m, is, P, start) {
     const book = $('#mgBook'), stage = $('#mgStage');
     if (!book || !stage) return;
-    const n = P.length, aw = stage.clientWidth, two = aw >= 760, ah = Math.max(340, innerHeight - stage.getBoundingClientRect().top - 130);
+    const rd = stage.parentNode, below = [...rd.children].filter(x => x !== stage && x.offsetTop > stage.offsetTop).reduce((s, x) => s + x.offsetHeight, 0) + 28 + (parseFloat(getComputedStyle(view).paddingBottom) || 0);
+    const vh = (window.visualViewport && visualViewport.height) || innerHeight;
+    const n = P.length, aw = stage.clientWidth, two = aw >= 760, ah = Math.max(260, vh - stage.getBoundingClientRect().top - below);
     const w = Math.floor(Math.min(two ? aw / 2 - 8 : aw, ah * .7)), h = Math.floor(w / .7), L = two ? Math.ceil(n / 2) : n;
     ui.mgDim = [two, w];
     book.style.cssText = `--pw:${w}px;--ph:${h}px;--fs:${Math.max(12, Math.min(15.5, w / 27)).toFixed(1)}px`;
@@ -4101,7 +4103,7 @@
     .mg-mini i { position: absolute; right: 6px; bottom: 6px; font: 700 10px system-ui; font-style: normal; color: #fff; background: var(--m1); padding: 1px 6px; border-radius: 99px; }
     .mg-rk > small { display: block; margin-top: 7px; font-size: 11.5px; color: var(--muted); }
     .mg-home { padding: 14px 12px 12px; border-radius: 18px; margin-bottom: 18px; background: linear-gradient(135deg, #1a0609, #3b0d1a 60%, #6b1530); color: #fbe9d0; border: 1px solid rgba(212, 175, 55, .35); }
-    .mg-hrow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; padding: 4px 2px 16px; background: linear-gradient(transparent calc(100% - 10px), #6d4c33 calc(100% - 10px), #3e281b); border-radius: 4px; }
+    .mg-hrow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; padding: 4px 2px 16px; background: linear-gradient(transparent calc(100% - 10px), #6d4c33 calc(100% - 10px), #3e281b); border-radius: 4px; }
     .mg-hrow .mg-rk { width: auto; } .mg-hrow .mg-mini b { font-size: clamp(12px, 3.6vw, 20px); } .mg-hrow .mg-rk > small { color: rgba(251, 233, 208, .75); font-size: 10.5px; }
     .mg-hfoot { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: space-between; margin-top: 10px; font-size: 12.5px; } .mg-hfoot span { opacity: .85; }
     .mg-nrow { gap: 18px; } .mg-nb { flex: 0 0 auto; width: 128px; color: inherit; text-decoration: none; text-align: center; scroll-snap-align: start; }
@@ -4172,6 +4174,7 @@
     .mg-ates .mg-cl b { display: inline; background: var(--m2); color: #111; padding: 0 .2em; text-shadow: none; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
     .mg-noir .mg-cvi { filter: grayscale(.85) contrast(1.15); } .mg-noir .mg-mast { color: var(--m1); letter-spacing: .3em; } .mg-noir .mg-cl b { color: #fff; } .mg-noir .mg-cl .l0 b { color: var(--m1); }
     .mg-ten .mg-mast { font-family: 'Trebuchet MS', system-ui, sans-serif; font-weight: 300; text-transform: lowercase; letter-spacing: .14em; } .mg-ten .mg-cl b { color: #fff; } .mg-ten .mg-cl .l0 b { color: #ffd1dc; }
+    .mg-sir .mg-mast { color: var(--m2); font-style: italic; letter-spacing: .4em; text-shadow: 0 0 .4em rgba(0,0,0,.6); } .mg-sir .mg-cvi { filter: saturate(.8) brightness(.92); } .mg-sir .mg-cl b { color: #fff; } .mg-sir .mg-cl .l0 b { color: var(--m2); }
     .mg-sh { display: flex; flex-direction: column; gap: .8em; } .mg-shp { position: relative; margin: -1.4em -1.35em 0; height: calc(var(--ph, 520px) * .56); background: var(--m1); overflow: hidden; }
     .mg-shp img { width: 100%; height: 100%; object-fit: cover; display: block; } .mg-shc { position: absolute; left: 0; right: 0; bottom: 0; padding: 2.4em 1em .8em; background: linear-gradient(transparent, rgba(0,0,0,.78)); color: #fff; display: flex; flex-direction: column; }
     .mg-shc small { font: 700 .6em system-ui; letter-spacing: .25em; text-transform: uppercase; opacity: .85; } .mg-shc b { font: italic 900 1.7em/1.05 Georgia, serif; } .mg-shc i { font: 600 .8em system-ui; font-style: normal; opacity: .9; } .mg-sh.alt .mg-shc { text-align: right; }
@@ -4306,7 +4309,7 @@
       { k: 'tinder', href: '#/tinder', ic: '🔥', logo: 'Carmen<i>Tinder</i>', url: 'carmentinder.com', desc: 'Kaydır, eşleş, yaz: sağa kaydırırsan sohbet açılır ve ilk selamı o verir. 💘 Seni beğenenler ilk mesajlarını çoktan yazmış. ⭐ süper beğeni, filtreler, geri al.', chips: [`💘 ${chars().length} eşleşme`, '👆 kaydır'] },
       { k: 'bumble', href: '#/bumble', ic: '🐝', logo: 'Carmen<i>Bumble</i>', url: 'carmenbumble.com', desc: 'Tinder\'ın ateşli kardeşi: kızlar şehvetli, profilleri açık sözlü ("şu an çıplağım", "favori pozisyonum…"). İlk mesajı hep o atar.', chips: [`🐝 ${chars().filter(x => x.src === 'bm').length} eşleşme`, '🔥 18+'] },
       { k: 'fans', href: '#/fans', ic: '🫦', logo: 'Carmen<i>Fans</i>', url: 'carmenfans.com', desc: 'Abone ol, kilitli gönderileri aç; haftanın kostümü ve özel içerikler.', chips: [`${Object.keys(fnState().subs).length} abonelik`, '📢 haftalık kostüm'] },
-      { k: 'mag', href: '#/dergi', ic: '📖', logo: 'Carmen<i>Mag</i>', url: 'carmenmag.com', desc: 'Erotik dergi bayii: Velvet, Ateş, Noir ve Ten. Sayfaları gerçek dergi gibi çevir; kapak kızlarının anlatımlı fotoğraf setleri, röportajlar, seanslar, pozisyon önerileri, seks eğitimi ve site reklamları. Dergi, magazin.', chips: [`📖 ${MG().titles.length} dergi`, '🆕 her ay yeni sayı'] },
+      { k: 'mag', href: '#/dergi', ic: '📖', logo: 'Carmen<i>Mag</i>', url: 'carmenmag.com', desc: 'Erotik dergi bayii: Velvet, Ateş, Noir, Ten ve Sır. Sayfaları gerçek dergi gibi çevir; kapak kızlarının anlatımlı fotoğraf setleri, röportajlar, seanslar, pozisyon önerileri, seks eğitimi ve site reklamları. Dergi, magazin.', chips: [`📖 ${MG().titles.length} dergi`, '🆕 her ay yeni sayı'] },
       { k: 'stay', href: '#/otel', ic: '🏨', logo: 'Carmen<i>Stay</i>', url: 'carmenstay.com', desc: 'Otel odası, jakuzili süit, VIP loca… rezervasyon yap, sohbet orada başlasın.', chips: [`${SY_VENUES.length} mekan`, `🗓️ ${syRes().length} rezervasyon`] },
       { k: 'gram', href: '#/gram', ic: '📸', logo: 'Carmen<i>tagram</i>', url: 'carmentagram.com', desc: 'Instagram gibi: akış, hikayeler, profiller. Beğen, yorum yap (o da cevap verir), takip et, DM at.', chips: [`${cmAll().length} hesap`, `➕ ${Object.keys(grState().follow).length} takip`] },
       { k: 'flix', href: '#/flix', ic: '🍿', logo: 'Carmen<i>Flix</i>', url: 'carmenflix.com', desc: 'Netflix gibi: filmler yazışma olarak oynar. Lezbiyen, aldatma, grup; olay olay, güçlü anlatımla.', chips: [`${fxAll().filter(t => t.k === 'film').length} film`, '👩‍❤️‍👩 Lezbiyen'] },

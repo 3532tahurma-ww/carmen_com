@@ -1,8 +1,8 @@
 /* 🌐 İngilizce sözlük (📖 CarmenMag, js/data/mags.js + renderMag). Kaynak Türkçe metin → çeviri; bkz. js/i18n.js */
 Stories.I18n.add({
   // 🧭 site, bayi, okuyucu
-  'Erotik dergi bayii: Velvet, Ateş, Noir ve Ten. Sayfaları gerçek dergi gibi çevir; kapak kızlarının anlatımlı fotoğraf setleri, röportajlar, seanslar, pozisyon önerileri, seks eğitimi ve site reklamları. Dergi, magazin.':
-    'Erotic newsstand: Velvet, Ateş, Noir and Ten. Turn the pages like a real magazine; described photo sets of the cover girls, interviews, sessions, position tips, sex education and site ads. Magazine.',
+  'Erotik dergi bayii: Velvet, Ateş, Noir, Ten ve Sır. Sayfaları gerçek dergi gibi çevir; kapak kızlarının anlatımlı fotoğraf setleri, röportajlar, seanslar, pozisyon önerileri, seks eğitimi ve site reklamları. Dergi, magazin.':
+    'Erotic newsstand: Velvet, Ateş, Noir, Ten and Sır. Turn the pages like a real magazine; described photo sets of the cover girls, interviews, sessions, position tips, sex education and site ads. Magazine.',
   '{} dergi': '{} magazines', 'her ay yeni sayı': 'a new issue every month', 'sayfaları gerçek dergi gibi çevir': 'turn the pages like a real magazine',
   'Bayi': 'Newsstand', 'Kaldığım yer': 'My bookmark', 'Eğitim': 'Education', 'Dergi bayii': 'Newsstand', 'Kaldığın yerden': 'Continue',
   'Ocak': 'January', 'Şubat': 'February', 'Mart': 'March', 'Nisan': 'April', 'Mayıs': 'May', 'Haziran': 'June', 'Temmuz': 'July', 'Ağustos': 'August', 'Eylül': 'September', 'Ekim': 'October', 'Kasım': 'November', 'Aralık': 'December',
@@ -55,6 +55,7 @@ Stories.I18n.add({
   // 🗞️ dergiler
   'Lüks erotik fotoğraf dergisi': 'Luxury erotic photo magazine', 'Seanslar, pozisyonlar ve sıcak itiraflar': 'Sessions, positions and hot confessions',
   'Fetiş, BDSM ve karanlık arzular': 'Fetish, BDSM and dark desires', 'Seks eğitimi ve bilinçli haz': 'Sex education and mindful pleasure',
+  'Yasak aşklar, gizli kaçamaklar ve itiraflar': 'Forbidden affairs, secret flings and confessions',
   'Kırmızı oda': 'The red room', 'Saten ve gölge': 'Satin and shadow', 'Sabah ışığı': 'Morning light', 'Islak ipek': 'Wet silk', 'Gece mavisi': 'Midnight blue',
   'Altın saat': 'Golden hour', 'Perde arkası': 'Behind the curtain', 'Dantel ve duman': 'Lace and smoke', 'Kadife gece': 'Velvet night', 'Çarşaf arası': 'Between the sheets',
   // ✉️ editörün mektubu
@@ -172,6 +173,12 @@ Stories.I18n.add({
   'Bir güvenli kelime seçin; trafik ışığı sistemi kolaydır: yeşil devam, sarı yavaşla, kırmızı hemen dur. Ağız bağlıysa elde tutulan bir eşyayı düşürmek de işaret olabilir.': 'Pick a safe word; the traffic light system is easy: green go on, yellow slow down, red stop right away. If she is gagged, dropping an object held in her hand can be the signal.',
   'Boyuna baskı uygulamayın, bağları dolaşımı kesecek kadar sıkmayın ve bağlı birini asla yalnız bırakmayın. Makas başucunda olsun, ara ara "Renk ne?" diye sorun.': 'Never put pressure on the neck, never tie restraints tight enough to cut off circulation, and never leave someone tied up alone. Keep scissors by the bed and ask "What color?" now and then.',
   'Sınırları önceden konuşun.': 'Talk about limits beforehand.', 'Yeşil, sarı, kırmızı.': 'Green, yellow, red.', 'Boyna baskı yok.': 'No pressure on the neck.', 'Bağlı birini yalnız bırakma.': 'Never leave someone tied up alone.',
+  'Yasak fanteziler: sırrı paylaşmak': 'Forbidden fantasies: sharing the secret',
+  'Yasak olanı hayal etmek çok yaygındır; bir fantezi, onu gerçekleştirmek zorunda olduğun anlamına gelmez. Asıl heyecan, sırrı güvendiğin kişiyle paylaşınca başlar.': 'Imagining the forbidden is very common; a fantasy does not mean you have to act it out. The real thrill starts when you share the secret with someone you trust.',
+  'Aldatma, bir yabancıyla tanışma ya da yakalanma korkusu en sık görülen fantezilerdendir. Bunları düşünmek seni kötü bir partner yapmaz; beyin yasak olanı sever, çünkü yasak gerilim demektir.': 'Cheating, meeting a stranger or the fear of getting caught are among the most common fantasies. Thinking about them does not make you a bad partner; the brain loves the forbidden, because forbidden means tension.',
+  'Fantezini partnerinle paylaşacaksan sakin bir an seç ve "Bunu yapmak istiyorum" yerine "Bunu düşünmek beni heyecanlandırıyor" diye başla. Karşındakinin önce dinlemesine, sonra karar vermesine izin ver.': 'If you share your fantasy with your partner, pick a calm moment and start with "Thinking about this excites me" instead of "I want to do this". Let them listen first and decide later.',
+  'Rol yapmak güvenli bir yoldur: bir barda iki yabancı gibi buluşun, sahte isimler kullanın, otel odasında "ilk kez" tanışın. Kurallar ve güvenli kelime yine geçerli; oyun bitince sarılmayı unutmayın.': 'Role play is a safe way in: meet at a bar like two strangers, use fake names, get to know each other "for the first time" in a hotel room. The rules and the safe word still apply; when the game ends, don\'t forget to cuddle.',
+  'Fantezi bir suç değildir.': 'A fantasy is not a crime.', '"İstiyorum" değil, "heyecanlandırıyor" de.': 'Say "it excites me", not "I want it".', 'Yabancı rolüyle buluşun.': 'Meet as strangers.', 'Fotoğrafları ve mesajları ikinizden başkası görmesin.': 'No one but the two of you should see the photos and messages.',
   'Aftercare: sevişmeden sonra': 'Aftercare: after sex',
   'Gece boşalmayla bitmez. Sonraki dakikalar, ikinizin de kendini güvende ve değerli hissetmesi için en az sevişme kadar önemlidir.': 'The night doesn\'t end with coming. The minutes after matter as much as the sex itself, so you both feel safe and valued.',
   'Sarılmak, su içmek, bir battaniye altında konuşmak bedenin ve zihnin sakinleşmesine yardım eder. Özellikle yoğun bir oyundan sonra bu ihtiyaç daha da büyür.': 'Cuddling, drinking water and talking under a blanket help the body and mind calm down. After an intense scene this need grows even more.',
