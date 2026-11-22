@@ -4035,10 +4035,14 @@
   function mgBook(m, is, P, start) {
     const book = $('#mgBook'), stage = $('#mgStage');
     if (!book || !stage) return;
-    const rd = stage.parentNode, below = [...rd.children].filter(x => x !== stage && x.offsetTop > stage.offsetTop).reduce((s, x) => s + x.offsetHeight, 0) + 28 + (parseFloat(getComputedStyle(view).paddingBottom) || 0);
-    const vh = (window.visualViewport && visualViewport.height) || innerHeight;
-    const n = P.length, aw = stage.clientWidth, two = aw >= 760, ah = Math.max(260, vh - stage.getBoundingClientRect().top - below);
-    const w = Math.floor(Math.min(two ? aw / 2 - 8 : aw, ah * .7)), h = Math.floor(w / .7), L = two ? Math.ceil(n / 2) : n;
+    const dim = () => {
+      const aw = stage.clientWidth, two = aw >= 760;
+      if (!two) return [two, Math.floor(aw)];
+      const below = [...stage.parentNode.children].filter(x => x !== stage && x.offsetTop > stage.offsetTop).reduce((s, x) => s + x.offsetHeight, 0) + 28 + (parseFloat(getComputedStyle(view).paddingBottom) || 0);
+      const ah = Math.max(260, innerHeight - stage.getBoundingClientRect().top - below);
+      return [two, Math.floor(Math.min(aw / 2 - 8, ah * .7))];
+    };
+    const n = P.length, [two, w] = dim(), h = Math.floor(w / .7), L = two ? Math.ceil(n / 2) : n;
     ui.mgDim = [two, w];
     book.style.cssText = `--pw:${w}px;--ph:${h}px;--fs:${Math.max(12, Math.min(15.5, w / 27)).toFixed(1)}px`;
     book.className = `mg-book${two ? ' two' : ''}${w >= 430 ? ' wide' : ''}${book.classList.contains('no-i18n') ? ' no-i18n' : ''}`;
@@ -4062,10 +4066,11 @@
       const a = Math.min(f, nf), b = Math.max(f, nf), fwd = nf > f;
       lfs.slice(a, b).forEach((el, k) => { el.classList.add('mv'); el.style.transitionDelay = (fwd ? k : b - a - 1 - k) * 70 + 'ms'; clearTimeout(el._t); el._t = setTimeout(() => { el.classList.remove('mv'); el.style.transitionDelay = ''; }, 850 + (b - a) * 70); });
       f = nf; draw(); sfx('page');
+      if (!two && stage.getBoundingClientRect().top < 0) stage.scrollIntoView({ block: 'start', behavior: 'smooth' });
     };
     ui.mgStep = d => go(f + d);
     ui.mgGoP = p => go(fOf(p));
-    ui.mgRe = () => { const aw2 = stage.clientWidth, two2 = aw2 >= 760; if (two2 !== ui.mgDim[0] || Math.abs(Math.floor(Math.min(two2 ? aw2 / 2 - 8 : aw2, Math.max(340, innerHeight - stage.getBoundingClientRect().top - 130) * .7)) - ui.mgDim[1]) > 12) mgBook(m, is, P, cur()); };
+    ui.mgRe = () => { const [two2, w2] = dim(); if (two2 !== ui.mgDim[0] || Math.abs(w2 - ui.mgDim[1]) > 12) mgBook(m, is, P, cur()); };
     $('#mgPrev').onclick = () => go(f - 1);
     $('#mgNext').onclick = () => go(f + 1);
     rng.oninput = () => go(fOf(+rng.value - 1));
