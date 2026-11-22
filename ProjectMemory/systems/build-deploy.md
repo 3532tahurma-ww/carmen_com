@@ -17,3 +17,9 @@
 
 ## Deploy
 GitHub Pages, branch main/root, `.nojekyll`. No tests/linter: verify by opening `index.html`.
+
+## iOS Safari compatibility
+Regex lookbehind `(?<=` / `(?<!` is a parse-time SyntaxError before iOS 16.4 → whole script dead, app blank (fixed v1092). Never use it; use `replace(…, '$1\u0001').split('\u0001')`. Also avoid other ES2022+ syntax (class static blocks, regex `v` flag). 🩺 `#bootErr` overlay (index.html head, v1093) prints boot errors / failed script loads on screen for phone debugging. Total JS ~14.3 MB parsed at startup (memory-heavy on iOS).
+
+## 🔄 Fabrika ayarları (v1092)
+Ben → ⚙️ Ayarlar, edit mode only: `#factoryReset` clears all `amor-stories*` localStorage keys + sessionStorage + Cache Storage, unregisters SWs, stubs `Store.save`, reloads to first launch.

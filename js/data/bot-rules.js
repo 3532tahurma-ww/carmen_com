@@ -107967,6 +107967,245 @@ Stories.BOT_RULES = {
       "note": "📏 görünüş"
     },
     {
+      "id": "r_q_boob_sil",
+      "name": "Göğüs bedeni · silikon",
+      "category": "❓ Sorular",
+      "when": [
+        "meme-|göğüs-|gogus-|sütyen-|sutyen-|memeler-|göğüslerin|goguslerin|göğüs ölçü-|gogus olcu-|sutyenin|=tits|memen",
+        "beden-|kaç|kac|büyük-|buyuk-|küçük-|kucuk-|ne kadar|ölçü-|olcu-|numara-|cup|boyut-|iri mi|dolgun mu|kocaman"
+      ],
+      "reply": [
+        "{ö:Boob Size}, silikonlu 💉🍒 doktorum harika iş çıkardı",
+        "Silikon sayesinde {ö:Boob Size} 😏 dolgun ve dimdik",
+        "{ö:Boob Size}… parasını ben verdim, tadını sen çıkar 😈🍒",
+        "Eskiden küçüktü, şimdi {ö:Boob Size} 💉 farkı görmelisin"
+      ],
+      "traits": [
+        "Breast Implants",
+        "Breast Implants"
+      ],
+      "chars": [],
+      "note": "💉 estetik · aynı özellik iki kez = beden kurallarını yener"
+    },
+    {
+      "id": "r_q_boob_sil_r",
+      "name": "Göğüs bedeni · silikon",
+      "category": "❓ Sorular",
+      "when": [
+        "beden-|kaç|kac|büyük-|buyuk-|küçük-|kucuk-|ne kadar|ölçü-|olcu-|memeler-|göğüslerin|goguslerin|göğüs ölçü-|gogus olcu-|sutyenin|=tits|memen",
+        "meme-|göğüs-|gogus-|sütyen-|sutyen-|numara-|cup|boyut-|iri mi|dolgun mu|kocaman"
+      ],
+      "reply": [
+        "{ö:Boob Size}, silikonlu 💉🍒 doktorum harika iş çıkardı",
+        "Silikon sayesinde {ö:Boob Size} 😏 dolgun ve dimdik",
+        "Eskiden küçüktü, şimdi {ö:Boob Size} 💉 farkı görmelisin"
+      ],
+      "traits": [
+        "Breast Implants",
+        "Breast Implants"
+      ],
+      "chars": [],
+      "note": "💉 estetik"
+    },
+    {
+      "id": "r_q_butt_sil",
+      "name": "Kalçan · silikon",
+      "category": "❓ Sorular",
+      "when": [
+        "kalça-|kalca-|popo-|kıç-|kic-|kalçaların|kalcalarin|popon|kıçın|kicin|poposu",
+        "büyük-|buyuk-|küçük-|kucuk-|beden-|kaç|kac|nasıl|nasil|iri mi|dolgun mu|kocaman|yuvarlak mı"
+      ],
+      "reply": [
+        "{ö:Butt Size} ve silikonlu 💉🍑 yuvarlak duruşu ondan",
+        "Kalçam {ö:Butt Size}, biraz doktor yardımıyla 😏🍑",
+        "Silikonla {ö:Butt Size} oldu, kotlar artık zor kapanıyor 😂",
+        "{ö:Butt Size}… sert ve yuvarlak, sıkınca anlarsın 😈"
+      ],
+      "traits": [
+        "Butt Implants",
+        "Butt Implants"
+      ],
+      "chars": [],
+      "note": "💉 estetik"
+    },
+    {
+      "id": "r_q5_dogal_sil",
+      "name": "Göğüslerin doğal mı · silikon",
+      "category": "❓ Sorular",
+      "when": [
+        "meme-|göğüs-|gogus-|memeler-",
+        "doğal-|dogal-|silikon-|estetik-|ameliyat-|gerçek mi|gercek mi|gerçek mı|gercek mı"
+      ],
+      "reply": [
+        "Doğal değil, silikon 💉 saklamıyorum",
+        "Silikon, ama dokununca yine yumuşacık 😏🍒",
+        "Estetik yaptırdım, hayatımın en iyi kararıydı 😌",
+        "{ö:Boob Size} beden silikon… beğenmedin mi yoksa? 😈"
+      ],
+      "traits": [
+        "Breast Implants",
+        "Breast Implants"
+      ],
+      "chars": [],
+      "note": "💉 estetik"
+    },
+    {
+      "id": "r_q5_dik_sil",
+      "name": "Göğüslerin dik mi · silikon",
+      "category": "❓ Sorular",
+      "when": [
+        "meme-|göğüs-|gogus-|memeler-",
+        "=dik|dikler|dimdik|düşük-|dusuk-|sarkık-|sarkik-|=sarkıyor|=sarkiyor|toparlak-|diri-"
+      ],
+      "reply": [
+        "Silikon sayesinde hep dimdik, sütyene gerek yok 😏",
+        "Yatınca bile yerinden kıpırdamıyorlar 😂🍒",
+        "Yerçekimi bana işlemiyor, doktorum halletti 💉"
+      ],
+      "traits": [
+        "Breast Implants",
+        "Breast Implants"
+      ],
+      "chars": [],
+      "note": "💉 estetik"
+    },
+    {
+      "id": "r_q5_ziplar_sil",
+      "name": "Koşarken zıplıyorlar mı · silikon",
+      "category": "❓ Sorular",
+      "when": [
+        "meme-|göğüs-|gogus-|memeler-|koşarken|kosarken",
+        "zıpla-|zipla-|sallan-|hopla-|zıplıyor|zipliyor"
+      ],
+      "reply": [
+        "Pek zıplamazlar, silikon yerinde durur 😅",
+        "Koşarken sabit, ama üstüne çıkınca başka 😏",
+        "Hafif sallanırlar… izlemek ister misin? 😈"
+      ],
+      "traits": [
+        "Breast Implants",
+        "Breast Implants"
+      ],
+      "chars": [],
+      "note": "💉 estetik"
+    },
+    {
+      "id": "r_q5_sutyensiz_sil",
+      "name": "Sütyensiz gezer misin · silikon",
+      "category": "❓ Sorular",
+      "when": [
+        "sütyensiz|sutyensiz|sütyen giymeden|sutyen giymeden|sütyen takmadan|sutyen takmadan",
+        "gez-|çık-|cik-|dolaş-|dolas-|=mı|=mi|misin|mısın|olur-"
+      ],
+      "reply": [
+        "Silikonla sütyene ihtiyacım yok, hep sütyensizim 😏",
+        "Dimdik durdukları için sütyensiz gezmek çok rahat 😈",
+        "Ameliyattan beri sütyen almadım bile 💉😏"
+      ],
+      "traits": [
+        "Breast Implants",
+        "Breast Implants"
+      ],
+      "chars": [],
+      "note": "💉 estetik"
+    },
+    {
+      "id": "r_q5_meme_his_sil",
+      "name": "Göğüslerin hissediyor mu · silikon",
+      "category": "❓ Sorular",
+      "when": [
+        "meme-|göğüs-|gogus-|memeler-",
+        "hisset-|hissed-|hassas-|=his|uyuş-|uyus-"
+      ],
+      "reply": [
+        "Ameliyattan sonra biraz uyuştu ama uçlarım hâlâ çok hassas 😳",
+        "Hissediyorum, merak etme… özellikle uçlarını 😏",
+        "Silikon ama his aynı, dokun da gör 😈"
+      ],
+      "traits": [
+        "Breast Implants",
+        "Breast Implants"
+      ],
+      "chars": [],
+      "note": "💉 estetik"
+    },
+    {
+      "id": "r_q5_kalca_dogal",
+      "name": "Kalçan doğal mı",
+      "category": "❓ Sorular",
+      "when": [
+        "kalça-|kalca-|popo-|kıç-|kic-|kalçaların|kalcalarin|popon|kıçın|kicin|poposu",
+        "doğal-|dogal-|silikon-|estetik-|ameliyat-|gerçek mi|gercek mi|gerçek mı|gercek mı"
+      ],
+      "reply": [
+        "Doğal tabii, squat'ın hakkını veriyorum 🍑",
+        "Hepsi benim, bıçak değmedi 😏",
+        "Doğal, istersen elinle kontrol et 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_q5_kalca_dogal_sil",
+      "name": "Kalçan doğal mı · silikon",
+      "category": "❓ Sorular",
+      "when": [
+        "kalça-|kalca-|popo-|kıç-|kic-|kalçaların|kalcalarin|popon|kıçın|kicin|poposu",
+        "doğal-|dogal-|silikon-|estetik-|ameliyat-|gerçek mi|gercek mi|gerçek mı|gercek mı"
+      ],
+      "reply": [
+        "Silikon 💉🍑 ama kimse anlamıyor",
+        "Estetik yaptırdım, iki beden büyüdü 😏",
+        "Doğal değil ama dokununca yumuşacık 😈"
+      ],
+      "traits": [
+        "Butt Implants",
+        "Butt Implants"
+      ],
+      "chars": [],
+      "note": "💉 estetik"
+    },
+    {
+      "id": "r_q5_twerk_sil",
+      "name": "Twerk yapar mısın · silikon",
+      "category": "❓ Sorular",
+      "when": [
+        "twerk-|tverk-|kalçanı salla-|kalcani salla-|kalçalarını salla-|kalcalarini salla-|popoyu salla-|poponu salla-|kıçını salla-|kicini salla-"
+      ],
+      "reply": [
+        "Silikonlu kalçayla twerk mi? Sallanmaz, zıplar 😂🍑",
+        "Yeni kalçamı denemek için twerk'ten iyisi yok 😈",
+        "Müziği aç, paramın karşılığını göstereyim 💉🍑"
+      ],
+      "traits": [
+        "Butt Implants",
+        "Butt Implants"
+      ],
+      "chars": [],
+      "note": "💉 estetik"
+    },
+    {
+      "id": "r_q5_tayt_sil",
+      "name": "Taytla dışarı çıkar mısın · silikon",
+      "category": "❓ Sorular",
+      "when": [
+        "tayt-",
+        "dışarı|disari|sokak-|çıkar mısın|cikar misin|gezer-|=dolaşır|=dolasir|spora|spor salon-"
+      ],
+      "reply": [
+        "Silikonlu kalçamla tayt giyince herkes dönüp bakıyor 🍑",
+        "Tayt giymek için yaptırdım zaten 😏",
+        "Spor salonunda kimse benim doğal olmadığımı anlamıyor 😈"
+      ],
+      "traits": [
+        "Butt Implants",
+        "Butt Implants"
+      ],
+      "chars": [],
+      "note": "💉 estetik"
+    },
+    {
       "id": "r_q5_koku_rom",
       "name": "Kokun / parfümün · romantik",
       "category": "❓ Sorular",

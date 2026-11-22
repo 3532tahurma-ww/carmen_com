@@ -1,6 +1,7 @@
 # 🤰 Hamilelik ve doğum sonrası olayları (öneri, uygulanmadı)
 
 > Durum: fikir. 2026-11-16'da konuşmada önerildi, kullanıcı "md olarak tut" dedi.
+> ✅ v977: ⏩ zaman atlama (durum çipi → +1 hafta / sonraki dönem / doğum) ve 👨 bebeğin babası (`babyBy` 'me' / 'hb', `kidsBy`), kitapta 3 yeni bölüm.
 > ✅ v886'da uygulandı: v3 💞 foreplay (14), 🔥 seks (13), 💦 bitişler (v3'teki 3 + 10), `weeks` kapısı (`pregBlock`), `hamile` THEME etiketi, 4 sahne, 🤰 Hamilelik Kitabı, haber. Gerisi (haber olayları, lohusa, bebek kesintisi, After Birth) hâlâ fikir.
 
 ## Bugünkü mekanik (app.js `bodyTick`, `pregWeek`)

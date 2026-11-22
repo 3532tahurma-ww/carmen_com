@@ -11,7 +11,7 @@ Stories.City = (() => {
   // dünya sınırları: X0..W, Y0..H (batı mahallesi ve kuzey tepeleri eksi koordinatlarda)
   // SC: dünya ölçeği (konumlar/mesafeler büyür, bina/yol/karakter boyutu aynı kalır)
   const SC = 1.4, sc = p => [p[0] * SC, p[1] * SC];
-  const W = 3000 * SC, H = 2200 * SC, X0 = -1300 * SC, Y0 = -900 * SC, CS = 14, SW = 16;
+  const W = 3000 * SC, H = 2200 * SC, X0 = -1300 * SC, Y0 = -900 * SC, CS = 14, SW = 34;
   const PKX = 600 * SC, PKY = 1150 * SC, LNX = 2140 * SC, LNY = 1450 * SC, RGX = 1350 * SC, RGY = 850 * SC;
   const tr = s => (Stories.I18n ? Stories.I18n.t(s) : s);
   const rng = seed => () => { seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
@@ -41,7 +41,7 @@ Stories.City = (() => {
   // 🔄 Meydan göbeği: 16 nokta (RG0 doğu, RG4 güney, RG8 batı, RG12 kuzey)
   for (const k in P) P[k] = sc(P[k]);
   for (let i = 0; i < 16; i++) P['RG' + i] = [RGX + 90 * Math.cos(i * Math.PI / 8), RGY + 90 * Math.sin(i * Math.PI / 8)];
-  const ROAD_W = { coast: 60, main: 52, ring: 46, st: 40 };
+  const ROAD_W = { coast: 80, main: 70, ring: 62, st: 54 };
   const ROADS = [
     ['coast', 'C0 C1 C2 C3 C4 C5 C6 C7 C8 C9 C10 C11'],
     ['main', 'B0 B1 B2 RG10'], ['main', 'RG2 B3 B4 B5 C5'],
@@ -59,6 +59,10 @@ Stories.City = (() => {
     ['main', 'N3 NN1 NN2'], ['coast', 'C11 K3 CN1'], ['main', 'K0 K1 NN1 K2 K3'], ['st', 'B0 K5 K1'], ['st', 'X5 K6 K2'], ['st', 'Q0 K7 K0'],
     ['st', 'K8 K9 NN2 K10'], ['st', 'K8 K0'], ['st', 'K10 K2']
   ];
+  // 🪧 cadde / sokak adları (ROADS sırasıyla) + türe göre ek (tr ile çevrilir)
+  const RN = ['Sahil', 'Lale', 'Menekşe', 'Çınar', 'Akasya', 'Yıldız', 'Liman', 'Cumhuriyet', 'Zeytin', 'Defne', 'Papatya', 'Kiraz', 'Nar', 'Gül', 'Ihlamur', 'Leylak', 'Badem', 'Söğüt', 'Erik',
+    'Batı', 'Kumsal', 'Manolya', 'Kestane', 'Ayva', 'Fesleğen', 'Mimoza', 'Sardunya', 'Lavanta', 'Tepe', 'Kuzey', 'Bağ', 'Çam', 'Yamaç', 'Pınar', 'Kayalık', 'Bayır', 'Gökyüzü'];
+  const RS = { coast: 'Bulvarı', main: 'Caddesi', ring: 'Meydanı', st: 'Sokak' };
   // k = app.js ccWhere anahtarı; t: ev (beşik çatı) / kule (düz çatı + klima) / duz; fx: özel çatı; s/sn: binanın sitesi
   const BLD = [
     { k: 'ev1', n: 'Mavi Ev', ic: '🏠', x: 240, y: 530, w: 80, h: 64, c: '#5b8fd8', t: 'ev' },
@@ -90,9 +94,10 @@ Stories.City = (() => {
   const AREAS = [
     { k: 'park', n: 'Park', ic: '🌳', x: 600, y: 1150, rx: 200, ry: 260, area: 1 },
     { k: 'lunapark', n: 'Lunapark', ic: '🎡', x: 2140, y: 1450, rx: 105, ry: 105, area: 1 },
-    { k: 'sahil', n: 'Sahil', ic: '🏖️', x: 1600, y: 1790, area: 1, beach: [1150, 2050] }
+    { k: 'sahil', n: 'Sahil', ic: '🏖️', x: 1600, y: 1790, area: 1, beach: [700, 2320] }
   ];
   [...BLD, ...AREAS].forEach(b => { b.x *= SC; b.y *= SC; if (b.beach) b.beach = b.beach.map(v => v * SC); });
+  BLD.forEach(b => { b.w = Math.round(b.w * 1.3); b.h = Math.round(b.h * 1.3); });
   // 🏠 ek hane evleri (dolgu evlerden seçilir): [anahtar, ad, ikon]; app.js CC_HOMES ile aynı sıra
   const HOME_X = [['ev6', 'Beyaz Villa', '🏡'], ['ev7', 'Taş Ev', '🏠'], ['ev8', 'Sarı Ev', '🏠'], ['ev9', 'Yalı', '🏡'], ['ev10', 'Bahçeli Villa', '🏡'], ['ev11', 'Çatı Katı', '🏠'],
     ['ev12', 'Mavi Panjurlu Ev', '🏠'], ['ev13', 'Güllü Ev', '🏡'], ['ev14', 'Ahşap Ev', '🏠'], ['ev15', 'Tepe Evi', '🏡'], ['ev16', 'Limon Ağaçlı Ev', '🏡'], ['ev17', 'Kırmızı Kapılı Ev', '🏠']];
@@ -104,7 +109,7 @@ Stories.City = (() => {
     ex: [['Kokteyl Bar', '🍹'], ['Bar', '🍸'], ['Karaoke', '🎤'], ['Restoran', '🍽️'], ['Burgerci', '🍔'], ['Pizzacı', '🍕'], ['Dövme Stüdyosu', '✒️'], ['Butik Otel', '🛎️', 1], ['Striptiz Kulübü', '💃'], ['Kumarhane', '🃏'], ['Shisha Lounge', '💨']],
     cs: [['Dondurmacı', '🍦'], ['Balıkçı', '🐟'], ['Plaj Barı', '🍹'], ['Sörf Dükkanı', '🏄'], ['Pansiyon', '🛏️'], ['Kafe', '☕'], ['Mayo Butiği', '👙']]
   };
-  const ROOF = { ev: ['#c9574f', '#d79a5e', '#7b8fd1', '#8bb174', '#b67fc9', '#e0a96d', '#6fa3b8'], dt: ['#9aa5b8', '#b8a99a', '#7f8ea3', '#c2b59b', '#a7b4c2', '#d1c4a8', '#b0a2c4'], ex: ['#6b4a8a', '#8a3b5a', '#3e5a8a', '#9a6b2a', '#5a3a6b'], cs: ['#f3c6a5', '#a8d8ea', '#f6e3b4', '#ffd1dc', '#c5e1a5'] };
+  const ROOF = { ev: ['#b5553c', '#a3482f', '#c2694a', '#5f6872', '#8e5a44', '#9c6b4e', '#6d7178'], dt: ['#a9aaa5', '#9ea3a8', '#b4ada2', '#8f969d', '#bdb6aa', '#a39e95', '#979ba3'], ex: ['#5e5568', '#6b5a5a', '#4f5966', '#776655', '#5a4f60'], cs: ['#d9c7a8', '#c9d6d8', '#e3d3b5', '#d6c2b8', '#c8d0b0'] };
   const AWN = ['#e53935', '#1e88e5', '#43a047', '#fb8c00', '#8e24aa', '#00897b', '#d81b60'];
   const ZONE_N = { ev: '🏘️ Mahalle', dt: '🏙️ Şehir merkezi', ex: '🌃 Eğlence caddesi', cs: '🏖️ Sahil şeridi' };
 
@@ -151,10 +156,10 @@ Stories.City = (() => {
     const nodes = [], nIdx = new Map();
     const node = (p, hw, foot) => { const key = Math.round(p[0]) + ',' + Math.round(p[1]); let i = nIdx.get(key); if (i == null) { i = nodes.length; nIdx.set(key, i); nodes.push({ x: p[0], y: p[1], adj: [], hw, foot: !!foot }); } else { nodes[i].hw = Math.max(nodes[i].hw, hw); if (!foot) nodes[i].foot = false; } return i; };
     const link = (a, b, foot) => { if (a === b || nodes[a].adj.some(e => e[0] === b)) return; const d = Math.hypot(nodes[a].x - nodes[b].x, nodes[a].y - nodes[b].y); nodes[a].adj.push([b, d, foot ? 1 : 0]); nodes[b].adj.push([a, d, foot ? 1 : 0]); };
-    const roads = ROADS.map(([t, s]) => {
+    const roads = ROADS.map(([t, s], ri) => {
       const pts = sample(s.split(' ').map(k => P[k]), t !== 'ring', 45), hw = ROAD_W[t] / 2;
       for (let i = 1; i < pts.length; i++) link(node(pts[i - 1], hw), node(pts[i], hw));
-      return { t, pts, path: path2(pts) };
+      return { t, pts, path: path2(pts), nm: RN[ri % RN.length] };
     });
     const coast = sample(COAST, true, 40);
     const seaPoly = [...coast, [W, Y0], [W, H], [X0, H]];
@@ -193,7 +198,7 @@ Stories.City = (() => {
     const freeZone = (x, y) => !ell(x, y, PKX, PKY, 222, 282) && !ell(x, y, LNX, LNY, 128, 128) && !ell(x, y, RGX, RGY, 70, 70) && !inField(x, y, 10);
     const R = rng(11), bRects = BLD.map(b => ({ x: b.x, y: b.y, w: b.w + (b.yard ? 44 : 22), d: b.h + (b.yard ? 40 : 22), a: 0 }));
     // 🚶 yaya yolları: bir caddenin kaldırımından dik çıkıp blok içinden karşıdaki caddeye varan ara yollar (araç girmez)
-    const foots = [], FOOT_HW = 7;
+    const foots = [], FOOT_HW = 15;
     const blocked = (x, y) => x < X0 + 8 || x > W - 8 || y < Y0 + 8 || y > H - 8 || inSea(x, y) || coastDist(x, y) < 150 || !freeZone(x, y) || bRects.some(b => Math.abs(x - b.x) < b.w / 2 && Math.abs(y - b.y) < b.d / 2);
     const nearFoot = (x, y, m) => {
       const gx = (x / 60) | 0, gy = (y / 60) | 0;
@@ -249,7 +254,7 @@ Stories.City = (() => {
         while (acc + L >= next) {
           const t = (next - acc) / L, x = x0 + (x1 - x0) * t, y = y0 + (y1 - y0) * t;
           for (const s of [1, -1]) {
-            const off = hw + SW + 4 + 14, o = { x: x - Math.sin(a) * off * s, y: y + Math.cos(a) * off * s, w: 112, d: 28, a: s > 0 ? a : a + Math.PI };
+            const off = hw + SW + 4 + 9, o = { x: x - Math.sin(a) * off * s, y: y + Math.cos(a) * off * s, w: 58, d: 17, a: s > 0 ? a : a + Math.PI };
             const pts = [...corners(o), [o.x, o.y]];
             if (pts.some(([px, py]) => inSea(px, py) || coastDist(px, py) < 150 || !freeZone(px, py) || nearRoad(px, py, SW + 1, 3))) continue;
             if (bRects.some(b => sat(b, o)) || bills.some(b => sat(b, { ...o, w: o.w + 40 }))) continue;
@@ -267,13 +272,13 @@ Stories.City = (() => {
     // gap: yol kenarından binaya boşluk (araç yolunda kaldırım + 7, yaya yolunda 6)
     function tryPlace(x, y, a, s, hw, gap) {
       const z = zoneOf(x, y), types = FT[z], ty = types[(R() * types.length) | 0], tall = !!ty[2];
-      const w = z === 'ev' ? 44 + R() * 24 : tall ? 56 + R() * 26 : 38 + R() * 30, d = z === 'ev' ? 40 + R() * 18 : tall ? 60 + R() * 30 : 40 + R() * 26;
+      const w = (z === 'ev' ? 44 + R() * 24 : tall ? 56 + R() * 26 : 38 + R() * 30) * 1.35, d = (z === 'ev' ? 40 + R() * 18 : tall ? 60 + R() * 30 : 40 + R() * 26) * 1.35;
       const off = hw + gap + d / 2, o = { x: x - Math.sin(a) * off * s, y: y + Math.cos(a) * off * s, w, d, a: s > 0 ? a : a + Math.PI };
       const pts = [...corners(o), [o.x, o.y]];
       if (pts.some(([px, py]) => px < X0 + 8 || px > W - 8 || py < Y0 + 8 || py > H - 8 || inSea(px, py) || coastDist(px, py) < 150 || !freeZone(px, py) || nearRoad(px, py, SW + 2, 3))) return;
       if (bRects.some(b => sat(b, o)) || bills.some(b => sat(b, { ...o, w: w + 6, d: d + 6 }))) return;
       const big = { ...o, w: w + 8, d: d + 8 };
-      if (fill.some(f => Math.abs(f.x - o.x) < 140 && Math.abs(f.y - o.y) < 140 && sat(f, big))) return;
+      if (fill.some(f => Math.abs(f.x - o.x) < 190 && Math.abs(f.y - o.y) < 190 && sat(f, big))) return;
       const pal = ROOF[z];
       fill.push({ ...o, id: 'f' + fill.length, z, n: ty[0], ic: ty[1], tall, c: pal[(R() * pal.length) | 0], aw: AWN[(R() * AWN.length) | 0] });
     }
@@ -292,7 +297,7 @@ Stories.City = (() => {
     };
     roads.forEach(r => { if (r.t !== 'ring') along(r.pts, ROAD_W[r.t] / 2, SW + 7); });
     foots.forEach(f => along(f.pts, FOOT_HW, 6));
-    const inFill = (x, y, m) => fill.some(f => Math.abs(f.x - x) < 90 && Math.abs(f.y - y) < 90 && inRect({ ...f, w: f.w + m * 2, d: f.d + m * 2 }, x, y));
+    const inFill = (x, y, m) => fill.some(f => Math.abs(f.x - x) < 120 && Math.abs(f.y - y) < 120 && inRect({ ...f, w: f.w + m * 2, d: f.d + m * 2 }, x, y));
     // 🌳 ağaçlar: parkta sık, boşluklarda orta
     const trees = [];
     for (let i = 0; i < 5400 * SC * SC; i++) {
@@ -302,14 +307,14 @@ Stories.City = (() => {
       if (park && (ell(x, y, PKX, PKY, 110, 140) || (ell(x, y, PKX, PKY, 146, 184) && !ell(x, y, PKX, PKY, 114, 154)))) p = 0;
       if (ell(x, y, LNX, LNY, 120, 120) || ell(x, y, RGX, RGY, 60, 60)) p = 0;
       if (R() > p) continue;
-      if (inSea(x, y) || coastDist(x, y) < 150 || nearRoad(x, y, SW + 8) || inBld(x, y, 14) || inField(x, y, 8) || inFill(x, y, 10)) continue;
+      if (inSea(x, y) || coastDist(x, y) < 195 || nearRoad(x, y, SW + 8) || inBld(x, y, 14) || inField(x, y, 8) || inFill(x, y, 10)) continue;
       trees.push([x, y, 10 + R() * 8, R() < .5 ? 0 : 1]);
     }
     // 🌴 palmiyeler + ⛱️ şemsiyeler kıyı boyunca, 💡 lambalar kaldırım kenarında
     const palms = [], umbs = [], lamps = [];
     coastN.forEach((c, i) => {
       if (i % 3 === 0) { const x = c.x + c.lx * 140, y = c.y + c.ly * 140; if (!nearRoad(x, y, SW + 4) && !inBld(x, y, 10) && !inFill(x, y, 6) && !ell(x, y, LNX, LNY, 120, 120)) palms.push([x, y, R() * 6]); }
-      if (c.x > PL.sahil.beach[0] && c.x < PL.sahil.beach[1] && i % 2 === 0) { const d = 45 + R() * 40; umbs.push([c.x + c.lx * d, c.y + c.ly * d, ['#ff6b6b', '#ffd93d', '#4dabf7', '#ff8cc6', '#69db7c'][i % 5]]); }
+      if (c.x > PL.sahil.beach[0] && c.x < PL.sahil.beach[1] && i % 2 === 0) [45 + R() * 35, 105 + R() * 50].forEach((d, j) => { if (!nearRoad(c.x + c.lx * d, c.y + c.ly * d, SW)) umbs.push([c.x + c.lx * d, c.y + c.ly * d, ['#ff6b6b', '#ffd93d', '#4dabf7', '#ff8cc6', '#69db7c'][(i + j * 2) % 5]]); });
     });
     roads.forEach(r => r.t !== 'ring' && r.pts.forEach((p, i) => {
       if (i % 2) return;
@@ -372,7 +377,9 @@ Stories.City = (() => {
   const walkSide = n => n.foot ? 0 : n.hw + SW / 2;
   // 🚶 hangi kaldırım: (x, y) ilk yol parçasının sağındaysa +1, solundaysa -1 → yürüyen bulunduğu kaldırımda kalır, gereksiz karşıya geçmez
   const sideOf = (ids, x, y) => { if (ids.length < 2) return 1; const a = WD.nodes[ids[0]], b = WD.nodes[ids[1]]; return (b.x - a.x) * (y - a.y) - (b.y - a.y) * (x - a.x) >= 0 ? 1 : -1; };
-  const walkPath = (ids, x, y) => { const s = sideOf(ids, x, y); return offPath(ids, n => walkSide(n) * s); };
+  // ln: kaldırımda şerit kayması (herkes aynı çizgide yürümesin)
+  const walkPath = (ids, x, y, ln = 0) => { const s = sideOf(ids, x, y); return offPath(ids, n => (walkSide(n) + ln) * s); };
+  const laneOf = a => (hash(a.id + ':ln') % 21) - 10;
   // binanın kapısı: düğümden binaya doğru kaldırımdaki nokta (binanın tarafı)
   const towardB = (i, bx, by) => { const n = WD.nodes[i], dx = bx - n.x, dy = by - n.y, L = Math.hypot(dx, dy) || 1, o = walkSide(n); return [n.x + dx / L * o, n.y + dy / L * o]; };
   // düğümün kaldırımdaki noktası (tek düğümde yön komşudan alınır)
@@ -383,7 +390,7 @@ Stories.City = (() => {
       const r = Math.random();
       let a = Math.random() * Math.PI * 2, p;
       if (pl.k === 'park' && from) a = Math.atan2((from[1] - pl.y) / pl.ry, (from[0] - pl.x) / pl.rx) + (Math.random() - .5) * 1.6;
-      if (pl.k === 'sahil') { const c = WD.beachPts[(Math.random() * WD.beachPts.length) | 0], d = 30 + r * 70; p = [c.x + c.lx * d, c.y + c.ly * d]; }
+      if (pl.k === 'sahil') { const c = WD.beachPts[(Math.random() * WD.beachPts.length) | 0], d = 30 + r * 130; p = [c.x + c.lx * d, c.y + c.ly * d]; }
       else { const f = pl.k === 'park' ? .58 + r * .14 : .35 + r * .5; p = [pl.x + Math.cos(a) * pl.rx * f, pl.y + Math.sin(a) * pl.ry * f]; }
       if (!WD.solid(...p) && (!from || WD.segFree(...from, ...p))) return p;
     }
@@ -447,6 +454,58 @@ Stories.City = (() => {
     firstK: ['Az önce seni görmek çok güzeldi 😊 devam edelim mi?', 'Hâlâ aklımdasın, demin çok tatlıydın 💕', 'Karşılaşmamız tesadüf değildi bence 😏'],
     bye: 'Görüşürüz 👋'
   };
+  /* 👀 süzünce tepkisi: tanışıklığa göre, %50 tarzın kendi cümlesi */
+  const SUZ = {
+    yeni: ['Bir şey mi kaybettin? 😏', 'Fotoğraf çeksene, daha uzun sürer 📸', 'Gözlerin yukarıda kalsın lütfen 🙄', 'Beğendin mi bari? 😏', 'Bakışın baya cesur 😳', 'Tepeden tırnağa süzdün beni 👀'],
+    tanis: ['Yine mi süzüyorsun? 😄', 'Bugün nasıl görünüyorum, onaylıyor musun? 😏', 'Gördüm ama, bakıyordun 👀', 'Hmm, beğenmişe benziyorsun 😊'],
+    yakin: ['Bu bakışları tanıyorum 😏', 'Bakmaya doyamadın galiba 😊', 'Senin için giyindim belki de 😉', 'Gözlerinle soyuyorsun beni 🙈'],
+    sevgili: ['Hep böyle bak bana 😍', 'Beğendin mi aşkım? Senin için 💋', 'Evde daha fazlasını görürsün 😈', 'Utandırma beni bebeğim 🙈💕']
+  };
+  const SUZ_ST = {
+    utangac: ['*kızarıp bakışlarını kaçırır* 🙈', 'N-neden öyle bakıyorsun? 😳'], flort: ['*saçını savurur* Beğendin 😏', 'Bakmakla yetinecek misin? 😘'],
+    alayci: ['Müze mi burası? 🙄', 'Bitirdin mi incelemeyi? 😏'], soguk: ['Bakmayı bırak.', '…bir şey mi var?'],
+    nese: ['Hihi, ne oldu? Üstüme bir şey mi döktüm? 😄', 'Yeni elbisemi fark ettin! 🥰'], romantik: ['Öyle bakınca kalbim hızlanıyor 🥺', 'Gözlerin… ne düşünüyorsun? 🌹']
+  };
+  /* 💬 ayaküstü sohbet (yazarak): TQ = senin sorun → onun bilgisiyle cevap; TALK_RE = cümle türü (ilgi şansı choose ile); HQ = onun sana sorusu, HR = cevabına tepkisi. Olay tetiklenmez */
+  const TQ = [
+    ['ad', /ad[ıi]n ne|ismin ne|ad[ıi]n[ıi] |kimsin|tanışalım/], ['yas', /kaç yaş|yaşın/], ['is', /ne iş|meslek|çalışıyor mu|işin ne|ne okuyorsun|öğrenci mi/],
+    ['nasil', /nasılsın|naber|ne haber|iyi misin|keyfin/], ['nereye', /nereye/], ['ne', /ne yapıyorsun|napıyorsun|napıyon|ne yapıyon|burada ne|ne arıyorsun/],
+    ['sevgili', /sevgilin|erkek arkadaş|evli mi|bekar|bekâr|yalnız mısın|kocan/], ['hobi', /hobi|ne seversin|neler sever|boş zaman|ne dinler|müzik|film/],
+    ['nereli', /nereli|nerede otur|nerede yaşı|evin nerede|kiminle yaşı|ev arkadaşın/]
+  ];
+  const TALK_RE = [
+    ['kaba', /(^|[\s,.!?])(aptal|salak|gerizekal|çirkin|şişko|siktir|orospu|kaşar|sürtük|pislik)/],
+    ['cesur', /(^|[\s,.!?])öp|seksi|yatak|seviş|sarıl|ateşli|vücud|göğüs|meme|kalça|popo|bacak|dudak|🔥|😈|💋/],
+    ['davet', /kahve|içelim|içki|gidelim|çıkalım|yemeğe|yemek ye|buluşalım|gelsene|gelir misin|ısmarla|davet|numara|telefon|instagram|akşam boş/],
+    ['iltifat', /güzel|tatlı|harika|muhteşem|yakışmış|yakışıyor|gözlerin|gülüş|hoş|şirin|çekici|zarif|alımlı/],
+    ['espri', /haha|😂|🤣|şaka|espri|komik|😜/]
+  ];
+  const TK_RUDE = ['Ne dedin sen?! 😠', 'Terbiyesiz 😤', 'Kendine gel 🙄', 'Bununla konuşmayı bitirdik bence 😒'];
+  const TK_Q = ['Hmm, iyi soru 🤔', 'Bunu neden merak ettin? 😏', 'Söylesem inanmazsın 😄', 'Belki bir gün anlatırım 😉'];
+  const TK_HI = ['Selam 😊', 'Merhaba 🙂', 'Selam sana da 😄'];
+  const TK_NEU = ['Hmm 🙂', 'Öyle mi? 😊', 'Anlat bakalım 👀', 'İlginç 😄', 'Hı hı 🙂', 'Devam et, dinliyorum 😊'];
+  const TK_DULL = ['Biraz sıkıldım galiba 😐', 'Hmm… başka konu yok mu? 🙄'];
+  const TK_HOBI = ['Dans etmeyi seviyorum 💃', 'Kitap okurum, bir de sahilde yürürüm 🌊', 'Film izlemeye bayılırım 🍿', 'Spor yapıyorum, belli olmuyor mu? 😏', 'Müzik… her şey müzik 🎧', 'Yemek yapmayı severim 🍝'];
+  // 💗 ayaküstü konuşmada olumlu ilgi kazancı çarpanı · 💡 öneri cümleleri (dokununca yazı kutusuna gelir; TQ / TALK_RE ile eşleşir)
+  const TALK_UP = 1.6;
+  // 🏡 eve beraber yürürken: buluşunca · yolda · kapıda (sohbetin ilk mesajı)
+  const ESC_HI = ['Geldim! Hadi gidelim 😊', 'Yolu sen göster 😏', 'Evin uzak mı? 🙈', 'Sabırsızlanıyorum 😘'];
+  const ESC_WALK = ['Daha çok var mı? 😄', 'Elimi tutsana 🤭', 'Bu sokak çok güzelmiş', 'Evin nasıl, dağınık mı? 😏', 'Yavaş yürü, topuklularım var 👠', 'Heyecanlandım biraz 🙈', 'Komşuların bizi görecek 😳'];
+  // 👫 sohbetten sonra yanında yürürken
+  const WITH_WALK = ['Nereye gidiyoruz? 😊', 'Seninle yürümek güzel 💕', 'Bir şeyler içelim mi? 🍹', 'Sohbetimiz çok güzeldi 😊', 'Elimi bırakma 🤭', 'Bugün bana ayırdığın için teşekkürler 🥰', 'Hadi bana bir şey ısmarla 😏'];
+  const WITH_HI = ['Ben buradayım 😊', 'Hadi biraz dolaşalım 💕', 'Nereye gidiyoruz şimdi? 😏'];
+  const ESC_DOOR = ['Demek burada oturuyorsun 😊 içeri girelim mi?', 'Evin çok tatlıymış 🏡', 'Yürüyüş güzeldi… şimdi ne yapıyoruz? 😏', 'Kapıyı açsana, üşüdüm 🙈'];
+  const SUG = {
+    q: ['Adın ne?', 'Kaç yaşındasın?', 'Ne iş yapıyorsun?', 'Nereye gidiyorsun?', 'Sevgilin var mı? 😏', 'Boş zamanlarında ne yaparsın?', 'Nasılsın bugün?', 'Nerede oturuyorsun?'],
+    ilt: ['Gülüşün çok güzel 😊', 'Bu elbise sana çok yakışmış', 'Gözlerin harika', 'Bugün çok tatlısın'],
+    esp: ['Haritada seni arıyordum, sonunda buldum 😂', 'Sana bakarken kırmızıda geçtim, şaka şaka 😄', 'Telefonumda bir sorun var: senin numaran yok 😂'],
+    dav: ['Bir kahve içelim mi? ☕', 'Bu akşam yemeğe çıkalım mı?', 'Numaranı alabilir miyim? 📱', 'Sana bir içki ısmarlayayım 🍸'],
+    ces: ['Seni öpmek istiyorum 💋', 'Çok seksisin 🔥', 'Sana sarılmak istiyorum'],
+    ans: ['Evet 😊 ya sen?', 'Hmm, aslında hayır 😄', 'Seni görünce dayanamadım 😏', 'Uzun hikâye, sonra anlatırım 😉', 'Bence evet, kesinlikle 😊']
+  };
+  const HQ = ['Peki sen ne iş yapıyorsun?', 'Sen bu şehirde mi yaşıyorsun?', 'Buraya sık gelir misin?', 'Kaç yaşındasın sen?', 'Senin adın ne bu arada?', 'Bugün günün nasıl geçti?', 'Sevgilin var mı? 😏', 'Ne tür müzik dinlersin?', 'Beni neden durdurdun? 😄', 'Boş zamanlarında ne yaparsın?', 'İlk görüşte aşka inanır mısın? 💕', 'Benim hakkımda ilk ne düşündün? 👀'];
+  const HR = ['Hmm, ilginç 😊', 'Vay, öyle mi? 😄', 'Hoşuma gitti bu 😏', 'Anladım 🙂 seni tanımak güzel', 'Aa, ben de! 😄', 'Bunu beklemiyordum 😳'];
+  const HR_SHORT = ['Bu kadar mı? 😒', 'Biraz daha açsana 🙄'];
   const NIGHT_PL = ['kulup', 'gazino', 'pub', 'sinema'], SOCIAL_PL = ['kafe', 'park', 'sahil', 'lunapark', 'magaza'];
   // ✋ durdurma mesafesi: bundan uzaktaki karakter durmaz, peşinden gidersin (yaklaşınca durur)
   const STOP_R = 240;
@@ -492,24 +551,116 @@ Stories.City = (() => {
   /* 📣 laf atma: yakınından (LAF_R) geçen karakter bazen sana laf atar (baloncuk); tanışıklığa, tarzına, geceye, evliliğe göre. Dokunup karşılık verirsen konuşma o sözle ve +LAF_I ilgiyle başlar */
   const LAF_R = 170, LAF_I = 10;
   const LAF = {
-    yeni: ['Hey yakışıklı, kaybolmuş gibisin 😏', 'Bakmaya devam edersen ücret alırım 😉', 'Psst! Evet, sen 👀', 'Bu kadar tatlı yürümek yasak olmalı 😘', 'Saat kaç biliyor musun? Yoksa numaranı mı versen 😏', 'Ooo, kim bu böyle? 😳', 'Gülümse biraz, çok ciddisin 😄', 'Yolun buradan mı geçiyordu, yoksa benden mi? 😏'],
-    tanis: ['Yine mi sen? Beni takip ediyorsun bence 😏', 'Heey! Selam vermeden mi geçiyorsun? 😤', 'Tanıdık bir yüz 😊 gel buraya!', 'Bak sen kimi gördüm 😄'],
-    yakin: ['Bana yazmayı unuttun mu? 😒', 'Gel bir sarılayım! 🤗', 'Seni burada görmek ne güzel 💕', 'Hey! Bu akşam ne yapıyorsun? 😏'],
-    sevgili: ['Aşkııım! 😍 buraya gel!', 'Bebeğim! Öpücük vermeden geçemezsin 😘', 'Sevgilim! Beni mi arıyordun? 💋', 'Hey! Görmezden mi geliyorsun beni? 😤💕']
+    yeni: ['Hey yakışıklı, kaybolmuş gibisin 😏', 'Bakmaya devam edersen ücret alırım 😉', 'Psst! Evet, sen 👀', 'Bu kadar tatlı yürümek yasak olmalı 😘', 'Saat kaç biliyor musun? Yoksa numaranı mı versen 😏', 'Ooo, kim bu böyle? 😳', 'Gülümse biraz, çok ciddisin 😄', 'Yolun buradan mı geçiyordu, yoksa benden mi? 😏',
+      'Bu mahallede yenisin galiba 👀', 'Kokun buraya kadar geldi 😏', 'Bir dakika… sen çok mu yakışıklısın, yoksa güneş mi gözümü aldı? ☀️', 'Hey! Bana el sallamayacak mısın? 👋', 'O yürüyüş ne öyle, podyumda mısın? 😏', 'Kalbimi çalıp kaçamazsın 😘', 'Benimle tanışmak istiyorsan şimdi tam zamanı 😉', 'Aa, ayakkabın çok güzelmiş… sahibi de 😏', 'Bu tarafa bakmasan da olurdu, kızardım 🙈', 'Yalnız yürümek yakışmıyor sana 😏'],
+    tanis: ['Yine mi sen? Beni takip ediyorsun bence 😏', 'Heey! Selam vermeden mi geçiyorsun? 😤', 'Tanıdık bir yüz 😊 gel buraya!', 'Bak sen kimi gördüm 😄',
+      'Geçen sefer yarım kalmıştı konuşmamız 😏', 'Bugün de mi buralardasın? 😄', 'Selam bile yok mu? Ayıp ayıp 😤', 'Seni uzaktan tanıdım, yürüyüşünden 😊', 'Hâlâ numaramı istemedin 😒'],
+    yakin: ['Bana yazmayı unuttun mu? 😒', 'Gel bir sarılayım! 🤗', 'Seni burada görmek ne güzel 💕', 'Hey! Bu akşam ne yapıyorsun? 😏',
+      'Mesajıma cevap vermedin ama 😤', 'Bugün çok yakışıklısın, söylemem lazımdı 😘', 'Beni özledin mi? Ben özledim 🥺', 'Hadi bir kahve içelim, beş dakika ☕', 'Gel, sana bir sır vereceğim 🤫'],
+    sevgili: ['Aşkııım! 😍 buraya gel!', 'Bebeğim! Öpücük vermeden geçemezsin 😘', 'Sevgilim! Beni mi arıyordun? 💋', 'Hey! Görmezden mi geliyorsun beni? 😤💕',
+      'Akşam bize mi geliyorsun? 😏', 'Seni burada görünce kalbim hopladı 💓', 'Elimi tutmadan gidersen küserim 😤', 'Bugün iç çamaşırımı senin için seçtim 🙈', 'Hayatım, eve erken gel 😘']
   };
   const LAF_ST = {
-    utangac: ['*sana bakıp kızarır* M-merhaba… 🙈', '*el sallar, sonra saklanır* 😳'], flort: ['Bakıyordun, yakaladım 😘', 'Bu tarafa gel yakışıklı 😏', 'Bana bakarken çok tatlı oluyorsun 😉'],
-    alayci: ['Ne o, yolunu mu kaybettin? 🙄', 'Çok bakıyorsun, fotoğraf çek istersen 😏'], soguk: ['…sen. Evet, sen. Bakıp durma.', 'Hm. Fena değilsin.'],
-    nese: ['Heeey! 😄 neşeni nereye bıraktın?', 'Selaaam yabancı! 🌞'], romantik: ['Ne güzel bir gün, değil mi? ✨', 'Gözlerin… çok güzel 🌹']
+    utangac: ['*sana bakıp kızarır* M-merhaba… 🙈', '*el sallar, sonra saklanır* 😳', '*gülümser, hemen önüne bakar* 🙈', 'S-selam… 😳'], flort: ['Bakıyordun, yakaladım 😘', 'Bu tarafa gel yakışıklı 😏', 'Bana bakarken çok tatlı oluyorsun 😉', '*göz kırpar* 😉', 'Benimle yürümek ister misin? 😏'],
+    alayci: ['Ne o, yolunu mu kaybettin? 🙄', 'Çok bakıyorsun, fotoğraf çek istersen 😏', 'Ağzın açık kaldı, kapat istersen 🙃', 'Vay, kendine güveniyorsun bakıyorum 😏'], soguk: ['…sen. Evet, sen. Bakıp durma.', 'Hm. Fena değilsin.', 'Yolumdan çekilir misin.', '*sana kısa bir bakış atar*'],
+    nese: ['Heeey! 😄 neşeni nereye bıraktın?', 'Selaaam yabancı! 🌞', 'Güzel bir gün değil mi? 😁', 'Hey! Gülümse, hayat güzel 😄'], romantik: ['Ne güzel bir gün, değil mi? ✨', 'Gözlerin… çok güzel 🌹', 'Gün batımını beraber izlesek mi? 🌅', 'Sende bir şey var… 🌹']
   };
-  const LAF_NIGHT = ['Gece daha yeni başlıyor, katılsana 🍸', 'Yalnız mısın bu gece? 😏', 'Dans etmeyi biliyor musun? 💃', 'Bir içki ısmarlasana 🍹'];
-  const LAF_WED = ['Kocam görmeden geç yanımdan 🤫', 'Psst… yüzüğüme bakma, bana bak 😏'];
+  const LAF_NIGHT = ['Gece daha yeni başlıyor, katılsana 🍸', 'Yalnız mısın bu gece? 😏', 'Dans etmeyi biliyor musun? 💃', 'Bir içki ısmarlasana 🍹', 'Bu gece eve erken gitmek yok 😈', 'Kulübe mi gidiyorsun? Beni de al 🪩', 'Gece bu kadar güzel olmamalı… sen de 😏'];
+  const LAF_WED = ['Kocam görmeden geç yanımdan 🤫', 'Psst… yüzüğüme bakma, bana bak 😏', 'Kocam şehir dışında bu akşam… 😏', 'Evliyim ama kör değilim 😉'];
+  // ✋ seni durduruşu: yanına gelip konuşmayı o başlatır
+  const STOP_L = {
+    yeni: ['Pardon, bir saniye! Saat kaç biliyor musun? 🙂', 'Hey, dur! Seni bir yerden tanıyor muyum? 🤔', 'Bekle! Az önce bir şey düşürdün sanırım 😊', 'Affedersin, kafeye nasıl gidilir? ☕', 'Dur bir saniye… çok tatlısın, söylemem lazımdı 🙈', 'Hey! Çakmağın var mı? 😏'],
+    tanis: ['Heey! Kaçma, dur! 😄', 'Seni gördüm, selam vermeden geçemezsin 😏', 'Dur dur! Sana bir şey anlatacağım 😆'],
+    yakin: ['Dur! Seni özledim 🥺', 'Bekle, nereye böyle acele? 😏', 'Hey! Beni görmedin mi yoksa? 😤'],
+    sevgili: ['Aşkım! Dur, öpmeden gitme 😘', 'Bebeğim, beni bekle! 💕', 'Hayatım dur, sana sarılayım 🤗']
+  };
+  // 👥 toplanıp kendi aralarında sohbet (sırayla konuşurlar) · 📱 telefonda konuşma (tek taraf)
+  const CONV = [
+    ['Dün akşam nereye kayboldun? 😏', 'Sorma, sabaha kadar dans ettik 💃', 'Ben de gelmek istiyordum ya!', 'Bir dahakine beraber gideriz 😄'],
+    ['Şu kafedeki garsonu gördün mü? 😍', 'Görmez olur muyum, çok yakışıklı', 'Bugün numarasını isteyeceğim 😈', 'Cesaretine hayranım 😂'],
+    ['Yeni elbisem nasıl olmuş?', 'Bayıldım! Nereden aldın?', 'AVM\'deki butikten, indirimdeydi 🛍️', 'Yarın beraber gidelim mi?'],
+    ['Hafta sonu sahile mi gitsek? 🏖️', 'Olur, yeni bikinimi denemem lazım 👙', 'Ben de güneş kremi alayım', 'Kokteyller benden 🍹'],
+    ['Duydun mu, komşunun kızı ayrılmış!', 'Hayır yaa, ne zaman? 😱', 'Dün gece, mesajla bitirmiş', 'Vay be… hiç beklemiyordum'],
+    ['İşte bugün çok yoruldum 😩', 'Hadi bir şeyler içelim, kafan dağılsın', 'Pub\'a mı gidelim?', 'Tamam, saat 9\'da orada 🍺'],
+    ['Şu adam bize bakıyor bence 👀', 'Hangisi? Aa, fena değil 😏', 'Gidip konuşsana', 'Yok yok, önce o gelsin 😌'],
+    ['Akşam sinemaya gidiyor muyuz? 🍿', 'Hangi film?', 'Romantik bir şey olsun 💕', 'Yine ağlayacaksın biliyorum 😂'],
+    ['Spor salonuna yeni hoca gelmiş 💪', 'Gördüm, çok sert ama', 'Bence tam ihtiyacımız olan 😏', 'Sen hocaya mı bakıyorsun egzersize mi 😂'],
+    ['Kocam bu akşam geç gelecekmiş', 'Kızlar gecesi o zaman! 🍷', 'Bizde toplanalım', 'Ben cips getiririm 😄'],
+    ['Masaj salonunu denedin mi? 💆‍♀️', 'Evet, eller sihirli resmen', 'Randevu alayım o zaman', 'Benim adımı ver, indirim yaparlar 😉'],
+    ['Gece kulübünde bu cuma parti var 🪩', 'Ne giyeceğimi bilmiyorum hâlâ', 'Kırmızı elbiseni giy, olay olur 🔥', 'Tamam, ama sen de topuklu giy 😄'],
+    ['Saçımı kestirdim, fark ettin mi? 💇‍♀️', 'Aa evet! Çok yakışmış', 'Kuaför biraz kısa kesti ama', 'Hiç de değil, harika olmuş 😍'],
+    ['Diyete başladım bu hafta 🥗', 'Yine mi? 😂', 'Bu sefer ciddiyim!', 'Pastaneyi görene kadar 😆']
+  ];
+  // 🗺️ bölgeye göre sohbetler (ev mahalle · dt merkez · ex eğlence caddesi · cs sahil şeridi) + 🌙 gece; convAt seçer, yoksa genel CONV
+  const CONV_Z = {
+    ev: [['Komşunun köpeği yine bütün gece havladı 🐶', 'Bizim apartmanda da aynı dert', 'Yönetime şikâyet edelim', 'Ben dilekçeyi yazarım 😤'],
+      ['Bahçedeki domatesler kızardı 🍅', 'Bana da getir, salata yaparım', 'Akşama bize gel o zaman', 'Şarabı ben getiririm 🍷'],
+      ['Yan eve yeni biri taşınmış 👀', 'Gördüm, yakışıklı mı?', 'Çok! Kek götürsek mi? 🍰', 'Hemen şimdi 😂'],
+      ['Kocam yine geç gelecek 🙄', 'Bizimki de maçta', 'Kızlar gecesi o zaman 🍿', 'Pijamalarla! 😄'],
+      ['Bakkalda indirim varmış 🛒', 'Ne indirimi?', 'Çikolatada! 🍫', 'Diyet yarına kaldı 😂'],
+      ['Kedim yine kaçtı 🐱', 'Dün bizim balkondaydı', 'Ciddi mi? Bana söylesene!', 'Sana mama bıraktım bile 😄']],
+    dt: [['Toplantı yine uzadı 😩', 'Patron hiç susmadı değil mi?', 'İki saat! Kahve şart ☕', 'Kafeye gidelim, ben ısmarlıyorum'],
+      ['Bankada sıra bitmiyor 🏦', 'Online yapsana', 'Şifremi unuttum 😅', 'Klasik sen 😂'],
+      ['Şu butikte yeni sezon gelmiş 👗', 'İçeri bakalım mı?', 'Sadece bakacağız ama!', 'Tabii tabii 😏'],
+      ['Öğle yemeğine ne yesek? 🍝', 'Restoranda makarna?', 'Dün de makarna yedik', 'Pizza o zaman 🍕'],
+      ['Ofisteki yeni çocuk sana bakıyor 😏', 'Saçmalama', 'Valla! Asansörde de baktı', 'Belki kahveye çağırırım ☕'],
+      ['Eczaneden vitamin aldım 💊', 'Yine mi yorgunsun?', 'İş beni bitirdi', 'Hafta sonu spa yapalım 💆‍♀️']],
+    ex: [['Karaokede ne söyleyeceğiz? 🎤', 'Tabii ki eski aşk şarkıları', 'Sen yine ağlarsın 😂', 'Bu sefer dans ederim 💃'],
+      ['Kokteyl barda happy hour başladı 🍹', 'Koşun kızlar!', 'İlk tur benden', 'İkinci tur da senden 😄'],
+      ['Dövme yaptırmaya karar verdim ✒️', 'Nereye?', 'Belime, küçük bir kalp ❤️', 'Ben de yaptırırım, ikiz olsun!'],
+      ['Kumarhanede dün 500 kazandım 🃏', 'Yalan!', 'Valla, hepsini ayakkabıya harcadım 👠', 'Tam senlik 😂'],
+      ['Kulübün kapısındaki koruma bana yürüyor 😏', 'Hangisi, iri olan mı?', 'Evet, beni sırasız aldı', 'VIP misin artık 😂'],
+      ['Burgerci mi pizzacı mı? 🍔', 'İkisi de!', 'Yarın spor salonunda ağlarız', 'Değer ama 😋']],
+    cs: [['Dondurma mı alsak? 🍦', 'Çilekli olsun', 'Ben limonlu', 'Sahilde yiyelim 🏖️'],
+      ['Rüzgâr saçımı mahvetti 😩', 'Yine de çok güzelsin', 'Yalancı 😄', 'Selfie çekelim 📸'],
+      ['Akşam balık yiyelim mi? 🐟', 'Balıkçıda yer ayırtırım', 'Bir de tatlı olsun', 'Tamam ama ben ödüyorum 😏'],
+      ['Sörf dersi alacağım 🏄‍♀️', 'Hoca yakışıklıymış', 'Ondan alacağım zaten 😂', 'Ben de geliyorum!'],
+      ['Mayo butiğinde indirim var 👙', 'Gidelim mi?', 'Kırmızı olanı alacağım', 'Herkes sana bakacak 🔥']],
+    night: [['Bu gece eve dönmüyorum 😈', 'Nereye gidiyoruz?', 'Önce kulüp, sonra kim bilir', 'Ben varım! 🪩'],
+      ['Topuklularım beni öldürüyor 👠', 'Çıkar, yalınayak yürü', 'Delirdin mi 😂', 'Taksi çağıralım 🚕'],
+      ['Şu adam numaramı istedi 😳', 'Verdin mi?', 'Yanlış numara verdim 😂', 'Kötüsün sen 😆'],
+      ['Gece daha yeni başlıyor 🌙', 'Bir shot daha mı?', 'Son olsun ama', 'Her seferinde öyle diyorsun 😂'],
+      ['Ayy rujum dağıldı mı? 💄', 'Biraz, gel düzelteyim', 'Sen olmasan ne yapardım', 'Kulübe rezil girerdin 😂']]
+  };
+  const PHONE_NIGHT = [
+    ['Neredesin? Kulübün önündeyim 🪩', 'Listeye adımı yazmamışlar!', 'Gel de beni kurtar 😩'],
+    ['Aşkım bu gece kızlarla çıkıyorum 💃', 'Merak etme, erken gelirim', '…belki 😏'],
+    ['Taksi çağırdım, beş dakikaya oradayım 🚕', 'Bana bir içki söyle', 'Sek olsun 🍸'],
+    ['Hâlâ uyumadın mı? 🌙', 'Ben de seni düşünüyordum…', 'Gelsene 😏']
+  ];
+  // 🚗 araba içi sohbet (yolcular sırayla); otobüs ayrı
+  const CAR_CONV = ['Şu şarkıyı aç! 🎶', 'Sağdan dön, sağdan!', 'Klimayı kıssana 🥶', 'Benzin bitmek üzere ⛽', 'Bu trafik bitmeyecek 😩', 'Camı açayım mı?', 'Şu adama bak, korna çalıyor 😂', 'Yavaş git, midem bulandı 🤢', 'Navigasyon yine saçmaladı 🗺️', 'Yol boyunca şarkı söyleyelim 🎤', 'Akşam nereye gidiyoruz? 😏', 'Park yeri bulamayacağız 🅿️', 'Kemerini tak! 🚗', 'Sahil yolundan gidelim 🌊', 'Gaza bas biraz 😈', 'Kırmızı ışıktı o! 🚦', 'Rujumu aynada düzelteyim 💄', 'Kim cips getirdi? 🥨'];
+  const BUS_CONV = ['Durakta inecek var! 🚌', 'Pardon, burası boş mu?', 'Of, çok kalabalık 😩', 'Şoför bey, sahilde iner miyim?', 'Biri ayağıma bastı 😤', 'Yer verir misiniz? 🙏'];
+  // 🚗 senin araban (5 kişilik pembe SUV)
+  const CAR_ME = { kind: 'suv', col: '#ff3d8b', sp: 210 };
+  const CAR_WITH = ['Araban çok güzelmiş 😍', 'Müziği açsana 🎶', 'Yavaş sür, korkuyorum 🙈', 'Camı biraz açar mısın?', 'Seninle gece gezmesi yapmalıyız 🌙', 'Elini dizimden çek… şaka şaka 😏'];
+  const CAR_SEAT = { sedan: 4, hatch: 4, suv: 5, spor: 2, van: 6, pickup: 2, cabrio: 2, polis: 2, bus: 8 };
+  // 👥 gruba katılınca: diğerlerinin karşılaması ve araya girişleri
+  const GJ_HI = ['Aa, aramıza biri katıldı 😄', 'Hoş geldin! Biz de tam dedikodu yapıyorduk 🤭', 'Kimmiş bu yakışıklı? 😏', 'Kızlar, bakın kim geldi 👀', 'Selam! Tanışıyor muyuz? 😊'];
+  const GJ_OK = ['Hihi, hoşuma gitti bu 😄', 'Bana da söyle bunu 😏', '*kıkırdar*', 'Bak sen, cesur çıktı 👀', 'Kızım, bu sana yürüyor 😂', 'Ben gitsem mi, sizi yalnız mı bıraksam? 😏', 'Vay, çok tatlı 🥰'];
+  const GJ_BAD = ['Hadi ya 🙄', '*gözlerini devirir*', 'Bu biraz fazlaydı 😅', 'Kızım, gidelim mi? 😒', 'Ayy, utandım senin yerine 🙈', 'Başka bir şey dene istersen 😂'];
+  // 🏖️ sahilde toplananlar (isimsiz)
+  const BEACH_CONV = ['Kumdan kale yapalım 🏰', 'Sırtıma krem sürer misin? 🧴', 'Cankurtaran çok yakışıklı 😍', 'Su soğuk mu? 🥶', 'Martılar simidimi kaptı! 🐦', 'Güneş gözlüğümü gördün mü? 🕶️', 'Bir tur daha yüzelim 🏊‍♀️', 'Bronzlaşmışım bak! ☀️', 'Su çok güzel bugün! 🌊', 'Güneş kremini verir misin? 🧴', 'Voleybol oynayalım mı? 🏐', 'Şu cankurtaran bakıyor bize 👀', 'Bikinim nasıl olmuş? 👙', 'Bir kokteyl daha alalım 🍹', 'Yanmışım galiba 😩', 'Akşam plaj partisi var 🎶', 'Dondurma isteyen? 🍦', 'Fotoğraf çekelim, ışık harika 📸', 'Denize kim önce girecek? 😄', 'Şu dalgalara bak! 🏄‍♀️'];
+  const PHONE = [
+    ['Alo anne? Evet, yoldayım…', 'Hayır yemek yedim, merak etme', 'Tamam, akşam ararım 😘'],
+    ['Kızım sen deli misin? 😂', 'Gerçekten öyle mi dedi?', 'Bayıldım, anlat anlat!'],
+    ['Aşkım neredesin? 😒', 'Yarım saattir bekliyorum…', 'Tamam, hemen gel ama 💕'],
+    ['Evet efendim, toplantıya yetişirim', 'Dosyalar masanızda', 'İyi günler 🙂'],
+    ['Bu akşam boş musun? 😏', 'Bizde film izleriz…', 'Şarabı sen getir 🍷'],
+    ['Alo? Seni duyamıyorum!', 'Şimdi? Şimdi duyuyor musun?', 'Of, çekmiyor burası 📶'],
+    ['Pizza siparişi vermek istiyorum 🍕', 'Bol peynirli olsun', 'Adres sahil yolu, teşekkürler'],
+    ['Of, yine mi sen? 🙄', 'Sana söyledim, bitti', 'Arama bir daha!'],
+    ['Kanka bu akşam kulübe gidiyoruz 🪩', 'Listeye adımı yazdırdın mı?', 'Süper, 11\'de kapıdayım'],
+    ['Doktor bey, randevumu değiştirebilir miyiz?', 'Yarın öğleden sonra olur', 'Çok teşekkürler 🙏'],
+    ['Biliyor musun, bugün biriyle tanıştım 😳', 'Çok tatlıydı ya…', 'Sonra anlatırım, şimdi sokaktayım 🙈'],
+    ['Hayatım, kargon geldi mi? 📦', 'O elbise senin için değil, benim için 😏', 'Akşam görürsün 😘']
+  ];
   // 🚗 arabadan laf / 📯 korna / 💡 selektör
   const LAF_CAR = ['Atla da gezdireyim 😏🚗', 'Yürümekten yorulmadın mı? Bin hadi 😉', 'Bu kadar güzel yürüme, kaza yapacağım 😳', 'Nereye böyle? Bırakayım seni 😘', 'Camı açtım sırf senin için 😏', 'Yan koltuk boş, haberin olsun 💋'];
   const LAF_HONK = ['📯 Düt düt! 😏', '📯 Bip bip! Bakar mısın? 😘', '📯 Düüüt! Hey, sana diyorum 😄', '📯 *iki kez korna çalar* 😉'];
   const LAF_FLASH = ['💡💡 *selektör yapar* 😏', '💡 *farları yakıp söndürür* Hey sen! 😉', '💡💡 *göz kırpar gibi selektör* 😘'];
   // araç türleri: [uzunluk, genişlik]
-  const CAR_K = { sedan: [28, 15], hatch: [23, 14], suv: [31, 17], spor: [30, 14], van: [34, 17], pickup: [32, 16], cabrio: [28, 15], polis: [29, 15], bus: [52, 18] };
+  const CAR_K = { sedan: [38, 20], hatch: [31, 19], suv: [42, 23], spor: [40, 19], van: [46, 23], pickup: [43, 22], cabrio: [38, 20], polis: [39, 20], bus: [70, 24] };
   const CAR_MIX = ['sedan', 'sedan', 'sedan', 'hatch', 'hatch', 'suv', 'suv', 'spor', 'van', 'pickup', 'cabrio', 'polis', 'bus'];
   const OWN_K = ['sedan', 'hatch', 'suv', 'spor', 'cabrio', 'pickup', 'van'];
   const WED_T = { bad: ['Kocam buralarda olabilir 😳', 'Evliyim, unuttun mu? 😅'], ok: ['Kocam duymasın ama… 😏', 'Yüzüğüme bakma 🤫'] };
@@ -564,11 +715,13 @@ Stories.City = (() => {
     root.innerHTML = `<canvas class="ct-cv"></canvas>
       <div class="ct-top"><span class="ct-brand">🏙️ Carmen<i>City</i></span><span class="ct-clock"><b id="ctClk">--:--</b><small id="ctPh"></small></span><button type="button" class="ct-btn" id="ctSp"></button></div>
       <button type="button" class="ct-tick" id="ctTick"><span></span></button>
-      <div class="ct-side"><button type="button" class="ct-btn" data-ct="me" title="Bana odaklan">🎯</button><button type="button" class="ct-btn" data-ct="in">＋</button><button type="button" class="ct-btn" data-ct="out">－</button></div>
+      <div class="ct-side"><button type="button" class="ct-btn ct-phone" data-ct="phone" title="Şehir sohbetleri">📱<i class="ct-dot" hidden></i></button><button type="button" class="ct-btn" data-ct="car" title="Araban">🚗</button><button type="button" class="ct-btn" data-ct="me" title="Bana odaklan">🎯</button><button type="button" class="ct-btn" data-ct="in">＋</button><button type="button" class="ct-btn" data-ct="out">－</button></div>
       <button type="button" class="ct-btn ct-exit" id="ctExit" hidden>🚪 Dışarı çık</button>
       <div class="ct-card" id="ctCard" hidden></div>`;
     const cv = root.querySelector('.ct-cv'), ctx = cv.getContext('2d'), card = root.querySelector('#ctCard'), clk = root.querySelector('#ctClk'), phEl = root.querySelector('#ctPh'), spBtn = root.querySelector('#ctSp');
     const sv = load() || {}, met = sv.met || {};
+    // 👫 sohbete geçtiğin kişi(ler): sohbetten dönünce yanında olur (3 saat içinde dönersen)
+    let withIds = Array.isArray(sv.wth) ? sv.wth : [], wthAt = sv.wthAt || 0;
     let sp = SPEEDS.some(s => s[0] === sv.sp) ? sv.sp : 60;
     const nowMin = () => { const d = new Date(); return d.getHours() * 60 + d.getMinutes(); };
     let gm = sv.gm != null ? (sv.gm + (Date.now() - (sv.at || Date.now())) / 1000 * sp / 60) % 1440 : nowMin();
@@ -579,6 +732,13 @@ Stories.City = (() => {
     const me = { x: sv.px ? sv.px * svK : home0[0], y: sv.py ? sv.py * svK : home0[1], a: 0, path: null, pi: 0, dest: null, chase: null, tries: 0, ix: RW / 2, iy: RH - 30, itx: RW / 2, ity: RH - 30 };
     let cw = 0, ch = 0, dpr = 1, follow0 = true, sel = null, lastH = -1, t0 = performance.now(), tNow = 0, savedAt = 0, alive = true, talk = null;
     const cam = { x: me.x, y: me.y, z: 1.5 };
+    // 🚗 araban: ilk açılışta evinin önündeki yolda park hâlinde; sürüyorsan (dr) seninle
+    const myCar = (() => {
+      if (Array.isArray(sv.car)) return { x: sv.car[0] * svK, y: sv.car[1] * svK, sa: +sv.car[2] || 0 };
+      const n = wd.nodes[wd.nearest(home0[0], home0[1], 1)], m = wd.nodes[(n.adj[0] || [wd.nodes.indexOf(n)])[0]] || n, sa = Math.atan2(m.y - n.y, m.x - n.x);
+      return { x: n.x - Math.sin(sa) * n.hw * .8, y: n.y + Math.cos(sa) * n.hw * .8, sa };
+    })();
+    me.drive = !!sv.dr; me.sa = me.a;
 
     // 👥 karakterler (saatine göre) + 🙋‍♀️ yabancılar (kendi kafasına göre)
     const homes = api.homes();
@@ -586,6 +746,8 @@ Stories.City = (() => {
     const day = Math.floor(Date.now() / 864e5);
     const strs = api.strangers().filter(x => x.photo).sort((a, b) => hash([a.id, day]) - hash([b.id, day])).slice(0, 56);
     const ag = [...api.chars().map(c => mkAg(c, false)), ...strs.map(c => mkAg(c, true))];
+    // 🚶 rutinsiz yayalar da carmen.com kızları (fotoğraflı); dokununca yabancı karaktere dönüşür (promote)
+    const pedPool = api.strangers().filter(x => x.photo && !ag.some(a => a.id === x.id)).sort((a, b) => hash([a.id, day, 'p']) - hash([b.id, day, 'p']));
     // 🎉 bugünün etkinlikleri (5 tane, saate göre sıralı) + 🪧 pano reklamları
     const evDay = EVENTS.slice().sort((p, q) => hash([p.id, day]) - hash([q.id, day])).slice(0, 5).sort((p, q) => p.h[0] - q.h[0]);
     const evNow = h => evDay.filter(e => evOn(e, h));
@@ -613,7 +775,7 @@ Stories.City = (() => {
         pts = [...ex.pre, ...carPath(roadOf(ex.s), roadOf(pl.node))];
         pts.push(pl.area ? sidePt(pl.node) : towardB(pl.node, pl.x, pl.y));
       } else {
-        pts = [...ex.pre, ...walkPath(route(ex.s, pl.node), ...from)];
+        pts = [...ex.pre, ...walkPath(route(ex.s, pl.node), ...from, laneOf(a))];
         if (!pl.area) pts[pts.length - 1] = towardB(pl.node, pl.x, pl.y);
         if (pl.area) pts.push(areaPt(pl, pts[pts.length - 1]));
       }
@@ -640,7 +802,7 @@ Stories.City = (() => {
     const STR_DAY = ['sahil', 'sahil', 'park', 'park', 'lunapark', 'kafe', 'magaza', 'spor', 'masaj'], STR_NIGHT = ['kulup', 'gazino', 'pub', 'sinema', 'sahil', 'lunapark'];
     function strNext(a) {
       const h = hourOf();
-      if (Math.random() < .35) { const ex = exitOf(a); a.k = '~'; a.to = null; a.path = [...ex.pre, ...walkPath(route(ex.s, (Math.random() * wd.nodes.length) | 0), ...(ex.pre[0] || [a.x, a.y]))]; a.pi = 0; a.st = 'walk'; a.w = { doing: 'sokakta yürüyor 🚶‍♀️' }; return; }
+      if (Math.random() < .35) { const ex = exitOf(a); a.k = '~'; a.to = null; a.path = [...ex.pre, ...walkPath(route(ex.s, (Math.random() * wd.nodes.length) | 0), ...(ex.pre[0] || [a.x, a.y]), laneOf(a))]; a.pi = 0; a.st = 'walk'; a.w = { doing: 'sokakta yürüyor 🚶‍♀️' }; return; }
       const evs = evNow(h), ev = evs.length && Math.random() < .55 ? pickA(evs) : null;
       a.to = ev ? ev.k : pickA(h >= 20 || h < 5 ? STR_NIGHT : STR_DAY);
       a.w = { doing: ev ? ev.doing : api.doing(a.to) };
@@ -657,17 +819,70 @@ Stories.City = (() => {
     const CAR_C = ['#e53935', '#1e88e5', '#fdd835', '#43a047', '#f5f5f5', '#212121', '#8e24aa', '#fb8c00'];
     const rndRoad = () => wd.roadNodes[(R() * wd.roadNodes.length) | 0];
     // ⚡ yaya / araba yeni rotası: yayalar yakındaki bir düğüme gider (kısa A*); kare başına en çok ROUTE_N rota, gerisi sırada bekler
-    const ROUTE_N = 4;
+    const ROUTE_N = 10;
     let routeLeft = ROUTE_N;
     const newTrip = o => {
+      // 🚗 kameradan çok uzaktaki araba da ekranın dışındaki yakın bir yoldan yeniden başlar (trafik hep çevrende)
+      if (o.car && tNow > 0 && Math.hypot(o.x - cam.x, o.y - cam.y) > 1800) {
+        const j = nearCamNode();
+        if (j >= 0) { const n = wd.nodes[wd.nearest(wd.nodes[j].x, wd.nodes[j].y, 1)]; if (!vis(n.x, n.y, 40)) { o.x = n.x; o.y = n.y; } }
+      }
+      if (!o.car && tNow > 0 && Math.hypot(o.x - cam.x, o.y - cam.y) > 1500) {
+        const j = nearCamNode();
+        if (j >= 0) {
+          [o.x, o.y] = sidePt(j);
+          // karaktere dönüşmüş yayanın yerine yeni bir kız
+          if (o.gone && pedPool.length) { const c = pedPool[(R() * pedPool.length) | 0]; if (!ag.some(a => a.id === c.id)) { o.c = c; o.skin = SKIN_C[api.skin(c)] || '#e0b48e'; o.gone = false; } }
+        }
+      }
       const from = wd.nearest(o.x, o.y, o.car);
       let to = o.car ? rndRoad() : (R() * wd.nodes.length) | 0;
       if (!o.car) for (let k = 0; k < 6; k++) { const j = (R() * wd.nodes.length) | 0; if (Math.hypot(wd.nodes[j].x - o.x, wd.nodes[j].y - o.y) < 700) { to = j; break; } }
-      o.path = offPath(route(from, to, o.car), o.car ? n => n.hw * .5 : n => walkSide(n) * o.side); o.pi = 0;
+      o.path = offPath(route(from, to, o.car), o.car ? n => n.hw * .5 : n => (walkSide(n) + o.lane) * o.side); o.pi = 0;
     };
-    const cars = Array.from({ length: 60 }, (_, i) => {
+    // 🚗 öndeki araca yaklaşınca yavaşla / dur; 2,5 sn'den uzun beklerse geçer (kavşak kilitlenmesin)
+    let drvs = [];
+    const carLen = o => (CAR_K[o.kind || (o.car && o.car.kind)] || CAR_K.sedan)[0];
+    function carFactor(o, dt) {
+      const an = o.sa || 0, ca = Math.cos(an), sn = Math.sin(an), L = carLen(o);
+      let f = 1;
+      for (const q of drvs) {
+        if (q === o) continue;
+        const dx = q.x - o.x, dy = q.y - o.y;
+        if (Math.abs(dx) > 90 || Math.abs(dy) > 90) continue;
+        const ahead = dx * ca + dy * sn, side = -dx * sn + dy * ca;
+        if (ahead <= 0 || Math.abs(side) > 14) continue;
+        const gap = ahead - (L + carLen(q)) / 2;
+        if (gap < 30) f = Math.min(f, Math.max(0, (gap - 6) / 24));
+      }
+      if (f < .05) { o.wt = (o.wt || 0) + dt; if (o.wt > 2.5) return 1; } else o.wt = 0;
+      return f;
+    }
+    // 🚶 yayalar üst üste binmesin: ekrandakilerden çok yakın ikisini birbirinden it (sen ve duranlar itilmez, binaya girilmez)
+    function separate(dt) {
+      const C = 16, R2 = CS * .9, g = new Map(), L = [];
+      const add = (o, fix) => { if (!vis(o.x, o.y, 60)) return; const k = Math.floor(o.x / C) + ',' + Math.floor(o.y / C); let c = g.get(k); if (!c) g.set(k, c = []); c.push(o); L.push(o); o.fx = fix; };
+      peds.forEach(o => { if (!o.gone) add(o, false); });
+      ag.forEach(a => { if (a.st !== 'in' && !a.drive && !a.inCar) add(a, !!a.hold || !!a.grp || a.st === 'stand'); });
+      if (!inside && !me.taxi && !me.drive) add(me, true);
+      const m = Math.min(1, dt * 10);
+      for (const o of L) {
+        if (o.fx) continue;
+        const gx = Math.floor(o.x / C), gy = Math.floor(o.y / C);
+        for (let i = -1; i <= 1; i++) for (let j = -1; j <= 1; j++) for (const q of g.get((gx + i) + ',' + (gy + j)) || []) {
+          if (q === o) continue;
+          const dx = o.x - q.x, dy = o.y - q.y, d = Math.hypot(dx, dy);
+          if (d >= R2 || d < .01) continue;
+          const push = (R2 - d) * (q.fx ? 1 : .5) * m, nx = o.x + dx / d * push, ny = o.y + dy / d * push;
+          if (!wd.solid(nx, ny)) { o.x = nx; o.y = ny; }
+        }
+      }
+    }
+    const cars = Array.from({ length: 150 }, (_, i) => {
       const n = wd.nodes[rndRoad()], taxi = i % 6 === 0, kind = taxi ? 'sedan' : CAR_MIX[(R() * CAR_MIX.length) | 0];
       const o = { car: 1, x: n.x, y: n.y, a: 0, sa: 0, sp: kind === 'bus' ? 70 + R() * 15 : kind === 'spor' ? 140 + R() * 40 : 95 + R() * 45, col: CAR_C[i % CAR_C.length], taxi, kind };
+      // 🧑‍🤝‍🧑 yolcular (şoför dahil): koltuk sayısı kadar, çoğu 1–3 kişi; otobüs kalabalık
+      if (pedPool.length) o.pax = Array.from({ length: Math.min(CAR_SEAT[kind] || 4, 1 + ((R() * (kind === 'bus' ? 8 : 3.4)) | 0)) }, () => pedPool[(R() * pedPool.length) | 0]);
       newTrip(o); return o;
     });
     // 🚘 bazı karakterlerin arabası var (id'ye göre sabit: tanıdıklar %40, yabancılar %25)
@@ -676,9 +891,48 @@ Stories.City = (() => {
       a.car = h % 100 < (a.str ? 25 : 40) ? { kind: OWN_K[(h >>> 7) % OWN_K.length], col: CAR_C[(h >>> 11) % CAR_C.length], sp: 110 + (h >>> 3) % 40 } : null;
     });
     const PED_C = ['#ef9a9a', '#90caf9', '#a5d6a7', '#ffe082', '#ce93d8', '#ffab91', '#80cbc4', '#f48fb1'];
-    const peds = Array.from({ length: 220 }, (_, i) => { const n = wd.nodes[(R() * wd.nodes.length) | 0], o = { x: n.x, y: n.y, a: 0, sa: 0, sp: 24 + R() * 16, col: PED_C[i % PED_C.length], side: R() < .5 ? 1 : -1, path: [], pi: 0 }; return o; });
+    const peds = Array.from({ length: 520 }, (_, i) => { const n = wd.nodes[(R() * wd.nodes.length) | 0], o = { x: n.x, y: n.y, a: 0, sa: 0, sp: 24 + R() * 16, col: PED_C[i % PED_C.length], side: R() < .5 ? 1 : -1, lane: (R() - .5) * 20, path: [], pi: 0 };
+      const c = pedPool.length ? pedPool[i % pedPool.length] : null;
+      if (c) { o.c = c; o.skin = SKIN_C[api.skin(c)] || '#e0b48e'; } return o; });
     const pedBy = PED_C.map(c => peds.filter(o => o.col === c));
     const movers = [...cars, ...peds];
+    // 🏖️ sahilde güneşlenenler (havlu üstünde uzanır, 08–19) + ayakta toplanan küçük gruplar (isimsiz, 08–21, ara ara baloncuk)
+    const pickR = L => L[(R() * L.length) | 0], beachOn = h2 => { const h = hourOf(); return h >= 8 && h < h2; };
+    const SUN_C = ['#ff6b6b', '#4dabf7', '#ffd93d', '#ff8cc6', '#69db7c', '#b197fc', '#ffa94d'], SKN = ['#f0cfb6', '#d9a77c', '#c38959', '#99633e', '#f7e3d6'];
+    const sunb = [], bgrp = [];
+    wd.beachPts.forEach((c, i) => {
+      for (let j = 0; j < 2; j++) if (R() < .6) { const d = 35 + R() * 140, x = c.x + c.lx * d + (R() - .5) * 20, y = c.y + c.ly * d + (R() - .5) * 20; if (!wd.nearRoad(x, y, SW) && !wd.inSea(x, y)) sunb.push({ x, y, a: c.a + (R() - .5) * .7, tw: pickR(SUN_C), sk: pickR(SKN), bk: pickR(SUN_C) }); }
+      if (i % 4 === 1) {
+        const d = 55 + R() * 110, x = c.x + c.lx * d, y = c.y + c.ly * d, n = 2 + ((R() * 3) | 0);
+        if (!wd.nearRoad(x, y, SW + 10) && !wd.inSea(x, y)) bgrp.push({ x, y, who: 0, txt: '', t: 0, next: 2000 + R() * 9000, m: Array.from({ length: n }, (_, j) => { const an = j / n * Math.PI * 2 + R(), c = pedPool.length ? pickR(pedPool) : null; return { x: x + Math.cos(an) * 15, y: y + Math.sin(an) * 15, col: pickR(PED_C), c, skin: c ? SKIN_C[api.skin(c)] || '#e0b48e' : '' }; }) });
+      }
+    });
+    // 🚗 araba içi sohbet: 2+ yolculu ekrandaki arabalarda ara ara baloncuk
+    function carChat() {
+      for (const o of cars) {
+        if (!o.pax || o.pax.length < 2 || tNow < (o.ctN || 0)) continue;
+        o.ctN = tNow + 4000 + Math.random() * 7000;
+        if (!vis(o.x, o.y, 80) || Math.random() > .5) continue;
+        o.ctTxt = pickA(o.kind === 'bus' ? BUS_CONV : CAR_CONV); o.ctT = tNow;
+      }
+    }
+    function beachStep() {
+      if (!beachOn(21)) return;
+      bgrp.forEach(g => { if (tNow > g.next) { g.who = (g.who + 1) % g.m.length; g.txt = pickA(BEACH_CONV); g.t = tNow; g.next = tNow + 4000 + Math.random() * 8000; } });
+    }
+    // 🚶 sokaklar dolu kalsın: işi biten yaya kameradan uzaktaysa ekranın hemen dışındaki bir düğümde yeniden başlar
+    // dokunulan yaya gerçek yabancı karakter olur (kart, süz, ayaküstü konuşma); yayanın yerini alır
+    function promote(o) {
+      if (ag.some(a => a.id === o.c.id)) return null;
+      const a = mkAg(o.c, true);
+      a.x = o.x; a.y = o.y; a.k = '~'; a.st = 'stand'; a.w = { doing: 'sokakta yürüyor 🚶‍♀️' }; a.next = tNow + 4000; a.car = null;
+      ag.push(a); o.gone = true;
+      return a;
+    }
+    function nearCamNode() {
+      for (let k = 0; k < 14; k++) { const i = (R() * wd.nodes.length) | 0, n = wd.nodes[i]; if (Math.hypot(n.x - cam.x, n.y - cam.y) < 1100 && !vis(n.x, n.y, 30)) return i; }
+      return -1;
+    }
     // 🚕 taksi: kartta "Taksiyle git" → yakındaki bir yoldan sarı taksi gelir, binersin, hedefin önünde inersin (yürümekten ~2,5× hızlı)
     let taxi = null;
     const TAXI_SP = 240;
@@ -738,22 +992,23 @@ Stories.City = (() => {
     const vis = (x, y, m) => Math.abs(x - cam.x) * cam.z < cw / 2 + m * cam.z && Math.abs(y - cam.y) * cam.z < ch / 2 + m * cam.z;
     const tagK = () => 1.15 / Math.pow(cam.z, .65);
     function drawGround(t) {
-      ctx.fillStyle = '#d3e4bb'; ctx.fillRect(X0 - 400, Y0 - 400, W - X0 + 800, H - Y0 + 800);
+      ctx.fillStyle = '#b9c99b'; ctx.fillRect(X0 - 400, Y0 - 400, W - X0 + 800, H - Y0 + 800);
       ctx.save(); ctx.scale(SC, SC);
-      ctx.fillStyle = '#cfe5b3'; ctx.beginPath(); ctx.ellipse(-650, 820, 720, 820, 0, 0, Math.PI * 2); ctx.fill(); ctx.beginPath(); ctx.ellipse(1300, -470, 1550, 470, 0, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = '#e6e0d5'; ctx.beginPath(); ctx.ellipse(1650, 860, 820, 540, -.08, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = '#cfe5b3'; ctx.beginPath(); ctx.ellipse(430, 470, 470, 430, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#aec290'; ctx.beginPath(); ctx.ellipse(-650, 820, 720, 820, 0, 0, Math.PI * 2); ctx.fill(); ctx.beginPath(); ctx.ellipse(1300, -470, 1550, 470, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#d6d2c9'; ctx.beginPath(); ctx.ellipse(1650, 860, 820, 540, -.08, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#b3c695'; ctx.beginPath(); ctx.ellipse(430, 470, 470, 430, 0, 0, Math.PI * 2); ctx.fill();
       ctx.restore();
       FIELDS.forEach(([x, y, w, h, a, b]) => { ctx.fillStyle = a; ctx.fillRect(x, y, w, h); ctx.strokeStyle = b; ctx.lineWidth = 4; ctx.beginPath(); for (let i = 8; i < w; i += 14) { ctx.moveTo(x + i, y + 4); ctx.lineTo(x + i, y + h - 4); } ctx.stroke(); });
       // 🌳 park + göl
-      ctx.fillStyle = '#a7d38b'; ctx.beginPath(); ctx.ellipse(PKX, PKY, 205, 265, 0, 0, Math.PI * 2); ctx.fill();
-      ctx.strokeStyle = '#efe3c4'; ctx.lineWidth = 14; ctx.beginPath(); ctx.ellipse(PKX, PKY, 130, 169, 0, 0, Math.PI * 2); ctx.stroke();
-      ctx.fillStyle = '#7cc3e8'; ctx.beginPath(); ctx.ellipse(PKX, PKY, 88, 118, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#8fb873'; ctx.beginPath(); ctx.ellipse(PKX, PKY, 205, 265, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = '#ddd0ae'; ctx.lineWidth = 14; ctx.beginPath(); ctx.ellipse(PKX, PKY, 130, 169, 0, 0, Math.PI * 2); ctx.stroke();
+      ctx.fillStyle = '#5ea9cf'; ctx.beginPath(); ctx.ellipse(PKX, PKY, 88, 118, 0, 0, Math.PI * 2); ctx.fill();
       ctx.strokeStyle = 'rgba(255,255,255,.5)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(PKX, PKY, 60 + (t * 6) % 24, 85 + (t * 8) % 30, 0, 0, Math.PI * 2); ctx.stroke();
       // 🏖️ kum + deniz
       ctx.lineJoin = ctx.lineCap = 'round';
-      ctx.strokeStyle = '#f1dea6'; ctx.lineWidth = 260; ctx.stroke(wd.coastPath);
-      const sg = ctx.createLinearGradient(1500 * SC, 1700 * SC, 2600 * SC, 2400 * SC); sg.addColorStop(0, '#4fb0e0'); sg.addColorStop(1, '#2a77b3');
+      ctx.strokeStyle = '#e6d3a1'; ctx.lineWidth = 390; ctx.stroke(wd.coastPath);
+      ctx.strokeStyle = '#d9c38d'; ctx.lineWidth = 60; ctx.stroke(wd.coastPath);
+      const sg = ctx.createLinearGradient(1500 * SC, 1700 * SC, 2600 * SC, 2400 * SC); sg.addColorStop(0, '#3f9cc9'); sg.addColorStop(1, '#1d5a8c');
       ctx.fillStyle = sg; ctx.fill(wd.seaPath);
       ctx.strokeStyle = 'rgba(255,255,255,.55)'; ctx.lineWidth = 3;
       ctx.beginPath();
@@ -771,19 +1026,24 @@ Stories.City = (() => {
     function drawRoads() {
       ctx.lineJoin = ctx.lineCap = 'round';
       // kapı yolları
-      ctx.strokeStyle = '#d9d3c7'; ctx.lineWidth = 16; ctx.beginPath();
+      ctx.strokeStyle = '#cbc6bc'; ctx.lineWidth = 30; ctx.beginPath();
       BLD.forEach(b => { const n = wd.nodes[PL[b.k].node]; ctx.moveTo(b.x, b.y); ctx.lineTo(n.x, n.y); });
       ctx.stroke();
       // 🚶 yaya yolları (kenar + taş döşeme)
-      wd.foots.forEach(f => { ctx.strokeStyle = '#c9bb9c'; ctx.lineWidth = 18; ctx.stroke(f.path); });
-      wd.foots.forEach(f => { ctx.strokeStyle = '#f1e7d0'; ctx.lineWidth = 14; ctx.stroke(f.path); });
-      if (cam.z >= .8) { ctx.setLineDash([2, 7]); ctx.strokeStyle = 'rgba(120,100,70,.18)'; ctx.lineWidth = 12; wd.foots.forEach(f => ctx.stroke(f.path)); ctx.setLineDash([]); }
-      // kaldırım (kenar çizgisi + taş), asfalt, şerit çizgisi
-      wd.roads.forEach(r => { ctx.strokeStyle = '#b9b1a3'; ctx.lineWidth = ROAD_W[r.t] + SW * 2 + 3; ctx.stroke(r.path); });
-      wd.roads.forEach(r => { ctx.strokeStyle = '#ddd6ca'; ctx.lineWidth = ROAD_W[r.t] + SW * 2; ctx.stroke(r.path); });
-      wd.roads.forEach(r => { ctx.strokeStyle = '#8f8a82'; ctx.lineWidth = ROAD_W[r.t] + 3; ctx.stroke(r.path); });
-      wd.roads.forEach(r => { ctx.strokeStyle = r.t === 'coast' ? '#565c6b' : '#4b4f5c'; ctx.lineWidth = ROAD_W[r.t]; ctx.stroke(r.path); });
-      ctx.setLineDash([18, 18]); ctx.strokeStyle = '#f2c94c'; ctx.lineWidth = 3;
+      wd.foots.forEach(f => { ctx.strokeStyle = '#b3a68a'; ctx.lineWidth = 34; ctx.stroke(f.path); });
+      wd.foots.forEach(f => { ctx.strokeStyle = '#e2d7bf'; ctx.lineWidth = 30; ctx.stroke(f.path); });
+      if (cam.z >= .8) { ctx.setLineDash([2, 7]); ctx.strokeStyle = 'rgba(120,100,70,.18)'; ctx.lineWidth = 26; wd.foots.forEach(f => ctx.stroke(f.path)); ctx.setLineDash([]); }
+      // kaldırım (kenar çizgisi + taş), asfalt, kenar şeritleri, orta şerit
+      wd.roads.forEach(r => { ctx.strokeStyle = '#9f998f'; ctx.lineWidth = ROAD_W[r.t] + SW * 2 + 3; ctx.stroke(r.path); });
+      wd.roads.forEach(r => { ctx.strokeStyle = '#ccc7be'; ctx.lineWidth = ROAD_W[r.t] + SW * 2; ctx.stroke(r.path); });
+      if (cam.z >= .8) { ctx.setLineDash([1.5, 9]); ctx.strokeStyle = 'rgba(90,85,78,.22)'; wd.roads.forEach(r => { ctx.lineWidth = ROAD_W[r.t] + SW * 2 - 4; ctx.stroke(r.path); }); ctx.setLineDash([]); }
+      wd.roads.forEach(r => { ctx.strokeStyle = '#7a7772'; ctx.lineWidth = ROAD_W[r.t] + 3; ctx.stroke(r.path); });
+      wd.roads.forEach(r => { ctx.strokeStyle = r.t === 'coast' ? '#4b4e55' : '#424449'; ctx.lineWidth = ROAD_W[r.t]; ctx.stroke(r.path); });
+      if (cam.z >= .6) {
+        wd.roads.forEach(r => { if (r.t === 'st') return; ctx.strokeStyle = 'rgba(235,235,230,.6)'; ctx.lineWidth = ROAD_W[r.t] - 8; ctx.stroke(r.path); });
+        wd.roads.forEach(r => { if (r.t === 'st') return; ctx.strokeStyle = r.t === 'coast' ? '#4b4e55' : '#424449'; ctx.lineWidth = ROAD_W[r.t] - 11; ctx.stroke(r.path); });
+      }
+      ctx.setLineDash([18, 18]); ctx.strokeStyle = '#e8bd3f'; ctx.lineWidth = 3;
       wd.roads.forEach(r => { if (r.t !== 'ring') ctx.stroke(r.path); });
       ctx.setLineDash([]);
       // 🦓 yaya geçitleri: kavşak düğümlerinin dalları üstünde
@@ -829,12 +1089,22 @@ Stories.City = (() => {
     function drawTrees() {
       const T = wd.trees.filter(p => vis(p[0], p[1], 30));
       ctx.fillStyle = 'rgba(0,0,0,.14)'; ctx.beginPath(); T.forEach(([x, y, r]) => { ctx.moveTo(x + 5 + r, y + 6); ctx.arc(x + 5, y + 6, r, 0, Math.PI * 2); }); ctx.fill();
-      ['#5f9e4c', '#4c8a43'].forEach((c, s) => { ctx.fillStyle = c; ctx.beginPath(); T.forEach(([x, y, r, k]) => { if (k !== s) return; ctx.moveTo(x + r, y); ctx.arc(x, y, r, 0, Math.PI * 2); }); ctx.fill(); });
+      ['#4f8a3f', '#3e7334'].forEach((c, s) => { ctx.fillStyle = c; ctx.beginPath(); T.forEach(([x, y, r, k]) => { if (k !== s) return; ctx.moveTo(x + r, y); ctx.arc(x, y, r, 0, Math.PI * 2); }); ctx.fill(); });
       ctx.fillStyle = 'rgba(255,255,255,.16)'; ctx.beginPath(); T.forEach(([x, y, r]) => { ctx.moveTo(x - r * .25 + r * .45, y - r * .3); ctx.arc(x - r * .25, y - r * .3, r * .45, 0, Math.PI * 2); }); ctx.fill();
       ctx.strokeStyle = '#3f8f45'; ctx.lineWidth = 5; ctx.lineCap = 'round'; ctx.beginPath();
       wd.palms.forEach(([x, y, r]) => { if (!vis(x, y, 30)) return; for (let i = 0; i < 5; i++) { const a = r + i * 1.26; ctx.moveTo(x, y); ctx.quadraticCurveTo(x + Math.cos(a) * 12, y + Math.sin(a) * 12 - 4, x + Math.cos(a) * 20, y + Math.sin(a) * 20); } });
       ctx.stroke();
       ctx.fillStyle = '#8d6e3f'; ctx.beginPath(); wd.palms.forEach(([x, y]) => { if (vis(x, y, 30)) { ctx.moveTo(x + 4, y); ctx.arc(x, y, 4, 0, Math.PI * 2); } }); ctx.fill();
+      // 🏖️ güneşlenenler: havlu + uzanmış beden + mayo
+      if (beachOn(19)) sunb.forEach(s => {
+        if (!vis(s.x, s.y, 30)) return;
+        ctx.save(); ctx.translate(s.x, s.y); ctx.rotate(s.a);
+        ctx.fillStyle = s.tw; ctx.fillRect(-15, -7, 30, 14);
+        ctx.fillStyle = 'rgba(255,255,255,.35)'; ctx.fillRect(-15, -2, 30, 2);
+        ctx.fillStyle = s.sk; ctx.beginPath(); ctx.ellipse(-1, 0, 10, 3.6, 0, 0, Math.PI * 2); ctx.moveTo(14.6, 0); ctx.arc(11, 0, 3.6, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = s.bk; ctx.fillRect(2, -3.4, 3, 6.8); ctx.fillRect(-6, -3.4, 3.5, 6.8);
+        ctx.restore();
+      });
       wd.umbs.forEach(([x, y, c]) => {
         if (!vis(x, y, 30)) return;
         ctx.fillStyle = '#fff'; ctx.fillRect(x + 6, y + 2, 16, 8);
@@ -842,52 +1112,165 @@ Stories.City = (() => {
         ctx.strokeStyle = 'rgba(255,255,255,.7)'; ctx.lineWidth = 1.5; ctx.beginPath(); for (let i = 0; i < 4; i++) { const a = i * Math.PI / 4; ctx.moveTo(x - Math.cos(a) * 13, y - Math.sin(a) * 13); ctx.lineTo(x + Math.cos(a) * 13, y + Math.sin(a) * 13); } ctx.stroke();
       });
     }
+    // 🏠 kırma çatı: 4 yüz (ışık kuzeybatıdan), mahya + köşe çizgileri, kiremit sırası, baca / güneş paneli
+    function hipRoof(x, y, w, d, s) {
+      const hor = w >= d, r = (hor ? d : w) / 2, q = Math.min(r, (hor ? w : d) / 2);
+      const [ax, ay, bx, by] = hor ? [x + q, y + r, x + w - q, y + r] : [x + r, y + q, x + r, y + d - q];
+      const face = (pts, c) => { ctx.fillStyle = c; ctx.beginPath(); pts.forEach(([px, py], i) => (i ? ctx.lineTo(px, py) : ctx.moveTo(px, py))); ctx.closePath(); ctx.fill(); };
+      const A = [ax, ay], B = [bx, by], c00 = [x, y], c10 = [x + w, y], c01 = [x, y + d], c11 = [x + w, y + d];
+      if (hor) { face([c00, c10, B, A], 'rgba(255,255,255,.2)'); face([c01, c11, B, A], 'rgba(0,0,0,.16)'); face([c00, c01, A], 'rgba(0,0,0,.05)'); face([c10, c11, B], 'rgba(255,255,255,.08)'); }
+      else { face([c00, c01, B, A], 'rgba(255,255,255,.2)'); face([c10, c11, B, A], 'rgba(0,0,0,.16)'); face([c00, c10, A], 'rgba(255,255,255,.08)'); face([c01, c11, B], 'rgba(0,0,0,.05)'); }
+      if (cam.z >= 1.1) {
+        ctx.strokeStyle = 'rgba(0,0,0,.08)'; ctx.lineWidth = 1; ctx.beginPath();
+        for (let i = 4; i < r - 1; i += 4) {
+          if (hor) { ctx.moveTo(x + i, y + i); ctx.lineTo(x + w - i, y + i); ctx.moveTo(x + i, y + d - i); ctx.lineTo(x + w - i, y + d - i); }
+          else { ctx.moveTo(x + i, y + i); ctx.lineTo(x + i, y + d - i); ctx.moveTo(x + w - i, y + i); ctx.lineTo(x + w - i, y + d - i); }
+        }
+        ctx.stroke();
+      }
+      ctx.strokeStyle = 'rgba(0,0,0,.3)'; ctx.lineWidth = 1.3; ctx.beginPath();
+      ctx.moveTo(ax, ay); ctx.lineTo(bx, by);
+      ctx.moveTo(x, y); ctx.lineTo(ax, ay); ctx.lineTo(hor ? x : x + w, hor ? y + d : y);
+      ctx.moveTo(hor ? x + w : x, hor ? y : y + d); ctx.lineTo(bx, by); ctx.lineTo(x + w, y + d);
+      ctx.stroke();
+      ctx.strokeStyle = 'rgba(0,0,0,.32)'; ctx.lineWidth = 1.5; ctx.strokeRect(x + .75, y + .75, w - 1.5, d - 1.5);
+      if (cam.z < .8) return;
+      if (s % 3 === 0) { const cx = x + w * .27, cy = y + d * .3; ctx.fillStyle = 'rgba(0,0,0,.25)'; ctx.fillRect(cx + 1.5, cy + 2, 6, 6); ctx.fillStyle = '#7a4b3c'; ctx.fillRect(cx, cy, 6, 6); ctx.fillStyle = '#2f2420'; ctx.fillRect(cx + 1.5, cy + 1.5, 3, 3); }
+      if (s % 5 === 1) {
+        const px = hor ? x + w * .32 : x + w * .6, py = hor ? y + d * .6 : y + d * .32, pw = hor ? w * .36 : w * .26, ph = hor ? d * .26 : d * .36;
+        ctx.fillStyle = '#26365a'; ctx.fillRect(px, py, pw, ph);
+        ctx.strokeStyle = 'rgba(200,220,255,.35)'; ctx.lineWidth = .6; ctx.beginPath();
+        for (let i = 4; i < pw; i += 4) { ctx.moveTo(px + i, py); ctx.lineTo(px + i, py + ph); }
+        for (let i = 4; i < ph; i += 4) { ctx.moveTo(px, py + i); ctx.lineTo(px + pw, py + i); }
+        ctx.stroke();
+      }
+    }
+    // 🏢 düz çatı: parapet, klima üniteleri; yüksek binada asansör odası + su deposu
+    function flatRoof(x, y, w, d, s, tall, shop, bare) {
+      ctx.strokeStyle = 'rgba(0,0,0,.24)'; ctx.lineWidth = 3; rr(x + 1.5, y + 1.5, w - 3, d - 3, 3); ctx.stroke();
+      ctx.strokeStyle = 'rgba(255,255,255,.22)'; ctx.lineWidth = 1; rr(x + 4, y + 4, w - 8, d - 8, 2); ctx.stroke();
+      if (bare || cam.z < .8) return;
+      if (tall) {
+        const ex = x + w * .12, ey = y + d * .14, ew = w * .3, eh = d * .24;
+        ctx.fillStyle = 'rgba(0,0,0,.18)'; ctx.fillRect(ex + 3, ey + 4, ew, eh);
+        ctx.fillStyle = 'rgba(255,255,255,.25)'; ctx.fillRect(ex, ey, ew, eh);
+        ctx.strokeStyle = 'rgba(0,0,0,.28)'; ctx.lineWidth = 1; ctx.strokeRect(ex, ey, ew, eh);
+        ctx.fillStyle = '#c9ced3'; ctx.beginPath(); ctx.arc(x + w * .78, y + d * .74, Math.min(w, d) * .09, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      }
+      const sp = tall ? [[.8, .22], [.25, .78], [.56, .2]] : shop ? [[.2, .78], [.8, .78], [.5, .82]] : [[.78, .22], [.22, .8], [.8, .78]];
+      for (let i = 0, n = 1 + s % 3; i < n; i++) {
+        const [u, v] = sp[(i + (s >> 4)) % 3], cx = x + w * u, cy = y + d * v;
+        ctx.fillStyle = 'rgba(0,0,0,.2)'; ctx.fillRect(cx - 3, cy - 2.5, 8, 8);
+        ctx.fillStyle = '#dfe2e5'; ctx.fillRect(cx - 4, cy - 4, 8, 8);
+        ctx.fillStyle = '#8d949b'; ctx.beginPath(); ctx.arc(cx, cy, 2.4, 0, Math.PI * 2); ctx.fill();
+      }
+    }
     function drawFill(f) {
       if (!vis(f.x, f.y, 70)) return;
-      const lo = cam.z < .6;
+      const lo = cam.z < .6, s = hash(f.id);
       ctx.save(); ctx.translate(f.x, f.y); ctx.rotate(f.a);
       const x = -f.w / 2, y = -f.d / 2;
-      ctx.fillStyle = 'rgba(20,20,40,.2)'; ctx.fillRect(x + 5, y + 7, f.w, f.d);
-      ctx.fillStyle = f.c; rr(x, y, f.w, f.d, 4); ctx.fill();
+      ctx.fillStyle = 'rgba(20,20,40,.22)'; ctx.fillRect(x + (f.tall ? 9 : 5), y + (f.tall ? 12 : 7), f.w, f.d);
+      ctx.fillStyle = f.c; rr(x, y, f.w, f.d, f.z === 'ev' ? 3 : 4); ctx.fill();
       if (!lo) {
-        if (f.z === 'ev') {
-          ctx.fillStyle = 'rgba(255,255,255,.18)'; ctx.fillRect(x, y, f.w, f.d / 2);
-          ctx.strokeStyle = 'rgba(0,0,0,.25)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x + 5, 0); ctx.lineTo(-x - 5, 0); ctx.stroke();
-        } else {
-          ctx.strokeStyle = 'rgba(255,255,255,.3)'; ctx.lineWidth = 2; rr(x + 5, y + 5, f.w - 10, f.d - 10, 3); ctx.stroke();
-          if (f.tall) { ctx.fillStyle = 'rgba(0,0,0,.16)'; ctx.fillRect(x + 8, y + 10, 10, 8); ctx.fillRect(-x - 20, -y - 18, 12, 9); }
-          else for (let i = 0; i * 8 < f.w; i++) { ctx.fillStyle = i % 2 ? '#fff' : f.aw; ctx.fillRect(x + i * 8, y - 3, Math.min(8, f.w - i * 8), 10); }
+        if (f.z === 'ev') hipRoof(x, y, f.w, f.d, s);
+        else {
+          flatRoof(x, y, f.w, f.d, s, f.tall, !f.tall);
+          if (!f.tall) {
+            for (let i = 0; i * 8 < f.w; i++) { ctx.fillStyle = i % 2 ? '#f4f1ea' : f.aw; ctx.fillRect(x + i * 8, y - 3, Math.min(8, f.w - i * 8), 10); }
+            ctx.fillStyle = 'rgba(0,0,0,.18)'; ctx.fillRect(x, y + 7, f.w, 2);
+            const pw = Math.min(f.w * .45, 30); ctx.fillStyle = '#22262e'; rr(-pw / 2, y + 8, pw, 7, 2); ctx.fill();
+            ctx.fillStyle = f.aw; ctx.fillRect(-pw / 2 + 3, y + 10.5, pw - 6, 2);
+          }
         }
       }
       if (sel === f.id || (f.home && sel === f.home)) { ctx.strokeStyle = '#ff3d8b'; ctx.lineWidth = 4; ctx.setLineDash([8, 5]); rr(x - 6, y - 6, f.w + 12, f.d + 12, 8); ctx.stroke(); ctx.setLineDash([]); }
       ctx.restore();
       if (!lo && cam.z >= .9) { ctx.font = `${Math.round(Math.min(f.w, f.d) * .42)}px ${EMO}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(f.ic, f.x, f.y + 2); }
     }
-    // 🪧 pano: ayak gölgesi, çerçeve, reklamın fotoğrafı + adı (yazı hep düz okunur)
+    // 🪧 pano: küçük, iki ayaklı; üstünde reklamın fotoğrafı + yazı izi. Yazısı yaklaşınca baloncukta (drawBubbles)
     function drawBills() {
       wd.bills.forEach((b, i) => {
-        if (!vis(b.x, b.y, 80)) return;
+        if (!vis(b.x, b.y, 50)) return;
         const ad = adOf(b, i);
         let a = b.a; if (a > Math.PI / 2) a -= Math.PI * 2; if (a < -Math.PI / 2 || a > Math.PI / 2) a += Math.PI;
         ctx.save(); ctx.translate(b.x, b.y); ctx.rotate(a);
         const w = b.w, d = b.d;
-        ctx.fillStyle = 'rgba(20,20,40,.25)'; ctx.fillRect(-w / 2 + 5, -d / 2 + 7, w, d);
-        ctx.fillStyle = '#2b2140'; rr(-w / 2 - 3, -d / 2 - 3, w + 6, d + 6, 5); ctx.fill();
-        const g = ctx.createLinearGradient(-w / 2, 0, w / 2, 0); g.addColorStop(0, '#ff3d8b'); g.addColorStop(1, '#7b2ff7');
-        ctx.fillStyle = g; rr(-w / 2, -d / 2, w, d, 3); ctx.fill();
+        ctx.fillStyle = 'rgba(20,20,40,.25)'; ctx.fillRect(-w / 2 + 4, -d / 2 + 5, w, d);
+        ctx.fillStyle = '#5a5f66'; ctx.fillRect(-w / 4 - 1.5, d / 2, 3, 4); ctx.fillRect(w / 4 - 1.5, d / 2, 3, 4);
+        ctx.fillStyle = '#2b2140'; rr(-w / 2 - 2, -d / 2 - 2, w + 4, d + 4, 3); ctx.fill();
+        const g = ctx.createLinearGradient(-w / 2, 0, w / 2, 0); g.addColorStop(0, '#d9346f'); g.addColorStop(1, '#5e2bb8');
+        ctx.fillStyle = g; rr(-w / 2, -d / 2, w, d, 2); ctx.fill();
         if (ad) {
-          const im = imgOf(ad.photo);
-          if (im) { const r = Math.min(im.naturalWidth, im.naturalHeight); ctx.save(); rr(-w / 2 + 2, -d / 2 + 2, d - 4, d - 4, 3); ctx.clip(); ctx.drawImage(im, (im.naturalWidth - r) / 2, (im.naturalHeight - r) * .2, r, r, -w / 2 + 2, -d / 2 + 2, d - 4, d - 4); ctx.restore(); }
+          const im = imgOf(ad.photo), s = d - 2;
+          if (im) { const r = Math.min(im.naturalWidth, im.naturalHeight); ctx.save(); rr(-w / 2 + 1, -d / 2 + 1, s, s, 2); ctx.clip(); ctx.drawImage(im, (im.naturalWidth - r) / 2, (im.naturalHeight - r) * .2, r, r, -w / 2 + 1, -d / 2 + 1, s, s); ctx.restore(); }
           else { ctx.font = `${d * .6}px ${EMO}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(ad.ic, -w / 2 + d / 2, 1); }
-          if (cam.z >= .55) {
-            ctx.fillStyle = '#fff'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
-            ctx.font = `900 11px Nunito,${EMO}`; ctx.fillText(String(ad.n).slice(0, 18), -w / 2 + d + 2, -5);
-            ctx.font = `700 8px Nunito,${EMO}`; ctx.fillStyle = 'rgba(255,255,255,.85)'; ctx.fillText(String(ad.d).slice(0, 26), -w / 2 + d + 2, 7);
-          }
+          const tx = -w / 2 + d + 2, tw = w - d - 6;
+          ctx.fillStyle = 'rgba(255,255,255,.9)'; ctx.fillRect(tx, -3.5, tw * .9, 2.4);
+          ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.fillRect(tx, 1.5, tw * .6, 1.8);
         }
-        if (sel === b.id) { ctx.strokeStyle = '#ffd400'; ctx.lineWidth = 3; ctx.setLineDash([8, 5]); rr(-w / 2 - 8, -d / 2 - 8, w + 16, d + 16, 8); ctx.stroke(); ctx.setLineDash([]); }
+        if (sel === b.id) { ctx.strokeStyle = '#ffd400'; ctx.lineWidth = 2.5; ctx.setLineDash([6, 4]); rr(-w / 2 - 6, -d / 2 - 6, w + 12, d + 12, 6); ctx.stroke(); ctx.setLineDash([]); }
         ctx.restore();
       });
+    }
+    // 🛣️ cadde / sokak adları asfaltın üstünde, yol boyunca (yazı hep düz okunur)
+    function drawStreetNames() {
+      if (cam.z < .5) return;
+      ctx.font = '800 13px Nunito,sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.lineJoin = 'round';
+      wd.roads.forEach(r => {
+        if (r.t === 'ring') return;
+        if (!r.lbl) {
+          r.lbl = [];
+          let acc = 0, next = 240;
+          for (let i = 1; i < r.pts.length; i++) {
+            const [x0, y0] = r.pts[i - 1], [x1, y1] = r.pts[i], L = Math.hypot(x1 - x0, y1 - y0);
+            let a = Math.atan2(y1 - y0, x1 - x0); if (a > Math.PI / 2 || a < -Math.PI / 2) a += Math.PI;
+            while (acc + L >= next) { const t = (next - acc) / L; r.lbl.push([x0 + (x1 - x0) * t, y0 + (y1 - y0) * t, a]); next += 820; }
+            acc += L;
+          }
+        }
+        const s = `${r.nm} ${tr(RS[r.t])}`;
+        r.lbl.forEach(([x, y, a]) => {
+          if (!vis(x, y, 120)) return;
+          ctx.save(); ctx.translate(x, y); ctx.rotate(a);
+          ctx.strokeStyle = 'rgba(40,42,48,.95)'; ctx.lineWidth = 4; ctx.strokeText(s, 0, 0);
+          ctx.fillStyle = 'rgba(255,255,255,.9)'; ctx.fillText(s, 0, 0);
+          ctx.restore();
+        });
+      });
+    }
+    // 💬 baloncuk: tabela / pano yazısı, sen yaklaşınca yükselerek belirir; kuyruk yere bakar
+    function bubble(x, y, al, ic, im, t1, t2, col) {
+      const k = tagK(), pad = 6 * k, ps = (t2 ? 30 : 20) * k;
+      ctx.save(); ctx.globalAlpha = al;
+      ctx.font = `900 ${12 * k}px Nunito,${EMO}`; const w1 = ctx.measureText(t1).width;
+      ctx.font = `700 ${10 * k}px Nunito,${EMO}`; const w2 = t2 ? ctx.measureText(t2).width : 0;
+      const bw = pad * 3 + ps + Math.max(w1, w2), bh = ps + pad * 2, bx = x - bw / 2, by = y - bh - 9 * k - (1 - al) * 10 * k;
+      ctx.fillStyle = 'rgba(0,0,0,.22)'; rr(bx + 2 * k, by + 3 * k, bw, bh, 10 * k); ctx.fill();
+      ctx.fillStyle = '#fff'; rr(bx, by, bw, bh, 10 * k); ctx.fill();
+      ctx.beginPath(); ctx.moveTo(x - 6 * k, by + bh - 1); ctx.lineTo(x, by + bh + 8 * k); ctx.lineTo(x + 6 * k, by + bh - 1); ctx.closePath(); ctx.fill();
+      ctx.strokeStyle = col; ctx.lineWidth = 2 * k; rr(bx, by, bw, bh, 10 * k); ctx.stroke();
+      const ix = bx + pad, iy = by + pad;
+      if (im) { const r = Math.min(im.naturalWidth, im.naturalHeight); ctx.save(); rr(ix, iy, ps, ps, 6 * k); ctx.clip(); ctx.drawImage(im, (im.naturalWidth - r) / 2, (im.naturalHeight - r) * .2, r, r, ix, iy, ps, ps); ctx.restore(); }
+      else { ctx.font = `${ps * .8}px ${EMO}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(ic, ix + ps / 2, iy + ps / 2 + k); }
+      ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+      ctx.font = `900 ${12 * k}px Nunito,${EMO}`; ctx.fillStyle = '#1e1a2e'; ctx.fillText(t1, ix + ps + pad, t2 ? iy + ps * .3 : iy + ps / 2 + k);
+      if (t2) { ctx.font = `700 ${10 * k}px Nunito,${EMO}`; ctx.fillStyle = '#6b6680'; ctx.fillText(t2, ix + ps + pad, iy + ps * .76); }
+      ctx.restore();
+    }
+    // en yakın 4 tabela / pano: ana binalar, dükkânlar, hane evleri ve reklam panoları
+    const SIGN_FILL = f => f.home || f.z !== 'ev' || f.n === 'Bakkal';
+    function drawBubbles() {
+      if (me.taxi || inside) return;
+      const L = [], near = (x, y, r) => { const d = Math.hypot(x - me.x, y - me.y); return d < r ? [Math.min(1, (r - d) / 45), d] : null; };
+      wd.bills.forEach((b, i) => { const n = near(b.x, b.y, 190), ad = n && adOf(b, i); if (ad) L.push([n, b.x, b.y - 12, ad.ic, imgOf(ad.photo), String(ad.n).slice(0, 24), String(ad.d).slice(0, 34), '#ff3d8b']); });
+      BLD.forEach(b => { const n = near(b.x, b.y, Math.max(b.w, b.h) / 2 + 110); if (n) L.push([n, b.x, b.y - b.h / 2 - 2, b.ic, null, tr(b.n), b.sn || '', '#5b4bd6']); });
+      wd.fill.forEach(f => {
+        if (!SIGN_FILL(f) || Math.abs(f.x - me.x) > 200 || Math.abs(f.y - me.y) > 200) return;
+        const fx = f.x + Math.sin(f.a) * f.d / 2, fy = f.y - Math.cos(f.a) * f.d / 2, n = near(fx, fy, 120);
+        if (n) L.push([n, fx, fy - 4, f.ic, null, tr(f.n), f.home ? '' : tr(ZONE_N[f.z]), f.home ? '#ff5c9a' : f.aw]);
+      });
+      L.sort((p, q) => q[0][1] - p[0][1]).slice(-4).forEach(([n, x, y, ic, im, t1, t2, col]) => { if (vis(x, y, 120)) bubble(x, y, n[0], ic, im, t1, t2, col); });
     }
     // 🎉 etkinlik: mekânın çevresinde nabız halkası + sallanan rozet; sahnede ışık / kulüpte köpük
     function drawEvents(t) {
@@ -909,18 +1292,12 @@ Stories.City = (() => {
     function drawBld(b, t, dk) {
       if (!vis(b.x, b.y, Math.max(b.w, b.h))) return;
       const x = b.x - b.w / 2, y = b.y - b.h / 2;
-      if (b.yard) { ctx.fillStyle = '#bfe3a5'; rr(x - 14, y - 12, b.w + 28, b.h + 24, 10); ctx.fill(); ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke(); }
-      ctx.fillStyle = 'rgba(20,20,40,.22)'; rr(x + 7, y + 9, b.w, b.h, 8); ctx.fill();
+      if (b.yard) { ctx.fillStyle = '#a3c584'; rr(x - 14, y - 12, b.w + 28, b.h + 24, 10); ctx.fill(); ctx.strokeStyle = 'rgba(120,92,64,.7)'; ctx.lineWidth = 2; ctx.setLineDash([4, 3]); ctx.stroke(); ctx.setLineDash([]); }
+      const tall = b.t === 'kule';
+      ctx.fillStyle = 'rgba(20,20,40,.24)'; rr(x + (tall ? 12 : 7), y + (tall ? 15 : 9), b.w, b.h, 8); ctx.fill();
       ctx.fillStyle = b.c; rr(x, y, b.w, b.h, b.t === 'ev' ? 5 : 8); ctx.fill();
-      if (b.t === 'ev') {
-        const hor = b.w >= b.h;
-        ctx.fillStyle = 'rgba(255,255,255,.18)'; hor ? ctx.fillRect(x, y, b.w, b.h / 2) : ctx.fillRect(x, y, b.w / 2, b.h);
-        ctx.strokeStyle = 'rgba(0,0,0,.25)'; ctx.lineWidth = 2; ctx.beginPath();
-        hor ? (ctx.moveTo(x + 6, b.y), ctx.lineTo(x + b.w - 6, b.y)) : (ctx.moveTo(b.x, y + 6), ctx.lineTo(b.x, y + b.h - 6)); ctx.stroke();
-      } else {
-        ctx.strokeStyle = 'rgba(255,255,255,.35)'; ctx.lineWidth = 3; rr(x + 6, y + 6, b.w - 12, b.h - 12, 5); ctx.stroke();
-        if (b.t === 'kule') { ctx.fillStyle = 'rgba(0,0,0,.18)'; [[.12, .12], [.75, .15]].forEach(([fx, fy]) => ctx.fillRect(x + b.w * fx, y + b.h * fy, 12, 10)); }
-      }
+      if (b.t === 'ev') hipRoof(x, y, b.w, b.h, hash(b.k));
+      else flatRoof(x, y, b.w, b.h, hash(b.k), tall, false, !!b.fx);
       if (b.fx === 'heli') { ctx.strokeStyle = '#e53935'; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x + b.w - 30, y + b.h - 30, 18, 0, Math.PI * 2); ctx.stroke(); ctx.fillStyle = '#e53935'; ctx.font = 'bold 18px Nunito,sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('H', x + b.w - 30, y + b.h - 29); ctx.fillRect(x + 16, y + 24, 26, 8); ctx.fillRect(x + 25, y + 15, 8, 26); }
       if (b.fx === 'heart') { const s = 9, hx = b.x + b.w / 2 - 16, hy = y + 14; ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.moveTo(hx, hy + s); ctx.bezierCurveTo(hx - s * 1.6, hy - s * .2, hx - s * .6, hy - s * 1.3, hx, hy - s * .3); ctx.bezierCurveTo(hx + s * .6, hy - s * 1.3, hx + s * 1.6, hy - s * .2, hx, hy + s); ctx.fill(); }
       if (b.fx === 'pool') { ctx.fillStyle = '#4fc3f7'; rr(x + 14, y + b.h - 38, b.w - 28, 24, 6); ctx.fill(); }
@@ -984,8 +1361,26 @@ Stories.City = (() => {
       }
       drawSquare(a.x, a.y, CS * .8, a.c, a.c.photo, borderOf(a), 2);
     }
+    // 🧑‍🤝‍🧑 yolcular: ikili sıralar halinde küçük fotoğraflar (öndeki sol koltuk şoför)
+    function drawPax(o) {
+      const [L, Wd] = CAR_K[o.kind] || CAR_K.sedan, l = L / 2, w = Wd / 2, s = Math.min(Wd * .42, 9), step = o.kind === 'bus' ? 8.5 : l * .6;
+      ctx.save(); ctx.translate(o.x, o.y); ctx.rotate(o.sa);
+      ctx.strokeStyle = 'rgba(255,255,255,.85)'; ctx.lineWidth = 1;
+      o.pax.forEach((c, i) => {
+        const u = (o.kind === 'bus' ? l * .55 : l * .2) - (i >> 1) * step, v = (i & 1 ? 1 : -1) * w * .45;
+        ctx.drawImage(thumbOf(c, c.photo), u - s / 2, v - s / 2, s, s); ctx.strokeRect(u - s / 2, v - s / 2, s, s);
+      });
+      ctx.restore();
+    }
     function drawVehicles() {
-      cars.forEach(o => { if (vis(o.x, o.y, 40)) drawCar(o.x, o.y, o.sa, o.kind, o.taxi ? '#ffd400' : o.col, o.taxi); });
+      const seats = cam.z >= .9;
+      // 🅿️ park etmiş araban
+      if (!me.drive && vis(myCar.x, myCar.y, 40)) { drawCar(myCar.x, myCar.y, myCar.sa, CAR_ME.kind, CAR_ME.col); if (cam.z >= .7) nameTag(`🚗 ${tr('Araban')}`, myCar.x, myCar.y + 18 * tagK(), '#ff3d8b'); }
+      cars.forEach(o => {
+        if (!vis(o.x, o.y, 40)) return;
+        drawCar(o.x, o.y, o.sa, o.kind, o.taxi ? '#ffd400' : o.col, o.taxi);
+        if (seats && o.pax) drawPax(o);
+      });
       boats.forEach(b => {
         const a = tNow / 1000 * b.s + b.ph, x = b.cx + Math.cos(a) * b.rx, y = b.cy + Math.sin(a) * b.ry, dir = a + (b.s > 0 ? Math.PI / 2 : -Math.PI / 2);
         if (!vis(x, y, 40)) return;
@@ -999,11 +1394,15 @@ Stories.City = (() => {
       // ⚡ yayalar renk başına tek yol: 8 fill + 8 stroke (çok uzaktayken kenarsız)
       ctx.lineWidth = 2; ctx.strokeStyle = 'rgba(0,0,0,.35)';
       const far = cam.z < .6, pr = far ? 5 : 4;
+      // fotoğrafı olan yaya karakter gibi (kare foto + ten çerçevesi, yürürken sallanır); olmayan eskisi gibi nokta
       pedBy.forEach((L, i) => {
         ctx.beginPath();
-        for (const o of L) if (vis(o.x, o.y, 20)) { ctx.moveTo(o.x + pr, o.y); ctx.arc(o.x, o.y, pr, 0, Math.PI * 2); }
+        for (const o of L) if (!o.c && !o.gone && vis(o.x, o.y, 20)) { ctx.moveTo(o.x + pr, o.y); ctx.arc(o.x, o.y, pr, 0, Math.PI * 2); }
         ctx.fillStyle = PED_C[i]; ctx.fill(); if (!far) ctx.stroke();
       });
+      const tt = tNow / 1000;
+      for (const o of peds) if (o.c && !o.gone && vis(o.x, o.y, 20)) drawSquare(o.x, o.y - (o.pi < o.path.length ? Math.abs(Math.sin(tt * 9 + o.sp)) * 2 : 0), CS, o.c, o.c.photo, o.skin, 2);
+      if (beachOn(21)) bgrp.forEach(g => { if (!vis(g.x, g.y, 30)) return; g.m.forEach(p => { if (p.c) { drawSquare(p.x, p.y, CS, p.c, p.c.photo, p.skin, 2); return; } ctx.fillStyle = p.col; ctx.beginPath(); ctx.arc(p.x, p.y, pr + 1, 0, Math.PI * 2); ctx.fill(); if (!far) ctx.stroke(); }); });
     }
     function drawNight(dk, hf, t) {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -1030,7 +1429,7 @@ Stories.City = (() => {
       [...cars, ...ag.filter(a => a.drive)].forEach(o => { if (!vis(o.x, o.y, 60)) return; const l = (CAR_K[o.kind || o.car.kind] || CAR_K.sedan)[0] / 2 + 16; ctx.drawImage(glow('#fff6d0'), o.x + Math.cos(o.sa || 0) * l - 22, o.y + Math.sin(o.sa || 0) * l - 22, 44, 44); });
       ctx.globalAlpha = .7 * k; const L = PL.lunapark; ctx.drawImage(glow('#ff8cc6'), L.x - 140, L.y - 140, 280, 280);
       // 🪧 panolar gece ışıklı
-      ctx.globalAlpha = .45 * k; wd.bills.forEach(b => { if (vis(b.x, b.y, 80)) ctx.drawImage(glow('#ffb3dd'), b.x - 80, b.y - 50, 160, 100); });
+      ctx.globalAlpha = .45 * k; wd.bills.forEach(b => { if (vis(b.x, b.y, 50)) ctx.drawImage(glow('#ffb3dd'), b.x - 45, b.y - 30, 90, 60); });
       // 🎆 havai fişek
       if (evAt('lunapark', lastH) && evAt('lunapark', lastH).id === 'fisek') {
         ctx.globalAlpha = 1;
@@ -1074,7 +1473,7 @@ Stories.City = (() => {
     function drawPeople(t) {
       const lbl = cam.z >= .7;
       ag.forEach(a => {
-        if (a.st === 'in') return;
+        if (a.st === 'in' || a.inCar) return;
         if (!vis(a.x, a.y, 40)) return;
         const bob = a.st === 'walk' ? Math.abs(Math.sin(t * 9 + a.sp)) * 2 : 0;
         if (talk && talk.a === a) { ctx.strokeStyle = 'rgba(255,61,139,.7)'; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(a.x, a.y, CS * .8 + Math.sin(t * 4) * 2, 0, Math.PI * 2); ctx.stroke(); }
@@ -1085,10 +1484,18 @@ Stories.City = (() => {
       });
       drawLaf();
       if (me.taxi) { drawTaxi(); return; }
-      const u = api.user(), bob = me.path ? Math.abs(Math.sin(t * 9)) * 1.5 : 0;
-      ctx.strokeStyle = 'rgba(255,61,139,.6)'; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(me.x, me.y, CS * .75 + (t * 10) % 7, 0, Math.PI * 2); ctx.stroke();
-      drawSquare(me.x, me.y - bob, CS + 3, { name: u.name || 'Sen', colors: u.colors || ['#0089c4', '#c2185b'] }, u.photo, '#ff3d8b', 3);
-      if (lbl) nameTag(tr('Sen'), me.x, me.y + CS / 2 + 11 * tagK(), '#ff3d8b');
+      const u = api.user(), bob = me.path || (me.hw && me.hw.mv) ? Math.abs(Math.sin(t * 9)) * 1.5 : 0;
+      ctx.strokeStyle = 'rgba(255,61,139,.6)'; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(me.x, me.y, (me.drive ? CS * 1.6 : CS * .75) + (t * 10) % 7, 0, Math.PI * 2); ctx.stroke();
+      const meC = { name: u.name || 'Sen', colors: u.colors || ['#0089c4', '#c2185b'], photo: u.photo };
+      if (me.drive) {
+        // 🚗 sürüyorsun: araban + şoför koltuğunda sen, yanında binen kızlar
+        drawCar(me.x, me.y, me.sa || 0, CAR_ME.kind, CAR_ME.col);
+        drawPax({ x: me.x, y: me.y, sa: me.sa || 0, kind: CAR_ME.kind, pax: [meC, ...(escort ? escort.L.filter(a => a.inCar).map(a => a.c) : [])] });
+        if (lbl) nameTag(`🚗 ${tr('Sen')}`, me.x, me.y + 18 * tagK(), '#ff3d8b');
+      } else {
+        drawSquare(me.x, me.y - bob, CS + 3, meC, u.photo, '#ff3d8b', 3);
+        if (lbl) nameTag(tr('Sen'), me.x, me.y + CS / 2 + 11 * tagK(), '#ff3d8b');
+      }
       if (me.dest) { const { x, y } = me.dest; ctx.fillStyle = '#ff3d8b'; ctx.beginPath(); ctx.arc(x, y - 18, 8, Math.PI, 0); ctx.lineTo(x, y - 4); ctx.closePath(); ctx.fill(); ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(x, y - 18, 3, 0, Math.PI * 2); ctx.fill(); }
     }
     function nameTag(s, x, y, bg) {
@@ -1129,6 +1536,7 @@ Stories.City = (() => {
     const placeOf = k => PL[k] || wd.FM[k];
     const doorOf = k => { const p = placeOf(k); if (PL[k]) return towardB(PL[k].node, PL[k].x, PL[k].y); return [p.x + Math.sin(p.a) * (p.d / 2 + 14), p.y - Math.cos(p.a) * (p.d / 2 + 14)]; };
     function enterB(k) {
+      if (me.drive) exitCar(true);
       const p = placeOf(k);
       if (!p || p.area) return;
       closeCard();
@@ -1250,12 +1658,16 @@ Stories.City = (() => {
       gm = (gm + dt * sp / 60) % 1440;
       const h = hourOf();
       if (h !== lastH) { lastH = h; replan(h, false); drawTick(); if (sel && PL[sel]) openCard(sel); }
+      drvs = cars.concat(ag.filter(a => a.drive && a.st === 'walk'));
+      if (me.drive) drvs.push(me);
       ag.forEach(a => {
-        if (a.hold) return;
+        if (a.hold || a.esc) return;
+        if (a.seek) { seekStep(a, dt); return; }
+        if (a.grp) return;
         if (a.leaveAt && tNow >= a.leaveAt) { a.leaveAt = 0; depart(a); }
         if (a.str && a.st !== 'walk' && tNow > a.next && !(a.st === 'wander' && a.path)) strNext(a);
         if (a.st === 'walk') {
-          const done = follow(a, (a.drive ? a.car.sp : a.sp) * dt);
+          const done = follow(a, (a.drive ? a.car.sp * carFactor(a, dt) : a.sp * (a.phone ? .6 : 1)) * dt);
           if (a.drive) { let d = a.a - (a.sa || 0); d = Math.atan2(Math.sin(d), Math.cos(d)); a.sa = (a.sa || 0) + d * Math.min(1, dt * 8); }
           if (done) {
             a.path = null; a.drive = false;
@@ -1271,16 +1683,52 @@ Stories.City = (() => {
       routeLeft = ROUTE_N;
       for (const o of movers) {
         if (o.pi >= o.path.length) { if (routeLeft > 0) { routeLeft--; newTrip(o); } continue; }
-        follow(o, o.sp * dt);
+        follow(o, o.sp * dt * (o.car ? carFactor(o, dt) : 1));
         if (o.car) { let d = o.a - o.sa; d = Math.atan2(Math.sin(d), Math.cos(d)); o.sa += d * Math.min(1, dt * 8); }
       }
       stepTaxi(dt);
+      grpStep(dt);
+      phoneStep();
+      beachStep();
+      carChat();
+      escortStep(dt);
+      if (!inside) separate(dt);
       lafStep();
-      if (me.path && follow(me, 95 * dt)) {
+      // 👆 basılı tutunca parmağın yönüne yürü (binaların / denizin içine girmez, kenarda kayar)
+      if (tap && !me.hw && ptrs.size === 1 && !inside && !talk && !me.taxi && performance.now() - tap.t > 280) {
+        const [p] = ptrs.values();
+        tap = null; me.hw = { cx: p[0], cy: p[1] };
+        if (me.chase) { me.chase.hold = false; me.chase = null; }
+        me.path = null; me.dest = null; me.enter = null; me.joinG = null; follow0 = true;
+      }
+      if (me.hw) {
+        const [wx, wy] = toWorld(me.hw.cx, me.hw.cy), dx = wx - me.x, dy = wy - me.y, d = Math.hypot(dx, dy);
+        me.hw.mv = d > CS;
+        if (me.hw.mv) {
+          const m = (me.drive ? CAR_ME.sp * .85 : 95) * dt, ux = dx / d * m, uy = dy / d * m, stuck = wd.solid(me.x, me.y);
+          const ok = (px, py) => px > X0 && px < W && py > Y0 && py < H && !wd.inSea(px, py) && (stuck || !wd.solid(px, py));
+          me.a = Math.atan2(dy, dx);
+          if (ok(me.x + ux, me.y + uy)) { me.x += ux; me.y += uy; } else if (ok(me.x + ux, me.y)) me.x += ux; else if (ok(me.x, me.y + uy)) me.y += uy;
+        }
+      }
+      if (me.drive) { let d = (me.a || 0) - (me.sa || 0); d = Math.atan2(Math.sin(d), Math.cos(d)); me.sa = (me.sa || 0) + d * Math.min(1, dt * 8); }
+      if (me.path && follow(me, (me.drive ? CAR_ME.sp : 95) * dt)) {
         me.path = null;
-        const k = me.dest && me.dest.k, ch2 = me.chase;
-        me.dest = null;
-        if (ch2) {
+        // 🚗 sürerek bir binaya / kişiye geldin: park et, in, gerisini yürü
+        let redo = false;
+        if (me.drive && me.driveTo) {
+          const D = me.driveTo; me.driveTo = null;
+          exitCar(true);
+          me.dest = null;
+          walkTo(D.x, D.y, D.k, D.gap);
+          redo = !!me.path;
+        }
+        const k = me.dest && me.dest.k, ch2 = me.chase, jg = me.joinG;
+        if (!redo) { me.dest = null; me.joinG = null; }
+        if (redo) {}
+        else if (me.toCar) { me.toCar = false; enterCar(); }
+        else if (jg) joinGroup(jg[0], jg[1]);
+        else if (ch2) {
           me.chase = null;
           if (Math.hypot(ch2.x - me.x, ch2.y - me.y) < 110) { if (me.chaseTalk) startTalk(ch2); else openChar(ch2); }
           else if (me.tries++ < 8) chase(ch2, me.chaseTalk); else { ch2.hold = false; held = null; }
@@ -1301,7 +1749,7 @@ Stories.City = (() => {
       if (follow0) { cam.x += (me.x - cam.x) * Math.min(1, dt * 4); cam.y += (me.y - cam.y) * Math.min(1, dt * 4); }
       if (tNow - savedAt > 2000) persist();
     }
-    function persist() { savedAt = tNow; try { localStorage.setItem(KEY, JSON.stringify({ gm, at: Date.now(), sp, px: Math.round(me.x), py: Math.round(me.y), sc: SC, met })); } catch (e) {} }
+    function persist() { savedAt = tNow; try { localStorage.setItem(KEY, JSON.stringify({ gm, at: Date.now(), sp, px: Math.round(me.x), py: Math.round(me.y), sc: SC, met, wth: withIds, wthAt, car: [Math.round(myCar.x), Math.round(myCar.y), +(myCar.sa || 0).toFixed(2)], dr: me.drive ? 1 : 0 })); } catch (e) {} }
     let lastClk = '';
     function hud() {
       const m = Math.floor(gm), s = `${String(Math.floor(m / 60) % 24).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
@@ -1320,7 +1768,7 @@ Stories.City = (() => {
       ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
       if (inside) { drawInside(t, dk); hud(); requestAnimationFrame(frame); return; }
       setCam();
-      drawGround(t); drawRoads(); drawPlaza(t); drawLuna(t); drawTrees();
+      drawGround(t); drawRoads(); drawStreetNames(); drawPlaza(t); drawLuna(t); drawTrees();
       wd.fill.forEach(drawFill);
       drawBills();
       BLD.forEach(b => drawBld(b, t, dk));
@@ -1329,6 +1777,7 @@ Stories.City = (() => {
       drawNight(dk, hf, t);
       drawPeople(t);
       drawLabels();
+      drawBubbles();
       hud();
       requestAnimationFrame(frame);
     }
@@ -1343,7 +1792,7 @@ Stories.City = (() => {
     const ro = new ResizeObserver(resize);
     ro.observe(root);
     resize();
-    cam.z = cw < 600 ? 1.9 : 2.2;
+    cam.z = cw < 600 ? 2.7 : 3.1;
     const clampCam = () => { cam.z = Math.max(.25, Math.min(4, cam.z)); cam.x = Math.max(X0, Math.min(W, cam.x)); cam.y = Math.max(Y0, Math.min(H, cam.y)); };
 
     /* 👆 dokunma: sürükle, iki parmakla yakınlaş, dokun → kişi / bina / yürü */
@@ -1355,11 +1804,12 @@ Stories.City = (() => {
       cv.setPointerCapture(e.pointerId);
       ptrs.set(e.pointerId, [e.clientX, e.clientY]);
       if (ptrs.size === 1) { tap = { x: e.clientX, y: e.clientY, t: performance.now() }; drag = { x: e.clientX, y: e.clientY, cx: cam.x, cy: cam.y }; }
-      else { tap = null; pinch = { d: pdist(), z: cam.z }; }
+      else { tap = null; me.hw = null; pinch = { d: pdist(), z: cam.z }; }
     };
     cv.onpointermove = e => {
       if (!ptrs.has(e.pointerId)) return;
       ptrs.set(e.pointerId, [e.clientX, e.clientY]);
+      if (me.hw) { me.hw.cx = e.clientX; me.hw.cy = e.clientY; return; }
       if (pinch && ptrs.size >= 2) { cam.z = pinch.z * pdist() / pinch.d; clampCam(); return; }
       if (!drag) return;
       const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
@@ -1368,6 +1818,7 @@ Stories.City = (() => {
     };
     const up = e => {
       ptrs.delete(e.pointerId);
+      if (me.hw) { me.hw = null; me.node = null; }
       if (tap && e.type === 'pointerup' && performance.now() - tap.t < 600) { if (inside) tapInside(e.clientX, e.clientY); else onTap(...toWorld(e.clientX, e.clientY)); }
       tap = null;
       if (ptrs.size < 2) pinch = null;
@@ -1386,17 +1837,35 @@ Stories.City = (() => {
     function walkTo(x, y, k, gap) {
       if (me.taxi) return;
       if (taxi && taxi.st === 'come') { taxiGo(); api.notify(tr('🚕 Taksi iptal'), '🚕'); }
-      const a = !me.path && me.node != null ? me.node : wd.nearest(me.x, me.y);
+      // 🚗 arabadaysan yollardan sürersin; hedef bir bina / kişiyse varınca park edip inersin, kalanını yürürsün
+      if (me.drive) {
+        const ids = route(wd.nearest(me.x, me.y, 1), wd.nearest(x, y, 1), 1), pts = offPath(ids, n => n.hw * .5);
+        while (pts.length > 1) { const [x0, y0] = pts[0], [x1, y1] = pts[1]; if ((me.x - x0) * (x1 - x0) + (me.y - y0) * (y1 - y0) <= 0) break; pts.shift(); }
+        me.path = pts; me.pi = 0; me.node = null;
+        me.driveTo = k || gap || me.chase || me.joinG ? { x, y, k, gap } : null;
+        const last = pts[pts.length - 1];
+        me.dest = { x: last[0], y: last[1], k };
+        return;
+      }
+      // en yakın, arada bina olmadan düz gidilebilen düğüm
+      const reach = (px, py) => { const r = wd.nodes.map((n, i) => [(n.x - px) ** 2 + (n.y - py) ** 2, i]).sort((p, q) => p[0] - q[0]).slice(0, 8).find(([, i]) => wd.segFree(wd.nodes[i].x, wd.nodes[i].y, px, py)); return r ? r[1] : wd.nearest(px, py); };
+      const a = !me.path && me.node != null ? me.node : reach(me.x, me.y);
       let b = wd.nearest(x, y), leg = false;
       if (!k && !wd.inSea(x, y) && !wd.solid(x, y)) {
         const near = wd.nodes.map((n, i) => [(n.x - x) ** 2 + (n.y - y) ** 2, i]).sort((p, q) => p[0] - q[0]).slice(0, 8).find(([, i]) => wd.segFree(wd.nodes[i].x, wd.nodes[i].y, x, y));
         if (near) { b = near[1]; leg = true; }
       }
       const ids = route(a, b), pts = walkPath(ids, me.x, me.y);
+      // başta geri dönme: ilk noktayı geçmişsen (ikinci noktaya düz yol varsa) atla
+      while (pts.length > 1) { const [x0, y0] = pts[0], [x1, y1] = pts[1]; if ((me.x - x0) * (x1 - x0) + (me.y - y0) * (y1 - y0) <= 0 || !wd.segFree(me.x, me.y, x1, y1)) break; pts.shift(); }
       // binaya / dolguya gidiyorsan son nokta binanın tarafındaki kaldırım
       const kp = k && (PL[k] || wd.FM[k]);
       if (kp && !kp.area && pts.length) pts[pts.length - 1] = towardB(b, kp.x, kp.y);
-      if (leg) pts.push([x, y]);
+      if (leg) {
+        // sonda geri dönme: hedef son düğümden önceyse o düğüme kadar gitme
+        while (pts.length > 1) { const [x0, y0] = pts[pts.length - 1], [x1, y1] = pts[pts.length - 2]; if ((x - x0) * (x1 - x0) + (y - y0) * (y1 - y0) <= 0 || !wd.segFree(x1, y1, x, y)) break; pts.pop(); }
+        pts.push([x, y]);
+      }
       if (gap) {
         // son noktayı hedefe gap kalana kadar kısalt (çok kısaysa son noktayı at)
         while (pts.length) {
@@ -1415,14 +1884,18 @@ Stories.City = (() => {
     }
     function onTap(x, y) {
       if (talk) return;
+      me.joinG = null;
       if (me.taxi) { api.notify(tr('🚕 Taksidesin, varınca inersin'), '🚕'); return; }
-      const hit = ag.filter(a => a.st !== 'in').find(a => Math.abs(a.x - x) < CS / 2 + 8 && Math.abs(a.y - y) < CS / 2 + 8);
+      if (!me.drive && Math.hypot(x - myCar.x, y - myCar.y) < 26) { openMyCar(); return; }
+      const hit = ag.filter(a => a.st !== 'in' && !a.inCar).find(a => Math.abs(a.x - x) < CS / 2 + 8 && Math.abs(a.y - y) < CS / 2 + 8);
       if (hit) { if (me.chase && me.chase !== hit) { me.chase.hold = false; me.chase = null; me.path = null; me.dest = null; } openChar(hit); return; }
+      const ph = peds.find(o => o.c && !o.gone && Math.abs(o.x - x) < CS / 2 + 8 && Math.abs(o.y - y) < CS / 2 + 8), pa = ph && promote(ph);
+      if (pa) { if (me.chase) { me.chase.hold = false; me.chase = null; me.path = null; me.dest = null; } openChar(pa); return; }
       const bl = wd.bills.find(b => Math.abs(b.x - x) < 80 && Math.abs(b.y - y) < 80 && inRect({ ...b, w: b.w + 12, d: b.d + 12 }, x, y));
       if (bl) { openBill(bl); return; }
       const b = BLD.find(b => Math.abs(x - b.x) < b.w / 2 + 6 && Math.abs(y - b.y) < b.h / 2 + 6)
         || wd.fill.find(f => Math.abs(f.x - x) < 80 && Math.abs(f.y - y) < 80 && inRect(f, x, y))
-        || AREAS.find(a => a.k === 'sahil' ? !wd.inSea(x, y) && wd.coastDist(x, y) < 140 && x > a.beach[0] && x < a.beach[1] : ell(x, y, a.x, a.y, a.rx, a.ry));
+        || AREAS.find(a => a.k === 'sahil' ? !wd.inSea(x, y) && wd.coastDist(x, y) < 200 && x > a.beach[0] && x < a.beach[1] : ell(x, y, a.x, a.y, a.rx, a.ry));
       // 🏖️ açık alana (sahil, park, lunapark) dokununca oraya yürürsün; aynı yere ikinci kez dokununca kartı açılır
       if (b && b.area) {
         if (sel === b.k && !me.path) { openCard(b.k); return; }
@@ -1439,16 +1912,17 @@ Stories.City = (() => {
     /* 🪪 kartlar */
     const hh = () => `${String(lastH).padStart(2, '0')}:00`;
     const nameOf = a => shownName(a) ? esc(a.c.name) : tr('Yabancı kız');
-    function row(a) {
+    // eye: kıyafet + beden satırı (👀 Süz'e basınca)
+    function row(a, eye) {
       const w = a.w || {};
       return `<a class="ct-row" href="#/sehir" data-ag="${esc(a.id)}">${api.avatar(shownName(a) ? a.c : { name: '?', photo: a.c.photo, colors: a.c.colors }, 42)}<span class="ct-rin"><b>${nameOf(a)}${shownName(a) && a.c.age ? `<small>, ${esc(a.c.age)}</small>` : ''}</b>
-        <small>${a.str ? '🙋‍♀️ yabancı' : w.job ? '💼 iş başında' : '🌿 boş zaman'}${!a.str && a.c.job ? ` · ${esc(a.c.job)}` : ''}</small><small>${esc(w.doing || '')}</small><small class="ct-wear">${esc(api.wear(a.c, a.to || a.k, !!w.job, lastH))}${(sz => sz ? String(sz).split('\n').map((s, i) => `${i ? '<br>' : ' '}<b class="ct-size${i ? ' ct-size2' : ''}">${esc(s)}</b>`).join('') : '')(api.size(a.c))}</small></span><i class="ct-go">›</i></a>`;
+        <small>${a.str ? '🙋‍♀️ yabancı' : w.job ? '💼 iş başında' : '🌿 boş zaman'}${!a.str && a.c.job ? ` · ${esc(a.c.job)}` : ''}</small><small>${esc(w.doing || '')}</small>${eye ? `<small class="ct-wear">${esc(api.wear(a.c, a.to || a.k, !!w.job, lastH))}${(sz => sz ? String(sz).split('\n').map((s, i) => `${i ? '<br>' : ' '}<b class="ct-size${i ? ' ct-size2' : ''}">${esc(s)}</b>`).join('') : '')(api.size(a.c))}</small>` : ''}</span><i class="ct-go">›</i></a>`;
     }
     // ✋ dokunulan karakter yolda durur (kart açıkken, konuşurken ya da yanına giderken); başka yere dokununca yoluna devam eder
     let held = null;
     function release() { if (held && !(talk && talk.a === held) && me.chase !== held) held.hold = false; held = null; }
     function holdA(a) { if (held !== a) release(); a.hold = true; held = a; }
-    const taxiBtn = (b, k) => (!inside && !me.taxi && Math.hypot(b.x - me.x, b.y - me.y) > 450 ? `<button type="button" class="btn ghost sm" data-taxi="${k}">🚕 Taksiyle git</button>` : '');
+    const taxiBtn = (b, k) => (!inside && !me.taxi && !me.drive && Math.hypot(b.x - me.x, b.y - me.y) > 450 ? `<button type="button" class="btn ghost sm" data-taxi="${k}">🚕 Taksiyle git</button>` : '');
     function openCard(k) {
       const b = PL[k] || wd.FM[k];
       if (!b) return;
@@ -1492,7 +1966,7 @@ Stories.City = (() => {
     const tierOf = a => { if (a.str) return (met[a.id] || {}).n ? 'tanis' : 'yeni'; const m = api.rel(a.c).msgs; return m >= 60 ? 'sevgili' : m >= 15 ? 'yakin' : 'tanis'; };
     const distTo = a => Math.hypot(a.x - me.x, a.y - me.y);
     // ✋ yakınsa (STOP_R) durur; tanıdığını durdurduysan doğrudan sohbete geçebilirsin, uzaktaysa peşinden gidersin
-    function openChar(a) {
+    function openChar(a, eye) {
       sel = null;
       const far = !inside && distTo(a) > STOP_R;
       if (far) { if (held !== a) release(); } else holdA(a);
@@ -1500,20 +1974,23 @@ Stories.City = (() => {
       const where = a.st === 'walk' ? (pl ? `🚶 ${pl.ic} ${esc(pl.n)} yolunda` : '🚶 sokakta yürüyor') : pl ? `📍 ${pl.ic} ${esc(pl.n)}` : '📍 sokakta';
       const direct = !a.str && !far;
       card.innerHTML = `<button type="button" class="ct-x" data-x aria-label="Kapat">✕</button>
-        <div class="ct-list">${row(a).replace('data-ag', 'data-noop')}</div>
+        <div class="ct-list">${row(a, eye).replace('data-ag', 'data-noop')}</div>
         <div class="ct-chips"><em>${TIER[tier].l}</em>${st && tier !== 'yeni' ? `<em>${st.l}</em>` : ''}${far ? '<em class="far">🔭 Uzakta · durduramazsın</em>' : '<em class="stop">✋ Durdu, seni bekliyor</em>'}</div>
         <p>${where}${m.ilgi ? ` · 💗 ${Math.round(m.ilgi)}` : ''}${cool ? ' · 😒 Seninle konuşmak istemiyor' : ''}</p>
         ${lafRecent(a) ? `<p class="ct-ev">📣 “${esc(a.lafTxt)}” · karşılık verirsen 💗 +${LAF_I}</p>` : ''}
-        <div class="ct-acts">${direct ? `<button type="button" class="btn sm" data-direct="${esc(a.id)}">💬 Sohbete geç</button>` : ''}<button type="button" class="btn ${direct && !lafRecent(a) ? 'ghost ' : ''}sm" data-talk="${esc(a.id)}"${cool ? ' disabled' : ''}>${far ? '🏃 Peşinden git' : lafRecent(a) ? '😏 Karşılık ver' : '🗣️ Ayaküstü konuş'}</button>${a.str || direct ? '' : `<button type="button" class="btn ghost sm" data-ccc="${esc(a.id)}"${w.nurse ? ' data-ccn="1"' : ''}>💬 Mesaj at</button>`}${far || inside ? '' : `<button type="button" class="btn ghost sm" data-near="${esc(a.id)}">🚶 Yanına git</button>`}</div>`;
+        <div class="ct-acts">${direct ? `<button type="button" class="btn sm" data-direct="${esc(a.id)}">💬 Sohbete geç</button>` : ''}<button type="button" class="btn ${direct && !lafRecent(a) ? 'ghost ' : ''}sm" data-talk="${esc(a.id)}"${cool ? ' disabled' : ''}>${far ? '🏃 Peşinden git' : lafRecent(a) ? '😏 Karşılık ver' : '🗣️ Ayaküstü konuş'}</button>${a.grp && !a.grp.joined ? `<button type="button" class="btn sm" data-gjoin="${esc(a.id)}">👥 Sohbete katıl</button>` : ''}${a.esc && escort && escort.ph === 'with' ? `<button type="button" class="btn sm" data-home="${esc(a.id)}">🏡 Eve davet et</button><button type="button" class="btn ghost sm" data-escx>👋 Vedalaş</button>` : a.esc ? `<button type="button" class="btn ghost sm" data-escx>👋 Davetten vazgeç</button>` : !a.str && !far && !inside && tier !== 'yeni' ? `<button type="button" class="btn sm" data-home="${esc(a.id)}">🏡 Eve davet et</button>` : ''}${eye ? '' : `<button type="button" class="btn ghost sm" data-suz="${esc(a.id)}">👀 Süz</button>`}${far || inside ? '' : `<button type="button" class="btn ghost sm" data-near="${esc(a.id)}">🚶 Yanına git</button>`}</div>`;
       card.hidden = false;
     }
     // 💬 tanıdığına doğrudan: sohbetine mekân kartı + onun selamıyla geçilir
+    // sohbete geçmeden önce: dönünce yanında olacak kişileri kaydet
+    function meetWith(L) { withIds = L.map(a => a.id); wthAt = Date.now(); persist(); }
     function directChat(a) {
       const pl = a.k === '~' ? null : plOf(a.k), tier = tierOf(a), st = STYLE[styleOf(a)];
       const hi = st && st.hi && Math.random() < .5 ? pickA(st.hi) : pickA(TIER[tier].hi || TK.hiK);
-      a.hold = false; held = null; persist();
+      a.hold = false; held = null; meetWith(escort && escort.L.includes(a) ? escort.L : [a]);
       api.meet(a.c, pl ? pl.k : '', pl ? `${pl.ic} ${pl.n}` : '📍 Sokakta', Math.floor(gm), hi, true);
     }
+    let invSel = []; // 💌 eve davet seçimi (en fazla 2)
     const tick = root.querySelector('#ctTick span');
     function drawTick() {
       const s = `📣 ${tr('Bugün')}:   ` + evDay.map(e => `${e.ic} ${String(e.h[0] % 24).padStart(2, '0')}:00 ${tr(e.n)}${evOn(e, lastH) ? ' 🔴' : ''}`).join('     ·     ');
@@ -1525,6 +2002,7 @@ Stories.City = (() => {
 
     /* 🗣️ ayaküstü konuşma: yakınsan başlar, değilsen yanına yürürsün (o seni bekler); toTalk false → varınca kartı açılır */
     function chase(a, toTalk = true) {
+      if (me.drive) exitCar(true);
       if (Math.hypot(a.x - me.x, a.y - me.y) <= STOP_R) { a.hold = true; held = a; }
       walkTo(a.x, a.y, null, CS + 10); me.chase = a; me.chaseTalk = toTalk; me.rp = tNow + 1500; follow0 = true;
     }
@@ -1532,6 +2010,7 @@ Stories.City = (() => {
       const m = met[a.id] || {};
       if (m.cool && Date.now() < m.cool) return;
       card.hidden = true;
+      if (me.drive) exitCar(true);
       if (inside || distTo(a) < 110) startTalk(a);
       else { me.tries = 0; chase(a); api.notify(`${shownName(a) || tr('Yabancı kız')} ${tr(a.hold ? 'seni bekliyor' : '· peşinden gidiyorsun')}`, a.hold ? '✋' : '🏃'); }
     }
@@ -1543,7 +2022,7 @@ Stories.City = (() => {
       const pools = [LAF[tier] || LAF.yeni];
       if (st && LAF_ST[st]) pools.push(LAF_ST[st]);
       if (h >= 20 || h < 4 || NIGHT_PL.includes(a.k)) pools.push(LAF_NIGHT);
-      if (!a.str && api.rel(a.c).wed) pools.push(LAF_WED);
+      if (api.rel(a.c).wed) pools.push(LAF_WED);
       if (ev) pools.push([`${ev.ic} ${ev.n} başladı, gelsene! 😄`]);
       if (a.drive) pools.push(LAF_CAR, LAF_CAR, LAF_CAR);
       const s = pickA(pickA(pools));
@@ -1554,14 +2033,241 @@ Stories.City = (() => {
       lafNext = tNow + 5000 + Math.random() * 7000;
       const h = hourOf(), p = .55 + (h >= 20 || h < 4 ? .2 : 0) + (evNow(h).length ? .1 : 0);
       if (Math.random() > p) return;
-      const near = ag.filter(a => a.st !== 'in' && !a.hold && !(a.lafT && tNow - a.lafT < 60000) && !((met[a.id] || {}).cool > Date.now()) && (d => d > 25 && d < (a.drive ? LAF_R + 90 : LAF_R))(distTo(a)));
+      const near = ag.filter(a => a.st !== 'in' && !a.hold && !a.esc && !a.seek && !a.grp && !a.phone && !(a.lafT && tNow - a.lafT < 60000) && !((met[a.id] || {}).cool > Date.now()) && (d => d > 25 && d < (a.drive ? LAF_R + 90 : LAF_R))(distTo(a)));
       if (!near.length) return;
       const drv = near.filter(a => a.drive), a = drv.length && Math.random() < .6 ? pickA(drv) : pickA(near), r = Math.random();
       a.lafT = tNow;
       // 🚗 arabadakiler: korna / selektör / camdan laf
       if (a.drive && r < .35) { a.honkT = tNow; a.lafTxt = pickA(LAF_HONK); honk(); }
       else if (a.drive && r < .65) { a.flashT = tNow; a.lafTxt = pickA(LAF_FLASH); }
+      // ✋ yürüyen biri %18 yanına gelip seni durdurur
+      else if (!a.drive && !me.drive && r < .18 && freeA(a) && !talk) { const tier = tierOf(a); a.seek = { t: tNow, rp: 0, txt: pickA(STOP_L[tier] || STOP_L.yeni) }; a.lafTxt = pickA(['Hey! Dur bir saniye! ✋', 'Bekle! 🏃‍♀️', 'Psst, dur! 👋']); }
       else a.lafTxt = lafLine(a);
+    }
+    // bekletilen / toplanan / durduran karakter kaldığı yerden hedefine devam eder
+    function resume(a) {
+      a.path = null; a.leaveAt = 0;
+      if (a.to && PL[a.to]) depart(a);
+      else if (a.k && a.k !== '~' && PL[a.k]) { a.to = a.k; depart(a); }
+      else { a.k = '~'; a.st = 'stand'; a.next = tNow + 1500 + Math.random() * 3000; }
+    }
+    const freeA = a => !a.hold && !a.esc && !a.seek && !a.grp && !a.phone && !a.drive && (a.st === 'walk' || a.st === 'stand' || a.st === 'wander') && !(talk && talk.a === a);
+    // ✋ seni durdurmaya gelen: yolu tazeleyerek yanına koşar, yetişince konuşmayı o başlatır (20 sn'de yetişemezse vazgeçer)
+    function seekStep(a, dt) {
+      const S = a.seek, d = distTo(a);
+      if (inside || me.taxi || tNow - S.t > 20000) { a.seek = null; resume(a); return; }
+      if (d < CS + 18) {
+        if (talk || !card.hidden) return;
+        a.seek = null; resume(a);
+        me.path = null; me.dest = null; me.chase = null; me.hw = null;
+        a.lafTxt = S.txt; a.lafT = tNow;
+        api.notify(`${shownName(a) || tr('Yabancı kız')} ${tr('seni durdurdu')}`, '✋');
+        startTalk(a);
+        return;
+      }
+      if (!a.path || tNow > S.rp) { S.rp = tNow + 1200; a.path = [...walkPath(route(wd.nearest(a.x, a.y), wd.nearest(me.x, me.y)), a.x, a.y), [me.x, me.y]]; a.pi = 0; }
+      follow(a, a.sp * 2.2 * dt);
+    }
+    // 👥 toplanma: ekrandaki yürüyen 2–3 kişi kaldırımda bir noktada buluşur, sırayla konuşur, sonra yollarına devam eder (aynı anda en çok 2 grup)
+    const grps = [];
+    let grpNext = 6000;
+    const isNight = () => { const h = hourOf(); return h >= 20 || h < 5; };
+    const zoneAt = (x, y) => wd.coastDist(x, y) < 380 ? 'cs' : (x < 950 * SC && y < 1000 * SC) || x < 0 || y < 0 ? 'ev' : x > 1830 * SC && y < 1500 * SC ? 'ex' : ell(x, y, 1650 * SC, 860 * SC, 820 * SC, 540 * SC) ? 'dt' : 'ev';
+    const convAt = (x, y) => { const r = Math.random(); return isNight() && r < .5 ? pickA(CONV_Z.night) : r < .8 ? pickA(CONV_Z[zoneAt(x, y)]) : pickA(CONV); };
+    function grpEnd(g) { const i = grps.indexOf(g); if (i < 0) return; grps.splice(i, 1); g.mem.forEach(a => { a.grp = null; resume(a); }); }
+    // 👥 sohbete katıl: yakınsan hemen, değilsen yanlarına yürürsün; konuşma dokunduğun kişiyle, diğerleri araya girer
+    function joinAsk(a) {
+      const g = a.grp;
+      if (!g) return;
+      g.joined = true; g.joinT = tNow;
+      card.hidden = true;
+      if (me.drive) exitCar(true);
+      if (inside || Math.hypot(g.x - me.x, g.y - me.y) < 80) joinGroup(g, a);
+      else { walkTo(g.x, g.y, null, 28); me.joinG = [g, a]; follow0 = true; }
+    }
+    function joinGroup(g, a) {
+      if (!grps.includes(g)) return;
+      startTalk(a);
+      talk.g = g;
+      const o = g.mem.filter(x => x !== a);
+      if (o.length) { const s = pickA(o), l = pickA(GJ_HI); talk.log.push(['her', l, first(s)]); s.chatTxt = l; s.chatT = tNow; }
+      drawTalk();
+    }
+    /* 🏡 eve beraber yürüme: davet ettiğin 1–2 kişi önce yanına gelir (uzaktaysa yakına taksiyle), sonra senin peşinden eve yürür; kapıya varınca sohbet evde başlar.
+       Sen haritada istediğin gibi yürüyebilirsin, peşinden gelirler; ona dokunup 👋 Davetten vazgeç ile bitirirsin */
+    let escort = null;
+    function startEscort(L) {
+      L = L.filter(Boolean);
+      if (!L.length) return;
+      if (escort) stopEscort(false);
+      closeCard();
+      L.forEach(a => {
+        if (a.grp) grpEnd(a.grp);
+        a.seek = null; a.phone = null; a.drive = false; a.hold = false; a.esc = true; a.st = 'walk'; a.path = null; a.leaveAt = 0;
+        if (Math.hypot(a.x - me.x, a.y - me.y) > 900) { const j = nearCamNode(); if (j >= 0) [a.x, a.y] = sidePt(j); }
+      });
+      escort = { L, ph: 'come', t0: tNow, rp: 0 };
+      api.notify(`${L.map(a => shownName(a) || tr('Yabancı kız')).join(' & ')} ${tr('yanına geliyor, beraber eve yürüyeceksiniz')}`, '🏡');
+    }
+    /* 🚗 araban: 🚗 düğmesi / park etmiş arabana dokun → yanındaysan binersin (uzaksa önce yürürsün); yanındaki kızlar (eşlik edenler) da biner.
+       Sürerken haritaya dokun → yollardan gidersin (bina / kişi hedefse varınca park edip inersin), basılı tut → o yöne sürersin. 🅿️ ile park edip inersin */
+    function carBtn() { const b = root.querySelector('[data-ct="car"]'); if (b) { b.textContent = me.drive ? '🅿️' : '🚗'; b.title = tr(me.drive ? 'Park et, in' : 'Araban'); } }
+    function enterCar() {
+      if (me.drive || inside || me.taxi) return;
+      if (Math.hypot(myCar.x - me.x, myCar.y - me.y) > 140) { closeCard(); walkTo(myCar.x, myCar.y); me.toCar = true; follow0 = true; api.notify(tr('🚗 Arabana yürüyorsun'), '🚶'); return; }
+      closeCard();
+      me.drive = true; me.x = myCar.x; me.y = myCar.y; me.sa = me.a = myCar.sa; me.path = null; me.dest = null; me.hw = null; me.toCar = false;
+      const inn = escort ? escort.L.filter(a => Math.hypot(a.x - me.x, a.y - me.y) < 220) : [];
+      inn.forEach(a => { a.inCar = true; });
+      api.notify(inn.length ? `🚗 ${inn.map(a => shownName(a) || tr('Yabancı kız')).join(' & ')} ${tr('de bindi')}` : tr('🚗 Arabana bindin'), '🚗');
+      if (inn.length) { const a = inn[0]; a.chatTxt = pickA(CAR_WITH); a.chatT = tNow; }
+      carBtn(); persist(); follow0 = true;
+      if (escort && escort.ph === 'go') { const [dx, dy] = homeDoor(); walkTo(dx, dy); me.escHome = true; }
+    }
+    function exitCar(quiet) {
+      if (!me.drive) return;
+      const n = wd.nodes[wd.nearest(me.x, me.y, 1)], sa = me.sa || 0, sx = -Math.sin(sa), sy = Math.cos(sa);
+      myCar.x = me.x + sx * n.hw * .35; myCar.y = me.y + sy * n.hw * .35; myCar.sa = sa;
+      const ox = me.x + sx * (n.hw * .5 + SW / 2), oy = me.y + sy * (n.hw * .5 + SW / 2);
+      if (!wd.solid(ox, oy) && !wd.inSea(ox, oy)) { me.x = ox; me.y = oy; }
+      me.drive = false; me.path = null; me.node = null;
+      if (escort) escort.L.forEach((a, i) => { if (a.inCar) { a.inCar = false; a.x = me.x + Math.cos(sa) * (i ? -18 : 18); a.y = me.y + Math.sin(sa) * (i ? -18 : 18); } });
+      carBtn(); persist();
+      if (!quiet) api.notify(tr('🅿️ Arabanı park ettin'), '🅿️');
+    }
+    function openMyCar() {
+      if (talk) endTalk();
+      release(); sel = null;
+      const d = Math.hypot(myCar.x - me.x, myCar.y - me.y), inn = escort ? escort.L : [];
+      card.innerHTML = `<button type="button" class="ct-x" data-x aria-label="Kapat">✕</button><h3>🚗 ${tr('Senin araban')}</h3>
+        <p>${tr('Pembe SUV · 5 kişilik')}${inn.length ? ` · ${inn.map(a => esc(shownName(a) || '❔')).join(' & ')} ${tr('seninle binecek')}` : ''}</p>
+        <div class="ct-acts"><button type="button" class="btn sm" data-car>${d > 140 ? '🚶 ' + tr('Arabana yürü') : '🔑 ' + tr('Bin')}</button></div>`;
+      card.hidden = false;
+    }
+    // 📱 şehir telefonu: şehirde başlayan sohbetler ve gruplar (en yeni önce); dokununca o sohbet açılır
+    function openPhone() {
+      if (talk) endTalk();
+      release(); sel = null;
+      const L = api.chats ? api.chats() : [], ago = ts => { const d = Date.now() - ts; return d < 6e4 ? tr('şimdi') : d < 36e5 ? `${Math.floor(d / 6e4)} dk` : d < 864e5 ? `${Math.floor(d / 36e5)} sa` : `${Math.floor(d / 864e5)} g`; };
+      card.innerHTML = `<button type="button" class="ct-x" data-x aria-label="Kapat">✕</button><h3>📱 ${tr('Şehir sohbetleri')}</h3>
+        ${L.length ? `<div class="ct-list">${L.map(x => `<a class="ct-row" href="#/chat/${esc(x.id)}" data-chat="${esc(x.id)}">${api.avatar(x.c, 42)}<span class="ct-rin"><b>${x.group ? '👥 ' : ''}${esc(x.n)}${x.unread ? ' <i class="ct-new">●</i>' : ''}</b><small>${esc(x.last)}</small></span><i class="ct-go">${ago(x.ts)}</i></a>`).join('')}</div>`
+          : `<p>${tr('Henüz şehirde başlayan bir sohbetin yok. Biriyle ayaküstü konuş ya da eve davet et.')}</p>`}`;
+      card.hidden = false;
+    }
+    function stopEscort(note) {
+      if (!escort) return;
+      const w = escort.ph === 'with';
+      escort.L.forEach((a, i) => { if (a.inCar) { a.inCar = false; a.x = me.x + (i ? -24 : 24); a.y = me.y; } a.esc = false; resume(a); });
+      escort = null; me.escHome = false; withIds = []; persist();
+      if (note) api.notify(tr(w ? '👋 Vedalaştınız' : '🏡 Davetten vazgeçtin'), '👋');
+    }
+    const homeDoor = () => doorOf('benim');
+    // engelde kayarak düz git (peşinden gelirken)
+    function stepTo(a, tx, ty, sp, dt) {
+      const dx = tx - a.x, dy = ty - a.y, d = Math.hypot(dx, dy);
+      if (d < 1) return;
+      const m = Math.min(d, sp * dt), ux = dx / d * m, uy = dy / d * m, ok = (x, y) => !wd.inSea(x, y) && !wd.solid(x, y);
+      a.a = Math.atan2(dy, dx);
+      if (ok(a.x + ux, a.y + uy)) { a.x += ux; a.y += uy; } else if (ok(a.x + ux, a.y)) a.x += ux; else if (ok(a.x, a.y + uy)) a.y += uy; else { a.x += ux; a.y += uy; }
+    }
+    function escortStep(dt) {
+      const E = escort;
+      if (!E) return;
+      if (inside) return;
+      if (E.ph === 'come') {
+        let all = true;
+        E.L.forEach(a => {
+          if (a.inCar) { a.x = me.x; a.y = me.y; return; }
+          const dd = Math.hypot(a.x - me.x, a.y - me.y);
+          if (me.drive && dd < 60) { a.inCar = true; api.notify(`🚗 ${shownName(a) || tr('Yabancı kız')} ${tr('de bindi')}`, '🚗'); return; }
+          if (!me.drive && dd < 45) return;
+          all = false;
+          if (!a.path || tNow > E.rp) a.path = [...walkPath(route(wd.nearest(a.x, a.y), wd.nearest(me.x, me.y)), a.x, a.y), [me.x, me.y]], a.pi = 0;
+          if (follow(a, a.sp * 2.4 * dt)) a.path = null;
+        });
+        if (tNow > E.rp) E.rp = tNow + 1200;
+        if (all || tNow - E.t0 > 40000) {
+          E.ph = 'go';
+          const [dx, dy] = homeDoor();
+          if (!talk) { closeCard(); walkTo(dx, dy); me.escHome = true; follow0 = true; }
+          const a = E.L[0], l = pickA(ESC_HI);
+          a.chatTxt = l; a.chatT = tNow;
+        }
+        return;
+      }
+      // peşinden: senin arkanda sıra sıra (yürürken), dururken yanında
+      const moving = !!(me.path || (me.hw && me.hw.mv)), bx = Math.cos(me.a), by = Math.sin(me.a);
+      E.L.forEach((a, i) => {
+        if (a.inCar) { a.x = me.x; a.y = me.y; return; }
+        const back = moving ? 20 + i * 18 : 0, side = moving ? (i ? -9 : 9) : (i ? -20 : 20);
+        const tx = me.x - bx * back - by * side, ty = me.y - by * back + bx * side;
+        if (Math.hypot(tx - a.x, ty - a.y) > 4) stepTo(a, tx, ty, Math.max(60, Math.hypot(tx - a.x, ty - a.y) * 3), dt);
+      });
+      if (tNow > (E.say || 0)) { E.say = tNow + 7000 + Math.random() * 6000; if (moving && Math.random() < .6) { const a = pickA(E.L); a.chatTxt = pickA(a.inCar ? CAR_WITH : E.ph === 'with' ? WITH_WALK : ESC_WALK); a.chatT = tNow; } }
+      if (E.ph !== 'go') return;
+      const [dx, dy] = homeDoor();
+      if (Math.hypot(dx - me.x, dy - me.y) < (me.drive ? 170 : 70) && !talk) {
+        if (me.drive) exitCar(true);
+        const L = E.L;
+        L.forEach(a => { a.esc = false; resume(a); });
+        escort = null; me.escHome = false; me.path = null; me.dest = null;
+        meetWith(L);
+        if (L.length === 2 && api.meetGroup) api.meetGroup(L[0].c, L[1].c, 'benim', '🏡 Senin evin', Math.floor(gm));
+        else api.meet(L[0].c, 'benim', '🏡 Senin evin', Math.floor(gm), pickA(ESC_DOOR), !L[0].str);
+      }
+    }
+    // grubun diğerleri araya girer (%55): cevabın iyi / kötü gitmesine göre
+    function grpChime(T, ok) {
+      const o = T.g ? T.g.mem.filter(x => x !== T.a) : [];
+      if (!o.length || Math.random() > .55) return;
+      const s = pickA(o), l = pickA(ok ? GJ_OK : GJ_BAD);
+      T.log.push(['her', l, first(s)]); s.chatTxt = l; s.chatT = tNow;
+    }
+    function grpStep(dt) {
+      if (!inside && tNow > grpNext && grps.length < 2) {
+        grpNext = tNow + 9000 + Math.random() * 12000;
+        const c = ag.filter(a => freeA(a) && vis(a.x, a.y, 250)), A = c.length > 1 && pickA(c);
+        const near = A ? c.filter(b => b !== A && Math.hypot(b.x - A.x, b.y - A.y) < 320).sort((p, q) => Math.hypot(p.x - A.x, p.y - A.y) - Math.hypot(q.x - A.x, q.y - A.y)).slice(0, Math.random() < .4 ? 2 : 1) : [];
+        if (near.length) {
+          const mem = [A, ...near], n = wd.nearest(mem.reduce((s, a) => s + a.x, 0) / mem.length, mem.reduce((s, a) => s + a.y, 0) / mem.length), [gx, gy] = sidePt(n);
+          const g = { mem, x: gx, y: gy, conv: convAt(gx, gy), i: 0, next: 0, t0: tNow };
+          mem.forEach((a, i) => {
+            const an = i / mem.length * Math.PI * 2, slot = [gx + Math.cos(an) * 13, gy + Math.sin(an) * 13];
+            a.grp = g; a.path = [...walkPath(route(wd.nearest(a.x, a.y), n), a.x, a.y), slot]; a.pi = 0;
+          });
+          grps.push(g);
+        }
+      }
+      grps.slice().forEach(g => {
+        // 👥 katıldıysan grup dağılmaz, sana döner; yanına gelmezsen 25 sn sonra dağılır
+        if (g.joined) {
+          if (talk && talk.g === g) { g.mem.forEach(a => { a.a = Math.atan2(me.y - a.y, me.x - a.x); }); return; }
+          if (tNow - g.joinT > 25000) grpEnd(g);
+          return;
+        }
+        if (g.mem.some(a => talk && talk.a === a)) { grpEnd(g); return; }
+        g.mem.forEach(a => { if (!a.hold && a.pi < a.path.length) follow(a, a.sp * 1.3 * dt); });
+        if (g.mem.some(a => a.pi < a.path.length)) { if (tNow - g.t0 > 30000) grpEnd(g); return; }
+        g.mem.forEach(a => { a.a = Math.atan2(g.y - a.y, g.x - a.x); });
+        if (tNow < g.next) return;
+        if (g.i >= g.conv.length) { grpEnd(g); return; }
+        const s = g.mem[g.i % g.mem.length];
+        s.chatTxt = g.conv[g.i]; s.chatT = tNow; g.i++; g.next = tNow + 2600 + s.chatTxt.length * 25;
+      });
+    }
+    // 📱 telefonda konuşan: yürürken yavaşlar, baloncukta konuşmasının bir tarafı görünür (aynı anda en çok 2)
+    let phNext = 4000;
+    function phoneStep() {
+      if (!inside && tNow > phNext) {
+        phNext = tNow + 6000 + Math.random() * 8000;
+        if (ag.filter(a => a.phone).length < 2 && Math.random() < .6) { const c = ag.filter(a => a.st === 'walk' && freeA(a) && vis(a.x, a.y, 200)); if (c.length) pickA(c).phone = { L: pickA(isNight() && Math.random() < .5 ? PHONE_NIGHT : PHONE), i: 0, next: tNow + 500 }; }
+      }
+      ag.forEach(a => {
+        const p = a.phone;
+        if (!p || tNow < p.next) return;
+        if (p.i >= p.L.length || a.st !== 'walk' || a.hold) { a.phone = null; return; }
+        a.chatTxt = '📱 ' + p.L[p.i++]; a.chatT = tNow; p.next = tNow + 3300;
+      });
     }
     // 📯 kısa çift korna sesi (WebAudio, kısık)
     let actx = null;
@@ -1581,18 +2287,27 @@ Stories.City = (() => {
     function drawLaf() {
       const k = tagK();
       ctx.font = `700 ${11 * k}px Nunito,${EMO}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ag.forEach(a => {
-        const age = a.lafT ? tNow - a.lafT : 1e9;
-        if (age > 5500 || a.st === 'in' || !vis(a.x, a.y, 120)) return;
-        const s = tr(a.lafTxt), w = ctx.measureText(s).width + 16 * k, h2 = 20 * k, x = a.x, y = a.y - CS / 2 - 8 * k, pop = Math.min(1, age / 180);
-        ctx.globalAlpha = Math.min(1, (5500 - age) / 600);
+      const bub = (x, y, txt, age, dur, cht) => {
+        const s = tr(txt), w = ctx.measureText(s).width + 16 * k, h2 = 20 * k, pop = Math.min(1, age / 180);
+        ctx.globalAlpha = Math.min(1, (dur - age) / 600);
         ctx.save(); ctx.translate(x, y); ctx.scale(pop, pop);
         ctx.fillStyle = '#fff'; rr(-w / 2, -h2, w, h2, 9 * k); ctx.fill();
         ctx.beginPath(); ctx.moveTo(-5 * k, -1); ctx.lineTo(0, 6 * k); ctx.lineTo(5 * k, -1); ctx.closePath(); ctx.fill();
-        ctx.strokeStyle = '#ff3d8b'; ctx.lineWidth = 1.5 * k; rr(-w / 2, -h2, w, h2, 9 * k); ctx.stroke();
+        ctx.strokeStyle = cht ? '#9aa3b5' : '#ff3d8b'; ctx.lineWidth = 1.5 * k; rr(-w / 2, -h2, w, h2, 9 * k); ctx.stroke();
         ctx.fillStyle = '#2a1636'; ctx.fillText(s, 0, -h2 / 2 + .5 * k);
         ctx.restore();
+      };
+      ag.forEach(a => {
+        // 📣 laf / 👀 süzme tepkisi / 👥 sohbet + 📱 telefon: en yenisi gösterilir (sohbet baloncuğu gri, daha kısa)
+        const b = [[a.lafT, a.lafTxt, 0], [a.suzT, a.suzTxt, 0], [a.chatT, a.chatTxt, 1]].filter(x => x[0]).sort((p, q) => q[0] - p[0])[0];
+        if (!b) return;
+        const age = tNow - b[0], cht = b[2], dur = cht ? 3000 : 5500;
+        if (age > dur || a.st === 'in' || !vis(a.x, a.y, 120)) return;
+        bub(a.x, a.y - CS / 2 - 8 * k, b[1], age, dur, cht);
       });
+      cars.forEach(o => { const age = o.ctT ? tNow - o.ctT : 1e9; if (age < 3000 && vis(o.x, o.y, 120)) bub(o.x, o.y - 14 * k, o.ctTxt, age, 3000, 1); });
+      // 🏖️ sahil grupları
+      if (beachOn(21)) bgrp.forEach(g => { const age = tNow - g.t; if (g.t && age < 3000 && vis(g.x, g.y, 120)) { const p = g.m[g.who]; bub(p.x, p.y - CS / 2 - 8 * k, g.txt, age, 3000, 1); } });
       ctx.globalAlpha = 1;
     }
     // tarz cümlesi %65, yoksa genel havuz
@@ -1600,8 +2315,8 @@ Stories.City = (() => {
     function startTalk(a) {
       me.path = null; me.dest = null; me.chase = null;
       a.hold = true; held = a; sel = null;
-      const m = met[a.id] || {}, tier = tierOf(a), TI = TIER[tier], st = STYLE[styleOf(a)], ev = evAt(a.k, lastH), wed = !a.str && api.rel(a.c).wed;
-      talk = { a, tier, TI, st, ev, wed, known: tier !== 'yeni', last: '', bad: 0, log: [], done: '', wait: false,
+      const m = met[a.id] || {}, tier = tierOf(a), TI = TIER[tier], st = STYLE[styleOf(a)], ev = evAt(a.k, lastH), rl = api.rel(a.c), wed = !!rl.wed;
+      talk = { a, tier, TI, st, ev, wed, rel: rl.rel || 'Single', live: rl.live || '', known: tier !== 'yeni', last: '', bad: 0, log: [], done: '', wait: false,
         ilgi: Math.max(5, Math.min(90, TI.i + (st ? st.i : 0) + (tier === 'tanis' ? (m.ilgi || 0) * .3 : 0) + (ev ? 6 : 0))),
         mood: (hash(a.id + ':' + day) % 35 - 15) / 100, named: !a.str || !!m.n };
       // 📣 sana laf attıysa konuşma o sözle ve daha yüksek ilgiyle başlar
@@ -1612,24 +2327,101 @@ Stories.City = (() => {
     }
     function drawTalk() {
       const T = talk, a = T.a, pl = a.k === '~' ? null : plOf(a.k);
-      const opts = T.done === 'win' ? `<button type="button" class="btn sm" data-meet>💬 Sohbete geç</button><button type="button" class="btn ghost sm" data-bye>👋 Sonra yazarım</button>`
+      // 💡 öneriler: her yeni cümlede yenilenir (onun sorusu varsa cevap önerisi, ilgi arttıkça davet / cesur)
+      if (!T.done && T.sugAt !== T.log.length) {
+        T.sugAt = T.log.length;
+        const P = T.ask ? [SUG.ans, SUG.ans, SUG.q] : [SUG.q, Math.random() < .5 ? SUG.ilt : SUG.esp, T.ilgi >= 70 ? SUG.ces : T.ilgi >= 45 ? SUG.dav : SUG.ilt];
+        T.sug = [];
+        P.forEach(L => { const c = L.filter(s => !T.sug.includes(s) && !T.log.some(x => x[1] === s)); if (c.length) T.sug.push(pickA(c)); });
+      }
+      const sugH = !T.done && T.sug && T.sug.length ? `<div class="ct-sug">${T.sug.map(s => `<button type="button" class="ct-sg" data-sg="${esc(s)}">${esc(s)}</button>`).join('')}</div>` : '';
+      const opts = T.done === 'win' ? `<button type="button" class="btn sm" data-meet>💬 Sohbete geç</button>${inside ? '' : '<button type="button" class="btn sm" data-gohome>🏡 Eve götür</button>'}<button type="button" class="btn ghost sm" data-bye>👋 Sonra yazarım</button>`
         : T.done === 'lose' ? `<button type="button" class="btn ghost sm" data-bye>👋 Tamam</button>`
-        : `${TALK_T.map(([k, l]) => `<button type="button" class="btn sm ct-opt" data-say="${k}"${T.wait ? ' disabled' : ''}>${l}</button>`).join('')}<button type="button" class="btn ghost sm" data-bye>👋 Vedalaş</button>`;
+        : `<form class="ct-say" data-sayf><input type="text" name="m" maxlength="200" autocomplete="off" enterkeyhint="send" placeholder="${esc(tr('Bir şey yaz ya da sor…'))}"><button type="submit" class="btn sm" aria-label="Gönder">➤</button></form><button type="button" class="btn ghost sm" data-bye>👋 Vedalaş</button>`;
+      // yeniden çizerken yazdığın ve odak kaybolmasın
+      const inp0 = card.querySelector('.ct-say input'), keep = inp0 ? [inp0.value, document.activeElement === inp0] : null;
       card.innerHTML = `<button type="button" class="ct-x" data-x aria-label="Kapat">✕</button>
         <div class="ct-th">${api.avatar(T.named ? a.c : { name: '?', photo: a.c.photo, colors: a.c.colors }, 44)}<span><b>${T.named ? esc(a.c.name) : tr('Yabancı kız')}</b><small>${pl ? `${pl.ic} ${esc(pl.n)}` : '📍 sokakta'} · ${hh()}</small></span></div>
-        <div class="ct-chips"><em>${T.TI.l}</em>${T.st && T.known ? `<em>${T.st.l}</em>` : ''}${T.wed ? '<em>💍 Evli</em>' : ''}${T.ev ? `<em class="ev">🎉 ${esc(T.ev.n)}</em>` : ''}</div>
+        <div class="ct-chips"><em>${T.TI.l}</em>${T.st && T.known ? `<em>${T.st.l}</em>` : ''}${T.wed ? '<em>💍 Evli</em>' : ''}${T.g ? `<em>👥 ${T.g.mem.filter(x => x !== a).map(x => esc(shownName(x) || '❔')).join(', ')}</em>` : ''}${T.ev ? `<em class="ev">🎉 ${esc(T.ev.n)}</em>` : ''}</div>
         <div class="ct-love${T.done === 'win' ? ' win' : ''}"><i style="width:${Math.round(T.ilgi)}%"></i><span>💗 İlgi ${Math.round(T.ilgi)}</span></div>
-        <div class="ct-log">${T.log.slice(-6).map(([w, s]) => `<p class="ct-b ${w}">${esc(s)}</p>`).join('')}${T.wait ? '<p class="ct-b her typing">…</p>' : ''}</div>
-        <div class="ct-acts ct-opts">${opts}</div>`;
+        <div class="ct-log">${T.log.slice(-12).map(([w, s, n]) => `<p class="ct-b ${w}">${n ? `<small class="ct-bn">${esc(n)}</small>` : ''}${esc(s)}</p>`).join('')}${T.wait ? '<p class="ct-b her typing">…</p>' : ''}</div>
+        ${sugH}<div class="ct-acts ct-opts">${opts}</div>`;
       card.hidden = false;
       const lg = card.querySelector('.ct-log');
       if (lg) lg.scrollTop = lg.scrollHeight;
+      const inp = card.querySelector('.ct-say input');
+      if (inp && keep) { inp.value = keep[0]; if (keep[1]) inp.focus(); }
     }
-    function choose(type) {
+    // 💬 yazdığın cümle: soru → bilgisiyle cevap; tür (iltifat / espri / davet / cesur) → choose; onun sorusuna cevap → tepki; kaba → ilgi düşer
+    function tAns(T, q) {
+      const a = T.a, c = a.c, w = a.w || {}, pl = a.k === '~' ? null : plOf(a.k), nm = first(a);
+      if (q === 'ad') {
+        if (T.named && T.known) return `Adımı unuttun mu? 😤 ${nm}`;
+        if (a.str && T.ilgi < 30) return 'Önce sen söyle bakalım 😏';
+        T.named = true; return `Ben ${nm} 😊`;
+      }
+      if (q === 'yas') return c.age ? pickA([`${c.age} yaşındayım 😊`, `${c.age}… ama kimseye söyleme 🤫`]) : 'Kadınlara yaş sorulmaz 😏';
+      if (q === 'is') return (c.job ? `${c.job} olarak çalışıyorum` : 'Şu an çalışmıyorum, keyfime bakıyorum 😌') + (w.job ? ', şu an da iş başındayım 😅' : '');
+      if (q === 'nasil') return pickA(T.mood > 0 ? ['İyiyim, sen sorunca daha iyi oldum 😊', 'Harika! Güzel bir gün 🌞'] : ['Eh, idare eder 😕', 'Biraz yorgunum ama iyiyim']);
+      if (q === 'nereye') { const p = a.to && a.to !== '~' ? plOf(a.to) : null; return p ? `${p.ic} ${p.n} tarafına gidiyorum` : 'Hiçbir yere, öylesine dolaşıyorum 😊'; }
+      if (q === 'ne') return w.job ? 'Çalışıyorum, mola verdim biraz 😅' : pl ? `${pl.ic} ${pl.n} civarındayım, öylesine 😊` : 'Biraz yürüyüş yapıyorum 🚶‍♀️';
+      // 💍 profildeki Relationship / Yaşam ile aynı (evliyse evli der)
+      if (q === 'sevgili') return T.wed ? (T.tier === 'sevgili' ? 'Evliyim biliyorsun 💍… ama kalbim sende 😘' : pickA(['Evliyim 💍… ama bu konuşmayı kocam bilmek zorunda değil 🤫', 'Evliyim, yüzüğü görmedin mi? 💍😏', 'Kocam var… ama şu an burada değil 😏']))
+        : T.tier === 'sevgili' ? 'Sen varsın ya 😘 unuttun mu?'
+        : T.rel === 'Has Boyfriend' ? pickA(['Sevgilim var… ama o burada değil 😏', 'Bir erkek arkadaşım var, neden sordun? 🤭', 'Var ama işler biraz karışık 🙄'])
+        : T.rel === 'Divorced' ? pickA(['Boşandım, şimdilik yalnızım 😌', 'Bir kere evlendim, bir daha mı? 😅 Şu an bekarım']) : pickA(['Bekarım 😏 neden sordun?', 'Şu an kimse yok… henüz 😉', 'Bekarım ama seçiciyim 😌']);
+      if (q === 'hobi') return TK_HOBI[hash(a.id + ':hb') % TK_HOBI.length];
+      const lv = T.live === 'koca' ? 'kocamla yaşıyorum 💍' : T.live === 'tek' ? 'tek başıma yaşıyorum 😏' : T.live === 'ev' ? 'ev arkadaşımla yaşıyorum' : '';
+      return `Bu şehirde yaşıyorum${lv ? `, ${lv}` : `, ${a.str ? 'şehrin öbür ucunda 😊' : 'evim yakında 🏡'}`}`;
+    }
+    function say(text) {
+      const T = talk;
+      text = String(text || '').trim().slice(0, 200);
+      if (!T || T.done || T.wait || !text) return;
+      const s = text.toLocaleLowerCase('tr'), q = TQ.find(([, re]) => re.test(s)), ty = (TALK_RE.find(([, re]) => re.test(s)) || [])[0], asked = T.ask;
+      T.ask = null;
+      if (ty && ty !== 'kaba' && !q) { T.dull = 0; choose(ty, text); return; }
+      T.log.push(['me', text]);
+      let r, dI;
+      if (ty === 'kaba') { r = pickA(TK_RUDE); dI = -(15 + Math.random() * 8); }
+      else if (q) { r = tAns(T, q[0]); dI = 3 + Math.random() * 3; T.dull = 0; }
+      else if (asked) { const sh = s.length < 3; r = pickA(sh ? HR_SHORT : HR); dI = sh ? -3 : 6 + Math.random() * 5; T.dull = 0; }
+      else if (/\?\s*$/.test(s) || /\s(mi|mı|mu|mü)(sin|sun|yim|siniz)?\s*$/.test(s)) { r = pickA(TK_Q); dI = 2; }
+      else if (/^(selam|merhaba|hey|sa|slm|mrb)\b/.test(s)) { r = pickA(TK_HI); dI = 2; }
+      else { T.dull = (T.dull || 0) + 1; r = T.dull >= 3 ? pickA(TK_DULL) : pickA(TK_NEU); dI = T.dull >= 3 ? -5 : 1 + Math.random() * 2; }
+      T.wait = true;
+      drawTalk();
+      setTimeout(() => {
+        if (talk !== T) return;
+        T.wait = false;
+        T.log.push(['her', r]);
+        T.ilgi = Math.max(0, Math.min(100, T.ilgi + (dI > 0 ? dI * TALK_UP : dI)));
+        T.bad = dI < 0 ? T.bad + 1 : 0;
+        finish(T, dI >= 0, false, ty === 'kaba' ? 1 : .4);
+      }, 700);
+    }
+    // ilgi sonucu: kazan / kaybet, kayıt; bazen o da sana soru sorar (ask = ihtimal)
+    function finish(T, ok, invite, ask) {
+      if (T.g) {
+        const lh = T.log.filter(x => x[0] === 'her' && !x[2]).pop();
+        if (lh) { T.a.chatTxt = lh[1]; T.a.chatT = tNow; }
+        grpChime(T, ok);
+      }
+      if (T.ilgi >= 100 || (ok && invite && T.ilgi >= 70)) { T.ilgi = 100; T.done = 'win'; T.log.push(['her', pickA(T.TI.win || TK.win)]); }
+      else if (T.ilgi <= 0 || T.bad >= 3) { T.done = 'lose'; T.log.push(['her', pickA(TK.leave)]); }
+      else if (ask < 1 && Math.random() < ask) {
+        const left = HQ.filter(x => !(T.asked || []).includes(x));
+        if (left.length) { T.ask = pickA(left); (T.asked = T.asked || []).push(T.ask); T.log.push(['her', T.ask]); }
+      }
+      met[T.a.id] = { n: T.named ? first(T.a) : '', ilgi: Math.round(T.ilgi), cool: T.done === 'lose' ? Date.now() + (T.known ? 10 : 20) * 60000 : 0 };
+      persist();
+      drawTalk();
+    }
+    function choose(type, text) {
       const T = talk;
       if (!T || T.done || T.wait) return;
       const k = T.a.k;
-      T.log.push(['me', pickA(T.TI.me ? T.TI.me[type] : TK.me[type])]);
+      T.log.push(['me', text || pickA(T.TI.me ? T.TI.me[type] : TK.me[type])]);
       // şans: ruh hali + tanışıklık + kişilik + etkinlik + mekân + ilgi; evliyken cesur riskli
       let p = .52 + T.mood + T.TI.p + (T.st ? T.st.p[type] : 0) + (T.ev ? .1 : 0) - (T.wed && type === 'cesur' ? .1 : 0);
       if (NIGHT_PL.includes(k)) p += { cesur: .2, davet: .1, iltifat: 0, espri: 0 }[type];
@@ -1641,7 +2433,7 @@ Stories.City = (() => {
       T.last = type;
       const ok = Math.random() < Math.max(.05, Math.min(.95, p));
       const g = { iltifat: [10, 16], espri: [9, 15], davet: [16, 24], cesur: [20, 30] }[type], l = type === 'cesur' ? [14, 20] : [7, 13];
-      T.ilgi = Math.max(0, Math.min(100, T.ilgi + (ok ? g[0] + Math.random() * (g[1] - g[0]) : -(l[0] + Math.random() * (l[1] - l[0])))));
+      T.ilgi = Math.max(0, Math.min(100, T.ilgi + (ok ? (g[0] + Math.random() * (g[1] - g[0])) * TALK_UP : -(l[0] + Math.random() * (l[1] - l[0])))));
       T.bad = ok ? 0 : T.bad + 1;
       T.wait = true;
       drawTalk();
@@ -1650,11 +2442,7 @@ Stories.City = (() => {
         T.wait = false;
         T.log.push(['her', T.wed && Math.random() < .35 ? pickA(WED_T[ok ? 'ok' : 'bad']) : lineOf(T.st && T.st[ok ? 'ok' : 'bad'][type], TK[ok ? 'ok' : 'bad'][type])]);
         if (ok && !T.named) { T.named = true; T.log.push(['her', TK.name.replace('{ad}', first(T.a))]); }
-        if (T.ilgi >= 100 || (ok && type === 'davet' && T.ilgi >= 70)) { T.ilgi = 100; T.done = 'win'; T.log.push(['her', pickA(T.TI.win || TK.win)]); }
-        else if (T.ilgi <= 0 || T.bad >= 3) { T.done = 'lose'; T.log.push(['her', pickA(TK.leave)]); }
-        met[T.a.id] = { n: T.named ? first(T.a) : '', ilgi: Math.round(T.ilgi), cool: T.done === 'lose' ? Date.now() + (T.known ? 10 : 20) * 60000 : 0 };
-        persist();
-        drawTalk();
+        finish(T, ok, type === 'davet', ok ? .35 : .15);
       }, 700);
     }
     function endTalk() {
@@ -1662,16 +2450,33 @@ Stories.City = (() => {
       talk = null;
       if (!T) return;
       T.a.hold = false;
+      if (T.g) grpEnd(T.g);
       if (T.a.str && T.done === 'lose') strNext(T.a);
     }
+    card.onsubmit = e => {
+      const f = e.target.closest('[data-sayf]');
+      if (!f) return;
+      e.preventDefault();
+      const i = f.querySelector('input');
+      if (talk && !talk.wait && !talk.done && i.value.trim()) { const v = i.value; i.value = ''; say(v); }
+    };
     card.onclick = e => {
       const t = e.target;
       if (t.closest('[data-x]') || t.closest('[data-bye]')) { closeCard(); return; }
       const sy = t.closest('[data-say]');
       if (sy) { choose(sy.dataset.say); return; }
+      const sg = t.closest('[data-sg]');
+      if (sg) { const i = card.querySelector('.ct-say input'); if (i) { i.value = sg.dataset.sg; i.focus(); } return; }
+      if (t.closest('[data-sayf]')) return;
+      if (t.closest('[data-gohome]') && talk) { const a = talk.a; endTalk(); startEscort([a]); return; }
+      const hm = t.closest('[data-home]');
+      if (hm) { const a = ag.find(x => x.id === hm.dataset.home); if (a) { release(); startEscort(escort && escort.ph === 'with' && escort.L.includes(a) ? escort.L.slice() : [a]); } return; }
+      if (t.closest('[data-chat]')) { persist(); return; }
+      if (t.closest('[data-car]')) { enterCar(); return; }
+      if (t.closest('[data-escx]')) { closeCard(); stopEscort(true); return; }
       if (t.closest('[data-meet]') && talk) {
         const a = talk.a, pl = a.k === '~' ? null : plOf(a.k);
-        e.preventDefault(); endTalk(); persist();
+        e.preventDefault(); endTalk(); meetWith([a]);
         api.meet(a.c, pl ? pl.k : '', pl ? `${pl.ic} ${pl.n}` : '📍 Sokakta', Math.floor(gm), pickA(a.str ? TK.first : TK.firstK).replace('{ad}', first(a)), !a.str);
         return;
       }
@@ -1682,17 +2487,39 @@ Stories.City = (() => {
         else { walkTo(dx, dy, k); me.enter = k; follow0 = true; card.hidden = true; }
         return;
       }
-      // 💌 eve davet: tanıdıklarından birini seç → sohbet evinde, onun mesajıyla başlar (saat = şehir saati)
+      // 💌 eve davet: tanıdıklarından 1 ya da 2 kişi seç → 1: sohbet evinde, onun mesajıyla; 2: 👥 grup sohbeti (saat = şehir saati)
       if (t.closest('[data-invite]')) {
         const L = ag.filter(a => !a.str);
+        invSel = [];
         card.innerHTML = `<button type="button" class="ct-x" data-x aria-label="Kapat">✕</button><h3>💌 Eve davet et</h3>
-          ${L.length ? `<div class="ct-list">${L.map(a => `<a class="ct-row" href="#/sehir" data-inv="${esc(a.id)}">${api.avatar(a.c, 42)}<span class="ct-rin"><b>${esc(a.c.name)}</b><small>${TIER[tierOf(a)].l}</small></span><i class="ct-go">›</i></a>`).join('')}</div>` : '<p>Henüz tanıdığın kimse yok.</p>'}`;
+          ${L.length ? `<p>${tr('1 kişi: baş başa · 2 kişi: grup sohbeti')}</p><div class="ct-list">${L.map(a => `<a class="ct-row" href="#/sehir" data-inv="${esc(a.id)}">${api.avatar(a.c, 42)}<span class="ct-rin"><b>${esc(a.c.name)}</b><small>${TIER[tierOf(a)].l}</small></span><i class="ct-go">○</i></a>`).join('')}</div>
+          <div class="ct-acts"><button type="button" class="btn sm" data-invgo disabled>🏡 ${tr('Davet et')}</button></div>` : '<p>Henüz tanıdığın kimse yok.</p>'}`;
         return;
       }
       const iv = t.closest('[data-inv]');
-      if (iv) { e.preventDefault(); const a = ag.find(x => x.id === iv.dataset.inv); if (a) { persist(); api.meet(a.c, 'benim', '🏡 Senin evin', Math.floor(gm), pickA(INVITE_T), true); } return; }
+      if (iv) {
+        e.preventDefault();
+        const id = iv.dataset.inv;
+        invSel = invSel.includes(id) ? invSel.filter(x => x !== id) : [...invSel, id].slice(-2);
+        card.querySelectorAll('[data-inv]').forEach(r => { const on = invSel.includes(r.dataset.inv); r.classList.toggle('on', on); r.querySelector('.ct-go').textContent = on ? '✓' : '○'; });
+        const go = card.querySelector('[data-invgo]');
+        go.disabled = !invSel.length;
+        go.textContent = invSel.length === 2 ? `👥 ${tr('İkisini davet et')}` : `🏡 ${tr('Davet et')}`;
+        return;
+      }
+      if (t.closest('[data-invgo]')) {
+        e.preventDefault();
+        const L = invSel.map(id => ag.find(x => x.id === id)).filter(Boolean);
+        if (!L.length) return;
+        // 🏡 dışarıdaysan önce yanına gelir, beraber eve yürürsünüz; içerideysen sohbet hemen başlar
+        if (!inside) { startEscort(L); return; }
+        meetWith(L);
+        if (L.length === 2 && api.meetGroup) api.meetGroup(L[0].c, L[1].c, 'benim', '🏡 Senin evin', Math.floor(gm));
+        else api.meet(L[0].c, 'benim', '🏡 Senin evin', Math.floor(gm), pickA(INVITE_T), true);
+        return;
+      }
       const dc = t.closest('[data-direct]');
-      if (dc) { e.preventDefault(); const a = ag.find(x => x.id === dc.dataset.direct); if (a) directChat(a); return; }
+      if (dc) { e.preventDefault(); const a = ag.find(x => x.id === dc.dataset.direct); if (a) { if ((a.w || {}).nurse) { meetWith([a]); api.ccNurse(a.c, lastH, Math.floor(gm)); } else directChat(a); } return; }
       const g = t.closest('[data-ag]');
       if (g) { e.preventDefault(); const a = ag.find(x => x.id === g.dataset.ag); if (a) openChar(a); return; }
       if (t.closest('[data-noop]')) { e.preventDefault(); return; }
@@ -1702,6 +2529,14 @@ Stories.City = (() => {
       if (tx) { callTaxi(tx.dataset.taxi); return; }
       const wk = t.closest('[data-walk]');
       if (wk) { const k = wk.dataset.walk, p = PL[k] || wd.FM[k]; walkTo(p.x, p.y, k); follow0 = true; card.hidden = true; return; }
+      const gj = t.closest('[data-gjoin]');
+      if (gj) { const a = ag.find(x => x.id === gj.dataset.gjoin); if (a) { release(); joinAsk(a); } return; }
+      const sz = t.closest('[data-suz]');
+      if (sz) {
+        const a = ag.find(x => x.id === sz.dataset.suz);
+        if (a) { const st = styleOf(a); a.suzTxt = st && SUZ_ST[st] && Math.random() < .5 ? pickA(SUZ_ST[st]) : pickA(SUZ[tierOf(a)] || SUZ.yeni); a.suzT = tNow; openChar(a, true); }
+        return;
+      }
       const nr = t.closest('[data-near]');
       if (nr) { const a = ag.find(x => x.id === nr.dataset.near); if (a) { me.tries = 0; chase(a, false); card.hidden = true; } return; }
       const c = t.closest('[data-ccc]');
@@ -1710,12 +2545,28 @@ Stories.City = (() => {
     root.querySelector('.ct-side').onclick = e => {
       const b = e.target.closest('[data-ct]');
       if (!b) return;
-      if (b.dataset.ct === 'me') follow0 = true;
+      if (b.dataset.ct === 'phone') openPhone();
+      else if (b.dataset.ct === 'car') { if (me.drive) exitCar(); else enterCar(); }
+      else if (b.dataset.ct === 'me') follow0 = true;
       else { cam.z *= b.dataset.ct === 'in' ? 1.3 : 1 / 1.3; clampCam(); }
     };
     const spLbl = () => { spBtn.textContent = (SPEEDS.find(s => s[0] === sp) || SPEEDS[0])[1]; };
     spBtn.onclick = () => { const i = SPEEDS.findIndex(s => s[0] === sp); sp = SPEEDS[(i + 1) % SPEEDS.length][0]; spLbl(); persist(); };
     spLbl();
+    // 👫 sohbetten döndün: sohbet ettiğin kişi(ler) yanında, peşinden gelir (kartından 🏡 Eve davet et ya da 👋 Vedalaş)
+    if (withIds.length && Date.now() - wthAt < 3 * 36e5) {
+      const L = withIds.map(id => ag.find(a => a.id === id)).filter(Boolean);
+      L.forEach((a, i) => {
+        if (a.grp) grpEnd(a.grp);
+        a.seek = null; a.phone = null; a.drive = false; a.hold = false; a.esc = true; a.st = 'walk'; a.path = null; a.leaveAt = 0;
+        a.x = me.x + (i ? -20 : 20); a.y = me.y + 6;
+        if (me.drive) a.inCar = true;
+      });
+      if (L.length) { escort = { L, ph: 'with', t0: 0, rp: 0 }; L[0].chatTxt = pickA(WITH_HI); L[0].chatT = .001; }
+      else withIds = [];
+    } else withIds = [];
+    { const d = root.querySelector('.ct-dot'); if (d && api.chats) d.hidden = !api.chats().some(x => x.unread); }
+    carBtn();
     requestAnimationFrame(n => { t0 = n; requestAnimationFrame(frame); });
   }
   // 📚 Şehir Kitabı tabloları canlı veriden okur

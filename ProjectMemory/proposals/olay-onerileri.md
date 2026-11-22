@@ -1320,3 +1320,1528 @@
 | Stain Inspection | 🔍👗 | Lekeyi ışığa tutar: "çıkmaz bu" |
 | Dress Me | 🧷💞 | Bu sefer onu sen giydirirsin, düğme düğme |
 | Ruined Outfit Bill | 🧾😤 | Brat / Dom: kıyafetin parasını ister (CarmenAmor hediye geçişi) |
+
+# Tur 19 — Özel günler + ev içi aktiviteler (2026-11-18)
+
+> system.js'te olmayanlar (Birthday, New Year, Halloween, Christmas, Valentine, Game Night, Karaoke, Baking, Moving Day, Reunion yok; Anniversary Gift / Picnic / Fireplace / Truth Or Drink / Strip Poker var → hariç). Her olay `story` ile gelir.
+>
+> **Mekanik önerileri:** (1) 📅 Tarih kapısı `days: ['12-31','01-01']` / `month: 10` — `hours` gibi, uygulama saatinden (`clock`) okunur; dışında olay picker'da sönük. (2) 🎂 Doğum günü `c.bday` (karakter oluşturmada rastgele gün) → o gün `BOT_WANT` + ⚡ Kısayollar önceliği. (3) 🎮 Oyun olayları kendi `outcomes` ile kazan/kaybet (🎲 `#/sonuc` lab). (4) ✈️ Reunion: son mesajdan ≥ N gün geçtiyse açılır (`th.lastAt`), Cum birikimi ile birleşir.
+
+## 🎂 Doğum günü (`c.bday` kapısı)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Birthday Suit | 🎂🫣 | Kapıyı açar, üstünde sadece kurdele: "hediyen benim" |
+| Cake Frosting | 🧁👅 | Pastanın kremasını vücuduna sürer, mumu üflemeden önce sen yalarsın |
+| Birthday Wish | 🕯️✨ | Mumları üfler, dileğini kulağına fısıldar ve aynen yaptırır |
+| Birthday Spanks | 🎈👋 | Yaşı kadar şaplak; her birini sayar (🍆👋 `vurma` geçişi) |
+| Unwrap Me | 🎁🎀 | Kurdeleyi dişlerinle çözersin; altında yeni iç çamaşırı |
+| Birthday Creampie | 🎂💦 | "Bugün hiçbir şeye hayır yok" — içine bitirirsin |
+
+## 🎆 Yılbaşı (`days: ['12-31','01-01']`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Countdown Ride | ⏳🔥 | 10'dan geriye sayarken üstünde hızlanır, sıfırda birlikte |
+| Midnight Kiss | 🎆💋 | Havai fişekler patlarken öpüşme ön sevişmeye döner |
+| Champagne Pour | 🍾🫗 | Şampanyayı göğüslerinden aşağı döker (🍷 Drinks geçişi) |
+| Balcony Fireworks | 🌇🎇 | Balkonda, gökyüzü aydınlıkken arkadan (🌇 `balkon` etiketi) |
+| First Of The Year | 🥂💦 | Yılın ilk boşalması; "bu yıl hep böyle" |
+| New Year's Resolution | 📝😈 | Sonrası: yeni yıl için bir "kural" koyar (📜 Kural İhlali bağı) |
+
+## 🎃 Cadılar Bayramı (`month: 10`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Costume Stays On | 🧛‍♀️👗 | Kostüm üstünde kalır; vampir / kedi / hemşire seçimi `wear` ile |
+| Trick Or Treat | 🍬🎭 | "Şeker mi şaka mı?" — şaka seçersen o seçer, şeker seçersen sen |
+| Vampire Bite | 🧛🦷 | Boynunu ısırır (🦷 `mvbite` geçişi), iz bırakır (`c.marks`) |
+| Candy Trail | 🍭👅 | Şekerleri vücuduna dizer, tek tek yersin |
+| Haunted Jumpscare | 👻😱 | Korkup sana atlar, bacakları beline kilitlenir (👻 `perili` geçişi) |
+| Pumpkin Spice Finish | 🎃💦 | Kostümünün içine / üstüne bitiş (`CL.cumw`) |
+
+## 🎄 Noel / kış tatili (`month: 12`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Under The Mistletoe | 🌿💋 | Ökse otunun altında öpüşmek zorunda; durmaz |
+| Santa's Lap | 🎅🪑 | Kucağına oturur, "bu yıl uslu muydum?" diye sürtünür |
+| Stocking Stuffer | 🧦🎁 | Şömine çorabından oyuncak / iç çamaşırı çıkar |
+| Tree Lights | 🎄✨ | Işıklar kapalı, sadece ağaç yanarken halıda yavaş |
+| Ugly Sweater | 🧶😂 | Komik kazağı çıkarmaz, sadece altını sıyırır |
+| White Christmas | ❄️💦 | Bitiş: "beyaz Noel" esprisiyle göğsüne |
+
+## 💘 Sevgililer Günü (`days: ['02-14']`, Aşk kapılı)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Rose Petal Bed | 🌹🛏️ | Yatak gül yapraklarıyla dolu; yavaş, göz göze |
+| Love Letter Read | 💌🗣️ | Yazdığın mektubu sesli okutur, her satırda bir parça çıkarır |
+| Heart Lingerie | 💝👙 | Kırmızı kalpli iç çamaşırı, sadece bugün için |
+| Chocolate Box Game | 🍫🎲 | Her çikolatanın içinde bir görev |
+| Say It Inside | 💞💦 | Bitişte "seni seviyorum" der (💞 Duygusal bitiş bağı) |
+
+## 🎮 Oyun gecesi (kendi `outcomes`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Distract The Player | 🎮😏 | O oynarken sen dokunursun; kaybederse ceza |
+| Controller Vibration | 🎮📳 | Titreşimli kolu bacak arasına koyar (📳 `th.vib` bağı) |
+| Loser Strips | 🃏👕 | Her kaybedilen el bir parça (`th.undress`) |
+| Couch Co-op | 🛋️🤝 | Aynı ekranda, kucağında oturarak oynar; oyun bitmez, siz bitersiniz |
+| Rage Quit Sex | 😤🔥 | Kaybedince sinirlenir, kolu atar, üstüne çıkar (😤 Mood bağı) |
+| Winner's Prize | 🏆💦 | Kazanan bitişin yerini seçer |
+
+## 🎤 Karaoke / müzik
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Duet Grind | 🎤🍑 | Düet söylerken arkadan sürtünür, şarkıyı bırakmaz |
+| Mic Drop | 🎤⬇️ | Mikrofonu bırakır, dizlerinin üstüne çöker |
+| Piano Bench | 🎹🪑 | Piyano taburesinde kucağında; tuşlara her çarpışta nota |
+| Slow Dance | 💃🕯️ | Ağır dans, sonra duvara (🌃 Bar `Dance Floor` ev sürümü) |
+| Moan The Chorus | 🎶😩 | Nakaratı inleyerek söyler |
+
+## 🧁 Birlikte yemek / pasta
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Flour Fight | 🧁💨 | Un savaşı; un izli el izleri vücudunda (🍳 Kitchen geçişi) |
+| Taste Test | 🥄👅 | Gözü kapalı, kaşıktan ve senden tadım |
+| Counter Kneading | 🍞🍑 | Hamur yoğururken arkadan, tezgâha yaslanmış |
+| Apron Only | 👩‍🍳🫣 | Sadece önlük; arkası tamamen açık (`wear`) |
+| Oven Timer | ⏲️🔥 | Fırın zili çalana kadar süre var (`Countdown` mekaniği) |
+
+## 📦 Taşınma günü
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Christen The House | 🏠🔥 | Yeni evin her odasını "vaftiz" etme listesi (📋 `th.plan`) |
+| Box Fort | 📦🫣 | Karton yığınlarının arasında, ayakta |
+| Bare Mattress | 🛏️📦 | Daha çarşafı yok; yere atılmış yatakta |
+| Sweaty Movers | 💪💦 | Kucağında kutu taşırken öpüşme, kutu yere |
+| Empty Room Echo | 🔊😳 | Boş odada her ses yankılanır; utanır ama durmaz |
+
+## ✈️ Kavuşma (uzun ayrılık sonrası, `th.lastAt`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Airport Run | ✈️🏃‍♀️ | Seni görünce koşup atlar; eve zor yetişirsiniz |
+| Door Not Closed | 🚪🔥 | Kapı daha kapanmadan duvara |
+| Suitcase Lingerie | 🧳👙 | Bavulundan sana aldığı iç çamaşırını çıkarıp giyer |
+| Missed You Load | 🫙🌊 | Haftalarca birikmiş; gür bitiş (🌊 `cumMin` / `gür` bağı) |
+| Jet Lag Cuddle | 😴🫂 | Sonrası: yorgun ama bırakmaz, içinde uyur |
+
+# Tur 20 — Tıpa + oyuncaklar, durum değişkenleriyle (2026-11-18)
+
+> ✅ v1003: `th.batt`, `th.vibMode`, `th.vibBy`, `th.beads`, `th.benwa`, `u.toyAt` (mandal), `c.toys` koleksiyonu, durum kartı 💎 çipi ve 9 sahne de uygulandı (systems/monia.md).
+> ✅ v1002'de uygulandı (57 olay). Uygulanan değişkenler: `c.stretch`, `th.sealed`, tipa `u.plugAt`, `e.vib`, `accOff`; `th.toyIn` yerine aksesuar yuvası (`outfit.tipa` + `slotOff`) okunur. Uygulanmayanlar: `th.batt`, `th.vibMode` / `vibBy`, `th.beads` / `benwa` / `clampAt`, `c.toys`, `wand` / `rabbit` / `dildo` / `vantuz` / `boncuk` / `sagma` parçaları, Double Stuffed (Toy And You'ya katıldı). Ayrıntı: systems/monia.md.
+
+> Mevcut: slotlar `tipa` / `oyuncak` (`ACC_SLOTS`), parçalar `plug / kuyrukplug / siliplug / uzakvibe / mandal / benwa` (clothes.js), `ACC_EV` (Butt Plug, Nipple Clamps, Remote Toy), `accWear` (anal pozisyon tıpayı çıkarır), `th.vib` 0–5 (Vibrator Control / Remote Toy). Olaylar: Strap-On, Vibrator Control, Remote Toy, Butt Plug, Nipple Clamps, Bursting Plug, Cock Ring, Toy Reveal, Toy Double, Vibrator Hold → hariç. Her olay `story` ile gelir.
+
+## ⚙️ Durum değişkenleri (sohbet başına `th`, kalıcı olanlar `c`)
+
+| Değişken | Değer | Kim yazar | Kim okur |
+|---|---|---|---|
+| `th.toyIn` | `{ vajinal: id, anal: id, ağız: id }` | Takma olayları, `accWear` | Pozisyon kapısı: dolu delik → o pozisyon ya "çıkar" ister ya `Plug Stays` varyantına döner; iki delik doluysa 🔥 "Full" satırları |
+| `th.plugSize` | 1–3 (küçük / orta / büyük) | Plug Training, Size Up | Uyarılma çarpanı, anal ret ihtimali, `th.stretch` artış hızı |
+| `c.stretch` | 0–100 (alışma) | Tıpa takılı her mesaj +1 × boyut, anal olaylar +3 | Yüksekse anal reddi düşer (`fxOk`), "rahat" satırları; düşükse büyük boy → ❔ "yavaş" sorusu |
+| `th.plugAt` | takıldığı mesaj sayısı | Takma olayları | Süre ≥ 20 mesaj → `All Day Plug` satırları, çıkarınca büyük Zevk |
+| `th.sealed` | `{ yer: 'vajinal'\|'anal', ml }` | İçine bitiş + Plug It In | Hamilelik şansı ×1.5 (vajinal); çıkarınca `Unplug Flood` (ml ≥ eşik → `gür`) |
+| `th.vib` | 0–5 (mevcut) | + Wave / Random modları | + `th.vibMode`: `sabit` / `dalga` (her mesaj ±) / `rastgele`; `th.vibBy`: `sen` \| `o` (kumanda kimde) |
+| `th.batt` | 0–100 | Her titreşim mesajı −5×seviye | 0 → `Battery Dies` (komik kesinti, kademe sıfır) |
+| `th.clampAt` | takıldığı mesaj | Nipple Clamps (mevcut) | Uzun kalırsa çıkarma anında Uyarılma sıçraması (`Clamp Release`) |
+| `th.benwa` | adım sayacı | Ben Wa takılıyken her mekân / ayakta olay +1 | 5'te `Ben Wa Slip` / dizleri titrer |
+| `c.toys` | koleksiyon (gardırop gibi) | CarmenAmor alışveriş (`shopTick`), Toy Reveal | Picker: koleksiyonda olmayan oyuncağın olayları sönük (ⓘ "önce satın al") |
+
+## 🧺 Yeni parçalar (clothes.js, acc slot) + `ACC_EV`
+
+| id | Slot | Parça | Emoji | Not |
+|---|---|---|---|---|
+| `camplug` | tipa | Cam tıpa | 🔮💎 | Soğuk / sıcak tutulabilir (🧊 Ice geçişi); `plugSize` 2 |
+| `buyukplug` | tipa | Büyük tıpa | ⚫🔝 | `plugSize` 3, `c.stretch` ≥ 50 ister |
+| `vibplug` | tipa | Titreşimli tıpa | 💎📳 | `th.vib` ile ortak kumanda |
+| `onplug` | tipa | Ön tıpa (vajinal) | 💗💎 | `th.sealed.yer = vajinal` için |
+| `wand` | oyuncak | Wand masaj aleti | 🪄📳 | Dış uyarım; `vib` seviyesi +2'den başlar |
+| `rabbit` | oyuncak | Tavşan vibratör | 🐰💜 | İç + dış; Orgazm eşiği düşük |
+| `dildo` | oyuncak | Gerçekçi dildo | 🍆💜 | Ağız / vajinal / anal; `Dick Size` kıyası satırları |
+| `vantuz` | oyuncak | Vantuzlu dildo | 🍆🪟 | Duvar / ayna / küvete yapışır (mekân etiketleri) |
+| `boncuk` | oyuncak | Anal boncuk | 📿🍑 | Boncuk sayısı 5; tek tek çekme sayacı |
+| `kulot` | oyuncak | Titreşimli külot | 🩲📳 | Dışarıda görünmez; `riskStep` bağı |
+| `sagma` | oyuncak | Masturbator (senin için) | 🫙🍆 | O kullanır sana; senin Zevk'ine işler |
+
+## 💎 Tıpa — ön sevişme / giyme
+
+| Olay | Emoji | Açıklama | Etki |
+|---|---|---|---|
+| Plug Training | 💎📏 | Küçükten başlar; "bugün bunu, haftaya büyüğü" | `th.plugSize` = 1, `c.stretch` +5 |
+| Size Up | ⚫🔝 | Bir boy büyüğe geçer, nefesini tutar | `plugSize` +1; `c.stretch` < eşik → ret / ❔ "yavaş" |
+| Lick It First | 👅💎 | Tıpayı ağzında ıslatır, gözünü senden ayırmadan | Sonraki takma olayına Uyarılma +5 |
+| Jewel Peek | 💎🍑 | Eğilir, eteğini kaldırıp taşı gösterir | Görsel; `th.toyIn.anal` varken açılır |
+| Tail Wag | 🦊🍑 | Kuyruklu tıpayla kalçasını sallar (🐾 hayvan kızlar bağı) | `kuyrukplug` gerekir |
+| Plug Twist | 🔄💎 | Takılıyken parmağınla çevirirsin | Uyarılma +3 × `plugSize` |
+| Tap Tap | 👆💎 | Tabana hafifçe vurursun; her vuruşta irkilir | `vibplug` yoksa titreşimsiz yedek |
+| Warm Glass | 🔮🔥 | Cam tıpayı ılık suda ısıtır | `camplug`; Güven +1 |
+| Cold Glass | 🔮🧊 | Buzda soğutulmuş cam tıpa: "ahh!" | `camplug`; Uyarılma +8 |
+| All Day Plug | ⏳💎 | Sabah taktı, bütün gün mesajlarda bahsediyor | `th.plugAt` ≥ 20; satırlar `ACC` `i` grubu |
+
+## 🔥 Tıpa — seks (delik doluyken)
+
+| Olay | Emoji | Açıklama | Etki |
+|---|---|---|---|
+| Plugged Doggy | 🐕💎 | Arkadan vajinal, tıpa yerinde; her itişte tıpa da oynar | `toyIn.anal` gerekir; Uyarılma ×1.3 |
+| Plugged Cowgirl | 🤠💎 | Üstünde, oturdukça tıpa daha derin | Aynı |
+| Tight Fit | 😩🔒 | "Tıpa varken çok dar"; sen de zorlanırsın | Senin Zevk'in +; erken bitiş riski (`cumMin` düşer) |
+| Swap Holes | 🔁🍑 | Tıpayı çıkarır, yerine seni ister | `toyIn.anal` → boş; `c.stretch` yüksekse ret yok |
+| Toy And You | 🍆💜 | Dildo önde, sen arkada (ya da tersi) | `th.toyIn` iki delik dolu → "Full" |
+| Front Plug Anal | 💗🍑 | Ön tıpa takılı, sen anal | `onplug` |
+| Vibrating Plug Ride | 💎📳 | Titreşimli tıpa açık, sen içindesin; sen de hissedersin | `th.vib` ikinize de Zevk yazar |
+
+## 📳 Vibratör / wand / tavşan
+
+| Olay | Emoji | Açıklama | Etki |
+|---|---|---|---|
+| Wand On Clit | 🪄😩 | Wand'ı yerine tutarsın; bacakları kapanmaya çalışır | `th.vib` +2 |
+| Wave Mode | 🌊📳 | Kademe dalgalanır, ne zaman artacağını bilmez | `th.vibMode = dalga` |
+| Random Mode | 🎲📳 | Rastgele titreşim; mesaj ortasında çığlık | `vibMode = rastgele`, ⚡ Kısayollar'a sürpriz |
+| Hand Over Remote | 📲🤝 | Kumandayı sana verir: "artık sen yönetiyorsun" | `th.vibBy = sen`; Güven +1 |
+| Steal The Remote | 📲😈 | Kumandayı kapar, seni de sınırda tutar | `vibBy = o`; ✋ Engelleme bağı |
+| Rabbit Race | 🐰⏱️ | "Gelmeden ne kadar dayanabilirim?" sayacı | Edging sayacı (`th.edge`) |
+| Battery Dies | 🔋😂 | Tam zirvede pil biter | `th.batt` 0 → `vib` 0; sen devralırsın |
+| Wand Through Panties | 🪄👙 | Külotun üstünden; kumaş ıslanır | `wear` tanga; `wet` durumu |
+| Overstim Wand | 🪄😵 | Geldi ama wand kalkmıyor (Tur 10 bağı) | Orgazm sonrası `vib` sıfırlanmaz |
+| Vibe During Blowjob | 📳👄 | Sana oral yaparken vibratör onda | Oral pozisyon + `vib` aktif |
+
+## 🍆 Dildo / vantuz
+
+| Olay | Emoji | Açıklama | Etki |
+|---|---|---|---|
+| Size Comparison | 🍆📏 | Dildoyu seninkiyle karşılaştırır, kazanan belli | `Dick Size` trait satırları |
+| Suction Wall | 🪟🍆 | Duvara / aynaya yapıştırır, önünde sen | `vantuz`; mekân `duş/küvet/ayna` |
+| Show For You | 👀💜 | Sen izlersin, o dildoyla; dokunman yasak | Senin Uyarılma'n +; `kural` (📜) |
+| Practice Deepthroat | 👄🍆 | Dildoyla pratik yapar, sonra seninle dener | Sonraki oral olayına ret −, Zevk + |
+| Double Stuffed | 🍆🍆 | Dildo + sen aynı anda | İki delik dolu; `c.stretch` ≥ 40 |
+| Dildo Ride Kiss | 🤠💋 | Dildoya biner, seni öper | Foreplay; Aşk kapılı satır |
+
+## 📿🔮⛓️ Boncuk / Ben Wa / mandal
+
+| Olay | Emoji | Açıklama | Etki |
+|---|---|---|---|
+| Bead By Bead | 📿1️⃣ | Boncukları tek tek sokarsın, sayar | `th.beads` 0→5 |
+| Pull On Climax | 📿💥 | Gelirken boncukları tek hamlede çekersin | `th.beads` 5 + Orgazm → Uyarılma patlaması |
+| Ben Wa Walk | 🔮🚶‍♀️ | Toplar içindeyken odada yürür | `th.benwa` +1 / mesaj |
+| Ben Wa Slip | 🔮😳 | Biri kayar; utanıp gülüşürsünüz | `th.benwa` ≥ 5 |
+| Clamp Chain Tug | ⛓️🫳 | Zinciri seks sırasında çekersin | `mandal`; Uyarılma +6 |
+| Clamp Release | ⛓️💥 | Mandalları çıkarınca kan geri gelir, inler | `th.clampAt` süresi kadar Uyarılma |
+
+## 🫣 Dışarıda / risk (`riskStep` + `th.vibBy`)
+
+| Olay | Emoji | Açıklama | Etki |
+|---|---|---|---|
+| Restaurant Remote | 🍽️📲 | Restoranda masada, kumanda sende (🍽️ `restoran`) | `kulot`/`uzakvibe`; `riskStep` +1 |
+| Office Remote | 🏢📲 | Toplantıda titreşim (🏢 `ofis`) | Aynı |
+| Gym Plug | 🏋️💎 | Antrenman sırasında tıpa takılı (🌃 `spor`) | `th.plugAt` artar, squat satırları |
+| Plug In Public | 🛍️💎 | Alışverişte tıpayla dolaşır, sadece sen bilirsin | `riskStep` +1 |
+| Text Me Level | 📱📳 | Uzaktan mesajla "kaç?" diye sorar, sen kademe yazarsın | Mesajlaşmaya özel; yazılan sayı = `th.vib` |
+
+## 💦 Bitişler
+
+| Olay | Emoji | Açıklama | Etki |
+|---|---|---|---|
+| Plug It In | 💎🔒 | İçine bitirirsin, hemen tıpayı takar: "kalsın" | `th.sealed` yazılır; vajinal ise hamilelik ×1.5 |
+| Plugged Creampie | 💎💦 | Tıpa arkada, sen önde içine | `toyIn.anal` + vajinal bitiş |
+| On The Toy | 🍆💦 | Dildonun üstüne / yanına | Görsel bitiş |
+| Toy Clean Up | 👅🍆 | Oyuncağı yalayarak temizler | Sonrası etiketi |
+| Vibe Through Finish | 📳💦 | Sen gelirken vibratör hâlâ onda, birlikte | `vib` ≥ 3 + boşalma → ikiniz Orgazm |
+| Milked By Toy | 🫙💦 | Masturbatorla seni boşaltır | `sagma`; senin Cum sıfırlanır |
+
+## 🧻 Sonrası
+
+| Olay | Emoji | Açıklama | Etki |
+|---|---|---|---|
+| Unplug | 💎😮‍💨 | Tıpayı yavaşça çıkarırsın | `toyIn` boşalır; `plugAt` uzunsa Zevk + |
+| Unplug Flood | 💎🌊 | `th.sealed` varken çıkar; hepsi akar | `ml` ≥ eşik → `gür` satırları; `sealed` silinir |
+| Keep It In Overnight | 🌙💎 | "Sabaha kadar kalsın" | `sealed` korunur; sabah olayı açılır |
+| Toy Wash | 🧼💜 | Oyuncakları birlikte yıkayıp kaldırırsınız | `th.toyIn` / `vib` / `batt` sıfırlanır |
+| Charge It | 🔌🔋 | Şarja takar: "yarın tam dolu" | `th.batt` = 100 |
+| Toy Shopping | 🛒💜 | CarmenAmor'da yeni oyuncak bakarsınız | `c.toys` +1 (shop geçişi) |
+
+## 🔧 Uygulama notları
+
+- `th.toyIn` tek kaynak: `accWear` takınca yazar, `undressSlots(['tipa'])` silince temizler. Mevcut "anal pozisyon tıpayı çıkarır" kuralı yalnız `Plug Stays` / `Swap Holes` dışındaki anal pozisyonlarda kalır.
+- Kapı fonksiyonu `toyBlock(c, th, e)`: olaya `toy: 'tipa'|'vib'|'dildo'…`, `toyIn: 'anal'`, `stretch: 50` alanları → `pregBlock` / `wearBlock` yanında.
+- Mesaj başına sayaçlar (`plugAt`, `stretch`, `batt`, `benwa`) mevcut `bodyTick` içinde.
+- Bot: `r_ev_ty_*`; me-lines `ME_EV_LINES`; Olay Kitabı yeni bölüm; sahneler `oyuncak` kategorisi (ör. `kumanda` → Hand Over Remote → Random Mode → Vibe Through Finish).
+
+# Tur 21 — Hava durumu, saklı köşeler, oyunbaz kavga, etkinlikler, komşu (2026-11-18)
+
+> system.js'te olmayanlar (Heat / Storm / Thunder / Fog / Power, Garage / Attic / Basement, Wrestle / Tickle / Dare, Concert / Festival / Club / Museum / Aquarium, Neighbor / Roommate / Delivery, Cosplay, Cave / Waterfall / River / Mountain başlıkları yok; Shower / Bath / Mirror / Desk / Oil / Elevator / Ski çok var → hariç). Her olay `story` ile gelir.
+>
+> **Mekanik önerileri:** (1) ⛅ Hava kapısı `weather: ['firtina','sicak','sis','kar']` — sohbet başına gün tohumlu `th.wx` (tarih + karakter id'sinden), üst barda küçük chip; dışında olay picker'da sönük. (2) ⚡ Fırtına `Power Cut` → `th.dark` (karanlıkta bitiş rastgele, Blackout v2 fikriyle birleşir). (3) 🤼 Güreş olayları `outcomes` kazan/kaybet → kazanan sonraki olayı seçer (🎲 `#/sonuc`). (4) 🏠 Komşu / ev arkadaşı rolleri `RP_ROLES`'a.
+
+## ⛈️ Fırtına / şimşek (`weather: 'firtina'`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Thunder Jump | ⚡😳 | Gök gürleyince korkup kucağına atlar; bırakmaz |
+| Power Cut | 🕯️🌑 | Elektrik gider; mum ışığında el yordamıyla (`th.dark`) |
+| Rain On Glass | 🌧️🪟 | Yağmur camı döverken cama yaslanmış, arkadan |
+| Soaked Shirt | 👕💧 | Sağanakta ıslanıp gelir; yapışan tişörtü sen çıkarırsın |
+| Storm Rhythm | ⛈️🔥 | Her şimşekte bir sert vuruş; gök gürledikçe hızlanır |
+| Lightning Flash Finish | ⚡💦 | Şimşek odayı aydınlattığı an bitiş |
+
+## 🥵 Sıcak hava (`weather: 'sicak'`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Fan In Front | 🌀👗 | Vantilatörün önünde elbisesi uçuşur, altında hiçbir şey yok |
+| Ice Cube Trail | 🧊💦 | Buzu boynundan göbeğine kaydırır, eriyen damlayı sen takip edersin |
+| Sticky Skin | 💦🫠 | Terli tenler birbirine yapışır; ağır, yavaş tempo |
+| Cold Shower Together | 🚿❄️ | Serinlemek için girilen soğuk duş ısınır |
+| Popsicle Tease | 🍦👅 | Dondurmayı yavaşça yalarken sana bakar (oral geçişi) |
+
+## 🌫️ Sis / ❄️ Kar günü (`weather: 'sis' / 'kar'`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Fog Walk | 🌫️🫣 | Sisli sokakta kimse göremez; duvara yaslanma (`sokak` + `riskStep` düşük) |
+| Snowed In | ❄️🏠 | Yollar kapandı, gün boyu yataktan çıkmazsınız |
+| Cold Hands | 🥶🤲 | Dışarıdan gelen buz gibi elleri tişörtünün altına sokar |
+| Blanket Burrow | 🛌❄️ | Battaniyenin altında, sadece kafanız dışarıda |
+| Snow Angel Finish | ❄️💦 | Dışarıda, karın üstünde hızlı ve soğuk bitiş |
+
+## 🏚️ Evin saklı köşeleri (yeni etiketler `garaj` / `çatıkatı` / `bodrum`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Garage Hood | 🚗🔧 | Arabanın kaputuna oturtursun; elinde hâlâ yağ izi |
+| Workbench Bend | 🧰🍑 | Tezgâha eğilir, aletler tıngırdar |
+| Attic Dust | 🏚️📦 | Eski kutular arasında, tavan alçak; diz çökerek |
+| Old Photo Album | 📸💭 | Çatı katında eski albüm; anılar ön sevişmeye döner |
+| Basement Hide | 🔦🤫 | Bodrumda saklambaç; bulunduğu anda yakalanır |
+| Laundry Tumble | 🧺🌀 | Kurutma makinesi çalışırken üstüne oturtur (🧺 `çamaşır` geçişi) |
+
+## 🤼 Oyunbaz kavga (`outcomes` kazan/kaybet)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Pillow Fight | 🛏️💥 | Yastık savaşı; kaybeden altta kalır |
+| Tickle Attack | 🤭✋ | Gıdıklarken kıvranır, kahkaha inlemeye döner |
+| Wrestle Pin | 🤼🔒 | Güreşte yere kilitlersin; "pes mi?" |
+| She Pins You | 🤼‍♀️😈 | Bu sefer o kazanır, bileklerini tutar ve üstüne çıkar |
+| Loser's Choice | 🎲😏 | Kaybeden ne istenirse yapar (sonraki olayı kazanan seçer) |
+| Truth Or Dare Dare | 🎯🔥 | Sadece "cesaret"; her tur bir parça daha |
+
+## 🎪 Dışarı çıkma / etkinlik (yeni mekânlar `konser` / `müze` / `akvaryum` / `kulüp`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Concert Crowd | 🎸🫂 | Kalabalıkta önünde durur, müzikle sana sürtünür (`riskStep`) |
+| Festival Tent | ⛺🎶 | Festival çadırında, dışarıda bas sesi |
+| Club Bathroom | 🪩🚽 | Kulüp tuvaletinde hızlı; kapıya vuranlar var (`tuvalet` geçişi) |
+| Museum Corner | 🖼️🤫 | Boş salonda heykellerin arkasında öpüşme, bekçi geçer |
+| Aquarium Glow | 🐠💙 | Mavi ışıklı tünelde, balıklar üstünüzden geçerken |
+| Slow Dance Grind | 💃🕺 | Kalabalık pistte yavaş dansta sürtünme (👖 `kıyafet` + `wear`) |
+
+## 🏢 Komşu / ev arkadaşı (`RP_ROLES` yeni roller)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Borrow Sugar | 🧂🚪 | Komşu kapıyı çalar, sadece havluyla |
+| Thin Walls | 🧱👂 | Duvar ince; sesini tutmaya çalışır (`riskStep` + ses) |
+| Roommate Rules | 📜🛋️ | Ev arkadaşıyla "salonda yasak" kuralı bozulur (📜 `p:ihlal` bağı) |
+| Late Delivery | 🍕🚪 | Gece geç saatte pizzacı rolü; "bahşiş" (`hours` gece) |
+| Spare Key | 🔑😳 | Yedek anahtarla girer, seni duşta yakalar |
+
+## 🏔️ Doğa macerası (`doğa` etiketi genişletme)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Waterfall Spray | 🏞️💦 | Şelalenin arkasında, su perdesi sizi saklar |
+| Cave Echo | 🕳️🔊 | Mağarada her inleme yankılanır |
+| River Rock | 🪨🌊 | Nehir kenarında düz kayanın üstünde, ayakları suda |
+| Mountain Cabin | 🏔️🔥 | Dağ evinde şömine yok, sadece birbirinizin sıcaklığı |
+| Summit Kiss | ⛰️💋 | Zirveye çıkınca nefes nefese öpüşme sonrası (Sonrası) |
+
+## 💦 Bitişler
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Thin Wall Silence | 🤐💦 | Ağzını kapatırsın, sessizce titreyerek birlikte |
+| Winner Takes All | 🏆💦 | Güreşi kazanan bitişin yerini seçer |
+| Dark Finish | 🌑💦 | Karanlıkta nereye gittiği belli değil (`th.dark` rastgele hedef) |
+| Rain Rinse | 🌧️🫧 | Dışarıda yağmurda bitiş; yağmur temizler |
+
+## 🧻 Sonrası
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Listen To The Rain | 🌧️🛌 | Sarılıp yağmuru dinlersiniz (Güven +) |
+| Power's Back | 💡😳 | Işıklar birden gelir, ikiniz de çıplak ve dağınık |
+| Rematch | 🤼🔁 | "Rövanş istiyorum" — yeni güreş turu (`outcomes` zinciri) |
+| Neighbor Knock | 🚪😅 | Komşu kapıya gelir: "her şey yolunda mı?" |
+
+# Tur 22 — Gündelik rutinler, ders verme, telefon riski, yavaş seks, hediye, yarış (2026-11-19)
+
+> system.js'te olmayanlar (Chores / Dishes / Groceries / Iron, Nail / Face Mask / Shave, Lesson / Teach, Tantra / Breath / Eye Contact, Unwrap, Race / Who Cums First başlıkları yok; Whisper / Earlobe / Video Call Under / Dance Floor / Lotion var → hariç). Her olay `story` ile gelir.
+>
+> **Mekanik önerileri:** (1) 📞 `th.onCall` — o telefondayken olaylar; her mesajda `riskStep` gibi "duyuldu mu?" kontrolü, sonuç `outcomes` (fark etmedi / şüphelendi / kapattı). (2) 🎁 CarmenAmor hediyesi gelince `c.gifts` → "Unwrap" olayları açılır. (3) 🏁 Yarış olayları `outcomes` (sen önce / o önce / berabere) → bitiş seçimi kazanana. (4) 🧘 Yavaş seks olayları Zevk artışını yarıya indirir, Güven/Aşk +.
+
+## 🧹 Ev işleri arasında (`ev` etiketi)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Dishes Distraction | 🍽️🫧 | Bulaşık yıkarken arkasına geçersin; elleri köpüklü, bırakamaz |
+| Ironing Board | 👔🔥 | Ütü masasına eğilir; "gömleğin yanacak" |
+| Groceries Unpacked | 🛒🍓 | Poşetleri boşaltırken tezgâha oturtursun, çilek ağzında |
+| Plant Watering | 🪴💧 | Balkonda çiçek sularken, su taşar (🌇 `balkon` geçişi) |
+| Bed Making | 🛏️😏 | Çarşaf sererken üstüne düşürürsün; yatak hiç toplanmaz |
+
+## 💅 Bakım rutini
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Wet Nails | 💅😳 | Ojesi kurumadan dokunamaz; her şeyi sen yaparsın |
+| Face Mask Kiss | 🧖‍♀️💚 | Yüz maskesi varken öpüşme, maske sana bulaşır |
+| Hair Dryer Hum | 💨💇‍♀️ | Saçını kuruturken arkadan, fön sesi inlemeyi bastırır |
+| Leg Shave Help | 🪒🦵 | Bacağını tıraş etmesine yardım edersin, yavaş yavaş yukarı |
+| Body Lotion Back | 🧴🔙 | Sırtına losyon sürmeni ister, eller kayar |
+
+## 🎓 Bana öğret (ders verme)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Guitar Lesson | 🎸🤲 | Arkasından sarılıp parmaklarını tellere koyarsın |
+| Driving Lesson | 🚗🅿️ | Park edilmiş arabada "vites" dersi (🚗 Backseat geçişi) |
+| Cooking Lesson | 🍳🥄 | Tadına baktırırken kaşık düşer, mutfak tezgâhı |
+| Salsa Lesson | 💃🔥 | Kalça hareketini öğretir, adımlar sürtünmeye döner |
+| She Teaches You | 👩‍🏫😈 | Bu sefer o öğretir: "böyle değil, ben göstereyim" (üstte) |
+
+## 📞 O telefondayken (`th.onCall` + `outcomes`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Mom On The Line | 📱🤐 | Annesiyle konuşurken boynunu öpersin, sesi titrer |
+| Work Call Tease | 💼📞 | İş görüşmesinde ciddi kalmaya çalışır, masanın altındasın |
+| Mute Button | 🔇😮 | Telefonu sessize alıp inler, sonra normal sesle devam |
+| Hang Up Now | 📵🔥 | Dayanamaz, telefonu kapatıp üstüne atlar |
+
+## 🧘 Yavaş / bağ kuran seks (Güven/Aşk kapılı)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Eye Contact Only | 👀💞 | Gözünü hiç ayırmadan, çok yavaş |
+| Breathing Together | 🌬️🫁 | Nefeslerinizi eşitleyip aynı ritimde hareket edersiniz |
+| Still Inside | ⏸️🫂 | Hiç hareket etmeden içinde kalırsın, sadece sarılma |
+| Yab-Yum | 🧘‍♀️🔥 | Kucağında oturur, alın alına, sallanarak |
+
+## 🎁 Hediye açma (`c.gifts`, 💝 CarmenAmor bağı)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Unwrap Me | 🎀😏 | Kendini kurdeleyle sarmış; hediyeyi sen açarsın |
+| Lingerie Box | 📦👙 | Aldığın iç çamaşırını hemen deneyip gösterir (👗 `wear`) |
+| Gift Thank You | 💝💋 | Hediyeye teşekkürü "özel" olur |
+
+## 🏁 Yarış / meydan okuma (`outcomes`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Who Cums First | 🏁💦 | İkiniz de birbirinize; ilk gelen kaybeder |
+| No Hands Challenge | 🙅‍♀️✋ | Elleri yasak; sadece ağız ve kalça |
+| Quiet Challenge | 🤫⏱️ | Ses çıkaran kaybeder |
+
+## 💦 Bitişler
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Call Ended Finish | 📵💦 | Telefon kapanır kapanmaz bırakır kendini |
+| Soapy Hands Finish | 🫧💦 | Bulaşık köpüklü elleriyle bitirir |
+| Synchronized | 🫁💦 | Yavaş seksin sonunda aynı nefeste birlikte |
+| Loser Cleans | 🏁🧻 | Yarışı kaybeden temizler |
+
+## 🧻 Sonrası
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Chores Undone | 🧺😅 | Bulaşıklar hâlâ lavaboda, ikiniz de umursamıyorsunuz |
+| Nails Ruined | 💅😤 | Ojesi bozulmuş; "senin yüzünden, yeniden sür" |
+| Did They Hear? | 📱😰 | Telefona geri döner: "orada mısın? ses geldi" |
+| Forehead Rest | 🫂💞 | Alın alına dinlenme (Güven +) |
+
+# Tur 23 — Elle kalça / bacak sıkma + şaplak (2026-11-19)
+
+> ✅ v1014'te uygulandı: kalça/bacak sıkma, kalça/bacak şaplak, seks sırasında (ayrı kategori `c:mvgripsex01x`, `grab` eki yerine), 5 bitiş, el izi (`th.mark` yerine mevcut `mark` alanı → `c.marks`). Uygulanmadı: 🎲 Oyun / kural, 🧻 Sonrası, 🔴 `th.red` sayacı (yerine 😣 Acı kullanıldı).
+
+> Mevcutla ayrım: 🗜️ `sıkıştır` (o seni kalça/bacakla sıkıştırır), 🍆👋 `vurma` (aletle vurma: Butt Slap / Thigh Slap / Cheek Drum…) ve genel tekil olaylar (Spanking, Slap Ass, Ass Grab, Paddle, Inner Thigh Knead, Red Cheek) var. Burada **senin elinle onun** kalçasını / bacağını sıkman ve şaplaklaman var; bu başlıklar system.js'te yok. Her olay `story` ile gelir.
+>
+> **Mekanik önerileri:** (1) Yeni etiketler `elsık` (sıkma) / `şaplak` (elle şaplak); kategori `c:mvgrab01x` (Grab & Spank). (2) 🔴 `th.red` kızarıklık sayacı (0–5): her şaplak +1, ovma / buz −1; 5'te "Too Red" engeli (`redBlock`), sertlik tercihi düşükse eşik 3. (3) 🖐️ `th.mark` el izi → Sonrası ve 💜 `c.marks` ile birleşir. (4) Pozisyon olaylarına `grab: true` ekiyle "pozisyon sırasında" varyantı (doggy / cowgirl / prone) — ayrı pozisyon olayı yerine ek. (5) Bot: `r_ev_gb_*` / `r_ev_sp_*`, "say", "daha sert", "yeter" komutları.
+
+## 🍑 Kalça sıkma (`elsık`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Two Handfuls | 🤲🍑 | İki elinle iki yanağı birden kavrarsın, avuçlarından taşar |
+| Knead & Spread | 🫳↔️ | Hamur yoğurur gibi yoğurup iki yana açarsın |
+| Jiggle Check | 🍮😏 | Sıkıp bırakırsın, titremesini izlersin |
+| Lift From Below | ⬆️🍑 | Alttan kavrayıp kaldırırsın; parmak uçlarında kalır |
+| Pull Her In | 🫴🔥 | Kalçasından tutup kendine çekersin, kasıklar yapışır |
+| Kissing Grab | 💋🤲 | Öpüşürken eller aşağı iner, sıkıca kavrar |
+| Pocket Hands | 👖🫳 | Kot cebinin içine ellerini sokup sıkarsın (👖 `wear`) |
+| Under The Skirt | 👗🤫 | Etek altından çıplak kalçayı avuçlarsın (`riskStep` dışarıda) |
+| Oiled Knead | 🫒✨ | Yağlı kalçayı kaydırarak yoğurursun (💆 `masaj` geçişi) |
+
+## 🦵 Bacak sıkma (`elsık`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Thigh Handful | 🤲🦵 | Uyluğun etli kısmını avuçlayıp sıkarsın, parmak izleri kalır |
+| Inner Thigh Climb | 🫳⬆️ | İç bacağını sıka sıka yukarı tırmanırsın, durmadan önce durursun |
+| Under The Table | 🍽️🦵 | Masa altında bacağını sıkarsın; o yüzünü düz tutmaya çalışır (`restoran`) |
+| Car Thigh Hold | 🚗🫳 | Araba sürerken elin uyluğunda, her kırmızıda biraz daha yukarı |
+| Stocking Top Grip | 🧦🤏 | Çorabın bittiği yerden çıplak tene geçip sıkarsın (`wear`) |
+| Spread & Hold | ↔️🦵 | İki bacağını tutup açarsın, kapatmasına izin vermezsin |
+| Back Of Knee | 🦵😖 | Diz arkasını sıkınca kıvranıp bacağını sana dolar |
+
+## 👋 Kalçaya şaplak (`şaplak`, `th.red` +1)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Playful Pat | 🫲😜 | Geçerken hafif bir şaplak; dönüp bakar, gülümser |
+| Count Them | 🔢👋 | Her şaplağı yüksek sesle sayar; şaşırırsa baştan (`outcomes`) |
+| Alternating Cheeks | ↔️👋 | Bir sağ bir sol, ritim giderek hızlanır |
+| Over Your Knee | 🦵🍑 | Dizine yatırırsın; kıvrandıkça bastırırsın (sertlik kapılı) |
+| Spank & Rub | 👋🫳 | Şaplak ardından ovarak yatıştırma (`th.red` −1) |
+| Slap & Squeeze | 👋🤲 | Vurup hemen avuçlarsın; acı + sıkma bir arada |
+| Through The Panty | 🩲👋 | İnce külotun üstünden; ses daha boğuk (`wear`) |
+| Bare Bottom | 🍑🔴 | Külotu indirip çıplak tene; ses odada yankılanır |
+| Wet Skin Slap | 💦👋 | Duştan çıkmış ıslak tene, sesi iki katı (🚿 duş geçişi) |
+| Ask For Another | 🥺👋 | "Bir daha" demeden vurmazsın; o istedikçe |
+| Handprint | 🖐️🔴 | Elinin izi kalçasında belirir (`th.mark`) |
+
+## 👋 Bacağa şaplak (`şaplak`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Thigh Smack | 🦵👋 | Uyluğun dışına tok bir şaplak, bacağı titrer |
+| Inner Thigh Tap | 🤏🦵 | İç bacağa hafif, hassas vuruşlar; her birinde bacak kapanmak ister |
+| Open Up Slap | ↔️👋 | "Aç" — açmadıkça uyluğuna şaplak |
+| Stocking Snap | 🧦💥 | Çorap lastiğini çekip bırakırsın, sonra aynı yere şaplak |
+| Back Of Thigh | 🍑🦵 | Kalçanın hemen altındaki kıvrıma, en hassas yer |
+
+## 🔥 Seks sırasında (pozisyonlara `grab` eki)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Doggy Grip | 🐕🤲 | Kalçasından tutup kendine çekerek, her vuruşta sıkarak |
+| Doggy Spank Rhythm | 🐕👋 | Her vuruşa bir şaplak; ritmi şaplaklar belirler |
+| Cowgirl Cheek Pull | 🤠🍑 | Üstündeyken kalçasını kavrayıp aşağı bastırırsın |
+| Cowgirl Thigh Hold | 🤠🦵 | Uyluklarını sıkıca tutarsın, kalkmasına izin vermezsin |
+| Prone Spread | 🛏️↔️ | Yüzüstü yatarken kalçalarını açıp tutarak |
+| Standing Lift Grip | 🧍‍♀️⬆️ | Ayakta kalçasından kaldırıp duvara yaslayarak |
+| Spoon Thigh Lift | 🥄🦵 | Yan yatarken üst bacağını kaldırıp sıkarak |
+
+## 🎲 Oyun / kural
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| One Slap Per Word | 🗣️👋 | Her yanlış cevaba bir şaplak (soru-cevap oyunu) |
+| Don't Move | 🫨🚫 | Kıpırdarsa şaplak; titremesi giderek zorlaşır |
+| Red Light | 🔴⏸️ | `th.red` 5'e ulaşınca o "kırmızı" der, sadece ovma serbest |
+| She Spanks Back | 😈👋 | Sıra ona geçer; senin kalçana şaplak |
+
+## 💦 Bitişler
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Red Cheek Finish | 🔴💦 | Kızarmış kalçasının üstüne (`th.red` ≥ 3) |
+| Handprint Finish | 🖐️💦 | Tam elinin izinin üstüne |
+| Squeezed Thighs Finish | 🤲💦 | Uyluklarını sıkarak birleştirip arasına |
+| Grip & Pull Creampie | 🫴💦 | Kalçasından son kez sertçe çekip içine |
+| Final Slap | 👋💥 | Boşalırken son bir şaplak; ikiniz de titrersiniz |
+
+## 🧻 Sonrası
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Cool The Red | 🧊🍑 | Kızarık kalçaya buz / soğuk el (`th.red` sıfırlanır) |
+| Aloe Rub | 🌿🫳 | Krem sürüp yavaşça ovarsın (Güven +) |
+| Mirror Check | 🪞🔴 | Aynada izini görmek için döner; "bak ne yaptın" |
+| Sitting Carefully | 🪑😖 | Oturmaya çalışırken yüzünü buruşturur, gülersiniz |
+| Fingerprints | 🦵🟣 | Ertesi gün uyluğunda parmak izleri (💜 `c.marks`) |
+
+# Tur 24 — Saça göre olaylar + saç dolama (2026-11-19, v1051'de uygulandı)
+
+> Uygulandı: kapı `hair` / `hairBlock` (Hair Length / Hair Color), 9 seks (`c:mvhairsex01x`), 13 dolama (`c:mvhairwrap01x`), 8 bitiş (Cumming). Ayrıntı → systems/monia.md. Tur 14'teki saç fikirleri (Hair Down, saç çekme, Hairjob…) hâlâ uygulanmadı; artık `hair` kapısıyla eklenebilir.
+
+| Olay | Emoji | Şart | Açıklama |
+|---|---|---|---|
+| Pixie Grip | ✂️✊ | Pixie, Short | Tutacak saç yok; ensesini avuçlayıp kendine çekersin |
+| Nape Kiss Ride | 💋🦒 | Pixie, Short | Kaşık; açık ensesini öpüp ısırırsın |
+| Hair Blanket | 💇‍♀️🛏️ | Very Long | Üstte; saçı ikinizi örter |
+| Sit On It | 🪑💇‍♀️ | Very Long | Kendi saçının üstüne oturur, saçı gerilir |
+| Shoulder Sway | 💇‍♀️↔️ | Shoulder | Doggy'de saçı omuzdan omuza savrulur |
+| Fresh Dye Night | 🎨💇‍♀️ | Dyed | Yeni boyalı uçlar yastığa dağılır |
+| Ginger Down There | 🦊🔥 | Red, Ginger | "Aşağısı da aynı mı?" |
+| Platinum Under Neon | 💡🤍 | Platinum | Neonda renk değiştiren saç, ayna |
+| Blonde Mess | 💛🦁 | Blonde | Kabaran sarı saç, aslan yelesi |
+| Spiral Wrap · Double Strand · Hair Ring · Bow Tie · Twin Pigtails · Bun Unravel · Wet Wrap · Conditioner Glide · Silk Scarf Wrap · Rapunzel Wrap · Hair Cocoon · Tease The Tip · Pull Tight | 🌀 | Shoulder+ / Long+ / Very Long | Saçı aletine dolama varyasyonları |
+| Nape Finish · Dark Strands · Hidden In Blonde · Ruined Dye · Waist-Length Trail · Wrapped Finish · Bow Ruined · Rapunzel Flood | 💦 | boy / renge göre | Saça bitişler |
+
+Uygulanmayan fikir: ten rengine göre olaylar (Blush Map, Tan Lines, Oil Sheen…; kapı `Skin Tone`), ırksal klişe olmadan sadece görsel/fiziksel etki.
+
+# Tur 25 — Dirty Sanchez (2026-11-19, uygulanmadı)
+
+> Projede hiç dışkı/scat içeriği yok; bu yüzden **varsayılan kapalı** ve iki katmanlı önerilir: 🥸 **Sahte** (ruj / çikolata / krem bıyık — şaka, kirli içerik yok) herkese açık; 💩 **Gerçek** sadece yeni izin `perm: 'kirli'` (Create → kurallar, varsayılan kapalı) ve iki tarafın da onayıyla. Her olay `story` ile gelir.
+>
+> **Mekanik önerileri:** (1) Etiket `sanchez`; kategori `c:mvsanchez01x`. (2) Kapı `dirtyBlock`: `perm.kirli` yoksa Gerçek varyantlar gizli; Hijyen/İğrenme kişiliği yüksekse ret satırı (`r_ret_sanchez_*`) + 🙏 ikna. (3) `th.stache` (0 yok / 1 sahte / 2 gerçek) → Sonrası olaylarını açar, öpüşme olaylarını engeller (`stacheBlock`) temizlenene kadar. (4) Önce anal olay şartı (`after` → `anal` etiketi) gerçek varyant için. (5) `outcomes`: güler / iğrenir / tahrik olur. (6) Bot `r_ev_sz_*`; "bıyık", "sanchez" kelimeleri.
+
+## 🥸 Sahte bıyık (şaka, herkese açık)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Lipstick Stache | 💄🥸 | Uyurken kırmızı rujla dudağının üstüne bıyık çizersin; aynada çığlık atar |
+| Chocolate Prank | 🍫😈 | Parmağını çikolataya batırıp "Dirty Sanchez!" diye bıyık çekersin; önce dehşet, sonra kahkaha |
+| Whipped Cream Duel | 🍦⚔️ | Krem şantiyle karşılıklı bıyık savaşı; kazanan diğerinin bıyığını yalar (`outcomes`) |
+| Stache Kiss | 🥸💋 | Sahte bıyıkla öpmeye çalışırsın, kaçar, yakalarsın |
+| Mustache Selfie | 📸🥸 | İkiniz de çizilmiş bıyıkla fotoğraf; 🫦 CarmenFans'a "dirty sanchez cosplay" diye atar |
+
+## 💩 Gerçek (`perm.kirli`, anal sonrası)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| The Sanchez | 👉🥸 | Analden çıkan parmağı dudağının üstünden bir çizgiyle geçirirsin; ne olduğunu anlaması bir saniye sürer (`outcomes`) |
+| Her Turn | 🔄🥸 | Rol değişir; o sana yapar, gülmekten konuşamaz |
+| Doggy Reach | 🐕👉 | Doggy'de arkadan uzanıp yapar; o dönüp bakana kadar fark etmez |
+| Dare Accepted | 🎲😬 | Doğruluk-cesaretlikte cesaret olarak ister; geri adım atmaz |
+| Disgust Turn-On | 😖🔥 | İğrenir ama tahrik olduğunu saklayamaz (Utanç / Mazoşist kapısı) |
+
+## 😮 Tepkiler (`outcomes`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Laughing Fit | 🤣 | Gülme krizi; seks beş dakika durur |
+| Furious Slap | 😠👋 | Şaplak yersin, ama banyoya seni de çeker |
+| Licks Lip | 😈👅 | Hiç beklemediğin şekilde dudağını yalar |
+| Instant Mood Kill | 🧊🚿 | Her şey biter, duşa koşar (Hijyen yüksekse zorunlu) |
+
+## 💦 Bitişler
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Full Beard | 🧔💦 | Bıyığın altına sakal da eklersin; yüzüne boşalırsın |
+| Stache Facial | 🥸💦 | Tam bıyığın üstüne nişan alırsın |
+| Ass To Face | 🍑➡️😮 | Analden çıkıp doğrudan yüzüne biter (`perm.kirli`) |
+
+## 🧻 Sonrası (`th.stache` > 0)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Wet Wipe Rescue | 🧻🥸 | Islak mendille özenle silersin; gözlerini kapatıp bekler |
+| Shower Scrub | 🚿🧼 | Duşta yüzünü köpükle ovarsın, sonra kendini |
+| Mouthwash Toast | 🪥🥂 | Gargarayla "şerefe"; öpüşme yasağı (`stacheBlock`) kalkar |
+| Never Again | 🙅‍♀️📜 | "Bir daha asla" kuralı koyar → `perm.kirli` kapanır (📜 `p:ihlal` bağı) |
+| Secret Smirk | 😏🤫 | Ertesi gün kahve içerken bıyık yerine dokunup sana gülümser |
+
+# Tur 26 — Eyfel Kulesi + Pizza (Pisa) Kulesi pozisyonları (2026-11-19, uygulanmadı)
+
+> system.js'te Eiffel / Pisa / Spitroast yok. **Eyfel** = 2 kadın + sen: kuleyi iki kız kurar, çakı onlar yapar. Kapı `girls: 2` → 👭 duo sohbeti (`th.duo`) ya da 👯 grup; kızlar arası öpüşme/dokunma 👩‍❤️‍👩 bi kapısına bağlı (`orientOf` bi/lez, yoksa sadece çak + el ele). Duo'da `duoTurn` kimin nerede olduğunu (`th.towerPos` = {top, bottom}) tutar. **Pizza Kulesi** = Pisa Kulesi esprisi: o eğik durur, pizza teslimatı/mutfak bağlamı; tek partnerli, her yerde. Etiket `kule`; kategori `c:mvtower01x`. Her olay `story` ile gelir.
+>
+> **Mekanik önerileri:** (1) `th.tower` (0–3) denge sayacı: Eyfel'de çak sayısı, Pisa'da eğim; 3'te `outcomes` → devrilir / dengede kalır. (2) Eyfel'de 🙌 "çak" komutu (`r_gc_cak`) kızlara söylenir; iki kızın aynı anda gelmesi `Together` bitişine bağlanır, `th.duoO` ile sayılır. (3) Pizza olayları 🍕 `Pizza` içeceği/yiyeceği varsa (`DRESS_EV` benzeri `FOOD_EV`) öne çıkar.
+
+## 🗼 Eyfel Kulesi (`girls: 2`, sen + iki kız)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Eiffel Tower | 🗼🙌 | Sırtüstü yatarsın; biri kucağında, biri yüzüne oturur. Yüz yüze gelen kızlar üstünde çak yapar, kule tamamlanır |
+| Standing Eiffel | 🧍🗼 | Ayakta; biri önünde eğilmiş, sen arkasındasın, öndeki diğerini öper. İkisi elleriyle kule kurar |
+| Missed High Five | 🙌❌ | Kızlar çakı ıskalar, gülme krizi; ikisi birden üstünden düşer (`outcomes`) |
+| Kissing Summit | 💋🗼 | Tepede iki kız öpüşür, sen altta ikisini birden hissedersin (bi kapısı) |
+| Breast To Breast | 🍈🍈 | Yüz yüze eğilen kızların göğüsleri birbirine değer, sen ritmi verirsin |
+| Paris Lights | 🌃🗼 | Işıklar söner, telefon fenerleri; kızlar "Paris'teyiz" diye kıkırdar |
+| Slow Build | 🏗️🗼 | Önce biri yerleşir, diğeri sonra; kule kat kat yükselir |
+| Rocking Tower | ↔️🗼 | Alttaki kalçasını oynatınca üstteki de sallanır; ritmi ikisi bulur |
+| Tower Swap | 🔄🗼 | Çaktan sonra kızlar yer değiştirir; az önce yüzündeki şimdi kucağında (`th.towerPos`) |
+| Jealous Top | 😤🗼 | Biri "sıra bende" der ve diğerini iter (😤 `knowJealous` bağı) |
+| Leaning Eiffel | 🗼↘️ | Üstteki kızın dizleri titrer, kule yavaşça yana yatar |
+
+## 🍕 Pizza (Pisa) Kulesi
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Leaning Tower | 🍕🗼 | Ayakta, öne eğik durur; sen arkadan tutarsın, düşmesine izin vermezsin |
+| Pizza Delivery | 🛵🍕 | Kapıda kutu elinde; kutuyu tutarken eğilir, pizza soğur |
+| Counter Lean | 🍳↘️ | Mutfak tezgâhına bir kolla yaslanır, diğer eli pizza dilimini tutar |
+| Hold The Tilt | 🤲📐 | "Bir derece daha eğilirsen düşersin" — sen dengesini kalçasından tutarsın (`th.tower`) |
+| Tourist Photo | 📸🫴 | Kuleyi tutar gibi poz; sen arkadan, o eli havada (🫦 Fans bağı) |
+| Extra Cheese | 🧀😏 | Dilimden peynir uzar, ağzından alırsın; sonra eğilir |
+| Topple Over | 🫨🛋️ | Eğim fazla gelir, birlikte koltuğa devrilirsiniz (`outcomes`) |
+| Slice Sharing | 🍕💋 | Arkadan devam ederken ona bir dilim uzatırsın, ısırır ve inler |
+
+## 💦 Bitişler
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Double Topping | 🗼💦 | Kucağındakinin içinde bitirirsin; o sırada yüzündeki de gelir |
+| Shared Finish | 👭💦 | Son anda çıkarsın, iki kız yüz yüze eğilip birlikte alır |
+| High Five Finish | 🙌💦 | Son çakla üçünüz aynı anda gelirsiniz (`Together`) |
+| Tower Collapse | 🗼🫠 | Kule çöker, iki kız iki yanına yığılır |
+| Pisa Spill | ↘️💦 | Eğik kalçasından aşağı süzülür, bacağına iner |
+| Pizza Box Finish | 📦💦 | Kutunun kapağına yaslanmışken; pizza artık yenmez |
+
+## 🧻 Sonrası
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Cold Pizza Picnic | 🍕🛏️ | Yatakta soğuk pizza, ikiniz de çıplak |
+| Souvenir Keychain | 🗼🔑 | Ertesi gün anahtarlığına mini Eyfel takar, sana göz kırpar |
+| Who Was Better? | 🤔⚖️ | Kızlar "hangimiz daha iyiydi" diye seni sıkıştırır (😤 kıskançlık bağı) |
+| Sandwich Nap | 👭😴 | İkisinin arasında uyursun; üstünden el ele tutuşurlar |
+
+# Tur 27 — Monkey Punch: yumuşak vuruşlu oyunbaz seks (2026-11-19, uygulanmadı)
+
+> Vuruş hep **yumuşak ve rızalı**: yastık, peluş, şişme ya da yastıklı boks eldiveni; hedef kalça / uyluk / omuz / göğüs kafesi yanı, yüz ve karın asla. Etiket `yumruk`; kategori `c:mvmonkey01x`. 🤼 Oyunbaz kavga (Tur 21) ve 👋 `şaplak` ile ayrımı: burada vuruş seks ritminin parçası. Her olay `story` ile gelir.
+>
+> **Mekanik önerileri:** (1) Ekipman `TOYS`'a eklenir (`c.toys`, 🧰 `toyBuy`): 🥊 `gloves` (yastıklı eldiven), 🧸 `plush` (peluş eldiven), 🎈 `inflate` (şişme eldiven); yoksa yastıkla yapılır. Kapı `gear`. (2) Sertlik tercihi / 😣 Acı düşükse sadece yastık + peluş; `r_ret_yumruk_*` ret + 🙏 ikna. (3) `th.punch` sayacı (0–5): her vuruş +1, 5'te "Mola" zorunlu (`outcomes`: güler / karşılık verir / ciddileşir). (4) 🛎️ "Raunt" mekaniği: `th.round`, her raunt arası 30 sn öpüşme molası. (5) "dur" / "yavaş" kelimesi anında sıfırlar (güvenli kelime, `CMD_EV`). (6) Bot `r_ev_mp_*`.
+
+## 🥊 Pozisyonlar (seks + vuruş)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Monkey Punch | 🐒🥊 | Doggy'de arkasındasın; her itişte yastıklı eldivenle kalçasına yumuşak bir yumruk, ritim sayar gibi |
+| Cowgirl Sparring | 🤠🥊 | Üstünde, eldivenleri takmış; göğsüne pıt pıt vurur, sen alttan karşılık verirsin |
+| Pillow Pound | 🛏️👊 | Misyonerde ikinizin de elinde yastık; her itişte biri vurur, tüyler uçuşur |
+| Plush Paws | 🧸🐾 | Peluş maymun eldivenleriyle omzuna patiler; kendine "maymun" der, sen gülemezsin |
+| Corner Clinch | 🥊🧱 | Duvara (ringin köşesine) sıkışır, eldivenli kollarını boynuna dolar; bacakları beline |
+| Counter Punch | 🔁🥊 | Sen her vurduğunda o da uyluğuna vurur; kim daha hızlıysa ritmi o belirler (`outcomes`) |
+| Bouncy Gloves | 🎈🥊 | Şişme eldivenle vuruşlar zıplar, ikiniz de sesten gülersiniz |
+| Ref Count | 🧑‍⚖️🔟 | Sen hakem: "bir, iki…" sayarken o kalkmaya çalışır, sen bastırırsın |
+| Bell Ring | 🛎️💋 | Raunt arası zil; eldivenler iner, 30 sn öpüşme, sonra yeniden (`th.round`) |
+
+## 🫦 Ön sevişme
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Glove Up | 🥊🎀 | Eldivenini sen bağlarsın; bileğini öpüp sıkıştırırsın |
+| Shadow Boxing | 👤🥊 | Önünde iç çamaşırıyla gölge boksu yapar, her yumrukta kalçası sallanır |
+| Weigh-In | ⚖️😏 | Tartı esprisi: "Hafif sıklet mi?" — kucağına alıp kaldırırsın |
+| Taunt | 😜🥊 | Eldiveniyle çenene hafifçe dokunup "hadi gel" der |
+
+## 💦 Bitişler
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Knockout | 🥊💫 | Son yumrukla birlikte bitirirsin; o yatağa "nakavt" olur |
+| Glove Finish | 🥊💦 | Eldivenleriyle seni sıkar, eldivenlere bitirirsin |
+| TKO | 🏳️💦 | Havlu atar (yastığı fırlatır), "pes" der; tam o anda gelirsiniz |
+| Split Decision | ⚖️💦 | İkiniz aynı anda; kazanan belli değil (`Together`) |
+
+## 🧻 Sonrası
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Ice Pack | 🧊🍑 | Hafif kızaran kalçasına buz koyarsın, öpersin |
+| Belt Ceremony | 🏆🎀 | Kemer yerine iç çamaşırını beline bağlayıp "şampiyon" ilan eder |
+| Rematch | 🔁🥊 | "Rövanş istiyorum" — eldivenler başucunda kalır (`nextEvs`) |
+| Monkey Cuddle | 🐒🫂 | Maymun gibi sana sarılır, bırakmaz |
+
+---
+
+# Tur 28 — BDSM genişletme (2026-11-19, uygulanmadı)
+
+> Mevcut `c:mvbdsm01x` (33 olay, `mvbd01–33`) ile çakışmayan yeni olaylar; kod `mvbd34+`, bot `r_ev_bd_*`. Her şey **rızalı**, 🛑 Safe Word (`mvbd16safe`) her zaman geçerli. Her olay `story` ile gelir.
+>
+> **Mekanik önerileri:** (1) 🎚️ `th.sub` teslimiyet seviyesi (0–5): emir / bağlama +1, aftercare sıfırlar; ≥3 olayları açar (kapı `subMin`). (2) 🚦 Trafik ışığı: "sarı" yavaşlatır (`th.sub` −1), "kırmızı" anında Aftercare'e atlar (`CMD_EV`). (3) 📜 Kontrat: `c.limits` (yasak listesi) — ilk seferde "Limit Talk" ile dolar, sonra olay havuzundan o etiketleri çıkarır. (4) 🔄 Rol değişimi: `th.dom` = `me` / `her`; Switch olayları yönü çevirir. (5) Sertlik / 😣 Acı düşükse vuruşlu olaylar gizlenir, `r_ret_bdsm_*` + 🙏 ikna.
+
+## 📜 Hazırlık / kurallar
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Limit Talk | 📜🖊️ | Başlamadan oturup sınırları konuşursunuz; "evet / belki / asla" listesi (`c.limits`) |
+| Traffic Light | 🚦💬 | Yeşil-sarı-kırmızı kelimelerini belirler; sarı der, yavaşlarsın |
+| Position Training | 🧎📏 | "Bekle", "sun", "eğil" pozlarını tek tek öğretirsin, her doğruda ödül öpücüğü |
+| Rule Card | 🗒️🖋️ | Akşam için 3 kural yazıp buzdolabına asar; ihlal = ceza puanı (`th.sub`) |
+| Inspection | 🔦🧐 | Ayakta durur, sen etrafında dolaşıp "kontrol" edersin; kımıldarsa baştan |
+
+## 🔗 Bağlama / kısıtlama
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Hogtie Lite | 🪢🦵 | Bilekleri ve ayak bilekleri gevşekçe arkada bağlı; yan yatar, sen önünde |
+| Chair Bondage | 🪑🪢 | Sandalyeye bağlı; kucağına oturup üstünde kıpırdarsın, o dokunamaz |
+| Frog Tie | 🐸🪢 | Bacakları kıvrık bağlı, açık kalır; ön sevişmeyi uzatırsın |
+| Over The Knee | 🦵🍑 | Dizine yatırıp sayarak şaplak; her sayıda teşekkür eder (`mvbd29thanks` zinciri) |
+| Mummy Wrap | 🎞️🫣 | Streç filmle gövdesi sarılı, yalnızca seçtiğin yerler açık |
+| Under-Bed Straps | 🛏️⛓️ | Yatak altı kemerleri; X şeklinde gerili, her uzvu ayrı ayarlanır |
+| Door Cuffs | 🚪⛓️ | Kapı üstü bağlantıyla kolları yukarıda, ayakta; arkasından alırsın |
+
+## 🎭 Güç oyunları
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Orgasm Countdown | ⏳🔢 | "Ancak sıfırda" — 10'dan geri sayarsın, yavaş sayınca yalvarır |
+| Forced Stillness | 🗿😣 | Hiç kıpırdamayacak; kıpırdarsa durursun (`outcomes`: dayanır / kıpırdar) |
+| Human Furniture | 🛋️🧎 | Dört ayak üstünde sehpa olur, sırtında bardak; sen dizine dokunarak test edersin |
+| Mirror Watch | 🪞👀 | Ayna karşısında; gözlerini kaçırmayacak, kaçırırsa ceza |
+| Protocol Dinner | 🍽️🙇 | Yemekte yalnızca izinle konuşur, sen eliyle yedirirsin |
+| Leash Walk | 🐕‍🦺🏠 | Tasma ile evde dolaştırırsın; her odada bir komut (`mvbd11collar` zinciri) |
+| Switch | 🔄👑 | Yarı yolda roller değişir; şimdi o seni bağlar (`th.dom = 'her'`) |
+| Femdom Throne | 👑🪑 | O hükmeder: yüzüne oturur, sen bağlısın (`th.dom = 'her'`) |
+
+## 🔥 Seks (kısıtlıyken)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Bound Missionary | ⛓️🛏️ | Bilekler başucunda bağlı misyoner; ellerini tutarak bastırırsın |
+| Leash Doggy | 🐕‍🦺🍑 | Tasmayı hafifçe çekerek doggy; başını kaldırır |
+| Spreader Doggy | 📏🍑 | Açıcı bar ayaklarda, bacaklarını kapatamaz (`mvbd25spread` sonrası) |
+| Blind Ride | 🙈🤠 | Gözü bağlı üstünde; nerede olduğunu tahmin ettirirsin |
+| Cuffed Standing | ⛓️🧍 | Kapı kelepçesiyle ayakta, arkadan |
+| Silent Sex | 🤫🔥 | Tek ses çıkarmayacak; çıkarırsa durursun (`outcomes`) |
+
+## 💦 Bitişler
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Owned Finish | 🏷️💦 | "Benimsin" der, üstüne bitirirsin; işaret kalır (`c.marks`) |
+| Countdown Finish | 0️⃣💦 | Sayım sıfıra varınca ikiniz birden |
+| Denied Again | 🚫😩 | Tam sınırda durursun; bu gece gelemeyecek (Engel `engel` etiketiyle) |
+| Collar Finish | 🎀💦 | Tasmasını tutarak, göğsüne |
+| Bound Creampie | ⛓️💦 | Bağlıyken içine; çözülene kadar öyle bekler |
+| Grateful Finish | 🙏💦 | Bitirdikten sonra izinle teşekkür eder |
+
+## 🧻 Sonrası (aftercare, `th.sub` → 0)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Untie Slowly | 🪢🤲 | İpleri tek tek çözüp her izine öpücük |
+| Rope Marks Check | 🔍💜 | İp izlerine bakıp krem sürersin (`c.marks`) |
+| Blanket & Water | 🫗🛌 | Battaniyeye sarıp su içirirsin |
+| Debrief | 💬📝 | "Ne sevdin, ne fazlaydı?" konuşması; `c.limits` güncellenir |
+| Good Girl Praise | 🌟🫂 | Göğsüne yaslar, övgüyle sakinleşir |
+| Collar Off | 🎀🔓 | Tasmayı çıkarıp boynunu öpersin; oyun bitti |
+
+---
+
+# Tur 29 — Uykuda (önceden izinli, 2026-11-19, v1056'da kısmen uygulandı)
+
+> **v1056:** Sleep Permission + ön sevişme 6 + seks 7 + bitiş 5 + Was It A Dream? uygulandı (`mvsl*`, bkz. systems/monia.md). İzin basitleştirildi: `c.sleepOk = {join}`. Açık: `c.sleepRules` kapsamı, Sleep Rules / Nightie Choice / Lotion Before Bed / Revoke, Morning Evidence / Thank You Note / Rules Update / Tuck In, sahneler.
+
+> **İzin şart:** Olaylar ancak o **uyanıkken önceden izin verdiyse** açılır. Etiket `uyku`, kategori `c:mvsleep01x`, kod `mvsl*`, bot `r_ev_sl_*`. Mevcut uykulu olaylarla (Sleepy Spoon, Until You Fall Asleep, Lazy Morning Spoon, 3 AM Half-Asleep, Sleeping Bag…) çakışmaz. Her olay `story` ile gelir.
+>
+> **Mekanik önerileri:** (1) 🔑 İzin `perm.uyku` (rules/perms): yalnızca sohbette "Sleep Permission" olayıyla ya da profil kuralıyla verilir. Yoksa olaylar gizli, `r_ret_uyku_*` nazik ret. (2) 📋 Kapsam `c.sleepRules`: `touch` (sadece dokunma) / `oral` / `full` + "uyanırsam devam / dur". Olaylar kapsam dışındaysa çıkmaz. (3) 😴 `th.sleep` derinliği (0 uyanık → 3 derin). Her adımda `outcomes`: uyumaya devam / kıpırdar / uyanır. Uyanınca kurala göre "Wake & Join" ya da durma. (4) Saat kapısı `hours: 23–7`. Sabah 🧠 hafıza olayı ("Bir şey hissettim…"). (5) "Uyandır" / "dur" kelimeleri anında `th.sleep = 0` (`CMD_EV`). (6) İzin geri alınabilir: "Revoke" sonrası `perm.uyku` kapanır.
+
+## 🔑 İzin / hazırlık
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Sleep Permission | 🔑😴 | Uyumadan önce kulağına fısıldar: "Gece uyandırırsan kızmam, hatta isterim" (`perm.uyku`) |
+| Sleep Rules | 📋🌙 | Neye izin verdiğini tek tek söyler: dokunma, ağız, tamamı; "uyanırsam devam et" ya da "dur" (`c.sleepRules`) |
+| Nightie Choice | 👗🌙 | Senin için kolay çıkan bir gecelik seçer, iç çamaşırsız yatar |
+| Lotion Before Bed | 🧴🛌 | Yatmadan bacaklarına losyon sürdürür, "gece de dokunabilirsin" der |
+| Revoke | 🙅‍♀️🔒 | "Bu gece olmaz, yorgunum" der; izin kapanır, sadece sarılırsınız |
+
+## 🫦 Ön sevişme (o uyurken)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Sheet Slide | 🛏️🫳 | Çarşafı yavaşça beline kadar indirirsin, nefesi değişmez |
+| Feather Hands | 🪶🤲 | Parmak uçlarıyla uyluğunun içinde dolaşırsın; uykusunda bacağını açar |
+| Breast Cup | 🍈😴 | Kaşık pozisyonunda göğsünü avucuna alırsın, mırıldanır |
+| Sleep Kiss Trail | 💋🌙 | Omzundan beline öpücük izi; her öpücükte `th.sleep` −1 şansı |
+| Silent Oral | 👅🤫 | Bacaklarının arasına süzülürsün; uykusunda kalçasını kaldırır (kapsam `oral`) |
+| Dream Moan | 😴💭 | Uykusunda adını inler; uyanık mı belli değil (`outcomes`) |
+
+## 🔥 Seks (kapsam `full`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Sleeping Spoon Slide | 🥄😴 | Arkasından, tek bacağını hafifçe kaldırıp çok yavaş; hiç acele yok |
+| Sleeping Prone | 🛏️🍑 | Yüzüstü uyuyor; üstüne yaslanmadan, dirseklerinle yavaşça |
+| Gentle Missionary | 🌙🫂 | Sırtüstü; bacaklarını kendisi açar, gözleri kapalı |
+| Stay Still | 🗿💤 | Hiç kıpırdamadan içinde beklersin; uyanmasın diye nefesini tutarsın (`outcomes`) |
+| Wake & Join | 👀🔥 | Yarısında gözünü açar, gülümser: "Durma" — normal sekse geçer (`th.sleep = 0`) |
+| Pretend Sleep | 😏😴 | Aslında uyanık, uyuyor numarası yapıyor; sonunda kıkırdayıp ele verir |
+| Morning Wood Wake | 🌅🍆 | Tersine: sen uyurken o seni uyandırır (karşılıklı izinle, `th.dom = 'her'`) |
+
+## 💦 Bitişler
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Silent Creampie | 🤫💦 | İçine, hiç ses çıkarmadan; sabah fark eder (🧠 hafıza) |
+| Thigh Finish | 🦵💦 | Çıkıp uyluklarına; üstünü örtersin |
+| Back Finish | 🔙💦 | Yüzüstü uyurken beline; silmeden yanına yatarsın |
+| Wake-Up Finish | ⏰💦 | Tam bitirirken uyanır, gözlerine bakarak beraber gelirsiniz |
+| Dream Orgasm | 💭🌊 | Uykusunda kendisi gelir, titrer, uyanmaz |
+
+## 🧻 Sonrası / sabah
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Was It A Dream? | ☕💭 | Sabah kahvede "Çok güzel bir rüya gördüm… rüya mıydı?" der |
+| Morning Evidence | 🛏️😳 | Çarşafta / üstünde izi görür, kızarıp güler |
+| Thank You Note | 📝💗 | Telefonuna mesaj: "Gece için teşekkürler, yine yap" (`perm.uyku` kalır) |
+| Rules Update | 📋🔄 | Kahvaltıda kuralları günceller: "Bir dahaki sefere uyandır" ya da "Uyandırma" |
+| Tuck In | 🛌🤍 | Bitirince üstünü örtüp alnından öpersin, sarılıp uyursun |
+
+---
+
+# Tur 30 — Ten rengi ve kökene özel olaylar (2026-11-19, uygulanmadı)
+
+> İki eksen: **🎨 ten** (`Skin Tone`: Pale / Fair / Olive / Tan / Brown / Dark — güneş, iz, kızarma, kontrast gibi *görsel/fiziksel* farklar) ve **🌍 köken** (world.js `REGIONS`, `ORIGIN_LOOK` ile aynı 9 bölge — dil, yemek, gelenek, müzik gibi *kültürel* farklar). Mekân olayları zaten [memleket-olaylari.md](memleket-olaylari.md)'de; burası mekânsız. Her olay `story` ile gelir.
+>
+> **İlke:** Köken davranışı, anatomiyi ya da "ateşlilik" düzeyini belirlemez; sadece kültürel renk katar. Irk fetişi / aşağılama / stereotip beden kalıbı yok. Ten olayları her tonda eşit sayıda ve hepsi övgü tonunda.
+>
+> **Mekanik önerileri:** (1) Kapı `skin: ['pale','fair']` → `skinBlock` (`cmFields(c).Ten` > `Skin Tone` > `ORIGIN_LOOK`, `ccSkin` ile aynı kaynak); grup anahtarları `light` (Pale/Fair), `mid` (Olive/Tan), `deep` (Brown/Dark). (2) Kapı `origin: 'Türk'` → `originBlock` (`World.regionOf(c.city)`), memleket önerisiyle ortak. (3) ☀️ `c.tan` bronzluk (0–3): plaj/havuz olayları +1, haftada −1; `tan≥2` iz çizgisi olaylarını açar. (4) 💜 `c.marks` görünürlüğü tona göre: açık tende iz +1 gün daha kalır, koyu tende "sadece dokununca hissedilir" cümlesi (`markBlock`'a ek). (5) 🗣️ `ORIGIN_SAY` — boşalma / övgü anında ana dilinde tek kelime (EN modunda da orijinal kalır, `i18n` dokunmaz); bot `r_ev_sk/og_*`.
+
+## 🎨 Ten — ön sevişme
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Tan Line Trace | 👙☀️ | Bikini izini parmağınla takip edersin; beyaz kalan yerleri tek tek öpersin (`c.tan≥2`) |
+| Sunscreen Rub | 🧴🖐️ | Yanmasın diye sırtına krem sürersin; el aşağı kayar (light: SPF 50, deep: parlatıcı yağ) |
+| Blush Map | 😳🌹 | Açık teninde kızarıklık boynundan göğsüne yayılır; sen nereye kadar indiğini izlersin (light) |
+| Freckle Count | 🟤🔢 | Omzundaki çilleri sayarken her birine bir öpücük; saymayı hep şaşırırsın (Marks: Freckles) |
+| Golden Hour | 🌇✨ | Gün batımı ışığı teninde altın gibi parlar; fotoğraf çekip sonra yatağa (mid/deep) |
+| Oil Glow | 🫒💧 | Vücut yağıyla masaj; koyu teninde ışık her kıvrımda kayar (deep) |
+| Moonlight Skin | 🌙🤍 | Perdeden vuran ay ışığında porselen teni neredeyse parlar (light) |
+| Contrast Hands | 🤎🤍 | Elinizi yan yana koyar, tenlerinizin farkına bakıp gülümser; parmaklar birbirine geçer (ten farklıysa) |
+
+## 🎨 Ten — seks
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Tan Line Doggy | 🍑👙 | Arkadan; kalçasındaki mayo izi her itişte gözünün önünde (`c.tan≥2`) |
+| Sun-Warm Skin | ☀️🔥 | Güneşte ısınmış teni hâlâ sıcak; şezlongtan yatağa taşınır (mid/deep, plaj sonrası) |
+| Flushed Missionary | 😳🛏️ | Her itişte yanakları daha da kızarır; ayna tavanda (light) |
+| Candle Glow | 🕯️🤎 | Mum ışığında teni bakır renginde; yavaş, göz göze (deep) |
+| Oiled Slide | 🫒🔄 | Yağlı tenler üst üste kayar; tutunmak zor, gülme krizi (tümü) |
+
+## 🎨 Ten — bitişler
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Tan Line Finish | 👙💦 | Tam bikini izinin beyaz şeridine; "çizgiyi tutturdun" der (`c.tan≥2`) |
+| Contrast Finish | 🤎💦 | Koyu teninde her damla belirgin; aynada bakar, beğenir (deep) |
+| Blush Finish | 🌹💦 | Göğsü kıpkırmızıyken üstüne; kızarıklık ve sen aynı anda (light) |
+| Golden Finish | 🌇💦 | Gün batımı ışığında karnına, ışıkta parlar (mid) |
+
+## 🎨 Ten — sonrası
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Mark Check | 🪞💜 | Aynada izlerine bakar; açık tende "herkes görecek!", koyu tende "kimse fark etmez" (`c.marks`) |
+| Aloe Aftercare | 🌵🧴 | Güneş yanığına aloe sürersin, sırtını üflersin (light, plaj sonrası) |
+| Sunbathe Together | ☀️🧺 | "Bronzluğumu eşitleyelim" — çıplak güneşlenme randevusu (`nextEvs` → Tan Line Trace) |
+| Freckle Constellation | ⭐🖊️ | Çillerini kalemle birleştirip takımyıldız çizersin |
+
+## 🌍 Köken — dil ve ses
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Mother Tongue | 🗣️💋 | Heyecanlanınca ana diline geçer; ne dediğini anlamazsın ama anlarsın (`ORIGIN_SAY`) |
+| Teach Me A Word | 📖😏 | Sana kendi dilinde bir açık kelime öğretir; yanlış telaffuz ettikçe güler, doğruda ödül |
+| Accent Whisper | 👂🎶 | Aksanıyla kulağına yavaşça adını söyler; her hecede tüylerin diken diken |
+| Lullaby After | 🎵🌙 | Seks sonrası annesinden öğrendiği ninniyi mırıldanır |
+| Pet Name | 💞🏷️ | Sana kendi dilinde lakap takar (Türk: "aşkım", Fransız: "mon chéri", Doğu Asya: "jagiya"…), sonraki sohbetlerde kullanır (`c.petName`) |
+
+## 🌍 Köken — gelenek ve yemek
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Home Cooking | 🍲😋 | Memleket yemeğini pişirir, mutfakta kaşıktan tattırırken öpüşme başlar |
+| Coffee Fortune | ☕🔮 | (Türk) Kahve falına bakar: "Fincanda yatak görüyorum…" |
+| Tea Ceremony | 🍵🎎 | (Doğu Asya) Yavaş çay seremonisi; sabır testi, sonunda kucağına oturur |
+| Henna Night | 🌿✋ | (Arap / Türk) Ellerine kına yakar, kuruyana kadar dokunamaz — sen ona dokunursun |
+| Siesta Rule | 😴🌞 | (Latin / Akdeniz) Öğle uykusu "kuralı": yatağa girersiniz ama uyumazsınız |
+| Sauna Custom | 🧖‍♀️❄️ | (Slav / Kuzey Avrupa) Saunadan sonra karda yuvarlanma, sonra sıcak yatak |
+| Sunday Roast | 🍖🫖 | (Anglo) Pazar yemeği sonrası koltukta tembel, yavaş sevişme |
+| Wine From Home | 🍷🏡 | (Fransız / Akdeniz) Memleketten gelen şarabı açar, kadehten ağzına aktarır |
+
+## 🌍 Köken — müzik ve dans
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Home Playlist | 🎧💃 | Memleket şarkılarını açar, kucağında dans eder; nakaratta öper |
+| Teach Me To Dance | 🕺👣 | Sana kendi dansını öğretir (salsa, horon, vals…); ayak basışları yatakta biter |
+| Folk Song Duet | 🎤🌾 | Birlikte türkü / halk şarkısı söylemeye çalışırsınız; sözleri unutunca öpüşürsünüz |
+
+## 🌍 Köken — sonrası / ilişki
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Homesick Hug | 🥺🫂 | Memleketini özlediğini anlatır; sarılıp fotoğraflarına bakarsınız (Güven +) |
+| Meet My Family Call | 📞👵 | Annesi görüntülü arar; çarşafla saklanırsın, o kendi dilinde "kimse yok" der (😂 `outcomes`) |
+| Promise A Visit | ✈️🗺️ | "Bir gün seni memleketime götüreceğim" — memleket mekân olaylarına `nextEvs` |
+| Souvenir Gift | 🎁🧿 | Memleketinden küçük hediye (nazar boncuğu, matruşka, maneki-neko…) verir (`c.gifts`) |
+
+---
+
+# Tur 31 — Dark ten rengine özel olaylar (2026-11-19, uygulanmadı)
+
+> Kapı `skin: ['Dark']` (Brown da açılabilir: `skin: ['Brown','Dark']`), `skinBlock` (Tur 30). Tur 30'daki Oil Glow / Candle Glow / Contrast Finish ile çakışmaz, onları tamamlar. Her olay `story` ile gelir; bot `r_ev_sk_dk_*`.
+>
+> **İlke:** Övgü ve görsellik odaklı (ışık, parlaklık, renk, doku). Irk fetişi, "egzotik" dili, aşağılama, ırk rol oyunu ve beden stereotipi yok; köken ayrıca belirlenmez (Dark ten her bölgeden gelebilir).
+>
+> **Mekanik önerileri:** (1) ✨ `th.glow` parlaklık (0–3): yağ / shea / highlighter olayları +1, duş sıfırlar; ≥2 "parlayan" pozisyon ve bitişleri açar (kapı `glowMin`). (2) 💜 İz: `c.marks` koyu tende görünmez ama `markBlock` dokunuş cümlesi "sadece ikiniz bilirsiniz" (Secret Marks). (3) 👗 Renk kontrastı: `wear` rengi `white/gold/neon` ise ön sevişme cümlesine kontrast eki (clothes.js renk alanı). (4) 📸 CarmenFans: `th.glow≥2` iken çekilen fotoğrafta "glow" altyazı havuzu.
+
+## 🫦 Ön sevişme
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Shea Butter Ritual | 🧈🤎 | Akşam rutinini sen yaparsın: shea yağını omuzlarından ayak bileklerine kadar avuçlarınla ısıtıp yayarsın (`th.glow` +1) |
+| Cocoa Kiss | 🍫💋 | Kakao yağlı dudak balmıyla öper; tadı ve kokusu sende kalır |
+| Highlighter Trail | ✨🖌️ | Köprücük kemiğine, omzuna, kalçasına parlatıcı sürer; "nerede parladıysa orayı öp" (`th.glow` +1) |
+| White Lace | 🤍👙 | Beyaz dantel takımla kapıda; kontrast nefesini keser, sen dokunmadan bakarsın |
+| Gold Chains | 📿✨ | Belinde ince altın zincir, ayak bileğinde halhal; zinciri parmağınla takip edersin |
+| Neon Night | 💜🌃 | UV ışıkta neon iç çamaşırı parlar, teni karanlıkta kaybolur; sen elinle bulursun |
+| Bonnet Off | 🧕😏 | Gece saç bonesini çıkarıp sana fırlatır: "Bu gece saçımı bozmana izin var" (💇‍♀️ `hairBlock` bağı) |
+| Sun Kiss | ☀️🤎 | Güneşte saatlerce kalmış, teni sıcak ve koyulaşmış; omzunu öpünce güneşin tadı |
+
+## 🔥 Seks
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Glow Ride | ✨🤠 | Üstünde, yağlı teni lamba altında her harekette ışık yansıtır (`glowMin: 2`) |
+| Mirror Contrast | 🪞🤎 | Aynanın karşısında arkadan; o, ikinizin ten rengini izlemeyi sever |
+| Silk Sheets | 🛏️🟣 | Mor saten çarşaf, koyu teni üzerinde kayar; yavaş misyoner |
+| Gold Hour Doggy | 🌇🍑 | Pencereden giren gün batımı kalçasını bakır rengine boyar |
+| Shimmer Spoon | 🥄✨ | Yan yatarken sırtındaki parlatıcı göğsüne bulaşır; ikiniz de parlarsınız |
+| Chain Grip | 📿✊ | Belindeki altın zincirden nazikçe tutarak arkadan (zincir kopmaz, söz) |
+| Blackout Touch | 🌑🤲 | Işıklar kapalı, onu sadece dokunuşla bulursun; o gülerek kaçar (`outcomes`) |
+| Candle Wax Gold | 🕯️💛 | Altın renkli masaj mumu (düşük ısı) sırtına damlar, sen yağ gibi yayarsın (Sertlik kapılı) |
+
+## 💦 Bitişler
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Pearl Necklace | 🤍📿 | Boynuna, altın zincirin üstüne; "inci kolye" der, aynada bakar |
+| Glow Finish | ✨💦 | Parlayan karnına; lamba ışığında parıltıyla karışır (`glowMin: 2`) |
+| Milk & Cocoa | 🍫🤍 | Kalçasının iki yanına; "kakaolu süt" diye güler |
+| Lace Finish | 🤍👙 | Beyaz dantelinin üstüne; kumaştan teni seçilir |
+| Midnight Stars | 🌌💦 | Karanlıkta sırtına; o "takımyıldız" diye adlandırır |
+| Gold Collarbone | ✨🦴 | Highlighter sürdüğü köprücük kemiğine, tam ışığın vurduğu yere |
+
+## 🧻 Sonrası
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Secret Marks | 💜🤫 | İzlerin görünmez; parmağıyla gösterir: "Sadece ikimiz biliyoruz" (`c.marks`) |
+| Shower Glow Off | 🚿✨ | Birlikte duş; parlatıcı ve yağı sen yıkarsın (`th.glow` → 0) |
+| Moisturize After | 🧴🤎 | "Kuru kalmasın" — duştan sonra yeniden yağlarsın, uyuyakalır |
+| Bonnet Back On | 🧕💤 | Saçını toplayıp bonesini takar, sana sokulup uyur |
+| Glow Selfie | 📸✨ | Hâlâ parlarken ikinizin fotoğrafını çeker (📸 CarmenFans altyazı havuzu) |
+
+---
+
+# Tur 32 — MILF olayları (2026-11-19, uygulanmadı)
+
+> Olgun, kendinden emin, tecrübeli kadın teması. Kapı `ageMin: 35` → `ageBlock` (`c.age`); bazı olaylar ek kapılı: 💍 `isWed` (koca), 👶 çocuk (`c.babyBy` / `c.kids`), 🤱 Anaç, 🏠 `Yaşam:`. Kategori önerisi `c:mvmilffp01x` / `c:mvmilf01x` / `c:mvmilfaf01x`, kod `mvmf*`, etiket `milf`, bot `r_ev_mf_*`. Her olay `story` ile gelir. Tüm karakterler yetişkin; aile içi (üvey anne vb.) rol yok.
+>
+> **Mekanik önerileri:** (1) 🎓 `th.teach` (0–3): "o öğretir" olaylarında +1, ≥2 ileri pozisyonları açar (`teachMin`). (2) 👶 Çocuk kesintisi: çocuğu varsa `riskStep` benzeri "Mom!" kesintisi (`outcomes`: kapıyı kilitler / ara verir / fısıltıyla devam). (3) 💍 Kocası varsa: 🐍 `aldatma` etiketine bağlı varyantlar + `husbPlan` "kocası şehir dışında" kapısı `husbAway`. (4) 😏 Özgüven: `Utangaç` kişilikte cümleler daha yumuşak, `Baskın`'da o yönetir (`PERSONA`). (5) 🗣️ Hitap: sana "tatlım / genç adam / yakışıklı" (`MILF_ADDR`), sen ona adıyla ya da "Bayan X" (rol).
+
+## 🎭 Tanışma / rol
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Neighbor's Sugar | 🏡🍬 | Kapını çalıp şeker ister; mutfağında "bir de şuna bak" diye kalır |
+| Friend's Mom | 👩‍🦰🚪 | Arkadaşını beklerken evde sadece o var; limonata, sonra kanepe |
+| Yoga Instructor | 🧘‍♀️📏 | Özel ders; duruşunu düzeltirken elleri belinde kalır |
+| PTA Meeting | 🏫📋 | Okul-veli toplantısından sonra boş sınıfta "konuşmamız lazım" |
+| Wine Club | 🍷👯‍♀️ | Kadınlar şarap kulübünden sonra herkes gider, o kalır |
+| Divorce Party | 💔🎉 | Boşanmasını kutluyor; "bu gece kendim için yaşayacağım" |
+| Boss Lady | 💼👠 | Patronun; mesai sonrası ofiste ceketini çıkarır (🏢 `ofis` bağı) |
+| Lawn Mowing | 🌿💸 | Bahçesini biçersin; terli halini pencereden izler, içeri davet eder |
+
+## 🫦 Ön sevişme
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Let Me Show You | 🎓💋 | "Acele etme tatlım" — seni yavaşlatıp nasıl öpüleceğini gösterir (`th.teach` +1) |
+| Silk Robe | 👘🍷 | İpek sabahlıkla kapıyı açar; kuşağı sana çözdürür |
+| Lingerie Drawer | 🗄️👙 | Çekmecesini açar, "hangisini giyeyim?" diye sana seçtirir |
+| Pearl Tease | 📿😏 | İnci kolyesini dudaklarında gezdirir, sonra senin boynuna |
+| Kitchen Counter | 🍳🍑 | Yemek yaparken arkasına geçersin; spatulayı bırakmaz |
+| Experienced Hands | 🤲🔥 | Seni nereye dokunacağını senden iyi bilir; hiç sormaz |
+| Stretch Marks Pride | 🤍✨ | Karnındaki çatlakları gösterir: "Bunlar hikâyem"; sen öpersin (çocuk kapılı) |
+
+## 🔥 Seks
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| She Takes Charge | 👑🤠 | Üstüne çıkar, tempoyu o belirler; "sus ve keyfini çıkar" |
+| Teaching Position | 🎓🔄 | Yeni bir pozisyonu adım adım öğretir, yanlışta güler (`teachMin: 2`) |
+| Marital Bed | 🛏️💍 | Kocasıyla paylaştığı yatakta; çerçeveli fotoğrafı ters çevirir (💍 + `aldatma`) |
+| Quickie Before Pickup | ⏰🚗 | Okul servisine 15 dakika var; hızlı ve sessiz (👶 kapılı) |
+| Laundry Room | 🧺🌀 | Çamaşır makinesinin üstünde, sıkma programı titreştirir (`çamaşır`) |
+| Slow & Deep | 🧘‍♀️🌊 | "Gençler hep hızlı" — yavaş, derin, uzun |
+| Garter Belt | 🦵🎀 | Jartiyer ve çorap hiç çıkmaz (`wear`) |
+| Anniversary Dress | 👗🍷 | Yıldönümü için aldığı elbise, ama kocası gelmedi (💍 `husbAway`) |
+| Mom! Interrupt | 📢🚪 | "Anne!" sesi; kapı kilitli, fısıltıyla devam (👶 `outcomes`) |
+
+## 💦 Bitişler
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Good Boy | 😏💦 | Gözlerine bakarak "aferin" der; sen o anda gelirsin |
+| Pearls & Pearls | 📿🤍 | İnci kolyesinin üstüne, göğsüne |
+| Inside, She Insists | 🔒💦 | Bacaklarını kilitler: "Merak etme, ben hallederim" (🛡️ `kr` / hap bağı) |
+| Lipstick Ring | 💄💦 | Ağzına; ruj izi her yerde kalır |
+| Satin Sheets Finish | 🛏️🤍 | Saten çarşafa, "yarın yıkanacak zaten" |
+| Experienced Milking | 🥛🤲 | Tecrübeli elleriyle son damlaya kadar sağar (🥛 sağma bağı) |
+
+## 🧻 Sonrası
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Cookies After | 🍪🥛 | Sana kurabiye ve süt getirir, saçını karıştırır |
+| Our Little Secret | 🤫💍 | "Bu aramızda kalacak tatlım" (🐍 `aldatma` → 🕵️ şüphe sayacı) |
+| Fix Your Collar | 👔💋 | Gitmeden yakanı düzeltir, ruj izini siler |
+| Same Time Next Week | 📅😏 | Salı günü kocası yok; "Aynı saat?" (`nextEvs`) |
+| Pillow Talk Wisdom | 🛏️💬 | Hayata dair öğüt verir, sen kucağında dinlersin (Güven +) |
+| Car Smells Like Her | 🚗🌹 | Parfümü arabanda kalır; ertesi gün mesaj: "Kokumu özledin mi?" |
+
+---
+
+# Tur 33 — 🏥 Doktor: tedavi + donörlük (2026-11-19; 🧪 Donörlük + 💦 Bitişler v1058'de uygulandı, tedavi / sonrası / mekanikler fikir)
+
+> Mevcut 🏥 Clinic (`c:mvclinic01x`, `mvcl01–18`, etiket `tedavi`, mekân `muayene-odasi`) ve 💼 CarmenJobs 🧪 `donor` işi (`GIGS`, "CarmenKlinik Tüp Bebek Merkezi", hemşire) genişletmesi. Kod `mvcl19+` (tedavi) / `mvdn*` (donör), yeni etiket `donör`, bot `r_ev_cl/dn_*`. İsimler mevcut 18 olayla çakışmaz. Her olay `story` ile gelir. Kurgusal, rızalı yetişkin rol oyunu; tıbbi doğruluk iddiası yok.
+>
+> **Mekanik önerileri:** (1) 💊 Tedavi kürü `c.rx` = `{ kind, left }`: "Reçete" olayı 3–5 seanslık kür başlatır, her seans `left` −1, bitince "Taburcu" sonrası olayı (`nextEvs`). Türler: `stres` / `ateş` / `gerginlik` / `uyku` → seans cümleleri ona göre. (2) 🩺 Rol yönü `th.docBy` = `her` (o doktor, sen hasta) / `me` (sen doktorsun, o hasta) — olaylar `docBy` kapılı. (3) 🧪 Donör: 🫙 biriktirme `u.saveDays` (gün sayısı, `cumMin` ile aynı ölçek) → numune kalitesi `outcomes` (Düşük / İyi / Mükemmel), ücret 💰 `GIGS.donor` ödemesine çarpan. (4) 🫙 `th.sample`: numune kabı "dolu mu?" — kabı ıskalarsan "Spilled Sample" (`outcomes`: yeniden dene / ceza yok, gülerler). (5) 🍼 Doğal bağış: hasta "bebek istiyorum" → 🤰 `c.babyBy = 'me'` + TTC (hamilelik önerisi v2) bağı, sadece `perm.ic` / koruma yoksa. (6) 👩‍⚕️ Hemşire ikinci kişi: `girls: 2` 👭 duo varyantları (`th.duo`).
+
+## 💊 Tedavi — ön sevişme / muayene
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Prescription | 📝💊 | Reçete yazar: "Haftada 3 seans, aç karnına" — kürü başlatır (`c.rx`) |
+| Full Physical | 🩺🧍 | Baştan ayağa muayene; refleks çekici dizinde, sonra iç bacakta |
+| Blood Pressure | 🩸📈 | Tansiyon aleti kolunda; o yaklaştıkça değer yükselir, ikiniz de gülersiniz |
+| Deep Breath | 🫁👂 | "Derin nefes" — steteskopu göğsünden karnına indirir |
+| Massage Therapy | 💆‍♀️🩺 | "Kas gerginliği" teşhisi; sedyede tedavi masajı (💆 masaj bağı) |
+| Hot Compress | 🔥🧻 | Sıcak kompresi kasıklarına koyar, "dolaşımı açar" |
+| Nurse Assist | 👩‍⚕️👩‍⚕️ | Hemşire içeri girer, doktor "yardım et" der (👭 duo) |
+| Role Swap | 🔄🩺 | Önlüğü sana giydirir: "Bu sefer sen beni muayene et" (`th.docBy` = `me`) |
+
+## 💊 Tedavi — seks (seanslar)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Stress Relief Session | 😮‍💨🛏️ | Kür seansı 1: yavaş, nefes egzersizli misyoner (`c.rx.kind = stres`) |
+| Fever Therapy | 🌡️🔥 | "Ateşi terle atacağız" — battaniye altında, ter içinde |
+| Tension Release | 🧘‍♀️💥 | Sırtına baskı uygulayarak arkadan; her itişte "nefes ver" der |
+| Sleep Cure | 🌙💤 | Uykusuzluk tedavisi: seans sonunda uyuyakalman hedef (😴 uyku bağı) |
+| Rehab Exercise | 🏋️‍♀️🦵 | Fizik tedavi; bacak kaldırma egzersizi pozisyona dönüşür |
+| Stirrups | 🦶🪑 | Jinekolojik sandalyede bacakları ayaklıklarda (`docBy: me`) |
+| Follow-Up Visit | 📅🩺 | Kontrol randevusu: "İyileşme var ama bir seans daha" (`c.rx.left`) |
+| Bedside Manner | 🛌😏 | Hastane yatağında hasta sensin; ziyaret saati dışında perdeyi çeker |
+| Night Shift | 🌙🏥 | Gece nöbetinde boş serviste, nöbetçi odası ranzasında |
+
+## 🧪 Donörlük — hazırlık / numune odası
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Donor Intake | 📋🧪 | Form doldurur: "Son boşalma ne zaman?" — `u.saveDays`'e göre kaşını kaldırır |
+| Abstinence Check | ⏳🫙 | "3 gün dayandın mı?" — dayanmadıysan şakayla azarlar, kalite düşer |
+| Collection Room | 🚪🛋️ | Numune odası: deri koltuk, kilitli kapı, hemşire içeride kalır |
+| Hands-On Help | 🤲🧪 | "Dergiye gerek yok" — eldivenli eliyle yardımcı olur |
+| Lubricant-Free | 🚫🧴 | "Kayganlaştırıcı numuneyi bozar" — ağzıyla ıslatır |
+| Two Nurses | 👩‍⚕️👩‍⚕️ | Biri tutar, biri kabı hazırlar (👭 duo) |
+
+## 🧪 Donörlük — seks / doğal bağış
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Sample Ride | 🤠🫙 | Üstünde, kap elinde hazır; "söyle, çekileyim" |
+| Natural Insemination | 🍼❤️ | Hasta bebek istiyor, tüp bebek pahalı; "doğal yoldan" (🤰 TTC, `c.babyBy`) |
+| Ovulation Window | 📆🥚 | Testi pozitif, "bugün olmalı"; bacakları yukarıda kalır |
+| Clinic After Hours | 🌃🧪 | Klinik kapandı, laboratuvar tezgâhında |
+| Quality Control | 🔬🔁 | "Numune yetersiz, tekrar" — ikinci tur (😈 devam) |
+
+## 💦 Bitişler
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Perfect Sample | 🫙✨ | Kabın tam ağzına; etiketi yazar: "Mükemmel" (ücret ×2) |
+| Spilled Sample | 😳🫙 | Kabı ıskalarsın, eldivenine / önlüğüne gider (`outcomes`: tekrar / gülme) |
+| Direct Deposit | 🍼💦 | Doğal bağış: içine, sonra 15 dk kalça yastıkta (🤰 bağı) |
+| Syringe Transfer | 💉🤍 | Kaba bitirirsin, o şırıngayla kendine "transfer eder" (😏 ev usulü) |
+| Overflow Sample | 🫙🌊 | Biriktirme ≥5 gün: kap taşar (`cumMin` 90 / 🌊 burst bağı) |
+| Treatment Complete | ✅💦 | Kürün son seansı; gelirken "taburcusun" der (`c.rx.left = 0`) |
+| Thermometer Finish | 🌡️💦 | Ateş seansı sonu, terli karnına |
+| Microscope Check | 🔬🤍 | Bir damlasını lama alıp mikroskopta bakar: "Hepsi yüzüyor" |
+
+## 🧻 Sonrası
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Discharge Papers | 📄🏥 | Taburcu belgesi: "Hasta tamamen iyileşti" + numarası |
+| Lollipop Reward | 🍭😋 | Çocuk doktoru şakası: cesur hastaya lolipop |
+| Donor Payment | 💰🧪 | Zarfı uzatır, içinde not: "Gelecek ay yine bekleriz" (`GIGS.donor`) |
+| Pregnancy Test | 🧪➕ | Birkaç hafta sonra mesaj: test fotoğrafı (🤰 `c.babyBy` / zaman atlama) |
+| Get Well Soon | 💐💌 | Ertesi gün "Geçmiş olsun" mesajı + bir sonraki seans hatırlatması |
+| Lab Coat Keep | 🥼🎁 | Önlüğünü sana bırakır: "Ev ziyaretlerinde giyersin" |
+
+---
+
+# Tur 34 — ☕ Gündelik / başlatıcı / ısınma olayları (2026-11-19, fikir)
+
+> Seks ve bitiş **değil**: sohbeti başlatan, gün içinden gelen ve yakınlığı yavaşça ısıtan olaylar. Kod önerisi `c:mvdaily01x` (gündelik) / `c:mvwarm01x` (ısınma), `mvdy*` / `mvwm*`, etiket `gündelik`, bot `r_ev_dy/wm_*`. Mevcut mekânlarla (duş, sauna, araba, asansör, kamp, çamaşır, kafe) çakışmaz. Her olay `story` ile gelir.
+>
+> **Mekanik önerileri:** (1) 🌡️ Isınma sayacı `th.warm` 0→3: her ısınma olayı +1; 3'e ulaşınca `nextEvs` ön sevişme önerir (zorlamaz). (2) 🕰️ `hours` kapısı: sabah olayları 06–11, gece olayları 22–02. (3) İlişki başı açık: Aşk/Güven kapısı yok veya düşük, böylece ilk sohbetlerde de çıkar. (4) 🎲 Bazılarında `outcomes` (evet / sonra / reddeder) — ret ilişkiyi düşürmez.
+
+## 🌅 Gün başlatıcılar
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Good Morning Text | 🌅📱 | "Uyandın mı?" + yataktan dağınık saçlı selfie (`hours` sabah) |
+| Coffee Order | ☕📝 | "Kahveni nasıl içiyorsun?" — ertesi buluşmada tam öyle getirir |
+| Lost Keys | 🔑😩 | Anahtarını kaybetmiş, seni arar; bulunca "kahramanım" |
+| Bus Stop | 🚏🙂 | Durakta beklerken başını omzuna yaslar |
+| Lunch Break Call | 🥪📞 | Öğle arasında görüntülü; ağzı dolu konuşur, gülersiniz |
+| Plant Care | 🪴💧 | Tatile gidiyor, çiçeklerini sana emanet eder (anahtar verir) |
+| Dog Walk | 🐶🦮 | Köpeğini birlikte gezdirirsiniz; tasma bacaklarınıza dolanır |
+
+## 💬 Sohbet açıcılar (mesajlaşma)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Random Question | ❓🤔 | "Issız adaya 3 şey götürsen?" — cevabına göre takılır |
+| Song Share | 🎧💌 | Bir şarkı yollar: "Bunu dinlerken seni düşündüm" |
+| Throwback Photo | 📸⏪ | Eski fotoğrafını atar, "o zaman tanısaydın beni?" |
+| Rate My Outfit | 👗⭐ | İki kıyafet fotoğrafı: "Hangisi?" (`outcomes` seçimine göre giyer) |
+| Dream Tell | 💭🌙 | "Rüyamda seni gördüm" — ayrıntıyı söylemez, merak ettirir |
+| Bored Text | 😑📱 | "Sıkıldım, eğlendir beni" — sen konu açarsın |
+| Two Truths One Lie | 🤥🎲 | Oyun: yalanı bulursan bir sır anlatır (`outcomes`) |
+| Late Night Thoughts | 🌃💭 | Gece 1'de derin soru: "Sence ruh eşi var mı?" (`hours` gece) |
+
+## 🫣 Isınma (masum temas, `th.warm` +1)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Accidental Touch | 🤏⚡ | Aynı anda bardağa uzanırsınız, eller değer, kimse çekmez |
+| Fix My Necklace | 📿😳 | Kolyesini taktırır; saçını kaldırır, enseye nefesin değer |
+| Zip Me Up | 👗🔼 | "Fermuarı çeker misin?" — yavaşça yukarı |
+| Cold Hands | 🧤❄️ | Ellerini senin ceplerine sokar, ısıtır |
+| Lap Pillow | 🛋️😴 | Dizi izlerken başını kucağına koyar, saçıyla oynarsın |
+| Whisper Secret | 🤫👂 | Kalabalıkta kulağına eğilir; söylediği önemsiz, yakınlık önemli |
+| Lingering Hug | 🫂⏳ | Vedalaşma sarılması normalden uzun sürer |
+| Eyelash Wish | 👁️✨ | Yanağındaki kirpiği alır: "Dilek tut" — yüzler çok yakın |
+| Mirror Glance | 🪞😏 | Aynada göz göze gelirsiniz, ikiniz de bakmayı bırakmaz |
+| Forehead Kiss | 😚🫶 | Gitmeden alnından öper; ilk öpücük öncesi adım |
+
+## 🏠 Birlikte gündelik iş
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Flat-Pack Furniture | 🪛📦 | Dolap kurarsınız; talimat yanlış, vida artar, kahkaha |
+| Movie Pick | 🎬🍿 | Film seçemezsiniz (`outcomes`: korku → sana sokulur / komedi) |
+| Puzzle Night | 🧩🍷 | 1000 parçalık yapboz; son parçayı kim takacak yarışı |
+| Home Haircut | ✂️😬 | Kahkülünü kesmeni ister; sonuç `outcomes` (güzel / felaket) |
+| Plank Challenge | 🏋️‍♀️⏱️ | Salonda plank yarışı; kaybeden bulaşık yıkar |
+| Blanket Fort | 🏰🛋️ | Yastık-battaniye çadırı kurarsınız, içine sığmaya çalışırsınız |
+
+## 🚶 Dışarıda gündelik
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Window Shopping | 🛍️👀 | Vitrinlere bakarsınız, "bunu bana alır mısın?" şakası |
+| Street Food | 🌯🔥 | Aynı dürümden ısırırsınız, dudağında sos kalır, silersin |
+| Duck Feeding | 🌳🦆 | Parkta ördek beslersiniz, bankta yan yana |
+| Photo Booth | 📸🎞️ | 4 kare fotoğraf; son karede yanağına öpücük |
+| Shared Ice Cream | 🍦😋 | Tek külah, iki kaşık; damlayan dondurma eline |
+| Night Walk | 🌙🚶 | Eve yürürken üşür, ceketini omzuna koyarsın (`hours` gece) |
+| Umbrella Share | ☔👫 | Tek şemsiye, iyice sokulmanız gerekir |
+
+## 🔗 Köprü (gündelikten ısınmaya, `th.warm` ≥ 2)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Come Over? | 🏠❓ | "Bize gelsene, film açarız" (`outcomes`: evet / başka gün) |
+| Missed You | 🥺💬 | İki gün konuşmazsınız, ilk mesajı o atar |
+| What Are You Wearing | 👀📱 | Flört sorusu; cevabı şaka mı ciddi mi belli değil |
+| Dare Me | 😈🎲 | "Bana bir cesaret ver" — masum görevle başlar |
+| Stay a Bit Longer | 🚪⏳ | Kapıda vedalaşırken "biraz daha kal" |
+
+## 🎬 Sahnelere bağlama (amaç: sahneleri güçlendirmek)
+
+> Sahneler şu an doğrudan `open` (çoğu zaman zaten sevişme başlangıcı) ile açılıyor. Öneri: scenes.js'e isteğe bağlı **`pre: [...]`** alanı — `open`'dan önce 1–2 gündelik/ısınma adımı. `actStep` önce `pre`'yi oynatır, her adım `th.warm` +1 ve küçük `fx` (`samimiyet` / `uyarılma` +2) verir; `pre` atlanabilir (Kısayollar'da "⏩ Doğrudan başla"). Isınmayla açılan sahnede `fail` (güven −1) ihtimali düşer, `end` cümlesine ısınma anısı eklenir. Ayrıca gündelik olay oynandığında `ideaOffer` / `nextEvs` uygun sahneyi teklif eder (köprü).
+
+| Sahne (`id`) | `pre` önerisi | Not |
+|---|---|---|
+| `kanepe` | Movie Pick → Lap Pillow | Korku filmi çıkarsa sokulma hazır |
+| `yatak` | Late Night Thoughts → Stay a Bit Longer | Gece kapısı (`hours`) |
+| `mutfak` / `gecemutfak` | Coffee Order → Accidental Touch | Bardağa uzanırken eller değer |
+| `merdiven` | Come Over? → Lingering Hug | Kapıdan girer girmez |
+| `camasir` | Zip Me Up → Accidental Touch | Katlanan gömlek bahane |
+| `balkon` / `cati` | Night Walk → Eyelash Wish | Ceket omzunda başlar |
+| `yagmur` | Umbrella Share → Cold Hands | Islak, sokulmuş |
+| `arkasira` | Shared Ice Cream → Whisper Secret | Film başlamadan |
+| `lunapark` | Photo Booth → Forehead Kiss | 4. kare = sahne açılışı |
+| `piknik` | Duck Feeding → Lap Pillow | Bankta / örtüde |
+| `kamp` | Blanket Fort (çadır kurma) → Cold Hands | Tek uyku tulumu |
+| `restoran` | Rate My Outfit → Fix My Necklace | Hazırlanırken başlar |
+| `dus` / `kopuk` | Good Morning Text → Lingering Hug | Sabah (`hours`) |
+| `spor` | Plank Challenge → Accidental Touch | Kaybeden "ceza"yı seçer |
+| `kamera` | Bored Text → What Are You Wearing → Dare Me | Mesajlaşmadan kameraya |
+| `otel` | Lost Keys (oda kartı) → Stay a Bit Longer | Resepsiyonda kart çalışmaz |
+
+**Yeni gündelik sahneler** (tamamı `pre` ağırlıklı, `mode: 'seq'`):
+
+| Sahne | Emoji | `pre` | Akış |
+|---|---|---|---|
+| `mobilya` Dolap Kurulumu | 🪛📦 | Flat-Pack Furniture → Accidental Touch | Yarım dolabın yanında halıda (`kanepe` adımları) |
+| `yapboz` Yapboz Gecesi | 🧩🍷 | Puzzle Night → Two Truths One Lie | Son parça kimin → kazanan seçer |
+| `cadir` Battaniye Çadırı | 🏰🛋️ | Blanket Fort → Lap Pillow → Whisper Secret | Çadır çöker, kahkaha, devam |
+| `kopek` Sabah Yürüyüşü | 🐶🌅 | Dog Walk → Cold Hands → Come Over? | Eve dönüş, kahve, `kanepe`'ye bağlanır |
+| `ruya` Rüyamda Sen | 💭🌙 | Dream Tell → Late Night Thoughts → What Are You Wearing | Mesajla başlar, `kamera` ya da `yatak`'a döner |
+
+# Tur 35 — 🖤 Fetişler: seks + bitiş (2026-11-20; v1069'da uygulandı, Mirror Wall Standing → Full Mirror Standing)
+
+> Mevcut turlarda olmayan fetişler (saç, kıyafet, oyuncak, BDSM, uyku, süt, şaplak, ten hariç). Kod önerisi `c:mvfet01x` / `c:mvfetfin01x`, `mvft*`; etiketler `lateks` / `yağ` / `ısı` / `ayna` / `gözlük` / `naylon` / `hakimiyet`. `lateks` ve `gözlük` clothes.js'te parça + `wear` kapısı ister. Her olay 3–4 cümlelik `story` ile gelir. Ayak ayrı turda: Tur 36.
+
+## 🧤 Lateks / deri (`lateks`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Squeak Doggy | 🖤🔊 | Lateks tulumunun içinde, her vuruşta deri gıcırdar; fermuar sadece arkadan açık |
+| Glove Grip | 🧤✊ | Deri eldivenleriyle kalçanı kavrayıp seni kendine çeker |
+| Shiny Finish | 🖤💦 | Parlak lateksin üstünde; damlalar kaymadan öylece kalır |
+| Glove Catch | 🧤🤍 | Eldivenli avucuna alır, ağır ağır parmaklarına yayar |
+
+## 🫒 Yağ / ıslaklık (`yağ`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Oiled Slide | 🫒✨ | Baştan aşağı yağlı; tutmaya çalıştıkça elinden kayar |
+| Slip & Grind | 🫒🍑 | Yağlı kalçasını üstünde gezdirir, hiç sürtünme yok, sadece kayma |
+| Glaze Finish | 🫒💦 | Yağın üstüne karışır; parlaklıktan hangisi hangisi belli olmaz |
+
+## 🧊🕯️ Sıcak / soğuk (`ısı`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Ice Cube Missionary | 🧊😮‍💨 | Ağzında buz, öpüştükçe göğsünde soğuk izler bırakır |
+| Wax Drip Ride | 🕯️🔥 | Kucağındayken sırtına mum damlatırsın; her damlada seni sıkar |
+| Cold Then Warm | 🧊💦 | Buz sürdüğün tenine boşalırsın; sıcaklık farkı onu titretir |
+
+## 🪞 Ayna / izlenme (`ayna`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Mirror Wall Standing | 🪞👀 | Boy aynasının karşısında; gözünü yansımasından ayıramaz |
+| Watch Yourself | 🪞🫣 | Çenesinden tutup aynaya bakmaya zorlarsın, utanıp kızarır |
+| Mirror Finish | 🪞💦 | Aynaya sıçrar; ikiniz de yansımanızı izlersiniz |
+
+## 👓 Gözlük (`gözlük`, acc slot)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Glasses On Ride | 👓🔥 | Gözlüğü burnunun ucuna kadar kayar, düzeltmeye üşenir |
+| Lens Finish | 👓💦 | Gözlüğüne; "bir şey göremiyorum" diye güler |
+
+## 🧦 Külotlu çorap (`naylon`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Torn Nylon | 🧦✂️ | Çorabını tam ortadan yırtarsın, çıkarmaya gerek kalmaz |
+| Nylon Thighs | 🧦🦵 | Naylonlu uylukları arasında; kumaşın dokusu her şeyi değiştirir |
+| Nylon Soak | 🧦💦 | Çorabın içine; ıslaklık naylonda koyu bir leke olarak yayılır |
+
+## 🪑 Yüze oturma / boy farkı (`hakimiyet`)
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Throne | 👑🫦 | Yüzüne oturur, ellerini başının üstünde sabitler |
+| Lift & Carry | 💪🧍‍♀️ | Onu tamamen havaya kaldırırsın, ayakları yere değmez |
+| Tiptoe Standing | 🩰🧍 | Boyu yetmez, parmak uçlarında durup seni karşılar |
+| Seat Finish | 👑💦 | Yüzünden kalkıp üstüne çöker, bitirmeni oradan izler |
+
+# Tur 36 — 🦶 Ayak: seks + bitiş (2026-11-20; v1069'da uygulandı, Toe Curl Finish Line → Toe Curl)
+
+> Mevcut `ayak` olayları (Footjob Arch, Feet Painted, Down To Her Ankles) genişletmesi. Kod önerisi `c:mvfoot01x` / `c:mvfootfin01x`, `mvfo*`, etiket `ayak`. Ayakkabı/çorap varyantları için `wear` kapısı (`topuklu` / `çorap` / `çıplak`). Her olay 3–4 cümlelik `story` ile gelir.
+
+## 🔥 Seks
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Ankles On Shoulders | 🦶🔝 | Bilekleri omuzlarında; topuklu ayakkabıları hâlâ ayağında, sivri uçlar kulağının yanında sallanır |
+| Sole Grip Ride | 🦶🤲 | Üstüne çıkar, tabanlarını göğsüne bastırıp oradan güç alarak hızlanır |
+| Toe Suck Missionary | 👅🦶 | Bacağını kaldırıp parmaklarını ağzına alırsın; her emişte seni daha sıkı sarar |
+| Feet On Chest | 🦶🫀 | Sırtüstü yatar, iki ayağını göğsüne koyup ne kadar derine gireceğini o belirler |
+| Footrest Doggy | 🐕🦶 | Arkadan alırken ayak tabanları yukarı dönük; parmakları her vuruşta kıvrılır |
+| Sideways Ankle Hold | 🛏️🦶 | Yan yatar, bileğini tutup bacağını havada sabitlersin |
+| Two-Sole Stroke | 🦶🦶 | İki tabanını birleştirip arasında kaydırır; yağla ritim hızlanır |
+| Heels Dangling | 👠🪑 | Masanın kenarında, topukluları ayağından yarı düşmüş sallanır |
+| Stocking Sole Tease | 🧦🦶 | Çoraplı tabanıyla masanın altından bacağına tırmanır, sonra kucağına çıkar |
+| Toe Curl Finish Line | 🦶🌀 | Parmakları kıvrılmaya başladığında yaklaştığını anlarsın, sen de hızlanırsın |
+
+## 💦 Bitişler
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Heel Finish | 👠💦 | Topuklu ayakkabısının içine; "şimdi bununla mı yürüyeceğim" diye bakar |
+| Toes Finish | 🦶🤍 | Ayak parmaklarının arasına; parmaklarını oynatıp sana gösterir |
+| Sole Finish | 🦶💦 | Tabanlarına; ayağını kaldırıp sana tabanını gösterir |
+| Arch Pool | 🌉🫗 | Ayak kavisinde küçük bir gölcük birikir, kıpırdamamaya çalışır |
+| Stocking Toes | 🧦💦 | Çoraplı parmak uçlarına; naylon ıslanıp koyulaşır |
+| Ankle Drip | 🦶💧 | Bileğinden topuğuna süzülür, halıya damlamadan yakalar |
+| Instep Finish | 🦶✨ | Ayağının üstüne; ojeli parmaklarının yanında parlar |
+| Toe Lick Clean | 👅🦶 | Bitince kendi ayağını dudağına kadar kaldırıp sana bakar; esnekliğiyle övünür |
+
+# Tur 37 — 👙 Sütyen, külot, mayo, tayt (2026-11-20; v1073'te uygulandı)
+
+> Mevcut Bra / Panty / Leggings / Bikini olaylarıyla çakışmayan yeni set. `c:mvlingplay01x` / `c:mvlingsex01x`, `mvuw*`, etiketler `sütyen` / `külot` / `mayo` / `tayt`; her bitiş yalnızca kendi kıyafetinin olaylarından sonra.
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Cup Peek | 👙👀 | Sütyeninin tek kabını indirir; bir göğsü açık, diğeri kapalı |
+| Strap Drop Tease | 🎀👙 | Askıları teker teker düşürür ama sütyeni çıkarmaz |
+| Bra Still On | 👙🔥 | Misyoner; sütyen üstünde, göğüsleri kabın içinde sallanır |
+| Bra Rein Doggy | 🐎👙 | Doggy'de kopçadan dizgin gibi tutarsın |
+| Pushed Up Ride | 🍒🐎 | Kapları yukarı itilmiş, üstünde sallanır |
+| Cup Fill | 👙💦 | Sütyeninin kabına; kabı geri kapatır |
+| Cleavage Seal | 🔒🍒 | Göğüs arasına; sütyeni kopçalayıp hapseder |
+| Panty Sniff Tease | 🩲😮‍💨 | Çıkardığı külotu yüzüne tutar |
+| Wedgie Pull | 🍑🩲 | Külotu arkadan çekip kalçasına sıkıştırırsın |
+| Panty Gag Missionary | 🤐🩲 | Külotu ağzında; misyoner |
+| Pulled To Knees Doggy | 🩲🐕 | Külot dizlerinde, bacakları dar |
+| Leg Hole Ride | 🩲🐎 | Külotun bacak deliğinden içeri alır |
+| Pull Up After | 🩲🤍 | İçine; külotunu çekip gün boyu öyle gezer |
+| Gusset Finish | 🩲💦 | Külotun ağ kısmına; öyle giyer |
+| Wet Suit Peel | 🩱💧 | Islak mayoyu omuzlarından soyarsın |
+| Tan Line Kiss | ☀️💋 | Bronz izlerini dudaklarınla takip edersin |
+| One-Piece Aside | 🩱🧍 | Mayonun altı yana çekili, ayakta |
+| Sunbed Ride | 🏖️🐎 | Şezlongda, ıslak bikinisiyle üstünde |
+| Bikini Strings Doggy | 👙🎀 | Doggy'de bikini iplerini çözersin |
+| Tan Line Finish | ☀️💦 | Bronz izinin beyaz yerine |
+| Suit Back On | 🩱🏊‍♀️ | Mayonun içine; geri çekip yüzmeye gider |
+| Seam Trace | 🩳👆 | Taytın dikişini parmağınla takip edersin |
+| Squat Watch | 🏋️‍♀️🍑 | Taytla squat yapar, sen izlersin |
+| Torn Seam Doggy | 🩳🐕 | Dikiş yırtılır; doggy |
+| Half-Down Spoon | 🩳🥄 | Tayt yarıya kadar inik; yan yatarak |
+| Gym Bench Ride | 🏋️‍♀️🐎 | Spor bankında, tayt bir bacağında |
+| Seam Soak | 🩳💦 | Yırtık dikişin içine |
+| Waistband Finish | 🩳✨ | Bel lastiğinin içine; lastiği bırakır |
+
+# Tur 38 — 🪑 Kucakta: seks + bitiş (2026-11-20; v1080'de uygulandı, Hands Behind Back → Wrists Behind Back)
+
+> Mevcut Lap Sex / Lap Ride / Lap Grind / Lap Rock / Lap Battle / Lap Strip / Chair Ride / Chair Reverse / Lotus ile çakışmaz. Kod önerisi `c:mvlap01x` / `c:mvlapfin01x`, `mvlp*`, etiket `kucak`; bitişler yalnızca `kucak` olaylarından sonra. Etek varyantları `wear` kapısı, dışarıdakiler `riskStep`. Her olay 3–4 cümlelik `story` ile gelir.
+
+## 🔥 Seks
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Armchair Face-To-Face | 🛋️🫂 | Koltukta yüz yüze kucağında; kollarını boynuna dolar, alnı alnına değer |
+| Reverse Lap Bounce | 🔄🍑 | Sırtı sana dönük kucağında zıplar; her inişte kalçasını izlersin |
+| Legs Over Armrests | 🛋️🦵 | Bacaklarını koltuğun kollarına atar, tamamen açık oturur |
+| Knees Up Lap | 🦵🫂 | Dizlerini göğsüne çeker, tabanları uyluklarında; onu belinden indirip kaldırırsın |
+| Slow Sink | ⬇️😮‍💨 | Kucağına santim santim iner, sonuna kadar oturunca durup nefes alır |
+| Still Seat | 🪑⏸️ | Kucağında sonuna kadar oturur ama kıpırdamaz; yalnızca içten sıkar |
+| Lean Back Lap | 🌙🤲 | Kucağındayken arkaya yaslanır, sen belinden tutup dengede tutarsın |
+| Side-Saddle Lap | 🐴↔️ | Yan oturur, bacakları bir yana sarkar; boynuna sarılıp ağır ağır kıvrılır |
+| Desk Chair Spin | 💺🌀 | Döner sandalyede kucağında; her yarım turda biraz daha bastırır |
+| Rocking Chair | 🪑🎐 | Sallanan sandalyenin ritmine bırakırsınız, hiç çaba gerekmez |
+| Hands Behind Back | 🤲🔒 | Bileklerini arkasında tutarsın, yalnızca kalçasıyla hareket eder |
+| Breast Height Lap | 🍒👄 | Her yükselişte göğsü tam ağzının hizasına gelir |
+| Bouncing Count | 🔢🍑 | Zıplamaları yüksek sesle sayar; sen durdurana kadar devam |
+| Blanket Lap | 🧣🫣 | Battaniyenin altında kucağında; dışarıdan sadece sarılıyorsunuz gibi (`riskStep`) |
+| Park Bench Lap | 🌳🪑 | Bankta kucağında, eteği ikinizi de örter (`doğa`, `wear: etek`) |
+| Bathtub Lap | 🛁🫂 | Küvette kucağında; her hareketinde su kenardan taşar |
+| Reverse Anal Sink | 🍩⬇️ | Ters kucakta arkadan, yavaşça iner (`anal`) |
+
+## 💦 Bitişler
+
+| Olay | Emoji | Açıklama |
+|---|---|---|
+| Pulled Down Finish | ⬇️💦 | Son anda belinden bastırıp sonuna kadar oturtursun; içine |
+| Lift Off Finish | ⬆️💦 | Son anda kalkar; karnına ve uyluklarına |
+| Lap Pool | 🫗🦵 | İçinden süzülür, uyluklarında birikir; kalkmaya kıyamaz |
+| Stay Seated | 🪑🤍 | Bitince kalkmaz, kucağında sarılı kalır; içinde yumuşamanı bekler |
+| Reverse Drip | 🔄💧 | Ters kucakta içine; kalkınca kalçasından dizlerine süzülür |
+| Between Us | 🫂💦 | Son anda çıkar, ikinizin karnı arasında sıkışır |
+| Arched Finish | 🌙💦 | Arkaya yaslanmışken çıkarırsın; kavisli karnına ve göğsüne |
+| Squeeze Out | 🗜️💦 | İç kaslarıyla sıkıp son damlaya kadar alır |
+| Last Bounce | 🍑💥 | Son zıplamada sonuna kadar oturur, ikiniz birden gelirsiniz |
+| Chair Drip | 💺💧 | Kalkınca sandalyeye damlar; "temizlemeden kimse oturmasın" |
+| Skirt Covers It | 👗🤫 | Eteği üstünüzde, içine bitirirsin; kimse anlamaz (`wear: etek`, `riskStep`) |
+| Bathwater Finish | 🛁💦 | Küvette son anda kalkar; suyun yüzeyine |
+
+# Tur 39 — 😭🔊 Ağlatan, inleten, kökleyen seks + bitiş (2026-11-21; v1096'da uygulandı, `th.tears` / `th.moan` sayaçları ve `Dick Size` kapısı yerine `after` listeleri)
+
+> Rızalı yoğunluk: gözyaşı zevkten/taşmadan gelir, acıdan değil. Kod önerisi `c:mvdeep01x` / `c:mvdeepfin01x`, `mvdp*`, etiketler `kök` (sonuna kadar gömme) / `inilti` / `gözyaşı`. Durum: 😭 `th.tears` 0→3 (her yoğun olay +1, 3'te "Overflow" bitişleri açılır), 🔊 `th.moan` 0→3 (inilti seviyesi → `riskStep` komşu/duvar kesintisi). Güven kapısı (`Güven` ≥ orta) + 🚦 güvenli kelime: "kırmızı" yazınca `th.tears`/`th.moan` sıfırlanır ve aftercare önerilir. Bitişler yalnızca `kök` olaylarından sonra ve **aynı delikle**: 🍑 vajinal bitiş yalnızca vajinal `kök` olayından, 🍩 anal bitiş yalnızca anal `kök` olayından sonra (`trTarget` / son olayın `vajinal` / `anal` etiketi). Anal olaylar mevcut anal izin kuralına (`perm` anal) bağlı. Her olay 3–4 cümlelik `story` ile gelir.
+
+## 🔥 Seks — köklemeli (`kök`)
+
+| Olay | Emoji | Delik | Açıklama |
+|---|---|---|---|
+| Hilt And Hold | 🔩⏸️ | 🍑 Vajinal | Sonuna kadar gömüp kıpırdamadan tutarsın; nefesi kesilir, "orada kal" der |
+| Slow Root | 🐢⬇️ | 🍑 Vajinal | Her vuruş yavaş ama dibe kadar; her seferinde aynı noktaya değer |
+| Pinned Mating Press | 🦵🔒 | 🍑 Vajinal | Bacakları omuzlarında, tüm ağırlığınla sonuna kadar bastırırsın |
+| Grind At The Bottom | 🌀🔩 | 🍑 Vajinal | Dipteyken çıkmadan kalçanı döndürürsün; titremeye başlar |
+| Long Pull Deep Drive | ↔️💥 | 🍑 Vajinal | Neredeyse tamamen çıkıp tek hamlede köklersin |
+| Cervix Kiss | 🎯💋 | 🍑 Vajinal | Çok derinde durup minik vuruşlarla rahim ağzına dokunursun (`Dick Size` ≥ büyük) |
+| Lift And Drop | 🏋️⬇️ | 🍑 Vajinal | Onu kucağında kaldırıp kendi ağırlığıyla aşağı bırakırsın (`kucak`) |
+| Anal Hilt And Hold | 🍩⏸️ | 🍩 Anal | Arkadan sonuna kadar gömülüp beklersin; alışana kadar kıpırdamazsın |
+| Slow Anal Root | 🍩🐢 | 🍩 Anal | Santim santim, her vuruşta biraz daha derine; sonunda tamamen içinde |
+| Prone Bone Anal | 🛏️🍩 | 🍩 Anal | Yüzüstü düz yatarken üstünden arkasına köklersin, yastığı ısırır |
+| Hips Pulled Back | 🍑⬅️ | 🍩 Anal | Doggy'de kalçasını kendine çekip arkasına sonuna kadar oturtursun |
+| Anal Mating Press | 🦵🍩 | 🍩 Anal | Dizleri göğsünde, yukarıdan aşağı arkasına bastırırsın |
+| Anal Lift And Drop | 🏋️🍩 | 🍩 Anal | Ters kucakta kaldırıp bırakırsın; arkasına kendi ağırlığıyla iner (`kucak`) |
+
+## 😭 Seks — ağlatan (`gözyaşı`, `th.tears` +1)
+
+| Olay | Emoji | Delik | Açıklama |
+|---|---|---|---|
+| Overwhelmed Tears | 😭💗 | 🍑 Vajinal | Çok yoğun gelir, gözleri dolar; "durma, iyiyim" diye fısıldar |
+| Edge To Tears | 🛑😢 | 🍑 Vajinal | Defalarca kenara getirip durursun; sonunda yalvararak ağlar (`engel` ile bağ) |
+| Overstim Ride | ⚡😭 | 🍑 Vajinal | Geldikten sonra devam edersin; titreyerek gülüp ağlar |
+| Eye Contact Root | 👁️💧 | 🍑 Vajinal | Yüz yüze, gözlerinin içine bakarak köklersin; ilk damla yanağından süzülür |
+| Praise Breakdown | 🗣️😢 | 🍑 Vajinal | Her vuruşta övgü fısıldarsın; duygulanıp ağlamaya başlar (`Aşk` kapılı) |
+| Back To Back Peaks | 🎢😭 | 🍑 Vajinal | Üst üste gelir, sayamaz hale gelir; gözyaşı ve kahkaha karışık |
+| Full Anal Tears | 🍩😭 | 🍩 Anal | Arkasına tamamen girdiğinde dolu dolu ağlar; "ilk kez bu kadar derin" der |
+| Mascara Run | 🖤💧 | 🍩 Anal | Aynanın önünde doggy anal; makyajı akar, aynada görünce daha da azar |
+| Anal Overstim | ⚡🍩 | 🍩 Anal | Arkadan gelir, sen devam edersin; titreyerek ağlar ama "durma" der |
+| Tear Kiss | 💋💧 | 🍩 Anal | Kaşık pozisyonunda arkasındayken omzunun üstünden gözyaşlarını öpersin |
+
+## 🔊 Seks — inleten (`inilti`, `th.moan` +1)
+
+| Olay | Emoji | Delik | Açıklama |
+|---|---|---|---|
+| Can't Stay Quiet | 🤐🔊 | 🍑 Vajinal | Sessiz olmaya çalışır ama her kökte sesi kaçar (`riskStep`) |
+| Name Moan | 🗣️💞 | 🍑 Vajinal | Her vuruşta adını inleyerek söyler (`{ad}`) |
+| Rhythm Moans | 🎵🔊 | 🍑 Vajinal | İniltisi vuruşlarına senkron; hızlandıkça perdesi yükselir |
+| Deep Groan Duet | 🫂🔊 | 🍑 Vajinal | İkiniz birlikte inlersiniz; o seninkini duyunca daha çok coşar |
+| Hand Over Mouth | ✋🤫 | 🍩 Anal | Arkasındayken kendi eliyle ağzını kapatır, inlemeleri parmaklarının arasından sızar |
+| Pillow Scream | 🛏️😫 | 🍩 Anal | Yüzünü yastığa gömüp her anal kökte bağırır |
+| Wall Neighbor | 🧱👂 | 🍩 Anal | Duvara yaslı ayakta arkadan; yan daireden duvara vurulur (`riskStep`, `th.moan` ≥ 2) |
+| Voice Break | 🎤💔 | 🍩 Anal | Arkası doldukça sesi çatallaşır, sadece kesik "ah"lar kalır |
+
+## 💦 Bitişler (`kök` sonrası, aynı delik)
+
+| Olay | Emoji | Delik | Açıklama |
+|---|---|---|---|
+| Rooted Finish | 🔩💦 | 🍑 Vajinal | Sonuna kadar gömülüyken, en derinde boşalırsın |
+| Held Deep | 🤲⬇️ | 🍑 Vajinal | Kalçasını tutup çıkmasına izin vermeden içine; son damlaya kadar orada |
+| Mating Press Finish | 🦵💦 | 🍑 Vajinal | Bacakları omuzlarında, bastırarak içine (`çekme` / kondom / hamilelik kurallarına uyar) |
+| Crying Finish | 😭💦 | 🍑 Vajinal | Aynı anda gelirsiniz; gözyaşları içinde sana sarılır (`th.tears` ≥ 2) |
+| Overflow Tears | 🌊😭 | 🍑 Vajinal | Taşacak kadar dolu; hem içinden hem gözlerinden akar (`th.tears` 3) |
+| Silent Scream | 😶💥 | 🍑 Vajinal | Ağzı açık ama ses çıkmaz; sadece titrer |
+| Pull Out Gasp | ⬆️😮‍💨 | 🍑 Vajinal | En dipten tek hamlede çıkarırsın; inleyerek karnına (`Lift And Drop` / `Long Pull` sonrası) |
+| Anal Rooted Finish | 🍩🔩 | 🍩 Anal | Arkadan tamamen gömülüyken içine |
+| Anal Held Deep | 🍩🤲 | 🍩 Anal | Kalçasını sıkıca tutarsın, son damlaya kadar arkasında kalırsın |
+| Anal Crying Finish | 🍩😭 | 🍩 Anal | Arkasına boşalırken o da gelir, ağlayarak yastığa gömülür (`th.tears` ≥ 2) |
+| Anal Overflow | 🍩🌊 | 🍩 Anal | Çıkınca arkasından taşar, uyluklarından süzülür (`th.tears` 3) |
+| Scream Finish | 🔊💥 | 🍩 Anal | Son anal kökte çığlık atar; ikiniz birden (`th.moan` ≥ 2, `riskStep`) |
+| Anal Pull Out Gasp | 🍩😮‍💨 | 🍩 Anal | En dipten tek hamlede çıkarsın; inleyerek kalçasına ve sırtına |
+| Throbbing Stillness | 💓⏸️ | 🍩 Anal | Arkasında hiç kıpırdamadan boşalırsın, sadece zonklamanı hisseder; gözleri kapalı ağlar |
+
+## 🧻 Sonrası (aftercare, `th.tears` / `th.moan` → 0)
+
+| Olay | Emoji | Delik | Açıklama |
+|---|---|---|---|
+| Wipe Her Tears | 🤲💧 | İkisi | Yanaklarındaki gözyaşlarını başparmağınla silersin |
+| Hoarse Voice | 🗣️🍯 | İkisi | Sesi kısılmış; ona bal-limonlu çay getirirsin |
+| Shaking Legs | 🦵〰️ | 🍑 Vajinal | Bacakları hâlâ titrer, yürüyemez; taşırsın |
+| Careful Sitting | 🍩🪑 | 🍩 Anal | Otururken yüzünü buruşturup güler; altına yastık koyarsın |
+| Neighbor Note | 📝😳 | İkisi | Ertesi gün kapıda "biraz sessiz" notu (`th.moan` 3 sonrası) |
+| Why Did I Cry | 🤔💗 | İkisi | "Neden ağladım bilmiyorum, çok güzeldi" der; konuşursunuz |

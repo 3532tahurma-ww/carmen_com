@@ -76,6 +76,12 @@ Stories.Traits = (() => {
       id: 'butt', label: '🍑 Butt Size', single: true,
       items: ['XS','S','M','M/L','L','XL']
     },
+    // 💉 estetik (çoklu, değer olduğu gibi saklanır): silikonluysa kilo kuralı göğüs / kalça bedenini engellemez, vücut soruları silikon cevaplarına döner.
+    // Dolgulu dudak: 💋 Lip Shape → Filler. 🎲 rastgele %15 (app.js). 📅 gündemle sonradan da eklenebilir (life.js gogus / kalca)
+    {
+      id: 'aesthetic', label: '💉 Aesthetic',
+      items: ['Breast Implants', 'Butt Implants']
+    },
     // 📏 boy / vücut / saç / ten: profil vücut kartında (app.js cmBody) rastgele değer yerine bunlar gösterilir
     {
       id: 'height', label: '📏 Height', single: true,
@@ -152,10 +158,31 @@ Stories.Traits = (() => {
   };
   // uzun boylu minyon olamaz (Height, Body Type'tan önce seçilir)
   const H_RULES = { 'Tall': ['Body Type: Petite'], 'Very Tall': ['Body Type: Petite'] };
+  // 🧬 vücut ölçüleri birbirine uysun (iki yönlü: önce seçilen diğerini engeller)
+  const BODY_PAIRS = [
+    ['Body Type: Petite', ['Boob Size: 90', 'Boob Size: 95', 'Butt Size: L', 'Butt Size: XL', 'Legs: Thick Thighs', 'Legs: Long', 'Waist: Wide']],
+    ['Body Type: Hourglass', ['Boob Size: 70', 'Butt Size: XS', 'Butt Size: S', 'Waist: Wide']],
+    ['Body Type: Pear', ['Butt Size: XS', 'Butt Size: S', 'Legs: Slim']],
+    ['Body Type: Athletic', ['Waist: Wide']], ['Body Type: Toned', ['Waist: Wide']], ['Body Type: Muscular', ['Waist: Tiny', 'Height: Very Short']],
+    ['Legs: Thick Thighs', ['Butt Size: XS']], ['Legs: Long', ['Height: Very Short']],
+    ['Waist: Tiny', ['Weight: Average']], ['Waist: Wide', ['Butt Size: XS']],
+    ['Boob Size: 95', ['Butt Size: XS']], ['Boob Size: 70', ['Butt Size: XL']]];
+  const pairRules = BODY_PAIRS.flatMap(([a, bs], i) => [{ id: `b_${i}`, ifs: [a], not: bs }, ...bs.map((b, j) => ({ id: `b_${i}_${j}`, ifs: [b], not: [a] }))]);
   const rules = [...Object.entries(W_RULES).map(([w, not]) => ({ id: 'w_' + w.replace(/\s/g, ''), ifs: ['Weight: ' + w], not })),
     ...Object.entries(H_RULES).map(([h, not]) => ({ id: 'h_' + h.replace(/\s/g, ''), ifs: ['Height: ' + h], not })),
+    ...pairRules,
     // 💍 kocasıyla yaşayan evlidir
-    { id: 'r_koca', ifs: ['Yaşam: Kocasıyla Yaşıyor'], not: ['Relationship: Single', 'Relationship: Has Boyfriend', 'Relationship: Divorced'] }];
+    { id: 'r_koca', ifs: ['Yaşam: Kocasıyla Yaşıyor'], not: ['Relationship: Single', 'Relationship: Has Boyfriend', 'Relationship: Divorced'] },
+    // 💉 silikon küçük beden olmaz
+    { id: 'imp_boob', ifs: ['Breast Implants'], not: ['Boob Size: 70', 'Boob Size: 75'] },
+    { id: 'imp_butt', ifs: ['Butt Implants'], not: ['Butt Size: XS', 'Butt Size: S'] },
+    // 🌸 bakire tutarlılığı (iki yönlü: önce seçilen diğerini engeller): evli / boşanmış / hamile bakire olamaz, bakire bol olamaz
+    ...['Relationship: Married', 'Relationship: Divorced', 'Yaşam: Kocasıyla Yaşıyor', 'f:evli', 'f:hotwife', 'f:hamile']
+      .map(x => ({ id: 'v_' + x.replace(/^.*[:]\s*/, '').replace(/\W/g, ''), ifs: [x], not: ['Experience: Virgo', 'f:bakire'] })),
+    ...['Experience: Virgo', 'f:bakire'].map(x => ({ id: x === 'f:bakire' ? 'v_bakire' : 'v_virgo', ifs: [x],
+      not: ['Relationship: Married', 'Relationship: Divorced', 'Yaşam: Kocasıyla Yaşıyor', 'f:evli', 'f:hotwife', 'f:hamile',
+        'Pussy Size: Relaxed', 'Pussy Size: Loose', 'Pussy Size: Very Loose', 'Anal Size: Loose', 'Anal Size: Very Loose',
+        ...(x === 'f:bakire' ? ['Experience: Medium', 'Experience: Much', 'Experience: A lot', 'Experience: Great'] : [])] }))];
 
   return { groups, zodiacs, colors, all, rules };
 })();

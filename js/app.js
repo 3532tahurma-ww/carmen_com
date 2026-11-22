@@ -107,8 +107,10 @@
 
   // Grup oluştur / düzenle: ad + tam 2 üye (👯 şimdilik iki kadın)
   const GROUP_MAX = 2;
-  function groupSheet(t, preId) {
-    if (chars().length < 2) { notify('Grup için en az 2 karakter gerekli', '👥'); return; }
+  // src: site kaplaması id'si (tinder / bumble) → üyeler o sitenin eşleşmeleri, grup g.gsrc = src (o sitenin gelen kutusunda listelenir)
+  function groupSheet(t, preId, src) {
+    const ssk = src && (Stories.Themes.chatSkins || []).find(s => s.id === src), pool = ssk && ssk.src ? chars().filter(c => charSrc(c) === ssk.src) : chars();
+    if (pool.length < 2) { notify(ssk ? `Grup için ${ssk.label}'da en az 2 eşleşme gerekli` : 'Grup için en az 2 karakter gerekli', '👥'); return; }
     const sel = new Set((t ? t.members.filter(byId) : preId ? [preId] : []).slice(0, GROUP_MAX));
     const sh = sheet(`
       <div class="sheet-grip"></div>
@@ -116,7 +118,7 @@
       <form id="gForm" autocomplete="off">
         <div class="field" style="margin-top:0"><input id="gTitle" maxlength="40" value="${esc(t ? t.title : '')}" placeholder="Grup adı (ör. Ofis 💼)"></div>
         <div class="sec-title">Üyeler <small id="gCount"></small></div>
-        <div class="g-pick">${chars().map(c => `<button type="button" data-m="${c.id}" class="${sel.has(c.id) ? 'on' : ''}">${avatar(c, 52)}<b>${esc(c.name)}</b></button>`).join('')}</div>
+        <div class="g-pick">${(t ? chars() : pool).map(c => `<button type="button" data-m="${c.id}" class="${sel.has(c.id) ? 'on' : ''}">${avatar(c, 52)}<b>${esc(c.name)}</b></button>`).join('')}</div>
         <button class="btn primary block" type="submit">${t ? 'Kaydet' : 'Grubu oluştur'}</button>
       </form>`, 'light');
     const el = sh.el;
@@ -143,7 +145,7 @@
         save();
         render();
       } else {
-        const g = { id: Store.uid(), group: true, members, title, created: Date.now(), opened: 0 };
+        const g = { id: Store.uid(), group: true, members, title, created: Date.now(), opened: 0, ...(ssk ? { gsrc: ssk.id } : {}) };
         threads().push(g);
         save();
         location.hash = `#/chat/${g.id}`;
@@ -477,6 +479,7 @@
       case 'deney': return renderBotLab();
       case 'kesinti': return renderFantIntLab();
       case 'durum': return renderStateLab();
+      case 'gundem': return renderAgendaLab();
       case 'lezbiyen': return renderLesLab();
       case 'kombo': return renderComboLab();
       case 'sonuc': return renderOutcomeLab();
@@ -581,6 +584,38 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['🚗', 'Şehirde artık araban var', 'Evinin önünde pembe bir SUV seni bekliyor. Bin, şehrin yollarında sür, istediğin kızı yanına al; eve davet ettiğin kız arabana biniyor ve beraber eve sürüyorsunuz. Ayaküstü konuşmada kızlar artık profillerine uygun konuşuyor: evliyse evli olduğunu söylüyor.', '#/kitap/sehir', [
+      ['🚗 Sür', 'Sağdaki 🚗 ile bin, haritaya dokun ya da basılı tut; 🅿️ ile park et, in.'],
+      ['👫 Kız bindir', 'Yanındaki ya da eve davet ettiğin kızlar arabana biner; yolda "Müziği açsana 🎶" der.'],
+      ['💍 Tutarlı cevaplar', 'Sevgilisi, evliliği ve kiminle yaşadığı profilindeki 💍 Relationship ve 🏠 Yaşam ile aynı.']]],
+    ['📱', 'Şehir telefonu ve yanında kalan kızlar', 'Şehirde sağ üstte artık bir 📱 var: şehirde başlayan bütün sohbetlerin ve grupların orada, tek dokunuşla açılıyor. Bir sohbetten şehre döndüğünde konuştuğun kız da yanında oluyor ve seninle dolaşıyor.', '#/kitap/sehir', [
+      ['📱 Telefon', 'Ayaküstü tavladıkların, doğrudan sohbete geçtiklerin, eve davet ettiklerin ve 👥 şehir grupları; okunmamışlarda pembe nokta.'],
+      ['👫 Yanında', 'Sohbetten dönünce peşinden gelir, yolda konuşur; 🏡 Eve davet et ya da 👋 Vedalaş.']]],
+    ['🏡', 'Eve beraber yürüyün', 'Şehirde birini eve davet edince artık doğrudan sohbet açılmıyor: önce yanına geliyor, sonra seninle evine yürüyor, yolda konuşuyor. Kapına varınca sohbet evinde başlıyor. Ayaküstü konuşmada ilgi daha hızlı doluyor ve yazı kutusunun üstünde örnek cümleler var.', '#/kitap/sehir', [
+      ['🚶‍♀️ Beraber yürü', 'Evinin kartında 💌 Eve davet et, tanıdığının kartında 🏡 Eve davet et ya da kazandığın ayaküstü konuşmada 🏡 Eve götür. Arkandan gelir; istediğin yoldan yürü.'],
+      ['💡 Öneriler', 'Bir soru, bir iltifat ya da espri, ilgi arttıkça davet ve cesur söz; o sana soru sorunca cevap önerileri. Dokun, istersen değiştir, gönder.'],
+      ['💗 Hızlı ilgi', 'İyi giden her cevap ilgiyi eskisinden %60 daha fazla doldurur.']]],
+    ['🚗', 'Şehirde trafik ve arabada sohbet', 'Yollarda iki kat fazla araba var ve artık boş değiller: koltuklarda yolcular oturuyor, otobüsler tıklım tıklım. Birden çok kişinin olduğu arabalarda baloncuklarla kendi aralarında konuşuyorlar. Sokak sohbetleri de semte ve saate göre değişiyor.', '#/kitap/sehir', [
+      ['🧑‍🤝‍🧑 Yolcular', 'Arabada koltuk sayısı kadar kız olabilir; yakınlaşınca fotoğrafları görünür.'],
+      ['💬 Araba içi', '"Şu şarkıyı aç! 🎶", "Benzin bitmek üzere ⛽", otobüste "Durakta inecek var! 🚌".'],
+      ['🗺️ Semtine göre', 'Mahallede komşu dedikodusu, merkezde ofis ve alışveriş, eğlence caddesinde karaoke ve kumarhane, sahilde dondurma ve sörf, gece kulüp ve shot.']]],
+    ['👥', 'Şehirde gruplara katıl, sahil kalabalık', 'Kaldırımda toplanıp dedikodu yapan kızların sohbetine artık katılabilirsin: birine dokun, 👥 Sohbete katıl. Sahil uzadı, havlularda güneşlenenler ve gruplarla doldu; sokaklarda iki kat fazla insan var.', '#/kitap/sehir', [
+      ['👥 Sohbete katıl', 'Dokunduğun kızla konuşursun, arkadaşları araya girer; iyi gidince "Kızım, bu sana yürüyor 😂", kötü gidince "Kızım, gidelim mi? 😒".'],
+      ['🏖️ Sahil', 'Daha uzun ve geniş kumsal, iki sıra şemsiye, gündüz havlularında güneşlenenler ve ayakta sohbet eden gruplar.'],
+      ['🚶 Dolu sokaklar', '520 yaya; işi biten yaya senin çevrende yeniden yola çıkar, nereye gidersen git sokaklar kalabalık.']]],
+    ['🗣️', 'Şehirde yazarak konuş, seni durdursunlar', 'Ayaküstü konuşma artık bir sohbet: butonlar yok, ne istersen yaz. Adını, yaşını, işini, sevgilisi olup olmadığını sor; kendi hayatıyla cevap verir. O da sana sorular sorar. Bazı kızlar "Hey! Dur bir saniye! ✋" diye peşinden koşup seni kendisi durduruyor.', '#/kitap/sehir', [
+      ['💬 Yazarak', 'İltifat, espri, davet ya da cesur bir söz yaz; ne dediğini anlar ve 💗 ilgi barı ona göre oynar. Kabalık pahalıya patlar. Olay tetiklenmez.'],
+      ['👀 Süz', 'Kıyafeti ve bedeni artık kartında 👀 Süz deyince görünür; süzüldüğünü fark eder, başının üstünde tepki baloncuğu çıkar.'],
+      ['👥 Sokak hayatı', 'Yürüyenler kaldırımda toplanıp kendi aralarında dedikodu yapıyor, bazıları telefonla konuşuyor; baloncuklarda ne dediklerini okursun. 📣 Laf atma cümleleri iki katına çıktı.'],
+      ['🏙️ Daha büyük şehir', 'Kaldırımlar iki kişilik, yollar, arabalar ve binalar büyüdü; kamera daha yakından başlıyor. Basılı tutunca parmağının yönüne yürürsün. Arabalar ve yayalar artık üst üste binmiyor.']]],
+    ['📅', 'Onun gündemi büyüdü: saç, estetik, evlilik', 'Karakterlerin gündeminde 16 yeni konu var ve bazıları onu gerçekten değiştiriyor: saçını boyatıyor ya da kestiriyor, göğüs ya da kalça estetiği, dudak dolgusu yaptırıyor, dövme ve piercing, sevgili buluyor, evleniyor, boşanıyor. Önce sana soruyor; "hayır" dersen çoğu zaman vazgeçiyor.', '#/gundem', [
+      ['✨ Değişim gündemleri', '💇‍♀️ Saç boyatma (önerdiğin renge), ✂️ saç kestirme, 🍒 göğüs ve 🍑 kalça estetiği (iki beden büyür), 💋 dudak dolgusu, 🖋️ dövme, 💎 piercing, 💘 sevgili, 💍 evlilik, 💔 boşanma. Bitince özellikleri değişir, profilde ve 🧠 Hafıza\'da görünür.'],
+      ['🗳️ Senin oyun', 'Değişimden önce fikrini sorar. "Hayır" dersen vazgeçer; İnatçı, Asi, Şımarık ya da Kibirli bir kız %40 yine yapar.'],
+      ['📅 Yeni gündelik konular', 'Hayalindeki iş, gürültücü komşu, gitar dersi, balkon bahçesi, kitap kulübü, doğum günü partisi; her biri bir ☕ gündelik ana davetle biter.'],
+      ['💉 Silikonlu karakter', 'Oluştur → 💉 Aesthetic: Breast Implants / Butt Implants (dolgulu dudak: 💋 Lip Shape → Filler). Silikonluysa göğüs ve kalça soruları ("doğal mı", "dik mi", "kaç beden", twerk, tayt…) silikon cevaplarına döner.'],
+      ['🧪 Gündem deneyi', 'CarmenGuide → 🧪 Deneyler → 📅 Gündem deneyi: bir karakter seç, konuları adım adım oku, 🗳️ hayır de, 🎨 saç rengi seç; özelliklerin önce / sonra değerini gör.']], 'Yaşayan karakter', [
+      'Karakterlerin hayatı artık sadece dertlerden ibaret değil; kendileri de değişiyorlar. Biri aylardır saçından sıkılmış, sana hangi rengin yakışacağını soruyor ve gerçekten o renge boyatıyor. Biri kimseye söylemeden göğüs estetiği yaptırmayı düşünüyor; önce senin fikrini almak istiyor.',
+      'Sevgilisinin çekmecesinde yüzük kutusu bulan da, kocasıyla her gece kavga eden de sana danışıyor. Evlenince profilinde 💍 Evli olur, boşanınca evden ayrılır. Değişenler 👤 Profil → 🧠 Hafıza\'da tarihleriyle yazılır.']],
     ['📖', 'CarmenMag: erotik dergiler bayide', 'Yeni dergi bayii açıldı: Velvet, Ateş, Noir ve Ten. Sayfaları gerçek bir dergi gibi çevir; kapak kızlarının anlatımlı fotoğraf setleri, röportajlar, adım adım seanslar, pozisyon önerileri, seks eğitimi ve site reklamları seni bekliyor. Her ay yeni sayı.', '#/dergi', [
       ['🗞️ Dört dergi', '🥀 Velvet lüks fotoğraf, 🔥 Ateş seanslar ve pozisyonlar, 🖤 Noir fetiş ve BDSM, 🌸 Ten seks eğitimi. Rafta her derginin son altı sayısı durur.'],
       ['📖 Gerçek dergi gibi', 'Geniş ekranda çift sayfa, telefonda tek sayfa. Kenara dokun, kaydır ya da ok tuşlarını kullan; yaprak dönerken gölgesi düşer. Kaldığın sayfa hatırlanır.'],
@@ -1095,7 +1130,7 @@
       ['🕯️ Rahibeler', 'Her ilanın bir günahı var; dokununca sohbet o sahneyle (saat + mekan), cübbesiyle ve onun ilk sözüyle başlar. 🔔 Çanı çal, rastgele biri gelsin.'],
       ['👗 Cübbe Altı', 'Kıyafet olayı: cübbe üstünde kalır, sadece altındakiler gider. Rahibe sohbetlerinde ⚡ Kısayollar\'da bekler.'],
       ['⛪ Başrahibe', 'Manastırın en sert kadını: cetveli, anahtar destesi ve kuralları var. Sen yeni bahçıvansın; kendi soruları, kesintileri ve 🥚 egg\'leri 🦄 Fantezi Kitabı\'nda.']]],
-    ['🗺️', 'Sohbet Güncellemesi !', 'Sohbet artık yerinde saymıyor: mekanlar yaşıyor, saat ilerliyor, o da yer değiştirmeyi öneriyor. Hepsi yazışmanın içinde, birer mesaj ya da not olarak gelir.', '#/messages', [
+    ['🗺️', 'Sohbet Güncellemesi !', 'Sohbet artık yerinde saymıyor: mekanlar yaşıyor, saat ilerliyor, o da yer değiştirmeyi öneriyor. Hepsi yazışmanın içinde, birer mesaj ya da not olarak gelir.', '#/sehir', [
       ['📍 * ile mekan', 'Mesaj kutusuna * yaz: mekanlar listelenir (*mut → Mutfakta). # olay gibi kutunun üstünde bekler; gönderince önce mesajın, sonra mekan kartı, sonra olaylar. ⚡ Kısayollar\'da da önerilen 3 mekan var.'],
       ['💡 O önerir', 'Bitişten sonra, aynı yerde çok olay olunca ya da saat değişince "Biraz da banyoda devam edelim mi?" diye sorar. Evet dersen mekan değişir. Kişiliğine göre sevdiği yerler öne çıkar.'],
       ['💤 Durunca canlanır', 'Bir süre olay yazmazsan bulunduğun mekandan küçük bir an düşer: garson hesabı bırakır, bir şarkı çalar…'],
@@ -1124,7 +1159,7 @@
       ['📋 Ofis İlanları', 'CarmenJobs → 🏢 Ofis İlanları: Carmen.com gibi fotoğraflı ilanlar. Her kızın ofisteki rolü, şirketi, sevdiği ofis olayları ve sınırları var. "Mesai sonrası buluş" deyince sohbet ofiste, 18:30\'da başlar.'],
       ['🎭 Ofis rolleri', 'Her ilanın bir rolü ve 📜 ofis kuralları var: Sekreter (Patron – Sekreter), Kişisel Asistan, Patroniçe, Muhasebeci, İK Uzmanı. Rol sürerken o rolün ağzından konuşur; ofise özel kesintiler ve 🥚 egg\'ler çıkar.'],
       ['📖 Ofis Kitabı', 'Kitaplıkta yeni 🏢 Ofis Kitabı: bütün ofis olayları, bitişler, 5 rol, fantezi sözleri ve CarmenJobs ilanları.']]],
-    ['🔗', 'Kıyafetlere aksesuar', 'Gardıropta 3 yeni yuva var: ⛓️ Tasma, 💎 Anal tıpa ve 📳 Oyuncak / mandal. Soyunsa da üstünde kalırlar; BDSM olayları onları kendiliğinden takar.', '#/messages', [
+    ['🔗', 'Kıyafetlere aksesuar', 'Gardıropta 3 yeni yuva var: ⛓️ Tasma, 💎 Anal tıpa ve 📳 Oyuncak / mandal. Soyunsa da üstünde kalırlar; BDSM olayları onları kendiliğinden takar.', '#/sehir', [
       ['⛓️ Tasma', 'Deri tasma, dantel choker, çanlı tasma, halkalı çelik tasma. Collar & Leash ve Follow Me deri tasmayı takar.'],
       ['💎 Anal tıpa', 'Mücevherli, tilki kuyruklu ya da silikon tıpa. Butt Plug olayı takar, anal pozisyon çıkarır.'],
       ['📳 Oyuncak / mandal', 'Uzaktan kumandalı vibratör, zincirli göğüs mandalları, Ben Wa topları. Remote Toy ve Nipple Clamps takar.'],
@@ -1144,7 +1179,7 @@
       ['🌡️ Duyusal', 'Tüy, dikenli tekerlek, sıcak çay ve buz. Göz bağıyla birlikte her dokunuş sürpriz olur.'],
       ['🪢 Bağlama', 'Kurdeleyle bilekler arkada, pelüş kelepçe, ayak bileği çubuğu ve göğüslerin etrafında süs düğümlü ip. Bağlamak Güven\'i artırır.'],
       ['🎭 Kişilik ve rol', '26 BDSM olayının her birine utangaç, flörtöz, romantik, soğuk ve dominant kişiliğe göre ayrı cevaplar geldi. Bir rol ya da fantezi sürerken (Kraliçe, Polis, Vampir, Cat Girl, meyve kızları… 58 rol) o rolün ağzından konuşur.']]],
-    ['🆕', 'Yeni olaylar', '23 yeni olay geldi. 🔥 Pozisyonlar: Reverse Cowgirl, Prone Bone, Lotus, Butterfly, Missionary Anal, Reverse Cowgirl Anal. 🔗 BDSM: Blindfold, Collar & Leash, Spanking, Butt Plug, Nipple Clamps, Ball Gag ve Güven\'i artıran Safe Word. Üç yeni mekân: 🏝️ Plaj, 🏢 Ofis, 🏨 Otel; her birinin kendi bitişi var.', '#/messages', [
+    ['🆕', 'Yeni olaylar', '23 yeni olay geldi. 🔥 Pozisyonlar: Reverse Cowgirl, Prone Bone, Lotus, Butterfly, Missionary Anal, Reverse Cowgirl Anal. 🔗 BDSM: Blindfold, Collar & Leash, Spanking, Butt Plug, Nipple Clamps, Ball Gag ve Güven\'i artıran Safe Word. Üç yeni mekân: 🏝️ Plaj, 🏢 Ofis, 🏨 Otel; her birinin kendi bitişi var.', '#/sehir', [
       ['🏝️ Plaj', 'Sunscreen Rub, Beach Towel Sex, Wave Sex ve Beach Cumshot. Sahilde ya da tatildeyken görünür.'],
       ['🏢 Ofis', 'Under The Desk, Office Chair Ride, Copy Room Quickie ve Office Cumshot. Ofiste, çalışma odasında ya da iş yerinde görünür.'],
       ['🏨 Otel', 'Room Service, Balcony Sex, Hotel Mirror ve Hotel Creampie. Otel odasında ya da tatildeyken görünür.']]],
@@ -1154,8 +1189,8 @@
       ['📊 Kendiliğinden ilerler', 'İlerleme sohbetlerde yaşadığın olaylardan, sorduğun sorulardan, gezdiğin sitelerden ve siparişlerinden hesaplanır; önceden yaptıkların da sayılır.'],
       ['👑 Ustalık', 'Her dalın son görevini bitirince Carmen ustası olursun; sonra 100 farklı olay seni bekliyor.']]],
     ['❓', 'Yeni sorular', 'Ona sorabileceğin 25\'ten fazla yeni soru: "Üstte mi altta mı?", "Işık açık mı kapalı mı?", "Hiç yakalandın mı?", "Göğüslerin doğal mı?", "Twerk yapar mısın?", "Rüyanda beni gördün mü?"… Cevap kişiliğine, deneyimine, baskınlığına ve vücuduna göre değişir.', '#/kitap/soru'],
-    ['🔮', 'Tahmin modu', 'Sohbette yazarken yazı kutusunun üstünde öneri çipleri çıkar: "kaç" yazınca "Kaç yaşındasın?", "dar mı" yazınca "Dar mısın?". Cümlenin devamını, anahtar kelimeleri ve o anki aşamaya uygun mesajları önerir. ⋯ Diğer → 🔮 ile açıp kapatırsın.', '#/messages'],
-    ['🎲', 'Öngörülemezlik', '🌿 Gerçekçi Mod\'da karakter bazen beklediğin cevabı vermez: kendisi bir olay başlatır ya da sana kendi sorusunu sorar.', '#/messages'],
+    ['🔮', 'Tahmin modu', 'Sohbette yazarken yazı kutusunun üstünde öneri çipleri çıkar: "kaç" yazınca "Kaç yaşındasın?", "dar mı" yazınca "Dar mısın?". Cümlenin devamını, anahtar kelimeleri ve o anki aşamaya uygun mesajları önerir. ⋯ Diğer → 🔮 ile açıp kapatırsın.', '#/sehir'],
+    ['🎲', 'Öngörülemezlik', '🌿 Gerçekçi Mod\'da karakter bazen beklediğin cevabı vermez: kendisi bir olay başlatır ya da sana kendi sorusunu sorar.', '#/sehir'],
     ['🧠', 'Olay hafızası', 'Olaylar birbirini hatırlar: ısınmadan başlamak, aynı şeyi tekrar etmek, çeşitlilik, ikinci tur… sıraya ve sayıya göre mesajlar ve değerler değişir.', '#/kitap/hafiza'],
     ['💝', 'CarmenAmor açıldı', 'Hediye sitesi: 💌 aşk mektubundan 🚗 spor arabaya 53 hediye. Sitede kızlar sana flört eder; biriyle sohbet aç, sohbette 🎁 Hediye ile gönder: 💗 sevgisi artar (🤍 Tanışma → ❤️‍🔥 Tutku), kişiliğine ve hediyenin değerine göre karşılık verir: teşekkür, buluşma sahnesi, evine davet, lüks süit. Her gün sohbette bir 💌 isteği söyler; o hediyeyi gönderirsen ×2 💗 ve söz verdiği olayı seninle yaşar. Kalpler ve hediyeler sitede görünür.', '#/amor'],
     ['🍼', 'Lactation Fantasy ve Süt Kitabı', 'Yeni 🍼 Lactation Fantasy kategorisi: Milk Maid, Breast Pump, Milking Station, Nursing Lap, Double Suckle, Milk Shower, Milk Contest ve daha fazlası (📜 Olay → 🍼 Lactation). Karakterin ne kadar süt verdiğini 🩺 CarmenKlinik\'te litre olarak görürsün; süt miktarına ve kalitesine göre cevapları ve olaylar değişir.', '#/kitap/sut', [
@@ -2104,6 +2139,19 @@
     'Doğu Asya': { skin: [3, 5, 2, 1, 0, 0], hair: [8, 2, 0, 0, 0, 0, 1], eye: [5, 0, 0, 0, 5, 1] },
     'Arap': { skin: [0, 2, 4, 4, 2, 0], hair: [7, 3, 0, 0, 0, 0, 1], eye: [6, 2, 1, 0, 2, 1] }
   };
+  // 📏🍒🍑 boy / göğüs / kalça ağırlıkları (sıra traits.js Height / Boob Size / Butt Size); sadece 🎲 rastgele ve özelliksiz boy gösterimi
+  const ORIGIN_SIZE = {
+    'Türk': { height: [1, 3, 4, 2, 1], boob: [1, 2, 4, 4, 2, 1], butt: [1, 2, 4, 4, 2, 1] },
+    'Latin': { height: [2, 4, 4, 1, 1], boob: [1, 2, 3, 4, 3, 2], butt: [0, 1, 2, 4, 4, 3] },
+    'Akdeniz': { height: [1, 3, 4, 2, 1], boob: [1, 2, 4, 4, 2, 1], butt: [1, 2, 4, 4, 2, 1] },
+    'Fransız': { height: [1, 2, 4, 3, 1], boob: [2, 4, 4, 2, 1, 1], butt: [1, 3, 4, 3, 1, 1] },
+    'Slav': { height: [1, 1, 3, 4, 2], boob: [1, 2, 3, 4, 3, 2], butt: [1, 2, 4, 3, 2, 1] },
+    'Kuzey Avrupa': { height: [0, 1, 3, 4, 3], boob: [1, 2, 4, 4, 2, 1], butt: [1, 3, 4, 3, 1, 1] },
+    'Anglo': { height: [1, 2, 4, 3, 1], boob: [1, 2, 3, 4, 3, 2], butt: [1, 2, 4, 3, 2, 1] },
+    'Doğu Asya': { height: [3, 5, 3, 1, 0], boob: [4, 5, 3, 1, 1, 0], butt: [3, 5, 3, 1, 1, 0] },
+    'Arap': { height: [2, 4, 4, 2, 1], boob: [1, 2, 3, 4, 3, 2], butt: [1, 2, 3, 4, 3, 2] }
+  };
+  Object.keys(ORIGIN_SIZE).forEach(k => Object.assign(ORIGIN_LOOK[k], ORIGIN_SIZE[k]));
   const lookW = (c, g) => (ORIGIN_LOOK[(Stories.World && c && Stories.World.regionOf(c.city)) || ''] || {})[g];
   const wPick = (w, r) => { let x = r * w.reduce((a, b) => a + b, 0); const i = w.findIndex(v => (x -= v) < 0); return i < 0 ? w.length - 1 : i; };
   // kökene göre sabit (id hash'li) değer: map dizi ise değerin kendisi, nesne ise Türkçe karşılığı; köken yoksa ''
@@ -2134,11 +2182,11 @@
   };
   function cmBody(c) {
     const fd = cmFields(c), fh = parseInt(fd.Boy, 10);
-    const hr = CM_HEIGHT[cmTrait(c, 'Height')], h = fh > 0 ? fh : hr ? hr[0] + cmNum(c, 'boy', hr[1]) : 155 + cmNum(c, 'boy', 26), boob = +cmTrait(c, 'Boob Size') || 0, butt = cmTrait(c, 'Butt Size'), pus = cmTrait(c, 'Pussy Size'), an = cmTrait(c, 'Anal Size'), ex = cmTrait(c, 'Experience');
+    const hr = CM_HEIGHT[cmTrait(c, 'Height') || cmLookV(c, 'height', Object.keys(CM_HEIGHT))], h = fh > 0 ? fh : hr ? hr[0] + cmNum(c, 'boy', hr[1]) : 155 + cmNum(c, 'boy', 26), boob = +cmTrait(c, 'Boob Size') || 0, butt = cmTrait(c, 'Butt Size'), pus = cmTrait(c, 'Pussy Size'), an = cmTrait(c, 'Anal Size'), ex = cmTrait(c, 'Experience');
     const big = ['L', 'XL'].includes(butt), small = ['XS', 'S'].includes(butt), w = cmTrait(c, 'Weight');
     // ⚖️ Weight seçildiyse kilo ondan (vücut kitle endeksi × boy²), yoksa boy ve bedenden tahmin
     const kg = CM_BMI[w] ? Math.round(CM_BMI[w] * (h / 100) ** 2 + cmNum(c, 'kg', 5) - 2) : Math.round(h - 112 + (boob ? (boob - 80) / 4 : 0) + (big ? 5 : small ? -4 : 0) + cmNum(c, 'kg', 7) - 3);
-    const hl = cmHlen(c), mk = (c.traits || []).filter(t => CM_MARKS[t]).map(t => CM_MARKS[t]);
+    const hl = cmHlen(c), mk = (c.traits || []).filter(t => CM_MARKS[t]).map(t => CM_MARKS[t]), imB = (c.traits || []).includes('Breast Implants'), imK = (c.traits || []).includes('Butt Implants');
     const shape = CM_BTYPE[cmTrait(c, 'Body Type')] || CM_WEIGHT[w] || (boob >= 90 || big ? 'Kıvrımlı' : small && boob && boob <= 75 ? 'Minyon' : cmPick(c, 'vu', ['Fit', 'İnce', 'Atletik', 'Balık etli', 'Kum saati']));
     const rows = [['📏', 'Boy', h + ' cm'], ['⚖️', 'Kilo', kg + ' kg'], ['✨', 'Vücut', shape],
       ['💇‍♀️', 'Saç', cmHairC(c)], hl && ['✂️', 'Saç boyu', hl],
@@ -2146,7 +2194,7 @@
       (v => v && ['💋', 'Dudak', v])(CM_LIPS[cmTrait(c, 'Lip Shape')]), ['🦵', 'Bacak', cmLegs(c)],
       ['⏳', 'Bel', cmWaist(c)], (v => v && ['👗', 'Tarz', v])(CM_STYLE[cmTrait(c, 'Style')]),
       mk.length && ['✨', 'Detay', mk.join(' · ')],
-      boob && ['🍒', 'Göğüs', `${boob} ${CM_CUP[boob] || ''}`.trim()], butt && ['🍑', 'Kalça', butt], pus && ['🌸', 'Vajina', CM_SIZE[pus] || pus], an && ['🍑', 'Anal', CM_SIZE[an] || an],
+      (boob || imB) && ['🍒', 'Göğüs', [boob && `${boob} ${CM_CUP[boob] || ''}`.trim(), imB && '💉 Silikon'].filter(Boolean).join(' · ')], (butt || imK) && ['🍑', 'Kalça', [butt, imK && '💉 Silikon'].filter(Boolean).join(' · ')], pus && ['🌸', 'Vajina', CM_SIZE[pus] || pus], an && ['🍑', 'Anal', CM_SIZE[an] || an],
       ex && ['🔥', 'Deneyim', CM_EXP[ex] || ex]].filter(Boolean).map(r => fd[r[1]] ? [r[0], r[1], fd[r[1]]] : r);
     if (fd['Saç boyu'] && !rows.some(r => r[1] === 'Saç boyu')) rows.splice(rows.findIndex(r => r[1] === 'Saç') + 1, 0, ['✂️', 'Saç boyu', fd['Saç boyu']]);
     return rows;
@@ -5585,7 +5633,7 @@
   const phLc = v => v ? v.charAt(0).toLocaleLowerCase('tr') + v.slice(1) : '';
   function phTokens(c, pl) {
     const b = Object.fromEntries(cmBody(c).map(([, k, v]) => [k, String(v)]));
-    return { 'göğüs': String(b['Göğüs'] || '').replace(/\s+/g, ''), 'kalça': b['Kalça'] ? b['Kalça'] + ' beden' : '', 'saç': phLc(b['Saç']), 'saçboyu': phLc(b['Saç boyu']), ten: phLc(b.Ten), 'göz': phLc(b['Göz']),
+    return { 'göğüs': String(b['Göğüs'] || '').split(' · ')[0].replace(/\s+/g, ''), 'kalça': b['Kalça'] ? b['Kalça'].split(' · ')[0] + ' beden' : '', 'saç': phLc(b['Saç']), 'saçboyu': phLc(b['Saç boyu']), ten: phLc(b.Ten), 'göz': phLc(b['Göz']),
       'vücut': phLc(b['Vücut']), boy: b.Boy || '', bacak: phLc(b.Bacak), bel: phLc(b.Bel), yer: pl ? pl.at : '' };
   }
   const phFill = (s, tk) => { const t = String(s || '').replace(/\{([^}]+)\}/g, (_, k) => tk[k] || '').replace(/\s{2,}/g, ' ').replace(/\s+([,;.])/g, '$1').trim(); return t.charAt(0).toLocaleUpperCase('tr') + t.slice(1); };
@@ -8655,8 +8703,6 @@
       skA(900, '💆 Seans ayırt', '', 'Masa hazır, havlu ısındı 💆 uzan', { ev: 1 }), skA(0, '🎟️ Damga iste', 'Spa kartıma bir damga daha', 'Damgan basıldı 🎟️ onuncuda sürprizim var 😏')],
     clinic: [skA(0, '🌡️ Ateşim var', 'Ateşim çıktı galiba', 'Gel bir bakayım 🌡️ önce gömleğini çıkar'), skA(0, '💊 İlaç sor', 'İlacı tok karnına mı içiyorum?', 'Tok karnına 💊 ve bir de kontrol randevusu yazdım'),
       skA(500, '🩺 Kontrol muayenesi', '', 'Muayene odası hazır 🩺 sedyeye uzan', { ev: 1 }), skA(0, '📋 Randevu al', 'Yarın için randevu alabilir miyim?', 'Son hastam sen ol 📋 kimse beklemesin')],
-    flix: [skA(0, '🍿 Mısır patlat', 'Mısırlar hazır 🍿', 'Kaseyi aramıza koy… ya da koyma 😏'), skA(0, '🛋️ Battaniyeye gir', 'Battaniyenin altına gel', 'Ellerin soğuk 🛋️ ısıtayım mı?'),
-      skA(150, '🍷 Şarap aç', '', 'Şarap açıldı 🍷 filmi kim izliyor zaten'), skA(0, '🎬 Film seç', 'Bu gece hangi film?', 'Filmi boşver… bizim sahnemiz daha iyi 🎬', { ev: 1 })],
     choise: [skA(0, '👑 Taç tak', 'Taç sana yakıştı', 'Kraliçen oldum 👑 emret'), skA(0, '💌 Not yaz', 'Seni seçtiğim için pişman değilim', 'Ben de seçildiğim için 💌'),
       skA(700, '💎 Mücevher hediye et', '', 'Kolye tam boynumda 💎 başka bir şey giymedim', { photo: 1 }), skA(0, '🌹 Randevu', 'Söz verdiğin gece bu gece mi?', 'Sözüm söz 🌹 kapıyı aç', { ev: 1 })],
     events: [skA(0, '📚 Teori sor', 'Bu dersin püf noktası ne?', 'Önce ritim, sonra sabır 📚 göstereyim mi?'), skA(0, '✅ Ödev teslim', 'Ödevimi bitirdim', 'Aferin 😏 notunu birlikte verelim'),
@@ -8743,14 +8789,14 @@
     { k: 'spor', ic: '🏋️', n: 'Spor Salonu', d: ['koşu bandında 🏃‍♀️', 'ağırlık çalışıyor 🏋️‍♀️', 'yoga dersinde 🧘‍♀️'] },
     { k: 'magaza', ic: '🛍️', n: 'AVM', d: ['alışverişte 🛍️', 'kabinde kıyafet deniyor 👗', 'iç çamaşırı reyonunda 👙'] }
   ];
-  /* 🤱 parkta emzirme molası: sütü olan (🍼 Süt ≥ 50 ya da hamile) karakter gündüz bazen Park'ta (ccWhere nurse); dokununca yeni sohbet
-   * park bankında başlar, ilk mesajı emzirme teklifi, "evet" → Covered Nursing (th.botAsk istek) */
+  /* 🤱 evde emzirme molası: sütü olan (🍼 Süt ≥ 50 ya da hamile) karakter gündüz bazen evinde (ccWhere nurse → hanenin evi); yanına gidip
+   * 💬 Sohbete geç → yeni sohbet onun evinde başlar, ilk mesajı emzirme teklifi, "evet" → Covered Nursing (th.botAsk istek) */
   const ccMilk = c => milkPct(c) >= 50 || !!(c.fields || {}).hamile;
-  const CC_NURSE_HI = ['Parktayım, bankta… göğüslerim doldu, örtümü de getirdim. Gelir misin? 🧣🍼', 'Bankta oturuyorum, kimse bakmıyor… örtünün altına girer misin? 🤫🍼', 'Ağaçların gölgesinde bir bank buldum. Emzirme molası verelim mi? 🌳🤱'];
+  const CC_NURSE_HI = ['Hoş geldin 😊 göğüslerim doldu, tam emzirme molası veriyordum… gelir misin? 🧣🍼', 'Evde kimse yok, kapıyı kilitledim… koltuğa, yanıma gelir misin? 🤫🍼', 'Sütüm taşacak gibi, iyi ki geldin. Emzirme molası verelim mi? 🛋️🤱'];
   // min: şehirden gelirken şehir saati (dakika), yoksa h saat başı
   function ccNurse(c, h, min) {
     const ch = cmAdopt(c), now = Date.now(), t = newThread(ch, 'CarmenCity'), ev = allEvents().find(e => e.id === 'mvnu14cover'), m0 = min != null ? min : h * 60;
-    msgsOf(t).push({ id: Store.uid(), from: 'sys', ts: now, text: `🕰️ ${String(Math.floor(m0 / 60) % 24).padStart(2, '0')}:${String(Math.floor(m0) % 60).padStart(2, '0')} · 🌳 Parkta`, scene: { place: 'park', icon: '🌳', name: 'Parkta', hint: 'Ağaçların gölgesinde bir bank; etrafta yürüyüş yapanlar var.' } });
+    msgsOf(t).push({ id: Store.uid(), from: 'sys', ts: now, text: `🕰️ ${String(Math.floor(m0 / 60) % 24).padStart(2, '0')}:${String(Math.floor(m0) % 60).padStart(2, '0')} · 🏠 Onun evinde · 🏙️ Şehirde karşılaştınız`, scene: { place: 'ev', icon: '🏠', name: 'Onun evinde', hint: 'Oturma odasında koltuk; perdeler yarı kapalı, ev sessiz.' } });
     msgsOf(t).push({ id: Store.uid(), from: 'her', ts: now + 1, text: pick(CC_NURSE_HI) });
     t.clock = { start: m0 - (+clockCfg().step || 0), done: 1 };
     if (ev) t.botAsk = { t: 'istek', w: 'emzir', ev: ev.id };
@@ -8837,7 +8883,7 @@
     if (h < 3) return out(r < 30 ? 'kulup' : r < 40 ? 'gazino' : r < 48 ? 'pub' : 'evler');
     if (h < 7) return out('evler');
     if (h < 9) return out(r < 40 ? 'kafe' : r < 50 ? 'spor' : 'evler');
-    if (h < 19 && ccMilk(c) && ccRnd(c, h, 'nu') < 35) return { k: 'park', job: false, doing: '🤱 bankta, örtünün altında emzirme molası', nurse: true };
+    if (h < 19 && ccMilk(c) && ccRnd(c, h, 'nu') < 35) return { k: 'evler', job: false, doing: '🤱 evde, koltukta emzirme molası', nurse: true };
     if (h < 17) return out(r < 26 ? 'sahil' : r < 44 ? 'kafe' : r < 54 ? 'masaj' : r < 64 ? 'magaza' : r < 72 ? 'spor' : r < 78 ? 'park' : 'evler');
     if (h < 19) return out(r < 28 ? 'sahil' : r < 42 ? 'kafe' : r < 50 ? 'masaj' : r < 62 ? 'lunapark' : r < 70 ? 'magaza' : 'evler');
     if (h < 23) return out(r < 26 ? 'pub' : r < 38 ? 'sinema' : r < 50 ? 'gazino' : r < 58 && h < 22 ? 'lunapark' : r < 66 && h < 21 ? 'sahil' : 'evler');
@@ -8868,6 +8914,7 @@
   const hhmm = min => `${String(Math.floor(min / 60) % 24).padStart(2, '0')}:${String(Math.floor(min) % 60).padStart(2, '0')}`;
   function ccMeet(c, k, place, min, text, cont) {
     const ch = cmAdopt(c, 'city'), now = Date.now(), t = (cont && currentThread(ch)) || newThread(ch, 'CarmenCity');
+    t.city = 1; // 📱 şehir telefonunda listelenir
     const pid = /^ev\d|^apt$|^benim$/.test(k || '') ? 'ev' : CC_SCENE[k], P = pid && (Stories.PLACES || []).find(p => p.id === pid);
     const hint = P && P.hints && P.hints.length ? pick(P.hints).replace(/\{o\}/g, ch.name.split(' ')[0]) : '';
     msgsOf(t).push({ id: Store.uid(), from: 'sys', ts: now, text: `🕰️ ${hhmm(min)} · ${place} · 🏙️ Şehirde karşılaştınız${hint ? ` · ${hint}` : ''}`,
@@ -8877,9 +8924,29 @@
     save();
     location.hash = `#/chat/${t.id}`;
   }
+  // 👥 eve iki kişi davet: ikisinin şehir grubu (varsa devam) evinde, ikisinin selamıyla başlar
+  const CC_GRP_HI = [['Geldik 😊 {b} de benimle', 'Selam! {a} çok anlatmıştı seni 😏'], ['Kapını ikimiz çalıyoruz 👯', 'Umarım iki kişilik içki vardır 🍷'],
+    ['{b}\'yi de getirdim, sorun olmaz değil mi? 😇', 'Evin güzelmiş… ikimize de yer var mı? 😏']];
+  function ccMeetGroup(c1, c2, k, place, min) {
+    const a = cmAdopt(c1, 'city'), b = cmAdopt(c2, 'city'), now = Date.now();
+    let t = groups().find(g => !g.duo && !g.husb && g.gsrc === 'city' && g.members.length === 2 && g.members.includes(a.id) && g.members.includes(b.id));
+    if (!t) { t = { id: Store.uid(), group: true, gsrc: 'city', members: [a.id, b.id], title: `🏡 ${a.name.split(' ')[0]} & ${b.name.split(' ')[0]}`, created: now, opened: 0 }; threads().push(t); }
+    const P = (Stories.PLACES || []).find(p => p.id === 'ev'), f = s => s.replace(/\{a\}/g, a.name.split(' ')[0]).replace(/\{b\}/g, b.name.split(' ')[0]), [l1, l2] = pick(CC_GRP_HI);
+    msgsOf(t).push({ id: Store.uid(), from: 'sys', ts: now, text: `🕰️ ${hhmm(min)} · ${place} · 👥 İkisini birden davet ettin`, ...(P ? { scene: { place: P.id, icon: P.icon, name: P.name, hint: '' } } : {}) });
+    msgsOf(t).push({ id: Store.uid(), from: 'her', who: a.id, ts: now + 1, text: f(l1) }, { id: Store.uid(), from: 'her', who: b.id, ts: now + 2, text: f(l2) });
+    knowLink(a, b);
+    ccClock(t, min);
+    save();
+    location.hash = `#/chat/${t.id}`;
+  }
+  // 📱 şehir telefonu: şehirde başlayan sohbetler (t.city / 'CarmenCity') + şehir grupları, en yeni önce
+  const ccChats = () => threads().filter(t => t.group ? t.gsrc === 'city' : (t.city || t.title === 'CarmenCity'))
+    .sort((a, b) => activity(b) - activity(a)).slice(0, 40)
+    .map(t => { const m = membersOf(t), l = lastOf(t); return { id: t.id, group: !!t.group, c: m[0] || GHOST, n: t.group ? t.title : (m[0] || GHOST).name, last: l ? String(l.text || '').slice(0, 70) : '', ts: activity(t), unread: l && l.from === 'her' && l.ts > (t.opened || 0) }; });
   // 🎭 kişilik özellikleri · 💞 tanışıklık (mesaj sayısı, evli mi) · 🪧 pano reklamları (siteler + carmen.com kızları)
   const ccPers = c => { const g = (T.groups || []).find(x => x.id === 'personality'), L = g ? g.items || g.values || [] : []; return (c.traits || []).filter(t => L.includes(t)); };
-  const ccRel = c => ({ msgs: byId(c.id) ? msgCount(c) : 0, wed: !!(byId(c.id) && ccWed(c)) });
+  // 💍 rel: profildeki Relationship (Single / Has Boyfriend / Married / Divorced; Evli anahtarı = Married), live: Yaşam (tek / ev / koca) — yabancılar için de
+  const ccRel = c => { const wed = ccWed(c) || cmTrait(c, 'Relationship') === 'Married'; return { msgs: byId(c.id) ? msgCount(c) : 0, wed, rel: wed ? 'Married' : cmTrait(c, 'Relationship') || 'Single', live: liveOf(c) }; };
   const ccAds = () => [...netSites().map(s => ({ ic: s.ic, n: s.logo.replace(/<[^>]+>/g, ''), d: s.url, href: s.href })),
     ...cmAll().filter(x => x.photo && !byId(x.id)).slice(0, 12).map(x => ({ ic: '🌹', n: `${x.name.split(' ')[0]}${x.age ? `, ${x.age}` : ''}`, d: 'carmen.com · şimdi müsait', href: `#/carmen/${x.id}`, photo: x.photo }))];
   // 🧴 ten: profil kartındaki Ten değeriyle aynı (ek alan > Skin Tone > id'ye göre rastgele)
@@ -8913,7 +8980,7 @@
   }
   // 📏 kıyafetin yanında bedenleri (profil kartındaki gibi): 🍒 göğüs + kupa, 🍑 kalça
   // 📏 boy: profil kartındaki gibi (ek alan Boy > Height özelliği > id'ye göre)
-  const ccHeight = c => { const fh = parseInt(cmFields(c).Boy, 10), hr = CM_HEIGHT[cmTrait(c, 'Height')]; return fh > 0 ? fh : hr ? hr[0] + cmNum(c, 'boy', hr[1]) : 155 + cmNum(c, 'boy', 26); };
+  const ccHeight = c => { const fh = parseInt(cmFields(c).Boy, 10), hr = CM_HEIGHT[cmTrait(c, 'Height') || cmLookV(c, 'height', Object.keys(CM_HEIGHT))]; return fh > 0 ? fh : hr ? hr[0] + cmNum(c, 'boy', hr[1]) : 155 + cmNum(c, 'boy', 26); };
   const ccSize = c => { const b = +cmTrait(c, 'Boob Size') || 0, t = cmTrait(c, 'Butt Size'), lg = cmLegs(c), ws = cmWaist(c);
     return [`📏 ${ccHeight(c)} cm`, b && `🍒 ${b} ${CM_CUP[b] || ''}`.trim(), t && `🍑 ${t}`].filter(Boolean).join(' · ') + `\n💇‍♀️ ${cmHairC(c)} · ✂️ ${cmHlen(c)}` + ((lg || ws) ? '\n' + [lg && `🦵 ${lg}`, ws && `⏳ ${ws}`].filter(Boolean).join(' · ') : ''); };
   // 🏙️ alt menüdeki Şehir sekmesi: canlı harita js/city.js (Stories.City); burası sadece veriyi ve sohbete geçişi verir
@@ -8921,7 +8988,7 @@
     view.innerHTML = '<div class="city" id="city"></div>';
     setupLive();
     const cs = chars(), H = ccHomes(cs), doing = k => { const d = (CC_B.find(b => b.k === k) || {}).d || ['geziniyor 🚶‍♀️']; return d[Math.floor(Math.random() * d.length)]; };
-    Stories.City.mount($('#city'), { chars: () => cs, homes: () => H, plan: h => ccPlan(cs, H, h), strangers: () => cmAll().filter(x => !byId(x.id)), doing, meet: ccMeet, skin: ccSkin, wear: ccWear, size: ccSize, pers: ccPers, rel: ccRel, ads: ccAds,
+    Stories.City.mount($('#city'), { chars: () => cs, homes: () => H, plan: h => ccPlan(cs, H, h), strangers: () => cmAll().filter(x => !byId(x.id)), doing, meet: ccMeet, chats: ccChats, meetGroup: ccMeetGroup, skin: ccSkin, wear: ccWear, size: ccSize, pers: ccPers, rel: ccRel, ads: ccAds,
       textAt: (c, min) => { const t = currentThread(c) || newThread(c); ccClock(t, min); save(); location.hash = `#/chat/${t.id}`; },
       avatar, esc, byId, openChat, ccNurse, notify, user: () => S().user, party: renderParty });
   }
@@ -11336,12 +11403,11 @@
       <div class="pt-floor"><span class="pt-ball">🪩</span><span class="pt-dj">🎧 DJ</span><i class="pt-beam a"></i><i class="pt-beam b"></i><i class="pt-beam c"></i>
         ${here.map(card).join('')}${here.length ? '' : '<p class="pt-empty">Pist boşaldı… başka bir partiye geç 🎟️</p>'}</div>
       ${left.length ? `<div class="pt-left"><h3>Bu gece</h3>${left.map(c => { const g = gone[fnRid(c)]; return `<div class="pt-lrow">${avatar(c, 34)}<b>${esc(c.name.split(' ')[0])}</b>
-        <small>${g === 'ev' ? '🏠 Beraber çıktınız' : g === 'zar' ? '🎲 Zarda kazandın' : g === 'num' ? '📱 Numarasını verdi' : '🚶‍♀️ Gitti'}</small>${g !== 'red' ? `<button type="button" class="btn ghost sm" data-ptmsg="${esc(c.id)}">💬 Yaz</button>` : ''}</div>`; }).join('')}</div>` : ''}
+        <small>${g === 'ev' ? '🏠 Beraber çıktınız' : g === 'zar' ? '🎲 Zarda kazandın' : g === 'num' ? '📱 Numarasını verdi' : '🚶‍♀️ Gitti'}</small></div>`; }).join('')}</div>` : ''}
       <div class="pt-acts0"><button type="button" class="btn ghost" id="ptNext">🎟️ Başka partiye git</button>${ptIsHw(n) ? '' : ' <button type="button" class="btn ghost" id="ptHw">🎃 Halloween partisi</button>'}${ptIsCos(n) ? '' : ' <button type="button" class="btn ghost" id="ptCos">🎭 Kostüm partisi</button>'}</div>`;
     root.innerHTML = box ? `<div class="ws-site ws-party"><div class="ct-pt-top"><b>🪩 Gece Kulübü</b><button type="button" class="ct-x" data-ptclose aria-label="Kapat">✕</button></div>${body}</div>`
       : wsPage('party', 'Carmen<i>Party</i>', '🏙️ Şehir · Gece Kulübü', '#/sehir', body);
     root.querySelector('.pt-floor').onclick = e => { const b = e.target.closest('[data-pt]'); if (b) ptStart(cmFind(b.dataset.pt)); };
-    root.querySelectorAll('[data-ptmsg]').forEach(b => b.onclick = () => { const c = cmFind(b.dataset.ptmsg); if (c && byId(c.id)) openChat(c); else if (c) cmChat(c, 'CarmenParty', 'Partideki ben 😉 numaramı kaydettin mi?', true); });
     $('#ptNext').onclick = () => { const s = ptStore(); s.shift = ((s.shift || 0) + 1) % 100; ptStore(s); again(); };
     // 🎃 doğrudan Halloween partisine: kaydırma, gecenin mekanı Halloween Night olacak şekilde ayarlanır
     const hwb = $('#ptHw');
@@ -11519,6 +11585,8 @@
   // ✏️ Düzenleme modu: kapalıyken ✨ Oluştur ve sohbetteki detaylı görünümler/ayarlar gizli (.chat.no-edit)
   const editOn = v => { try { if (v != null) localStorage.setItem('amor-stories:edit', v ? '1' : '0'); return localStorage.getItem('amor-stories:edit') === '1'; } catch (e) { return false; } };
   // 🌿 Gerçekçi Mod: Düzenleme modu kapalıyken hep açık; açıkken Ayarlar'dan seçilir (varsayılan açık)
+  // 🧘 Sade mesajlar (varsayılan açık): cevap en fazla 2 baloncuk (ana cevap + 1 ek), cümle içi eklerden turda biri (bkz. simpleParts)
+  const simpleOn = v => { try { if (v != null) localStorage.setItem('amor-stories:simple', v ? '1' : '0'); return localStorage.getItem('amor-stories:simple') !== '0'; } catch (e) { return true; } };
   const realOn = v => { if (!editOn() && v == null) return true; try { if (v != null) localStorage.setItem('amor-stories:real', v ? '1' : '0'); return localStorage.getItem('amor-stories:real') !== '0'; } catch (e) { return true; } };
   const liaOn = v => { try { if (v != null) localStorage.setItem('amor-stories:lia', v ? '1' : '0'); return localStorage.getItem('amor-stories:lia') !== '0'; } catch (e) { return true; } };
   // 🔮 Tahmin modu: yazarken kutunun üstünde botun anladığı ifadeler (bot kuralları + anahtar kelimeler) ve aşamaya uygun cümleler
@@ -12207,7 +12275,8 @@
     const evo = (L.evo || []).map(x => row('🌱', `${x.f} → ${x.t}`, anDay(x.at)));
     const gCur = L.g && (X.GUNDEM || []).find(x => x.k === L.g.k);
     const gund = [...(gCur ? [row(gCur.icon, gCur.name, `${L.g.s} / ${gCur.steps.length} · sürüyor`)] : []),
-      ...L.gdone.slice().reverse().slice(0, 6).map(d => { const g = (X.GUNDEM || []).find(x => x.k === d.k); return g ? row(g.icon, g.end, anDay(d.at)) : ''; }).filter(Boolean),
+      ...L.gdone.slice().reverse().slice(0, 6).map(d => { const g = (X.GUNDEM || []).find(x => x.k === d.k); return g ? row(g.icon, lfFill(d.no ? g.endNo || g.end : g.end, d.v || {}), anDay(d.at)) : ''; }).filter(Boolean),
+      ...(L.chg || []).slice().reverse().slice(0, 8).map(x => { const g = (X.GUNDEM || []).find(y => y.k === x.k); return row((g || {}).icon || '✨', `✨ ${x.t}`, anDay(x.at)); }),
       ...(L.cat ? [row('🐱', `Kedisinin adı: ${L.cat}`, 'sen koydun', 'lc|cat')] : [])];
     const plans = L.plans.map((p, i) => row('🗓️', capTr(p.x), `${anDay(p.at)} · ${p.res ? '💬 ' + p.res : p.asked ? '❔ sordu' : '⏳ sorma günü: ' + anDay(p.due)}`, 'lp|' + i));
     const emo = L.emo.slice().reverse().map((x, i) => row({ kirgin: '💔', mutlu: '💞', baris: '🤝' }[x.k] || '💭', { kirgin: 'Kırıldı', mutlu: 'Mutlu oldu', baris: 'Barıştınız' }[x.k] || x.k, [x.t, anDay(x.at)].filter(Boolean).join(' · '), 'le|' + (L.emo.length - 1 - i)));
@@ -12810,12 +12879,19 @@
     .sk-empty{padding:28px 16px;text-align:center;opacity:.75}
   </style>`;
   // 💬 sitenin gelen kutusu: yalnızca o sitenin kaplamasındaki sohbetler (son yazılan üstte)
+  const SK_GROUPS = ['tinder', 'bumble'];
   function skInbox(id) {
     const sk = (Stories.Themes.chatSkins || []).find(s => s.id === id);
     const list = threads().filter(t => !t.group && byId(t.charId) && (skinOf(t) || {}).id === id).sort((a, b) => activity(b) - activity(a));
     const rows = list.map(t => { const c = byId(t.charId), last = lastOf(t);
       return `<a class="sk-row" href="#/chat/${t.id}">${avatar(c, 48)}<span class="tx"><b>${esc(c.name)}</b><small>${last ? esc((last.from === 'me' ? 'Sen: ' : '') + preview(last)) : 'Henüz mesaj yok'}</small></span><time>${fmtTime(activity(t))}</time></a>`; }).join('');
-    return { h: `${CSK_CSS}${spHero(`💬 ${sk.label} mesajları`, `${list.length} sohbet · ${esc(sk.tag)}`)}<div class="sk-box sk-${id}${sk.pal ? ' sk-v' : ''}" style="${esc(skVars(sk))}">${rows || `<div class="sk-empty">${esc(sk.empty)}</div>`}</div>` };
+    // 👥 Tinder / Bumble: grup sohbetleri de buradan (g.gsrc; eski kaynaksız gruplar Tinder'da)
+    const grp = SK_GROUPS.includes(id), gl = grp ? groups().filter(g => !g.duo && !g.husb && (g.gsrc === id || (id === 'tinder' && !g.gsrc))).sort((a, b) => activity(b) - activity(a)) : [];
+    const grows = gl.map(t => { const last = lastOf(t), w = last && last.who && byId(last.who);
+      return `<a class="sk-row" href="#/chat/${t.id}">${groupAvatar(t, 48)}<span class="tx"><b>${esc(t.title)}</b><small>${last ? esc((last.from === 'me' ? 'Sen: ' : w ? w.name.split(' ')[0] + ': ' : '') + preview(last)) : 'Henüz mesaj yok'}</small></span><time>${fmtTime(activity(t))}</time></a>`; }).join('');
+    const gsec = grp ? `<h3 class="sk-gh" style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin:18px 4px 8px">👥 Gruplar <button type="button" class="btn ghost sm" id="skGrpNew">＋ Yeni grup</button></h3><div class="sk-box sk-${id}${sk.pal ? ' sk-v' : ''}" style="${esc(skVars(sk))}">${grows || '<div class="sk-empty">Henüz grup yok. İki eşleşmeni seçip grup kur 👯</div>'}</div>` : '';
+    return { h: `${CSK_CSS}${spHero(`💬 ${sk.label} mesajları`, `${list.length} sohbet · ${esc(sk.tag)}`)}<div class="sk-box sk-${id}${sk.pal ? ' sk-v' : ''}" style="${esc(skVars(sk))}">${rows || `<div class="sk-empty">${esc(sk.empty)}</div>`}</div>${gsec}`,
+      on: () => { const b = $('#skGrpNew'); if (b) b.onclick = () => groupSheet(null, null, id); } };
   }
 
   function renderChat(c, th) {
@@ -12881,7 +12957,7 @@
     const chatHtml = `${sk ? CSK_CSS : ''}
       <div class="chat${editOn() ? '' : ' no-edit'}${(th.duo || th.husb) && !th.duoIn ? ' duo-watch' : ''}${sk ? ` csk csk-${sk.id}${sk.pal ? ' csk-v' : ''}` : ''}"${sk && sk.pal ? ` style="${esc(skVars(sk))}"` : ''}>
         <div class="chat-head">
-          <a class="icon-btn" href="${th.husb ? `#/p/${th.members[0]}` : sk ? `#/${skHome(sk)}/x-mesaj` : '#/messages'}" aria-label="Geri">${ICON.arrowLeft}</a>
+          <a class="icon-btn" href="${th.husb ? `#/p/${th.members[0]}` : sk ? `#/${skHome(sk)}/x-mesaj` : th.group && !th.duo && (!th.gsrc || SK_GROUPS.includes(th.gsrc)) ? `#/${th.gsrc || 'tinder'}/x-mesaj` : '#/sehir'}" aria-label="Geri">${ICON.arrowLeft}</a>
           ${head}
           ${ctxHelp()}
           <button class="icon-btn st-btn${statsOn() ? ' on' : ''}" id="statBtn" aria-label="Durumlar ve parametreler" title="📊 Durumlar ve parametreler">📊</button>
@@ -13950,6 +14026,8 @@
       if (!group && !yn && ch && !opts.events && Math.random() < .6) { const ht = husbTell(ch); if (ht) parts.push(ht); }
       // 👯 grupta {diger} = öbür üye (👯 komut / olay cevapları)
       if (group) { const o = members().find(k => k && k !== GHOST && k.id !== ch.id); if (o) parts = parts.map(p => p.replace(/\{diger\}/g, o.name.split(' ')[0])); }
+      // 🧘 ana cevap (Sade mesajlar: bundan sonra eklenen baloncuklar "ek" sayılır, simpleParts)
+      const mainSet = new Set(parts.filter(p => !fbTxt.has(p)));
       // 😤 kıskançlık sorusuna "evet" (başkası da…) → Kıskançlık +8 · "hayır" → ❤️ Aşk +3
       if (yn && pend.t === 'kiskansor') {
         const kp = allParams().find(x => x.who !== 'me' && String(x.label).toLocaleLowerCase('tr') === (yn === 'evet' ? 'kıskançlık' : 'aşk'));
@@ -14204,32 +14282,47 @@
       // 🙏 izin dışı ısrar ("lütfen içine boşalayım"): bu turda kaçıncı ısrar ve korunma durumu {cevap:ısrar}'a gider
       const fctx = { kor: kor0, israr: th.israr || 0, olay: opts.olay, pos: posNow(), text: opts.events ? '' : userMsg.text, orgN: list.filter(x => lowA((evOf(x) || {}).title) === 'orgazm').length,
         cumN: list.filter(x => x.from === 'me' && ((evOf(x) || {}).tags || []).includes('boşalma')).length };
+      // 🧘 Sade mesajlar: ana cevap + en fazla 1 ek (önce bu turun sorusu / emri, sonra öne konan önemli ek, yoksa %50 diğerlerinden biri)
+      const simple = simpleOn();
+      if (simple && parts.length > 1) parts = simpleParts(parts, mainSet, th.botAsk !== ask0);
       if (!parts.length) return;
       parts.forEach((p, i) => { parts[i] = fillTraits(fillYer(p), ch, fctx); });
       th.whyCtx = opts.events && /^izinsiz_/.test(opts.state || '') && th.ikna ? { id: 'ret' + th.ikna.k, t: '' } : { id: qid, t: parts.join(' ').slice(0, 300) };
       // 🎭 soru cevabında kişiliğe göre çerçeve (Utangaç "S-söylemem gerekiyor mu? 🙈 …", Kibirli "… kıskandın mı? 💅")
+      // 🧘 cümle içi ekler (soru çerçevesi, hitap, canım, inleme, kişilik eki): Sade mesajlarda turda biri
+      let inl = simple ? 1 : 9, sg = parts.join('\u0001');
+      const used = () => { const s = parts.join('\u0001'); if (s !== sg) { inl--; sg = s; } };
       if (isQ && !intimate && Math.random() < .6) {
         const fr = (ch.traits || []).map(t => QFRAME[t]).filter(Boolean);
         const f = fr.length && pickOne(fr);
         if (f && f.pre) parts[0] = pickOne(f.pre) + parts[0];
         if (f && f.add) parts[0] += pickOne(f.add);
+        used();
       }
+      // 💞 senin "aşkım / bitanem / bebeğim…" hitabına kişiliğine ve vücuduna göre karşılık (petReply)
+      if (inl > 0 && !group && ch !== GHOST && !opts.events && userMsg && !qid.startsWith('r_rude')) { petReply(parts, ch, userMsg.text, m.fallback, fctx, !!sexPhase(), simple); used(); }
       // 🎭 Mode / fantezi tonu (Cat Girl → miyav, Bondage → *ellerim bağlı* …), sonra kişilik ve yazım tarzı
       flavorParts(parts);
+      sg = parts.join('\u0001');
       // 💕 canım / aşkım / bebeğim
-      if (!qid.startsWith('r_rude')) petParts(parts, ch);
+      if (inl > 0 && !qid.startsWith('r_rude')) { petParts(parts, ch); used(); }
       // 😩 sevişirken ve hemen sonrasında bütün cevaplara bazen inleme / destek ("Ahhh… ", "… devam et 😩"); soru cevabı ve kırgın cevapta yok
-      if (!isQ && !qid.startsWith('r_rude')) moanParts(parts, sexPhase());
+      if (inl > 0 && !isQ && !qid.startsWith('r_rude')) { moanParts(parts, sexPhase()); used(); }
       // kabalığa kırgın cevapta ve soru cevabında (kişiliği çerçeve verdi) kişilik eki yok; yazım tarzı yine uygulanır
       const pctx = { phase: sexPhase(), recent: th.persRecent = th.persRecent || [] };
-      personaParts(parts, ch, String(m.rule.id).startsWith('r_rude') || isQ, pctx);
+      personaParts(parts, ch, String(m.rule.id).startsWith('r_rude') || isQ || inl <= 0, pctx);
+      // 🧘 kişilik eki ayrı baloncuk eklediyse yine 2 sınırı
+      if (simple && parts.length > 2) parts = th.botAsk && th.botAsk !== ask0 ? [parts[0], parts[parts.length - 1]] : parts.slice(0, 2);
       // ✂️ bir turda en fazla 3 baloncuk; bu tur soru / emir geldiyse (th.botAsk) o son baloncuk olarak kalır
       if (parts.length > 3) parts = th.botAsk && th.botAsk !== ask0 ? [...parts.slice(0, 2), parts[parts.length - 1]] : parts.slice(0, 3);
       // 👯 grup seks: "ikiniz birden / sırayla / hanginiz" → diğer üyeler de birer baloncuk ("=grupkomut" + gk…);
       // sevişirken / bitişten sonra bazen bir üye daha araya girer ("=grupsx" + gs…, {diger} = cevap veren üye)
       const extra = [];
       // 📸 övgüye ya da yüksek Şehvet / Uyarılma'ya kendiliğinden metin fotoğraf (cevabından sonra)
-      if (!group && !opts.events && !yn) { const ph = phTurn(ch, th, phD && phD.why === 'praise' ? phD : null, list.length, !!sexPhase()); if (ph) extra.push({ ch, parts: [ph.lead, ph.tph.t], tph: ph.tph }); }
+      // 📸 gündemle değiştiyse (saç, estetik, piercing…) önce o değişimin fotoğrafı (lfChgPhoto)
+      const lcp = !group && !opts.events && ch !== GHOST ? lfChgPhoto(ch, th, list.length) : null;
+      if (lcp) extra.push({ ch, parts: [lcp.lead, lcp.tph.t], tph: lcp.tph });
+      else if (!group && !opts.events && !yn) { const ph = phTurn(ch, th, phD && phD.why === 'praise' ? phD : null, list.length, !!sexPhase()); if (ph) extra.push({ ch, parts: [ph.lead, ph.tph.t], tph: ph.tph }); }
       if (group && !yn) {
         const others = members().filter(k => k && k !== GHOST && k.id !== ch.id), gk = !opts.events && (grupKomut(userMsg.text) || (String(m.rule.id).startsWith('r_gc_') ? 'gkbirden' : '')), sp = sexPhase();
         const line = (o, base, key, gm0) => {
@@ -17730,7 +17823,7 @@
         if (a === 'play') play();
         if (a === 'copy') copyText(`${group ? th.title : `${c.name} · ${th.title}`}\n\n` + list.map(m => m.from === 'sys' ? `[${m.text}]` : `${nameOf(m)}: ${m.type === 'photo' ? '[📷 Fotoğraf] ' : m.tph ? `[📸 Fotoğraf: ${m.tph.d}] ` : ''}${m.text}`).join('\n'));
         if (a === 'clear') clearAll();
-        if (a === 'delete' && deleteThread(th)) location.hash = group ? '#/messages' : `#/p/${c.id}`;
+        if (a === 'delete' && deleteThread(th)) location.hash = group ? (th.gsrc === 'city' || th.duo || th.husb ? '#/sehir' : `#/${th.gsrc || 'tinder'}/x-mesaj`) : `#/p/${c.id}`;
         menu.remove();
       };
       setTimeout(() => document.addEventListener('click', function off() { menu.remove(); document.removeEventListener('click', off); }), 0);
@@ -18839,7 +18932,7 @@
     return Math.random() < .5 ? anLine(c) : '';
   }
   /* 🌱 Yaşayan karakter (v1108, veriler js/data/life.js Stories.LIFE). c.lf = {  (v1118'e kadar c.life; c.life sohbet dakikası sayacıdır)
-   *   g: { k, s, at, mc } süren gündem · gdone: [{ k, at, mc }] · cat: kedinin adı (sen koydun) · mc: ona yazdığın mesaj sayısı
+   *   g: { k, s, at, mc, no, pick, v } süren gündem (no: değişime hayır dedin · pick: önerdiğin saç rengi · v: {eski}/{yeni}/{renk}) · gdone: [{ k, at, mc, v, no }] · chg: [{ k, t, at }] ✨ gündemle değişenler (v1120) · cat: kedinin adı (sen koydun) · mc: ona yazdığın mesaj sayısı
    *   grow: { guven, acik, bag, cesur } 0–100 kişilik gelişimi · ms: { 'acik50': at } eşik cümleleri · evo: [{ a, f, t, at }] özellik değişimi
    *   views: { k: onun cevabı, u_k: senin cevabın, d_k: ikilemde seçimin } · asked: { k: at }
    *   plans: [{ x, at, due, asked, res }] senin planların · emo: [{ k: kirgin|mutlu|baris, t, at }] · mood: { k, at } · seen: { bilgi: son anılma } (önem / unutma)
@@ -18929,7 +19022,7 @@
     if (!L.g) {
       const last = L.gdone[L.gdone.length - 1];
       if (last && now - last.at < 20 * 36e5 && L.mc - (last.mc || 0) < 30) return null;
-      const pool = G.filter(x => !L.gdone.some(d => d.k === x.k)), g = pickOne(pool.length ? pool : G);
+      const okG = G.filter(x => lfGNeed(c, x)), pool = okG.filter(x => !L.gdone.some(d => d.k === x.k)), g = pickOne(pool.length ? pool : okG);
       return g ? { g, s: 0 } : null;
     }
     const g = G.find(x => x.k === L.g.k);
@@ -18937,17 +19030,92 @@
     if (now - L.g.at < 6 * 36e5 && L.mc - L.g.mc < 25) return null;
     return { g, s: L.g.s };
   }
+  /* ✨ değişim gündemi şartı (life.js need { has, not }): Relationship seçili değilse Single (evliyse Married) sayılır */
+  function lfGNeed(c, g) {
+    const n = g && g.need;
+    if (!n) return true;
+    const rel = cmTrait(c, 'Relationship') || (ccWed(c) ? 'Married' : 'Single'), tr = [...(c.traits || []).filter(t => !t.startsWith('Relationship:')), 'Relationship: ' + rel];
+    return (!n.has || n.has.some(t => tr.includes(t))) && !(n.not || []).some(t => tr.includes(t)) && (!n.ask || relV(c, 'aşk') >= n.ask);
+  }
+  // 🎭 değişim sorusunun tarzı (life.js VOTE_TONE, ilk uyan grup) · 📸 değişim fotoğrafı (konunun ph'si; seviye phLevel, en az ph.lv)
+  const lfTone = c => (LF().VOTE_TONE || []).find(x => x.tr.some(t => (c.traits || []).includes(t))) || null;
+  function lfPhMake(c, g, v) {
+    const lv = Math.max(phLevel(c).lv, g.ph.lv || 1), ph = phMake(c, g.ph.k, lv) || phMake(c, 'ayna', lv);
+    if (!ph) return null;
+    const f = s => lfFill(pickOne(s), v || {});
+    return { ...ph, t: f(g.ph.t), d: [f(g.ph.d), ph.d].join(' ') };
+  }
+  // 📸 değişimden sonraki ilk tekli sohbet turunda (2 gün içinde) kendiliğinden fotoğraf: { lead, tph } ya da null
+  function lfChgPhoto(c, th, n) {
+    const L = lfOf(c), p = L.phPend;
+    if (!p) return null;
+    L.phPend = null;
+    const g = (LF().GUNDEM || []).find(x => x.k === p.k);
+    if (Date.now() - p.at > 2 * 864e5 || !g || !g.ph) return null;
+    const x = lfPhMake(c, g, p.v);
+    if (!x) return null;
+    if (th) { const st = th.ph = th.ph || { at: -99, seen: [], n: 0 }; st.at = n; st.n++; st.seen = [...st.seen, x.key].slice(-12); }
+    const LD = LF().CHG_PH_LEAD || {}, pg = phPers(c);
+    return { lead: pickOne([...(LD[pg] || []), ...(LD.def || [])]), tph: x };
+  }
+  const LF_HAIR = ['Black', 'Brown', 'Blonde', 'Red', 'Ginger', 'Platinum'];
+  // 🎨 cevabındaki saç rengi → Hair Color değeri
+  const LF_HAIR_W = [['Black', /siyah|kara|black/], ['Brown', /kahve|kumral|esmer|brown/], ['Platinum', /platin|beyaz|gümüş|gumus|platinum/], ['Blonde', /sarı|sari|blond|bal köpü|bal kopu/], ['Ginger', /turuncu|bakır|bakir|ginger/], ['Red', /kızıl|kizil|kırmızı|kirmizi|bordo|red/]];
+  const lfHairOf = t => (LF_HAIR_W.find(([, re]) => re.test(t)) || [])[0] || '';
+  const LF_MAP = { 'Hair Length': CM_HLEN, 'Hair Color': CM_HAIR, 'Lip Shape': CM_LIPS, Experience: CM_EXP };
+  const lfDisp = (g, v) => !v ? '' : g === 'Boob Size' ? `${v} ${CM_CUP[v] || ''}`.trim() : LF_MAP[g] ? String(LF_MAP[g][v] || v).toLocaleLowerCase('tr') : v;
+  /* ✨ gündem adımının etkisi (fx: set { Grup: değer } · up [Grup, ±adım] · add 'Özellik' · hair 1). gs: süren gündem (pick: önerdiğin renk).
+   * Karakteri değiştirir; döner { v: { renk, eski, yeni }, log: [özet] }. Bildirim / setupLive çağıranda (deney kopyada çalıştırır) */
+  function lfGFx(c, fx, gs) {
+    const v = {}, log = [];
+    const setT = (g, val, o0) => {
+      const o = cmTrait(c, g);
+      if (!val || o === val) return;
+      c.traits = [...(c.traits || []).filter(x => !x.startsWith(g + ':')), `${g}: ${val}`];
+      v.eski = lfDisp(g, o || o0); v.yeni = lfDisp(g, val);
+      log.push(`${g}: ${o || o0 || '—'} → ${val}`);
+    };
+    if (fx.hair) { const o = cmTrait(c, 'Hair Color'), n = (gs || {}).pick && gs.pick !== o ? gs.pick : pickOne(LF_HAIR.filter(x => x !== o)); setT('Hair Color', n); v.renk = lfDisp('Hair Color', n); }
+    if (fx.up) {
+      const [g, d] = fx.up, G = T.groups.find(x => x.single && (x.values[0] || '').startsWith(g + ': '));
+      if (G) { const o = cmTrait(c, g), i = G.items.indexOf(o), i0 = i < 0 ? Math.floor(G.items.length / 2) - (d > 0 ? 1 : 0) : i; setT(g, G.items[Math.max(0, Math.min(G.items.length - 1, i0 + d))], G.items[i0]); }
+    }
+    Object.entries(fx.set || {}).forEach(([g, val]) => setT(g, val));
+    if (fx.add && !(c.traits || []).includes(fx.add)) { c.traits = [...(c.traits || []), fx.add]; log.push('+ ' + fx.add); }
+    return { v, log };
+  }
+  const LF_STUB = ['İnatçı', 'Asi', 'Şımarık', 'Kibirli', 'Dominance: Dominant'];
   function lfGStep(c, vars) {
     const r = lfGReady(c);
     if (!r) return null;
     const L = lfOf(c), X = LF(), st = r.g.steps[r.s], now = Date.now();
-    L.g = { k: r.g.k, s: r.s + 1, at: now, mc: L.mc };
-    const parts = [lfFill(pickOne(st.say), { isim: L.cat || 'Pamuk', sen: (vars || {}).sen })];
+    L.g = { ...(L.g && L.g.k === r.g.k ? L.g : {}), k: r.g.k, s: r.s + 1, at: now, mc: L.mc };
+    const fill = s => lfFill(s, { isim: L.cat || 'Pamuk', sen: (vars || {}).sen, ...(L.g.v || {}) });
+    const done = no => { L.gdone = [...L.gdone, { k: r.g.k, at: now, mc: L.mc, ...(L.g.v ? { v: L.g.v } : {}), ...(no ? { no: 1 } : {}) }].slice(-30); L.g = null; };
+    // 🗳️ "hayır" dediysen değişim adımında vazgeçer (konu biter); inatçıysa %40 yine yapar
+    let stub = '';
+    if (st.fx) {
+      if (L.g.no && st.no && !((c.traits || []).some(t => LF_STUB.includes(t)) && Math.random() < .4)) { const s = fill(pickOne(st.no)); done(1); return { parts: [s] }; }
+      if (L.g.no) stub = pickOne(X.G_STUBBORN || []);
+      const fr = lfGFx(c, st.fx, L.g);
+      L.g.v = { ...(L.g.v || {}), ...fr.v };
+      if (fr.log.length) {
+        L.chg = [...(L.chg || []), { k: r.g.k, t: fr.log.join(' · '), at: now }].slice(-20);
+        if (st.fx.set && st.fx.set.Relationship) setupLive();
+        notify(`${r.g.icon} ${c.name.split(' ')[0]}: ${fr.log.join(' · ')}`, r.g.icon);
+        if (r.g.ph) L.phPend = { k: r.g.k, at: now, v: L.g.v };
+      }
+    }
+    const parts = [stub, fill(pickOne(st.say))].filter(Boolean);
     let ask = null;
     const e = st.ev && allEvents().find(x => x.title === st.ev);
     if (e) { parts.push(pickOne(X.G_OFFER_Q)); ask = { t: 'lfev', ev: e.id }; }
-    else if (st.ask && (st.name || Math.random() < .7)) { parts.push(pickOne(st.ask)); ask = { t: 'lfg', k: r.g.k, s: r.s, ...(st.name ? { name: 1 } : {}) }; }
-    if (L.g.s >= r.g.steps.length) { L.gdone = [...L.gdone, { k: r.g.k, at: now, mc: L.mc }].slice(-30); L.g = null; }
+    else if (st.ask && (st.name || st.vote || st.color || Math.random() < .7)) {
+      const tn = st.vote && lfTone(c), q = pickOne(st.ask);
+      parts.push(tn ? lfFill(pickOne(tn.q), { q }) : q);
+      ask = { t: 'lfg', k: r.g.k, s: r.s, ...(st.name ? { name: 1 } : {}), ...(st.vote ? { vote: 1 } : {}), ...(st.color ? { color: 1 } : {}), ...(tn ? { tn: tn.k } : {}) };
+    }
+    if (L.g.s >= r.g.steps.length) done();
     return { parts, ask };
   }
   // 💭 sorulabilecek derin soru: kademe 1 · 2 ❤️ Aşk ≥ 30 · 3 Aşk ≥ 60 ve 🔓 Açıklık ≥ 40; sorulmamışlar önce (en az 3 gün arayla tekrar)
@@ -19087,6 +19255,11 @@
         lfGrow(c, { bag: 3 });
         return { parts: [lfFill(pickOne(X.G_NAME), { isim: L.cat })] };
       }
+      const cur = L.g && L.g.k === p.k ? L.g : null;
+      // 🎨 önerdiğin saç rengi · 🗳️ değişime evet / hayır (hayır → değişim adımında vazgeçer)
+      if (p.color) { const h = lfHairOf(t); if (h) { if (cur) cur.pick = h; lfGrow(c, { bag: 2 }); return { parts: [capTr(lfFill(pickOne(X.G_COLOR), { renk: lfDisp('Hair Color', h) }))] }; } }
+      const vyn = p.vote && (yn || (/\p{L}{2,}(?:ma|me)(?!\p{L})|olmaz|gerek yok|sakın|sakin/u.test(t) ? 'hayir' : /yaptır|yaptir|kabul et|evet de|boşan|bosan|bence de|olsun|harika|yakışır|yakisir/.test(t) ? 'evet' : ''));
+      if (vyn) { yn = vyn; if (cur) cur.no = yn === 'hayir' ? 1 : 0; const g = lfGrow(c, { guven: 2 }), tn = p.tn && (X.VOTE_TONE || []).find(x => x.k === p.tn); return { parts: [pickOne(tn ? tn[yn === 'hayir' ? 'no' : 'yes'] : yn === 'hayir' ? X.G_VOTE_NO : X.G_VOTE_YES), g].filter(Boolean) }; }
       const g = lfGrow(c, kind === 'kisa' ? { acik: -1 } : { guven: 3, bag: 1 });
       if (kind !== 'kisa') cmParam(c, 'aşk', 1);
       return { parts: [pickOne(kind === 'kisa' ? R.kisa : X.G_THANKS), g].filter(Boolean) };
@@ -19366,6 +19539,71 @@
     const pet = pickOne(a >= 70 ? ['aşkım', 'bebeğim', 'canım', 'hayatım', 'sevgilim', 'aşkım'] : ['canım', 'tatlım', 'canım']);
     const i = Math.floor(Math.random() * parts.length), p = parts[i], tail = /([\s\p{Extended_Pictographic}‍️]+)$/u.exec(p);
     parts[i] = Math.random() < .35 && /^\p{Lu}/u.test(p) ? `${capTr(pet)}, ${p.charAt(0).toLocaleLowerCase('tr')}${p.slice(1)}` : tail && tail.index > 0 ? `${p.slice(0, tail.index)} ${pet}${tail[0]}` : `${p} ${pet}`;
+  }
+  /* 💞 senin hitabına karşılık ("aşkım", "bitanem", "bebeğim", "sevgilim"…): kişiliğe (PET_GRP) ve ❤️ Aşk'a göre bir baloncuk.
+   * {p} = senin dediğinin uzatılmışı (aşkımmm), {P} = büyük harfle, {o} = onun sana hitabı. body: vücuda göre flört
+   * ({sutyen} = 85C, {bb:…} / {bt:…} beden, {bd:Saç}); satırın istediği özellik yoksa o satır atlanır */
+  const PET_USER_RE = /(?:^|\s)(aşkım|bitanem|birtanem|bebeğim|bebişim|sevgilim|canım|tatlım|güzelim|hayatım|meleğim|prensesim|kraliçem|balım|cicim|yavrum|kuzum|tatlişim)m*(?=\s|$)/u;
+  const PET_GRP = [['dominant', ['Dominant']], ['soguk', ['Soğuk', 'Kibirli', 'Alaycı', 'Asi', 'İnatçı', 'Resmi konuşur']], ['utangac', ['Utangaç', 'Güvensiz', 'Gergin', 'Alçakgönüllü']],
+    ['flortoz', ['Flörtöz', 'Şımarık', 'Neşeli', 'Komik', 'Çocuksu']], ['romantik', ['Romantik', 'Duygusal', 'Sadık', 'Korumacı']]];
+  const PET_OWN = { utangac: ['canım', 'tatlım'], flortoz: ['aşkımmm', 'bebeğim', 'bebişim', 'tatlişim'], romantik: ['hayatım', 'aşkım', 'bitanem', 'sevgilim'], soguk: ['', 'tatlım'], dominant: ['bebeğim', 'tatlım', 'aşkım'], gen: ['aşkım', 'canım', 'bebeğim'] };
+  const PET_SAY = {
+    low: {
+      utangac: ['{P} mı? 🙈 Daha yeni tanışıyoruz ama… kızarmadım değil 😳', 'B-bana {p} mı dedin? 🙈', 'Öyle deyince ne diyeceğimi bilemiyorum 😳 ama hoşuma gitti'],
+      flortoz: ['{P} mı oldum şimdi? Hızlısın 😏', 'Vay, {p} ha? Hak etmen lazım ama 😜', 'Hmm {p}… bunu herkese mi diyorsun? 😏'],
+      romantik: ['{P}… bunu duymak tuhaf ama güzel 🥺', 'Bu kadar erken mi {p}? Kalbim hızlandı ama 💗', 'Bir gün gerçekten {p} olmak isterim 🥺'],
+      soguk: ['{P} değilim. Henüz. 😒', 'Bana {p} deme, tanımıyorum seni bile 🙄', 'Hıh, {p}… acele etme istersen 😏'],
+      dominant: ['Bana {p} demek için erken, önce hak et 😏', '{P}? Cesursun. Bakalım arkası gelecek mi 👑', 'Bu kelimeyi kazanman lazım, unutma 😈'],
+      gen: ['{P} mı? 😊 Daha yeni başlıyoruz ama tatlısın', 'Hmm, {p} ha 😏']
+    },
+    high: {
+      utangac: ['Efendim {o}? 🙈', 'Öyle deyince hâlâ kızarıyorum 😳💕', '{P}… ben de senin… şey… 🙈', 'Seni bekliyordum {o} 🥺', 'Hı hı, buradayım {o} 🙈'],
+      flortoz: ['Efendim {o}? 😘', 'Seni bekliyorum {o} 💋', '{P}! Söyle bakalım ne istiyorsun 😏', 'Bir daha de, çok hoşuma gidiyor {o} 😜', 'Buradayım {o}, hem de sadece senin için 😈', 'Sonunda yazdın {o}! Seni bekliyordum 💕'],
+      romantik: ['Efendim {o}? 💗', 'Senin {p} olmak dünyanın en güzel şeyi 🥺', 'Bunu her duyduğumda içim ısınıyor {o} 💞', 'Seni bekliyordum {o}, bütün gün aklımdaydın 💗', 'Buradayım {o}, hep buradayım 🤍'],
+      soguk: ['Ne var? 😒 …tamam, efendim', 'Hı? Buradayım 🙄', '{P}… peki, söyle 😏', 'Bu kelimeye alıştım galiba 😶'],
+      dominant: ['Efendim {o}? Söyle bakalım ne istiyorsun 😏', 'Seni bekliyorum {o}. Geç kalma 👑', '{P} diye çağırınca koşa koşa gelirim sandın değil mi 😈 …haklısın', 'Burdayım {o}, ama bu gece kurallar benim 😏'],
+      gen: ['Efendim {o}? 😘', 'Seni bekliyorum {o} 💕', 'Buradayım {o} 🥰']
+    },
+    body: {
+      utangac: ['{sutyen} göğüslerim… sadece senin için 🙈', 'Kalçam… {bt:minik ama|tam senin sevdiğin gibi|kocaman ve} seni bekliyor 😳', '{bd:Saç} saçlarımı senin için taradım {o} 🙈'],
+      flortoz: ['{sutyen} mememi ister misin {o}? 😈', '{bb:Minik|Dolgun|Kocaman} göğüslerim seni özledi {o} 💋', '{bt:Küçük ama sıkı|Yuvarlak|Koca} kalçam seni bekliyor {o} 😏🍑', '{sutyen} sütyenimi çıkarayım mı {o}? 😜'],
+      romantik: ['Gel sarıl bana {o}, {sutyen} göğsüme yasla başını 💗', '{bd:Saç} saçlarımı okşa {o}, en çok onu seviyorum 🥺', 'Bütün bedenim senin {o} 💞'],
+      soguk: ['{sutyen}. Evet, gördün. Başka? 😏', 'Kalçama bakmayı bırak {o} 🙄 …bırakma aslında', 'Bunu {bb:minik|güzel|bu koca} göğüslerim için mi diyorsun? 😒'],
+      dominant: ['{sutyen} göğüslerim emrinde… ama önce dizlerinin üstüne 👑', 'Kalçamı istiyorsan hak et {o} 😈🍑', 'Bu {sutyen} memeleri hak ettiğini kanıtla {o} 😏'],
+      gen: ['{sutyen} mememi ister misin {o}? 😏', 'Kalçam seni bekliyor {o} 🍑']
+    }
+  };
+  const BRA_CUP = { 70: '70A', 75: '75B', 80: '80B', 85: '85C', 90: '90D', 95: '95DD' };
+  const braOf = ch => BRA_CUP[traitVal(ch, 'Boob Size')] || '';
+  function petReply(parts, ch, text, fallback, fctx, sexy, simple) {
+    const mm = PET_USER_RE.exec(Stories.Bot.norm(text));
+    if (!mm || (mm[1] === 'canım' && /canım (sıkıl|acı|yan|çek)/u.test(Stories.Bot.norm(text)))) return;
+    const tr = (ch || {}).traits || [], a = relV(ch || {}, 'aşk'), short = Stories.Bot.norm(text).trim().split(' ').length <= 3;
+    if (!fallback && !short && Math.random() > .5) return;
+    const g = (PET_GRP.find(([, ts]) => ts.some(t => tr.includes(t))) || ['gen'])[0];
+    const w = mm[1], own = pickOne(PET_OWN[g]) || ((ch.memory || {}).ad || userName());
+    let p = w + w.slice(-1).repeat(2);
+    const has = { sutyen: !!braOf(ch), bt: !!szOfCh(ch, 'butt'), bb: !!szOfCh(ch, 'boob'), saç: !!traitVal(ch, 'Hair Color') };
+    const ok = s => (!/\{sutyen\}/.test(s) || has.sutyen) && (!/\{bt:/.test(s) || has.bt) && (!/\{bb:/.test(s) || has.bb) && (!/\{bd:Saç\}/.test(s) || has.saç);
+    const lvl = a < 30 ? 'low' : (a >= 50 || sexy) && Math.random() < .35 && PET_SAY.body[g].some(ok) ? 'body' : 'high';
+    const pool = PET_SAY[lvl][g].filter(ok);
+    if (!pool.length) return;
+    if (lvl === 'low') p = w;
+    const line = fillTraits(szFill(pickOne(pool), ch), ch, fctx).replace(/\{sutyen\}/g, braOf(ch)).replace(/\{P\}/g, capTr(p)).replace(/\{p\}/g, p).replace(/\s*\{o\}/g, own ? ' ' + own : '');
+    if (fallback || (short && Math.random() < .5)) parts.splice(0, parts.length, line);
+    // 🧘 Sade mesajlar: ayrı baloncuk yerine ana cevabın başına kısa hitap ("Aşkımmm, …"); Aşk düşükse hiç
+    else if (simple) { if (lvl !== 'low' && parts[0] && /^\p{Lu}/u.test(parts[0])) parts[0] = `${capTr(p)}, ${parts[0].charAt(0).toLocaleLowerCase('tr')}${parts[0].slice(1)}`; }
+    else parts.unshift(line);
+  }
+  // 🧘 Sade mesajlar: ana cevap (mainSet) en fazla 2 parça; ek varsa ana cevap 1 + ek 1. Ek önceliği: bu turun sorusu / emri (son baloncuk),
+  // ana cevabın önüne konan ek (hamilelik sonucu, sahne / gerilim cümlesi, affetme…), yoksa %50 diğer eklerden biri. Ana cevap yoksa ilk 2
+  function simpleParts(parts, mainSet, asked) {
+    const mi = parts.findIndex(p => mainSet.has(p));
+    if (mi < 0) return asked && parts.length > 1 ? [parts[0], parts[parts.length - 1]] : parts.slice(0, 2);
+    const main = parts.filter(p => mainSet.has(p)), pre = parts.slice(0, mi).filter(p => !mainSet.has(p)), post = parts.slice(mi).filter(p => !mainSet.has(p));
+    const ask = asked && post.length ? post[post.length - 1] : null;
+    const ex = ask || pre[0] || (post.length && Math.random() < .5 ? pickOne(post) : null);
+    return !ex ? main.slice(0, 2) : pre.includes(ex) ? [ex, main[0]] : [main[0], ex];
   }
   // ⌨️ Uzun yazar: cevabına bir cümle daha ekler
   const LONG_TAIL = [' Bunu söylerken bile kalbim hızlandı, inanır mısın?', ' Aslında anlatmak istediğim çok şey var ama nereden başlasam bilmiyorum.', ' Seninle konuşmak bana iyi geliyor, bunu bil.',
@@ -20888,6 +21126,7 @@
       })
       // 📏 {bd:Boy} {bd:Saç} {bd:Saç boyu} {bd:Ten} {bd:Vücut} {bd:Göz}: profil vücut kartındaki değer (cmBody), küçük harfle
       .replace(/\{bd:([^}]+)\}/g, (a, g) => { const r = cmBody(ch).find(x => x[1] === g.trim()); return r ? String(r[2]).toLocaleLowerCase('tr') : ''; })
+      .replace(/\{sutyen\}/g, () => braOf(ch))
       .replace(/\{sever\}/g, () => titles(ch.likes, 2, 'sürprizleri'))
       .replace(/\{sevmez\}/g, () => titles(ch.dislikes, 2, 'pek bir şeyi'))
       .replace(/\{izin\}/g, () => titles(ch.allows, 2, 'hiçbir şeyi'))
@@ -21390,7 +21629,13 @@
   // 🛡️ sadece ✅/🚫'den oluşan kurallar sayılmaz: korunma olaylarının tutarlılığını artık 🛡️ Korunma & boşalma kademeleri sağlar (protSet)
   function crBlocked(d) {
     const m = new Map();
-    [...crRules(), ...permCfg().rules, ...(T.rules || [])].filter(r => !permOnly(r)).forEach(r => { if (crMatch(r, d)) crExpand(r).forEach(v => { if (!m.has(v)) m.set(v, crText(r)); }); });
+    // 💉 silikonluysa kilo kuralları (w_*) göğüs / kalça bedenini engellemez
+    const imp = ['Breast Implants', 'Butt Implants'].map((t, i) => (d.traits || []).includes(t) && ['Boob Size: ', 'Butt Size: '][i]).filter(Boolean);
+    const impSkip = (r, v) => /^(w|b)_/.test(r.id || '') && imp.some(p => v.startsWith(p) || crIfs(r).some(x => String(x).startsWith(p)));
+    [...crRules(), ...permCfg().rules, ...(T.rules || [])].filter(r => !permOnly(r)).forEach(r => { if (crMatch(r, d)) crExpand(r).forEach(v => { if (!m.has(v) && !impSkip(r, v)) m.set(v, crText(r)); }); });
+    // 🌍 memlekette hiç görülmeyen ten (ORIGIN_LOOK ağırlığı 0) seçilemez
+    const sw = lookW(d, 'skin'), sg = sw && T.groups.find(g => g.id === 'skin');
+    if (sg) sg.values.forEach((v, n) => { if (!sw[n] && !m.has(v)) m.set(v, '🌍 ' + Stories.World.regionOf(d.city)); });
     return m;
   }
   // kurala aykırıları düzeltir (repick: tek seçimli grupta yerine izinli biri gelir); ✅ olamayan olay 🚫'ye, 🚫 olamayan ✅'ye geçer
@@ -21590,16 +21835,17 @@
     if (k === 'all' || k === 'bio') d.bio = pick(P.bios);
     T.groups.forEach(g => {
       if (k !== 'all' && k !== g.id) return;
-      const n = g.single ? 1 : g.id === 'personality' ? 2 + Math.floor(Math.random() * 2) : 1 + Math.floor(Math.random() * 2);
+      const n = g.single ? 1 : g.id === 'personality' ? 2 + Math.floor(Math.random() * 2) : g.id === 'aesthetic' ? +(Math.random() < .15) : 1 + Math.floor(Math.random() * 2);
       d.traits = d.traits.filter(t => !g.values.includes(t));
       // 📏 kurala göre olamayacaklar seçilmez
       // 🏠 Yaşam: evliyse Kocasıyla Yaşıyor, değilse tek / ev arkadaşı
       const bl = crBlocked(d), ok = g.values.filter(v => !bl.has(v) && (g.id !== 'living' || (v === LIVE_KOCA) === ccWed(d))
         && (g.id !== 'relationship' || (v === REL_WED) === ccWed(d)) && (g.id !== 'agerange' || ageOk(v, d.age)));
       // 🌍 Skin Tone / Hair Color memlekete göre ağırlıklı (ORIGIN_LOOK)
-      const pool = ok.length ? ok : g.values, lk = g.single && { skin: 'skin', haircolor: 'hair' }[g.id], lw = lk && lookW(d, lk);
+      // 🌍 Boy / Göğüs / Kalça da memlekete göre ağırlıklı (ORIGIN_LOOK height / boob / butt)
+      const pool = ok.length ? ok : g.values, lk = g.single && { skin: 'skin', haircolor: 'hair', height: 'height', boob: 'boob', butt: 'butt' }[g.id], lw = lk && lookW(d, lk);
       if (lw) {
-        const ks = Object.keys(lk === 'skin' ? CM_SKIN : CM_HAIR), ws = pool.map(v => lw[ks.indexOf(v.replace(/^[^:]+:\s*/, ''))] || 0);
+        const ks = g.items, ws = pool.map(v => lw[ks.indexOf(v.replace(/^[^:]+:\s*/, ''))] || 0);
         if (ws.some(Boolean)) { d.traits = d.traits.concat(pool[wPick(ws, Math.random())]); return; }
       }
       d.traits = d.traits.concat(sample(pool, n));
@@ -21919,6 +22165,8 @@
     bindText('#cAge', 'age', el => (el.value = el.value.replace(/\D/g, '')));
     { const a = $('#cAge'), ch = a.onchange; a.onchange = () => { if (a.value && +a.value < 18) d.age = a.value = '18'; ch(); }; }   // 🔞 alt sınır 18
     bindText('#cCity', 'city');
+    // 🌍 memleket değişince o memlekette olamayan ten yerine uygun biri gelir
+    $('#cCity').onchange = () => { const gone = crFix(d, true); if (gone.length) { notify(`📏 Kurala göre çıkarıldı: ${gone.join(', ')}`, '📏'); redraw(); } else pv(); };
     view.querySelectorAll('[data-job]').forEach(b => b.onclick = () => {
       d.job = d.job === b.dataset.job ? '' : b.dataset.job;
       view.querySelectorAll('[data-job]').forEach(x => x.classList.toggle('on', x.dataset.job === d.job));
@@ -22044,7 +22292,8 @@
       const b = e.target.closest('button');
       if (!b) return;
       const ds = b.dataset;
-      if (ds.cftog) { d.fields[ds.cftog] = !d.fields[ds.cftog]; const gone = crFix(d); if (gone.length) notify(`📏 Kurala göre çıkarıldı: ${gone.join(', ')}`, '📏'); redraw(); }
+      if (ds.cftog) { const bl0 = crBlocked(d); if (!d.fields[ds.cftog] && bl0.has('f:' + ds.cftog)) { notify(`📏 ${bl0.get('f:' + ds.cftog)} varken ${crLabel('f:' + ds.cftog)} olamaz`, '📏'); return; }
+        d.fields[ds.cftog] = !d.fields[ds.cftog]; const gone = crFix(d); if (gone.length) notify(`📏 Kurala göre çıkarıldı: ${gone.join(', ')}`, '📏'); redraw(); }
       if (ds.cfch) { d.fields[ds.cfch] = d.fields[ds.cfch] === ds.v ? '' : ds.v; redraw(); }
       if (ds.cfmu) { const a = Array.isArray(d.fields[ds.cfmu]) ? d.fields[ds.cfmu] : []; d.fields[ds.cfmu] = a.includes(ds.v) ? a.filter(x => x !== ds.v) : [...a, ds.v]; redraw(); }
     };
@@ -28191,7 +28440,9 @@
       <p>${(X.DILEMMA || []).map(d => `${esc(d[1])} / ${esc(d[2])}`).join(' · ')}</p>
       <h4>📅 Gündem: onun hayatı</h4>
       <p>Her karakterin kendi hayatında bir konusu var ve günler içinde ilerler: önce anlatır, sonra gelişir, sonunda çözülür. Yeni adım için 6 saat ya da 25 mesaj geçmesi gerekir; konu bitince bir gün (ya da 30 mesaj) sonra yenisi başlar. Bazı adımlarda fikrini sorar (cevabın onu rahatlatır, güveni ve aşkı biraz artar), bazılarında seni bir ☕ gündelik olaya davet eder; evet dersen olay hemen olur.</p>
-      <table class="bk-t"><tr><th>Konu</th><th>Adımlar</th><th>Sonunda</th></tr>${(X.GUNDEM || []).map(g => `<tr><td>${g.icon} <b>${esc(g.name)}</b></td><td>${g.steps.map(s => `<span>${esc(s.say[0])}</span>${s.ask ? ` ❔ <span>${esc(s.ask[0])}</span>` : ''}${s.ev ? ` ☕ <span>${esc(s.ev)}</span>` : ''}`).join('<br>')}</td><td>${esc(g.end)}</td></tr>`).join('')}</table>
+      <table class="bk-t"><tr><th>Konu</th><th>Adımlar</th><th>Sonunda</th></tr>${(X.GUNDEM || []).map(g => `<tr><td>${g.icon} <b>${esc(g.name)}</b></td><td>${g.steps.map(s => `<span>${esc(s.say[0])}</span>${s.ask ? ` ${s.vote ? '🗳️' : '❔'} <span>${esc(s.ask[0])}</span>` : ''}${s.ev ? ` ☕ <span>${esc(s.ev)}</span>` : ''}${s.fx ? ' ✨' : ''}`).join('<br>')}</td><td>${esc(g.end)}${g.endNo ? `<br><small>🗳️ ${esc(g.endNo)}</small>` : ''}</td></tr>`).join('')}</table>
+      <p>✨ işaretli adım karakteri değiştirir (saç rengi / boyu, 🍒 göğüs, 🍑 kalça, 💋 dudak, dövme, piercing, 💍 ilişki). 🗳️ sorusuna "hayır" dersen o adımda vazgeçer; İnatçı, Asi, Şımarık ya da Kibirli ise %40 yine yapar. Deneyi: <a href="#/gundem">📅 Gündem deneyi</a>.</p>
+      <p>🎭 🗳️ sorusunu kişiliğine göre sorar: utangaç utanarak, inatçı "kararımı verdim ama…" diye, Dominant izin değil fikir ister, soğuk kısa keser, flörtöz seni işin içine katar, alaycı / manipülatif iğneler, romantik "senin fikrin önemli" der, neşeli heveslendirir; evet / hayır tepkisi de buna göre. 📸 Saç, estetik, dövme, piercing ve evlilikten sonraki ilk sohbet turunda yeni halinin anlatımlı fotoğrafını kendiliğinden atar.</p>
       <p>🐱 Sokak kedisi konusunda kediye adı sen koyarsın; o isim hafızasına yazılır ve sonra hep o isimle anar.</p>
       <h4>⏱️ Ne zaman sorar</h4>
       <ul><li>Yazdığını anlamadığında (yedek cevap) %45: zamanı gelmiş plan, gündem, derin soru, ikilem ya da bir yankı.</li>
@@ -31386,7 +31637,8 @@
   BOOKS.push({ id: 'sehir', icon: '🏙️', title: 'Şehir Kitabı', sub: 'canlı şehir, binalar, karakterler, ayaküstü konuşma, etkinlikler', chips: ['🗺️ harita', '🗣️ ayaküstü', '🎭 6 tarz', '🎉 etkinlik', '🪧 pano'], chapters: [
     { icon: '📖', title: 'Şehir nasıl kullanılır', sub: 'sekme, harita, saat, yürümek', body: `
       <p>🏙️ <b>Şehir</b> alt menüde kendi sekmesidir: kuşbakışı, canlı bir şehir. Karakterlerin saatlerine göre işe, sahile, gazinoya yürür; arabalar yollarda, yayalar kaldırımda, denizde tekneler gezer.</p>
-      <ul><li><b>🚶 Yürümek</b>: haritada bir yere dokun, kaldırımlardan ve yaya yollarından yürüyerek gidersin. Binaların içinden geçmezsin; dokunduğun yer bir binanın içindeyse en yakın yolda durursun.</li>
+      <ul><li><b>🚶 Yürümek</b>: haritada bir yere dokun, kaldırımlardan ve yaya yollarından yürüyerek gidersin. Binaların içinden geçmezsin; dokunduğun yer bir binanın içindeyse en yakın yolda durursun. Kaldırımlar iki kişinin yan yana yürüyeceği kadar geniştir.</li>
+        <li><b>👆 Basılı tut</b>: haritayı sürüklemeden basılı tutarsan parmağının yönüne yürürsün; parmağını kaydırınca yön değişir, bırakınca durursun. Binaya ve denize girmezsin, duvar boyunca kayarsın.</li>
         <li><b>🚕 Taksi</b>: uzaktaki bir binanın ya da alanın kartında <b>🚕 Taksiyle git</b>. Yakındaki bir yoldan sarı taksi gelir, biner ve hedefin önünde inersin (yürümekten ~2,5× hızlı); varınca kartı açılır. Taksi gelirken başka yere yürürsen taksi iptal olur, yoldayken haritaya dokunamazsın.</li>
         <li><b>🎯 Kamera</b>: sürükle, iki parmakla ya da ＋ / － ile yakınlaş. 🎯 kamerayı sana getirir.</li>
         <li><b>⏩ Saat</b>: şehirde 1 dakika 1 saattir. Üstteki düğmeyle 240×, gerçek zaman ya da duraklat. Akşam gökyüzü turuncuya döner, gece lambalar ve neonlar yanar.</li>
@@ -31394,7 +31646,11 @@
         <li><b>🏷️ Adlar</b>: binaların adı dokununca görünür; kartında kim var, ne yapıyor yazar.</li>
         <li><b>🏖️ Sahil ve park</b>: açık alana dokununca oraya yürürsün (kumda, parkta); aynı yere bir daha dokununca kartı açılır.</li>
         <li><b>🚪 İç mekân</b>: bir binanın kartında <b>🚪 İçeri gir</b>. Oda açılır: mobilyalar ve içeridekiler; dokunduğun yere yürürsün, birine dokunursan mesafe sorunu olmadan konuşursun. Kapıdan ya da 🚪 Dışarı çık ile çıkarsın.</li>
-        <li><b>🏡 Senin evin</b>: mahallede pembe çatılı ev; ilk açılışta önünde başlarsın. İçeri girebilir ya da <b>💌 Eve davet et</b> ile tanıdığını çağırırsın: sohbet evinde, şehir saatiyle başlar.</li></ul>` },
+        <li><b>🏡 Senin evin</b>: mahallede pembe çatılı ev; ilk açılışta önünde başlarsın. İçeri girebilir ya da <b>💌 Eve davet et</b> ile tanıdığını çağırırsın.</li>
+        <li><b>🚗 Araban</b>: evinin önünde pembe bir SUV'un var. Sağdaki 🚗 ile (ya da arabana dokunup <b>🔑 Bin</b>) binersin; uzaktaysa önce yanına yürürsün. Sürerken haritaya dokun: yollardan gidersin; hedef bir bina ya da kişiyse varınca park edip iner, kalanını yürürsün. Basılı tutarsan o yöne sürersin. 🅿️ ile park edip inersin. Yanındaki kızlar (eşlik edenler) seninle biner; eve davet ettiğin kız arabaya biner ve beraber eve sürersiniz.</li>
+        <li><b>📱 Şehir telefonu</b>: sağ üstteki 📱 şehirde başlayan bütün sohbetlerini ve şehir gruplarını listeler (en yeni önce, okunmamışta ● ). Dokununca o sohbet açılır; geri dönünce şehre dönersin.</li>
+        <li><b>👫 Sohbetten sonra</b>: şehirden bir sohbete geçip geri döndüğünde (3 saat içinde) o kişi yanındadır ve peşinden gelir. Kartında <b>🏡 Eve davet et</b> ile beraber eve yürürsünüz, <b>👋 Vedalaş</b> ile yoluna devam eder.</li>
+        <li><b>🚶‍♀️ Eve beraber yürüme</b>: davet ettiğin kız (ya da iki kız) önce yanına gelir, uzaktaysa yakına taksiyle gelir. Sonra seni evine götürürsün: o da arkandan yürür, yolda konuşur ("Elimi tutsana 🤭"). İstediğin yoldan yürüyebilirsin; kapına varınca sohbet evinde, şehir saatiyle başlar. Tanıdığın birinin kartında <b>🏡 Eve davet et</b>, ayaküstü konuşmayı kazanınca <b>🏡 Eve götür</b> de aynısını yapar. Vazgeçmek için ona dokun, <b>👋 Davetten vazgeç</b>.</li></ul>` },
     { icon: '🗺️', title: 'Bölgeler ve binalar', sub: 'hangi bina hangi siteye açılır', get body() {
       const B = CITY_B().BLD || [], A = CITY_B().AREAS || [];
       return `<p>Batıda büyük bir mahalle, kuzeyde tepe villaları, kuzeybatıda eski evler ve çiftlik, ortada meydan ve iş yerleri, doğuda eğlence caddesi, güneyde park, sahil ve iskele. Her caddenin ve yaya yolunun iki yanında yola dönük dükkanlar, barlar, evler ve apartmanlar dizilidir. Karakterler 17 evde ve apartmanın dairelerinde oturur.</p>
@@ -31406,12 +31662,22 @@
       <ul><li><b>🗓️ Rutin</b>: kayıtlı karakterlerin mesleğine göre iş saatinde işte, boş zamanda sahilde, kafede, AVM'de, akşam sinemada, gazinoda, gece kulüpte ya da evde.</li>
         <li><b>🏠 Yaşam</b>: karakterin <b>🏠 Yaşam</b> özelliği şehirdeki hanesiyle aynıdır: 🧍 <b>Tek Yaşıyor</b> → tek kişilik ev, 👭 <b>Ev Arkadaşıyla</b> → 2–3 kişilik ev (tek kalırsa şehirde olmayan bir ev arkadaşıyla), 💍 <b>Kocasıyla Yaşıyor</b> → kocasıyla ev. Kocasıyla Yaşıyor ile 💍 Evli anahtarı birbirine bağlıdır: hangisini son değiştirdiysen öteki ona uyar. Özelliği olmayan eski karakterlere id'ye göre sabit biri verilir (~%40 tek).</li>
         <li><b>💬 Mesajlarda</b>: cevaplarına bazen yaşamına uyan bir ek gelir (tek: "evde kimse yok 😈", ev arkadaşı: "sessiz ol, yan odada 🤫", kocasıyla: "kocam salonda maç izliyor 🙈"). "Kiminle yaşıyorsun? / Ev arkadaşın var mı?" sorusuna ona göre cevap verir. Tek ya da kocasıyla yaşayan "ev arkadaşım…", evli olmayan "kocam…" diye başlayan cevapları seçmez.</li>
-        <li><b>🙋‍♀️ Yabancılar</b>: her gün carmen.com'un kaydedilmemiş 56 kızına kadar şehirde gezer. Adı ❔ görünür; konuşunca öğrenirsin. Kaldırımlarda 220 yaya, yollarda 44 araba (her beşinden biri taksi) dolaşır.</li>
+        <li><b>🙋‍♀️ Yabancılar</b>: her gün carmen.com'un kaydedilmemiş 56 kızına kadar şehirde gezer. Adı ❔ görünür; konuşunca öğrenirsin. Kaldırımlarda 520 yaya, yollarda 150 araba (her altısından biri taksi) dolaşır; yayalar hep senin çevrende toplanır, sokaklar boş kalmaz. Yayalar da carmen.com kızlarıdır (fotoğraflı); birine dokununca yabancı karaktere dönüşür: süzebilir, konuşabilirsin.</li>
         <li><b>🧴 Çerçeve</b>: ikonun çerçevesi ten rengidir (profil kartındaki Ten).</li>
-        <li><b>👗 Kıyafet ve 📏 beden</b>: kartında o an üstündekiler (iş kıyafeti, plajda bikini, kulüpte mini elbise, evde şort…), 📏 boyu ve 🍒 göğüs / 🍑 kalça bedeni yazar.</li></ul>` },
+        <li><b>👀 Süz</b>: kıyafeti (iş kıyafeti, plajda bikini, kulüpte mini elbise, evde şort…), 📏 boyu ve 🍒 göğüs / 🍑 kalça bedeni hemen görünmez; kartında <b>👀 Süz</b> düğmesine basınca açılır. Süzdüğünü fark eder, başının üstünde tepki baloncuğu çıkar: "Fotoğraf çeksene, daha uzun sürer 📸"</li>
+        <li><b>👥 Kendi aralarında</b>: yürüyen 2–3 kişi bazen kaldırımda buluşup sohbet eder; gri baloncuklarda sırayla konuşurlar (elbiseler, partiler, dedikodu), bitince yollarına devam ederler. Birine dokunup <b>👥 Sohbete katıl</b> dersen yanlarına yürürsün: konuşma dokunduğun kızla olur, diğerleri araya girer ("Kızım, bu sana yürüyor 😂"). Vedalaşınca grup dağılır.</li>
+        <li><b>🏖️ Sahil</b>: kumsal uzadı ve genişledi; gündüz havlularında güneşlenenler, şemsiyeler ve ayakta sohbet eden küçük gruplar vardır ("Voleybol oynayalım mı? 🏐").</li>
+        <li><b>📱 Telefonda</b>: bazıları yürürken telefonla konuşur, yavaşlar; baloncukta konuşmanın onun tarafını okursun.</li>
+        <li><b>🚗 Trafik</b>: arabalar öndeki araca yaklaşınca yavaşlar, gerekirse durur; yayalar birbirinin içinden geçmez, kaldırımda farklı çizgilerde yürür.</li>
+        <li><b>🧑‍🤝‍🧑 Arabadakiler</b>: arabalarda koltuk sayısı kadar yolcu olur (otobüs kalabalıktır); yakından fotoğrafları görünür. İki ve daha fazla kişinin olduğu arabalarda kendi aralarında konuşurlar ("Şu şarkıyı aç! 🎶", "Sağdan dön, sağdan!"). Arabalar hep senin çevrende dolaşır.</li>
+        <li><b>🗺️ Semtine göre</b>: sokak sohbetleri bulunduğu yere göre değişir: mahallede komşu ve bahçe, merkezde iş ve alışveriş, eğlence caddesinde karaoke, kokteyl ve kumarhane, sahil şeridinde dondurma ve sörf; gece ise kulüp, topuklular ve shotlar. Telefon konuşmaları da gece değişir.</li></ul>` },
     { icon: '✋', title: 'Durdurmak ve ayaküstü konuşmak', sub: 'mesafe, hamleler, ilgi', get body() {
       return `<ul><li><b>✋ Durdurmak</b>: yakınındaki (${CITY_B().STOP_R || 240} birim) bir karaktere dokununca durur ve seni bekler. Uzaktaysa durmaz: <b>🏃 Peşinden git</b>, yaklaşınca durur.</li>
-        <li><b>🗣️ Ayaküstü konuş</b>: 😊 İltifat, 😂 Espri, ☕ Davet, 😏 Cesur. Her cevap 💗 ilgi barını oynatır. 100 olursa (ya da ilgi 70'ken davet tutarsa) numarasını verir; üç kez üst üste ters giderse gider ve bir süre seninle konuşmaz.</li>
+        <li><b>🗣️ Ayaküstü konuş</b>: butonla değil, yazarak konuşursun. Ne yazdığını anlar: iltifat ("çok güzelsin"), espri, davet ("kahve içelim mi?"), cesur söz ya da kabalık. Her cevap 💗 ilgi barını oynatır. 100 olursa (ya da ilgi 70'ken davet tutarsa) numarasını verir; üç kez üst üste ters giderse gider ve bir süre seninle konuşmaz. Burada olay tetiklenmez.</li>
+        <li><b>💡 Öneriler</b>: yazı kutusunun üstünde örnek cümleler çıkar (bir soru, bir iltifat ya da espri, ilgi arttıkça davet ve cesur söz; o sana soru sorduysa cevap önerileri). Dokununca kutuya gelir, istersen değiştirip gönderirsin. İyi giden her cevapta ilgi hızlı dolar.</li>
+        <li><b>❓ Soru sor</b>: adını, yaşını, işini, nasıl olduğunu, nereye gittiğini, ne yaptığını, sevgilisi olup olmadığını, hobisini, nerede oturduğunu sorabilirsin; kendi bilgileriyle cevap verir. İlişkisi profilindeki 💍 Relationship ve 🏠 Yaşam ile aynıdır: evliyse "Evliyim 💍" der, sevgilisi varsa saklamaz. Yabancı, ilgisi düşükken adını hemen söylemez.</li>
+        <li><b>💭 O da sorar</b>: arada sana soru sorar ("Sevgilin var mı? 😏", "Beni neden durdurdun? 😄"). Cevap verirsen ilgisi artar; tek kelimelik cevap hoşuna gitmez. Üst üste boş laflar onu sıkar.</li>
+        <li><b>✋ Seni durdurmak</b>: yürüyen bir kız bazen "Hey! Dur bir saniye! ✋" diye seslenip yanına koşar; yetişince seni durdurur ve konuşmayı o başlatır ("Saat kaç biliyor musun? 🙂", sevgilin "Aşkım! Dur, öpmeden gitme 😘").</li>
         <li><b>📍 Mekân</b>: kulüpte ve gazinoda cesur, kafede ve sahilde espri ve iltifat daha çok işe yarar. İş başındaysa zordur. Aynı hamleyi üst üste yapmak şansı düşürür.</li>
         <li><b>💍 Evli</b>: bazen "Kocam buralarda olabilir 😳" der; cesur hamle risklidir.</li>
         <li><b>📣 Laf atma</b>: yakınından (${CITY_B().LAF_R || 170} birim) geçen karakterler bazen sana laf atar; başının üstünde baloncuk çıkar. Söz tanışıklığa (yabancı "Psst! Evet, sen 👀", sevgilin "Aşkııım! 😍"), tarzına, geceye, etkinliğe ve evliliğe göre değişir. 30 saniye içinde ona dokunup <b>😏 Karşılık ver</b> dersen konuşma o sözle ve 💗 +${CITY_B().LAF_I || 10} ilgiyle başlar. Gece ve etkinlik varken daha sık laf atarlar; aynı kişi dakikada bir kez.</li></ul>`;
@@ -32706,6 +32972,13 @@
         'Sonuç üç sekmede: 🏆 Özet sohbette büyük ihtimalle kazanacak kuralı ve örnek cevabı, 📋 Bütün kurallar puanlarıyla yarışan her kuralı, 💬 Ek baloncuklar kıyafet, kilo, boyut, meslek, site ve baskınlık eklerini gösterir.',
         'En altta 📭 Eksik cevaplar: sohbette hiçbir kuralın tutmadığı mesajların. Dokun, burada dene; sonra Bot editöründe kuralını yaz.'],
       'Karakter beklemediğin bir şey dediğinde, yeni bir kural yazmadan önce ya da bir özelliğin cevabı nasıl değiştirdiğini görmek istediğinde.', ['bot', 'yedek', 'kisilik']],
+    ['gundem', '📅', 'Gündem deneyi', 'konus', 'Onun gündemi: hayatındaki konular adım adım nasıl ilerler, ne sorar, hangi gündelik ana davet eder ve ✨ değişim gündemleri karakterini nasıl değiştirir (saç, estetik, evlilik, boşanma…).',
+      ['Üstten bir karakter seç: hangi konuların ona uygun olduğu (✅) ya da şartı tutmadığı (🚫) görünür. Karakterin değişmez, deney bir kopyada çalışır.',
+        '🎭 Soru tarzı karakterin kişiliğinden gelir; başka bir tarzı denemek için 🎭 listesinden seç. ✨ adımlarının altında 📸 değişim fotoğrafı.',
+        'Bir konuya dokun: bütün adımları, onun cümleleri, ❔ / 🗳️ soruları ve ☕ davetleriyle açılır.',
+        '🗳️ Hayır de anahtarını aç: değişim adımında vazgeçişi gör. 🎨 saç rengi seç: önerdiğin renge boyatır.',
+        '✨ adımlarında özelliğin önce / sonra değeri yazar. Altta seçili karakterin süren gündemi ve gündemle değişenleri.'],
+      'Karakterinin kendi hayatında neler yaşayabileceğini, bir değişimin (ör. göğüs estetiği) ne zaman ve nasıl olacağını görmek istediğinde.', ['hafiza', 'kisilik']],
     ['mesajlarim', '🗣️', 'Benim mesajlarım', 'konus', 'Bir olayı tetikleyince olay kartının altına senin ağzından yazılan otomatik mesajlar.',
       ['Sohbette ⋮ → 🗣️ Olay mesajlarım açık olmalı; kapalıysa bu mesajlar yazılmaz.', '🔍 kutusuna olay adını yaz, karta dokun: o olayda yazılabilecek bütün mesajlar açılır.',
         '{o} karakterin adı; {gogus} {kalca} onun boyutuna, {sik} senin 🍆 Dick Size\'ına göre dolar.'],
@@ -32991,6 +33264,68 @@
     draw();
   }
   /* 🧭 CarmenGuide (#/guide): eski Ben → ❓ Yardım bölümü site olarak. Kitaplık, olay rehberi, bot deneyi, benim mesajlarım, nasıl çalışır */
+  /* 📅 Gündem deneyi (#/gundem): life.js GUNDEM konuları; seçilen karakterin kopyasında adımlar (lfGNeed şartı, lfGFx etkisi, 🗳️ vazgeçme, 🎨 renk).
+   * Sohbete ve karaktere dokunmaz; seçim bu oturumda (ui.agLab) */
+  const AG_TONE = { shy: '🙈 Utangaç', stub: '😤 İnatçı', dom: '👑 Dominant', cold: '🧊 Soğuk', flirt: '😏 Flörtöz', sly: '🙄 Alaycı', warm: '💗 Romantik', fun: '😜 Neşeli' };
+  function renderAgendaLab() {
+    const X = LF(), G = X.GUNDEM || [], lab = ui.agLab || (ui.agLab = { ch: (chars()[0] || {}).id || '', k: '', no: false, color: '' });
+    const nFx = G.filter(g => g.steps.some(s => s.fx)).length;
+    view.innerHTML = `<div class="page-pad narrow monia">${pageHero('deneyler', '📅', 'Gündem deneyi', [`${G.length} konu`, `${nFx} ✨ değişim`, 'sohbete dokunmaz'], '', { back: '#/deneyler' })}${labNav('gundem')}
+      <div class="about card">Sohbette yazdığını anlamadığında ya da sohbet sakinken bazen kendi hayatından bir konu açar; konu günler içinde 3 adımda ilerler (yeni konu son bitenden 20 saat ya da 30 mesaj sonra, sonraki adım 6 saat ya da 25 mesaj sonra). ✨ değişim gündemleri bitince karakterin özellikleri gerçekten değişir. Burada bir kopyada dene; karakterin değişmez.</div>
+      <div class="card"><div class="field"><label>👤 Karakter</label><select id="agCh"><option value="">(özelliksiz)</option>${chars().map(k => `<option value="${esc(k.id)}"${k.id === lab.ch ? ' selected' : ''}>${esc(k.name)}</option>`).join('')}</select></div>
+        <div class="lab-chips" style="margin-top:8px"><button type="button" class="lab-chip${lab.no ? ' on' : ''}" data-agno="1">🗳️ Hayır de</button>
+          <select id="agCol" style="margin-left:6px"><option value="">🎨 Rastgele renk</option>${LF_HAIR.map(h => `<option value="${h}"${lab.color === h ? ' selected' : ''}>🎨 ${esc(CM_HAIR[h])}</option>`).join('')}</select>
+          <select id="agTone" style="margin-left:6px"><option value="">🎭 Karakterin tarzı</option>${Object.entries(AG_TONE).map(([k, l]) => `<option value="${k}"${lab.tone === k ? ' selected' : ''}>${esc(l)}</option>`).join('')}</select></div></div>
+      <div class="card"><div class="sec-title" style="margin-top:0">📅 Konular</div><div class="lab-chips" id="agPick"></div></div>
+      <div id="agBody"></div></div>`;
+    const body = $('#agBody'), pickBox = $('#agPick');
+    const src = () => byId(lab.ch) || { id: 'lab', name: 'Deney', traits: [] };
+    const draw = () => {
+      const c = src();
+      pickBox.innerHTML = G.map(g => `<button type="button" class="lab-chip${lab.k === g.k ? ' on' : ''}" data-agk="${g.k}">${lfGNeed(c, g) ? '' : '🚫 '}${g.icon} ${esc(g.name)}${g.steps.some(s => s.fx) ? ' ✨' : ''}</button>`).join('');
+      const g = G.find(x => x.k === lab.k);
+      let html = '';
+      if (g) {
+        const k = JSON.parse(JSON.stringify(c)), gs = { k: g.k, no: lab.no ? 1 : 0, pick: lab.color }, v = {}, tn = lab.tone ? (X.VOTE_TONE || []).find(x => x.k === lab.tone) : lfTone(c);
+        const need = g.need ? [g.need.has && `biri: ${g.need.has.join(' / ')}`, g.need.not && `hiçbiri: ${g.need.not.join(' / ')}`, g.need.ask && `❤️ Aşk ≥ ${g.need.ask}`].filter(Boolean).join(' · ') : 'herkes';
+        const rows = [];
+        for (let i = 0; i < g.steps.length; i++) {
+          const st = g.steps[i], fl = s => esc(lfFill(s, { isim: 'Pamuk', ...v }));
+          let fxh = '';
+          if (st.fx) {
+            if (gs.no && st.no) { rows.push(`<div style="padding:8px 0;border-top:1px solid var(--line)"><b>${i + 1}. 🗳️ vazgeçti</b>${st.no.map(s => `<p style="margin:4px 0">💗 ${fl(s)}</p>`).join('')}<small class="muted">Konu burada biter: “${esc(lfFill(g.endNo || g.end, v))}”. (İnatçı / Asi / Şımarık / Kibirli %40 yine yapar.)</small></div>`); break; }
+            const fr = lfGFx(k, st.fx, gs);
+            Object.assign(v, fr.v);
+            const ph = g.ph && fr.log.length && lfPhMake(k, g, v), LD = LF().CHG_PH_LEAD || {};
+            fxh = `<p style="margin:4px 0">✨ <b>${fr.log.length ? esc(fr.log.join(' · ')) : 'değişen yok (zaten öyle)'}</b></p>
+              ${ph ? `<p style="margin:4px 0">📸 ${esc(pickOne([...(LD[phPers(k)] || []), ...(LD.def || [])]))}</p>${phCard(ph)}` : ''}`;
+          }
+          const tq = st.vote && tn ? tn.q.map(s => lfFill(s, { q: st.ask[0] })) : st.ask ? [st.ask[0]] : [];
+          rows.push(`<div style="padding:8px 0;border-top:1px solid var(--line)"><b>${i + 1}. adım</b>${st.say.map(s => `<p style="margin:4px 0">💗 ${fl(s)}</p>`).join('')}
+            ${tq.map(s => `<p style="margin:4px 0">${st.vote ? '🗳️' : st.color ? '🎨' : st.name ? '🐱' : '❔'} ${esc(s)}${st.vote ? ' <small class="muted">(evet / hayır)</small>' : st.color ? ' <small class="muted">(cevabındaki renk)</small>' : ''}</p>`).join('')}
+            ${st.vote && tn ? `<p style="margin:4px 0"><small class="muted">✅ ${esc(tn.yes[0])} · 🙅 ${esc(tn.no[0])}</small></p>` : ''}
+            ${st.ev ? `<p style="margin:4px 0">☕ Davet: <b>${esc(st.ev)}</b></p>` : ''}${fxh}</div>`);
+        }
+        const last = rows.length === g.steps.length;
+        html = `<div class="card"><div class="sec-title" style="margin-top:0">${g.icon} ${esc(g.name)}</div>
+          <p class="about">🔒 Şart: ${esc(need)} · ${lfGNeed(c, g) ? '✅ bu karaktere uygun' : '🚫 bu karakterde açılmaz'}</p>
+          <p class="about">🎭 Soru tarzı: <b>${esc(tn ? AG_TONE[tn.k] || tn.k : 'Varsayılan')}</b> <small>(kişiliğe göre: ${Object.values(AG_TONE).join(' · ')})</small></p>${rows.join('')}
+          ${last ? `<p style="margin-top:8px">📔 Sonunda: <b>${esc(lfFill(g.end, v))}</b></p>` : ''}</div>`;
+      }
+      const L = (c.lf || {}), cur = L.g && G.find(x => x.k === L.g.k);
+      html += `<div class="card"><div class="sec-title" style="margin-top:0">👤 ${esc(c.name)} · gerçek gündemi</div>
+        <p>${cur ? `${cur.icon} <b>${esc(cur.name)}</b> · ${L.g.s} / ${cur.steps.length} adım${L.g.no ? ' · 🗳️ hayır dedin' : ''}` : 'Şu an süren bir konu yok.'}</p>
+        ${(L.gdone || []).length ? `<p class="about">✅ Biten: ${L.gdone.map(d => { const x = G.find(y => y.k === d.k); return x ? `${x.icon} ${esc(x.name)}${d.no ? ' (vazgeçti)' : ''}` : ''; }).filter(Boolean).join(' · ')}</p>` : ''}
+        ${(L.chg || []).length ? `<p class="about">✨ Değişenler: ${L.chg.map(x => `${esc(x.t)} <small>(${anDay(x.at)})</small>`).join(' · ')}</p>` : ''}</div>`;
+      body.innerHTML = html;
+    };
+    $('#agCh').onchange = e => { lab.ch = e.target.value; draw(); };
+    $('#agCol').onchange = e => { lab.color = e.target.value; draw(); };
+    $('#agTone').onchange = e => { lab.tone = e.target.value; draw(); };
+    view.querySelector('[data-agno]').onclick = e => { lab.no = !lab.no; e.currentTarget.classList.toggle('on', lab.no); draw(); };
+    pickBox.onclick = e => { const b = e.target.closest('[data-agk]'); if (!b) return; lab.k = lab.k === b.dataset.agk ? '' : b.dataset.agk; draw(); };
+    draw();
+  }
   /* 📱 Kesinti deneyi (#/kesinti): fantezilere özel kesintiler (js/data/fant-interrupts.js). Fantezi seç → 🎲 Dene ile bir durum + bir cevap,
    * altında bütün durumlar ve cevapları. Sohbete dokunmaz; seçim bu oturumda kalır (ui.fiLab) */
   function renderFantIntLab() {
@@ -33505,36 +33840,6 @@
     // ekrandaki yazı alanlarını d'ye al (Devam ve ‹ Geri'de; geri dönünce yazılan kaybolmasın)
     const grab = () => el.querySelectorAll('[data-obk]').forEach(x => { d[x.dataset.obk] = x.value.trim(); });
     const lia = html => `<div class="ob-lia"><span class="ob-lia-ava">${liaAva()}</span><div class="ob-say"><small>Lia</small><p>${html}</p></div></div>`;
-    // 🎬 tanıtım: profil adımlarından sonra, "Hazırsın" kartından önce; kızlar / olaylar / sahneler / siteler (tour = -1 bitti)
-    const TOUR_MS = 5500, mix = a => [...a].sort(() => Math.random() - .5), safe = f => { try { return f() || []; } catch (e) { return []; } };
-    const tPics = mix(safe(() => SETS.map(s => s.profile && photoUrl(s, s.profile)).filter(Boolean))).slice(0, 8);
-    const tAll = safe(() => allEvents().filter(e => e.title && e.story)), tEvs = mix(tAll).slice(0, 3);
-    const tSc = mix(safe(() => (Stories.SCENES || []).filter(s => s.name && !sceneNo(s)))).slice(0, 8);
-    const tCity = mix(safe(() => CC_B.filter(b => b.ic && b.n))).slice(0, 8);
-    const tSites = mix(safe(() => netSites().filter(s => s.ic && s.logo))), tPic =u => `<img src="${esc(u)}" alt="" onerror="this.remove()">`;
-    const TOUR = [
-      () => `<div class="tr-fan">${tPics.slice(0, 3).map(tPic).join('')}</div><h2 class="tr-h">Hoş geldin ${esc(d.name)} 💋</h2><p class="tr-p">Carmen'de hikâyeyi sen yazarsın. Sana kısaca etrafı göstereyim.</p>`,
-      tPics.length > 3 && (() => `<div class="tr-ic">💘</div><h2 class="tr-h">Seni bekleyen kızlar</h2><p class="tr-p">Kaydır, eşleş, yaz. Her birinin kendi kişiliği, albümü ve sırları var.</p><div class="tr-ava">${tPics.map(tPic).join('')}</div>`),
-      tEvs.length && (() => `<div class="tr-ic">📖</div><h2 class="tr-h">${tAll.length} olay, sayısız hikâye</h2><p class="tr-p">Sohbette bir olay seç, gerisi kendiliğinden akar.</p>
-        <div class="tr-cards">${tEvs.map(e => `<div class="tr-card"><b>${evEmo(e)}${esc(e.title)}</b><small>${esc(e.story)}</small></div>`).join('')}</div>`),
-      tSc.length && (() => `<div class="tr-ic">🎬</div><h2 class="tr-h">Sahneler</h2><p class="tr-p">Olayları adım adım bağlayan hazır akışlar: başla, sahne seni götürsün.</p>
-        <div class="tr-chips">${tSc.map(s => `<span>${s.icon || '🎬'} ${esc(s.name)}</span>`).join('')}</div>`),
-      tCity.length && (() => `<div class="tr-ic">🏙️</div><h2 class="tr-h">Şehir hiç uyumaz</h2><p class="tr-p">Kızlar gün boyu şehirde yaşar: haritada kim nerede gör, yanına git ya da mesaj at.</p>
-        <div class="tr-chips">${tCity.map(b => `<span>${b.ic} ${esc(b.n)}</span>`).join('')}</div>`),
-      tSites.length && (() => `<div class="tr-ic">🌐</div><h2 class="tr-h">${tSites.length} site seni bekliyor</h2><p class="tr-p">İlanlar, eşleşme uygulamaları, oteller, dükkanlar… hepsi tek internette.</p>
-        <div class="tr-sites">${tSites.slice(0, 6).map(s => `<div><i>${s.ic}</i><b>${s.logo}</b><small>${esc(s.url || '')}</small></div>`).join('')}</div>`)
-    ].filter(Boolean);
-    let tour = 0, tourT = 0;
-    const drawTour = () => {
-      wrap.innerHTML = `<div class="ob-box tr-box">
-        <div class="tr-bars">${TOUR.map((_, k) => `<i class="${k < tour ? 'ok' : k === tour ? 'on' : ''}"><b style="animation-duration:${TOUR_MS}ms"></b></i>`).join('')}</div>
-        <div class="tr-top"><div class="ob-logo">carm<span>e</span>n</div><button type="button" class="tr-skip" data-ob="tourskip">Geç ›</button></div>
-        <div class="tr-slide" data-ob="tournext">${TOUR[tour]()}</div>
-        <div class="tr-nav"><button type="button" class="ob-x" data-ob="tourback" aria-label="Geri">‹</button>
-          <button type="button" class="btn primary" data-ob="tournext">${tour === TOUR.length - 1 ? 'Başlayalım 🎉' : 'Devam'}</button></div></div>`;
-      tourT = setTimeout(() => tourGo(1), TOUR_MS);
-    };
-    const tourGo = n => { clearTimeout(tourT); tour += n; if (tour >= TOUR.length) tour = -1; if (tour < 0 && n < 0) { tour = 0; return go(-1); } draw(); };
     let i = 0;
     const el = host || document.createElement('div');
     el.id = 'obScreen';
@@ -33542,8 +33847,6 @@
     const wrap = host ? el.querySelector('.au-wrap') : auShell(el);
     // err: aynı adımda uyarı (geçişsiz); yoksa yeni adım fade ile gelir
     const draw = err => {
-      clearTimeout(tourT);
-      if (i >= steps.length && tour >= 0) return drawTour();
       const s = steps[i];
       wrap.innerHTML = i < steps.length ? `<div class="ob-box${err ? '' : ' ob-anim'}">
         <div class="ob-top">${i || auth ? '<button type="button" class="ob-x" data-ob="back" aria-label="Geri">‹</button>' : '<span></span>'}
@@ -33571,7 +33874,7 @@
         ${meCard(d)}
         <div class="ob-money">💰 Bakiyen <b>${START_MONEY.toLocaleString('tr-TR')}₺</b></div>
         <small class="ob-sub">Nereden başlayalım?</small>
-        <div class="ob-go">${[['#/tinder', '💘', 'İlk eşleşmeni bul', 'kaydır, eşleş, yaz'], ['#/messages', '👩', 'Karakterlere göz at', 'sohbetler ve kızlar'], ['#/sehir', '🏙️', 'Şehri gez', 'kızlar şu an nerede?'], ['#/booble', '🌐', 'Booble\'da gezin', 'ilanlar, oteller, dükkanlar']]
+        <div class="ob-go">${[['#/sehir', '🏙️', 'Şehri gez', 'kızlar şu an nerede?'], ['#/home', '🏠', 'Ana sayfa', 'siteler, haberler, ilanlar']]
           .map(([h, ic, t, s], n) => `<button type="button" class="${n ? '' : 'on'}" data-ob="done:${h}"><i>${ic}</i><span><b>${t}</b><small>${s}</small></span></button>`).join('')}</div>
         <small class="ob-sub">🗺️ İlk görevlerin Ben → Görevler'de, ödülleriyle seni bekliyor</small>
       </div>`;
@@ -33598,7 +33901,7 @@
       if (box) box.classList.add('ob-leave');
       setTimeout(() => { i += n; busy = false; draw(); }, 220);
     };
-    const close = then => { clearTimeout(tourT); el.classList.remove('in'); setTimeout(() => { el.remove(); if (then) then(); }, 600); };
+    const close = then => { el.classList.remove('in'); setTimeout(() => { el.remove(); if (then) then(); }, 600); };
     // to: son karttaki seçim (💘 eşleşme / 👩 karakterler / 🌐 siteler)
     const done = (to = '#/home') => {
       const user = { ...d, ...(['♀', '⚧♂'].includes(d.gender) ? { dick: '' } : { exp: '' }), ...(auth && { login: auth.login, email: auth.email, pass: auth.pass }), likes: [...d.likes], money: START_MONEY };
@@ -33615,9 +33918,6 @@
       if (cl) { d.colors = U_COLORS[+cl.dataset.obcol]; draw(); return; }
       if (!b) return;
       const a = b.dataset.ob;
-      if (a === 'tournext') return tourGo(1);
-      if (a === 'tourback') return tourGo(-1);
-      if (a === 'tourskip') { clearTimeout(tourT); tour = -1; return draw(); }
       if (a === 'next') next();
       if (a === 'skip') { const s = steps[i]; if (s.likes) d.likes = []; else if (s.photo) d.photo = ''; else d[s.k] = ''; go(1); }
       if (a === 'nophoto') { d.photo = ''; draw(); }
@@ -33690,28 +33990,28 @@
   const qn = (n, m = 1) => [n, m];
   const QUESTS = [
     ['tanis', 'ilk', '🌱', 'İlk tanışma', 'Bir karakter edin ve onunla sohbet aç', [], x => qn(x.chars && x.threads ? 1 : 0), '#/home', 300],
-    ['sohbet', 'ilk', '💬', 'Buzları erit', 'Bir sohbette 10 mesaj yaz', ['tanis'], x => qn(x.maxMe, 10), '#/messages', 300],
-    ['q3', 'soru', '❓', 'Meraklı', '3 farklı soru sor: "Kaç yaşındasın?", "Memelerin kaç beden?"…', ['sohbet'], x => qn(x.q, 3), '#/messages', 300],
-    ['q10', 'soru', '🔎', 'Sorgu', '10 farklı soru sor', ['q3'], x => qn(x.q, 10), '#/messages', 500],
-    ['qbody', 'soru', '👙', 'Vücut haritası', '5 farklı vücut sorusu sor: göğüs, kalça, darlık, kilo…', ['q3'], x => qn(x.qBody, 5), '#/messages', 500],
-    ['qexp', 'soru', '🧠', 'Geçmişini öğren', '3 farklı deneyim sorusu sor: ilk seferin, kaç kişiyle oldun…', ['q3'], x => qn(x.qExp, 3), '#/messages', 500],
-    ['q25', 'soru', '🗝️', 'Sırdaş', '25 farklı soru sor', ['q10', 'qbody', 'qexp'], x => qn(x.q, 25), '#/messages', 1500],
-    ['opus', 'yakin', '💋', 'İlk öpücük', 'Kissing ya da Lap Kissing', ['sohbet'], x => qn(x.ev('Kissing', 'Lap Kissing')), '#/messages', 300],
-    ['saril', 'yakin', '🤗', 'Sıcak bir sarılma', 'Back Hugging ya da Front Hugging', ['opus'], x => qn(x.ev('Back Hugging', 'Front Hugging')), '#/messages', 300],
-    ['goster', 'yakin', '👀', 'Göster bakalım', 'Show Tits ya da Show Ass', ['opus'], x => qn(x.ev('Show Tits', 'Show Ass')), '#/messages', 400],
-    ['soy', 'yakin', '👗', 'Soyun', 'Bir 👗 soyunma olayı: Take Off Top, Striptease…', ['goster'], x => qn(x.cat('soyun')), '#/messages', 400],
-    ['ona', 'yakin', '🍌', 'Sıra onda', 'Blowjob, Handjob ya da Titfuck', ['soy'], x => qn(x.ev('Blowjob', 'Handjob', 'Titfuck')), '#/messages', 500],
-    ['sana', 'yakin', '👅', 'Sıra sende', 'Cunnilingus ya da Facesitting', ['soy'], x => qn(x.ev('Cunnilingus', 'Facesitting')), '#/messages', 500],
-    ['derin', 'yakin', '😮', 'Daha derine', 'Deepthroat', ['ona'], x => qn(x.ev('Deepthroat')), '#/messages', 600],
-    ['squirt', 'yakin', '💧', 'Fışkırt', 'Onu Squirt\'e kadar götür', ['sana'], x => qn(x.ev('Squirt')), '#/messages', 600],
-    ['altm', 'yakin', '♋', 'Karşılıklı', '69', ['ona', 'sana'], x => qn(x.ev('69')), '#/messages', 600],
-    ['gece', 'yakin', '🌙', 'İlk gece', 'Missionary', ['ona', 'sana'], x => qn(x.ev('Missionary')), '#/messages', 800],
-    ['klasik', 'poz', '🛏️', 'Klasikler', 'Missionary, Cowgirl, Doggy, Spooning: 3 tanesi', ['gece'], x => qn(x.ev('Missionary', 'Cowgirl', 'Doggy', 'Spooning'), 3), '#/messages', 800],
-    ['tempo', 'poz', '💥', 'Tempo', 'Bir mod olayı: Gentle, Passionate, Rough…', ['klasik'], x => qn(x.ev('Gentle', 'Passionate', 'Assertive', 'Rough', 'Brutal')), '#/messages', 500],
-    ['akro', 'poz', '🤸', 'Akrobat', 'Full Nelson, Standing, Lap Sex, Spider Web, Standing Missionary: 2 tanesi', ['klasik'], x => qn(x.ev('Full Nelson', 'Standing', 'Lap Sex', 'Spider Web', 'Standing Missionary'), 2), '#/messages', 800],
-    ['yeniaci', 'poz', '🔄', 'Yeni açılar', 'Reverse Cowgirl, Prone Bone, Lotus, Butterfly: 2 tanesi', ['klasik'], x => qn(x.ev('Reverse Cowgirl', 'Prone Bone', 'Lotus', 'Butterfly'), 2), '#/messages', 800],
-    ['anal1', 'poz', '🍑', 'Arka kapı', 'Bir 🍑 anal olay', ['klasik'], x => qn(x.cat('anal')), '#/messages', 800],
-    ['anal3', 'poz', '🍑', 'Arka kapı ustası', '3 farklı 🍑 anal olay', ['anal1'], x => qn(x.cat('anal'), 3), '#/messages', 1200],
+    ['sohbet', 'ilk', '💬', 'Buzları erit', 'Bir sohbette 10 mesaj yaz', ['tanis'], x => qn(x.maxMe, 10), '#/sehir', 300],
+    ['q3', 'soru', '❓', 'Meraklı', '3 farklı soru sor: "Kaç yaşındasın?", "Memelerin kaç beden?"…', ['sohbet'], x => qn(x.q, 3), '#/sehir', 300],
+    ['q10', 'soru', '🔎', 'Sorgu', '10 farklı soru sor', ['q3'], x => qn(x.q, 10), '#/sehir', 500],
+    ['qbody', 'soru', '👙', 'Vücut haritası', '5 farklı vücut sorusu sor: göğüs, kalça, darlık, kilo…', ['q3'], x => qn(x.qBody, 5), '#/sehir', 500],
+    ['qexp', 'soru', '🧠', 'Geçmişini öğren', '3 farklı deneyim sorusu sor: ilk seferin, kaç kişiyle oldun…', ['q3'], x => qn(x.qExp, 3), '#/sehir', 500],
+    ['q25', 'soru', '🗝️', 'Sırdaş', '25 farklı soru sor', ['q10', 'qbody', 'qexp'], x => qn(x.q, 25), '#/sehir', 1500],
+    ['opus', 'yakin', '💋', 'İlk öpücük', 'Kissing ya da Lap Kissing', ['sohbet'], x => qn(x.ev('Kissing', 'Lap Kissing')), '#/sehir', 300],
+    ['saril', 'yakin', '🤗', 'Sıcak bir sarılma', 'Back Hugging ya da Front Hugging', ['opus'], x => qn(x.ev('Back Hugging', 'Front Hugging')), '#/sehir', 300],
+    ['goster', 'yakin', '👀', 'Göster bakalım', 'Show Tits ya da Show Ass', ['opus'], x => qn(x.ev('Show Tits', 'Show Ass')), '#/sehir', 400],
+    ['soy', 'yakin', '👗', 'Soyun', 'Bir 👗 soyunma olayı: Take Off Top, Striptease…', ['goster'], x => qn(x.cat('soyun')), '#/sehir', 400],
+    ['ona', 'yakin', '🍌', 'Sıra onda', 'Blowjob, Handjob ya da Titfuck', ['soy'], x => qn(x.ev('Blowjob', 'Handjob', 'Titfuck')), '#/sehir', 500],
+    ['sana', 'yakin', '👅', 'Sıra sende', 'Cunnilingus ya da Facesitting', ['soy'], x => qn(x.ev('Cunnilingus', 'Facesitting')), '#/sehir', 500],
+    ['derin', 'yakin', '😮', 'Daha derine', 'Deepthroat', ['ona'], x => qn(x.ev('Deepthroat')), '#/sehir', 600],
+    ['squirt', 'yakin', '💧', 'Fışkırt', 'Onu Squirt\'e kadar götür', ['sana'], x => qn(x.ev('Squirt')), '#/sehir', 600],
+    ['altm', 'yakin', '♋', 'Karşılıklı', '69', ['ona', 'sana'], x => qn(x.ev('69')), '#/sehir', 600],
+    ['gece', 'yakin', '🌙', 'İlk gece', 'Missionary', ['ona', 'sana'], x => qn(x.ev('Missionary')), '#/sehir', 800],
+    ['klasik', 'poz', '🛏️', 'Klasikler', 'Missionary, Cowgirl, Doggy, Spooning: 3 tanesi', ['gece'], x => qn(x.ev('Missionary', 'Cowgirl', 'Doggy', 'Spooning'), 3), '#/sehir', 800],
+    ['tempo', 'poz', '💥', 'Tempo', 'Bir mod olayı: Gentle, Passionate, Rough…', ['klasik'], x => qn(x.ev('Gentle', 'Passionate', 'Assertive', 'Rough', 'Brutal')), '#/sehir', 500],
+    ['akro', 'poz', '🤸', 'Akrobat', 'Full Nelson, Standing, Lap Sex, Spider Web, Standing Missionary: 2 tanesi', ['klasik'], x => qn(x.ev('Full Nelson', 'Standing', 'Lap Sex', 'Spider Web', 'Standing Missionary'), 2), '#/sehir', 800],
+    ['yeniaci', 'poz', '🔄', 'Yeni açılar', 'Reverse Cowgirl, Prone Bone, Lotus, Butterfly: 2 tanesi', ['klasik'], x => qn(x.ev('Reverse Cowgirl', 'Prone Bone', 'Lotus', 'Butterfly'), 2), '#/sehir', 800],
+    ['anal1', 'poz', '🍑', 'Arka kapı', 'Bir 🍑 anal olay', ['klasik'], x => qn(x.cat('anal')), '#/sehir', 800],
+    ['anal3', 'poz', '🍑', 'Arka kapı ustası', '3 farklı 🍑 anal olay', ['anal1'], x => qn(x.cat('anal'), 3), '#/sehir', 1200],
     ['sikistir', 'poz', '🗜️', 'Sıkıştırıldın', 'Bir 🗜️ Squeeze olayı: Wall Pin Grind, Thigh Vise, Cheek Pulse…', ['klasik'], x => qn(x.cat('sq')), '#/kitap/olay/38', 600],
     ['mengene', 'poz', '🦵', 'Mengene', 'Thigh Vise, Cheek Clamp, Leg Lock Grind, Knee Squeeze: 2 tanesi', ['sikistir'], x => qn(x.ev('Thigh Vise', 'Cheek Clamp', 'Leg Lock Grind', 'Knee Squeeze'), 2), '#/kitap/olay/38', 800],
     ['sikistir10', 'poz', '🗜️', 'Sıkıştırma ustası', '10 farklı 🗜️ Squeeze olayı', ['mengene'], x => qn(x.cat('sq'), 10), '#/kitap/olay/39', 1500],
@@ -33724,47 +34024,47 @@
     ['izin', 'final', '✅', 'Sonunda izin', 'Finally On Her Ass ya da Finally Between Thighs', ['engel1'], x => qn(x.ev('Finally On Her Ass', 'Finally Between Thighs')), '#/kitap/olay/43', 800],
     ['sel', 'final', '🌊', 'Sel gibi', '3 farklı 🌊 gür fışkırma: Thigh Flood, Everywhere, Rope After Rope…', ['engel1'], x => qn(x.ev('Thigh Flood', 'Calf Splash', 'Down To Her Ankles', 'Feet Painted', 'Stocking Soaked', 'Arm Splash', 'Hand Full', 'Knee Pit Pool', 'Ass Flood', 'Up Her Spine', 'Over Her Shoulder', 'Hair Reached', 'Lower Back Lake', 'Back Of Neck', 'Through To Her Belly', 'Up To Her Tits', 'Chin And Lips', 'Full Face', 'Glasses Coated', 'Over Her Head', 'Everywhere', 'Rope After Rope', 'Head To Toe', 'Pulsing Fountain', 'Splash Radius', 'Wall Behind Her', 'Ceiling Shot'), 3), '#/kitap/olay/44', 1200],
     ['tavan', 'final', '⬆️', 'Tavana kadar', 'En nadiri: Ceiling Shot', ['sel'], x => qn(x.ev('Ceiling Shot')), '#/kitap/olay/44', 2000],
-    ['kama', 'poz', '📖', 'Kama Sutra', '🔥 Pozisyonlar kategorisinden 10 farklı olay', ['akro', 'tempo'], x => qn(x.cat('poz'), 10), '#/messages', 2500],
-    ['bitir', 'final', '💦', 'Bitiriş', 'Bir 💦 boşalma sonucu', ['gece'], x => qn(x.cat('son')), '#/messages', 500],
-    ['kondom', 'final', '🎾', 'Güvenli oyun', 'Condom ya da Tight Condom ile seviş', ['bitir'], x => qn(x.ev('Condom', 'Tight Condom')), '#/messages', 500],
-    ['baba', 'final', '🤰', 'Baba adayı', 'Biri hamile kalsın', ['bitir'], x => qn(x.preg), '#/messages', 1500],
-    ['son5', 'final', '🎯', 'Koleksiyoncu', '5 farklı 💦 boşalma sonucu', ['bitir'], x => qn(x.cat('son'), 5), '#/messages', 1000],
-    ['son15', 'final', '🏆', 'Nişancı', '15 farklı 💦 boşalma sonucu', ['son5'], x => qn(x.cat('son'), 15), '#/messages', 2500],
-    ['dus', 'mekan', '🧼', 'Duşta', 'Bir 🧼 duş olayı', ['gece'], x => qn(x.cat('dus')), '#/messages', 500],
-    ['su', 'mekan', '🛁', 'Suya gir', 'Bir 🛁 küvet ya da 🏖️ havuz olayı', ['dus'], x => qn(x.cat('kuvet') + x.cat('havuz')), '#/messages', 600],
-    ['ter', 'mekan', '🧖‍♀️', 'Terle', 'Bir 🧖‍♀️ sauna olayı', ['dus'], x => qn(x.cat('sauna')), '#/messages', 600],
-    ['risk', 'mekan', '🚗', 'Yakalanma riski', 'Bir 🚗 araba ya da 🛗 asansör olayı', ['dus'], x => qn(x.cat('araba') + x.cat('asansor')), '#/messages', 800],
-    ['kamp', 'mekan', '🏕️', 'Ev dışı ev içi', 'Bir 🏕️ kamp ya da 🍳 mutfak olayı', ['risk'], x => qn(x.cat('kamp') + x.cat('mutfak')), '#/messages', 600],
-    ['kayit', 'mekan', '🎥', 'Kayıtta', 'Bir 🎥 kamera olayı', ['risk'], x => qn(x.cat('kamera')), '#/messages', 800],
-    ['kumda', 'mekan', '🏝️', 'Kumda', 'Bir 🏝️ plaj olayı', ['su'], x => qn(x.cat('plaj')), '#/messages', 600],
-    ['mesai', 'mekan', '🏢', 'Mesai sonrası', 'Bir 🏢 ofis olayı', ['risk'], x => qn(x.cat('ofis')), '#/messages', 800],
-    ['otelgece', 'mekan', '🏨', 'Rahatsız etmeyin', 'Bir 🏨 otel olayı', ['kamp'], x => qn(x.cat('otel')), '#/messages', 600],
+    ['kama', 'poz', '📖', 'Kama Sutra', '🔥 Pozisyonlar kategorisinden 10 farklı olay', ['akro', 'tempo'], x => qn(x.cat('poz'), 10), '#/sehir', 2500],
+    ['bitir', 'final', '💦', 'Bitiriş', 'Bir 💦 boşalma sonucu', ['gece'], x => qn(x.cat('son')), '#/sehir', 500],
+    ['kondom', 'final', '🎾', 'Güvenli oyun', 'Condom ya da Tight Condom ile seviş', ['bitir'], x => qn(x.ev('Condom', 'Tight Condom')), '#/sehir', 500],
+    ['baba', 'final', '🤰', 'Baba adayı', 'Biri hamile kalsın', ['bitir'], x => qn(x.preg), '#/sehir', 1500],
+    ['son5', 'final', '🎯', 'Koleksiyoncu', '5 farklı 💦 boşalma sonucu', ['bitir'], x => qn(x.cat('son'), 5), '#/sehir', 1000],
+    ['son15', 'final', '🏆', 'Nişancı', '15 farklı 💦 boşalma sonucu', ['son5'], x => qn(x.cat('son'), 15), '#/sehir', 2500],
+    ['dus', 'mekan', '🧼', 'Duşta', 'Bir 🧼 duş olayı', ['gece'], x => qn(x.cat('dus')), '#/sehir', 500],
+    ['su', 'mekan', '🛁', 'Suya gir', 'Bir 🛁 küvet ya da 🏖️ havuz olayı', ['dus'], x => qn(x.cat('kuvet') + x.cat('havuz')), '#/sehir', 600],
+    ['ter', 'mekan', '🧖‍♀️', 'Terle', 'Bir 🧖‍♀️ sauna olayı', ['dus'], x => qn(x.cat('sauna')), '#/sehir', 600],
+    ['risk', 'mekan', '🚗', 'Yakalanma riski', 'Bir 🚗 araba ya da 🛗 asansör olayı', ['dus'], x => qn(x.cat('araba') + x.cat('asansor')), '#/sehir', 800],
+    ['kamp', 'mekan', '🏕️', 'Ev dışı ev içi', 'Bir 🏕️ kamp ya da 🍳 mutfak olayı', ['risk'], x => qn(x.cat('kamp') + x.cat('mutfak')), '#/sehir', 600],
+    ['kayit', 'mekan', '🎥', 'Kayıtta', 'Bir 🎥 kamera olayı', ['risk'], x => qn(x.cat('kamera')), '#/sehir', 800],
+    ['kumda', 'mekan', '🏝️', 'Kumda', 'Bir 🏝️ plaj olayı', ['su'], x => qn(x.cat('plaj')), '#/sehir', 600],
+    ['mesai', 'mekan', '🏢', 'Mesai sonrası', 'Bir 🏢 ofis olayı', ['risk'], x => qn(x.cat('ofis')), '#/sehir', 800],
+    ['otelgece', 'mekan', '🏨', 'Rahatsız etmeyin', 'Bir 🏨 otel olayı', ['kamp'], x => qn(x.cat('otel')), '#/sehir', 600],
     ['spor', 'mekan', '🏋️', 'Ter atma', 'Bir 🏋️ Gym olayı', ['mesai'], x => qn(x.cat('gym')), '#/is/spor', 800],
-    ['barda', 'mekan', '🍸', 'Son kadeh', 'Bir 🍸 Bar olayı', ['risk'], x => qn(x.cat('bar')), '#/messages', 800],
-    ['sinemada', 'mekan', '🎬', 'Arka sıra', 'Bir 🎬 Cinema olayı', ['risk'], x => qn(x.cat('sinema')), '#/messages', 800],
-    ['yakalan', 'mekan', '👀', 'Az kalsın', '🍸 Bar ve 🎬 Cinema\'dan 5 farklı olay (gerilim 70\'te kesinti gelir)', ['barda', 'sinemada'], x => qn(x.cat('bar') + x.cat('sinema'), 5), '#/messages', 1500],
-    ['merdiven', 'mekan', '🪜', 'Yatağa varamadan', 'Bir 🪜 merdiven olayı', ['kamp'], x => qn(x.cat('merdiven')), '#/messages', 600],
-    ['camasir', 'mekan', '🧺', 'Çamaşır günü', 'Bir 🧺 çamaşırhane olayı', ['kamp'], x => qn(x.cat('camasir')), '#/messages', 600],
-    ['balkon', 'mekan', '🌇', 'Komşular uyurken', 'Bir 🌇 balkon olayı', ['risk'], x => qn(x.cat('balkon')), '#/messages', 800],
+    ['barda', 'mekan', '🍸', 'Son kadeh', 'Bir 🍸 Bar olayı', ['risk'], x => qn(x.cat('bar')), '#/sehir', 800],
+    ['sinemada', 'mekan', '🎬', 'Arka sıra', 'Bir 🎬 Cinema olayı', ['risk'], x => qn(x.cat('sinema')), '#/sehir', 800],
+    ['yakalan', 'mekan', '👀', 'Az kalsın', '🍸 Bar ve 🎬 Cinema\'dan 5 farklı olay (gerilim 70\'te kesinti gelir)', ['barda', 'sinemada'], x => qn(x.cat('bar') + x.cat('sinema'), 5), '#/sehir', 1500],
+    ['merdiven', 'mekan', '🪜', 'Yatağa varamadan', 'Bir 🪜 merdiven olayı', ['kamp'], x => qn(x.cat('merdiven')), '#/sehir', 600],
+    ['camasir', 'mekan', '🧺', 'Çamaşır günü', 'Bir 🧺 çamaşırhane olayı', ['kamp'], x => qn(x.cat('camasir')), '#/sehir', 600],
+    ['balkon', 'mekan', '🌇', 'Komşular uyurken', 'Bir 🌇 balkon olayı', ['risk'], x => qn(x.cat('balkon')), '#/sehir', 800],
     ['evturu', 'mekan', '🏠', 'Evin her köşesi', '🍳 mutfak, 🪜 merdiven, 🧺 çamaşırhane ve 🌇 balkonun hepsinde bir olay', ['merdiven', 'camasir', 'balkon'], x => qn(['mutfak', 'merdiven', 'camasir', 'balkon'].filter(k => x.cat(k)).length, 4), '#/kitap/ev/0', 1500],
-    ['gezgin', 'mekan', '🧭', 'Gezgin âşık', '5 farklı mekanda olay: duş, sauna, küvet, havuz, araba, asansör, kamp, mutfak, plaj, ofis, otel, spor salonu, bar, sinema, merdiven, çamaşırhane, balkon',['su', 'ter', 'kamp'], x => qn(x.places, 5), '#/messages', 2500],
-    ['f1', 'fant', '🦄', 'Hayal gücü', 'Bir 🦄 fantezi başlat', ['klasik'], x => qn(x.cat('fant')), '#/messages', 600],
-    ['meyve', 'fant', '🍓', 'Meyve tabağı', 'Bir 🍓 Meisove kızı fantezisi', ['f1'], x => qn(x.cat('meyve')), '#/messages', 600],
-    ['bagli', 'fant', '🔗', 'Bağlı', 'Bir 🔗 BDSM olayı', ['f1'], x => qn(x.cat('bdsm')), '#/messages', 800],
-    ['kralice', 'fant', '👑', 'Kraliçe', 'Bir 👑 Femdom olayı', ['bagli'], x => qn(x.cat('femdom')), '#/messages', 800],
+    ['gezgin', 'mekan', '🧭', 'Gezgin âşık', '5 farklı mekanda olay: duş, sauna, küvet, havuz, araba, asansör, kamp, mutfak, plaj, ofis, otel, spor salonu, bar, sinema, merdiven, çamaşırhane, balkon',['su', 'ter', 'kamp'], x => qn(x.places, 5), '#/sehir', 2500],
+    ['f1', 'fant', '🦄', 'Hayal gücü', 'Bir 🦄 fantezi başlat', ['klasik'], x => qn(x.cat('fant')), '#/sehir', 600],
+    ['meyve', 'fant', '🍓', 'Meyve tabağı', 'Bir 🍓 Meisove kızı fantezisi', ['f1'], x => qn(x.cat('meyve')), '#/sehir', 600],
+    ['bagli', 'fant', '🔗', 'Bağlı', 'Bir 🔗 BDSM olayı', ['f1'], x => qn(x.cat('bdsm')), '#/sehir', 800],
+    ['kralice', 'fant', '👑', 'Kraliçe', 'Bir 👑 Femdom olayı', ['bagli'], x => qn(x.cat('femdom')), '#/sehir', 800],
     ['kumanda', 'fant', '📳', 'Kumanda sende', 'Vibrator Control ve Remote Toy: kademe 5\'te orgazm gelir', ['bagli'], x => qn(x.ev('Vibrator Control', 'Remote Toy'), 2), '#/kitap/gece/8', 800],
     ['antrenor', 'fant', '🏋️', 'Kişisel antrenör', 'Personal Trainer – Üye rolünü başlat', ['f1'], x => qn(x.ev('Personal Trainer – Üye')), '#/is/spor', 600],
-    ['sonmusteri', 'fant', '🍸', 'Son müşteri', 'Barmen – Son Müşteri rolünü başlat', ['f1'], x => qn(x.ev('Barmen – Son Müşteri')), '#/messages', 600],
-    ['guvenli', 'fant', '🛑', 'Güvenli kelime', 'Safe Word ve 3 farklı 🔗 BDSM olayı', ['bagli'], x => qn(x.ev('Safe Word') ? x.cat('bdsm') : 0, 4), '#/messages', 1200],
-    ['gizli1', 'fant', '🐍', 'Gizli ilişki', 'Bir 🐍 Affair olayı: Second Phone, Spare Key, Thin Wall…', ['f1'], x => qn(x.cat('affair') + x.cat('affst')), '#/messages', 600],
-    ['izsiz', 'fant', '🌸', 'İz bırakma', '🕵️ Şüphe\'yi düşüren 3 olay: Fake Alibi, Perfume Swap, Delete History', ['gizli1'], x => qn(x.ev('Fake Alibi', 'Perfume Swap', 'Delete History'), 3), '#/messages', 800],
-    ['yakalandin', 'fant', '🚨', 'Yakalandın', 'Got Caught olsun (🕵️ Şüphe 80\'e çıkınca kendiliğinden gelir)', ['gizli1'], x => qn(x.ev('Got Caught')), '#/messages', 800],
-    ['sonkarar', 'fant', '⚖️', 'Son karar', 'Bir aldatma sonu: Confession, Choose Me, Back To Him ya da Open Secret', ['izsiz'], x => qn(x.ev('Confession', 'Choose Me', 'Back To Him', 'Open Secret')), '#/messages', 1200],
-    ['anlasma', 'fant', '📜', 'Anlaşma', 'House Rules ve 3 farklı 💍 Bull Story olayı', ['f1'], x => qn(x.ev('House Rules') ? x.cat('bullst') : 0, 4), '#/messages', 1000],
-    ['ucyuzuk', 'fant', '💍', 'Üçüncü yüzük', 'Third Ring: kocası sana da yüzük versin', ['anlasma'], x => qn(x.ev('Third Ring')), '#/messages', 1500],
-    ['f5', 'fant', '🎭', 'Fantezi koleksiyonu', '5 farklı 🦄/🍓 fantezi', ['meyve'], x => qn(x.cat('fant') + x.cat('meyve'), 5), '#/messages', 2000],
-    ['grup', 'fant', '👥', 'Kalabalık', 'Bir grup sohbeti kur', ['klasik'], x => qn(x.groups), '#/messages', 600],
-    ['uclu', 'fant', '👯', 'Üçlü', 'Grupta bir 👯 threesome olayı', ['grup'], x => qn(x.cat('uclu')), '#/messages', 1200],
+    ['sonmusteri', 'fant', '🍸', 'Son müşteri', 'Barmen – Son Müşteri rolünü başlat', ['f1'], x => qn(x.ev('Barmen – Son Müşteri')), '#/sehir', 600],
+    ['guvenli', 'fant', '🛑', 'Güvenli kelime', 'Safe Word ve 3 farklı 🔗 BDSM olayı', ['bagli'], x => qn(x.ev('Safe Word') ? x.cat('bdsm') : 0, 4), '#/sehir', 1200],
+    ['gizli1', 'fant', '🐍', 'Gizli ilişki', 'Bir 🐍 Affair olayı: Second Phone, Spare Key, Thin Wall…', ['f1'], x => qn(x.cat('affair') + x.cat('affst')), '#/sehir', 600],
+    ['izsiz', 'fant', '🌸', 'İz bırakma', '🕵️ Şüphe\'yi düşüren 3 olay: Fake Alibi, Perfume Swap, Delete History', ['gizli1'], x => qn(x.ev('Fake Alibi', 'Perfume Swap', 'Delete History'), 3), '#/sehir', 800],
+    ['yakalandin', 'fant', '🚨', 'Yakalandın', 'Got Caught olsun (🕵️ Şüphe 80\'e çıkınca kendiliğinden gelir)', ['gizli1'], x => qn(x.ev('Got Caught')), '#/sehir', 800],
+    ['sonkarar', 'fant', '⚖️', 'Son karar', 'Bir aldatma sonu: Confession, Choose Me, Back To Him ya da Open Secret', ['izsiz'], x => qn(x.ev('Confession', 'Choose Me', 'Back To Him', 'Open Secret')), '#/sehir', 1200],
+    ['anlasma', 'fant', '📜', 'Anlaşma', 'House Rules ve 3 farklı 💍 Bull Story olayı', ['f1'], x => qn(x.ev('House Rules') ? x.cat('bullst') : 0, 4), '#/sehir', 1000],
+    ['ucyuzuk', 'fant', '💍', 'Üçüncü yüzük', 'Third Ring: kocası sana da yüzük versin', ['anlasma'], x => qn(x.ev('Third Ring')), '#/sehir', 1500],
+    ['f5', 'fant', '🎭', 'Fantezi koleksiyonu', '5 farklı 🦄/🍓 fantezi', ['meyve'], x => qn(x.cat('fant') + x.cat('meyve'), 5), '#/sehir', 2000],
+    ['grup', 'fant', '👥', 'Kalabalık', 'Bir grup sohbeti kur', ['klasik'], x => qn(x.groups), '#/sehir', 600],
+    ['uclu', 'fant', '👯', 'Üçlü', 'Grupta bir 👯 threesome olayı', ['grup'], x => qn(x.cat('uclu')), '#/sehir', 1200],
     ['gez3', 'dunya', '🧭', 'Meraklı gezgin', '3 farklı site gez', ['tanis'], x => qn(x.sites, 3), '#/home', 300],
     ['abone', 'dunya', '🫦', 'Abone', 'CarmenFans\'ta abone ol', ['gez3'], x => qn(x.subs), '#/home', 500],
     ['alis', 'dunya', '🛍️', 'Müşteri', 'CarmenShop\'tan sipariş ver', ['gez3'], x => qn(x.orders), '#/home', 500],
@@ -33772,7 +34072,7 @@
     ['oyun', 'dunya', '🎮', 'Oyuncu', 'PS bölüm 3 ya da FP gün 7', ['gez3'], x => qn(x.game), '#/home', 800],
     ['gez8', 'dunya', '🌍', 'Dünya turu', '8 farklı site gez', ['abone', 'alis', 'otel'], x => qn(x.sites, 8), '#/home', 1500],
     ['usta', 'usta', '👑', 'Carmen ustası', 'Her dalın son görevini bitir', ['q25', 'kama', 'anal3', 'son15', 'gezgin', 'kayit', 'f5', 'kralice', 'uclu', 'gez8', 'oyun'], () => qn(1), '', 10000],
-    ['yuz', 'usta', '💯', 'Yüz olay', '100 farklı olay yaşa', ['usta'], x => qn(x.evN, 100), '#/messages', 20000]
+    ['yuz', 'usta', '💯', 'Yüz olay', '100 farklı olay yaşa', ['usta'], x => qn(x.evN, 100), '#/sehir', 20000]
   ].map(([id, br, ic, t, d, need, c, go, pay]) => ({ id, br, ic, t, d, need, c, go, pay }));
   // ❓ sorulan soru (kural adının " · " öncesi, ör. "Dar mısın") → u.qAsk
   function questAsk(id, name) {
@@ -34007,6 +34307,7 @@
         <section class="me-sec" data-sec="ayar">
           <div class="card" style="margin-bottom:12px">
             <label class="flt-row"><span><b>✏️ Düzenleme modu</b> <small>✨ Oluştur, 📖 Monia, 🕰️ saat ayarı ve sohbetteki detaylı görünümler (📊 durumlar, 📈 değer değişimleri, 🎯 bot puanları, ✨ efekt, ⇄ sırayla…) sadece bu modda</small></span><input type="checkbox" id="editOn"${editOn() ? ' checked' : ''}></label>
+            <label class="flt-row"><span><b>🧘 Sade mesajlar</b> <small>cevaplar en fazla 2 baloncuk, ekler azalır · kapatınca zengin hâl</small></span><input type="checkbox" id="simpleOn"${simpleOn() ? ' checked' : ''}></label>
             ${editOn() ? `<label class="flt-row"><span><b>🌿 Gerçekçi Mod</b> <small>Düzenleme modu kapalıyken hep açık</small></span><input type="checkbox" id="realOn"${realOn() ? ' checked' : ''}></label>` : ''}
             ${editOn() ? `<div class="sec-title">✨ Oluştur</div>
             <a class="btn primary block" href="#/create">✨ Karakter oluştur</a>
@@ -34214,6 +34515,7 @@
     // ✏️ düzenleme modu açılınca ⇄ sırayla tüm sohbetlerde yeniden açık başlar
     $('#editOn').onchange = e => { editOn(e.target.checked); if (e.target.checked) { S().turns = {}; save(); } const y = window.scrollY; renderMe(); window.scrollTo(0, y); };
     if ($('#realOn')) $('#realOn').onchange = e => realOn(e.target.checked);
+    if ($('#simpleOn')) $('#simpleOn').onchange = e => simpleOn(e.target.checked);
     // 🌐 dil değişince sayfa yeniden yüklenir (çevrilmiş metinler geri dönsün)
     $('#langPick').onclick = e => { const b = e.target.closest('[data-lang-set]'); if (!b || b.dataset.langSet === Stories.I18n.lang()) return; Stories.I18n.lang(b.dataset.langSet); location.reload(); };
     $('#themePick').onclick = e => { const b = e.target.closest('[data-theme-set]'); if (!b) return; themePref(b.dataset.themeSet); applyTheme(); $('#themePick').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); };

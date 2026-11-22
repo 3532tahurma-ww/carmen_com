@@ -46,6 +46,7 @@
 .ct-list { display: grid; gap: 4px; }
 .ct-row { display: flex; align-items: center; gap: 10px; padding: 6px; border-radius: 8px; color: inherit; text-decoration: none; }
 .ct-row:hover { background: #f5f0fa; }
+.ct-row.on { background: #efe3fb; box-shadow: inset 0 0 0 2px #a65ebb; }
 .ct-row .ava, .ct-row .ava img { border-radius: 6px; flex: none; }
 .ct-rin { flex: 1; min-width: 0; display: grid; gap: 1px; }
 .ct-rin b { font-size: 14px; } .ct-rin small { font-size: 12px; color: #6d6283; }
@@ -74,9 +75,23 @@
 .ct-opts { display: grid; grid-template-columns: 1fr 1fr; }
 .ct-opts .btn:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .ct-opt[disabled] { opacity: .5; }
+.ct-opts .ct-say, .ct-opts .ct-say ~ .btn { grid-column: 1 / -1; }
+.ct-phone { position: relative; }
+.ct-dot { position: absolute; top: 5px; right: 5px; width: 9px; height: 9px; border-radius: 50%; background: #ff3d8b; box-shadow: 0 0 0 2px rgba(22, 16, 40, .9); }
+.ct-dot[hidden] { display: none; }
+.ct-new { color: #ff3d8b; font-style: normal; font-size: 10px; }
+.ct-sug { display: flex; gap: 6px; overflow-x: auto; padding: 2px 0 6px; scrollbar-width: none; }
+.ct-sg { flex: none; padding: 5px 10px; border: 1.5px solid #ffc2da; border-radius: 14px; background: #fff3f8; color: #b0225f; font: inherit; font-size: 12.5px; white-space: nowrap; cursor: pointer; }
+[data-theme="dark"] .ct-sg { background: #3a2140; border-color: #6a3a63; color: #ffb3d1; }
+.ct-bn { display: block; font-size: 11px; font-weight: 800; opacity: .7; margin-bottom: 1px; }
+.ct-say { display: flex; gap: 6px; margin: 0; }
+.ct-say input { flex: 1; min-width: 0; padding: 8px 12px; border: 1.5px solid #e3d8ee; border-radius: 18px; font: inherit; font-size: 14px; background: #fff; color: #2b2140; }
+.ct-say input:focus { outline: none; border-color: #ff3d8b; }
+[data-theme="dark"] .ct-say input { background: #2a2140; border-color: #4a3d66; color: #f1eaf8; }
 [data-theme="dark"] .ct-b.her { background: #3a2f55; color: #f1eaf8 !important; }
 [data-theme="dark"] .ct-love { background: #4a2a3d; }
 [data-theme="dark"] .ct-card { background: rgba(28, 22, 44, .97); color: #f1eaf8; }
 [data-theme="dark"] .ct-card p, [data-theme="dark"] .ct-rin small, [data-theme="dark"] .ct-card h3 small { color: #b9aed0; }
 [data-theme="dark"] .ct-x { background: #3a2f55; color: #ddd; }
 [data-theme="dark"] .ct-row:hover { background: #352a4d; }
+[data-theme="dark"] .ct-row.on { background: #3d2c58; }

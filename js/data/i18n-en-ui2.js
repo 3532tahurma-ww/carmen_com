@@ -1,5 +1,14 @@
 /* 🌐 İngilizce sözlük (ui2). Kaynak Türkçe metin → çeviri; bkz. js/i18n.js */
 Stories.I18n.add({
+  // 👥 v1128 şehir grup daveti, Tinder / Bumble grupları, 🤱 hastanede emzirme
+  '1 kişi: baş başa · 2 kişi: grup sohbeti': '1 person: one-on-one · 2 people: group chat', 'Davet et': 'Invite', 'İkisini davet et': 'Invite both',
+  'İkisini birden davet ettin': 'You invited both of them', 'Gruplar': 'Groups', '＋ Yeni grup': '＋ New group', 'Henüz grup yok. İki eşleşmeni seçip grup kur': 'No groups yet. Pick two matches and make a group',
+  "Grup için {}'da en az 2 eşleşme gerekli": 'You need at least 2 matches on {} for a group',
+  'Geldik 😊 {b} de benimle': "We're here 😊 {b} came with me", 'Selam! {a} çok anlatmıştı seni 😏': 'Hi! {a} told me so much about you 😏', 'Kapını ikimiz çalıyoruz 👯': "It's both of us at your door 👯",
+  'Umarım iki kişilik içki vardır 🍷': 'Hope there are drinks for two 🍷', "{b}'yi de getirdim, sorun olmaz değil mi? 😇": "I brought {b} too, that's okay, right? 😇", 'Evin güzelmiş… ikimize de yer var mı? 😏': 'Nice place… is there room for both of us? 😏',
+  'evde, koltukta emzirme molası': 'at home, a nursing break on the sofa', 'Onun evinde': 'At her place', 'Oturma odasında koltuk; perdeler yarı kapalı, ev sessiz.': 'A sofa in the living room; curtains half drawn, the house quiet.',
+  'Hoş geldin 😊 göğüslerim doldu, tam emzirme molası veriyordum… gelir misin?': "Welcome 😊 my breasts are full, I was just taking a nursing break… will you come?", 'Evde kimse yok, kapıyı kilitledim… koltuğa, yanıma gelir misin?': "Nobody's home, I locked the door… will you come to the sofa, next to me?",
+  'Sütüm taşacak gibi, iyi ki geldin. Emzirme molası verelim mi?': "My milk is about to overflow, glad you came. Shall we take a nursing break?",
   'Bot editörü sadece': 'The bot editor only',
   'Lactation Fantasy ve Süt Kitabı': 'Lactation Fantasy and the Milk Book',
   'Yeni 🍼 Lactation Fantasy kategorisi: Milk Maid, Breast Pump, Milking Station, Nursing Lap, Double Suckle, Milk Shower, Milk Contest ve daha fazlası (📜 Olay → 🍼 Lactation). Karakterin ne kadar süt verdiğini 🩺 CarmenKlinik\'te litre olarak görürsün; süt miktarına ve kalitesine göre cevapları ve olaylar değişir.': 'New 🍼 Lactation Fantasy category: Milk Maid, Breast Pump, Milking Station, Nursing Lap, Double Suckle, Milk Shower, Milk Contest and more (📜 Event → 🍼 Lactation). See how much milk a character gives in litres at 🩺 CarmenKlinik; her replies and events change with her milk amount and quality.',
