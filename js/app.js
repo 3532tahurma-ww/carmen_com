@@ -1091,8 +1091,8 @@
   // 🔔 Rehber'in en üstü: ⚡ Şimdi + son bildirimler (ilk 4, gerisi katlı); açılınca görüldü sayılır
   function c3NotifHtml() {
     const L = c3NLog(), seen = c3NSeen(), now = c3NowRows();
-    const row = ([ic, t, s, h]) => `<a class="me-hist" href="${esc(h || '#/home')}"><span style="font-size:20px">${ic}</span><span><b>${esc(t)}</b>${s ? `<small>${esc(s)}</small>` : ''}</span></a>`;
-    const lrow = n => `<a class="me-hist" href="${esc(n.h || '#/home')}"><span style="font-size:20px">${n.ic}</span><span><b>${esc(n.t)}</b><small>${n.ts > seen ? '🆕 · ' : ''}${fmtTime(n.ts)}</small></span></a>`;
+    const row = ([ic, t, s, h]) => `<a class="me-hist" href="${esc(h || '#/home')}"><span style="font-size:20px;flex:none">${ic}</span><span><b>${esc(t)}</b>${s ? `<small>${esc(s)}</small>` : ''}</span></a>`;
+    const lrow = n => `<a class="me-hist" href="${esc(n.h || '#/home')}"><span style="font-size:20px;flex:none">${n.ic}</span><span><b>${esc(n.t)}</b><small>${n.ts > seen ? '🆕 · ' : ''}${fmtTime(n.ts)}</small></span></a>`;
     c3NSeen(Date.now());
     return `<div class="sec-title">🔔 Bildirimler</div><div class="card" style="padding:4px 8px">
         ${now.length ? now.map(row).join('') : ''}
@@ -32997,7 +32997,7 @@
    * CarmenEvents öneriler / favoriler ve sohbetin 📜 olay seçicisi (Ekle yanındaki ⓘ) kullanır. CSS kendi içinde (EVW_CSS) */
   const pinToggle = id => { const p = MO().pins || [], on = !p.includes(id); MO().pins = on ? [id, ...p] : p.filter(x => x !== id); save(); return on; };
   const EVW_CSS = `<style>.sheet-wrap:has(.evw-sh){align-items:center;padding-right:16px;padding-left:calc(var(--side,0px) + 16px)}
-    .sheet.evw-sh{border-radius:20px;padding:14px 16px;max-height:86vh;max-width:520px;transform:scale(.94)}.sheet-wrap.open .sheet.evw-sh{transform:none}
+    .sheet.evw-sh{background:var(--card,#fff);color:var(--text);border-radius:20px;padding:14px 16px;max-height:86vh;max-width:520px;transform:scale(.94)}.sheet-wrap.open .sheet.evw-sh{transform:none}
     .evw-h{display:flex;gap:10px;align-items:center;margin-bottom:8px}.evw-h>div{flex:1;min-width:0}.evw-h b{display:block;font-size:1.15rem}.evw-h small{opacity:.7}
     .evw-ic{font-size:2.2rem;line-height:1}.evw p{margin:6px 0}.evw ul{margin:4px 0 10px;padding-left:18px}.evw-tg{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0 10px}
     .evw-tg span{font-size:.75rem;padding:2px 8px;border-radius:999px;background:color-mix(in srgb,#1f7a6b 14%,transparent)}
