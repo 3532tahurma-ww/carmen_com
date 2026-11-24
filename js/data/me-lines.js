@@ -9886,6 +9886,57 @@ Object.assign(Stories.ME_EV_LINES, {
 });
 Stories.ME_BED_SKIP.push('Lift And Drop', 'Anal Lift And Drop', 'Wall Neighbor', 'Careful Sitting', 'Neighbor Note', 'Hoarse Voice');
 
+/* 🫠 İçinde kal, cılız kal (Tur 40) */
+Object.assign(Stories.ME_EV_LINES, {
+  'First Push Finish': ['Özür dilerim {o} 😅', 'Dayanamadım 🚪', 'Daha girmeden… 😳', 'Sen çok güzelsin, suç senin 😏'],
+  'Halfway In': ['Yarı yolda {o} ⬇️', 'Tutamadım 😩', 'İttin mi beni? 😳', 'Hepsi içinde şimdi 💦'],
+  'Too Tight To Hold': ['Çok darsın {o} 🔒', 'Sıktın ve bitti 😩', 'Haksızlık bu 😂', 'Kontrolüm gitti 🥵'],
+  'Saved Up Too Long': ['Günlerdir bekliyordum {o} 🫙', 'Tutamadım 💥', 'Taşıyor mu? 😳', 'Hepsi senin için biriktirildi 😏'],
+  'Slick Entry Spill': ['Çok ıslaksın {o} 💧', 'Kayıp gittim 😳', 'Tek kayışta 🚪', 'Gülme 😂'],
+  'Anal First Push': ['Daha ucu {o} 🍩', 'Sıktın 😩', 'Başlamadan bitti 😅', 'Arkan çok sıcak 🥵'],
+  'Anal Halfway': ['Yarısındayım {o} 🍩', 'Dayanamadım 😩', 'Doldu mu? 😳', 'Nefes al 🤍'],
+  'Anal Ring Squeeze': ['Yakalandım {o} 🔒', 'Halkayı geçtim ve… 😩', 'Kıpırdamıyorum 🍩', 'Sen kazandın 😏'],
+  'Spurt Per Stroke': ['Bitmiyor {o} 💥', 'Bir daha 🔁', 'Her vuruşta 😈', 'Duramıyorum 🥵'],
+  'Pump It In': ['Hepsini {o} ⛽', 'Her girişte biraz daha 💦', 'Kaçma 🔒', 'Son damlasına kadar 😈'],
+  'Counting Spurts': ['Say bakalım {o} 🔢', 'Kaçtayız? 😏', 'Daha bitmedi 😈', 'Saymayı bırak 😂'],
+  'Frothy Thrusts': ['Köpürüyor {o} 🫧', 'Durmuyorum 😈', 'Çarşafı boşver 😂', 'Taşıyor 🌊'],
+  'Mating Press Pump': ['Bacakların omzumda {o} 🦵', 'Her bastırışta bir tane daha ⛽', 'Kaçamazsın 🔒', 'En dibe 😈'],
+  'Ride Through It': ['Durma {o} 🤠', 'Hepsini çek 💦', 'Zıplamaya devam 😈', 'Bir dalga daha 🥵'],
+  'Anal Spurt Per Stroke': ['Arkana her vuruşta {o} 🍩', 'Bir daha 🔁', 'Durmuyorum 😈', 'Yastığı sık 😏'],
+  'Anal Pump': ['Kalçan elimde {o} 🍩', 'Pompalıyorum ⛽', 'Hepsi arkana 💦', 'Bir tane daha 😈'],
+  'Anal Froth': ['Arkandan taşıyor {o} 🫧', 'Durmuyorum 🍩', 'Bakma öyle 😏', 'Uyluklarına kadar 💧'],
+  'Don\'t Pull Out': ['Tamam, kalıyorum {o} 🔒', 'Bacakların beni bırakmıyor 😏', 'Hiçbir yere gitmiyorum 🤍', 'Böyle kalalım 🫂'],
+  'Buried And Still': ['Kıpırdamıyorum {o} 🔩', 'Say bakalım 🔢', 'En dipteyim 🤫', 'Hissediyor musun? 💓'],
+  'Seal It In': ['Kaçmıyor hiçbiri {o} 🔒', 'Yastığı koydum 😏', 'Bu kadar ciddi olma 😂', 'İçinde kalıyorum 🤍'],
+  'Fall Asleep Inside': ['Uyu {o} 😴', 'Çıkmıyorum 🫂', 'Işığı boşver 😌', 'Sabaha kadar böyle 🔩'],
+  'Warm Cork': ['Tıpan buradayım {o} 🫙', 'Çıkmıyorum, söz 😂', 'Sarıl bana 🫂', 'Hiçbir şey dökülmeyecek 🤍'],
+  'Anal Don\'t Pull Out': ['Tamam, kalıyorum {o} 🍩', 'Bastırma, gitmiyorum 😏', 'Arkandayım 🤍', 'Biraz daha 🔒'],
+  'Anal Buried Still': ['En derindeyim {o} 🍩', 'Kıpırdamıyorum 🔩', 'Yayılıyor mu? 😏', 'Nefes al 🤍'],
+  'Anal Seal': ['Sıkı tutuyorum {o} 🔒', 'Havlu hazır 🧻', 'Kıpırdama 🍩', 'Çıkarsam taşar 😂'],
+  'Half Hard Inside': ['Hâlâ içindeyim {o} 🫠', 'Kıpırdama… 😩', 'Çok hassasım 〰️', 'Böyle kalalım 🤍'],
+  'Lazy Grind': ['Yavaş yavaş {o} 🐌', 'Fazla mı? 😏', 'Çıkmıyorum 🌀', 'Duymak istiyorum seni 🥵'],
+  'Squeeze To Keep': ['Sıkıyorsun {o} 🗜️', 'Bilerek yapıyorsun 😏', 'Gitmiyorum işte 🤍', 'Bu haksızlık 😂'],
+  'Slipping Out Slowly': ['Kaydım {o} 🫠', 'Elimde değil 😅', 'Havlu getireyim 🧻', 'Geri dönerim 😏'],
+  'Hard Again Inside': ['Bak {o} 🔄', 'Çıkmadan bile 😈', 'İkinci tur? 😏', 'Kalçan zaten kıpırdıyor 🔥'],
+  'Anal Half Hard': ['Hâlâ arkandayım {o} 🍩', 'Her nefesinde 🫠', 'Sabaha kadar mı? 😏', 'Kıpırdamıyorum 🤫'],
+  'Anal Slip Out': ['Kaydım {o} 🍩', 'Havlu! 😂', 'Yakalayamadın 😏', 'Taşıyor 🌊'],
+  'Anal Hard Again': ['Yine {o} 🔄', 'Söz, yavaş 🍩', 'Fark ettin mi? 😏', 'Arkan beni çağırıyor 😈'],
+  'Soft Second Load': ['Bir daha {o} 🫠', 'Ben de şaşırdım 😳', 'Az ama sıcak 💦', 'Bitmemişim 😈'],
+  'Aftershock Pulse': ['Hâlâ {o} 💓', 'Artçılar 😂', 'Kıpırdamıyorum 🤫', 'Kalanı da 💧'],
+  'Milked While Soft': ['Sağıyorsun beni {o} 🥛', 'Son damla da senin 😩', 'Bırakmıyorsun 🗜️', 'Tamam, hepsi senin 😌'],
+  'Trickle Inside': ['Fark ettin mi {o}? 💧', 'Sızdım galiba 😅', 'Gizli bir tane 😏', 'Sayılır bence 😂'],
+  'Anal Soft Second': ['Bir daha arkana {o} 🍩', 'İkinci 🔢', 'Yavaş yavaş 🫠', 'Titriyorsun 😩'],
+  'Anal Aftershock': ['Hâlâ geliyorum {o} 💓', 'Kıpırdamadan 🍩', 'Sıkma öyle 😏', 'Kalanı da 💧'],
+  'Anal Milk Out': ['Son damla {o} 🥛', 'Sıkıp bırakıyorsun 😩', 'Pes ediyorum 😂', 'Çıkabilir miyim? 🍩'],
+  'The Pop': ['O ses {o}? 🍾', 'Gülmekten öleceğim 🤣', 'Şampanya 😂', 'Kimseye söyleme 🙈'],
+  'Hand Under': ['Elin hazır mı {o}? 🤲', 'Yavaşça çıkıyorum 💧', 'Yakaladın 😏', 'Az mı? 😅'],
+  'Overflow Count': ['Saymadım {o} 🔢', 'Galiba hepsi 😂', 'Taşıyor 🌊', 'Havlu getireyim 🧻'],
+  'Sorry So Fast': ['Çok utandım {o} 😅', 'Sana dayanamadım 💗', 'İkinci tur senin, söz 😏', 'Öp bakalım 😌'],
+  'Still Connected': ['Gitmiyorum {o} 🫂', 'Anlat bakalım günün nasıldı 😌', 'Böyle yakınız 🤍', 'Yumuşadım ama buradayım 😅'],
+  'Bathroom Walk': ['Bakmıyorum {o} 🙈', 'Tamam, biraz baktım 😏', 'Sekerek mi gidiyorsun? 😂', 'Havluyu getiriyorum 🧻']
+});
+Stories.ME_BED_SKIP.push('Bathroom Walk');
+
 /* ☕ Daily Life (v1108): gündelik olaylarda senin mesajların */
 Object.assign(Stories.ME_EV_LINES, {
   "Cook Together": ["Soğanları ben doğruyorum {o} 🧅", "Tadına bak, tuzu yeter mi? 🥄", "Önlük sana çok yakışmış 😏", "Tava yanıyor galiba 😅", "Bu yemek ikimizin 🍳", "Kaşığı uzat, ben de bakayım 😋"],

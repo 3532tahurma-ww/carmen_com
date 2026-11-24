@@ -970,4 +970,11 @@ Stories.I18n.add({
   'Sonuna kadar: dibe kadar girip orada kalmak.': 'All the way: bottoming out and staying there.',
   'Zevkten dolan gözler: acıdan değil, taşmaktan.': 'Eyes filling with pleasure: not from pain, from overflowing.',
   'Sesini tutamıyor: inleme, çığlık ya da kısık bir ah.': 'She can\'t hold her voice: a moan, a scream or a hoarse ah.',
+  // 🫠 İçinde kal, cılız kal (Tur 40)
+  'Boşaldıktan sonra çıkmadan: içinde yarı sert kalmak, aşırı hassas yavaş hareketler, kayıp çıkmak ya da içinde yeniden sertleşmek.': 'After cumming, without pulling out: staying half hard inside her, slow oversensitive movements, slipping out or getting hard again inside her.',
+  'İçinde kaldıktan sonra: çıkarken gelen o minik ses, avucunda taşan sıcaklık, banyoya sekerek yürüyüş, çabukluğa gülümseme.': 'After staying inside: that tiny sound as you pull out, the warmth spilling into her palm, a hopping walk to the bathroom, a smile at how quick it was.',
+  'Boşaldıktan sonra çıkmazsın: içinde kalırsın, o da bırakmaz.': 'You don\'t pull out after cumming: you stay inside and she won\'t let go.',
+  'Boşaldıktan sonra yarı sert: aşırı hassas, yavaş ve hâlâ içinde.': 'Half hard after cumming: oversensitive, slow and still inside.',
+  'Daha girerken: ilk itişte ya da yarı yolda dayanamazsın.': 'On the way in: you can\'t last past the first push or halfway.',
+  'Soktukça boşalma: her vuruşta bir dalga daha; ancak 💦 Cum yeterince doluysa.': 'Cumming with every thrust: another wave each stroke; only if 💦 Cum is full enough.',
 });

@@ -1267,6 +1267,18 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['🫠', 'İçinde kal, cılız kal: 46 yeni olay', 'Boşalma anı artık tek bir olay değil. Daha girerken dayanamamak, her vuruşta bir dalga daha, boşaldıktan sonra çıkmadan içinde kalmak, yarı sert ve aşırı hassas yatmak, hatta cılızken bir kez daha gelmek. Yeni 🫠 Soft Inside ve 🧻 Inside After kategorileri, 32 bitiş.', '#/kitap/olay/79', [
+      ['🚪 Girerken', 'Vajinal: First Push Finish, Halfway In, Too Tight To Hold, Saved Up Too Long, Slick Entry Spill. Anal: Anal First Push, Anal Halfway, Anal Ring Squeeze.'],
+      ['💥 Soktukça', 'Vajinal: Spurt Per Stroke, Pump It In, Counting Spurts, Frothy Thrusts, Mating Press Pump, Ride Through It. Anal: Anal Spurt Per Stroke, Anal Pump, Anal Froth. 💦 Cum en az 70 olmalı.'],
+      ['🔩 İçinde kal', 'Vajinal: Don\'t Pull Out, Buried And Still, Seal It In, Fall Asleep Inside, Warm Cork. Anal: Anal Don\'t Pull Out, Anal Buried Still, Anal Seal.'],
+      ['🫠 Cılız kal', 'Yeni 🫠 Soft Inside kategorisi: Half Hard Inside, Lazy Grind, Squeeze To Keep, Slipping Out Slowly, Hard Again Inside, Anal Half Hard, Anal Slip Out, Anal Hard Again.'],
+      ['💧 Cılızken yine', 'Soft Second Load, Aftershock Pulse, Milked While Soft, Trickle Inside, Anal Soft Second, Anal Aftershock, Anal Milk Out. Sadece hâlâ içindeyken, aynı delikte.'],
+      ['🧻 Sonrası', 'Yeni 🧻 Inside After kategorisi: The Pop, Hand Under, Overflow Count, Sorry So Fast, Still Connected ve Bathroom Walk.'],
+      ['🎬 Sahneler', '🔄 Çıkmadan İkinci Tur, 😅 Çabuk Oldu, ⛽ Her Vuruşta, 😴 İçinde Uyu, 🍩 Arkasında Kal ve 🥛 Cılızken Sağım. CarmenEvents → 🎬 Sahneler → 🫠 İçinde Kal.'],
+      ['📚 Kitap', 'Olay Kitabı\'nda yeni bölüm: 🫠 İçinde kal, cılız kal.']], 'Yeni olaylar', [
+      'Bazen her şey daha başlamadan biter. Ucunu yerleştirdiğin an dayanamazsın, o da önce şaşırır sonra güler: "Bu kadar mı özlemişsin beni?" Günlerce biriktirdiysen ilk itişte taşarsın; o kadar dar ki girerken kasılır, sen de anında gelirsin.',
+      'Bazen de bitmek bilmez. 💦 Cum yeterince doluysa soktukça boşalırsın: her vuruşta bir dalga daha. Counting Spurts\'te her birini yüksek sesle sayar, Ride Through It\'te sen gelirken o durmaz ve her inişte bir dalga daha çeker.',
+      'Boşaldıktan sonra da hikâye sürer. Bacaklarıyla seni kilitler, "kal" der; içinde yarı sert, aşırı hassas yatarsınız. Ya yavaşça kayıp çıkarsın ve peşinden süzülür, ya da içinde yeniden sertleşirsin. Cılızken bile bir kez daha gelebilirsin; sonunda çıkarken gelen o minik sese ikiniz de gülmekten kırılırsınız.']],
     ['👁️', 'Göz rengi, takılar, bakım ve alışkanlıklar', 'Oluştur ekranında dört yeni özellik var: göz rengi, aksesuar, bakım ve alışkanlık. Seçtiklerin profil kartında görünüyor. Kızlar artık bunlarla ilgili derin sorular soruyor, mesleklerinden de bahsediyor. Evliyse kocası da bunlara laf atıyor.', '#/kitap/yeni/14', [
       ['👁️ Eye Color', 'Brown, Hazel, Green, Blue, Black ve Honey. 🎲 Rastgele memleketine göre seçer.'],
       ['👓 Accessory · 💅 Care', 'Küpe, choker, halhal, kol saati… · manikür, yoğun ya da hafif makyaj, kirpik, parfüm. Çelişenler birlikte seçilemez.'],
@@ -1587,7 +1599,7 @@
       ['🤏 Değdirme', 'Kalçasına: Cheek Trace, Panty Line Trace, Crack Slide, Lower Back Rest, Jeans Press. Bacaklarına: Inner Thigh Trail, Thigh Gap Rest, Stocking Rub, Under Table Touch, Calf to Knee.'],
       ['👗 Kıyafet', 'Panty Slap, Bra Slap, Stocking Slap, Panty Line Trace, Stocking Rub ve Jeans Press o parça üstündeyken olur.'],
       ['📚 Kitap', 'Olay Kitabı\'na iki bölüm: 👋 Aletle Vurma ve 🤏 Aletle Değdirme.']]],
-    ['📖', 'Daha iyi anlatımlar!', 'Olaylar artık tek cümleyle geçiştirilmiyor: her olay birkaç cümlelik küçük bir sahne olarak anlatılıyor. Ne yaptığın, onun nasıl tepki verdiği, o anın sonunda ne kaldığı. 📜 Olay rehberinde, Olay Kitabı\'nda ve diğer kitaplarda.', '#/kitap/olay/79', [
+    ['📖', 'Daha iyi anlatımlar!', 'Olaylar artık tek cümleyle geçiştirilmiyor: her olay birkaç cümlelik küçük bir sahne olarak anlatılıyor. Ne yaptığın, onun nasıl tepki verdiği, o anın sonunda ne kaldığı. 📜 Olay rehberinde, Olay Kitabı\'nda ve diğer kitaplarda.', '#/kitap/olay/80', [
       ['✒️ Uzun anlatım', 'Her olayın kısa açıklaması olay seçicide duruyor; uzun anlatımı rehberde ve kitaplarda ilk sırada.'],
       ['📚 Kitap', 'Olay Kitabı\'nda yeni bölüm: 📖 Daha iyi anlatımlar; kaç olayın yeni anlatımı olduğunu canlı sayar.']]],
     ['💜', 'İzler artık kalıyor', 'Bıraktığın izler sayılıyor: durum kartında 💜 kaç iz olduğunu görürsün, sohbet saatiyle önce morarır sonra solar. Kocası bilmeyen evli kızın kocası görünür izi sorar ve 🕵️ Şüphe artar; Hotwife\'ın kocası görmek ister. 17 yeni iz olayı da geldi.', '#/kitap/olay/58', [
@@ -22696,34 +22708,50 @@
     if (d.traits) crFix(d, true);
   }
 
-  /* Oluştur ekranı: üstte bölümlere atlama çubuğu (data-nav), özellik kartları başlığa dokununca katlanır (data-fold;
+  /* Oluştur ekranı: üstte sekmeler (CR_PANES, aynı anda tek bölüm), özellik kartları başlığa dokununca katlanır (data-fold;
    * katlıyken seçilenler başlıkta görünür, bu tarayıcıda hatırlanır) */
+  const CR_PANES = [['temel', '👤 Temel'], ['kisilik', '💫 Kişilik'], ['vucut', '🍑 Vücut'], ['gorunus', '📏 Görünüş'],
+    ['olay', '❤️ Olaylar'], ['izin', '🛡️ İzinler'], ['giyim', '👗 Giyim'], ['ek', '🧩 Ek']];
+  const CR_GROUP_PANE = {
+    pussy: 'vucut', anal: 'vucut', weight: 'vucut', boob: 'vucut', butt: 'vucut', aesthetic: 'vucut',
+    height: 'gorunus', bodytype: 'gorunus', haircolor: 'gorunus', hairlength: 'gorunus', skin: 'gorunus', lips: 'gorunus', legs: 'gorunus',
+    waist: 'gorunus', fashion: 'gorunus', marks: 'gorunus', eyecolor: 'gorunus', accessory: 'gorunus', care: 'gorunus', habit: 'gorunus'
+  };
+  const CR_FOLD_DEF = ['job', 'zodiac'];   // uzun listeler ilk açılışta katlı
   const FOLD_KEY = 'amor-stories:create-fold';
   const createFolds = v => { try { if (v) localStorage.setItem(FOLD_KEY, JSON.stringify(v)); return JSON.parse(localStorage.getItem(FOLD_KEY) || '{}'); } catch (e) { return v || {}; } };
   function polishCreate() {
     const nav = $('#crNav');
     if (!nav) return;
-    const secs = [...view.querySelectorAll('[data-nav]')], head = view.querySelector('.create .editor-head');
+    const head = view.querySelector('.create .editor-head');
     nav.style.top = head.offsetHeight + 'px';
-    nav.innerHTML = secs.map((s, i) => `<button type="button" data-go="${i}">${esc(s.dataset.nav)}</button>`).join('');
-    nav.onclick = e => {
-      const b = e.target.closest('[data-go]');
-      if (!b) return;
-      const s = secs[+b.dataset.go];
-      if (s.classList.contains('folded')) s.classList.remove('folded');
-      window.scrollTo({ top: s.getBoundingClientRect().top + window.scrollY - head.offsetHeight - nav.offsetHeight - 8, behavior: 'smooth' });
+    // 📑 sekmeler: aynı anda tek bölüm görünür; sayaç o bölümde seçili olanları gösterir
+    const counts = () => nav.querySelectorAll('[data-tab]').forEach(b => {
+      const n = b.dataset.tab === 'temel' || b.dataset.tab === 'ek' ? 0 : view.querySelectorAll(`.cr-pane[data-pane="${b.dataset.tab}"] .presets button.on`).length;
+      b.querySelector('.cr-cnt').textContent = n || '';
+    });
+    const show = k => {
+      const i = CR_PANES.findIndex(p => p[0] === k);
+      if (i < 0) return;
+      ui.create.tab = k;
+      view.querySelectorAll('.cr-pane').forEach(p => { p.hidden = p.dataset.pane !== k; });
+      nav.querySelectorAll('[data-tab]').forEach(b => b.classList.toggle('on', b.dataset.tab === k));
+      const on = nav.querySelector('.on');
+      if (on) nav.scrollTo({ left: on.offsetLeft - nav.clientWidth / 2 + on.offsetWidth / 2, behavior: 'smooth' });
+      const [pb, nb] = view.querySelectorAll('.cr-step [data-step]');
+      pb.disabled = !i; pb.querySelector('span').textContent = i ? CR_PANES[i - 1][1] : '';
+      nb.disabled = i >= CR_PANES.length - 1; nb.querySelector('span').textContent = i < CR_PANES.length - 1 ? CR_PANES[i + 1][1] : '';
+      view.querySelector('.cr-step > span').textContent = `${i + 1} / ${CR_PANES.length}`;
+      const top = nav.getBoundingClientRect().top + window.scrollY - head.offsetHeight;
+      if (window.scrollY > top) window.scrollTo({ top, behavior: 'smooth' });
     };
-    // görünen bölüm çubukta seçili
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver(es => es.forEach(en => {
-        if (!en.isIntersecting) return;
-        const i = secs.indexOf(en.target);
-        nav.querySelectorAll('[data-go]').forEach(b => b.classList.toggle('on', +b.dataset.go === i));
-        const on = nav.querySelector('.on');
-        if (on) nav.scrollTo({ left: on.offsetLeft - nav.clientWidth / 2 + on.offsetWidth / 2, behavior: 'smooth' });
-      }), { rootMargin: '-35% 0px -60% 0px' });
-      secs.forEach(s => io.observe(s));
-    }
+    nav.onclick = e => { const b = e.target.closest('[data-tab]'); if (b) show(b.dataset.tab); };
+    view.querySelectorAll('.cr-step [data-step]').forEach(b => b.onclick = () => {
+      const i = CR_PANES.findIndex(p => p[0] === ui.create.tab) + +b.dataset.step;
+      if (CR_PANES[i]) show(CR_PANES[i][0]);
+    });
+    counts();
+    view.querySelector('.create').addEventListener('click', e => { if (e.target.closest('.presets')) setTimeout(counts); });
     const folds = createFolds();
     view.querySelectorAll('.cr-fold').forEach(card => {
       const head = card.querySelector('.row2 > span');
@@ -22733,7 +22761,8 @@
         const on = [...card.querySelectorAll('.presets button.on')].map(b => b.textContent.replace(' ✕', '').trim());
         el.textContent = on.length ? on.slice(0, 3).join(', ') + (on.length > 3 ? ` +${on.length - 3}` : '') : '';
       };
-      card.classList.toggle('folded', !!folds[card.dataset.fold]);
+      const fk = card.dataset.fold;
+      card.classList.toggle('folded', fk in folds ? !!folds[fk] : CR_FOLD_DEF.includes(fk));
       sum();
       head.onclick = () => {
         card.classList.toggle('folded');
@@ -22789,6 +22818,7 @@
     const custom = d.traits.filter(t => !T.all.includes(t));
     const used = usedSets(d);
     const crBl = crBlocked(d);
+    const tab = CR_PANES.some(p => p[0] === ui.create.tab) ? ui.create.tab : 'temel', tabI = CR_PANES.findIndex(p => p[0] === tab);
 
     view.innerHTML = `
       <div class="create">
@@ -22799,12 +22829,12 @@
           <button class="btn primary sm" id="saveTop">${id ? '💾 Kaydet' : '✨ Oluştur'}</button>
         </div>
 
-        <nav class="cr-nav" id="crNav"></nav>
+        <nav class="cr-nav" id="crNav">${CR_PANES.map(([k, l]) => `<button type="button" data-tab="${k}" class="${k === tab ? 'on' : ''}">${l}<em class="cr-cnt"></em></button>`).join('')}</nav>
 
-        <div class="sec-title" style="margin:12px 16px 8px" data-nav="👀 Önizleme">Önizleme</div>
-        <div class="preview" id="pv">${previewHtml(d)}</div>
+        <div class="cr-pane" data-pane="temel"${tab === 'temel' ? '' : ' hidden'}>
+        <div class="preview cr-pv" id="pv">${previewHtml(d)}</div>
 
-        <div class="ctrl" data-nav="⭐ Hazır">
+        <div class="ctrl">
           <div class="row2"><span>⭐ Hazır karakterler</span>${dice('set')}</div>
           <div class="mod-tabs">${MODS.map(m => `<button type="button" data-mod="${m.id}" class="${m.id === mod.id ? 'on' : ''}">${modIcon(m)}${esc(m.name)}</button>`).join('')}</div>
           <small class="mod-desc">${esc(mod.desc || '')}</small>
@@ -22818,7 +22848,7 @@
           ${!id && mod.id !== 'amor' && list.some(p => !used.has(p.id)) ? `<button type="button" class="btn ghost block" id="addAll" style="margin-top:10px">➕ Tüm ${esc(mod.name)} karakterlerini ekle (${list.filter(p => !used.has(p.id)).length})</button>` : ''}
         </div>
 
-        <div class="ctrl" data-nav="📸 Fotoğraf">
+        <div class="ctrl">
           <div class="row2"><span>📸 Profil fotoğrafı</span><small>kare kırpılır</small></div>
           <div class="photo-pick">
             <label class="pp">${avatar(Object.assign({}, d, { name: d.name || '+' }), 96)}<span class="cam">📷</span>
@@ -22841,7 +22871,7 @@
           </div>
         </div>
 
-        <div class="ctrl" data-nav="✍️ Kimlik">
+        <div class="ctrl">
           <div class="row2"><span>✍️ İsim</span><span class="dice-pair"><button type="button" class="dice-btn" id="fancyBtn" title="Süslü isim (✨Elif✨, ELİF, Eliff, ((ELİF)), Küçük Elif…)">🎀</button>${dice('name')}</span></div>
           <input type="text" id="cName" maxlength="40" value="${esc(d.name)}" placeholder="ör. Elif">
         </div>
@@ -22855,11 +22885,15 @@
         <div class="ctrl">
           <div class="row2"><span>📍 Şehir ve meslek</span>${dice('place')}</div>
           <input type="text" id="cCity" maxlength="30" value="${esc(d.city)}" placeholder="Memleket (ör. İzmir, Tokyo, Paris)">
-          <div class="presets">${[...P.jobGroups.flatMap(g => g.jobs.map(j => [g.ic, j])), ...(d.job && !P.jobGroups.some(g => g.jobs.includes(d.job)) ? [[(P.jobGroupOf(d.job) || { ic: '💼' }).ic, d.job]] : [])]
-            .map(([ic, j]) => `<button type="button" data-job="${esc(j)}" class="${d.job === j ? 'on' : ''}">${ic} ${esc(j)}</button>`).join('')}</div>
         </div>
 
-        <div class="ctrl">
+        <div class="ctrl cr-fold" data-fold="job">
+          <div class="row2"><span>💼 Meslek <small>gruplara göre</small></span></div>
+          ${[...P.jobGroups, ...(d.job && !P.jobGroups.some(g => g.jobs.includes(d.job)) ? [{ ic: (P.jobGroupOf(d.job) || { ic: '💼' }).ic, name: 'Diğer', jobs: [d.job] }] : [])]
+            .map(g => `<div class="mo-sub">${g.ic} ${esc(g.name)}</div><div class="presets">${g.jobs.map(j => `<button type="button" data-job="${esc(j)}" class="${d.job === j ? 'on' : ''}">${esc(j)}</button>`).join('')}</div>`).join('')}
+        </div>
+
+        <div class="ctrl cr-fold" data-fold="zodiac">
           <div class="row2"><span>✦ Burç</span>${dice('zodiac')}</div>
           <div class="presets">${T.zodiacs.map(z => preset(z, d.zodiac === z, 'data-zodiac')).join('')}</div>
         </div>
@@ -22869,12 +22903,19 @@
           <input type="text" id="cBio" maxlength="80" value="${esc(d.bio)}" placeholder="ör. kahvesiz konuşmam ☕">
         </div>
 
-        ${T.groups.filter(g => g.items.length).map(g => `
-          <div class="ctrl cr-fold" data-fold="${esc(g.id)}"${g.id === 'personality' ? ' data-nav="💫 Kişilik"' : g === T.groups.find(x => x.single) ? ' data-nav="🌸 Özellikler"' : ''}>
+        <div class="ctrl">
+          <div class="row2"><span>🎨 Renk <small>fotoğraf yoksa avatar ve kapak</small></span>${dice('color')}</div>
+          <div class="swatches">${T.colors.map((p, i) => `<button type="button" class="sw ${p.join() === (d.colors || []).join() ? 'on' : ''}" data-color="${i}" style="background:linear-gradient(135deg,${p[0]},${p[1]})" aria-label="Renk ${i + 1}"></button>`).join('')}</div>
+        </div>
+        </div>
+
+        ${['kisilik', 'vucut', 'gorunus'].map(pn => `<div class="cr-pane cr-grid" data-pane="${pn}"${tab === pn ? '' : ' hidden'}>${T.groups.filter(g => g.items.length && (CR_GROUP_PANE[g.id] || 'kisilik') === pn).map(g => `
+          <div class="ctrl cr-fold${g.single ? ' cr-one' : ''}" data-fold="${esc(g.id)}">
             <div class="row2"><span>${esc(g.label)} <small>${g.single ? 'birini seç' : 'birden çok seçebilirsin'}</small></span>${dice(g.id)}</div>
             <div class="presets">${g.items.map((t, i) => `<button type="button" data-trait="${esc(g.values[i])}" data-tg="${esc(g.id)}" class="${d.traits.includes(g.values[i]) ? 'on' : ''}${crBl.has(g.values[i]) ? ' blocked' : ''}">${esc(t)}</button>`).join('')}</div>
-          </div>`).join('')}
+          </div>`).join('')}</div>`).join('')}
 
+        <div class="cr-pane" data-pane="ek"${tab === 'ek' ? '' : ' hidden'}>
         <div class="ctrl">
           <div class="row2"><span>➕ Diğer özellikler</span></div>
           ${custom.length ? `<div class="presets">${custom.map(t => `<button type="button" class="on x" data-trait="${esc(t)}">${esc(t)}</button>`).join('')}</div>` : ''}
@@ -22886,37 +22927,47 @@
           <input type="text" id="cTag" maxlength="24" placeholder="Etiket yaz ve Enter'a bas (ör. ex sevgili, iş arkadaşı)">
         </div>
 
-        <div class="ctrl" data-nav="🧩 Ek">
+        <div class="ctrl">
           <div class="row2"><span>🧩 Ek özellikler <small>kendi alanların: sayı, kaydırıcı, aç/kapa, seçim…</small></span><button type="button" class="chip" id="cfEdit">⚙️ Alanları düzenle</button></div>
           <div id="cfBox">${charFields().length ? charFields().map(f => cfInput(f, (d.fields || {})[f.id])).join('') : '<small class="mo-empty">Henüz alan yok. ⚙️ ile ekle (ör. 📏 Boy: sayı, 💍 Evli mi: aç/kapa, 👀 Göz rengi: seçim).</small>'}</div>
         </div>
 
-        <div class="ctrl cr-fold" id="feelBox" data-fold="feel" data-nav="❤️ Olaylar">
+        <div class="ctrl">
+          <div class="row2"><span>📝 Hakkında</span><small>geçmişi, sırları, ilişkileri</small></div>
+          <textarea id="cAbout" rows="4" maxlength="2000" placeholder="Nasıl konuşur, neyi sever, kimden hoşlanır...">${esc(d.about)}</textarea>
+        </div>
+        </div>
+
+        <div class="cr-pane" data-pane="olay"${tab === 'olay' ? '' : ' hidden'}>
+        <div class="ctrl" id="feelBox">
           <div class="row2"><span>❤️ Sevdiği / 💔 Sevmediği olaylar <small>"${CHAT_TOP_TAG}" etiketli kategorilerden</small></span>${dice('feel')}</div>
           ${FEELS.map(f => `<div class="mo-sub">${f.icon} ${f.label}</div>
             <div class="presets">${feelEvents(d[f.key]).map(e => `<button type="button" class="on x" data-feelrm="${f.key}" data-id="${esc(e.id)}">${evEmo(e)}${esc(e.title)}</button>`).join('')}
               <button type="button" class="chip" data-feeladd="${f.key}">➕ Seç</button></div>`).join('')}
         </div>
 
-        <div class="ctrl cr-fold feel-box" id="permBox" data-fold="perm" data-nav="✅ İzinler">
+        </div>
+
+        <div class="cr-pane" data-pane="izin"${tab === 'izin' ? '' : ' hidden'}>
+        <div class="ctrl feel-box" id="permBox">
           <div class="row2"><span>🛡️ Korunma & boşalma <small>✅/🚫 izinler seçimlere göre dolar · kademeler kuraldır</small></span><button type="button" class="dice-btn" id="permCfgBtn" aria-label="İzin ayarları">⚙️</button>${dice('perm')}</div>
           ${protBox(d)}
         </div>
 
-        <div class="ctrl cr-fold" data-fold="wear" data-nav="👗 Giyim">
+        </div>
+
+        <div class="cr-pane" data-pane="giyim"${tab === 'giyim' ? '' : ' hidden'}>
+        <div class="ctrl">
           <div class="row2"><span>👗 Giyim <small>genelde giydikleri · profilde istediğin gibi giydirirsin</small></span><button type="button" class="dice-btn" id="wearEdit" aria-label="Düzenle">✏️</button>${dice('wear')}</div>
           ${CL.slots.map(s => { const its = (d.wardrobe || []).map(clItem).filter(x => x && x.slot === s.id); return `<div class="mo-sub">${s.icon} ${esc(s.label)}</div>
             <div class="presets">${its.map(x => `<button type="button" class="on x${x.style === 'i' ? ' bold' : ''}" data-wrm="${esc(x.id)}">${x.emoji} ${esc(x.name)}${x.style === 'i' ? ' 🔥' : ''}</button>`).join('') || '<small class="mo-empty">—</small>'}</div>`; }).join('')}
         </div>
-
-        <div class="ctrl" data-nav="📝 Hakkında">
-          <div class="row2"><span>📝 Hakkında</span><small>geçmişi, sırları, ilişkileri</small></div>
-          <textarea id="cAbout" rows="4" maxlength="2000" placeholder="Nasıl konuşur, neyi sever, kimden hoşlanır...">${esc(d.about)}</textarea>
         </div>
 
-        <div class="ctrl">
-          <div class="row2"><span>🎨 Renk <small>fotoğraf yoksa avatar ve kapak</small></span>${dice('color')}</div>
-          <div class="swatches">${T.colors.map((p, i) => `<button type="button" class="sw ${p.join() === (d.colors || []).join() ? 'on' : ''}" data-color="${i}" style="background:linear-gradient(135deg,${p[0]},${p[1]})" aria-label="Renk ${i + 1}"></button>`).join('')}</div>
+        <div class="cr-step">
+          <button type="button" class="btn ghost sm" data-step="-1"${tabI ? '' : ' disabled'}>‹ <span>${tabI ? CR_PANES[tabI - 1][1] : ''}</span></button>
+          <span>${tabI + 1} / ${CR_PANES.length}</span>
+          <button type="button" class="btn ghost sm" data-step="1"${tabI < CR_PANES.length - 1 ? '' : ' disabled'}><span>${tabI < CR_PANES.length - 1 ? CR_PANES[tabI + 1][1] : ''}</span> ›</button>
         </div>
 
         <div class="actions" style="padding-bottom:calc(20px + var(--safe-b))">
@@ -24864,11 +24915,11 @@
     ['soy', '👗', 'Soyunma', ['undress']],
     ['on', '👅', 'Ön sevişme', ['eat', 'outercourse', 'squeeze', 'pregnancy foreplay', 'nurturing foreplay', 'pee rubbing', 'held pee rubbing', 'held titfuck pee', 'licking', 'biting', 'her licks and bites', 'dick slap', 'dick touch', 'slurping', 'plug play', 'toy play', 'hand grab', 'hand spank', 'hair wrap', 'sleep foreplay', 'donor room', 'fetish play', 'foot play', 'lingerie play']],
     ['sut', '🍼', 'Lactation', ['lactation', 'nursing', 'lactation fantasy', 'milky foreplay']],
-    ['poz', '🔥', 'Pozisyon', ['forward', 'backward', 'threesome', 'pregnancy', 'milky sex', 'nurturing sex', 'mode', 'pre-cumming', 'anal pee', 'heavy anal pee', 'held anal pee', 'plugged sex', 'grip sex', 'hair sex', 'sleep sex', 'donor sex', 'fetish sex', 'foot sex', 'lingerie sex', 'lap positions', 'deep sex']],
+    ['poz', '🔥', 'Pozisyon', ['forward', 'backward', 'threesome', 'pregnancy', 'milky sex', 'nurturing sex', 'mode', 'pre-cumming', 'anal pee', 'heavy anal pee', 'held anal pee', 'plugged sex', 'grip sex', 'hair sex', 'sleep sex', 'donor sex', 'fetish sex', 'foot sex', 'lingerie sex', 'lap positions', 'deep sex', 'soft inside']],
     ['mekan', '📍', 'Mekân', ['mekanda', 'shower', 'sauna', 'bathtub', 'pool', 'car', 'elevator', 'camping', 'kitchen', 'stairs', 'laundry', 'balcony', 'camera', 'beach', 'office', 'hotel', 'school', 'church', 'gym', 'bar', 'cinema', 'outdoors', 'restaurant', 'rooftop', 'library', 'fair', 'haunted', 'street', 'massage salon', 'clinic', 'pee']],
     ['fant', '🦄', 'Fantezi', ['fantesy', 'meisove', 'femdom', 'bdsm', 'bull', 'affair', 'affair story', 'heavy pee', 'toys out']],
     ['bit', '💦', 'Bitiş', ['cumming', 'cumming size']],
-    ['son', '🌙', 'Sonrası', ['cool down', 'treatment', 'bull story', 'milky after', 'toy after', 'nurturing after', 'sleep after', 'deep after']]
+    ['son', '🌙', 'Sonrası', ['cool down', 'treatment', 'bull story', 'milky after', 'toy after', 'nurturing after', 'sleep after', 'deep after', 'inside after']]
   ];
   // 📍 Mekân kategorileri ↔ mekan kartları: ids = uyan mekanlar (places.js), to = o olay yazılınca geçilen mekan (places.js id'si ya da kendi kartı)
   const PLACE_EV = {
@@ -25806,7 +25857,7 @@
   const LES_NO_RE = /blowjob|deepthroat|handjob|titfuck|titjob|footjob|legjob|buttjob|hotdog|cum|creampie|condom|cock|dick|pull-out|bulge|size comparison|unplug flood|keep it in overnight|milked by toy/i;
   // lezbiyen ilişkide gizlenen olay mı (🧪 #/lezbiyen ve 📚 Lezbiyen Kitabı da sayar)
   // penisli kategoriler: Cumming, sperm ölçüsü (Cumming Size), onu sıkıştırma (Squeeze), kuru sürtünme (Outercourse)
-  const LES_NO_CAT = ['Cumming', 'Cumming Size', 'Squeeze', 'Outercourse', 'Her Licks And Bites', 'Dick Slap', 'Dick Touch', 'Slurping', 'Plugged Sex', 'Grip Sex', 'Nurturing Sex', 'Hair Sex', 'Hair Wrap', 'Sleep Sex', 'Donor Room', 'Donor Sex', 'Fetish Play', 'Fetish Sex', 'Foot Play', 'Foot Sex', 'Lingerie Sex', 'Lap Positions', 'Deep Sex', 'Deep After'];
+  const LES_NO_CAT = ['Cumming', 'Cumming Size', 'Squeeze', 'Outercourse', 'Her Licks And Bites', 'Dick Slap', 'Dick Touch', 'Slurping', 'Plugged Sex', 'Grip Sex', 'Nurturing Sex', 'Hair Sex', 'Hair Wrap', 'Sleep Sex', 'Donor Room', 'Donor Sex', 'Fetish Play', 'Fetish Sex', 'Foot Play', 'Foot Sex', 'Lingerie Sex', 'Lap Positions', 'Deep Sex', 'Deep After', 'Soft Inside', 'Inside After'];
   const lesNo = e => (e.tags || []).some(t => LES_NO_TAG.includes(String(t).toLocaleLowerCase('tr'))) || LES_NO_RE.test(e.title || '') || LES_NO_CAT.includes(catOfEv(e).label);
   // 🎬 sahne cinsiyete göre: kadın hesapta penisli olay (lesNo) içeren sahne, erkek hesapta lezbiyen olay içeren sahne gizli.
   // Sonuç hesap cinsiyeti + olay sayısına göre önbellekte; scenes.js sceneGroups da Stories.sceneHide ile süzer
@@ -27433,7 +27484,9 @@
     'lingerie sex': 'Üstündekiler çıkmadan sevişme: sütyen yerinde, külot dizlerde, mayo yana çekili, tayt yırtık; her birinin kendi bitişi var.',
     'lap positions': 'Sen oturuyorsun, o kucağında: koltukta, sallanan sandalyede, battaniye altında ya da küvette; yüz yüze, ters ya da yan.',
     'deep sex': 'Sonuna kadar kökleyen, gözleri dolduran ya da inleten seks; her olay ya vajinal ya anal, bitişler de aynı delikten sonra gelir.',
-    'deep after': 'Yoğun bir sevişmenin ardından: gözyaşlarını silmek, kısılan sesi, titreyen bacakları, ertesi sabahki komşu notu.'
+    'deep after': 'Yoğun bir sevişmenin ardından: gözyaşlarını silmek, kısılan sesi, titreyen bacakları, ertesi sabahki komşu notu.',
+    'soft inside': 'Boşaldıktan sonra çıkmadan: içinde yarı sert kalmak, aşırı hassas yavaş hareketler, kayıp çıkmak ya da içinde yeniden sertleşmek.',
+    'inside after': 'İçinde kaldıktan sonra: çıkarken gelen o minik ses, avucunda taşan sıcaklık, banyoya sekerek yürüyüş, çabukluğa gülümseme.'
   };
   const EV_TELL_TAG = {
     vajinal: 'Önden, vajinal bir an: korunmanız neyse tepkisi ona göre şekillenir; içine bitersen hamilelik zarı da atılır.',
@@ -27455,6 +27508,7 @@
     saç: 'Saçla: saçı sarılır, tutulur ya da saçına boşalırsın; saçının boyu ve rengi bu anı belirler.',
     ayak: 'Ayaklarıyla: tabanları, parmakları ya da bilekleri bu anın merkezinde.', sütyen: 'Sütyeniyle: kapları, askıları ya da kopçası bu anın parçası.', külot: 'Külotuyla: çekilen, indirilen ya da hiç çıkmayan bir külot.', mayo: 'Mayoyla: ıslak kumaş, bronz izleri ve havuz kokusu.', tayt: 'Taytla: tenine yapışık, gergin ve yırtılmaya hazır.', kucak: 'Kucağında: sen oturuyorsun, tempoyu onun kalçası belirliyor.',lateks: 'Lateks ya da deri: parlak, sıkı ve her harekette gıcırdayan.',
     kök: 'Sonuna kadar: dibe kadar girip orada kalmak.', gözyaşı: 'Zevkten dolan gözler: acıdan değil, taşmaktan.', inilti: 'Sesini tutamıyor: inleme, çığlık ya da kısık bir ah.',
+    içinde: 'Boşaldıktan sonra çıkmazsın: içinde kalırsın, o da bırakmaz.', cılız: 'Boşaldıktan sonra yarı sert: aşırı hassas, yavaş ve hâlâ içinde.', girerken: 'Daha girerken: ilk itişte ya da yarı yolda dayanamazsın.', vuruşla: 'Soktukça boşalma: her vuruşta bir dalga daha; ancak 💦 Cum yeterince doluysa.',
     yağ: 'Yağlı: her şey kayar, hiçbir yer tutulmaz.', ısı: 'Sıcak ve soğuk: buz ya da mum damlası tenine değer.', ayna: 'Ayna karşısında: ikiniz de kendinizi izlersiniz.',
     gözlük: 'Gözlüğü takılı kalır.', naylon: 'Çoraplı: naylonun dokusu her şeyi değiştirir.', hakimiyet: 'Güç ve boy farkı: biri öbürünü taşır, oturur ya da yukarıdan izler.',
     uyku: 'O uyurken: önceden izin verdiyse ve gece 23:00–07:00 arasıysa; uyku derinliği 😴 3\'ten 0\'a iner, uyanınca kuralı geçerli.'
@@ -31928,7 +31982,55 @@
       ['3 AM', 'Saat üç ve uyuyamıyorum. Sen uyandığında yorganın altına gelirsen 3 AM olur.'],
       ['After Party', 'Partiden döndük, topuklularım elimde. Sen kapıyı kapatmadan beni duvara yaslarsan After Party olur.'],
       ['Smudged Mascara', 'Diz çöktüm, makyajım kusursuz. Sen yüzüme gelirsen rimelim akar, Smudged Mascara olur.'],
-      ['Jewel Drops', 'Başımı geriye attım, kolyem göğsümde. Sen boynuma gelirsen damlalar inci gibi kalır, Jewel Drops olur.']]]
+      ['Jewel Drops', 'Başımı geriye attım, kolyem göğsümde. Sen boynuma gelirsen damlalar inci gibi kalır, Jewel Drops olur.']]],
+    // 🫠 Tur 40: içinde kalma, cılız kalma, girerken / soktukça boşalma (system.js mvec* / mvsi*)
+    ['🫠', 'İçinde kal, cılız kal', 'girerken, soktukça, boşalınca', 'Bu bölüm boşalma anının kendisi ve hemen sonrası. Bazen daha girerken dayanamazsın, bazen her vuruşta bir dalga daha gelir. Boşaldıktan sonra da hikâye bitmez: içimde kalırsın, yarı sert, aşırı hassas; ya yavaşça kayıp çıkarsın ya da içimde yeniden sertleşirsin. Soktukça boşalmak için 💦 Cum\'un dolu olmalı; cılızken gelen ikinci boşalma ancak hâlâ içimdeyken olur. Hepsi ya vajinal ya anal, aynı delikte kalır.', [
+      ['First Push Finish', 'Bacaklarımı açtım, ıslağım. Sen ucunu yerleştirip ilk itişte içime gelirsen First Push Finish olur.'],
+      ['Halfway In', 'Yavaşça giriyorsun. Sen yarı yolda gelirsen kalçamı itip seni sonuna kadar alırım, Halfway In olur.'],
+      ['Too Tight To Hold', 'İçim sımsıkı. Sen girerken kasılmama dayanamazsan Too Tight To Hold olur.'],
+      ['Saved Up Too Long', 'Günlerdir dokunmadın, biliyorum. Sen ilk girdiğin an taşarsan Saved Up Too Long olur.'],
+      ['Slick Entry Spill', 'Sırılsıklamım. Sen tek kayışta girip hemen gelirsen Slick Entry Spill olur.'],
+      ['Anal First Push', 'Kalçamı araladım. Sen ucunu arkama yerleştirip ilk itişte gelirsen Anal First Push olur.'],
+      ['Anal Halfway', 'Arkama santim santim giriyorsun. Sen yarı yolda gelirsen Anal Halfway olur.'],
+      ['Anal Ring Squeeze', 'Halkam seni bekliyor. Sen geçtiğin an sıkarsam ve gelirsen Anal Ring Squeeze olur.'],
+      ['Spurt Per Stroke', 'Geliyorsun, hissediyorum. Sen durmayıp her vuruşta yeniden boşalırsan Spurt Per Stroke olur.'],
+      ['Pump It In', 'Bacaklarım belinde. Sen boşalırken her girişte biraz daha pompalarsan Pump It In olur.'],
+      ['Counting Spurts', 'Saymaya hazırım. Sen her vuruşta bir dalga verirsen ben de sayarım, Counting Spurts olur.'],
+      ['Frothy Thrusts', 'İçime geliyorsun. Sen vurmaya devam edersen köpürüp taşar, Frothy Thrusts olur.'],
+      ['Mating Press Pump', 'Bacaklarım omuzlarında. Sen her bastırışta bir dalga daha verirsen Mating Press Pump olur.'],
+      ['Ride Through It', 'Üstündeyim, zıplıyorum. Sen gelirken ben durmazsam her inişte bir dalga daha, Ride Through It olur.'],
+      ['Anal Spurt Per Stroke', 'Arkamdasın, geliyorsun. Sen durmayıp her vuruşta yeniden boşalırsan Anal Spurt Per Stroke olur.'],
+      ['Anal Pump', 'Kalçam ellerinde. Sen boşalırken arkama pompalamaya devam edersen Anal Pump olur.'],
+      ['Anal Froth', 'Arkama geliyorsun. Sen vurmaya devam edersen köpürüp taşar, Anal Froth olur.'],
+      ['Don\'t Pull Out', 'Bacaklarım beline kilitli. Sen içime gelip çıkmaya davranırsan bırakmam, Don\'t Pull Out olur.'],
+      ['Buried And Still', 'Sonuna kadar içimdesin. Sen orada gelip hiç kıpırdamazsan zonklamanı sayarım, Buried And Still olur.'],
+      ['Seal It In', 'Kalçamın altında yastık var. Sen içime gelip çıkmazsan tek damla kaçmaz, Seal It In olur.'],
+      ['Fall Asleep Inside', 'Kaşık yatıyoruz, gözlerim kapanıyor. Sen içime gelip öyle kalırsan Fall Asleep Inside olur.'],
+      ['Warm Cork', 'Kollarım boynunda. Sen içime gelip çıkmazsan tıpam olursun, Warm Cork olur.'],
+      ['Anal Don\'t Pull Out', 'Kalçamı sana bastırıyorum. Sen arkama gelip çıkmaya davranırsan izin vermem, Anal Don\'t Pull Out olur.'],
+      ['Anal Buried Still', 'Arkamın en derinindesin. Sen orada gelip kıpırdamazsan sıcaklığın yayılır, Anal Buried Still olur.'],
+      ['Anal Seal', 'Arkam dolacak. Sen gelip çıkmadan beklersen taşmaz, Anal Seal olur.'],
+      ['Half Hard Inside', 'Geldin ama hâlâ içimdesin. Sen yarı sert kalıp kıpırdarsan ikimiz de titreriz, Half Hard Inside olur.'],
+      ['Lazy Grind', 'Çok hassasım. Sen çıkmadan kalçanı yavaşça döndürürsen Lazy Grind olur.'],
+      ['Squeeze To Keep', 'Yumuşuyorsun, hissediyorum. Sen kalırsan içten sıkıp seni tutarım, Squeeze To Keep olur.'],
+      ['Slipping Out Slowly', 'Kıpırdamadan yatıyoruz. Sen yumuşayıp kendiliğinden kayarsan Slipping Out Slowly olur.'],
+      ['Hard Again Inside', 'Hâlâ içimdesin. Sen orada yeniden sertleşirsen Hard Again Inside olur, ikinci tur başlar.'],
+      ['Anal Half Hard', 'Arkama geldin, hâlâ oradasın. Sen yarı sert kalırsan her nefesimde seni sıkarım, Anal Half Hard olur.'],
+      ['Anal Slip Out', 'Arkamda yumuşuyorsun. Sen kayıp çıkarsan ardından taşar, Anal Slip Out olur.'],
+      ['Anal Hard Again', 'Arkamda yatıyorsun. Sen orada yeniden sertleşirsen Anal Hard Again olur.'],
+      ['Soft Second Load', 'Yarı sertsin, içimdesin. Sen birkaç yavaş hareketle bir daha gelirsen Soft Second Load olur.'],
+      ['Aftershock Pulse', 'Bitti sanıyorum. Sen içimde geç gelen zonklamalarla kalanı bırakırsan Aftershock Pulse olur.'],
+      ['Milked While Soft', 'İçten sıkıp bırakıyorum. Sen son damlaları da verirsen Milked While Soft olur.'],
+      ['Trickle Inside', 'Neredeyse yumuşadın. Sen içime sızarcasına bir daha gelirsen Trickle Inside olur.'],
+      ['Anal Soft Second', 'Arkamda yarı sertsin. Sen yavaşça bir daha gelirsen Anal Soft Second olur.'],
+      ['Anal Aftershock', 'Arkamda kıpırdamıyoruz. Sen geç zonklamalarla kalanı bırakırsan Anal Aftershock olur.'],
+      ['Anal Milk Out', 'Arkamı sıkıp gevşetiyorum. Sen son damlaya kadar verirsen Anal Milk Out olur.'],
+      ['The Pop', 'Çok uzun kaldın içimde. Sen sonunda çıkarsan o minik ses gelir, The Pop olur.'],
+      ['Hand Under', 'Elim altında, hazırım. Sen yavaşça çıkarsan taşanı yakalarım, Hand Under olur.'],
+      ['Overflow Count', 'Taşıyorum. Sen kaç kere geldiğini sayarsan Overflow Count olur.'],
+      ['Sorry So Fast', 'Yüzünü saklıyorsun. Sen utanırsan seni öperim, Sorry So Fast olur; ikinci tur benim.'],
+      ['Still Connected', 'Hâlâ içimdesin. Sen çıkmadan benimle konuşursan Still Connected olur.'],
+      ['Bathroom Walk', 'Banyoya gidiyorum, sızıyor. Sen bakarsan Bathroom Walk olur; bakma!']]]
   ];
   BOOKS.push({ id: 'olay', icon: '🎬', title: 'Olay Kitabı', sub: 'Lia her olayı sahneleyerek anlatır', chips: [`${OLAY_BOOK.reduce((n, c) => n + c[4].length, 0)} olay`, '💁‍♀️ Lia anlatıyor'], chapters: [
     { icon: '🎬', title: 'Olay Kitabı nasıl okunur', sub: 'Lia sahneler, sen yaparsın', body: `

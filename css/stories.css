@@ -974,6 +974,22 @@ button.chip { border: 0; cursor: pointer; }
 .cr-fold.folded .fold-sum:not(:empty) { display: inline; }
 .presets button.on { background: var(--grad); }
 .create .actions { position: sticky; bottom: 0; z-index: 6; background: linear-gradient(transparent, var(--bg) 35%); padding-top: 18px; }
+/* 📑 sekmeler: tek bölüm, sayaç rozeti, alt adım düğmeleri */
+.cr-cnt { display: none; margin-left: 6px; min-width: 18px; padding: 1px 5px; border-radius: 9px; background: var(--grad); color: #fff; font-size: 11px; font-style: normal; line-height: 16px; text-align: center; }
+.cr-cnt:not(:empty) { display: inline-block; }
+.cr-nav button.on .cr-cnt { background: rgba(255, 255, 255, .28); }
+.cr-pane { animation: pageIn .3s var(--ease) both; }
+.cr-pane[hidden] { display: none !important; }
+.create .cr-pane .ctrl { animation: none; }
+.cr-pv .pv-photo { max-height: 220px; }
+.cr-grid .cr-one .presets button { padding: 6px 11px; font-size: 13px; }
+.cr-step { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 14px 16px 0; }
+.cr-step > span { font-size: 12px; font-weight: 600; color: var(--muted); }
+.cr-step .btn { max-width: 42%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cr-step .btn:disabled { visibility: hidden; }
+@media (min-width: 700px) {
+  .cr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 4px; align-items: start; }
+}
 @media (min-width: 900px) {
   .create { max-width: 820px; margin: 0 auto; }
 }
