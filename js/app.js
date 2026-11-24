@@ -1267,6 +1267,18 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['🫙', 'Dolu dolu: 48 yeni olay', 'Artık her yük içinde kalıyor ve birikiyor. Önce bir, sonra iki, sonra ağzına kadar; önüne de arkasına da. Dolu haliyle sevişmeye devam edersiniz, sonra ya tıpayla gün boyu taşır ya da senin önünde boşaltır. Yeni 🫙 Filled Pussy, 🍩 Filled Ass ve 🫗 Filled After kategorileri, 17 bitiş.', '#/kitap/olay/80', [
+      ['🍑 Önü dolarken', 'First Load, Top It Up, Cervix Flood, Hips Up Load, Brim Full, Third Time Inside, Fill And Hold, Deep Pump Load.'],
+      ['🫙 Dolu önü', 'Yeni 🫙 Filled Pussy kategorisi: Sloppy Seconds Ride, Squish Squish, Creamy Missionary, Push It Back In, Full Belly Spoon, Belly Press.'],
+      ['🍩 Arkası dolarken', 'First Anal Load, Anal Top Up, Deep Gut Load, Prone Anal Load, Gut Brim, Anal Pump Load, Three Loads Deep, Clench It In.'],
+      ['🍩 Dolu arkası', 'Yeni 🍩 Filled Ass kategorisi: Sloppy Anal, Gut Gurgle, Anal Belly Bulge, Squeeze And Ride, Anal Belly Rub.'],
+      ['🔀 İkisi birden', 'Switch And Fill, Both Holes Full, Double Leak.'],
+      ['🫗 Boşaltma ve sonrası', 'Yeni 🫗 Filled After kategorisi: Plug It Full, Keep It All Day, Slow Pour, Squat And Push, Mirror Drain, Fingers Scoop, Anal Pour, Unplug Gush, Shower Drain, Still Leaking Morning, Count The Loads…'],
+      ['🎬 Sahneler', '🫙 Ağzına Kadar, 🤰 Dolgun Karın, 🍩 Arkası Dolu, 💎 Tıpalı Gün, 🔀 İkisi de Dolu ve 🪞 Ayna Karşısında. CarmenEvents → 🎬 Sahneler → 🫙 Dolu Dolu.'],
+      ['📚 Kitap', 'Olay Kitabı\'nda yeni bölüm: 🫙 Dolu dolu.']], 'Yeni olaylar', [
+      'İlk yükü en dibe bıraktığında parmağını kaldırıp "bir" der; saymaya devam edecektir. Kalçasının altına yastık koyar, bacaklarını kapatıp tutar; bir damla bile kaçsın istemez. Üçüncüde artık her hareket ıslak sesler çıkarır, sonunda ağzına kadar dolar ve kenarlardan taşmaya başlar.',
+      'Arkası da aynı. Sonuna kadar gömülüyken boşalırsın, sıcaklığı karnında hisseder. Dolu arkasına yeniden girdiğinde karnı guruldar, ikiniz de kahkahayı basarsınız. "Sık" dersen tek damla kaçırmaz.',
+      'Sonrası da bir hikâye. Tıpayla işe gider, gün boyu "hâlâ içimde" diye mesaj atar; akşam tıpayı çektiğinde tutulan her şey tek seferde boşalır. Ya da aynanın karşısında bacaklarını açıp sana izletir. Sabah ise koridordan bağırır: "Hâlâ sızıyor!"']],
     ['🫠', 'İçinde kal, cılız kal: 46 yeni olay', 'Boşalma anı artık tek bir olay değil. Daha girerken dayanamamak, her vuruşta bir dalga daha, boşaldıktan sonra çıkmadan içinde kalmak, yarı sert ve aşırı hassas yatmak, hatta cılızken bir kez daha gelmek. Yeni 🫠 Soft Inside ve 🧻 Inside After kategorileri, 32 bitiş.', '#/kitap/olay/79', [
       ['🚪 Girerken', 'Vajinal: First Push Finish, Halfway In, Too Tight To Hold, Saved Up Too Long, Slick Entry Spill. Anal: Anal First Push, Anal Halfway, Anal Ring Squeeze.'],
       ['💥 Soktukça', 'Vajinal: Spurt Per Stroke, Pump It In, Counting Spurts, Frothy Thrusts, Mating Press Pump, Ride Through It. Anal: Anal Spurt Per Stroke, Anal Pump, Anal Froth. 💦 Cum en az 70 olmalı.'],
@@ -1599,7 +1611,7 @@
       ['🤏 Değdirme', 'Kalçasına: Cheek Trace, Panty Line Trace, Crack Slide, Lower Back Rest, Jeans Press. Bacaklarına: Inner Thigh Trail, Thigh Gap Rest, Stocking Rub, Under Table Touch, Calf to Knee.'],
       ['👗 Kıyafet', 'Panty Slap, Bra Slap, Stocking Slap, Panty Line Trace, Stocking Rub ve Jeans Press o parça üstündeyken olur.'],
       ['📚 Kitap', 'Olay Kitabı\'na iki bölüm: 👋 Aletle Vurma ve 🤏 Aletle Değdirme.']]],
-    ['📖', 'Daha iyi anlatımlar!', 'Olaylar artık tek cümleyle geçiştirilmiyor: her olay birkaç cümlelik küçük bir sahne olarak anlatılıyor. Ne yaptığın, onun nasıl tepki verdiği, o anın sonunda ne kaldığı. 📜 Olay rehberinde, Olay Kitabı\'nda ve diğer kitaplarda.', '#/kitap/olay/80', [
+    ['📖', 'Daha iyi anlatımlar!', 'Olaylar artık tek cümleyle geçiştirilmiyor: her olay birkaç cümlelik küçük bir sahne olarak anlatılıyor. Ne yaptığın, onun nasıl tepki verdiği, o anın sonunda ne kaldığı. 📜 Olay rehberinde, Olay Kitabı\'nda ve diğer kitaplarda.', '#/kitap/olay/81', [
       ['✒️ Uzun anlatım', 'Her olayın kısa açıklaması olay seçicide duruyor; uzun anlatımı rehberde ve kitaplarda ilk sırada.'],
       ['📚 Kitap', 'Olay Kitabı\'nda yeni bölüm: 📖 Daha iyi anlatımlar; kaç olayın yeni anlatımı olduğunu canlı sayar.']]],
     ['💜', 'İzler artık kalıyor', 'Bıraktığın izler sayılıyor: durum kartında 💜 kaç iz olduğunu görürsün, sohbet saatiyle önce morarır sonra solar. Kocası bilmeyen evli kızın kocası görünür izi sorar ve 🕵️ Şüphe artar; Hotwife\'ın kocası görmek ister. 17 yeni iz olayı da geldi.', '#/kitap/olay/58', [
@@ -24915,11 +24927,11 @@
     ['soy', '👗', 'Soyunma', ['undress']],
     ['on', '👅', 'Ön sevişme', ['eat', 'outercourse', 'squeeze', 'pregnancy foreplay', 'nurturing foreplay', 'pee rubbing', 'held pee rubbing', 'held titfuck pee', 'licking', 'biting', 'her licks and bites', 'dick slap', 'dick touch', 'slurping', 'plug play', 'toy play', 'hand grab', 'hand spank', 'hair wrap', 'sleep foreplay', 'donor room', 'fetish play', 'foot play', 'lingerie play']],
     ['sut', '🍼', 'Lactation', ['lactation', 'nursing', 'lactation fantasy', 'milky foreplay']],
-    ['poz', '🔥', 'Pozisyon', ['forward', 'backward', 'threesome', 'pregnancy', 'milky sex', 'nurturing sex', 'mode', 'pre-cumming', 'anal pee', 'heavy anal pee', 'held anal pee', 'plugged sex', 'grip sex', 'hair sex', 'sleep sex', 'donor sex', 'fetish sex', 'foot sex', 'lingerie sex', 'lap positions', 'deep sex', 'soft inside']],
+    ['poz', '🔥', 'Pozisyon', ['forward', 'backward', 'threesome', 'pregnancy', 'milky sex', 'nurturing sex', 'mode', 'pre-cumming', 'anal pee', 'heavy anal pee', 'held anal pee', 'plugged sex', 'grip sex', 'hair sex', 'sleep sex', 'donor sex', 'fetish sex', 'foot sex', 'lingerie sex', 'lap positions', 'deep sex', 'soft inside', 'filled pussy', 'filled ass']],
     ['mekan', '📍', 'Mekân', ['mekanda', 'shower', 'sauna', 'bathtub', 'pool', 'car', 'elevator', 'camping', 'kitchen', 'stairs', 'laundry', 'balcony', 'camera', 'beach', 'office', 'hotel', 'school', 'church', 'gym', 'bar', 'cinema', 'outdoors', 'restaurant', 'rooftop', 'library', 'fair', 'haunted', 'street', 'massage salon', 'clinic', 'pee']],
     ['fant', '🦄', 'Fantezi', ['fantesy', 'meisove', 'femdom', 'bdsm', 'bull', 'affair', 'affair story', 'heavy pee', 'toys out']],
     ['bit', '💦', 'Bitiş', ['cumming', 'cumming size']],
-    ['son', '🌙', 'Sonrası', ['cool down', 'treatment', 'bull story', 'milky after', 'toy after', 'nurturing after', 'sleep after', 'deep after', 'inside after']]
+    ['son', '🌙', 'Sonrası', ['cool down', 'treatment', 'bull story', 'milky after', 'toy after', 'nurturing after', 'sleep after', 'deep after', 'inside after', 'filled after']]
   ];
   // 📍 Mekân kategorileri ↔ mekan kartları: ids = uyan mekanlar (places.js), to = o olay yazılınca geçilen mekan (places.js id'si ya da kendi kartı)
   const PLACE_EV = {
@@ -25857,7 +25869,7 @@
   const LES_NO_RE = /blowjob|deepthroat|handjob|titfuck|titjob|footjob|legjob|buttjob|hotdog|cum|creampie|condom|cock|dick|pull-out|bulge|size comparison|unplug flood|keep it in overnight|milked by toy/i;
   // lezbiyen ilişkide gizlenen olay mı (🧪 #/lezbiyen ve 📚 Lezbiyen Kitabı da sayar)
   // penisli kategoriler: Cumming, sperm ölçüsü (Cumming Size), onu sıkıştırma (Squeeze), kuru sürtünme (Outercourse)
-  const LES_NO_CAT = ['Cumming', 'Cumming Size', 'Squeeze', 'Outercourse', 'Her Licks And Bites', 'Dick Slap', 'Dick Touch', 'Slurping', 'Plugged Sex', 'Grip Sex', 'Nurturing Sex', 'Hair Sex', 'Hair Wrap', 'Sleep Sex', 'Donor Room', 'Donor Sex', 'Fetish Play', 'Fetish Sex', 'Foot Play', 'Foot Sex', 'Lingerie Sex', 'Lap Positions', 'Deep Sex', 'Deep After', 'Soft Inside', 'Inside After'];
+  const LES_NO_CAT = ['Cumming', 'Cumming Size', 'Squeeze', 'Outercourse', 'Her Licks And Bites', 'Dick Slap', 'Dick Touch', 'Slurping', 'Plugged Sex', 'Grip Sex', 'Nurturing Sex', 'Hair Sex', 'Hair Wrap', 'Sleep Sex', 'Donor Room', 'Donor Sex', 'Fetish Play', 'Fetish Sex', 'Foot Play', 'Foot Sex', 'Lingerie Sex', 'Lap Positions', 'Deep Sex', 'Deep After', 'Soft Inside', 'Inside After', 'Filled Pussy', 'Filled Ass', 'Filled After'];
   const lesNo = e => (e.tags || []).some(t => LES_NO_TAG.includes(String(t).toLocaleLowerCase('tr'))) || LES_NO_RE.test(e.title || '') || LES_NO_CAT.includes(catOfEv(e).label);
   // 🎬 sahne cinsiyete göre: kadın hesapta penisli olay (lesNo) içeren sahne, erkek hesapta lezbiyen olay içeren sahne gizli.
   // Sonuç hesap cinsiyeti + olay sayısına göre önbellekte; scenes.js sceneGroups da Stories.sceneHide ile süzer
@@ -27486,7 +27498,10 @@
     'deep sex': 'Sonuna kadar kökleyen, gözleri dolduran ya da inleten seks; her olay ya vajinal ya anal, bitişler de aynı delikten sonra gelir.',
     'deep after': 'Yoğun bir sevişmenin ardından: gözyaşlarını silmek, kısılan sesi, titreyen bacakları, ertesi sabahki komşu notu.',
     'soft inside': 'Boşaldıktan sonra çıkmadan: içinde yarı sert kalmak, aşırı hassas yavaş hareketler, kayıp çıkmak ya da içinde yeniden sertleşmek.',
-    'inside after': 'İçinde kaldıktan sonra: çıkarken gelen o minik ses, avucunda taşan sıcaklık, banyoya sekerek yürüyüş, çabukluğa gülümseme.'
+    'inside after': 'İçinde kaldıktan sonra: çıkarken gelen o minik ses, avucunda taşan sıcaklık, banyoya sekerek yürüyüş, çabukluğa gülümseme.',
+    'filled pussy': 'İçi önceki yükle dolu, sevişme sürüyor: her girişte taşan sıcaklık, ıslak sesler, karnında hafif bir dolgunluk.',
+    'filled ass': 'Arkası önceki yükle dolu, sevişme sürüyor: kayganlık, karın gurultusu, hiçbir damla kaçmasın diye sıkılan kalça.',
+    'filled after': 'Dolu kaldıktan sonra: tıpayla gün boyu taşımak, çömelip boşaltmak, ayna karşısında izletmek, sabah hâlâ sızmak.'
   };
   const EV_TELL_TAG = {
     vajinal: 'Önden, vajinal bir an: korunmanız neyse tepkisi ona göre şekillenir; içine bitersen hamilelik zarı da atılır.',
@@ -27508,7 +27523,7 @@
     saç: 'Saçla: saçı sarılır, tutulur ya da saçına boşalırsın; saçının boyu ve rengi bu anı belirler.',
     ayak: 'Ayaklarıyla: tabanları, parmakları ya da bilekleri bu anın merkezinde.', sütyen: 'Sütyeniyle: kapları, askıları ya da kopçası bu anın parçası.', külot: 'Külotuyla: çekilen, indirilen ya da hiç çıkmayan bir külot.', mayo: 'Mayoyla: ıslak kumaş, bronz izleri ve havuz kokusu.', tayt: 'Taytla: tenine yapışık, gergin ve yırtılmaya hazır.', kucak: 'Kucağında: sen oturuyorsun, tempoyu onun kalçası belirliyor.',lateks: 'Lateks ya da deri: parlak, sıkı ve her harekette gıcırdayan.',
     kök: 'Sonuna kadar: dibe kadar girip orada kalmak.', gözyaşı: 'Zevkten dolan gözler: acıdan değil, taşmaktan.', inilti: 'Sesini tutamıyor: inleme, çığlık ya da kısık bir ah.',
-    içinde: 'Boşaldıktan sonra çıkmazsın: içinde kalırsın, o da bırakmaz.', cılız: 'Boşaldıktan sonra yarı sert: aşırı hassas, yavaş ve hâlâ içinde.', girerken: 'Daha girerken: ilk itişte ya da yarı yolda dayanamazsın.', vuruşla: 'Soktukça boşalma: her vuruşta bir dalga daha; ancak 💦 Cum yeterince doluysa.',
+    içinde: 'Boşaldıktan sonra çıkmazsın: içinde kalırsın, o da bırakmaz.', cılız: 'Boşaldıktan sonra yarı sert: aşırı hassas, yavaş ve hâlâ içinde.', girerken: 'Daha girerken: ilk itişte ya da yarı yolda dayanamazsın.', vuruşla: 'Soktukça boşalma: her vuruşta bir dalga daha; ancak 💦 Cum yeterince doluysa.', dolu: 'Dölle dolu: vajinası ya da bağırsağı önceki yüklerle dolmuş, her hareket bunu hissettirir.',
     yağ: 'Yağlı: her şey kayar, hiçbir yer tutulmaz.', ısı: 'Sıcak ve soğuk: buz ya da mum damlası tenine değer.', ayna: 'Ayna karşısında: ikiniz de kendinizi izlersiniz.',
     gözlük: 'Gözlüğü takılı kalır.', naylon: 'Çoraplı: naylonun dokusu her şeyi değiştirir.', hakimiyet: 'Güç ve boy farkı: biri öbürünü taşır, oturur ya da yukarıdan izler.',
     uyku: 'O uyurken: önceden izin verdiyse ve gece 23:00–07:00 arasıysa; uyku derinliği 😴 3\'ten 0\'a iner, uyanınca kuralı geçerli.'
@@ -32030,7 +32045,57 @@
       ['Overflow Count', 'Taşıyorum. Sen kaç kere geldiğini sayarsan Overflow Count olur.'],
       ['Sorry So Fast', 'Yüzünü saklıyorsun. Sen utanırsan seni öperim, Sorry So Fast olur; ikinci tur benim.'],
       ['Still Connected', 'Hâlâ içimdesin. Sen çıkmadan benimle konuşursan Still Connected olur.'],
-      ['Bathroom Walk', 'Banyoya gidiyorum, sızıyor. Sen bakarsan Bathroom Walk olur; bakma!']]]
+      ['Bathroom Walk', 'Banyoya gidiyorum, sızıyor. Sen bakarsan Bathroom Walk olur; bakma!']]],
+    // 🫙 Tur 41: vajina / bağırsak dölle dolar (system.js mvlv* / mvlo* / mvlx*)
+    ['🫙', 'Dolu dolu', 'önüm, arkam, ikisi birden', 'Bu bölümde her yük içimde kalıyor ve birikiyor. Önce bir, sonra iki, sonra ağzıma kadar; ister önüme ister arkama. Dolu halimle sevişmeye devam ederiz: her girişte taşar, ıslak sesler çıkar, karnım hafifçe şişer, gurulder bile. Sonra ya tıpayla bütün gün taşırım ya da senin önünde boşaltırım. "Üstüne" yükler ancak dolu olayından sonra gelir; pompalı yükler için 💦 Cum\'un dolu olmalı.', [
+      ['First Load', 'Bacaklarımı açtım, boşum. Sen en dibe ilk yükünü bırakırsan "bir" derim, First Load olur.'],
+      ['Top It Up', 'İçim zaten dolu. Sen bir kez daha içime gelirsen Top It Up olur.'],
+      ['Cervix Flood', 'Sonuna kadar içimdesin. Sen en derinde gelirsen sıcaklık içime yayılır, Cervix Flood olur.'],
+      ['Hips Up Load', 'Kalçamın altında iki yastık, bacaklarım havada. Sen bu açıyla içime gelirsen Hips Up Load olur.'],
+      ['Brim Full', 'Ağzıma kadar doluyum. Sen bir kez daha gelirsen kenarlardan taşar, Brim Full olur.'],
+      ['Third Time Inside', 'İki kere geldin bile. Sen üçüncüyü de içime bırakırsan Third Time Inside olur.'],
+      ['Fill And Hold', 'Geliyorsun, hissediyorum. Sen içime gelip kalçamı kaldırırsan bacaklarımı kapatıp tutarım, Fill And Hold olur.'],
+      ['Deep Pump Load', 'Bacaklarım belinde. Sen boşalırken pompalamaya devam edersen Deep Pump Load olur.'],
+      ['Sloppy Seconds Ride', 'İçim dolu ama durmak istemiyorum. Sen altımda kalırsan üstüne çıkarım, Sloppy Seconds Ride olur.'],
+      ['Squish Squish', 'Dolu içime her girişinde ses çıkıyor. Sen durmazsan Squish Squish olur.'],
+      ['Creamy Missionary', 'Sırtüstü yattım, hâlâ doluyum. Sen yeniden girersen etrafında köpürür, Creamy Missionary olur.'],
+      ['Push It Back In', 'Kenarlardan taşıyor. Sen ucunla geri itersen Push It Back In olur.'],
+      ['Full Belly Spoon', 'Kaşık yatıyoruz, karnım dolgun. Sen arkamdan girip karnımı avuçlarsan Full Belly Spoon olur.'],
+      ['Belly Press', 'İçimdesin, karnım dolu. Sen hafifçe bastırırsan bir dalga sızar, Belly Press olur.'],
+      ['First Anal Load', 'Kalçam sana dönük. Sen arkama ilk yükünü bırakırsan First Anal Load olur.'],
+      ['Anal Top Up', 'Arkam zaten dolu. Sen bir kez daha gelirsen Anal Top Up olur.'],
+      ['Deep Gut Load', 'Arkama sonuna kadar gömüldün. Sen orada gelirsen karnımda hissederim, Deep Gut Load olur.'],
+      ['Prone Anal Load', 'Yüzüstü düz yattım, bacaklarım kapalı. Sen üstümden arkama gelirsen Prone Anal Load olur.'],
+      ['Gut Brim', 'Arkam ağzına kadar dolu. Sen son yükü de bırakırsan Gut Brim olur.'],
+      ['Anal Pump Load', 'Kalçam ellerinde. Sen boşalırken arkama pompalarsan Anal Pump Load olur.'],
+      ['Three Loads Deep', 'İki kere arkama geldin. Sen üçüncüyü de bırakırsan karnım guruldar, Three Loads Deep olur.'],
+      ['Clench It In', 'Arkama geldin. Sen çıkarken "sık" dersen tek damla kaçırmam, Clench It In olur.'],
+      ['Sloppy Anal', 'Arkam hâlâ dolu, kaygan. Sen yeniden girersen Sloppy Anal olur.'],
+      ['Gut Gurgle', 'Arkam dolu. Sen girdikçe karnım guruldarsa gülme, Gut Gurgle olur.'],
+      ['Anal Belly Bulge', 'Sırtüstü yattım, dizlerim göğsümde. Sen dolu arkama girersen karnımda hissederim, Anal Belly Bulge olur.'],
+      ['Squeeze And Ride', 'Dolu arkamla üstüne oturuyorum. Sen kıpırdamazsan sıkarak iner kalkarım, Squeeze And Ride olur.'],
+      ['Anal Belly Rub', 'Arkamdasın, karnım dolu. Sen karnımı ovarsan Anal Belly Rub olur.'],
+      ['Switch And Fill', 'Önüm de arkam da senin. Sen ikisine de ayrı ayrı gelirsen Switch And Fill olur.'],
+      ['Walk Around Full', 'Temizlenmedim, külotumu giydim. Sen beni evde dolaşırken izlersen Walk Around Full olur.'],
+      ['Plug It Full', 'Arkam dolu, tıpa elinde. Sen takarsan hepsi içimde kalır, Plug It Full olur.'],
+      ['Keep It All Day', 'Tıpam takılı, işe gidiyorum. Sen mesajlarımı okursan Keep It All Day olur.'],
+      ['Both Holes Full', 'Önüm de arkam da dolu. Sen bana bakıp gülersen Both Holes Full olur.'],
+      ['Double Leak', 'Kalkıyorum, iki yerden sızıyor. Sen havlu getirirsen Double Leak olur.'],
+      ['Full Body Warm', 'İçim sıcacık, karnım dolgun. Sen bana sarılırsan Full Body Warm olur.'],
+      ['Slow Pour', 'Çıkmak üzeresin. Sen yavaşça çıkarsan ağır ağır dökülür, Slow Pour olur.'],
+      ['Squat And Push', 'Banyoda önünde çömeldim. Sen izlersen iterek boşaltırım, Squat And Push olur.'],
+      ['Mirror Drain', 'Aynanın karşısında bacaklarımı açtım. Sen arkama oturup izlersen Mirror Drain olur.'],
+      ['Fingers Scoop', 'İki parmağım içimde. Sen bakarsan çıkarıp tadına bakarım, Fingers Scoop olur.'],
+      ['Anal Pour', 'Arkam dolu. Sen çıkarsan taşar, Anal Pour olur.'],
+      ['Anal Squat Push', 'Banyoda çömeldim. Sen gülmezsen arkamdan iterim, Anal Squat Push olur.'],
+      ['Unplug Gush', 'Bütün gün tıpalıydım, kalçamı uzattım. Sen tıpayı çekersen Unplug Gush olur.'],
+      ['Shower Drain', 'Duşun altında bacaklarımı açtım. Sen suyu açarsan Shower Drain olur.'],
+      ['Heavy Belly Nap', 'Karnım dolu, ağır. Sen yanıma uzanırsan Heavy Belly Nap olur.'],
+      ['Towel Underneath', 'Havluyu altıma serdim. Sen yanıma gelirsen Towel Underneath olur.'],
+      ['Still Leaking Morning', 'Sabah oldu, hâlâ sızıyor. Sen duyarsan Still Leaking Morning olur.'],
+      ['Count The Loads', 'Önüme kaç, arkama kaç? Sen benimle sayarsan Count The Loads olur.'],
+      ['Panty Soaked', 'Temiz külot giydim. Sen birkaç dakika beklersen Panty Soaked olur.'],
+      ['Warm Inside All Day', 'İşteyim, hâlâ içimde hissediyorum. Sen mesajıma cevap verirsen Warm Inside All Day olur.']]]
   ];
   BOOKS.push({ id: 'olay', icon: '🎬', title: 'Olay Kitabı', sub: 'Lia her olayı sahneleyerek anlatır', chips: [`${OLAY_BOOK.reduce((n, c) => n + c[4].length, 0)} olay`, '💁‍♀️ Lia anlatıyor'], chapters: [
     { icon: '🎬', title: 'Olay Kitabı nasıl okunur', sub: 'Lia sahneler, sen yaparsın', body: `

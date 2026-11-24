@@ -9937,6 +9937,59 @@ Object.assign(Stories.ME_EV_LINES, {
 });
 Stories.ME_BED_SKIP.push('Bathroom Walk');
 
+/* 🫙 Dolu dolu (Tur 41) */
+Object.assign(Stories.ME_EV_LINES, {
+  'First Load': ['İlki en dibe {o} 🫙', 'Say bakalım 1️⃣', 'Daha bitmedi 😈', 'Sıcak mı? 🥵'],
+  'Top It Up': ['Üstüne bir tane daha {o} ➕', 'Yer var, merak etme 😏', 'Kalçanı kaldır 🛏️', 'Hepsi içinde 💦'],
+  'Cervix Flood': ['En derinde {o} 🎯', 'Tam orada 🌊', 'Kıpırdamıyorum 🤫', 'Hissettin mi? 😏'],
+  'Hips Up Load': ['Bacakların havada {o} 🛏️', 'Hepsi içeri 💦', 'Yer çekimi bizden yana 😂', 'Böyle kal 🤍'],
+  'Brim Full': ['Ağzına kadar {o} 🫗', 'Taşıyor 🌊', 'Çarşafı boşver 😂', 'Doldun mu? 😏'],
+  'Third Time Inside': ['Üçüncü {o} 3️⃣', 'Rekor bu 😈', 'Sesler… 😏', 'Bir daha mı? 🔥'],
+  'Fill And Hold': ['Kalçan elimde {o} 🤲', 'Bacaklarını kapat 🔒', 'Tut hepsini 😏', 'Kaçmasın 🤍'],
+  'Deep Pump Load': ['Pompalıyorum {o} ⛽', 'Tamamen dolduruyorum 💦', 'Kaçma 🔒', 'Her itişte daha çok 😈'],
+  'Sloppy Seconds Ride': ['Dolu dolu bin {o} 🤠', 'Aramızdan taşıyor 💧', 'Durma 😈', 'Karnıma aktı 😂'],
+  'Squish Squish': ['Sesleri duyuyor musun {o}? 🫧', 'Utanma 😏', 'Durmuyorum 😈', 'Daha hızlı 🔥'],
+  'Creamy Missionary': ['Yeniden içindeyim {o} 🍦', 'Köpürüyor 🫧', 'Gel buraya 🫂', 'Bembeyaz 😏'],
+  'Push It Back In': ['Geri itiyorum {o} 👆', 'Hiçbiri kaçmayacak 🔒', 'Kalçanı kaldır 🛏️', 'Hepsi senin 💦'],
+  'Full Belly Spoon': ['Karnın elimde {o} 🥄', 'Dolgunsun 🤰', 'Sıcacık 🥵', 'Hissediyorum 🤍'],
+  'Belly Press': ['Bastırıyorum {o} 🤲', 'Yavaşça 😏', 'Sızdı 🌊', 'Bir daha mı? 😈'],
+  'First Anal Load': ['Arkana ilki {o} 🍩', 'İçeri yürüyor 😏', 'Hissediyor musun? 🥵', 'Bir 1️⃣'],
+  'Anal Top Up': ['Arkana bir tane daha {o} ➕', 'Yer var 😏', 'Titriyorsun 😩', 'Hepsi içinde 🍩'],
+  'Deep Gut Load': ['En derine {o} 🌀', 'Karnında hissediyor musun? 😏', 'Kıpırdamıyorum 🤫', 'Hepsi içeri 🍩'],
+  'Prone Anal Load': ['Üstündeyim {o} 🛏️', 'Bacakların kapalı kalsın 😏', 'Hepsi içeride 🍩', 'Kıpırdama 🤫'],
+  'Gut Brim': ['Ağzına kadar {o} 🫗', 'Son yük 🍩', 'Karnın ağırlaştı mı? 🤰', 'Okşayayım 🤲'],
+  'Anal Pump Load': ['Arkana pompalıyorum {o} ⛽', 'Daha derine 🍩', 'Durmuyorum 😈', 'Hepsi senin 💦'],
+  'Three Loads Deep': ['Üçüncü {o} 3️⃣', 'O ses neydi? 😂', 'Karnın şaşırdı 🔊', 'Gülme 🙈'],
+  'Clench It In': ['Sık {o} 🔒', 'Çıkıyorum… 🍩', 'Tek damla yok 😏', 'Aferin 😌'],
+  'Sloppy Anal': ['Kayıyorum {o} 💧', 'Tek seferde 🍩', 'Hiç zorlanmadım 😏', 'Sızıyor 😈'],
+  'Gut Gurgle': ['Karnın konuşuyor {o} 😂', 'Duymadım say 🙈', 'Durmuyorum 😈', 'Gülme, ben de güleceğim 🤣'],
+  'Anal Belly Bulge': ['Karnına bak {o} 🤰', 'Buradayım 🤲', 'Her vuruşta 🍩', 'Elimi koyuyorum 😏'],
+  'Squeeze And Ride': ['Sıkıyorsun {o} 🤠', 'Hiçbiri kaçmıyor 😏', 'Delirteceksin beni 😈', 'İn… kalk… 🍩'],
+  'Anal Belly Rub': ['Karnını ovuyorum {o} 🤲', 'Sıcacık 🥵', 'Hissediyorum 😏', 'Birlikte 🤍'],
+  'Switch And Fill': ['Bir önüne bir arkana {o} 🔄', 'Adil paylaşıyorum 😏', 'İkisi de dolu 🍑🍩', 'Hepsi senin 💦'],
+  'Walk Around Full': ['Böyle mi dolaşacaksın {o}? 🚶', 'Her adımda izliyorum 😏', 'Kahve için teşekkürler ☕', 'Bütün gün böyle kal 😈'],
+  'Plug It Full': ['Tıpayı takıyorum {o} 💎', 'Mühürlendin 🔒', 'Hepsi içinde 🍩', 'Akşama kadar 😈'],
+  'Keep It All Day': ['Hâlâ içinde mi {o}? 📱', 'Toplantı nasıl geçiyor? 😏', 'Akşam çıkarırım 💎', 'Ben de seni düşünüyorum 💭'],
+  'Both Holes Full': ['İkisi de dolu {o} 🍑🍩', 'Ağzın boş diyorsun ha 😏', 'Hepsi benim eserim 😈', 'Karnını okşayayım 🤲'],
+  'Double Leak': ['Havlu geliyor {o} 🧻', 'İki tane 😂', 'Kıpırdama 💧', 'Yetişemiyorsun 😏'],
+  'Full Body Warm': ['Sarıl bana {o} 🔥', 'Sıcacıksın 🫙', 'Kıpırdama 🫂', 'Battaniye benim 😏'],
+  'Slow Pour': ['Bak, bitmiyor {o} 🫗', 'Çarşafta göl 😂', 'Uyluklarına iniyor 💧', 'Hepsi benimdi 😏'],
+  'Squat And Push': ['İzliyorum {o} 🧎', 'Bir daha it 😏', 'Ne kadar vermişim 😳', 'Gözlerimi kaçırmıyorum 👀'],
+  'Mirror Drain': ['Aynaya bak {o} 🪞', 'Akıyor 😏', 'Arkandayım 🫂', 'Eserim 😈'],
+  'Fingers Scoop': ['Göster bakalım {o} 👆', 'Tadına mı bakacaksın? 😳', 'Bembeyaz 😏', 'Bir daha 😈'],
+  'Anal Pour': ['Bakıyorum {o} 🍩', 'Taşıyor 🫗', 'Havlu getiriyorum 🧻', 'Utanma 😏'],
+  'Anal Squat Push': ['Gülmüyorum {o} 🙈', 'Tamam, biraz güldüm 😂', 'Kimseye anlatmam 🤫', 'İtmeye devam 😏'],
+  'Unplug Gush': ['Çekiyorum {o} 💎', 'Hepsi birden 🌊', 'Rahatladın mı? 😏', 'Yarın yine mi? 😈'],
+  'Shower Drain': ['Suyu açtım {o} 🚿', 'Akıyor 💧', 'Temizlendin mi? 😏', 'Yeniden doldurayım mı? 😈'],
+  'Heavy Belly Nap': ['Uyu {o} 😴', 'Elim karnında 🤲', 'Ağır mı? 😏', 'Yanındayım 🤍'],
+  'Towel Underneath': ['Havlu iyi fikir {o} 🧻', 'Çarşafa veda 😂', 'Yanına geliyorum 🛏️', 'Yetmeyecek gibi 😏'],
+  'Still Leaking Morning': ['Günaydın {o} 🌅', 'Hâlâ mı? 😳', 'Ben bir şey yapmadım 😇', 'Duşa geliyorum 🚿'],
+  'Count The Loads': ['Bence beş {o} 🔢', 'Önüne üç, arkana iki 😏', 'Yanlış saydın 😂', 'Not tutalım 📝'],
+  'Panty Soaked': ['Hiç giyme bence {o} 🩲', 'Sırılsıklam 💧', 'Bunu bekliyordum 😏', 'Başka külot getireyim mi? 😂'],
+  'Warm Inside All Day': ['Hâlâ mı {o}? ☀️', 'Akşam erken geliyorum 😏', 'Ben de seni düşünüyorum 💞', 'Bu gece yine 😈']
+});
+Stories.ME_BED_SKIP.push('Walk Around Full', 'Keep It All Day', 'Squat And Push', 'Mirror Drain', 'Anal Squat Push', 'Shower Drain', 'Still Leaking Morning', 'Warm Inside All Day');
+
 /* ☕ Daily Life (v1108): gündelik olaylarda senin mesajların */
 Object.assign(Stories.ME_EV_LINES, {
   "Cook Together": ["Soğanları ben doğruyorum {o} 🧅", "Tadına bak, tuzu yeter mi? 🥄", "Önlük sana çok yakışmış 😏", "Tava yanıyor galiba 😅", "Bu yemek ikimizin 🍳", "Kaşığı uzat, ben de bakayım 😋"],

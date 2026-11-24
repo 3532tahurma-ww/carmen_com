@@ -977,4 +977,9 @@ Stories.I18n.add({
   'Boşaldıktan sonra yarı sert: aşırı hassas, yavaş ve hâlâ içinde.': 'Half hard after cumming: oversensitive, slow and still inside.',
   'Daha girerken: ilk itişte ya da yarı yolda dayanamazsın.': 'On the way in: you can\'t last past the first push or halfway.',
   'Soktukça boşalma: her vuruşta bir dalga daha; ancak 💦 Cum yeterince doluysa.': 'Cumming with every thrust: another wave each stroke; only if 💦 Cum is full enough.',
+  // 🫙 Dolu dolu (Tur 41)
+  'İçi önceki yükle dolu, sevişme sürüyor: her girişte taşan sıcaklık, ıslak sesler, karnında hafif bir dolgunluk.': 'Still full from the last load and the sex goes on: warmth spilling with every thrust, wet sounds, a slight fullness in her belly.',
+  'Arkası önceki yükle dolu, sevişme sürüyor: kayganlık, karın gurultusu, hiçbir damla kaçmasın diye sıkılan kalça.': 'Her ass still full from the last load and the sex goes on: slickness, a gurgling belly, cheeks clenched so not a drop escapes.',
+  'Dolu kaldıktan sonra: tıpayla gün boyu taşımak, çömelip boşaltmak, ayna karşısında izletmek, sabah hâlâ sızmak.': 'After staying full: carrying it all day with a plug, squatting to push it out, letting you watch in the mirror, still leaking in the morning.',
+  'Dölle dolu: vajinası ya da bağırsağı önceki yüklerle dolmuş, her hareket bunu hissettirir.': 'Full of cum: her pussy or her ass is full from earlier loads and every move makes her feel it.',
 });
