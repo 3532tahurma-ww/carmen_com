@@ -124,6 +124,24 @@ Stories.Traits = (() => {
       id: 'marks', label: '✨ Marks',
       items: ['Freckles', 'Dimples', 'Beauty Mark', 'Tattoo', 'Nose Piercing', 'Navel Piercing', 'Nipple Piercing', 'Tongue Piercing', 'Glasses', 'Braces']
     },
+    // 👁️ sıra app.js CM_EYE / ORIGIN_LOOK eye ağırlıklarıyla aynı (🎲 rastgele memlekete göre)
+    {
+      id: 'eyecolor', label: '👁️ Eye Color', single: true,
+      items: ['Brown', 'Hazel', 'Green', 'Blue', 'Black', 'Honey']
+    },
+    // 👓💅🚬 çoklu: profil kartı (app.js cmBody) + 💭 derin sorular (life.js DEEP tr) + 💍 koca sohbeti (HB_TOPICS tr)
+    {
+      id: 'accessory', label: '👓 Accessory',
+      items: ['Earrings', 'Hoop Earrings', 'Necklace', 'Choker', 'Bracelet', 'Anklet', 'Rings', 'Watch', 'Hair Clip']
+    },
+    {
+      id: 'care', label: '💅 Care',
+      items: ['Manicure', 'Long Nails', 'Natural Nails', 'Heavy Makeup', 'Light Makeup', 'No Makeup', 'Lash Extensions', 'Skincare Routine', 'Perfume Lover']
+    },
+    {
+      id: 'habit', label: '🚬 Habit',
+      items: ['Smoker', 'Vaper', 'Social Drinker', 'Non-Drinker', 'Coffee Addict', 'Gym Regular', 'Gamer', 'Bookworm', 'Party Lover', 'Early Bird', 'Night Owl']
+    },
   ];
 
   // aynı id iki kez yazılırsa ikincisi ayrı grup olarak kalsın
@@ -171,6 +189,14 @@ Stories.Traits = (() => {
   const rules = [...Object.entries(W_RULES).map(([w, not]) => ({ id: 'w_' + w.replace(/\s/g, ''), ifs: ['Weight: ' + w], not })),
     ...Object.entries(H_RULES).map(([h, not]) => ({ id: 'h_' + h.replace(/\s/g, ''), ifs: ['Height: ' + h], not })),
     ...pairRules,
+    // 💅🚬 çelişenler (tek yönlü: ilk seçilen kalır, rastgelede ikincisi düşer)
+    { id: 'c_heavy', ifs: ['Heavy Makeup'], not: ['Light Makeup', 'No Makeup'] },
+    { id: 'c_light', ifs: ['Light Makeup'], not: ['No Makeup'] },
+    { id: 'c_nails', ifs: ['Manicure'], not: ['Natural Nails'] },
+    { id: 'c_long', ifs: ['Long Nails'], not: ['Natural Nails'] },
+    { id: 'h_drink', ifs: ['Social Drinker'], not: ['Non-Drinker'] },
+    { id: 'h_party', ifs: ['Party Lover'], not: ['Early Bird'] },
+    { id: 'h_early', ifs: ['Early Bird'], not: ['Night Owl'] },
     // 💍 kocasıyla yaşayan evlidir
     { id: 'r_koca', ifs: ['Yaşam: Kocasıyla Yaşıyor'], not: ['Relationship: Single', 'Relationship: Has Boyfriend', 'Relationship: Divorced'] },
     // 💉 silikon küçük beden olmaz

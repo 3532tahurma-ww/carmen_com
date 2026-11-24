@@ -37,11 +37,7 @@ Stories.Music = (() => {
   // 🎧 Music/ klasöründeki kayıtlı parçalar (yeni dosya ekleyince buraya bir satır ekle)
   const FILES = [
     { id: 'f:paperbacks', name: 'Paperbacks and Rain', icon: '📚', src: 'Music/Paperbacks_and_Rain.mp3', file: true },
-    { id: 'f:bookmarks', name: 'Late Night Bookmarks', icon: '🔖', src: 'Music/Late_Night_Bookmarks.mp3', file: true },
-    // 🔥 Fiery Passions oyununun parçaları (Music/fp); oyunda mekana göre çalar, burada da seçilebilir
-    ...[['main_menu', 'Ana menü', '🔥'], ['house', 'Ev', '🏡'], ['market', 'Pazar', '🧺'], ['park', 'Park', '🌳'], ['college', 'Kolej', '🏫'], ['hospital', 'Hastane', '🏥'], ['office', 'Ofis', '🗂️'],
-      ['house_ava', 'Ava\'nın evi', '🍷'], ['beach', 'Sahil', '🏖️'], ['forest', 'Orman', '🌲'], ['action', 'Aksiyon', '⚡'], ['sex1', 'Tutku I', '💋'], ['sex2', 'Tutku II', '💋'], ['sex3', 'Tutku III', '💋'], ['sex4', 'Tutku IV', '💋'], ['sex5', 'Tutku V', '💋']]
-      .map(([f, n, i]) => ({ id: 'f:fp-' + f, name: 'Fiery Passions · ' + n, icon: i, src: `Music/fp/${f}.ogg`, file: true }))
+    { id: 'f:bookmarks', name: 'Late Night Bookmarks', icon: '🔖', src: 'Music/Late_Night_Bookmarks.mp3', file: true }
   ];
   const PROGS = [[0, 4, 5, 3], [0, 5, 3, 4], [0, 3, 4, 0], [0, 5, 2, 6], [0, 3, 1, 4], [5, 3, 0, 4], [0, 1, 3, 4], [0, 6, 5, 4]];
   const STYLE_SCALES = { lofi: ['minor', 'dorian', 'major'], jazzy: ['dorian', 'major'], ambient: ['lydian', 'penta', 'major'], pop: ['major', 'minor'],

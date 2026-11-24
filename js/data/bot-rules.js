@@ -1587,6 +1587,535 @@ Stories.BOT_RULES = {
       "note": ""
     },
     {
+      "id": "r_ask_ggoz",
+      "name": "Soru: gözlerime bakarak mı?",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=ggoz"
+      ],
+      "reply": [
+        "Gözlerime bakarak yapalım mı? 👀",
+        "Işığı açık bırakayım mı, gözlerimi gör diye? 😏",
+        "Bu gece gözünü benden ayırmayacak mısın? 👀"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "👁️ Eye Color seçiliyken, ön sevişmede / önden; evet → Ocean Eyes / Dark Gaze"
+    },
+    {
+      "id": "r_ask_ggoz_acik",
+      "name": "Soru: gözlerime bakarak mı · açık renk",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=ggoz"
+      ],
+      "reply": [
+        "Mavi gözlerimin içine bakarak mı yapalım? 💙",
+        "Gözlerim ışıkta parlıyor, kapatmayalım mı ışığı? 💙",
+        "Herkes gözlerime bakar… sen de bakar mısın şimdi? 😏"
+      ],
+      "traits": [
+        "Eye Color: Blue|Eye Color: Green"
+      ],
+      "chars": [],
+      "note": "evet → Ocean Eyes"
+    },
+    {
+      "id": "r_ask_ggoz_koyu",
+      "name": "Soru: gözlerime bakarak mı · koyu",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=ggoz"
+      ],
+      "reply": [
+        "Mumu yakayım, koyu gözlerimle seni yöneteyim mi? 🕯️",
+        "Tek kelime etmeden, sadece bakışımla… ister misin? 🖤",
+        "Gözlerime bak ve ne istediğimi tahmin et 😏"
+      ],
+      "traits": [
+        "Eye Color: Brown|Eye Color: Black|Eye Color: Hazel|Eye Color: Honey"
+      ],
+      "chars": [],
+      "note": "evet → Dark Gaze"
+    },
+    {
+      "id": "r_ans_ggoz_evet",
+      "name": "Cevap: gözlerime bakarak mı · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=ggoz",
+        "=evet"
+      ],
+      "reply": [
+        "O zaman kırpma bile 👀",
+        "Bakışını kaçırırsan durur 😈",
+        "İyi… gözlerin bende 💙"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_ggoz_hayir",
+      "name": "Cevap: gözlerime bakarak mı · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=ggoz",
+        "=hayir"
+      ],
+      "reply": [
+        "Utandın mı yoksa? 😏",
+        "Peki, ışığı kapatıyorum 🌙"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_gtaki",
+      "name": "Soru: takılarımla mı?",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gtaki"
+      ],
+      "reply": [
+        "Her şeyi çıkarayım ama takılarım kalsın mı? ✨",
+        "Sadece takılarımla kalayım mı? 😏",
+        "Takılarımı çıkarmayayım mı? 💍"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "👓 Choker / küpe / halhal varken, ön sevişmede; evet → Choker Pull / Swinging Hoops / Anklet Kiss"
+    },
+    {
+      "id": "r_ask_gtaki_choker",
+      "name": "Soru: takılarımla mı · choker",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gtaki"
+      ],
+      "reply": [
+        "Choker'ımın halkasından tutup çekmek ister misin? ⭕",
+        "Halkama parmağını geçirmek ister misin? 😈",
+        "Boynumdakini görüyorsun… tut onu? ⭕"
+      ],
+      "traits": [
+        "Choker"
+      ],
+      "chars": [],
+      "note": "evet → Choker Pull"
+    },
+    {
+      "id": "r_ask_gtaki_kupe",
+      "name": "Soru: takılarımla mı · küpe",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gtaki"
+      ],
+      "reply": [
+        "Küpelerimi çıkarmayayım, sallanırken izle? ✨",
+        "Üstüne çıkınca küpelerim şıngırdasın mı? 😏"
+      ],
+      "traits": [
+        "Hoop Earrings|Earrings"
+      ],
+      "chars": [],
+      "note": "evet → Swinging Hoops"
+    },
+    {
+      "id": "r_ask_gtaki_halhal",
+      "name": "Soru: takılarımla mı · halhal",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gtaki"
+      ],
+      "reply": [
+        "Halhalımı öperek yukarı çıkmak ister misin? 🦶",
+        "Ayağımı omzuna koyayım mı? Halhalım şıngırdasın ✨"
+      ],
+      "traits": [
+        "Anklet"
+      ],
+      "chars": [],
+      "note": "evet → Anklet Kiss"
+    },
+    {
+      "id": "r_ans_gtaki_evet",
+      "name": "Cevap: takılarımla mı · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=gtaki",
+        "=evet"
+      ],
+      "reply": [
+        "Sadece takılarım… ve ben ✨",
+        "Hepsini tek tek fark et 😏",
+        "O zaman yaklaş 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_gtaki_hayir",
+      "name": "Cevap: takılarımla mı · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=gtaki",
+        "=hayir"
+      ],
+      "reply": [
+        "Peki, hepsini çıkarıyorum 💍",
+        "Çıplak çıplak o zaman 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_gbakim",
+      "name": "Soru: rujum / tırnaklarım / parfümüm",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gbakim"
+      ],
+      "reply": [
+        "Bu akşam kendime çok özendim… fark ettin mi? 💄",
+        "Hazırlandığım her şeyi kullanayım mı? 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "💅 Makyaj / tırnak / parfüm varken, ön sevişmede; evet → Lipstick Trail / Nail Marks / Perfume Map"
+    },
+    {
+      "id": "r_ask_gbakim_ruj",
+      "name": "Soru: rujum · makyaj",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gbakim"
+      ],
+      "reply": [
+        "Rujumla seni imzalayayım mı? 💋",
+        "Boynundan aşağı ruj izi bırakayım mı? 💄"
+      ],
+      "traits": [
+        "Heavy Makeup|Light Makeup"
+      ],
+      "chars": [],
+      "note": "evet → Lipstick Trail"
+    },
+    {
+      "id": "r_ask_gbakim_tirnak",
+      "name": "Soru: tırnaklarım · manikür",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gbakim"
+      ],
+      "reply": [
+        "Tırnaklarımı dün yaptırdım… sırtında denesem mi? 💅",
+        "Sırtına iz bırakmamı ister misin? 😈"
+      ],
+      "traits": [
+        "Long Nails|Manicure"
+      ],
+      "chars": [],
+      "note": "evet → Nail Marks"
+    },
+    {
+      "id": "r_ask_gbakim_parfum",
+      "name": "Soru: parfümüm · Perfume Lover",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gbakim"
+      ],
+      "reply": [
+        "Parfümü beş yere sıktım… hepsini bulabilir misin? 🌸",
+        "Kokumu izleyip beni bulmak ister misin? 👃"
+      ],
+      "traits": [
+        "Perfume Lover"
+      ],
+      "chars": [],
+      "note": "evet → Perfume Map"
+    },
+    {
+      "id": "r_ans_gbakim_evet",
+      "name": "Cevap: rujum / tırnaklarım · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=gbakim",
+        "=evet"
+      ],
+      "reply": [
+        "Kıpırdama o zaman 😏",
+        "Hazırlığım boşa gitmedi 💅",
+        "Başlıyorum 😈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_gbakim_hayir",
+      "name": "Cevap: rujum / tırnaklarım · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=gbakim",
+        "=hayir"
+      ],
+      "reply": [
+        "Bir saat hazırlandım ama… peki 😒",
+        "Sonra pişman olursun 💄"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_galiskan",
+      "name": "Soru: sevdiğim bir şeyle mi?",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=galiskan"
+      ],
+      "reply": [
+        "Sana en sevdiğim şeyi göstereyim mi? 😏",
+        "Bu akşam benim tarzımda mı geçsin? 😌"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "🚬 Alışkanlık varken, ön sevişmede; evet → Wine Kiss / Loser Strips / Read To Me / Gym Stretch / Coffee In Bed / 3 AM / After Party"
+    },
+    {
+      "id": "r_ask_galiskan_sarap",
+      "name": "Soru: şarap · içici",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=galiskan"
+      ],
+      "reply": [
+        "Bir kadeh şarap açayım mı? Ama bardaktan içmeyeceksin 🍷",
+        "Şarabı ağzımdan içmek ister misin? 😏"
+      ],
+      "traits": [
+        "Social Drinker|Party Lover"
+      ],
+      "chars": [],
+      "note": "evet → Wine Kiss"
+    },
+    {
+      "id": "r_ask_galiskan_oyun",
+      "name": "Soru: oyun · Gamer",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=galiskan"
+      ],
+      "reply": [
+        "Bir el oynayalım mı? Kaybeden soyunur 🎮",
+        "Konsolu açayım mı? Kuralı ben koyarım 😈"
+      ],
+      "traits": [
+        "Gamer"
+      ],
+      "chars": [],
+      "note": "evet → Loser Strips"
+    },
+    {
+      "id": "r_ask_galiskan_kitap",
+      "name": "Soru: kitap · Bookworm",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=galiskan"
+      ],
+      "reply": [
+        "Okuduğum romandan bir sahne okuyayım mı? 📖",
+        "Sana yüksek sesle okuyayım mı… sonra canlandırırız 😏"
+      ],
+      "traits": [
+        "Bookworm"
+      ],
+      "chars": [],
+      "note": "evet → Read To Me"
+    },
+    {
+      "id": "r_ask_galiskan_spor",
+      "name": "Soru: esneme · Gym Regular",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=galiskan"
+      ],
+      "reply": [
+        "Esnememe yardım eder misin? 💪",
+        "Ne kadar esnek olduğumu görmek ister misin? 🧘‍♀️"
+      ],
+      "traits": [
+        "Gym Regular"
+      ],
+      "chars": [],
+      "note": "evet → Gym Stretch"
+    },
+    {
+      "id": "r_ask_galiskan_gece",
+      "name": "Soru: gece kuşu · Night Owl",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=galiskan"
+      ],
+      "reply": [
+        "Bu gece uyumayalım mı? 🌙",
+        "Gece üçte seni uyandırırsam kızar mısın? 😏"
+      ],
+      "traits": [
+        "Night Owl"
+      ],
+      "chars": [],
+      "note": "evet → 3 AM"
+    },
+    {
+      "id": "r_ask_galiskan_kahve",
+      "name": "Soru: kahve · Coffee Addict / Early Bird",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=galiskan"
+      ],
+      "reply": [
+        "Sabah sana kahveyi yatağa getireyim mi? ☕",
+        "Yarın sabah erken uyandırayım mı, kahveyle? 😏"
+      ],
+      "traits": [
+        "Coffee Addict|Early Bird"
+      ],
+      "chars": [],
+      "note": "evet → Coffee In Bed"
+    },
+    {
+      "id": "r_ans_galiskan_evet",
+      "name": "Cevap: sevdiğim bir şeyle mi · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=galiskan",
+        "=evet"
+      ],
+      "reply": [
+        "Biliyordum seveceğini 😏",
+        "Hazırla kendini 😈",
+        "İşte benim tarzım ✨"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_galiskan_hayir",
+      "name": "Cevap: sevdiğim bir şeyle mi · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=galiskan",
+        "=hayir"
+      ],
+      "reply": [
+        "Peki, senin tarzında olsun 😌",
+        "Kaybeden sensin 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ask_gsigara",
+      "name": "Soru: bir sigara yakayım mı?",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gsigara"
+      ],
+      "reply": [
+        "Bir sigara yakayım mı? Sonra yine yanına gelirim 🚬",
+        "Pencere kenarında bir sigara… izler misin? 🌙"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "🚬 Smoker / Vaper, bitişten sonra; evet → Cigarette After, hayır → sarılma"
+    },
+    {
+      "id": "r_ask_gsigara_vape",
+      "name": "Soru: bir nefes çekeyim mi · Vaper",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=sor",
+        "=gsigara"
+      ],
+      "reply": [
+        "Bir nefes çekeyim mi? Karpuzlu 😏",
+        "Buharı pencereden üflerken izle beni? 🌙"
+      ],
+      "traits": [
+        "Vaper"
+      ],
+      "chars": [],
+      "note": "evet → Cigarette After"
+    },
+    {
+      "id": "r_ans_gsigara_evet",
+      "name": "Cevap: sigara · evet",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=gsigara",
+        "=evet"
+      ],
+      "reply": [
+        "Çarşafı alıyorum 🚬",
+        "Yarısını içip dönerim 🌙"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ans_gsigara_hayir",
+      "name": "Cevap: sigara · hayır",
+      "category": "❔ Karakterin soruları",
+      "when": [
+        "=cevap",
+        "=gsigara",
+        "=hayir"
+      ],
+      "reply": [
+        "Haklısın, sarılmak daha iyi 🫂",
+        "Tamam, hiçbir yere gitmiyorum 🥰"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
       "id": "r_ask_gbacak",
       "name": "Soru: bacaklarımı dolayayım mı?",
       "category": "❔ Karakterin soruları",
@@ -107262,6 +107791,563 @@ Stories.BOT_RULES = {
       "note": ""
     },
     {
+      "id": "r_q5_goz_ozellik",
+      "name": "Gözlerin ne renk · Eye Color",
+      "category": "❓ Sorular",
+      "when": [
+        "gözlerin|gozlerin|=gözün|=gozun|göz rengin|goz rengin",
+        "renk-|=mavi|=yeşil|=yesil|=ela|kahverengi|=siyah|=gri"
+      ],
+      "reply": [
+        "Gözlerim {bd:Göz} 👀 yakından bakarsan daha iyi görürsün 😏",
+        "Gözlerim {bd:Göz}, sen bakınca biraz daha parlıyor 😌",
+        "Gözlerim {bd:Göz}… bakmaya devam edersen anlatırım 😏"
+      ],
+      "traits": [
+        "Eye Color: Brown|Eye Color: Hazel|Eye Color: Green|Eye Color: Blue|Eye Color: Black|Eye Color: Honey",
+        "Eye Color: Brown|Eye Color: Hazel|Eye Color: Green|Eye Color: Blue|Eye Color: Black|Eye Color: Honey"
+      ],
+      "chars": [],
+      "note": "👁️ Eye Color · {bd:Göz} profil kartından"
+    },
+    {
+      "id": "r_q5_taki",
+      "name": "Takı takar mısın",
+      "category": "❓ Sorular",
+      "when": [
+        "=takı|=takin|=takın|takıların|takilarin|takı takar|taki takar|küpe-|kupe-|kolye-|bilezik-|halhal-|=choker|aksesuar-|=yüzüğün|=yuzugun|yüzüklerin|yuzuklerin"
+      ],
+      "reply": [
+        "Pek takı takmam, sade severim 😌",
+        "Bir tek küçük bir küpe, o kadar 🙂",
+        "Sen hediye edersen takarım 😇"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "👓 Accessory · özelliği olmayan"
+    },
+    {
+      "id": "r_q5_taki_var",
+      "name": "Takı takar mısın · Accessory",
+      "category": "❓ Sorular",
+      "when": [
+        "=takı|=takin|=takın|takıların|takilarin|takı takar|taki takar|küpe-|kupe-|kolye-|bilezik-|halhal-|=choker|aksesuar-|=yüzüğün|=yuzugun|yüzüklerin|yuzuklerin"
+      ],
+      "reply": [
+        "Olmazsa olmazlarım: {bd:Aksesuar} 💍",
+        "Üstümde hep bir şeyler olur: {bd:Aksesuar} ✨",
+        "Onlarsız çıkmam: {bd:Aksesuar} 😌"
+      ],
+      "traits": [
+        "Earrings|Hoop Earrings|Necklace|Choker|Bracelet|Anklet|Rings|Watch|Hair Clip",
+        "Earrings|Hoop Earrings|Necklace|Choker|Bracelet|Anklet|Rings|Watch|Hair Clip"
+      ],
+      "chars": [],
+      "note": "👓 Accessory · {bd:Aksesuar}"
+    },
+    {
+      "id": "r_q5_makyaj",
+      "name": "Makyaj yapar mısın",
+      "category": "❓ Sorular",
+      "when": [
+        "makyaj-|=ruj|=rujun|=rimel|kirpik-|=fondöten|=fondoten|=eyeliner"
+      ],
+      "reply": [
+        "Ruh halime göre, bazen hiç bazen tam 💄",
+        "Hafif bir şeyler, biraz rimel 😌",
+        "Bugün sadece ruj 💋"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "💅 Care"
+    },
+    {
+      "id": "r_q5_makyaj_yogun",
+      "name": "Makyaj yapar mısın · Heavy Makeup",
+      "category": "❓ Sorular",
+      "when": [
+        "makyaj-|=ruj|=rujun|=rimel|kirpik-|=fondöten|=fondoten|=eyeliner"
+      ],
+      "reply": [
+        "Tam makyaj: kirpik, eyeliner, ruj… zırhım bu 💄",
+        "Makyajsız beni çok az kişi gördü 🙈 belki sen görürsün",
+        "Kirpiklerim takma ama bakışım gerçek 😏"
+      ],
+      "traits": [
+        "Heavy Makeup|Lash Extensions",
+        "Heavy Makeup|Lash Extensions"
+      ],
+      "chars": [],
+      "note": "💅 Care"
+    },
+    {
+      "id": "r_q5_makyaj_hafif",
+      "name": "Makyaj yapar mısın · Light Makeup",
+      "category": "❓ Sorular",
+      "when": [
+        "makyaj-|=ruj|=rujun|=rimel|kirpik-|=fondöten|=fondoten|=eyeliner"
+      ],
+      "reply": [
+        "Biraz rimel, biraz ruj, o kadar 😌",
+        "Hafif severim, yüzüm görünsün 🙂",
+        "Sadece dudak parlatıcısı, öpünce anlarsın 😏"
+      ],
+      "traits": [
+        "Light Makeup",
+        "Light Makeup"
+      ],
+      "chars": [],
+      "note": "💅 Care"
+    },
+    {
+      "id": "r_q5_makyaj_yok",
+      "name": "Makyaj yapar mısın · No Makeup",
+      "category": "❓ Sorular",
+      "when": [
+        "makyaj-|=ruj|=rujun|=rimel|kirpik-|=fondöten|=fondoten|=eyeliner"
+      ],
+      "reply": [
+        "Hiç yapmam, böyle doğalım 😌",
+        "Makyaj mı? Sabun ve krem, o kadar 🙈",
+        "Makyajsız seviyorsan doğru kızı buldun 😏"
+      ],
+      "traits": [
+        "No Makeup",
+        "No Makeup"
+      ],
+      "chars": [],
+      "note": "💅 Care"
+    },
+    {
+      "id": "r_q5_oje_bakimli",
+      "name": "Ojelerin ne renk · Manicure",
+      "category": "❓ Sorular",
+      "when": [
+        "oje-|tırnakların ne|tirnaklarin ne|tırnak rengi-|tirnak rengi-|manikür-|manikur-|pedikür-|pedikur-"
+      ],
+      "reply": [
+        "Her hafta manikür 💅 bu hafta bordo",
+        "Uzun ve sivri, sırtında iz bırakır 😈",
+        "Tırnaklarım hep yapılı, eksik görürsen hasta olmuşumdur 😅"
+      ],
+      "traits": [
+        "Manicure|Long Nails",
+        "Manicure|Long Nails"
+      ],
+      "chars": [],
+      "note": "💅 Care"
+    },
+    {
+      "id": "r_q5_oje_dogal",
+      "name": "Ojelerin ne renk · Natural Nails",
+      "category": "❓ Sorular",
+      "when": [
+        "oje-|tırnakların ne|tirnaklarin ne|tırnak rengi-|tirnak rengi-|manikür-|manikur-|pedikür-|pedikur-"
+      ],
+      "reply": [
+        "Oje sürmem, kısa ve doğal 😌",
+        "Tırnaklarım kısa, hiçbir şeyi çizmem 🙈 söz",
+        "Doğal severim, sadece bakımlı 💅"
+      ],
+      "traits": [
+        "Natural Nails",
+        "Natural Nails"
+      ],
+      "chars": [],
+      "note": "💅 Care"
+    },
+    {
+      "id": "r_q5_koku_parfum",
+      "name": "Kokun / parfümün · Perfume Lover",
+      "category": "❓ Sorular",
+      "when": [
+        "parfüm-|parfum-|=kokun|ne kokuyorsun|nasıl kokuyorsun|nasil kokuyorsun|güzel kokuyor musun|guzel kokuyor musun"
+      ],
+      "reply": [
+        "Parfüm koleksiyonum var 🌸 bugün vanilya, yarın başka",
+        "Her ruh halime bir koku: bugün baharatlı 😈",
+        "Yaklaş da tahmin et, bilirsen ödülün var 😏"
+      ],
+      "traits": [
+        "Perfume Lover",
+        "Perfume Lover"
+      ],
+      "chars": [],
+      "note": "💅 Care"
+    },
+    {
+      "id": "r_q5_cilt",
+      "name": "Cilt bakımı yapar mısın",
+      "category": "❓ Sorular",
+      "when": [
+        "cilt bakım-|cilt bakim-|cildin-|=cildine|bakım rutin-|bakim rutin-|bakım yapar mı-|bakim yapar mi-"
+      ],
+      "reply": [
+        "Yüzümü yıkarım, krem sürerim, o kadar 😅",
+        "Çok uğraşmam ama güneş kremi şart ☀️"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "💅 Care"
+    },
+    {
+      "id": "r_q5_cilt_rutin",
+      "name": "Cilt bakımı yapar mısın · Skincare Routine",
+      "category": "❓ Sorular",
+      "when": [
+        "cilt bakım-|cilt bakim-|cildin-|=cildine|bakım rutin-|bakim rutin-|bakım yapar mı-|bakim yapar mi-"
+      ],
+      "reply": [
+        "Sabah 5 adım, akşam 7 adım 🧴 dokun da gör",
+        "Serum, krem, maske… pazar günüm cildime ait 🧖‍♀️",
+        "Cildim bebek gibi, sırrını sadece sana söylerim 😌"
+      ],
+      "traits": [
+        "Skincare Routine",
+        "Skincare Routine"
+      ],
+      "chars": [],
+      "note": "💅 Care"
+    },
+    {
+      "id": "r_q_hb_sigara",
+      "name": "Sigara içer misin",
+      "category": "❓ Sorular",
+      "when": [
+        "sigara-|=vape|elektronik sigara|=puro|nargile-"
+      ],
+      "reply": [
+        "Hayır, kokusunu sevmem 😕",
+        "İçmem, sen içiyor musun? 🤨",
+        "Asla, öpünce tadı kötü oluyor 😅"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "🚬 Habit · özelliği olmayan"
+    },
+    {
+      "id": "r_q_hb_sigara_icer",
+      "name": "Sigara içer misin · Smoker",
+      "category": "❓ Sorular",
+      "when": [
+        "sigara-|=vape|elektronik sigara|=puro|nargile-"
+      ],
+      "reply": [
+        "İçiyorum… bırakacağım, söz 😅",
+        "Bir tane, stres olunca 🚬 kızma",
+        "Evet, ama öpmeden önce sakız çiğnerim 😏"
+      ],
+      "traits": [
+        "Smoker",
+        "Smoker"
+      ],
+      "chars": [],
+      "note": "🚬 Habit"
+    },
+    {
+      "id": "r_q_hb_sigara_vape",
+      "name": "Sigara içer misin · Vaper",
+      "category": "❓ Sorular",
+      "when": [
+        "sigara-|=vape|elektronik sigara|=puro|nargile-"
+      ],
+      "reply": [
+        "Sigara değil, elektronik 😇 karpuzlu",
+        "Vape var, çilek kokuyorum 🍓 fark ettin mi?",
+        "Sigarayı bıraktım, şimdi buharlıyım 😅"
+      ],
+      "traits": [
+        "Vaper",
+        "Vaper"
+      ],
+      "chars": [],
+      "note": "🚬 Habit"
+    },
+    {
+      "id": "r_q_hb_icki",
+      "name": "İçki içer misin",
+      "category": "❓ Sorular",
+      "when": [
+        "içki-|icki-|alkol-|şarap-|sarap-|=bira|=rakı|=raki",
+        "=içer|=icer|içiyor mu-|iciyor mu-|=içersin|=icersin|kullanır mı-|kullanir mi-|sever mi-|=içmez|=icmez|=içmiyor|=icmiyor"
+      ],
+      "reply": [
+        "Arada bir kadeh şarap, o kadar 🍷",
+        "Az içerim, çabuk çakırkeyif olurum 🙈",
+        "Yalnız içmem, iyi bir eşlik olursa belki 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "🚬 Habit"
+    },
+    {
+      "id": "r_q_hb_icki_sever",
+      "name": "İçki içer misin · Social Drinker",
+      "category": "❓ Sorular",
+      "when": [
+        "içki-|icki-|alkol-|şarap-|sarap-|=bira|=rakı|=raki",
+        "=içer|=icer|içiyor mu-|iciyor mu-|=içersin|=icersin|kullanır mı-|kullanir mi-|sever mi-|=içmez|=icmez|=içmiyor|=icmiyor"
+      ],
+      "reply": [
+        "Bir kadeh şarap her şeyi güzelleştirir 🍷",
+        "İçerim, ama sınırımı bilirim… genelde 😏",
+        "Cuma akşamı kızlarla kokteyl, vazgeçilmez 🍸"
+      ],
+      "traits": [
+        "Social Drinker|Party Lover",
+        "Social Drinker|Party Lover"
+      ],
+      "chars": [],
+      "note": "🚬 Habit"
+    },
+    {
+      "id": "r_q_hb_icki_icmez",
+      "name": "İçki içer misin · Non-Drinker",
+      "category": "❓ Sorular",
+      "when": [
+        "içki-|icki-|alkol-|şarap-|sarap-|=bira|=rakı|=raki",
+        "=içer|=icer|içiyor mu-|iciyor mu-|=içersin|=icersin|kullanır mı-|kullanir mi-|sever mi-|=içmez|=icmez|=içmiyor|=icmiyor"
+      ],
+      "reply": [
+        "Hiç içmem, portakal suyu yeter 🍊",
+        "İçmiyorum ama en çok ben dans ederim 💃",
+        "Alkolsüz de eğlenirim, merak etme 😏"
+      ],
+      "traits": [
+        "Non-Drinker",
+        "Non-Drinker"
+      ],
+      "chars": [],
+      "note": "🚬 Habit"
+    },
+    {
+      "id": "r_q_hb_kahve",
+      "name": "Kahve sever misin",
+      "category": "❓ Sorular",
+      "when": [
+        "kahve sever-|kahve içer-|kahve icer-|kaç kahve|kac kahve|kahvesiz-|kahve bağımlı-|kahve bagimli-|kahveci mi-"
+      ],
+      "reply": [
+        "Sabah bir kahve, o kadar ☕",
+        "Çayı daha çok severim aslında 🫖",
+        "Sütlü ve şekerli, ayıplama 😅"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "🚬 Habit"
+    },
+    {
+      "id": "r_q_hb_kahve_bagimli",
+      "name": "Kahve sever misin · Coffee Addict",
+      "category": "❓ Sorular",
+      "when": [
+        "kahve sever-|kahve içer-|kahve icer-|kaç kahve|kac kahve|kahvesiz-|kahve bağımlı-|kahve bagimli-|kahveci mi-"
+      ],
+      "reply": [
+        "Kahvesiz insan değilim ☕ günde dört fincan",
+        "İlk kahveden önce benimle konuşma 😤☕",
+        "Kahve ısmarlarsan her şeye evet derim 😏"
+      ],
+      "traits": [
+        "Coffee Addict",
+        "Coffee Addict"
+      ],
+      "chars": [],
+      "note": "🚬 Habit"
+    },
+    {
+      "id": "r_q_hb_spor",
+      "name": "Spor yapar mısın",
+      "category": "❓ Sorular",
+      "when": [
+        "spor yap-|spora gid-|salona gid-|spor salon-|=fitness|=gym|antrenman-"
+      ],
+      "reply": [
+        "Arada yürüyüş, o kadar 😅",
+        "Spor mu? Merdiven çıkmak sayılır mı 🙈",
+        "Yapmak istiyorum ama hep yarın 😇"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "🚬 Habit"
+    },
+    {
+      "id": "r_q_hb_spor_salon",
+      "name": "Spor yapar mısın · Gym Regular",
+      "category": "❓ Sorular",
+      "when": [
+        "spor yap-|spora gid-|salona gid-|spor salon-|=fitness|=gym|antrenman-"
+      ],
+      "reply": [
+        "Haftada beş gün salondayım 💪",
+        "Bugün bacak günüydü, yarın yürüyemem 😅",
+        "Kondisyonum iyidir, bilesin 😏"
+      ],
+      "traits": [
+        "Gym Regular",
+        "Gym Regular"
+      ],
+      "chars": [],
+      "note": "🚬 Habit"
+    },
+    {
+      "id": "r_q_hb_oyun",
+      "name": "Oyun oynar mısın",
+      "category": "❓ Sorular",
+      "when": [
+        "oyun oyna-|oyun sever-|=playstation|=ps5|=konsol|bilgisayar oyun-|=gamer"
+      ],
+      "reply": [
+        "Pek oynamam, ama bana öğretebilirsin 😇",
+        "Telefonda arada bir şeker patlatırım 😅"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "🚬 Habit"
+    },
+    {
+      "id": "r_q_hb_oyun_gamer",
+      "name": "Oyun oynar mısın · Gamer",
+      "category": "❓ Sorular",
+      "when": [
+        "oyun oyna-|oyun sever-|=playstation|=ps5|=konsol|bilgisayar oyun-|=gamer"
+      ],
+      "reply": [
+        "Oynarım! Bir gün karşılıklı oynayalım, kaybeden yemek ısmarlar 🎮",
+        "Gece üçe kadar oynadığım oluyor 🙈",
+        "Beni yenemezsin, baştan söyleyeyim 😏🎮"
+      ],
+      "traits": [
+        "Gamer",
+        "Gamer"
+      ],
+      "chars": [],
+      "note": "🚬 Habit"
+    },
+    {
+      "id": "r_q_hb_kitap",
+      "name": "Kitap okur musun",
+      "category": "❓ Sorular",
+      "when": [
+        "kitap oku-|kitap sever-|ne okuyorsun|en sevdiğin kitap|en sevdigin kitap|=roman|okumayı sever-|okumayi sever-"
+      ],
+      "reply": [
+        "Arada okurum, tatilde daha çok 📖",
+        "Dizi izlemeyi daha çok seviyorum 🙈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "🚬 Habit"
+    },
+    {
+      "id": "r_q_hb_kitap_kurdu",
+      "name": "Kitap okur musun · Bookworm",
+      "category": "❓ Sorular",
+      "when": [
+        "kitap oku-|kitap sever-|ne okuyorsun|en sevdiğin kitap|en sevdigin kitap|=roman|okumayı sever-|okumayi sever-"
+      ],
+      "reply": [
+        "Elimden kitap düşmez 📚 şu an bir aşk romanı",
+        "Yatmadan elli sayfa, yoksa uyuyamam 📖",
+        "Kütüphanede tanışsaydık daha romantik olurdu 😌"
+      ],
+      "traits": [
+        "Bookworm",
+        "Bookworm"
+      ],
+      "chars": [],
+      "note": "🚬 Habit"
+    },
+    {
+      "id": "r_q_hb_parti",
+      "name": "Parti sever misin",
+      "category": "❓ Sorular",
+      "when": [
+        "parti-|kulüp-|kulup-|gece hayat-",
+        "sever mi-|gider mi-|=sever|=seversin|hoşlanır-|hoslanir-|=sık|=sik|=gider|=gidersin"
+      ],
+      "reply": [
+        "Arada bir, kalabalık yorar beni 😌",
+        "Evde film daha çok benim tarzım 🍿"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "🚬 Habit"
+    },
+    {
+      "id": "r_q_hb_parti_sever",
+      "name": "Parti sever misin · Party Lover",
+      "category": "❓ Sorular",
+      "when": [
+        "parti-|kulüp-|kulup-|gece hayat-",
+        "sever mi-|gider mi-|=sever|=seversin|hoşlanır-|hoslanir-|=sık|=sik|=gider|=gidersin"
+      ],
+      "reply": [
+        "Cumartesiyi evde geçirirsem hasta olmuşumdur 🎉",
+        "Dans pistinde beni bulursun 💃",
+        "Gelsene bu hafta, seni de götüreyim 😏"
+      ],
+      "traits": [
+        "Party Lover",
+        "Party Lover"
+      ],
+      "chars": [],
+      "note": "🚬 Habit"
+    },
+    {
+      "id": "r_q_hb_uyku",
+      "name": "Sabah insanı mısın, gece mi",
+      "category": "❓ Sorular",
+      "when": [
+        "sabah insan-|gece insan-|gece kuşu|gece kusu|erken kalk-|geç yat-|gec yat-|kaçta uyu-|kacta uyu-|kaçta kalk-|kacta kalk-"
+      ],
+      "reply": [
+        "Hafta içi erken, hafta sonu öğlene kadar 😴",
+        "Ortası: ne çok erken ne çok geç 😌"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "🚬 Habit"
+    },
+    {
+      "id": "r_q_hb_uyku_sabah",
+      "name": "Sabah insanı mısın · Early Bird",
+      "category": "❓ Sorular",
+      "when": [
+        "sabah insan-|gece insan-|gece kuşu|gece kusu|erken kalk-|geç yat-|gec yat-|kaçta uyu-|kacta uyu-|kaçta kalk-|kacta kalk-"
+      ],
+      "reply": [
+        "Altıda kalkarım, gün doğumunu kaçırmam 🌅",
+        "Sabah insanıyım, gece onda uyurum 🙈",
+        "Sabah kahvaltıyı ben hazırlarım, sen uyurken 😌"
+      ],
+      "traits": [
+        "Early Bird",
+        "Early Bird"
+      ],
+      "chars": [],
+      "note": "🚬 Habit"
+    },
+    {
+      "id": "r_q_hb_uyku_gece",
+      "name": "Sabah insanı mısın · Night Owl",
+      "category": "❓ Sorular",
+      "when": [
+        "sabah insan-|gece insan-|gece kuşu|gece kusu|erken kalk-|geç yat-|gec yat-|kaçta uyu-|kacta uyu-|kaçta kalk-|kacta kalk-"
+      ],
+      "reply": [
+        "Gece kuşuyum 🌙 üçten önce uyumam",
+        "Sabahları konuşma benimle, gece istediğin kadar 😏",
+        "En dürüst saatim gece üç 🌙"
+      ],
+      "traits": [
+        "Night Owl",
+        "Night Owl"
+      ],
+      "chars": [],
+      "note": "🚬 Habit"
+    },
+    {
       "id": "r_q5_goz_shy",
       "name": "Gözlerin ne renk · utangaç",
       "category": "❓ Sorular",
@@ -129237,6 +130323,24 @@ Stories.BOT_RULES = {
     {"id":"r_ev_lp_34revdrip","name":"🔄💧 Reverse Drip","category":"🔥 Olaylar","when":["=evt","=boşalma","=kucak","reverse","drip"],"reply":["Görüyor musun? 😏","Hepsi senin eserin 💧","Dizlerime kadar 😳","Halıya damlamasın 😂"],"traits":[],"chars":[],"note":"🪑 Kucakta · bitiş"},
     {"id":"r_ev_lp_35between","name":"🫂💦 Between Us","category":"🔥 Olaylar","when":["=evt","=boşalma","=kucak","between","us"],"reply":["Şimdi yapıştık 😂","Ayrılmak yok 🫂","Sıcacık aramızda 🥵","Duşa beraber mi? 😏"],"traits":[],"chars":[],"note":"🪑 Kucakta · bitiş"},
     {"id":"r_ev_lp_36arched","name":"🌙💦 Arched Finish","category":"🔥 Olaylar","when":["=evt","=boşalma","=kucak","arched","finish"],"reply":["Kaldır beni 😳","Ama yavaş 🌙","Kıpırdarsam akacak 😂","Göğsüme kadar 💦"],"traits":[],"chars":[],"note":"🪑 Kucakta · bitiş"},
+    {"id":"r_ev_tr_01ocean","name":"💙👀 Ocean Eyes","category":"🔥 Olaylar","when":["=evt","=görünüş","ocean","eyes"],"reply":["Gözlerimin içine bak 💙","Işığı kapatma 👀","Kaçırma bakışını 😏","Görüyor musun beni? 🥺"],"traits":[],"chars":[],"note":"👁️ Göz · sahne"},
+    {"id":"r_ev_tr_02gaze","name":"🖤🕯️ Dark Gaze","category":"🔥 Olaylar","when":["=evt","=görünüş","dark","gaze"],"reply":["Şşş… sadece bak 🖤","Ne istediğimi biliyorsun 😏","Gözlerimden oku 🕯️","Kaşımı kaldırdım, anladın 😈"],"traits":[],"chars":[],"note":"👁️ Göz · sahne"},
+    {"id":"r_ev_tr_03choker","name":"⭕🖤 Choker Pull","category":"🔥 Olaylar","when":["=evt","=takı","choker","pull"],"reply":["Çek beni 🖤","Bırakma ⭕","Nefesim kesildi 😳","Biraz daha 😩"],"traits":[],"chars":[],"note":"👓 Takı · sahne"},
+    {"id":"r_ev_tr_04hoops","name":"✨👂 Swinging Hoops","category":"🔥 Olaylar","when":["=evt","=takı","swinging","hoops"],"reply":["Duyuyor musun? ✨","Küpelerimi say 😏","Şıngır şıngır 😂","Hızlanıyorum, dinle 🥵"],"traits":[],"chars":[],"note":"👓 Takı · sahne"},
+    {"id":"r_ev_tr_05anklet","name":"🦶✨ Anklet Kiss","category":"🔥 Olaylar","when":["=evt","=takı","anklet","kiss"],"reply":["Gıdıklanıyorum 😂","Yukarı… daha yukarı 😏","Halhalım şıngırdıyor ✨","Durma 🥵"],"traits":[],"chars":[],"note":"👓 Takı · sahne"},
+    {"id":"r_ev_tr_06nails","name":"💅🔴 Nail Marks","category":"🔥 Olaylar","when":["=evt","=bakım","nail","marks"],"reply":["Acıttı mı? 😈","Sırtın benim artık 💅","Yarın sayarız 🔴","Daha sert, tırnaklarım hazır 😏"],"traits":[],"chars":[],"note":"💅 Bakım · sahne"},
+    {"id":"r_ev_tr_07lipstick","name":"💋💄 Lipstick Trail","category":"🔥 Olaylar","when":["=evt","=bakım","lipstick","trail"],"reply":["İmzalıyorum seni 💋","Kıpırdama, iz bozulur 😏","Rujum bitmeden bitmez 💄","Aşağı iniyorum 😈"],"traits":[],"chars":[],"note":"💅 Bakım · sahne"},
+    {"id":"r_ev_tr_08perfume","name":"🌸👃 Perfume Map","category":"🔥 Olaylar","when":["=evt","=bakım","perfume","map"],"reply":["Sıcak… soğuk… 😏","Bir tane daha var 🌸","Kokumu izle 👃","Buldun! 🥵"],"traits":[],"chars":[],"note":"💅 Bakım · sahne"},
+    {"id":"r_ev_tr_09smoke","name":"🚬🌙 Cigarette After","category":"🔥 Olaylar","when":["=evt","=alışkanlık","cigarette","after"],"reply":["Bir nefes ister misin? 🚬","Bırakacağım, söz 😅","Gece çok güzel 🌙","Söndürüp yanına geliyorum 🫂"],"traits":[],"chars":[],"note":"🚬 Alışkanlık · sonrası"},
+    {"id":"r_ev_tr_10wine","name":"🍷💋 Wine Kiss","category":"🔥 Olaylar","when":["=evt","=alışkanlık","wine","kiss"],"reply":["Tadı nasıl? 🍷","Damlayanı da al 😏","Bir yudum daha 💋","Başım dönüyor 🥴"],"traits":[],"chars":[],"note":"🚬 Alışkanlık · sahne"},
+    {"id":"r_ev_tr_11coffee","name":"☕🛏️ Coffee In Bed","category":"🔥 Olaylar","when":["=evt","=alışkanlık","coffee","bed"],"reply":["Günaydın ☕","Kahve bekleyebilir 😏","Yorgan sıcacık 🛏️","Soğusun, umurumda değil 😈"],"traits":[],"chars":[],"note":"🚬 Alışkanlık · sahne"},
+    {"id":"r_ev_tr_12stretch","name":"🧘‍♀️💪 Gym Stretch","category":"🔥 Olaylar","when":["=evt","=alışkanlık","gym","stretch"],"reply":["Daha it 💪","Bak ne kadar esneğim 😏","Bacağım omzunda 🧘‍♀️","Bu artık esneme değil 🥵"],"traits":[],"chars":[],"note":"🚬 Alışkanlık · sahne"},
+    {"id":"r_ev_tr_13loser","name":"🎮👕 Loser Strips","category":"🔥 Olaylar","when":["=evt","=alışkanlık","loser","strips"],"reply":["Yine kaybettin 😂","Kuralı unutma 👕","Sana acıdım 😏","Oyun bitti 🎮😈"],"traits":[],"chars":[],"note":"🚬 Alışkanlık · sahne"},
+    {"id":"r_ev_tr_14read","name":"📖🔥 Read To Me","category":"🔥 Olaylar","when":["=evt","=alışkanlık","read","me"],"reply":["Dinle… 📖","Kitapta böyle yazıyor 😏","Sayfayı kaybettim 🙈","Gerisini yaşayalım 🔥"],"traits":[],"chars":[],"note":"🚬 Alışkanlık · sahne"},
+    {"id":"r_ev_tr_15threeam","name":"🌙⏰ 3 AM","category":"🔥 Olaylar","when":["=evt","=gece","=3","=am"],"reply":["Uyuyamıyorum 🌙","Fısılda 🤫","Yavaş yavaş 😴","Gece bizim 😮‍💨"],"traits":[],"chars":[],"note":"🚬 Gece kuşu · sahne"},
+    {"id":"r_ev_tr_16party","name":"🎉👠 After Party","category":"🔥 Olaylar","when":["=evt","=parti","after","party"],"reply":["Bütün gece bunu bekledim 🎉","Kapıyı kapat 😈","Hâlâ müzik çalıyor kafamda 🎶","Topuklular gitti 👠"],"traits":[],"chars":[],"note":"🚬 Parti · sahne"},
+    {"id":"r_ev_tr_17mascara","name":"🖤💦 Smudged Mascara","category":"🔥 Olaylar","when":["=evt","=boşalma","=bakım","smudged","mascara"],"reply":["Rimelim aktı 🖤","Umurumda değil 😈","Rujum yerinde ama 💄","Nasıl görünüyorum? 😏"],"traits":[],"chars":[],"note":"💅 Bakım · bitiş"},
+    {"id":"r_ev_tr_18jewel","name":"📿💦 Jewel Drops","category":"🔥 Olaylar","when":["=evt","=boşalma","=takı","jewel","drops"],"reply":["İnci gibi 📿","En pahalı takım 😂","Kolyem ıslandı 💦","Bak ışıkta parlıyor 😏"],"traits":[],"chars":[],"note":"👓 Takı · bitiş"},
     {"id":"r_ev_lp_37squeeze","name":"🗜️💦 Squeeze Out","category":"🔥 Olaylar","when":["=evt","=boşalma","=kucak","squeeze","out"],"reply":["Hepsini aldım 😈","Bir kez daha 🗜️","Son damla 😏","Kaçamazsın 🥵"],"traits":[],"chars":[],"note":"🪑 Kucakta · bitiş"},
     {"id":"r_ev_lp_38lastbounce","name":"🍑💥 Last Bounce","category":"🔥 Olaylar","when":["=evt","=boşalma","=kucak","last","bounce"],"reply":["Aynı anda! 😳","Titriyorum 🥵","İnanamıyorum 😵","Bir daha yapalım 😈"],"traits":[],"chars":[],"note":"🪑 Kucakta · bitiş"},
     {"id":"r_ev_lp_39chairdrip","name":"💺💧 Chair Drip","category":"🔥 Olaylar","when":["=evt","=boşalma","=kucak","chair","drip"],"reply":["Temizlemeden kimse oturmasın 😂","Sandalyeye bak 😳","Damlıyor 💧","Peçete? 🧻"],"traits":[],"chars":[],"note":"🪑 Kucakta · bitiş"},

@@ -405,6 +405,7 @@ Stories.City = (() => {
     }
     return o.pi >= o.path.length;
   }
+  let reopenPhone = false;
   const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch (e) { return null; } };
   const SPEEDS = [[60, '⏩ 60×'], [240, '⏩ 240×'], [1, '▶️ 1×'], [0, '⏸️']];
   const glowCache = {};
@@ -2500,7 +2501,7 @@ Stories.City = (() => {
       if (t.closest('[data-gohome]') && talk) { const a = talk.a; endTalk(); startEscort([a]); return; }
       const hm = t.closest('[data-home]');
       if (hm) { const a = ag.find(x => x.id === hm.dataset.home); if (a) { release(); startEscort(escort && escort.ph === 'with' && escort.L.includes(a) ? escort.L.slice() : [a]); } return; }
-      if (t.closest('[data-chat]')) { persist(); return; }
+      if (t.closest('[data-chat]')) { persist(); reopenPhone = true; return; }
       if (t.closest('[data-car]')) { enterCar(); return; }
       if (t.closest('[data-escx]')) { closeCard(); stopEscort(true); return; }
       if (t.closest('[data-meet]') && talk) {
@@ -2611,6 +2612,7 @@ Stories.City = (() => {
     } else withIds = [];
     { const d = root.querySelector('.ct-dot'); if (d && api.chats) d.hidden = !api.chats().some(x => x.unread); }
     carBtn();
+    if (reopenPhone) { reopenPhone = false; openPhone(); }
     requestAnimationFrame(n => { t0 = n; requestAnimationFrame(frame); });
   }
   // 📚 Şehir Kitabı tabloları canlı veriden okur

@@ -454,6 +454,7 @@
     if (ui.lastPage !== location.hash) {
       ui.prevPage = ui.lastPage;
       ui.lastPage = location.hash;
+      if (!full && r.name !== 'p') ui.chatBack = location.hash;
       // ⚡ yeni sayfanın çocukları yeni öğeler: animasyon kendiliğinden başlar (eski sayfayı zorla yeniden düzenlemeye gerek yok)
       view.classList.add('page-in');
     }
@@ -533,7 +534,7 @@
       case 'choise': return renderChoise();
       case 'flix': return renderFlix(r.id, r.extra);
       case 'gram': return renderGram(r.id, r.extra);
-      case 'oyun': return r.id === 'td' ? renderTD() : r.id === 'ps' ? (r.extra === 'play' ? renderPS() : renderPSMenu()) : r.id === 'fp' ? (r.extra === 'play' ? renderFP() : renderFPMenu()) : renderGames();
+      case 'oyun': location.replace('#/home'); return; // 🎮 CarmenPlay kaldırıldı (v1159)
       case 'canli': return renderLive(r.id);
       case 'parti': return renderParty();
       case 'fans': return renderFans(r.id);
@@ -718,6 +719,9 @@
       .c3-t-head small, .c3-sug small, .c3-ct small { color: var(--muted); }
       .c3-chips, .c3-conts, .c3-media { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; scroll-snap-type: x proximity; }
       .c3-chips::-webkit-scrollbar, .c3-conts::-webkit-scrollbar, .c3-media::-webkit-scrollbar { display: none; }
+      .c3-media + .c3-media { margin-top: 10px; }
+      .c3-media.c3-m2 { display: grid; grid-template-columns: 1fr 1fr; overflow: visible; }
+      .c3-media.c3-m2 > .c3-m { width: auto; min-width: 0; }
       .c3-chips > * { flex: none; padding: 5px 10px; border-radius: 999px; background: var(--chip); border: 1px solid var(--line); font-size: 12px; color: inherit; text-decoration: none; white-space: nowrap; }
       .c3-chips .on { border-color: #ff4d8d; }
       .c3-ct { flex: none; width: 92px; scroll-snap-align: start; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 6px; border-radius: 14px; background: var(--chip); border: 1px solid var(--line); color: inherit; text-decoration: none; text-align: center; position: relative; }
@@ -816,24 +820,25 @@
   const C3_HELLO = { sabah: '☀️ Günaydın', gun: '🌤️ İyi günler', aksam: '🌇 İyi akşamlar', gece: '🌙 İyi geceler' };
   // 📰📖🍿 tek şerit: son 2 haber + bu ayın 2 dergisi + filmler
   function c3Media() {
-    const items = [];
-    try { const nw = newsUnseen(); HOME_NEWS.slice(0, 2).forEach(([ic, t, d], i) => items.push(`<a class="c3-m c3-mn" href="#/news/${newsNo(i)}"><span>${ic}</span>${i < nw ? '<em>Yeni</em>' : ''}<b>${esc(t)}</b><small>${esc(d)}</small></a>`)); } catch (e) {}
+    const news = [], mags = [], flix = [];
+    try { const nw = newsUnseen(); HOME_NEWS.slice(0, 2).forEach(([ic, t, d], i) => news.push(`<a class="c3-m c3-mn" href="#/news/${newsNo(i)}"><span>${ic}</span>${i < nw ? '<em>Yeni</em>' : ''}<b>${esc(t)}</b><small>${esc(d)}</small></a>`)); } catch (e) {}
     let mg = '';
-    try { const T = MG().titles, st = mgState(); if (T.length && cmAll().some(c => c.photo)) { mg = MG_CSS; mgSort('home:' + new Date().toDateString(), T).sort((a, b) => !!st.read[mgIssues(a)[0].id] - !!st.read[mgIssues(b)[0].id]).slice(0, 2).forEach(m => items.push(`<div class="c3-m c3-mg">${mgCov(mgIssues(m)[0], false, st)}</div>`)); } } catch (e) {}
-    try { const st = fxState(); FX_TITLES.forEach(x => { const c = fxCast(x), seen = (st.seen[x.id] || []).length; items.push(`<a class="c3-m c3-mf" href="#/flix/${x.id}" style="--mtbg:${esc(c.her ? grad(c.her) : 'linear-gradient(135deg,#e50914,#300)')}">${c.her && c.her.photo ? `<img src="${esc(c.her.photo)}" alt="" loading="lazy" onerror="this.remove()">` : ''}${seen ? '' : '<em>Yeni</em>'}<span><small>CARMENFLIX</small><b>${esc(x.t)}</b><i>▶ ${seen ? 'Tekrar izle' : 'Şimdi izle'}</i></span></a>`); }); } catch (e) {}
-    if (!items.length) return '';
-    return `${mg}<div class="hl-sec"><h3>📰 Haber · 📖 Dergi · 🍿 Flix</h3><a href="#/news">Haberler ›</a></div><div class="c3-media">${items.join('')}</div>`;
+    try { const T = MG().titles, st = mgState(); if (T.length && cmAll().some(c => c.photo)) { mg = MG_CSS; mgSort('home:' + new Date().toDateString(), T).sort((a, b) => !!st.read[mgIssues(a)[0].id] - !!st.read[mgIssues(b)[0].id]).slice(0, 2).forEach(m => mags.push(`<div class="c3-m c3-mg">${mgCov(mgIssues(m)[0], false, st)}</div>`)); } } catch (e) {}
+    try { const st = fxState(); FX_TITLES.slice(0, 2).forEach(x => { const c = fxCast(x), seen = (st.seen[x.id] || []).length; flix.push(`<a class="c3-m c3-mf" href="#/flix/${x.id}" style="--mtbg:${esc(c.her ? grad(c.her) : 'linear-gradient(135deg,#e50914,#300)')}">${c.her && c.her.photo ? `<img src="${esc(c.her.photo)}" alt="" loading="lazy" onerror="this.remove()">` : ''}${seen ? '' : '<em>Yeni</em>'}<span><small>CARMENFLIX</small><b>${esc(x.t)}</b><i>▶ ${seen ? 'Tekrar izle' : 'Şimdi izle'}</i></span></a>`); }); } catch (e) {}
+    const rows = [[news, ''], [mags, ' c3-m2'], [flix, ' c3-m2']].filter(r => r[0].length);
+    if (!rows.length) return '';
+    return `${mg}<div class="hl-sec"><h3>📰 Haber · 📖 Dergi · 🍿 Flix</h3><a href="#/news">Haberler ›</a></div>${rows.map(([r, k]) => `<div class="c3-media${k}">${r.join('')}</div>`).join('')}`;
   }
   /* 🔎 Global arama (#/ara): karakterler, ilanlar, olaylar, sahneler, bölümler, siteler, kitap sayfaları ve deneyler tek kutuda (Türkçe harfsiz de bulur) */
   function renderSearch() {
     const st = c3St();
     view.innerHTML = `<div class="page-pad narrow">${pageHero('ara', '🔎', 'Arama', ['karakter', 'olay', 'sahne', 'site', 'kitap'], '', { back: ui.prevPage || '#/home' })}
-      <div class="bk-search" style="margin-top:12px"><input id="c3Q" type="search" placeholder="🔎 Karakter, olay, sahne, site, kitap sayfası…" autocomplete="off" value="${esc(ui.c3Q || '')}"></div>
+      <form class="bk-search" id="c3F" style="margin-top:12px;display:flex;gap:8px"><input id="c3Q" type="search" placeholder="🔎 Karakter, olay, sahne, site, kitap sayfası…" autocomplete="off" value="${esc(ui.c3Q || '')}" style="flex:1;min-width:0"><button class="btn" type="submit">🔎 Arat</button></form>
       <div id="c3Res"></div></div>`;
     const q = $('#c3Q'), res = $('#c3Res'), f = evbFold, evs = allEvents();
     const groupsOf = s => {
       const has = (...xs) => xs.some(x => f(x).includes(s)), G = [];
-      const add = (h, rows) => { if (rows.length) G.push([h, rows.slice(0, 8), rows.length]); };
+      const add = (h, rows) => { if (rows.length) G.push([h, rows, rows.length]); };
       add('👩 Karakterlerin', chars().filter(c => !c.husb && has(c.name, c.job || '', c.city || '')).map(c => [`#/p/${c.id}`, avatar(c, 32), c.name, [c.age, c.city, c.job].filter(Boolean).join(' · ')]));
       add('🌹 İlanlar', cmAds().filter(c => has(c.name, c.city || '')).map(c => [`#/carmen/${c.id}`, avatar(c, 32), c.name, [c.age, c.city].filter(Boolean).join(' · ')]));
       add('📜 Olaylar', evs.filter(e => has(e.title, e.desc || '')).map(e => [`ev:${e.id}`, '<i>' + evEmo(e) + '</i>', e.title, e.desc || '']));
@@ -853,9 +858,10 @@
       res.innerHTML = G.length ? G.map(([h, rows, n]) => `<div class="sec-title">${h} <small>· ${n}</small></div><div class="card" style="padding:4px 8px">${rows.map(([href, ic, t, sub]) => `<a class="me-hist c3-hit" ${href.startsWith('ev:') ? `href="#/ara" data-c3ev="${esc(href.slice(3))}"` : `href="${esc(href)}"`}>${ic}<span><b>${esc(t)}</b>${sub ? `<small>${esc(String(sub).slice(0, 90))}</small>` : ''}</span></a>`).join('')}</div>`).join('')
         : '<div class="about card" style="margin-top:12px">Bulunamadı</div>';
     };
-    q.oninput = draw;
+    $('#c3F').onsubmit = e => { e.preventDefault(); q.blur(); draw(); };
     res.onclick = e => { const b = e.target.closest('[data-c3ev]'); if (!b) return; e.preventDefault(); const ev = evs.find(x => x.id === b.dataset.c3ev); if (ev) evWin(ev); };
-    draw();
+    if (ui.c3Q) draw();
+    else res.innerHTML = '<div class="about card" style="margin-top:12px">Aramak istediğini yaz ve 🔎 Arat\'a bas.</div>';
     q.focus();
   }
   // 🌟 profil → Özet (düzenleme modu kapalıyken de): doğum günü, tanışıklık, ilkler, en çok yaşananlar, yerler, süren bölüm
@@ -1261,6 +1267,20 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['👁️', 'Göz rengi, takılar, bakım ve alışkanlıklar', 'Oluştur ekranında dört yeni özellik var: göz rengi, aksesuar, bakım ve alışkanlık. Seçtiklerin profil kartında görünüyor. Kızlar artık bunlarla ilgili derin sorular soruyor, mesleklerinden de bahsediyor. Evliyse kocası da bunlara laf atıyor.', '#/kitap/yeni/14', [
+      ['👁️ Eye Color', 'Brown, Hazel, Green, Blue, Black ve Honey. 🎲 Rastgele memleketine göre seçer.'],
+      ['👓 Accessory · 💅 Care', 'Küpe, choker, halhal, kol saati… · manikür, yoğun ya da hafif makyaj, kirpik, parfüm. Çelişenler birlikte seçilemez.'],
+      ['🚬 Habit', 'Sigara, sosyal içici, kahve bağımlısı, spor, oyun, kitap, parti, sabahçı ya da gece kuşu.'],
+      ['💭 Derin sorular', 'Özelliğine ve 💼 mesleğine göre yeni sorular. Cevabında kendini anlatıyor.'],
+      ['💍 Kocasıyla', 'Kocası küpesine, kahvesine, nöbetine laf atıyor.'],
+      ['❓ Sorarsan', '"Gözlerin ne renk", "makyaj yapar mısın", "sigara içer misin", "gece kuşu musun"… seçtiğin özelliğe göre cevap verir.'],
+      ['🎬 18 olay', 'Ocean Eyes, Choker Pull, Nail Marks, Lipstick Trail, Wine Kiss, Coffee In Bed, 3 AM, After Party… sadece o özelliği olan kızda açılır.'],
+      ['💬 Onun soruları', '"Takılarımla mı kalayım?", "Rujumla seni imzalayayım mı?", "Bir sigara yakayım mı?" Evet dersen o olay olur.'],
+      ['📅 Değişiyor', 'Renkli lens, choker, halhal, kirpik, manikür alıyor; makyajı, sigarayı, içkiyi bırakıyor, spora ya da kitap kulübüne yazılıyor. Sana soruyor, hayır dersen vazgeçiyor.'],
+      ['📚 Kitap', '📏 Görünüş ve 🌱 Derin sorular bölümleri güncellendi; Olay Kitabı\'nda yeni bölüm: 👓 Görünüş ve alışkanlıklar.']], 'Yeni özellikler', [
+      'Karakterlerin artık göz rengi var. Seçmezsen eskisi gibi memleketine göre gelir: Kuzey Avrupalı kızın gözleri çoğunlukla mavi, Türk kızınınkiler kahverengi ya da ela.',
+      'Aksesuar, bakım ve alışkanlık çoklu seçimli. Halka küpeli, uzun tırnaklı, kahvesiz insan olamayan bir gece kuşu kurabilirsin. Yoğun makyajla makyajsız ya da sosyal içiciyle hiç içmeyen gibi birbirine uymayanlar aynı anda seçilemiyor.',
+      'Bu özellikler sohbette karşına çıkıyor. Gece kuşu bir kız gece üçte aklına neler geldiğini soruyor, sigara içen bırakamadığı şeyi itiraf ediyor, hemşire nöbette tuttuğu eli anlatıyor. Evliyse kocası da ona laf atıyor: "Bugün kaçıncı kahve?"']],
     ['🌍', 'Memleket olayları ve sabaha geç', 'Kızlar artık memleketlerini de getiriyor: Türk kızıyla hamam kurnası, Latin kızıyla salsa, Fransızla Paris çatı katı, Japonla kaplıca… Her bölgenin bir sahnesi ve bitişi, tenine göre özel anlar da var. Sohbette ve şehirde ⏩ sabaha geçebiliyor, ana sayfa saatine göre değişiyor.', '#/kitap/carmen3/17', [
       ['🌍 9 memleket', 'Türk, Latin, Akdeniz, Fransız, Slav, Kuzey, Anglo, Doğu Asya ve Arap: sahne + bitiş.'],
       ['🎨 Ten', 'Shea Butter Glow, Tan Lines, Porcelain Blush: sadece o tende.'],
@@ -1567,7 +1587,7 @@
       ['🤏 Değdirme', 'Kalçasına: Cheek Trace, Panty Line Trace, Crack Slide, Lower Back Rest, Jeans Press. Bacaklarına: Inner Thigh Trail, Thigh Gap Rest, Stocking Rub, Under Table Touch, Calf to Knee.'],
       ['👗 Kıyafet', 'Panty Slap, Bra Slap, Stocking Slap, Panty Line Trace, Stocking Rub ve Jeans Press o parça üstündeyken olur.'],
       ['📚 Kitap', 'Olay Kitabı\'na iki bölüm: 👋 Aletle Vurma ve 🤏 Aletle Değdirme.']]],
-    ['📖', 'Daha iyi anlatımlar!', 'Olaylar artık tek cümleyle geçiştirilmiyor: her olay birkaç cümlelik küçük bir sahne olarak anlatılıyor. Ne yaptığın, onun nasıl tepki verdiği, o anın sonunda ne kaldığı. 📜 Olay rehberinde, Olay Kitabı\'nda ve diğer kitaplarda.', '#/kitap/olay/78', [
+    ['📖', 'Daha iyi anlatımlar!', 'Olaylar artık tek cümleyle geçiştirilmiyor: her olay birkaç cümlelik küçük bir sahne olarak anlatılıyor. Ne yaptığın, onun nasıl tepki verdiği, o anın sonunda ne kaldığı. 📜 Olay rehberinde, Olay Kitabı\'nda ve diğer kitaplarda.', '#/kitap/olay/79', [
       ['✒️ Uzun anlatım', 'Her olayın kısa açıklaması olay seçicide duruyor; uzun anlatımı rehberde ve kitaplarda ilk sırada.'],
       ['📚 Kitap', 'Olay Kitabı\'nda yeni bölüm: 📖 Daha iyi anlatımlar; kaç olayın yeni anlatımı olduğunu canlı sayar.']]],
     ['💜', 'İzler artık kalıyor', 'Bıraktığın izler sayılıyor: durum kartında 💜 kaç iz olduğunu görürsün, sohbet saatiyle önce morarır sonra solar. Kocası bilmeyen evli kızın kocası görünür izi sorar ve 🕵️ Şüphe artar; Hotwife\'ın kocası görmek ister. 17 yeni iz olayı da geldi.', '#/kitap/olay/58', [
@@ -2861,6 +2881,12 @@
   const CM_LEGS = { Slim: 'İnce', Toned: 'Fit', 'Thick Thighs': 'Kalın butlu', Long: 'Uzun' };
   const CM_WAIST = { Tiny: 'Daracık', Slim: 'İnce', Average: 'Normal', Wide: 'Kalın' };
   const CM_STYLE = { Casual: 'Gündelik', Elegant: 'Şık', Sporty: 'Sportif', Goth: 'Gotik', Girly: 'Feminen', Business: 'İş kadını' };
+  // 👁️👓💅🚬 (traits.js eyecolor / accessory / care / habit)
+  const CM_EYE_T = { Brown: 'Kahverengi', Hazel: 'Ela', Green: 'Yeşil', Blue: 'Mavi', Black: 'Siyah', Honey: 'Bal rengi' };
+  const CM_ACC = { Earrings: 'Küpe', 'Hoop Earrings': 'Halka küpe', Necklace: 'Kolye', Choker: 'Choker', Bracelet: 'Bilezik', Anklet: 'Halhal', Rings: 'Yüzükler', Watch: 'Kol saati', 'Hair Clip': 'Saç tokası' };
+  const CM_CARE = { Manicure: 'Manikürlü', 'Long Nails': 'Uzun tırnak', 'Natural Nails': 'Doğal tırnak', 'Heavy Makeup': 'Yoğun makyaj', 'Light Makeup': 'Hafif makyaj', 'No Makeup': 'Makyajsız', 'Lash Extensions': 'Kirpik uzatma', 'Skincare Routine': 'Cilt bakımı', 'Perfume Lover': 'Parfüm tutkunu' };
+  const CM_HABIT = { Smoker: 'Sigara içer', Vaper: 'Elektronik sigara', 'Social Drinker': 'Sosyal içici', 'Non-Drinker': 'İçki içmez', 'Coffee Addict': 'Kahve bağımlısı', 'Gym Regular': 'Spor salonu müdavimi', Gamer: 'Oyun sever', Bookworm: 'Kitap kurdu', 'Party Lover': 'Parti sever', 'Early Bird': 'Sabahçı', 'Night Owl': 'Gece kuşu' };
+  const cmMulti = (c, map) => (c.traits || []).filter(t => map[t]).map(t => map[t]).join(' · ');
   // 🎂 Age özelliği → yaş aralığı; 🎲 rastgele yaşla uyumlu seçer
   const AGE_R = { '18–21': [18, 21], '22–25': [22, 25], '26–30': [26, 30], '31–35': [31, 35], '36+': [36, 45] };
   // 🦵⏳ seçilmediyse kiloya uygun (W_RULES'a aykırı olmayan), id'ye göre sabit değer
@@ -2890,10 +2916,11 @@
     const shape = CM_BTYPE[cmTrait(c, 'Body Type')] || CM_WEIGHT[w] || (boob >= 90 || big ? 'Kıvrımlı' : small && boob && boob <= 75 ? 'Minyon' : cmPick(c, 'vu', ['Fit', 'İnce', 'Atletik', 'Balık etli', 'Kum saati']));
     const rows = [['📏', 'Boy', h + ' cm'], ['⚖️', 'Kilo', kg + ' kg'], ['✨', 'Vücut', shape],
       ['💇‍♀️', 'Saç', cmHairC(c)], hl && ['✂️', 'Saç boyu', hl],
-      ['👁️', 'Göz', cmLookV(c, 'eye', CM_EYE) || cmPick(c, 'go', CM_EYE)], ['🧴', 'Ten', CM_SKIN[cmTrait(c, 'Skin Tone')] || cmLookV(c, 'skin', CM_SKIN) || cmPick(c, 'te', ['Beyaz', 'Buğday', 'Bronz', 'Esmer', 'Porselen'])],
+      ['👁️', 'Göz', CM_EYE_T[cmTrait(c, 'Eye Color')] || cmLookV(c, 'eye', CM_EYE) || cmPick(c, 'go', CM_EYE)], ['🧴', 'Ten', CM_SKIN[cmTrait(c, 'Skin Tone')] || cmLookV(c, 'skin', CM_SKIN) || cmPick(c, 'te', ['Beyaz', 'Buğday', 'Bronz', 'Esmer', 'Porselen'])],
       (v => v && ['💋', 'Dudak', v])(CM_LIPS[cmTrait(c, 'Lip Shape')]), ['🦵', 'Bacak', cmLegs(c)],
       ['⏳', 'Bel', cmWaist(c)], (v => v && ['👗', 'Tarz', v])(CM_STYLE[cmTrait(c, 'Style')]),
       mk.length && ['✨', 'Detay', mk.join(' · ')],
+      (v => v && ['👓', 'Aksesuar', v])(cmMulti(c, CM_ACC)), (v => v && ['💅', 'Bakım', v])(cmMulti(c, CM_CARE)), (v => v && ['🚬', 'Alışkanlık', v])(cmMulti(c, CM_HABIT)),
       (boob || imB) && ['🍒', 'Göğüs', [boob && `${boob} ${CM_CUP[boob] || ''}`.trim(), imB && '💉 Silikon'].filter(Boolean).join(' · ')], (butt || imK) && ['🍑', 'Kalça', [butt, imK && '💉 Silikon'].filter(Boolean).join(' · ')], pus && ['🌸', 'Vajina', CM_SIZE[pus] || pus], an && ['🍑', 'Anal', CM_SIZE[an] || an],
       ex && ['🔥', 'Deneyim', CM_EXP[ex] || ex]].filter(Boolean).map(r => fd[r[1]] ? [r[0], r[1], fd[r[1]]] : r);
     if (fd['Saç boyu'] && !rows.some(r => r[1] === 'Saç boyu')) rows.splice(rows.findIndex(r => r[1] === 'Saç') + 1, 0, ['✂️', 'Saç boyu', fd['Saç boyu']]);
@@ -5046,12 +5073,11 @@
       { k: 'events', href: '#/events', ic: '🎓', logo: 'Carmen<i>Events</i>', url: 'carmenevents.com', desc: 'Olaylar okulu: bütün olaylar kategorilere göre ders ders anlatılır. Her kategorinin bir hocası var; ne olduğunu, nasıl tetiklendiğini ve sonunda ne olduğunu öğretir, istersen pratiği onunla yaparsın.', chips: [`📚 ${allEvents().length} olay`, `👩‍🏫 ${Math.min(EVN_N, cmAll().length)} hoca`] },
       { k: 'news', href: '#/news', ic: '📰', logo: 'Carmen<i>News</i>', url: 'carmennews.com', desc: 'Lia\'nın gazetesi: her yeni sürümün haberi burada. Başlık kartlarından birine tıkla, haberin uzun anlatımını oku; her haber ilgili siteye, sahneye ya da kitap bölümüne götürür. Haber, yeni, güncelleme, gazete.', chips: [`📰 ${HOME_NEWS.length} haber`, newsUnseen() ? `🆕 ${newsUnseen()} yeni` : '✅ hepsi okundu'] },
       { k: 'doodle', href: '#/doodle', ic: '🎨', logo: 'Doodle<i>Booble</i>', url: 'doodlebooble.com', desc: 'Booble\'ın özel gün logoları tek sayfada: bugünün doodle\'ı, sıradaki için geri sayım ve ay ay doodle takvimi. Her doodle ilgili siteye ya da yeni olaylara götürür.', chips: [`🎨 ${BB_DOODLES.length} doodle`, bbDoodle() ? '🟢 bugün yayında' : '🗓️ takvim'] },
-      { k: 'guide', href: '#/guide', ic: '🧭', logo: 'Carmen<i>Guide</i>', url: 'carmenguide.com', desc: 'Yardım sitesi: kitaplık, olay rehberi, bot deneyi ve benim mesajlarım. Bir şey nasıl yapılır, buradan bak.', chips: [`📚 ${BOOKS.length} kitap`, '🧪 bot deneyi'] },
-      { k: 'play', href: '#/oyun', ic: '🎮', logo: 'Carmen<i>Play</i>', url: 'carmenplay.com', desc: 'Adult Game: 🗂️ Problematic Subjects (ofiste ricaları karşıla, zevk puanı topla) ve 🔥 Fiery Passions (erkeksiz köyde sandbox görsel roman).', chips: [`🗂️ Bölüm ${psData().level}`, `🔥 Gün ${fpData().day}`] }
+      { k: 'guide', href: '#/guide', ic: '🧭', logo: 'Carmen<i>Guide</i>', url: 'carmenguide.com', desc: 'Yardım sitesi: kitaplık, olay rehberi, bot deneyi ve benim mesajlarım. Bir şey nasıl yapılır, buradan bak.', chips: [`📚 ${BOOKS.length} kitap`, '🧪 bot deneyi'] }
     ].filter(s => editOn() || !EDIT_SITES.includes(s.k));
   }
   // ✏️ sadece düzenleme modunda listelenen siteler (Booble, ana sayfa, Ben); adresleri yine açılır
-  const EDIT_SITES = ['guide'];
+  const EDIT_SITES = [];
   // 🧭 sitedeyken alt butonlar: 🔍 Booble + sitenin kendi butonları [ic, ad, href, ui yaması] + 💬 Mesaj (listede olmayan site: site girişi + 🏠)
   const SITE_NAV = {
     carmen: [['🌹', 'İlanlar', '#/carmen', { cmF: '' }], ['⭐', 'Yorumlar', '#/carmen/x-yorum'], ['📊', 'Karşılaştır', '#/carmen/x-kars'], ['🏷️', 'Ajanslar', '#/carmen/x-ajans'], ['💬', 'Mesajlar', '#/carmen/x-mesaj']],
@@ -5070,7 +5096,6 @@
     is: [['💼', 'İlanlar', '#/is'], ['🏢', 'Ofis', '#/is/ofis'], ['🎤', 'Mülakat', '#/is/x-mulakat'], ['📄', 'CV', '#/is/x-cv']],
     gram: [['🏠', 'Akış', '#/gram'], ['🔎', 'Keşfet', '#/gram/kesfet'], ['💬', 'Mesajlar', '#/gram/x-mesaj']],
     bumble: [['🐝', 'Eşleş', '#/bumble'], ['💬', 'Mesajlar', '#/bumble/x-mesaj']],
-    oyun: [['🎮', 'Oyunlar', '#/oyun'], ['🗂️', 'Problematic', '#/oyun/ps'], ['🔥', 'Passions', '#/oyun/fp']],
     events: [['📚', 'Dersler', '#/events'], ['🎬', 'Sahneler', '#/events/sahneler'], ['📖', 'Bölümler', '#/events/bolumler']],
     dergi: [['📚', 'Bayi', '#/dergi'], ['🔖', 'Kaldığım yer', '#/dergi/devam'], ['🎓', 'Eğitim', '#/dergi/egitim']],
     kilise: [['🕯️', 'İlanlar', '#/kilise', { kcF: '' }], ['🙏', 'İtiraf', '#/kilise/x-itiraf'], ['📅', 'Ayinler', '#/kilise/x-ayin']],
@@ -13682,7 +13707,7 @@
     const chatHtml = `${sk ? CSK_CSS : ''}
       <div class="chat${editOn() ? '' : ' no-edit'}${(th.duo || th.husb) && !th.duoIn ? ' duo-watch' : ''}${sk ? ` csk csk-${sk.id}${sk.pal ? ' csk-v' : ''}` : ''}"${sk && sk.pal ? ` style="${esc(skVars(sk))}"` : ''}>
         <div class="chat-head">
-          <a class="icon-btn" href="${th.husb ? `#/p/${th.members[0]}` : sk ? `#/${skHome(sk)}/x-mesaj` : th.group && !th.duo && (!th.gsrc || SK_GROUPS.includes(th.gsrc)) ? `#/${th.gsrc || 'tinder'}/x-mesaj` : '#/sehir'}" aria-label="Geri">${ICON.arrowLeft}</a>
+          <a class="icon-btn" href="${ui.chatBack ? esc(ui.chatBack) : th.husb ?`#/p/${th.members[0]}` : sk ? `#/${skHome(sk)}/x-mesaj` : th.group && !th.duo && (!th.gsrc || SK_GROUPS.includes(th.gsrc)) ? `#/${th.gsrc || 'tinder'}/x-mesaj` : '#/sehir'}" aria-label="Geri">${ICON.arrowLeft}</a>
           ${head}
           ${ctxHelp()}
           <button class="icon-btn st-btn${statsOn() ? ' on' : ''}" id="statBtn" aria-label="Durumlar ve parametreler" title="📊 Durumlar ve parametreler">📊</button>
@@ -14128,6 +14153,9 @@
           pull: !!kp.pullout && !kp.condom && !kp.pill && !kp.nothing && !hm, risk: !kp.condom && !kp.pill && !hm,
           lip: cmTrait(kch, 'Lip Shape'), legs: cmTrait(kch, 'Legs'), waist: cmTrait(kch, 'Waist'),
           style: cmTrait(kch, 'Style'), rel: cmTrait(kch, 'Relationship'), agr: cmTrait(kch, 'Age') });
+        const kt = t => (kch.traits || []).some(x => t.includes(x));
+        Object.assign(ctx, { eye: cmTrait(kch, 'Eye Color'), acc: kt(['Choker', 'Hoop Earrings', 'Earrings', 'Anklet']), care: kt(['Heavy Makeup', 'Light Makeup', 'Long Nails', 'Manicure', 'Perfume Lover']),
+          hab: kt(['Social Drinker', 'Party Lover', 'Gamer', 'Bookworm', 'Gym Regular', 'Coffee Addict', 'Early Bird', 'Night Owl']), smoke: kt(['Smoker', 'Vaper']) });
       }
       // 👩‍❤️‍👩 lezbiyen ilişkide sadece ls* konuları (ve fantezi sorusu); bitişten sonra bir tur daha / lekeler / sarılalım
       ctx.les = !!kch && !group && lesWith(kch);
@@ -14144,6 +14172,7 @@
       if (ctx.done) {
         if (ctx.sq && Math.random() < .45) return 'sqkalan';
         if (BOT_ASK.testyap.ok(ctx) && Math.random() < .35) return 'testyap';
+        if (BOT_ASK.gsigara.ok(ctx) && Math.random() < .3) return 'gsigara';
         const ch = byId(chatCharIds()[0]) || {}, anal = !dislikesTag(ch, 'anal') && traitVal(ch, 'Experience') !== 'Virgo';
         const r = Math.random();
         return anal && r < .35 ? 'arkaistek' : r < .6 ? 'pozistek' : r < .82 ? 'tekrar' : 'saril';
@@ -18646,6 +18675,7 @@
         if (fresh) k = hot ? 'hwrapor' : 'yalan';
         else if (duoAdult(w) && r0 < .15) k = 'gece';
         else if (alb.length && r0 < .3) k = hot && Math.random() < .5 ? 'hwfoto' : 'foto';
+        else if (r0 < .45 && hbOz(w).length) k = 'oz';
         else {
           const r = Math.random();
           k = duoF && r < .12 ? 'kiz' : hot ? (r < .4 ? 'hw' : r < .7 ? 'gun' : 'ask') : (r < .2 ? 'yalan' : r < .65 ? 'gun' : 'ask');
@@ -18654,7 +18684,7 @@
       if (k === 'gece' && !duoAdult(w)) k = 'ask';
       if ((k === 'foto' || k === 'hwfoto') && !alb.length) k = 'gun';
       if (fresh) th.hbSeen = w.sexAt;
-      const T = HB_TOPICS[k] || HB_TOPICS.gun, d = (byId(duoF) || fr || { name: 'Selin' }).name.split(' ')[0];
+      const T = (k === 'oz' && hbOz(w)) || HB_TOPICS[k] || HB_TOPICS.gun, d = (byId(duoF) || fr || { name: 'Selin' }).name.split(' ')[0];
       const fill = s => s.replace(/\{h\}/g, h.name).replace(/\{w\}/g, wN).replace(/\{sen\}/g, userName()).replace(/\{d\}/g, d);
       // kişilik / yönelim ekleri sana yazılmış, kocaya uymaz: sadece yazım tarzı (serious)
       const say = pair => { const ws = [fill(pickOne(pair[1]))]; personaParts(ws, w, true, {}); return [{ ch: h, parts: [fill(pair[0])] }, { ch: w, parts: ws }]; };
@@ -19212,6 +19242,12 @@
     gtarz: { ok: c => !!c.style && c.cat === 'foreplay', yes: ['Striptease'], no: [] },
     giliski: { ok: c => !!c.rel && ['forward', 'backward'].includes(c.cat), yes: '@pos', no: '@other' },
     gyas: { ok: c => !!c.agr && c.cat === 'foreplay', yes: '@other', no: ['Kissing'] },
+    // 👁️👓💅🚬 (v1162; c.eye / c.acc / c.care / c.hab / c.smoke askTopic'ten): olay kapısı (trBlock) tutmayan evet olayı pickByTitles'ta düşer
+    ggoz: { ok: c => !!c.eye && ['foreplay', 'forward'].includes(c.cat), yes: ['Ocean Eyes', 'Dark Gaze'], no: [] },
+    gtaki: { ok: c => !!c.acc && c.cat === 'foreplay', yes: ['Choker Pull', 'Swinging Hoops', 'Anklet Kiss'], no: [] },
+    gbakim: { ok: c => !!c.care && ['foreplay', 'outercourse'].includes(c.cat), yes: ['Lipstick Trail', 'Nail Marks', 'Perfume Map'], no: [] },
+    galiskan: { ok: c => !!c.hab && c.cat === 'foreplay', yes: ['Wine Kiss', 'Loser Strips', 'Read To Me', 'Gym Stretch', 'Coffee In Bed', '3 AM', 'After Party'], no: [] },
+    gsigara: { ok: c => c.done && !!c.smoke, yes: ['Cigarette After'], no: ['Front Hugging', 'Back Hugging'] },
     // 🗜️ sıkıştırma (c.sq: şu anki pozisyon `sıkıştır` etiketli, c.bacak: `bacak` etiketli): uyluk · duvar · göğüs · ofiste · 🥛 sağma (Zevk ≥ 60) · bitişten sonra kalanı
     squyluk: { ok: c => ['foreplay', 'outercourse'].includes(c.cat) || (c.sq && !c.bacak), yes: ['Thigh Vise', 'Knee Squeeze', 'Leg Lock Grind', 'Thigh Pulse', 'Seated Thigh Lock'], no: [] },
     sqduvar: { ok: c => c.cat === 'foreplay' || (c.cat === 'squeeze' && c.sq), yes: ['Wall Pin Grind', 'Door Pin', 'Corner Trap', 'Mirror Pin', 'Bed Frame Pin'], no: [] },
@@ -19794,7 +19830,7 @@
   // 🎨 cevabındaki saç rengi → Hair Color değeri
   const LF_HAIR_W = [['Black', /siyah|kara|black/], ['Brown', /kahve|kumral|esmer|brown/], ['Platinum', /platin|beyaz|gümüş|gumus|platinum/], ['Blonde', /sarı|sari|blond|bal köpü|bal kopu/], ['Ginger', /turuncu|bakır|bakir|ginger/], ['Red', /kızıl|kizil|kırmızı|kirmizi|bordo|red/]];
   const lfHairOf = t => (LF_HAIR_W.find(([, re]) => re.test(t)) || [])[0] || '';
-  const LF_MAP = { 'Hair Length': CM_HLEN, 'Hair Color': CM_HAIR, 'Lip Shape': CM_LIPS, Experience: CM_EXP };
+  const LF_MAP = { 'Hair Length': CM_HLEN, 'Hair Color': CM_HAIR, 'Lip Shape': CM_LIPS, Experience: CM_EXP, 'Eye Color': CM_EYE_T };
   const lfDisp = (g, v) => !v ? '' : g === 'Boob Size' ? `${v} ${CM_CUP[v] || ''}`.trim() : LF_MAP[g] ? String(LF_MAP[g][v] || v).toLocaleLowerCase('tr') : v;
   /* ✨ gündem adımının etkisi (fx: set { Grup: değer } · up [Grup, ±adım] · add 'Özellik' · hair 1). gs: süren gündem (pick: önerdiğin renk).
    * Karakteri değiştirir; döner { v: { renk, eski, yeni }, log: [özet] }. Bildirim / setupLive çağıranda (deney kopyada çalıştırır) */
@@ -19813,6 +19849,8 @@
       if (G) { const o = cmTrait(c, g), i = G.items.indexOf(o), i0 = i < 0 ? Math.floor(G.items.length / 2) - (d > 0 ? 1 : 0) : i; setT(g, G.items[Math.max(0, Math.min(G.items.length - 1, i0 + d))], G.items[i0]); }
     }
     Object.entries(fx.set || {}).forEach(([g, val]) => setT(g, val));
+    // ➖ rm: kaldırılacak çoklu özellikler (sigarayı bırakma, makyajı bırakma…); add'den önce, çelişen eski değer kalmasın
+    (fx.rm || []).forEach(t => { if ((c.traits || []).includes(t)) { c.traits = c.traits.filter(x => x !== t); log.push('− ' + t); } });
     if (fx.add && !(c.traits || []).includes(fx.add)) { c.traits = [...(c.traits || []), fx.add]; log.push('+ ' + fx.add); }
     return { v, log };
   }
@@ -19850,10 +19888,13 @@
     if (L.g.s >= r.g.steps.length) done();
     return { parts, ask };
   }
+  // 💭 özelliğe bağlı soru: tr (👁️👓💅🚬 özelliklerinden biri) / jg (💼 meslek grubu id'si) uymazsa sorulmaz
+  const lfDeepFit = (c, q) => (!q.tr || q.tr.some(t => (c.traits || []).includes(t)))
+    && (!q.jg || q.jg.includes(((Stories.Pools.jobGroupOf && Stories.Pools.jobGroupOf(c.job)) || {}).id));
   // 💭 sorulabilecek derin soru: kademe 1 · 2 ❤️ Aşk ≥ 30 · 3 Aşk ≥ 60 ve 🔓 Açıklık ≥ 40; sorulmamışlar önce (en az 3 gün arayla tekrar)
   function lfDeep(c) {
     const L = lfOf(c), a = relV(c, 'aşk'), now = Date.now();
-    const ok = (LF().DEEP || []).filter(q => (q.t === 1 || (q.t === 2 && a >= 30) || (q.t === 3 && a >= 60 && L.grow.acik >= 40)) && !(L.asked[q.k] && now - L.asked[q.k] < 3 * 864e5));
+    const ok = (LF().DEEP || []).filter(q => lfDeepFit(c, q) && (q.t === 1 || (q.t === 2 && a >= 30) || (q.t === 3 && a >= 60 && L.grow.acik >= 40)) && !(L.asked[q.k] && now - L.asked[q.k] < 3 * 864e5));
     const nw = ok.filter(q => !L.asked[q.k]), top = Math.max(0, ...nw.map(q => q.t));
     const q = nw.length ? pickOne(nw.filter(x => x.t === top)) : pickOne(ok);
     if (!q) return null;
@@ -20204,6 +20245,46 @@
       ['{d} yine mi geliyor bize?', ['Evet, film gecesi 🍿 Sen de katıl', 'Sen o gece maça git zaten 😏']],
       ['Sen ve {d}… aranızda ne var ya? 😄', ['Bir şey yok {h}… sadece arkadaşız 🙈', '{d} çok tatlı, sen de bayılırsın 😏']]]
   };
+  // 👁️👓💅🚬💼 karısının özelliğine / meslek grubuna (job:<id>) göre konular (husbTurn 'oz'): [kocanın sözü, [cevaplar]]
+  const HB_TRAIT = {
+    'Eye Color: Blue': [['Gözlerin bugün denizden mavi {w} 💙', ['Yine mi iltifat? Bir şey mi istiyorsun 😏', 'Sen bakınca daha da maviye dönüyor 💙']]],
+    'Eye Color: Green': [['O yeşil gözlerle bakınca hiçbir şeye hayır diyemiyorum 💚', ['Biliyorum, o yüzden öyle bakıyorum 😏', 'Akşam yine bakarım o zaman 💚']]],
+    'Eye Color: Honey': [['Güneşte gözlerin bal rengi oluyor, bilmiyordun değil mi? 🍯', ['Biliyordum, sen fark et diye dışarı çıkıyorum 😌', 'Romantiksin bugün {h} 🥰']]],
+    Earrings: [['Banyoda yine bir küpen düşmüş 😅', ['Aaa onu arıyordum! Kahramanım 💕', 'Bir tek o mu? Diğeri de kayıp 🙈']]],
+    'Hoop Earrings': [['O kocaman halka küpeleri yine taktın mı? 😄', ['Takmadan çıkmam ki 💁‍♀️', 'Taktım, yakışıyor da 😏']]],
+    Necklace: [['Sana aldığım kolyeyi hiç çıkarmıyorsun 🥰', ['Çıkarmam ki, sen varsın içinde 💕', 'Duşta bile takıyorum, bil 😌']]],
+    Choker: [['O boynundaki choker… bu akşam da takacak mısın? 😏', ['Senin için mi? Belki 😈', 'Takarım, sen de çıkarırsın 😏']]],
+    Rings: [['Parmaklarında yüzük kalmamış yer yok 😄', ['Ama en güzeli seninki 💍', 'Bir tane daha alsan fena olmaz 😇']]],
+    Watch: [['Saat 8 dedin, 8:05 oldu 😏', ['Saatim yanlış olamaz, sen erken geldin ⌚', 'Beş dakika sayılmaz {h} 😅']]],
+    Manicure: [['Yine mi manikür? Bu ay üçüncü 😅', ['Ellerim senin yüzünü tutuyor, güzel olmalı 💅', 'Kendi paramla yaptırdım {h} 😤']]],
+    'Long Nails': [['O tırnaklarla nasıl yazıyorsun telefona? 😂', ['Yetenek 💅', 'Sırtında da iz bırakıyorlar, şikâyet etmiyordun 😏']]],
+    'Heavy Makeup': [['Makyajın bitince haber ver, bir saattir bekliyorum 😅', ['Güzellik sabır ister {h} 💄', 'Beş dakika daha… söz 🙈']]],
+    'No Makeup': [['Makyajsız daha güzelsin, biliyorsun değil mi? 😍', ['O yüzden sürmüyorum zaten 😌', 'Yalancı ama tatlı yalancı 🥰']]],
+    'Lash Extensions': [['Kirpiklerin yastığa yapışmış sabah 😂', ['Gülme! Pahalı onlar 😤', 'Güzelliğin bedeli 💁‍♀️']]],
+    'Perfume Lover': [['Bütün ev senin parfüm kokuyor 🌸', ['Bilerek yapıyorum, beni özle diye 😏', 'Yeni aldım, beğendin mi? 🌸']]],
+    Smoker: [['Yine balkonda sigara mı içtin? Koku geliyor 🚬', ['Bir tane sadece… söz son 😅', 'Sen de içiyordun eskiden, hatırlatayım mı? 😒']]],
+    Vaper: [['Şu elektronik sigaranın kokusu çilekli mi? 😄', ['Karpuz! Bir dahakine sen seç 😏', 'Bırakacağım, söz… pazartesi 😅']]],
+    'Social Drinker': [['Akşam bir şarap açalım mı? 🍷', ['Açalım ama sadece bir kadeh… belki iki 😏', 'Kırmızı olsun 🍷']]],
+    'Non-Drinker': [['Arkadaşlar yine sana içki ısrar etmiş 😄', ['Ben portakal suyumla eğlendim, hem de en çok 🍊', 'Ayık kalan ben oldum, kimin ne yaptığını biliyorum 😏']]],
+    'Coffee Addict': [['Bugün kaçıncı kahve {w}? ☕', ['Saymıyorum, sen de sayma 😤', 'Üç… dört… önemli değil ☕']]],
+    'Gym Regular': [['Spora mı gidiyorsun yine? 💪', ['Bacak günü, beni bekleme 🏋️‍♀️', 'Sen de gel, göbeğin çıkıyor 😂']]],
+    Gamer: [['Gece üçe kadar yine oyun mu oynadın? 🎮', ['Son bir el diyordum ama… 🙈', 'Kazandım ama! Sen de bir gün gel oyna 😏']]],
+    Bookworm: [['Yine kitapla uyuyakalmışsın, ışık açıktı 📚', ['Sonu çok heyecanlıydı, dayanamadım 🙈', 'Bu akşam sana bir bölüm okuyayım mı? 📖']]],
+    'Party Lover': [['Bu cumartesi yine parti var değil mi? 🎉', ['Tabii! Sen de geliyorsun, kaçış yok 💃', 'Kızlarla gideceğim, sen evde dinlen 😇']]],
+    'Early Bird': [['Sabah altıda kalkıp kahvaltı hazırlamışsın yine 🥰', ['Sen uyurken sessizce yaptım 🌅', 'Yarın sen hazırla, sıra sende 😏']]],
+    'Night Owl': [['Gece hâlâ uyanıktın, ışığın yanıyordu 🌙', ['Uykum gelmedi, düşündüm biraz 🌙', 'Gece en güzel saat, sen anlamazsın 😌']]],
+    'job:saglik': [['Nöbetin kaçta bitiyor? Seni alayım mı? 🩺', ['Sabah 8\'de, kahve getir lütfen ☕', 'Gelme, uyurum arabada bile 😴']]],
+    'job:egitim': [['Kağıt okumayı bitirdin mi öğretmen hanım? 👩‍🏫', ['Daha yarısı var, sen yemeği hallet 😅', 'Bitti! Herkesten not kırdım 😈']]],
+    'job:ogrenci': [['Sınavın nasıl geçti? 📚', ['Hiç sorma… ama geçerim herhalde 😅', 'Çok iyi! Akşam kutlarız 🎉']]],
+    'job:ofis': [['Patronun yine fazla mesai mi istedi? 💼', ['İstedi, ben de kaçtım 😏', 'Bu hafta her gün geç kalacağım 😩']]],
+    'job:teknoloji': [['Bilgisayarı kapat artık, bug kaçmaz 💻', ['Kaçar! Beş dakika 😤', 'Tamam tamam, kapattım… gibi 😅']]],
+    'job:sanat': [['Bugünkü çizimini bana göstermedin 🎨', ['Daha bitmedi, bitince ilk sen görürsün 😌', 'Müşteri beğenmedi, ben çok beğendim 😤']]],
+    'job:sahne': [['Çekimin nasıl geçti yıldızım? 📸', ['Yorucu ama güzel! Fotoğrafları atarım 😍', 'Makyaj hâlâ üstümde, beni böyle gör 💄']]],
+    'job:guzellik': [['Bugün kaç müşterin vardı? 💆', ['Saymadım ama ellerim koptu 😩', 'Akşam sıra sende, seni de bakıma alırım 😏']]],
+    'job:hizmet': [['Vardiyan bitti mi? Ayakların ağrıyordur ☕', ['Ağrıyor… masaj yapar mısın? 🥺', 'Bitti, geliyorum 🏃‍♀️']]],
+    'job:guvenlik': [['Bugün devriye sakin miydi? 🚓', ['Sakindi, merak etme 😌', 'Hiç sorma, anlatırım akşam 😮‍💨']]]
+  };
+  const hbOz = w => [...(w.traits || []), 'job:' + ((P.jobGroupOf(w.job) || {}).id || '')].flatMap(t => HB_TRAIT[t] || []);
   // 📸 fotoğrafa kocanın cevabı · 🌙 geceden sonra ikisinin sözü
   const HB_PHOTO_R = { married: ['Çok güzelsin 😍', 'Hemen geliyorum! 🏃', 'Bu fotoğrafı duvar kâğıdı yapıyorum 📱', 'Bu elbise kimin için? 🤨 Şaka şaka, çok güzel 😄'],
     hot: ['Beğenmezse deli 😏 Sonra bana da fotoğraf at', 'Of {w}… ben bile kıskandım 😈', 'Her şeyi anlatacaksın ama, söz 💍'] };
@@ -22575,7 +22656,7 @@
         && (g.id !== 'relationship' || (v === REL_WED) === ccWed(d)) && (g.id !== 'agerange' || ageOk(v, d.age)));
       // 🌍 Skin Tone / Hair Color memlekete göre ağırlıklı (ORIGIN_LOOK)
       // 🌍 Boy / Göğüs / Kalça da memlekete göre ağırlıklı (ORIGIN_LOOK height / boob / butt)
-      const pool = ok.length ? ok : g.values, lk = g.single && { skin: 'skin', haircolor: 'hair', height: 'height', boob: 'boob', butt: 'butt' }[g.id], lw = lk && lookW(d, lk);
+      const pool = ok.length ? ok : g.values, lk = g.single && { skin: 'skin', haircolor: 'hair', eyecolor: 'eye', height: 'height', boob: 'boob', butt: 'butt' }[g.id], lw = lk && lookW(d, lk);
       if (lw) {
         const ks = g.items, ws = pool.map(v => lw[ks.indexOf(v.replace(/^[^:]+:\s*/, ''))] || 0);
         if (ws.some(Boolean)) { d.traits = d.traits.concat(pool[wPick(ws, Math.random())]); return; }
@@ -25835,6 +25916,15 @@
     }
     return '';
   };
+  // 👁️ göz kapısı: e.eye = Eye Color anahtarları (özellik yoksa profil kartındaki göz) · 👓💅🚬 e.acc / e.care / e.habit = çoklu özellik değerleri (biri yeterli; hiçbiri yoksa kapalı)
+  const eyeKey = c => cmTrait(c, 'Eye Color') || Object.keys(CM_EYE_T).find(k => CM_EYE_T[k] === (cmBody(c).find(r => r[1] === 'Göz') || [])[2]) || '';
+  const trBlock = (c, e) => {
+    if (!c || !e || c.husb) return '';
+    if ((e.eye || []).length) { const k = eyeKey(c); if (k && !e.eye.includes(k)) return `sadece ${e.eye.map(v => (CM_EYE_T[v] || v).toLocaleLowerCase('tr')).join(' / ')} gözlü kızda olur`; }
+    for (const [f, ic, map] of [['acc', '👓', CM_ACC], ['care', '💅', CM_CARE], ['habit', '🚬', CM_HABIT]])
+      if ((e[f] || []).length && !e[f].some(v => (c.traits || []).includes(v))) return `${ic} şart: ${e[f].map(v => map[v] || v).join(' / ')}`;
+    return '';
+  };
   // 😴 uyku kapısı (Tur 29): e.sleep 'ask' izin olayı · 1 uyurken (izin + gece + uyanmamış) · 'wake' uyanış (izin + gece) ·
   // 'night' sadece gece · 'morning' gece uykuda bir şey olduysa sabah 06–13. Saat sohbet saatinden (th.clock), gece 23:00–07:00
   const thMin = th => {
@@ -25856,7 +25946,7 @@
     return '';
   };
   const pregBlock = (c, e) => {
-    const pb = persBlock(c, e) || hairBlock(c, e) || skinBlock(c, e) || originBlock(c, e) || sleepBlock(c, e);
+    const pb = persBlock(c, e) || hairBlock(c, e) || skinBlock(c, e) || originBlock(c, e) || trBlock(c, e) || sleepBlock(c, e);
     if (pb) return pb;
     const lb = e ? lesBlock(c, e) : '';
     if (lb) return lb;
@@ -26691,7 +26781,7 @@
   // 💧 damla bitişler sadece o gevşediyse aday; öyleyse %45 ihtimalle gür'ün de önüne geçer
   const cumPick = hits => {
     const v = myCumV(), relax = relaxedNow();
-    const ok = hits.filter(e => { const m = cumMin(e); return (relax || !isDamla(e)) && (m == null || v >= m) && !(trCh && (wearBlock(trCh, e) || toyBlock(trCh, e) || persBlock(trCh, e) || hairBlock(trCh, e) || skinBlock(trCh, e) || originBlock(trCh, e) || sleepBlock(trCh, e))); });
+    const ok = hits.filter(e => { const m = cumMin(e); return (relax || !isDamla(e)) && (m == null || v >= m) && !(trCh && (wearBlock(trCh, e) || toyBlock(trCh, e) || persBlock(trCh, e) || hairBlock(trCh, e) || skinBlock(trCh, e) || originBlock(trCh, e) || trBlock(trCh, e) || sleepBlock(trCh, e))); });
     if (!ok.length) return hits;
     const dm = ok.filter(isDamla), rest = ok.filter(e => !isDamla(e));
     if (dm.length && (!rest.length || Math.random() < .45)) return dm;
@@ -28484,8 +28574,7 @@
         <tr><td>🩺 CarmenKlinik</td><td>döngü, hamilelik takibi</td><td>sadece gösterir</td></tr>
         <tr><td>🎭 Confessly</td><td>isimsiz aldatma itirafları</td><td>sadece okunur (ilham için)</td></tr>
         <tr><td>✨ CarmenCreative</td><td>yeni pozisyon / olay fikirleri, türevler</td><td>➕ Monia'ya yeni olay → ⚡ kısayol</td></tr>
-        <tr><td>👑 CarmenChoise</td><td>4 / 8 / 16 / 32 kişilik eleme turnuvası, teklifler</td><td>🏆 şampiyon → verdiği sözlerle yeni sohbet</td></tr>
-        <tr><td>🎮 CarmenPlay</td><td>Adult Game: Problematic Subjects, Fiery Passions</td><td>oyun içinde kalır (🎮 Oyun Kitabı)</td></tr></table>
+        <tr><td>👑 CarmenChoise</td><td>4 / 8 / 16 / 32 kişilik eleme turnuvası, teklifler</td><td>🏆 şampiyon → verdiği sözlerle yeni sohbet</td></tr></table>
       <p><b>İlan kızları</b>: Carmen.com'da kayıtlı karakterlerinin yanında 36 rastgele ilan kızı vardır (her birinin kendi fotoğraf seti; aynı fotoğrafta iki kişi olmaz). Bir ilan kızına mesaj atınca, rezervasyon, sipariş, başvuru yapınca ya da kostüm giydirince <b>karakterlerine eklenir</b>; ilandaki ücretleri, puanı ve yorumları aynı kalır.</p>` },
     { icon: '🌹', title: 'Carmen.com', sub: 'ilanlar, VIP, kondom şartı, seanslar', body: `
       <p>İlan sitesi. Kartlarda fotoğraf, yaş, şehir, ⭐ puan, boy / kilo / göğüs / kalça ve sevdiği ilk üç olay görünür. Üstte <b>👑 VIP Vitrin</b>; sekmeler Hepsi · ● Çevrimiçi · 👑 VIP · ✨ Yeni. 🔄 Yeni ilanlar bütün ilan kızlarını yeniden üretir (kayıtlı karakterlerin kalır).</p>
@@ -28615,8 +28704,6 @@
         <li><b>✅ Onayla</b>: diğeri bir veda cümlesiyle elenir. Turlar: Son 32 → Son 16 → Çeyrek final → Yarı final → Final.</li>
         <li><b>🏆 Şampiyon</b>: verdiği bütün sözler listelenir; <b>💬 Mesaj at</b> sohbeti bu sözlerle açar (ilan kızıysa karakterlerine eklenir).</li></ul>
       <p>Turnuva sadece bu sekmede durur; sayfayı yenileyince sıfırlanır. 🔄 Baştan ile istediğin an yeniden başlarsın.</p>` },
-    { icon: '🎮', title: 'CarmenPlay', sub: 'Adult Game oyunları', body: `
-      <p>İki oyun bu sitede: <b>🗂️ Problematic Subjects</b> (ofiste hanımefendilerin ricalarını karşıla, zevk puanı topla, kutu aç) ve <b>🔥 Fiery Passions</b> (erkeksiz bir köyde sandbox görsel roman). Kartlarda ilerlemen görünür; nasıl oynandığı 🎮 Oyun Kitabı'nda.</p>` },
     { icon: '🌟', title: 'Sitelerin kendi dünyası', sub: 'her ilan sitesinin mekaniği, görünümü ve alt barı', body: `
       <p>İlan siteleri artık birbirinin kopyası değil: her birinin <b>kendi görünümü</b>, <b>kendi mekaniği</b> ve sadece o siteyi ilgilendiren <b>alt barı</b> var. Alt barda Booble, Mesajlar ya da Ana sayfa butonu yok; çıkmak için üstteki geri okunu kullan. Sitelerin ana sayfasının üstündeki <b>durum bandı</b> o sitenin canlı bilgisini gösterir (ay evresi, fiş, şüphe, randevu…). Ana 💜 neon tema sitelerde de hissedilir: barların altında beş renkli neon şerit, kartlarda hafif neon parıltı.</p>
       <table class="bk-t"><tr><th>Site</th><th>Görünüm</th><th>Yeni</th></tr>
@@ -29189,7 +29276,8 @@
       return `<p>Evet / hayır sorularının yanında artık açık sorular da soruyor. Cevabını kendi cümlelerinle yazarsın; kural aranmaz, cevabına göre tepki verir ve seni tanıdıkça kendisi de değişir. Seks sırasında bunları sormaz; soru işaretiyle biten bir cevap yazarsan soru kapanır ve mesajın normal okunur.</p>
       <h4>💭 Derin sorular</h4>
       <p>Önce henüz sorulmamış en derin kademeden seçer; aynı soruyu en az 3 gün sonra yeniden sorabilir. Senin cevabın ve (çoğu zaman) onun kendi cevabı 🧠 Hafıza → 💭 Fikirleriniz'e yazılır.</p>
-      <table class="bk-t"><tr><th>Kademe</th><th>Soru</th><th>Onun cevabı</th></tr>${(X.DEEP || []).map(q => `<tr><td>${esc(tier[q.t])}</td><td>${esc(q.q[0])}</td><td>${esc(q.her[0])}</td></tr>`).join('')}</table>
+      <p>👁️👓💅🚬 Bazı sorular sadece karakterde o özellik varsa, 💼 bazıları da sadece o meslek grubundaysa sorulur; onun cevabı da kendi özelliğini anlatır.</p>
+      <table class="bk-t"><tr><th>Kademe</th><th>Soru</th><th>Koşul</th><th>Onun cevabı</th></tr>${(X.DEEP || []).map(q => `<tr><td>${esc(tier[q.t])}</td><td>${esc(q.q[0])}</td><td>${esc(q.tr ? q.tr.join(', ') : q.jg ? '💼 ' + q.jg.map(id => ((P.jobGroups || []).find(g => g.id === id) || { name: id }).name).join(', ') : '—')}</td><td>${esc(q.her[0])}</td></tr>`).join('')}</table>
       <table class="bk-t"><tr><th colspan="3">🤝 Güven · 🔓 Açıklık · 💞 Bağlılık · ❤️ Aşk</th></tr><tr><th>Cevabın</th><th>Tepkisi</th><th>Değişim</th></tr>
         <tr><td>😠 Kaba</td><td>${esc(X.REACT.kaba[0])}</td><td>🤝 −6 · 🔓 −3 · 💔</td></tr>
         <tr><td>✂️ Kısa (1–2 kelime)</td><td>${esc(X.REACT.kisa[0])}</td><td>🔓 −1</td></tr>
@@ -31820,7 +31908,27 @@
       ['Kitchen Dance', 'Bulaşığın ortasındayım. Sen elimi tutup beni çevirirsen Kitchen Dance olur.'],
       ['Stargazing', 'Balkona battaniye serdim. Sen yanıma uzanırsan Stargazing olur.'],
       ['Drive Together', 'Camları indirdim, müzik hazır. Sen direksiyona geçersen Drive Together olur.'],
-      ['Gossip Night', 'Sesimi alçalttım: kimseye söyleme ama… Sen yaklaşırsan Gossip Night olur.']]]
+      ['Gossip Night', 'Sesimi alçalttım: kimseye söyleme ama… Sen yaklaşırsan Gossip Night olur.']]],
+    // 👓 v1163: system.js c:mvtraits01x + iki bitiş; olay kapısı trBlock (eye / acc / care / habit)
+    ['👓', 'Görünüş ve alışkanlıklar', 'göz, takı, makyaj, tırnak, parfüm, sigara, şarap, oyun, kitap, gece', 'Bu olaylar bana özel. Gözlerimin rengi, boynumdaki choker, tırnaklarım, sigaram, gece üçte uyuyamamam… Oluştur\'da seçtiğin 👁️ Eye Color, 👓 Accessory, 💅 Care ve 🚬 Habit hangi olayların açılacağını belirler. Göz olayları seçilmemiş gözde profil kartındaki renge bakar; takı, bakım ve alışkanlık olayları ise o özelliğim yoksa hiç açılmaz. Bazılarını ben de teklif ederim: "Takılarımla mı kalayım?", "Bir sigara yakayım mı?"', [
+      ['Ocean Eyes', 'Gözlerim mavi ya da yeşil, ışık açık. Sen bakışını hiç kaçırmadan benimle sevişirsen Ocean Eyes olur.'],
+      ['Dark Gaze', 'Tek bir mum yanıyor, koyu gözlerim karanlıkta. Sen hiç konuşmadan bakışımın dediğini yaparsan Dark Gaze olur.'],
+      ['Choker Pull', 'Boynumda halkalı bir choker var. Sen parmağını halkaya geçirip beni kendine çekersen Choker Pull olur.'],
+      ['Swinging Hoops', 'Her şeyi çıkardım, küpelerim hariç. Sen beni üstüne alırsan küpelerim ritmi tutar, Swinging Hoops olur.'],
+      ['Anklet Kiss', 'Ayağım omzunda, halhalım parlıyor. Sen halhalımı öpüp bacağımdan yukarı çıkarsan Anklet Kiss olur.'],
+      ['Nail Marks', 'Tırnaklarım dün yapıldı. Sen hızlandıkça onları sırtına geçiririm, Nail Marks olur.'],
+      ['Lipstick Trail', 'Rujumu yeniden sürdüm. Sen kıpırdamadan uzanırsan boynundan aşağı iz bırakırım, Lipstick Trail olur.'],
+      ['Perfume Map', 'Parfümü beş yere sıktım. Sen kokumu izleyip hepsini bulursan Perfume Map olur.'],
+      ['Cigarette After', 'Çarşafa sarılıp pencereye oturdum, sigaram elimde. Sen beni izlersen Cigarette After olur.'],
+      ['Wine Kiss', 'Kadehimden bir yudum aldım ama yutmadım. Sen beni öpersen şarap senin ağzına geçer, Wine Kiss olur.'],
+      ['Coffee In Bed', 'Elimde iki fincan kahve, üstümde senin tişörtün. Sen kahveyi bırakıp yorganı kaldırırsan Coffee In Bed olur.'],
+      ['Gym Stretch', 'Spordan yeni döndüm, mat yerde. Sen bacağımı omzuna kadar itersen Gym Stretch olur.'],
+      ['Loser Strips', 'Kolu eline verdim, kaybeden soyunur. Sen oyunu kabul edersen Loser Strips olur; ben hiç kaybetmem.'],
+      ['Read To Me', 'Elimde kenarları kıvrılmış bir roman. Sen dinlersen sahneyi okuyup sana yaparım, Read To Me olur.'],
+      ['3 AM', 'Saat üç ve uyuyamıyorum. Sen uyandığında yorganın altına gelirsen 3 AM olur.'],
+      ['After Party', 'Partiden döndük, topuklularım elimde. Sen kapıyı kapatmadan beni duvara yaslarsan After Party olur.'],
+      ['Smudged Mascara', 'Diz çöktüm, makyajım kusursuz. Sen yüzüme gelirsen rimelim akar, Smudged Mascara olur.'],
+      ['Jewel Drops', 'Başımı geriye attım, kolyem göğsümde. Sen boynuma gelirsen damlalar inci gibi kalır, Jewel Drops olur.']]]
   ];
   BOOKS.push({ id: 'olay', icon: '🎬', title: 'Olay Kitabı', sub: 'Lia her olayı sahneleyerek anlatır', chips: [`${OLAY_BOOK.reduce((n, c) => n + c[4].length, 0)} olay`, '💁‍♀️ Lia anlatıyor'], chapters: [
     { icon: '🎬', title: 'Olay Kitabı nasıl okunur', sub: 'Lia sahneler, sen yaparsın', body: `
@@ -32044,11 +32152,19 @@
         <tr><td>🦵 Legs</td><td>Slim, Toned, Thick Thighs, Long</td></tr>
         <tr><td>⏳ Waist</td><td>Tiny, Slim, Average, Wide</td></tr>
         <tr><td>👗 Style</td><td>Casual, Elegant, Sporty, Goth, Girly, Business</td></tr>
-        <tr><td>✨ Marks <small>(çoklu)</small></td><td>Freckles, Dimples, Beauty Mark, Tattoo, Nose / Navel / Nipple / Tongue Piercing, Glasses, Braces</td></tr></table>
+        <tr><td>✨ Marks <small>(çoklu)</small></td><td>Freckles, Dimples, Beauty Mark, Tattoo, Nose / Navel / Nipple / Tongue Piercing, Glasses, Braces</td></tr>
+        <tr><td>👁️ Eye Color</td><td>Brown, Hazel, Green, Blue, Black, Honey</td></tr>
+        <tr><td>👓 Accessory <small>(çoklu)</small></td><td>Earrings, Hoop Earrings, Necklace, Choker, Bracelet, Anklet, Rings, Watch, Hair Clip</td></tr>
+        <tr><td>💅 Care <small>(çoklu)</small></td><td>Manicure, Long Nails, Natural Nails, Heavy / Light / No Makeup, Lash Extensions, Skincare Routine, Perfume Lover</td></tr>
+        <tr><td>🚬 Habit <small>(çoklu)</small></td><td>Smoker, Vaper, Social Drinker, Non-Drinker, Coffee Addict, Gym Regular, Gamer, Bookworm, Party Lover, Early Bird, Night Owl</td></tr></table>
+      <p>👓💅🚬 Çelişenler birlikte seçilemez: Heavy Makeup varken Light ya da No Makeup, Light Makeup varken No Makeup, Manicure ya da Long Nails varken Natural Nails, Social Drinker varken Non-Drinker, Party Lover varken Early Bird, Early Bird varken Night Owl olmaz. Profil kartında 👓 Aksesuar, 💅 Bakım ve 🚬 Alışkanlık satırı olarak görünürler. Sohbette bunlara ve 💼 mesleğine göre 💭 derin sorular sorar, evliyse kocası da bunlara laf atar: "Bugün kaçıncı kahve?", "Nöbetin kaçta bitiyor?"</p>
+      <p>❓ <b>Sorarsan</b>: "gözlerin ne renk", "takı takar mısın", "makyaj yapar mısın", "ojelerin ne renk", "parfümün ne", "cilt bakımı yapar mısın", "sigara içer misin", "içki içer misin", "kahve sever misin", "spor yapar mısın", "oyun oynar mısın", "kitap okur musun", "parti sever misin", "sabah insanı mısın" sorularına seçili özelliğe göre cevap verir. Özelliği yoksa sigara içmez, takıyı sade sever. Cevapta <code>{bd:Aksesuar}</code>, <code>{bd:Bakım}</code>, <code>{bd:Alışkanlık}</code> profil kartındaki değeri yazar.</p>
+      <p>🎬 <b>Olaylar</b> (👓 Looks &amp; Habits): olayda <code>eye</code> göz rengi ister (özellik yoksa profil kartındaki göze bakar), <code>acc</code> / <code>care</code> / <code>habit</code> bu özelliklerden birini ister; hiçbiri yoksa olay seçicide kapalı görünür. Ocean Eyes (mavi / yeşil göz), Dark Gaze (koyu göz), Choker Pull, Swinging Hoops, Anklet Kiss, Nail Marks, Lipstick Trail, Perfume Map, Cigarette After, Wine Kiss, Coffee In Bed, Gym Stretch, Loser Strips, Read To Me, 3 AM, After Party; bitişler Smudged Mascara (Lipstick Trail ya da Dark Gaze'den sonra) ve Jewel Drops (Choker Pull ya da Swinging Hoops'tan sonra).</p>
+      <p>💬 <b>Onun soruları</b>: ön sevişmede "Gözlerime bakarak mı yapalım?", "Takılarımla mı kalayım?", "Rujumla seni imzalayayım mı?", "Bir kadeh şarap açayım mı?", bitişten sonra "Bir sigara yakayım mı?" diye sorar; evet dersen özelliğine uyan olay olur. 📅 <b>Gündem</b>: renkli lens, choker, halhal, kirpik uzatma, manikür, makyajı bırakma, sigarayı bırakma, içkiyi bırakma, spor salonu ve kitap kulübü; sana sorar, evet dersen özelliği değişir, hayır dersen vazgeçer.</p>
       <p><b>Uyum</b>: Chubby / Overweight karakter Petite, Athletic, Toned ya da Muscular olamaz; Very Thin Hourglass, Pear ya da Muscular olamaz; Tall / Very Tall Petite olamaz. Very Thin / Thin karakterin bacağı Thick Thighs, beli Wide olamaz; Chubby / Overweight karakterin bacağı Slim, beli Tiny olamaz (Overweight'in Slim de olamaz). 🎲 Rastgele bunları hiç seçmez.</p>
       <p><b>💍 Relationship</b> (Single, Has Boyfriend, Married, Divorced) ve <b>🎂 Age</b> (18–21, 22–25, 26–30, 31–35, 36+) de geldi. Married, 💍 Evli anahtarı ve 🏠 Kocasıyla Yaşıyor ile birbirine bağlıdır: Married seçersen evli olur, Evli'yi kapatırsan Married kalkar; kocasıyla yaşayan Single, Has Boyfriend ya da Divorced olamaz. 🎲 Rastgele yaş aralığını yaşına uygun seçer, Age seçiliyken yaşı rastgelersen o aralıktan gelir.</p>
       <p><b>Profil kartında</b> boy seçilen aralıktan cm olarak, vücut tipi kilonun yerine, saç, saç boyu, ten, 💋 dudak, 🦵 bacak, ⏳ bel, 👗 tarz ve ✨ detaylar seçtiğin gibi görünür. Seçmediklerin eskisi gibi karaktere özel rastgele kalır.</p>
-      <p>🌍 <b>Köken</b>: ten rengi, saç rengi ve göz rengi memleketiyle uyumlu gelir. 🎲 Rastgele, Skin Tone ve Hair Color'ı memleketine göre ağırlıklı seçer; profil kartında seçilmemiş ten, saç ve göz de aynı ağırlıkla gelir. Yine de her köken her rengi alabilir, yalnızca bazıları daha sık:</p>
+      <p>🌍 <b>Köken</b>: ten rengi, saç rengi ve göz rengi memleketiyle uyumlu gelir. 🎲 Rastgele, Skin Tone, Hair Color ve Eye Color'ı memleketine göre ağırlıklı seçer; profil kartında seçilmemiş ten, saç ve göz de aynı ağırlıkla gelir. Yine de her köken her rengi alabilir, yalnızca bazıları daha sık:</p>
       <table class="bk-t"><tr><th>Memleket</th><th>Ten</th><th>Saç</th><th>Göz</th></tr>
         <tr><td>Türk</td><td>Beyaz, Buğday</td><td>Kahverengi, Siyah</td><td>Kahverengi, Ela</td></tr>
         <tr><td>Latin</td><td>Bronz, Esmer, Buğday</td><td>Siyah, Kahverengi</td><td>Kahverengi</td></tr>
@@ -33968,7 +34084,7 @@
   }
   /* 🧯 Duman testi (#/duman): sayfaları sırayla açar, window hata / reddedilen söz / console.error / boş sayfa yakalar; sonuç ui.smoke (oturumda) */
   function smokeRoutes() {
-    const R = ['#/home', '#/ara', '#/rehber', '#/ag', '#/sehir', '#/me', '#/me/ozet', '#/me/gorev', '#/guide', '#/deneyler', '#/olaylar', '#/events', '#/events/sahneler', '#/events/bolumler', '#/news', '#/dergi', '#/booble', '#/oyun', '#/flix'];
+    const R = ['#/home', '#/ara', '#/rehber', '#/ag', '#/sehir', '#/me', '#/me/ozet', '#/me/gorev', '#/guide', '#/deneyler', '#/olaylar', '#/events', '#/events/sahneler', '#/events/bolumler', '#/news', '#/dergi', '#/booble', '#/flix'];
     netSites().forEach(s => R.push(s.href));
     BOOKS.forEach(b => R.push(`#/kitap/${b.id}/0`, `#/kitap/${b.id}/${b.chapters.length - 1}`));
     LABS.forEach(l => { if (l[0] !== 'duman') R.push('#/' + l[0]); });
@@ -35334,6 +35450,7 @@
             <div class="theme-pick" id="homeThemePick">${[['carmen', '🌈 Carmen'], ['fr', '🇫🇷 Français']].map(([k, l]) => `<button type="button" data-home-theme="${k}" class="${homeThemePref() === k ? 'on' : ''}">${l}</button>`).join('')}</div>
             <div class="sec-title">💬 Sohbet</div>
             <label class="flt-row"><span><b>💡 Lia önerileri</b> <small>sohbette sıradaki adımı ve tetiklenen olaylara göre öneriler</small></span><input type="checkbox" id="liaOn"${liaOn() ? ' checked' : ''}></label>
+            <label class="flt-row"><span><b>🎵 Müzik</b> <small>menü, sohbet ve oyun müzikleri · kapatınca hiç müzik çalmaz</small></span><input type="checkbox" id="musicOn"${musicOn() ? ' checked' : ''}></label>
             <label class="flt-row"><span><b>🔔 Efekt sesleri</b> <small>eşleşme, orgazm, hamilelik ve doğumda kısa sesler</small></span><input type="checkbox" id="sfxOn"${sfxOn() ? ' checked' : ''}></label>
             <label class="flt-row"><span><b>💥 Ses efektleri</b> <small>önden / arkadan pozisyonda ten tene çarpma, boşalmada fışkırma sesi</small></span><input type="checkbox" id="sexSfxOn"${sexSfxOn() ? ' checked' : ''}></label>
             <div class="sfx-test"><small>🎧 Sesleri dene <i>(kapalı olsa da çalar)</i></small>
@@ -35516,6 +35633,7 @@
     };
     view.querySelectorAll('[data-systype]').forEach(cb => cb.onchange = () => { const c = sysCfg(); c.types[cb.dataset.systype] = cb.checked; sysCfg(c); });
     $('#clickOn').onchange = e => { clickOn(e.target.checked); if (e.target.checked) blink(); };
+    $('#musicOn').onchange = e => { musicOn(e.target.checked); if (MU && !e.target.checked && MU.playing()) MU.stop(); syncMusic(true); };
     $('#sfxOn').onchange = e => { sfxOn(e.target.checked); if (e.target.checked) sfx('match'); };
     $('#sexSfxOn').onchange = e => { sexSfxOn(e.target.checked); if (e.target.checked) sfx('cum'); };
     view.querySelectorAll('[data-sfxtry]').forEach(b => b.onclick = () => sfx(b.dataset.sfxtry, { ...JSON.parse(b.dataset.sfxopt || '{}'), force: true }));
@@ -35612,6 +35730,7 @@
 
   /* ---------- Başlat ---------- */
   /* 🔊 Tıklama sesi: düğmelere dokununca kısa bir "blink" (Ben → ayar; bu tarayıcıda hatırlanır) */
+  const musicOn = v => { try { if (v != null) localStorage.setItem('amor-stories:music', v ? '1' : '0'); return localStorage.getItem('amor-stories:music') !== '0'; } catch (e) { return true; } };
   const clickOn = v => { try { if (v != null) localStorage.setItem('amor-stories:click', v ? '1' : '0'); return localStorage.getItem('amor-stories:click') !== '0'; } catch (e) { return true; } };
   // 🗺️ sohbette otomatik mekan / ipucu kartları (sohbet → ⋯ Diğer ya da Ben → ayar); varsayılan kapalı
   // 📊 sohbetin üstündeki durum kartı açık mı (varsayılan açık)
@@ -35650,6 +35769,7 @@
   let musicUnlocked = false;
   function syncMusic(force) {
     if (!MU || !musicUnlocked) return;
+    if (!musicOn()) { ui.musicCtx = ''; return; }
     const r = ui.route || {}, th = r.name === 'chat' && threadById(r.id);
     // 🔥 Fiery Passions: mekana göre kendi parçası (oyundaki 🔊 kapalıysa sessiz)
     const fp = r.name === 'oyun' && r.id === 'fp', key = th ? 'chat:' + th.id : fp ? 'fp:' + (fpSoundOn() ? ui.fpMusic || '' : '') : 'menu';

@@ -9914,3 +9914,26 @@ Object.assign(Stories.ME_EV_LINES, {
   "Gossip Night": ["Anlat {o}, kimseye söylemem 🤭", "Yok artık! Ciddi misin? 😱", "Yemin ederim aramızda 🤞", "Gülmekten karnım ağrıdı 😂", "Benim de bir sırrım var 🤫", "Biz iyi bir takımız 🤝"]
 });
 Stories.ME_BED_SKIP.push("Cook Together", "Movie Night", "Evening Walk", "Grocery Shopping", "Game Night", "Karaoke Duet", "Fell Asleep Together", "Deep Talk", "Argument", "Make Up", "Surprise Gift", "Sick Day Care", "Bad News Comfort", "Celebration Dinner", "Morning Pancakes", "Paint Together", "Unpacking Boxes", "Morning Run", "Plan A Trip", "Photo Album", "Kitchen Dance", "Stargazing", "Drive Together", "Gossip Night");
+
+/* 👁️👓💅🚬 Görünüş & alışkanlık (v1162, system.js mvtr*) */
+Object.assign(Stories.ME_EV_LINES, {
+  'Ocean Eyes': ['Işığı kapatmıyorum {o}, gözlerini görmek istiyorum 💙', 'Bana bakmaya devam et 👀', 'Gözlerin cam gibi parlıyor 💙', 'Bakışını kaçırma {o} 😏', 'Göz bebeklerin büyüdü, gördüm 🥵'],
+  'Dark Gaze': ['Hiç konuşma {o}, sadece bak 🖤', 'O bakışla bana ne istersen yaptırırsın 😳', 'Kaşını kaldırman yetiyor 🕯️', 'Karanlıkta gözlerin daha da koyu 🖤', 'Söyle bakışınla, ne istiyorsun? 😏'],
+  'Choker Pull': ['Parmağımı halkana geçiriyorum {o} ⭕', 'Gel buraya 😈', 'Çektikçe yaklaşıyorsun 🖤', 'Bırakmıyorum, merak etme 😏', 'Alnın alnımda {o} 🔥'],
+  'Swinging Hoops': ['Küpelerini çıkarma {o} ✨', 'Her hareketinde şıngırdıyorlar 😏', 'Ritmi küpelerinden sayıyorum 🎶', 'Hızlandın, sesleri de hızlandı 🥵', 'Bu ses aklımdan çıkmayacak {o} ✨'],
+  'Anklet Kiss': ['Ayağını omzuma koy {o} 🦶', 'Önce halhalını öpüyorum ✨', 'Baldırın, dizin… yukarı çıkıyorum 😏', 'Her öpücükte şıngırdıyor 🎶', 'Nefesini tutma {o} 🥵'],
+  'Nail Marks': ['Tırnaklarını sırtıma geçir {o} 💅', 'Daha derin 😩', 'Yarın sırtımda iz kalsın 🔴', 'Bordo çok yakışmış 😏', 'Sayarsın sabah izleri {o} 😈'],
+  'Lipstick Trail': ['Rujunu yeniden sür {o} 💄', 'Boynumdan başla 💋', 'Her öpücük bir iz 😏', 'Göğsüm imzalı artık 💋', 'Aşağı in, durma {o} 😈'],
+  'Perfume Map': ['Beş nokta, değil mi {o}? 🌸', 'Kulağının arkası, bir 👃', 'Bileğin, iki 😏', 'Göğüslerinin arası… üç 🥵', 'Beşinciyi buldum {o} 😈'],
+  'Cigarette After': ['Bir tane de bana yak {o} 🚬', 'Pencere kenarında çok güzelsin 🌙', 'Bırakacaktın hani? 😏', 'Söndür, yanıma gel {o} 🫂'],
+  'Wine Kiss': ['Bir yudum al ama yutma {o} 🍷', 'Şimdi öp beni 💋', 'Çenenden damlıyor, ben hallederim 😏', 'İkinci kadeh benden {o} 🍷', 'Şarap senin ağzından daha güzel 🥵'],
+  'Coffee In Bed': ['Günaydın {o} ☕', 'Kahve sonra 😏', 'Tişörtümü çok seviyorum üstünde 🛏️', 'Yorganın altına gel 😈', 'Kahveler soğudu ama ben değilim {o} 🔥'],
+  'Gym Stretch': ['Bacağını omzuma koy {o} 💪', 'Daha da esneyebilir misin? 😏', 'Taytın hâlâ terli 🥵', 'Bu esneme bambaşka bir yere gidiyor 😈', 'Gerçekten çok esneksin {o} 🧘‍♀️'],
+  'Loser Strips': ['Kuralı sen koydun {o} 🎮', 'Yine mi kaybettim? 😩', 'Bilerek kaybettin, gördüm 😏', 'Kazağın gitti, sıra sende 👕', 'Dördüncü el yok {o} 😈'],
+  'Read To Me': ['Devam et {o}, sesini alçalt 📖', 'Kahraman kadın şimdi ne yapıyor? 😏', 'Okuduğunu bana yap 🔥', 'Sayfayı kaybettin 😂', 'Kitabı kapat {o} 😈'],
+  '3 AM': ['Saat üç {o}… uyumadın mı? 🌙', 'Gel yorganın altına 😴', 'Yavaş yavaş, fısıltıyla 🤫', 'Gözlerim kapanıyor ama durma 😮‍💨', 'Gece kuşum benim {o} 🌙'],
+  'After Party': ['Kapıyı kapatmadın bile {o} 🎉', 'Topuklularını bırak 👠', 'Kokteyl kokuyorsun 🍸', 'Bütün gece seni izledim 😏', 'Duvara yaslan {o} 😈'],
+  'Smudged Mascara': ['Yüzünü kaldır {o} 🖤', 'Rimelin aktı… çok güzel 😈', 'Rujun hâlâ kusursuz 💄', 'Aynaya bakma, ben bakıyorum {o} 😏'],
+  'Jewel Drops': ['Başını geriye at {o} 📿', 'Kolyenin üstüne 💦', 'İnci gibi asılı kaldılar 😏', 'En pahalı takımın {o} 😈']
+});
+Stories.ME_BED_SKIP.push('Cigarette After', 'Gym Stretch', 'Loser Strips', 'After Party');

@@ -15,6 +15,9 @@ Stories.I18n.add({
   'Dudak': 'Lips', 'Bacak': 'Legs', 'Bel': 'Waist', 'Doğal': 'Natural', 'Dolgun': 'Full', 'Etli': 'Plump', 'Kalp şeklinde': 'Heart-shaped', 'Yayvan': 'Wide', 'Dolgulu': 'Filler',
   'Kalın butlu': 'Thick thighs', 'Daracık': 'Tiny', 'Kalın': 'Wide', 'Gündelik': 'Casual', 'Şık': 'Elegant', 'Sportif': 'Sporty', 'Gotik': 'Goth', 'Feminen': 'Girly', 'İş kadını': 'Business',
   'Çil': 'Freckles', 'Gamze': 'Dimples', 'Güzellik beni': 'Beauty mark', 'Dövme': 'Tattoo', 'Burun piercing': 'Nose piercing', 'Göbek piercing': 'Navel piercing', 'Meme piercing': 'Nipple piercing', 'Dil piercing': 'Tongue piercing', 'Gözlük': 'Glasses', 'Diş teli': 'Braces',
+  'Ela': 'Hazel', 'Aksesuar': 'Accessories', 'Alışkanlık': 'Habits', 'Küpe': 'Earrings', 'Halka küpe': 'Hoop earrings', 'Kolye': 'Necklace', 'Bilezik': 'Bracelet', 'Halhal': 'Anklet', 'Yüzükler': 'Rings',
+  'Manikürlü': 'Manicured', 'Uzun tırnak': 'Long nails', 'Doğal tırnak': 'Natural nails', 'Yoğun makyaj': 'Heavy makeup', 'Hafif makyaj': 'Light makeup', 'Makyajsız': 'No makeup', 'Kirpik uzatma': 'Lash extensions', 'Cilt bakımı': 'Skincare routine', 'Parfüm tutkunu': 'Perfume lover',
+  'Sigara içer': 'Smoker', 'Elektronik sigara': 'Vaper', 'Sosyal içici': 'Social drinker', 'İçki içmez': 'Non-drinker', 'Kahve bağımlısı': 'Coffee addict', 'Spor salonu müdavimi': 'Gym regular', 'Oyun sever': 'Gamer', 'Parti sever': 'Party lover', 'Sabahçı': 'Early bird', 'Gece kuşu': 'Night owl',
 
   // ---------- kondom kuralları ----------
   'Kondom şartım vardır.': 'Condoms are a must for me.', 'Kondomsuz görüşme yapmıyorum, sağlığım her şeyden önce gelir.': "I don't meet without a condom, my health comes first.",
