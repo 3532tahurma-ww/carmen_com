@@ -507,6 +507,7 @@
       case 'booble': return renderBooble();
       case 'doodle': return renderDoodle();
       case 'dergi': return renderMag(r.id);
+      case 'deephug': return renderDeepHug(r.id);
       case 'carmen': return renderCarmen(r.id, r.extra);
       case 'gothic': return renderGothic(r.id, r.extra);
       case 'meisove': return renderMeisove(r.id);
@@ -1269,6 +1270,16 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['🫂', 'DeepHugging açıldı: mesajların derinleşiyor', 'Yeni site: daha etkili, daha betimlemeli mesajlar üreten bir kalıp atölyesi. Senin ve onun mesajları; boşalma akışı, zevkten titreyen bedenler, inlemeler ve çığlıklar, sımsıkı sarılıp boşalma ve boşaldıkça sarılma. Sohbette ⋮ → 🫂 Derin mesajlar ile aç.', '#/deephug', [
+      ['💦 Boşalma akışı', 'Atım atım akış, sıcaklığın yayılması, dolma ve taşma; içine, tene ya da ağza göre ayrı ayrı anlatılır.'],
+      ['🫂 Sımsıkı sarıl, 🌊 boşaldıkça sarıl', 'Kollar kilitli, aramızda nefes bile yok; ya da her atımda sarılış bir kat daha sıkılaşır.'],
+      ['🍆🌸 Bedene göre', 'Dick Size, Pussy / Anal Size, göğüs ve kalça mesajı değiştirir: "koca aletimle her vuruşumda memelerin sallanıyor", "daracık kalçanda sıkıştım…"'],
+      ['🗣️ Sesler ve hisler', 'Ahhh, offff, ohhh; "zevkten gözlerim kararıyor", "her sokuşumda zevkten titriyorum", "zevkten çığlık atıyorum".'],
+      ['🧪 Atölye ve ⭐ koleksiyon', 'Kalıbı, kızı ve boyutları seç, 5 varyant üret; beğendiğini kaydet, sohbette önce o gelsin.'],
+      ['📚 Kitap', 'İnternet Kitabı\'nda yeni 🫂 DeepHugging bölümü.']], 'Yeni site', [
+      'Şehrin en sessiz sitesi açıldı ama içinden en çok ses çıkan o. DeepHugging, mesajları tek cümleyle geçiştirmeyenler için bir atölye: her kalıp yuvalı bir cümle, her seferinde parçaları yeniden seçiliyor.',
+      'Boşalma artık "geldim" diye bitmiyor: ilk dalga, ikinci atım, içinin dolması, taşan sıcaklık. Kollar sımsıkı kilitleniyor ya da her atımda biraz daha sıkılaşıyor. Aletin sertleşmesi, onun darlığı, zevkten titreyen bacaklar ve odayı dolduran çığlıklar.',
+      'Beğendiğin kalıp daha sık geliyor, kapattığın hiç gelmiyor. Atölyede ürettiğini kaydedersen sohbette önce o deneniyor.']],
     ['📚', 'Hikâye Bölüm II: Vize Haftası', 'Dört yeni kadın Taréque\'nin hayatına giriyor: fotoğrafçı Clara, Lyon\'dan Erasmus öğrencisi Viola, çatı katını yenileyen iç mimar Liberta ve Salma\'nın sırdaşı Alisa. 9 görev, 14 sahne; vizeler, gece mesaileri ve ilk geceler.', '#/me/gorev', [
       ['🏫 Okul kolu', 'Bonjour, Carmen: Viola\'yla "bisou" dersi ve mum ışığında telaffuz. Çatı Katı: gece yarısı matkap ve yeni sıvanmış bir duvar. Sabaha Kadar: Elisa kütüphanede kucağında. Leire Kayıp: dünkü elbise ve Viola\'nın bedeli.'],
       ['💼 İş kolu', 'Fazla Mesai: 23. katta boş ofis ve Salma\'nın bozulan kuralı. Kahvaltıda Misafir: anahtarla gelen Alisa, Vinoteca\'nın mahzeninde gözü bağlı şarap tadımı.'],
@@ -4739,6 +4750,306 @@
       <div class="mg-home"><div class="mg-hrow">${mgSort('home:' + new Date().toDateString(), T).sort((a, b) => !!st.read[mgIssues(a)[0].id] - !!st.read[mgIssues(b)[0].id]).slice(0, 2).map(m => mgCov(mgIssues(m)[0], false, st)).join('')}</div>
         <div class="mg-hfoot"><span>Sayfaları gerçek dergi gibi çevir: seanslar, pozisyonlar, seks eğitimi</span>${at ? `<a class="btn primary sm" href="#/dergi/devam">🔖 Kaldığın yerden: ${mgName(at.m)} · Sayı ${at.no}</a>` : '<a class="btn primary sm" href="#/dergi">📖 Bayiye git</a>'}</div></div>`;
   }
+  // 🫂 DeepHugging (v1178): js/data/deephug.js Stories.DH yuvalı kalıplar → betimlemeli mesaj. Site #/deephug (hub / atolye / koleksiyon / sira),
+  // sohbet ⋮ → 🫂 Derin mesajlar (th.dhOn): olayda senin (eventMessages) ve onun (botReply) mesajı %45 buradan. Kayıt amor-stories:deephug. Sadece Türkçe
+  const DH = () => Stories.DH || { K: [], S: {}, PH: {}, SP: {}, TH: {}, YER: {}, YER_HER: {} };
+  const DH_KEY = 'amor-stories:deephug';
+  function dhSt() {
+    let s = null;
+    try { s = JSON.parse(localStorage.getItem(DH_KEY) || 'null'); } catch (e) { s = null; }
+    s = s && typeof s === 'object' ? s : {};
+    return { saved: Array.isArray(s.saved) ? s.saved : [], like: s.like || {}, use: s.use || {}, off: s.off || {} };
+  }
+  const dhPut = s => { try { localStorage.setItem(DH_KEY, JSON.stringify(s)); } catch (e) { } };
+  const dhLow = x => String(x || '').toLocaleLowerCase('tr');
+  const DH_SKIP = /mode|daily|drink|undress|dress|condom|protect|pill|test|pregnan|role|interrupt|place/;
+  function dhPhase(e) {
+    if (!e) return '';
+    const l = dhLow(catOfEv(e).label), tg = (e.tags || []).map(dhLow);
+    if (l === 'cumming' || tg.includes('boşalma')) return 'cum';
+    if (tg.includes('gündelik') || DH_SKIP.test(l)) return '';
+    if (isPosEv(e)) return 'pos';
+    return /after|cool/.test(l) ? 'af' : 'fp';
+  }
+  function dhSpot(e) {
+    const t = dhLow(e && e.title), tg = ((e && e.tags) || []).map(dhLow);
+    if (/oral|mouth|throat|swallow|facial|face|blowjob/.test(t)) return 'oral';
+    if (tg.includes('vajinal') || tg.includes('anal') || /creampie|inside|cumflation|filled|internal/.test(t)) return 'in';
+    return 'out';
+  }
+  const dhYerK = e => { const z = e ? cumZoneOf(e.title) : '', t = dhLow(e && e.title); return ['gogus', 'kalca', 'bacak'].includes(z) ? z : /tit|boob|chest/.test(t) ? 'gogus' : /ass|butt|back/.test(t) ? 'kalca' : /leg|thigh/.test(t) ? 'bacak' : 'ten'; };
+  const dhSaat = () => { const m = worldNow().min; return m < 360 ? 'gecenin bu saatinde' : m < 720 ? 'sabahın ışığında' : m < 1080 ? 'gün ortasında' : 'akşamın loşluğunda'; };
+  // {yuva} doldurma: aynı mesajda bir yuvadan aynı parça iki kez gelmez; {o} / {sen} sona kalır (dhName)
+  function dhFill(t, x) {
+    const D = DH(), used = {}, bw = Stories.ME_BODY_WORDS || {};
+    const sz = p => (x.ch && szOfCh(x.ch, p === 'gogus' ? 'boob' : 'butt')) || 'mid';
+    const body = (p, h) => { const w = (bw[p + (h || '')] || {})[sz(p)]; return w && w.length ? pick(w) : h ? '' : p === 'gogus' ? 'yumuşacık' : 'dolgun'; };
+    // 🍆🌸 boyutlu yuva (D.SZK): dk → x.dk · hole → x.hole + x.hsz (yoksa vag / mid)
+    const pool = k => { const v = D.S[k], z = (D.SZK || {})[k]; if (Array.isArray(v) || !v) return v || []; const key = z === 'dk' ? x.dk || 'mid' : (x.hole || 'vag') + (x.hsz || 'mid'); return v[key] || v.mid || v.vagmid || []; };
+    const slot = k => { const a = pool(k).filter(s => !(used[k] || []).includes(s)); if (!a.length) return ''; const s = pick(a); (used[k] = used[k] || []).push(s); return s; };
+    let out = String(t), n = 0;
+    while (/\{(?!o\}|sen\})[a-zA-Z]+\}/.test(out) && n++ < 6) out = out.replace(/\{([a-zA-Z]+)\}/g, (m, k) => {
+      if (k === 'o' || k === 'sen') return m;
+      if (k === 'gogus' || k === 'kalca') return body(k);
+      if (k === 'gogusHis' || k === 'kalcaHis') return body(k.slice(0, -3), 'His');
+      if (k === 'saat') return dhSaat();
+      if (k === 'yer') return pick((x.side === 'her' ? D.YER_HER : D.YER)[x.yer || 'ten'] || D.YER.ten || ['teninin']);
+      return slot(k);
+    });
+    return out.replace(/\s+([,.…;])/g, '$1').replace(/\s{2,}/g, ' ').trim().replace(/(^|[.!?]\s+)([a-zçğıöşü])/g, (m, a, b) => a + b.toLocaleUpperCase('tr'));
+  }
+  let dhRecent = [];
+  // kalıp şablonları: dizi ya da { pos: [], cum: [] } (faza göre) · dhTsAll: hepsi (Parçalar sayfası)
+  const dhTs = (k, ph) => Array.isArray(k.t) ? k.t : k.t[ph] || Object.values(k.t)[0] || [];
+  const dhTsAll = k => Array.isArray(k.t) ? k.t : Object.values(k.t).flat();
+  // 🐕🛏️🍑 pozisyon: Misyoner (anal değil) · Anal Doggy = arkadan anal (misyoner / cowgirl / kucak değil) · Doggy
+  function dhPosK(pe, hole) {
+    if (!pe) return '';
+    const t = dhLow(pe.title), h = dhHole(pe) || hole;
+    // 🍒🍑🦵 sürtünme (girişsiz): meme arası · arkadan kalça arası · bacak arası (başlıkta arkadan izi yoksa önden)
+    if (/titfuck|titjob|tit job|paizuri|boob ?job/.test(t)) return 'rmeme';
+    if (/hotdog|buttjob|butt job/.test(t)) return 'rkalca';
+    if (/legjob|leg job|thighjob|thigh job|thigh slide|intercrural/.test(t)) return /back|behind|doggy|spoon|reverse|bent|standing|bench/.test(t) ? 'rbacakArka' : 'rbacakOn';
+    if (/missionary/.test(t) && h !== 'anal') return 'mis';
+    if (h === 'anal' && !/missionary|cowgirl|reverse|ride|riding|lap|face|spoon|amazon/.test(t)) return 'analdoggy';
+    return /doggy|from behind|bent/.test(t) ? 'doggy' : '';
+  }
+  // 🧱 ayakta: yatak yok listesi (ME_BED_SKIP) ya da başlıkta duvar / ayakta / duş / masa…; yoksa 🛏️ yatakta
+  const DH_STAND = /standing|wall|shower|desk|counter|railing|stairs|table|hood|sink|ladder|booth|stall|lift|against/;
+  const dhStand = (...evs) => evs.some(x => x && ((Stories.ME_BED_SKIP || []).includes(x.title) || DH_STAND.test(dhLow(x.title)))) ? 'ayakta' : 'yatak';
+  // x: { side, ph, sp, ch, hug, th, kid, yer, any } → { k, text } (text içinde {o} / {sen} ham)
+  function dhMake(x) {
+    const D = DH(), st = dhSt();
+    const ok = k => k.side === x.side && k.ph.includes(x.ph) && (!k.sp || !x.sp || k.sp.includes(x.sp)) && (x.any || !st.off[k.id]) && (!x.th || k.th === x.th) && (!x.kid || k.id === x.kid) && (!k.hole || !!x.hole)
+      && (!k.pk || k.pk === x.pk) && (!k.st || k.st === (x.st || 'yatak'));
+    let ks = D.K.filter(ok);
+    if (x.hug && !x.th && !x.kid) { const hk = ks.filter(k => k.th === 'sarilma' || k.th === 'dalga'); if (hk.length) ks = hk; }
+    // 🐕🛏️🍑 pozisyona özel kalıp varsa çoğunlukla o (sarılmada daha da çok)
+    // 🍒🍑🦵 sürtünmede içeri giriş anlatan genel kalıplar yok: ön sevişme / seksde yalnız o sürtünmenin kalıbı, boşalmada o + pozisyonsuz dışarı boşalma kalıpları
+    const rubK = /^r/.test(x.pk || '');
+    if (rubK && !x.kid) ks = ks.filter(k => k.pk === x.pk || (x.ph === 'cum' && !k.pk && !k.hole));
+    if (x.pk && !x.kid) { const pk = ks.filter(k => k.pk); if (pk.length && Math.random() < (rubK ? .7 : x.hug ? .75 : .6)) ks = pk; }
+    if (!ks.length) return null;
+    const w = ks.map(k => 1 + Math.min(5, +st.like[k.id] || 0));
+    let r = Math.random() * w.reduce((a, b) => a + b, 0), k = ks[ks.length - 1];
+    for (let i = 0; i < ks.length; i++) { r -= w[i]; if (r <= 0) { k = ks[i]; break; } }
+    let text = '';
+    const ts = dhTs(k, x.ph);
+    for (let i = 0; i < 4; i++) { text = dhFill(pick(ts), x); if (!dhRecent.includes(text)) break; }
+    dhRecent = [text, ...dhRecent].slice(0, 20);
+    return { k, text };
+  }
+  // 🍆 senin Dick Size'ın → small / mid / big / huge · 🌸🍑 olayın deliği (vajinal / anal etiketi) + onun Pussy / Anal Size'ı → tight / mid / loose
+  const dhDk = () => ((Stories.ME_DICK || {}).size || {})[S().user.dick] || 'mid';
+  const dhHole = e => { const tg = ((e && e.tags) || []).map(dhLow); return tg.includes('anal') ? 'anal' : tg.includes('vajinal') ? 'vag' : ''; };
+  const dhHsz = (ch, hole) => (ch && hole && (DH().HOLE_SZ || {})[traitVal(ch, hole === 'anal' ? 'Anal Size' : 'Pussy Size')]) || 'mid';
+  const dhName = (t, ch, sen) => String(t).replace(/\{o\}/g, String((ch || {}).name || '').split(' ')[0] || 'o').replace(/\{sen\}/g, sen || 'canım');
+  // 💬 sohbet: olay → mesaj ('' = bu olaya uymuyor). ⭐ koleksiyondakiler %35 önce; kadın profilde sadece ön sevişme / sonrası
+  function dhGen(side, e, ch, o = {}) {
+    const ph = dhPhase(e);
+    if (!ph || (meFemale() && ph !== 'fp' && ph !== 'af')) return '';
+    const sp = ph === 'cum' ? dhSpot(e) : '', st = dhSt();
+    const sv = st.saved.filter(s => s.side === side && s.ph === ph && (!s.sp || !sp || s.sp === sp));
+    let text = '';
+    if (sv.length && Math.random() < .35) text = pick(sv).text;
+    else {
+      // o.pos: sohbetteki o anki pozisyon (boşalmada hangi pozisyonda olduğunuz)
+      // 🍒🍑🦵 sürtünme olayı (pozisyon kategorisinde olmasa da) kendi adından; değilse pozisyon olayı ya da o anki pozisyon
+      const pe = isPosEv(e) || /^r/.test(dhPosK(e, '')) ? e : o.pos || null, hole = dhHole(e) || (ph === 'cum' && sp === 'in' ? dhHole(pe) : '');
+      const r = dhMake({ side, ph, sp, ch, hug: o.hug, yer: dhYerK(e), dk: dhDk(), hole, hsz: dhHsz(ch, hole), pk: dhPosK(pe, hole), st: dhStand(e, pe) });
+      if (!r) return '';
+      text = r.text;
+      st.use[r.k.id] = (+st.use[r.k.id] || 0) + 1;
+      dhPut(st);
+    }
+    return dhName(text, ch, o.sen);
+  }
+  const DH_CSS = `<style>
+    .ws-dh,html:has(.ws-dh){--dh1:#d97a00;--dh2:#e0336f;--dhb:#fff7f2;--dhc:#ffffff;--dhl:#f0d9de;--dht:#2a1630;--dhm:#7d6683;--dhs:rgba(42,22,48,.06)}
+    html[data-theme=dark] .ws-dh,html[data-theme=dark]:has(.ws-dh){--dh1:#ffb020;--dh2:#ff5d8f;--dhb:#140b16;--dhc:#1f1424;--dhl:#3a2740;--dht:#f6eef7;--dhm:#b9a8bd;--dhs:rgba(255,255,255,.06)}
+    .ws-dh{background:var(--dhb);color:var(--dht);min-height:100vh;min-height:100dvh}
+    html:has(.ws-dh),body:has(.ws-dh),#view:has(.ws-dh){background:var(--dhb)}
+    .ws-dh .dh{max-width:980px;margin:0 auto}
+    .ws-dh .dh-hero{border:1px solid var(--dhl);border-radius:14px;padding:18px 16px;margin-bottom:14px;background:linear-gradient(135deg,rgba(255,176,32,.14),rgba(255,93,143,.14))}
+    .ws-dh .dh-hero h1{margin:0 0 6px;font-size:1.5rem;background:linear-gradient(90deg,var(--dh1),var(--dh2));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .ws-dh .dh-hero p{margin:0 0 6px}.ws-dh .dh-hero small{display:block;color:var(--dhm);margin-bottom:10px}
+    .ws-dh .dh-filters{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:4px}
+    .ws-dh .dh-chip{flex:none;border:1px solid var(--dhl);background:var(--dhc);color:var(--dht);border-radius:999px;padding:5px 11px;font:inherit;font-size:.85rem;cursor:pointer}
+    .ws-dh .dh-chip.on{border-color:var(--dh1);background:rgba(255,176,32,.18)}
+    .ws-dh .dh-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:10px}
+    .ws-dh .dh-card{background:var(--dhc);border:1px solid var(--dhl);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;min-width:0}
+    .ws-dh .dh-card.off{opacity:.5}
+    .ws-dh .dh-card header{display:flex;gap:10px;align-items:center}.ws-dh .dh-ic{font-size:1.6rem}
+    .ws-dh .dh-card header b{display:block}.ws-dh .dh-card header small{color:var(--dhm);font-family:monospace;font-size:.78rem}
+    .ws-dh .dh-tags{display:flex;flex-wrap:wrap;gap:4px}.ws-dh .dh-tags span{font-size:.72rem;border-radius:6px;padding:2px 6px;background:var(--dhs);color:var(--dhm)}
+    .ws-dh .dh-out{margin:0;font-size:.92rem;line-height:1.45;border-left:3px solid var(--dh2);padding:6px 10px;background:rgba(255,93,143,.07);border-radius:0 8px 8px 0;overflow-wrap:anywhere}
+    .ws-dh .dh-card footer,.ws-dh .dh-acts{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-size:.82rem;color:var(--dhm)}
+    .ws-dh .dh-card footer button,.ws-dh .dh-acts button{border:1px solid var(--dhl);background:transparent;color:var(--dht);border-radius:8px;padding:4px 9px;font:inherit;cursor:pointer}
+    .ws-dh .dh-form{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;background:var(--dhc);border:1px solid var(--dhl);border-radius:12px;padding:12px}
+    .ws-dh .dh-form label{display:flex;flex-direction:column;gap:4px;font-size:.8rem;color:var(--dhm)}
+    .ws-dh .dh-form select{background:var(--dhb);color:var(--dht);border:1px solid var(--dhl);border-radius:8px;padding:7px;font:inherit;min-width:0}
+    .ws-dh .dh-gen{margin:12px 0;width:100%}
+    .ws-dh .dh-res{display:flex;flex-direction:column;gap:10px}
+    .ws-dh .dh-res article{background:var(--dhc);border:1px solid var(--dhl);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px}
+    .ws-dh .dh-res small{color:var(--dhm)}
+    .ws-dh .dh-empty{color:var(--dhm);text-align:center;padding:24px 8px}
+    .ws-dh .dh-rank{width:100%;border-collapse:collapse;font-size:.88rem}
+    .ws-dh .dh-rank td,.ws-dh .dh-rank th{padding:8px 6px;border-bottom:1px solid var(--dhl);text-align:left}
+    .ws-dh .dh-rank th{color:var(--dhm);font-weight:600}.ws-dh .dh-rank td:first-child{color:var(--dh1);font-weight:700}
+    .ws-dh .dh-out i{color:var(--dh1);font-style:normal}
+    .ws-dh .dh-q{width:100%;box-sizing:border-box;margin:6px 0 10px;padding:9px 12px;border-radius:10px;border:1px solid var(--dhl);background:var(--dhc);color:var(--dht);font:inherit}
+    .ws-dh .dh-sls{display:flex;flex-direction:column;gap:8px}
+    .ws-dh .dh-sl{background:var(--dhc);border:1px solid var(--dhl);border-radius:12px;padding:0 12px}
+    .ws-dh .dh-sl summary{cursor:pointer;padding:11px 0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 10px;list-style:none}
+    .ws-dh .dh-sl summary::-webkit-details-marker{display:none}
+    .ws-dh .dh-sl summary span{font-weight:600}.ws-dh .dh-sl summary small{color:var(--dhm);font-family:monospace;font-size:.78rem}
+    .ws-dh .dh-sl ul{margin:0 0 10px;padding-left:18px;display:flex;flex-direction:column;gap:5px;font-size:.9rem;line-height:1.4}
+    .ws-dh .dh-sl li{overflow-wrap:anywhere}.ws-dh .dh-sl li::marker{color:var(--dh2)}
+    .ws-dh .dh-sl h4{margin:8px 0 6px;font-size:.85rem;color:var(--dh1)}.ws-dh .dh-sl h4 small{color:var(--dhm);font-weight:400}
+    .ws-dh .dh-use{margin:0 0 12px;font-size:.78rem;color:var(--dhm);border-top:1px dashed var(--dhl);padding-top:8px}
+  </style>`;
+  const dhSideL = s => s === 'me' ? '🗣️ Ben' : '💬 O';
+  const dhSample = k => { const ph = k.ph[0], r = dhMake({ side: k.side, ph, sp: ph === 'cum' ? (k.sp || ['in'])[0] : '', kid: k.id, yer: 'ten', any: true, dk: dhDk(), hole: k.pk === 'analdoggy' ? 'anal' : 'vag', pk: k.pk, st: k.st }); return r ? dhName(r.text, { name: (chars()[0] || {}).name || 'Carmen' }, 'aşkım') : ''; };
+  function dhCard(k, st) {
+    const D = DH(), th = D.TH[k.th] || ['✨', k.th], off = !!st.off[k.id];
+    return `<article class="dh-card${off ? ' off' : ''}" data-dhk="${esc(k.id)}"><header><span class="dh-ic">${k.ic}</span><div><b>${esc(k.n)}</b><small>deephug/${esc(k.id.replace(/^dh_/, ''))}</small></div></header>
+      <div class="dh-tags"><span>${dhSideL(k.side)}</span>${k.ph.map(p => `<span>${D.PH[p] || p}</span>`).join('')}${(k.sp || []).map(s => `<span>${D.SP[s] || s}</span>`).join('')}${k.pk ? `<span>${(D.PK || {})[k.pk] || k.pk}</span>` : ''}${k.st ? `<span>${(D.ST || {})[k.st] || k.st}</span>` : ''}<span>${th[0]} ${esc(th[1])}</span></div>
+      <p class="dh-out">${esc(dhSample(k))}</p>
+      <footer><button type="button" data-dhlike="${esc(k.id)}">❤️ ${+st.like[k.id] || 0}</button><span>⬇️ ${+st.use[k.id] || 0}</span><button type="button" data-dhtry="${esc(k.id)}">🧪 Dene</button><button type="button" data-dhoff="${esc(k.id)}">${off ? '▶️ Aç' : '⏸️ Kapat'}</button></footer></article>`;
+  }
+  const dhRaw = t => esc(t).replace(/\{o\}/g, '<i>‹adı›</i>').replace(/\{sen\}/g, '<i>‹hitap›</i>');
+  function renderDeepHug(id) {
+    const D = DH(), st = dhSt();
+    const page = (url, body) => { view.innerHTML = DH_CSS + wsPage('dh', 'Deep<i>Hugging</i>', 'deephugging.co' + url, id ? '#/deephug' : '#/booble', `<div class="page-pad dh">${body}</div>`); };
+    if (id === 'atolye') return renderDeepHugLab();
+    if (id === 'koleksiyon') {
+      page('/koleksiyon', `<div class="dh-hero"><h1>⭐ Koleksiyonum</h1><p>Atölyede kaydettiğin ${st.saved.length} mesaj.</p><small>🫂 Derin mesajlar açıkken sohbette önce bunlar denenir (%35). ‹adı› ve ‹hitap› sohbette doldurulur.</small></div>
+        <div class="dh-res">${st.saved.map((s, i) => `<article><small>${dhSideL(s.side)} · ${D.PH[s.ph] || s.ph}${s.sp ? ' · ' + (D.SP[s.sp] || s.sp) : ''}</small><p class="dh-out">${dhRaw(s.text)}</p><div class="dh-acts"><button type="button" data-dhdel="${i}">🗑️ Sil</button></div></article>`).join('') || '<p class="dh-empty">Henüz kayıt yok. 🧪 Atölyede üret, beğendiklerini ⭐ kaydet.</p>'}</div>`);
+      view.querySelectorAll('[data-dhdel]').forEach(b => b.onclick = () => { const s = dhSt(); s.saved.splice(+b.dataset.dhdel, 1); dhPut(s); renderDeepHug('koleksiyon'); });
+      return;
+    }
+    // 🧩 cümle parçaları: her yuva (D.S) başlıklı ve sayılı, boyutlu yuvalar alt gruplu (D.SZL), kullanan kalıplar, arama
+    if (id === 'parcalar') {
+      const pf = ui.dhPF = ui.dhPF || { side: '', q: '' }, SL = D.SL || {}, SZL = D.SZL || {};
+      const uses = k => D.K.filter(x => dhTsAll(x).some(t => t.includes('{' + k + '}')));
+      const li = a => `<ul>${a.map(s => `<li>${dhRaw(s)}</li>`).join('')}</ul>`;
+      const keys = Object.keys(D.S).filter(k => !pf.side || (SL[k] || ['diger'])[0] === pf.side);
+      const n = k => { const v = D.S[k]; return Array.isArray(v) ? v.length : Object.values(v).reduce((a, b) => a + b.length, 0); };
+      const chip = (v, l) => `<button type="button" class="dh-chip${pf.side === v ? ' on' : ''}" data-dhps="${v}">${l}</button>`;
+      page('/parcalar', `<div class="dh-hero"><h1>🧩 Cümle parçaları</h1><p>${Object.keys(D.S).length} yuva · ${Object.keys(D.S).reduce((a, k) => a + n(k), 0)} parça</p>
+          <small>Kalıplardaki her {yuva} buradaki listeden rastgele bir parçayla dolar; bir mesajda aynı parça iki kez gelmez. 🍆🌸 boyutlu yuvalar Dick Size ve Pussy / Anal Size'a göre alt listeden seçilir.</small></div>
+        <div class="dh-filters">${chip('', 'Hepsi')}${chip('me', '🗣️ Ben')}${chip('her', '💬 O')}</div>
+        <input class="dh-q" id="dhQ" type="search" placeholder="🔍 Parçalarda ara (ör. zevkten, sarıl, daracık)" value="${esc(pf.q)}">
+        <div class="dh-sls">${keys.map(k => {
+          const v = D.S[k], m = SL[k] || ['diger', '🧩', k], u = uses(k);
+          const body = Array.isArray(v) ? li(v) : Object.entries(v).map(([z, a]) => `<h4>${esc(SZL[z] || z)} <small>${a.length}</small></h4>${li(a)}`).join('');
+          return `<details class="dh-sl"><summary><span>${m[1]} ${esc(m[2])}</span><small>${dhSideL(m[0])} · {${esc(k)}} · ${n(k)}</small></summary>${body}
+            ${u.length ? `<p class="dh-use">Kullanan kalıplar: ${u.map(x => `${x.ic} ${esc(x.n)}`).join(' · ')}</p>` : ''}</details>`;
+        }).join('')}</div>`);
+      view.querySelectorAll('[data-dhps]').forEach(b => b.onclick = () => { pf.side = b.dataset.dhps; renderDeepHug('parcalar'); });
+      const q = $('#dhQ'), flt = () => {
+        const s = dhLow(q.value.trim());
+        pf.q = q.value;
+        view.querySelectorAll('.dh-sl').forEach(d => {
+          let hit = 0;
+          d.querySelectorAll('li').forEach(l => { const ok = !s || dhLow(l.textContent).includes(s); l.hidden = !ok; hit += ok; });
+          d.querySelectorAll('h4').forEach(h => { const ul = h.nextElementSibling; h.hidden = !!s && ![...ul.children].some(l => !l.hidden); });
+          d.hidden = !!s && !hit;
+          d.open = !!s && hit > 0;
+        });
+      };
+      q.oninput = flt;
+      if (pf.q) flt();
+      return;
+    }
+    if (id === 'sira') {
+      const ks = D.K.slice().sort((a, b) => ((+st.like[b.id] || 0) * 3 + (+st.use[b.id] || 0)) - ((+st.like[a.id] || 0) * 3 + (+st.use[a.id] || 0)));
+      page('/sira', `<div class="dh-hero"><h1>📊 Sıralama</h1><p>En çok beğenilen ve sohbette en çok kullanılan kalıplar.</p></div>
+        <table class="dh-rank"><thead><tr><th>#</th><th>Kalıp</th><th>Taraf</th><th>❤️</th><th>⬇️</th></tr></thead><tbody>${ks.map((k, i) => `<tr><td>${i + 1}</td><td>${k.ic} ${esc(k.n)}</td><td>${dhSideL(k.side)}</td><td>${+st.like[k.id] || 0}</td><td>${+st.use[k.id] || 0}</td></tr>`).join('')}</tbody></table>`);
+      return;
+    }
+    const f = ui.dhF = ui.dhF || { side: '', ph: '', th: '' };
+    const ks = D.K.filter(k => (!f.side || k.side === f.side) && (!f.ph || k.ph.includes(f.ph)) && (!f.th || k.th === f.th));
+    const chip = (key, v, l) => `<button type="button" class="dh-chip${f[key] === v ? ' on' : ''}" data-dhf="${key}:${v}">${l}</button>`;
+    const parts = Object.values(D.S).reduce((a, x) => a + x.length, 0);
+    page('', `<div class="dh-hero"><h1>🫂 DeepHugging</h1><p>Daha etkili, daha betimlemeli mesajlar · ${D.K.length} kalıp · ${parts} cümle parçası · ⭐ ${st.saved.length} kayıtlı</p>
+        <small>Sohbette ⋮ → 🫂 Derin mesajlar açıkken olaylarda senin ve onun mesajlarının bir kısmı buradan üretilir. Beğendiğin kalıp daha sık seçilir, kapattığın hiç seçilmez.</small>
+        <a class="btn primary sm" href="#/deephug/atolye">🧪 Atölyeye git</a> <a class="btn sm" href="#/deephug/parcalar">🧩 Cümle parçaları</a></div>
+      <div class="dh-filters">${chip('side', '', 'Hepsi')}${chip('side', 'me', '🗣️ Ben')}${chip('side', 'her', '💬 O')}</div>
+      <div class="dh-filters">${chip('ph', '', 'Tüm fazlar')}${Object.entries(D.PH).map(([k, l]) => chip('ph', k, l)).join('')}</div>
+      <div class="dh-filters">${chip('th', '', 'Tüm temalar')}${Object.entries(D.TH).map(([k, t]) => chip('th', k, t[0] + ' ' + t[1])).join('')}</div>
+      <div class="dh-grid">${ks.map(k => dhCard(k, st)).join('') || '<p class="dh-empty">Bu filtrede kalıp yok.</p>'}</div>`);
+    view.querySelectorAll('[data-dhf]').forEach(b => b.onclick = () => { const [k, v] = b.dataset.dhf.split(':'); f[k] = v; renderDeepHug(); });
+    view.querySelectorAll('[data-dhlike]').forEach(b => b.onclick = () => { const s = dhSt(), k = b.dataset.dhlike; s.like[k] = (+s.like[k] || 0) + 1; dhPut(s); b.textContent = '❤️ ' + s.like[k]; });
+    view.querySelectorAll('[data-dhoff]').forEach(b => b.onclick = () => {
+      const s = dhSt(), k = b.dataset.dhoff;
+      if (s.off[k]) delete s.off[k]; else s.off[k] = 1;
+      dhPut(s);
+      b.textContent = s.off[k] ? '▶️ Aç' : '⏸️ Kapat';
+      b.closest('.dh-card').classList.toggle('off', !!s.off[k]);
+    });
+    view.querySelectorAll('[data-dhtry]').forEach(b => b.onclick = () => { ui.dhTry = b.dataset.dhtry; location.hash = '#/deephug/atolye'; });
+  }
+  function renderDeepHugLab() {
+    const D = DH(), w = ui.dhW = ui.dhW || { side: 'me', ph: 'cum', sp: 'in', th: '', kid: '', ch: '', hole: 'vag', dk: '', hsz: '' };
+    if (w.hole === undefined) Object.assign(w, { hole: 'vag', dk: '', hsz: '' });
+    if (ui.dhTry) { const k = D.K.find(x => x.id === ui.dhTry); if (k) Object.assign(w, { kid: k.id, side: k.side, ph: k.ph[0], th: '', sp: k.sp ? k.sp[0] : w.sp, pk: k.pk || '', st: k.st || 'yatak' }); ui.dhTry = null; }
+    const ch = chars().find(c => c.id === w.ch) || null, sen = ch ? hitapOf(ch) : 'aşkım';
+    const opt = (v, l, cur) => `<option value="${esc(v)}"${v === cur ? ' selected' : ''}>${esc(l)}</option>`;
+    if (/^r/.test(w.pk || '') && w.ph === 'cum') w.sp = 'out';
+    const holeOn = w.ph === 'pos' || (w.ph === 'cum' && w.sp === 'in');
+    if (w.pk === undefined) Object.assign(w, { pk: '', st: 'yatak' });
+    const rubW = /^r/.test(w.pk || ''), pkOn = w.ph === 'fp' ? rubW : w.ph === 'pos' || w.ph === 'cum';
+    const pk = pkOn ? w.pk : '', st = w.st || 'yatak';
+    if (pk === 'analdoggy') w.hole = 'anal'; else if (pk && !rubW && w.hole !== 'vag') w.hole = 'vag';
+    const hole = holeOn && !rubW ? w.hole : '';
+    const dk = w.dk || dhDk(), hsz = w.hsz || dhHsz(ch, hole);
+    const kOpts = D.K.filter(k => k.side === w.side && k.ph.includes(w.ph) && (!k.sp || w.ph !== 'cum' || k.sp.includes(w.sp)) && (!k.hole || !!hole) && (!k.pk || k.pk === pk) && (!k.st || k.st === st));
+    if (w.kid && !kOpts.some(k => k.id === w.kid)) w.kid = '';
+    view.innerHTML = DH_CSS + wsPage('dh', 'Deep<i>Hugging</i>', 'deephugging.co/atolye', '#/deephug', `<div class="page-pad dh">
+      <div class="dh-hero"><h1>🧪 Atölye</h1><p>Olayı ve kızı seç, 5 varyant üret; beğendiğini ⭐ kaydet.</p><small>Kayıtlar 🫂 Derin mesajlar açıkken sohbette öncelikli kullanılır.</small></div>
+      <div class="dh-form">
+        <label>Taraf<select data-dhw="side">${opt('me', '🗣️ Ben (benim mesajım)', w.side)}${opt('her', '💬 O (karakterin cevabı)', w.side)}</select></label>
+        <label>Faz<select data-dhw="ph">${Object.entries(D.PH).map(([k, l]) => opt(k, l, w.ph)).join('')}</select></label>
+        ${w.ph === 'cum' ? `<label>Boşalma yeri<select data-dhw="sp">${Object.entries(D.SP).map(([k, l]) => opt(k, l, w.sp)).join('')}</select></label>` : ''}
+        <label>Tema<select data-dhw="th">${opt('', 'Hepsi', w.th)}${Object.entries(D.TH).map(([k, t]) => opt(k, t[0] + ' ' + t[1], w.th)).join('')}</select></label>
+        <label>Kalıp<select data-dhw="kid">${opt('', 'Rastgele', w.kid)}${kOpts.map(k => opt(k.id, k.ic + ' ' + k.n, w.kid)).join('')}</select></label>
+        <label>Kız<select data-dhw="ch">${opt('', 'Örnek (Carmen)', w.ch)}${chars().map(c => opt(c.id, c.name, w.ch)).join('')}</select></label>
+        ${w.ph !== 'af' ? `<label>Pozisyon<select data-dhw="pk">${opt('', 'Fark etmez', w.pk)}${Object.entries(D.PK || {}).filter(([k]) => w.ph !== 'fp' || /^r/.test(k)).map(([k, l]) => opt(k, l, w.pk)).join('')}</select></label>` : ''}
+        ${holeOn && !rubW ? `<label>Yer<select data-dhw="st">${Object.entries(D.ST || {}).map(([k, l]) => opt(k, l, st)).join('')}</select></label>` : ''}
+        ${holeOn && !rubW ? `<label>Delik<select data-dhw="hole">${opt('vag', '🌸 Vajinal', w.hole)}${opt('anal', '🍑 Anal', w.hole)}${opt('', 'Yok (sürtünme vb.)', w.hole)}</select></label>
+        <label>Darlık<select data-dhw="hsz">${opt('', 'Kızdan (' + ({ tight: 'dar', mid: 'orta', loose: 'geniş' }[dhHsz(ch, w.hole)] || 'orta') + ')', w.hsz)}${opt('tight', 'Dar', w.hsz)}${opt('mid', 'Orta', w.hsz)}${opt('loose', 'Geniş', w.hsz)}</select></label>` : ''}
+        <label>🍆 Alet<select data-dhw="dk">${opt('', 'Profilden (' + ({ small: 'küçük', mid: 'orta', big: 'büyük', huge: 'dev' }[dhDk()]) + ')', w.dk)}${opt('small', 'Küçük', w.dk)}${opt('mid', 'Orta', w.dk)}${opt('big', 'Büyük', w.dk)}${opt('huge', 'Dev', w.dk)}</select></label>
+      </div>
+      <button type="button" class="btn primary dh-gen" id="dhGo">🎲 5 varyant üret</button>
+      <div class="dh-res" id="dhRes"></div></div>`);
+    view.querySelectorAll('[data-dhw]').forEach(s => s.onchange = () => { w[s.dataset.dhw] = s.value; renderDeepHugLab(); });
+    const box = $('#dhRes'), sp = w.ph === 'cum' ? w.sp : '';
+    const go = () => {
+      const out = [];
+      for (let i = 0; i < 12 && out.length < 5; i++) {
+        const r = dhMake({ side: w.side, ph: w.ph, sp, ch, th: w.th, kid: w.kid, yer: 'ten', any: true, dk, hole, hsz, pk, st });
+        if (r && !out.some(x => x.text === r.text)) out.push(r);
+      }
+      ui.dhOut = out;
+      box.innerHTML = out.map((r, i) => `<article><small>${r.k.ic} ${esc(r.k.n)}</small><p class="dh-out">${esc(dhName(r.text, ch || { name: 'Carmen' }, sen))}</p>
+        <div class="dh-acts"><button type="button" data-dhsave="${i}">⭐ Kaydet</button><button type="button" data-dhcopy="${i}">📋 Kopyala</button></div></article>`).join('')
+        || '<p class="dh-empty">Bu seçimde kalıp yok: tema ya da boşalma yerini değiştir.</p>';
+      box.querySelectorAll('[data-dhsave]').forEach(b => b.onclick = () => {
+        const r = ui.dhOut[+b.dataset.dhsave], s = dhSt();
+        s.saved.unshift({ text: r.text, side: w.side, ph: w.ph, sp, k: r.k.id, at: Date.now() });
+        s.saved = s.saved.slice(0, 200);
+        dhPut(s);
+        b.disabled = true; b.textContent = '⭐ Kaydedildi';
+      });
+      box.querySelectorAll('[data-dhcopy]').forEach(b => b.onclick = () => {
+        const t = dhName(ui.dhOut[+b.dataset.dhcopy].text, ch || { name: 'Carmen' }, sen);
+        try { navigator.clipboard.writeText(t).then(() => notify('Kopyalandı', '📋'), () => { }); } catch (e) { }
+      });
+    };
+    $('#dhGo').onclick = go;
+    go();
+  }
   function renderMag(id) {
     const T = MG().titles;
     if (id === 'devam') { const at = mgState().at, is = mgNovFind(at) ? { id: at } : mgFind(at) || (T[0] && mgIssues(T[0])[0]); location.replace(is ? `#/dergi/${is.id}` : '#/dergi'); return; }
@@ -5006,6 +5317,7 @@
     jobs: [['💼 Tüm ilanlar', '#/is'], ['🏢 Ofis İlanları', '#/is/ofis'], ['🏋️ Spor Salonu İlanları', '#/is/spor']],
     doodle: [['🎨 Bugünün doodle\'ı', '#/doodle'], ['🗓️ Doodle takvimi', '#/doodle']],
     mag: [['📚 Dergi bayii', '#/dergi'], ['🔖 Kaldığım yer', '#/dergi/devam'], ['🎓 Seks eğitimi', '#/dergi/egitim']],
+    deephug: [['🫂 Kalıplar', '#/deephug'], ['🧩 Cümle parçaları', '#/deephug/parcalar'], ['🧪 Atölye', '#/deephug/atolye'], ['⭐ Koleksiyonum', '#/deephug/koleksiyon']],
     secret: [['🔑 Gizli Buluşma', '#/gizli', { seF: 'gizli' }], ['🥂 Yıldönümü Sapağı', '#/gizli', { seF: 'yil' }], ['💍 Hotwife', '#/gizli', { seF: 'hw' }], ['🐍 Tüm ilanlar', '#/gizli', { seF: '' }]]
   };
   // ✏️ "Şunu mu demek istediniz": site adı / adresi / anahtarı arasında en yakın yazım (Levenshtein)
@@ -5097,6 +5409,7 @@
       { k: 'bumble', href: '#/bumble', ic: '🐝', logo: 'Carmen<i>Bumble</i>', url: 'carmenbumble.com', desc: 'Tinder\'ın ateşli kardeşi: kızlar şehvetli, profilleri açık sözlü ("şu an çıplağım", "favori pozisyonum…"). İlk mesajı hep o atar.', chips: [`🐝 ${chars().filter(x => x.src === 'bm').length} eşleşme`, '🔥 18+'] },
       { k: 'fans', href: '#/fans', ic: '🫦', logo: 'Carmen<i>Fans</i>', url: 'carmenfans.com', desc: 'Abone ol, kilitli gönderileri aç; haftanın kostümü ve özel içerikler.', chips: [`${Object.keys(fnState().subs).length} abonelik`, '📢 haftalık kostüm'] },
       { k: 'mag', href: '#/dergi', ic: '📖', logo: 'Carmen<i>Mag</i>', url: 'carmenmag.com', desc: 'Erotik dergi bayii: Velvet, Ateş, Noir, Ten ve Sır. Sayfaları gerçek dergi gibi çevir; kapak kızlarının anlatımlı fotoğraf setleri, röportajlar, seanslar, pozisyon önerileri, seks eğitimi ve site reklamları. Dergi, magazin.', chips: [`📖 ${MG().titles.length} dergi`, '🆕 her ay yeni sayı'] },
+      { k: 'deephug', href: '#/deephug', ic: '🫂', logo: 'Deep<i>Hugging</i>', url: 'deephugging.co', desc: 'Daha etkili, daha betimlemeli mesajlar: olay ve durumlara göre kalıplar. Senin ve onun mesajları; boşalma akışı, hisler, sımsıkı sarılıp boşalma, boşaldıkça sarılma. Atölyede üret, kaydet, sohbette kullan.', chips: [`🫂 ${DH().K.length} kalıp`, `⭐ ${dhSt().saved.length} kayıt`] },
       { k: 'stay', href: '#/otel', ic: '🏨', logo: 'Carmen<i>Stay</i>', url: 'carmenstay.com', desc: 'Otel odası, jakuzili süit, VIP loca… rezervasyon yap, sohbet orada başlasın.', chips: [`${SY_VENUES.length} mekan`, `🗓️ ${syRes().length} rezervasyon`] },
       { k: 'gram', href: '#/gram', ic: '📸', logo: 'Carmen<i>tagram</i>', url: 'carmentagram.com', desc: 'Instagram gibi: akış, hikayeler, profiller. Beğen, yorum yap (o da cevap verir), takip et, DM at.', chips: [`${cmAll().length} hesap`, `➕ ${Object.keys(grState().follow).length} takip`] },
       { k: 'flix', href: '#/flix', ic: '🍿', logo: 'Carmen<i>Flix</i>', url: 'carmenflix.com', desc: 'Netflix gibi: filmler yazışma olarak oynar. Lezbiyen, aldatma, grup; olay olay, güçlü anlatımla.', chips: [`${fxAll().filter(t => t.k === 'film').length} film`, '👩‍❤️‍👩 Lezbiyen'] },
@@ -5143,6 +5456,7 @@
     bumble: [['🐝', 'Eşleş', '#/bumble'], ['💬', 'Mesajlar', '#/bumble/x-mesaj']],
     events: [['📚', 'Dersler', '#/events'], ['🎬', 'Sahneler', '#/events/sahneler'], ['📖', 'Bölümler', '#/events/bolumler'], ['📜', 'Hikâye', '#/events/hikaye']],
     dergi: [['📚', 'Bayi', '#/dergi'], ['🔖', 'Kaldığım yer', '#/dergi/devam'], ['🎓', 'Eğitim', '#/dergi/egitim']],
+    deephug: [['🫂', 'Kalıplar', '#/deephug'], ['🧩', 'Parçalar', '#/deephug/parcalar'], ['🧪', 'Atölye', '#/deephug/atolye'], ['⭐', 'Koleksiyon', '#/deephug/koleksiyon'], ['📊', 'Sıralama', '#/deephug/sira']],
     kilise: [['🕯️', 'İlanlar', '#/kilise', { kcF: '' }], ['🙏', 'İtiraf', '#/kilise/x-itiraf'], ['📅', 'Ayinler', '#/kilise/x-ayin']],
     masaj: [['💆', 'Masözler', '#/masaj', { mzF: '' }], ['📅', 'Randevu', '#/masaj/x-randevu'], ['🎟️', 'Spa kartı', '#/masaj/x-kart']],
     gizli: [['🐍', 'İlanlar', '#/gizli', { seF: '' }], ['🔐', 'Kutu', '#/gizli/x-kutu'], ['🕵️', 'Şüphe', '#/gizli/x-iz'], ['💬', 'Mesajlar', '#/gizli/x-mesaj']]
@@ -14768,6 +15082,11 @@
       // {sen} ilişkiye göre hitap (adın · canım · aşkım)
       const vars = { sen: hitapOf(ch), ben: ch.name.split(' ')[0] };
       let parts = m.rule.id === '_durum' ? [] : BOT.reply(m.rule, vars, botRecent(m.rule.id));
+      // 🫂 DeepHugging: derin mesajlar açıkken olay cevabının ilk cümlesi %45 kalıptan
+      if (opts.events && opts.olay && th.dhOn && !group && parts.length && Math.random() < .45) {
+        const dE = allEvents().find(x => x.title === opts.olay), dh = dE && !isLesEv(dE) ? dhGen('her', dE, ch, { hug: th.hugMode, sen: vars.sen, pos: posNow() }) : '';
+        if (dh) parts[0] = dh;
+      }
       // 💬 yedek cevap cümleleri (teklif / istek gelirse atılır)
       const fbTxt = new Set(m.fallback ? parts : []);
       // 💡 kendi isteğine "hayır" → %60 hemen başka bir teklif (döngü)
@@ -16726,7 +17045,10 @@
       const sz2 = b => (b && o2 && b.size[traitVal(o2, b.trait)]) || 'mid';
       const grpAdd = o2 && Math.random() < .45 ? pick(GRP_ME_ADD).replace(/\{o2\}/g, o2.name.split(' ')[0])
         .replace(/\{(gogus|kalca)2(His)?\}/g, (x, p, h) => { const w = (bw[p + (h || '')] || {})[sz2(p === 'gogus' ? bl.boob : bl.butt)]; return w && w.length ? pick(w) : ''; }) : '';
-      if (meL && meL.length) list.push({ id: Store.uid(), from: 'me', text: [meFill(pick(meL)), isLesEv(e) ? '' : dkAdd, grpAdd].filter(Boolean).join(' ').replace(/\{o\}/g, ((meCh || {}).name || '').split(' ')[0]), ts, ...(meCh ? { ml: adLang(meCh) } : {}) });
+      // 🫂 DeepHugging: derin mesajlar açıkken %45 (olay mesajı yoksa her zaman) kalıptan; sarılma modu / sarılma seçildiyse sarılma temaları
+      const dhT = th.dhOn && meRun < 3 && !isLesEv(e) && (!(meL && meL.length) || Math.random() < .45) ? dhGen('me', e, meCh, { hug: th.hugMode || hugOn, pos: curPos }) : '';
+      if (dhT) list.push({ id: Store.uid(), from: 'me', text: dhT, ts, dh: 1, ...(meCh ? { ml: adLang(meCh) } : {}) });
+      else if (meL && meL.length) list.push({ id: Store.uid(), from: 'me', text: [meFill(pick(meL)), isLesEv(e) ? '' : dkAdd, grpAdd].filter(Boolean).join(' ').replace(/\{o\}/g, ((meCh || {}).name || '').split(' ')[0]), ts, ...(meCh ? { ml: adLang(meCh) } : {}) });
       markDone(e.id, live.subId);
       trPos = posNow(); trCh = c;
       // ↩️ Pull-Out sözü (kondom / hap / Nothing / hamilelik / ısrara razı olma yoksa): Zevk eşiğinde bitiş çoğu zaman dışarı (trTarget)
@@ -18609,6 +18931,7 @@
         <button data-a="autoadd">🪄 Otomatik ekler: </button>
         <button data-a="meadd">🗣️ Olay mesajlarım: ${th.meAdd ? 'açık' : 'kapalı'}</button>
         <button data-a="hugmode">🤗 Sarılma modu: ${th.hugMode ? 'açık' : 'kapalı'}</button>
+        <button data-a="dhmode">🫂 Derin mesajlar: ${th.dhOn ? 'açık' : 'kapalı'}</button>
         <button data-a="bot">🤖 Bot modu: </button>
         <button data-a="hero">🖼️ Büyük fotoğrafı </button>
         <button data-a="search">🔍 Sohbette ara</button>
@@ -18642,6 +18965,11 @@
           th.meAdd = !th.meAdd;
           save();
           notify(th.meAdd ? 'Olay mesajlarım açık: olay tetikleyince senin ağzından mesaj yazılır' : 'Olay mesajlarım kapalı', '🗣️');
+        }
+        if (a === 'dhmode') {
+          th.dhOn = !th.dhOn;
+          save();
+          notify(th.dhOn ? 'Derin mesajlar açık: olaylarda senin ve onun mesajlarının bir kısmı 🫂 DeepHugging kalıplarından' : 'Derin mesajlar kapalı', '🫂');
         }
         if (a === 'hugmode') {
           th.hugMode = !th.hugMode;
@@ -22330,7 +22658,7 @@
     farm: ['#8bc34a', '#ffeb3b', '#0d1406'], massage: ['#26a69a', '#b2dfdb', '#06140f'], secret: ['#00e676', '#1de9b6', '#04120a'], amor: ['#ff4f81', '#ffb3c6', '#1a0710'],
     clinic: ['#29b6f6', '#b3e5fc', '#05131c'], conf: ['#ab47bc', '#ce93d8', '#12071a'], cr: ['#ff6f00', '#ffca28', '#1a0d00'], ch: ['#ffd54f', '#ff8a65', '#1a1006'],
     events: ['#5c6bc0', '#ef5350', '#0b0d1c'], news: ['#212121', '#8d6e63', '#f5f1e8', '#5d4037'], doodle: ['#4285f4', '#ea4335', '#ffffff', '#5f6368'], guide: ['#00897b', '#4db6ac', '#061412'],
-    play: ['#7c4dff', '#00e5ff', '#0a0618'], mag: ['#d4af37', '#e0607e', '#140609'], booble: ['#4285f4', '#34a853', '#ffffff', '#5f6368'], halloween: ['#ff6d00', '#8e24aa', '#0d0610']
+    play: ['#7c4dff', '#00e5ff', '#0a0618'], mag: ['#d4af37', '#e0607e', '#140609'], deephug: ['#ffb020', '#ff5d8f', '#140b16'], booble: ['#4285f4', '#34a853', '#ffffff', '#5f6368'], halloween: ['#ff6d00', '#8e24aa', '#0d0610']
   };
   function splashBrand(site) {
     const sp = $('#splash'), lg = sp && sp.querySelector('.logo');
@@ -28875,7 +29203,32 @@
         <tr><td>Karakterler, sohbetler, gardırop, Güven / Aşk, CarmenShop siparişleri, oyuncak olayları</td><td>normal kayıt (💾 yedeğe girer)</td></tr>
         <tr><td>İlan kızları, yorumların, Fans abonelik ve alınanlar, Stay rezervasyon listesi, Flix izlediklerin ve listen</td><td>sadece bu tarayıcı</td></tr>
         <tr><td>Site artıları: sepet, mülakat / CV, Yıldız Taşı ve koleksiyon, fişler, tespih, besleme, masaj randevuları ve spa kartı, kod adı ve şifreli kutu, kür</td><td>sadece bu tarayıcı (<code>amor-stories:siteplus</code>)</td></tr></table>
-      <p>Ücretler gösterim içindir; cüzdan ya da bakiye yok.</p>` }
+      <p>Ücretler gösterim içindir; cüzdan ya da bakiye yok.</p>` },
+    { icon: '🫂', title: 'DeepHugging', sub: 'daha etkili, daha betimlemeli mesajlar', get body() {
+      const D = DH(), parts = Object.values(D.S).reduce((a, x) => a + (Array.isArray(x) ? x.length : Object.values(x).reduce((b, y) => b + y.length, 0)), 0);
+      return `<p><a href="#/deephug">🫂 DeepHugging</a> bir kalıp atölyesi: ${D.K.length} kalıp ve ${parts} cümle parçası. Kalıplar yuvalı cümlelerdir; her seferinde parçalar yeniden seçilir, aynı kalıptan yüzlerce farklı mesaj çıkar.</p>
+      <p><b>💬 Sohbette:</b> ⋮ → <b>🫂 Derin mesajlar</b> açıkken bir olay tetikleyince senin mesajının %45'i (olayın kendi mesajı yoksa hepsi) ve onun cevabının ilk cümlesinin %45'i buradan gelir. 🤗 Sarılma modu açıksa sarılma temaları öne çıkar.</p>
+      <table class="bk-t"><tr><th>Tema</th><th>Ne anlatır</th></tr>
+        ${Object.values(D.TH).map(t => `<tr><td>${t[0]} ${esc(t[1])}</td><td>${esc(t[2])}</td></tr>`).join('')}</table>
+      <table class="bk-t"><tr><th>Mesajı ne değiştirir?</th><th>Nasıl</th></tr>
+        <tr><td>📍 Faz</td><td>ön sevişme, seks, boşalma, sonrası; olayın kategorisinden</td></tr>
+        <tr><td>💦 Boşalma yeri</td><td>içine (atım atım akış, dolma, taşma), tene (göğüs, kalça, bacak), ağza</td></tr>
+        <tr><td>🍆 Dick Size</td><td>küçük / orta / büyük / dev: "koca aletimle her vuruşumda memelerin sallanıyor"</td></tr>
+        <tr><td>🌸🍑 Pussy / Anal Size</td><td>olay vajinal mı anal mı, kız dar mı geniş mi: "daracık kalçanda sıkıştım…"</td></tr>
+        <tr><td>🍒🍑 Göğüs / kalça</td><td>bedenine göre sıfatlar</td></tr>
+        <tr><td>🐕🛏️🍑 Pozisyon</td><td>Doggy, Misyoner, Anal Doggy (arkadan anal) için ayrı havuzlar; boşalırken o anki pozisyona bakılır</td></tr>
+        <tr><td>🍒🍑🦵 Sürtünme</td><td>meme arası (Titfuck, Titjob), arkadan kalça arası (Hotdogging, Buttjob), bacak arası arkadan ya da önden (Legjob, Thighjob); bu olaylarda içeri giriş anlatılmaz</td></tr>
+        <tr><td>💪 Penetrasyon</td><td>ittirmek, bastırmak, genişletmek, hızlanmak</td></tr>
+        <tr><td>🫂 Sımsıkı sarılma</td><td>Misyonerde üstünde, analda arkasında; 🛏️ yatakta ya da 🧱 ayakta, duvara dayayarak (ayakta / duş / masa olaylarında)</td></tr>
+        <tr><td>🗣️ Sesler</td><td>ahhh, offff, ohhh; inleme, çığlık, adını bağırma</td></tr>
+        <tr><td>🕰️ Saat</td><td>gece, sabah, gün ortası, akşam</td></tr></table>
+      <ul><li><b>🫂 Kalıplar</b>: taraf, faz ve temaya göre süz; ❤️ beğendiğin daha sık seçilir, ⏸️ kapattığın hiç seçilmez.</li>
+        <li><b>🧩 Parçalar</b>: her yuvanın bütün cümle parçaları, boyutlu olanlar alt gruplu (küçük / orta / büyük / dev, vajinal / anal · dar / orta / geniş), hangi kalıpların kullandığı; 🔍 arama.</li>
+        <li><b>🧪 Atölye</b>: taraf, faz, boşalma yeri, delik, darlık, alet ve kız seç; 5 varyant üret, ⭐ kaydet.</li>
+        <li><b>⭐ Koleksiyon</b>: kaydettiklerin sohbette %35 önce denenir; ‹adı› ve ‹hitap› o an doldurulur.</li>
+        <li><b>📊 Sıralama</b>: beğeni ve kullanım.</li></ul>
+      <p>Lezbiyen olaylarda, grup sohbetinde (onun cevabı) ve gündelik olaylarda kullanılmaz; kadın profilde sadece ön sevişme ve sonrası. Sadece Türkçe. Kayıtlar bu tarayıcıda (<code>amor-stories:deephug</code>).</p>`;
+    } }
   ] });
   /* 🎮 Oyun Kitabı: Adult Game oyunları */
   BOOKS.push({ id: 'oyun', icon: '🎮', title: 'Oyun Kitabı', sub: 'Problematic Subjects nasıl oynanır', chips: ['Adult Game', '18+'], chapters: [
@@ -32713,8 +33066,8 @@
         <li><b>🎲 Çiti aç</b>: rastgele bir kız ve hayvanıyla başlatır.</li>
         <li>İlan sayfasında 📜 Çiftlik kurallarım, 🐾 hayvanları ve 📏 sınırları yazar.</li></ul>` });
     const nb = BOOKS.find(b => b.id === 'internet');
-    nb.sub = 'Booble, Carmen.com, Gothic, Meisove, Fans, Gram, Flix, Stay, Live, Party, Shop, Jobs, School, City, Impact, Klinik, İtiraf, Creative, Choise, Play';
-    nb.chips = ['20 site', 'sohbete bağlanır'];
+    nb.sub = 'Booble, Carmen.com, Gothic, Meisove, Fans, Gram, Flix, Stay, Live, Party, Shop, Jobs, School, City, Impact, Klinik, İtiraf, Creative, Choise, Play, DeepHugging';
+    nb.chips = ['21 site', 'sohbete bağlanır'];
     // 📱 Fantezi: kesintiler en sona (fantezi bölüm numaraları değişmez)
     book('fantezi').push({ icon: '📱', title: 'Kesintiler', sub: 'telefon çaldı… fantezide özel durumlar', body: `
       <p>Sohbette ⋯ Diğer → <b>📱 Kesintiler</b> açıksa (varsayılan açık) pozisyon ya da fantezi olayından sonra bazen bir kesinti olur: 📱 telefon çalar, 🚪 kapı çalınır, 🏠 komşu duvara vurur, 🔔 mesaj gelir. Kapatırsan hiç gelmez.</p>
