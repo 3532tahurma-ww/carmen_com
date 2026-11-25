@@ -718,6 +718,7 @@ Stories.City = (() => {
       <button type="button" class="ct-tick" id="ctTick"><span></span></button>
       <div class="ct-side"><button type="button" class="ct-btn ct-phone" data-ct="phone" title="Şehir sohbetleri">📱<i class="ct-dot" hidden></i></button><button type="button" class="ct-btn" data-ct="car" title="Araban">🚗</button><button type="button" class="ct-btn" data-ct="me" title="Bana odaklan">🎯</button><button type="button" class="ct-btn" data-ct="skip" title="Sabaha geç">🌙</button><button type="button" class="ct-btn" data-ct="in">＋</button><button type="button" class="ct-btn" data-ct="out">－</button></div>
       <button type="button" class="ct-btn ct-exit" id="ctExit" hidden>🚪 Dışarı çık</button>
+      <button type="button" id="ctQuest" style="display:none;position:absolute;top:62px;left:50%;transform:translateX(-50%);z-index:5;max-width:calc(100% - 32px);align-items:center;gap:6px;padding:7px 14px;border:0;border-radius:999px;background:rgba(20,16,36,.86);color:#ffd400;font:800 12.5px Nunito,sans-serif;box-shadow:0 2px 10px rgba(0,0,0,.35);cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></button>
       <div class="ct-card" id="ctCard" hidden></div>`;
     const cv = root.querySelector('.ct-cv'), ctx = cv.getContext('2d'), card = root.querySelector('#ctCard'), clk = root.querySelector('#ctClk'), phEl = root.querySelector('#ctPh'), spBtn = root.querySelector('#ctSp');
     const sv = load() || {}, met = sv.met || {};
@@ -1536,10 +1537,74 @@ Stories.City = (() => {
     const inType = k => IN_OF[k] || (wd.FM[k] ? (wd.FM[k].tall ? 'ofis' : { ev: 'ev', dt: 'dukkan', ex: 'bar', cs: 'kafe' }[wd.FM[k].z]) : 'ev');
     const placeOf = k => PL[k] || wd.FM[k];
     const doorOf = k => { const p = placeOf(k); if (PL[k]) return towardB(PL[k].node, PL[k].x, PL[k].y); return [p.x + Math.sin(p.a) * (p.d / 2 + 14), p.y - Math.cos(p.a) * (p.d / 2 + 14)]; };
+    /* 📜 Hikâye görevleri (GTA gibi): api.quest(h) → { list: [{ k, ic, t, tr, ok, hn }], hud: { k, t, ok, hn } }.
+     * İşaretli binaya girince (açık alanda yaklaşınca) api.questIn(k, h) → true dönerse sahne sohbette başlar. Şeride dokun → rota (GPS), varınca içeri girer */
+    let Q = { list: [], hud: null }, qAt = -1e9;
+    const qCool = {}, qBtn = root.querySelector('#ctQuest');
+    const qPt = k => { const p = PL[k]; return p ? (p.area ? [p.x, p.y] : doorOf(k)) : null; };
+    function qTry(k) {
+      if (!api.questIn || !Q.list.some(m => m.k === k) || (qCool[k] || 0) > tNow) return false;
+      qCool[k] = tNow + 8000;
+      return api.questIn(k, hourOf());
+    }
+    function qStep() {
+      if (!api.quest || tNow - qAt < 600) return;
+      qAt = tNow;
+      Q = api.quest(hourOf()) || { list: [], hud: null };
+      const H = Q.hud;
+      qBtn.style.display = H && !inside ? 'flex' : 'none';
+      if (H) {
+        const pt = H.k && qPt(H.k), d = pt ? Math.hypot(pt[0] - me.x, pt[1] - me.y) : 0;
+        qBtn.textContent = `📜 ${H.t}${pt ? ` · ${d < 1000 ? Math.round(d) + ' m' : (d / 1000).toFixed(1) + ' km'}` : ''}${H.k && !H.ok ? ' · ⏰' : ''}`;
+      }
+      if (inside || me.taxi) return;
+      // binada sahne içeri girince başlar (enterB); açık alanda (park, sahil…) işarete yaklaşınca
+      for (const m of Q.list) { const pt = qPt(m.k); if (pt && PL[m.k].area && Math.hypot(pt[0] - me.x, pt[1] - me.y) < 90 && qTry(m.k)) return; }
+    }
+    qBtn.onclick = () => {
+      const H = Q.hud;
+      if (!H) return;
+      if (!H.k) { if (api.questGo) api.questGo(); return; }
+      const p = PL[H.k];
+      if (!p) return;
+      if (!H.ok && H.hn) api.notify(`⏰ ${H.hn}`, '📜');
+      if (inside) exitB();
+      closeCard(); me.chase = null; follow0 = true;
+      if (p.area) { sel = H.k; walkTo(p.x, p.y, H.k); }
+      else { const [dx, dy] = doorOf(H.k); walkTo(dx, dy, H.k); me.enter = H.k; }
+      api.notify(`🗺️ ${tr('Rota')}: ${p.ic} ${tr(p.n)}`, '📜');
+    };
+    // ◆ işaretler (dünya koordinatı) + takip edilen hedef ekran dışındaysa kenarda ok
+    function drawQuest(t) {
+      if (!Q.list.length) return;
+      const k = tagK(), pulse = 1 + Math.sin(t * 4) * .12;
+      Q.list.forEach(m => {
+        const b = PL[m.k];
+        if (!b) return;
+        const x = b.x, y = b.area ? b.y : b.y - (b.h || b.d || 40) / 2 - 22 * k, r = (m.tr ? 15 : 11) * k * pulse;
+        if (m.tr) { const g = ctx.createLinearGradient(x, y - 160 * k, x, y); g.addColorStop(0, 'rgba(255,212,0,0)'); g.addColorStop(1, 'rgba(255,212,0,.55)'); ctx.fillStyle = g; ctx.fillRect(x - 5 * k, y - 160 * k, 10 * k, 160 * k); }
+        ctx.fillStyle = m.ok ? '#ffd400' : '#9e9e9e'; ctx.strokeStyle = '#1a1024'; ctx.lineWidth = 3 * k;
+        ctx.beginPath(); ctx.moveTo(x, y - r * 1.3); ctx.lineTo(x + r, y); ctx.lineTo(x, y + r * 1.3); ctx.lineTo(x - r, y); ctx.closePath(); ctx.fill(); ctx.stroke();
+        ctx.font = `${(m.tr ? 13 : 10) * k}px ${EMO}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('📜', x, y + k);
+        if (m.tr) nameTag(`${m.ic} ${m.t}`, x, y + r * 1.3 + 14 * k, 'rgba(20,16,36,.86)');
+      });
+      const H = Q.hud, pt = H && H.k && qPt(H.k);
+      if (!pt) return;
+      const sx = (pt[0] - cam.x) * cam.z + cw / 2, sy = (pt[1] - cam.y) * cam.z + ch / 2, pad = 28;
+      if (sx > pad && sx < cw - pad && sy > pad + 60 && sy < ch - pad) return;
+      const a = Math.atan2(sy - ch / 2, sx - cw / 2), ex = Math.max(pad, Math.min(cw - pad, sx)), ey = Math.max(pad + 90, Math.min(ch - pad - 40, sy));
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.save(); ctx.translate(ex, ey); ctx.rotate(a);
+      ctx.fillStyle = '#ffd400'; ctx.strokeStyle = '#1a1024'; ctx.lineWidth = 2.5;
+      ctx.beginPath(); ctx.moveTo(14, 0); ctx.lineTo(-8, -10); ctx.lineTo(-3, 0); ctx.lineTo(-8, 10); ctx.closePath(); ctx.fill(); ctx.stroke();
+      ctx.restore();
+      setCam();
+    }
     function enterB(k) {
       if (me.drive) exitCar(true);
       const p = placeOf(k);
       if (!p || p.area) return;
+      if (qTry(k)) return;
       closeCard();
       inside = { k, L: IN[inType(k)] };
       me.path = null; me.dest = null; me.chase = null;
@@ -1695,6 +1760,7 @@ Stories.City = (() => {
       escortStep(dt);
       if (!inside) separate(dt);
       lafStep();
+      qStep();
       // 👆 basılı tutunca parmağın yönüne yürü (binaların / denizin içine girmez, kenarda kayar)
       if (tap && !me.hw && ptrs.size === 1 && !inside && !talk && !me.taxi && performance.now() - tap.t > 280) {
         const [p] = ptrs.values();
@@ -1807,6 +1873,7 @@ Stories.City = (() => {
       drawPeople(t);
       drawWeather(t);
       drawLabels();
+      drawQuest(t);
       drawBubbles();
       hud();
       requestAnimationFrame(frame);

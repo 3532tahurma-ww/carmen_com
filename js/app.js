@@ -485,6 +485,7 @@
       case 'deneyler': return renderLabHub();
       case 'ara': return renderSearch();
       case 'rehber': return renderRehber();
+      case 'hikaye': return renderStory(r.id);
       case 'ag': return renderNet();
       case 'sahneyap': return renderSceneMaker();
       case 'botsaglik': return renderBotHealth();
@@ -790,6 +791,7 @@
   function c3Sugs() {
     const W = worldNow(), cs = chars().filter(c => !c.husb), h = Math.floor(W.min / 60) % 24, sug = [];
     const evs = Stories.City && Stories.City.today ? Stories.City.today() : [], on = e => (h >= e.h[0] && h < e.h[1]) || (h + 24 >= e.h[0] && h + 24 < e.h[1]), hh2 = x => String(x % 24).padStart(2, '0') + ':00';
+    try { const hq = hkTracked(), hs = hq && hkStepOf(hq); if (hq) sug.push(['📜', `Hikâye: ${hq.ic} ${hq.t}`, hs && hs.go ? `🗺️ ${hs.t}` : '💬 Sahneye dön', '#/hikaye/go']); } catch (e) {}
     if (!cs.length) sug.push(['💘', 'Biriyle eşleş', 'CarmenTinder\'da sağa kaydır, ilk mesajı o atar', '#/tinder']);
     cs.filter(c => !bdayIn(c)).forEach(c => { const t = currentThread(c); sug.push(['🎂', `Bugün ${c.name.split(' ')[0]}'in doğum günü`, 'Ona bir mesaj at', t ? `#/chat/${t.id}` : `#/p/${c.id}`]); });
     const epc = cs.find(c => c.ep && c.ep.id), E = epc && (Stories.EPISODES || []).find(e => e.id === epc.ep.id);
@@ -1267,6 +1269,25 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['📚', 'Hikâye Bölüm II: Vize Haftası', 'Dört yeni kadın Taréque\'nin hayatına giriyor: fotoğrafçı Clara, Lyon\'dan Erasmus öğrencisi Viola, çatı katını yenileyen iç mimar Liberta ve Salma\'nın sırdaşı Alisa. 9 görev, 14 sahne; vizeler, gece mesaileri ve ilk geceler.', '#/me/gorev', [
+      ['🏫 Okul kolu', 'Bonjour, Carmen: Viola\'yla "bisou" dersi ve mum ışığında telaffuz. Çatı Katı: gece yarısı matkap ve yeni sıvanmış bir duvar. Sabaha Kadar: Elisa kütüphanede kucağında. Leire Kayıp: dünkü elbise ve Viola\'nın bedeli.'],
+      ['💼 İş kolu', 'Fazla Mesai: 23. katta boş ofis ve Salma\'nın bozulan kuralı. Kahvaltıda Misafir: anahtarla gelen Alisa, Vinoteca\'nın mahzeninde gözü bağlı şarap tadımı.'],
+      ['🏠 Ev ve sanat kolu', 'Gece Vardiyası: şafakta hastane, kapıda Andrés, küvette Marte. Karanlık Oda: sahilde fotoğraf, kırmızı ışıkta Clara\'nın itirafı ve aynanın önünde May.'],
+      ['🥂 Final', 'Vize Gecesi: herkes Vinoteca\'da. Gecenin sonunda kiminle çıkacağın arzuna göre açılır.'],
+      ['📚 Kitap ve 🎓 CarmenEvents', 'Hikâye Kitabı\'nda yeni bölüm; CarmenEvents → 📜 Hikâye\'de bütün sahne metinleri.']], 'Hikâye', [
+      'Ekim geldi ve Carmen kalabalıklaştı. Seçmeli Fransızca dersinde bir kız listedeki adının üstüne kalp çiziyor. Gece yarısı tavandan matkap sesi geliyor ve çatı katında tulumlu bir kadın "duvarlar gece daha dürüst" diyor.',
+      'Vize haftası herkesi sınıyor. Elisa kütüphanede ilk kez bir şeyden emin olmamayı seviyor, Leire dünkü elbisesiyle kanepede uyanıyor, Salma 23. katta gece yarısı "bu olmadı" diyor. Ertesi sabah mutfağın kapısı anahtarla açılıyor.',
+      'Bir karanlık odada kırmızı ışık altında fotoğraflar beliriyor ve her karede biri başka birine bakıyor. Sonra herkes aynı masada, Vinoteca\'da. Gece bitmeden telefonun üç kez titreyecek.']],
+    ['📜', 'Hikâye Modu geldi: Carmen\'e Hoş Geldin', 'Taréque, kadınların çoğunlukta olduğu Carmen\'e üniversite okumaya geldi. Bir komşu, bir İK uzmanı, iki sınıf arkadaşı ve bir ressam. Prolog ve Bölüm I yayında: 8 görev, 10 sahne; görevler şehirde başlar, sahneler sohbette akar, her seçimde 💗 yakınlık ve 🔥 arzu.', '#/me/gorev', [
+      ['🧳 Prolog: Bavul ve Anahtar', 'Gar, dar bir merdiven ve karşı kapıdaki gece vardiyalı hemşire Marte. Ertesi sabah Café Lumière\'de dökülen bir kahve ve İK uzmanı Salma. Akşam oryantasyon partisinde Elisa ve Leire.'],
+      ['🌆 Bölüm I: Yeni Şehir, Yeni Ben', 'Elisa\'nın kırık maketi, Salma\'nın masa altındaki topuğu, gece yarısı kaçan kedi Pimiento ve Marte\'yle alçak balkon duvarı, ressam May\'in atölyesi ve Bar Medusa\'da kilitli bir kapı.'],
+      ['💗🔥 Yakınlık ve arzu', 'Her kızın ayrı yakınlık (0–10) ve arzu (Yabancı → Bağ) değeri var. Geri çekilmek kalbi, ileri gitmek bedeni ısıtır. İlk öpücükler bir şeyle kesilir; Bölüm I\'de arzu en fazla 💋 Öpücük\'e çıkar.'],
+      ['🏙️ GTA gibi', 'Görev günlüğü Ben → 🗺️ Görevler\'de. Bir görevi takip et; şehirde sarı 📜 işaret ve hedef şeridi çıkar, dokununca rota çizilir. Varınca sahne o kızla sohbette başlar; seçimler ve 🎬 olaylar sohbet çubuğunda. Bazı görevlerin saati var.'],
+      ['🎓 CarmenEvents', 'Yeni 📜 Hikâye bölümü: görevler, şehir adımları, sahneler, seçimler ve olay teklifleri.'],
+      ['📚 Kitap', 'Yeni 📜 Hikâye Kitabı: nasıl oynanır, karakterler, Prolog ve Bölüm I.']], 'Yeni özellik', [
+      'Tren Carmen Garı\'na girdiğinde peron kadınlarla dolu: takım elbiseliler, spor taytlılar, kahkahalarla geçen öğrenciler. Taréque\'nin elinde bir bavul, cebinde dördüncü katta bir dairenin anahtarı var. Merdiven o kadar dar ki karşı kapıdaki Marte\'yle yan yana sığamıyorlar.',
+      'Sabah kahvesi gömleğe dökülür, kartvizit göğüs cebine kendi eliyle konur. Akşam bir kız onu dans pistine çeker, öbürü kenardan kitap okur gibi yapar. Bir hafta içinde bir iş, bir proje ortağı, bir model teklifi ve kesilen iki öpücük.',
+      'Her seçim bir şeyi değiştirir: kim yaklaşır, kim tutuşur, kim kapıyı çalar. Bölüm I\'in sonunda telefonunda üç mesaj, üç farklı isim var. Bölüm II: Vize Haftası yolda.']],
     ['🫙', 'Dolu dolu: 48 yeni olay', 'Artık her yük içinde kalıyor ve birikiyor. Önce bir, sonra iki, sonra ağzına kadar; önüne de arkasına da. Dolu haliyle sevişmeye devam edersiniz, sonra ya tıpayla gün boyu taşır ya da senin önünde boşaltır. Yeni 🫙 Filled Pussy, 🍩 Filled Ass ve 🫗 Filled After kategorileri, 17 bitiş.', '#/kitap/olay/80', [
       ['🍑 Önü dolarken', 'First Load, Top It Up, Cervix Flood, Hips Up Load, Brim Full, Third Time Inside, Fill And Hold, Deep Pump Load.'],
       ['🫙 Dolu önü', 'Yeni 🫙 Filled Pussy kategorisi: Sloppy Seconds Ride, Squish Squish, Creamy Missionary, Push It Back In, Full Belly Spoon, Belly Press.'],
@@ -5120,7 +5141,7 @@
     is: [['💼', 'İlanlar', '#/is'], ['🏢', 'Ofis', '#/is/ofis'], ['🎤', 'Mülakat', '#/is/x-mulakat'], ['📄', 'CV', '#/is/x-cv']],
     gram: [['🏠', 'Akış', '#/gram'], ['🔎', 'Keşfet', '#/gram/kesfet'], ['💬', 'Mesajlar', '#/gram/x-mesaj']],
     bumble: [['🐝', 'Eşleş', '#/bumble'], ['💬', 'Mesajlar', '#/bumble/x-mesaj']],
-    events: [['📚', 'Dersler', '#/events'], ['🎬', 'Sahneler', '#/events/sahneler'], ['📖', 'Bölümler', '#/events/bolumler']],
+    events: [['📚', 'Dersler', '#/events'], ['🎬', 'Sahneler', '#/events/sahneler'], ['📖', 'Bölümler', '#/events/bolumler'], ['📜', 'Hikâye', '#/events/hikaye']],
     dergi: [['📚', 'Bayi', '#/dergi'], ['🔖', 'Kaldığım yer', '#/dergi/devam'], ['🎓', 'Eğitim', '#/dergi/egitim']],
     kilise: [['🕯️', 'İlanlar', '#/kilise', { kcF: '' }], ['🙏', 'İtiraf', '#/kilise/x-itiraf'], ['📅', 'Ayinler', '#/kilise/x-ayin']],
     masaj: [['💆', 'Masözler', '#/masaj', { mzF: '' }], ['📅', 'Randevu', '#/masaj/x-randevu'], ['🎟️', 'Spa kartı', '#/masaj/x-kart']],
@@ -7865,7 +7886,8 @@
     save();
     sfx('match');
   }
-  const SITE_CHAT = { kl: { bar: klBar, say: klSay, act: klAct }, cm: MT_CHAT, gt: MT_CHAT, pt: { bar: ptBar, say: () => null, act: ptAct }, am: { bar: c => amBar(c), say: (c, t, x, api) => amSay(c, t, x, api), act: () => amAct() } };
+  const SITE_CHAT = { kl: { bar: klBar, say: klSay, act: klAct }, cm: MT_CHAT, gt: MT_CHAT, pt: { bar: ptBar, say: () => null, act: ptAct }, am: { bar: c => amBar(c), say: (c, t, x, api) => amSay(c, t, x, api), act: () => amAct() },
+    hk: { bar: (c, t) => hkBar(t), say: () => null, act: (c, t, a, v, api) => hkAct(t, a, v, api), open: (c, t, api) => hkChatOpen(t, api) } };
   function renderClinic(id, extra) {
     if (id === 'dr') { const dc = extra && klFind(extra); if (dc) return klStart(dc); }
     const c = id && byId(id);
@@ -9756,7 +9778,7 @@
     setupLive();
     const cs = chars(), H = ccHomes(cs), doing = k => { const d = (CC_B.find(b => b.k === k) || {}).d || ['geziniyor 🚶‍♀️']; return d[Math.floor(Math.random() * d.length)]; };
     Stories.City.mount($('#city'), { chars: () => cs, homes: () => H, plan: h => ccPlan(cs, H, h), strangers: () => cmAll().filter(x => !byId(x.id)), doing, meet: ccMeet, chats: ccChats, meetGroup: ccMeetGroup, skin: ccSkin, wear: ccWear, size: ccSize, pers: ccPers, rel: ccRel, ads: ccAds,
-      wx: () => c3Wx(), zone: c3Zone, shift: c3Shift, skip: c3CitySkip,
+      wx: () => c3Wx(), zone: c3Zone, shift: c3Shift, skip: c3CitySkip, quest: hkCity, questIn: hkCityIn, questGo: hkCityGo,
       textAt: (c, min) => { const t = currentThread(c) || newThread(c); ccClock(t, min); save(); location.hash = `#/chat/${t.id}`; },
       avatar, esc, byId, openChat, ccNurse, notify, user: () => S().user, party: renderParty });
   }
@@ -13671,6 +13693,8 @@
     // ⚙️ 3.0 sohbete özel ayar (th.opt): yoksa genel ayar (Ben → ⚙️ Ayarlar) geçerli
     const optOn = (k, g) => th.opt && th.opt[k] != null ? !!th.opt[k] : g();
     const optSet = (k, v) => { th.opt = Object.assign({}, th.opt, { [k]: v ? 1 : 0 }); save(); };
+    // 📜 hikâye sahnesi sürerken: ⚡ kısayollar, 💡 Lia, 🔮 tahmin, 🎬 sahne / 📖 bölüm açma ve teklifleri kapalı
+    const hkOn = () => !!(th.site && th.site.k === 'hk' && !th.site.done);
     if (th.amor && !th.group && c) amChatOpen(c, th);
     save();
     const group = !!th.group;
@@ -13767,7 +13791,7 @@
         ${group && editOn() ? '<div class="spk-row" id="spkRow"></div>' : ''}
         ${group ? '<div class="spk-row" id="tgtRow" aria-label="Olay kime"></div>' : ''}
         <div class="side-hint" id="sideHint"${editOn() ? '' : ' hidden'}></div>
-        ${!group && th.site && !th.site.done && SITE_CHAT[th.site.k] ? `<style>.site-bar{padding:6px 10px 2px;display:grid;gap:6px}.site-steps{all:unset;cursor:pointer;display:flex;align-items:center;gap:4px;font-size:12.5px;padding:7px 12px;border-radius:12px;background:color-mix(in srgb,var(--pink) 12%,transparent)}
+        ${(!group || (th.site && th.site.k === 'hk')) && th.site && !th.site.done && SITE_CHAT[th.site.k] ? `<style>.site-bar{padding:6px 10px 2px;display:grid;gap:6px}.site-steps{all:unset;cursor:pointer;display:flex;align-items:center;gap:4px;font-size:12.5px;padding:7px 12px;border-radius:12px;background:color-mix(in srgb,var(--pink) 12%,transparent)}
           .site-steps i{margin-left:auto;font-style:normal;font-size:16px}.site-qa{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}.site-qa button{flex:none;font:inherit;font-size:12.5px;padding:5px 11px;border-radius:999px;border:1px solid color-mix(in srgb,var(--pink) 40%,transparent);background:transparent;color:inherit;cursor:pointer}
           .site-qa button.hot{background:color-mix(in srgb,var(--pink) 20%,transparent);font-weight:700}.site-qa small{opacity:.7;font-weight:400}.site-sum{padding:0 4px;font-size:12px;opacity:.8}</style>
           <div class="site-bar" id="siteBar"></div>` : ''}
@@ -14080,7 +14104,9 @@
         playFx(el, m && fxOf(m));
         playEmojiFx(el);
       }
-      if (botTurn) botReply(list.find(x => x.id === newId));
+      // 📜 hikâye sahnesi: bot kuralları, otomatik sahne / mekân / saat yok; cevabı hikâye verir
+      if (hkOn()) { if (newId && !target && cs.side === 'me') hkSay(th, siteApi); }
+      else if (botTurn) botReply(list.find(x => x.id === newId));
       else if (newId && !target) autoScene();
     }
 
@@ -15568,7 +15594,7 @@
     function drawLia() {
       const el = $('#liaBar');
       if (!el) return;
-      el.hidden = !liaOn() || cs.playing || !allEvents().length;
+      el.hidden = hkOn() || !liaOn() || cs.playing || !allEvents().length;
       if (el.hidden) return;
       const t = liaTips();
       el.innerHTML = `<span class="lia-ava">${liaAva()}</span>
@@ -16185,7 +16211,7 @@
       // 📋 mini plan: sahne başlamadan mekân değiştiyse plan düşer
       if (th.plan && (!actDef(th.plan.act) || (!ad && actPl() !== th.plan.pl))) th.plan = null;
       const pd = th.plan && actDef(th.plan.act), plan = pd ? planBar(pd, th.plan) : '';
-      el.hidden = !quickOn() || cs.playing || (!evs.length && !pls.length && !near.length && !act && !plan && !acts.length) || !!(tb && !tb.hidden);
+      el.hidden = hkOn() || !quickOn() || cs.playing || (!evs.length && !pls.length && !near.length && !act && !plan && !acts.length) || !!(tb && !tb.hidden);
       if (el.hidden) return;
       el.classList.toggle('has-act', !!(act || plan));
       const evChip = e => { const w = [actOpen(e) && '🎬 Sahne açar: ' + actOpen(e).name, pins.includes(e) ? '📌 Sabit' : quickWhy[e.id]].filter(Boolean).join(' · '); return `<button type="button" class="mo-chip${evCls(e)}"${evStyle(e)} data-qev="${esc(e.id)}"${w ? ` title="${esc(w)}"` : ''}>${pins.includes(e) ? '📌' : ''}${actOpen(e) ? '🎬' : ''}${evEmo(e)}${esc(e.title)}</button>`; };
@@ -16269,7 +16295,7 @@
      * sohbette hiç gidilmemiş mekân %8; en az 6 mesaj arayla). %20 mini plan (mekân + oraya uyan sahne), %40 iki seçenek ("Banyoda mı, yatak odasında mı?"),
      * yoksa tek teklif; 👑 Dominant %50 / Switch %15 (+ kişilik do) tek teklifi sormadan yapar. th.botAsk.idea = 1 → "hayır" deyince hemen başka fikir */
     function ideaOffer(ch, opts, force) {
-      if (!ch || ch === GHOST || group || cs.playing) return null;
+      if (!ch || ch === GHOST || group || cs.playing || hkOn()) return null;
       const n = list.length, sx = sexPhase(), cool = n - (th.ideaAt == null ? -99 : th.ideaAt) >= 6;
       let why = th.ideaWhy || '';
       th.ideaWhy = null;
@@ -16412,6 +16438,7 @@
       return [pickOf(x[k] || x.ask)];
     }
     function actStep(e, depth, ids, evc) {
+      if (hkOn()) return;
       const say = (t, st) => list.push({ id: Store.uid(), from: 'sys', text: t, ...(st ? { st: { k: 'scene' } } : {}), ts: nowTs() + 1 });
       // 💬 onun sahne cümlesi → bir sonraki cevabının başına (th.actSay, botReply); adımlarda %50
       // 📰 sahne durum notu (scNotePool): adımlarda az %20 / çok %50, diğer anlarda hep; grupta yok
@@ -17262,7 +17289,31 @@
     // (hers içinde { sys } = not satırı, beklemeden), hepsi bitince then()
     const siteApi = {
       say: (me, hers, then) => { if (me) { cs.noBot = true; send(me); cs.noBot = false; } else save(); siteLines(hers || [], then); drawSite(); },
-      redraw: () => drawSite(), render: () => render(), draw: () => { draw(); drawSite(); }, events: evs => askSubs(evs, writeEvents) };
+      redraw: () => drawSite(), render: () => render(), draw: () => { draw(); drawSite(); }, events: evs => askSubs(evs, writeEvents),
+      // 📜 hikâye akışı: peek() sıradaki mesaj (yoksa null), take(m) onu kuyruktan düşer; onunkiler "yazıyor…" ile, notlar okuma süresiyle; sayfadan çıkınca durur, kalan mesaj kuyrukta bekler
+      flow: (peek, take, done) => {
+        if (cs.busy) return;
+        cs.busy = true;
+        const go = () => {
+          if (!box.isConnected) { cs.busy = false; return; }
+          const m = peek();
+          if (!m) { cs.busy = false; drawSite(); if (done) done(); drawQuick(); drawLia(); return; }
+          const put = () => {
+            const ty = $('#botTyping'); if (ty) ty.remove();
+            if (!box.isConnected) { cs.busy = false; return; }
+            take(m);
+            list.push({ id: Store.uid(), ts: Math.max(Date.now(), ((list[list.length - 1] || {}).ts || 0) + 1), ...m });
+            save(); draw(); refreshList(); go();
+          };
+          if (m.from === 'her') {
+            const sp = (m.who && byId(m.who)) || c || GHOST;
+            box.insertAdjacentHTML('beforeend', `<div class="msg her" id="botTyping">${avatar(sp, 36)}<div class="bubble"><span class="typing-dots"><i></i><i></i><i></i></span></div></div>`);
+            box.scrollTop = box.scrollHeight;
+            botTimer = setTimeout(put, 700 + Math.min(1500, String(m.text).length * 14));
+          } else botTimer = setTimeout(put, m.from === 'me' ? 300 : 500 + Math.min(2200, String(m.text).length * 9));
+        };
+        drawSite(); go();
+      } };
     function siteLines(hers, then) {
       if (!hers.length) { if (then) setTimeout(then, 600); return; }
       const [h, ...rest] = hers;
@@ -17276,6 +17327,7 @@
       bar.hidden = !!th.site.done || !bar.innerHTML;
     }
     drawSite();
+    if (th.site && !th.site.done && SITE_CHAT[th.site.k] && SITE_CHAT[th.site.k].open) setTimeout(() => SITE_CHAT[th.site.k].open(c, th, siteApi), 400);
     if ($('#siteBar')) $('#siteBar').onclick = e => { const b = e.target.closest('[data-sact]'); if (b && !cs.busy) SITE_CHAT[th.site.k].act(c, th, b.dataset.sact, b.dataset.v, siteApi); };
     if ($('#jobBar')) $('#jobBar').onclick = () => {
       const p = gigPay(th, c);
@@ -17360,6 +17412,7 @@
     };
     const writeEvents = picked => {
       if (cs.busy) { notify('Biraz bekle, karşı taraf yazıyor… ⏳', '⏳'); return; }
+      if (hkOn()) { notify('📜 Hikâye sahnesi sürüyor: olaylar sohbet çubuğundan gelir', '📜'); return; }
       // 📍 mekan kısıtı: bu mekanda olamayacak pozisyonlar yazılmaz
       const pk = placeMove(picked) ? '' : placeKey(), no = picked.filter(x => placeBlock(pk, x.e));
       if (no.length) {
@@ -17691,7 +17744,7 @@
       if (!el) return;
       const pos = input.selectionStart == null ? input.value.length : input.selectionStart, before = input.value.slice(0, pos);
       tItems = []; tEvs = [];
-      if ((tahminOn() || quickOn()) && !tHide && !cs.playing && !cs.busy && !plPop && document.activeElement === input && !/(?:^|\s)#[^#\n]*$/.test(before)) {
+      if ((tahminOn() || quickOn()) && !hkOn() && !tHide && !cs.playing && !cs.busy && !plPop && document.activeElement === input && !/(?:^|\s)#[^#\n]*$/.test(before)) {
         const empty = !input.value.trim();
         if (tahminOn()) {
           const n = msgsOf(th).length;
@@ -32745,6 +32798,45 @@
   ] });
   // 🚀 Carmen 3.0 Kitabı: güncellemenin tanıtımı; tablolar uygulamanın güncel verisinden (js/data/c3.js, şehir, karakterlerin) okunur
   const c3Tbl = (head, rows) => `<table class="bk-t"><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr>${rows.map(r => `<tr>${r.map(x => `<td>${x}</td>`).join('')}</tr>`).join('')}</table>`;
+  /* 📜 Hikâye Kitabı: Hikâye Modu (js/data/story.js); tablolar veriden okunur */
+  const hkBkQuests = ch => { const D = Stories.STORY || { QUESTS: [], SCENES: {}, CHARS: {} };
+    return `<table class="bk-t"><tr><th>Görev</th><th>Kiminle</th><th>Adımlar</th></tr>${D.QUESTS.filter(q => q.ch === ch).map(q => `<tr><td>${q.ic} <b>${esc(q.t)}</b><br><small>${esc(q.d)}</small></td><td>${esc((D.CHARS[q.who] || {}).n || '')}</td><td>${q.steps.map(s => s.go ? `🗺️ ${esc(s.t)}${s.hn ? ` <small>⏰ ${esc(s.hn)}</small>` : ''}` : `💬 ${(D.SCENES[s.sc] || {}).ic || ''} ${esc((D.SCENES[s.sc] || {}).t || s.sc)}`).join('<br>')}</td></tr>`).join('')}</table>`; };
+  BOOKS.push({ id: 'hikaye', icon: '📜', title: 'Hikâye Kitabı', sub: 'Hikâye Modu: Taréque\'nin Carmen\'deki ilk dönemi', chips: ['📜 yeni', '💗 yakınlık', '🔥 arzu', 'Prolog + Bölüm I'], chapters: [
+    { icon: '📖', title: 'Hikâye Modu nasıl oynanır', sub: 'görevler, şehir, sohbet, seçimler', get body() {
+      return `<p>📜 <b>Hikâye Modu</b> GTA gibi oynanır: görevler 🏙️ şehirde başlar, sahneler kızlarla 💬 sohbette akar. Görev günlüğü <a href="#/me/gorev">Ben → 🗺️ Görevler</a>'in en üstündedir.</p>
+        <ul><li><b>⭐ Takip et</b>: Görevler'de bir görev seç. Şehirde üstte sarı hedef şeridi çıkar; dokununca hedefe rota çizilir ve yürürsün (arabadaysan sürersin).</li>
+          <li><b>📜 İşaret</b>: hedef binanın üstünde sarı bir elmas; takip ettiğinin üstünde ışık sütunu, ekran dışındaysa kenarda ok. Oraya varınca ya da binaya girince sahne başlar.</li>
+          <li><b>⏰ Saat</b>: bazı görevler belli saatte başlar (Marte gece döner, Bar Medusa gece açılır). Erken gelirsen işaret gri olur; şehirde saati ilerlet.</li>
+          <li><b>💬 Sahne</b>: o kızın 📜 Hikâye sohbetinde (birden çok kız varsa hikâye grubunda) mesaj mesaj akar. ❔ Seçimler sohbet çubuğundadır; seçtiğin cümle senin mesajın olur.</li>
+          <li><b>🎬 Olaylar</b>: sahne bazen mevcut bir olayı teklif eder (Stair Tease, Kissing, Dance Floor Grind…). Seçersen sohbete olay kartı düşer ve sahne o olayı kendine özel anlatır; bot cevabı, mekân değişimi ya da başka sahne gelmez. İstemezsen <b>▸ Devam</b>.</li>
+          <li>Sahne arasında sohbetten çıkabilirsin; döndüğünde kaldığı yerden sürer. Sahnede kendin yazarsan kız kendi ağzıyla kısa bir cevap verir ve sahne sürer. Hikâye kendi içindedir: sahne sürerken ⚡ kısayollar, 💡 Lia, sahne / bölüm teklifleri ve elle olay yazma kapalıdır.</li>
+          <li><b>🎁 Ödül</b>: görev bitince para hesabına eklenir. Hikâye kızları gerçek karakterdir: Rehber'de, şehirde ve profillerinde görünürler.</li>
+          <li>Hikâye sahneleri ⚡ kısayollara ve 🎬 Sahneler'e karışmaz; dersleri <a href="#/events/hikaye">CarmenEvents → 📜 Hikâye</a>'dedir.</li></ul>`;
+    } },
+    { icon: '💗', title: 'Yakınlık ve arzu', sub: 'kalp ve beden, iki ayrı değer', get body() {
+      const D = Stories.STORY || { HEAT: [], CH: [] };
+      return `<p>Her kızın iki değeri vardır. <b>💗 Yakınlık</b> (0–10) kalbi, <b>🔥 Arzu</b> bedeni ölçer. Geri çekilmek, dinlemek, nazik olmak yakınlığı; ileri gitmek, bakmak, dokunmak arzuyu artırır. Bazı kızlar birini ötekinden çok ödüllendirir.</p>
+        <table class="bk-t"><tr><th>Basamak</th><th>Arzu</th></tr>${D.HEAT.map(([n, ic], i) => `<tr><td>${i}</td><td>${ic} ${esc(n)}</td></tr>`).join('')}</table>
+        <p>Her bölümün bir üst sınırı var: ${D.CH.filter(c => c.cap != null).map(c => `<b>${esc(c.n)}</b> ${(D.HEAT[c.cap] || [''])[0]}`).join(', ')}. İlk öpücükler çoğu zaman bir şeyle kesilir: telefon, kapı, bir arkadaş.</p>
+        <p>Değerler <a href="#/me/gorev">Ben → 🗺️ Görevler</a>'deki 💞 Karakterler listesinde görünür; seçim yaptığında sohbete kısa bir not düşer (💗 Marte +1 · ✨ Kıvılcım).</p>`;
+    } },
+    { icon: '💞', title: 'Karakterler', sub: 'Marte, Salma, Elisa, Leire, May, Clara, Viola, Liberta, Alisa', get body() {
+      const D = Stories.STORY || { CHARS: {} };
+      return `<p>Hepsi 18 yaşından büyük, hepsinin kendi kişiliği, konuşma tarzı ve derdi var.</p>${Object.values(D.CHARS).map(C => `<h4>${C.ic} ${esc(C.n)}, ${C.age} · ${esc(C.role)}</h4><p>${esc(C.about)}</p><ul><li><b>Kişilik:</b> ${C.pers.map(esc).join(', ')}</li><li><b>🗣️ Konuşma:</b> ${esc(C.talk)}</li></ul>`).join('')}`;
+    } },
+    { icon: '🧳', title: 'Prolog: Bavul ve Anahtar', sub: 'gar, merdiven, kafe, oryantasyon', get body() {
+      return `<p>Taréque, 19 yaşında, mimarlık okumak için Carmen'e gelir. İlk gün dar bir merdivende Marte, ertesi sabah dökülen bir kahvede Salma, akşam oryantasyon partisinde Elisa ve Leire.</p>${hkBkQuests(0)}`;
+    } },
+    { icon: '🌆', title: 'Bölüm I: Yeni Şehir, Yeni Ben', sub: 'ilk ders, ilk iş, ilk gece kaçamağı', get body() {
+      return `<p>Eylül. İlk Ders bitince üç görev birden açılır; hangisinden başlayacağın sana kalmış. Üçü de bitince Leire herkesi Bar Medusa'ya toplar.</p>${hkBkQuests(1)}`;
+    } },
+    { icon: '📚', title: 'Bölüm II: Vize Haftası', sub: 'dört yeni kadın, vizeler ve ilk geceler', get body() {
+      return `<p>Ekim–Kasım. Bölüm I bitince <b>🇫🇷 Bonjour, Carmen</b> açılır. Sonra üç kol aynı anda: 🏫 okul (Çatı Katı → Sabaha Kadar → Leire Kayıp), 💼 iş (Fazla Mesai → Kahvaltıda Misafir), 🏠 ev ve sanat (Gece Vardiyası → Karanlık Oda). Üçü de bitince <b>🥂 Vize Gecesi</b>.</p>
+        <ul><li>Yeni karakterler: <b>📷 Clara</b> (May'in ev arkadaşı, fotoğrafçı), <b>🇫🇷 Viola</b> (Lyon'dan Erasmus), <b>🛋️ Liberta</b> (iç mimar, çatı katı), <b>🍷 Alisa</b> (Salma'nın en yakın arkadaşı, Vinoteca).</li>
+          <li>Bu bölümde arzu en fazla 💞 Sevişme'ye çıkar; yeni gelenler en fazla 🔥 Ön sevişme'ye.</li>
+          <li>Bazı görevlerin iki şehir adımı var (ör. önce Leire'nin dairesi, sonra fakülte). Çoğu sahnenin bir saati var: gece yarısı matkap, şafakta hastane, akşam Vinoteca.</li>
+          <li>🥂 Vize Gecesi'nin sonunda kiminle çıkacağın arzuna göre açılır.</li></ul>${hkBkQuests(2)}<p>🔜 Bölüm III: Sergi Gecesi yakında.</p>`;
+    } }] });
   BOOKS.push({ id: 'c3', icon: '🚀', title: 'Carmen 3.0', sub: 'zaman, hava, şehir, ana sayfa, görevler, kitaplar ve teknik temel', chips: ['yeni', 'güncelleme'], chapters: [
     { icon: '🚀', title: 'Carmen 3.0\'a hoş geldin', sub: 'bu güncellemede neler var', get body() { return `
       <p>Carmen 2.x boyunca çok büyüdü: binlerce olay, yüzlerce sahne, otuzdan fazla site ve canlı bir şehir. <b>Carmen 3.0</b> bu parçaları birbirine bağlıyor: hepsi aynı takvimde, aynı havada, aynı şehir saatinde yaşıyor. Ana sayfa artık sana <b>ne yapabileceğini</b> söylüyor.</p>
@@ -32879,9 +32971,11 @@
     ['konusma', '🤖', 'Konuşma Rehberi', 'bot nasıl cevap verir: sorular, övgüler, komutlar, nedenler, kişilikler, grup ve memleketler', ['bot', 'soru', 'onun', 'ovgu', 'komut', 'neden', 'yedek', 'kisilik', 'grup', 'ulke'], '#1f3a5f', '#0e1c30'],
     ['seanslar', '💞', 'Seans ve Olay Rehberi', 'seans türleri ve örnekleri, bütün olaylar, olay hafızası ve süt', ['seans', 'olay', 'hafiza', 'sut', 'hamile', 'lezbiyen', 'trans'], '#8a2445', '#43101f'],
     ['fanteziler', '🦄', 'Fantezi ve Mekân Rehberi', 'fanteziler, Genshin, BDSM, ofis, okul, kilise, gece hayatı, yaz, dışarıda ve ev', ['fantezi', 'genshin', 'bdsm', 'ofis', 'okul', 'kilise', 'gece', 'yaz', 'disari', 'ev'], '#7a1f5c', '#2e0b24'],
-    ['carmen3', '🚀', 'Carmen 3.0 Kitabı', 'yeni güncellemenin tanıtımı: dünya saati, hava, doğum günleri, şehir, ana sayfa, görevler ve kitaplar', ['c3'], '#4a148c', '#1a0533']];
+    ['carmen3', '🚀', 'Carmen 3.0 Kitabı', 'yeni güncellemenin tanıtımı: dünya saati, hava, doğum günleri, şehir, ana sayfa, görevler ve kitaplar', ['c3'], '#4a148c', '#1a0533'],
+    ['hikayemodu', '📜', 'Hikâye Kitabı', 'Hikâye Modu: Taréque, Carmen\'deki ilk dönemi, karakterler, yakınlık ve arzu, Prolog ve Bölüm I', ['hikaye'], '#6a1b9a', '#2a0838']];
   // kısım açıklamaları: [ne anlatır, ne zaman okunur, ilgili kısımlar]
   const BOOK_PART = {
+    hikaye: ['📜 Hikâye Modu: Taréque\'nin Carmen\'e gelişi ve ilk dönemi. Şehirde başlayan görevler, sohbette akan sahneler, 💗 yakınlık ve 🔥 arzu, beş karakter ve bölümlerin görev tabloları. Tablolar hikâyenin güncel verisinden okunur.', 'Hikâye Modu\'nu ilk açtığında ya da bir görevin nasıl açıldığını merak ettiğinde.', ['carmen', 'c3']],
     c3: ['🚀 Carmen 3.0 ile gelen her şey: tek dünya saati ve takvim, günlük hava ve mevsimler, karakterlerin doğum günleri, şehirde semtler, hava efektleri ve vardiya, ana sayfanın 📅 Bugün paneli ve 🔎 arama, haftalık görevler ve yeni rozetler, profil özeti, okundu işaretleri, 📕 Benim hikâyem ve yeni bakım deneyleri. Tablolar uygulamanın güncel verisinden okunur.', 'Güncellemeden sonra ilk açtığında. Bir 3.0 özelliğinin nasıl çalıştığını merak ettiğinde de buraya dön.', ['carmen', 'sehir']],
     carmen: ['Uygulamanın el kitabı: karakter oluşturma, sohbetin temelleri, olaylar ve sonuçları, değerler (🥴 Zevk, 💗 Uyarılma, ❤️ Aşk, Sarhoşluk…), eşikler, tetiklenmeler, araç çubuğu, sade sohbet, içki, dayanıklılık ve soyunma komutları. Sonda 📘 Sözlük bütün terimleri kısaca açıklar.', 'Carmen\'e yeni başladıysan buradan başla. Bir değerin neden değiştiğini ya da bir olayın neden kendiliğinden geldiğini merak ettiğinde de buraya dön.', ['bot', 'seans', 'olay']],
     internet: ['Carmen\'in içindeki internet: Booble arama motoru, ilan siteleri (Carmen.com, Gothic.com, Meisove.com), CarmenJobs, CarmenSchool, CarmenCity, CarmenImpact, CarmenGasino, CarmenChurch, CarmenFarm ve diğerleri. Her bölüm bir siteyi anlatır: ne işe yarar, ilana dokununca sohbet nasıl başlar, karakter hangi rol ve kıyafetle gelir.', 'Yeni biriyle tanışmak, bir rolle sohbet başlatmak ya da bir sitenin ne yaptığını öğrenmek istediğinde.', ['fantezi', 'genshin', 'amor', 'ofis', 'okul', 'kilise']],
@@ -33490,6 +33584,8 @@
     const cats = evnCats(), hs = evnHocas();
     if (id === 'sahneler') return renderEventsScenes(hs);
     if (id === 'bolumler') return renderEventsEpisodes(hs);
+    if (id === 'hikaye') return renderEventsStory();
+    if (id && id.startsWith('hk-')) return renderEventsStoryScene(id.slice(3));
     if (id && id.startsWith('bolum-')) return renderEventsEpisode(id.slice(6), hs);
     if (id && id.startsWith('sahne-')) return renderEventsScene(id.slice(6), hs);
     if (id) {
@@ -33525,7 +33621,8 @@
       top.innerHTML = `<button type="button" class="evn-cat evn-rec-card" data-evnrec><span>💡</span><div><b>Öneriler</b><small>💬 Sevdiklerini söyle, hoca olay önersin</small></div></button>
         <button type="button" class="evn-cat evn-rec-card" data-evnfav><span>⭐</span><div><b>Favorilerim</b><small>📚 ${(MO().pins || []).length} olay · sohbette en üstte</small></div></button>
         <a class="evn-cat evn-rec-card" href="#/events/sahneler"><span>🎬</span><div><b>Sahneler</b><small>📚 ${scenesOk().length} sahne · açılış, adımlar, bitiş</small></div></a>
-        <a class="evn-cat evn-rec-card" href="#/events/bolumler"><span>📖</span><div><b>Bölümler</b><small>📚 ${epAll().length} bölüm · sahnelerin birleşimi</small><small>💞 İlişkin büyüdükçe o önerir</small></div></a>`;
+        <a class="evn-cat evn-rec-card" href="#/events/bolumler"><span>📖</span><div><b>Bölümler</b><small>📚 ${epAll().length} bölüm · sahnelerin birleşimi</small><small>💞 İlişkin büyüdükçe o önerir</small></div></a>
+        <a class="evn-cat evn-rec-card" href="#/events/hikaye"><span>📜</span><div><b>Hikâye</b><small>📚 ${HK().QUESTS.length} görev · ${Object.keys(HK().SCENES).length} sahne</small><small>🏙️ Şehirde başlar, 💬 sohbette akar</small></div></a>`;
     };
     top.onclick = ev => { const f = !!ev.target.closest('[data-evnfav]'); if (f || ev.target.closest('[data-evnrec]')) evnRecPanel(cats, hs, drawTop, f); };
     drawTop();
@@ -35433,6 +35530,7 @@
         .qs-num, .qs-pay { font-size: 11px; white-space: nowrap; }
         .qs-ok { font-size: 18px; }
       </style>
+      ${(() => { try { return hkQuestCard(); } catch (e) { console.warn('hikaye', e); return ''; } })()}
       <div class="card">
         <div class="sec-title" style="margin-top:0">🗺️ Görevler <small>· ${nDone}/${QUESTS.length}</small></div>
         <div class="about">Görevler olayları ve uygulamadaki her şeyi denemen için. Bir görevi bitirince altındaki dallar açılır. Olayları sohbette # ile ya da 💡 Lia önerileriyle başlatabilirsin.</div>
@@ -35893,6 +35991,290 @@
   function installCard() {
     if (standalone() || !installPrompt) return '';
     return `<div class="card install"><span>📲</span><div><b>Carmen'i telefonuna yükle</b><small>Ana ekrandan uygulama gibi açılır, internetsiz de çalışır.</small></div><button class="btn sm pink" id="installBtn">Yükle</button></div>`;
+  }
+
+  /* ---------- 📜 Hikâye Modu (js/data/story.js Stories.STORY): Taréque'nin Carmen'deki ilk dönemi ----------
+   * GTA gibi: görev adımları şehirde (go → city.js 📜 işareti, varınca api.questIn = hkCityIn) ve sohbette (sc → th.site.k 'hk', SITE_CHAT.hk) ilerler.
+   * Hikâye karakterleri gerçek karakterdir (c.story = id, ilk sahnede hkChar ile oluşur); sahne onunla sohbette (2+ kişi: hikâye grubu) akar.
+   * Görev günlüğü Ben → 🗺️ Görevler (hkQuestCard), dersleri CarmenEvents → 📜 Hikâye (renderEventsStory).
+   * Durum: S().user.story { done, at (görev → adım), sc (izlenen sahne), aff, heat, flags, pics, ids (hikâye id → karakter id), track, live } */
+  const HK = () => Stories.STORY || { CHARS: {}, HEAT: [], CH: [], QUESTS: [], SCENES: {} };
+  function hkSt() {
+    const u = S().user;
+    if (!u.story || typeof u.story !== 'object') u.story = {};
+    const st = u.story;
+    ['done', 'at', 'sc', 'aff', 'heat', 'flags', 'pics', 'ids'].forEach(k => { if (!st[k] || typeof st[k] !== 'object') st[k] = {}; });
+    return st;
+  }
+  const hkQ = id => HK().QUESTS.find(q => q.id === id);
+  const hkOpen = q => (q.need || []).every(n => hkSt().done[n]);
+  const hkQOf = sid => HK().QUESTS.find(q => q.steps.some(s => s.sc === sid));
+  const hkChOf = q => HK().CH.find(c => c.id === q.ch) || {};
+  const hkStepOf = q => q.steps[hkSt().at[q.id] || 0] || null;
+  const hkAvail = () => HK().QUESTS.filter(q => !hkSt().done[q.id] && hkOpen(q));
+  const hkTracked = () => { const st = hkSt(), a = hkAvail(); return a.find(q => q.id === st.track) || a[0] || null; };
+  const hkAff = id => Math.min(10, hkSt().aff[id] || 0);
+  const hkHeat = id => Math.min(6, hkSt().heat[id] || 0);
+  const hkHeatTag = id => { const h = HK().HEAT[hkHeat(id)] || ['', '']; return `${h[1]} ${h[0]}`; };
+  const hkInH = (h, w) => !w || (w[0] <= w[1] ? h >= w[0] && h < w[1] : h >= w[0] || h < w[1]);
+  const hkWhen = w => w.f ? !!hkSt().flags[w.f] : w.h ? hkHeat(w.h[0]) >= w.h[1] : w.a ? hkAff(w.a[0]) >= w.a[1] : true;
+  const hkGoTxt = s => s ? (s.go ? `🗺️ ${s.t}` : `💬 ${(HK().SCENES[s.sc] || {}).t || ''}`) : '';
+  // 🖼️ fotoğraf seti: CHARS.set ile aynı adlı set varsa o, yoksa karakterlerde kullanılmayan bir set (bir kez seçilir, sabit kalır)
+  function hkPic(id) {
+    const st = hkSt(), C = HK().CHARS[id] || {};
+    let s = SETS.find(x => x.id === (st.pics[id] || C.set));
+    if (!s && SETS.length) {
+      const used = new Set([...chars().map(c => c.set).filter(Boolean), ...Object.values(st.pics)]);
+      const free = SETS.filter(x => !used.has(x.id)), pool = free.length ? free : SETS;
+      let h = 0; for (const ch of id) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+      s = pool[h % pool.length]; st.pics[id] = s.id; save();
+    }
+    return s ? { photo: photoUrl(s, s.profile), album: [s.profile, ...(s.photos || [])].filter(Boolean).slice(0, 8).map(f => photoUrl(s, f)) } : { photo: '', album: [] };
+  }
+  // 👤 hikâye karakteri = gerçek karakter (Rehber'de, şehirde, profilde); ilk sahnede oluşur
+  function hkChar(id) {
+    const st = hkSt(), C = HK().CHARS[id];
+    let c = st.ids[id] && byId(st.ids[id]);
+    if (c) return c;
+    c = chars().find(x => x.story === id);
+    if (!c && C) {
+      const P = hkPic(id);
+      c = Object.assign(blankChar(), { id: Store.uid(), name: C.n, age: String(C.age), city: 'Carmen', job: C.role.split(' · ').pop(), bio: C.about, about: C.about,
+        photo: P.photo, album: P.album, mod: 'amor', set: st.pics[id] || '', story: id, src: 'hikaye', created: Date.now() });
+      chars().push(c);
+    }
+    if (c) { st.ids[id] = c.id; save(); }
+    return c;
+  }
+  // 💬 sahnenin sohbeti: tek kişi → onun 📜 Hikâye sohbeti, 2+ → hikâye grubu
+  function hkThread(ids) {
+    const cs = ids.map(hkChar).filter(Boolean);
+    if (cs.length === 1) { const c = cs[0]; let t = threadsOf(c).find(x => x.hk); if (!t) { t = newThread(c, '📜 Hikâye'); t.hk = 1; } return t; }
+    const mem = cs.map(c => c.id);
+    let t = groups().find(g => g.gsrc === 'hikaye' && g.members.length === mem.length && mem.every(m => g.members.includes(m)));
+    if (!t) { t = { id: Store.uid(), group: true, gsrc: 'hikaye', hk: 1, members: mem, title: `📜 ${cs.map(c => c.name.split(' ')[0]).join(' & ')}`, created: Date.now(), opened: 0 }; threads().push(t); }
+    return t;
+  }
+  function hkStart(sid) {
+    const D = HK(), sc = D.SCENES[sid];
+    if (!sc) return;
+    const q = hkQOf(sid), t = hkThread(sc.who && sc.who.length ? sc.who : [q.who]), st = hkSt();
+    if (!(t.site && t.site.k === 'hk' && t.site.sid === sid && !t.site.done))
+      t.site = { k: 'hk', sid, qid: q ? q.id : '', q: JSON.parse(JSON.stringify(sc.s)), i: 0, out: [{ from: 'sys', text: `📜 ${q ? `${q.ic} ${q.t} · ` : ''}🎬 ${sc.t}\n🕰️ ${sc.time} · ${sc.at}` }], wait: null, ev: null, end: 0 };
+    st.live = t.id; if (q) st.track = q.id;
+    t.act = null; t.plan = null; // hikâye sohbetinde 🎬 normal sahne / 📋 plan kalmasın
+    save();
+    if (location.hash === `#/chat/${t.id}`) render(); else location.hash = `#/chat/${t.id}`;
+  }
+  // etki: a yakınlık +, h arzu + (bölüm sınırına kadar), hm arzu en az, f bayrak → not satırı
+  function hkFx(fx, cap) {
+    // cap: { n: bölüm sınırı, per: { karakter: sınır } } (CH.cap / CH.capc)
+    const st = hkSt(), C = HK().CHARS, H = HK().HEAT, nm = k => (C[k] || {}).n || k, out = [];
+    const lim = k => !cap ? 6 : cap.per && cap.per[k] != null ? cap.per[k] : cap.n == null ? 6 : cap.n;
+    Object.entries(fx.a || {}).forEach(([k, v]) => { const b = hkAff(k); st.aff[k] = Math.min(10, b + v); if (st.aff[k] > b) out.push(`💗 ${nm(k)} +${st.aff[k] - b}`); });
+    Object.entries(fx.h || {}).forEach(([k, v]) => { const b = hkHeat(k), n = Math.max(b, Math.min(lim(k), b + v)); if (n > b) { st.heat[k] = n; out.push(`${H[n][1]} ${nm(k)} · ${H[n][0]}`); } });
+    Object.entries(fx.hm || {}).forEach(([k, v]) => { const b = hkHeat(k); if (b < v) { st.heat[k] = v; out.push(`${H[v][1]} ${nm(k)} · ${H[v][0]}`); } });
+    [].concat(fx.f || []).forEach(f => { st.flags[f] = 1; });
+    return out;
+  }
+  const hkCap = S => { const q = hkQ(S.qid), ch = q && hkChOf(q); return ch ? { n: ch.cap, per: ch.capc } : null; };
+  const hkVis = o => !o.w || hkWhen(o.w); // seçenek kapısı (w: { f } | { h } | { a })
+  const hkNote = (S, fx) => { const o = hkFx(fx, hkCap(S)); if (o.length) S.out.push({ from: 'sys', text: o.join(' · ') }); };
+  function hkMsg(t, s) {
+    const [k, x] = s, D = HK();
+    if (k === 'n') return { from: 'sys', text: x };
+    if (k === 'cut') return { from: 'sys', text: `📱 ${x}` };
+    if (k === 'm') return { from: 'me', text: x };
+    const id = hkSt().ids[k], mem = t.group ? t.members : [t.charId];
+    if (id && mem.includes(id)) return { from: 'her', ...(t.group ? { who: id } : {}), text: x };
+    return { from: 'sys', text: `🗨️ ${(D.CHARS[k] || {}).n || k}: “${x}”` };
+  }
+  // ▶ kuyruk: görünür mesaj, seçim (wait), olay teklifi (ev) ya da son gelene kadar ilerler
+  function hkFill(t) {
+    const S = t.site;
+    while (!S.out.length && !S.wait && !S.ev && !S.end) {
+      if (S.i >= S.q.length) { hkEnd(t); break; }
+      const s = S.q[S.i];
+      if (s && s.when) { S.q.splice(S.i, 1, ...(hkWhen(s.when) ? s.s || [] : s.e || [])); continue; }
+      S.i++;
+      if (!s) continue;
+      if (s.fx) { hkNote(S, s.fx); continue; }
+      if (s.q) { S.wait = s; break; }
+      if (s.ev) { if (evFind(s.ev)) S.ev = s; continue; }
+      S.out.push(hkMsg(t, s));
+    }
+    return S.out[0] || null;
+  }
+  function hkEnd(t) {
+    const S = t.site, st = hkSt(), q = hkQ(S.qid), D = HK();
+    S.end = 1; st.sc[S.sid] = Date.now();
+    if (!q) return;
+    const i = q.steps.findIndex(s => s.sc === S.sid);
+    if ((st.at[q.id] || 0) <= i) st.at[q.id] = i + 1;
+    const nx = q.steps[st.at[q.id]];
+    if (nx && nx.sc) { S.chain = nx.sc; S.out.push({ from: 'sys', text: `🎬 ${D.SCENES[S.sid].t} bitti · sıradaki sahne: ${D.SCENES[nx.sc].t}` }); return; }
+    if (nx && nx.go) { S.out.push({ from: 'sys', text: `🗺️ Sıradaki: ${nx.t} · 🏙️ şehirde 📜 işaretine git` }); return; }
+    st.done[q.id] = Date.now();
+    if (q.pay) bankAdd(q.pay, `📜 Hikâye: ${q.t}`);
+    const nq = hkTracked(); st.track = nq ? nq.id : '';
+    const chEnd = !D.QUESTS.some(x => x.ch === q.ch && !st.done[x.id]);
+    const nch = D.CH.find(c => c.id === q.ch + 1);
+    S.out.push({ from: 'sys', text: `✅ Görev tamamlandı: ${q.ic} ${q.t}${q.pay ? ` · 💰 +${q.pay.toLocaleString('tr-TR')}₺` : ''}${chEnd ? `\n🏁 ${hkChOf(q).n} bitti${nch ? ` · ${nch.ic} ${nch.n}: ${nch.t}${nch.soon ? ' yakında' : ' başladı'}` : ''}` : ''}${nq ? `\n🗺️ Sıradaki görev: ${nq.ic} ${nq.t} · ${hkGoTxt(hkStepOf(nq))}` : ''}` });
+    notify(`Görev tamamlandı: ${q.t}`, '📜');
+  }
+  // 💬 sohbet çubuğu (SITE_CHAT.hk): görev → sahne şeridi, seçimler, olay teklifi, devam
+  function hkBar(th) {
+    const S = th.site, D = HK(), sc = D.SCENES[S.sid] || {}, q = hkQ(S.qid);
+    const head = `<button type="button" class="site-steps" data-sact="info">📜 <b>${esc(q ? q.t : 'Hikâye')}</b> → <span>🎬 ${esc(sc.t || '')}</span><i>›</i></button>`;
+    if (S.wait) return `${head}<div class="site-sum">❔ ${esc(S.wait.q)}</div><div class="site-qa">${S.wait.o.map((o, i) => hkVis(o) ? `<button type="button" class="hot" data-sact="pick" data-v="${i}">${esc(o.x)}</button>` : '').join('')}</div>`;
+    if (S.ev) { const e = evFind(S.ev.ev); return `${head}<div class="site-qa"><button type="button" class="hot" data-sact="ev">🎬 ${esc(S.ev.x || 'Olay')}: ${e ? `${evEmo(e)}${esc(e.title)}` : esc(S.ev.ev)}</button><button type="button" data-sact="go">▸ Devam</button></div>`; }
+    if (S.end && !S.out.length) return S.chain ? `${head}<div class="site-qa"><button type="button" class="hot" data-sact="chain">▸ Sonraki sahne: ${esc((D.SCENES[S.chain] || {}).t || '')}</button></div>` : '';
+    return `${head}<div class="site-qa"><button type="button" class="hot" data-sact="go">▸ Devam</button></div>`;
+  }
+  function hkPlay(th, api) {
+    api.flow(() => hkFill(th), () => { th.site.out.shift(); }, () => {
+      const S = th.site;
+      if (S.end && !S.out.length) {
+        if (!S.chain) S.done = 1;
+        else setTimeout(() => { if (th.site === S && !S.done && openThread === th && ui.route.name === 'chat') { S.done = 1; hkStart(S.chain); } }, 1800);
+      }
+      save(); api.redraw();
+    });
+  }
+  function hkAct(th, a, v, api) {
+    const S = th.site;
+    if (a === 'info') { location.hash = '#/me/gorev'; return; }
+    if (a === 'chain') { const n = S.chain; S.done = 1; save(); hkStart(n); return; }
+    if (a === 'pick' && S.wait) {
+      const o = S.wait.o[+v];
+      if (!o || !hkVis(o)) return;
+      S.wait = null;
+      S.out.push({ from: 'me', text: o.x });
+      hkNote(S, o);
+      if (o.r) S.q.splice(S.i, 0, ...JSON.parse(JSON.stringify(o.r)));
+    }
+    // 🎬 olay teklifi: olay sistemi çalışmaz (bot cevabı, mekân, sahne yok); sohbete olay kartı + sahneye özel satırlar (s.r) + etkiler (s.fx)
+    if (a === 'ev' && S.ev) {
+      const s = S.ev, e = evFind(s.ev);
+      S.ev = null;
+      if (e) S.out.push({ from: 'me', text: `${e.emojis ? e.emojis + ' ' : ''}${e.title}`, ev: e.id, evc: { title: e.title, emojis: e.emojis || '', color: e.color || '', level: '' }, hk: 1 });
+      hkNote(S, s);
+      if (s.r) S.q.splice(S.i, 0, ...JSON.parse(JSON.stringify(s.r)));
+    }
+    if (a === 'go') S.ev = null;
+    save();
+    hkPlay(th, api);
+  }
+  // ✍️ sahne sırasında yazdığına sahnenin baş karakteri kendi ağzıyla kısa cevap verir (CHARS.hold), sonra sahne kaldığı yerden sürer
+  function hkSay(th, api) {
+    const S = th.site, D = HK(), sc = D.SCENES[S.sid] || {}, st = hkSt();
+    const k = (sc.who || []).find(x => st.ids[x] && (th.group ? th.members : [th.charId]).includes(st.ids[x])), C = k && D.CHARS[k];
+    if (C && (C.hold || []).length) { S.hi = (S.hi || 0) + 1; S.out.push({ from: 'her', ...(th.group ? { who: st.ids[k] } : {}), text: C.hold[S.hi % C.hold.length] }); }
+    save();
+    setTimeout(() => hkPlay(th, api), 300);
+  }
+  const hkChatOpen = (th, api) => { const S = th.site; if (S && !S.done && !S.wait && !S.ev && (S.out.length || !S.end)) hkPlay(th, api); };
+
+  // 🏙️ şehir: işaretler + takip edilen hedef (hud); varınca adım ilerler, sıradaki sahne sohbette başlar
+  function hkCity(h) {
+    const tr = hkTracked(), list = [];
+    hkAvail().forEach(q => { const s = hkStepOf(q); if (s && s.go) list.push({ k: s.go, ic: q.ic, t: s.t, tr: !!tr && tr.id === q.id, ok: hkInH(h, s.h), hn: s.hn || '' }); });
+    let hud = null;
+    if (tr) { const s = hkStepOf(tr); hud = s && s.go ? { k: s.go, t: `${tr.t}: ${s.t}`, ok: hkInH(h, s.h), hn: s.hn || '' } : { k: null, t: `${tr.t}: 💬 sahneye dön` }; }
+    return { list, hud };
+  }
+  function hkCityIn(k, h) {
+    const st = hkSt(), a = hkAvail().filter(q => { const s = hkStepOf(q); return s && s.go === k; });
+    if (!a.length) return false;
+    const tr = hkTracked(), q = a.find(x => tr && x.id === tr.id) || a[0], s = hkStepOf(q);
+    if (!hkInH(h, s.h)) { notify(`⏰ ${s.hn || 'Şimdi değil'}`, '📜'); return false; }
+    st.at[q.id] = (st.at[q.id] || 0) + 1; st.track = q.id; save();
+    const nx = hkStepOf(q);
+    if (nx && nx.sc) { notify(`${q.ic} ${q.t}`, '📜'); setTimeout(() => hkStart(nx.sc), 500); }
+    return true;
+  }
+  function hkCityGo() {
+    const st = hkSt(), t = st.live && threadById(st.live);
+    if (t && t.site && t.site.k === 'hk' && !t.site.done) { location.hash = `#/chat/${t.id}`; return; }
+    const tr = hkTracked(), s = tr && hkStepOf(tr);
+    if (s && s.sc) hkStart(s.sc); else location.hash = '#/sehir';
+  }
+  // #/hikaye/t-<görev> takip et → şehir · #/hikaye/go kaldığın yer · gerisi → Ben → 🗺️ Görevler
+  function renderStory(id) {
+    const r = String(id || '');
+    if (r.startsWith('t-') && hkQ(r.slice(2))) { hkSt().track = r.slice(2); save(); location.replace('#/sehir'); return; }
+    if (r === 'go') { const tr = hkTracked(), s = tr && hkStepOf(tr); if (!s || s.go) location.replace('#/sehir'); else hkCityGo(); return; }
+    ui.meTab = 'gorev';
+    location.replace('#/me/gorev');
+  }
+  // 🗺️ Ben → Görevler: hikâye görev günlüğü
+  function hkQuestCard() {
+    const D = HK(), st = hkSt(), tr = hkTracked(), nDone = D.QUESTS.filter(q => st.done[q.id]).length;
+    const row = q => {
+      const done = !!st.done[q.id], open = hkOpen(q), s = hkStepOf(q), on = !!tr && tr.id === q.id;
+      return `<div class="qs-row qs-${done ? 'paid' : open ? 'open' : 'lock'}"${on ? ' style="border-color:var(--pink)"' : ''}><i class="qs-ic">${open || done ? q.ic : '🔒'}</i>
+        <div class="qs-info"><b>${esc(q.t)}</b><small>${esc(done || !open ? q.d : hkGoTxt(s))}</small>${open && !done ? `<small>👤 ${esc((D.CHARS[q.who] || {}).n || '')}${s && s.hn ? ` · ⏰ ${esc(s.hn)}` : ''}</small>` : ''}</div>
+        ${done ? '<span class="qs-ok">✅</span>' : open ? `<a class="btn ${on ? 'primary' : 'ghost'} sm" href="#/hikaye/t-${q.id}">${on ? '🗺️ Şehirde' : '⭐ Takip et'}</a>` : `<small class="qs-pay">💰 ${(q.pay || 0).toLocaleString('tr-TR')}₺</small>`}</div>`;
+    };
+    const people = Object.keys(D.CHARS).map(k => [k, D.CHARS[k], st.ids[k] && byId(st.ids[k])]).filter(x => x[2]);
+    const ts = tr && hkStepOf(tr);
+    return `<div class="card" style="margin-bottom:12px">
+      <div class="sec-title" style="margin-top:0">📜 Hikâye: Carmen'e Hoş Geldin <small>· ${nDone}/${D.QUESTS.length}</small></div>
+      <div class="about">Taréque, kadınların çoğunlukta olduğu Carmen'e üniversite okumaya geldi. Görevler şehirde başlar: 🏙️ Şehir'de sarı 📜 işaretine git, sahne o kızla sohbette akar. Seçimler 💗 yakınlığı ve 🔥 arzuyu değiştirir. 🎓 <a href="#/events/hikaye">CarmenEvents → 📜 Hikâye</a></div>
+      ${tr ? `<p style="margin:10px 0 0"><b>⭐ ${esc(tr.ic)} ${esc(tr.t)}</b> <small>· ${esc(hkGoTxt(ts))}</small><br><small>${esc(tr.story)}</small></p>
+        <a class="btn primary block" style="margin-top:8px" href="#/hikaye/go">${ts && ts.go ? '🗺️ Şehirde hedefe git' : '💬 Sahneye dön'}</a>` : ''}
+      ${D.CH.map(ch => { const qs = D.QUESTS.filter(q => q.ch === ch.id); return `<div class="sec-title">${ch.ic} ${esc(ch.n)} · ${esc(ch.t)}${ch.soon ? ' <small>· 🔜 yakında</small>' : ''}</div>${qs.length ? `<div class="qs-grid">${qs.map(row).join('')}</div>` : ''}`; }).join('')}
+      ${people.length ? `<div class="sec-title">💞 Karakterler</div><div class="qs-grid">${people.map(([k, C, c]) => `<a class="qs-row" href="#/p/${c.id}" style="text-decoration:none;color:inherit"><span style="display:flex;gap:8px;align-items:center">${avatar(c, 36)}<b>${esc(C.n)}</b></span><small>💗 ${hkAff(k)}/10 · ${esc(hkHeatTag(k))}</small></a>`).join('')}</div>` : ''}
+    </div>`;
+  }
+
+  // 🎓 CarmenEvents → 📜 Hikâye: bölümler, görevler (şehir adımı + sahneler), sahne dersleri (#/events/hk-<sahne>)
+  const hkPlace = k => { const b = Stories.City && [...(Stories.City.BLD || []), ...(Stories.City.AREAS || [])].find(x => x.k === k); return b ? `${b.ic} ${b.n}` : k; };
+  function renderEventsStory() {
+    const D = HK(), st = hkSt();
+    const card = (sid, n) => { const sc = D.SCENES[sid] || {}, seen = !!st.sc[sid];
+      return `<a class="evn-cat" href="#/events/hk-${esc(sid)}"><span>${sc.ic || '🎬'}</span><div><b>${n}. ${esc(sc.t || sid)}</b><small>${esc(sc.at || '')} · ${esc(sc.time || '')}</small><small>👤 ${(sc.who || []).map(k => esc((D.CHARS[k] || {}).n || k)).join(', ')} · ${seen ? '✅ izlendi' : '🔒 henüz değil'}</small></div></a>`; };
+    view.innerHTML = EVN_CSS + wsPage('events', 'Carmen<i>Events</i>', 'carmenevents.com/hikaye', '#/events', `
+      <div class="evn-hero"><h1>📜 Hikâye: Carmen'e Hoş Geldin</h1><p>Taréque'nin Carmen'deki ilk dönemi. Görevler 🏙️ şehirde sarı 📜 işaretle başlar, sahneler o kızla 💬 sohbette akar; seçimler ve olaylar sohbet çubuğundadır. Bu sahneler ⚡ kısayollara ve 🎬 Sahneler'e karışmaz.</p></div>
+      <article class="evn-ls"><h3>🎮 Nasıl oynanır</h3><ul>
+        <li>🗺️ Ben → Görevler'de bir görevi <b>⭐ takip et</b>; şehirde üstte hedef şeridi çıkar, ona dokununca rota çizilir.</li>
+        <li>📜 İşarete varınca (ya da binaya girince) sahne başlar. Bazı görevlerin <b>⏰ saati</b> var; şehirde saati ilerlet ya da sonra gel.</li>
+        <li>💬 Sahne sohbette mesaj mesaj akar. ❔ Seçimler ve 🎬 olay teklifleri sohbet çubuğundadır; olayı seçersen sohbete olay kartı düşer ve sahne onu kendine özel anlatır (bot cevabı, mekân, başka sahne yok).</li>
+        <li>💗 Yakınlık kalbi, 🔥 arzu bedeni ölçer. Her bölümün bir arzu sınırı var: ${D.CH.filter(c => c.cap != null).map(c => `${esc(c.n)} ${esc((D.HEAT[c.cap] || [''])[0])}${c.capc ? ` (yeni gelenler ${esc((D.HEAT[Object.values(c.capc)[0]] || [''])[0])})` : ''}`).join(', ')}.</li>
+        <li>🔐 Bazı seçenekler yalnızca arzu ya da yakınlık yeterliyse görünür (Vize Gecesi'nin sonu gibi).</li></ul></article>
+      ${D.CH.map(ch => { const qs = D.QUESTS.filter(q => q.ch === ch.id);
+        return `<div class="sec-title">${ch.ic} ${esc(ch.n)} · ${esc(ch.t)} <small>· ${esc(ch.sub)}</small></div>${qs.map(q => `<article class="evn-ls"><h3>${q.ic} ${esc(q.t)} <small>· 👤 ${esc((D.CHARS[q.who] || {}).n || '')} · 💰 ${(q.pay || 0).toLocaleString('tr-TR')}₺ ${st.done[q.id] ? '· ✅' : ''}</small></h3>
+          <p class="about">${esc(q.story)}</p>
+          <ul>${q.steps.filter(s => s.go).map(s => `<li>🗺️ <b>${esc(hkPlace(s.go))}</b>: ${esc(s.t)}${s.hn ? ` <small>· ⏰ ${esc(s.hn)}</small>` : ''}</li>`).join('')}</ul>
+          <div class="evn-grid">${q.steps.filter(s => s.sc).map((s, i) => card(s.sc, i + 1)).join('')}</div></article>`).join('')}`; }).join('')}`);
+  }
+  function renderEventsStoryScene(sid) {
+    const D = HK(), sc = D.SCENES[sid];
+    if (!sc) return renderEventsStory();
+    const st = hkSt(), q = hkQOf(sid), seen = !!st.sc[sid], evs = [], picks = [];
+    const nm = k => k === 'm' ? D.hero || 'Taréque' : (D.CHARS[k] || {}).n || k;
+    const fxT = o => [...Object.entries(o.a || {}).map(([k, v]) => `💗 ${nm(k)} +${v}`), ...Object.entries(o.h || {}).map(([k, v]) => `🔥 ${nm(k)} +${v}`), ...Object.entries(o.hm || {}).map(([k, v]) => `🔥 ${nm(k)} ≥ ${(D.HEAT[v] || [''])[0]}`)].join(' · ');
+    const walk = a => (a || []).forEach(s => { if (!s) return; if (s.ev) evs.push(s); if (s.q) { picks.push(s); s.o.forEach(o => walk(o.r)); } if (s.when) { walk(s.s); walk(s.e); } });
+    walk(sc.s);
+    // 📖 tam metin: seçim dalları ve koşullu satırlar iç içe
+    const wTxt = w => w.f ? `bayrak: ${w.f}` : w.h ? `${nm(w.h[0])} arzu ≥ ${(D.HEAT[w.h[1]] || [''])[0]}` : w.a ? `${nm(w.a[0])} yakınlık ≥ ${w.a[1]}` : '';
+    const txt = a => (a || []).map(s => {
+      if (!s) return '';
+      if (Array.isArray(s)) { const [k, x] = s; return k === 'n' ? `<li><i>${esc(x)}</i></li>` : k === 'cut' ? `<li>📱 ${esc(x)}</li>` : `<li><b>${esc(nm(k))}:</b> ${esc(x)}</li>`; }
+      if (s.q) return `<li>❔ <b>${esc(s.q)}</b><ul>${s.o.map(o => `<li>▸ <b>${esc(o.x)}</b>${o.w ? ` <small>· 🔐 ${esc(wTxt(o.w))}</small>` : ''}${fxT(o) ? ` <small>· ${esc(fxT(o))}</small>` : ''}${o.r ? `<ul>${txt(o.r)}</ul>` : ''}</li>`).join('')}</ul></li>`;
+      if (s.when) return `<li>🔀 <b>Eğer ${esc(wTxt(s.when))}</b><ul>${txt(s.s)}</ul>${s.e && s.e.length ? `<b>Değilse</b><ul>${txt(s.e)}</ul>` : ''}</li>`;
+      if (s.ev) { const e = evFind(s.ev); return `<li>🎬 Olay teklifi: ${esc(s.x || '')} · ${e ? `${evEmo(e)}${esc(e.title)}` : esc(s.ev)}${fxT(s) ? ` <small>· ${esc(fxT(s))}</small>` : ''}${s.r ? `<ul>${txt(s.r)}</ul>` : ''}</li>`; }
+      return '';
+    }).join('');
+    const lines = txt(sc.s);
+    view.innerHTML = EVN_CSS + wsPage('events', 'Carmen<i>Events</i>', 'carmenevents.com/hikaye/' + sid, '#/events/hikaye', `
+      <article class="evn-ls"><h3>${sc.ic} ${esc(sc.t)} <small>· ${q ? `${q.ic} ${esc(q.t)}` : ''}</small></h3>
+        <ul><li>📍 ${esc(sc.at)} · 🕰️ ${esc(sc.time)}</li><li>👤 ${(sc.who || []).map(k => esc(nm(k))).join(', ')} · 💬 ${(sc.who || []).length > 1 ? 'hikâye grubu' : 'onun 📜 Hikâye sohbeti'}</li>
+          ${q ? q.steps.filter(s => s.go).map(s => `<li>🗺️ Başlar: <b>${esc(hkPlace(s.go))}</b>${s.hn ? ` · ⏰ ${esc(s.hn)}` : ''}</li>`).join('') : ''}<li>${seen ? '✅ İzledin' : '🔒 Henüz izlemedin'}</li></ul>
+        ${picks.length ? `<b>❔ Seçimler</b><ul>${picks.map(p => `<li><b>${esc(p.q)}</b><ul>${p.o.map(o => `<li>${esc(o.x)}${fxT(o) ? ` <small>· ${esc(fxT(o))}</small>` : ''}</li>`).join('')}</ul></li>`).join('')}</ul>` : ''}
+        ${evs.length ? `<b>🎬 Olay teklifleri</b><ul>${evs.map(s => { const e = evFind(s.ev); return `<li>${esc(s.x || '')}: ${e ? `${evEmo(e)}<b>${esc(e.title)}</b> <small>${esc(e.desc || '')}</small>` : esc(s.ev)}</li>`; }).join('')}</ul>` : ''}
+        <b>📖 Sahne metni</b> <small>(seçim dalları ve koşullu satırlar iç içe)</small><ul>${lines}</ul>
+      </article>`);
   }
 
   /* ---------- Başlat ---------- */

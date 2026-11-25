@@ -230,5 +230,20 @@ Stories.I18n.add({
   'Göğsünü avucuna verip başını kucağına yaslar. Dudakların meme ucunu bulunca nefesi titrer; hamileyse sıcak sütü diline akar. Her emişte uyarılması büyür, parmakları saçlarına gömülür. Bırakmanı istemez, sonunda kendini orgazma bırakır.':
     'She places her breast in your palm and rests your head in her lap. When your lips find her nipple her breath trembles; if she is pregnant, warm milk flows onto your tongue. With every suck her arousal grows, her fingers sink into your hair. She doesn\'t want you to stop, and in the end she lets herself go into orgasm.',
   'Son damlana kadar boşaltılmışsın, yine de doruğa ulaşırsın. Kasıkların kasılır, bedenin titrer ama hiçbir şey gelmez. O şaşkın ve gururlu bir gülüşle seni izler. “Seni tamamen kuruttum” diye fısıldar.':
-    'You have been drained to the last drop, yet you still reach the peak. Your groin clenches, your body shakes, but nothing comes. She watches you with a surprised, proud smile. “I drained you completely,” she whispers.'
+    'You have been drained to the last drop, yet you still reach the peak. Your groin clenches, your body shakes, but nothing comes. She watches you with a surprised, proud smile. “I drained you completely,” she whispers.',
+  // 📜 Hikâye Modu (js/data/story.js, app.js renderStory*); hikâye metni şimdilik Türkçe
+  'Hikâye Modu': 'Story Mode', "Carmen'e Hoş Geldin": 'Welcome to Carmen', 'Ana Görevler': 'Main Quests', 'Hatıralar': 'Memories',
+  'Takip et': 'Track', 'Takip ediliyor': 'Tracking', 'Oyna': 'Play', 'Tekrar': 'Replay', 'Ödül': 'Reward', 'Kilitli': 'Locked', 'Hikâye': 'Story',
+  'Yakınlık': 'Affinity', 'Arzu': 'Desire', 'Arzusu': 'Her desire', 'Derdi': 'Her trouble', 'Birlikte sahneler': 'Scenes together', 'Henüz yok': 'None yet',
+  'Henüz tanışmadın': "You haven't met yet", 'Hikâye paneli': 'Story panel', 'Hikâye Kitabı': 'Story Book', 'Bu sahne henüz açılmadı': 'This scene is not unlocked yet',
+  'Tekrar izleme · seçimler değişmez': 'Replay · choices change nothing', 'Prolog': 'Prologue', 'Bölüm I': 'Chapter I', 'Bölüm II': 'Chapter II', 'Bölüm III': 'Chapter III',
+  'Bavul ve Anahtar': 'Suitcase and Key', 'Yeni Şehir, Yeni Ben': 'New City, New Me', 'Vize Haftası': 'Midterm Week', 'Sergi Gecesi': 'Exhibition Night', 'yakında': 'coming soon',
+  '{}/{} görev · Prolog ve Bölüm I': '{}/{} quests · Prologue and Chapter I', 'Takip edilen · {}': 'Tracked · {}', 'Görevi veren: {}': 'Quest giver: {}',
+  'Görev tamamlandı: {}': 'Quest complete: {}', 'Sonraki sahne: {}': 'Next scene: {}', 'Sıradaki görev: {}': 'Next quest: {}', 'Bölüm I tamamlandı': 'Chapter I complete',
+  'Hikâyede onunla karşılaşınca profili açılır.': 'Her profile opens once you meet her in the story.', 'Arzu Kıvılcım olunca açılır.': 'Unlocks when desire reaches Spark.',
+  'Yakınlık 3 olunca açılır.': 'Unlocks at affinity 3.', 'Henüz izlenen sahne yok. İlk görevle başla.': 'No scenes watched yet. Start with the first quest.',
+  'Yabancı': 'Stranger', 'Kıvılcım': 'Spark', 'Gerilim': 'Tension', 'Öpücük': 'Kiss', 'Ön sevişme': 'Foreplay', 'Sevişme': 'Sex', 'Bağ': 'Bond',
+  'Hikâye Modu geldi: Carmen\'e Hoş Geldin': 'Story Mode is here: Welcome to Carmen', 'Hikâye Modu nasıl oynanır': 'How to play Story Mode', 'Yakınlık ve arzu': 'Affinity and desire',
+  "Hikâye: Carmen'e Hoş Geldin": 'Story: Welcome to Carmen', 'Şehirde': 'In the city', 'Şehirde hedefe git': 'Go to the target in the city', 'Sahneye dön': 'Back to the scene',
+  'Rota': 'Route', 'Sonraki sahne: {}': 'Next scene: {}', 'Sıradaki görev: {}': 'Next quest: {}', 'Görev tamamlandı: {}': 'Quest complete: {}', 'Şimdi değil': 'Not now'
 });
