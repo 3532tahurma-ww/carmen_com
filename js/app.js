@@ -508,6 +508,7 @@
       case 'doodle': return renderDoodle();
       case 'dergi': return renderMag(r.id);
       case 'deephug': return renderDeepHug(r.id);
+      case 'station': return renderStation(r.id, r.extra);
       case 'carmen': return renderCarmen(r.id, r.extra);
       case 'gothic': return renderGothic(r.id, r.extra);
       case 'meisove': return renderMeisove(r.id);
@@ -1270,7 +1271,33 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
-    ['🫂', 'DeepHugging açıldı: mesajların derinleşiyor', 'Yeni site: daha etkili, daha betimlemeli mesajlar üreten bir kalıp atölyesi. Senin ve onun mesajları; boşalma akışı, zevkten titreyen bedenler, inlemeler ve çığlıklar, sımsıkı sarılıp boşalma ve boşaldıkça sarılma. Sohbette ⋮ → 🫂 Derin mesajlar ile aç.', '#/deephug', [
+    ['🫦', 'CarmenStation\'da clicker: Fans Ajansı', 'Yıldız kızın fotoğrafına dokun, beğeni topla, ekibini büyüt. Takipçi arttıkça kız açılıyor: bikini, iç çamaşırı, kostüm ve sonunda üstsüz. Ödüller gerçek: CarmenFans aboneliği, hediye özel içerik ve özel mesaj.', '#/station/ajans', [
+      ['💗 Dokun ve 🔥 viral ol', 'Her dokunuş beğeni; hızlı dokununca ısı barı dolar ve 10 saniye boyunca dokunuşlar ×3. Ekranda süzülen ✨ altın kalbi yakalarsan 30 saniye üretim ×7.'],
+      ['🏭 Ekip', 'Selfie\'den viral ağa yedi üretici; sen yokken de beğeni üretirler. 10, 25, 50 ve 100 adette verim ikiye katlanır.'],
+      ['🔓 Kademeler', '1 bin takipçide 👙 bikini, 10 bin\'de 👗 iç çamaşırı ve 🫦 CarmenFans aboneliği, 100 bin\'de 🎭 kostüm ve hediye bir foto seti, 1 milyonda 🔥 üstsüz ve 💬 özel mesaj.'],
+      ['👩 Kadro ve 📈 Yeni Platform', 'Altı kızlık ajans kur; 10 milyon beğeniden sonra yeni platforma taşın, 💎 Elmas kazan.'],
+      ['📚 Kitap', 'Oyun Kitabı\'nda yeni 🫦 Fans Ajansı bölümü; oyundaki ? düğmesi de aynı rehberi açar.']], 'Yeni oyun', [
+      'CarmenFans\'ın kızları bu kez senin ajansında. Ekranın ortasında yıldızının fotoğrafı; her dokunuşunda kalpler uçuşuyor, sayaç dönüyor.',
+      'Takipçiler arttıkça kıyafetler azalıyor: önce havuz kenarında bir bikini, sonra dantel iç çamaşırı, abonelerin seçtiği kostüm ve bir milyonda sadece bir külot ve bir gülümseme.',
+      'Ödüller oyunda kalmıyor: 10 bin takipçide kızın CarmenFans kanalı açılıyor, 100 bin\'de özel içeriklerinden biri hediye, bir milyonda ise o sana yazıyor.']],    ['💆', 'CarmenStation\'da yeni oyun: Spa Tycoon', 'CarmenMassage\'ın masözleri artık senin salonunda çalışıyor. Her gün yeni adaylar, lavanta, nuru ve kapısı kilitli VIP odaları; kabinler sen yokken de seans yapar, istersen seansı kendin alırsın.', '#/station/spa', [
+      ['👩 Personel', 'Her gün altı masöz adayı; her biri kendi paketlerini yapar ve seans yaptıkça ustalaşır. 10. seviyede 🌟 usta.'],
+      ['🛏️ Kabinler', '🫗 Lavanta odasında yağlı masaj, sonra 🧴 Nuru odası ve 🛏️ VIP odası. Doluluk puanla ve reklamla artar.'],
+      ['💆 Seansı sen al', 'Patron denetimi: masözle o kabinin paketiyle sohbet doğrudan masaj salonunda, önlüğüyle başlar.'],
+      ['🎲 Olaylar', '🌟 Ünlü müşteri, 🕵️ müfettiş, 💐 bekarlığa veda grubu (iki masözle grup sohbeti), 😮‍💨 yorgun iş adamı.'],
+      ['🏨 Zincir', '50.000 ₺ kazanınca yeni şube aç, kazanç kalıcı olarak +%50.'],
+      ['📚 Kitap', 'Oyun Kitabı\'nda yeni 💆 Spa Tycoon bölümü; oyunun içindeki ? düğmesi de aynı rehberi açar.']], 'Yeni oyun', [
+      'Mumlar yanıyor, yağ ısındı ve bu kez salon senin. Spa Tycoon\'da CarmenMassage\'ın masözlerini tek tek işe alıyorsun; kimi yağlı masajda usta, kimi nuru jeliyle bütün bedenini kullanıyor.',
+      'Kabinler sen yokken de dolup boşalıyor. Döndüğünde kasada para, salonda biraz daha fazla puan var. Bazen kapıda bir ünlü, bazen bir müfettiş, bazen de kahkahalarla gelen bir bekarlığa veda grubu bekliyor.',
+      'Patron olarak denetim de senin işin: bir kabine dokun, seansı kendin al.']],    ['🎮', 'CarmenStation açıldı: ilk oyun Meisove Bahçesi & Bar', 'Steam gibi yeni bir oyun mağazası: kütüphane, oynama süresi, başarımlar, istek listesi. İlk oyun bir tycoon: Meisove\'nin meyve kızlarını bahçene dik, olgunlaşınca sık, özlerini mahzende yıllandır, barda kokteyl sat. Bar sen yokken de satar.', '#/station/bahce', [
+      ['🌱 Bahçe ve sıkma', 'Limon, Çilek, Portakal, Bal ve Süt Kız saksıda olgunlaşır. Sık ya da 💦 seansla sık: iki kat öz ve onunla sohbet; 5. seviyede 💋 özel seans, 10. seviyede 🌟 Altın kız.'],
+      ['🛢️ Mahzen ve içki kızlar', 'Özleri fıçıla: ilk şarap fıçısı 🍷 Şarap Kız\'ı, sonra 🍸 Vodka, 🌵 Tekila ve 🍾 Şampanya Kız\'ı mahzene getirir. Locada dinlenirler, kıvamına gelince dökülürler.'],
+      ['🍸 Bar ve grup sahneleri', 'Margarita, Screwdriver, Beyaz Rus, Çilekli Şampanya, Sangria… İki ya da üç kızın özü aynı bardakta buluşunca 👭👯 grup sahnesi açılır. 🧪 Denemeyle üç gizli tarif bulunur.'],
+      ['🎲 Olaylar', '🐝 Arı istilası, 🍾 mantar patladı, 🧂 tuz yağmuru, 🥛 süt taştı; cuma 🌵 Tekila Gecesi, mevsim bonusları ve 👑 haftalık tadım yarışması.'],
+      ['🏆 Hasat', 'Dört Altın kızla her şeyi sıfırla, kalıcı 🌟 Meisove Yıldızı kazan.'],
+      ['📚 Kitap', 'İnternet Kitabı\'nda 🎮 CarmenStation, Oyun Kitabı\'nda 🌱 Meisove Bahçesi & Bar bölümü.']], 'Yeni site', [
+      'Şehrin yeni eğlencesi bir oyun mağazası. CarmenStation\'da raflar şimdilik az ama ilk oyun şimdiden bağımlılık yapıyor: Meisove\'nin meyve kızları bu kez bir bahçede, bir mahzende ve bir barın arkasında.',
+      'Saksıdaki Limon Kız sapsarı olgunlaşınca sıkılmayı bekliyor; Çilek Kız kızarıyor, Süt Kız taşıyor. Özler fıçıda yıllandıkça mahzene yeni kızlar geliyor: önce Şarap, sonra Vodka, Tekila ve sonunda köpüklü Şampanya.',
+      'Bar kapanmıyor: sen uyurken bile kokteyl satıyor. Yakında rafta Spa Tycoon, Gece Kulübü Patronu, Fans Ajansı ve Hamam & Sauna var; şimdiden istek listene ekleyebilirsin.']],    ['🫂', 'DeepHugging açıldı: mesajların derinleşiyor', 'Yeni site: daha etkili, daha betimlemeli mesajlar üreten bir kalıp atölyesi. Senin ve onun mesajları; boşalma akışı, zevkten titreyen bedenler, inlemeler ve çığlıklar, sımsıkı sarılıp boşalma ve boşaldıkça sarılma. Sohbette ⋮ → 🫂 Derin mesajlar ile aç.', '#/deephug', [
       ['💦 Boşalma akışı', 'Atım atım akış, sıcaklığın yayılması, dolma ve taşma; içine, tene ya da ağza göre ayrı ayrı anlatılır.'],
       ['🫂 Sımsıkı sarıl, 🌊 boşaldıkça sarıl', 'Kollar kilitli, aramızda nefes bile yok; ya da her atımda sarılış bir kat daha sıkılaşır.'],
       ['🍆🌸 Bedene göre', 'Dick Size, Pussy / Anal Size, göğüs ve kalça mesajı değiştirir: "koca aletimle her vuruşumda memelerin sallanıyor", "daracık kalçanda sıkıştım…"'],
@@ -5317,6 +5344,7 @@
     jobs: [['💼 Tüm ilanlar', '#/is'], ['🏢 Ofis İlanları', '#/is/ofis'], ['🏋️ Spor Salonu İlanları', '#/is/spor']],
     doodle: [['🎨 Bugünün doodle\'ı', '#/doodle'], ['🗓️ Doodle takvimi', '#/doodle']],
     mag: [['📚 Dergi bayii', '#/dergi'], ['🔖 Kaldığım yer', '#/dergi/devam'], ['🎓 Seks eğitimi', '#/dergi/egitim']],
+    station: [['🛒 Mağaza', '#/station'], ['🌱 Meisove Bahçesi & Bar', '#/station/bahce'], ['💆 Spa Tycoon', '#/station/spa'], ['🫦 Fans Ajansı', '#/station/ajans'], ['📚 Kütüphane', '#/station/kutuphane']],
     deephug: [['🫂 Kalıplar', '#/deephug'], ['🧩 Cümle parçaları', '#/deephug/parcalar'], ['🧪 Atölye', '#/deephug/atolye'], ['⭐ Koleksiyonum', '#/deephug/koleksiyon']],
     secret: [['🔑 Gizli Buluşma', '#/gizli', { seF: 'gizli' }], ['🥂 Yıldönümü Sapağı', '#/gizli', { seF: 'yil' }], ['💍 Hotwife', '#/gizli', { seF: 'hw' }], ['🐍 Tüm ilanlar', '#/gizli', { seF: '' }]]
   };
@@ -5410,6 +5438,7 @@
       { k: 'fans', href: '#/fans', ic: '🫦', logo: 'Carmen<i>Fans</i>', url: 'carmenfans.com', desc: 'Abone ol, kilitli gönderileri aç; haftanın kostümü ve özel içerikler.', chips: [`${Object.keys(fnState().subs).length} abonelik`, '📢 haftalık kostüm'] },
       { k: 'mag', href: '#/dergi', ic: '📖', logo: 'Carmen<i>Mag</i>', url: 'carmenmag.com', desc: 'Erotik dergi bayii: Velvet, Ateş, Noir, Ten ve Sır. Sayfaları gerçek dergi gibi çevir; kapak kızlarının anlatımlı fotoğraf setleri, röportajlar, seanslar, pozisyon önerileri, seks eğitimi ve site reklamları. Dergi, magazin.', chips: [`📖 ${MG().titles.length} dergi`, '🆕 her ay yeni sayı'] },
       { k: 'deephug', href: '#/deephug', ic: '🫂', logo: 'Deep<i>Hugging</i>', url: 'deephugging.co', desc: 'Daha etkili, daha betimlemeli mesajlar: olay ve durumlara göre kalıplar. Senin ve onun mesajları; boşalma akışı, hisler, sımsıkı sarılıp boşalma, boşaldıkça sarılma. Atölyede üret, kaydet, sohbette kullan.', chips: [`🫂 ${DH().K.length} kalıp`, `⭐ ${dhSt().saved.length} kayıt`] },
+      { k: 'station', href: '#/station', ic: '🎮', logo: 'Carmen<i>Station</i>', url: 'carmenstation.com', desc: 'Steam gibi oyun mağazası: yetişkin tycoon ve idle oyunlar. Kütüphane, oynama süresi, başarımlar, istek listesi. Oyunlar: 🌱 Meisove Bahçesi & Bar (meyve kızlarını dik, sık, mahzende yıllandır, barda kokteyl sat) 💆 Spa Tycoon (masözleri işe al, kabinleri doldur, salonunu zincire çevir) ve 🫦 Fans Ajansı (idle clicker: dokun, beğeni topla, kızını açtır). Oyun, game, spa, masaj, clicker.', chips: [`🎮 ${CST_GAMES.filter(g => !g.soon).length} oyun`, `🔜 ${CST_GAMES.filter(g => g.soon).length} yakında`] },
       { k: 'stay', href: '#/otel', ic: '🏨', logo: 'Carmen<i>Stay</i>', url: 'carmenstay.com', desc: 'Otel odası, jakuzili süit, VIP loca… rezervasyon yap, sohbet orada başlasın.', chips: [`${SY_VENUES.length} mekan`, `🗓️ ${syRes().length} rezervasyon`] },
       { k: 'gram', href: '#/gram', ic: '📸', logo: 'Carmen<i>tagram</i>', url: 'carmentagram.com', desc: 'Instagram gibi: akış, hikayeler, profiller. Beğen, yorum yap (o da cevap verir), takip et, DM at.', chips: [`${cmAll().length} hesap`, `➕ ${Object.keys(grState().follow).length} takip`] },
       { k: 'flix', href: '#/flix', ic: '🍿', logo: 'Carmen<i>Flix</i>', url: 'carmenflix.com', desc: 'Netflix gibi: filmler yazışma olarak oynar. Lezbiyen, aldatma, grup; olay olay, güçlü anlatımla.', chips: [`${fxAll().filter(t => t.k === 'film').length} film`, '👩‍❤️‍👩 Lezbiyen'] },
@@ -5441,7 +5470,7 @@
     carmen: [['🌹', 'İlanlar', '#/carmen', { cmF: '' }], ['⭐', 'Yorumlar', '#/carmen/x-yorum'], ['📊', 'Karşılaştır', '#/carmen/x-kars'], ['🏷️', 'Ajanslar', '#/carmen/x-ajans'], ['💬', 'Mesajlar', '#/carmen/x-mesaj']],
     gothic: [['🦇', 'İlanlar', '#/gothic', { gtF: '' }], ['🌕', 'Bu gece', '#/gothic/x-ay'], ['🕯️', 'Ritüel', '#/gothic/x-rituel'], ['💬', 'Mesajlar', '#/gothic/x-mesaj']],
     tinder: [['🔥', 'Kaydır', '#/tinder'], ['💬', 'Mesajlar', '#/tinder/x-mesaj']],
-    meisove: [['🍓', 'Vitrin', '#/meisove', { msF: '' }], ['🍃', 'Mevsim', '#/meisove/x-mevsim'], ['🧺', 'Sepet', '#/meisove/x-sepet']],
+    meisove: [['🍓', 'Vitrin', '#/meisove', { msF: '' }], ['🍃', 'Mevsim', '#/meisove/x-mevsim'], ['🎮', 'Oyun', '#/station/bahce'], ['🧺', 'Sepet', '#/meisove/x-sepet']],
     okul: [['🎓', 'İlanlar', '#/okul'], ['📅', 'Program', '#/okul/x-program'], ['🎭', 'Kulüpler', '#/okul/x-kulup']],
     impact: [['✨', 'Karakterler', '#/impact'], ['🌠', 'Dilek', '#/impact/x-dilek'], ['🗺️', 'Bölgeler', '#/impact/x-bolge']],
     gasino: [['🎰', 'Salon', '#/gasino'], ['🪙', 'Kasa', '#/gasino/x-kasa'], ['👑', 'VIP', '#/gasino/x-vip']],
@@ -5456,6 +5485,7 @@
     bumble: [['🐝', 'Eşleş', '#/bumble'], ['💬', 'Mesajlar', '#/bumble/x-mesaj']],
     events: [['📚', 'Dersler', '#/events'], ['🎬', 'Sahneler', '#/events/sahneler'], ['📖', 'Bölümler', '#/events/bolumler'], ['📜', 'Hikâye', '#/events/hikaye']],
     dergi: [['📚', 'Bayi', '#/dergi'], ['🔖', 'Kaldığım yer', '#/dergi/devam'], ['🎓', 'Eğitim', '#/dergi/egitim']],
+    station: [['🛒', 'Mağaza', '#/station'], ['📚', 'Kütüphane', '#/station/kutuphane'], ['♡', 'İstek', '#/station/istek']],
     deephug: [['🫂', 'Kalıplar', '#/deephug'], ['🧩', 'Parçalar', '#/deephug/parcalar'], ['🧪', 'Atölye', '#/deephug/atolye'], ['⭐', 'Koleksiyon', '#/deephug/koleksiyon'], ['📊', 'Sıralama', '#/deephug/sira']],
     kilise: [['🕯️', 'İlanlar', '#/kilise', { kcF: '' }], ['🙏', 'İtiraf', '#/kilise/x-itiraf'], ['📅', 'Ayinler', '#/kilise/x-ayin']],
     masaj: [['💆', 'Masözler', '#/masaj', { mzF: '' }], ['📅', 'Randevu', '#/masaj/x-randevu'], ['🎟️', 'Spa kartı', '#/masaj/x-kart']],
@@ -5488,7 +5518,9 @@
     if (!on) { box.innerHTML = ''; ui.siteNav = null; return; }
     const s = netSites().find(x => x.href.split('/')[1] === site);
     // alt bar yalnızca sitenin kendi bölümleri (Booble / Mesaj / Ana sayfa yok)
-    const btns = ui.siteNav = SITE_NAV[site] || [[s ? s.ic : '🌐', 'Site', `#/${site}`]];
+    // 🎮 CarmenStation: oyunun içindeyken alt bar oyunun kendi bölümleri (CST_GAMES[].nav)
+    const gm = site === 'station' && ui.route && ui.route.extra === 'oyna' && cstGame(ui.route.id);
+    const btns = ui.siteNav = (gm && gm.nav) || SITE_NAV[site] || [[s ? s.ic : '🌐', 'Site', `#/${site}`]];
     box.innerHTML = btns.map((b, i) => `<a href="${b[2]}" data-sn="${i}"><b>${b[0]}</b><span>${esc(b[1])}</span></a>`).join('');
     siteNavMark();
   }
@@ -5600,6 +5632,689 @@
   // 🩺 Klinik: muayene formu, bölümler, tahlil, kür
   const SP_KLC = [['🤒', 'Ateş ve halsizlik', 'Dahiliye'], ['💓', 'Çarpıntı ve nefes darlığı', 'Kardiyoloji'], ['🤰', 'Hamilelik kontrolü', 'Kadın Doğum'], ['🧪', 'Donörlük testi', 'Androloji'], ['🦴', 'Bel ve sırt ağrısı', 'Fizik Tedavi'], ['😴', 'Uykusuzluk ve stres', 'Psikiyatri']];
   const klDept = c => cmNum(c, 'kld', SP_KLC.length);
+
+  /* 🌱 Meisove Bahçesi & Bar (CarmenStation oyunu, #/station/bahce/oyna): idle tycoon.
+   * Meyve kız dik → olgunlaşır → sık (öz) → 🛢️ mahzende fıçıla (içki kızlar açılır) → 🍸 barda kokteyl karıştır → bar zamanla satar.
+   * Durum amor-stories:mvgarden; bkz. ProjectMemory/proposals/meisove-bahce.md */
+  const GDN_KEY = 'amor-stories:mvgarden', GDN_FRUIT = ['limon', 'cilek', 'portakal', 'bal', 'sut'], GDN_DRINK = ['sarap', 'vodka', 'tekila', 'sampanya'];
+  const GDN_REC = [
+    { id: 'limonata', ic: '🍋', n: 'Limonata', need: { limon: 3 }, p: 12 },
+    { id: 'cilekkrem', ic: '🍓', n: 'Çilek Kreması', need: { cilek: 3 }, p: 14 },
+    { id: 'portakal', ic: '🍊', n: 'Taze Portakal', need: { portakal: 3 }, p: 12 },
+    { id: 'balserbet', ic: '🍯', n: 'Bal Şerbeti', need: { bal: 3 }, p: 15 },
+    { id: 'sutbardak', ic: '🥛', n: 'Sıcak Süt', need: { sut: 3 }, p: 13 },
+    { id: 'tropik', ic: '🍹', n: 'Tropik Kokteyl', need: { limon: 2, portakal: 2 }, p: 26 },
+    { id: 'milkshake', ic: '🥤', n: 'Çilekli Milkshake', need: { cilek: 2, sut: 2 }, p: 28 },
+    { id: 'ballilimon', ic: '🫖', n: 'Ballı Limon', need: { limon: 2, bal: 2 }, p: 27 },
+    { id: 'gunbatimi', ic: '🌅', n: 'Gün Batımı', need: { portakal: 2, cilek: 2 }, p: 27 },
+    { id: 'balsut', ic: '🍮', n: 'Ballı Süt', need: { bal: 2, sut: 2 }, p: 29 },
+    { id: 'margarita', ic: '🧂', n: 'Margarita', need: { limon: 2, tekila: 2 }, p: 48 },
+    { id: 'screwdriver', ic: '🪛', n: 'Screwdriver', need: { portakal: 2, vodka: 2 }, p: 46 },
+    { id: 'beyazrus', ic: '🤍', n: 'Beyaz Rus', need: { sut: 2, vodka: 2 }, p: 46 },
+    { id: 'sicaksarap', ic: '♨️', n: 'Ballı Şarap', need: { sarap: 2, bal: 2 }, p: 44 },
+    { id: 'cileksampanya', ic: '🥂', n: 'Çilekli Şampanya', need: { cilek: 2, sampanya: 2 }, p: 60 },
+    { id: 'sangria', ic: '🍷', n: 'Sangria', need: { sarap: 2, portakal: 1, limon: 1 }, p: 58 },
+    { id: 'pembepanter', ic: '🩷', n: 'Pembe Panter', need: { cilek: 2, vodka: 2 }, p: 55, hid: 1 },
+    { id: 'altinbal', ic: '✨', n: 'Altın Bal', need: { bal: 2, sampanya: 2 }, p: 70, hid: 1 },
+    { id: 'beyazkaktus', ic: '❄️', n: 'Beyaz Kaktüs', need: { sut: 2, tekila: 2 }, p: 52, hid: 1 }];
+  // 🛢️ fıçılar: özler yıllanır → içki özü; ilk kez açılan fıçı o içki kızını mahzene getirir
+  const GDN_CASK = {
+    sarap: { ic: '🍷', n: 'Meyve Şarabı', need: { cilek: 4, bal: 2 }, h: 3, out: 5 },
+    vodka: { ic: '🍸', n: 'Narenciye Votkası', need: { limon: 4, portakal: 2 }, h: 3, out: 5 },
+    tekila: { ic: '🌵', n: 'Agave Tekilası', need: { bal: 3, limon: 3 }, h: 4, out: 5 },
+    sampanya: { ic: '🍾', n: 'Şampanya', need: { sarap: 3, bal: 2 }, h: 6, out: 4, req: 'sarap' } };
+  const GDN_UP = {
+    sera: { ic: '🏡', n: 'Sera', max: 5, c: 40, d: 'Olgunlaşma her seviyede %15 hızlanır' },
+    saksi: { ic: '🪴', n: 'Saksı', max: 4, c: 60, d: 'Bir saksı daha: bir kız daha dikebilirsin' },
+    pres: { ic: '🗜️', n: 'Pres', max: 3, c: 80, d: 'Öz verimi her seviyede +%50', lv: ['El presi', 'Mengene', 'Altın pres', 'Kristal pres'] },
+    bar: { ic: '🍸', n: 'Bar', max: 5, c: 70, d: 'Bar her seviyede daha hızlı ve daha pahalı satar' },
+    fici: { ic: '🛢️', n: 'Fıçı', max: 2, c: 150, d: 'Mahzende bir fıçı daha' },
+    mese: { ic: '🪵', n: 'Meşe', max: 4, c: 120, d: 'Fıçılar ve loca her seviyede %15 hızlanır' },
+    loca: { ic: '🛋️', n: 'Loca', max: 3, c: 200, d: 'Mahzende bir içki kızı daha' } };
+  // 🎨 dekor / tema süitleri: o türlerin özü +%25, seans o mekanda açılır
+  const GDN_DECO = [
+    { id: 'tezgah', ic: '🍋', n: 'Limon Tezgâhı', ty: ['limon'], c: 150 },
+    { id: 'yatak', ic: '🍓', n: 'Pembe Yatak Odası', ty: ['cilek'], c: 150 },
+    { id: 'bahce', ic: '🍊', n: 'Portakal Bahçesi', ty: ['portakal'], c: 150 },
+    { id: 'kovan', ic: '🍯', n: 'Bal Kovanı Süiti', ty: ['bal'], c: 150 },
+    { id: 'ciftlik', ic: '🥛', n: 'Çiftlik Evi', ty: ['sut'], c: 150 },
+    { id: 'mahzen', ic: '🍷', n: 'Şarap Mahzeni Süiti', ty: GDN_DRINK, c: 300 }];
+  // 🌞 mevsim: bu ayın türleri +%50 öz
+  const GDN_SEASON = [['❄️ Kış', ['sut', 'sarap']], ['🌸 İlkbahar', ['cilek', 'bal']], ['☀️ Yaz', ['limon', 'portakal', 'tekila']], ['🍂 Sonbahar', ['sarap', 'portakal', 'bal']]];
+  const gdnSeason = () => GDN_SEASON[Math.floor(((new Date().getMonth() + 1) % 12) / 3)];
+  // 🎲 rastgele olaylar: o türden bir kız bahçede / mahzende olmalı; kabul edersen öz + onun sohbeti
+  const GDN_EV = [
+    { id: 'ari', ic: '🐝', n: 'Arı istilası', ty: 'bal', d: 'Arılar Bal Kız\'ın etrafında vızıldıyor; yatıştır, kovanın balı senin.', say: ['Arılar her yerimde 🐝 Gel, bal yapışan yerlerimi sen temizle… 🍯', 'Vızz vızz… kurtar beni, karşılığında ballı bir öpücük 🍯😘'] },
+    { id: 'mantar', ic: '🍾', n: 'Mantar patladı', ty: 'sampanya', d: 'Şampanya Kız\'ın mantarı patladı, köpük her yerde.', say: ['Pat! 🍾 Köpük göğüslerimden süzülüyor… yalamaya gel 💦', 'Mantar uçtu, ben de sırılsıklamım 🥂 kurulamak sende'] },
+    { id: 'tuz', ic: '🧂', n: 'Tuz yağmuru', ty: 'limon', d: 'Limon Kız tuzluğu devirdi; tuz boynunda, göğsünde.', say: ['Tuz döküldü her yerime 🧂 yalaman şart, kuralım bu 🍋', 'Boynum tuzlu, dudaklarım ekşi… sırayla mı alırsın? 😏'] },
+    { id: 'sut', ic: '🥛', n: 'Süt taştı', ty: 'sut', d: 'Süt Kız\'ın göğüsleri taştı; sağmak gerek.', say: ['Göğüslerim taştı 🥛 sağmaya gelir misin? Acele et 💦', 'Bluzum sırılsıklam oldu 🥛 bu sefer sen sağ…'] },
+    { id: 'krema', ic: '🍓', n: 'Çilek festivali', ty: 'cilek', d: 'Çilek Kız festival için kremaya bulandı.', say: ['Festival için kremaya bulandım 🍓🍦 temizle beni', 'Yanaklarım kıpkırmızı, üstüm krema… nereden başlarsın? 🍓'] },
+    { id: 'tekila', ic: '🌵', n: 'Shot düellosu', ty: 'tekila', d: 'Tekila Kız barda shot düellosu istiyor.', say: ['Shot düellosu 🌵 kaybeden giysisini çıkarır 😈', 'Tuz, limon, ben… sıra sende 🥃'] }];
+  const GDN_ACH = [
+    ['ilk', '🧃', 'İlk damla', 'İlk kez bir kızı sık', s => s.sq >= 1],
+    ['kokteyl', '🍸', 'Açılış gecesi', 'Barda ilk kokteyl satılsın', s => s.sold >= 1],
+    ['barmen', '💯', 'Barmen', '100 kokteyl sat', s => s.sold >= 100],
+    ['altin', '🌟', 'Altın kız', 'Bir kızı 10. seviyeye çıkar', s => s.gold >= 1],
+    ['fici', '🛢️', 'İlk fıçı', 'Mahzende bir fıçı aç', s => s.open.length >= 1],
+    ['tambar', '🍾', 'Tam bar', 'Dört içki kızını da aç', s => GDN_DRINK.every(t => s.open.includes(t))],
+    ['ikili', '👭', 'İkili tarif', 'İki meyveli bir tarifi karıştır', s => s.rec.length >= 1],
+    ['gizli', '❓', 'Gizli şef', 'Üç gizli tarifi de bul', s => GDN_REC.filter(r => r.hid).every(r => s.found.includes(r.id))],
+    ['dekor', '🎨', 'Dekoratör', 'Bütün dekorları al', s => GDN_DECO.every(d => s.deco.includes(d.id))],
+    ['yaris', '👑', 'Tadım şampiyonu', 'Haftalık tadım yarışmasını kazan', s => s.wins >= 1],
+    ['zengin', '💰', 'Meyve baronu', 'Toplam 5000 💰 kazan', s => s.earned >= 5000],
+    ['hasat', '🏆', 'Hasat', 'İlk Hasat\'ı yap', s => s.star >= 1]];
+  const gdnNew = () => ({ coin: 0, rep: 0, at: Date.now(), plots: [], cel: [], casks: [], ess: {}, stock: {}, up: { sera: 0, saksi: 0, pres: 0, bar: 0, fici: 0, mese: 0, loca: 0 },
+    rec: [], found: [], open: [], deco: [], sold: 0, sq: 0, gold: 0, earned: 0, wins: 0, star: 0, ev: null, evNext: 0, wk: -1, play: 0 });
+  const gdnSt = v => { try { if (v) localStorage.setItem(GDN_KEY, JSON.stringify(v)); if (v) return v; const s = Object.assign(gdnNew(), JSON.parse(localStorage.getItem(GDN_KEY) || 'null') || {}); s.up = Object.assign(gdnNew().up, s.up); return s; } catch (e) { return v || gdnNew(); } };
+  const gdnChar = id => msFind(id) || chars().find(c => c.cmRid === id);
+  const gdnIc = t => (MS_TYPES.find(x => x.id === t) || {}).ic || '🍹';
+  const gdnTn = t => (MS_TYPES.find(x => x.id === t) || {}).name || t;
+  const gdnCost = (k, lv) => Math.round(GDN_UP[k].c * Math.pow(2.2, lv));
+  const gdnRipeMs = (s, cel) => (cel ? 72e5 * Math.pow(0.85, s.up.mese) : 36e5 * Math.pow(0.85, s.up.sera));
+  const gdnCaskMs = (s, k) => GDN_CASK[k].h * 36e5 * Math.pow(0.85, s.up.mese);
+  const gdnSellMs = s => 6e5 * Math.pow(0.8, s.up.bar);
+  const gdnFri = () => new Date().getDay() === 5;
+  const gdnHasDrink = r => Object.keys(r.need).some(t => GDN_DRINK.includes(t));
+  const gdnPrice = (s, r) => Math.round(r.p * (1 + s.up.bar * 0.25) * (1 + s.star * 0.5) * (gdnFri() && gdnHasDrink(r) ? 2 : 1));
+  const gdnLv = p => Math.min(10, 1 + Math.floor((p.xp || 0) / 3));
+  const gdnFresh = p => Math.min(100, (p.fr == null ? 100 : p.fr) + (Date.now() - (p.ft || 0)) / 36e5 * 10);
+  const gdnRipe = (s, p, cel) => Math.min(1, (Date.now() - p.t) / gdnRipeMs(s, cel));
+  const gdnDeco = (s, t) => GDN_DECO.find(d => s.deco.includes(d.id) && d.ty.includes(t));
+  const gdnYield = (s, p, t) => Math.max(1, Math.round(3 * (1 + s.up.pres * 0.5) * (1 + (gdnLv(p) - 1) * 0.1) * (gdnLv(p) >= 10 ? 2 : 1) * Math.max(0.3, gdnFresh(p) / 100)
+    * (gdnDeco(s, t) ? 1.25 : 1) * (gdnSeason()[1].includes(t) ? 1.5 : 1) * (1 + s.star * 0.5)));
+  const gdnOpenT = (s, t) => GDN_FRUIT.includes(t) || s.open.includes(t);
+  const gdnRecOk = (s, r) => Object.keys(r.need).every(t => gdnOpenT(s, t)) && (!r.hid || s.found.includes(r.id));
+  const gdnCan = (s, need) => Object.keys(need).every(t => (s.ess[t] || 0) >= need[t]);
+  const gdnGirls = s => [...s.plots, ...s.cel].map(p => gdnChar(p.c)).filter(Boolean);
+  const gdnAch = s => GDN_ACH.filter(a => a[4](s));
+  function gdnTick(s) {
+    const now = Date.now(), step = gdnSellMs(s), left = () => GDN_REC.filter(r => (s.stock[r.id] || 0) > 0);
+    let n = Math.floor((now - (s.at || now)) / step), coin = 0, sold = 0;
+    while (n > 0) { const r = left()[0]; if (!r) break; s.stock[r.id]--; coin += gdnPrice(s, r); sold++; n--; }
+    s.at = left().length ? (s.at || now) + sold * step : now;
+    s.coin += coin; s.earned += coin; s.rep += sold; s.sold += sold;
+    // 🎲 olay: süresi dolanı kaldır, zamanı gelince uygun bir olay seç
+    if (s.ev && now > s.ev.until) s.ev = null;
+    if (!s.ev && now > (s.evNext || 0)) {
+      const gs = gdnGirls(s), ok = GDN_EV.map(e => [e, gs.find(c => msType(c).id === e.ty)]).filter(x => x[1]);
+      if (ok.length) { const [e, c] = ok[Math.floor(Math.random() * ok.length)]; s.ev = { id: e.id, c: c.id, until: now + 27e5 }; }
+      s.evNext = now + (ok.length ? 36e5 + Math.random() * 36e5 : 18e5);
+    }
+    return { sold, coin };
+  }
+  // oyun ekranını yerinde yeniden çiz (render() sayfayı başa kaydırır ve açık pencereleri kapatır)
+  const gdnRedo = () => { const r = ui.route; if (r && r.name === 'station' && r.extra === 'oyna') renderStation(r.id, r.extra); };
+  function gdnSqueeze(cel, i, chat) {
+    const s = gdnSt(), L = cel ? s.cel : s.plots, p = L[i]; if (!p || gdnRipe(s, p, cel) < 1) return;
+    const c = gdnChar(p.c); if (!c) return;
+    const ty = msType(c), lv0 = gdnLv(p), n = gdnYield(s, p, ty.id) * (chat ? (lv0 >= 5 ? 3 : 2) : 1);
+    s.ess[ty.id] = (s.ess[ty.id] || 0) + n; s.sq++; p.xp = (p.xp || 0) + 1; p.fr = Math.max(0, gdnFresh(p) - 25); p.ft = p.t = Date.now();
+    const lv = gdnLv(p); if (lv >= 10 && lv0 < 10) s.gold++;
+    gdnSt(s); notify(`+${n} ${ty.name} özü`, ty.ic);
+    if (lv > lv0) notify(lv >= 10 ? `${msFirst(c)} Altın oldu: öz ×2` : lv === 5 ? `${msFirst(c)} seviye 5: özel seans açıldı` : `${msFirst(c)} seviye ${lv} oldu`, lv >= 10 ? '🌟' : '⭐');
+    if (!chat) return gdnRedo();
+    const d = gdnDeco(s, ty.id), g = ty.greet[Math.floor(Math.random() * ty.greet.length)];
+    sfx('match'); cmChat(c, 'Meisove', d ? `📍 ${d.n}: ${g}` : g, false);
+  }
+  function gdnGroup(r) {
+    const s = gdnSt(), gs = gdnGirls(s), cs = Object.keys(r.need).map(t => gs.find(c => msType(c).id === t));
+    if (cs.some(c => !c)) return notify('Bu tarifin bütün kızları bahçende ya da mahzeninde olmalı', '🌱');
+    const ms = cs.map(c => cmAdopt(c)), now = Date.now(), t = { id: Store.uid(), group: true, members: ms.map(m => m.id), title: `${r.ic} ${r.n}`, created: now, opened: 0 };
+    threads().push(t);
+    const rest = ms.slice(1).map(m => m.name.split(' ')[0]).join(' ve ');
+    msgsOf(t).push({ id: Store.uid(), from: 'her', who: ms[0].id, ts: now, text: ms.length > 2 ? `${r.n} hazır ${r.ic} ${rest} da burada… üçümüzün özü aynı sürahide, hangimizden başlayacaksın? 😈` : `${r.n} hazır ${r.ic} ${rest} ile ikimizin özü aynı bardakta… şimdi ikimizi birden tatmaya ne dersin? 😏` });
+    save(); sfx('match'); location.hash = '#/chat/' + t.id;
+  }
+  // ❔ oyun rehberi: Oyun Kitabı bölümü ve oyundaki ? penceresi aynı metni kullanır
+  function gdnGuide() {
+    const up = Object.values(GDN_UP).map(u => `<tr><td>${u.ic} ${esc(u.n)}</td><td>${esc(u.d)} (en çok ${u.max})</td></tr>`).join('');
+    return `<p><a href="#/station/bahce">🌱 Meisove Bahçesi & Bar</a>, <a href="#/station">🎮 CarmenStation</a>'ın ilk oyunu: zamanla büyüyen bir meyve bahçesi, mahzen ve bar. Zincir: <b>🌱 Bahçe → 🧃 Sıkma → 🛢️ Mahzen → 🍸 Bar</b>. Oyun kapalıyken de zaman akar; bar sen yokken satar, döndüğünde "kokteyl satıldı" bildirimi gelir.</p>
+      <ul><li><b>🌱 Bahçe</b>: saksıya Meisove'den bir meyve kızı dik (🍋 Limon, 🍓 Çilek, 🍊 Portakal, 🍯 Bal, 🥛 Süt). 🟢 ham → 🟡 tatlı → 🔴 olgun; ilk saksılarda 1 saat.</li>
+        <li><b>🧃 Sık</b>: olgun kızdan öz alırsın. <b>💦 Seansla</b> iki kat öz verir ve onunla sohbeti açar; 5. seviyeden sonra <b>💋 Özel seans</b> üç kat verir. Dekoru alınmış türlerde seans o mekanda açılır.</li>
+        <li><b>😊 Tazelik</b>: her sıkma −25, saatte +10 geri gelir; yorgun kız daha az öz verir.</li>
+        <li><b>⭐ Seviye</b>: her 3 sıkmada bir; 5'te ✨, 10'da 🌟 <b>Altın</b> (öz ×2).</li>
+        <li><b>🛢️ Mahzen</b>: özleri fıçıla; süre dolunca 🍾 Aç. İlk açılan fıçı o içkinin kızını mahzene getirir: ${Object.keys(GDN_CASK).map(k => `${GDN_CASK[k].ic} ${esc(GDN_CASK[k].n)}`).join(', ')}. İçki kızları 🛋️ locada dinlenir, kıvamına gelince 🥃 Dök.</li>
+        <li><b>🍸 Bar</b>: ${GDN_REC.filter(r => !r.hid).length} tarif + ${GDN_REC.filter(r => r.hid).length} gizli. Karıştırdığın kokteyl stoğa girer, bar her 10 dakikada (Bar seviyesiyle daha sık) birini satar: 💰 ve 👑 itibar.</li>
+        <li><b>👭👯 Grup sahnesi</b>: iki ya da üç meyveli bir tarifi ilk kez karıştırınca o kızlarla grup sohbeti açılır (ör. 🧂 Margarita: Limon + Tekila, 🍷 Sangria: Şarap + Portakal + Limon).</li>
+        <li><b>🧪 Deneme</b>: iki farklı özden 2'şer koy; gizli tarifse 📖 Tarif Defteri'ne yazılır.</li></ul>
+      <table class="bk-t"><tr><th>Olay</th><th>Ne olur</th></tr>
+        ${GDN_EV.map(e => `<tr><td>${e.ic} ${esc(e.n)}</td><td>${esc(e.d)} Koşarsan +4 öz ve onunla sohbet.</td></tr>`).join('')}
+        <tr><td>🌵 Tekila Gecesi</td><td>Cuma günleri içkili kokteyller ×2 fiyatına satılır.</td></tr>
+        <tr><td>🌞 Mevsim</td><td>${GDN_SEASON.map(x => `${x[0]}: ${x[1].map(gdnIc).join('')}`).join(' · ')}; bu türlerin özü +%50.</td></tr>
+        <tr><td>👑 Tadım yarışması</td><td>Haftada bir, stoktan bir kokteyl gönder; pahalı tarif ve itibar şansı artırır.</td></tr></table>
+      <table class="bk-t"><tr><th>Yükseltme</th><th>Etkisi</th></tr>${up}
+        ${GDN_DECO.map(d => `<tr><td>${d.ic} ${esc(d.n)}</td><td>${d.ty.map(gdnIc).join('')} özü +%25 (💰 ${d.c})</td></tr>`).join('')}</table>
+      <p><b>🏆 Hasat</b>: dört kız 🌟 Altın olunca her şey sıfırlanır, kalıcı 🌟 Meisove Yıldızı kazanırsın (her yıldız öz ve fiyat +%50). Bulduğun tarifler ve başarımlar kalır. ${GDN_ACH.length} başarım CarmenStation'daki oyun sayfasında.</p>`;
+  }
+  function gdnView() {
+    const s = gdnSt(), out = gdnTick(s); gdnSt(s);
+    if (out.sold) notify(`${out.sold} kokteyl satıldı, +${out.coin} 💰`, '🍸');
+    const min = m => spMin(Math.max(1, Math.ceil(m / 6e4))), used = new Set([...s.plots, ...s.cel].map(p => p.c));
+    const free = c => !used.has(c.id) && !used.has(c.cmRid), all = msAll();
+    const pool = all.filter(c => GDN_FRUIT.includes(msType(c).id) && free(c)), dpool = all.filter(c => s.open.includes(msType(c).id) && free(c));
+    const slots = 2 + s.up.saksi, cslots = s.open.length ? 1 + s.up.loca : 0, kslots = 1 + s.up.fici, sea = gdnSeason();
+    const card = (p, i, cel) => {
+      const c = gdnChar(p.c); if (!c) return '';
+      const ty = msType(c), rp = gdnRipe(s, p, cel), lv = gdnLv(p), fr = Math.round(gdnFresh(p)), k = cel ? 'c' : 'g';
+      const st = rp >= 1 ? (cel ? '🔴 Kıvamında' : '🔴 Olgun') : rp >= 0.33 ? (cel ? '🟡 Dinleniyor' : '🟡 Tatlı') : (cel ? '🟢 Taze dolum' : '🟢 Ham');
+      return `<div class="gdn-plot${lv >= 10 ? ' gold' : ''}">${avatar(c, 56)}<b>${spFirst(c)}${lv >= 10 ? ' 🌟' : lv >= 5 ? ' ✨' : ''}</b><small>${esc(ty.ic)} ${esc(ty.name)} · ⭐ Sv ${lv}${sea[1].includes(ty.id) ? ' · 🌞' : ''}</small>
+        <div class="gdn-bar"><i style="width:${Math.round(rp * 100)}%"></i></div><small>${st}${rp < 1 ? ` · ${min((1 - rp) * gdnRipeMs(s, cel))}` : ''} · 😊 %${fr}</small>
+        ${rp >= 1 ? `<div class="gdn-btns"><button type="button" class="btn primary sm" data-gsq="${k}${i}">${cel ? '🥃 Dök' : '🧃 Sık'}</button><button type="button" class="btn ghost sm" data-gch="${k}${i}">${lv >= 5 ? '💋 Özel seans' : '💦 Seansla'}</button></div>` : ''}
+        <button type="button" class="gdn-x" data-gdel="${k}${i}" title="Çıkar">✕</button></div>`;
+    };
+    const empty = (n, list, k) => Array.from({ length: Math.max(0, n) }, () => `<div class="gdn-plot empty"><span class="gdn-pot">${k === 'c' ? '🛋️' : '🪴'}</span>${list.length ? `<select class="sp-sel" data-gsel>${spOpts(list, list[0].id)}</select><button type="button" class="btn primary sm" data-gdik="${k}">${k === 'c' ? '🛋️ Locaya al' : '🌱 Dik'}</button>` : `<small>${k === 'c' ? 'Locaya alınacak içki kızı yok' : 'Dikilecek meyve kızı kalmadı'}</small>`}</div>`).join('');
+    const need = nd => Object.keys(nd).map(t => `${gdnIc(t)}×${nd[t]}`).join(' ');
+    const ev = s.ev && GDN_EV.find(e => e.id === s.ev.id), evc = ev && gdnChar(s.ev.c);
+    const cask = (x, i) => { const K = GDN_CASK[x.k], rp = Math.min(1, (Date.now() - x.t) / gdnCaskMs(s, x.k));
+      return `<div class="gdn-plot"><span class="gdn-pot">${K.ic}</span><b>${esc(K.n)}</b><div class="gdn-bar"><i style="width:${Math.round(rp * 100)}%"></i></div>
+        <small>${rp >= 1 ? '🔴 Yıllandı' : `⏳ ${min((1 - rp) * gdnCaskMs(s, x.k))}`}</small>${rp >= 1 ? `<button type="button" class="btn primary sm" data-gcopen="${i}">🍾 Aç</button>` : ''}</div>`; };
+    const caskPick = Object.keys(GDN_CASK).map(k => { const K = GDN_CASK[k], lock = K.req && !s.open.includes(K.req), ok = !lock && gdnCan(s, K.need) && s.casks.length < kslots;
+      return `<div class="ws-row"><span class="gdn-ric">${K.ic}</span><span class="ws-rin"><b>${esc(K.n)}${s.open.includes(k) ? '' : ` · 🔓 ${esc(gdnTn(k))}`}</b><small>${lock ? `🔒 Önce ${esc(GDN_CASK[K.req].n)}` : `${need(K.need)} · ⏳ ${min(gdnCaskMs(s, k))} · ×${K.out}`}</small></span>
+        <button type="button" class="btn ${ok ? 'primary' : 'ghost'} sm" data-gcask="${k}"${ok ? '' : ' disabled'}>🛢️ Fıçıla</button></div>`; }).join('');
+    const rec = r => { const n = Object.keys(r.need).length, ok = gdnRecOk(s, r), can = ok && gdnCan(s, r.need), open = s.rec.includes(r.id);
+      return `<div class="ws-row gdn-rec${ok ? '' : ' off'}"><span class="gdn-ric">${r.ic}</span><span class="ws-rin"><b>${esc(r.n)}${r.hid ? ' ❓' : ''}${gdnFri() && gdnHasDrink(r) ? ' 🌵×2' : ''}</b><small>${need(r.need)} · 💰 ${gdnPrice(s, r)} · stok ${s.stock[r.id] || 0}${ok ? '' : ' · 🔒 mahzende aç'}</small></span>
+        <button type="button" class="btn ${can ? 'primary' : 'ghost'} sm" data-gmix="${r.id}"${can ? '' : ' disabled'}>🍸 Karıştır</button>${n > 1 ? `<button type="button" class="btn ghost sm" data-ggrp="${r.id}"${open ? '' : ' disabled title="Önce bir kez karıştır"'}>${open ? (n > 2 ? '👯' : '👭') : '🔒'}</button>` : ''}</div>`; };
+    const hidN = GDN_REC.filter(r => r.hid).length, have = [...GDN_FRUIT, ...GDN_DRINK].filter(t => (s.ess[t] || 0) >= 2);
+    const up = k => { const u = GDN_UP[k], lv = s.up[k], max = lv >= u.max, cost = gdnCost(k, lv);
+      return `<div class="ws-row"><span class="gdn-ric">${u.ic}</span><span class="ws-rin"><b>${esc(u.n)} · Sv ${lv}${u.lv ? ` · ${esc(u.lv[lv])}` : ''}</b><small>${esc(u.d)}</small></span>
+        <button type="button" class="btn ${!max && s.coin >= cost ? 'primary' : 'ghost'} sm" data-gup="${k}"${max || s.coin < cost ? ' disabled' : ''}>${max ? 'En üst' : `💰 ${cost}`}</button></div>`; };
+    const deco = d => { const own = s.deco.includes(d.id);
+      return `<div class="ws-row"><span class="gdn-ric">${d.ic}</span><span class="ws-rin"><b>${esc(d.n)}</b><small>${d.ty.map(gdnIc).join('')} özü +%25 · seans bu mekanda</small></span>
+        <button type="button" class="btn ${own ? 'ghost' : s.coin >= d.c ? 'primary' : 'ghost'} sm" data-gdeco="${d.id}"${own || s.coin < d.c ? ' disabled' : ''}>${own ? '✓ Senin' : `💰 ${d.c}`}</button></div>`; };
+    const wk = Math.floor(spDay() / 7), inStock = GDN_REC.filter(r => (s.stock[r.id] || 0) > 0);
+    const gold = [...s.plots, ...s.cel].filter(p => gdnLv(p) >= 10).length;
+    const stock = GDN_REC.reduce((a, r) => a + (s.stock[r.id] || 0), 0);
+    const tab = ['', 'mahzen', 'bar', 'gelisim'].includes(ui.gdnTab || '') ? ui.gdnTab || 'bahce' : 'bahce';
+    return { h: `<div class="gdn-root gdn-t-${tab}">
+      <div class="gdn-stats"><button type="button" class="gdn-help" id="gHelp" title="Nasıl oynanır?" aria-label="Nasıl oynanır?">?</button><span>💰 <b>${s.coin}</b></span><span>👑 <b>${s.rep}</b> itibar</span><span>🍸 <b>${s.sold}</b> satış</span>${s.star ? `<span>🌟 <b>${s.star}</b> yıldız</span>` : ''}<span>${sea[0]}: ${sea[1].map(gdnIc).join('')} +%50</span></div>
+      ${gdnFri() ? '<div class="gdn-ban">🌵 <b>Tekila Gecesi</b>: bugün cuma, içkili kokteyller ×2 fiyatına satılıyor</div>' : ''}
+      ${ev && evc ? `<div class="gdn-ban ev">${ev.ic} <b>${esc(ev.n)}</b>: ${esc(ev.d)} <small>⏳ ${min(s.ev.until - Date.now())}</small><button type="button" class="btn primary sm" id="gEvGo">${ev.ic} ${spFirst(evc)}: yanına koş · +4 ${gdnIc(ev.ty)}</button></div>` : ''}
+      <section class="ws-sec" data-gt="bahce"><h3>🌱 Bahçe <small>· ${s.plots.length}/${slots} saksı</small></h3><div class="gdn-grid">${s.plots.map((p, i) => card(p, i, false)).join('')}${empty(slots - s.plots.length, pool, 'g')}</div></section>
+      <section class="ws-sec" data-gt="bahce mahzen bar"><h3>🧃 Özler</h3><div class="gdn-ess">${[...GDN_FRUIT, ...GDN_DRINK].filter(t => GDN_FRUIT.includes(t) || s.open.includes(t)).map(t => `<span>${gdnIc(t)} <b>${s.ess[t] || 0}</b></span>`).join('')}</div></section>
+      <section class="ws-sec" data-gt="mahzen"><h3>🛢️ Mahzen <small>· ${s.casks.length}/${kslots} fıçı${cslots ? ` · ${s.cel.length}/${cslots} loca` : ''}</small></h3>
+        ${s.casks.length ? `<div class="gdn-grid">${s.casks.map(cask).join('')}</div>` : ''}<div class="ws-list">${caskPick}</div>
+        ${cslots ? `<h3>🛋️ Loca · içki kızları</h3><div class="gdn-grid">${s.cel.map((p, i) => card(p, i, true)).join('')}${empty(cslots - s.cel.length, dpool, 'c')}</div>` : '<p class="cm-mute">İlk fıçıyı açınca o içkinin kızı mahzene gelir; locada dinlenir, kıvamına gelince dökülür.</p>'}</section>
+      <section class="ws-sec" data-gt="bar"><h3>🍸 Bar <small>· stok ${stock} · ${stock ? `her ${min(gdnSellMs(s))} bir satış` : 'stok boş, kokteyl karıştır'}</small></h3><div class="ws-list">${GDN_REC.filter(r => !r.hid || s.found.includes(r.id)).map(rec).join('')}</div>
+        <p class="cm-mute">👭 İki, 👯 üç meyveli bir tarifi ilk kez karıştırınca o kızlarla grup sahnesi açılır.</p></section>
+      <section class="ws-sec" data-gt="bar"><h3>🧪 Deneme · Tarif Defteri <small>· ❓ ${s.found.length}/${hidN} gizli tarif</small></h3>
+        ${have.length >= 2 ? `<div class="gdn-mix"><select class="sp-sel" id="gT1">${have.map(t => `<option value="${t}">${gdnIc(t)} ${esc(gdnTn(t))}</option>`).join('')}</select> + <select class="sp-sel" id="gT2">${have.map((t, i) => `<option value="${t}"${i === 1 ? ' selected' : ''}>${gdnIc(t)} ${esc(gdnTn(t))}</option>`).join('')}</select>
+          <button type="button" class="btn primary sm" id="gTry">🧪 Dene (2 + 2 öz)</button></div>` : '<p class="cm-mute">Denemek için en az iki türden 2\'şer öz gerekir.</p>'}</section>
+      <section class="ws-sec" data-gt="bar"><h3>👑 Haftalık tadım yarışması</h3>${s.wk === wk ? `<p>Bu haftanın yarışmasına katıldın${s.lastWin ? ' ve 🏆 kazandın' : ''}. Gelecek hafta yeniden.</p>` : inStock.length ? `<div class="gdn-mix"><select class="sp-sel" id="gCup">${inStock.map(r => `<option value="${r.id}">${r.ic} ${esc(r.n)} · 💰 ${gdnPrice(s, r)}</option>`).join('')}</select><button type="button" class="btn primary sm" id="gCupGo">👑 Yarışmaya gönder</button></div><p class="cm-mute">Pahalı tarif ve yüksek itibar şansı artırır. Ödül: 💰 ${150 * (1 + s.star)}.</p>` : '<p class="cm-mute">Yarışmaya göndermek için stokta bir kokteyl olmalı.</p>'}</section>
+      <section class="ws-sec" data-gt="gelisim"><h3>🔧 Yükseltmeler</h3><div class="ws-list">${Object.keys(GDN_UP).map(up).join('')}</div></section>
+      <section class="ws-sec" data-gt="gelisim"><h3>🎨 Dekor · tema süitleri</h3><div class="ws-list">${GDN_DECO.map(deco).join('')}</div></section>
+      <section class="ws-sec" data-gt="gelisim"><h3>🏆 Hasat <small>· 🌟 ${gold}/4 altın kız</small></h3><p>Dört kız 🌟 Altın olunca Hasat yapabilirsin: bahçe, mahzen, para, yükseltme ve dekor sıfırlanır; kalıcı 🌟 Meisove Yıldızı her yıldızda öz ve fiyatı +%50 artırır. Bulduğun tarifler kalır.</p>
+        <button type="button" class="btn ${gold >= 4 ? 'primary' : 'ghost'}" id="gHarvest"${gold >= 4 ? '' : ' disabled'}>🏆 Hasat yap</button></section></div>`,
+      on: () => {
+        const act = f => { const s = gdnSt(); gdnTick(s); if (f(s) !== false) { gdnSt(s); gdnRedo(); } };
+        const at = v => [v[0] === 'c', +v.slice(1)];
+        view.querySelectorAll('[data-gdik]').forEach(b => b.onclick = () => act(s => { const id = b.parentNode.querySelector('[data-gsel]').value, cel = b.dataset.gdik === 'c'; if (!id) return false;
+          (cel ? s.cel : s.plots).push({ c: id, t: Date.now(), xp: 0, fr: 100, ft: Date.now() }); }));
+        view.querySelectorAll('[data-gdel]').forEach(b => b.onclick = () => { if (!confirm('Çıkarırsan bu kızın seviyesi sıfırlanır. Emin misin?')) return; const [cel, i] = at(b.dataset.gdel); act(s => { (cel ? s.cel : s.plots).splice(i, 1); }); });
+        view.querySelectorAll('[data-gsq]').forEach(b => b.onclick = () => { const [cel, i] = at(b.dataset.gsq); gdnSqueeze(cel, i, false); });
+        view.querySelectorAll('[data-gch]').forEach(b => b.onclick = () => { const [cel, i] = at(b.dataset.gch); gdnSqueeze(cel, i, true); });
+        view.querySelectorAll('[data-gcask]').forEach(b => b.onclick = () => act(s => { const k = b.dataset.gcask, K = GDN_CASK[k];
+          if ((K.req && !s.open.includes(K.req)) || !gdnCan(s, K.need) || s.casks.length >= 1 + s.up.fici) return false;
+          Object.keys(K.need).forEach(t => { s.ess[t] -= K.need[t]; }); s.casks.push({ k, t: Date.now() }); }));
+        view.querySelectorAll('[data-gcopen]').forEach(b => b.onclick = () => act(s => { const i = +b.dataset.gcopen, x = s.casks[i]; if (!x || Date.now() - x.t < gdnCaskMs(s, x.k)) return false;
+          const K = GDN_CASK[x.k], n = Math.round(K.out * (1 + s.up.mese * 0.25) * (1 + s.star * 0.5)); s.casks.splice(i, 1); s.ess[x.k] = (s.ess[x.k] || 0) + n; notify(`+${n} ${K.n}`, K.ic);
+          if (!s.open.includes(x.k)) { s.open.push(x.k); notify(`${gdnTn(x.k)} mahzene geldi: locaya al`, K.ic); } }));
+        view.querySelectorAll('[data-gmix]').forEach(b => b.onclick = () => act(s => { const r = GDN_REC.find(x => x.id === b.dataset.gmix); if (!r || !gdnRecOk(s, r) || !gdnCan(s, r.need)) return false;
+          Object.keys(r.need).forEach(t => { s.ess[t] -= r.need[t]; }); s.stock[r.id] = (s.stock[r.id] || 0) + 1;
+          if (Object.keys(r.need).length > 1 && !s.rec.includes(r.id)) { s.rec.push(r.id); notify(`Yeni grup tarifi: ${r.n}`, Object.keys(r.need).length > 2 ? '👯' : '👭'); } }));
+        view.querySelectorAll('[data-ggrp]').forEach(b => b.onclick = () => { const r = GDN_REC.find(x => x.id === b.dataset.ggrp); if (r) gdnGroup(r); });
+        view.querySelectorAll('[data-gup]').forEach(b => b.onclick = () => act(s => { const k = b.dataset.gup, cost = gdnCost(k, s.up[k]); if (s.up[k] >= GDN_UP[k].max || s.coin < cost) return false;
+          s.coin -= cost; s.up[k]++; notify(`${GDN_UP[k].n} seviye ${s.up[k]}`, GDN_UP[k].ic); }));
+        view.querySelectorAll('[data-gdeco]').forEach(b => b.onclick = () => act(s => { const d = GDN_DECO.find(x => x.id === b.dataset.gdeco); if (!d || s.deco.includes(d.id) || s.coin < d.c) return false;
+          s.coin -= d.c; s.deco.push(d.id); notify(d.n, d.ic); }));
+        const tr = $('#gTry'); if (tr) tr.onclick = () => act(s => { const a = $('#gT1').value, b = $('#gT2').value; if (a === b) { notify('İki farklı öz seç', '🧪'); return false; }
+          if ((s.ess[a] || 0) < 2 || (s.ess[b] || 0) < 2) return false; s.ess[a] -= 2; s.ess[b] -= 2;
+          const r = GDN_REC.find(x => x.hid && Object.keys(x.need).length === 2 && x.need[a] && x.need[b]);
+          if (r && !s.found.includes(r.id)) { s.found.push(r.id); s.stock[r.id] = (s.stock[r.id] || 0) + 1; notify(`Gizli tarif bulundu: ${r.n}`, r.ic); }
+          else notify(r ? `${r.n} oldu, ama bu tarifi zaten biliyordun` : 'Tadı tuhaf oldu, tarif çıkmadı', '🧪'); });
+        const cg = $('#gCupGo'); if (cg) cg.onclick = () => act(s => { const r = GDN_REC.find(x => x.id === $('#gCup').value); if (!r || !(s.stock[r.id] > 0)) return false;
+          s.stock[r.id]--; s.wk = Math.floor(spDay() / 7); s.lastWin = Math.random() < Math.min(0.9, 0.25 + gdnPrice(s, r) / 150 + s.rep / 2000);
+          if (s.lastWin) { const p = 150 * (1 + s.star); s.coin += p; s.earned += p; s.wins++; notify(`Tadım yarışmasını ${r.n} kazandı: +${p} 💰`, '👑'); } else notify(`${r.n} bu hafta kazanamadı`, '🥈'); });
+        const eg = $('#gEvGo'); if (eg) eg.onclick = () => { const s = gdnSt(), e = s.ev && GDN_EV.find(x => x.id === s.ev.id), c = e && gdnChar(s.ev.c); if (!c) return;
+          s.ess[e.ty] = (s.ess[e.ty] || 0) + 4; s.ev = null; gdnSt(s); sfx('match'); cmChat(c, 'Meisove', e.say[Math.floor(Math.random() * e.say.length)], false); };
+        const help = () => { const sh = sheet(`<div class="gdn-guide"><h2>❔ Nasıl oynanır?</h2>${gdnGuide()}<p><button type="button" class="btn primary" data-gclose>Anladım, oynayalım 🌱</button></p></div>`, 'gdn-sheet');
+          sh.el.querySelector('[data-gclose]').onclick = sh.close; };
+        $('#gHelp').onclick = help;
+        if (!s.help) { const s2 = gdnSt(); s2.help = 1; gdnSt(s2); help(); }
+        const hv = $('#gHarvest'); if (hv) hv.onclick = () => { if (!confirm('Hasat: bahçe, mahzen, para, yükseltmeler ve dekor sıfırlanır; 🌟 Meisove Yıldızı kazanırsın. Emin misin?')) return;
+          const o = gdnSt(), n = gdnNew(); ['rec', 'found', 'sold', 'sq', 'gold', 'earned', 'wins', 'play', 'wk', 'lastWin', 'help'].forEach(k => { n[k] = o[k]; }); n.star = o.star + 1; gdnSt(n); notify(`Hasat tamam: 🌟 ${n.star} yıldız`, '🏆'); gdnRedo(); };
+        clearInterval(ui.gdnIv);
+        ui.gdnIv = setInterval(() => { if (!document.querySelector('.gdn-root:not(.spa-root):not(.fnc-root)')) return clearInterval(ui.gdnIv);
+          if (!document.hidden) { const s = gdnSt(); s.play = (s.play || 0) + 15e3; gdnSt(s); }
+          const a = document.activeElement; if (a && a.tagName === 'SELECT') return; gdnRedo(); }, 15000);
+      } };
+  }
+
+  /* 💆 Spa Tycoon (CarmenStation oyunu, #/station/spa/oyna): CarmenMassage masözlerini (cmAll) işe al, kabinlere (MZ_P paketleri) yerleştir;
+   * kabinler kendi kendine seans yapar, doluluk ve puanla ₺ kazanılır (çevrimdışı en çok 8 saat). 💆 Seansı sen al → mzGo (masaj salonu sohbeti).
+   * Durum amor-stories:spa; bkz. ProjectMemory/proposals/spa-tycoon.md */
+  const SPA_KEY = 'amor-stories:spa', SPA_CAP = 8 * 36e5;
+  const SPA_ROOM = { yagli: { min: 8, open: 0 }, nuru: { min: 12, open: 4000 }, masa: { min: 15, open: 12000 } };
+  const SPA_UP = {
+    yag: { ic: '🧴', n: 'Isıtılmış yağ', max: 5, c: 1500, d: 'Seans fiyatı her seviyede +%15' },
+    amb: { ic: '🕯️', n: 'Ambiyans', max: 3, c: 2500, d: 'Seans başına puan +%50; müfettiş sorun çıkarmaz' },
+    rek: { ic: '📣', n: 'Reklam', max: 5, c: 2000, d: 'Doluluk her seviyede +%5' },
+    egt: { ic: '⏱️', n: 'Eğitim', max: 5, c: 3000, d: 'Seans süresi her seviyede %10 kısalır' },
+    kab: { ic: '🚪', n: 'Kabin', max: 4, c: 5000, d: 'Bir kabin daha (en çok 6)' } };
+  const SPA_EV = [
+    { id: 'unlu', ic: '🌟', n: 'Ünlü müşteri', d: 'Ünlü bir müşteri gizlice VIP randevu istiyor; en iyi masözünü gönder.', need: 1, btn: 'En iyi masözü gönder' },
+    { id: 'mufettis', ic: '🕵️', n: 'Müfettiş', d: 'Sağlık müfettişi kapıda. Ambiyans en az 1 ise her şey yolunda; değilse 1500 ₺ ceza.', need: 0, btn: 'Kapıyı aç' },
+    { id: 'veda', ic: '💐', n: 'Bekarlığa veda', d: 'Bir gelin ve arkadaşları grup paketi istiyor: iki masözle grup seansı.', need: 2, btn: 'Grup seansını başlat' },
+    { id: 'yorgun', ic: '😮‍💨', n: 'Yorgun iş adamı', d: 'Gece yarısı gelen bir iş adamı "ne olursa" diyor; bahşişi bol.', need: 1, btn: 'Bir masöz gönder' }];
+  const SPA_ACH = [
+    ['ilk', '💆', 'İlk müşteri', 'İlk seansı tamamla', s => s.ses >= 1],
+    ['yuz', '💯', 'Dolu salon', '100 seans', s => s.ses >= 100],
+    ['bin', '🏅', 'Efsane salon', '1000 seans', s => s.ses >= 1000],
+    ['nuru', '🧴', 'Nuru odası', 'Nuru odasını aç', s => s.open.includes('nuru')],
+    ['vip', '🛏️', 'VIP odası', 'VIP odasını aç', s => s.open.includes('masa')],
+    ['ekip', '👩‍👩‍👧', 'Ekip', '5 masöz çalıştır', s => s.staff.length >= 5],
+    ['usta', '🌟', 'Usta masöz', 'Bir masözü 10. seviyeye çıkar', s => s.gold >= 1],
+    ['unlu', '📸', 'Gizli ünlü', 'Bir ünlü müşteriyi ağırla', s => s.celeb >= 1],
+    ['patron', '🕴️', 'Patron denetimi', '10 kez seansı kendin al', s => s.me >= 10],
+    ['servet', '💰', 'Spa baronu', 'Toplam 100.000 ₺ kazan', s => s.earned >= 1e5],
+    ['zincir', '🏨', 'Zincir', 'İkinci şubeyi aç', s => s.star >= 1]];
+  const spaNew = () => ({ coin: 3000, rep: 0, at: Date.now(), staff: [], rooms: [{ k: 'yagli', c: '', t: Date.now() }], open: ['yagli'], up: { yag: 0, amb: 0, rek: 0, egt: 0, kab: 0 },
+    ses: 0, earned: 0, run: 0, gold: 0, celeb: 0, me: 0, star: 0, ev: null, evNext: 0, play: 0, day: -1, cand: [] });
+  const spaSt = v => { try { if (v) { localStorage.setItem(SPA_KEY, JSON.stringify(v)); return v; } const s = Object.assign(spaNew(), JSON.parse(localStorage.getItem(SPA_KEY) || 'null') || {}); s.up = Object.assign(spaNew().up, s.up); return s; } catch (e) { return v || spaNew(); } };
+  const spaChar = id => cmFind(id) || chars().find(c => c.cmRid === id);
+  const spaLv = m => Math.min(10, 1 + Math.floor((m.xp || 0) / 5));
+  const spaCost = (k, lv) => Math.round(SPA_UP[k].c * Math.pow(2.2, lv));
+  const spaHire = s => s.staff.length ? 1000 * s.staff.length : 0;
+  const spaDur = (s, k) => SPA_ROOM[k].min * 6e4 * Math.pow(0.9, s.up.egt);
+  const spaOcc = s => Math.min(0.95, 0.35 + s.rep / 500 + s.up.rek * 0.05);
+  const spaStaff = (s, id) => s.staff.find(m => m.c === id);
+  const spaEarn = (s, k, m) => Math.round(MZ_P[k].price * spaOcc(s) * (1 + s.up.yag * 0.15) * (1 + (spaLv(m) - 1) * 0.08) * (1 + s.star * 0.5));
+  const spaFits = (c, k) => { try { return mzKeys(c).includes(k); } catch (e) { return k === 'yagli'; } };
+  function spaTick(s) {
+    const now = Date.now(); let coin = 0, n = 0;
+    s.rooms.forEach(r => {
+      const m = r.c && spaStaff(s, r.c);
+      if (!m) { r.t = now; return; }
+      const D = spaDur(s, r.k), from = Math.max(r.t, now - SPA_CAP), k = Math.floor((now - from) / D);
+      if (k > 0) { const lv0 = spaLv(m); for (let i = 0; i < k; i++) { coin += spaEarn(s, r.k, m); m.xp = (m.xp || 0) + 1; s.rep += 1 + s.up.amb * 0.5; } n += k; if (spaLv(m) >= 10 && lv0 < 10) s.gold++; }
+      r.t = from + k * D;
+    });
+    s.coin += coin; s.earned += coin; s.run += coin; s.ses += n;
+    if (s.ev && now > s.ev.until) s.ev = null;
+    if (!s.ev && now > (s.evNext || 0)) {
+      const ok = SPA_EV.filter(e => s.staff.length >= e.need);
+      if (ok.length) s.ev = { id: ok[Math.floor(Math.random() * ok.length)].id, until: now + 27e5 };
+      s.evNext = now + 36e5 + Math.random() * 36e5;
+    }
+    return { n, coin };
+  }
+  // ❔ oyun rehberi: Oyun Kitabı bölümü ve oyundaki ? penceresi aynı metni kullanır
+  function spaGuide() {
+    return `<p><a href="#/station/spa">💆 Spa Tycoon</a>: CarmenMassage'ın masözleriyle kendi spa salonunu büyüt. Kabinler sen yokken de çalışır (en çok 8 saat birikir); döndüğünde kazancın bildirilir.</p>
+      <ul><li><b>👩 Personel</b>: her gün ${6} aday gelir; işe al (ilki ücretsiz). Her masöz kendi paketlerini yapar: ${Object.values(MZ_P).map(a => `${a.ic} ${esc(a.n)}`).join(', ')}. 5 seansta bir seviye atlar (en çok 10, 🌟 usta); seviye fiyatı artırır.</li>
+        <li><b>🛏️ Kabinler</b>: kabine paketine uyan bir masöz yerleştir; seans bitince yenisi başlar. Süreler: ${Object.keys(SPA_ROOM).map(k => `${MZ_P[k].ic} ${SPA_ROOM[k].min} dk`).join(', ')}. 🧴 Nuru (${SPA_ROOM.nuru.open} ₺) ve 🛏️ VIP odası (${SPA_ROOM.masa.open} ₺) Gelişim'den açılır.</li>
+        <li><b>📊 Doluluk</b>: kazanç = paket fiyatı × doluluk. Doluluk ⭐ puanla ve 📣 Reklamla artar (en çok %95). Her seans puan getirir.</li>
+        <li><b>💆 Seansı sen al</b>: patron denetimi. Masözle o kabinin paketiyle sohbet açılır; masöz +2 deneyim, salon +3 puan kazanır. Her kabinde 30 dakikada bir.</li></ul>
+      <table class="bk-t"><tr><th>Olay</th><th>Ne olur</th></tr>${SPA_EV.map(e => `<tr><td>${e.ic} ${esc(e.n)}</td><td>${esc(e.d)}</td></tr>`).join('')}</table>
+      <table class="bk-t"><tr><th>Yükseltme</th><th>Etkisi</th></tr>${Object.values(SPA_UP).map(u => `<tr><td>${u.ic} ${esc(u.n)}</td><td>${esc(u.d)} (en çok ${u.max})</td></tr>`).join('')}</table>
+      <p><b>🏨 Zincir</b>: bir şubede 50.000 ₺ kazanınca yeni şube aç: salon, personel, para ve yükseltmeler sıfırlanır; her şube kazancı kalıcı olarak +%50 artırır. ${SPA_ACH.length} başarım CarmenStation'daki oyun sayfasında.</p>`;
+  }
+  function spaView() {
+    const s = spaSt(), out = spaTick(s);
+    const day = spDay(); if (s.day !== day) { s.day = day; const hired = new Set(s.staff.map(m => m.c)); s.cand = cmAll().filter(c => !hired.has(c.id)).sort((a, b) => cmNum(a, 'spa' + day, 997) - cmNum(b, 'spa' + day, 997)).slice(0, 6).map(c => c.id); }
+    spaSt(s);
+    if (out.n) notify(`${out.n} seans tamamlandı, +${out.coin.toLocaleString('tr-TR')} ₺`, '💆');
+    const tl = v => `${Math.round(v).toLocaleString('tr-TR')} ₺`, min = m => spMin(Math.max(1, Math.ceil(m / 6e4))), slots = 2 + s.up.kab;
+    const used = new Set(s.rooms.map(r => r.c).filter(Boolean)), ev = s.ev && SPA_EV.find(e => e.id === s.ev.id);
+    const room = (r, i) => {
+      const m = r.c && spaStaff(s, r.c), c = m && spaChar(m.c), a = MZ_P[r.k], D = spaDur(s, r.k), rp = m ? Math.min(1, (Date.now() - r.t) / D) : 0;
+      const fit = s.staff.filter(x => !used.has(x.c) || x.c === r.c).map(x => [x.c, spaChar(x.c)]).filter(x => x[1] && spaFits(x[1], r.k));
+      const cd = r.me && Date.now() - r.me < 18e5;
+      return `<div class="gdn-plot">${c ? avatar(c, 56) : `<span class="gdn-pot">${a.ic}</span>`}<b>${a.ic} ${esc(a.room)}</b><small>${esc(a.n)} · ${SPA_ROOM[r.k].min} dk</small>
+        ${c ? `<small>👩 ${spFirst(c)} · ⭐ Sv ${spaLv(m)}</small><div class="gdn-bar"><i style="width:${Math.round(rp * 100)}%"></i></div><small>⏳ ${min((1 - rp) * D)} · ${tl(spaEarn(s, r.k, m))}</small>
+          <div class="gdn-btns"><button type="button" class="btn ${cd ? 'ghost' : 'primary'} sm" data-sme="${i}"${cd ? ` disabled title="${min(18e5 - (Date.now() - r.me))}"` : ''}>💆 Seansı sen al</button><button type="button" class="btn ghost sm" data-sout="${i}">↩️ Çıkar</button></div>`
+          : fit.length ? `<select class="sp-sel" data-ssel>${fit.map(([id, x]) => `<option value="${esc(id)}">${esc(x.name || 'İsimsiz')}</option>`).join('')}</select><button type="button" class="btn primary sm" data-sput="${i}">👩 Yerleştir</button>` : `<small>${s.staff.length ? 'Bu paketi yapan boş masöz yok' : 'Önce 👩 Personel\'den masöz al'}</small>`}</div>`;
+    };
+    const staff = m => { const c = spaChar(m.c); if (!c) return ''; const r = s.rooms.find(x => x.c === m.c), lv = spaLv(m);
+      return `<div class="ws-row">${avatar(c, 46)}<span class="ws-rin"><b>${spFirst(c)}${lv >= 10 ? ' 🌟' : ''} · ⭐ Sv ${lv}</b><small>${mzKeys(c).map(k => MZ_P[k].ic).join('')} · ${r ? `${MZ_P[r.k].ic} ${esc(MZ_P[r.k].room)}` : '☕ boşta'} · ${m.xp || 0} seans</small></span>
+        <a class="btn ghost sm" href="#/masaj/${esc(c.id)}">İlan</a><button type="button" class="btn ghost sm" data-sfire="${esc(m.c)}">Kov</button></div>`; };
+    const cand = s.cand.filter(id => !spaStaff(s, id)).map(id => [id, spaChar(id)]).filter(x => x[1]), hc = spaHire(s);
+    const up = k => { const u = SPA_UP[k], lv = s.up[k], max = lv >= u.max, cost = spaCost(k, lv);
+      return `<div class="ws-row"><span class="gdn-ric">${u.ic}</span><span class="ws-rin"><b>${esc(u.n)} · Sv ${lv}</b><small>${esc(u.d)}</small></span>
+        <button type="button" class="btn ${!max && s.coin >= cost ? 'primary' : 'ghost'} sm" data-sup="${k}"${max || s.coin < cost ? ' disabled' : ''}>${max ? 'En üst' : tl(cost)}</button></div>`; };
+    const tab = ['', 'personel', 'gelisim'].includes(ui.spaTab || '') ? ui.spaTab || 'salon' : 'salon';
+    return { h: `<div class="gdn-root spa-root gdn-t-${tab}">
+      <div class="gdn-stats"><button type="button" class="gdn-help" id="sHelp" title="Nasıl oynanır?" aria-label="Nasıl oynanır?">?</button><span>💰 <b>${tl(s.coin)}</b></span><span>⭐ <b>${Math.round(s.rep)}</b> puan</span><span>📊 %${Math.round(spaOcc(s) * 100)} doluluk</span><span>💆 <b>${s.ses}</b> seans</span>${s.star ? `<span>🏨 <b>${s.star + 1}</b>. şube</span>` : ''}</div>
+      ${ev ? `<div class="gdn-ban ev">${ev.ic} <b>${esc(ev.n)}</b>: ${esc(ev.d)} <small>⏳ ${min(s.ev.until - Date.now())}</small><button type="button" class="btn primary sm" id="sEvGo">${ev.ic} ${esc(ev.btn)}</button></div>` : ''}
+      <section class="ws-sec" data-gt="salon"><h3>🛏️ Kabinler <small>· ${s.rooms.length}/${slots}</small></h3><div class="gdn-grid">${s.rooms.map(room).join('')}</div>
+        ${s.rooms.length < slots ? `<div class="gdn-mix">${s.open.map(k => `<button type="button" class="btn ghost sm" data-sadd="${k}">➕ ${MZ_P[k].ic} ${esc(MZ_P[k].room)}</button>`).join('')}</div>` : ''}</section>
+      <section class="ws-sec" data-gt="personel"><h3>👩 Masözlerin <small>· ${s.staff.length}</small></h3>${s.staff.length ? `<div class="ws-list">${s.staff.map(staff).join('')}</div>` : '<p class="cm-mute">Henüz masözün yok; aşağıdaki adaylardan birini işe al.</p>'}</section>
+      <section class="ws-sec" data-gt="personel"><h3>📋 Bugünün adayları <small>· işe alma ${hc ? tl(hc) : 'ücretsiz'}</small></h3>${cand.length ? `<div class="ws-list">${cand.map(([id, c]) => `<div class="ws-row">${avatar(c, 46)}<span class="ws-rin"><b>${spFirst(c)}${c.age ? `, ${esc(c.age)}` : ''}</b><small>${mzKeys(c).map(k => `${MZ_P[k].ic} ${esc(MZ_P[k].n)}`).join(' · ')}</small></span>
+        <button type="button" class="btn ${s.coin >= hc ? 'primary' : 'ghost'} sm" data-shire="${esc(id)}"${s.coin >= hc ? '' : ' disabled'}>İşe al</button></div>`).join('')}</div>` : '<p class="cm-mute">Bugünün adayları bitti, yarın yenileri gelir.</p>'}</section>
+      <section class="ws-sec" data-gt="gelisim"><h3>🚪 Odalar</h3><div class="ws-list">${Object.keys(SPA_ROOM).filter(k => SPA_ROOM[k].open).map(k => { const on = s.open.includes(k), c = SPA_ROOM[k].open;
+        return `<div class="ws-row"><span class="gdn-ric">${MZ_P[k].ic}</span><span class="ws-rin"><b>${esc(MZ_P[k].room)} · ${esc(MZ_P[k].n)}</b><small>${tl(MZ_P[k].price)} paket · ${SPA_ROOM[k].min} dk</small></span>
+          <button type="button" class="btn ${!on && s.coin >= c ? 'primary' : 'ghost'} sm" data-sopen="${k}"${on || s.coin < c ? ' disabled' : ''}>${on ? '✓ Açık' : tl(c)}</button></div>`; }).join('')}</div></section>
+      <section class="ws-sec" data-gt="gelisim"><h3>🔧 Yükseltmeler</h3><div class="ws-list">${Object.keys(SPA_UP).map(up).join('')}</div></section>
+      <section class="ws-sec" data-gt="gelisim"><h3>🏨 Zincir <small>· bu şubede ${tl(s.run)} / ${tl(5e4)}</small></h3><p>50.000 ₺ kazanınca yeni şube açabilirsin: salon, personel, para ve yükseltmeler sıfırlanır; her şube kazancı kalıcı olarak +%50 artırır.</p>
+        <button type="button" class="btn ${s.run >= 5e4 ? 'primary' : 'ghost'}" id="sChain"${s.run >= 5e4 ? '' : ' disabled'}>🏨 Yeni şube aç</button></section></div>`,
+      on: () => {
+        const act = f => { const s = spaSt(); spaTick(s); if (f(s) !== false) { spaSt(s); gdnRedo(); } };
+        view.querySelectorAll('[data-sput]').forEach(b => b.onclick = () => act(s => { const r = s.rooms[+b.dataset.sput], id = b.parentNode.querySelector('[data-ssel]').value; if (!r || !id) return false; r.c = id; r.t = Date.now(); }));
+        view.querySelectorAll('[data-sout]').forEach(b => b.onclick = () => act(s => { const r = s.rooms[+b.dataset.sout]; if (!r) return false; r.c = ''; }));
+        view.querySelectorAll('[data-sadd]').forEach(b => b.onclick = () => act(s => { if (s.rooms.length >= 2 + s.up.kab) return false; s.rooms.push({ k: b.dataset.sadd, c: '', t: Date.now() }); }));
+        view.querySelectorAll('[data-shire]').forEach(b => b.onclick = () => act(s => { const id = b.dataset.shire, hc = spaHire(s); if (spaStaff(s, id) || s.coin < hc) return false; s.coin -= hc; s.staff.push({ c: id, xp: 0 });
+          const c = spaChar(id); if (c) notify(`${msFirst(c)} ekibe katıldı`, '👩'); }));
+        view.querySelectorAll('[data-sfire]').forEach(b => b.onclick = () => { if (!confirm('Bu masözü kovarsan seviyesi kaybolur. Emin misin?')) return; act(s => { const id = b.dataset.sfire; s.staff = s.staff.filter(m => m.c !== id); s.rooms.forEach(r => { if (r.c === id) r.c = ''; }); }); });
+        view.querySelectorAll('[data-sup]').forEach(b => b.onclick = () => act(s => { const k = b.dataset.sup, cost = spaCost(k, s.up[k]); if (s.up[k] >= SPA_UP[k].max || s.coin < cost) return false; s.coin -= cost; s.up[k]++; notify(`${SPA_UP[k].n} seviye ${s.up[k]}`, SPA_UP[k].ic); }));
+        view.querySelectorAll('[data-sopen]').forEach(b => b.onclick = () => act(s => { const k = b.dataset.sopen, c = SPA_ROOM[k].open; if (s.open.includes(k) || s.coin < c) return false; s.coin -= c; s.open.push(k); notify(`${MZ_P[k].room} açıldı`, MZ_P[k].ic); }));
+        view.querySelectorAll('[data-sme]').forEach(b => b.onclick = () => { const s = spaSt(); spaTick(s); const r = s.rooms[+b.dataset.sme], m = r && r.c && spaStaff(s, r.c), c = m && spaChar(m.c);
+          if (!c || (r.me && Date.now() - r.me < 18e5)) return; r.me = Date.now(); m.xp = (m.xp || 0) + 2; s.rep += 3; s.me++; spaSt(s); mzGo(c, r.k); });
+        const eg = $('#sEvGo'); if (eg) eg.onclick = () => { const s = spaSt(), e = s.ev && SPA_EV.find(x => x.id === s.ev.id); if (!e) return;
+          const top = s.staff.slice().sort((a, b) => (b.xp || 0) - (a.xp || 0)), c = top[0] && spaChar(top[0].c); s.ev = null;
+          if (e.id === 'mufettis') { if (s.up.amb >= 1) notify('Müfettiş memnun ayrıldı: her şey yolunda', '🕵️'); else { s.coin = Math.max(0, s.coin - 1500); notify('Müfettiş 1500 ₺ ceza yazdı; Ambiyans al', '🕵️'); } spaSt(s); return gdnRedo(); }
+          if (e.id === 'veda') { const c2 = top[1] && spaChar(top[1].c); if (!c || !c2) return; const p = 2500 * (1 + s.star); s.coin += p; s.earned += p; s.run += p; s.rep += 8; spaSt(s);
+            const ms = [c, c2].map(x => cmAdopt(x, 'mz')), now = Date.now(), t = { id: Store.uid(), group: true, members: ms.map(m => m.id), title: '💐 Bekarlığa veda', created: now, opened: 0 };
+            threads().push(t); msgsOf(t).push({ id: Store.uid(), from: 'her', who: ms[0].id, ts: now, text: `Gelin ve arkadaşları gitti, ${ms[1].name.split(' ')[0]} ile yağlar hâlâ sıcak 🫗 Patron, son seansı sana yapalım mı? İkimiz birden 😏` });
+            save(); sfx('match'); location.hash = '#/chat/' + t.id; return; }
+          if (!c) return; const p = (e.id === 'unlu' ? 3000 : 1800) * (1 + s.star); s.coin += p; s.earned += p; s.run += p; s.rep += e.id === 'unlu' ? 10 : 5; if (e.id === 'unlu') s.celeb++; top[0].xp = (top[0].xp || 0) + 2;
+          spaSt(s); notify(`${msFirst(c)} ${e.n.toLocaleLowerCase('tr')} ağırladı: +${p.toLocaleString('tr-TR')} ₺`, e.ic); gdnRedo(); };
+        const ch = $('#sChain'); if (ch) ch.onclick = () => { if (!confirm('Yeni şube: salon, personel, para ve yükseltmeler sıfırlanır; kazanç kalıcı olarak +%50. Emin misin?')) return;
+          const o = spaSt(), n = spaNew(); ['ses', 'earned', 'gold', 'celeb', 'me', 'play', 'help'].forEach(k => { n[k] = o[k]; }); n.star = o.star + 1; spaSt(n); notify(`${n.star + 1}. şube açıldı`, '🏨'); gdnRedo(); };
+        const help = () => { const sh = sheet(`<div class="gdn-guide"><h2>❔ Nasıl oynanır?</h2>${spaGuide()}<p><button type="button" class="btn primary" data-gclose>Anladım, salonu açalım 💆</button></p></div>`, 'gdn-sheet');
+          sh.el.querySelector('[data-gclose]').onclick = sh.close; };
+        $('#sHelp').onclick = help;
+        if (!s.help) { const s2 = spaSt(); s2.help = 1; spaSt(s2); help(); }
+        clearInterval(ui.spaIv);
+        ui.spaIv = setInterval(() => { if (!document.querySelector('.spa-root')) return clearInterval(ui.spaIv);
+          if (!document.hidden) { const s = spaSt(); s.play = (s.play || 0) + 15e3; spaSt(s); }
+          const a = document.activeElement; if (a && a.tagName === 'SELECT') return; gdnRedo(); }, 15000);
+      } };
+  }
+
+  /* 🫦 Fans Ajansı (CarmenStation idle clicker, #/station/ajans/oyna): yıldız kızın fotoğrafına dokun → 💗 beğeni; ekip (FNC_GEN) beğeniyi kendisi üretir.
+   * Aktif kızın 👥 takipçisi kademeleri (FNC_TIER) açar: fotoğraf / kıyafet değişir, 10 bin → CarmenFans aboneliği, 100 bin → hediye özel içerik, 1 milyon → 💬 özel mesaj.
+   * ✨ altın kalp (×7), 🔥 viral ısı (tıklama ×3), 📈 Yeni Platform prestiji (💎). Durum amor-stories:fansclick (bellekte fncS, 1,5 sn'de bir yazılır); bkz. proposals/fans-ajansi.md */
+  const FNC_KEY = 'amor-stories:fansclick', FNC_CAP = 8 * 36e5;
+  const FNC_GEN = [
+    { id: 'selfie', ic: '🤳', n: 'Selfie', d: 'Kız kendi kendine paylaşır', c: 15, r: 0.1 },
+    { id: 'foto', ic: '📸', n: 'Fotoğrafçı', d: 'Profesyonel çekim', c: 100, r: 1 },
+    { id: 'makyoz', ic: '💄', n: 'Makyöz', d: 'Her karenin kalitesi artar', c: 1100, r: 8 },
+    { id: 'video', ic: '🎥', n: 'Video ekibi', d: 'Kısa, sıcak videolar', c: 12000, r: 47 },
+    { id: 'studyo', ic: '🏠', n: 'Stüdyo', d: 'İç çamaşırı ve kostüm setleri', c: 130000, r: 260 },
+    { id: 'canli', ic: '🔴', n: 'Canlı yayın', d: 'CarmenLive\'da bağış yağmuru', c: 1.4e6, r: 1400 },
+    { id: 'viral', ic: '🌐', n: 'Viral ağ', d: 'Paylaşımlar bütün ağa yayılır', c: 2e7, r: 7800 }];
+  const FNC_MS = [10, 25, 50, 100];
+  const FNC_TIER = [
+    { f: 0, ic: '👕', n: 'Günlük', d: 'Kot şort ve dar bir tişört; kameraya göz kırpıyor.' },
+    { f: 1e3, ic: '👙', n: 'Bikini', d: 'Havuz kenarında minicik bir bikini; ıslak saçlarını savuruyor.' },
+    { f: 1e4, ic: '👗', n: 'İç çamaşırı', d: 'Dantel sütyen ve külot, yatağın kenarında; askısı omzundan kaymış.', gift: 'Bu kızın 🫦 CarmenFans aboneliği ücretsiz açılır' },
+    { f: 1e5, ic: '🎭', n: 'Kostüm', d: 'Abonelerin seçtiği kostüm; dar, kısa ve bir şeyleri zor saklıyor.', gift: 'Özel içeriklerinden biri (foto seti ya da video) hediye' },
+    { f: 1e6, ic: '🔥', n: 'Üstsüz', d: 'Sadece külot ve bir gülümseme; elleriyle göğüslerini zar zor kapatıyor.', gift: '💬 Özel mesaj: sohbet Fans yıldızın olarak başlar' }];
+  const FNC_ACH = [
+    ['tik', '👆', 'İlk dokunuş', 'İlk kez dokun', s => s.taps >= 1],
+    ['bin', '💅', 'Parmak ustası', '1000 kez dokun', s => s.taps >= 1000],
+    ['ekip', '📸', 'Ekip kuruldu', 'İlk üreticiyi al', s => FNC_GEN.some(g => s.gen[g.id] > 0)],
+    ['yuz', '🏭', 'Prodüksiyon', 'Toplam 100 üretici', s => FNC_GEN.reduce((a, g) => a + (s.gen[g.id] || 0), 0) >= 100],
+    ['altin', '✨', 'Altın kalp', 'Bir altın kalp yakala', s => s.gold >= 1],
+    ['viral', '🔥', 'Viral!', 'Isı barını doldur', s => s.viral >= 1],
+    ['t1', '👙', 'Bin takipçi', 'Bir kızı 1 bin takipçiye taşı', s => s.girls.some(g => (g.top || 0) >= 1)],
+    ['t2', '🫦', 'Abone', 'Bir kızı 10 bin takipçiye taşı', s => s.girls.some(g => (g.top || 0) >= 2)],
+    ['t3', '🎭', 'Yüz bin', 'Bir kızı 100 bin takipçiye taşı', s => s.girls.some(g => (g.top || 0) >= 3)],
+    ['t4', '🔥', 'Milyoner', 'Bir kızı 1 milyon takipçiye taşı', s => s.girls.some(g => (g.top || 0) >= 4)],
+    ['kadro', '👩‍👩‍👧', 'Ajans', '3 kızlık kadro', s => s.girls.length >= 3],
+    ['platform', '💎', 'Yeni Platform', 'İlk kez platform değiştir', s => s.gems >= 1],
+    ['milyar', '💗', 'Milyar beğeni', 'Toplam 1 milyar beğeni', s => s.earned >= 1e9]];
+  const fncNew = () => ({ likes: 0, earned: 0, run: 0, at: Date.now(), gen: {}, clk: 0, girls: [], act: '', gems: 0, taps: 0, gold: 0, viral: 0, play: 0, day: -1, cand: [], help: 0 });
+  let fncS = null, fncT = 0;
+  const fncSt = () => { if (fncS) return fncS; try { fncS = Object.assign(fncNew(), JSON.parse(localStorage.getItem(FNC_KEY) || 'null') || {}); } catch (e) { fncS = fncNew(); } return fncS; };
+  const fncSave = now => { clearTimeout(fncT); const w = () => { try { localStorage.setItem(FNC_KEY, JSON.stringify(fncSt())); } catch (e) {} }; if (now) w(); else fncT = setTimeout(w, 1500); };
+  const fncChar = id => cmFind(id) || chars().find(c => c.cmRid === id);
+  const fncFmt = n => { n = n < 10 ? Math.floor(n * 10) / 10 : Math.floor(n); const u = [[1e12, 'Tr'], [1e9, 'Mr'], [1e6, 'Mn'], [1e3, 'bin']].find(x => n >= x[0]); return u ? `${(n / u[0]).toLocaleString('tr-TR', { maximumFractionDigits: n / u[0] < 100 ? 1 : 0 })} ${u[1]}` : n.toLocaleString('tr-TR', { maximumFractionDigits: 1 }); };
+  const fncCost = (g, n) => Math.ceil(g.c * Math.pow(1.15, n));
+  const fncMul = n => Math.pow(2, FNC_MS.filter(m => n >= m).length);
+  const fncFz = () => ui.fncFz && Date.now() < ui.fncFz ? 7 : 1;
+  const fncLps = s => FNC_GEN.reduce((a, g) => a + g.r * (s.gen[g.id] || 0) * fncMul(s.gen[g.id] || 0), 0) * (1 + s.gems * 0.1);
+  const fncGirl = s => s.girls.find(g => g.c === s.act) || s.girls[0];
+  const fncTier = f => FNC_TIER.reduce((t, x, i) => (f >= x.f ? i : t), 0);
+  const fncClick = s => { const g = fncGirl(s); return ((1 + (g ? fncTier(g.f || 0) : 0)) * Math.pow(2, s.clk) + fncLps(s) * 0.01 * s.clk) * (1 + s.gems * 0.1); };
+  const fncClkCost = lv => Math.round(50 * Math.pow(8, lv));
+  const fncHire = s => (s.girls.length ? Math.round(5000 * Math.pow(20, s.girls.length - 1)) : 0);
+  // beğeni ekle: aktif kız 1/5'i kadar takipçi kazanır; yeni kademe → ödül (bir kez, g.top)
+  function fncGain(s, n) {
+    s.likes += n; s.earned += n; s.run += n;
+    const g = fncGirl(s); if (!g) return false;
+    g.f = (g.f || 0) + n * 0.2;
+    const t = fncTier(g.f); if (t <= (g.top || 0)) return false;
+    for (let i = (g.top || 0) + 1; i <= t; i++) fncReward(g, i);
+    g.top = t; return true;
+  }
+  function fncReward(g, i) {
+    const c = fncChar(g.c), T = FNC_TIER[i]; if (!c) return;
+    notify(`${msFirst(c)} ${fncFmt(T.f)} takipçi: ${T.ic} ${T.n}`, T.ic);
+    try {
+      const st = fnState(), rid = fnRid(c);
+      if (i === 2 && !st.subs[rid]) { st.subs[rid] = Date.now(); fnState(st); notify(`${msFirst(c)}: CarmenFans aboneliği açıldı`, '🫦'); }
+      if (i === 3) { const l = st.bought[rid] = st.bought[rid] || [], x = fnItems(c).filter(y => !l.includes(y.k) && !y.chat && !y.cos).sort((a, b) => (b.pset ? 1 : 0) - (a.pset ? 1 : 0))[0];
+        if (x) { l.push(x.k); fnState(st); g.gift = x.name; notify(`Hediye: ${x.name}`, '💎'); } }
+      if (i === 4) g.dm = 1;
+    } catch (e) { console.warn('fncReward', e); }
+  }
+  function fncTick(s) {
+    const now = Date.now(), dt = Math.min(FNC_CAP, Math.max(0, now - (s.at || now))) / 1e3; s.at = now;
+    const n = fncLps(s) * dt * (dt < 5 ? fncFz() : 1);
+    return { n, up: n > 0 && fncGain(s, n) };
+  }
+  function fncGuide() {
+    return `<p><a href="#/station/ajans">🫦 Fans Ajansı</a> bir idle clicker: CarmenFans'ın kızlarından bir kadro kur, yıldızını parlat. Ekip sen yokken de beğeni üretir (en çok 8 saat birikir).</p>
+      <ul><li><b>💗 Dokun</b>: ortadaki fotoğrafa her dokunuş beğeni getirir. Aktif kız beğenilerin beşte biri kadar 👥 takipçi kazanır.</li>
+        <li><b>🔥 Isı</b>: hızlı dokununca ısı barı dolar; dolunca 10 saniye <b>Viral!</b>: dokunuşlar ×3.</li>
+        <li><b>✨ Altın kalp</b>: arada bir ekranda süzülür; yakalarsan 30 saniye bütün üretim ×7.</li>
+        <li><b>🏭 Ekip</b>: beğeniyle üretici al; her biri saniyede beğeni üretir, fiyatı her alımda %15 artar. ${FNC_MS.join(', ')} adette verimi ikiye katlanır. <b>💅 Dokunuş gücü</b> dokunuşu ikiye katlar ve üretimin %1'ini ekler.</li>
+        <li><b>👩 Kadro</b>: her gün 6 aday; ilki ücretsiz, sonrakiler beğeniyle. ⭐ Aktif yaptığın kız takipçi toplar; her kızın kendi kademeleri var.</li></ul>
+      <table class="bk-t"><tr><th>Takipçi</th><th>Ne açılır</th></tr>${FNC_TIER.map(t => `<tr><td>${t.ic} ${fncFmt(t.f)}</td><td><b>${esc(t.n)}</b>: ${esc(t.d)}${t.gift ? ` <b>🎁 ${esc(t.gift)}</b>.` : ''} Dokunuş ×${FNC_TIER.indexOf(t) + 1}.</td></tr>`).join('')}</table>
+      <table class="bk-t"><tr><th>Üretici</th><th>Beğeni / sn</th></tr>${FNC_GEN.map(g => `<tr><td>${g.ic} ${esc(g.n)}</td><td>${g.r.toLocaleString('tr-TR')} · ${esc(g.d)} (${fncFmt(g.c)} 💗)</td></tr>`).join('')}</table>
+      <p><b>📈 Yeni Platform</b>: bu platformda 10 milyon beğeni toplayınca taşın: beğeni, ekip ve takipçiler sıfırlanır, 💎 Elmas kazanırsın (her elmas bütün üretim +%10). Kadro ve açtığın içerikler kalır. ${FNC_ACH.length} başarım CarmenStation'daki oyun sayfasında.</p>`;
+  }
+  function fncView() {
+    const s = fncSt(), off = fncTick(s).n;
+    const day = spDay(); if (s.day !== day) { s.day = day; const have = new Set(s.girls.map(g => g.c)); s.cand = cmAll().filter(c => !have.has(c.id)).sort((a, b) => cmNum(a, 'fnc' + day, 997) - cmNum(b, 'fnc' + day, 997)).slice(0, 6).map(c => c.id); }
+    if (off > 1 && !ui.fncSeen) notify(`Sen yokken +${fncFmt(off)} beğeni`, '💗');
+    ui.fncSeen = 1; fncSave();
+    const tab = ['', 'ekip', 'icerik', 'kadro'].includes(ui.fncTab || '') ? ui.fncTab || 'tikla' : 'tikla';
+    const g = fncGirl(s), c = g && fncChar(g.c), t = g ? fncTier(g.f || 0) : 0, T = FNC_TIER[t], nx = FNC_TIER[t + 1];
+    const pics = c ? [c.photo, ...(c.album || [])].filter((u, i, a) => u && a.indexOf(u) === i) : [], pic = pics.length ? pics[Math.min(t, pics.length - 1)] : '';
+    const cand = s.cand.filter(id => !s.girls.some(x => x.c === id)).map(id => [id, fncChar(id)]).filter(x => x[1]), hc = fncHire(s);
+    const gen = x => { const n = s.gen[x.id] || 0, cost = fncCost(x, n), nm = FNC_MS.find(m => n < m);
+      return `<div class="ws-row"><span class="gdn-ric">${x.ic}</span><span class="ws-rin"><b>${esc(x.n)} · ${n}</b><small>${esc(x.d)} · ${(x.r * fncMul(n)).toLocaleString('tr-TR', { maximumFractionDigits: 1 })} 💗/sn${nm ? ` · ${nm} adette ×2` : ''}</small></span>
+        <button type="button" class="btn ${s.likes >= cost ? 'primary' : 'ghost'} sm" data-fbuy="${x.id}" data-fc="${cost}"${s.likes >= cost ? '' : ' disabled'}>💗 ${fncFmt(cost)}</button></div>`; };
+    const girlRow = x => { const cc = fncChar(x.c); if (!cc) return ''; const tt = fncTier(x.f || 0), on = x.c === (g && g.c);
+      return `<div class="ws-row">${avatar(cc, 46)}<span class="ws-rin"><b>${spFirst(cc)}${on ? ' ⭐' : ''} · ${FNC_TIER[tt].ic} ${esc(FNC_TIER[tt].n)}</b><small>👥 ${fncFmt(x.f || 0)} takipçi · en yüksek ${FNC_TIER[x.top || 0].ic}</small></span>
+        <a class="btn ghost sm" href="#/fans/${esc(cc.id)}">Fans</a>${on ? '' : `<button type="button" class="btn primary sm" data-fact="${esc(x.c)}">⭐ Aktif yap</button>`}</div>`; };
+    const lps = fncLps(s), runOk = s.run >= 1e7, gain = Math.floor(Math.sqrt(s.run / 1e6));
+    return { h: `<div class="gdn-root fnc-root gdn-t-${tab}">
+      <div class="gdn-stats"><button type="button" class="gdn-help" id="fHelp" title="Nasıl oynanır?" aria-label="Nasıl oynanır?">?</button><span>💗 <b id="fcL">${fncFmt(s.likes)}</b></span><span><b id="fcR">${fncFmt(lps)}</b>/sn</span>${s.gems ? `<span>💎 <b>${s.gems}</b> · +%${s.gems * 10}</span>` : ''}</div>
+      <section class="ws-sec fnc-play" data-gt="tikla">${c ? `
+        <div class="fnc-stage" id="fcStage"><img src="${esc(pic)}" alt="" draggable="false" onerror="this.remove()"><span class="fnc-tag">${T.ic} ${esc(T.n)}</span><span class="fnc-name">${spFirst(c)}</span></div>
+        <div class="fnc-info"><span>👆 dokunuş <b id="fcC">${fncFmt(fncClick(s))}</b></span><span>👥 <b id="fcF">${fncFmt(g.f || 0)}</b> takipçi</span></div>
+        <div class="fnc-heat"><i id="fcH" style="width:${ui.fncHeat || 0}%"></i><small id="fcHt">${ui.fncVir && Date.now() < ui.fncVir ? '🔥 Viral! ×3' : '🔥 Isı'}</small></div>
+        ${nx ? `<div class="fnc-next"><small>Sonraki: ${nx.ic} ${esc(nx.n)} · ${fncFmt(nx.f)} takipçi${nx.gift ? ` · 🎁 ${esc(nx.gift)}` : ''}</small><div class="gdn-bar"><i id="fcN" style="width:${Math.min(100, ((g.f || 0) - T.f) / (nx.f - T.f) * 100)}%"></i></div></div>` : '<p class="cm-mute">🔥 Bütün kademeler açık. Yeni bir kız parlatmak için 👩 Kadro.</p>'}
+        <p class="cm-mute fnc-desc">${esc(T.d)}</p>`
+        : `<p>Ajansın boş. Önce 👩 Kadro'dan yıldızını seç; ilki ücretsiz.</p><button type="button" class="btn primary" data-fgo="kadro">👩 Kadroya git</button>`}</section>
+      <section class="ws-sec" data-gt="ekip"><h3>💅 Dokunuş gücü <small>· Sv ${s.clk}</small></h3><div class="ws-list"><div class="ws-row"><span class="gdn-ric">💅</span><span class="ws-rin"><b>Dokunuş ×2</b><small>Her seviye dokunuşu ikiye katlar ve üretimin %1'ini ekler</small></span>
+        ${s.clk >= 10 ? '<button type="button" class="btn ghost sm" disabled>En üst</button>' : `<button type="button" class="btn ${s.likes >= fncClkCost(s.clk) ? 'primary' : 'ghost'} sm" id="fClk" data-fc="${fncClkCost(s.clk)}"${s.likes >= fncClkCost(s.clk) ? '' : ' disabled'}>💗 ${fncFmt(fncClkCost(s.clk))}</button>`}</div></div></section>
+      <section class="ws-sec" data-gt="ekip"><h3>🏭 Ekip <small>· ${fncFmt(lps)} 💗/sn</small></h3><div class="ws-list">${FNC_GEN.map(gen).join('')}</div></section>
+      <section class="ws-sec" data-gt="icerik"><h3>🔓 İçerik${c ? ` · ${spFirst(c)}` : ''}</h3>${c ? `<div class="ws-list">${FNC_TIER.map((x, i) => { const open = i <= (g.top || 0);
+        return `<div class="ws-row${open ? '' : ' fnc-lock'}"><span class="gdn-ric">${open ? x.ic : '🔒'}</span><span class="ws-rin"><b>${esc(x.n)} · ${fncFmt(x.f)} takipçi</b><small>${esc(x.d)}${x.gift ? ` · 🎁 ${esc(x.gift)}` : ''}${i === 3 && g.gift ? ` · ✓ ${esc(g.gift)}` : ''}</small></span>
+          ${open && pics[Math.min(i, pics.length - 1)] ? `<button type="button" class="btn ghost sm" data-fpic="${i}">🖼️</button>` : ''}${open && i === 2 ? `<a class="btn ghost sm" href="#/fans/${esc(c.id)}">🫦 Kanal</a>` : ''}${open && i === 3 ? '<button type="button" class="btn ghost sm" data-fppv>💎 Aç</button>' : ''}${open && i === 4 ? '<button type="button" class="btn primary sm" id="fDm">💬 Özel mesaj</button>' : ''}</div>`; }).join('')}</div>` : '<p class="cm-mute">Önce kadrona bir kız al.</p>'}</section>
+      <section class="ws-sec" data-gt="kadro"><h3>👩 Kadron <small>· ${s.girls.length}/6</small></h3>${s.girls.length ? `<div class="ws-list">${s.girls.map(girlRow).join('')}</div>` : '<p class="cm-mute">Henüz kimse yok; aşağıdan yıldızını seç.</p>'}</section>
+      <section class="ws-sec" data-gt="kadro"><h3>📋 Bugünün adayları <small>· ${hc ? `💗 ${fncFmt(hc)}` : 'ilki ücretsiz'}</small></h3>${s.girls.length >= 6 ? '<p class="cm-mute">Kadro dolu.</p>' : cand.length ? `<div class="ws-list">${cand.map(([id, x]) => `<div class="ws-row">${avatar(x, 46)}<span class="ws-rin"><b>${spFirst(x)}${x.age ? `, ${esc(x.age)}` : ''}${cmVip(x) ? ' ✔' : ''}</b><small>${esc(fnHandle(x))}</small></span>
+        <button type="button" class="btn ${s.likes >= hc ? 'primary' : 'ghost'} sm" data-fhire="${esc(id)}"${s.likes >= hc ? '' : ' disabled'}>İşe al</button></div>`).join('')}</div>` : '<p class="cm-mute">Bugünün adayları bitti, yarın yenileri gelir.</p>'}</section>
+      <section class="ws-sec" data-gt="kadro"><h3>📈 Yeni Platform <small>· bu platformda ${fncFmt(s.run)} / ${fncFmt(1e7)}</small></h3><p>10 milyon beğeniden sonra yeni platforma taşın: beğeni, ekip ve takipçiler sıfırlanır; ${runOk ? `<b>💎 ${gain}</b>` : '💎'} Elmas kazanırsın (her biri üretim +%10). Kadro ve açtığın içerikler kalır.</p>
+        <button type="button" class="btn ${runOk ? 'primary' : 'ghost'}" id="fPlat"${runOk ? '' : ' disabled'}>📈 Taşın</button></section></div>`,
+      on: () => {
+        const $v = q => view.querySelector(q);
+        const upd = () => { const s = fncSt(), g = fncGirl(s), t = g ? fncTier(g.f || 0) : 0, T = FNC_TIER[t], nx = FNC_TIER[t + 1], set = (q, v) => { const e = $v(q); if (e) e.textContent = v; };
+          set('#fcL', fncFmt(s.likes)); set('#fcR', fncFmt(fncLps(s) * fncFz())); set('#fcC', fncFmt(fncClick(s) * (ui.fncVir && Date.now() < ui.fncVir ? 3 : 1))); if (g) set('#fcF', fncFmt(g.f || 0));
+          const n = $v('#fcN'); if (n && nx) n.style.width = Math.min(100, ((g.f || 0) - T.f) / (nx.f - T.f) * 100) + '%';
+          view.querySelectorAll('[data-fc]').forEach(b => { const ok = s.likes >= +b.dataset.fc; b.disabled = !ok; b.classList.toggle('primary', ok); b.classList.toggle('ghost', !ok); });
+          const h = $v('#fcH'), ht = $v('#fcHt'), vir = ui.fncVir && Date.now() < ui.fncVir; if (h) h.style.width = (vir ? 100 : ui.fncHeat || 0) + '%'; if (ht) ht.textContent = vir ? '🔥 Viral! ×3' : '🔥 Isı'; };
+        const st = $v('#fcStage');
+        if (st) st.onpointerdown = e => { e.preventDefault(); const s = fncSt(), vir = ui.fncVir && Date.now() < ui.fncVir, n = fncClick(s) * (vir ? 3 : 1);
+          s.taps++; const up = fncGain(s, n); fncSave();
+          if (!vir) { ui.fncHeat = Math.min(100, (ui.fncHeat || 0) + 4); if (ui.fncHeat >= 100) { ui.fncVir = Date.now() + 1e4; ui.fncHeat = 0; s.viral++; notify('Viral! 10 saniye dokunuş ×3', '🔥'); } }
+          const r = st.getBoundingClientRect(), p = document.createElement('span'); p.className = 'fnc-pop'; p.textContent = `+${fncFmt(n)} 💗`;
+          p.style.left = (e.clientX - r.left) + 'px'; p.style.top = (e.clientY - r.top) + 'px'; st.appendChild(p); setTimeout(() => p.remove(), 900);
+          st.classList.remove('hit'); void st.offsetWidth; st.classList.add('hit');
+          if (up) return gdnRedo(); upd(); };
+        const act = f => { const s = fncSt(); fncTick(s); if (f(s) !== false) { fncSave(true); gdnRedo(); } };
+        view.querySelectorAll('[data-fbuy]').forEach(b => b.onclick = () => act(s => { const x = FNC_GEN.find(y => y.id === b.dataset.fbuy), n = s.gen[x.id] || 0, cost = fncCost(x, n); if (s.likes < cost) return false; s.likes -= cost; s.gen[x.id] = n + 1;
+          if (FNC_MS.includes(n + 1)) notify(`${x.n} ${n + 1} adet: verim ×2`, x.ic); }));
+        const ck = $v('#fClk'); if (ck) ck.onclick = () => act(s => { const cost = fncClkCost(s.clk); if (s.likes < cost || s.clk >= 10) return false; s.likes -= cost; s.clk++; });
+        view.querySelectorAll('[data-fhire]').forEach(b => b.onclick = () => act(s => { const id = b.dataset.fhire, hc = fncHire(s); if (s.girls.length >= 6 || s.likes < hc || s.girls.some(x => x.c === id)) return false;
+          s.likes -= hc; s.girls.push({ c: id, f: 0, top: 0 }); if (!s.act) s.act = id; const c = fncChar(id); if (c) notify(`${msFirst(c)} ajansa katıldı`, '🫦'); if (s.girls.length === 1) ui.fncTab = ''; }));
+        view.querySelectorAll('[data-fact]').forEach(b => b.onclick = () => act(s => { s.act = b.dataset.fact; ui.fncTab = ''; }));
+        view.querySelectorAll('[data-fgo]').forEach(b => b.onclick = () => { ui.fncTab = b.dataset.fgo; render(); });
+        view.querySelectorAll('[data-fpic]').forEach(b => b.onclick = () => { const s = fncSt(), g = fncGirl(s), c = g && fncChar(g.c); if (!c) return; const ps = [c.photo, ...(c.album || [])].filter((u, i, a) => u && a.indexOf(u) === i).slice(0, (g.top || 0) + 1); lightbox(ps, Math.min(+b.dataset.fpic, ps.length - 1)); });
+        const pv = $v('[data-fppv]'); if (pv) pv.onclick = () => { const s = fncSt(), g = fncGirl(s), c = g && fncChar(g.c); if (c) { ui.fnPTab = 'ppv'; location.hash = '#/fans/' + c.id; } };
+        const dm = $v('#fDm'); if (dm) dm.onclick = () => { const s = fncSt(), g = fncGirl(s), c = g && fncChar(g.c); if (!c) return; sfx('match');
+          cmChat(c, 'CarmenFans', pick([`Bir milyon takipçi 🔥 Hepsi senin sayende… Kimseye göstermediğimi sana göstereyim mi? 😈`, `Patronum 💋 Kanalım patladı; bu gece özel çekim sadece sana. Kamera kapalı, ben açığım 😏`, `Üstsüz kare viral oldu 🙈 Ama asıl çekimi sana sakladım… yaz bana 🫦`]), true); };
+        const pl = $v('#fPlat'); if (pl) pl.onclick = () => { const s = fncSt(); if (s.run < 1e7 || !confirm('Yeni platform: beğeni, ekip ve takipçiler sıfırlanır; 💎 Elmas kazanırsın. Emin misin?')) return;
+          const gain = Math.floor(Math.sqrt(s.run / 1e6)); s.gems += gain; s.likes = 0; s.run = 0; s.gen = {}; s.clk = 0; s.girls.forEach(x => { x.f = 0; }); fncSave(true); notify(`Yeni platform: +${gain} 💎`, '📈'); gdnRedo(); };
+        const help = () => { const sh = sheet(`<div class="gdn-guide"><h2>❔ Nasıl oynanır?</h2>${fncGuide()}<p><button type="button" class="btn primary" data-gclose>Anladım, dokunalım 💗</button></p></div>`, 'gdn-sheet');
+          sh.el.querySelector('[data-gclose]').onclick = sh.close; };
+        $v('#fHelp').onclick = help;
+        if (!s.help) { s.help = 1; fncSave(true); help(); }
+        // ⏱️ saniyede bir: üretim + ısı soğuması + altın kalp (sayfa yeniden çizilmez)
+        clearInterval(ui.fncIv);
+        ui.fncIv = setInterval(() => {
+          if (!document.querySelector('.fnc-root')) { fncSave(true); ui.fncSeen = 0; return clearInterval(ui.fncIv); }
+          const s = fncSt(); if (!document.hidden) s.play = (s.play || 0) + 1e3;
+          const up = fncTick(s).up; fncSave();
+          ui.fncHeat = Math.max(0, (ui.fncHeat || 0) - 8);
+          if (up) { fncSave(true); return gdnRedo(); }
+          const stg = $v('#fcStage');
+          if (stg && !stg.querySelector('.fnc-gold') && Math.random() < 1 / 90) { const gd = document.createElement('button'); gd.type = 'button'; gd.className = 'fnc-gold'; gd.textContent = '✨💛';
+            gd.style.left = (10 + Math.random() * 70) + '%'; gd.style.top = (10 + Math.random() * 60) + '%';
+            gd.onpointerdown = e => { e.stopPropagation(); e.preventDefault(); ui.fncFz = Date.now() + 3e4; fncSt().gold++; fncSave(true); gd.remove(); notify('Altın kalp: 30 saniye üretim ×7', '✨'); };
+            stg.appendChild(gd); setTimeout(() => gd.remove(), 8e3); }
+          upd();
+        }, 1000);
+      } };
+  }
+
+  /* 🎮 CarmenStation (#/station): Steam gibi oyun mağazası. Mağaza / kütüphane / oyun sayfası (#/station/<id>) / oyna (#/station/<id>/oyna).
+   * Oyunlar CST_GAMES; yakında gelenler soon: 1 (istek listesi). Kayıt amor-stories:station { lib, wish, last } */
+  const CST_KEY = 'amor-stories:station';
+  const cstSt = v => { try { if (v) localStorage.setItem(CST_KEY, JSON.stringify(v)); return v || Object.assign({ lib: [], wish: [], last: {} }, JSON.parse(localStorage.getItem(CST_KEY) || 'null') || {}); } catch (e) { return v || { lib: [], wish: [], last: {} }; } };
+  const CST_GAMES = [
+    { id: 'bahce', ic: '🌱', n: 'Meisove Bahçesi & Bar', dev: 'Meisove Studios', date: 'Kasım 2026', col: ['#ff7a59', '#7bd389'], tags: ['Tycoon', 'Idle', 'Yönetim', '18+', 'Meyve kızları'],
+      d: 'Meisove\'nin meyve kızlarını bahçene dik, olgunlaşınca sık, özlerini mahzende yıllandır, barda kokteyl yap. Bar sen yokken de satar.',
+      feat: [['🌱', 'Bahçe', '🍋 Limon, 🍓 Çilek, 🍊 Portakal, 🍯 Bal, 🥛 Süt Kız saksıda olgunlaşır; sık ya da onunla seansa gir.'],
+        ['🛢️', 'Mahzen ve içki kızlar', 'Özleri fıçıla: 🍷 Şarap, 🍸 Vodka, 🌵 Tekila, 🍾 Şampanya Kız mahzene gelir, locada kıvamına gelir.'],
+        ['🍸', 'Bar ve grup sahneleri', `${GDN_REC.length} tarif; Margarita, Sangria… İki ya da üç kızın özü bir bardakta buluşunca 👭👯 grup sahnesi açılır.`],
+        ['🧪', 'Gizli tarifler', 'Özleri karıştırıp dene; Tarif Defteri\'ne yaz.'],
+        ['🎲', 'Olaylar', '🐝 arı istilası, 🍾 mantar patladı, 🌵 Tekila Gecesi, 🌞 mevsimler, 👑 haftalık tadım yarışması.'],
+        ['🏆', 'Hasat', 'Dört Altın kızla sıfırla, kalıcı 🌟 Meisove Yıldızı kazan.']],
+      nav: [['🌱', 'Bahçe', '#/station/bahce/oyna', { gdnTab: '' }], ['🛢️', 'Mahzen', '#/station/bahce/oyna', { gdnTab: 'mahzen' }], ['🍸', 'Bar', '#/station/bahce/oyna', { gdnTab: 'bar' }], ['🔧', 'Gelişim', '#/station/bahce/oyna', { gdnTab: 'gelisim' }], ['🎮', 'Station', '#/station']],
+      st: () => gdnSt(), ach: s => GDN_ACH.map(a => [a[1], a[2], a[3], a[4](s)]), play: s => s.play || 0, view: gdnView },
+    { id: 'spa', ic: '💆', n: 'Spa Tycoon', dev: 'Carmen Games', date: 'Kasım 2026', col: ['#26a69a', '#ab47bc'], tags: ['Tycoon', 'Idle', 'Masaj', '18+'],
+      d: 'CarmenMassage\'ın masözlerini işe al, kabinlere yerleştir, salonunu büyüt. Kabinler sen yokken de çalışır; istersen seansı kendin al.',
+      feat: [['👩', 'Personel', 'Her gün yeni masöz adayları; her biri kendi paketlerini yapar, seans yaptıkça ustalaşır.'],
+        ['🛏️', 'Kabinler', '🫗 Lavanta odasında yağlı masaj, 🧴 Nuru odası, kapısı kilitli 🛏️ VIP odası.'],
+        ['💆', 'Seansı sen al', 'Patron denetimi: masözle o kabinin paketiyle sohbet doğrudan masaj salonunda başlar.'],
+        ['🎲', 'Olaylar', '🌟 ünlü müşteri, 🕵️ müfettiş, 💐 bekarlığa veda grubu, 😮‍💨 yorgun iş adamı.'],
+        ['🔧', 'Gelişim', 'Isıtılmış yağ, ambiyans, reklam, eğitim ve yeni kabinler.'],
+        ['🏨', 'Zincir', '50.000 ₺ kazanınca yeni şube aç, kazancın kalıcı olarak artsın.']],
+      nav: [['🛏️', 'Salon', '#/station/spa/oyna', { spaTab: '' }], ['👩', 'Personel', '#/station/spa/oyna', { spaTab: 'personel' }], ['🔧', 'Gelişim', '#/station/spa/oyna', { spaTab: 'gelisim' }], ['🎮', 'Station', '#/station']],
+      st: () => spaSt(), ach: s => SPA_ACH.map(a => [a[1], a[2], a[3], a[4](s)]), play: s => s.play || 0, view: spaView },
+    { id: 'kulup', soon: 1, ic: '🪩', n: 'Gece Kulübü Patronu', dev: 'Carmen Games', date: 'Yakında', col: ['#7c4dff', '#ff4081'], tags: ['Yönetim', 'Gece', '18+'], d: 'DJ, bar, VIP loca; gece büyüyen bir kulüp ve kapanıştan sonra personelle özel anlar.' },
+    { id: 'ajans', ic: '🫦', n: 'Fans Ajansı', dev: 'CarmenFans', date: 'Kasım 2026', col: ['#ff4081', '#7c4dff'], tags: ['Idle', 'Clicker', 'İçerik', '18+'],
+      d: 'Yıldız kızın fotoğrafına dokun, beğeni topla, ekibini büyüt. Takipçi arttıkça kız açılır: bikini, iç çamaşırı, kostüm, üstsüz; CarmenFans aboneliği, hediye özel içerik ve özel mesaj.',
+      feat: [['💗', 'Dokun', 'Her dokunuş beğeni; hızlı dokun, ısı barı dolsun, 🔥 Viral! modunda dokunuş ×3.'],
+        ['🏭', 'Ekip', 'Selfie, fotoğrafçı, makyöz, video ekibi, stüdyo, canlı yayın, viral ağ; sen yokken de beğeni üretirler.'],
+        ['🔓', 'Kademeler', '1 bin takipçide bikini, 10 bin\'de iç çamaşırı + Fans aboneliği, 100 bin\'de kostüm + hediye içerik, 1 milyonda üstsüz + 💬 özel mesaj.'],
+        ['✨', 'Altın kalp', 'Ekranda süzülen altın kalbi yakala: 30 saniye üretim ×7.'],
+        ['👩', 'Kadro', 'CarmenFans kızlarından altı kişilik ajans; her birinin kendi takipçi kademeleri.'],
+        ['📈', 'Yeni Platform', '10 milyon beğeniden sonra taşın, 💎 Elmas kazan; kadro ve açtığın içerikler kalır.']],
+      nav: [['💗', 'Dokun', '#/station/ajans/oyna', { fncTab: '' }], ['🏭', 'Ekip', '#/station/ajans/oyna', { fncTab: 'ekip' }], ['🔓', 'İçerik', '#/station/ajans/oyna', { fncTab: 'icerik' }], ['👩', 'Kadro', '#/station/ajans/oyna', { fncTab: 'kadro' }], ['🎮', 'Station', '#/station']],
+      st: () => fncSt(), ach: s => FNC_ACH.map(a => [a[1], a[2], a[3], a[4](s)]), play: s => s.play || 0, view: fncView },
+    { id: 'hamam', soon: 1, ic: '🧖', n: 'Hamam & Sauna', dev: 'Carmen Games', date: 'Yakında', col: ['#8d6e63', '#ffcc80'], tags: ['Tycoon', 'Buhar', '18+'], d: 'Kurna, kese, buhar odası; köpüğün içinde zamanla büyüyen bir hamam.' }];
+  const cstGame = id => CST_GAMES.find(g => g.id === id);
+  const cstHrs = ms => ms >= 36e5 ? `${(ms / 36e5).toFixed(1)} saat` : `${Math.round(ms / 6e4)} dk`;
+  const cstCover = (g, big) => `<div class="cst-cover${big ? ' big' : ''}" style="--c1:${g.col[0]};--c2:${g.col[1]}"><span>${g.ic}</span><b>${esc(g.n)}</b>${g.soon ? '<em>Yakında</em>' : ''}</div>`;
+  const CST_CSS = `<style>
+    .ws-cst{--cst-bg:#1b2838;--cst-card:#16202d;--cst-line:#2a475e;--cst-acc:#66c0f4;--cst-txt:#c7d5e0;--cst-mute:#8f98a0;background:var(--cst-bg);color:var(--cst-txt);min-height:100%}
+    html:not([data-theme="dark"]) .ws-cst{--cst-bg:#eef3f8;--cst-card:#fff;--cst-line:#c9d6e3;--cst-acc:#1a73b8;--cst-txt:#1b2838;--cst-mute:#5c6b7a}
+    .cst{padding:12px 16px 90px;max-width:960px;margin:0 auto}.cst a{color:var(--cst-acc)}.cst h2{font-size:1.05rem;margin:18px 0 10px;text-transform:uppercase;letter-spacing:.06em;color:var(--cst-mute)}
+    .cst-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}.cst-tabs a{padding:7px 14px;border-radius:4px;background:var(--cst-card);border:1px solid var(--cst-line);text-decoration:none;color:var(--cst-txt);font-weight:700;font-size:.85rem}.cst-tabs a.on{background:var(--cst-acc);color:#0b1520;border-color:var(--cst-acc)}
+    .cst-cover{position:relative;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;aspect-ratio:16/9;padding:10px;border-radius:6px;background:linear-gradient(135deg,var(--c1),var(--c2));color:#fff;overflow:hidden;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+    .cst-cover span{position:absolute;top:8px;right:12px;font-size:2.6rem}.cst-cover.big span{font-size:4.5rem}.cst-cover b{font-size:1rem;line-height:1.2}.cst-cover.big b{font-size:1.6rem}.cst-cover em{position:absolute;top:8px;left:8px;font-style:normal;font-size:.7rem;padding:2px 8px;border-radius:3px;background:rgba(0,0,0,.55)}
+    .cst-hero{display:grid;grid-template-columns:2fr 1fr;gap:12px;padding:12px;border-radius:8px;background:var(--cst-card);border:1px solid var(--cst-line);text-decoration:none;color:inherit}.cst-hero p{margin:6px 0;font-size:.88rem;line-height:1.45}
+    .cst-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}.cst-card{display:flex;flex-direction:column;gap:6px;padding:8px;border-radius:8px;background:var(--cst-card);border:1px solid var(--cst-line);text-decoration:none;color:inherit}
+    .cst-card small,.cst-mute{color:var(--cst-mute);font-size:.78rem}.cst-tags{display:flex;flex-wrap:wrap;gap:4px}.cst-tags i{font-style:normal;font-size:.7rem;padding:2px 7px;border-radius:3px;background:rgba(102,192,244,.15);color:var(--cst-acc)}
+    .cst-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:4px;border:0;font:inherit;font-weight:800;cursor:pointer;text-decoration:none;background:linear-gradient(90deg,#5c7e10,#75b022);color:#fff}.cst-btn.alt{background:var(--cst-line);color:var(--cst-txt)}
+    .cst-feat{display:grid;gap:8px}.cst-feat div{display:flex;gap:10px;padding:10px;border-radius:6px;background:var(--cst-card);border:1px solid var(--cst-line)}.cst-feat span{font-size:1.5rem}.cst-feat p{margin:2px 0 0;font-size:.85rem;color:var(--cst-mute)}
+    .cst-ach{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}.cst-ach div{display:flex;gap:10px;align-items:center;padding:8px 10px;border-radius:6px;background:var(--cst-card);border:1px solid var(--cst-line)}.cst-ach .off{opacity:.4;filter:grayscale(1)}.cst-ach span{font-size:1.4rem}.cst-ach small{display:block;color:var(--cst-mute);font-size:.74rem}
+    .cst-lib{display:flex;gap:12px;align-items:center;padding:10px;border-radius:8px;background:var(--cst-card);border:1px solid var(--cst-line)}.cst-lib .cst-cover{width:140px;flex:0 0 140px}.cst-lib div{flex:1;min-width:0}
+    .cst-prog{height:6px;border-radius:6px;background:var(--cst-line);overflow:hidden;margin:6px 0}.cst-prog i{display:block;height:100%;background:var(--cst-acc)}
+    .gdn-root .ws-sec{background:var(--cst-card);border:1px solid var(--cst-line);border-radius:8px;padding:12px;margin:10px 0}.gdn-root h3{margin:0 0 8px}.gdn-root h3 small{font-weight:400;color:var(--cst-mute)}
+    .gdn-stats{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:8px 0}.gdn-help{width:34px;height:34px;flex:0 0 34px;border-radius:50%;border:2px solid var(--cst-acc);background:none;color:var(--cst-acc);font:900 1.05rem system-ui;cursor:pointer}
+    .gdn-root [data-gt]{display:none}.gdn-t-bahce [data-gt~=bahce],.gdn-t-mahzen [data-gt~=mahzen],.gdn-t-bar [data-gt~=bar],.gdn-t-gelisim [data-gt~=gelisim],.gdn-t-salon [data-gt~=salon],.gdn-t-personel [data-gt~=personel],.gdn-t-tikla [data-gt~=tikla],.gdn-t-ekip [data-gt~=ekip],.gdn-t-icerik [data-gt~=icerik],.gdn-t-kadro [data-gt~=kadro]{display:block}
+    .fnc-stage{position:relative;max-width:420px;margin:0 auto;aspect-ratio:3/4;border-radius:14px;overflow:hidden;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:manipulation;background:linear-gradient(135deg,#ff4081,#7c4dff);box-shadow:0 8px 30px rgba(255,64,129,.35)}
+    .fnc-stage img{width:100%;height:100%;object-fit:cover;pointer-events:none}.fnc-stage.hit{animation:fncHit .18s ease-out}@keyframes fncHit{50%{transform:scale(.97)}}
+    .fnc-tag,.fnc-name{position:absolute;left:10px;padding:4px 10px;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;font-weight:800;font-size:.85rem}.fnc-tag{top:10px}.fnc-name{bottom:10px}
+    .fnc-pop{position:absolute;transform:translate(-50%,-50%);color:#fff;font-weight:900;text-shadow:0 2px 6px rgba(0,0,0,.6);pointer-events:none;animation:fncPop .9s ease-out forwards}@keyframes fncPop{to{transform:translate(-50%,-180%);opacity:0}}
+    .fnc-gold{position:absolute;z-index:2;border:0;background:none;font-size:2rem;cursor:pointer;animation:fncGold 1.6s ease-in-out infinite;filter:drop-shadow(0 0 8px gold)}@keyframes fncGold{50%{transform:translateY(-12px) scale(1.15)}}
+    .fnc-info{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin:10px 0 6px}.fnc-heat{position:relative;height:16px;border-radius:999px;background:rgba(127,127,127,.25);overflow:hidden;max-width:420px;margin:0 auto}
+    .fnc-heat i{display:block;height:100%;background:linear-gradient(90deg,#ffb347,#ff5277,#ff1744);transition:width .3s}.fnc-heat small{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+    .fnc-next{max-width:420px;margin:10px auto 0}.fnc-desc{text-align:center}.fnc-lock{opacity:.55}
+    .sheet.gdn-sheet{background:#1b2838;color:#c7d5e0;border-top:2px solid #66c0f4}.gdn-sheet a{color:#66c0f4}.gdn-sheet b,.gdn-sheet h2,.gdn-sheet th{color:#fff}
+    html:not([data-theme="dark"]) .sheet.gdn-sheet{background:#fff;color:#1b2838;border-top-color:#1a73b8}html:not([data-theme="dark"]) .gdn-sheet a{color:#1a73b8}html:not([data-theme="dark"]) :is(.gdn-sheet b,.gdn-sheet h2,.gdn-sheet th){color:#0b1520}
+    .gdn-guide{max-height:75vh;overflow-y:auto;line-height:1.5}.gdn-guide h2{margin:0 0 8px}.gdn-guide table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}.gdn-guide td,.gdn-guide th{padding:5px 6px;border-bottom:1px solid rgba(127,127,127,.25);text-align:left;vertical-align:top}.gdn-stats span,.gdn-ess span{padding:6px 12px;border-radius:999px;background:rgba(102,192,244,.12)}
+    .gdn-ban{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;margin:8px 0;background:linear-gradient(90deg,rgba(117,176,34,.25),rgba(102,192,244,.15))}.gdn-ban.ev{background:linear-gradient(90deg,rgba(255,122,89,.3),rgba(255,82,119,.2))}.gdn-ban .btn{margin-left:auto}
+    .gdn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:8px}.gdn-plot{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 8px;border-radius:10px;border:2px solid var(--cst-line);text-align:center}
+    .gdn-plot.gold{border-color:#f5b700;box-shadow:0 0 12px rgba(245,183,0,.4)}.gdn-plot.empty{border-style:dashed;justify-content:center}.gdn-plot .sp-sel{max-width:100%}.gdn-pot{font-size:2rem}
+    .gdn-plot small{font-size:.72rem;opacity:.85}.gdn-bar{width:100%;height:8px;border-radius:8px;background:rgba(127,127,127,.25);overflow:hidden}.gdn-bar i{display:block;height:100%;background:linear-gradient(90deg,#7bd389,#ffb347,#ff5277)}
+    .gdn-btns{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}.gdn-x{position:absolute;top:6px;right:8px;background:none;border:0;color:inherit;opacity:.5;cursor:pointer}
+    .gdn-ess{display:flex;flex-wrap:wrap;gap:8px}.gdn-ric{font-size:1.5rem;flex:0 0 auto}.gdn-rec.off{opacity:.5}.gdn-root .btn[disabled]{opacity:.45}.gdn-mix{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+    @media (max-width:640px){.cst-hero{grid-template-columns:1fr}.cst-lib{flex-wrap:wrap}.cst-lib .cst-cover{width:100%;flex-basis:100%}}
+  </style>`;
+  function renderStation(id, extra) {
+    const st = cstSt(), tabs = cur => `<nav class="cst-tabs">${[['', '🛒 Mağaza'], ['kutuphane', '📚 Kütüphane'], ['istek', '♡ İstek listesi']].map(([k, l]) => `<a href="#/station${k ? '/' + k : ''}" class="${cur === k ? 'on' : ''}">${l}</a>`).join('')}</nav>`;
+    const page = (url, body, back) => { view.innerHTML = CST_CSS + wsPage('cst', 'Carmen<i>Station</i>', 'carmenstation.com' + url, back || '#/booble', `<div class="cst">${body}</div>`); };
+    const card = g => `<a class="cst-card" href="#/station/${g.id}">${cstCover(g)}<b>${esc(g.n)}</b><small>${esc(g.dev)} · ${esc(g.date)}</small><div class="cst-tags">${g.tags.map(t => `<i>${esc(t)}</i>`).join('')}</div><small>${g.soon ? (st.wish.includes(g.id) ? '♥ İstek listende' : '♡ İstek listesine ekle') : st.lib.includes(g.id) ? '✓ Kütüphanende' : 'Ücretsiz oyna'}</small></a>`;
+    const wishOn = () => view.querySelectorAll('[data-cwish]').forEach(b => b.onclick = () => { const s = cstSt(), k = b.dataset.cwish; s.wish = s.wish.includes(k) ? s.wish.filter(x => x !== k) : [...s.wish, k]; cstSt(s); render(); });
+    const g = id && cstGame(id);
+    if (g && extra === 'oyna' && !g.soon) {
+      if (!st.lib.includes(g.id)) st.lib.push(g.id); st.last[g.id] = Date.now(); cstSt(st);
+      const out = g.view();
+      page(`/${g.id}/oyna`, `<div class="cst-play"><a href="#/station/${g.id}">‹ ${esc(g.n)}</a></div>${out.h}`, '#/station/' + g.id);
+      return out.on && out.on();
+    }
+    if (g) {
+      const s = g.soon ? null : g.st(), ach = s ? g.ach(s) : [], got = ach.filter(a => a[3]).length, own = st.lib.includes(g.id);
+      page('/' + g.id, `${tabs('-')}${cstCover(g, true)}<h1>${g.ic} ${esc(g.n)}</h1><p class="cst-mute">${esc(g.dev)} · ${esc(g.date)}</p><div class="cst-tags">${g.tags.map(t => `<i>${esc(t)}</i>`).join('')}</div><p>${esc(g.d)}</p>
+        <p>${g.soon ? `<button type="button" class="cst-btn alt" data-cwish="${g.id}">${st.wish.includes(g.id) ? '♥ İstek listende' : '♡ İstek listesine ekle'}</button>` : `<a class="cst-btn" href="#/station/${g.id}/oyna">${own ? '▶ Oyna' : '➕ Ücretsiz oyna'}</a>${own ? ` <span class="cst-mute">⏱️ ${cstHrs(g.play(s))} oynandı · 🏆 ${got}/${ach.length}</span>` : ''}`}</p>
+        ${g.feat ? `<h2>Özellikler</h2><div class="cst-feat">${g.feat.map(f => `<div><span>${f[0]}</span><span><b>${esc(f[1])}</b><p>${esc(f[2])}</p></span></div>`).join('')}</div>` : ''}
+        ${ach.length ? `<h2>Başarımlar · ${got}/${ach.length}</h2><div class="cst-ach">${ach.map(a => `<div class="${a[3] ? '' : 'off'}"><span>${a[0]}</span><span><b>${esc(a[1])}</b><small>${esc(a[2])}</small></span></div>`).join('')}</div>` : ''}`, '#/station');
+      return wishOn();
+    }
+    if (id === 'kutuphane') {
+      const L = CST_GAMES.filter(x => st.lib.includes(x.id) && !x.soon);
+      page('/kutuphane', `${tabs('kutuphane')}${L.length ? L.map(x => { const s = x.st(), a = x.ach(s), got = a.filter(y => y[3]).length;
+        return `<div class="cst-lib">${cstCover(x)}<div><b>${esc(x.n)}</b><div class="cst-mute">⏱️ ${cstHrs(x.play(s))} · son oynama ${st.last[x.id] ? new Date(st.last[x.id]).toLocaleDateString('tr-TR') : '-'}</div><div class="cst-prog"><i style="width:${Math.round(got / a.length * 100)}%"></i></div><small class="cst-mute">🏆 ${got}/${a.length} başarım</small></div><a class="cst-btn" href="#/station/${x.id}/oyna">▶ Oyna</a></div>`; }).join('')
+        : '<p class="cst-mute">Kütüphanen boş. Mağazadan ücretsiz bir oyun ekle.</p>'}`, '#/station');
+      return;
+    }
+    if (id === 'istek') {
+      const L = CST_GAMES.filter(x => st.wish.includes(x.id));
+      page('/istek', `${tabs('istek')}${L.length ? `<div class="cst-grid">${L.map(card).join('')}</div>` : '<p class="cst-mute">İstek listen boş. Yakında gelecek oyunlarda ♡ ile ekle.</p>'}`, '#/station');
+      return;
+    }
+    const top = CST_GAMES.find(x => !x.soon);
+    page('', `${tabs('')}<h2>Öne çıkan</h2><a class="cst-hero" href="#/station/${top.id}">${cstCover(top, true)}<div><b>${top.ic} ${esc(top.n)}</b><p>${esc(top.d)}</p><div class="cst-tags">${top.tags.map(t => `<i>${esc(t)}</i>`).join('')}</div><p><span class="cst-btn">Ücretsiz oyna</span></p></div></a>
+      <h2>Oyunlar</h2><div class="cst-grid">${CST_GAMES.filter(x => !x.soon).map(card).join('')}</div>
+      <h2>Yakında</h2><div class="cst-grid">${CST_GAMES.filter(x => x.soon).map(card).join('')}</div>`);
+  }
 
   const SP_PAGES = {
     carmen: {
@@ -12656,7 +13371,7 @@
     monia: 'Olaylar ve sonuçlar', olay: 'Olaylar ve sonuçlar', sonuc: 'Eşik olayları', gruplar: 'Ortak sonuçlar ve etiketler', kategoriler: 'Ortak sonuçlar ve etiketler',
     kurallar: 'İzinler ve kurallar', bot: 'Olaylar ve sonuçlar', me: 'Kayıt ve kurulumlar', p: 'Parametreler ve durumlar',
     internet: 'İnternet nedir?', carmen: 'Carmen.com', fans: 'CarmenFans', otel: 'CarmenStay', canli: 'CarmenLive', parti: 'CarmenParty', shop: 'CarmenShop', is: 'CarmenJobs', klinik: 'CarmenKlinik', itiraf: 'Confessly', creative: 'CarmenCreative', flix: 'CarmenFlix', gram: 'Carmentagram', oyun: 'Problematic Subjects', choise: 'CarmenChoise',
-    gothic: 'Gothic.com', meisove: 'Meisove.com', booble: 'Booble', okul: 'CarmenSchool', sehir: 'CarmenCity', kesinti: 'Kesintiler', halloween: 'Halloween' };
+    gothic: 'Gothic.com', meisove: 'Meisove.com', booble: 'Booble', okul: 'CarmenSchool', sehir: 'CarmenCity', kesinti: 'Kesintiler', halloween: 'Halloween', station: 'CarmenStation' };
   // bölüm adı → [kitap, bölüm] (bütün kitaplarda arar)
   const bookIdx = title => { for (const b of BOOKS) { const i = b.chapters.findIndex(c => c.title === title); if (i >= 0) return [b.id, i]; } return ['carmen', 0]; };
   // Lia'nın fotoğrafı: resim havuzundan hep aynısı
@@ -22658,7 +23373,7 @@
     farm: ['#8bc34a', '#ffeb3b', '#0d1406'], massage: ['#26a69a', '#b2dfdb', '#06140f'], secret: ['#00e676', '#1de9b6', '#04120a'], amor: ['#ff4f81', '#ffb3c6', '#1a0710'],
     clinic: ['#29b6f6', '#b3e5fc', '#05131c'], conf: ['#ab47bc', '#ce93d8', '#12071a'], cr: ['#ff6f00', '#ffca28', '#1a0d00'], ch: ['#ffd54f', '#ff8a65', '#1a1006'],
     events: ['#5c6bc0', '#ef5350', '#0b0d1c'], news: ['#212121', '#8d6e63', '#f5f1e8', '#5d4037'], doodle: ['#4285f4', '#ea4335', '#ffffff', '#5f6368'], guide: ['#00897b', '#4db6ac', '#061412'],
-    play: ['#7c4dff', '#00e5ff', '#0a0618'], mag: ['#d4af37', '#e0607e', '#140609'], deephug: ['#ffb020', '#ff5d8f', '#140b16'], booble: ['#4285f4', '#34a853', '#ffffff', '#5f6368'], halloween: ['#ff6d00', '#8e24aa', '#0d0610']
+    play: ['#7c4dff', '#00e5ff', '#0a0618'], mag: ['#d4af37', '#e0607e', '#140609'], deephug: ['#ffb020', '#ff5d8f', '#140b16'], station: ['#66c0f4', '#75b022', '#171a21'], booble: ['#4285f4', '#34a853', '#ffffff', '#5f6368'], halloween: ['#ff6d00', '#8e24aa', '#0d0610']
   };
   function splashBrand(site) {
     const sp = $('#splash'), lg = sp && sp.querySelector('.logo');
@@ -28172,7 +28887,7 @@
     hikayeler: 'Olaylar ve sonuçlar', monia: 'Olaylar ve sonuçlar', senaryo: 'Olaylar ve sonuçlar', olay: 'Olaylar ve sonuçlar', sonuc: 'Olaylar ve sonuçlar', gruplar: 'Ortak sonuçlar ve etiketler', kategoriler: 'Ortak sonuçlar ve etiketler',
     kurallar: 'İzinler ve kurallar', izin: 'İzinler ve kurallar', bot: 'Kural yazma rehberi', deney: 'Bot deneyi ve eksik cevaplar', me: 'Kayıt ve kurulumlar',
     internet: 'İnternet nedir?', carmen: 'Carmen.com', fans: 'CarmenFans', otel: 'CarmenStay', canli: 'CarmenLive', parti: 'CarmenParty', shop: 'CarmenShop', is: 'CarmenJobs', klinik: 'CarmenKlinik', itiraf: 'Confessly', creative: 'CarmenCreative', flix: 'CarmenFlix', gram: 'Carmentagram', oyun: 'Problematic Subjects', choise: 'CarmenChoise',
-    gothic: 'Gothic.com', meisove: 'Meisove.com', booble: 'Booble', okul: 'CarmenSchool', sehir: 'CarmenCity', kesinti: 'Kesintiler', halloween: 'Halloween' };
+    gothic: 'Gothic.com', meisove: 'Meisove.com', booble: 'Booble', okul: 'CarmenSchool', sehir: 'CarmenCity', kesinti: 'Kesintiler', halloween: 'Halloween', station: 'CarmenStation' };
   const ctxKey = () => { const r = ui.route || {}; if (r.name === 'monia') return r.id === 'flix' ? 'flix' : ['sonuc', 'gruplar', 'kategoriler', 'olay'].includes(r.id) ? r.id : r.id ? 'senaryo' : 'monia'; if (r.name === 'kurallar' && r.id === 'izin') return 'izin'; return r.name || 'home'; };
   const ctxHelp = () => ''; // ❓ kitap bölümü butonu kaldırıldı (v957)
   document.addEventListener('click', e => {
@@ -29228,10 +29943,14 @@
         <li><b>⭐ Koleksiyon</b>: kaydettiklerin sohbette %35 önce denenir; ‹adı› ve ‹hitap› o an doldurulur.</li>
         <li><b>📊 Sıralama</b>: beğeni ve kullanım.</li></ul>
       <p>Lezbiyen olaylarda, grup sohbetinde (onun cevabı) ve gündelik olaylarda kullanılmaz; kadın profilde sadece ön sevişme ve sonrası. Sadece Türkçe. Kayıtlar bu tarayıcıda (<code>amor-stories:deephug</code>).</p>`;
+    } },
+    { icon: '🎮', title: 'CarmenStation', sub: 'Steam gibi oyun mağazası', get body() {
+      return `<p><a href="#/station">🎮 CarmenStation</a> yetişkin oyunlarının mağazası: 🛒 Mağaza, 📚 Kütüphane, ♡ İstek listesi. Oyunlar ücretsiz; bir kez oynayınca kütüphanene eklenir, oynama süresi ve 🏆 başarımları tutulur.</p>
+      <table class="bk-t"><tr><th>Oyun</th><th>Ne</th></tr>${CST_GAMES.map(g => `<tr><td>${g.ic} ${esc(g.n)}${g.soon ? ' <small>(yakında)</small>' : ''}</td><td>${esc(g.d)}</td></tr>`).join('')}</table>
+      <p>Yakında gelen oyunları ♡ ile istek listene ekleyebilirsin. 🌱 Meisove Bahçesi & Bar'ın nasıl oynandığı <a href="#/kitap/oyun">🎮 Oyun Kitabı</a>'nda. Kayıtlar bu tarayıcıda (<code>amor-stories:station</code>, <code>amor-stories:mvgarden</code>).</p>`;
     } }
   ] });
-  /* 🎮 Oyun Kitabı: Adult Game oyunları */
-  BOOKS.push({ id: 'oyun', icon: '🎮', title: 'Oyun Kitabı', sub: 'Problematic Subjects nasıl oynanır', chips: ['Adult Game', '18+'], chapters: [
+  /* 🎮 Oyun Kitabı: Adult Game oyunları */  BOOKS.push({ id: 'oyun', icon: '🎮', title: 'Oyun Kitabı', sub: 'Meisove Bahçesi & Bar, Spa Tycoon, Fans Ajansı, Problematic Subjects nasıl oynanır', chips: ['Adult Game', 'CarmenStation', '18+'], chapters: [
     { icon: '🗂️', title: 'Problematic Subjects', sub: 'ofiste bir gün', body: `
       <p><b>Ana menü</b>: ▶ Başla / Devam et, 🆕 Yeni oyun, 📖 Rehber kitap (bu kitap), 📦 Koleksiyon, 🏆 İstatistik. Oyun sırasında ☰ Menü ile dönersin; ilerleme kaydedilir.</p>
       <p>Ofiste görevlisin. Her gün <b>5 hanımefendi</b> gelir ve bir ricada bulunur: kim olduğunu, nasıl biri olduğunu, ne istediğini anlatır; bazen en sevdiği şeye dair ince bir ipucu da bırakır. Amacın her birini en sevdiği şeylerle mutlu etmek: ne kadar zevk alırlarsa o kadar <b>💗 zevk puanı</b> kazanırsın.</p>
@@ -33028,7 +33747,8 @@
       <p><a href="#/meisove">Meisove.com</a> Carmen.com gibi bir ilan sitesi, ama sadece <b>meyve kızları</b>: slime gibi yumuşacık, aromalı 🍋 Limon, 🍓 Çilek, 🍊 Portakal, 🍷 Şarap ve 🍸 Vodka Kız.</p>
       <ul><li>Puan, VIP, beden ve kondom şartı Carmen.com'la aynı hesaplanır; metinler, kurallar, seanslar ve yorumlar kendine ait.</li>
         <li><b>Ön görüşme yok</b>: 🍓 Tadına bak deyince sohbet doğrudan onun türünün rol fantezisiyle başlar.</li>
-        <li>Her meyve kızının özel soruları ve 🥚 egg'leri 🦄 Fantezi Kitabı'nda.</li></ul>
+        <li>Her meyve kızının özel soruları ve 🥚 egg'leri 🦄 Fantezi Kitabı'nda.</li>
+        <li>🎮 <a href="#/station/bahce">Meisove Bahçesi & Bar</a>: meyve ve içki kızlarını CarmenStation oyununda dik, sık, mahzende yıllandır, kokteyl yap (alt menüde 🎮 Oyun).</li></ul>
       <p>İlan kızları sadece bu tarayıcıda saklanır; mesaj atınca karakterlerine eklenir.</p>` });
     putAfter(net, 'CarmenJobs', { icon: '🎓', title: 'CarmenSchool', sub: 'ders bitti, sınıf boş', body: `
       <p><a href="#/okul">CarmenSchool</a>: ders bitti, sınıf boş. Her kızın okulda bir rolü var; mesleğine uyan (öğretmen → 👩‍🏫 Kadın Hoca, öğrenci → 🎒 Öğrenci, dansçı → 🩰 Dans hocası), yoksa rastgele.</p>
@@ -33066,8 +33786,8 @@
         <li><b>🎲 Çiti aç</b>: rastgele bir kız ve hayvanıyla başlatır.</li>
         <li>İlan sayfasında 📜 Çiftlik kurallarım, 🐾 hayvanları ve 📏 sınırları yazar.</li></ul>` });
     const nb = BOOKS.find(b => b.id === 'internet');
-    nb.sub = 'Booble, Carmen.com, Gothic, Meisove, Fans, Gram, Flix, Stay, Live, Party, Shop, Jobs, School, City, Impact, Klinik, İtiraf, Creative, Choise, Play, DeepHugging';
-    nb.chips = ['21 site', 'sohbete bağlanır'];
+    nb.sub = 'Booble, Carmen.com, Gothic, Meisove, Fans, Gram, Flix, Stay, Live, Party, Shop, Jobs, School, City, Impact, Klinik, İtiraf, Creative, Choise, Play, DeepHugging, Station';
+    nb.chips = ['22 site', 'sohbete bağlanır'];
     // 📱 Fantezi: kesintiler en sona (fantezi bölüm numaraları değişmez)
     book('fantezi').push({ icon: '📱', title: 'Kesintiler', sub: 'telefon çaldı… fantezide özel durumlar', body: `
       <p>Sohbette ⋯ Diğer → <b>📱 Kesintiler</b> açıksa (varsayılan açık) pozisyon ya da fantezi olayından sonra bazen bir kesinti olur: 📱 telefon çalar, 🚪 kapı çalınır, 🏠 komşu duvara vurur, 🔔 mesaj gelir. Kapatırsan hiç gelmez.</p>
@@ -33319,8 +34039,17 @@
         <li>🧭 Hikâye yönetmeni, 🤝 sınır haritası, 🎁 hediye ekonomisi, ✈️ seyahat.</li></ul>
       <p>Tam liste: <code>ProjectMemory/proposals/carmen-3.0.md</code>.</p>` }
   ] });
-  const BOOK_VOLS = [
-    ['rehber', '📖', 'Carmen Rehberi', 'uygulamanın kullanımı, internet siteleri, şehir, oyunlar ve CarmenAmor', ['carmen', 'internet', 'sehir', 'oyun', 'amor'], '#6b2a14', '#3a150a'],
+  // 🌱 Oyun Kitabı: CarmenStation'ın Meisove Bahçesi & Bar rehberi (sona eklenir, eski bölüm sırası değişmez)
+  BOOKS.find(b => b.id === 'oyun').chapters.push({ icon: '🌱', title: 'Meisove Bahçesi & Bar', sub: 'CarmenStation tycoon oyunu', get body() {
+    return gdnGuide();
+  } });
+  BOOKS.find(b => b.id === 'oyun').chapters.push({ icon: '💆', title: 'Spa Tycoon', sub: 'CarmenStation masaj salonu oyunu', get body() {
+    return spaGuide();
+  } });
+  BOOKS.find(b => b.id === 'oyun').chapters.push({ icon: '🫦', title: 'Fans Ajansı', sub: 'CarmenStation idle clicker', get body() {
+    return fncGuide();
+  } });
+  const BOOK_VOLS = [    ['rehber', '📖', 'Carmen Rehberi', 'uygulamanın kullanımı, internet siteleri, şehir, oyunlar ve CarmenAmor', ['carmen', 'internet', 'sehir', 'oyun', 'amor'], '#6b2a14', '#3a150a'],
     ['konusma', '🤖', 'Konuşma Rehberi', 'bot nasıl cevap verir: sorular, övgüler, komutlar, nedenler, kişilikler, grup ve memleketler', ['bot', 'soru', 'onun', 'ovgu', 'komut', 'neden', 'yedek', 'kisilik', 'grup', 'ulke'], '#1f3a5f', '#0e1c30'],
     ['seanslar', '💞', 'Seans ve Olay Rehberi', 'seans türleri ve örnekleri, bütün olaylar, olay hafızası ve süt', ['seans', 'olay', 'hafiza', 'sut', 'hamile', 'lezbiyen', 'trans'], '#8a2445', '#43101f'],
     ['fanteziler', '🦄', 'Fantezi ve Mekân Rehberi', 'fanteziler, Genshin, BDSM, ofis, okul, kilise, gece hayatı, yaz, dışarıda ve ev', ['fantezi', 'genshin', 'bdsm', 'ofis', 'okul', 'kilise', 'gece', 'yaz', 'disari', 'ev'], '#7a1f5c', '#2e0b24'],

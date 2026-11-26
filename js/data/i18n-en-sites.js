@@ -4005,3 +4005,91 @@ Stories.I18n.add({
 Stories.I18n.add({
   'Yeni ay': 'New moon', 'Hilal': 'Crescent', 'İlk dördün': 'First quarter', 'Şişkin ay': 'Waxing gibbous', 'Dolunay': 'Full moon', 'Azalan şişkin ay': 'Waning gibbous', 'Son dördün': 'Last quarter', 'Azalan hilal': 'Waning crescent'
 });
+Stories.I18n.add({
+  'Bahçe': 'Garden', 'Meisove Bahçesi': 'Meisove Garden', 'Meyve kızlarını dik, olgunlaşınca sık, özlerinden kokteyl yap; bar sen yokken de satar': 'Plant your fruit girls, squeeze them when ripe, mix cocktails from their essence; the bar sells even while you\'re away',
+  'itibar': 'reputation', 'satış': 'sales', 'Özler': 'Essences', 'Bar': 'Bar', 'Yükseltmeler': 'Upgrades', 'Olgun': 'Ripe', 'Tatlı': 'Sweet', 'Ham': 'Unripe',
+  'Sık': 'Squeeze', 'Seansla sık': 'Squeeze in a session', 'Dik': 'Plant', 'Sök': 'Uproot', 'Karıştır': 'Mix', 'En üst': 'Max', 'Önce bir kez karıştır': 'Mix it once first',
+  'Dikilecek meyve kızı kalmadı': 'No fruit girls left to plant', 'stok boş, kokteyl karıştır': 'stock empty, mix a cocktail',
+  'İki meyveli bir tarifi ilk kez karıştırınca o iki kızla ikili sahne açılır.': 'Mixing a two-fruit recipe for the first time unlocks a duo scene with those two girls.',
+  'Sökersen bu kızın seviyesi sıfırlanır. Emin misin?': 'Uprooting resets this girl\'s level. Are you sure?',
+  'Bahçende bu tarifin iki kızı da olmalı': 'Both of this recipe\'s girls must be in your garden',
+  'Olgunlaşma her seviyede %15 hızlanır': 'Ripening gets 15% faster each level', 'Bir saksı daha: bir kız daha dikebilirsin': 'One more pot: plant one more girl',
+  'Öz verimi her seviyede +%50': 'Essence yield +50% each level', 'Bar her seviyede daha hızlı ve daha pahalı satar': 'The bar sells faster and pricier each level',
+  'Sera': 'Greenhouse', 'Saksı': 'Pot', 'Pres': 'Press', 'El presi': 'Hand press', 'Mengene': 'Vise', 'Altın pres': 'Golden press', 'Kristal pres': 'Crystal press',
+  'Limonata': 'Lemonade', 'Çilek Kreması': 'Strawberry Cream', 'Taze Portakal': 'Fresh Orange', 'Bal Şerbeti': 'Honey Sherbet', 'Sıcak Süt': 'Warm Milk', 'Tropik Kokteyl': 'Tropical Cocktail',
+  'Çilekli Milkshake': 'Strawberry Milkshake', 'Ballı Limon': 'Honey Lemon', 'Gün Batımı': 'Sunset', 'Ballı Süt': 'Honey Milk',
+  '{} saksı': '{} pots', 'stok {} · her {} bir satış': 'stock {} · one sale every {}', 'stok {}': 'stock {}', 'Sv {}': 'Lv {}',
+  '{} kokteyl satıldı, +{} 💰': '{} cocktails sold, +{} 💰', '+{} {} özü': '+{} {} essence', '{} Altın oldu: öz ×2': '{} turned Golden: essence ×2', '{} seviye {} oldu': '{} reached level {}',
+  'Yeni ikili tarif: {}': 'New duo recipe: {}', '{} seviye {}': '{} level {}'
+});
+Stories.I18n.add({
+  'Mağaza': 'Store', 'Kütüphane': 'Library', 'İstek listesi': 'Wishlist', 'İstek': 'Wishlist', 'Oyun': 'Game', 'Öne çıkan': 'Featured', 'Oyunlar': 'Games', 'Yakında': 'Coming soon', 'Özellikler': 'Features',
+  'Ücretsiz oyna': 'Play for free', 'Oyna': 'Play', 'İstek listende': 'On your wishlist', 'İstek listesine ekle': 'Add to wishlist', 'Kütüphanende': 'In your library',
+  'Başarımlar · {}/{}': 'Achievements · {}/{}', '{} oynandı · 🏆 {}/{}': '{} played · 🏆 {}/{}', '{} başarım': '{} achievements', '{} saat': '{} hours', 'son oynama {}': 'last played {}',
+  'Kütüphanen boş. Mağazadan ücretsiz bir oyun ekle.': 'Your library is empty. Add a free game from the store.', 'İstek listen boş. Yakında gelecek oyunlarda ♡ ile ekle.': 'Your wishlist is empty. Add upcoming games with ♡.',
+  'Meisove Bahçesi & Bar': 'Meisove Garden & Bar', 'Meisove\'nin meyve kızlarını bahçene dik, olgunlaşınca sık, özlerini mahzende yıllandır, barda kokteyl yap. Bar sen yokken de satar.': 'Plant Meisove\'s fruit girls in your garden, squeeze them when ripe, age their essence in the cellar, mix cocktails at the bar. The bar sells even while you\'re away.',
+  'Mahzen ve içki kızlar': 'Cellar and drink girls', 'Bar ve grup sahneleri': 'Bar and group scenes', 'Gizli tarifler': 'Secret recipes', 'Olaylar': 'Events', 'Hasat': 'Harvest',
+  'Spa Tycoon': 'Spa Tycoon', 'Gece Kulübü Patronu': 'Nightclub Boss', 'Fans Ajansı': 'Fans Agency', 'Hamam & Sauna': 'Hammam & Sauna',
+  'Mahzen': 'Cellar', 'Loca · içki kızları': 'Lounge · drink girls', 'Deneme · Tarif Defteri': 'Experiment · Recipe Book', 'Haftalık tadım yarışması': 'Weekly tasting contest', 'Dekor · tema süitleri': 'Decor · theme suites',
+  'Dök': 'Pour', 'Seansla': 'In a session', 'Özel seans': 'Private session', 'Locaya al': 'Move to lounge', 'Fıçıla': 'Barrel it', 'Aç': 'Open', 'Dene (2 + 2 öz)': 'Try (2 + 2 essence)', 'Yarışmaya gönder': 'Enter the contest', 'Hasat yap': 'Harvest', 'Senin': 'Yours', 'Çıkar': 'Remove',
+  'Kıvamında': 'Ready', 'Dinleniyor': 'Resting', 'Taze dolum': 'Freshly poured', 'Yıllandı': 'Aged',
+  'Locaya alınacak içki kızı yok': 'No drink girls to move to the lounge', 'mahzende aç': 'unlock in the cellar', 'yıldız': 'stars',
+  'İlk fıçıyı açınca o içkinin kızı mahzene gelir; locada dinlenir, kıvamına gelince dökülür.': 'Open your first barrel and that drink\'s girl comes to the cellar; she rests in the lounge and is poured when ready.',
+  'İki, 👯 üç meyveli bir tarifi ilk kez karıştırınca o kızlarla grup sahnesi açılır.': 'Mixing a two- or 👯 three-fruit recipe for the first time unlocks a group scene with those girls.',
+  'Denemek için en az iki türden 2\'şer öz gerekir.': 'You need 2 essences of at least two kinds to experiment.',
+  'Yarışmaya göndermek için stokta bir kokteyl olmalı.': 'You need a cocktail in stock to enter.', 'Pahalı tarif ve yüksek itibar şansı artırır. Ödül: 💰 {}.': 'Pricier recipes and higher reputation improve your odds. Prize: 💰 {}.',
+  'Bu haftanın yarışmasına katıldın. Gelecek hafta yeniden.': 'You entered this week\'s contest. Again next week.', 'Bu haftanın yarışmasına katıldın ve 🏆 kazandın. Gelecek hafta yeniden.': 'You entered this week\'s contest and 🏆 won. Again next week.',
+  'Dört kız 🌟 Altın olunca Hasat yapabilirsin: bahçe, mahzen, para, yükseltme ve dekor sıfırlanır; kalıcı 🌟 Meisove Yıldızı her yıldızda öz ve fiyatı +%50 artırır. Bulduğun tarifler kalır.': 'Once four girls turn 🌟 Golden you can Harvest: garden, cellar, money, upgrades and decor reset; each permanent 🌟 Meisove Star adds +50% essence and price. Found recipes stay.',
+  'Tekila Gecesi': 'Tequila Night', 'bugün cuma, içkili kokteyller ×2 fiyatına satılıyor': 'it\'s Friday, drink cocktails sell at ×2 price',
+  'Çıkarırsan bu kızın seviyesi sıfırlanır. Emin misin?': 'Removing resets this girl\'s level. Are you sure?', 'Bu tarifin bütün kızları bahçende ya da mahzeninde olmalı': 'All of this recipe\'s girls must be in your garden or cellar',
+  'İki farklı öz seç': 'Pick two different essences', 'Tadı tuhaf oldu, tarif çıkmadı': 'It tasted odd, no recipe', 'Gizli tarif bulundu: {}': 'Secret recipe found: {}', '{} oldu, ama bu tarifi zaten biliyordun': 'It became {}, but you already knew this recipe',
+  'Yeni grup tarifi: {}': 'New group recipe: {}', '{} mahzene geldi: locaya al': '{} came to the cellar: move her to the lounge', '{} seviye 5: özel seans açıldı': '{} level 5: private session unlocked',
+  'Tadım yarışmasını {} kazandı: +{} 💰': '{} won the tasting contest: +{} 💰', '{} bu hafta kazanamadı': '{} didn\'t win this week', 'Hasat tamam: 🌟 {} yıldız': 'Harvest done: 🌟 {} stars',
+  'Fıçı': 'Barrel', 'Meşe': 'Oak', 'Loca': 'Lounge', 'Mahzende bir fıçı daha': 'One more barrel in the cellar', 'Fıçılar ve loca her seviyede %15 hızlanır': 'Barrels and lounge get 15% faster each level', 'Mahzende bir içki kızı daha': 'One more drink girl in the cellar',
+  'Meyve Şarabı': 'Fruit Wine', 'Narenciye Votkası': 'Citrus Vodka', 'Agave Tekilası': 'Agave Tequila', 'Şampanya': 'Champagne', 'Önce {}': 'First {}',
+  'Margarita': 'Margarita', 'Screwdriver': 'Screwdriver', 'Beyaz Rus': 'White Russian', 'Ballı Şarap': 'Honey Wine', 'Çilekli Şampanya': 'Strawberry Champagne', 'Sangria': 'Sangria', 'Pembe Panter': 'Pink Panther', 'Altın Bal': 'Golden Honey', 'Beyaz Kaktüs': 'White Cactus',
+  'Limon Tezgâhı': 'Lemon Counter', 'Pembe Yatak Odası': 'Pink Bedroom', 'Portakal Bahçesi': 'Orange Grove', 'Bal Kovanı Süiti': 'Honeycomb Suite', 'Çiftlik Evi': 'Farmhouse', 'Şarap Mahzeni Süiti': 'Wine Cellar Suite', '{} özü +%25 · seans bu mekanda': '{} essence +25% · sessions here',
+  'Kış': 'Winter', 'İlkbahar': 'Spring', 'Yaz': 'Summer', 'Sonbahar': 'Autumn',
+  'Arı istilası': 'Bee swarm', 'Mantar patladı': 'Cork popped', 'Tuz yağmuru': 'Salt shower', 'Süt taştı': 'Milk overflow', 'Çilek festivali': 'Strawberry festival', 'Shot düellosu': 'Shot duel', '{}: yanına koş · +4 {}': '{}: run to her · +4 {}',
+  'İlk damla': 'First drop', 'Açılış gecesi': 'Opening night', 'Barmen': 'Bartender', 'Altın kız': 'Golden girl', 'İlk fıçı': 'First barrel', 'Tam bar': 'Full bar', 'İkili tarif': 'Duo recipe', 'Gizli şef': 'Secret chef', 'Dekoratör': 'Decorator', 'Tadım şampiyonu': 'Tasting champion', 'Meyve baronu': 'Fruit baron',
+  'İlk kez bir kızı sık': 'Squeeze a girl for the first time', 'Barda ilk kokteyl satılsın': 'Sell your first cocktail', '100 kokteyl sat': 'Sell 100 cocktails', 'Bir kızı 10. seviyeye çıkar': 'Get a girl to level 10', 'Mahzende bir fıçı aç': 'Open a barrel in the cellar',
+  'Dört içki kızını da aç': 'Unlock all four drink girls', 'İki meyveli bir tarifi karıştır': 'Mix a two-fruit recipe', 'Üç gizli tarifi de bul': 'Find all three secret recipes', 'Bütün dekorları al': 'Buy every decor', 'Haftalık tadım yarışmasını kazan': 'Win the weekly tasting contest', 'Toplam 5000 💰 kazan': 'Earn 5000 💰 in total', 'İlk Hasat\'ı yap': 'Do your first Harvest',
+  'CarmenStation açıldı: ilk oyun Meisove Bahçesi & Bar': 'CarmenStation is open: first game Meisove Garden & Bar'
+});
+Stories.I18n.add({ 'Nasıl oynanır?': 'How to play?', 'Anladım, oynayalım': 'Got it, let\'s play' });
+Stories.I18n.add({ 'Gelişim': 'Growth', 'Station': 'Station' });
+Stories.I18n.add({
+  'Salon': 'Salon', 'Personel': 'Staff', 'puan': 'rating', 'doluluk': 'occupancy', 'seans': 'sessions', 'Kabinler': 'Rooms', 'Masözlerin': 'Your masseuses', 'Bugünün adayları': 'Today\'s candidates', 'Odalar': 'Rooms', 'Zincir': 'Chain',
+  'Seansı sen al': 'Take the session yourself', 'Yerleştir': 'Assign', 'İşe al': 'Hire', 'Kov': 'Fire', 'İlan': 'Ad', 'Açık': 'Open', 'Yeni şube aç': 'Open a new branch', 'boşta': 'idle', 'ücretsiz': 'free', 'işe alma {}': 'hiring {}',
+  'Bu paketi yapan boş masöz yok': 'No free masseuse for this package', 'Önce 👩 Personel\'den masöz al': 'Hire a masseuse in 👩 Staff first', 'Henüz masözün yok; aşağıdaki adaylardan birini işe al.': 'No masseuses yet; hire one of the candidates below.',
+  'Bugünün adayları bitti, yarın yenileri gelir.': 'No candidates left today, new ones tomorrow.', '{}. şube': 'branch {}', '{} seans tamamlandı, +{} ₺': '{} sessions done, +{} ₺', '{} ekibe katıldı': '{} joined the team', '{} açıldı': '{} opened', '{}. şube açıldı': 'Branch {} opened',
+  'Bu masözü kovarsan seviyesi kaybolur. Emin misin?': 'Firing this masseuse loses her level. Are you sure?', 'Anladım, salonu açalım': 'Got it, let\'s open the salon',
+  'Isıtılmış yağ': 'Warm oil', 'Ambiyans': 'Ambience', 'Reklam': 'Advertising', 'Eğitim': 'Training', 'Kabin': 'Room', 'Seans fiyatı her seviyede +%15': 'Session price +15% each level', 'Seans başına puan +%50; müfettiş sorun çıkarmaz': 'Rating per session +50%; the inspector won\'t complain',
+  'Doluluk her seviyede +%5': 'Occupancy +5% each level', 'Seans süresi her seviyede %10 kısalır': 'Sessions get 10% shorter each level', 'Bir kabin daha (en çok 6)': 'One more room (max 6)',
+  'Ünlü müşteri': 'Celebrity client', 'Müfettiş': 'Inspector', 'Bekarlığa veda': 'Bachelorette party', 'Yorgun iş adamı': 'Tired businessman', 'En iyi masözü gönder': 'Send your best masseuse', 'Kapıyı aç': 'Open the door', 'Grup seansını başlat': 'Start the group session', 'Bir masöz gönder': 'Send a masseuse',
+  'Müfettiş memnun ayrıldı: her şey yolunda': 'The inspector left happy: all good', 'Müfettiş 1500 ₺ ceza yazdı; Ambiyans al': 'The inspector fined you 1500 ₺; buy Ambience',
+  'İlk müşteri': 'First client', 'Dolu salon': 'Full salon', 'Efsane salon': 'Legendary salon', 'Nuru odası': 'Nuru room', 'VIP odası': 'VIP room', 'Ekip': 'Team', 'Usta masöz': 'Master masseuse', 'Gizli ünlü': 'Secret celebrity', 'Patron denetimi': 'Boss inspection', 'Spa baronu': 'Spa baron',
+  'İlk seansı tamamla': 'Finish the first session', '100 seans': '100 sessions', '1000 seans': '1000 sessions', 'Nuru odasını aç': 'Open the Nuru room', 'VIP odasını aç': 'Open the VIP room', '5 masöz çalıştır': 'Employ 5 masseuses', 'Bir masözü 10. seviyeye çıkar': 'Get a masseuse to level 10',
+  'Bir ünlü müşteriyi ağırla': 'Host a celebrity client', '10 kez seansı kendin al': 'Take a session yourself 10 times', 'Toplam 100.000 ₺ kazan': 'Earn 100,000 ₺ in total', 'İkinci şubeyi aç': 'Open a second branch',
+  'CarmenStation\'da yeni oyun: Spa Tycoon': 'New on CarmenStation: Spa Tycoon'
+});
+Stories.I18n.add({
+  'Fans Ajansı': 'Fans Agency', 'Dokun': 'Tap', 'Ekip': 'Crew', 'İçerik': 'Content', 'Kadro': 'Roster', 'Kadron': 'Your roster', 'dokunuş {}': 'tap {}', '{} takipçi': '{} followers', 'Isı': 'Heat', 'Viral! ×3': 'Viral! ×3',
+  'Dokunuş gücü': 'Tap power', 'Dokunuş ×2': 'Tap ×2', 'Her seviye dokunuşu ikiye katlar ve üretimin %1\'ini ekler': 'Each level doubles your tap and adds 1% of production',
+  'Selfie': 'Selfie', 'Fotoğrafçı': 'Photographer', 'Makyöz': 'Makeup artist', 'Video ekibi': 'Video crew', 'Stüdyo': 'Studio', 'Canlı yayın': 'Live stream', 'Viral ağ': 'Viral network',
+  'Kız kendi kendine paylaşır': 'She posts on her own', 'Profesyonel çekim': 'Professional shoot', 'Her karenin kalitesi artar': 'Every shot looks better', 'Kısa, sıcak videolar': 'Short, hot videos', 'İç çamaşırı ve kostüm setleri': 'Lingerie and costume sets', 'CarmenLive\'da bağış yağmuru': 'A shower of tips on CarmenLive', 'Paylaşımlar bütün ağa yayılır': 'Posts spread across the network',
+  'Günlük': 'Casual', 'Bikini': 'Bikini', 'İç çamaşırı': 'Lingerie', 'Kostüm': 'Costume', 'Üstsüz': 'Topless', 'Aktif yap': 'Make active', 'Kanal': 'Channel', 'Özel mesaj': 'Private message', 'Taşın': 'Move', 'Yeni Platform': 'New Platform', 'Kadroya git': 'Go to roster',
+  'Kot şort ve dar bir tişört; kameraya göz kırpıyor.': 'Denim shorts and a tight tee; she winks at the camera.', 'Havuz kenarında minicik bir bikini; ıslak saçlarını savuruyor.': 'A tiny bikini by the pool; she tosses her wet hair.',
+  'Dantel sütyen ve külot, yatağın kenarında; askısı omzundan kaymış.': 'Lace bra and panties on the edge of the bed; a strap slipping off her shoulder.', 'Abonelerin seçtiği kostüm; dar, kısa ve bir şeyleri zor saklıyor.': 'A costume picked by subscribers; tight, short and barely hiding anything.',
+  'Sadece külot ve bir gülümseme; elleriyle göğüslerini zar zor kapatıyor.': 'Just panties and a smile; her hands barely cover her breasts.',
+  'Bu kızın 🫦 CarmenFans aboneliği ücretsiz açılır': 'Her 🫦 CarmenFans subscription unlocks for free', 'Özel içeriklerinden biri (foto seti ya da video) hediye': 'One of her exclusive items (photo set or video) as a gift', '💬 Özel mesaj: sohbet Fans yıldızın olarak başlar': '💬 Private message: the chat starts as your Fans star',
+  'Ajansın boş. Önce 👩 Kadro\'dan yıldızını seç; ilki ücretsiz.': 'Your agency is empty. Pick your star in 👩 Roster first; the first one is free.', 'Henüz kimse yok; aşağıdan yıldızını seç.': 'No one yet; pick your star below.', 'Önce kadrona bir kız al.': 'Add a girl to your roster first.', 'Kadro dolu.': 'Roster full.', 'ilki ücretsiz': 'first one free',
+  'Bütün kademeler açık. Yeni bir kız parlatmak için 👩 Kadro.': 'Every tier is open. Go to 👩 Roster to make a new girl shine.', 'Sonraki: {}': 'Next: {}',
+  'Sen yokken +{} beğeni': '+{} likes while you were away', '{} ajansa katıldı': '{} joined the agency', 'Viral! 10 saniye dokunuş ×3': 'Viral! Taps ×3 for 10 seconds', 'Altın kalp: 30 saniye üretim ×7': 'Golden heart: production ×7 for 30 seconds', 'Yeni platform: +{} 💎': 'New platform: +{} 💎',
+  '{}: CarmenFans aboneliği açıldı': '{}: CarmenFans subscription unlocked', 'Hediye: {}': 'Gift: {}', '{} adet: verim ×2': '{} owned: output ×2', 'Anladım, dokunalım': 'Got it, let\'s tap',
+  'Yeni platform: beğeni, ekip ve takipçiler sıfırlanır; 💎 Elmas kazanırsın. Emin misin?': 'New platform: likes, crew and followers reset; you earn 💎 Diamonds. Are you sure?',
+  'İlk dokunuş': 'First tap', 'Parmak ustası': 'Finger master', 'Ekip kuruldu': 'Crew assembled', 'Prodüksiyon': 'Production', 'Altın kalp': 'Golden heart', 'Viral!': 'Viral!', 'Bin takipçi': 'A thousand followers', 'Abone': 'Subscriber', 'Yüz bin': 'A hundred thousand', 'Milyoner': 'Millionaire', 'Ajans': 'Agency', 'Milyar beğeni': 'A billion likes',
+  'İlk kez dokun': 'Tap for the first time', '1000 kez dokun': 'Tap 1000 times', 'İlk üreticiyi al': 'Buy your first producer', 'Toplam 100 üretici': '100 producers in total', 'Bir altın kalp yakala': 'Catch a golden heart', 'Isı barını doldur': 'Fill the heat bar',
+  'Bir kızı 1 bin takipçiye taşı': 'Get a girl to 1K followers', 'Bir kızı 10 bin takipçiye taşı': 'Get a girl to 10K followers', 'Bir kızı 100 bin takipçiye taşı': 'Get a girl to 100K followers', 'Bir kızı 1 milyon takipçiye taşı': 'Get a girl to 1M followers', '3 kızlık kadro': 'A roster of 3 girls', 'İlk kez platform değiştir': 'Switch platforms for the first time', 'Toplam 1 milyar beğeni': '1 billion likes in total',
+  'CarmenStation\'da clicker: Fans Ajansı': 'A clicker on CarmenStation: Fans Agency'
+});
