@@ -8682,6 +8682,24 @@ Stories.ME_HUG_LINES.bullTalk.events.push('Vetting Coffee', 'House Rules', 'Husb
 Stories.ME_BED_SKIP.push('Video Call Under', 'Double Date Footsie', 'Lipstick On Collar');
 // 🤰 Hamilelik: Pregnancy Foreplay / Pregnancy olayları ve hamilelik bitişleri (v888)
 Object.assign(Stories.ME_EV_LINES, {
+  // 👶 After Birth / 💞 Back Together (v1201)
+  'Nap Together': ['Bebek uyudu, gel yanıma uzan 😴', 'Başını göğsüme koy, biraz kestirelim 🥰', 'Üçümüz aynı yatakta… mükemmel 👶💗', 'Sessiz ol, ikisi de uyuyor 🤫', 'Saçlarını okşuyorum, gözlerin kapanıyor 😌', 'Beş dakika bile uyusak yeter 💤'],
+  'Night Feed Company': ['Uyandım, yalnız emzirme 🌙', 'Yanına oturuyorum, sırtını ovuyorum 🤲', 'Gözlerin kapanıyor, ben buradayım 🥺', 'Bak nasıl da emiyor 🍼🥰', 'Bebek uyuyunca ikinizi de örteceğim 💗', 'Gecenin üçü ama sen yine çok güzelsin 🌙'],
+  'New Body Kisses': ['Diz çöküyorum, çatlaklarını tek tek öpüyorum 💋', 'Hâlâ çok güzelsin {o}, hem de daha fazla 🥺', 'Bu karın bize bir bebek verdi 🤰💗', 'Her izini öpeceğim, kaçamazsın 😏', 'Ağlama, sadece hisset 🥰', 'Aynaya değil bana bak 💋'],
+  'Full Breasts Relief': ['Ilık havluyu getirdim, göğüslerine koyuyorum 🍼', 'Çok yavaş masaj yapacağım, söz 🤲', 'Taş gibi olmuşlar, rahatla 😮‍💨', 'Bak, kendiliğinden akmaya başladı 🍼', 'Acıtırsa söyle, hemen dururum 🥺', 'Parmak uçlarımla daire çiziyorum 🌀'],
+  'Gentle Hands': ['Gerçekten mi? Şu an mı? 😳', 'Ellerin çok yumuşak… ahh 😩', 'Acele etme, bebek uyuyor 🤫', 'Altı haftayı böyle geçiririz o zaman 😏', 'Başını göğsüme koy sonra 🥰', 'Sessiz olmaya çalışıyorum 🤲'],
+  'Shower Help': ['Belinden tutuyorum, düşmezsin 🚿', 'Saçlarını ben yıkayacağım 🫧', 'Ensene masaj yapıyorum, rahatla 😌', 'Havluya sarıyorum seni 🥰', 'Bacakların titriyor, yaslan bana 🥺', 'Yeniden insan gibi hissetmen için buradayım 💗'],
+  'Baby Finally Asleep': ['Uyudu… parmak uçlarında çıkalım 🤫', 'Kapı kapanır kapanmaz seni öpeceğim 😏', 'Kaç dakikamız var sence? ⏳', 'Şşş, gülme! 😂', 'Duvara yasla beni 😈', 'Her seste donuyoruz, çok komik 🤭'],
+  'Baby Monitor Tease': ['Telsiz yanımızda; ses çıkarırsan kaybedersin 😏', 'Bakalım ne kadar dayanacaksın 🤫', 'Dudağını ısırma, kaybedeceksin 😈', 'Telsiz hışırdadı! Donduk 😂', 'Elim aşağı iniyor… sessiz 🫦', 'Kazanmana izin vermeyeceğim 📻'],
+  'First Time Again': ['Doktor onay verdi… çok yavaş olacağım 🩺', 'Acıtırsa söyle {o} 🥺', 'Gözlerime bak, ilk kez gibi 💞', 'Seni ne kadar özlediğimi bilemezsin 😩', 'Gülme, ben de gerginim 😂', 'Geri döndük, değil mi? 🥰'],
+  'Milky Missionary': ['Her itişte süt damlıyor, çok güzel 🍼', 'Ellerini bırakmıyorum, bırak aksın 😈', 'Karnına süzülüyor, bak 🥵', 'Utanma, bayılıyorum buna 🙈', 'Göğüslerin daha da büyümüş {o} 😩', 'Sırılsıklam olacağız 🍼❤️'],
+  'Nap Time Quickie': ['Yirmi dakikamız var, tezgâha 😈', 'Eteğini topla, hızlı ve sessiz 🤫', 'Gözüm koridorda ⏱️', 'Telsizden ses gelirse duruyoruz… belki 😏', 'Bu kadar hızlı hiç olmamıştı 🥵', 'Saat işliyor, acele 😂'],
+  'Careful Spoon': ['Yan yat, derinliği sen ayarla 🥄', 'Elim karnında, güvendesin 🤲', 'Böyle yavaş, tam böyle 😌', 'Acıtırsa hemen söyle 🥺', 'Kalçanı geri itişin… ahh 😩', 'Seni böyle sarmak çok güzel 💗'],
+  'Mom On Top': ['Bugün sen yönetiyorsun 👑', 'O bakışı özlemişim 😏', 'Sadece izliyorum, kıpırdamıyorum 😈', 'Ritmi sen belirle {o} 🔥', 'Bedenin yine senin, belli 🥵', 'Saçlarını toplayışın bile ateş 🔥'],
+  'Gentle Inside': ['Yavaşça içine… ahh {o} 💞', 'Bırakma beni, böyle kalalım 😌', 'Geri döndük, gerçekten 🥺', 'Kıpırdamadan sarıl bana 💗', 'İçin sıcacık 😩', 'Seni çok özledim 💞'],
+  'Milk And Cream': ['Göğüslerine boşalıyorum, sütünle karışıyor 🍼💦', 'Bak, ikisi bir oldu 😈', 'Parmağınla karıştırışın… ahh 🥵', 'Bu ev hep süt kokacak, haklısın 😂', 'Uçlarından hâlâ damlıyor 🍼', 'Sırılsıklam oldun {o} 😏'],
+  'Cleared And Bursting': ['Altı hafta… ahhh {o} 🌊', 'Bitmiyor, durduramıyorum 😩', 'Taşıyor, çarşafa akıyor 🫙💦', 'Hepsi senin, hepsini biriktirdim 😈', 'Gözlerin kocaman oldu 😂', 'İçini dolduruyorum, nabız nabız 🥵'],
+  'Quiet Pull Out': ['Şşş! Telsiz… dışarı çıkıyorum 🤫', 'Karnına, sessizce… ahh 💦', 'İnlememi dişlerimin arasında tutuyorum 😩', 'Kahkahanı bastır! 😂', 'Sustu mu? Nefes al 😮‍💨', 'Bu bebek bizi kalpten götürecek 🙈'],
   'Bump Caress': ['Elimi karnında yavaşça gezdiriyorum 🤲', 'Tekme attı! Hissettin mi {o}? 🥹', 'Karnını öpüyorum, sonra seni 🥰', 'Bu karın benim en sevdiğim yerin oldu 🤰', 'Avucum karnında, kalbin hızlanıyor 😏', 'Biraz daha aşağı inebilir miyim? 😈'],
   'Mirror Bump Hug': ['Aynanın önünde arkandan sarılıyorum 🪞', 'Ellerim karnında, sonra göğüslerinde {o} 😏', 'Bak ne kadar güzelsin 🥰', 'Göğüslerin her hafta büyüyor 🥵', 'Kalçana yaslandım, hissediyor musun? 😈', 'Aynada ikimizi izle 🤰'],
   'Ice Nipples': ['Buz küpünü meme ucuna değdiriyorum 🧊', 'İrkildin {o} 😏', 'Hamileyken çok hassassın 🥵', 'Bir tur da öbürüne 🧊', 'Ucları dimdik oldu 😈', 'Damlayan su mu süt mü? 🍼'],
@@ -10041,3 +10059,34 @@ Object.assign(Stories.ME_EV_LINES, {
   'Jewel Drops': ['Başını geriye at {o} 📿', 'Kolyenin üstüne 💦', 'İnci gibi asılı kaldılar 😏', 'En pahalı takımın {o} 😈']
 });
 Stories.ME_BED_SKIP.push('Cigarette After', 'Gym Stretch', 'Loser Strips', 'After Party');
+
+/* 🏺 Kültürlere özgü (mvcu*) */
+Object.assign(Stories.ME_EV_LINES, {
+  "Hector's Horse": ['Bin bakalım {o} 🐎', 'Dörtnala 🏛️', 'Dizlerini sık 😈', 'Romalılar bilirmiş 😏'],
+  "Ovid's Counsel": ['Ne yazıyor kitapta {o}? 📜', 'Ovidius\'a güveniyorum 🏛️', 'Tam yazdığı gibi 😏', 'İki bin yıl sonra hâlâ işe yarıyor 😈'],
+  'Lioness On The Grater': ['Kalçanı kaldır {o} 🦁', 'Yemin bozuldu 😈', 'Kükre bakalım 😂', 'Arkandayım 🔥'],
+  'Chausu': ['Döndür {o} 🍵', 'Acele yok 🌀', 'Bastır 😩', 'Değirmen sensin 😏'],
+  'Matsuba-kuzushi': ['Bacaklarımız kilitlendi {o} 🌲', 'Bu açı… 😩', 'Kıpırdama ✂️', 'Edo\'yu seviyorum 😈'],
+  'Shunga Pose': ['Bu pozu mu {o}? 🖼️', 'İmkânsız ama deneriz 😂', 'Kimonon kalsın 🎌', 'Ressam olsam seni çizerdim 😏'],
+  'Splitting The Bamboo': ['Öbür bacak {o} 🎋', 'Bir… iki… 🦵', 'Her seferinde farklı 😩', 'Değiştir 😈'],
+  'Indrani': ['Dizlerin göğsünde {o} 🌺', 'En derindeyim 🔩', 'Tanrıçam 😈', 'Nefes al 😏'],
+  'Yab-Yum': ['Nefesini ver {o} 🪷', 'Alnın alnımda 🧘', 'Acele yok 🤍', 'Böyle kal 💞'],
+  'Nine Shallow One Deep': ['Say {o} 🎐', 'Dokuz… şimdi 9️⃣', 'Baştan 😈', 'Ritim senin 😏'],
+  'Dragon Turn': ['Bacaklarını kaldır {o} 🐉', 'Uçuyoruz ⬆️', 'Derine 😩', 'Ejderin geldi 😈'],
+  'Tiger Step': ['Belin elimde {o} 🐅', 'Mırla bakalım 🐾', 'Daha sert mi? 😈', 'Kaplanım 🔥'],
+  'Cicada Clings': ['Sırtındayım {o} 🦗', 'Bırakmıyorum 🛏️', 'Kıpırdama 😏', 'Yapıştım 😈'],
+  'Driving The Peg': ['Sarıl bana {o} 🔨', 'Düşürmem 🧱', 'Duvara yasla 😈', 'Bacaklarını sık 🔥'],
+  'Pounding On The Spot': ['Ritim senin {o} 🥁', 'Kıpırdamıyorum 😏', 'Daha sert 🔥', 'Davul gibi 😂'],
+  'Chariot': ['Ellerini kenara koy {o} 🛞', 'Arabamdasın 🏺', 'Başını geri at 😈', 'Sürüyorum 🔥'],
+  'Bahname Lesson': ['Sayfayı çevir {o} 📕', 'Bu sayfayı sen mi ekledin? 😂', 'Minyatürdeki gibi 🌷', 'Bir sonraki 😈'],
+  'Sistrum Rhythm': ['Çal {o} 🎶', 'Ritme uyuyorum 🏺', 'Hızlan 😈', 'Müzik durmasın 😏'],
+  'Vadavaka': ['Kıpırdamıyorum {o} 🐎', 'Sıkıyorsun… 😩', 'Elini bile kullanmadın 🗜️', 'Hepsini aldın 💦'],
+  'Jade Essence': ['Tutuyorum {o} 💎', 'Gelmedim… daha 🐉', 'Sen gel 😩', 'Hâlâ sertim 😏'],
+  'Dam Breaks': ['Bırakıyorum {o} 🌊', 'Hepsi birden 💥', 'Bitmiyor 😳', 'Baraj yıkıldı 😈'],
+  'Kimono Finish': ['Kimonon kalsın {o} 👘', 'İpeğin arasında 💦', 'Kuşağın çözüldü 😏', 'Ressam kıskanırdı 🖼️'],
+  'Pompeii Fresco': ['Kıpırdama {o} 🎨', 'Freskiz 🏛️', 'Gülme 😂', 'Bunu duvara yazarlar 😏'],
+  'Laurel Finish': ['Tacın kalsın {o} 🌿', 'Göğüslerine 💦', 'Ave 👑', 'Zafer benim 😈'],
+  'Kohl Tears': ['Sürmen aktı {o} 🖤', 'Çok güzelsin böyle 😈', 'Silme daha 👁️', 'Lotus yağı nerede? 😏'],
+  'Rosewater': ['Hamama gidelim {o} 🌹', 'Sırtımı keseler misin? 🛁', 'Saray usulü 😏', 'Gül gibi kokuyorsun 🤍']
+});
+Stories.ME_BED_SKIP.push('Rosewater');

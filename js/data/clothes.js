@@ -38,6 +38,8 @@ Stories.CLOTHES = (() => {
     ['buster', 'ust', 'Büstiyer', '🖤', 'i', ['Deri bir büstiyer giydim 😈', 'Büstiyerim çok dar, memelerim sığmıyor 😏'], ['Büstiyerin fermuarını biraz indirdim 😈', 'Büstiyerin üstünden taşıyorlar, gördün mü? 🥵'], ['Büstiyerin fermuarını tamamen indirdim 😈', 'Büstiyer yerde 😏']],
     ['hirka', 'ust', 'Hırka', '🧥', 'g', ['Altında askılı, üstünde hırka 😌', 'Hırkam dizlerime kadar, çok rahat 🥰'], ['Hırkamı açtım, altında sadece sütyen var 😏', 'Hırkanın önünü araladım 😈'], ['Hırkamı omzumdan kaydırıp çıkardım 😏', 'Hırka gitti 😌']],
     ['body', 'ust', 'Dantel body', '🕸️', 'i', ['Dantel bir body giydim, her yerimi sarıyor 😈', 'Body\'nin altında hiçbir şey yok 😏'], ['Body\'nin dantelinden memelerim görünüyor 🥵', 'Body\'nin askılarını indirdim 😈'], ['Body\'nin çıtçıtlarını açtım… aşağıdan 😈', 'Body\'yi çıkarmak biraz zor, yardım et 😏']],
+    ['hamileelbise', 'elbise', 'Hamile elbisesi', '🤰', 'g', ['Karnımı saran yumuşak bir hamile elbisesi giydim 🤰', 'Bu elbise karnımı daha da belirgin gösteriyor, beğendin mi? 🥰'], ['Elbisemi karnımın üstüne kadar sıyırdım 😏🤰', 'Askıyı omzumdan düşürdüm, göğüslerim ağırlaştı bak 🍼'], ['Elbiseyi başımdan çıkarınca karnım bütün çıplaklığıyla önünde 🤰', 'Elbise yerde; sadece ben ve karnım 🥺']],
+    ['hamiletayt', 'alt', 'Hamile taytı', '🩳', 'g', ['Karnımın üstüne kadar çıkan yumuşak bir hamile taytı giydim 😌', 'Bu tayt karnımı sarıyor, kalçamı da 😏'], ['Taytın bandını karnımın altına indirdim 😈', 'Tayt kalçama yapıştı, her şey belli 🙈'], ['Taytı yavaşça sıyırıp çıkardım 😏', 'Tayt gitti, karnım ve ben 🤰']],
     ['emzirmebluz', 'ust', 'Önden düğmeli emzirme bluzu', '🤱', 'g', ['Önden düğmeli bir bluz giydim, istediğin an açılır 🤱', 'Bu bluzu bilerek seçtim… göğüslerime kolay ulaşasın diye 🍼'], ['Bluzumun önünü açtım, göğsüm ağzına hazır 🍼', 'İki düğme yeter, bak 😏🍼'], ['Bluzumun bütün düğmelerini çözüp çıkardım 🤱', 'Bluz gitti, sütüm akmaya başladı bile 🍼']],
     // 👖 alt giyim
     ['kot', 'alt', 'Dar kot', '👖', 'g', ['Dar bir kot giydim, kalçamı sarıyor 😏', 'Bu kot kalçamı çok güzel gösteriyor değil mi? 🍑'], ['Kotumu biraz indirdim, tangam göründü 😈', 'Kotumun düğmesini açtım 😏'], ['Dar kotu çıkarmak savaş gibi 😂 yardım et', 'Kotumu ayak bileklerime kadar indirdim 😈']],
@@ -455,7 +457,10 @@ Stories.CLOTHES = (() => {
       up: ['{K} beline sıyrılmış, içine boşalıyorum… ahhh {o} 💦', '{K} buruş buruş, ben içindeyim offf 😩', 'Soymaya bile vakit yok, {k} üstündeyken dolduruyorum 😈', '{K} aşağı inince kimse anlamayacak… ahh 😏']
     }
   };
-  const items = L.map(([id, slot, name, emoji, style, t, show, off]) => ({ id, slot, name, emoji, style, t, show, off, ...(CUM[id] ? { cum: CUM[id] } : {}), ...(FANT[id] ? { fant: FANT[id] } : {}) }));
+  // 🤰 hamile gardırobu (app.js pregDress): karın belirginleşince (20. hafta) dar parçalar giyilmez, preg parçaları yerine geçer
+  const TIGHT = ['korse', 'buster', 'body', 'kot', 'kalem', 'deri', 'sort', 'yuksekkalem', 'derikalem', 'minielbise', 'kilif', 'ofistakim', 'lateks', 'kosum'];
+  const PREG = ['hamileelbise', 'hamiletayt', 'emzirmebluz'];
+  const items = L.map(([id, slot, name, emoji, style, t, show, off]) => ({ id, slot, name, emoji, style, t, show, off, ...(CUM[id] ? { cum: CUM[id] } : {}), ...(FANT[id] ? { fant: FANT[id] } : {}), ...(TIGHT.includes(id) ? { tight: 1 } : {}), ...(PREG.includes(id) ? { preg: 1 } : {}) }));
   /* 🧥 hazır kombinler: parts = { yuva: kıyafet } (verilmeyen yuva boş kalır); fant: o fantezi / rol olunca giyilir; say: giyince söylediği */
   const COMBOS = [
     { id: 'ofis1', name: 'Ofis klasik', emoji: '💼', parts: { ust: 'ofisgomlek', alt: 'kalem', sutyen: 'dantelsutyen', tanga: 'dantelkulot', corap: 'tencorap' }, say: ['Beyaz gömlek, kalem etek, ince çorap… ofisten yeni çıktım 💼', 'Toplantıdan geldim, hâlâ ofis kıyafetlerimle 😌'] },

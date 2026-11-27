@@ -734,12 +734,16 @@
       .c3-ct .c3-dot { position: absolute; top: 8px; right: 10px; width: 10px; height: 10px; border-radius: 50%; background: #2f8cff; box-shadow: 0 0 0 2px var(--card, #fff); }
       .c3-ct .c3-tag { position: absolute; top: 6px; left: 8px; font-size: 13px; }
       .c3-ct.more { justify-content: center; font-weight: 800; }
-      .c3-sugs { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
-      .c3-sug { display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 14px; background: var(--chip); border: 1px solid var(--line); color: inherit; text-decoration: none; min-width: 0; }
-      .c3-sug > i { font-style: normal; font-size: 26px; flex: none; }
+      .c3-sugs { display: grid; grid-template-columns: 1fr; gap: 8px; margin: 0 12px; }
+      @media (min-width: 768px) { .c3-sugs { grid-template-columns: repeat(3, 1fr); max-width: 916px; margin: 0 auto; } }
+      .c3-sug { --tc: #ff4d8d; display: flex; align-items: center; gap: 12px; padding: 12px 12px 12px 14px; border-radius: 14px; background: color-mix(in srgb, var(--tc) 8%, var(--chip)); border: 1px solid color-mix(in srgb, var(--tc) 25%, var(--line)); border-left: 4px solid var(--tc); color: inherit; text-decoration: none; min-width: 0; transition: transform .12s; }
+      .c3-sug:active { transform: scale(.98); }
+      .c3-sug.t-gd { --tc: #f5a623; } .c3-sug.t-pr { --tc: #9b5cff; } .c3-sug.t-bl { --tc: #2f8cff; } .c3-sug.t-gr { --tc: #22b573; } .c3-sug.t-or { --tc: #ff7a2f; }
+      .c3-sug > i { font-style: normal; font-size: 22px; flex: none; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: color-mix(in srgb, var(--tc) 18%, transparent); }
       .c3-sug span { display: flex; flex-direction: column; min-width: 0; flex: 1; gap: 2px; }
       .c3-sug b { font-size: 14px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-      .c3-sug small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .c3-sug small { font-size: 12px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+      .c3-sug::after { content: '›'; flex: none; font-size: 22px; font-weight: 700; color: var(--tc); opacity: .8; }
       .c3-spot { display: flex; position: relative; min-height: 190px; border-radius: 16px; overflow: hidden; background: var(--mtbg); color: #fff; text-decoration: none; margin: 8px 0; }
       .c3-spot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
       .c3-spot::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.75)); }
@@ -808,7 +812,8 @@
     if (sug.length < 3 && cs.length) { const de = c3DayEvent(); if (de) sug.push(['🎲', `Günün olayı: ${de.title}`, String(de.desc || '').slice(0, 70), 'ev:' + de.id]); }
     if (sug.length < 3) { const x = questCtx(), q = QUESTS.find(q => !got[q.id] && q.need.every(n => got[n])); if (q) { const [a, b] = q.c(x); sug.push(['🗺️', `Görev: ${q.t}`, `${q.d} · ${Math.min(a, b)}/${b}`, q.go || '#/me/gorev']); } }
     if (!sug.length) return '';
-    return `<div class="hl-sec"><h3>💡 Şimdi ne yapsam?</h3></div><div class="c3-sugs">${sug.slice(0, 3).map(([ic, t, s, href]) => `<a class="c3-sug" ${href.startsWith('ev:') ? `href="#/home" data-c3ev="${esc(href.slice(3))}"` : `href="${esc(href)}"`}><i>${ic}</i><span><b>${esc(t)}</b>${s ? `<small>${esc(s)}</small>` : ''}</span></a>`).join('')}</div>`;
+    const tone = { '🎁': 'gd', '🎟️': 'gd', '🎉': 'pr', '🗓️': 'pr', '📖': 'bl', '📜': 'bl', '🗺️': 'gr', '🎲': 'or' };
+    return `<div class="hl-sec"><h3>💡 Şimdi ne yapsam?</h3></div><div class="c3-sugs">${sug.slice(0, 3).map(([ic, t, s, href]) => `<a class="c3-sug${tone[ic] ? ' t-' + tone[ic] : ''}" ${href.startsWith('ev:') ? `href="#/home" data-c3ev="${esc(href.slice(3))}"` : `href="${esc(href)}"`}><i>${ic}</i><span><b>${esc(t)}</b>${s ? `<small>${esc(s)}</small>` : ''}</span></a>`).join('')}</div>`;
   }
   // ☀️ Günün kızı (gündüz vitrini): büyük fotoğraf, havaya göre cümlesi, altında gecenin sloganı
   function c3Spot(slogan) {
@@ -1271,6 +1276,30 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['👶', 'Doğum ve sonrası: hamilelik artık sonuna kadar', 'Hamilelik hormonlarla, büyüyen karınla ve klinik kontrolleriyle ilerliyor; doğum 38–42. hafta arası bir sahneyle geliyor. Sonra 🩹 lohusa dönemi, bebek kesintileri, 🍼 isim oylaması ve 17 yeni olay: 👶 After Birth ve 💞 Back Together.', '#/kitap/hamile/7', [
+      ['⚡ Zaman', '⏩ hafta çipinden zamanı atla ya da ×2 / ×4 / ×8 hızlandır; ×8\'de doğuma ~10 saat.'],
+      ['🌡️ Hormon ve 🤰 karın', 'Bulantı, hormon coşkusu, yorgunluk; Uyarılma ve öneriler buna göre değişir, ruh hali ayrı bir balonla konuşur. 20. haftadan sonra dar kıyafetler olmaz, hamile elbisesine geçer.'],
+      ['🏥 Klinik ve doğum', '8 / 20 / 32. haftada kontrol, 20. haftada 🎀 kız ya da 💙 erkek. Doğum 38–42. hafta: su gelir → hastane yolu → doğumhane → ilk kucaklama.'],
+      ['🍼 İsim', '⏩ penceresinden isim öner; ❤️ Aşk\'a göre kabul eder ya da reddeder.'],
+      ['👶 Doğumdan sonra', '6 hafta lohusa, 👶 bebek kesintileri, 🩺 doktor onayı, 🫙 birikmiş Cum ve 4 haftalık Back Together olayları (Cleared And Bursting dahil).'],
+      ['🎬 Sahneler', 'Lohusa Geceleri, Yeni Beden, Geri Döndük, Altı Hafta, Bebek Uyurken, Uyku Arası.'],
+      ['📚 Kitap', 'Hamilelik Kitabı\'na beş yeni bölüm (⚡ Zaman ve hız, 🌡️ Hormonlar, 🏥 Klinik ve doğum, 🩹 Lohusa, 👶 After Birth); Olay Kitabı\'na 👶 Doğumdan sonra.']], 'Hamilelik', [
+      'Hamilelik eskiden sessizce sayılan bir haftaydı: 40. hafta gelir, bir not düşer, hepsi bu. Artık her dönemin bir ruh hali var. İlk haftalarda midesi bulanıyor ve kraker kemiriyor; ikinci üç ayda hormonları coşuyor ve "aşerdim, ama seni" diyor; son haftalarda ise sadece sarılmak istiyor.',
+      'Karnı büyüdükçe dolabı da değişiyor. Dar kotlar ve kalem etekler bir kenara kalkıyor, yerine yumuşak bir hamile elbisesi geliyor. Klinikte üç kez kontrol var; 20. haftadaki ultrasonda bebeğin kız mı erkek mi olduğunu birlikte öğreniyorsunuz. İsmi de birlikte seçiyorsunuz, ama son söz onun.',
+      'Doğum artık bir sahne: su geliyor, hastane yolu hiç bitmiyor, doğumhanede elini tutuyorsun ve sonunda minicik parmaklar annesinin parmağını sıkıyor. Ardından altı haftalık lohusa dönemi geliyor: gece emzirmeleri, ilk duş, yeni bedene alışmak.',
+      'Doktor onay verdiğinde ise bekleyiş bitiyor. Altı haftadır biriken her şey için Back Together olayları açılıyor; bebek uyurken çalınan yirmi dakikalar için de telsizi açık bırakmayı unutmayın.']],
+    ['🏺', 'Kültürlere özgü olaylar: 26 yeni olay', 'Roma\'nın Hektor\'un atı, Edo\'nun çay değirmeni, Kama Sutra\'nın bambu yarması, Taocu "dokuz sığ, bir derin" ve Kokulu Bahçe\'nin kazık çakması. 📜 işaretliler tarihi kaynaklarda gerçekten var, ✨ işaretliler esinli kurgu. Yeni 🏺 Cultural Positions kategorisi, 8 bitiş, 7 sahne.', '#/kitap/olay/81', [
+      ['🏛️ Roma ve Yunan', '📜 Hector\'s Horse, Ovid\'s Counsel (Ars Amatoria III), Lioness On The Grater (Lysistrata; hangi poz olduğu tartışmalı).'],
+      ['🏯 Edo Japonya', '📜 Chausu ve Matsuba-kuzushi (48 pozisyon), Shunga Pose; bitiş 📜 Kimono Finish.'],
+      ['🪷 Hindistan ve Tibet', '📜 Kama Sutra\'dan Splitting The Bamboo ve Indrani, Tibet tantrik sanatından Yab-Yum; bitiş 📜 Vadavaka.'],
+      ['🐉 Çin', '📜 Nine Shallow One Deep, Su Nü Jing\'den Dragon Turn, Tiger Step, Cicada Clings; 📜 Jade Essence\'ta boşalmazsın, 💦 Cum birikir; ardından ✨ Dam Breaks.'],
+      ['🌷 Arap ve Osmanlı', '📜 Kokulu Bahçe\'den Driving The Peg ve Pounding On The Spot; ✨ Bahname Lesson; bitiş ✨ Rosewater.'],
+      ['🏺 Mısır', '📜 Torino papirüsünden Chariot; ✨ Sistrum Rhythm; bitiş ✨ Kohl Tears.'],
+      ['🎬 Sahneler', '🪷 Kama Sutra, 🐉 Taocu Gece, 🌊 Baraj Yıkıldı, 🍵 Çay Evi, 🏛️ Roma Gecesi, 🌷 Kokulu Bahçe ve 🏺 Nil Gecesi. CarmenEvents → 🎬 Sahneler → 🏺 Kültürler.'],
+      ['📚 Kitap', 'Olay Kitabı\'nda yeni bölüm: 🏺 Kültürlere özgü.']], 'Yeni olaylar', [
+      'Elinde Ovidius\'un Aşk Sanatı\'nın bir çevirisi var; "kısa boylu kadın üste çıksın" diye okuyup kendine uyan pozu seçiyor. Ertesi gece bir shunga baskısı açıp kimonosu yarı açık "bunu deneyelim" diyor, sonra kalçasını bir çay değirmeni gibi döndürüyor.',
+      'Kama Sutra\'da bacaklarını sırayla omzuna kaldırıyor, sonunda hiç kıpırdamadan içeriden sıkıp seni boşaltıyor. Taocu gecede dokuza kadar sayıyor; tam gelecekken durmanı istiyor, o geliyor, sen tutuyorsun. Tuttuğun her şey en sonunda baraj gibi yıkılıyor.',
+      'Hangisinin gerçek olduğunu merak ediyorsan işarete bak: 📜 tarihi bir metinde ya da eserde gerçekten geçiyor, ✨ ise o kültürden esinlenip bizim uydurduğumuz bir an. Olay rehberinde her olayın kaynağı yazıyor.']],
     ['🫦', 'CarmenStation\'da clicker: Fans Ajansı', 'Yıldız kızın fotoğrafına dokun, beğeni topla, ekibini büyüt. Takipçi arttıkça kız açılıyor: bikini, iç çamaşırı, kostüm ve sonunda üstsüz. Ödüller gerçek: CarmenFans aboneliği, hediye özel içerik ve özel mesaj.', '#/station/ajans', [
       ['💗 Dokun ve 🔥 viral ol', 'Her dokunuş beğeni; hızlı dokununca ısı barı dolar ve 10 saniye boyunca dokunuşlar ×3. Ekranda süzülen ✨ altın kalbi yakalarsan 30 saniye üretim ×7.'],
       ['🏭 Ekip', 'Selfie\'den viral ağa yedi üretici; sen yokken de beğeni üretirler. 10, 25, 50 ve 100 adette verim ikiye katlanır.'],
@@ -1670,7 +1699,7 @@
       ['🤏 Değdirme', 'Kalçasına: Cheek Trace, Panty Line Trace, Crack Slide, Lower Back Rest, Jeans Press. Bacaklarına: Inner Thigh Trail, Thigh Gap Rest, Stocking Rub, Under Table Touch, Calf to Knee.'],
       ['👗 Kıyafet', 'Panty Slap, Bra Slap, Stocking Slap, Panty Line Trace, Stocking Rub ve Jeans Press o parça üstündeyken olur.'],
       ['📚 Kitap', 'Olay Kitabı\'na iki bölüm: 👋 Aletle Vurma ve 🤏 Aletle Değdirme.']]],
-    ['📖', 'Daha iyi anlatımlar!', 'Olaylar artık tek cümleyle geçiştirilmiyor: her olay birkaç cümlelik küçük bir sahne olarak anlatılıyor. Ne yaptığın, onun nasıl tepki verdiği, o anın sonunda ne kaldığı. 📜 Olay rehberinde, Olay Kitabı\'nda ve diğer kitaplarda.', '#/kitap/olay/81', [
+    ['📖', 'Daha iyi anlatımlar!', 'Olaylar artık tek cümleyle geçiştirilmiyor: her olay birkaç cümlelik küçük bir sahne olarak anlatılıyor. Ne yaptığın, onun nasıl tepki verdiği, o anın sonunda ne kaldığı. 📜 Olay rehberinde, Olay Kitabı\'nda ve diğer kitaplarda.', '#/kitap/olay/83', [
       ['✒️ Uzun anlatım', 'Her olayın kısa açıklaması olay seçicide duruyor; uzun anlatımı rehberde ve kitaplarda ilk sırada.'],
       ['📚 Kitap', 'Olay Kitabı\'nda yeni bölüm: 📖 Daha iyi anlatımlar; kaç olayın yeni anlatımı olduğunu canlı sayar.']]],
     ['💜', 'İzler artık kalıyor', 'Bıraktığın izler sayılıyor: durum kartında 💜 kaç iz olduğunu görürsün, sohbet saatiyle önce morarır sonra solar. Kocası bilmeyen evli kızın kocası görünür izi sorar ve 🕵️ Şüphe artar; Hotwife\'ın kocası görmek ister. 17 yeni iz olayı da geldi.', '#/kitap/olay/58', [
@@ -3005,7 +3034,9 @@
       mk.length && ['✨', 'Detay', mk.join(' · ')],
       (v => v && ['👓', 'Aksesuar', v])(cmMulti(c, CM_ACC)), (v => v && ['💅', 'Bakım', v])(cmMulti(c, CM_CARE)), (v => v && ['🚬', 'Alışkanlık', v])(cmMulti(c, CM_HABIT)),
       (boob || imB) && ['🍒', 'Göğüs', [boob && `${boob} ${CM_CUP[boob] || ''}`.trim(), imB && '💉 Silikon'].filter(Boolean).join(' · ')], (butt || imK) && ['🍑', 'Kalça', [butt, imK && '💉 Silikon'].filter(Boolean).join(' · ')], pus && ['🌸', 'Vajina', CM_SIZE[pus] || pus], an && ['🍑', 'Anal', CM_SIZE[an] || an],
-      ex && ['🔥', 'Deneyim', CM_EXP[ex] || ex]].filter(Boolean).map(r => fd[r[1]] ? [r[0], r[1], fd[r[1]]] : r);
+      ex && ['🔥', 'Deneyim', CM_EXP[ex] || ex],
+      (c.fields || {}).hamile && ['🤰', 'Karın', `${BELLY[bellyOf(c)] || 'henüz belli değil'} · ${Math.max(1, pregWeek(c))}. hafta`],
+      (c.kids || []).length && ['👶', 'Çocuk', c.kids.map(k => `${k.sex === 'erkek' ? '💙' : k.sex === 'kız' ? '🎀' : '👶'} ${k.name || 'isimsiz'}`).join(' · ')]].filter(Boolean).map(r => fd[r[1]] ? [r[0], r[1], fd[r[1]]] : r);
     if (fd['Saç boyu'] && !rows.some(r => r[1] === 'Saç boyu')) rows.splice(rows.findIndex(r => r[1] === 'Saç') + 1, 0, ['✂️', 'Saç boyu', fd['Saç boyu']]);
     return rows;
   }
@@ -14017,6 +14048,7 @@
       }
       const tg = e.target.closest('[data-sttog]');
       if (tg) {
+        if (!editOn()) { notify('Değiştirmek için ✏️ düzenleme modunu aç', '🔒'); return; }
         c.fields = c.fields || {};
         const on = c.fields[tg.dataset.sttog] = !c.fields[tg.dataset.sttog];
         save();
@@ -14235,7 +14267,7 @@
       ${rows.length ? `<div class="sec-title" style="margin-top:4px">Profil</div>${rows.map(([k, v]) => `<div class="info-row"><span>${esc(k)}</span><b>${esc(v)}</b></div>`).join('')}` : ''}
       <div class="sec-title">📏 Fiziksel özellikler <small>carmen.com profiliyle aynı</small></div>${cmBody(c).map(([ic, k, v]) => `<div class="info-row"><span>${ic} ${esc(k)}</span><b>${esc(v)}</b></div>`).join('')}
       ${charFields().some(f => f.type === 'toggle') ? `<div class="sec-title">🔘 Durumlar <small>dokunarak değiştir · olayların sonuçları da değiştirir</small></div>
-        <div class="st-togs">${charFields().filter(f => f.type === 'toggle').map(f => { const on = !!(c.fields || {})[f.id]; return `<button type="button" class="st-tog${on ? ' on' : ''}" data-sttog="${esc(f.id)}"><span>${esc(f.icon || '🔘')}</span><b>${esc(f.label)}</b><em>${on ? 'Evet' : 'Hayır'}</em></button>`; }).join('')}</div>` : ''}
+        <div class="st-togs">${charFields().filter(f => f.type === 'toggle').map(f => { const on = !!(c.fields || {})[f.id]; return `<button type="button" class="st-tog${on ? ' on' : ''}" data-sttog="${esc(f.id)}"${editOn() ? '' : ' aria-disabled="true" style="cursor:default" title="Değiştirmek için ✏️ düzenleme modunu aç"'}><span>${esc(f.icon || '🔘')}</span><b>${esc(f.label)}</b><em>${on ? 'Evet' : 'Hayır'}</em></button>`; }).join('')}</div>` : ''}
       ${T.groups.map(g => group(g).length ? `<div class="sec-title">${esc(g.label)}</div>${chips(group(g))}` : '').join('')}
       ${custom.length ? `<div class="sec-title">Diğer özellikler</div>${chips(custom)}` : ''}
       ${[...FEELS, ...PERMS].map(f => feelEvents(c[f.key]).length ? `<div class="sec-title">${f.icon} ${f.label}</div><div class="chips">${feelEvents(c[f.key]).map(e => `<span class="chip">${evEmo(e)}${esc(e.title)}</span>`).join('')}</div>` : '').join('')}
@@ -14939,7 +14971,7 @@
           <div class="st-vals">${bools.map(f => { const on = !!(ch.fields || {})[f.id], k = ch.id + '|' + f.id; return `<button type="button" class="st-bool f-${esc(f.id)}${on ? ' on' : ''}${popped.has(k) ? ' pop' : ''}" data-stb="${esc(k)}" title="Dokun: değiştir">${esc(f.icon || '🔘')} ${esc(f.label)}<i>${on ? 'Evet' : 'Hayır'}</i></button>`; }).join('')}
             ${tr.map(t => `<span class="st-tr">${esc(t)}</span>`).join('')}
             ${charFields().some(f => f.id === FERT_ID) ? (v => `<span class="st-tr st-fert">🌱 %${v} ${fertWord(v)}</span>`)((ch.fields || {})[FERT_ID] == null || (ch.fields || {})[FERT_ID] === '' ? 50 : ch.fields[FERT_ID]) : ''}
-            ${(ch.fields || {}).hamile ? `<span class="st-tr st-preg" data-stpreg="${esc(ch.id)}" role="button" style="cursor:pointer" title="Dokun: ⏩ zamanı ileri al · ${babyDad(ch)}">🤰 ${Math.max(1, pregWeek(ch))}. hafta · ${babyDad(ch, 1)} ⏩</span>` : (ph => `<span class="st-tr st-cyc c-${ph}" title="Döngü günü">${CYCLE[ph].icon} ${cycleDay(ch)}. gün · ${CYCLE[ph].label}</span>`)(cyclePhase(ch))}${((n, m) => n || m ? `<span class="st-tr st-mark" data-stmark="${esc(ch.id)}" role="button" style="cursor:pointer" title="Dokun: izlerin listesi">💜 ${n} iz${m ? ` · sende ${m}` : ''}</span>` : '')(marksOf(ch).length, marksOf(ch, true).length)}${toyChip(ch)}</div>
+            ${(ch.fields || {}).hamile ? `<span class="st-tr st-preg" data-stpreg="${esc(ch.id)}" role="button" style="cursor:pointer" title="Dokun: ⏩ zamanı ileri al · ${babyDad(ch)} · ${HORM[hormOf(ch)][1]}${bellyOf(ch) ? ` · ${BELLY[bellyOf(ch)]}` : ''}">🤰 ${Math.max(1, pregWeek(ch))}. hafta ${HORM[hormOf(ch)][0]} · ${babyDad(ch, 1)} ⏩${timeX(ch) > 1 ? ` ⚡×${timeX(ch)}` : ''}</span>` : ch.postAt != null ? `<span class="st-tr st-preg" data-stpreg="${esc(ch.id)}" role="button" style="cursor:pointer" title="Dokun: ⏩ zamanı ileri al · 🩺 doktor kontrolü">🩹 Lohusa ${postWeek(ch)}/${POST_WEEKS}. hafta ⏩${timeX(ch) > 1 ? ` ⚡×${timeX(ch)}` : ''}</span>` : (ph => `<span class="st-tr st-cyc c-${ph}" title="Döngü günü">${CYCLE[ph].icon} ${cycleDay(ch)}. gün · ${CYCLE[ph].label}</span>`)(cyclePhase(ch))}${((n, m) => n || m ? `<span class="st-tr st-mark" data-stmark="${esc(ch.id)}" role="button" style="cursor:pointer" title="Dokun: izlerin listesi">💜 ${n} iz${m ? ` · sende ${m}` : ''}</span>` : '')(marksOf(ch).length, marksOf(ch, true).length)}${toyChip(ch)}</div>
           ${paramsOf().length ? `<div class="pv-bars">${pvBars(ch)}</div>` : ''}${feelBlock(ch)}
           <button type="button" class="st-feel st-wear" data-stwear="${esc(ch.id)}" title="Giydir · ✓ üstünde, ✗ bu sohbette çıktı">👗 ${(rs => rs.length ? `<b>${esc(dressState(ch, (th.undress || {})[ch.id]))}</b> · ${rs.map(r => r.off ? `<s>${esc(r.x.name)}</s>` : esc(r.x.name)).join(' · ')}` : esc((ch.wardrobe || []).length ? 'çıplak 🫣' : 'giydir'))(dressRows(ch, (th.undress || {})[ch.id]))}</button>
           <span class="st-tr st-mode" title="Son Mode: 🥴 Zevk'in ×${modeMulOf(th.mode)} artar">💥 ${esc(th.mode || 'mod yok')}</span></div></div>`;
@@ -17143,6 +17175,14 @@
       if (!optOn('int', interruptsOn) || !(isPosEv(e) || isFant(e) || nk || af) || cs.playing) return;
       const n = msgCount();
       if (th.intAt && n - th.intAt < 8) return;
+      // 👶 küçük bebeği varsa (2 yaşından küçük) bazen bebek uyanır: %12, cevap FANT_INTERRUPTS.bebek
+      const bc = c || byId(chatCharIds()[0]), bp = (Stories.FANT_INTERRUPTS || {}).bebek;
+      if (bc && bp && bp.length && kidYoung(bc) && Math.random() < .12) {
+        const i = Math.floor(Math.random() * bp.length);
+        list.push({ id: Store.uid(), from: 'sys', text: bp[i].g, ts: nowTs() + 1 });
+        th.interrupt = null; th.fantInt = ['bebek', i]; th.intAt = n;
+        return;
+      }
       const fr = fantRecent(), fk = af ? 'fxgizli' : fr && fantKey(fr), gizli = fk === 'fxgizli';
       // 🏖️ açık mekân olayları (havuz, araba, asansör, kamp): "biri görecek" riski, kesinti daha sık ve mekâna özel (FANT_INTERRUPTS.yer…)
       const pl = PLACE_INT.find(([t]) => et.includes(t));
@@ -17173,7 +17213,7 @@
       const at = lastDone(), lastId = Object.keys(at).reduce((m, id) => (m && at[m] >= at[id] ? m : id), '');
       const ch = byId(chatCharIds()[0]) || {}, likes = new Set(ch.likes || []), bad = new Set([...(ch.dislikes || []), ...(ch.denies || [])]);
       // 🤰 hamilelik olayları sadece hamileyken ve kendi haftasında (hafta değişince liste yenilenir)
-      const sc = (lastScene() || {}).scene || null, key = `${lastId}|${sc ? sc.place + '/' + sc.name : ''}|${group ? '' : `${pregWeek(ch) || ((ch.fields || {}).hamile ? 1 : 0)}${(ch.fields || {}).evli ? 'e' : ''}${lesWith(ch) ? 'l' : ''}`}`;
+      const sc = (lastScene() || {}).scene || null, key = `${lastId}|${sc ? sc.place + '/' + sc.name : ''}|${group ? '' : `${pregWeek(ch) || ((ch.fields || {}).hamile ? 1 : 0)}${(ch.fields || {}).evli ? 'e' : ''}${lesWith(ch) ? 'l' : ''}${ch.postAt != null ? 'p' : ''}`}`;
       if (key === quickKey) return quickList;
       const pk = placeKey(), ok = e => !bad.has(e.id) && e.id !== lastId && !placeBlock(pk, e) && (group || !pregBlock(ch, e));
       const here = sc ? moCats().filter(c => placeFits(placeEvOf(c), sc)).map(c => c.id) : [];
@@ -17182,7 +17222,7 @@
       const sp = spotOf(sc), spot = sp ? spotEvs(sp, ch).filter(ok).slice(0, 5) : [];
       const last = lastId && all.find(e => e.id === lastId), nx = nextEvs(ch, last);
       // 💡 🤰 hamile / 💍 evli karakterde durum olayları (focusEv)
-      const foc = e => !group && focusEv(ch, e);
+      const foc = e => !group && focusEv(ch, e), hm = !group && hormOf(ch);
       const ctx = pickerCtx(), st = ctx.stage, stOf = e => pkStageOf(catOfEv(e));
       const fin = new Set(st === 'bit' ? ctx.now.filter(e => stOf(e) === 'bit').map(e => e.id) : []);
       const rec = Object.keys(at).sort((a, b) => at[b] - at[a]).slice(0, 5);
@@ -17201,6 +17241,9 @@
         if (spot.includes(e)) add(2.5, 'Bu mekânın');
         else if (isPl(e)) add(2, 'Mekâna uygun');
         if (foc(e)) add(1.5, 'Duruma uygun');
+        if (hm === 'libido' && isPregEv(e)) add(1.5, '🔥 Hormonları coştu');
+        else if ((hm === 'yorgun' || hm === 'lohusa') && !isPenEv(e) && (isPregEv(e) || stOf(e) !== 'bit')) add(1, hm === 'yorgun' ? '💤 Şefkat istiyor' : '😴 Nazik bir şey');
+        if (hm === 'bulanti' && isPenEv(e)) s -= 1.5;
         if (les && isLesEv(e)) { add(2.5, '👩‍❤️‍👩 Lezbiyen ilişki'); if ((e.cat === LES_FIN) === lesHot) add(1.5, lesHot ? 'Bitiş zamanı' : 'Isınma zamanı'); }
         if (likes.has(e.id)) add(1.5, '❤️ Sevdiği');
         const rg = regEv(ch, e);
@@ -17606,6 +17649,18 @@
           if (n > a) stateFx('mark');
           if (m !== b) o.onChanges = [...(o.onChanges || []), { who: 'Sen', label: '💜 İz', from: String(b), to: String(m), up: true }];
         });
+        // 💎 tutulan öz (Taocu): held +n, heldFx 'reset' bırakır; bıraktığında her tutuş 🔥 Şehvet +5 (en fazla 3); th.heldMax rozet için
+        if (ne && (ne.held || ne.heldFx)) {
+          const a = +th.held || 0;
+          th.held = ne.heldFx === 'reset' ? 0 : Math.min(9, a + (+ne.held || 0));
+          th.heldMax = Math.max(+th.heldMax || 0, th.held);
+          o.onChanges = [...(o.onChanges || []), { who: 'Sen', label: '💎 Tutulan öz', from: String(a), to: String(th.held), up: th.held >= a }];
+          if (ne.heldFx === 'reset' && a) {
+            const r4 = applyOutcome({ text: '', effects: [{ p: 'p:sehvet', d: 5 * Math.min(3, a) }] }, charIds);
+            if (r4.changes.length) o.onChanges = [...o.onChanges, ...r4.changes];
+            if (a >= 3) setTimeout(() => notify('🌊 Üç kez tuttun: baraj taşkın! 🔥 Şehvet +15', '🌊'), 1200);
+          }
+        }
         if (ne && String(catOfEv(ne).label).toLocaleLowerCase('tr') === 'nursing') {
           th.nurseRun = (th.nurseRun || 0) + 1;
           charIds.map(byId).filter(Boolean).forEach(k => { k.lastNurse = Date.now(); k.nurseN = (+k.nurseN || 0) + 1; });
@@ -19001,21 +19056,51 @@
       // ⏩ hamilelik haftası çipi: zamanı ileri al (+1 hafta / sonraki dönem / doğum); notlar, süt ve doğum bodyTick'ten geçer
       const pg = e.target.closest('[data-stpreg]');
       if (pg) {
-        const c0 = byId(pg.dataset.stpreg);
-        if (!c0 || !(c0.fields || {}).hamile) return;
-        if (c0.pregAt == null) bodyTick(c0, 0, txt => list.push({ id: Store.uid(), from: 'sys', text: txt, ts: nowTs() + 1 }));
-        const w = pregWeek(c0) || 1, nx = [13, 27, 36].find(k => k > w), first = String(c0.name || '').split(' ')[0];
-        const sh = sheet(`<div class="sheet-grip"></div><h3>⏩ ${esc(first)} · ${w}. hafta</h3><p class="muted" style="margin:0 4px 8px">${babyDad(c0)} · zaman atlayınca sohbet saati değişmez, sadece hamilelik ilerler</p>
-          <button class="act" data-pk="1">⏭️ +1 hafta</button>
+        const c0 = byId(pg.dataset.stpreg), preg = !!(c0 && (c0.fields || {}).hamile);
+        if (!c0 || (!preg && c0.postAt == null)) return;
+        if (preg && c0.pregAt == null) bodyTick(c0, 0, txt => list.push({ id: Store.uid(), from: 'sys', text: txt, ts: nowTs() + 1 }));
+        const w = preg ? pregWeek(c0) || 1 : postWeek(c0), nx = preg && [13, 27, 36].find(k => k > w), first = String(c0.name || '').split(' ')[0], tx = timeX(c0);
+        const speed = `<p class="muted" style="margin:12px 4px 6px">⚡ Zaman hızı: sohbet saati ilerledikçe ${preg ? 'hamilelik' : 'lohusa dönemi'} bu kat hızlı akar</p>
+          <div style="display:flex;gap:6px;margin:0 4px">${TIME_X.map(k => `<button class="act" data-px="${k}" style="flex:1;${k === tx ? 'font-weight:700;outline:2px solid currentColor' : ''}">×${k}</button>`).join('')}</div>`;
+        const hm = HORM[hormOf(c0)], kid = !preg && (c0.kids || []).slice(-1)[0], bn = preg ? c0.babyName : kid && kid.name;
+        const sx = preg ? c0.babySex : kid && kid.sex;
+        const mood = `<p class="muted" style="margin:0 4px 8px">${hm[0]} ${hm[1]}${bellyOf(c0) ? ` · 🫄 ${BELLY[bellyOf(c0)]}` : ''} · 🍼 ${bn ? esc(bn) : 'henüz isim yok'}${sx ? ` · ${sx === 'kız' ? '🎀 kız' : '💙 erkek'}` : ''}${preg && w >= 36 ? ' · 🏥 doğum her an olabilir (38–42. hafta)' : ''}</p>
+          ${preg || (kid && !kid.name) ? `<button class="act" data-pname="1">🍼 İsim öner</button>` : ''}`;
+        const sh = sheet(preg ? `<div class="sheet-grip"></div><h3>⏩ ${esc(first)} · ${w}. hafta</h3><p class="muted" style="margin:0 4px 8px">${babyDad(c0)} · zaman atlayınca sohbet saati değişmez, sadece hamilelik ilerler</p>
+          ${mood}<button class="act" data-pk="1">⏭️ +1 hafta</button>
           ${nx && nx - w > 1 ? `<button class="act" data-pk="${nx - w}">⏩ ${nx}. haftaya geç (${nx === 13 ? 'ikinci üç ay' : nx === 27 ? 'son üç ay' : 'doğum yaklaşıyor'})</button>` : ''}
-          <button class="act" data-pk="${40 - w}">👶 Doğuma kadar git</button>`, 'light');
+          <button class="act" data-pk="${Math.max(1, dueOf(c0) - w)}">👶 Doğuma kadar git</button>${speed}`
+          : `<div class="sheet-grip"></div><h3>🩹 ${esc(first)} · lohusa ${w}/${POST_WEEKS}. hafta</h3><p class="muted" style="margin:0 4px 8px">Vajinal / anal pozisyonlar kapalı; ön sevişme, emzirme ve yakınlık açık. ${POST_WEEKS}. haftanın sonunda 🩺 doktor onayı gelir.</p>
+          ${mood}${w < POST_WEEKS ? '<button class="act" data-pk="1">⏭️ +1 hafta</button>' : ''}
+          <button class="act" data-pk="${POST_WEEKS + 1 - w}">🩺 Doktor kontrolüne kadar git</button>${speed}`, 'light');
         sh.el.onclick = ev => {
+          const sp = ev.target.closest('[data-px]');
+          if (sp) { c0.timeX = +sp.dataset.px; if (c0.timeX === 1) delete c0.timeX; sh.close(); save(); drawStats(); notify(`Zaman ×${timeX(c0)} hızla akıyor`, '⚡'); return; }
+          if (ev.target.closest('[data-pname]')) {
+            sh.close();
+            const ns = sheet(`<div class="sheet-grip"></div><h3>🍼 İsim öner</h3><p class="muted" style="margin:0 4px 8px">${esc(first)} beğenirse bebeğin adı olur; ❤️ Aşk yüksekse daha kolay kabul eder</p>
+              <input id="pnIn" maxlength="24" placeholder="Bebeğin adı" style="width:100%;box-sizing:border-box;margin:0 0 8px"><button class="act" id="pnGo">💗 Öner</button>`, 'light');
+            const go = () => {
+              const n = capTr(String(ns.el.querySelector('#pnIn').value || '').trim().replace(/\s+/g, ' '));
+              if (!n) return;
+              ns.close();
+              const no = c0.nameNo || (c0.nameNo = []), ok = !no.includes(lowTag(n)) && Math.random() < Math.min(.85, Math.max(.2, .45 + relV(c0, 'aşk') / 250));
+              list.push({ id: Store.uid(), from: 'me', text: `Bebeğin adı ${n} olsun mu? 🍼`, ts: nowTs() });
+              if (ok) { if (preg) c0.babyName = n; else if (kid) kid.name = n; } else no.push(lowTag(n));
+              list.push({ id: Store.uid(), from: 'her', who: c0.id, text: pickOne(ok ? NAME_YES : NAME_NO).replace(/\{n\}/g, n), ts: nowTs() + 1 });
+              save(); draw();
+            };
+            ns.el.querySelector('#pnGo').onclick = go;
+            ns.el.querySelector('#pnIn').onkeydown = k => { if (k.key === 'Enter') go(); };
+            ns.el.querySelector('#pnIn').focus();
+            return;
+          }
           const b = ev.target.closest('[data-pk]');
           if (!b) return;
           sh.close();
           const n = Math.max(1, +b.dataset.pk || 1), to = w + n;
-          c0.pregAt -= n * PREG_WEEK;
-          list.push({ id: Store.uid(), from: 'sys', text: to >= 40 ? `⏩ ${n} hafta geçti` : `⏩ ${n} hafta geçti · ${first} ${to}. haftada`, ts: nowTs() });
+          if (preg) c0.pregAt -= n * PREG_WEEK; else c0.postAt -= n * PREG_WEEK;
+          list.push({ id: Store.uid(), from: 'sys', text: !preg || to >= dueOf(c0) ? `⏩ ${n} hafta geçti` : `⏩ ${n} hafta geçti · ${first} ${to}. haftada`, ts: nowTs() });
           bodyTick(c0, 0, txt => list.push({ id: Store.uid(), from: 'sys', text: txt, ts: nowTs() + 1 }));
           save(); draw();
         };
@@ -20642,6 +20727,18 @@
     koca: { chat: [' kocam salonda maç izliyor, ben burada seninle 🙈', ' kocam erken uyudu, telefon bende 😌', ' kocam sorarsa arkadaşımla yazışıyorum 🤫'],
       flirt: [' kocam yan odada ve ben sana yazıyorum… 😳', ' yüzüğüme bakıp bakıp seni düşünüyorum 💍🙈'], sex: [' kocam bilse… 😩🔥', ' yüzüğüm hâlâ parmağımda, hissediyor musun? 💍'], after: [' kocam gelmeden duş almam lazım 🙈', ' eve dönünce kocamın yüzüne nasıl bakacağım 😳'] }
   };
+  // 🌡️ hormon dalgası ekleri (hormOf): hamileliğin / lohusalığın dönemine göre
+  const HORM_LINES = {
+    bulanti: { chat: [' midem yine bulanıyor, kraker kemiriyorum 🤢', ' sabah bulantısı öğlene kadar sürdü bugün 😮‍💨', ' kokulara dayanamıyorum, kahve bile ağır geliyor ☕🤢'], flirt: [' midem bulanıyor ama sana sarılmak iyi gelir 🥺'],
+      sex: [' yavaş olalım, midem hassas bugün 🤢', ' çok sallama beni, sadece hisset 😮‍💨'], after: [' şimdi bir bardak soğuk su ve kraker lütfen 🥺'] },
+    libido: { chat: [' hormonlarım coştu, aklım hep sende 😳', ' ikinci üç ay dedikleri bu herhalde, sürekli istiyorum 🔥', ' aşerdim… ama yiyecek değil, seni 😏'], flirt: [' bugün sana dokunmadan duramıyorum, hormonlar 🔥', ' karnım büyüdü ama isteğim daha da büyüdü 😈'],
+      sex: [' daha, daha… hormonlar yüzünden doyamıyorum 🔥', ' her yerim çok hassas şu an 😩'], after: [' bir daha? ciddiyim 😏🔥', ' hamilelik bana yaradı galiba 😌'] },
+    yorgun: { chat: [' sırtım ağrıyor, ayaklarım şişti 😮‍💨', ' bütün gün uyuyabilirim, çok yorgunum 💤', ' bebek yine tekmeliyor, gece uyutmadı 🦶'], flirt: [' gel sarıl bana, sadece sarıl 🥺', ' karnımı okşar mısın? çok iyi geliyor 🤰'],
+      sex: [' yavaş, yan yatalım olur mu? 💤', ' karnımı ezme, yavaş 🥺'], after: [' sarıl ve uyuyalım, bitkinim 💤', ' sırtımı ovar mısın biraz? 🥺'] },
+    lohusa: { chat: [' gece üç kere kalktım, gözlerim kapanıyor 😴🍼', ' bebek ancak uyudu, sessiz konuşalım 🤫', ' göğüslerim yine doldu, ağrıyor 🍼'], flirt: [' seni özledim ama doktor onayını bekliyoruz 🙈', ' sadece öpüş ve sarıl, şimdilik bu kadar 🥺'],
+      sex: [' dikkatli ol, hâlâ hassasım 🩹'], after: [' bebek uyanmadan biraz uyuyalım 😴'] }
+  };
+  const hormPool = (ch, k) => { const h = hormOf(ch); return h ? personaPool(HORM_LINES[h], k) : []; };
   const livePool = (ch, k) => { const l = Stories.liveOf(ch); return l && LIVE_LINES[l] && !(l === 'koca' && (ch.fields || {}).hotwife) ? personaPool(LIVE_LINES[l], k) : []; };
   const orientPool = (ch, k) => { const o = orientOf(ch); return o ? personaPool(ORIENT_LINES[`${o}|${meFemAddr() ? '♀' : '♂'}`], k) : []; };
   const PERSONA_CTX = [['chat', '💬 Sohbet'],['flirt', '💕 ❤️ Aşk 60+'], ['sex', '🔥 Sevişirken'], ['after', '💦 Sonrası']];
@@ -21557,9 +21654,12 @@
     if (ol.length) opts.push([['add', ol]]);
     const ll = serious || Math.random() > .15 ? [] : livePool(ch, k).filter(x => !rec.includes(x) && !txt.includes(x.trim()));
     if (ll.length) opts.push([['add', ll]]);
+    const hl = serious || Math.random() > .25 ? [] : hormPool(ch, k).filter(x => !rec.includes(x) && !txt.includes(x.trim()));
+    if (hl.length) opts.push([['own', hl]]);
     if (opts.length && parts.length) {
       const [w, a] = pickOne(pickOne(opts)), x = pickOne(a);
-      if (w === 'pre') parts[0] = x + parts[0]; else parts[last()] += x;
+      // 🌡️ hormon eki kendi balonunda (büyük harfle; EN sözlüğü cümle olarak bulur)
+      if (w === 'own') parts.push(capTr(x.trim())); else if (w === 'pre') parts[0] = x + parts[0]; else parts[last()] += x;
       rec.push(x); if (rec.length > 8) rec.splice(0, rec.length - 8);
     }
     if (tr.has('Kısa yazar')) parts.splice(1);
@@ -22137,8 +22237,18 @@
       pool.push(...(L[k] || []));
     });
     (ch.traits || []).forEach(x => { const L = LK_LINES.Marks[x]; if (L) pool.push(...(L[k] || [])); });
+    const bl = bellyOf(ch), BL = bl >= 3 ? BELLY_LINES.B : bl === 2 ? BELLY_LINES.b : null;
+    if (BL) pool.push(...(BL[k] || BL.gen));
     return pool.length ? { k, pool: pool.map(fill).map(capTr) } : null;
   }
+  // 🤰 karın boyutu (bellyOf): b = belirgin (20–26), B = büyük / kocaman (27+)
+  const BELLY_LINES = {
+    b: { front: ['Karnım aramızda, yavaşça eğil 🤰'], back: ['Arkadan karnımı da tut, ağırlaşıyor 🤰'], top: ['Üstündeyken karnım tam gözünün önünde, beğendin mi? 🤰'],
+      oral: ['Karnımın üstünden zor görüyorum ama hissediyorum 😳'], cum: ['Karnıma da dökül, istiyorum 🤰💦'], gen: ['Karnım her gün biraz daha büyüyor, fark ettin mi? 🤰'] },
+    B: { front: ['Karnım çok büyük, önden zor; yan yatalım mı? 🤰', 'Ellerinle karnımı tut, öyle daha iyi 🥺'], back: ['Arkadan çok daha rahat, karnım askıda 🤰'], top: ['Karnım öyle büyük ki üstünde dengemi zor tutuyorum 😅'],
+      lift: ['Beni kaldırma, artık çok ağırım 😂🤰'], oral: ['Karnımın arkasından seni hiç göremiyorum 🙈'], cum: ['Göbeğim dışa çıktı, oraya akıt 🤰💦'], org: ['Gelirken karnım kasılıyor, çok tuhaf ve güzel 😩🤰'],
+      gen: ['Bebek tekmeliyor, elini koy 🦶🤰'] }
+  };
   const looksLine = (ch, e, climax, orgasm) => { const p = looksPool(ch, e, climax, orgasm); return p ? pickOne(p.pool) : ''; };
   /* 🍒🍑 sıkma / şaplak olaylarında onun göğüs / kalça bedenine göre (Boob / Butt Size → me-lines.js ME_BODY_LINES.size: small · mid · big).
    * szKind(e) = [bölge, hareket]: bölge boob / butt (etiket göğüs / kalça ya da başlık), hareket grab (avuçlama) · press (arasına sıkıştırma, 🏷️ sıkıştır) · slap (şaplak / 🏷️ vurma).
@@ -26021,9 +26131,9 @@
     ['ick', '🍷', 'Drinks', ['drinks']],
     ['isin', '💋', 'Isınma', ['foreplay', 'massage', 'protection']],
     ['soy', '👗', 'Soyunma', ['undress']],
-    ['on', '👅', 'Ön sevişme', ['eat', 'outercourse', 'squeeze', 'pregnancy foreplay', 'nurturing foreplay', 'pee rubbing', 'held pee rubbing', 'held titfuck pee', 'licking', 'biting', 'her licks and bites', 'dick slap', 'dick touch', 'slurping', 'plug play', 'toy play', 'hand grab', 'hand spank', 'hair wrap', 'sleep foreplay', 'donor room', 'fetish play', 'foot play', 'lingerie play']],
+    ['on', '👅', 'Ön sevişme', ['eat', 'outercourse', 'squeeze', 'pregnancy foreplay', 'after birth', 'nurturing foreplay', 'pee rubbing', 'held pee rubbing', 'held titfuck pee', 'licking', 'biting', 'her licks and bites', 'dick slap', 'dick touch', 'slurping', 'plug play', 'toy play', 'hand grab', 'hand spank', 'hair wrap', 'sleep foreplay', 'donor room', 'fetish play', 'foot play', 'lingerie play']],
     ['sut', '🍼', 'Lactation', ['lactation', 'nursing', 'lactation fantasy', 'milky foreplay']],
-    ['poz', '🔥', 'Pozisyon', ['forward', 'backward', 'threesome', 'pregnancy', 'milky sex', 'nurturing sex', 'mode', 'pre-cumming', 'anal pee', 'heavy anal pee', 'held anal pee', 'plugged sex', 'grip sex', 'hair sex', 'sleep sex', 'donor sex', 'fetish sex', 'foot sex', 'lingerie sex', 'lap positions', 'deep sex', 'soft inside', 'filled pussy', 'filled ass']],
+    ['poz', '🔥', 'Pozisyon', ['forward', 'backward', 'threesome', 'pregnancy', 'back together', 'milky sex', 'nurturing sex', 'mode', 'pre-cumming', 'anal pee', 'heavy anal pee', 'held anal pee', 'plugged sex', 'grip sex', 'hair sex', 'sleep sex', 'donor sex', 'fetish sex', 'foot sex', 'lingerie sex', 'lap positions', 'deep sex', 'soft inside', 'filled pussy', 'filled ass', 'cultural positions']],
     ['mekan', '📍', 'Mekân', ['mekanda', 'shower', 'sauna', 'bathtub', 'pool', 'car', 'elevator', 'camping', 'kitchen', 'stairs', 'laundry', 'balcony', 'camera', 'beach', 'office', 'hotel', 'school', 'church', 'gym', 'bar', 'cinema', 'outdoors', 'restaurant', 'rooftop', 'library', 'fair', 'haunted', 'street', 'massage salon', 'clinic', 'pee']],
     ['fant', '🦄', 'Fantezi', ['fantesy', 'meisove', 'femdom', 'bdsm', 'bull', 'affair', 'affair story', 'heavy pee', 'toys out']],
     ['bit', '💦', 'Bitiş', ['cumming', 'cumming size']],
@@ -26894,22 +27004,41 @@
   const finExtraOn = (k, s) => k === 'scare' ? !!s.risk && !s.preg && !s.hamile : k === 'milk' ? !!s.hamile || +s.milk >= 60 : k === 'stain' ? !!s.dressed : k === 'shaky' ? !!s.rough : false;
   const finExtraRoll = s => Object.keys(FIN_EXTRA).filter(k => finExtraOn(k, s) && Math.random() * 100 < FIN_EXTRA[k].pct);
   /* 🩸 döngü takvimi ve 🤰 hamilelik zaman çizelgesi: karakterin "yaşadığı" sohbet dakikaları (c.life; 🕰️ saat ilerledikçe artar).
-   * 28 günlük döngü: 1–5 regl, 11–16 riskli (doğurganlık ×1,8), gerisi düşük. Hamilelikte bir hafta = 2 saat sohbet zamanı, 40. haftada doğum */
+   * 28 günlük döngü: 1–5 regl, 11–16 riskli (doğurganlık ×1,8), gerisi düşük. Hamilelikte bir hafta = 2 saat sohbet zamanı (⚡ c.timeX ile hızlanır), 38–42. haftada doğum (dueOf) */
   const PREG_WEEK = 120;
   const cycleDay = c => Math.floor((c.life || 0) / 1440 + (c.cycleOff != null ? +c.cycleOff : +sysHash('cyc' + (c.id || c.name)) % 28)) % 28 + 1;
   const cyclePhase = c => { const d = cycleDay(c); return d <= 5 ? 'regl' : d >= 11 && d <= 16 ? 'riskli' : d <= 10 ? 'erken' : 'gec'; };
   const CYCLE = { regl: { mul: .15, icon: '🩸', label: 'regl' }, erken: { mul: .7, icon: '🌸', label: 'düşük risk' }, riskli: { mul: 1.8, icon: '🔥', label: 'riskli gün' }, gec: { mul: .5, icon: '🌙', label: 'düşük risk' } };
   const pregWeek = c => (c.fields || {}).hamile && c.pregAt != null ? Math.floor(((c.life || 0) - c.pregAt) / PREG_WEEK) + 1 : 0;
+  /* 🩹 lohusa dönemi: doğumda c.postAt = c.life; 6 hafta vajinal / anal olaylar kapalı, sonra 🩺 doktor onayı. 👶 c.kids [{ by, at }].
+   * ⚡ c.timeX: hamilelik / lohusa zamanı sohbet saatine göre ×1–×8 hızlı akar */
+  const POST_WEEKS = 6, TIME_X = [1, 2, 4, 8];
+  const postWeek = c => c.postAt != null ? Math.floor(((c.life || 0) - c.postAt) / PREG_WEEK) + 1 : 0;
+  const timeX = c => TIME_X.includes(+c.timeX) ? +c.timeX : 1;
+  // 🏥 doğum haftası: hamilelik başında 38–42 arası rastgele (en sık 40), c.dueW
+  const dueOf = c => c.dueW || (c.dueW = pickOne([38, 39, 39, 40, 40, 40, 41, 41, 42]));
+  const kidYoung = c => c.kids ? c.kids.some(k => (c.life || 0) - k.at < 104 * PREG_WEEK) : (c.births || 0) > 0;
+  const isPenEv = e => ((e || {}).tags || []).some(t => ['vajinal', 'anal'].includes(String(t).toLocaleLowerCase('tr')));
+  /* 🌡️ hormon dalgası: 1–12 bulantı, 13–26 hormon coşkusu, 27+ yorgunluk / şefkat, 🩹 lohusa uykusuz. Etkisi: ⚡ kısayol puanı + cevap ekleri (HORM_LINES).
+   * 🤰 karın boyutu 0–4: 13 / 20 / 27 / 36. haftada büyür (çip, ⏩ penceresi, görünüş balonu BELLY_LINES) */
+  const hormOf = c => !c ? '' : c.postAt != null ? 'lohusa' : !(c.fields || {}).hamile ? '' : (w => w <= 12 ? 'bulanti' : w <= 26 ? 'libido' : 'yorgun')(pregWeek(c) || 1);
+  const HORM = { bulanti: ['🤢', 'bulantı, midesi hassas'], libido: ['🔥', 'hormonları coştu, sürekli istiyor'], yorgun: ['💤', 'çabuk yoruluyor, şefkat istiyor'], lohusa: ['😴', 'uykusuz, hassas'] };
+  const bellyOf = c => (w => !w ? 0 : w < 13 ? 0 : w < 20 ? 1 : w < 27 ? 2 : w < 36 ? 3 : 4)(pregWeek(c || {}));
+  const BELLY = ['', 'hafif kabarık', 'belirgin karın', 'büyük karın', 'kocaman karın'];
+  // 🍼 isim oylaması: c.babyName (doğumda c.kids'e geçer), reddedilenler c.nameNo; kabul şansı ❤️ Aşk'a göre
+  const NAME_YES = ['{n}… çok güzel. Evet, {n} olsun 🥹💗', '{n}! Söyleyince içim ısındı, tamam 🥰', 'Karnıma "{n}" diye fısıldadım, tekmeledi; kabul etti galiba 🦶💗'];
+  const NAME_NO = ['{n} mi? Hmm… hiç içime sinmedi, başka söyle 🙈', 'Olmaz, {n} eski sevgilimin kuzeninin adı 😅', '{n}… yok, bebeğimize yakışmadı. Bir daha dene 🥺'];
   /* 👨 bebeğin babası: c.babyBy 'hb' kocası (kendi sohbetlerinde), yoksa sen; s = kısa (çip) */
   const babyDad = (c, s) => c.babyBy === 'hb' ? `💍 ${s ? 'kocasından' : `Baba: kocası ${esc(((husbChar(c) || {}).name || '').split(' ')[0])}`}` : `💗 ${s ? 'senden' : 'Baba: sen'}`;
-  const kidsLine = c => { const k = c.kidsBy || {}; return k.me || k.hb ? ` (${[k.me ? `💗 ${k.me}` : '', k.hb ? `💍 ${k.hb}` : ''].filter(Boolean).join(' · ')})` : ''; };
+  const kidsLine = c => { const k = c.kidsBy || {}, nm = (c.kids || []).map(x => x.name).filter(Boolean); return k.me || k.hb ? ` (${[k.me ? `💗 ${k.me}` : '', k.hb ? `💍 ${k.hb}` : '', nm.length ? `👶 ${esc(nm.join(', '))}` : ''].filter(Boolean).join(' · ')})` : ''; };
   // 🤰 'hamile' etiketli olay kapısı: hamile değilse ya da hafta e.weeks [min, max] dışındaysa sebep döner ('' = olur)
   const isPregEv = e => ((e || {}).tags || []).some(t => String(t).toLocaleLowerCase('tr') === 'hamile');
   // 💡 karakterin durumuna göre öne çıkan olaylar (⚡ / 🎯 Şimdi / 💭 teklif): 🤰 hamileyse hamilelik, 💍 evliyse 🐂 Bull + 💍 Bull Story (bitişler hariç)
   const focusEv = (c, e) => {
     const f = (c || {}).fields || {}, tg = ((e || {}).tags || []).map(t => String(t).toLocaleLowerCase('tr'));
     if (!e || tg.includes('boşalma')) return false;
-    return !!(f.hamile && tg.includes('hamile') || f.evli && (tg.includes('bull') || e.cat === 'c:mvbullstory01x'));
+    return !!(f.hamile && tg.includes('hamile') || f.evli && (tg.includes('bull') || e.cat === 'c:mvbullstory01x')
+      || c.postAt != null && tg.includes('lohusa') || c.clearedAt != null && (c.life || 0) - c.clearedAt < 4 * PREG_WEEK && tg.includes('onay'));
   };
   // 🍼 süt kapısı da burada: e.milk (Milk & Cum olayları) → onun 🍼 Süt değeri en az bu kadar olmalı
   const milkV = c => { const p = allParams().find(x => x.who !== 'me' && String(x.label).toLocaleLowerCase('tr') === 'süt'); return p ? +paramVal(c || {}, p) || 0 : 0; };
@@ -26965,7 +27094,7 @@
   const LES_NO_RE = /blowjob|deepthroat|handjob|titfuck|titjob|footjob|legjob|buttjob|hotdog|cum|creampie|condom|cock|dick|pull-out|bulge|size comparison|unplug flood|keep it in overnight|milked by toy/i;
   // lezbiyen ilişkide gizlenen olay mı (🧪 #/lezbiyen ve 📚 Lezbiyen Kitabı da sayar)
   // penisli kategoriler: Cumming, sperm ölçüsü (Cumming Size), onu sıkıştırma (Squeeze), kuru sürtünme (Outercourse)
-  const LES_NO_CAT = ['Cumming', 'Cumming Size', 'Squeeze', 'Outercourse', 'Her Licks And Bites', 'Dick Slap', 'Dick Touch', 'Slurping', 'Plugged Sex', 'Grip Sex', 'Nurturing Sex', 'Hair Sex', 'Hair Wrap', 'Sleep Sex', 'Donor Room', 'Donor Sex', 'Fetish Play', 'Fetish Sex', 'Foot Play', 'Foot Sex', 'Lingerie Sex', 'Lap Positions', 'Deep Sex', 'Deep After', 'Soft Inside', 'Inside After', 'Filled Pussy', 'Filled Ass', 'Filled After'];
+  const LES_NO_CAT = ['Cumming', 'Cumming Size', 'Squeeze', 'Outercourse', 'Her Licks And Bites', 'Dick Slap', 'Dick Touch', 'Slurping', 'Plugged Sex', 'Grip Sex', 'Nurturing Sex', 'Hair Sex', 'Hair Wrap', 'Sleep Sex', 'Donor Room', 'Donor Sex', 'Fetish Play', 'Fetish Sex', 'Foot Play', 'Foot Sex', 'Lingerie Sex', 'Lap Positions', 'Deep Sex', 'Deep After', 'Soft Inside', 'Inside After', 'Filled Pussy', 'Filled Ass', 'Filled After', 'Cultural Positions', 'After Birth', 'Back Together'];
   const lesNo = e => (e.tags || []).some(t => LES_NO_TAG.includes(String(t).toLocaleLowerCase('tr'))) || LES_NO_RE.test(e.title || '') || LES_NO_CAT.includes(catOfEv(e).label);
   // 🎬 sahne cinsiyete göre: kadın hesapta penisli olay (lesNo) içeren sahne, erkek hesapta lezbiyen olay içeren sahne gizli.
   // Sonuç hesap cinsiyeti + olay sayısına göre önbellekte; scenes.js sceneGroups da Stories.sceneHide ile süzer
@@ -27113,36 +27242,72 @@
     if (tb) return tb;
     const mb = markBlock(c, e);
     if (mb) return mb;
+    if (c && e && e.heldMin) {
+      const th = (openThread && threadsOf(c).includes(openThread) ? openThread : currentThread(c)) || {};
+      if ((+th.held || 0) < e.heldMin) return `önce özünü tutmalısın (💎 ${+th.held || 0}/${e.heldMin})`;
+    }
     const wb = wearBlock(c, e);
     if (wb) return wb;
     if (e && e.milk != null && milkV(c) < e.milk) return `göğüsleri boş, Süt en az ${e.milk} olmalı`;
     const cm = cumMin(e);
     if (cm != null && myCumV() < cm) return `yeterince birikmedi, 💦 Cum en az ${cm} olmalı`;
+    if (c && c.postAt != null && isPenEv(e)) return `lohusa dönemi (${postWeek(c)}/${POST_WEEKS}. hafta), doktor onayına kadar olmaz`;
+    // 👶 After Birth kapıları: 'lohusa' sadece lohusa döneminde, 'anne' çocuğu varsa, 'onay' doktor onayından sonraki 4 hafta
+    const abt = ((e || {}).tags || []).map(t => String(t).toLocaleLowerCase('tr'));
+    if (abt.includes('lohusa') && (!c || c.postAt == null)) return 'sadece doğumdan sonraki lohusa döneminde olur';
+    if (abt.includes('anne') && !(c && ((c.kids || []).length || c.births))) return 'sadece çocuğu olunca olur';
+    if (abt.includes('onay') && !(c && c.clearedAt != null && (c.life || 0) - c.clearedAt < 4 * PREG_WEEK)) return 'sadece doktor onayından sonraki 4 haftada olur';
     if (!isPregEv(e)) return '';
     const w = pregWeek(c || {}) || ((c || {}).fields || {}).hamile && 1;
     if (!w) return 'sadece hamileyken olur';
     const [a, b] = e.weeks || [1, 40];
-    return w < a ? `${a}. haftadan önce olmaz` : w > b ? `${b}. haftadan sonra olmaz` : '';
+    return w < a ? `${a}. haftadan önce olmaz` : Math.min(w, 40) > b ? `${b}. haftadan sonra olmaz` : '';
   };
   // saat ilerleyince (dt dakika): hamilelik haftası, 🍼 Süt artışı, üç ay geçişleri ve doğum; note(metin) sohbete not yazar
   function bodyTick(c, dt, note) {
     if (c.life != null && typeof c.life !== 'number') lfOf(c);
     c.life = (c.life || 0) + dt;
-    const f = c.fields || (c.fields = {}), first = String(c.name || '').split(' ')[0];
-    if (f.hamile && c.pregAt == null) { c.pregAt = c.life; c.pregW = 1; if (!c.babyBy) c.babyBy = 'me'; note(`🤰 ${first} hamile · ${babyDad(c)}`); sfx('preg'); }
-    if (!f.hamile) { delete c.pregAt; delete c.pregW; delete c.babyBy; return; }
+    const f = c.fields || (c.fields = {}), first = String(c.name || '').split(' ')[0], x = timeX(c) - 1;
+    if (x && dt) { if (c.pregAt != null) c.pregAt -= dt * x; if (c.postAt != null) c.postAt -= dt * x; }
+    if (c.postAt != null && postWeek(c) > POST_WEEKS) {
+      delete c.postAt; c.clearedAt = c.life; note(`🩺 Doktor kontrolü: ${first} tamamen iyileşti, onay çıktı · artık her şey serbest`);
+      // 🫙 lohusa birikimi: 6 hafta bekleyen senin 💦 Cum'un dolup taşar (gür bitişler açılır)
+      const cp = allParams().find(p => p.who === 'me' && String(p.label).toLocaleLowerCase('tr') === 'cum');
+      if (cp) { applyOutcome({ text: '', effects: [{ p: 'p:' + cp.id, d: 60 }] }, [c.id]); note('🫙 6 hafta bekledin: 💦 Cum dolup taştı · 👶 Back Together olayları 4 hafta açık'); }
+    }
+    if (f.hamile && c.pregAt == null) { c.pregAt = c.life; c.pregW = 1; delete c.dueW; dueOf(c); if (!c.babyBy) c.babyBy = 'me'; note(`🤰 ${first} hamile · ${babyDad(c)}`); sfx('preg'); }
+    if (!f.hamile) { delete c.pregAt; delete c.pregW; delete c.babyBy; delete c.dueW; return; }
     const w = pregWeek(c), was = c.pregW || 1;
     if (w <= was) return;
     c.pregW = w;
-    const sut = allParams().find(p => p.who !== 'me' && String(p.label).toLocaleLowerCase('tr') === 'süt');
+    const herP = l => allParams().find(p => p.who !== 'me' && String(p.label).toLocaleLowerCase('tr') === l);
+    const sut = herP('süt');
     if (sut && w >= 12) applyOutcome({ text: '', effects: [{ p: 'p:' + sut.id, d: 2 * (w - Math.max(was, 11)) }] }, [c.id]);
-    if (w >= 40) {
-      const hb = c.babyBy === 'hb', dad = babyDad(c);
-      f.hamile = false; delete c.pregAt; delete c.pregW; delete c.babyBy; c.births = (c.births || 0) + 1;
+    // 🌡️ hormon dalgası her geçen hafta Uyarılma'yı değiştirir (en çok 3 hafta sayılır)
+    const uy = herP('uyarılma'), hd = { bulanti: -3, libido: 4, yorgun: -2 }[hormOf(c)] || 0;
+    if (uy && hd) applyOutcome({ text: '', effects: [{ p: 'p:' + uy.id, d: hd * Math.min(3, w - was) }] }, [c.id]);
+    const pd = pregDress(c);
+    if (pd.length) note(`👗 Dar kıyafetler artık olmuyor (${pd.join(', ')}); ${first} hamile kıyafetlerine geçti 🤰`);
+    // 🏥 klinik kontrolleri: 8 ilk ultrason, 20 detaylı ultrason (cinsiyet), 32 son kontrol
+    if (was < 20 && w >= 20 && !c.babySex) c.babySex = Math.random() < .5 ? 'kız' : 'erkek';
+    [[8, () => `🏥 Klinik · ilk ultrason: kalp atışı duyuldu, ekranda minicik bir nokta · ${first} ağlamaklı gülümsüyor`],
+      [20, () => `🏥 Klinik · detaylı ultrason: her şey yolunda, ${c.babySex === 'kız' ? '🎀 bir kız' : '💙 bir erkek'} bebek geliyor`],
+      [32, () => `🏥 Klinik · son kontrol: bebek baş aşağı döndü, doktor "hazırlıklara başlayın" dedi`]].forEach(([k, t]) => { if (was < k && w >= k) note(t()); });
+    if (w >= dueOf(c)) {
+      const hb = c.babyBy === 'hb', dad = babyDad(c), hus = hb ? ((husbChar(c) || {}).name || 'kocası').split(' ')[0] : 'sen';
+      f.hamile = false; delete c.pregAt; delete c.pregW; delete c.babyBy; delete c.dueW; c.births = (c.births || 0) + 1;
       const kb = c.kidsBy || (c.kidsBy = {}); kb[hb ? 'hb' : 'me'] = (kb[hb ? 'hb' : 'me'] || 0) + 1;
-      note(hb ? `👶 ${first} doğum yaptı! Kocasının bebeği dünyaya geldi · ${dad}` : `👶 ${first} doğum yaptı! Bebeğiniz dünyaya geldi 💗 · ${dad}`); sfx('baby'); return;
+      const nm = c.babyName || '', sx = c.babySex || (Math.random() < .5 ? 'kız' : 'erkek'); delete c.babyName; delete c.nameNo; delete c.babySex;
+      (c.kids || (c.kids = [])).push({ by: hb ? 'hb' : 'me', at: c.life, sex: sx, ...(nm ? { name: nm } : {}) }); c.postAt = c.life;
+      // 🏥 doğum sahnesi: su gelir → hastane yolu → doğumhane → doğum → ilk kucaklama
+      note(`💦 ${w}. hafta · su geldi! ${first} karnını tutuyor: "Sanırım vakit geldi…"`);
+      note(`🚕 Hastane yolu: çanta haftalardır kapının yanında hazırdı, yol hiç bitmedi`);
+      note(`🏥 Doğumhane: ${4 + Math.floor(Math.random() * 12)} saat süren sancı · elini ${hb ? `${hus} tuttu` : 'hiç bırakmadın'}`);
+      note((hb ? `👶 ${first} doğum yaptı! Kocasının bebeği dünyaya geldi · ${dad}` : `👶 ${first} doğum yaptı! Bebeğiniz dünyaya geldi 💗 · ${dad}`) + ` · ${sx === 'kız' ? '🎀 kız' : '💙 erkek'}${nm ? ` · 🍼 ${nm}` : ''}`); sfx('baby');
+      note(`🤱 İlk kucaklama: minicik parmaklar annesinin parmağını sımsıkı tuttu · ${first} sevinçten ağlıyor`);
+      note(`🩹 ${POST_WEEKS} haftalık lohusa dönemi başladı: vajinal / anal kapalı; ön sevişme, emzirme ve yakınlık açık`); return;
     }
-    [[13, '🤰 İkinci üç ay başladı'], [27, '🤰 Son üç ay başladı, karnı iyice büyüdü'], [36, '🤰 Doğum yaklaşıyor']].forEach(([k, t]) => { if (was < k && w >= k) note(`${t} · ${first} ${w}. haftada`); });
+    [[13, '🤰 İkinci üç ay başladı · 🔥 bulantı geçti, hormonları coşuyor'], [20, '🫄 Karnı artık belirgin'], [27, '🤰 Son üç ay başladı, karnı iyice büyüdü · 💤 çabuk yoruluyor, şefkat istiyor'], [36, '🤰 Doğum yaklaşıyor']].forEach(([k, t]) => { if (was < k && w >= k) note(`${t} · ${first} ${w}. haftada`); });
   }
   /* 👤 karakter menüsü (sohbette avatara uzun bas): profil, günlük, klonla, paylaş */
   function charMenu(c) {
@@ -27164,7 +27329,7 @@
   const CHAR_KIND = 'carmen-char';
   function charPack(c, lite) {
     const d = JSON.parse(JSON.stringify(c));
-    ['id', 'life', 'lf', 'pregAt', 'pregW', 'created'].forEach(k => delete d[k]);
+    ['id', 'life', 'lf', 'pregAt', 'pregW', 'postAt', 'created'].forEach(k => delete d[k]);
     if (lite) { if (/^data:/.test(d.photo || '')) d.photo = ''; d.album = (d.album || []).filter(u => !/^data:/.test(u)); }
     const names = {};
     ['likes', 'dislikes', 'allows', 'denies'].forEach(k => { names[k] = feelEvents(d[k] || []).map(e => e.title); });
@@ -27461,6 +27626,14 @@
   }
   const outfitOf = c => c.outfit || {};
   const outfitItems = c => WEAR_ORDER.map(s => clItem(outfitOf(c)[s])).filter(Boolean);
+  // 🤰 karın belirgin (bellyOf ≥ 2): dar parçaları (clothes.js tight) çıkarır, yerine hamile parçaları; çıkanların adlarını döner
+  const pregDress = c => {
+    if (!c.outfit || bellyOf(c) < 2) return [];
+    const o = c.outfit, out = [];
+    WEAR_BASE.forEach(s => { const it = clItem(o[s]); if (it && it.tight) { out.push(it.name); o[s] = ''; } });
+    if (out.length && !o.elbise) { if (!o.ust && !o.alt) o.elbise = 'hamileelbise'; else { if (!o.alt) o.alt = 'hamiletayt'; if (!o.ust) o.ust = 'tisort'; } }
+    return out;
+  };
   // 🤱 emzirme kıyafetleri (clothes.js): rastgele gardıroba sadece hamileyse girer; giyiliyse Nursing olayları 🎯 Şimdi'de öne çıkar
   const NURSE_WEAR = ['emzirmebluz', 'emzirmesutyen'];
   const NURSE_OUT = ['park', 'kafe', 'restoran', 'alisveris', 'sinema', 'sahil', 'piknik', 'vapur', 'araba', 'kampus', 'sergi', 'kitapci', 'lunapark', 'is'];
@@ -27583,7 +27756,7 @@
       <div class="dr-h" style="margin-top:6px">🧥 Hazır kombinler</div><div class="dr-items dr-combos">${(CL.combos || []).map(k => `<button type="button" class="dr-it" data-dc="${k.id}">${k.emoji} ${esc(k.name)}${k.fant ? ' 🎭' : ''}</button>`).join('')}</div>
       <div class="dr-body"></div>`, 'light');
     const draw = () => {
-      const o = outfitOf(c), w = new Set(c.wardrobe || []);
+      const o = outfitOf(c), w = new Set(c.wardrobe || []), big = bellyOf(c) >= 2;
       sh.el.querySelector('.dr-help').textContent = wmode ? 'Dokun: genelde giydiklerine ekle / çıkar (⭐). 🔥 iddialı parçalar.' : 'Dokun: giydir. ⭐ genelde giydikleri önde, 🔥 iddialı. Elbise giyince üst ve alt çıkar.';
       const wb = sh.el.querySelector('[data-dr="wmode"]');
       if (wb) wb.classList.toggle('primary', wmode);
@@ -27591,7 +27764,7 @@
         const cur = clItem(o[s.id]), its = CL.items.filter(x => x.slot === s.id).sort((a, b) => w.has(b.id) - w.has(a.id));
         return `<div class="dr-slot"><div class="dr-h">${s.icon} ${esc(s.label)}${!wmode && cur ? ` · <b>${esc(cur.name)}</b>` : ''}</div><div class="dr-items">
           ${wmode ? '' : `<button type="button" class="dr-it${cur ? '' : ' on'}" data-ds="${s.id}" data-di="">🚫 Yok</button>`}
-          ${its.map(x => `<button type="button" class="dr-it${(wmode ? w.has(x.id) : cur === x) ? ' on' : ''}${x.style === 'i' ? ' bold' : ''}${x.style === 'k' ? ' kost' : ''}" data-ds="${s.id}" data-di="${x.id}">${x.emoji} ${esc(x.name)}${w.has(x.id) ? ' ⭐' : ''}${x.style === 'i' ? ' 🔥' : x.style === 'k' ? ' 🎭' : ''}</button>`).join('')}</div></div>`;
+          ${its.map(x => `<button type="button" class="dr-it${(wmode ? w.has(x.id) : cur === x) ? ' on' : ''}${x.style === 'i' ? ' bold' : ''}${x.style === 'k' ? ' kost' : ''}"${!wmode && x.tight && big ? ' style="opacity:.45" title="Karnı büyüdü, dar geliyor"' : ''} data-ds="${s.id}" data-di="${x.id}">${x.emoji} ${esc(x.name)}${w.has(x.id) ? ' ⭐' : ''}${x.style === 'i' ? ' 🔥' : x.style === 'k' ? ' 🎭' : ''}${x.preg && (c.fields || {}).hamile ? ' 🤰' : ''}${!wmode && x.tight && big ? ' 🚫' : ''}</button>`).join('')}</div></div>`;
       }).join('');
     };
     sh.el.onclick = e => {
@@ -27610,6 +27783,7 @@
       if (a === 'naked') c.outfit = { ust: '', alt: '', elbise: '', sutyen: '', tanga: '', corap: '' };
       if (b.dataset.ds) {
         const s = b.dataset.ds, id = b.dataset.di;
+        if (!wmode && bellyOf(c) >= 2 && (clItem(id) || {}).tight) return notify('Karnı büyüdü, bu artık dar geliyor', '🤰');
         if (wmode) { const w = c.wardrobe || []; c.wardrobe = w.includes(id) ? w.filter(x => x !== id) : [...w, id]; }
         else {
           const o = c.outfit = { ...outfitOf(c), [s]: id };
@@ -27617,6 +27791,7 @@
           if ((s === 'ust' || s === 'alt') && id) o.elbise = '';
         }
       }
+      if (!wmode) pregDress(c);
       if (!wardrobeOnly) save();
       draw();
       if (done) done();
@@ -28597,7 +28772,8 @@
     'inside after': 'İçinde kaldıktan sonra: çıkarken gelen o minik ses, avucunda taşan sıcaklık, banyoya sekerek yürüyüş, çabukluğa gülümseme.',
     'filled pussy': 'İçi önceki yükle dolu, sevişme sürüyor: her girişte taşan sıcaklık, ıslak sesler, karnında hafif bir dolgunluk.',
     'filled ass': 'Arkası önceki yükle dolu, sevişme sürüyor: kayganlık, karın gurultusu, hiçbir damla kaçmasın diye sıkılan kalça.',
-    'filled after': 'Dolu kaldıktan sonra: tıpayla gün boyu taşımak, çömelip boşaltmak, ayna karşısında izletmek, sabah hâlâ sızmak.'
+    'filled after': 'Dolu kaldıktan sonra: tıpayla gün boyu taşımak, çömelip boşaltmak, ayna karşısında izletmek, sabah hâlâ sızmak.',
+    'cultural positions': 'Kültürlere özgü pozisyonlar: Kama Sutra, Edo\'nun 48 pozu, Taocu metinler, Ovidius, Kokulu Bahçe ve Mısır papirüsü. 📜 olanlar kaynakta gerçekten var, ✨ olanlar esinli kurgu.'
   };
   const EV_TELL_TAG = {
     vajinal: 'Önden, vajinal bir an: korunmanız neyse tepkisi ona göre şekillenir; içine bitersen hamilelik zarı da atılır.',
@@ -28622,7 +28798,10 @@
     içinde: 'Boşaldıktan sonra çıkmazsın: içinde kalırsın, o da bırakmaz.', cılız: 'Boşaldıktan sonra yarı sert: aşırı hassas, yavaş ve hâlâ içinde.', girerken: 'Daha girerken: ilk itişte ya da yarı yolda dayanamazsın.', vuruşla: 'Soktukça boşalma: her vuruşta bir dalga daha; ancak 💦 Cum yeterince doluysa.', dolu: 'Dölle dolu: vajinası ya da bağırsağı önceki yüklerle dolmuş, her hareket bunu hissettirir.',
     yağ: 'Yağlı: her şey kayar, hiçbir yer tutulmaz.', ısı: 'Sıcak ve soğuk: buz ya da mum damlası tenine değer.', ayna: 'Ayna karşısında: ikiniz de kendinizi izlersiniz.',
     gözlük: 'Gözlüğü takılı kalır.', naylon: 'Çoraplı: naylonun dokusu her şeyi değiştirir.', hakimiyet: 'Güç ve boy farkı: biri öbürünü taşır, oturur ya da yukarıdan izler.',
-    uyku: 'O uyurken: önceden izin verdiyse ve gece 23:00–07:00 arasıysa; uyku derinliği 😴 3\'ten 0\'a iner, uyanınca kuralı geçerli.'
+    uyku: 'O uyurken: önceden izin verdiyse ve gece 23:00–07:00 arasıysa; uyku derinliği 😴 3\'ten 0\'a iner, uyanınca kuralı geçerli.',
+    kültür: 'Bir kültürün aşk geleneğinden: Roma, Edo Japonya, Hindistan, Çin, Arap ve Osmanlı dünyası ya da eski Mısır.',
+    kaynak: '📜 Kaynakta gerçekten var: adı ve tarifi tarihi bir metinde ya da eserde geçer (Kama Sutra, Su Nü Jing, Ovidius, Kokulu Bahçe, shunga, papirüs).',
+    esinli: '✨ Esinli kurgu: kültürden ilham alır ama bu haliyle hiçbir kaynakta geçmez.'
   };
   const EV_TELL_FX = ['Olduğu an {fx}.', 'Etkisi hemen hissedilir: {fx}.', 'Bu anın ardından {fx}.'];
   const EV_TELL_PREV = ['Genelde {a} sonrasında gelir.', 'Çoğu zaman {a} ardından yaşanır.', 'Akışta sırası genelde {a} sonrasıdır.'];
@@ -29148,7 +29327,7 @@
     { icon: '🌗', title: 'Yeni dinamikler', sub: 'acı, döngü, hamilelik, kesintiler, mekan', body: `
       <p><b>😣 Acı</b> karakterin bir değeri (📊 kartta). Dar karakterde büyük boyut (söylediğin santim 18+), anal, Virgo ve Rough / Brutal Mode artırır; Gentle, Foreplay ve Eat azaltır; her saat başı −10. Acı 30'u geçince "biraz yavaş…", 60'ı geçince "dur, acıtıyor 😣" der.</p>
       <p><b>🩸 Döngü takvimi</b>: her karakterin 28 günlük döngüsü 🕰️ sohbet saatiyle ilerler. 1–5 regl (doğurganlık ×0,15), 11–16 <b>riskli gün</b> (×1,8). 📊 kartta "🔥 13. gün · riskli gün" görünür; riskli günde korunmasız önden pozisyonda karakter uyarır, Lia da hatırlatır.</p>
-      <p><b>🤰 Hamilelik zaman çizelgesi</b>: hamile kalınca haftalar sayılır (bir hafta = 2 saat sohbet zamanı). 12. haftadan sonra 🍼 Süt her hafta artar; 13. ve 27. haftada üç ay geçişi, 40. haftada 👶 doğum olur. Cevaplar üç aya göre değişir.</p>
+      <p><b>🤰 Hamilelik zaman çizelgesi</b>: hamile kalınca haftalar sayılır (bir hafta = 2 saat sohbet zamanı). 12. haftadan sonra 🍼 Süt her hafta artar; 13. ve 27. haftada üç ay geçişi, 38–42. hafta arası 👶 doğum sahnesi, ardından 🩹 6 haftalık lohusa dönemi olur. Cevaplar ve 🌡️ ruh hali döneme göre değişir; ⏩ hafta çipinden zamanı atlayabilir ya da ⚡ hızlandırabilirsin. Ayrıntılar: <a href="#/kitap/hamile/7">🤰 Hamilelik Kitabı</a>.</p>
       <p><b>📱 Rastgele kesintiler</b>: pozisyondan sonra bazen telefon çalar, kapı çalınır, komşu duvara vurur, mesaj gelir (%6). Cheating fantezisi sürüyorsa daha sık (%22) ve "Sevgilim arıyor", "biri eve geliyor!" gibi yakalanma anları gelir. Karakter ona göre panikler ya da güler.</p>
       <p><b>📍 Mekan</b>: son mekan kartına göre (🚗 araba, 🚿 duş, 🎬 sinema, ☕ kafe…) bazı pozisyonlar olmaz ("Arabada ayağa kalkacak yer yok") ve karakter mekana özel konuşur. Lia o mekanda olamayacakları önermez.</p>
       <p><b>👗 Giyim</b>: karakterin "genelde giydikleri" (üst, alt, elbise, sütyen, tanga / külot, çorap / jartiyer; günlük ve 🔥 iddialı) Oluştur'da rastgele gelir. Profil → 👗 Giyim ya da sohbetteki 📊 kartta 👗 çipiyle istediğin gibi giydirirsin. Karakter giydiğine göre konuşur: "ne giyiyorsun?" sorusuna, Show Tits / Show Ass'te ("Gömleğimin üst düğmelerini açtım…"), ilk sevişmede soyunurken ("Mini eteğimi belime kadar sıyırdım"), "sütyenini çıkar", "tanga mı giydin" gibi mesajlarda.</p>
@@ -31394,7 +31573,7 @@
     } }] });
   /* 🤰 Hamilelik Kitabı: Pregnancy Foreplay / Pregnancy (c:mvpregfp01x, c:mvpreg01x + 'hamile' bitişleri), hafta kapısı (e.weeks, pregBlock), sahneler */
   const hmWeeks = evs => `<table class="bk-t"><tr><th>Olay</th><th>Hafta</th><th>Ne olur</th></tr>${evs.map(e => `<tr><td>${e.emojis || ''} <b>${esc(e.title)}</b></td><td>${(e.weeks || [1, 40]).join('–')}</td><td>${esc(evTell(e))}</td></tr>`).join('')}</table>`;
-  BOOKS.push({ id: 'hamile', icon: '🤰', title: 'Hamilelik Kitabı', sub: 'hamileyken ön sevişme, pozisyonlar, bitişler, sahneler, zaman atlama ve bebeğin babası', chips: ['40 olay', '🎬 4 sahne', '📅 hafta', '⏩ zaman atla', '👨 baba'], chapters: [
+  BOOKS.push({ id: 'hamile', icon: '🤰', title: 'Hamilelik Kitabı', sub: 'hamilelik ve doğumdan sonrası: olaylar, sahneler, zaman, hormonlar, doğum, lohusa ve bebek', chips: ['57 olay', '🎬 19 sahne', '📅 hafta', '⚡ zaman hızı', '🌡️ hormon', '🏥 doğum', '🩹 lohusa', '👶 bebek'], chapters: [
     { icon: '📖', title: 'Hamilelik Kitabı nasıl okunur', sub: 'hafta kapısı, kategoriler, bitişler', get body() {
       return `<p>🤰 Creampie bitişlerinden sonra hamile kalabilir; durum çubuğunda haftası görünür. Bu kitap o dönemin olaylarını anlatır: <b>💞 Pregnancy Foreplay</b> (<b>📜 Olay yaz → 👅 Ön sevişme</b>) ve <b>🤰 Pregnancy</b> (<b>🔥 Pozisyon</b>). <b>#</b> yazıp olayın adıyla da başlarlar.</p>
         <ul><li><b>📅 Hafta kapısı</b>: bu olaylar sadece hamile bir karakterle olur. Hepsi 1. haftadan açıktır; karın büyüdükçe bazıları kapanır, geç yazarsan "30. haftadan sonra olmaz" uyarısı gelir ve olay yazılmaz.</li>
@@ -31402,26 +31581,33 @@
           <li><b>🔥 Pozisyonlar</b> 1. haftadan açık; karın büyüdükçe bazıları kapanır, son haftalarda sadece yan yatarak olanlar kalır.</li>
           <li><b>💦 Bitişler</b> sadece hamilelik pozisyonlarından sonra eşleşir. Pozisyonun kendi bitişi varsa o gelir (Slow Lotus → Lotus Creampie, Sofa Edge Missionary → Sofa Bump Cumshot); yoksa içe (Creampie Belly Rub, Milk &amp; Cum, Hormone Multi) ya da karna / göğse (Swollen Tits Cumshot, Oil &amp; Cum Rub) bitişlerden biri. İçe bitişler yeni hamilelik getirmez; zaten hamile.</li>
           <li><b>💭 Teklifler ve ⚡ Kısayollar</b>: hamile olmayan bir karakter bu olayları ya da sahneleri teklif etmez, kısayollarda da çıkmaz.</li>
+          <li><b>🌡️ Hamilelik ilerledikçe</b>: ruh hali, karın ve gardırop değişir; 8 / 20 / 32. haftada klinik kontrolü, 38–42. haftada doğum olur. Ayrıntılar: <a href="#/kitap/hamile/8">🌡️ Hormonlar, karın ve gardırop</a>, <a href="#/kitap/hamile/9">🏥 Klinik, isim ve doğum</a>.</li>
+          <li><b>👶 Doğumdan sonra</b>: 6 hafta lohusa dönemi, 🩺 doktor onayı, bebek kesintileri ve 17 yeni olay: <a href="#/kitap/hamile/10">🩹 Lohusa</a>, <a href="#/kitap/hamile/11">👶 After Birth ve Back Together</a>.</li>
           <li><b>🌹 İlan kızları</b>: seansta hamile kalırsa saat sınırı kalkar; "Ahhh içime bıraktın hamileyim 🤰" der, süre dolmaz. Cümle kişiliğine (utangaç, soğuk, flörtöz, alaycı) ve bunu isteyip istemediğine göre değişir.</li></ul>
         ${bkChat('🤰 Örnek', [['ev', '📜 🤲🤰 Bump Caress'], ['her', 'Hissettin mi? Tekme attı 🥹'], ['note', '🎬 Karnına Dokun sahnesi başladı: iki adım, sonra bitiş.'], ['ev', '📜 🌙🤰 Slow Lotus'], ['her', 'Yavaş… böyle çok güzel 🥰'], ['ev', '📜 🌙💦 Lotus Creampie']])}`;
     } },
     { icon: '⏩', title: 'Haftalar ve zaman atlama', sub: 'hafta nasıl ilerler, dönemler, ⏩ çipi', get body() {
-      return `<p>🤰 Hamilelik sohbet saatiyle ilerler: her mesajda 🕰️ saat bir adım ilerler, <b>${PREG_WEEK / 60} saat sohbet zamanı = 1 hafta</b>. 40. haftada doğum olur; yani zaman atlamadan doğuma kadar yaklaşık <b>${Math.round(39 * PREG_WEEK / 60)} saat</b> sohbet zamanı gerekir. Hafta kapılı olayları görmek için bu kadar beklemek zorunda değilsin: <b>⏩ zaman atlama</b> var.</p>
+      return `<p>🤰 Hamilelik sohbet saatiyle ilerler: her mesajda 🕰️ saat bir adım ilerler, <b>${PREG_WEEK / 60} saat sohbet zamanı = 1 hafta</b>. Doğum 38–42. hafta arasında olur (en sık 40); yani zaman atlamadan doğuma kadar yaklaşık <b>${Math.round(39 * PREG_WEEK / 60)} saat</b> sohbet zamanı gerekir. Hafta kapılı olayları görmek için bu kadar beklemek zorunda değilsin: <b>⏩ zaman atlama</b> ve <b>⚡ zaman hızı</b> var (<a href="#/kitap/hamile/7">⚡ Zaman ve hız</a>).</p>
         <h4>📅 Dönemler</h4>
         <table class="bk-t"><tr><th>Hafta</th><th>Ne olur</th></tr>
           <tr><td><b>1</b></td><td>Hamile kalır; sohbete "🤰 hamile · 💗 Baba: sen" notu düşer, durum çipinde hafta sayılmaya başlar.</td></tr>
-          <tr><td><b>1–12</b></td><td>İlk üç ay. 💞 ön sevişme ve 🔥 pozisyonların çoğu açık.</td></tr>
+          <tr><td><b>1–12</b></td><td>İlk üç ay, 🤢 bulantı: Uyarılma haftada −3. 💞 ön sevişme ve 🔥 pozisyonların çoğu açık.</td></tr>
+          <tr><td><b>8</b></td><td>🏥 İlk ultrason: kalp atışı.</td></tr>
           <tr><td><b>12+</b></td><td>🍼 Süt her hafta +2 artar (Süt parametresi varsa). 20. haftadan sonra süt kalitesi +15.</td></tr>
-          <tr><td><b>13</b></td><td>"🤰 İkinci üç ay başladı" notu.</td></tr>
-          <tr><td><b>27</b></td><td>"🤰 Son üç ay başladı, karnı iyice büyüdü" notu. Karnı zorlayan pozisyonlar kapanmaya başlar.</td></tr>
+          <tr><td><b>13</b></td><td>"🤰 İkinci üç ay başladı" notu; 🔥 hormon coşkusu: Uyarılma haftada +4. Karın hafif kabarır.</td></tr>
+          <tr><td><b>20</b></td><td>🫄 Karın belirginleşir, dar kıyafetler olmaz. 🏥 Detaylı ultrason: 🎀 kız ya da 💙 erkek.</td></tr>
+          <tr><td><b>27</b></td><td>"🤰 Son üç ay başladı, karnı iyice büyüdü" notu; 💤 yorgunluk: Uyarılma haftada −2. Karnı zorlayan pozisyonlar kapanmaya başlar.</td></tr>
+          <tr><td><b>32</b></td><td>🏥 Son kontrol: bebek baş aşağı döner.</td></tr>
           <tr><td><b>36</b></td><td>"🤰 Doğum yaklaşıyor" notu. Sadece yan yatarak ve yavaş olanlar kalır.</td></tr>
-          <tr><td><b>40</b></td><td>👶 Doğum: hamilelik biter, doğum sayısı +1, kimden olduğu kaydedilir. Sonra yeniden hamile kalabilir.</td></tr></table>
+          <tr><td><b>38–42</b></td><td>👶 Doğum sahnesi (en sık 40): su gelir, hastane, doğumhane, doğum, ilk kucaklama. Sonra 🩹 6 haftalık lohusa dönemi. Sonra yeniden hamile kalabilir.</td></tr></table>
         <h4>⏩ Zaman atlama</h4>
-        <p>Sohbette <b>📊 durum kartını</b> aç; hamile karakterin satırında <b>🤰 12. hafta · 💗 senden ⏩</b> gibi bir çip var. Ona dokun, üç seçenek çıkar:</p>
+        <p>Sohbette <b>📊 durum kartını</b> aç; hamile karakterin satırında <b>🤰 12. hafta · 💗 senden ⏩</b> gibi bir çip var. Ona dokun, şu seçenekler çıkar:</p>
         <table class="bk-t"><tr><th>Seçenek</th><th>Ne yapar</th></tr>
           <tr><td><b>⏭️ +1 hafta</b></td><td>Bir hafta ileri. Bir olayın kapısı bir hafta sonra açılıyorsa en kolayı.</td></tr>
           <tr><td><b>⏩ Sonraki döneme geç</b></td><td>Bir sonraki eşiğe atlar: 13. hafta (ikinci üç ay), 27. hafta (son üç ay) ya da 36. hafta (doğum yaklaşıyor). Zaten eşiğin bir hafta öncesindeysen görünmez; +1 hafta aynı işi yapar.</td></tr>
-          <tr><td><b>👶 Doğuma kadar git</b></td><td>40. haftaya atlar, doğum hemen olur.</td></tr></table>
+          <tr><td><b>👶 Doğuma kadar git</b></td><td>Gizli doğum haftasına (38–42) atlar, doğum sahnesi hemen olur.</td></tr>
+          <tr><td><b>⚡ ×1 / ×2 / ×4 / ×8</b></td><td>Zaman hızı: atlamadan, sohbet ilerledikçe hamilelik o kat hızlı akar.</td></tr>
+          <tr><td><b>🍼 İsim öner</b></td><td>Bebeğe isim önerirsin; o kabul eder ya da reddeder.</td></tr></table>
         <ul><li><b>Aradaki her şey olur</b>: 5. haftadan 30. haftaya atlarsan önce "⏩ 25 hafta geçti" notu, sonra "İkinci üç ay" ve "Son üç ay" notları sırayla düşer. Atlanan haftaların 🍼 Süt'ü de bir kerede eklenir.</li>
           <li><b>Hafta kapısı hemen değişir</b>: atladıktan sonra yeni haftaya uyan olaylar açılır, geçmiş olanlar kapanır. Her olayın aralığı 💞 Pregnancy Foreplay ve 🔥 Pregnancy bölümlerinin tablolarında; geç kalırsan "artık olmaz" uyarısı gelir.</li>
           <li><b>Sadece hamilelik ilerler</b>: sohbet saati, 🩸 döngü günü ve diğer karakterler değişmez. Yani atlamak sohbetin akışını bozmaz.</li>
@@ -31449,20 +31635,118 @@
     { icon: '💦', title: 'Hamilelik bitişleri', sub: 'içe, karnına, göğüslerine, sütle birlikte', get body() {
       return `<p>💦 Sadece 🤰 hamilelik pozisyonlarından sonra eşleşir. Milk &amp; Cum ayrıca 🍼 Süt'ü azaltır.</p>${hmWeeks(allEvents().filter(e => e.cat !== 'c:mvpreg01x' && isPregEv(e) && (e.tags || []).includes('boşalma')))}`;
     } },
-    { icon: '🎬', title: 'Hamilelik sahneleri', sub: 'dört hamilelik sahnesi', get body() {
+    { icon: '🎬', title: 'Hamilelik sahneleri', sub: 'hamilelik, süt ve doğum sonrası sahneleri', get body() {
       return `<p>Açılış olayını yazınca sahne başlar; adımlar ⚡ şeridinde görünür. Hamile değilse açılış olayı yazılmaz, sahne de başlamaz.</p>${evScenes(['hamile'])}`;
     } },
-    { icon: '🗺️', title: 'Sırada ne var', sub: 'planlanan: lohusa, bebek, doğum sonrası', get body() {
+    { icon: '⚡', title: 'Zaman ve hız', sub: 'hafta = 2 saat sohbet, atlama, ×2–×8 hız', get body() {
+      const row = x => `<tr><td><b>×${x}</b></td><td>${PREG_WEEK / x} dakika</td><td>~${Math.round(39 * PREG_WEEK / x / 60)} saat</td></tr>`;
+      return `<p>⏱️ Hamilelik ve lohusa dönemi sohbet saatiyle ilerler: 2 saatlik sohbet zamanı bir haftadır. Bunu iki yolla hızlandırabilirsin.</p>
+        <table class="bk-t"><tr><th>Yol</th><th>Nasıl</th><th>Ne olur</th></tr>
+          <tr><td><b>⏩ Atlama</b></td><td>Durum kartında hafta çipine dokun.</td><td>Seçtiğin kadar hafta bir anda geçer; aradaki notlar sırayla düşer.</td></tr>
+          <tr><td><b>⚡ Hız</b></td><td>Aynı pencerede ×1, ×2, ×4 ya da ×8 seç.</td><td>Sohbet saati ilerledikçe hamilelik ya da lohusa dönemi o kat hızlı akar.</td></tr></table>
+        <table class="bk-t"><tr><th>Hız</th><th>1 hafta</th><th>Doğuma kadar</th></tr>${TIME_X.map(row).join('')}</table>
+        <ul><li>Hız karakter başınadır; grup sohbetinde her karakterin kendi hızı olur.</li>
+          <li>Seçtiğin hız kalır ve lohusa dönemine de geçer. ×1 seçince kapanır.</li>
+          <li>Çipte seçili hız görünür, örneğin ⚡×4.</li>
+          <li>Sohbet saati, 🩸 döngü günü ve diğer karakterler hızdan etkilenmez.</li>
+          <li>Lohusa döneminde pencerede +1 hafta ve 🩺 Doktor kontrolüne kadar git düğmeleri çıkar.</li></ul>
+        ${bkChat('⚡ Örnek', [['note', '⚡ Zaman ×4 hızla akıyor'], ['her', 'Hormonlarım coştu, aklım hep sende 😳'], ['note', '🫄 Karnı artık belirgin · Carmen 20. haftada']])}`;
+    } },
+    { icon: '🌡️', title: 'Hormonlar, karın ve gardırop', sub: 'bulantı, coşku, yorgunluk; karın büyür, dar kıyafet olmaz', get body() {
+      const tight = CL.items.filter(x => x.tight).map(x => `<span>${esc(x.name)}</span>`).join(', '), preg = CL.items.filter(x => x.preg).map(x => `<span>${esc(x.name)}</span>`).join(', ');
+      return `<p>🌡️ Hamileliğin her döneminin kendi ruh hali var. Bu ruh hali Uyarılma'yı, kısayol önerilerini ve cevaplarını değiştirir.</p>
+        <table class="bk-t"><tr><th>Dönem</th><th>Çip</th><th>Uyarılma</th><th>Öneriler</th><th>Örnek cümle</th></tr>
+          <tr><td><b>1–12. hafta</b></td><td>🤢 bulantı</td><td>haftada −3</td><td>İçeri giren olaylar geride kalır.</td><td>Midem yine bulanıyor, kraker kemiriyorum</td></tr>
+          <tr><td><b>13–26. hafta</b></td><td>🔥 hormon coşkusu</td><td>haftada +4</td><td>Hamilelik olayları öne çıkar.</td><td>Aşerdim… ama yiyecek değil, seni</td></tr>
+          <tr><td><b>27. hafta ve sonrası</b></td><td>💤 yorgunluk</td><td>haftada −2</td><td>Nazik, içeri girmeyen olaylar öne çıkar.</td><td>Gel sarıl bana, sadece sarıl</td></tr>
+          <tr><td><b>Lohusa</b></td><td>😴 uykusuz</td><td>—</td><td>Nazik olaylar öne çıkar.</td><td>Gece üç kere kalktım, gözlerim kapanıyor</td></tr></table>
+        <ul><li>Uyarılma her hafta geçişinde değişir; atlamada en çok 3 hafta sayılır.</li>
+          <li>Döneme uygun cümleler cevabına %25 ihtimalle ayrı bir balon olarak eklenir.</li>
+          <li>Kısayol çipinin üstüne gelince öne çıkma sebebi yazar.</li></ul>
+        <h4>🤰 Karın</h4>
+        <table class="bk-t"><tr><th>Hafta</th><th>Karın</th><th>Ne değişir</th></tr>
+          <tr><td><b>1–12</b></td><td>henüz belli değil</td><td>—</td></tr>
+          <tr><td><b>13–19</b></td><td>hafif kabarık</td><td>Profilde 🤰 Karın satırı görünür.</td></tr>
+          <tr><td><b>20–26</b></td><td>belirgin karın</td><td>Görünüş balonu karından bahseder; dar kıyafetler olmaz.</td></tr>
+          <tr><td><b>27–35</b></td><td>büyük karın</td><td>Balon önden zor olduğunu, yan yatmayı söyler.</td></tr>
+          <tr><td><b>36+</b></td><td>kocaman karın</td><td>Bebek tekmeler, elini koymanı ister.</td></tr></table>
+        <h4>👗 Hamile gardırobu</h4>
+        <p>20. haftadan sonra dar parçalar artık olmuyor. Üstündeyse hafta geçerken çıkarılır, yerine hamile parçaları gelir ve sohbete not düşer.</p>
+        <table class="bk-t"><tr><th>Dar parçalar</th><th>Hamile parçaları</th></tr><tr><td>${tight}</td><td>${preg}</td></tr></table>
+        <ul><li>Giydirme ekranında dar parçalar soluk ve 🚫 işaretli görünür; seçersen uyarı gelir.</li>
+          <li>Hamile parçalarının yanında 🤰 işareti var.</li>
+          <li>Belli bir parçayı isteyen olaylar o parça giyilemeyince kapanır.</li></ul>`;
+    } },
+    { icon: '🏥', title: 'Klinik, isim ve doğum', sub: 'üç kontrol, cinsiyet, isim oylaması, 38–42. hafta doğum sahnesi', get body() {
+      return `<p>🏥 Hamilelik boyunca üç klinik kontrolü kendiliğinden olur. Doğum da artık tek bir an değil, küçük bir sahne.</p>
+        <table class="bk-t"><tr><th>Hafta</th><th>Kontrol</th><th>Ne öğrenirsin</th></tr>
+          <tr><td><b>8</b></td><td>İlk ultrason</td><td>Kalp atışı duyulur.</td></tr>
+          <tr><td><b>20</b></td><td>Detaylı ultrason</td><td>Bebeğin cinsiyeti belli olur: 🎀 kız ya da 💙 erkek.</td></tr>
+          <tr><td><b>32</b></td><td>Son kontrol</td><td>Bebek baş aşağı döner.</td></tr></table>
+        <h4>🍼 İsim oylaması</h4>
+        <p>🍼 İsim öner düğmesi ⏩ penceresinde. Yazdığın isim sohbete senin mesajın olarak düşer, o da cevap verir.</p>
+        <ul><li>Kabul şansı ❤️ Aşk'a bağlı: en az %20, en çok %85.</li>
+          <li>Reddettiği ismi bir daha önerirsen yine reddeder.</li>
+          <li>Kabul edilen isim doğumda bebeğe geçer.</li>
+          <li>Doğumdan sonra adı konmamış son bebek için de isim önerebilirsin.</li></ul>
+        ${bkChat('🍼 Örnek', [['me', 'Bebeğin adı Ada olsun mu? 🍼'], ['her', 'Ada… çok güzel. Evet, Ada olsun 🥹💗']])}
+        <h4>🏥 Doğum</h4>
+        <p>Doğum haftası hamilelik başında gizlice belirlenir: 38 ile 42 arası, en sık 40. 36. haftadan sonra ⏩ penceresinde doğumun her an olabileceği yazar.</p>
+        <table class="bk-t"><tr><th>Adım</th><th>Ne olur</th></tr>
+          <tr><td><b>💦 Su gelir</b></td><td>Karnını tutar: "Sanırım vakit geldi…"</td></tr>
+          <tr><td><b>🚕 Hastane yolu</b></td><td>Çanta haftalardır kapının yanında hazırdı.</td></tr>
+          <tr><td><b>🏥 Doğumhane</b></td><td>4–15 saat sancı; elini sen ya da kocası tutar.</td></tr>
+          <tr><td><b>👶 Doğum</b></td><td>Babası, cinsiyeti ve adı nota yazılır.</td></tr>
+          <tr><td><b>🤱 İlk kucaklama</b></td><td>Minicik parmaklar annesinin parmağını sımsıkı tutar.</td></tr>
+          <tr><td><b>🩹 Lohusa</b></td><td>6 haftalık dönem başlar.</td></tr></table>
+        <ul><li>👶 Doğuma kadar git düğmesi tam doğum haftasına atlar.</li>
+          <li>40. haftadan sonra hafta kapılı olaylar 40. hafta gibi sayılır.</li>
+          <li>Bebek profildeki 👶 Çocuk satırına eklenir.</li></ul>`;
+    } },
+    { icon: '🩹', title: 'Lohusa, bebek ve doktor onayı', sub: '6 hafta, 🩺 onay, 🫙 birikim, bebek kesintisi', get body() {
+      return `<p>🩹 Doğumdan sonraki 6 hafta lohusa dönemidir. Durum çipinde 🩹 Lohusa 2/6. hafta gibi yazar.</p>
+        <table class="bk-t"><tr><th>Ne</th><th>Lohusa döneminde</th></tr>
+          <tr><td><b>Vajinal / anal olaylar</b></td><td>Kapalı; yazarsan doktor onayına kadar olmayacağını söyler.</td></tr>
+          <tr><td><b>Ön sevişme, emzirme, yakınlık</b></td><td>Açık.</td></tr>
+          <tr><td><b>👶 After Birth</b></td><td>🩹 işaretliler sadece bu dönemde açık.</td></tr>
+          <tr><td><b>Ruh hali</b></td><td>😴 Uykusuz ve hassas; nazik olaylar öne çıkar.</td></tr></table>
+        <h4>🩺 Doktor onayı</h4>
+        <p>6. haftanın sonunda doktor kontrolü kendiliğinden olur ve her şey yeniden açılır.</p>
+        <ul><li>🫙 Altı hafta bekleyen 💦 Cum'un 60 artar; gür bitişler açılır.</li>
+          <li>🩺 işaretli Back Together olayları onaydan sonraki 4 hafta açık kalır.</li>
+          <li>Beklemek istemezsen ⏩ penceresinde 🩺 Doktor kontrolüne kadar git.</li></ul>
+        <h4>👶 Bebek kesintisi</h4>
+        <p>2 yaşından küçük bebeği varken pozisyon, fantezi ya da emzirme olayından sonra %12 ihtimalle bebek araya girer. Bunun için 📱 Kesintiler açık olmalı.</p>
+        <table class="bk-t"><tr><th>Kesinti</th><th>Onun cevabı</th></tr>
+          <tr><td>👶 Telsizden ağlama sesi</td><td>Ah, uyandı… iki dakika bekle, hemen dönüyorum</td></tr>
+          <tr><td>🍼 Süt sızmaya başlar</td><td>Önce onu doyurayım, sonra seni</td></tr>
+          <tr><td>🧸 Yan odadan bir ses</td><td>Uykusunda konuşuyor, merak etme</td></tr>
+          <tr><td>😴 Yorgun bir gülüşme</td><td>Hızlı olalım, iki saatimiz var en fazla</td></tr></table>
+        ${bkChat('🩹 Örnek', [['note', '🩺 Doktor kontrolü: Carmen tamamen iyileşti, onay çıktı · artık her şey serbest'], ['note', '🫙 6 hafta bekledin: 💦 Cum dolup taştı · 👶 Back Together olayları 4 hafta açık'], ['ev', '📜 🩺💞 First Time Again'], ['her', 'Acımıyor… sadece özlemişim 🥺']])}`;
+    } },
+    { icon: '👶', title: 'After Birth ve Back Together', sub: '17 olay, 6 sahne', get body() {
+      const ab = allEvents().filter(e => e.cat === 'c:mvafterbirth01x'), bt = allEvents().filter(e => /^mvbt/.test(e.id));
+      const gate = e => { const t = e.tags || []; return t.includes('lohusa') ? '🩹 lohusa' : t.includes('onay') ? '🩺 onaydan sonra' : '👶 anne'; };
+      const hmWeeks = evs => `<table class="bk-t"><tr><th>Olay</th><th>Ne zaman</th><th>Ne olur</th></tr>${evs.map(e => `<tr><td>${e.emojis || ''} <b>${esc(e.title)}</b></td><td>${gate(e)}</td><td>${esc(evTell(e))}</td></tr>`).join('')}</table>`;
+      const SC = Stories.SCENES || [], scIds = ['lohusagece', 'yenibeden', 'geridondu', 'birikim', 'telsiz', 'kestirme'];
+      const scT = `<table class="bk-t"><tr><th>Sahne</th><th>Açılış → adımlar</th><th>Bitiş</th></tr>${scIds.map(id => SC.find(s => s.id === id)).filter(Boolean).map(s => `<tr><td>${s.icon} <a href="#/events/sahne-${s.id}"><b>${esc(s.name)}</b></a></td><td>${bkEv(s.open)} → ${s.steps.map(bkEv).join(s.mode === 'seq' ? ' → ' : ', ')}</td><td>${bkEv(s.fin)}</td></tr>`).join('')}</table>`;
+      return `<p>👶 Doğumdan sonraki olaylar iki kategoride: 👶 After Birth ön sevişme sayılır, 💞 Back Together pozisyondur. Her olayın bir kapısı var.</p>
+        <table class="bk-t"><tr><th>Kapı</th><th>Ne zaman açık</th></tr>
+          <tr><td><b>🩹 lohusa</b></td><td>Sadece doğumdan sonraki 6 haftalık lohusa döneminde.</td></tr>
+          <tr><td><b>👶 anne</b></td><td>Çocuğu olduğu sürece, her zaman.</td></tr>
+          <tr><td><b>🩺 onaydan sonra</b></td><td>Doktor onayından sonraki 4 hafta.</td></tr></table>
+        <h4>👶 After Birth</h4>${hmWeeks(ab)}
+        <h4>💞 Back Together ve bitişleri</h4><p>Bitişler sadece kendi pozisyonlarından sonra eşleşir. Cleared And Bursting gür bir bitiştir; 🫙 birikim sayesinde onaydan hemen sonra açılır.</p>${hmWeeks(bt)}
+        <h4>🎬 Sahneler</h4><p>Açılış olayının kapısı sahneyi de kapılar: lohusa olmayan bir karakterle Lohusa Geceleri başlamaz.</p>${scT}
+        <p>💁‍♀️ Lia bu olayları tek tek sahneleyerek anlatıyor: <a href="#/kitap/olay/82">🎬 Olay Kitabı → 👶 Doğumdan sonra</a>.</p>`;
+    } },
+    { icon: '🗺️', title: 'Sırada ne var', sub: 'planlanan: haber dönemi, Trying To Conceive', get body() {
       return `<p>🗺️ Bunlar henüz oyunda yok; hamilelik sisteminin sonraki adımları için planlanıyor. Sıra değişebilir.</p>
         <table class="bk-t"><tr><th>Plan</th><th>Ne olacak</th></tr>
-          <tr><td><b>🩹 Lohusa dönemi</b></td><td>Doğumdan sonra 6 hafta içeri giren pozisyonlar kapalı; ön sevişme ve yakınlık açık. "Doctor Cleared" olayı dönemi kapatır.</td></tr>
-          <tr><td><b>👶 Bebek kesintisi</b></td><td>Doğum yapmış karakterle sevişirken %15 ihtimalle bebek uyanır (📱 kesinti gibi).</td></tr>
-          <tr><td><b>👶 Doğum sonrası olaylar</b></td><td>First Hold, 3AM Shift, Sleep Deprived, Milk Comes In; 6. haftadan sonra First Time Again, Nap Time Quickie, Baby Monitor, Babysitter Night.</td></tr>
-          <tr><td><b>🏥 Doğum sahnesi</b></td><td>Water Breaks → Hospital Run → Labor → First Hold; 38–42. hafta arasında rastgele.</td></tr>
           <tr><td><b>📰 Haber dönemi</b></td><td>Two Lines (test), Morning Sickness, Telling You, Whose Is It? (Affair / Bull hattında baba hesabı).</td></tr>
           <tr><td><b>🍼 Trying To Conceive</b></td><td>Hamilelik öncesi: Baby Fever, Ovulation Test, Fertile Window, Skipped Pill, Late Period.</td></tr>
-          <tr><td><b>🌡️ Hormon dalgası ve 🤰 karın</b></td><td>Haftaya göre ruh hali (bulantı, libido, yorgunluk); karın 13 / 20 / 27 / 36. haftada büyür, dar kıyafetler kapanır.</td></tr>
-          <tr><td><b>🔧 Açıklar</b></td><td>Zincirli bitişler de hafta kapısına uyacak; doğum sonrası olaylara da hafta kapısı gelecek.</td></tr></table>`;
+          <tr><td><b>👯 İkiz bebekler</b></td><td>Ultrasonda iki kalp atışı, iki isim, iki kat bebek kesintisi.</td></tr>
+          <tr><td><b>🔧 Açıklar</b></td><td>Zincirli bitişler de hafta kapısına uyacak.</td></tr></table>`;
     } }] });
   /* 👩‍❤️‍👩 Lezbiyen Kitabı: kadın profili (u.gender ♀), Lesbian Foreplay / Finish (c:mvlesfp01x, c:mvlesfin01x), 🌸 Tecrübe, ⏱️ Dayanıklılık, gizlenen olaylar (lesNo) */
   const lsTable = evs => `<table class="bk-t"><tr><th>Olay</th><th>Ne olur</th><th>🗣️</th></tr>${evs.map(e => `<tr><td>${e.emojis || ''} <b>${esc(e.title)}</b></td><td>${esc(evTell(e))}</td><td>${((Stories.ME_EV_LINES || {})[e.title] || []).length}</td></tr>`).join('')}</table>`;
@@ -33220,7 +33504,54 @@
       ['Still Leaking Morning', 'Sabah oldu, hâlâ sızıyor. Sen duyarsan Still Leaking Morning olur.'],
       ['Count The Loads', 'Önüme kaç, arkama kaç? Sen benimle sayarsan Count The Loads olur.'],
       ['Panty Soaked', 'Temiz külot giydim. Sen birkaç dakika beklersen Panty Soaked olur.'],
-      ['Warm Inside All Day', 'İşteyim, hâlâ içimde hissediyorum. Sen mesajıma cevap verirsen Warm Inside All Day olur.']]]
+      ['Warm Inside All Day', 'İşteyim, hâlâ içimde hissediyorum. Sen mesajıma cevap verirsen Warm Inside All Day olur.']]],
+    // 🏺 kültürlere özgü pozisyonlar ve bitişler (system.js mvcu*); 📜 kaynakta var / ✨ esinli
+    ['🏺', 'Kültürlere özgü', 'Roma, Edo, Kama Sutra, Tao, Kokulu Bahçe, Mısır', 'Bu bölümde her olay bir kültürün aşk geleneğinden geliyor. 📜 işaretliler kaynakta gerçekten var: Kama Sutra, Edo\'nun 48 pozu, Su Nü Jing ve Taocu metinler, Ovidius, Aristophanes, Nefzâvî\'nin Kokulu Bahçe\'si, shunga baskıları ve Torino papirüsü. ✨ işaretliler esinli kurgu. Kültürel bitişler ancak aynı kültürün pozisyonundan sonra gelir; Jade Essence\'ta boşalmazsın, 💦 Cum birikir ve Dam Breaks açılır.', [
+      ['Hector\'s Horse', '📜 Sırtüstü yat. Ben ata biner gibi üstüne oturursam Romalıların dediği gibi Hector\'s Horse olur.'],
+      ['Ovid\'s Counsel', '📜 Ovidius\'u okuyorum: poz vücuda göre seçilir. Sen benim seçtiğim poza gelirsen Ovid\'s Counsel olur.'],
+      ['Lioness On The Grater', '📜 Dizlerimin üstündeyim, kalçam havada. Sen arkadan girersen Lysistrata\'daki yemin bozulur, Lioness On The Grater olur.'],
+      ['Chausu', '📜 Üstüne oturdum. Sen kıpırdamazsan kalçamı değirmen gibi döndürürüm, Chausu olur.'],
+      ['Matsuba-kuzushi', '📜 Yan yattım, bir bacağım omzunda. Sen bacaklarımızı çam iğnesi gibi kilitlersen Matsuba-kuzushi olur.'],
+      ['Shunga Pose', '📜 Bir shunga baskısı açtım. Sen bu pozu benimle taklit edersen Shunga Pose olur.'],
+      ['Splitting The Bamboo', '📜 Bir bacağım omzunda. Sen birkaç itişte bir bacaklarımı değiştirirsen Splitting The Bamboo olur.'],
+      ['Indrani', '📜 Dizlerimi göğsüme çektim. Sen üstüme eğilip en derine girersen Indrani olur.'],
+      ['Yab-Yum', '📜 Bağdaş kur, kucağına oturuyorum. Sen nefesini benimkine uydurursan Yab-Yum olur.'],
+      ['Nine Shallow One Deep', '📜 Sayıyorum: dokuz sığ. Sen onuncuda sonuna kadar girersen Nine Shallow One Deep olur.'],
+      ['Dragon Turn', '📜 Sırtüstü, bacaklarım havada. Sen üstüme eğilirsen Dragon Turn olur.'],
+      ['Tiger Step', '📜 Dört ayak üstündeyim. Sen belimden tutup arkadan girersen Tiger Step olur.'],
+      ['Cicada Clings', '📜 Yüzüstü yattım. Sen sırtıma yapışıp arkadan girersen Cicada Clings olur.'],
+      ['Driving The Peg', '📜 Beni kaldır, sırtım duvarda. Sen ayakta girersen Driving The Peg olur.'],
+      ['Pounding On The Spot', '📜 Bacaklarını uzat, kucağına oturuyorum. Sen bırakırsan yerinde sert tempo tutarım, Pounding On The Spot olur.'],
+      ['Chariot', '📜 Yatağın ucuna eğildim, ellerim kenarda. Sen arkadan girersen papirüsteki gibi Chariot olur.'],
+      ['Bahname Lesson', '✨ Minyatürlü kitabı açtım. Sen sayfadaki pozu benimle kurarsan Bahname Lesson olur.'],
+      ['Sistrum Rhythm', '✨ Sistrum elimde, üstündeyim. Sen çıngırağın ritmine uyarsan Sistrum Rhythm olur.'],
+      ['Vadavaka', '📜 Kıpırdama. Sen hiç hareket etmezsen içeriden sıkıp seni boşaltırım, Vadavaka olur.'],
+      ['Jade Essence', '📜 Tam geleceksin. Sen durup tutarsan ben gelirim, sen gelmezsin; Jade Essence olur.'],
+      ['Dam Breaks', '✨ Özünü tuttun. Sen sonunda bırakırsan hepsi birden gelir, Dam Breaks olur.'],
+      ['Kimono Finish', '📜 Kimonom hâlâ üstümde. Sen kumaşın arasında içime gelirsen Kimono Finish olur.'],
+      ['Pompeii Fresco', '✨ Fresk telefonumda. Sen gelirken o pozda donarsan Pompeii Fresco olur.'],
+      ['Laurel Finish', '✨ Defne tacım başımda. Sen göğüslerime gelirsen Laurel Finish olur.'],
+      ['Kohl Tears', '✨ Gözlerimde sürme. Sen içime gelirsen sürmem akar, Kohl Tears olur.'],
+      ['Rosewater', '✨ İçime gel, sonra hamama gidiyoruz. Sen gelirsen Rosewater olur.']]],
+    // 👶 After Birth / 💞 Back Together (v1201): kapılar 🩹 lohusa / 👶 anne / 🩺 onay → Hamilelik Kitabı
+    ['👶', 'Doğumdan sonra', 'lohusa geceleri, yeni beden, doktor onayı, bebek uyurken', 'Doğumdan sonraki altı hafta lohusa dönemidir: içeri giren her şey kapalı, ama yakınlık hiç bitmez. Doktor onay verince ilk dört hafta 🩺 onaylı olaylar açılır; bebeği olduğu sürece de bebek uyurken çalınan anlar hep var.', [
+      ['Nap Together', '🩹 Bebek uyudu, başımı göğsüne koyuyorum. Sen saçımı okşarsan üçümüz birlikte kestiririz, Nap Together olur.'],
+      ['Night Feed Company', '🩹 Gecenin üçü, emziriyorum. Sen kalkıp yanıma oturur, sırtımı ovarsan Night Feed Company olur.'],
+      ['New Body Kisses', '🩹 Aynada karnıma bakıyorum. Sen diz çöküp çatlaklarımı öpersen New Body Kisses olur.'],
+      ['Full Breasts Relief', '🩹 Göğüslerim taş gibi dolu. Sen ılık havluyla nazikçe ovarsan Full Breasts Relief olur.'],
+      ['Gentle Hands', '🩹 Altı hafta uzun, biliyorum. Sen yanıma uzanırsan ellerimle seni rahatlatırım, Gentle Hands olur.'],
+      ['Shower Help', '🩹 İlk duşum, bacaklarım titriyor. Sen belimden tutup saçımı yıkarsan Shower Help olur.'],
+      ['Baby Finally Asleep', '👶 Bebek nihayet uyudu. Sen kapı kapanınca beni duvara yaslarsan Baby Finally Asleep olur.'],
+      ['Baby Monitor Tease', '👶 Telsiz yanımızda. Sen bana dokunurken ben sesimi tutarsam Baby Monitor Tease olur.'],
+      ['First Time Again', '🩺 Doktor onay verdi. Sen çok yavaş, gözlerime bakarak girersen First Time Again olur.'],
+      ['Milky Missionary', '👶 Sırtüstü yatıyorum, göğüslerim dolu. Sen önden girersen her itişte süt damlar, Milky Missionary olur.'],
+      ['Nap Time Quickie', '👶 Yirmi dakikamız var, tezgâha oturdum. Sen hızlı ve sessiz girersen Nap Time Quickie olur.'],
+      ['Careful Spoon', '🩺 Yan yattım, derinliği ben ayarlarım. Sen arkamdan elin karnımda girersen Careful Spoon olur.'],
+      ['Mom On Top', '👶 Bugün ben yönetiyorum. Sen sırtüstü yatıp sadece izlersen Mom On Top olur.'],
+      ['Gentle Inside', '🩺 Yavaşladın. Sen içimde kalıp boşalırsan Gentle Inside olur.'],
+      ['Milk And Cream', '👶 Göğüslerimden süt damlıyor. Sen çıkıp göğüslerime boşalırsan Milk And Cream olur.'],
+      ['Cleared And Bursting', '🩺 Altı hafta biriktirdin. Sen içime bırakırsan hepsi taşar, Cleared And Bursting olur.'],
+      ['Quiet Pull Out', '👶 Telsiz kıpırdadı! Sen sessizce çıkıp karnıma boşalırsan Quiet Pull Out olur.']]]
   ];
   BOOKS.push({ id: 'olay', icon: '🎬', title: 'Olay Kitabı', sub: 'Lia her olayı sahneleyerek anlatır', chips: [`${OLAY_BOOK.reduce((n, c) => n + c[4].length, 0)} olay`, '💁‍♀️ Lia anlatıyor'], chapters: [
     { icon: '🎬', title: 'Olay Kitabı nasıl okunur', sub: 'Lia sahneler, sen yaparsın', body: `
@@ -34662,8 +34993,32 @@
     const b = $('#evnEpTry');
     if (b) b.onclick = () => { const tt = cmChat(h, 'CarmenEvents', `Bugünkü pratik: 📖 ${x.name}. ${(x.ask || [''])[0]}`, true); quickPin(evFind(ss[0].open), tt); save(); };
   }
+  /* 🏺 Tarih dersi: #/events/tarih kültür kültür kaynak + dönem + olaylar (system.js mvcu*, e.note); 📜 kaynak / ✨ esinli */
+  const TARIH = [
+    ['🏛️', 'Roma ve Yunan', 'MÖ 411 – MS 79', 'Aristophanes Lysistrata\'yı MÖ 411\'de sahneledi; kadınların yeminindeki "rendenin üstündeki dişi aslan" bugün hâlâ tartışılıyor. Ovidius Aşk Sanatı\'nı (Ars Amatoria) MS 1. yüzyılın başında yazdı; üçüncü kitapta kadınlara vücutlarına göre poz önerir. Pompeii\'nin erotik freskleri MS 79\'da Vezüv\'ün külü altında kaldı.', ['mvcu01hector', 'mvcu02ovid', 'mvcu03lioness', 'mvcu34pompeii', 'mvcu35laurel']],
+    ['🏯', 'Edo Japonya', '1603–1868', 'Edo döneminde shunga ahşap baskıları çok yaygındı; sevgililer neredeyse hiç tam soyunmuş çizilmez. "Kırk sekiz pozisyon" (shijūhatte) adını sumonun kırk sekiz tekniğinden alır; çay değirmeni (chausu) ve çam iğnesi (matsuba-kuzushi) bu listededir.', ['mvcu04chausu', 'mvcu05matsuba', 'mvcu06shunga', 'mvcu33kimono']],
+    ['🪷', 'Hindistan ve Tibet', 'MS 2.–4. yüzyıl', 'Vatsyayana\'nın Kama Sutra\'sı pozisyonları adlarıyla tarif eder: bambu yarma (venudaritaka), İndrani\'nin pozu (indranika) ve kadının içeriden sıktığı kısrak (vadavaka). Yab-yum ise Kama Sutra\'dan değil, Tibet Budist sanatındaki kucakta birleşme tasvirinden gelir.', ['mvcu07bamboo', 'mvcu08indrani', 'mvcu09yabyum', 'mvcu30vadavaka']],
+    ['🐉', 'Çin', 'Han dönemi kökenli', 'Su Nü Jing\'de (Sade Kız\'ın Kitabı) Sade Kız, Sarı İmparator\'a dokuz pozu öğretir: ejder, kaplan, ağustosböceği ve diğerleri. Taocu metinler "dokuz sığ, bir derin" ritmini ve boşalmadan özü korumayı da anlatır. Bu metinlerin çoğu bugüne Japonya\'da 984\'te derlenen Ishinpō sayesinde ulaştı.', ['mvcu10ninedeep', 'mvcu11dragon', 'mvcu12tiger', 'mvcu13cicada', 'mvcu31jade', 'mvcu32dambreaks']],
+    ['🌷', 'Arap ve Osmanlı', '15. yüzyıl', 'Şeyh Nefzâvî Kokulu Bahçe\'yi 15. yüzyılda Tunus\'ta yazdı; Avrupa onu 1886\'da Richard Burton\'ın çevirisiyle tanıdı. Kazık çakma ve yerinde dövme onun adlandırdığı pozlardır. Osmanlı\'da elden ele dolaşan bâhnâmelerin bazı nüshaları minyatürlüdür, ama oyundaki ders sayfaları kurgu.', ['mvcu14peg', 'mvcu15pounding', 'mvcu17bahname', 'mvcu37rosewater']],
+    ['🏺', 'Mısır', 'yaklaşık MÖ 1150', 'Torino Erotik Papirüsü Ramses dönemine ait, bilinen en eski erotik çizimlerden biri; sahnelerinden birinde kadın bir arabaya yaslanır. Sistrum aşk tanrıçası Hathor\'un çalgısı, sürme de günlük makyajdı; ama oyundaki sistrum ritüeli ve sürme bitişi kurgu.', ['mvcu16chariot', 'mvcu18sistrum', 'mvcu36kohl']]
+  ];
+  function renderEventsHistory() {
+    const evOf = id => allEvents().find(e => e.id === id), all = TARIH.flatMap(t => t[4]).map(evOf).filter(Boolean);
+    const src = all.filter(e => (e.tags || []).includes('kaynak')).length;
+    const card = e => { const c = catOfEv(e); return `<a class="evn-cat" href="#/events/${encodeURIComponent(c.id)}" data-evno="${esc(e.id)}"><span>${esc(e.emojis || '📜')}</span><div><b>${esc(e.title)}</b><small>${esc(e.note || '')}</small><small>${esc(c.icon || '')} ${esc(c.label || '')}</small></div></a>`; };
+    view.innerHTML = EVN_CSS + wsPage('events', 'Carmen<i>Events</i>', 'carmenevents.com/tarih', '#/events', `
+      <div class="evn-hero"><h1>🏺 Tarih dersi</h1><p>${all.length} olay · ${src} 📜 kaynakta var · ${all.length - src} ✨ esinli. Her olayın adı ve tarifi nereden geliyor, hangisi gerçekten bir kitapta ya da eserde geçiyor, hangisi o kültürden esinlenip uydurulmuş.</p></div>
+      <article class="evn-ls"><h3>📜 Kaynak mı, ✨ esinli mi?</h3><ul><li>📜 <b>Kaynakta var:</b> adı ve tarifi tarihi bir metinde ya da eserde geçer. Anlatım bizim, poz onların.</li>
+        <li>✨ <b>Esinli:</b> o kültürün bir eşyasından ya da geleneğinden ilham alır ama bu haliyle hiçbir kaynakta yoktur.</li>
+        <li>Tarihi kişiler yok; sadece gelenekler ve metinler. Kültürel bitişler ancak aynı kültürün pozisyonundan sonra gelir.</li></ul></article>
+      ${TARIH.map(([ic, name, when, txt, ids]) => `<div class="sec-title">${ic} ${esc(name)} · <small>${esc(when)}</small></div><p class="about">${esc(txt)}</p><div class="evn-grid">${ids.map(evOf).filter(Boolean).map(card).join('')}</div>`).join('')}
+      <div class="sec-title">🎬 Kültür sahneleri</div><div class="evn-grid">${scenesOk().filter(s => s.id.startsWith('ku')).map(evnScCard).join('')}</div>`);
+    view.querySelectorAll('[data-evno]').forEach(a => a.onclick = () => { ui.evnOpen = a.dataset.evno; });
+    evnScBind(null);
+  }
   function renderEvents(id) {
     const cats = evnCats(), hs = evnHocas();
+    if (id === 'tarih') return renderEventsHistory();
     if (id === 'sahneler') return renderEventsScenes(hs);
     if (id === 'bolumler') return renderEventsEpisodes(hs);
     if (id === 'hikaye') return renderEventsStory();
@@ -34704,7 +35059,8 @@
         <button type="button" class="evn-cat evn-rec-card" data-evnfav><span>⭐</span><div><b>Favorilerim</b><small>📚 ${(MO().pins || []).length} olay · sohbette en üstte</small></div></button>
         <a class="evn-cat evn-rec-card" href="#/events/sahneler"><span>🎬</span><div><b>Sahneler</b><small>📚 ${scenesOk().length} sahne · açılış, adımlar, bitiş</small></div></a>
         <a class="evn-cat evn-rec-card" href="#/events/bolumler"><span>📖</span><div><b>Bölümler</b><small>📚 ${epAll().length} bölüm · sahnelerin birleşimi</small><small>💞 İlişkin büyüdükçe o önerir</small></div></a>
-        <a class="evn-cat evn-rec-card" href="#/events/hikaye"><span>📜</span><div><b>Hikâye</b><small>📚 ${HK().QUESTS.length} görev · ${Object.keys(HK().SCENES).length} sahne</small><small>🏙️ Şehirde başlar, 💬 sohbette akar</small></div></a>`;
+        <a class="evn-cat evn-rec-card" href="#/events/hikaye"><span>📜</span><div><b>Hikâye</b><small>📚 ${HK().QUESTS.length} görev · ${Object.keys(HK().SCENES).length} sahne</small><small>🏙️ Şehirde başlar, 💬 sohbette akar</small></div></a>
+        <a class="evn-cat evn-rec-card" href="#/events/tarih"><span>🏺</span><div><b>Tarih dersi</b><small>📜 kaynakta var · ✨ esinli</small><small>Kama Sutra, Edo, Tao, Roma, Kokulu Bahçe, Mısır</small></div></a>`;
     };
     top.onclick = ev => { const f = !!ev.target.closest('[data-evnfav]'); if (f || ev.target.closest('[data-evnrec]')) evnRecPanel(cats, hs, drawTop, f); };
     drawTop();
@@ -34735,6 +35091,7 @@
       return `<article class="evn-ls" id="evn-${esc(e.id)}" data-evl="${esc(e.id)}"><h3>${esc(e.emojis || '')} ${esc(e.title)} <small>· Ders ${k + 1}</small></h3>
         ${d ? `<p class="about">${esc(d)}</p>` : ''}
         ${h ? `<div class="evn-bub"><b>👩‍🏫 ${esc(first)}:</b> ${esc(evnTip(e, c))}</div>` : ''}
+        ${e.note && (e.tags || []).includes('kültür') ? `<div class="evn-bub"><b>🏺 Tarih dersi:</b> ${esc(e.note)} · <a href="#/events/tarih">hepsi</a></div>` : ''}
         <b>🎯 Nasıl tetiklenir</b><ul>${evbTriggers(e, cx).map(x => `<li>${x}</li>`).join('')}</ul>
         ${inf.length ? `<b>📌 Sohbete etkisi</b><ul>${inf.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
         <div class="evn-act"><button type="button" class="btn ghost sm" data-evnr>👆 Sonuçlar ve cevaplar</button>
@@ -35430,7 +35787,7 @@
   }
   /* 🧯 Duman testi (#/duman): sayfaları sırayla açar, window hata / reddedilen söz / console.error / boş sayfa yakalar; sonuç ui.smoke (oturumda) */
   function smokeRoutes() {
-    const R = ['#/home', '#/ara', '#/rehber', '#/ag', '#/sehir', '#/me', '#/me/ozet', '#/me/gorev', '#/guide', '#/deneyler', '#/olaylar', '#/events', '#/events/sahneler', '#/events/bolumler', '#/news', '#/dergi', '#/booble', '#/flix'];
+    const R = ['#/home', '#/ara', '#/rehber', '#/ag', '#/sehir', '#/me', '#/me/ozet', '#/me/gorev', '#/guide', '#/deneyler', '#/olaylar', '#/events', '#/events/sahneler', '#/events/bolumler', '#/events/tarih', '#/news', '#/dergi', '#/booble', '#/flix'];
     netSites().forEach(s => R.push(s.href));
     BOOKS.forEach(b => R.push(`#/kitap/${b.id}/0`, `#/kitap/${b.id}/${b.chapters.length - 1}`));
     LABS.forEach(l => { if (l[0] !== 'duman') R.push('#/' + l[0]); });
@@ -36421,6 +36778,15 @@
       ['👥', 'Kalabalık', 'bir grup sohbeti kur', groups().length >= 1], ['🫦', 'Abone', 'CarmenFans\'ta abone ol', subs >= 1], ['➕', 'Takipçi', '5 hesap takip et', follow >= 5],
       ['🧭', 'Gezgin', '5 farklı site gez', Object.keys(hist.sites).filter(k => sites.some(s => s.href === '#/' + k)).length >= 5], ['🤰', 'Baba adayı', 'biri hamile kalsın', preg >= 1],
       ['🎮', 'Oyuncu', 'PS bölüm 3 ya da FP gün 7', ps.level >= 3 || fp.day >= 7], ['🛍️', 'Müşteri', 'CarmenShop\'tan sipariş ver', orders >= 1], ['🏨', 'Rezervasyon', 'CarmenStay\'de oda tut', res >= 1]];
+    // 🏺 kültür rozetleri: sohbetlerin th.evDone birleşimi + th.heldMax
+    const evd = new Set(threads().flatMap(t => t.evDone || [])), heldMax = threads().reduce((n, t) => Math.max(n, +t.heldMax || 0), 0);
+    const CU_LAND = [['mvcu01hector', 'mvcu02ovid', 'mvcu03lioness'], ['mvcu04chausu', 'mvcu05matsuba', 'mvcu06shunga', 'mvcu33kimono'], ['mvcu07bamboo', 'mvcu08indrani', 'mvcu09yabyum', 'mvcu30vadavaka'],
+      ['mvcu10ninedeep', 'mvcu11dragon', 'mvcu12tiger', 'mvcu13cicada', 'mvcu31jade'], ['mvcu14peg', 'mvcu15pounding'], ['mvcu16chariot']];
+    const cuSrc = allEvents().filter(e => (e.tags || []).includes('kaynak')).map(e => e.id);
+    BADGES.push(['🪷', 'Kama Sutra Ustası', 'Splitting The Bamboo, Indrani ve Vadavaka', ['mvcu07bamboo', 'mvcu08indrani', 'mvcu30vadavaka'].every(id => evd.has(id))],
+      ['🐉', 'Taocu Usta', 'bir sohbette 💎 özünü 3 kez tut', heldMax >= 3],
+      ['🏺', 'Dünya Turu', 'altı kültürün her birinden bir 📜 olay', CU_LAND.every(g => g.some(id => evd.has(id)))],
+      ['📜', 'Tarihçi', 'kaynakta olan 📜 olayların hepsi', cuSrc.length > 0 && cuSrc.every(id => evd.has(id))]);
     // 🚀 3.0 rozetleri (js/data/c3.js)
     const c3s = c3Stats();
     C3.BADGES.forEach(([ic, n, d, m, k]) => BADGES.push([ic, n, d, (c3s[m] || 0) >= k]));

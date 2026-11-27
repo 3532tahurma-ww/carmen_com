@@ -24,6 +24,13 @@ Stories.FANT_INTERRUPTS = {
     { g: '🍼 Diğer göğsünden süt kendiliğinden akmaya başladı', r: ['Ay, öbürü de sızıyor 🙈', 'Elinle tut, boşa gitmesin 🍼', 'Bak ne yaptın bana 😳🍼', 'Sırası gelecek, sabırsız 😏', 'Pedim ıslandı bile 🥵🍼'] },
     { g: '📱 Telefonuna mesaj geldi: "Müsait misin?"', r: ['Değilim. Hiç değilim 🍼', 'Sonra bakarım, sen devam 😌', 'Şu an meşgulüm… emziriyorum 😏', 'Telefonu at bir kenara 🤫', 'Kim yazdıysa beklesin 🍼'] }
   ],
+  // 👶 küçük bebeği olan karakter (app.js maybeInterrupt, kidYoung)
+  bebek: [
+    { g: '👶 Bebek telsizinden ağlama sesi geldi…', r: ['Ah, uyandı… iki dakika bekle, hemen dönüyorum 🍼', '*durur, dinler* Belki kendi kendine susar… 🤫', 'Sen git bak bu sefer, ben nefesimi toplayayım 😮‍💨', 'Tam da şimdi mi bebeğim 😅👶', 'Sustu… devam, ama sessiz 🤫'] },
+    { g: '🍼 Göğüslerinden süt sızmaya başladı, beslenme saati gelmiş', r: ['Saat geldi, vücudum biliyor 😳🍼', 'Önce onu doyurayım, sonra seni 😏', 'Bak ıslandım… her anlamda 🙈', 'Bebek uyanmadan bitirelim mi? 😈', 'Ped takmayı unuttum yine 😅🍼'] },
+    { g: '🧸 Yan odadan bir şey düştü, sonra ince bir mızıldanma', r: ['Oyuncağı yere attı yine 😅 Kıpırdama…', 'Uykusunda konuşuyor, merak etme 🥰', 'Kalbim duruyor her seste 🫣', 'Gidip bakmalıyım… bekler misin? 👶', '*kulak kabartır* Tamam, uyuyor… nerede kalmıştık? 😮‍💨'] },
+    { g: '😴 Bebek susunca ikiniz de bir an yorgunlukla güldünüz', r: ['Uykusuzluktan ölüyorum ama seni istiyorum 🥱💗', 'Bu ara her fırsat altın değerinde 😏', 'Hızlı olalım, iki saatimiz var en fazla ⏳', 'Anne olmak böyle bir şey işte 😅', 'Sana sarılıp uyuyakalabilirim şu an 🥰'] }
+  ],
   // 🐾 hayvan kızları ve fanteziler
   fxkedi: [
     { g: '🥛 Mutfakta süt kabı devrildi… şıngır şıngır!', r: ['Miyav! Benim sütüm! 😿', 'Boş ver sütü, sen bana yetersin 😼', 'Kuyruğum kabardı, korktum 🙀', 'Sonra yalarım, şimdi sen 😽', 'Pati pati… nerede kalmıştık? 🐾'] },
