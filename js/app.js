@@ -138,6 +138,7 @@
       // seçim sırası değil, karakter listesindeki sıra
       const members = chars().filter(c => sel.has(c.id)).map(c => c.id);
       const title = el.querySelector('#gTitle').value.trim() || members.slice(0, 3).map(id => byId(id).name).join(', ');
+      if (kinIn(members)) notify('Aile üyeleri aynı grupta: sadece sohbet ve gündelik olaylar', '🌳');
       sh.close();
       if (t) {
         t.title = title;
@@ -1276,6 +1277,58 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['💧', 'Islaklık: plajda artık ıslanıyor', 'Dalga devirdi, denize attın, duşta sırtını yıkadın: artık ne kadar ıslak olduğu sayılıyor. Kuru, Nemli, Islak, Sırılsıklam; bazı olaylar sadece ıslakken açılıyor, havlu ve güneş kurutuyor. 25 yeni olay ve 3 sahne.', '#/kitap/yaz/4', [
+      ['🌊 Islatanlar', 'Splash Fight (+1), Dragged In (+2), Wave Hit (+3), Beach Shower Rinse (+2).'],
+      ['🍑 Vajinal', 'Dripping Wet Doggy, Clinging Fabric, See-Through Ride (sırılsıklam + beyaz / file bikini), Shoreline Missionary, Salt Kiss Lotus.'],
+      ['🍩 Anal', 'Wet Sand Prone, Slippery Anal, Dripping Hair Anal, Towel Wrap Anal.'],
+      ['💦 Bitişler', 'Wet Skin Finish, Drip Mix · Shoreline Creampie, Clinging Bikini Creampie (🍑) · Slippery Anal Finish, Wet Sand Anal Finish (🍩).'],
+      ['🧺 Kurulanma', 'Towel Dry, Sun Dry, Bikini Change, Shared Shower; ayrıca her 3 karşılıklı yazışmada bir seviye kendiliğinden kurur.'],
+      ['🎬 Sahneler', '🌊 Dalga Dalga, 💦 Kaygan, 🧺 Kurulanma.']], 'Yeni olaylar', [
+      'Kıyıda su savaşı başlıyor; bir avuç tam göğsüne geliyor ve kahkahası birden kesiliyor. Bikinisi tenine yapışmış, sana bakıp dudağını ısırıyor. Durum kartında küçük bir 💧 beliriyor.',
+      'Sırılsıklamken beyaz bikinisi hiçbir şey saklamıyor, saçlarından sırtına su akıyor ve her şey kaygan. Arada kendiliğinden "saçlarımdan hâlâ su damlıyor" diye yazıyor.',
+      'Sonra havlu, güneş ya da birlikte bir duş. Tenindeki tuz izleri kalıyor; bir dahaki dalgaya kadar.']],
+    ['👙', 'Bikini ve plaj: 20 yeni mayo, 33 yeni olay', 'Deniz kızı kuyruğu, istiridye kabukları, inci diziler, cankurtaran mayosu ve sadece boyadan bir bikini. Plaja 15 yeni pozisyon, 4 ısınma ve 14 bitiş geldi; her pozisyon açıkça 🍑 vajinal ya da 🍩 anal, bitişler aynı delikten.', '#/kitap/yaz/3', [
+      ['👙 Yeni parçalar', 'Önden fiyongalı, beyaz, file, sörf, cheeky, G-string, kafes ve slingshot mayo; ✨ fantezi: deniz kızı, istiridye kabuğu, inci, cankurtaran, Hawaii çiçek, deri, altın metal, neon, yıldızlı, boya.'],
+      ['🍑 Vajinal', 'String Aside, Untied Top, Wet White Bikini, Mermaid Rock, Jet Ski, Beach Hammock Sway, Paint Wash, Midnight Sea Swim.'],
+      ['🍩 Anal', 'String Aside Anal, Lifeguard Tower, Mermaid Tail Anal, Snorkel Tease, Oil Slide, Midnight Sea Anal, Cabin Line Anal.'],
+      ['🏐 Isınma', 'Beach Volley Bet (o kazanırsa 🍑, kaybederse 🍩), Bikini Line Worship, Underwater Kiss, Sand Burial.'],
+      ['💦 Bitişler', 'Bikini Top Finish, Bikini Line Finish, Shell Cup, Pearl Bikini Finish, Oily Body Finish, Paint Mix · Inside Bikini Bottom, Wave Wash, Towel Hide, Beach Creampie Burst (🍑) · Bikini Bottom Anal Fill, Underwater Finish, Sunbed Drip, Beach Anal Burst (🍩).'],
+      ['🎬 Sahneler', '🧜‍♀️ Deniz Kızı, 🛟 Cankurtaran Nöbeti, 🌙 Gece Denizi, 🤍 Islak Beyaz.'],
+      ['📚 Kitap', 'Yaz Kitabı\'nda yeni bölümler: 👙 Bikini ve mayo, 💧 Islaklık, 🎬 Plaj sahneleri.']], 'Yeni olaylar', [
+      'Bikini altını çıkarmıyor, sadece parmağıyla kenara çekiyor: "böyle daha yasak." Şezlongda her pozisyon değişiminde bir ip çözülüyor, sonunda bikini üstü kumda kalıyor.',
+      'Deniz kızı kostümüyle kayaya uzanıyor, pullu kuyruğunu beline kadar sıyırıyor. İstiridye kabuklarını sana uzatıyor: "her deniz kızının bir incisi olur."',
+      'Bazı olaylar sadece uygun parça üstündeyken açılıyor; beyaz bikini olmadan Wet White Bikini, deniz kızı kostümü olmadan Mermaid Rock yok. Hepsi Yaz Kitabı\'nda.']],
+    ['📱', 'Aile bağları 2: 20 yeni olay, 🍑 ya da 🍩', 'Annesi tam o an arıyor, kardeşinin elbisesi beline sıyrılmış, teyzesi sabırla öğretiyor. Aile bağlarına 11 seks ve 9 bitiş geldi; her biri açıkça 🍑 vajinal ya da 🍩 anal, bitişler aynı delikten.', '#/kitap/olay/83', [
+      ['🍑 Vajinal', 'Call From Mom, Family Photo Wall, Driveway Goodbye, Borrowed Dress, Sister\'s Apartment, Make Me Forget, Almost Caught.'],
+      ['🍩 Anal', 'Spare Key, Rematch, Dishes After Dinner, Aunt\'s Advice.'],
+      ['💦 Bitişler', 'Hang Up First, Behind The Frame, Ruined Dress, Forgiven, Fogged Windows (🍑) · Tiebreaker, Before They\'re Back, Kitchen Counter Finish, Patient Lesson (🍩).'],
+      ['🙏 Affetme', 'Kendin itiraf ettiysen Make Me Forget açılır; Forgiven bitişi Kıskançlık ve Şüphe\'yi düşürür.'],
+      ['🏆 Rövanş', 'Rekabet 3\'e çıkınca Rematch; Tiebreaker ile beraberlik yok.'],
+      ['🎬 Sahneler', '🏠 Annesinin Evi ve 🏆 Rövanş.']], 'Karakterler', [
+      'Aile bağlarının ilk bölümü kıskançlığı ve sırları getirmişti. Şimdi o gerilimin yatak odasına, arabaya ve mutfağa taşındığı anlar var.',
+      'Annesi tam en olmadık anda arıyor; açmak zorunda, sen de durmuyorsun. Telefonu kapatmaya yetişemezse "anne, sonra ararım!" diye bağırıyor. Kız kardeşinin elbisesini giymiş, aynaya tutunmuş: "bende daha iyi duruyor, değil mi?"',
+      'Her olay artık açıkça ya önden ya arkadan, bitişler de ona göre. İtiraf ettiysen affetmeye giden bir yol var; rekabet doruğa çıktıysa da beraberlik yok.']],
+    ['🤫', 'Aile bağları: sır, rekabet ve aile yemeği', 'Kızlar artık akrabalarıyla ne yaşadığını biliyor ve ona göre konuşuyor. Annesiyle tanıştın mı, kardeşiyle mi yattın? Kendin söyle ya da sakla; öğrenirse kıskanır, takılır ya da yarışa girer. 11 yeni olay ve 2 sahne.', '#/kitap/grup/16', [
+      ['💬 Mesajlar', 'Anne, kızı, kız kardeş, teyze ve yeğen için ayrı ayrı: tanıştın, seviştin, kendin söyledin.'],
+      ['🤫 Aile sırrı', 'Akrabanın adını ve itirafı yaz: yumuşak geçer. Saklarsan her cevapta %35 öğrenir; 🕵️ Şüphe ve 😤 Kıskançlık sert artar.'],
+      ['🏆 Rekabet', 'Kız kardeşiyle olanı öğrendikçe sayaç artar; Better Than Her açılır.'],
+      ['🍽️ Aile yemeği', '🌳 Aile sekmesinden hepsini aynı sofraya topla; sonraki 24 saat Dinner Escape açık.'],
+      ['🔥 Olaylar', 'Better Than Her, Jealous Claim, Don\'t Tell Mom, Dinner Escape, Childhood Room, Guest Room, Experienced Touch; bitişler Winner\'s Finish, Mark Of Mine, Quiet Inside, Our Secret.'],
+      ['🚫 Kural', 'Akraba hiçbir sahnede yer almaz; sadece alt katta, yan odada ya da aklındadır.']], 'Karakterler', [
+      'Annesiyle bir kez yazıştın. Ertesi gün o sana "annem seni sordu yine, ne yaptın ona?" diye yazıyor. Aileler konuşur; artık Carmen\'de de.',
+      'Bir akrabasıyla daha ileri gittiysen iki yol var: kendin söylersin ya da saklarsın. Söylersen kırılır ama dürüstlüğünü takdir eder. Saklarsan bir gün mutlaka öğrenir, ve o gün şüphesi de kıskançlığı da katlanır.',
+      'Kız kardeşler arasında işler daha da kızışıyor: kardeşiyle olanı öğrendikçe rekabet artıyor ve bir gün üstüne çıkıp "söyle, kim daha iyi?" diye soruyor.',
+      'Ve aile yemekleri… Herkes aynı sofrada, bakışlar gergin. Tatlı gelmeden biri "elimi yıkayacağım" diye kalkıyor ve sana göz kırpıyor.']],
+    ['🌳', 'Aile ağacı: annesi, kız kardeşi, kızı', 'Karakterlerin artık bir ailesi var. Profildeki yeni 🌳 Aile sekmesinde annesini, kız kardeşlerini ve yaşı uygunsa kızını oluştur ya da var olan bir karakteri bağla. Aynı şehir, aynı soyadı, aynı ten; göz ve saç çoğu zaman ortak.', '#/kitap/grup/16', [
+      ['🌳 Aile sekmesi', 'Kuşak kuşak ağaç: anneler, kardeşler ve çocuklar; her akrabanın altında 🧬 ortak özellikleri.'],
+      ['🌱 Kendiliğinden', 'Bir karakterle ❤️ Aşk 70\'i geçince bir kez annesi ya da kız kardeşi aileye katılır.'],
+      ['😤 Öğrenirse', 'Akrabasıyla seviştiğini öğrenince kıskanır ya da aileyi karıştırmaman için takılır.'],
+      ['🚫 Kurallar', 'Akrabalar arasında cinsel içerik yok; aynı sohbette birlikteyken olaylar kapalı. Oyunda doğan bebekler karakter olmaz.'],
+      ['🔒 Profil alanları', 'Hamile, Hotwife gibi Evet / Hayır alanları artık sadece ✏️ düzenleme modunda değişir.'],
+      ['🧬 Klonla', 'Klon artık hamilelik, aile ve tanıdık bilgilerini kopyalamıyor; temiz bir başlangıç.']], 'Karakterler', [
+      'Her karakterin bir geçmişi vardı ama bir ailesi yoktu. Artık annesinin seni merak ettiği, kız kardeşinin seni sorduğu günler var.',
+      'Aile kendi kendine şekilleniyor: kardeşin annesi onun da annesi oluyor, kardeşin kızı yeğeni. Yeni gelenler aynı şehirden ve aynı soyadından; ten rengi aynı, göz ve saç çoğu zaman da öyle, ama her biri kendi kişiliğiyle geliyor.',
+      'Kuralları net: aile kendi arasında hiçbir zaman cinsel bir sahnede yer almaz. Aynı sohbette birlikteyken sadece sohbet edilir.']],
     ['👶', 'Doğum ve sonrası: hamilelik artık sonuna kadar', 'Hamilelik hormonlarla, büyüyen karınla ve klinik kontrolleriyle ilerliyor; doğum 38–42. hafta arası bir sahneyle geliyor. Sonra 🩹 lohusa dönemi, bebek kesintileri, 🍼 isim oylaması ve 17 yeni olay: 👶 After Birth ve 💞 Back Together.', '#/kitap/hamile/7', [
       ['⚡ Zaman', '⏩ hafta çipinden zamanı atla ya da ×2 / ×4 / ×8 hızlandır; ×8\'de doğuma ~10 saat.'],
       ['🌡️ Hormon ve 🤰 karın', 'Bulantı, hormon coşkusu, yorgunluk; Uyarılma ve öneriler buna göre değişir, ruh hali ayrı bir balonla konuşur. 20. haftadan sonra dar kıyafetler olmaz, hamile elbisesine geçer.'],
@@ -1699,7 +1752,7 @@
       ['🤏 Değdirme', 'Kalçasına: Cheek Trace, Panty Line Trace, Crack Slide, Lower Back Rest, Jeans Press. Bacaklarına: Inner Thigh Trail, Thigh Gap Rest, Stocking Rub, Under Table Touch, Calf to Knee.'],
       ['👗 Kıyafet', 'Panty Slap, Bra Slap, Stocking Slap, Panty Line Trace, Stocking Rub ve Jeans Press o parça üstündeyken olur.'],
       ['📚 Kitap', 'Olay Kitabı\'na iki bölüm: 👋 Aletle Vurma ve 🤏 Aletle Değdirme.']]],
-    ['📖', 'Daha iyi anlatımlar!', 'Olaylar artık tek cümleyle geçiştirilmiyor: her olay birkaç cümlelik küçük bir sahne olarak anlatılıyor. Ne yaptığın, onun nasıl tepki verdiği, o anın sonunda ne kaldığı. 📜 Olay rehberinde, Olay Kitabı\'nda ve diğer kitaplarda.', '#/kitap/olay/83', [
+    ['📖', 'Daha iyi anlatımlar!', 'Olaylar artık tek cümleyle geçiştirilmiyor: her olay birkaç cümlelik küçük bir sahne olarak anlatılıyor. Ne yaptığın, onun nasıl tepki verdiği, o anın sonunda ne kaldığı. 📜 Olay rehberinde, Olay Kitabı\'nda ve diğer kitaplarda.', '#/kitap/olay/84', [
       ['✒️ Uzun anlatım', 'Her olayın kısa açıklaması olay seçicide duruyor; uzun anlatımı rehberde ve kitaplarda ilk sırada.'],
       ['📚 Kitap', 'Olay Kitabı\'nda yeni bölüm: 📖 Daha iyi anlatımlar; kaç olayın yeni anlatımı olduğunu canlı sayar.']]],
     ['💜', 'İzler artık kalıyor', 'Bıraktığın izler sayılıyor: durum kartında 💜 kaç iz olduğunu görürsün, sohbet saatiyle önce morarır sonra solar. Kocası bilmeyen evli kızın kocası görünür izi sorar ve 🕵️ Şüphe artar; Hotwife\'ın kocası görmek ister. 17 yeni iz olayı da geldi.', '#/kitap/olay/58', [
@@ -13908,7 +13961,7 @@
     const cover = c.album[0] || c.photo;
     const list = threadsOf(c);
     const kwN = keywords().filter(k => k.charId === c.id).length;
-    const tabs = [['profile', 'Profil'], ['sum', '🌟 Özet'], ['wear', '👗 Giyim'], ['diary', '📔 Günlük'], ['chats', `Sohbetler (${list.length})`], ['rel', `👭 İlişkileri (${duoOf(c).length + (husbThreadOf(c) ? 1 : 0)})`], ['mem', '🧠 Hafıza'], ['keys', `Kelimeler${kwN ? ` (${kwN})` : ''}`], ['album', 'Albüm']].filter(([k]) => editOn() || !['diary', 'mem', 'keys'].includes(k));
+    const tabs = [['profile', 'Profil'], ['sum', '🌟 Özet'], ['wear', '👗 Giyim'], ['diary', '📔 Günlük'], ['chats', `Sohbetler (${list.length})`], ['rel', `👭 İlişkileri (${duoOf(c).length + (husbThreadOf(c) ? 1 : 0)})`], ['fam', `🌳 Aile (${famOf(c).length + (c.kids || []).length})`], ['mem', '🧠 Hafıza'], ['keys', `Kelimeler${kwN ? ` (${kwN})` : ''}`], ['album', 'Albüm']].filter(([k]) => editOn() || !['diary', 'mem', 'keys'].includes(k));
     if (!tabs.some(([k]) => k === ui.profileTab)) ui.profileTab = 'profile';
     const cur = list[0];
 
@@ -14037,9 +14090,29 @@
       // ⏱️ karakterin Dayanıklılık'ı (ikili sohbette Zevk hızı): sırayla bir sonraki kademe
       if (e.target.closest('[data-cstam]')) { const L = Stories.STAMINA_LEVELS || []; c.stamina = L[(L.indexOf(charStam(c)) + 1) % L.length]; save(); ui.profileTab = 'rel'; refresh(); return; }
       if (kr) { knowLink(c, byId(kr.dataset.knrm), false); save(); refresh(); return; }
+      // 🌳 aile: ➕ oluştur · ✕ ayır · 🔗 var olanı bağla (rol seç, yaş uygun olmalı)
+      const fa = e.target.closest('[data-famadd]'), fr = e.target.closest('[data-famrm]');
+      if (fa) { const o = famMake(c, fa.dataset.famadd); notify(o ? `${o.name} aileye katıldı` : 'Bu rol için yaş uygun değil', '🌳'); ui.profileTab = 'fam'; refresh(); return; }
+      if (fr) { famUnlink(c, byId(fr.dataset.famrm)); save(); ui.profileTab = 'fam'; refresh(); return; }
+      if (e.target.closest('[data-famdin]')) { location.hash = `#/chat/${famDinner(c).id}`; return; }
+      if (e.target.closest('[data-famlink]')) {
+        const opts = chars().filter(o => o.id !== c.id && !isKin(c, o));
+        if (!opts.length) { notify('Bağlanacak karakter yok', '🌳'); return; }
+        const sh = sheet(`<div class="sheet-grip"></div><h3>🔗 Akraba seç · ${esc(c.name.split(' ')[0])}</h3>
+          <div class="g-pick">${opts.map(o => `<button type="button" data-fampick="${o.id}">${avatar(o, 52)}<b>${esc(o.name)}</b><small>${famAge(o)} yaş</small></button>`).join('')}</div>`, 'light');
+        sh.el.onclick = ev => {
+          const pk = ev.target.closest('[data-fampick]'), o = pk && byId(pk.dataset.fampick);
+          if (!o) return;
+          const d = famAge(o) - famAge(c), ok = { anne: d >= 16 && famCan(c, 'anne'), kardeş: Math.abs(d) <= 15, kızı: d <= -16 };
+          sh.el.innerHTML = `<div class="sheet-grip"></div><h3>🔗 ${esc(o.name)} → ${esc(c.name.split(' ')[0])}</h3><p class="muted" style="margin:0 4px 8px">Akrabalığı seç (yaş farkı: ${d > 0 ? '+' : ''}${d})</p>
+            ${Object.entries(ok).filter(([, v]) => v).map(([r]) => `<button class="act" data-famrole="${r}">${FAM_ROLE[r][0]} ${FAM_ROLE[r][1]}</button>`).join('') || '<p class="muted">Yaş farkına uyan bir akrabalık yok</p>'}`;
+          sh.el.onclick = ev2 => { const rb = ev2.target.closest('[data-famrole]'); if (!rb) return; famAdd(c, o, rb.dataset.famrole); save(); sh.close(); ui.profileTab = 'fam'; refresh(); notify(`${o.name} · ${c.name.split(' ')[0]}: ${FAM_ROLE[rb.dataset.famrole][1].toLocaleLowerCase('tr')}`, '🌳'); };
+        };
+        return;
+      }
       if (kg && byId(kg.dataset.kngrp)) { location.hash = `#/chat/${knowGroup(c, byId(kg.dataset.kngrp)).id}`; return; }
       if (e.target.closest('#knAdd')) {
-        const opts = chars().filter(o => o.id !== c.id && !(c.knows || []).includes(o.id));
+        const opts = chars().filter(o => o.id !== c.id && !(c.knows || []).includes(o.id) && !isKin(c, o));
         if (!opts.length) { notify('Herkesi tanıyor', '👭'); return; }
         const sh = sheet(`<div class="sheet-grip"></div><h3>👭 ${esc(c.name.split(' ')[0])} kimi tanısın?</h3>
           <div class="g-pick">${opts.map(o => `<button type="button" data-knpick="${o.id}">${avatar(o, 52)}<b>${esc(o.name)}</b></button>`).join('')}</div>`, 'light');
@@ -14171,11 +14244,37 @@
     if (t === 'a') A.an.splice(+v, 1);
     save();
   }
+  /* 🌳 Aile sekmesi: kuşak kuşak ağaç (anne / teyze → o ve kardeşleri → kızı / yeğeni / 👶 bebek kayıtları),
+   * 🧬 benzerlik, ➕ oluştur (famMake), 🔗 var olan karakteri bağla, ✕ ayır (✏️ düzenleme modunda) */
+  const FAM_GEN = [['anne', 'teyze'], ['kardeş'], ['kızı', 'yeğen']];
+  const famLike = (a, b) => [['Skin Tone', 'ten'], ['Eye Color', 'göz'], ['Hair Color', 'saç']].filter(([g]) => cmTrait(a, g) && cmTrait(a, g) === cmTrait(b, g)).map(([, l]) => l);
+  function famTab(c) {
+    const fam = famOf(c), first = esc(c.name.split(' ')[0]), ed = editOn();
+    const node = (o, r) => { const lk = famLike(c, o);
+      return `<div style="display:inline-flex;flex-direction:column;align-items:center;gap:3px;margin:4px 6px;max-width:96px;text-align:center">
+        <a href="#/p/${o.id}" style="color:inherit;text-decoration:none">${avatar(o, 52)}</a>
+        <small>${FAM_ROLE[r][0]} ${esc(FAM_ROLE[r][1])}</small><b style="font-size:13px">${esc(o.name.split(' ')[0])}</b><small class="muted">${famAge(o)} yaş</small>
+        ${(st => st ? `<small class="muted">${st === 'sex' ? `🔥 seviştiniz · ${(c.famSeen || {})[o.id] >= o.sexAt ? '👁️ biliyor' : '🤫 bilmiyor'}` : '👋 tanıştınız'}</small>` : '')(famState(o))}
+        ${lk.length ? `<small class="muted">🧬 ${esc(lk.join(', '))}</small>` : ''}${ed ? `<button type="button" class="btn ghost sm" data-famrm="${o.id}" title="Akrabalığı kaldır">✕</button>` : ''}</div>`; };
+    const row = (lab, html) => html ? `<div style="text-align:center;padding:6px 0;border-bottom:1px dashed var(--line, #ddd)"><small class="muted">${lab}</small><div>${html}</div></div>` : '';
+    const gen = rs => fam.filter(([, r]) => rs.includes(r)).map(([o, r]) => node(o, r)).join('');
+    const me = `<div style="display:inline-flex;flex-direction:column;align-items:center;gap:3px;margin:4px 6px">${avatar(c, 60)}<b>${first}</b><small class="muted">${famAge(c)} yaş</small></div>`;
+    const kids = (c.kids || []).map(k => `<span class="chip" title="Oyunda doğan bebek: karakter değil, sadece kayıt">${k.sex === 'erkek' ? '💙' : k.sex === 'kız' ? '🎀' : '👶'} ${esc(k.name || 'isimsiz')} · bebek</span>`).join('');
+    const adds = [['anne', '👩 Annesi'], ['kardeş', '👭 Kız kardeşi'], ['kızı', '🌷 Kızı']].filter(([r]) => famCan(c, r));
+    return `<div class="th-hint" style="margin-top:0">🌳 ${first} ve ailesi. Hepsi yetişkin karakterdir; aralarında cinsel içerik olmaz, aynı sohbette birlikteyken olaylar kapanır.</div>
+      ${row('👩 Anneler', gen(FAM_GEN[0]))}
+      ${row('👭 Kardeşler', me + gen(FAM_GEN[1]))}${row('🌷 Çocuklar', gen(FAM_GEN[2]) + (kids ? `<div style="margin-top:4px">${kids}</div>` : ''))}
+      ${!fam.length && !kids ? '<div class="empty" style="padding:16px 10px">Henüz ailesinden kimse yok</div>' : ''}
+      ${adds.length ? `<div class="sec-title">➕ Ailesinden biri</div><div class="chips">${adds.map(([r, l]) => `<button type="button" class="chip" data-famadd="${r}">${l}</button>`).join('')}</div>` : ''}
+      <div class="chips" style="margin-top:6px"><button type="button" class="chip" data-famlink="1">🔗 Var olan karakteri bağla</button>${fam.length ? '<button type="button" class="chip" data-famdin="1">🍽️ Aile yemeği</button>' : ''}${+c.rival ? `<span class="chip" title="Kardeşiyle olanı öğrendikçe artar; Better Than Her olayını açar">🏆 Rekabet ${+c.rival}/5</span>` : ''}${c.famOath ? '<span class="chip" title="Our Secret: ailesine söylemeyeceğine yemin etti">🗝️ Sır yemini</span>' : ''}</div>
+      <p class="muted" style="margin:10px 4px 0;font-size:12px">🧬 Yeni akraba aynı şehirden ve soyadından gelir; ten rengi, çoğu zaman göz ve saç rengi ortaktır. ❤️ Aşk 70'i geçince ailesinden biri kendiliğinden de katılabilir.</p>`;
+  }
   function profileTab(c) {
     if (ui.profileTab === 'sum') return c3ProfSum(c);
     if (ui.profileTab === 'mem') return memTab(c);
     if (ui.profileTab === 'wear') return wearTab(c);
     if (ui.profileTab === 'diary') return diaryOf(c);
+    if (ui.profileTab === 'fam') return famTab(c);
     // 👭 İlişkileri: arkadaşlarıyla kendi aralarındaki (ikili) sohbetler; tanıdığı ama konuşmadığı kızlar 💬 ile başlar
     if (ui.profileTab === 'rel') {
       const ts = duoOf(c).sort((a, b) => activity(b) - activity(a)), with_ = t => byId(t.members.find(id => id !== c.id));
@@ -14279,6 +14378,7 @@
 
   function removeChar(c) {
     if (!confirm(`${c.name} silinsin mi? Bütün sohbetleri de silinir.`)) return;
+    famOf(c).forEach(([o]) => famUnlink(c, o));
     threadsOf(c).forEach(t => { delete S().chats[t.id]; delete S().side[t.id]; delete S().turns[t.id]; });
     S().threads = threads().filter(t => t.charId !== c.id);
     // Gruplardan çıkar; üyesi kalmayan grup silinir (mesajlarında "Silinmiş karakter" görünür)
@@ -14971,7 +15071,7 @@
           <div class="st-vals">${bools.map(f => { const on = !!(ch.fields || {})[f.id], k = ch.id + '|' + f.id; return `<button type="button" class="st-bool f-${esc(f.id)}${on ? ' on' : ''}${popped.has(k) ? ' pop' : ''}" data-stb="${esc(k)}" title="Dokun: değiştir">${esc(f.icon || '🔘')} ${esc(f.label)}<i>${on ? 'Evet' : 'Hayır'}</i></button>`; }).join('')}
             ${tr.map(t => `<span class="st-tr">${esc(t)}</span>`).join('')}
             ${charFields().some(f => f.id === FERT_ID) ? (v => `<span class="st-tr st-fert">🌱 %${v} ${fertWord(v)}</span>`)((ch.fields || {})[FERT_ID] == null || (ch.fields || {})[FERT_ID] === '' ? 50 : ch.fields[FERT_ID]) : ''}
-            ${(ch.fields || {}).hamile ? `<span class="st-tr st-preg" data-stpreg="${esc(ch.id)}" role="button" style="cursor:pointer" title="Dokun: ⏩ zamanı ileri al · ${babyDad(ch)} · ${HORM[hormOf(ch)][1]}${bellyOf(ch) ? ` · ${BELLY[bellyOf(ch)]}` : ''}">🤰 ${Math.max(1, pregWeek(ch))}. hafta ${HORM[hormOf(ch)][0]} · ${babyDad(ch, 1)} ⏩${timeX(ch) > 1 ? ` ⚡×${timeX(ch)}` : ''}</span>` : ch.postAt != null ? `<span class="st-tr st-preg" data-stpreg="${esc(ch.id)}" role="button" style="cursor:pointer" title="Dokun: ⏩ zamanı ileri al · 🩺 doktor kontrolü">🩹 Lohusa ${postWeek(ch)}/${POST_WEEKS}. hafta ⏩${timeX(ch) > 1 ? ` ⚡×${timeX(ch)}` : ''}</span>` : (ph => `<span class="st-tr st-cyc c-${ph}" title="Döngü günü">${CYCLE[ph].icon} ${cycleDay(ch)}. gün · ${CYCLE[ph].label}</span>`)(cyclePhase(ch))}${((n, m) => n || m ? `<span class="st-tr st-mark" data-stmark="${esc(ch.id)}" role="button" style="cursor:pointer" title="Dokun: izlerin listesi">💜 ${n} iz${m ? ` · sende ${m}` : ''}</span>` : '')(marksOf(ch).length, marksOf(ch, true).length)}${toyChip(ch)}</div>
+            ${(ch.fields || {}).hamile ? `<span class="st-tr st-preg" data-stpreg="${esc(ch.id)}" role="button" style="cursor:pointer" title="Dokun: ⏩ zamanı ileri al · ${babyDad(ch)} · ${HORM[hormOf(ch)][1]}${bellyOf(ch) ? ` · ${BELLY[bellyOf(ch)]}` : ''}">🤰 ${Math.max(1, pregWeek(ch))}. hafta ${HORM[hormOf(ch)][0]} · ${babyDad(ch, 1)} ⏩${timeX(ch) > 1 ? ` ⚡×${timeX(ch)}` : ''}</span>` : ch.postAt != null ? `<span class="st-tr st-preg" data-stpreg="${esc(ch.id)}" role="button" style="cursor:pointer" title="Dokun: ⏩ zamanı ileri al · 🩺 doktor kontrolü">🩹 Lohusa ${postWeek(ch)}/${POST_WEEKS}. hafta ⏩${timeX(ch) > 1 ? ` ⚡×${timeX(ch)}` : ''}</span>` : (ph => `<span class="st-tr st-cyc c-${ph}" title="Döngü günü">${CYCLE[ph].icon} ${cycleDay(ch)}. gün · ${CYCLE[ph].label}</span>`)(cyclePhase(ch))}${((n, m) => n || m ? `<span class="st-tr st-mark" data-stmark="${esc(ch.id)}" role="button" style="cursor:pointer" title="Dokun: izlerin listesi">💜 ${n} iz${m ? ` · sende ${m}` : ''}</span>` : '')(marksOf(ch).length, marksOf(ch, true).length)}${toyChip(ch)}${wetChip()}</div>
           ${paramsOf().length ? `<div class="pv-bars">${pvBars(ch)}</div>` : ''}${feelBlock(ch)}
           <button type="button" class="st-feel st-wear" data-stwear="${esc(ch.id)}" title="Giydir · ✓ üstünde, ✗ bu sohbette çıktı">👗 ${(rs => rs.length ? `<b>${esc(dressState(ch, (th.undress || {})[ch.id]))}</b> · ${rs.map(r => r.off ? `<s>${esc(r.x.name)}</s>` : esc(r.x.name)).join(' · ')}` : esc((ch.wardrobe || []).length ? 'çıplak 🫣' : 'giydir'))(dressRows(ch, (th.undress || {})[ch.id]))}</button>
           <span class="st-tr st-mode" title="Son Mode: 🥴 Zevk'in ×${modeMulOf(th.mode)} artar">💥 ${esc(th.mode || 'mod yok')}</span></div></div>`;
@@ -15894,6 +15994,12 @@
       }
       // 👭 arkadaşının seninle seviştiğini öğrenir (tekli sohbet, her sevişme bir kez)
       if (!group && !yn && ch) { const kj = knowJealous(ch); if (kj) parts.unshift(kj); }
+      // 🌳 akrabasının seninle seviştiğini öğrenir · ❤️ Aşk 70+ iken bir kez ailesinden biri katılır
+      if (!group && !yn && ch) {
+        const fj = famTalk(ch, userMsg.text); if (fj) parts.unshift(fj);
+        const fi = !opts.events && famIntro(ch);
+        if (fi) { parts.push(fi.line); list.push({ id: Store.uid(), from: 'sys', text: fi.note, ts: nowTs() + 5 }); }
+      }
       // 👭 ikili sohbette arkadaşıyla seviştiyse sana bir kez anlatır ("sen yokken X ile…")
       if (!group && !yn && ch && !opts.events && Math.random() < .6) { const dt = duoTell(ch); if (dt) parts.push(dt); }
       // 💍 kocasıyla sohbette olanı (şüphe / hotwife raporu) sana bir kez anlatır
@@ -16744,6 +16850,11 @@
       if (th.benwa) b.push(`🔮 ${th.benwa}`);
       return b.length ? `<span class="st-tr st-toy" data-sttoy="${esc(ch.id)}" role="button" style="cursor:pointer" title="Dokun: oyuncaklar">${b.join(' · ')}</span>` : '';
     }
+    // 💧 ıslaklık çipi (kurudukça kaybolur)
+    function wetChip() {
+      const w = wetOf(th);
+      return w ? `<span class="st-tr st-wet" title="Islaklık: her üç mesajlaşmada bir seviye kurur">💧 ${WET_LV[w]}</span>` : '';
+    }
     function toySheet(ch) {
       const u = (th.undress || {})[ch.id] || {}, o = outfitOf(ch), first = String(ch.name || '').split(' ')[0], st = ch.stretch || 0, now = ch.life || 0;
       const worn = ['tipa', 'oyuncak'].map(s => [s, clItem(o[s])]).filter(([s, x]) => x && !slotOff(u, s));
@@ -17213,7 +17324,7 @@
       const at = lastDone(), lastId = Object.keys(at).reduce((m, id) => (m && at[m] >= at[id] ? m : id), '');
       const ch = byId(chatCharIds()[0]) || {}, likes = new Set(ch.likes || []), bad = new Set([...(ch.dislikes || []), ...(ch.denies || [])]);
       // 🤰 hamilelik olayları sadece hamileyken ve kendi haftasında (hafta değişince liste yenilenir)
-      const sc = (lastScene() || {}).scene || null, key = `${lastId}|${sc ? sc.place + '/' + sc.name : ''}|${group ? '' : `${pregWeek(ch) || ((ch.fields || {}).hamile ? 1 : 0)}${(ch.fields || {}).evli ? 'e' : ''}${lesWith(ch) ? 'l' : ''}${ch.postAt != null ? 'p' : ''}`}`;
+      const sc = (lastScene() || {}).scene || null, key = `${lastId}|${sc ? sc.place + '/' + sc.name : ''}|${group ? '' : `${pregWeek(ch) || ((ch.fields || {}).hamile ? 1 : 0)}${(ch.fields || {}).evli ? 'e' : ''}${lesWith(ch) ? 'l' : ''}${ch.postAt != null ? 'p' : ''}`}|w${wetOf(th)}`;
       if (key === quickKey) return quickList;
       const pk = placeKey(), ok = e => !bad.has(e.id) && e.id !== lastId && !placeBlock(pk, e) && (group || !pregBlock(ch, e));
       const here = sc ? moCats().filter(c => placeFits(placeEvOf(c), sc)).map(c => c.id) : [];
@@ -17230,7 +17341,8 @@
       const les = !group && lesWith(ch), zp = les && allParams().find(x => x.who === 'me' && lowTag(x.label) === 'zevk'), lesHot = !!zp && +paramVal(S().user, zp) >= 60;
       const pool = new Set([...spot, ...nx, ...ctx.now, ...sample(all.filter(isPl), 12), ...sample(all.filter(e => last && e.cat === last.cat), 8),
         ...sample(all.filter(foc), 6), ...sample(all.filter(e => st && stOf(e) === st), 12), ...(les ? sample(all.filter(isLesEv), 12) : []),
-        ...sample(all.filter(e => regEv(ch, e) > 0 && (!st || stOf(e) === st)), 8)]);
+        ...sample(all.filter(e => regEv(ch, e) > 0 && (!st || stOf(e) === st)), 8),
+        ...(wetOf(th) ? sample(all.filter(e => e.wetMin && e.wetMin <= wetOf(th)), 6) : [])]);
       const why = {}, score = e => {
         const r = [];
         let s = Math.random() * .5;
@@ -17244,6 +17356,9 @@
         if (hm === 'libido' && isPregEv(e)) add(1.5, '🔥 Hormonları coştu');
         else if ((hm === 'yorgun' || hm === 'lohusa') && !isPenEv(e) && (isPregEv(e) || stOf(e) !== 'bit')) add(1, hm === 'yorgun' ? '💤 Şefkat istiyor' : '😴 Nazik bir şey');
         if (hm === 'bulanti' && isPenEv(e)) s -= 1.5;
+        // 💧 ıslakken ıslaklık olayları; sırılsıklamken beyaz / file bikini şeffaf
+        if (e.wetMin && wetOf(th) >= e.wetMin) add(1.5, '💧 Islak');
+        if (e.id === 'mvbe22wetwhite' && wetOf(th) >= 3) add(2, '🤍 Bikinisi şeffaf');
         if (les && isLesEv(e)) { add(2.5, '👩‍❤️‍👩 Lezbiyen ilişki'); if ((e.cat === LES_FIN) === lesHot) add(1.5, lesHot ? 'Bitiş zamanı' : 'Isınma zamanı'); }
         if (likes.has(e.id)) add(1.5, '❤️ Sevdiği');
         const rg = regEv(ch, e);
@@ -17661,6 +17776,11 @@
             if (a >= 3) setTimeout(() => notify('🌊 Üç kez tuttun: baraj taşkın! 🔥 Şehvet +15', '🌊'), 1200);
           }
         }
+        // 💧 ıslaklık: wet +/− ya da wetFx 'dry' (kurulandı)
+        if (ne && (ne.wet || ne.wetFx)) {
+          const a = wetOf(th), b = wetSet(th, ne.wetFx === 'dry' ? 0 : a + (+ne.wet || 0));
+          if (b !== a) o.onChanges = [...(o.onChanges || []), { who: String((c || {}).name || '').split(' ')[0] || 'O', label: '💧 Islaklık', from: WET_LV[a], to: WET_LV[b], up: b >= a }];
+        }
         if (ne && String(catOfEv(ne).label).toLocaleLowerCase('tr') === 'nursing') {
           th.nurseRun = (th.nurseRun || 0) + 1;
           charIds.map(byId).filter(Boolean).forEach(k => { k.lastNurse = Date.now(); k.nurseN = (+k.nurseN || 0) + 1; });
@@ -17704,6 +17824,8 @@
       const dch = byId(ids[0]);
       // 👭 tanıdık kıskançlığı: tekli sohbette pozisyon / boşalma anı (arkadaşı sonradan öğrenir, knowJealous)
       if (dch && !group && !depth && (isPosEv(e) || (e.tags || []).some(t => lowTag(t) === 'boşalma'))) dch.sexAt = Date.now();
+      // 🗝️ Our Secret: ailesine söylemeyeceğine yemin etti (famTalk: akrabaları %10 öğrenir)
+      if (dch && !group && e.id === 'mvfm33oursecret') dch.famOath = 1;
       const pre = undressFirst(e, dch);
       if (pre && pre.id !== e.id) eventMessages(pre, null, depth, root, why);
       if (dch && DRESS_EV[e.title]) (th.dressSay = th.dressSay || {})[dch.id] = { t: dressDo(dch, DRESS_EV[e.title]), k: DRESS_EV[e.title] };
@@ -20739,6 +20861,14 @@
       sex: [' dikkatli ol, hâlâ hassasım 🩹'], after: [' bebek uyanmadan biraz uyuyalım 😴'] }
   };
   const hormPool = (ch, k) => { const h = hormOf(ch); return h ? personaPool(HORM_LINES[h], k) : []; };
+  // 💧 ıslaklık ekleri (wetOf ≥ 2): kendi balonunda
+  const WET_LINES = {
+    chat: [' saçlarımdan hâlâ su damlıyor 💧', ' tenim tuzlu tuzlu, denizden yeni çıktım 🌊', ' havlu nerede, sırılsıklamım 😅'],
+    flirt: [' bikinim tenime yapıştı, fark ettin mi? 😏', ' ıslak ıslak sarılayım mı sana? 💧😈', ' beyaz giydiğime pişman değilim 🙈'],
+    sex: [' ıslak tenim kayıyor ellerinden 💦', ' saçlarımdan sırtıma su akıyor 😩', ' her yerim ıslak, sadece denizden değil 😈'],
+    after: [' şimdi bir havlu ve güneş lazım ☀️', ' tuzu da seni de yıkamam lazım 😆', ' kurumadan bir daha mı? 😏']
+  };
+  const wetPool = (ch, k) => { const t = (openThread && threadsOf(ch).includes(openThread) ? openThread : currentThread(ch)); return wetOf(t) >= 2 ? personaPool(WET_LINES, k) : []; };
   const livePool = (ch, k) => { const l = Stories.liveOf(ch); return l && LIVE_LINES[l] && !(l === 'koca' && (ch.fields || {}).hotwife) ? personaPool(LIVE_LINES[l], k) : []; };
   const orientPool = (ch, k) => { const o = orientOf(ch); return o ? personaPool(ORIENT_LINES[`${o}|${meFemAddr() ? '♀' : '♂'}`], k) : []; };
   const PERSONA_CTX = [['chat', '💬 Sohbet'],['flirt', '💕 ❤️ Aşk 60+'], ['sex', '🔥 Sevişirken'], ['after', '💦 Sonrası']];
@@ -21269,7 +21399,7 @@
    * o.sexAt: tekli sohbette pozisyon / boşalma anı (eventMessages). Grup sohbetinde ikisi birlikteyken kıskançlık sayılmaz */
   const knowsOf = c => ((c || {}).knows || []).map(byId).filter(Boolean);
   function knowLink(a, b, on = true) {
-    if (!a || !b || a.id === b.id) return;
+    if (!a || !b || a.id === b.id || (on && isKin(a, b))) return;
     [[a, b], [b, a]].forEach(([x, y]) => {
       x.knows = (x.knows || []).filter(id => id !== y.id && byId(id));
       if (on) { x.knows.push(y.id); (x.knowSeen = x.knowSeen || {})[y.id] = Date.now(); }
@@ -21304,6 +21434,169 @@
     }
     save();
     return g;
+  }
+  /* 🌳 Aile ağacı (v1203): c.fam = { [akraba id]: rol } (rol = öbürü c'nin nesi), karşılıklı (FAM_INV). Hepsi yetişkin karakter.
+   * Akrabalar c.knows'a GİRMEZ: 👭 grup / ikili / üçlü sistemleri onları seçmez. Aynı grupta iki akraba varsa olaylar kapalı (pregBlock).
+   * famMake: köken, şehir, soyadı, ten ve çoğu zaman göz / saç rengi akrabasından; gerisi 🎲.
+   * Oyunda doğan bebekler (c.kids) karakter değildir, burada sadece kayıt olarak görünür */
+  // v1204: 👵 nine rolü kaldırıldı (eski kayıtlardaki nine / torunu bağları famOf'ta görünmez)
+  const FAM_ROLE = { anne: ['👩', 'Annesi'], teyze: ['💐', 'Teyzesi'], kardeş: ['👭', 'Kız kardeşi'], kızı: ['🌷', 'Kızı'], yeğen: ['🌼', 'Yeğeni'] };
+  const FAM_INV = { anne: 'kızı', kızı: 'anne', kardeş: 'kardeş', teyze: 'yeğen', yeğen: 'teyze' };
+  const famOf = c => Object.entries((c || {}).fam || {}).map(([id, r]) => [byId(id), r]).filter(([o, r]) => o && FAM_ROLE[r]);
+  const isKin = (a, b) => !!(a && b && FAM_ROLE[(a.fam || {})[b.id]]);
+  const kinIn = ids => (ids || []).some((x, i) => ids.slice(i + 1).some(y => isKin(byId(x), byId(y))));
+  const famAge = c => +(c || {}).age || ((AGE_R[cmTrait(c || {}, 'Age')] || [25])[0]);
+  function famSet(a, b, r) {
+    if (!a || !b || a.id === b.id || !FAM_INV[r]) return;
+    (a.fam = a.fam || {})[b.id] = r; (b.fam = b.fam || {})[a.id] = FAM_INV[r];
+    knowLink(a, b, false);
+  }
+  // 🔗 yeni akrabayı ağaca yerleştir: c'nin öbür akrabalarıyla bağı da kurulur (kardeşinin annesi = annesi…)
+  function famAdd(c, o, role) {
+    const rest = famOf(c).filter(([x]) => x.id !== o.id);
+    famSet(c, o, role);
+    rest.forEach(([x, r]) => {
+      if (role === 'anne') { if (r === 'kardeş') famSet(x, o, 'anne'); }
+      if (role === 'kardeş') { if (['anne', 'kardeş'].includes(r)) famSet(o, x, r); if (r === 'kızı') famSet(x, o, 'teyze'); }
+      if (role === 'kızı') { if (r === 'kardeş') famSet(o, x, 'teyze'); }
+    });
+  }
+  function famUnlink(a, b) { if (a && a.fam) delete a.fam[b.id]; if (b && b.fam) delete b.fam[a.id]; }
+  // ➕ hangi rol eklenebilir: anne tek; kızı için en az 38 yaş; kardeş en çok 3
+  function famCan(c, role) {
+    const has = r => famOf(c).filter(([, x]) => x === r).length;
+    if (role === 'anne') return !has(role);
+    if (role === 'kızı') return famAge(c) >= 38 && has('kızı') < 2;
+    if (role === 'kardeş') return has('kardeş') < 3;
+    return false;
+  }
+  function famAgeFor(c, role) {
+    const a = famAge(c);
+    if (role === 'anne') return a + randInt(20, 30);
+    if (role === 'kardeş') { const v = a + pick([-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6]); return Math.max(18, v === a ? a + 1 : v); }
+    if (role === 'kızı') { const v = a - randInt(20, 26); return v >= 18 ? v : (a - 20 >= 18 ? a - 20 : 0); }
+    return 0;
+  }
+  function famMake(c, role) {
+    const age = famCan(c, role) && famAgeFor(c, role);
+    if (!age) return null;
+    const d = blankChar(), mod = ui.createMod;
+    ui.createMod = 'amor';
+    randomize(d, 'all');
+    ui.createMod = mod;
+    d.gender = '♀'; d.city = c.city || d.city;
+    const sur = String(c.name || '').trim().split(/\s+/).slice(1).join(' ');
+    d.name = String(worldName(d) || 'Elena').split(/\s+/)[0] + (sur ? ' ' + sur : '');
+    if (chars().some(x => x.name === d.name)) d.name = String(worldName(d) || 'Elena').split(/\s+/)[0] + (sur ? ' ' + sur : '');
+    d.age = String(age); d.job = randJob(age);
+    [['Skin Tone', 1], ['Eye Color', .7], ['Hair Color', .7]].forEach(([g, p]) => {
+      const t = (c.traits || []).find(x => x.startsWith(g + ':'));
+      if (t && Math.random() < p) d.traits = d.traits.filter(x => !x.startsWith(g + ':')).concat(t);
+    });
+    d.traits = d.traits.filter(x => !x.startsWith('Age:'));
+    const ar = Object.keys(AGE_R).find(k => ageOk(k, age));
+    if (ar) d.traits.push('Age: ' + ar);
+    crFix(d, true);
+    Object.assign(d, { id: Store.uid(), created: Date.now(), src: 'fam' });
+    chars().push(d);
+    famAdd(c, d, role);
+    save();
+    return d;
+  }
+  /* 💬 akrabaya özel mesajlar (v1206): FAM_MSG[rol] (rol = akraba onun nesi) · durum famState: 'met' (onunla yazıştın) / 'sex' (o.sexAt).
+   * met bir kez (famMetSaid); sex her sevişme bir kez (famSeen = o.sexAt), ama 🤫 saklarsan her cevapta %35 (Our Secret yeminiyle %10) öğrenir.
+   * 🤫 söylersen (adı + itiraf kelimesi, famTold): yumuşak "told" cevabı, Kıskançlık +4. Saklarken öğrenirse 🕵️ Şüphe +10, Kıskançlık +12 / +4.
+   * 🏆 kardeşiyle olanı öğrenince c.rival +1 (en çok 5) → rivalMin olayları. Adını anarsan %30 FAM_NAME */
+  const FAM_MSG = {
+    anne: { met: ['Annem seni sordu yine… ne yaptın ona? 😅', '{d} senden hoşlanmış galiba, "kibar çocuk" dedi 🙈', 'Annemle tanıştın ya, artık kaçış yok 😂'],
+      jl: ['Annemle mi?! Bunu nasıl unutacağım 😤', '{d} ile… annemle! Yüzüne bakamıyorum şu an 😠', 'Annemle yaşadığını öğrendim. Bir açıklaman var mı? 😤💔'],
+      ok: ['Annem bile seni seviyor… bu ne şans 🙈', 'Annem gülümsemesini saklayamadı. Neyse, ben daha gencim 😏', 'Annemle mi? Tamam… ama beni unutma 😏'],
+      told: ['Bana kendin söylediğin için teşekkür ederim… kızgınım ama dürüstlüğün önemli 😔', 'Annemle… peki. En azından benden saklamadın 😕'] },
+    kızı: { met: ['Kızım senden bahsetti, iyi davran ona 😌', '{d} seni çok seviyor gibi… bir anne bunu anlar 🙂', 'Kızımla tanıştın demek. Dikkatli ol, onu ben büyüttüm 😏'],
+      jl: ['Kızımla mı? Benimle olanlardan sonra mı? 😤', '{d} ile… ne düşüneceğimi bilmiyorum 😠', 'Kızımla aranızda bir şey olduğunu anladım. Bunu konuşacağız 😤'],
+      ok: ['Kızımla olanı biliyorum… beni de unutma ama 😏', '{d} mutlu görünüyor, bunu sen mi yaptın? 😌', 'Kızım genç, ben tecrübeliyim… seçim senin 😏'],
+      told: ['Dürüst davrandın, bunu takdir ediyorum… ama içim acıdı 😔', 'Kızımla… peki. Benden saklamadığın için sağ ol 😕'] },
+    kardeş: { met: ['Kardeşim senden bahsetti, merak ettim 😏', '{d} ile tanıştın mı? O hep benim arkadaşlarımı sever 🙄', 'Kardeşime fazla gülümseme, tamam mı? 😏'],
+      jl: ['Kardeşimle mi?! Her şeyi benden önce o mu alacak? 😤', '{d}… tabii ki. Hep o 😠', 'Kardeşimle yattığını öğrendim. Ondan daha iyi miyim, dürüst ol 😤'],
+      ok: ['Ondan daha iyi miyim? Dürüst ol 😈', '{d} çok memnun kalmış… şimdi kendimi kanıtlamam lazım 😏', 'Kardeşimle mi? Tamam, ama yarışı ben kazanırım 🏆'],
+      told: ['Kardeşimle… bana söylemen iyi oldu. Ama şimdi yarış başladı 😤🏆', 'Kendin söyledin, takdir ediyorum… yine de ondan daha iyi olacağım 😏'] },
+    teyze: { met: ['Teyzem senden bahsetti, aile toplantısında rezil olacağım 🙈', '{d} teyzem seni beğenmiş, "yakışıklı" dedi 😅', 'Teyzemle tanıştın demek. O her şeyi anlatır, dikkat et 😏'],
+      jl: ['Teyzemle mi? Aile toplantısında yüzüne nasıl bakacağım? 😤', '{d} ile… teyzemle! İnanamıyorum 😠', 'Teyzemi de mi? Bu aileyi bitireceksin 😤'],
+      ok: ['Teyzem bayağı mutlu görünüyordu… sebebi sensin değil mi? 😏', 'Teyzemle mi? Peki… ama ben daha eğlenceliyim 😈', 'Aile toplantısı çok garip olacak 😂'],
+      told: ['Teyzemle… söylemen iyi oldu, aile yemeğinde sürpriz yaşamayayım 😕', 'Bana kendin söyledin, bu önemli. Ama kızgınım 😔'] },
+    yeğen: { met: ['Yeğenim senden bahsetti, çok hoşlanmış 🙈', '{d} seni çok övdü… teyze olarak onaylıyorum 😌', 'Yeğenimle tanıştın demek, ona iyi davran 😏'],
+      jl: ['Yeğenimle mi? Benimle olanlardan sonra mı? 😤', '{d} ile… aile toplantısında nasıl oturacağız? 😠', 'Yeğenimle yattığını duydum. Bu ailede sınır tanımıyorsun 😤'],
+      ok: ['Yeğenim çok mutlu… sen ne yaptın ona? 😏', '{d} gençtir, sen yine de bana uğra 😈', 'Yeğenimle mi? Peki… aramızda kalsın 🤫'],
+      told: ['Yeğenimle… söylediğin iyi oldu. Ben de sessiz kalırım 🤫', 'Kendin söyledin, sağ ol… içim burkuldu ama 😔'] }
+  };
+  const FAM_NAME = { anne: ['Annemden neden bahsediyorsun? 🤨', 'Annemi karıştırma şimdi 😅'], kızı: ['Kızımı neden soruyorsun? 🤨', '{d} mi? Benimle konuşurken onu düşünme 😏'],
+    kardeş: ['{d} mi? Neden onu soruyorsun? 😒', 'Kardeşimi bırak, ben buradayım 😏'], teyze: ['Teyzemi neden soruyorsun? 😅', '{d} mi? Garip bir soru 🤨'], yeğen: ['Yeğenimi neden soruyorsun? 🤨', '{d} mi? Ben buradayım 😏'] };
+  const FAM_TELL_RE = /(yattım|yattık|seviştim|seviştik|birlikte olduk|bir şey yaşadık|aramızda bir şey|itiraf)/;
+  const famMet = o => threadsOf(o).some(t => msgsOf(t).some(m => m.from === 'me'));
+  const famState = o => o.sexAt ? 'sex' : famMet(o) ? 'met' : '';
+  function famTalk(ch, text) {
+    const seen = ch.famSeen = ch.famSeen || {}, said = ch.famMetSaid = ch.famMetSaid || {}, told = ch.famTold = ch.famTold || {};
+    const low = String(text || '').toLocaleLowerCase('tr'), fam = famOf(ch), nm = o => o.name.split(' ')[0], fill = (s, o) => s.replace(/\{d\}/g, nm(o));
+    // 🤫 kendin söyledin
+    const tf = fam.find(([o]) => o.sexAt && !told[o.id] && low.includes(nm(o).toLocaleLowerCase('tr')) && FAM_TELL_RE.test(low));
+    if (tf) { const [o, r] = tf; told[o.id] = 1; seen[o.id] = o.sexAt; kisBump(ch, 4); if (r === 'kardeş') ch.rival = Math.min(5, (+ch.rival || 0) + 1); return fill(pickOne(FAM_MSG[r].told), o); }
+    for (const [o, r] of fam) {
+      const P = FAM_MSG[r];
+      if (!P) continue;
+      if (o.sexAt && o.sexAt > (+seen[o.id] || 0)) {
+        if (!told[o.id] && Math.random() > (o.famOath ? .1 : .35)) continue;
+        seen[o.id] = o.sexAt;
+        const jl = jealousOf(ch) || relV(ch, 'aşk') >= 60;
+        if (told[o.id]) kisBump(ch, 4);
+        else { kisBump(ch, jl ? 12 : 4); const sp = allParams().find(x => x.id === 'suphe'); if (sp) applyOutcome({ text: '', effects: [{ p: 'p:suphe', d: 10 }] }, [ch.id]); }
+        if (r === 'kardeş') ch.rival = Math.min(5, (+ch.rival || 0) + 1);
+        return fill(pickOne(told[o.id] ? P.told : jl ? P.jl : P.ok), o);
+      }
+      if (!said[o.id] && famState(o)) { said[o.id] = 1; return fill(pickOne(P.met), o); }
+    }
+    const nf = fam.find(([o]) => low.includes(nm(o).toLocaleLowerCase('tr')));
+    return nf && Math.random() < .3 ? fill(pickOne(FAM_NAME[nf[1]]), nf[0]) : '';
+  }
+  // 🔥 aile olayları kapısı (system.js e.famRole / famNeed 'met' | 'sex' / famDinner / rivalMin)
+  const FAM_WHO = { anne: 'annesiyle', kızı: 'kızıyla', kardeş: 'kardeşiyle', teyze: 'teyzesiyle', yeğen: 'yeğeniyle' };
+  function famBlock(c, e) {
+    if (!c || !e) return '';
+    if (e.famRole) {
+      const ok = famOf(c).some(([o, r]) => e.famRole.includes(r) && (e.famNeed === 'sex' ? o.sexAt : famState(o)));
+      if (!ok) return `önce ${e.famRole.map(r => FAM_WHO[r]).join(' / ')} ${e.famNeed === 'sex' ? 'bir şey yaşamış' : 'tanışmış'} olmalısın`;
+    }
+    if (e.famDinner && !(c.famDinner && Date.now() - c.famDinner < 864e5)) return 'sadece 🍽️ aile yemeğinden sonraki 24 saatte';
+    if (e.oath && !c.famOath) return 'önce 🗝️ Our Secret ile sır yemini etmiş olmalı';
+    if (e.famTold && !Object.keys(c.famTold || {}).length) return 'önce akrabasıyla olanı ona kendin söylemiş olmalısın';
+    if (e.rivalMin && (+c.rival || 0) < e.rivalMin) return `🏆 Rekabet en az ${e.rivalMin} olmalı (şu an ${+c.rival || 0})`;
+    return '';
+  }
+  // 📚 kitap tablosu: aile olayının kapısı tek cümle
+  const famBlockTxt = e => `${(e.tags || []).includes('anal') ? '🍩' : '🍑'} ` + (e.famDinner ? `Aile yemeğinden sonraki 24 saat${e.famRole ? ', o bir anne' : ''}` : e.after ? `Bitiş: ${e.after.join(' / ')} sonrası` : e.famRole ? `${e.famRole.length > 3 ? 'Herhangi bir akrabasıyla' : e.famRole.map(r => FAM_WHO[r]).join(' / ')} ${e.famNeed === 'sex' ? 'seviştiysen' : 'tanıştıysan'}${e.rivalMin ? `, 🏆 Rekabet ${e.rivalMin}+` : ''}${e.oath ? ', 🗝️ sır yemini' : ''}${e.famTold ? ', kendin söylediysen' : ''}` : '');
+  // 🍽️ aile yemeği: o + akrabaları (en çok 3) grup sohbeti; akrabalar birlikte olduğu için sadece sohbet / gündelik (pregBlock); c.famDinner → Dinner Escape
+  const FAM_DINNER = { _: ['Hoş geldin! Herkes seni bekliyordu 🙈', 'Otur şöyle, yanıma 😌'], anne: ['Hoş geldin, aç mısın? 🍲', 'Demek meşhur misafir sensin 😏'],
+    kardeş: ['Selam! Sonunda hep birlikteyiz 😏', 'Onun yanına oturma, benim yanım boş 😈'], kızı: ['Annemin misafiri sen misin? 🙂', 'Masaya bir tabak daha koydum 🍽️'],
+    teyze: ['Hoş geldin! Ben teyzesiyim, her şeyi bilirim 😏'], yeğen: ['Selam! Teyzem senden çok bahsetti 🙈'] };
+  function famDinner(c) {
+    const rel = famOf(c).slice(0, 3), ids = [c.id, ...rel.map(([o]) => o.id)], now = Date.now();
+    let g = groups().find(t => t.famDinner && t.members.length === ids.length && ids.every(id => t.members.includes(id)));
+    if (!g) { g = { id: Store.uid(), group: true, famDinner: 1, members: ids, title: `🍽️ Aile yemeği · ${c.name.split(' ')[0]}`, created: now, opened: 0 }; threads().push(g); }
+    const ms = msgsOf(g);
+    ms.push({ id: Store.uid(), from: 'sys', text: '🍽️ Aile yemeği: gergin bakışlar, iğneli laflar. Bu sohbette sadece sohbet ve gündelik olaylar olur.', ts: now });
+    ms.push({ id: Store.uid(), from: 'her', who: c.id, text: pickOne(FAM_DINNER._), ts: now + 1 });
+    rel.forEach(([o, r], i) => ms.push({ id: Store.uid(), from: 'her', who: o.id, text: pickOne(FAM_DINNER[r] || FAM_DINNER._), ts: now + 2 + i }));
+    [c, ...rel.map(([o]) => o)].forEach(x => { x.famDinner = now; });
+    save();
+    return g;
+  }
+  // 🌱 doğal giriş: ❤️ Aşk 70+ iken bir kez (c.famIntro) annesi ya da kız kardeşi aileye katılır, o bahseder
+  const FAM_INTRO = { anne: ['Annem bu hafta sonu şehre geliyor… seni çok merak ediyor 🙈', 'Annem fotoğrafını gördü, "bu çocuk kim" diye soruyor 😅'], kardeş: ['Kız kardeşim seni sordu bugün 😏 Biraz meraklıdır', 'Kardeşim bu akşam bize geliyor, tanışmak ister misin? 🙈'] };
+  function famIntro(ch) {
+    if (!ch || ch.famIntro || ch.src === 'fam' || relV(ch, 'aşk') < 70 || Math.random() > .04) return null;
+    ch.famIntro = 1;
+    const role = famCan(ch, 'anne') ? 'anne' : famCan(ch, 'kardeş') ? 'kardeş' : '';
+    const o = role && famMake(ch, role);
+    return o ? { line: pickOne(FAM_INTRO[role]), note: `🌳 ${ch.name.split(' ')[0]} ailesinden biriyle tanışacaksın: ${o.name} (${FAM_ROLE[role][1].toLocaleLowerCase('tr')}) · profilde 🌳 Aile` } : null;
   }
   /* 👭 İkili sohbet (v950): iki kız kendi arasında konuşur, sen izlersin. th.duo = true grup thread'i (members [a, b]).
    * th.duoS aşama (DUO_ST), th.duoT aşamadaki tur, th.duoIn sen katıldın (normal grup sohbetine döner), th.duoPause, th.duoSpd, th.duoEv önerdiğin olay id'si.
@@ -21656,6 +21949,8 @@
     if (ll.length) opts.push([['add', ll]]);
     const hl = serious || Math.random() > .25 ? [] : hormPool(ch, k).filter(x => !rec.includes(x) && !txt.includes(x.trim()));
     if (hl.length) opts.push([['own', hl]]);
+    const wl = serious || !ch || Math.random() > .3 ? [] : wetPool(ch, k).filter(x => !rec.includes(x) && !txt.includes(x.trim()));
+    if (wl.length) opts.push([['own', wl]]);
     if (opts.length && parts.length) {
       const [w, a] = pickOne(pickOne(opts)), x = pickOne(a);
       // 🌡️ hormon eki kendi balonunda (büyük harfle; EN sözlüğü cümle olarak bulur)
@@ -26133,7 +26428,7 @@
     ['soy', '👗', 'Soyunma', ['undress']],
     ['on', '👅', 'Ön sevişme', ['eat', 'outercourse', 'squeeze', 'pregnancy foreplay', 'after birth', 'nurturing foreplay', 'pee rubbing', 'held pee rubbing', 'held titfuck pee', 'licking', 'biting', 'her licks and bites', 'dick slap', 'dick touch', 'slurping', 'plug play', 'toy play', 'hand grab', 'hand spank', 'hair wrap', 'sleep foreplay', 'donor room', 'fetish play', 'foot play', 'lingerie play']],
     ['sut', '🍼', 'Lactation', ['lactation', 'nursing', 'lactation fantasy', 'milky foreplay']],
-    ['poz', '🔥', 'Pozisyon', ['forward', 'backward', 'threesome', 'pregnancy', 'back together', 'milky sex', 'nurturing sex', 'mode', 'pre-cumming', 'anal pee', 'heavy anal pee', 'held anal pee', 'plugged sex', 'grip sex', 'hair sex', 'sleep sex', 'donor sex', 'fetish sex', 'foot sex', 'lingerie sex', 'lap positions', 'deep sex', 'soft inside', 'filled pussy', 'filled ass', 'cultural positions']],
+    ['poz', '🔥', 'Pozisyon', ['forward', 'backward', 'threesome', 'pregnancy', 'back together', 'family ties', 'milky sex', 'nurturing sex', 'mode', 'pre-cumming', 'anal pee', 'heavy anal pee', 'held anal pee', 'plugged sex', 'grip sex', 'hair sex', 'sleep sex', 'donor sex', 'fetish sex', 'foot sex', 'lingerie sex', 'lap positions', 'deep sex', 'soft inside', 'filled pussy', 'filled ass', 'cultural positions']],
     ['mekan', '📍', 'Mekân', ['mekanda', 'shower', 'sauna', 'bathtub', 'pool', 'car', 'elevator', 'camping', 'kitchen', 'stairs', 'laundry', 'balcony', 'camera', 'beach', 'office', 'hotel', 'school', 'church', 'gym', 'bar', 'cinema', 'outdoors', 'restaurant', 'rooftop', 'library', 'fair', 'haunted', 'street', 'massage salon', 'clinic', 'pee']],
     ['fant', '🦄', 'Fantezi', ['fantesy', 'meisove', 'femdom', 'bdsm', 'bull', 'affair', 'affair story', 'heavy pee', 'toys out']],
     ['bit', '💦', 'Bitiş', ['cumming', 'cumming size']],
@@ -27094,7 +27389,7 @@
   const LES_NO_RE = /blowjob|deepthroat|handjob|titfuck|titjob|footjob|legjob|buttjob|hotdog|cum|creampie|condom|cock|dick|pull-out|bulge|size comparison|unplug flood|keep it in overnight|milked by toy/i;
   // lezbiyen ilişkide gizlenen olay mı (🧪 #/lezbiyen ve 📚 Lezbiyen Kitabı da sayar)
   // penisli kategoriler: Cumming, sperm ölçüsü (Cumming Size), onu sıkıştırma (Squeeze), kuru sürtünme (Outercourse)
-  const LES_NO_CAT = ['Cumming', 'Cumming Size', 'Squeeze', 'Outercourse', 'Her Licks And Bites', 'Dick Slap', 'Dick Touch', 'Slurping', 'Plugged Sex', 'Grip Sex', 'Nurturing Sex', 'Hair Sex', 'Hair Wrap', 'Sleep Sex', 'Donor Room', 'Donor Sex', 'Fetish Play', 'Fetish Sex', 'Foot Play', 'Foot Sex', 'Lingerie Sex', 'Lap Positions', 'Deep Sex', 'Deep After', 'Soft Inside', 'Inside After', 'Filled Pussy', 'Filled Ass', 'Filled After', 'Cultural Positions', 'After Birth', 'Back Together'];
+  const LES_NO_CAT = ['Cumming', 'Cumming Size', 'Squeeze', 'Outercourse', 'Her Licks And Bites', 'Dick Slap', 'Dick Touch', 'Slurping', 'Plugged Sex', 'Grip Sex', 'Nurturing Sex', 'Hair Sex', 'Hair Wrap', 'Sleep Sex', 'Donor Room', 'Donor Sex', 'Fetish Play', 'Fetish Sex', 'Foot Play', 'Foot Sex', 'Lingerie Sex', 'Lap Positions', 'Deep Sex', 'Deep After', 'Soft Inside', 'Inside After', 'Filled Pussy', 'Filled Ass', 'Filled After', 'Cultural Positions', 'After Birth', 'Back Together', 'Family Ties'];
   const lesNo = e => (e.tags || []).some(t => LES_NO_TAG.includes(String(t).toLocaleLowerCase('tr'))) || LES_NO_RE.test(e.title || '') || LES_NO_CAT.includes(catOfEv(e).label);
   // 🎬 sahne cinsiyete göre: kadın hesapta penisli olay (lesNo) içeren sahne, erkek hesapta lezbiyen olay içeren sahne gizli.
   // Sonuç hesap cinsiyeti + olay sayısına göre önbellekte; scenes.js sceneGroups da Stories.sceneHide ile süzer
@@ -27222,6 +27517,19 @@
     const s = ck.step !== '' && ck.step != null ? +ck.step : +cf.step || 0;
     return ck.start + s * msgsOf(th).filter(m => m.from !== 'sys').length;
   };
+  /* 💧 ıslaklık (th.wet 0–3): olay alanı `wet` (+/−) ya da `wetFx: 'dry'` değiştirir; her 6 mesajda (≈ 3 karşılıklı) bir seviye kurur.
+   * Kapı: `wetMin` / `wetMax`. 3'te beyaz / file bikini şeffaf sayılır (kısayol puanı) */
+  const WET_LV = ['Kuru', 'Nemli', 'Islak', 'Sırılsıklam'];
+  const wetN = th => msgsOf(th).filter(m => m.from !== 'sys').length;
+  const wetOf = th => (!th || !th.wet ? 0 : Math.max(0, Math.min(3, th.wet - Math.floor((wetN(th) - (+th.wetAt || 0)) / 6))));
+  const wetSet = (th, v) => { th.wet = Math.max(0, Math.min(3, v)); th.wetAt = wetN(th); return th.wet; };
+  const wetBlock = (c, e) => {
+    if (!c || !e || (!e.wetMin && e.wetMax == null)) return '';
+    const w = wetOf((openThread && threadsOf(c).includes(openThread) ? openThread : currentThread(c)) || {});
+    if (e.wetMin && w < e.wetMin) return `önce ıslanmalı (💧 ${WET_LV[w]}, en az ${WET_LV[e.wetMin]})`;
+    if (e.wetMax != null && w > e.wetMax) return `zaten ıslak (💧 ${WET_LV[w]})`;
+    return '';
+  };
   const sleepNight = m => Math.floor((m - 420) / 1440);
   const sleepBlock = (c, e) => {
     if (!c || !e || !e.sleep) return '';
@@ -27234,10 +27542,17 @@
     return '';
   };
   const pregBlock = (c, e) => {
+    // 🌳 aile: aynı sohbette iki akraba varken sadece ☕ gündelik / 🍷 içki olayları
+    if (c && e && openThread && openThread.group && (openThread.members || []).includes(c.id) && kinIn(openThread.members)) {
+      const st = pkStageOf(catOfEv(e));
+      if (st !== 'gun' && st !== 'ick') return 'aile üyeleri aynı sohbetteyken olmaz';
+    }
     const pb = persBlock(c, e) || hairBlock(c, e) || skinBlock(c, e) || originBlock(c, e) || trBlock(c, e) || sleepBlock(c, e);
     if (pb) return pb;
     const lb = e ? lesBlock(c, e) : '';
     if (lb) return lb;
+    const fmb = famBlock(c, e);
+    if (fmb) return fmb;
     const tb = toyBlock(c, e);
     if (tb) return tb;
     const mb = markBlock(c, e);
@@ -27246,6 +27561,8 @@
       const th = (openThread && threadsOf(c).includes(openThread) ? openThread : currentThread(c)) || {};
       if ((+th.held || 0) < e.heldMin) return `önce özünü tutmalısın (💎 ${+th.held || 0}/${e.heldMin})`;
     }
+    const wtb = wetBlock(c, e);
+    if (wtb) return wtb;
     const wb = wearBlock(c, e);
     if (wb) return wb;
     if (e && e.milk != null && milkV(c) < e.milk) return `göğüsleri boş, Süt en az ${e.milk} olmalı`;
@@ -27329,7 +27646,7 @@
   const CHAR_KIND = 'carmen-char';
   function charPack(c, lite) {
     const d = JSON.parse(JSON.stringify(c));
-    ['id', 'life', 'lf', 'pregAt', 'pregW', 'postAt', 'created'].forEach(k => delete d[k]);
+    ['id', 'life', 'lf', 'pregAt', 'pregW', 'postAt', 'created', 'fam', 'famSeen', 'knows', 'knowSeen', 'famMetSaid', 'famTold', 'famDinner', 'famOath', 'rival'].forEach(k => delete d[k]);
     if (lite) { if (/^data:/.test(d.photo || '')) d.photo = ''; d.album = (d.album || []).filter(u => !/^data:/.test(u)); }
     const names = {};
     ['likes', 'dislikes', 'allows', 'denies'].forEach(k => { names[k] = feelEvents(d[k] || []).map(e => e.title); });
@@ -27408,7 +27725,7 @@
       if (!b) return;
       sh.close();
       const d = JSON.parse(JSON.stringify(c)), k = b.dataset.cl, mod = ui.createMod;
-      ['life', 'lf', 'pregAt', 'pregW', 'births'].forEach(x => delete d[x]);
+      ['life', 'lf', 'pregAt', 'pregW', 'births', 'kids', 'kidsBy', 'postAt', 'dueW', 'clearedAt', 'babyName', 'babySex', 'nameNo', 'babyBy', 'fam', 'famSeen', 'famIntro', 'noSex', 'knows', 'knowSeen', 'famMetSaid', 'famTold', 'famDinner', 'famOath', 'rival', 'sexAt'].forEach(x => delete d[x]);
       Object.assign(d, { id: Store.uid(), created: Date.now() });
       ui.createMod = 'amor';
       if (k === 'pers') randomize(d, 'personality');
@@ -31165,8 +31482,53 @@
           <li><b>😤 Kıskançlık</b>: bir kızla <b>tekli sohbette</b> sevişirsen (pozisyon ya da boşalma), arkadaşı bunu bir sonraki cevabında öğrenir. Kıskançsa (ya da ❤️ Aşk 60+) alınır: "Arkadaşım o benim!" · 😤 Kıskançlık +6. Değilse %60 meraklı ya da şakacı bir söz söyler ("bir dahakine beni de çağırın"). Her sevişme bir kez sayılır; grup sohbetinde ikisi birlikteyken sayılmaz.</li>
           <li><b>💬 Kendi aralarında</b>: profilde tanıdığın yanındaki 💬 ile iki kız sen yokken konuşur; izlersin, olay önerirsin ya da katılırsın. Ayrıntı: <a href="#/kitap/lezbiyen/10">👩‍❤️‍👩 Lezbiyen Kitabı → 👭 Kendi aralarında</a>.</li>
           <li><b>🗣️ Adını anarsan</b>: tanıdığının adını yazınca kıskanç kız ayrıca "O benim arkadaşım… dikkat et" der (😤 Kıskançlık +4).</li>
+          <li><b>🌳 Akrabalar</b>: annesi, kız kardeşi ya da kızı tanıdık sayılmaz; grup teklifine, ikili sohbete ve üçlü olaylara hiç girmez. Akrabası seninle seviştiğini öğrenirse ayrıca tepki verir: <a href="#/kitap/grup/16">🌳 Aile ağacı</a>.</li>
           <li><b>🌹 Grup ilanı</b>: Carmen.com'da ilanların yaklaşık dörtte biri ikişer <b>👯 grup ilanı</b>dır (kartta "👯 … ile grup ilanı", sekme 👯 Grup). Profilde <b>👯 İkimizle buluş</b> ikisini de kaydeder, tanıştırır ve ikisiyle grup sohbeti açar.</li></ul>
         ${pairs.length ? `<table class="bk-t"><tr><th>Tanışanlar</th><th>Sohbet</th></tr>${pairs.map(([a, b]) => `<tr><td>${esc(a.name)} 👭 ${esc(b.name)}</td><td><a href="#/p/${a.id}">👤 ${esc(a.name.split(' ')[0])}</a> · <a href="#/p/${b.id}">👤 ${esc(b.name.split(' ')[0])}</a></td></tr>`).join('')}</table>` : '<p><small>Henüz tanışan kimse yok.</small></p>'}`;
+    } },
+    // v1203: 🌳 aile ağacı (#/kitap/grup/16): c.fam, famMake, famAdd, kapılar pregBlock
+    { icon: '🌳', title: 'Aile ağacı', sub: 'anne, kız kardeş, kızı; mesajlar, sır, rekabet, aile yemeği, olaylar', get body() {
+      const fams = chars().filter(c => famOf(c).length).slice(0, 8);
+      return `<p>🌳 Karakterlerin artık bir ailesi olabilir: annesi, kız kardeşleri ve yaşı uygunsa yetişkin bir kızı. Hepsi kendi profili olan yetişkin karakterlerdir.</p>
+        <table class="bk-t"><tr><th>Akraba</th><th>Yaş</th><th>Ne zaman eklenir</th></tr>
+          <tr><td><b>👩 Annesi</b></td><td>20–30 yaş büyük</td><td>Bir tane olur.</td></tr>
+          <tr><td><b>👭 Kız kardeşi</b></td><td>1–6 yaş fark, en az 18</td><td>En çok üç tane.</td></tr>
+          <tr><td><b>🌷 Kızı</b></td><td>20–26 yaş küçük, en az 18</td><td>Sadece 38 yaş ve üstü karakterlerde.</td></tr></table>
+        <h4>➕ Nasıl eklenir</h4>
+        <ul><li>Profilde 🌳 Aile sekmesinden ailesinden birini oluşturabilirsin.</li>
+          <li>Var olan bir karakteri de akraba olarak bağlayabilirsin; yaş farkı uymayan akrabalıklar seçilemez.</li>
+          <li>Bir karakterle ❤️ Aşk 70'i geçince, bir kez annesi ya da kız kardeşi kendiliğinden katılır ve o senden bahsettiğini söyler.</li>
+          <li>Bağlar kendiliğinden kurulur: kardeşinin annesi onun da annesidir, kardeşinin kızı yeğenidir.</li></ul>
+        <h4>🧬 Benzerlik</h4>
+        <p>Yeni akraba aynı şehirden gelir ve aynı soyadını taşır. Ten rengi hep, göz ve saç rengi çoğu zaman ortaktır; vücudu, kişiliği ve sevdikleri kendine özgüdür. Ağaçta her akrabanın altında ortak özellikler yazar.</p>
+        <h4>🚫 Kurallar</h4>
+        <ul><li>Akrabalar birbirinin arkadaş listesine girmez; grup teklifi, ikili sohbet ve üçlü olaylar onları hiç seçmez.</li>
+          <li>Aynı grup sohbetinde iki akraba varken sadece sohbet, gündelik ve içki olayları olur.</li>
+          <li>Oyunda doğan bebekler karakter değildir; ağaçta sadece bebek kaydı olarak görünürler.</li></ul>
+        <h4>💬 Akrabaya özel mesajlar</h4>
+        <p>Her kız akrabalarıyla ne yaşadığını bilir ve buna göre konuşur. Mesaj, akrabanın onun nesi olduğuna ve senin o akrabayla ne yaşadığına göre seçilir.</p>
+        <table class="bk-t"><tr><th>Durum</th><th>Ne zaman</th><th>Örnek (annesi hakkında)</th></tr>
+          <tr><td><b>👋 Tanıştınız</b></td><td>Akrabasıyla bir kez yazıştıysan; bir kez söyler.</td><td>Annem seni sordu yine… ne yaptın ona?</td></tr>
+          <tr><td><b>🔥 Kıskanç</b></td><td>Akrabasıyla seviştiğini saklarken öğrenirse (kıskançsa ya da Aşk 60+).</td><td>Annemle mi?! Bunu nasıl unutacağım</td></tr>
+          <tr><td><b>😏 Takılır</b></td><td>Öğrenir ama kıskanç değilse.</td><td>Annem bile seni seviyor… bu ne şans</td></tr>
+          <tr><td><b>🤫 Kendin söyledin</b></td><td>Önce sen itiraf ettiysen.</td><td>Bana kendin söylediğin için teşekkür ederim… kızgınım ama dürüstlüğün önemli</td></tr></table>
+        <p>Anne kızı hakkında, kızı annesi hakkında, kız kardeşler birbiri hakkında, teyze ve yeğen birbiri hakkında farklı konuşur. Sohbette akrabasının adını yazarsan bazen "Annemden neden bahsediyorsun?" gibi bir tepki gelir.</p>
+        <h4>🤫 Aile sırrı</h4>
+        <ul><li>Akrabasıyla seviştiğini ona kendin söyleyebilirsin: akrabanın adını ve "yattım", "seviştik", "aramızda bir şey oldu" gibi bir itirafı aynı mesajda yaz.</li>
+          <li>Kendin söylersen yumuşak tepki verir; Kıskançlık sadece 4 artar.</li>
+          <li>Saklarsan her cevabında %35 ihtimalle kendisi öğrenir. O zaman 🕵️ Şüphe 10, Kıskançlık 12 artar (kıskanç değilse 4).</li>
+          <li>Akrabası 🗝️ Our Secret ile yemin ettiyse öğrenme ihtimali %10'a düşer.</li>
+          <li>Ağaçta her akrabanın altında yazar: 👋 tanıştınız, 🔥 seviştiniz, 👁️ biliyor ya da 🤫 bilmiyor.</li></ul>
+        <h4>🏆 Kardeş rekabeti</h4>
+        <p>Kız kardeşiyle olanı öğrendikçe 🏆 Rekabet sayacı bir artar (en çok 5). Rekabet en az 1 olunca Better Than Her olayı açılır; kendini kanıtlamaya çalışır.</p>
+        <h4>🍽️ Aile yemeği</h4>
+        <p>🌳 Aile sekmesindeki 🍽️ Aile yemeği düğmesi onu ve en çok üç akrabasını aynı sofraya toplar. Bu grup sohbetinde sadece sohbet ve gündelik olaylar olur; gergin bakışlar ve iğneli laflar eksik olmaz. Yemekten sonraki 24 saat Dinner Escape olayı açıktır.</p>
+        <h4>🔥 Aile olayları</h4>
+        <p>Hepsi onunla birebir olur; akrabası hiçbir sahnede yer almaz, sadece gerilimin sebebidir.</p>
+        <table class="bk-t"><tr><th>Olay</th><th>Ne zaman açık</th><th>Ne olur</th></tr>${allEvents().filter(e => /^mvfm/.test(e.id)).map(e => `<tr><td>${e.emojis || ''} <b>${esc(e.title)}</b></td><td>${esc(famBlockTxt(e))}</td><td>${esc(evTell(e))}</td></tr>`).join('')}</table>
+        <p>Her olay ya 🍑 vajinal ya 🍩 anal; bitişler de aynı delikten, sadece kendi pozisyonlarından sonra gelir. 🗝️ Spare Key için Our Secret ile sır yemini, 🙏 Make Me Forget için akrabasıyla olanı ona kendin söylemiş olman gerekir. 🙏 Forgiven bitişi Kıskançlık'ı 8, Şüphe'yi 5 düşürür.</p>
+        <p>🎬 Dört sahne var: 🤫 Aile Sırrı (Don't Tell Mom → Childhood Room → Our Secret), 🏆 Kardeş Rekabeti (Better Than Her → Jealous Claim → Winner's Finish), 🏠 Annesinin Evi (Family Photo Wall → Almost Caught → Behind The Frame) ve 🏆 Rövanş (Better Than Her → Rematch → Tiebreaker). Lia hepsini sahneleyerek anlatıyor: <a href="#/kitap/olay/83">🎬 Olay Kitabı → 🌳 Aile bağları</a>.</p>
+        ${fams.length ? `<table class="bk-t"><tr><th>Aile</th><th>Akrabalar</th></tr>${fams.map(c => `<tr><td><a href="#/p/${c.id}">👤 ${esc(c.name)}</a></td><td>${famOf(c).map(([o, r]) => `${FAM_ROLE[r][0]} ${esc(o.name.split(' ')[0])}`).join(' · ')}</td></tr>`).join('')}</table>` : '<p><small>Henüz ailesi olan kimse yok.</small></p>'}`;
     } }] });
   // 🔗 BDSM Kitabı: olaylar system.js'ten (c:mvbdsm01x), cümleler ME_EV_LINES ve r_ev_bd_* kurallarından okunur
   const BD_CAT = 'c:mvbdsm01x';
@@ -31471,14 +31833,15 @@
         <h4>📜 Seans kuralları</h4><ul>${[...MZ_RULES, ...MZ_GEN].map(([ic, t, d]) => `<li>${ic} <b>${esc(t)}</b> ${esc(d)}</li>`).join('')}</ul>`;
     } }] });
   /* 🏖️ Yaz Kitabı: Pool / Beach olayları (c:mvpool01x, c:mvbeach01x + bitişleri); ghPlace ile data'dan canlı okunur */
-  BOOKS.push({ id: 'yaz', icon: '🏖️', title: 'Yaz Kitabı', sub: 'havuz ve plaj; jakuzi, kabana, kum tepesi, koy, tekne', chips: ['38 olay', '🌊 su ve kum'], chapters: [
+  BOOKS.push({ id: 'yaz', icon: '🏖️', title: 'Yaz Kitabı', sub: 'havuz ve plaj; jakuzi, kabana, kum tepesi, koy, tekne; bikini ve ıslaklık', chips: ['96 olay', '🌊 su ve kum', '👙 bikini', '💧 ıslaklık'], chapters: [
     { icon: '📖', title: 'Yaz Kitabı nasıl okunur', sub: 'iki mekân, pozisyonlar ve bitişler', get body() {
       return `<p>🏖️ Güneş, su ve kum. Bu kitap iki mekân kategorisini anlatır: <b>🏖️ Pool</b> ve <b>🏝️ Beach</b>. Sohbette <b>📜 Olay yaz → 📍 Mekân</b> sekmesinden ya da <b>#</b> yazıp olayın adıyla başlarlar. Sohbet havuzda ya da sahildeyse ⚡ Kısayollar'da da çıkarlar.</p>
         <ul><li><b>🏖️ Pool</b> havuz başında, <b>🏝️ Beach</b> sahilde ya da tatildeyken önerilir.</li>
           <li><b>🔥 Pozisyonlar</b> yatak cümlesi kullanmaz: suda, kenarda, şezlongda, kayada, güvertede.</li>
           <li><b>💦 Bitişler</b> sadece aynı mekânın pozisyonundan sonra eşleşir; Jacuzzi, Underwater, Cove ve Sunset Creampie korunmaya göre hamilelik ihtimali taşır.</li>
           <li><b>👀 Riskli olanlar</b> (Night Swim Sex, Cabana Reverse, Lifeguard Chair, Sand Dune Doggy, Beach Hut Standing, Nude Beach Sex, Beach Shower Sex) Uyarılma'yı fazladan artırır.</li>
-          <li><b>🌹 İlanlar</b>: Carmen.com ilanlarında her 3 kızdan biri yeni Havuz ya da Plaj olaylarından 2'sini ❤️ sever.</li></ul>
+          <li><b>🌹 İlanlar</b>: Carmen.com ilanlarında her 3 kızdan biri yeni Havuz ya da Plaj olaylarından 2'sini ❤️ sever.</li>
+          <li>👙 Bikini ve 💧 ıslaklık: plajda 20 yeni mayo / bikini, her seks olayı 🍑 vajinal ya da 🍩 anal olarak işaretli ve ıslaklık sayacı var. <a href="#/kitap/yaz/3">👙 Bikini ve mayo</a>, <a href="#/kitap/yaz/4">💧 Islaklık</a>, <a href="#/kitap/yaz/5">🎬 Plaj sahneleri</a>.</li></ul>
         ${bkChat('🏝️ Örnek', [['ev', '📜 🌅💏 Sunset Missionary'], ['her', 'Gökyüzü turuncu, gözlerin bende 🌅'], ['ev', '📜 🌅💦 Sunset Creampie'], ['her', 'Sarıl, batışı izleyelim 🌅']])}`;
     } },
     { icon: '🏖️', title: 'Pool', sub: 'merdiven, duvar, jakuzi, şişme yatak, kabana, cankurtaran kulesi', get body() {
@@ -31486,6 +31849,41 @@
     } },
     { icon: '🏝️', title: 'Beach', sub: 'kum tepesi, şezlong, gün batımı, koy, kamp ateşi, tekne', get body() {
       return ghPlace('c:mvbeach01x', 'plaj', 'r_ev_be_', '🏝️ Issız bir koy, kum tepeleri, soyunma kabinleri ve açıkta bir tekne. Sunset Missionary ve Bonfire Spoon Samimiyet\'i daha çok artırır; Nude Beach Sex en riskli olanıdır.');
+    } },
+    // 👙 v1208: yeni mayo / bikiniler, delik kuralı, kıyafet kapısı (clothes.js + system.js'ten canlı)
+    { icon: '👙', title: 'Bikini ve mayo', sub: '20 yeni parça, 10 fantezi bikini, 🍑 / 🍩 kuralı', get body() {
+      const NEW = ['kurdelebikini', 'beyazbikini', 'seffafbikini', 'sporbikini', 'beyazalt', 'seffafalt', 'cheeky', 'gstringbikini', 'kafesmayo', 'slingshot', 'denizkizi', 'kabukbikini', 'incibikini', 'cankurtaran', 'cicekbikini', 'deribikini', 'altinbikini', 'neonbikini', 'yildizbikini', 'boyabikini'];
+      const C = Stories.CLOTHES || { items: [], combos: [], slots: [] }, slot = s => ((C.slots || []).find(x => x.id === s) || {}).label || s, sty = { g: 'günlük', i: 'iddialı', k: '✨ fantezi' };
+      const it = C.items.filter(x => NEW.includes(x.id)), cb = C.combos.filter(x => /^plaj([6-9]|1\d)$/.test(x.id)), nm = id => (C.items.find(x => x.id === id) || {}).name || id;
+      const wr = allEvents().filter(e => /^mvbe/.test(e.id) && (e.wear || []).length && !e.wetMin);
+      return `<p>👙 Plaj gardırobuna 20 yeni parça geldi. ✨ Fantezi bikiniler rastgele giyilmez; profildeki 👗 gardıroptan ya da aşağıdaki hazır kombinlerle giyilir. Her parçanın üstüne boşalınca söylediği kendi cümleleri var.</p>
+        <table class="bk-t"><tr><th>Parça</th><th>Yuva</th><th>Tarz</th><th>Giyince</th></tr>${it.map(x => `<tr><td>${x.emoji} <b>${esc(x.name)}</b></td><td>${esc(slot(x.slot))}</td><td>${sty[x.style] || ''}</td><td>"${esc((x.t || [])[0] || '')}"</td></tr>`).join('')}</table>
+        <h4>🧥 Hazır kombinler</h4><table class="bk-t"><tr><th>Kombin</th><th>Parçalar</th></tr>${cb.map(x => `<tr><td>${x.emoji} <b>${esc(x.name)}</b></td><td>${Object.values(x.parts).map(nm).map(esc).join(' + ')}</td></tr>`).join('')}</table>
+        <h4>🍑 / 🍩 Delik kuralı</h4><ul><li>Plajdaki her yeni seks olayının açıklaması 🍑 Vajinal ya da 🍩 Anal ile başlar.</li>
+          <li>💦 Delikli bitişler sadece aynı delikten bir plaj pozisyonundan sonra önerilir: 🍑 bitiş vajinalden, 🍩 bitiş analden sonra. Dış bitişler (göğse, karna, tene) her zaman açıktır.</li>
+          <li>🏐 Beach Volley Bet bahsi: o kazanırsa ödül Beach Towel Sex 🍑, kaybederse ceza Oil Slide 🍩.</li></ul>
+        <h4>👗 Kıyafet kapısı</h4><p>Bu olaylar sadece uygun parça üstündeyken açılır; değilse olay seçicide nedeni yazar.</p>
+        <table class="bk-t"><tr><th>Olay</th><th>Ne giymeli</th></tr>${wr.map(e => `<tr><td>${bkEv(e.title)}</td><td>${e.wear.length > 6 ? (e.wear.includes('bikinialt') ? 'bikini altı ya da mayo' : 'bikini üstü') : e.wear.map(nm).map(esc).join(', ')}</td></tr>`).join('')}</table>
+        ${bkChat('👙 Örnek', [['ev', '👗 Plaj · beyaz bikini'], ['her', 'Bembeyaz bikini… denize girmesem iyi olur 🤍'], ['ev', `📜 ${bkEv('Wet White Bikini')}`], ['her', 'Bikinim şeffaflaştı, değil mi? 😳'], ['ev', `📜 ${bkEv('Inside Bikini Bottom')}`], ['her', 'Bikinimi yerine bırakıyorum 🫣']])}`;
+    } },
+    // 💧 v1209: ıslaklık sayacı th.wet (WET_LV, wetOf, olay alanları wet / wetFx / wetMin)
+    { icon: '💧', title: 'Islaklık', sub: 'Kuru → Sırılsıklam; ıslatan, ıslakken açılan ve kurutan olaylar', get body() {
+      const ev = allEvents().filter(e => /^mvbe/.test(e.id) && (e.wet || e.wetFx || e.wetMin));
+      const eff = e => [e.wet > 0 ? `💧 +${e.wet}` : e.wet < 0 ? `💧 ${e.wet}` : '', e.wetFx === 'dry' ? '☀️ kurur' : '', e.wetMin ? `en az ${WET_LV[e.wetMin]}` : ''].filter(Boolean).join(' · ');
+      const hole = e => (e.tags || []).includes('vajinal') ? '🍑' : (e.tags || []).includes('anal') ? '🍩' : '';
+      const grp = [['🌊 Islatanlar', e => e.wet > 0 && !e.wetMin], ['💧 Islakken ön sevişme', e => e.wetMin && !hole(e) && !(e.tags || []).includes('boşalma') && !e.wetFx && !(e.wet < 0)], ['🔥 Islakken seks', e => e.wetMin && hole(e) && !(e.tags || []).includes('boşalma')], ['💦 Bitişler', e => (e.tags || []).includes('boşalma')], ['🧺 Kurulanma', e => e.wetFx === 'dry' || e.wet < 0]];
+      return `<p>💧 Sohbette onun ne kadar ıslak olduğu sayılır. Seviye durum kartında 💧 çipiyle görünür ve kurudukça kaybolur.</p>
+        <table class="bk-t"><tr><th>Seviye</th><th>Anlamı</th></tr>${WET_LV.map((l, i) => `<tr><td>${i}. ${l}</td><td>${['ıslaklık olayları kapalı', 'teni tuzlu, saçları nemli: Salt Kiss Lotus açılır', 'kumaş yapışık, saçından damlıyor: çoğu ıslaklık olayı açılır', 'beyaz ve file bikini şeffaf: See-Through Ride ve Drip Mix açılır'][i]}</td></tr>`).join('')}</table>
+        <ul><li>⏳ Kuruma: her 6 mesajda (yaklaşık 3 karşılıklı yazışmada) bir seviye düşer.</li>
+          <li>⚡ Kısayollar: ıslakken ıslaklık olayları öne çıkar (💧 Islak); sırılsıklamken Wet White Bikini ayrıca 🤍 Bikinisi şeffaf puanı alır.</li>
+          <li>💬 Cümleler: Islak ve Sırılsıklamken arada kendi balonunda "saçlarımdan hâlâ su damlıyor" gibi şeyler söyler.</li>
+          <li>🔒 Seviyesi yetmeyen olay kilitli kalır ve nedenini yazar: "önce ıslanmalı".</li></ul>
+        ${grp.map(([h, f]) => { const xs = ev.filter(f); return xs.length ? `<h4>${h}</h4><table class="bk-t"><tr><th>Olay</th><th></th><th>Etki / kapı</th></tr>${xs.map(e => `<tr><td>${bkEv(e.title)}</td><td>${hole(e)}</td><td>${eff(e)}</td></tr>`).join('')}</table>` : ''; }).join('')}
+        ${bkChat('💧 Örnek', [['ev', `📜 ${bkEv('Wave Hit')}`], ['note', '💧 Kuru → Sırılsıklam'], ['her', 'Bikinim nereye gitti? 🙈'], ['ev', `📜 ${bkEv('Slippery Anal')}`], ['her', 'Elinden kayıyorum 😆'], ['ev', `📜 ${bkEv('Towel Dry')}`], ['note', '💧 Sırılsıklam → Nemli']])}`;
+    } },
+    { icon: '🎬', title: 'Plaj sahneleri', sub: 'deniz kızı, cankurtaran, gece denizi, dalgalar', get body() {
+      return `<p>🎬 Plaj sahneleri birkaç olayı bir hikâyeye bağlar. Açılış olayını yazınca sahne başlar; adımları sırayla (ya da serbest sahnede istediğin kadarını) yazıp bitişle kapatırsın.</p>
+        <table class="bk-t"><tr><th>Sahne</th><th>Açılış → adımlar</th><th>Bitiş</th></tr>${(Stories.SCENES || []).filter(s => s.tag === 'plaj').map(s => `<tr><td>${s.icon} <b>${esc(s.name)}</b><br><small>${s.mode === 'seq' ? 'sırayla' : `${s.need} adım yeter`}</small><br><small>${esc(s.desc || '')}</small></td><td>${bkEv(s.open)} → ${s.steps.map(bkEv).join(s.mode === 'seq' ? ' → ' : ', ')}</td><td>${s.fin ? bkEv(s.fin) : '—'}</td></tr>`).join('')}</table>`;
     } }] });
   /* 🌳 Dışarıda Kitabı: Outdoors / Restaurant olayları (c:mvoutdoors01x, c:mvrestaurant01x + bitişleri), kesintiler (yerdoga, yerrestoran); ghPlace ile data'dan canlı okunur */
   BOOKS.push({ id: 'disari', icon: '🌳', title: 'Dışarıda Kitabı', sub: 'park, restoran, çatı, kitaplık, lunapark, perili ev, sokak ve muayene odası', chips: ['76 olay', '👀 risk', '🏥 klinik'], chapters: [
@@ -31624,7 +32022,7 @@
         <ul><li><b>Nerede görünür</b>: sohbetin 📊 durum çipi, ⏩ zaman atlama penceresi, profildeki 💍 Kocası satırı, 🩺 CarmenKlinik hasta takibi ve muayene kartı, doğum notu.</li>
           <li><b>Hamile kalınca baba değişmez</b>: zaten hamileyken yapılan içe bitişler yeni hamilelik getirmez, babayı da değiştirmez.</li>
           <li><b>Doğumda</b> not babaya göre değişir: "👶 Bebeğiniz dünyaya geldi 💗" ya da "👶 Kocasının bebeği dünyaya geldi". Sonra kimden kaç çocuğu olduğu sayılır; Klinik'te <b>👶 2 (💗 1 · 💍 1)</b> gibi görünür.</li>
-          <li><b>Hamilelik biterse</b> (doğum ya da Hamile alanı kapatılırsa) baba bilgisi silinir; sonraki hamilelik yeniden belirlenir.</li></ul>`;
+          <li><b>Hamilelik biterse</b> (doğum ya da profildeki Hamile alanı ✏️ düzenleme modunda kapatılırsa) baba bilgisi silinir; sonraki hamilelik yeniden belirlenir.</li></ul>`;
     } },
     { icon: '💞', title: 'Pregnancy Foreplay', sub: 'karın, ayna, buz, yan yatarak, ilk damlalar', get body() {
       return `<p>💞 Hassaslaşmış göğüsler, büyüyen karın ve hormonlar. Isınmalar yan yatarak, yastıklara yaslanarak ya da sandalyenin ucunda olur.</p>${hmWeeks(allEvents().filter(e => e.cat === 'c:mvpregfp01x'))}`;
@@ -31701,7 +32099,7 @@
           <tr><td><b>🩹 Lohusa</b></td><td>6 haftalık dönem başlar.</td></tr></table>
         <ul><li>👶 Doğuma kadar git düğmesi tam doğum haftasına atlar.</li>
           <li>40. haftadan sonra hafta kapılı olaylar 40. hafta gibi sayılır.</li>
-          <li>Bebek profildeki 👶 Çocuk satırına eklenir.</li></ul>`;
+          <li>Bebek profildeki 👶 Çocuk satırına ve 🌳 Aile sekmesine bebek kaydı olarak eklenir; karakter olmaz.</li></ul>`;
     } },
     { icon: '🩹', title: 'Lohusa, bebek ve doktor onayı', sub: '6 hafta, 🩺 onay, 🫙 birikim, bebek kesintisi', get body() {
       return `<p>🩹 Doğumdan sonraki 6 hafta lohusa dönemidir. Durum çipinde 🩹 Lohusa 2/6. hafta gibi yazar.</p>
@@ -31809,7 +32207,7 @@
     { icon: '👭', title: 'Kendi aralarında', sub: 'ikili sohbet: izle, olay öner, katıl', get body() {
       const pairs = threads().filter(t => t.duo).map(t => t.members.map(byId).filter(Boolean)).filter(p => p.length === 2);
       return `<p>👭 Birbirini tanıyan iki kız <b>kendi aralarında</b> konuşabilir. Sen izlersin; istersen olay önerir ya da sohbete katılırsın. Erkek ya da kadın hesap fark etmez.</p>
-        <ul><li><b>Nasıl açılır</b>: 👤 Profil → 👭 Tanıdıkları → 💬 ya da 👤 Profil → <b>👭 İlişkileri</b> sekmesi → 💬 Konuştur. Ayrıca günde bir kez (%50) tanışan iki kız kendiliğinden sohbet açar; Mesajlar'da 👭 ile görünür.</li>
+        <ul><li><b>Nasıl açılır</b>: 👤 Profil → 👭 Tanıdıkları → 💬 ya da 👤 Profil → <b>👭 İlişkileri</b> sekmesi → 💬 Konuştur. Ayrıca günde bir kez (%50) tanışan iki kız kendiliğinden sohbet açar; Mesajlar'da 👭 ile görünür. 🌳 Akrabalar (anne, kardeş, kızı) kendi aralarında hiçbir zaman bu sohbete girmez.</li>
           <li><b>👭 İlişkileri sekmesi</b>: o kızın bütün ikili sohbetleri; her birinde şu anki aşama, mesaj, 📜 olay ve 🌊 bitiş sayısı, ikisinin 💦 orgazm sayısı.</li>
           <li><b>Akış</b>: 💬 Sohbet → 😏 Flört → 💋 Lesbian Foreplay → ✂️ Lesbian Sex → 🌊 Lesbian Finish → 🌙 Lesbian After, sonra yeniden sohbet. Sohbette biri konuşur, öbürü 🤖 bot kurallarından cevap verir.</li>
           <li><b>📜 Olaylar normal sohbetteki gibi</b>: olay kartı (<i>👩‍❤️‍👩 Ada → Selin</i>), 🎲 sonucu, ⚡ olunca etkileri ve ↪ / ⚡ zincirle gelen olaylar (ör. 💗 Uyarılma 80 → Orgazm). Sonuç ve etkiler alan kıza; yapanın Uyarılma'sı +4. Ardından yapanın cümlesi (🗣️ benim mesajlarım) ve alanın cevabı (<code>=evt =lezbiyen</code>).</li>
@@ -32394,7 +32792,7 @@
       ['Pulls The Curtain', 'Kabinin perdesini çekip seni içeri alıyorum. Alışverişte ya da giyinme odasında.'],
       ['Leans On The Bar', 'Bara yaslanıp kadehimi dudağıma götürüyorum. Barda, ev partisinde, konserde, dans pistinde.'],
       ['Back Row', 'En arka sırada, ışıklar sönünce elini dizime koyuyorum. Sinemada ya da ev sinemasında.']]],
-    ['🏝️', 'Plaj', 'güneş kremi, havlu, dalgalar', 'Issız bir koy bul; kumlar her yere girer ama dalgalar sesimizi örter 🌊', [
+    ['🏝️', 'Plaj', 'güneş kremi, havlu, dalgalar; bikini ve ıslaklık', 'Issız bir koy bul; kumlar her yere girer ama dalgalar sesimizi örter 🌊', [
       ['Sunscreen Rub', 'Havluya yüzüstü uzanıp bikinimin ipini çözüyorum. Sen sırtıma krem sürersen Sunscreen Rub olur; elin aşağı kayabilir.'],
       ['Beach Towel Sex', 'Havlumu kuma serip sana uzanıyorum. Sen üstüme gelirsen Beach Towel Sex olur.'],
       ['Wave Sex', 'Belimize kadar denizde boynuna sarılıp bacaklarımı beline doluyorum. Dalgalarla gidersen Wave Sex olur.'],
@@ -32412,7 +32810,65 @@
       ['Boat Deck Sex', 'Kiralık teknenin güvertesine uzanıyorum, kıyı çok uzakta. Sen üstüme gelirsen Boat Deck Sex olur.'],
       ['Cove Creampie', 'Koyda kucağındayım, sırtım kayada. Sen içime boşalırsan Cove Creampie olur.'],
       ['Sunset Creampie', 'Güneş batıyor, bacaklarım belinde. Sen içime boşalırsan Sunset Creampie olur.'],
-      ['Sand Cumshot', 'Havluda sırtüstü uzanıyorum. Sen göğsüme ve karnıma boşalırsan Sand Cumshot olur; sonra denize koşarım.']]],
+      ['Sand Cumshot', 'Havluda sırtüstü uzanıyorum. Sen göğsüme ve karnıma boşalırsan Sand Cumshot olur; sonra denize koşarım.'],
+      ['String Aside', '🍑 Bikini altımı çıkarmadan kenara çekiyorum. Sen kenarından girersen String Aside olur.'],
+      ['String Aside Anal', '🍩 Havluda yüzüstüyüm, bikini ipim kenarda. Sen arkamdan girersen String Aside Anal olur.'],
+      ['Untied Top', '🍑 Şezlongda kucağındayım. Her pozisyonda bir ipimi çözersen Untied Top olur.'],
+      ['Wet White Bikini', '🍑 Beyaz bikinim denizde şeffaflaştı. Sen suda içime girersen Wet White Bikini olur.'],
+      ['Lifeguard Tower', '🍩 Kulede korkuluğa eğilip denizi izliyorum. Sen arkamdan alırsan Lifeguard Tower olur.'],
+      ['Mermaid Rock', '🍑 Deniz kızı kostümüyle kayaya uzanıp kuyruğumu sıyırıyorum. Sen gelirsen Mermaid Rock olur.'],
+      ['Mermaid Tail Anal', '🍩 Kuyruğum bacaklarımı bağlıyor, kumda yan yatıyorum. Sen arkamdan girersen Mermaid Tail Anal olur.'],
+      ['Jet Ski', '🍑 Açıkta jet skinin selesinde kucağına oturuyorum. Dalgalar ritmi tutarsa Jet Ski olur.'],
+      ['Snorkel Tease', '🍩 Şnorkelle dalarken bana sürtün; kayaya tutunup kalçamı verince Snorkel Tease olur.'],
+      ['Beach Hammock Sway', '🍑 Palmiyelerin arasındaki hamakta üstüne çıkıyorum. Beach Hammock Sway olur.'],
+      ['Oil Slide', '🍩 Güneş yağıyla parlıyorum. Sen yağla arkama kayarsan Oil Slide olur.'],
+      ['Paint Wash', '🍑 Boya bikinimle denize giriyorum, boya akıyor. Sen suda içime girersen Paint Wash olur.'],
+      ['Midnight Sea Swim', '🍑 Gece denizinde çıplak boynuna sarılıyorum. Sen içime girersen Midnight Sea Swim olur.'],
+      ['Midnight Sea Anal', '🍩 Gece suyunda kayaya tutunup sırtımı dönüyorum. Sen arkamdan girersen Midnight Sea Anal olur.'],
+      ['Beach Volley Bet', 'Voleybolda bahse giriyoruz: kazanırsam önden 🍑, kaybedersem arkadan 🍩. Beach Volley Bet.'],
+      ['Cabin Line Anal', '🍩 Soyunma kabininde dışarıda sıra var, elimi ağzıma bastırıyorum. Cabin Line Anal olur.'],
+      ['Bikini Line Worship', 'Bikinimi çıkarıyorum, beyaz izlerim belli. Dilinle çizgiyi takip edersen Bikini Line Worship olur.'],
+      ['Underwater Kiss', 'Nefesimizi tutup su altına dalıyoruz. Öpüşürsek Underwater Kiss olur.'],
+      ['Sand Burial', 'Seni boynuna kadar kuma gömüp üstüne oturuyorum. Sand Burial olur.'],
+      ['Bikini Top Finish', 'Bikini üstüm yerinde. Sen üçgenlerimin üstüne boşalırsan Bikini Top Finish olur.'],
+      ['Inside Bikini Bottom', '🍑 Bikini altım kenardayken içime boşalırsan Inside Bikini Bottom olur; korunmaya göre hamilelik ihtimali var.'],
+      ['Bikini Bottom Anal Fill', '🍩 İpim kenardayken arkama boşalırsan Bikini Bottom Anal Fill olur.'],
+      ['Bikini Line Finish', 'Bronzluk izimin tam sınırına boşalırsan Bikini Line Finish olur.'],
+      ['Wave Wash', '🍑 Sığ suda içime boşalırken dalga gelirse Wave Wash olur.'],
+      ['Underwater Finish', '🍩 Su altında arkama boşalırsan Underwater Finish olur.'],
+      ['Shell Cup', 'Kabuk bikinimin içine boşalırsan Shell Cup olur.'],
+      ['Pearl Bikini Finish', 'İnci bikinimin arasına boşalırsan Pearl Bikini Finish olur.'],
+      ['Sunbed Drip', '🍩 Şezlongda arkama boşalırsan Sunbed Drip olur; kuma damlar.'],
+      ['Towel Hide', '🍑 Biri gelince havluyu çekiyorum. Altında içime boşalırsan Towel Hide olur.'],
+      ['Oily Body Finish', 'Yağlı karnıma ve sırtıma boşalırsan Oily Body Finish olur.'],
+      ['Paint Mix', 'Boya bikinimin üstüne boşalırsan Paint Mix olur.'],
+      ['Beach Creampie Burst', '🍑 İçime çok gelirse bikinimden taşar: Beach Creampie Burst.'],
+      ['Beach Anal Burst', '🍩 Arkama çok gelirse taşar: Beach Anal Burst.'],
+      ['Splash Fight', '💧 Kıyıda su savaşı; ıslanırım (+1). Splash Fight.'],
+      ['Dragged In', '💧 Beni denize atarsan Dragged In olur; ıslanırım (+2).'],
+      ['Wave Hit', '💧 Büyük dalga ikimizi devirirse Wave Hit olur; sırılsıklam olurum (+3).'],
+      ['Beach Shower Rinse', '💧 Plaj duşunda sırtımı yıkarsan Beach Shower Rinse olur (+2).'],
+      ['Hair Wring', 'Islakken saçımı sıkıyorum, su göğüslerimden akar: Hair Wring.'],
+      ['Wet Hug', 'Islakken koşup sana sarılırım: Wet Hug.'],
+      ['Dripping Wet Doggy', '🍑 Islakken havluda dört ayak üstüne çökerim. Arkamdan alırsan Dripping Wet Doggy olur.'],
+      ['Clinging Fabric', '🍑 Islak bikinim yapıştı; kenara çekip içime girersen Clinging Fabric olur.'],
+      ['See-Through Ride', '🍑 Sırılsıklam beyaz ya da file bikiniyle üstüne çıkarım: See-Through Ride.'],
+      ['Shoreline Missionary', '🍑 Islakken dalga ucunda sırtüstü uzanırım. Üstüme gelirsen Shoreline Missionary olur.'],
+      ['Salt Kiss Lotus', '🍑 Nemliyken kucağına yüz yüze otururum: Salt Kiss Lotus.'],
+      ['Wet Sand Prone', '🍩 Islakken ıslak kumda yüzüstü uzanırım. Arkama girersen Wet Sand Prone olur.'],
+      ['Slippery Anal', '🍩 Islakken kayaya tutunurum, kalçam kaygan: Slippery Anal.'],
+      ['Dripping Hair Anal', '🍩 Islak saçımı tutup arkama girersen Dripping Hair Anal olur.'],
+      ['Towel Wrap Anal', '🍩 Havluya sarınmışken havluyu sadece arkadan açarsan Towel Wrap Anal olur.'],
+      ['Wet Skin Finish', 'Islak tenime boşalırsan Wet Skin Finish olur.'],
+      ['Drip Mix', 'Sırılsıklamken göğüslerime boşalırsan Drip Mix olur.'],
+      ['Shoreline Creampie', '🍑 Dalga ucunda içime boşalırsan Shoreline Creampie olur; korunmaya göre hamilelik ihtimali var.'],
+      ['Clinging Bikini Creampie', '🍑 Islak bikinim kenardayken içime boşalırsan Clinging Bikini Creampie olur.'],
+      ['Slippery Anal Finish', '🍩 Islakken arkama boşalırsan Slippery Anal Finish olur.'],
+      ['Wet Sand Anal Finish', '🍩 Islak kumda arkama boşalırsan Wet Sand Anal Finish olur.'],
+      ['Towel Dry', 'Beni havluyla kurularsan Towel Dry olur (−2).'],
+      ['Sun Dry', 'Güneşte yan yana kururuz: Sun Dry.'],
+      ['Bikini Change', 'Kabinde ıslak bikinimi değiştiririm, perde aralık: Bikini Change.'],
+      ['Shared Shower', 'Birlikte duş alıp aynı havluya sarınırız: Shared Shower.']]],
     ['🏢', 'Ofis', 'masa altı, döner sandalye, fotokopi odası', 'Mesai bitti ama kapı kilitli değil; sesini kıs, koridordan biri geçebilir 🤫', [
       ['Under The Desk', 'Sen toplantıdasın, ben masanın altında diz çöküyorum. Yüzünü sabit tutarsan Under The Desk olur.'],
       ['Office Chair Ride', 'Döner sandalyende kucağına oturup eteğimi belime topluyorum. Sen belimi tutarsan Office Chair Ride olur; sandalye gıcırdar.'],
@@ -33551,7 +34007,41 @@
       ['Gentle Inside', '🩺 Yavaşladın. Sen içimde kalıp boşalırsan Gentle Inside olur.'],
       ['Milk And Cream', '👶 Göğüslerimden süt damlıyor. Sen çıkıp göğüslerime boşalırsan Milk And Cream olur.'],
       ['Cleared And Bursting', '🩺 Altı hafta biriktirdin. Sen içime bırakırsan hepsi taşar, Cleared And Bursting olur.'],
-      ['Quiet Pull Out', '👶 Telsiz kıpırdadı! Sen sessizce çıkıp karnıma boşalırsan Quiet Pull Out olur.']]]
+      ['Quiet Pull Out', '👶 Telsiz kıpırdadı! Sen sessizce çıkıp karnıma boşalırsan Quiet Pull Out olur.']]],
+    // 🌳 Family Ties (v1206): kapılar famRole / famNeed / famDinner / rivalMin → Grup Kitabı ch. 16
+    ['🌳', 'Aile bağları', 'kardeş rekabeti, annesinin evi, aile yemeği, sır', 'Bu olaylar ailesinden biriyle tanıştıktan ya da yaşadıktan sonra açılır. Akrabası hiçbir zaman sahnede değildir; sadece alt katta, yan odada ya da aklındadır. Kıskançlık, rekabet ve sır bu anların tuzu biberidir.', [
+      ['Better Than Her', '🏆 Kardeşimle olanı biliyorum. Sen sırtüstü yatarsan üstüne çıkıp kimin daha iyi olduğunu gösteririm, Better Than Her olur.'],
+      ['Jealous Claim', '😤 Ailemden biriyle yattın. Sen beni duvara yaslanmış bulursan seni sahiplenirim, boynunda iz kalır; Jealous Claim olur.'],
+      ["Don't Tell Mom", '🤫 Annem aşağıda tabak diziyor. Sen sesini çıkarmadan eteğimi toplarsan Don\'t Tell Mom olur.'],
+      ['Dinner Escape', '🍽️ Elimi yıkamaya kalktım, göz kırptım. Sen arkamdan banyoya gelirsen Dinner Escape olur.'],
+      ['Childhood Room', '🛏️ Annemin evindeki eski odamdayız. Sen beni bu dar yatağa çekersen Childhood Room olur.'],
+      ['Guest Room', '🛋️ Teyzem misafir, duvar ince. Sen gece yarısı parmak uçlarında gelirsen Guest Room olur.'],
+      ['Experienced Touch', '👩‍🏫 Ben bir anneyim, acele etmem. Sen otur, gömleğini ben açarsam Experienced Touch olur.'],
+      ["Winner's Finish", '🏆 Kazanmak istiyorum. Sen içime boşalırsan Winner\'s Finish olur.'],
+      ['Mark Of Mine', '💜 Omzunu ısıracağım. Sen gelirken izimi bırakırsam Mark Of Mine olur.'],
+      ['Quiet Inside', '🤫 Ev dolu, elimi ağzıma bastırıyorum. Sen sessizce içime boşalırsan Quiet Inside olur.'],
+      ['Our Secret', '🗝️ Serçe parmağımı uzattım. Sen içime boşalıp söz verirsen Our Secret olur; ailemden kimse bilmeyecek.'],
+      // v1207: 🍑 vajinal / 🍩 anal olarak ayrılmış yeni aile olayları
+      ['Call From Mom', '📱🍑 Annem arıyor, açmak zorundayım. Sen önden yavaşça devam edersen Call From Mom olur.'],
+      ['Family Photo Wall', '📸🍑 Koridorda aile fotoğraflarının önündeyim, bacağım belinde. Sen önden girersen Family Photo Wall olur.'],
+      ['Spare Key', '🗝️🍩 Annemin yedek anahtarı bende, ev boş. Sen kanepenin koluna eğildiğimde arkadan girersen Spare Key olur.'],
+      ['Driveway Goodbye', '🚗🍑 Arabadayız, annemin evinin önünde. Sen kucağına alıp önden girersen Driveway Goodbye olur.'],
+      ['Borrowed Dress', '👗🍑 Kardeşimin elbisesi beline sıyrıldı, aynaya tutundum. Sen önden girersen Borrowed Dress olur.'],
+      ['Rematch', '🏆🍩 Rövanş istiyorum, yüzüstü uzandım. Sen yavaşça arkadan girersen Rematch olur.'],
+      ["Sister's Apartment", '🐈🍑 Kardeşimin kanepesindeyiz, kedi bakıyor. Sen önden girersen Sister\'s Apartment olur.'],
+      ['Make Me Forget', '🙏🍑 Bana kendin söyledin, kızgınım. Sen göz göze, çok yavaş önden girersen Make Me Forget olur.'],
+      ['Dishes After Dinner', '🍷🍩 Misafirler gitti, tezgâha eğildim. Sen arkadan girersen Dishes After Dinner olur; bulaşıklar bekler.'],
+      ["Aunt's Advice", '💐🍩 Yan yattım, acele etmek yok. Sen her santimde durarak arkadan girersen Aunt\'s Advice olur.'],
+      ['Almost Caught', '🫣🍑 Kapı aralandı! …kimse yok. Sen önden devam edersen Almost Caught olur.'],
+      ['Hang Up First', '📱💦 Telefon hâlâ açık! Sen içime boşalırsan Hang Up First olur; "anne, sonra ararım!"'],
+      ['Behind The Frame', '📸💦 Çerçeveyi ters çevirdim. Sen içime boşalırsan Behind The Frame olur.'],
+      ['Ruined Dress', '👗💦 Elbise hâlâ üstümde. Sen çıkıp üstüne boşalırsan Ruined Dress olur; geri vermem lazım!'],
+      ['Forgiven', '🙏💦 Alnım alnında. Sen sarılarak içime boşalırsan Forgiven olur; seni affederim.'],
+      ['Fogged Windows', '🚗💦 Camlar buğulandı. Sen kucağında içime boşalırsan Fogged Windows olur.'],
+      ['Tiebreaker', '🏆💦🍩 Beraberlik yok. Sen arkama boşalırsan Tiebreaker olur; skor bir sıfır.'],
+      ["Before They're Back", '⏱️💦🍩 Yarım saatimiz var. Sen hızlıca arkama boşalırsan Before They\'re Back olur.'],
+      ['Kitchen Counter Finish', '🍷💦🍩 Tezgâha eğilmişim. Sen arkama boşalırsan Kitchen Counter Finish olur.'],
+      ['Patient Lesson', '🌸💦🍩 Acele etmedin. Sen sabırla arkama boşalırsan Patient Lesson olur.']]]
   ];
   BOOKS.push({ id: 'olay', icon: '🎬', title: 'Olay Kitabı', sub: 'Lia her olayı sahneleyerek anlatır', chips: [`${OLAY_BOOK.reduce((n, c) => n + c[4].length, 0)} olay`, '💁‍♀️ Lia anlatıyor'], chapters: [
     { icon: '🎬', title: 'Olay Kitabı nasıl okunur', sub: 'Lia sahneler, sen yaparsın', body: `
@@ -34309,7 +34799,9 @@
       <p>Karakter profilinde <b>🌟 Özet</b> sekmesi var. 🧠 Hafıza ve 📔 Günlük gibi düzenleme moduna bağlı değildir. Gösterdikleri:</p>
       <ul><li>🎂 Doğum günü ve kaç gün kaldığı.</li><li>🗓️ Ne zaman tanıştığınız, kaç gündür ve kaç mesajdır yazıştığınız.</li>
         <li>📖 Süren bölüm ve bitirdiğiniz bölümler.</li><li>✨ İlkleriniz (ilk öpüşme, ilk oral…), 🔁 en çok yaşadıklarınız ve 📍 yerleriniz.</li></ul>
-      <p>Karakteri başka bir cihaza taşımak için profildeki <b>📤 Paylaş</b> düğmesi dosya ya da kod verir; içe aktarınca yeni bir karakter olarak eklenir.</p>` },
+      <p>Karakteri başka bir cihaza taşımak için profildeki <b>📤 Paylaş</b> düğmesi dosya ya da kod verir; içe aktarınca yeni bir karakter olarak eklenir.</p>
+      <p>Profilde ayrıca <b>🌳 Aile</b> sekmesi var: annesi, kız kardeşleri, yetişkin kızı ve oyunda doğan bebeklerin kaydı. Ayrıntı: <a href="#/kitap/grup/16">🌳 Aile ağacı</a>.</p>
+      <p>🔒 Profildeki Hamile, Hotwife gibi Evet / Hayır alanları sadece ✏️ düzenleme modunda değişir; kapalıyken dokununca uyarı çıkar.</p>` },
     { icon: '📚', title: 'Kitaplar 3.0', sub: 'okundu işaretleri, Benim hikâyem', get body() { const R = c3Read(); return `
       <p>Açtığın her kitap sayfası <b>okundu</b> sayılır. Üstteki sayfa şeridinde ve içindekilerde okunan sayfalar ✓ ile işaretlenir, kitabın başlığında kaç sayfa okuduğun yazar. Şu ana kadar <b>${R.n}</b> sayfa okudun. 30 sayfada 📚 <b>Kitap kurdu</b> rozetini alırsın.</p>
       <p><b>📕 Benim hikâyem</b> bu kitabın bir sayfası. Senin geçmişinden yazılır: tanıştığın her karakter, tanışma tarihin, ilk'lerin ve yerlerin. 🖨️ düğmesiyle yazdırabilir ya da PDF olarak kaydedebilirsin.</p>`; } },
@@ -34530,6 +35022,12 @@
     if (tg.includes('vajinal')) out.push('🛡️ korunmasına göre tepki, hamilelik zarı');
     if (tg.includes('anal')) out.push('🍑 Anal Size ve anal sevmesine göre');
     if (String(e.title).toLocaleLowerCase('tr') === 'orgazm') out.push('💗 onun orgazmı: Woter / Milk ile şiddet');
+    // 💧 ıslaklık / 👗 kıyafet kapısı (v1209)
+    if (e.wet > 0) out.push(`💧 ıslatır: Islaklık +${e.wet}`);
+    if (e.wet < 0) out.push(`🧺 kurutur: Islaklık −${-e.wet}`);
+    if (e.wetFx === 'dry') out.push('☀️ kurutur: Islaklık sıfırlanır');
+    if (e.wetMin) out.push(`💧 sadece en az ${WET_LV[e.wetMin]} iken açılır`);
+    if ((e.wear || []).length) { const its = (Stories.CLOTHES || {}).items || [], nm = e.wear.map(id => (its.find(x => x.id === id) || {}).name).filter(Boolean); out.push(`👗 sadece şunlardan biri üstündeyken: ${nm.slice(0, 6).join(', ')}${nm.length > 6 ? ` +${nm.length - 6}` : ''}`); }
     return out;
   }
   // 📖 Olay rehberi kartı: evTell paragrafının altında karakterlerin ilgisi
@@ -37145,7 +37643,7 @@
 
         <section class="me-sec" data-sec="ayar">
           <div class="card" style="margin-bottom:12px">
-            <label class="flt-row"><span><b>✏️ Düzenleme modu</b> <small>✨ Oluştur, 📖 Monia, 🕰️ saat ayarı ve sohbetteki detaylı görünümler (📊 durumlar, 📈 değer değişimleri, 🎯 bot puanları, ✨ efekt, ⇄ sırayla…) sadece bu modda</small></span><input type="checkbox" id="editOn"${editOn() ? ' checked' : ''}></label>
+            <label class="flt-row"><span><b>✏️ Düzenleme modu</b> <small>✨ Oluştur, 📖 Monia, 🕰️ saat ayarı, 👤 profildeki Evet / Hayır alanları (Hamile, Hotwife…) ve sohbetteki detaylı görünümler (📊 durumlar, 📈 değer değişimleri, 🎯 bot puanları, ✨ efekt, ⇄ sırayla…) sadece bu modda</small></span><input type="checkbox" id="editOn"${editOn() ? ' checked' : ''}></label>
             <label class="flt-row"><span><b>🧘 Sade mesajlar</b> <small>cevaplar en fazla 2 baloncuk, ekler azalır · kapatınca zengin hâl</small></span><input type="checkbox" id="simpleOn"${simpleOn() ? ' checked' : ''}></label>
             ${editOn() ? `<label class="flt-row"><span><b>🌿 Gerçekçi Mod</b> <small>Düzenleme modu kapalıyken hep açık</small></span><input type="checkbox" id="realOn"${realOn() ? ' checked' : ''}></label>` : ''}
             ${editOn() ? `<div class="sec-title">✨ Oluştur</div>
