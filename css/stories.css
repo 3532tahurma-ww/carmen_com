@@ -3539,6 +3539,12 @@ html[data-theme="dark"] .home-land.hl-fr { --fr-navy: #aec3ff; --fr-red: #ef4a55
 .eq-row .mo-chip { flex: none; font-size: 12.5px; padding: 4px 10px; }
 .eq-x { flex: none; width: 22px; height: 22px; border-radius: 50%; font-size: 11px; color: var(--muted); background: rgba(0, 0, 0, .05); }
 .ev-quick.has-act { flex-wrap: wrap; }
+/* ⚡ / 📜 çubuğu sohbet temasına uyar: yazı rengi temadan geliyordu (koyu temada beyaz yazı beyaz zeminde kayboluyordu) */
+.chat-light .ev-quick, .chat-light .ev-pend { color: #1d2433; }
+.chat:not(.chat-light) .ev-quick, .chat:not(.chat-light) .ev-pend { background: rgba(22, 16, 36, .72); color: #f4f0ff; box-shadow: 0 3px 12px rgba(0, 0, 0, .3); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.chat:not(.chat-light) .ev-quick .mo-chip:not(.has-color), .chat:not(.chat-light) .ev-pend-it { background: rgba(255, 255, 255, .14); color: #fff; }.chat:not(.chat-light) .ev-pend small, .chat:not(.chat-light) .eq-at, .chat:not(.chat-light) .ev-quick .eq-x { color: rgba(244, 240, 255, .7); }
+.chat:not(.chat-light) .ev-quick .eq-x { background: rgba(255, 255, 255, .1); }
+.chat:not(.chat-light) .eq-act { border-bottom-color: rgba(255, 255, 255, .18); }
 .eq-act { flex-basis: 100%; min-width: 0; display: flex; align-items: center; gap: 6px; padding-bottom: 5px; border-bottom: 1px dashed var(--line); }
 .eq-at { flex: none; font-size: 12px; color: var(--muted); white-space: nowrap; }
 .eq-at b { margin-left: 2px; color: var(--pink); font-weight: 700; }
@@ -3709,6 +3715,7 @@ button.cr-and:active { transform: scale(.9); }
 /* 📭 eksik cevaplar */
 .lab-mlist { display: grid; gap: 6px; max-height: 360px; overflow-y: auto; }
 .lab-mrow { display: flex; gap: 6px; align-items: stretch; }
+.lab-qnote { height: 34px; padding: 0 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--chip); color: inherit; font-size: 13px; }
 .lab-mtx { flex: 1; min-width: 0; display: grid; text-align: left; padding: 8px 12px; border-radius: 12px; background: var(--chip); }
 .lab-mtx b { font-size: 13.5px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .lab-mtx small { font-size: 11px; color: var(--muted); }

@@ -135091,6 +135091,796 @@ Stories.BOT_RULES = {
       ],
       "chars": [],
       "note": "⚧♀: hap / sabah hapı durumları: hamile kalamaz"
+    },
+    {
+      "id": "r_yd_kelime",
+      "name": "Yedek · kelimeye dön",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ykelime"],
+      "reply": [
+        "“{konu}” dedin ve şimdi çok merak ettim 😄 || Anlatsana biraz",
+        "Dur dur, “{konu}” kısmını açar mısın? 🤔",
+        "“{konu}”… bunu ilk defa senden duyuyorum 😊 || Nasıl bir şey?",
+        "Hmm, “{konu}” 🤔 || Bunu bana neden anlattığını merak ettim şimdi 😏",
+        "“{konu}” konusunda bilgim az ama seni dinlemeyi severim 😌 || Devam et"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "{konu} = mesajdaki en uzun içerik kelimesi (ydCompose)"
+    },
+    {
+      "id": "r_yd_netlestir",
+      "name": "Yedek · netleştirme (2. kez anlamadı)",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ynetlestir"],
+      "reply": [
+        "Tam anlayamadım {sen} 🙈 || Biraz daha açar mısın?",
+        "Bir saniye, kafam karıştı 😅 || Ne demek istedin?",
+        "Bunu iki kere okudum, yine çözemedim 🙈 || Başka türlü anlatır mısın?",
+        "Galiba seni yanlış anlıyorum 🥺 || Tek cümleyle söyle, söz anlayacağım",
+        "Hmm… şifreli mi konuşuyoruz? 😏 || Açık açık yaz"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "art arda 2. yedek, mesajdan niyet / konu çıkmadı"
+    },
+    {
+      "id": "r_yd_netlestir_flortoz",
+      "name": "Yedek · netleştirme · flörtöz",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ynetlestir"],
+      "reply": [
+        "Beni şaşırtmayı seviyorsun 😏 || Ama bu sefer anlamadım, tekrar yaz",
+        "Gizemli takılıyorsun bugün 😈 || Bir ipucu ver bari",
+        "Seni anlamaya çalışırken çok tatlı oluyorum değil mi? 🙈 || Hadi bir daha"
+      ],
+      "traits": ["Flörtöz|Şımarık|Neşeli|Komik|Çocuksu"],
+      "chars": [],
+      "note": "kişilik"
+    },
+    {
+      "id": "r_yd_netlestir_soguk",
+      "name": "Yedek · netleştirme · soğuk",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ynetlestir"],
+      "reply": [
+        "Anlamadım. 😒 || Düzgün yaz",
+        "Yine mi? 🙄 || Ne dediğini bilmiyorum",
+        "Tahmin oyunu oynamıyorum 😤 || Açık konuş"
+      ],
+      "traits": ["Soğuk|Kibirli|Alaycı|Asi|İnatçı"],
+      "chars": [],
+      "note": "kişilik"
+    },
+    {
+      "id": "r_yd_soru",
+      "name": "Yedek · soru",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ysoru"],
+      "reply": [
+        "Güzel soru 🤔 || Düşünmem lazım… sen olsan ne derdin?",
+        "Hmm, buna hemen cevap veremem 😅 || Önce sen söyle",
+        "Bunu sorman ilginç 😊 || Neden merak ettin?",
+        "Zor soru {sen} 🙈 || Biraz düşüneyim, sen de bu arada kendi cevabını söyle"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "anlamadığı soru"
+    },
+    {
+      "id": "r_yd_soru_ona",
+      "name": "Yedek · onunla ilgili soru",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ysoru", "=yona"],
+      "reply": [
+        "Ben mi? 🙈 || Bunu kimse sormamıştı… sen ne tahmin ediyorsun?",
+        "Benim hakkımda merak ettiklerin bitmiyor 😏 || Önce sen tahmin et",
+        "Hmm, bunu biraz sır olarak tutayım 🤫 || Belki ileride söylerim",
+        "Ben genelde içimden geldiği gibiyim 😌 || Sen olsan ne yapardın?",
+        "Bunu yüz yüze sormanı isterdim 😊 || Cevabı gözlerimde görürdün"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "sen / -sın ekli soru"
+    },
+    {
+      "id": "r_yd_soru_ona_utangac",
+      "name": "Yedek · onunla ilgili soru · utangaç",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ysoru", "=yona"],
+      "reply": [
+        "Ay… bunu sorunca kızardım 🙈 || Sonra söylesem olur mu?",
+        "Benimle bu kadar ilgilenmen garip hissettiriyor… güzel anlamda 😳",
+        "Bilmiyorum ki 🥺 || Sen nasıl biri olduğumu düşünüyorsun?"
+      ],
+      "traits": ["Utangaç|Güvensiz|Gergin|Alçakgönüllü"],
+      "chars": [],
+      "note": "kişilik"
+    },
+    {
+      "id": "r_yd_soru_neden",
+      "name": "Yedek · neden sorusu",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ysoru", "=yneden"],
+      "reply": [
+        "Neden mi? 🤔 || Bazı şeylerin tek bir nedeni olmuyor bence",
+        "Bilmem… belki de öyle olması gerekiyordu 😌",
+        "Bunun cevabını ben de arıyorum 😅 || Senin tahminin ne?",
+        "Çok derin bir soru bu {sen} 🙈 || Bir kahve eşliğinde konuşalım"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_soru_ne",
+      "name": "Yedek · ne / hangi sorusu",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ysoru", "=yne"],
+      "reply": [
+        "Ne mi? 😏 || Bunu sen söyle, ben dinleyeyim",
+        "Aklımda bir sürü şey var ama hangisini söylesem bilemedim 😅",
+        "Hmm… tek bir şey seçmem zor 🤔 || Sen ne düşünüyorsun?",
+        "Bunu hiç düşünmemiştim 😮 || Sence ne olmalı?"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_soru_nerede",
+      "name": "Yedek · nerede sorusu",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ysoru", "=ynerede"],
+      "reply": [
+        "Nerede mi? 😏 || Senin olduğun yerde olsa fena olmaz",
+        "Tam yerini söylersem bulursun ama 🙈",
+        "Bir yerlerde işte 😌 || Sen neredesin şimdi?",
+        "Konum atmadan söyleyeyim: kalbinin yakınlarında 😇"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_soru_zaman",
+      "name": "Yedek · ne zaman sorusu",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ysoru", "=yzaman"],
+      "reply": [
+        "Ne zaman mı? ⏳ || Sen hazır olduğunda",
+        "Takvimime bakmam lazım 😅 || Sen ne zaman boşsun?",
+        "Yakında… sabırlı ol biraz 😏",
+        "Zaman konusunda pek iyi değilimdir 🙈 || Sen bir gün söyle, ayarlarım"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_soru_nasil",
+      "name": "Yedek · nasıl sorusu",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ysoru", "=ynasil"],
+      "reply": [
+        "Nasıl mı? 🤔 || Göstermek anlatmaktan kolay olurdu 😏",
+        "Hmm, tarif etmesi zor 😅 || Sen nasıl hayal ediyorsun?",
+        "Kendi yöntemim var 😌 || Ama sırrımı hemen vermem",
+        "Adım adım anlatırım ama sonra sen de bir şey anlatacaksın 😄"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_soru_kim",
+      "name": "Yedek · kim sorusu",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ysoru", "=ykim"],
+      "reply": [
+        "Kim mi? 😏 || İsim vermem, merak et biraz",
+        "Bunu bilsem söylerdim 🙈 || Sen kimi düşünüyorsun?",
+        "Kimse değil… şimdilik 😌",
+        "Senden başka kim olacak {sen} 😊"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_bana",
+      "name": "Yedek · kendinden bahsediyorsun",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ybana"],
+      "reply": [
+        "Anlat anlat, dinliyorum 😊",
+        "Gerçekten mi? 😮 || Sonra ne oldu?",
+        "Senin günlerin benimkinden daha hareketli 😄 || Devamı?",
+        "Seni dinlemek hoşuma gidiyor 💗 || Başka ne yaptın?",
+        "Vay be 😄 || Bunu biriyle paylaştın mı, yoksa ilk ben mi duyuyorum?"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "ben / -dım / -yorum"
+    },
+    {
+      "id": "r_yd_bana_kelime",
+      "name": "Yedek · kendinden bahsediyorsun + kelime",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ybana", "=ykelime"],
+      "reply": [
+        "Hadi ya, “{konu}”! 😮 || Anlat bakalım nasıl oldu",
+        "“{konu}” kısmını sevdim 😄 || Detay istiyorum",
+        "Dur, “{konu}” derken? 🤔 || Biraz daha anlat",
+        "Bak sen 😏 || “{konu}” konusunu bir gün yüz yüze konuşalım"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_uzgun",
+      "name": "Yedek · üzgün / yorgun",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=yuzgun"],
+      "reply": [
+        "Ahh {sen} 🥺 || Gel buraya, biraz anlat bana",
+        "Canın sıkılınca bana yaz, olur mu? 💗 || Şimdi ne oldu?",
+        "Üzülmeni istemem 😔 || Seni ne rahatlatır, söyle",
+        "Sana sanal bir sarılma gönderiyorum 🫂 || Gerçeği de yakında",
+        "Bazen günler böyle geçiyor 😔 || Ama yanındayım, unutma"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_uzgun_soguk",
+      "name": "Yedek · üzgün / yorgun · soğuk",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=yuzgun"],
+      "reply": [
+        "Hmm… üzüldüm. Gerçekten 😶 || Anlatmak istersen dinlerim",
+        "Öyle günler olur 😒 || Geçer ama",
+        "Sızlanma… ama yine de anlat 🙄"
+      ],
+      "traits": ["Soğuk|Kibirli|Alaycı|Asi|İnatçı"],
+      "chars": [],
+      "note": "kişilik"
+    },
+    {
+      "id": "r_yd_poz",
+      "name": "Yedek · mutlu / iyi haber",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ypoz"],
+      "reply": [
+        "Yaşasın! 🥳 || Senin mutlu olman beni de mutlu ediyor",
+        "Oha süper 😍 || Kutlamamız lazım bunu",
+        "Bu enerjiyi sevdim 😄 || Nasıl oldu anlat!",
+        "Gurur duydum seninle 💗"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_saka",
+      "name": "Yedek · şaka / gülme",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ysaka"],
+      "reply": [
+        "Hahaha 😂 || Sen ciddi misin?",
+        "Gülmekten öldüm 🤣",
+        "Sen çok komiksin biliyor musun 😄",
+        "Ahah 😂 || Bunu nereden buluyorsun?"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "haha / 😂"
+    },
+    {
+      "id": "r_yd_saka_soguk",
+      "name": "Yedek · şaka / gülme · soğuk",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ysaka"],
+      "reply": [
+        "Komik mi bu? 😒",
+        "Hı hı… çok komik 🙄",
+        "Gülmedim. Belki biraz 😏"
+      ],
+      "traits": ["Soğuk|Kibirli|Alaycı|Asi|İnatçı"],
+      "chars": [],
+      "note": "kişilik"
+    },
+    {
+      "id": "r_yd_k_is",
+      "name": "Yedek · konu: iş",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ykis"],
+      "reply": [
+        "İş mi? 😩 || Bazen insanı yoruyor, değil mi?",
+        "Patronun seni üzerse bana söyle 😤",
+        "Çalışkan halini seviyorum 😏 || Bugün nasıl geçti?",
+        "İş bitince aklını bana ver ama 😌"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_k_okul",
+      "name": "Yedek · konu: okul",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ykokul"],
+      "reply": [
+        "Okul mu? 📚 || Ders çalışırken beni düşünme, dikkatin dağılır 😏",
+        "Sınavın varsa sana şans öpücüğü 💋",
+        "Hocalar hep zor, biliyorum 😅 || Hangi ders?",
+        "Öğrenci halin çok tatlı 🙈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_k_yemek",
+      "name": "Yedek · konu: yemek",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ykyemek"],
+      "reply": [
+        "Acıktırdın beni şimdi 😋",
+        "Ne yedin, ne yedin? Bana da anlat 🍝",
+        "Bir gün sana yemek yapayım mı? 😏 || Ama mutfakta dikkatim dağılabilir",
+        "Yemek konusu hep iyi fikir 😄 || Tatlı mı tuzlu mu?"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_k_icki",
+      "name": "Yedek · konu: içki",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ykicki"],
+      "reply": [
+        "Kadeh kaldırıyorum o zaman 🥂",
+        "Biraz içince daha konuşkan oluyorsun bence 😏",
+        "Bana da doldur bir tane 🍷",
+        "Abartma ama {sen} 😅 || Sonra beni ararsın"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_k_muzik",
+      "name": "Yedek · konu: müzik",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ykmuzik"],
+      "reply": [
+        "Müzik mi? 🎶 || Bana bir şarkı öner",
+        "Bunu dinlerken aklına ben geliyor muyum? 😏",
+        "Müzik zevkin bir şey anlatıyor bence 😌",
+        "Bir gün birlikte dinleyelim 🎧"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_k_film",
+      "name": "Yedek · konu: film / dizi",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ykfilm"],
+      "reply": [
+        "Film gecesi mi? 🍿 || Ben de varım",
+        "Spoiler verme sakın 🙈",
+        "İzlerken yanında olmak isterdim 😌",
+        "Konusu ne? Anlat 😄"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_k_oyun",
+      "name": "Yedek · konu: oyun",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ykoyun"],
+      "reply": [
+        "Oyuncu musun sen? 🎮 || Beni yenebilir misin acaba 😏",
+        "Kazandın mı bari? 😄",
+        "Ben de bir el oynamak isterim 😈",
+        "Oyun bitince bana dön ama 😌"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_k_spor",
+      "name": "Yedek · konu: spor",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ykspor"],
+      "reply": [
+        "Spor mu? 💪 || Formunu korumak sende 😏",
+        "Terli halini düşündüm şimdi 🙈",
+        "Ben izlerim, sen oyna 😄",
+        "Kim kazandı? 😄"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_k_arac",
+      "name": "Yedek · konu: araba",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ykarac"],
+      "reply": [
+        "Araba mı? 🚗 || Beni de gezdir bir gün",
+        "Dikkatli sür {sen} 😌",
+        "Arabada müzik açık, cam aşağı… hayal ettim 😏",
+        "Hız yapma sakın 😤"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_k_seyahat",
+      "name": "Yedek · konu: tatil / seyahat",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ykseyahat"],
+      "reply": [
+        "Tatil mi? 🌴 || Beni de bavula koy",
+        "Nereye gidiyorsun, söyle 😮",
+        "Seyahat etmeyi çok severim ✈️ || En sevdiğin yer neresi?",
+        "Dönünce fotoğrafları bana göster 📸"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_k_hava",
+      "name": "Yedek · konu: hava",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ykhava"],
+      "reply": [
+        "Böyle havalarda sarılmak lazım 😌",
+        "Hava bende de aynı 😅 || Battaniye mi, dışarı mı?",
+        "Şemsiyeni unutma {sen} ☔",
+        "Hava ne olursa olsun seninle konuşmak güzel 😊"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_k_hayvan",
+      "name": "Yedek · konu: hayvan",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ykhayvan"],
+      "reply": [
+        "Ayy 🥺 || Fotoğrafını at hemen",
+        "Hayvanları çok severim 🐾",
+        "Adı ne? 😍",
+        "Ona benim için bir sevgi ver 🥰"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_k_aile",
+      "name": "Yedek · konu: aile",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ykaile"],
+      "reply": [
+        "Ailenle aran nasıl? 😊",
+        "Annenler beni sorarsa güzel şeyler söyle 😏",
+        "Aile konusu hep biraz karışık 😅 || Anlatmak ister misin?",
+        "Seni ailenle düşünmek hoşuma gidiyor 💗"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_k_uyku",
+      "name": "Yedek · konu: uyku",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ykuyku"],
+      "reply": [
+        "Uykusuz mu kaldın? 🥺 || Gel yanıma uyu",
+        "Rüyanda ben var mıydım? 😏",
+        "Uyumadan önce bana yaz, söz mü? 🌙",
+        "Biraz dinlen {sen} 😴"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_k_para",
+      "name": "Yedek · konu: para / alışveriş",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ykpara"],
+      "reply": [
+        "Para konusu hep stres 😅",
+        "Alışveriş mi? 🛍️ || Bana ne aldın?",
+        "Merak etme, en güzel şeyler bedava 😌",
+        "İndirim varsa haber ver 😄"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_k_hobi",
+      "name": "Yedek · konu: hobi",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ykhobi"],
+      "reply": [
+        "Böyle şeylerle uğraşman çok çekici 😏",
+        "Bana da öğretir misin? 😊",
+        "Hobilerin seni anlatıyor bence 😌 || Ne zamandır yapıyorsun?",
+        "Bir gün göster bana 🙈"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_yd_ks_yemek",
+      "name": "Yedek · onun yemek zevki",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ysoru", "=ykyemek"],
+      "reply": [
+        "Yemek konusunda seçici değilim 😋 || Ama tatlıya hayır diyemem",
+        "Sıcak bir tabak ve iyi bir sohbet bana yeter 🍝",
+        "Beni doyurmak kolay 😏 || Sen ne seversin?"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "konu sorusu"
+    },
+    {
+      "id": "r_yd_ks_icki",
+      "name": "Yedek · onun içki zevki",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ysoru", "=ykicki"],
+      "reply": [
+        "Az içerim ama tadını bilirim 😏",
+        "Renkli bir kokteyl olsun, yeter 🍹",
+        "Ruh halime göre değişir 🍷 || Sen ne içersin?"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "konu sorusu"
+    },
+    {
+      "id": "r_yd_ks_muzik",
+      "name": "Yedek · onun müzik zevki",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ysoru", "=ykmuzik"],
+      "reply": [
+        "Ruh halime göre değişiyor 🎶 || Şu an daha çok yavaş şarkılar",
+        "Gece dinlediklerim ayrı, sabah dinlediklerim ayrı 😌",
+        "Önce sen bir şarkı öner, sonra ben söyleyeyim 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "konu sorusu"
+    },
+    {
+      "id": "r_yd_ks_film",
+      "name": "Yedek · onun film zevki",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ysoru", "=ykfilm"],
+      "reply": [
+        "Romantik komedilere zaafım var 🙈",
+        "Korku filmi izlerken sana sarılırım, söyleyeyim 😏",
+        "Biraz dizi bağımlısıyım 😅 || Sen ne izliyorsun?"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "konu sorusu"
+    },
+    {
+      "id": "r_yd_ks_spor",
+      "name": "Yedek · onun spor zevki",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ysoru", "=ykspor"],
+      "reply": [
+        "Ben daha çok yürüyüş ve dans tipiyim 💃",
+        "Spor salonunda pek beni göremezsin 😅",
+        "Esnemek benim sporum 😏"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "konu sorusu"
+    },
+    {
+      "id": "r_yd_ks_seyahat",
+      "name": "Yedek · onun tatil zevki",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ysoru", "=ykseyahat"],
+      "reply": [
+        "Deniz kenarı bir yer olsa yeter 🌊",
+        "Hiç görmediğim bir şehre gitmek isterdim ✈️ || Sen nereyi önerirsin?",
+        "Seninle olunca neresi olsa olur 😌"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "konu sorusu"
+    },
+    {
+      "id": "r_yd_ks_hobi",
+      "name": "Yedek · onun hobileri",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ysoru", "=ykhobi"],
+      "reply": [
+        "Boş zamanımda biraz okur, biraz hayal kurarım 😌",
+        "Yeni şeyler denemeyi severim 😏",
+        "Hobilerim değişip duruyor 😅 || Sence bana ne yakışır?"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "konu sorusu"
+    },
+    {
+      "id": "r_yd_cevap",
+      "name": "Yedek · sorusuna açık uçlu cevap",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ycevap"],
+      "reply": [
+        "Hmm, ilginç bir cevap 🤔 || Biraz daha açar mısın?",
+        "Bunu beklemiyordum 😮 || Ama hoşuma gitti",
+        "Tamam, not ettim 😌",
+        "Dürüst cevap verdin, sevdim 😊"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "onun sorusuna evet / hayır olmayan cevap, kural tutmadı"
+    },
+    {
+      "id": "r_yd_cevap_kelime",
+      "name": "Yedek · sorusuna açık uçlu cevap + kelime",
+      "category": "🧩 Yedek besteci",
+      "when": ["=ydcvp", "=ycevap", "=ykelime"],
+      "reply": [
+        "“{konu}”… bunu beklemiyordum 😮 || Neden öyle?",
+        "“{konu}” dedin, aklımda tutacağım 😌",
+        "Demek “{konu}” 🤔 || Güzel cevap"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ak_belki",
+      "name": "Sorusuna kararsız cevap",
+      "category": "🤔 Soru cevabı",
+      "when": ["=askcvp", "=belki"],
+      "reply": [
+        "Belki mi? 😏 || Bu bana evet gibi geldi",
+        "Kararsız kaldın 🙈 || Düşün, acele etme… ama çok da bekletme",
+        "Bilmiyorum da bir cevap 😌 || Ama ben net bir şey istiyorum: evet mi, hayır mı?",
+        "Kalbin ne diyor peki? 🤔"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "belki / bilmem / emin değilim; soru bir kez daha açık kalır"
+    },
+    {
+      "id": "r_ak_belki_utangac",
+      "name": "Sorusuna kararsız cevap · utangaç",
+      "category": "🤔 Soru cevabı",
+      "when": ["=askcvp", "=belki"],
+      "reply": [
+        "Ş-şey… ben de emin değilim zaten 🙈 || Sen karar ver",
+        "Tamam, zorlamıyorum 🥺 || Hazır olunca söyle"
+      ],
+      "traits": ["Utangaç|Güvensiz|Gergin|Alçakgönüllü"],
+      "chars": [],
+      "note": "kişilik"
+    },
+    {
+      "id": "r_ak_belki_flortoz",
+      "name": "Sorusuna kararsız cevap · flörtöz",
+      "category": "🤔 Soru cevabı",
+      "when": ["=askcvp", "=belki"],
+      "reply": [
+        "Belki mi? 😏 || Belki seni ikna edebilirim…",
+        "Kararsızlığın çok tatlı 😘 || Ama ben evet duymak istiyorum"
+      ],
+      "traits": ["Flörtöz|Şımarık|Neşeli|Komik|Çocuksu"],
+      "chars": [],
+      "note": "kişilik"
+    },
+    {
+      "id": "r_ak_belki_soguk",
+      "name": "Sorusuna kararsız cevap · soğuk",
+      "category": "🤔 Soru cevabı",
+      "when": ["=askcvp", "=belki"],
+      "reply": [
+        "Belki cevap değil 😒 || Evet mi, hayır mı?",
+        "Kararsız insanlardan hoşlanmam 🙄 || Bir daha soruyorum"
+      ],
+      "traits": ["Soğuk|Kibirli|Alaycı|Asi|İnatçı"],
+      "chars": [],
+      "note": "kişilik"
+    },
+    {
+      "id": "r_ak_sen",
+      "name": "Sorusuna \"sen?\" diye cevap",
+      "category": "🤔 Soru cevabı",
+      "when": ["=askcvp", "=sen"],
+      "reply": [
+        "Ben mi? 🙈 || Galiba evet derdim… şimdi sen söyle",
+        "Önce ben sordum ama 😏 || Peki: ben evet. Sen?",
+        "Ben çoktan karar verdim 😌 || Senin cevabını bekliyorum",
+        "Benim cevabımı biliyorsun bence 😏 || Asıl seninkini merak ediyorum"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "sen? / ya sen / sence; soru bir kez daha açık kalır"
+    },
+    {
+      "id": "r_ak_sen_istekli",
+      "name": "Sorusuna \"sen?\" · istekli",
+      "category": "🤔 Soru cevabı",
+      "when": ["=askcvp", "=sen"],
+      "reply": [
+        "Ben mi? Kesinlikle evet 😈 || Sıra sende",
+        "Benim için hiç düşünmeye gerek yok 🔥 || Sen?"
+      ],
+      "traits": ["İsteklilik: Çok Yüksek|İsteklilik: Yüksek"],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ak_sen_isteksiz",
+      "name": "Sorusuna \"sen?\" · isteksiz",
+      "category": "🤔 Soru cevabı",
+      "when": ["=askcvp", "=sen"],
+      "reply": [
+        "Ben mi? Pek emin değilim 😶 || Ama senin ne düşündüğünü merak ediyorum",
+        "Ben biraz çekingenim bu konuda 😅 || Sen söyle önce"
+      ],
+      "traits": ["İsteklilik: Düşük|İsteklilik: İstemiyor"],
+      "chars": [],
+      "note": ""
+    },
+    {
+      "id": "r_ak_sart_evet",
+      "name": "Evet ama … (şart)",
+      "category": "🤔 Soru cevabı",
+      "when": ["=askcvp", "=sart", "=evet"],
+      "reply": [
+        "Anlaştık: {sart} 😌",
+        "Tamam, {sart} 🤞 söz",
+        "Peki peki, {sart} 😏",
+        "Şartını kabul ediyorum: {sart} 💗"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": "{sart} = ama / fakat / ancak / yalnız / yeter ki sonrası"
+    },
+    {
+      "id": "r_ak_sart_hayir",
+      "name": "Hayır ama … (şart)",
+      "category": "🤔 Soru cevabı",
+      "when": ["=askcvp", "=sart", "=hayir"],
+      "reply": [
+        "Anladım… ama “{sart}”, öyle mi? 🤔 || Not ettim",
+        "Tamam, zorlamam 😌 || “{sart}” kısmını unutmayacağım"
+      ],
+      "traits": [],
+      "chars": [],
+      "note": ""
     }
   ],
   "addons": [

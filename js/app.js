@@ -1288,6 +1288,16 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['🧩', 'Seni daha iyi anlıyor', 'Karakter artık anlamadığı mesajda konuyu değiştirmiyor: soru mu, duygu mu, hangi konu, ona bakıp cevap veriyor. Sorularına "evet ama…", "belki" ya da "sen?" diye cevap verebiliyorsun; aynı soruyu tekrar sorarsan ilk cevabını hatırlıyor.', '#/kitap/yedek/5', [
+      ['🧩 Anlamadığında', 'Mesajın soru mu, kendini mi anlatıyorsun, üzgün mü mutlu mu, iş, okul, yemek, müzik, tatil gibi 16 konudan hangisi; ona uygun cevap. İkinci kez de anlamazsa ne demek istediğini soruyor.'],
+      ['🤔 Onun sorularına', '"Evet ama önce duş alalım" dersen şartını onaylıyor; "belki" dersen kararsızlığına tepki veriyor; "sen?" dersen önce kendi tarafını söylüyor. Açık uçlu cevabına da dönüyor.'],
+      ['🧠 Tekrar sorarsan', 'Kaç yaşında, nereli, neyi sever: ilk cevabını hatırlıyor ve "Söylemiştim ya 😏" diye aynısını söylüyor. İlişkiniz değişince cevabı da değişebilir. Profilde 🧠 Hafıza → ❓ Sana verdiği cevaplar.'],
+      ['📥 Kurala ekle', '🧪 Bot deneyindeki 📭 Eksik cevaplar\'dan ➕ ile anlamadığı mesajları topla, nasıl cevap vermesini istediğini not et; liste 📋 kopyalanır ya da ⬇️ indirilir, kurallar toplu yazılır.'],
+      ['⚡ Kısayollar', 'Koyu sohbet temalarında kısayol çubuğunun yazıları beyaz zeminde görünmüyordu. Çubuk artık sohbet temasına uyuyor.'],
+      ['📚 Kitap', 'Anlamadığında Kitapçığı\'nda yeni bölüm: Konuya göre yedek. Onun Soruları\'nda: Evet / hayır dışında. Sorular Kitabı\'nda: Tekrar sorarsan.']], 'Yeni özellik', [
+      'Ona "bugün işe gittim" yazıyorsun. Eskiden olsa "Bir şey içelim mi?" diye konuyu değiştirirdi; şimdi "İş mi? 😩 Bazen insanı yoruyor, değil mi?" diye soruyor.',
+      '"Bu gece görüşelim mi?" diye soruyor; "evet ama önce duş alalım" yazıyorsun. Hem evet sayıyor hem de "Anlaştık: önce duş alalım 😌" diye şartını kabul ediyor.',
+      'Bir hafta sonra yine kaç yaşında olduğunu soruyorsun. "Söylemiştim ya 😏" diye gülüyor ve aynı cevabı veriyor; unutmadığını görüyorsun.']],
     ['💞', 'Seanslar: sahnenin uzunu', 'Seans Kitabı\'ndaki 55 seansın hepsi artık sohbette oynanıyor. Sahne bir anı anlatır, seans bütün geceyi: bir açılış, ısınmadan kapanışa 8–20 adım ve çoğunda bir bitiş. Romantik, sert, oral; evde, dışarıda, rollü, üçlü.', '#/events/seanslar', [
       ['💞 Ne', 'Kitaptaki 15 temel tür (romantik, tutkulu, sert, oral, anal…) ve 40 örnek (duşta, arabada, ofiste, üçlü, hotwife, iki tur…) birer uzun sahne oldu.'],
       ['▶️ Nasıl başlar', 'Kendiliğinden açılmaz. 📜 Olay → 🎬 Sahneler sekmesinde 💞 Seanslar, ⚡ Kısayollar\'daki 💞 çip, # ile arama ya da yazarken adını yazmak; CarmenEvents\'te ▶ Sohbette başlat.'],
@@ -14276,6 +14286,12 @@
     const yer = Object.entries(A.yer).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([t, n]) => row('📍', t, `${n} olay`, 'y|' + t));
     const soz = A.soz.map((x, i) => row(x.yn === 'evet' ? '🤝' : '🙅', AN_SOZ_LAB[x.t] || x.t, `${x.yn === 'evet' ? 'evet dedin' : 'hayır dedin'} · ${anDay(x.at)} · ${x.done ? (x.yn === 'evet' ? '✅ tutuldu' : '😏 sonra yaptınız') : x.rem ? '🔔 hatırlattı' : '⏳ bekliyor'}`, 'z|' + i));
     const an = A.an.map((x, i) => row(x.ic, x.n, anDay(x.at), 'a|' + i));
+    // ❓ sorularına verdiği cevaplar (qRemember, c.qmem): tekrar sorarsan aynısını söyler
+    const qRules = Stories.BOT_RULES && Stories.BOT_RULES.rules || [];
+    const qans = Object.entries(c.qmem || {}).sort((a, b) => b[1].at - a[1].at).slice(0, 12).map(([id, x]) => {
+      const r = qRules.find(y => y.id === id);
+      return row('❓', r ? String(r.name || id).split(' · ')[0] : id, `${String((x.p || [])[0] || '').replace(/\{[^}]*\}/g, '…')} · ${x.n || 1} kez`, 'q|' + id);
+    });
     // 🌱 yaşayan karakter (c.lf)
     const L = lfOf(c), X = LF(), bar = v => `<span style="display:inline-block;width:90px;height:6px;border-radius:3px;background:var(--line);vertical-align:middle;overflow:hidden"><i style="display:block;height:100%;width:${v}%;background:var(--accent,#c2185b)"></i></span>`;
     const grow = (X.GROW || []).map(([k, ic, l]) => `<div class="kw-row" style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--line)"><span>${ic}</span><span style="flex:1"><b>${esc(l)}</b></span>${bar(L.grow[k] || 0)}<small class="muted" style="width:28px;text-align:right">${L.grow[k] || 0}</small></div>`);
@@ -14305,6 +14321,7 @@
       ${sec('📍 Mekânlarınız', yer, 'Henüz mekân yok.')}
       ${sec('🤝 Sözler', soz, 'Onun sorularına verdiğin cevaplar burada birikir.')}
       ${sec('🔗 Unutulmaz anlar', an, 'Kombolar burada birikir.')}
+      ${sec('❓ Sana verdiği cevaplar', qans, 'Ona sorduğun sorular burada birikir; tekrar sorarsan aynı cevabı verir.')}
       ${lifeHtml}`;
   }
   function memDel(c, k) {
@@ -14323,6 +14340,7 @@
     if (t === 'y') delete A.yer[v];
     if (t === 'z') A.soz.splice(+v, 1);
     if (t === 'a') A.an.splice(+v, 1);
+    if (t === 'q') delete (c.qmem || {})[v];
     save();
   }
   /* 🌳 Aile sekmesi: kuşak kuşak ağaç (anne / teyze → o ve kardeşleri → kızı / yeğeni / 👶 bebek kayıtları),
@@ -15771,7 +15789,9 @@
       const pend0 = !opts.events && th.botAsk, tyn = pend0 && pend0.t === 'teyit' ? teyitYn(userMsg.text) : '';
       const teyitOk = tyn === 'evet' ? pend0 : null;
       if (teyitOk && teyitOk.txt) userMsg = { ...userMsg, text: teyitOk.txt };
-      let pend = teyitOk ? null : pend0, yn = !pend ? '' : pend.t === 'teyit' ? tyn : yesNo(userMsg.text);
+      let pend = teyitOk ? null : pend0, yn = !pend ? '' : pend.t === 'teyit' ? tyn : yesNo(userMsg.text) || ynLead(userMsg.text);
+      // 🤝 "evet ama önce duş alalım": "ama …" kısmı şart, cevabın sonuna onay baloncuğu (akLine "askcvp sart evet|hayir")
+      const sart = pend && yn && pend.t !== 'teyit' && !group ? askSart(userMsg.text) : '';
       // 💭 iki seçenekli fikir ("Banyo mu, yatak mı?"): seçilen seçenek evet sayılır
       const ip = !opts.events && ideaPick(pend, userMsg.text);
       if (ip) { pend = ip; yn = 'evet'; }
@@ -15794,6 +15814,15 @@
           save(); draw(); refreshList(); lfSay(lr.parts.filter(Boolean));
           return;
         }
+      }
+      // 🤔 sorusuna kısa kararsız cevap ("belki", "bilmem") ya da "sen?" → kendi tepkisi ("askcvp belki|sen"), soru bir kez daha açık kalır (pend.again)
+      const ak = !opts.events && !group && c && c !== GHOST && pend && !yn && !ip && !pend.again && !pend.opts && pend.t !== 'teyit' && !/^lf/.test(pend.t) ? askRead(userMsg.text) : '';
+      const akp = ak && akLine(c, `askcvp ${ak}`, { sen: hitapOf(c), ben: c.name.split(' ')[0] });
+      if (akp && akp.length) {
+        if (lfForce) akp.unshift(lfForce);
+        th.botAsk = { ...pend, again: 1 };
+        save(); draw(); refreshList(); lfSay(akp);
+        return;
       }
       // ❓ "neden?" az önceki cevabına: son cevabın kural id'si + metni (th.whyCtx) "=nedencvp" kurallarına (r_why_*) gider; üst üste 3. "neden" → r_why_tekrar
       const why = !opts.events && th.whyCtx && WHY_RE.test(BOT.norm(userMsg.text).trim()) ? th.whyCtx : null;
@@ -16010,6 +16039,7 @@
       // {sen} ilişkiye göre hitap (adın · canım · aşkım)
       const vars = { sen: hitapOf(ch), ben: ch.name.split(' ')[0] };
       let parts = m.rule.id === '_durum' ? [] : BOT.reply(m.rule, vars, botRecent(m.rule.id));
+      const p0 = parts.slice();
       // 🫂 DeepHugging: derin mesajlar açıkken olay cevabının ilk cümlesi %45 kalıptan
       if (opts.events && opts.olay && th.dhOn && !group && parts.length && Math.random() < .45) {
         const dE = allEvents().find(x => x.title === opts.olay), dh = dE && !isLesEv(dE) ? dhGen('her', dE, ch, { hug: th.hugMode, sen: vars.sen, pos: posNow() }) : '';
@@ -16107,6 +16137,9 @@
         const km = only.rules.length && BOT.best(only, 'durum kacamak', ch);
         if (km && !km.fallback) parts = BOT.reply(km.rule, vars, botRecent(km.rule.id));
       }
+      // 🧠 aynı soruyu tekrar sorduysan ilk cevabını hatırlar: aynı cevap + "söylemiştim" (qRemember, c.qmem)
+      const qr = isQ && !intimate && !group && !opts.events && ch !== GHOST ? qRemember(ch, qid, p0) : null;
+      if (qr) parts = [...qr, ...parts.filter(x => !p0.includes(x))];
       // 👗 kıyafete göre (gömleğin düğmeleri, eteği sıyırmak, tangayı kenara çekmek…)
       const wl = wearPart(ch, opts, qid);
       if (wl) parts.push(wl);
@@ -16245,16 +16278,24 @@
       // 💬 yedek cevaba düştüyse (hiçbir kural tutmadı) boşluk yerine hep teklif / istek: %50 kendi isteği (wantNow, zorla), yoksa soru (fbAsk: istekliliğine
       // ve ❤️ sevdiklerine göre), o da yoksa yine istek; biri geldiyse yedek cümle atılır
       // 🌱 %45 önce yaşayan karakter (lfFallback): zamanı gelen plan, gündem, derin soru, ikilem, yankı ("{kelime} mi?"), bağlam havuzu (tekrarsız); kırgınsa soğuk
-      const lfb = m.fallback && !opts.events && !yn && !cmdEv && !ordK && !group && !lfForce && th.botAsk === ask0 && ch !== GHOST && Math.random() < .45
+      // 🧩 önce yedek besteci (ydCompose): art arda 1. yedekte mesajın niyetine / konusuna cevap, 2.'de konu yoksa netleştirme; 3.'den sonra aşağıdaki teklif akışı
+      // 💬 onun sorusuna açık uçlu cevap (evet / hayır değil, kural tutmadı): "ycevap" ile cevabına döner, netleştirme sayılmaz
+      const pendAns = !!(pend0 && !teyitOk && pend0.t !== 'teyit' && !yn && !/\?\s*$/.test(userMsg.text));
+      if (!opts.events) th.fbN = m.fallback && !pendAns ? (th.fbN || 0) + 1 : 0;
+      const yd = m.fallback && !opts.events && !yn && !cmdEv && !ordK && !group && !lfForce && th.botAsk === ask0 && ch !== GHOST && !sexPhase()
+        ? ydCompose(ch, userMsg.text, vars, pendAns ? 1 : th.fbN, pendAns) : null;
+      if (yd && yd.length) parts = [...parts.filter(p => !fbTxt.has(p)), ...yd];
+      const lfb = !yd && m.fallback && !opts.events && !yn && !cmdEv && !ordK && !group && !lfForce && th.botAsk === ask0 && ch !== GHOST && Math.random() < .45
         ? lfFallback(ch, { sx: sexPhase(), night: (h => h >= 23 || h < 5)(Math.floor((((thMin(th) % 1440) + 1440) % 1440) / 60)), text: userMsg.text, vars, flirt: relV(ch, 'aşk') >= 60 }) : null;
       if (lfb && lfb.parts && lfb.parts.length) { parts = [...parts.filter(p => !fbTxt.has(p)), ...lfb.parts]; if (lfb.ask) th.botAsk = lfb.ask; }
-      else if (m.fallback && !opts.events && !yn && !cmdEv && !ordK && !group && th.botAsk === ask0) {
+      else if (!yd && m.fallback && !opts.events && !yn && !cmdEv && !ordK && !group && th.botAsk === ask0) {
         // 💭 %50 önce onun fikri (ideaOffer: mekân / sahne / olay, iki seçenek ya da mini plan)
         const so = Math.random() < .5 ? ideaOffer(ch, opts, true) : null;
         const wn = !so && Math.random() < .5 ? wantNow(ch, true) : null, fb = !so && !wn && fbAsk(ch, vars), alt = !so && !wn && !fb ? wantNow(ch, true) : null;
         const add = so || wn || (fb && fb.parts) || alt;
         if (add) { parts = [...parts.filter(p => !fbTxt.has(p)), ...add]; if (fb) th.botAsk = fb.ask; }
       }
+      if (sart && !opts.events) { const sl = akLine(ch, `askcvp sart ${yn}`, vars, { sart }); if (sl) parts.push(...sl); }
       // 🔗 sorusuna cevap verdin: %45 takip sorusu (ASK_FOLLOW; ör. görüşelim mi → evet → "Ne giyeyim?"), arkadaş / saat / şehir bilgisi taşınır
       const fw = yn && pend && !opts.events && !group && th.botAsk === ask0 && (ASK_FOLLOW[pend.t] || {})[yn];
       if (fw && Math.random() < .45) {
@@ -20656,7 +20697,7 @@
   const TEYIT_YES_RE = /^(evet|evt|he|hı hı|hıhı|aynen|doğru|dogru|tabi|tabii|tabiki|tamam|ok|okey|olur|öyle|oyle|yes|yep|yeah|kesinlikle|elbette|ta kendisi)(?= |$)|doğru anla|dogru anla|onu de|bunu de|öyle de|oyle de|demek iste|onu kastet|bingo/;
   const TEYIT_NO_RE = /^(hayır|hayir|yok|yanlış|yanlis|değil|degil|no|nope|ıh|ıhı|olmaz|alakası yok|alakasi yok)(?= |$)|yanlış anla|yanlis anla|(onu|bunu|öyle|oyle) demedim|demek istemedim|kastetmedim|başka bir şey|baska bir sey/;
   const teyitYn = text => { const t = Stories.Bot.norm(text).trim(); return TEYIT_NO_RE.test(t) ? 'hayir' : TEYIT_YES_RE.test(t) ? 'evet' : yesNo(text); };
-  const NEAR_SKIP = /^=(evt|fant|fx\w*|durum|cevap|sor|fsor|memleket|nedencvp|kacamak|yas|gecispoz|evq\w*|grup\w*|kiskanc\w*|digersex|modcum)$/;
+  const NEAR_SKIP = /^=(evt|fant|fx\w*|durum|cevap|sor|fsor|memleket|nedencvp|kacamak|yas|gecispoz|evq\w*|grup\w*|kiskanc\w*|digersex|modcum|ydcvp|askcvp)$/;
   const nearSkip = r => /^r_(why|ans)_/.test(r.id) || (r.when || []).some(t => String(t).split('|').some(a => NEAR_SKIP.test(a.trim())));
   const LS_ASK_CATS = ['lesbian foreplay', 'lesbian sex'];
   const BOT_ASK = {
@@ -20870,6 +20911,51 @@
     if (w.some(x => NO.includes(x))) return 'hayir';
     if (w.some(x => YES.includes(x))) return 'evet';
     return '';
+  }
+  /* 🤔 onun sorusuna evet / hayır dışı cevaplar (botReply, th.botAsk varken):
+   * ynLead: uzun cevap net bir evet / hayır kelimesiyle başlıyorsa ("evet ama önce duş alalım") o sayılır
+   * askSart: "ama / fakat / ancak / yalnız / yeter ki …" sonrası (en fazla 6 kelime) → {sart}
+   * askRead: kısa kararsız cevap → 'belki', "sen?" / "ya sen" / "sence" → 'sen'
+   * akLine: "=askcvp" kurallarından (r_ak_*) cevap, {sart} doldurulur */
+  const LEAD_Y = ['evet', 'eveet', 'evt', 'tabi', 'tabii', 'tabiki', 'olur', 'aynen', 'tamam', 'kesinlikle', 'elbette', 'hıhı', 'he', 'ok', 'okey', 'yes'];
+  const LEAD_N = ['hayır', 'hayir', 'yok', 'olmaz', 'asla', 'istemem', 'istemiyorum', 'no'];
+  const ynWords = text => String(text || '').toLocaleLowerCase('tr').replace(/[^\p{L}\s]/gu, ' ').split(/\s+/).filter(Boolean);
+  function ynLead(text) {
+    const w = ynWords(text);
+    if (w.length < 2 || w.some(x => /^m[ıiuü](s[ıiuü]n|y[ıiuü]m|y[ıiuü]z|s[ıiuü]n[ıiuü]z|d[ıiuü]r)?$/.test(x))) return '';
+    return LEAD_N.includes(w[0]) ? 'hayir' : LEAD_Y.includes(w[0]) ? 'evet' : '';
+  }
+  function askSart(text) {
+    const w = ynWords(text), i = w.findIndex((x, k) => ['ama', 'fakat', 'ancak', 'yalnız'].includes(x) || (x === 'yeter' && w[k + 1] === 'ki'));
+    if (i < 0) return '';
+    return w.slice(i + (w[i] === 'yeter' ? 2 : 1)).slice(0, 6).join(' ');
+  }
+  const ASK_BELKI_RE = / (belki|bilmem|bilmiyorum|emin değilim|emin değil|kararsız\p{L}*|olabilir|duruma göre|bakarız|bakalım|düşüneyim|düşünmem lazım|sanmam|galiba|ehh|idk|maybe) /u;
+  const ASK_SEN_RE = /^((ya|peki|asıl|bilmem|önce) )?(sen|sence|sen ne dersin|sen olsan|sen söyle|sen ne düşünüyorsun|you)$/;
+  function askRead(text) {
+    const s = Stories.Bot.norm(text), w = s.trim().split(' ').filter(Boolean);
+    if (!w.length || w.length > 6) return '';
+    if (ASK_SEN_RE.test(s.trim()) || / ya sen $/.test(s)) return 'sen';
+    return ASK_BELKI_RE.test(s) ? 'belki' : '';
+  }
+  /* 🧠 soru hafızası: r_q* cevabı c.qmem[kural id] = { p: baloncuklar (ham), at, n } olarak saklanır. Aynı kural tekrar kazanırsa aynı cevap
+   * başında QREM ("Söylemiştim ya 😏 "; 3.+ kez QREM3) ile döner. Kova değişince (Aşk, İsteklilik…) kural id'si de değişir → yeni cevap.
+   * 30 günden eski ya da ❤️ Aşk < 20 iken %40 unutmuş gibi yeni cevap (yeniden yazılır). Anlık sorular (QREM_SKIP) hatırlanmaz */
+  const QREM = ['Söylemiştim ya 😏 ', 'Unuttun mu? 🙈 ', 'Cevabım değişmedi: ', 'Hatırlatayım 😌 ', 'Yine mi soruyorsun? 😄 '];
+  const QREM3 = ['Kaçıncı soruşun bu? 😅 ', 'Ezberledin artık bence 😏 ', 'Beni test ediyorsun galiba 🤨 '];
+  const QREM_SKIP = /^r_q(2_(dusun|nasilhissettin)|3_giyim|9_(gun|hafiza)|4_ev_)/;
+  function qRemember(c, id, p) {
+    if (!p.length || QREM_SKIP.test(id)) return null;
+    const Q = c.qmem || (c.qmem = {}), prev = Q[id], now = Date.now();
+    if (!prev || !(prev.p || []).length || now - prev.at > 30 * 864e5 || (relV(c, 'aşk') < 20 && Math.random() < .4)) { Q[id] = { p: p.slice(0, 3), at: now, n: 1 }; return null; }
+    prev.n = (prev.n || 1) + 1;
+    return [pickOne(prev.n >= 3 ? QREM3 : QREM) + prev.p[0], ...prev.p.slice(1)];
+  }
+  function akLine(c, q, vars, fill = {}) {
+    const R = Stories.BOT_RULES || { rules: [] }, only = (R.rules || []).filter(r => (r.when || [])[0] === '=askcvp');
+    const m = only.length && Stories.Bot.best({ ...R, rules: only }, q, c);
+    if (!m || m.fallback) return null;
+    return Stories.Bot.reply(m.rule, vars, botRecent(m.rule.id)).map(p => p.replace(/\{sart\}/g, fill.sart || ''));
   }
   /* 🎭 kişilik ve ⌨️ yazım tarzı: kişilik cevaba bazen küçük bir ek yapar; yazım tarzı her cevabı dönüştürür */
   /* 🎭 kişilik eki: pre başa, add sona. Düz dizi her bağlamda; nesnede bağlama göre havuz:
@@ -21431,6 +21517,57 @@
     let r = Math.random() * C.reduce((n, x) => n + x[0], 0);
     const f = (C.find(x => (r -= x[0]) < 0) || C[C.length - 1])[1];
     return f() || null;
+  }
+  /* 🧩 Yedek besteci (Yarı-yapay-zeka Faz 2): hiçbir kural tutmayınca mesajın niyeti bağlam kelimelerine çevrilir, "=ydcvp" kuralları (r_yd_*) bu sırayla eşleşir:
+   * ydcvp [ynetlestir] [ysoru] [ykim|yneden|ynerede|yzaman|ynasil|yne] [yona|ybana] [yuzgun|ypoz|ysaka] [yk<konu>] [ykelime]
+   * {konu} = mesajdaki en uzun içerik kelimesi (fiil değil). n = art arda kaçıncı yedek: 1 → niyete / konuya cevap, 2 → hiçbir şey çıkmadıysa netleştirme, 3+ → null (eski teklif akışı) */
+  const YD_TIP = [['kim', / (kim|kimi|kimin|kime|kimle|kiminle|kimden) /], ['neden', / (neden|niye|niçin) /], ['nerede', / nere\p{L}* /u], ['zaman', / (ne zaman|kaçta|saat kaç) /],
+    ['nasil', / nası?l\p{L}* /u], ['ne', / (ne|neyi|neler|nedir|neydi|hangi\p{L}*) (?!(güzel|hoş|tatlı|harika|kadar|iyi|kötü|biçim) )/u]];
+  const YD_FEEL = [['uzgun', /(üzgün|üzül|moral\p{L}* bozuk|sıkkın|sıkıl|kötüyüm|kötü hissed|ağlıyorum|ağladım|yalnızım|bunal|stres|gerginim|yorgun|yoruldum|bitkin|hastayım|hasta oldum|ağrıyor|😢|😭|😔|😞)/u],
+    ['poz', /(mutluyum|çok mutlu|harika bir gün|süperim|sevindim|keyifliyim|çok iyiyim|başardım|kazandım|terfi|😁|🥳|🎉)/u], ['saka', /(haha|hehe|ahah|jsjs|kjsj|(^|\s)lol(\s|$)|😂|🤣)/u]];
+  const YD_KONU = [
+    ['is', /( işim| işte | işten| işe | iş yeri| işyeri|mesai|patron|müdür|toplantı|maaş|ofis|çalışıyorum|çalıştım|vardiya)/],
+    ['okul', /(okul| ders|sınav|ödev| hoca|üniversite|kampüs| final| vize|kütüphane)/],
+    ['yemek', /(yemek|yedim|yiyorum|kahvaltı|pizza|burger|makarna|tatlı|çikolata|kahve| çay |tarif|restoran|acıktım| açım )/],
+    ['icki', /( bira|şarap| rakı|votka|viski|içki|kokteyl|sarhoş)/],
+    ['muzik', /(şarkı|müzik|konser|playlist|gitar|piyano|albüm| rap | rock)/],
+    ['film', /( film|dizi |diziyi|dizisi|netflix|sinema|anime|izledim|izliyorum)/],
+    ['oyun', /(oyun oyna|oyunu|oynadım|oynuyorum|playstation|konsol)/],
+    ['spor', /( spor| maç|futbol|basketbol|voleybol| koşu|koştum|antrenman|fitness|yüzme)/],
+    ['arac', /(araba| motor |ehliyet|trafik|otoban)/],
+    ['seyahat', /(tatil|seyahat| gezi|uçak|uçuş|yolculuk|bavul|valiz)/],
+    ['hava', /( hava |yağmur|kar yağ|güneşli| soğuk|fırtına)/],
+    ['hayvan', /( kedi| köpek|kuşum|hayvan|evcil)/],
+    ['aile', /(annem|babam|kardeş|ablam| abim|ailem|teyzem| dayım| amcam|kuzen)/],
+    ['uyku', /(uykum|uyuyamadım|uyudum|uyandım|uykusuz|rüyamda|rüya gördüm)/],
+    ['para', /( para|fatura| kira| borç|alışveriş|indirim)/],
+    ['hobi', /(kitap| roman|resim|çizim| dans |yoga|bahçe|örgü|hobi|fotoğraf çek)/]
+  ];
+  const YD_STOP = ['bugün', 'yarın', 'dün', 'şimdi', 'akşam', 'sabah', 'gece', 'öğlen', 'aslında', 'gerçekten', 'galiba', 'sanırım', 'bence', 'sence', 'herkes', 'hiçbir', 'birşey', 'birisi', 'şöyle', 'böyle', 'öyle', 'neyse', 'yeni', 'eski', 'güzel', 'tamam', 'merhaba'];
+  function ydIntent(text, n, ans) {
+    const raw = String(text || '').toLocaleLowerCase('tr'), s = Stories.Bot.norm(text), X = LF();
+    const tip = (YD_TIP.find(([, re]) => re.test(s)) || [])[0] || '';
+    const soru = /\?/.test(raw) || / m[ıiuü](s[ıiuü]n|y[ıiuü]m|y[ıiuü]z|s[ıiuü]n[ıiuü]z|d[ıiuü]r)? /.test(s) || !!tip;
+    const ona = / (sen|seni|sana|senin|sende|senden|seninle|sence) /.test(s) || / \p{L}{2,}(m[ıiuü]s[ıiuü]n|s[ıiuü]n) /u.test(s);
+    const bana = / (ben|beni|bana|benim|bende|benden|benimle) /.test(s) || / \p{L}{2,}([dt][ıiuü]m|yorum|ac[ae]ğ[ıi]m) /u.test(s);
+    const feel = (YD_FEEL.find(([, re]) => re.test(raw)) || [])[0] || '';
+    const konu = (YD_KONU.find(([, re]) => re.test(s)) || [])[0] || '';
+    // duygu / konu varsa "ben…" ("terfi aldım", "işe gittim") genel "anlat" cevabıyla yarışmaz; soruda kime kalır (onun zevki: r_yd_ks_*)
+    const kime = soru && ona ? 'yona' : soru || (!feel && !konu) ? (bana ? 'ybana' : ona ? 'yona' : '') : '';
+    // 🔁 kelime yansıtma sadece konu, duygu ve soru yokken (yoksa "bugün işe gittim" → “bugün” konu cevabını ezerdi)
+    const w = konu || soru || feel ? '' :s.trim().split(' ').filter(x => x.length >= 4 && !LF_VERB.test(x) && !YD_STOP.includes(x) && !(X.FB_STOP || []).includes(x) && !MEM_STOP.includes(x) && !(X.FB_SEXW && X.FB_SEXW.test(x))).sort((a, b) => b.length - a.length)[0] || '';
+    const some = soru || kime || feel || konu;
+    if (!some && n !== 2 && !w && !ans) return null;
+    const tok = n === 2 && !some && !ans ? ['ynetlestir'] : [ans && 'ycevap', soru && 'ysoru', tip && 'y' + tip, kime, feel && 'y' + feel, konu && 'yk' + konu, w && 'ykelime'];
+    return { q: ['ydcvp', ...tok].filter(Boolean).join(' '), w };
+  }
+  function ydCompose(c, text, vars, n, ans) {
+    if (n > 2) return null;
+    const R = Stories.BOT_RULES || { rules: [] }, only = (R.rules || []).filter(r => (r.when || [])[0] === '=ydcvp');
+    const it = only.length && ydIntent(text, n, ans);
+    const m = it && Stories.Bot.best({ ...R, rules: only }, it.q, c);
+    if (!m || m.fallback) return null;
+    return Stories.Bot.reply(m.rule, vars, botRecent(m.rule.id)).map(p => p.replace(/\{konu\}/g, it.w));
   }
   /* 🌱 kendiliğinden (sevişmiyorken, sohbette en az 8 mesaj arayla): zamanı gelmiş plan → lakap teklifi → gündem → söylenti / duygusal anı / iç şaka / derin soru / ikilem.
    * due(c): bekleyen bir şey var mı (botReply şansı %50, yoksa %7) */
@@ -31059,6 +31196,15 @@
           <li>İngilizce yazabilirsin ("do you like doggy?").</li></ul>`;
     } },
     ...QB_CH.map(([icon, title, sub], i) => ({ icon, title, sub, get body() { return qbBody(i); } })),
+    { icon: '🧠', title: 'Tekrar sorarsan', sub: 'ilk cevabını hatırlar', get body() {
+      return `<p>Ona sorduğun bir soruya verdiği cevap hafızasına yazılır. Aynı soruyu tekrar sorarsan aynı cevabı verir ve hatırladığını belli eder.</p>
+        <ul><li>2. kez: <span class="no-i18n">"${esc(QREM[0].trim())}"</span> gibi bir başlangıçla aynı cevap.</li>
+          <li>3. kez ve sonrası: <span class="no-i18n">"${esc(QREM3[0].trim())}"</span> gibi.</li>
+          <li>Aranızdaki ilişki değiştiyse (ör. sevgisi ya da isteği arttıysa) yeni duruma uygun yeni bir cevap verir.</li>
+          <li>30 gün geçtiyse ya da sevgisi çok azsa bazen unutmuş gibi yeni cevap verir.</li>
+          <li>O anki durumu soran sorular (ne düşünüyorsun, ne giyiyorsun, günün nasıldı) hatırlanmaz.</li>
+          <li>Cevaplar karakterin profilindeki 🧠 sekmesinde, ❓ Sana verdiği cevaplar bölümünde; 🗑️ ile silersen bir dahakine yeniden cevap verir.</li></ul>`;
+    } },
     { icon: '❔', title: 'Onun soruları ve senin cevabın', sub: '❔ Onun Soruları kitapçığına taşındı', body: `<p>Karakterin sana sorduğu sorular ve evet / hayır cevapların artık kendi kitapçığında: <a href="#/kitap/onun/0">❔ Onun Soruları</a>.</p>` }] });
   /* ❔ Onun Soruları kitapçığı: karakterin soruları ("=sor" + konu) ve senin evet / hayır'ına cevaplar ("=cevap" + konu + evet|hayir),
    * bot-rules.js "❔ Karakterin soruları"; evet / hayır'da olan olaylar BOT_ASK'tan. Konu grupları ASK_GROUPS (kalanlar 🔥 Sevişirken'e) */
@@ -31106,7 +31252,7 @@
         <li><b>Senin soruna cevap verince</b> %40 sana karşı soru sorar ("Sen büyük göğüs sever misin?").</li>
         <li><b>💬 Sohbet soruları</b>: sevişmiyorken o an uyan bir konu seçer: geçen seferki bir olayı anar, bulunduğunuz yeri, saati, arkadaşını, yarını, bıraktığın izi, memleketini, geleceği sorar ya da cesaretlik oynamak ister (bkz. 💬 Sohbet soruları).</li>
         <li><b>🔗 Takip soruları</b>: bazı cevaplarından sonra %45 bir soru daha sorar: "görüşelim mi?" → evet → "Ne giyeyim? Kırmızı elbise olur mu?" (bkz. 🔗 Takip soruları).</li>
-        <li><b>Cevabın</b>: en fazla 6 kelimelik, evet (evet, olur, tabii, tamam, isterim, hadi, lütfen…) ya da hayır (hayır, yok, istemem, olmaz, sonra, başka…) anlamına gelen bir mesaj. Uzun ya da başka bir şey yazarsan soru düşer, mesajın normal cevaplanır.</li>
+        <li><b>Cevabın</b>: en fazla 6 kelimelik, evet (evet, olur, tabii, tamam, isterim, hadi, lütfen…) ya da hayır (hayır, yok, istemem, olmaz, sonra, başka…) anlamına gelen bir mesaj. Net bir evet / hayır kelimesiyle başlayan uzun cevap, "evet ama…", "belki" ve "sen?" de anlaşılır (bkz. 🤔 Evet / hayır dışında); başka bir şey yazarsan soru düşer, mesajın normal cevaplanır.</li>
         <li><b>Olay</b>: evet / hayır'a göre tablolardaki olaylardan biri kendiliğinden olur (❤️ sevdiği öne çıkar, 🚫 izin vermediği atlanır).</li>
         <li><b>"İçime mi boşalacaksın?"</b> sorusuna evet dersen cevap korunmasına göre değişir: dışarı boşalma şartı varsa "Hayır, dışarı!", korunmuyorsa "Olmaz!", hap / sabah hapı / kondom varsa razı, içine istiyorsa sevinir.</li>
         <li><b>👑 Emirleri</b>: Dominant (bazen Switch) karakter olaydan sonra ya da sevişirken emir verir; evet / hayır'ına itaat eden ya da kızan bir cevap gelir.</li>
@@ -31234,6 +31380,20 @@
       <ul><li>Yazdığını anlamadığında (yedek cevap) %45: zamanı gelmiş plan, gündem, derin soru, ikilem ya da bir yankı.</li>
         <li>Normal sohbette en az 8 mesaj arayla: bekleyen bir plan, lakap ya da gündem adımı varsa %50, yoksa %7.</li>
         <li>💔 Kırgınken soru sormaz, sadece soğuk cevap verir.</li></ul>`;
+    } },
+    { icon: '🤔', title: 'Evet / hayır dışında', sub: 'evet ama…, belki, sen?, açık cevap', get body() {
+      const R = ((Stories.BOT_RULES || {}).rules || []), ex = (w, tr) => { const r = R.find(x => (x.when || []).join(' ') === w && !(x.traits || []).length); return r ? String((r.reply || [])[0] || '').replace(/\{sen\}/g, 'canım').replace(/\{sart\}/g, 'önce duş alalım').replace(/\{konu\}/g, 'kırmızı').replace(/\s*\|\|\s*/g, ' · ') : '—'; };
+      return `<p>Sorusuna her zaman net bir evet ya da hayır yazmak zorunda değilsin. Karakter cevabının içine de bakar.</p>
+        <table class="bk-t"><tr><th>Sen yazarsın</th><th>Ne olur</th><th>Örnek cevap</th></tr>
+          <tr><td>"evet ama önce duş alalım"</td><td>Evet sayılır, "ama" sonrası şartın olur ve onu onaylar.</td><td class="no-i18n">${esc(ex('=askcvp =sart =evet'))}</td></tr>
+          <tr><td>"hayır ama belki yarın"</td><td>Hayır sayılır, şartını not eder.</td><td class="no-i18n">${esc(ex('=askcvp =sart =hayir').replace('önce duş alalım', 'belki yarın'))}</td></tr>
+          <tr><td>"belki", "bilmem", "emin değilim"</td><td>Kararsızlığına tepki verir; soru bir kez daha açık kalır.</td><td class="no-i18n">${esc(ex('=askcvp =belki'))}</td></tr>
+          <tr><td>"sen?", "ya sen", "sence"</td><td>Önce kendi tarafını söyler (ne kadar istekli olduğuna göre), sonra senin cevabını bekler.</td><td class="no-i18n">${esc(ex('=askcvp =sen'))}</td></tr>
+          <tr><td>Açık uçlu bir cevap</td><td>Hiçbir kural tutmazsa cevabındaki kelimeye ya da konuya döner.</td><td class="no-i18n">${esc(ex('=ydcvp =ycevap =ykelime'))}</td></tr></table>
+        <ul><li>Uzun bir mesaj net bir evet / hayır kelimesiyle başlıyorsa (evet, tamam, olur, tabii, hayır, yok, olmaz…) o cevap sayılır.</li>
+          <li>Şart "ama", "fakat", "ancak", "yalnız" ya da "yeter ki" ile başlar; en fazla 6 kelimesi alınır.</li>
+          <li>Kararsız ve "sen?" cevaplarında soru sadece bir kez daha açık kalır; ikinci kez de net cevap vermezsen soru düşer.</li>
+          <li>Utangaç, flörtöz ve soğuk karakterlerin kendi söyleyişleri var. Kurallar 🤖 Bot editöründe "🤔 Soru cevabı" kategorisinde.</li></ul>`;
     } },
     { icon: '👩‍❤️‍👩', title: 'Lezbiyen ilişkide', sub: 'makas, yüzüme otur, oyuncak, soyunmadan, dilimle, birlikte, kızla oldun mu', get body() {
       const d = askData();
@@ -31648,13 +31808,36 @@
           <tr><td>🌙 Gece 23–05</td><td>uykulu cümleler karışır</td><td>${ex(FB.gece)}</td></tr></table>
         <p>🚫 Tekrar yok: son 12 yedek cümle her karakterde tutulur ve tekrar seçilmez (havuz biterse en eskisi döner).</p>`;
     } },
+    { icon: '🧩', title: 'Konuya göre yedek', sub: 'soru mu, duygu mu, hangi konu', get body() {
+      const KN = { is: 'iş', okul: 'okul', yemek: 'yemek', icki: 'içki', muzik: 'müzik', film: 'film / dizi', oyun: 'oyun', spor: 'spor', arac: 'araba', seyahat: 'tatil', hava: 'hava', hayvan: 'hayvan', aile: 'aile', uyku: 'uyku', para: 'para', hobi: 'hobi' };
+      const LB = { ysoru: '❓ soru', yne: 'ne / hangi', ykim: 'kim', yneden: 'neden', ynerede: 'nerede', yzaman: 'ne zaman', ynasil: 'nasıl', yona: 'onunla ilgili', ybana: 'kendinden bahsediyorsun', yuzgun: '😔 üzgün / yorgun', ypoz: '🥳 mutlu', ysaka: '😂 şaka', ykelime: '🔁 kelime', ynetlestir: '🙈 netleştirme' };
+      const lab = t => LB[t] || (t.startsWith('yk') && KN[t.slice(2)] ? '🏷️ ' + KN[t.slice(2)] : t);
+      const ch = { name: '', traits: [] }, R = Stories.BOT_RULES || { rules: [] }, only = { ...R, rules: (R.rules || []).filter(r => (r.when || [])[0] === '=ydcvp') };
+      const rows = ['bugün işe gittim', 'canım çok sıkkın', 'en sevdiğin film hangisi', 'terfi aldım', 'neden öyle düşündün', 'kedim hasta'].map(t => {
+        const it = ydIntent(t, 1), m = it && Stories.Bot.best(only, it.q, ch), ex = m && !m.fallback ? (m.rule.reply || [])[0] || '' : '';
+        return `<tr><td class="no-i18n">"${esc(t)}"</td><td>${it ? it.q.split(' ').slice(1).map(x => `<span>${esc(lab(x))}</span>`).join(' · ') : '—'}</td><td class="no-i18n">${esc(ex.replace(/\{sen\}/g, 'canım').replace(/\s*\|\|\s*/g, ' · '))}</td></tr>`;
+      });
+      return `<p>Yazım farkına bakan adım da bir şey bulamazsa karakter önce mesajının ne olduğuna bakar ve ona göre cevap verir.</p>
+        <ul><li>Soru mu: soru işareti, mı / mi eki ya da kim, ne, neden, nerede, ne zaman, nasıl.</li>
+          <li>Kimden bahsediyor: onu mu soruyorsun ("sen", "-sın") yoksa kendini mi anlatıyorsun ("ben", "-dım", "-yorum").</li>
+          <li>Duygu: üzgün / yorgun, mutlu, şaka.</li>
+          <li>Konu: ${Object.values(KN).map(x => `<span>${esc(x)}</span>`).join(', ')}.</li>
+          <li>Hiçbiri yoksa mesajındaki en uzun anlamlı kelimeye döner.</li></ul>
+        <p>Art arda anlamadığı mesajlarda</p>
+        <ul><li>1. mesaj: niyete ya da konuya uygun cevap.</li>
+          <li>2. mesaj: yine bir şey çıkmazsa ne demek istediğini sorar.</li>
+          <li>3. mesajdan sonra: önceki bölümlerdeki teklif, istek ve sorular.</li></ul>
+        <p>Sevişme sırasında, grupta, olayda ve emirlerde bu adım atlanır. Kurallar 🤖 Bot editöründe "🧩 Yedek besteci" kategorisindedir; kişiliğe göre (utangaç, flörtöz, soğuk) farklı cümleleri olanlar var.</p>
+        <table class="bk-t"><tr><th>Yazdığın</th><th>Anladığı</th><th>Cevap örneği</th></tr>${rows.join('')}</table>`;
+    } },
     { icon: '📭', title: 'Eksik cevaplar', sub: 'anlamadığı mesajlar nerede toplanır', get body() {
       const L = S().botMiss || [], nN = L.filter(x => x.near).length;
       return `<p>Yedek cevaba düşen, yönlendirilen ya da teyit sorulan her mesaj 🧭 CarmenGuide → <a href="#/deney">🧪 Bot deneyi</a>'nde <b>📭 Eksik cevaplar</b> listesine yazılır. Şu an <b>${L.length}</b> mesaj var${nN ? `, <b>${nN}</b> tanesi yönlendirildi` : ''}.</p>
         <ul><li>Aynı mesaj tekrar gelirse sayısı artar (×3); en çok tekrarlanan başta.</li>
           <li>Yönlendirilen mesajın yanında <b>🔁 ≈ kural (%)</b> yazar: hangi kurala ne kadar benzediği. Sık görülüyorsa o kuralın kelimelerine eklemek iyi olur (🤖 Bot editörü).</li>
-          <li>Mesaja dokununca deneyde denersin.</li></ul>
-        <p><b>Yakında</b>: mesajın ne olduğunu (soru mu, duygu, konu) anlayıp ona göre yedek cevap; "nerelisin", "ne iş yapıyorsun" gibi sorulara karakterin kendi bilgileriyle cevap; deneyde "kurala ekle" düğmesi.</p>`;
+          <li>Mesaja dokununca deneyde denersin.</li>
+          <li>➕ ile mesajı 📥 Kurala eklenecekler listesine alırsın; her birine nasıl cevap vermesini istediğini not edersin. Liste 📋 kopyalanır ya da ⬇️ indirilir, kurallar toplu yazılır.</li></ul>
+        <p><b>Yakında</b>: "nerelisin", "ne iş yapıyorsun" gibi sorulara karakterin kendi bilgileriyle cevap.</p>`;
     } }] });
   /* 🎭 Kişilik Kitabı: her kişilik nasıl cevap verir. Bölümler Stories.Traits 💫 Kişilik listesinden; içerik bot-rules.js "🎭 Kişilik" kuralları (r_pk_*),
    * başka kategorilerdeki kişilik varyantları (traits ya da adında "(kişilik)"), PERSONA cevap eki, QFRAME soru çerçevesi. + 😤 Kıskançlık, ⌨️ Yazım tarzı */
@@ -36454,18 +36637,48 @@
     // 📖 kitaptaki "▶ dene" bu mesajla gelir
     if (ui.botLabText) { lab.mode = 'msg'; lab.text = ui.botLabText; ui.botLabText = null; }
     // 📭 eksik cevap raporu: sohbette yedek cevaba düşen mesajlar, en çok tekrarlanan başta
+    // 📥 kurala eklenecekler (S().ruleQueue): ➕ ile eksik cevaplardan taşınır, not yazılır, 📋 kopyala / ⬇️ indir ile toplu kural yazmaya verilir
+    const rqText = () => (S().ruleQueue || []).map((x, i) => `${i + 1}. "${x.t}" ×${x.n}${x.ch ? ` · ${x.ch}` : ''}${x.q ? ` · [${x.q}]` : ''}${x.near ? ` · ≈ ${x.near[0]} (${Math.round(x.near[1] * 100)}%)` : ''}${x.note ? `\n   → ${x.note}` : ''}`).join('\n');
     const drawMiss = () => {
-      const L = (S().botMiss || []).slice().sort((a, b) => b.n - a.n || b.at - a.at);
-      mbox.innerHTML = `<div class="sec-title" style="margin-top:0">📭 Eksik cevaplar <small>· sohbette hiçbir kural tutmayıp yedek cevaba düşen mesajlar (${L.length})</small></div>
-        ${L.length ? `<div class="lab-mlist">${L.map(x => `<div class="lab-mrow"><button type="button" class="lab-mtx" data-mtry="${esc(x.k)}"><b>${esc(x.t)}</b><small>×${x.n} · ${esc(x.ch || '')} · ${esc(fmtTime(x.at))}${x.near ? ` · 🔁 ≈ ${esc(x.near[0])} (${Math.round(x.near[1] * 100)}%)` : ''}</small></button><button type="button" class="lab-mx" data-mdel="${esc(x.k)}" aria-label="Sil">✕</button></div>`).join('')}</div>
-          <button type="button" class="btn ghost block sm" data-mclear="1" style="margin-top:8px">🧹 Listeyi temizle</button>`
-        : '<div class="about">Henüz yok. Bot modunda karakterin anlamadığı (yedek cevap verdiği) mesajlar burada toplanır; dokununca burada denersin, sonra Bot editöründe kuralını yazarsın.</div>'}`;
+      const L = (S().botMiss || []).slice().sort((a, b) => b.n - a.n || b.at - a.at), Q = S().ruleQueue || [];
+      mbox.innerHTML = `<div class="sec-title" style="margin-top:0">📥 Kurala eklenecekler <small>· ➕ ile topladıkların (${Q.length})</small></div>
+        ${Q.length ? `<div class="lab-mlist">${Q.map(x => `<div class="lab-mrow" style="flex-wrap:wrap"><button type="button" class="lab-mtx" data-qtry="${esc(x.k)}"><b>${esc(x.t)}</b><small>×${x.n} · ${esc(x.ch || '')}${x.q ? ` · 🧩 ${esc(x.q)}` : ''}${x.near ? ` · 🔁 ≈ ${esc(x.near[0])}` : ''}</small></button><button type="button" class="lab-mx" data-qdel="${esc(x.k)}" aria-label="Sil">✕</button>
+            <input type="text" class="lab-qnote" data-qnote="${esc(x.k)}" value="${esc(x.note || '')}" placeholder="Nasıl cevap versin? (isteğe bağlı not)" style="flex:1 1 100%;margin-top:4px"></div>`).join('')}</div>
+          <div class="row" style="display:flex;gap:6px;margin-top:8px"><button type="button" class="btn sm" data-qcopy="1" style="flex:1">📋 Kopyala</button><button type="button" class="btn ghost sm" data-qdl="1" style="flex:1">⬇️ İndir</button><button type="button" class="btn ghost sm" data-qclear="1">🧹</button></div>
+          <p class="kw-help" style="margin-top:6px">Listeyi kopyalayıp ya da indirip kural yazılırken ver; eklenen kuralları buradan sil.</p>`
+        : '<div class="about">Henüz yok. Aşağıdaki eksik cevaplardan ➕ ile buraya topla; her birine nasıl cevap vermesini istediğini not edebilirsin.</div>'}
+        <div class="sec-title">📭 Eksik cevaplar <small>· sohbette hiçbir kural tutmayıp yedek cevaba düşen mesajlar (${L.length})</small></div>
+        ${L.length ? `<div class="lab-mlist">${L.map(x => `<div class="lab-mrow"><button type="button" class="lab-mtx" data-mtry="${esc(x.k)}"><b>${esc(x.t)}</b><small>×${x.n} · ${esc(x.ch || '')} · ${esc(fmtTime(x.at))}${x.near ? ` · 🔁 ≈ ${esc(x.near[0])} (${Math.round(x.near[1] * 100)}%)` : ''}</small></button><button type="button" class="lab-mx" data-madd="${esc(x.k)}" aria-label="Kurala ekle" title="Kurala eklenecekler listesine al">➕</button><button type="button" class="lab-mx" data-mdel="${esc(x.k)}" aria-label="Sil">✕</button></div>`).join('')}</div>
+          <div class="row" style="display:flex;gap:6px;margin-top:8px"><button type="button" class="btn ghost sm" data-maddall="1" style="flex:1">➕ Hepsini listeye al</button><button type="button" class="btn ghost sm" data-mclear="1" style="flex:1">🧹 Listeyi temizle</button></div>`
+        : '<div class="about">Henüz yok. Bot modunda karakterin anlamadığı (yedek cevap verdiği) mesajlar burada toplanır; dokununca burada denersin, ➕ ile kurala eklenecekler listesine alırsın.</div>'}`;
+    };
+    const rqAdd = keys => {
+      const Q = S().ruleQueue = S().ruleQueue || [], M = S().botMiss || [];
+      keys.forEach(k => {
+        const x = M.find(m => m.k === k); if (!x) return;
+        const it = ydIntent(x.t, 1), old = Q.find(q => q.k === k);
+        if (old) old.n += x.n; else Q.push({ k, t: x.t, n: x.n, ch: x.ch || '', at: Date.now(), ...(x.near ? { near: x.near } : {}), ...(it ? { q: it.q.replace(/^ydcvp ?/, '') } : {}) });
+      });
+      S().botMiss = M.filter(m => !keys.includes(m.k));
+      save(); drawMiss();
     };
     mbox.onclick = e => {
-      const tr = e.target.closest('[data-mtry]'), dl = e.target.closest('[data-mdel]'), cl = e.target.closest('[data-mclear]');
-      if (tr) { const x = (S().botMiss || []).find(m => m.k === tr.dataset.mtry); lab.mode = 'msg'; lab.text = x ? x.t : tr.dataset.mtry; draw(); window.scrollTo({ top: body.offsetTop - 80, behavior: 'smooth' }); return; }
+      const tr = e.target.closest('[data-mtry],[data-qtry]'), dl = e.target.closest('[data-mdel]'), cl = e.target.closest('[data-mclear]'), ad = e.target.closest('[data-madd]'), aa = e.target.closest('[data-maddall]');
+      const qd = e.target.closest('[data-qdel]'), qc = e.target.closest('[data-qcopy]'), qdl = e.target.closest('[data-qdl]'), qcl = e.target.closest('[data-qclear]');
+      if (tr) { const k = tr.dataset.mtry || tr.dataset.qtry, x = [...(S().botMiss || []), ...(S().ruleQueue || [])].find(m => m.k === k); lab.mode = 'msg'; lab.text = x ? x.t : k; draw(); window.scrollTo({ top: body.offsetTop - 80, behavior: 'smooth' }); return; }
+      if (ad) return rqAdd([ad.dataset.madd]);
+      if (aa) return rqAdd((S().botMiss || []).map(m => m.k));
+      if (qd) { S().ruleQueue = (S().ruleQueue || []).filter(m => m.k !== qd.dataset.qdel); save(); drawMiss(); }
+      if (qc) { const t = rqText(); (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => notify('📋 Liste kopyalandı', '📋'), () => prompt('Kopyala:', t)); }
+      if (qdl) { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify({ at: new Date().toISOString(), items: S().ruleQueue || [] }, null, 2)], { type: 'application/json' })); a.download = 'kural-istekleri.json'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); }
+      if (qcl && confirm('Kurala eklenecekler listesi temizlensin mi?')) { S().ruleQueue = []; save(); drawMiss(); }
       if (dl) { S().botMiss = (S().botMiss || []).filter(m => m.k !== dl.dataset.mdel); save(); drawMiss(); }
       if (cl && confirm('Eksik cevap listesi temizlensin mi?')) { S().botMiss = []; save(); drawMiss(); }
+    };
+    mbox.onchange = e => {
+      const n = e.target.closest('[data-qnote]'); if (!n) return;
+      const x = (S().ruleQueue || []).find(m => m.k === n.dataset.qnote);
+      if (x) { x.note = n.value.trim().slice(0, 300); save(); }
     };
     const opt = (v, cur, l) => `<option value="${esc(v)}"${v === cur ? ' selected' : ''}>${esc(l)}</option>`;
     const drawChar = () => {

@@ -36,7 +36,7 @@ html[data-theme="dark"] .sy-hero, html[data-theme="dark"] .sy-go { background: #
 .theme-pick button { flex: 1; padding: 10px 8px; border-radius: 12px; background: var(--chip); color: var(--text); font-weight: 700; font-size: 14px; border: 2px solid transparent; }
 .theme-pick button.on { border-color: var(--purple); background: var(--purple-soft); }
 
-/* ---------- üretilen karşılıklar (507 bildirim) ---------- */
+/* ---------- üretilen karşılıklar (508 bildirim) ---------- */
 html[data-theme="dark"] .splash { background: #181c2e; }
 html[data-theme="dark"] .nav { background: rgba(24, 28, 46, 0.96); }
 html[data-theme="dark"] .badge-count { border: 2px solid #2c3150; }
@@ -464,6 +464,8 @@ html[data-theme="dark"] .ev-quick { background: rgba(24, 28, 46, 0.92); }
 html[data-theme="dark"] .ev-pend { background: rgba(24, 28, 46, 0.92); }
 html[data-theme="dark"] .ev-pend-it { background: #282d46; }
 html[data-theme="dark"] .ev-pend small { color: #a4a9c4; }
+html[data-theme="dark"] .chat-light .ev-quick,
+html[data-theme="dark"] .chat-light .ev-pend { color: #e9ebf5; }
 html[data-theme="dark"] .cr-set { background: linear-gradient(135deg, #433d35, #ffb72b) !important; color: #b5a68c !important; }
 html[data-theme="dark"] .pc-range input { background: #181c2e; }
 html[data-theme="dark"] .pc-rule select { background: #181c2e; }
