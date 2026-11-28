@@ -1011,4 +1011,26 @@ Stories.I18n.add({
   'Esinli: Osmanlı bâhnâme nüshaları gerçek, pozlar kurgu': 'Inspired: Ottoman bahname manuscripts are real, the poses are fiction', 'Kurgu: sistrum gerçek, ritüel uydurma': 'Fiction: the sistrum is real, the ritual is made up',
   'Kaynakta var: Kama Sutra (vadavaka, kısrak)': 'In the source: Kama Sutra (vadavaka, the mare)', 'Kaynakta var: Taocu öz tutma': 'In the source: Taoist retention of essence', 'Kurgu': 'Fiction',
   'Kaynakta var: shunga\'da giyinik sevişme geleneği': 'In the source: the shunga tradition of clothed lovemaking', 'Esinli: Pompeii freskleri gerçek, bitiş kurgu': 'Inspired: the Pompeii frescoes are real, the finish is fiction',
+  // 🎚️ Tur 43 + 🔒 Tur 44
+  'Vuruşun kendisi: tamamen çıkıp girmek, sadece zonklamak, kalçayı döndürmek, sayarak durmak, açıyı aramak ya da hiç vurmadan sürtünmek.': 'The stroke itself: pulling all the way out and in, just throbbing, twisting your hips, stopping to count, hunting for the angle or grinding without thrusting.',
+  'Yeni açılar ve geçişler: yukarı kaymış misyoner, yataktan sarkan baş, makas, kaşıkta anal, delik değiştirme ve oyuncakla çift doluluk.': 'New angles and switches: missionary shifted up, a head hanging off the bed, scissors, spooning anal, switching holes and being doubly full with a toy.',
+  'Ağız ve göğüslerin çeşitlemeleri: boğazda tutmak, yanağı şişirmek, mırıldanmak, ağızda ısıtmak; göğüs altından girmek, göğüslerin arasından ağza almak.': 'Variations with her mouth and breasts: holding in her throat, bulging her cheek, humming, keeping you warm in her mouth; entering from under her breasts, taking you in her mouth from between them.',
+  'Gerçek dışı ve oyunbaz girişler: diz arkası, saç topuzu, çorap deliği, göbek, dirsek, jöle beden, kıvrılan oyuncak, büyüyle büyümek ve düğüm.': 'Unreal, playful penetrations: the back of her knee, her hair bun, a hole in her stocking, her navel, her elbow, a jelly body, a curling toy, growing by magic and a knot.',
+  'O içindeyken kaslarını bilerek kullanır: tek bir sıkma, dalga, kalp atışı, sayarak sıkma, düello; önüyle ya da arkasıyla.': 'She uses her muscles on purpose while you\'re inside her: a single squeeze, a wave, a heartbeat, counting squeezes, a duel; with her pussy or her ass.',
+  'Boşaldıktan sonra sıkma: seni içinde tutmak, gülerek dışarı itmek ya da hiçbir şey taşmasın diye mühürlemek.': 'Squeezing after you cum: keeping you inside, pushing you out laughing or sealing herself so nothing spills.',
+  'Vuruşun biçimi: hız, derinlik ya da açı bu anın konusu.': 'The way you stroke: speed, depth or angle is what this moment is about.',
+  'İçeriden sıkar: kaslarıyla seni sıkar, sağar ya da bırakmaz.': 'She squeezes from inside: with her muscles she squeezes you, milks you or won\'t let go.',
+  'Gerçek dışı bir fantezi: oyunbaz, büyülü ya da anime havasında.': 'An unreal fantasy: playful, magical or anime-style.',
+  'Teknik, sıkma': 'Technique, squeezing',
+  // 🤲 Tur 46 + 🫂 Tur 47
+  'Giriş yok, bedeninin başka yerleri seni sarar: avuçlar, bilek, kürek kemikleri, köprücük çukuru, boyun kıvrımı, kasık çizgisi, topuklar ya da baldırlar.': 'No penetration; other parts of her body wrap around you: palms, wrist, shoulder blades, collarbone hollow, the crook of her neck, hip crease, heels or calves.',
+  'Uzuvlarla sürtmeden sonra: dokunulan her yeri sayarak yıkamak, sırta losyon, en sevilen yeri seçmek.': 'After limb rubbing: washing every spot that was touched, counting; lotion on her back; picking the favorite spot.',
+  'Sarılırken içindesin: koala gibi asılı, göğüs göğüse, kilitli kollarla, slow dansta ya da kapıda karşılarken.': 'You\'re inside her while you hug: her clinging like a koala, chest to chest, with locked arms, in a slow dance or as she welcomes you at the door.',
+  'Sarılma seni aranızda sıkıştırır: iki karnın, göğüslerinin ya da uyluklarının arasında; giriş yok.': 'The hug squeezes you between you: between your bellies, her breasts or her thighs; no penetration.',
+  'Sarılmadan ayrılamamak: beş dakika daha, yapışan karınlar, sarılma sayımı, sarılı uyuyakalmak.': 'Not being able to let go of the hug: five more minutes, bellies stuck together, counting hugs, falling asleep in each other\'s arms.',
+  'Bir uzvun ya da kıvrımın arasında sürtünme: giriş yok, hamilelik ihtimali yok.': 'Rubbing between a limb or a fold: no penetration, no chance of pregnancy.',
+  'Kollarıyla: ön kolu, üst kolu ya da kürek kemikleri.': 'With her arms: her forearm, upper arm or shoulder blades.',
+  'Bir kıvrımda: kasık çizgisi, kucağın kıvrımı ya da topuklarının üstü.': 'In a fold: her hip crease, the fold of her lap or on her heels.',
+  'Sarılarak: sarılmanın kendisi bu anın merkezi.': 'In a hug: the hug itself is the heart of this moment.',
+  'Sarılma, uzuv': 'Hugging, limbs'
 });

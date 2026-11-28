@@ -201,9 +201,20 @@
     if (v === undefined) { v = s.toLocaleLowerCase('tr').trim(); if (lowTrMemo.size > 50000) lowTrMemo.clear(); lowTrMemo.set(s, v); }
     return v;
   };
-  const evByLowTitle = t => tickGet('evLowT', () => { const m = new Map(); allEvents().forEach(e => { const k = lowTr(e.title); if (!m.has(k)) m.set(k, e); }); return m; }, [MO().events, MO().events.length, ...catSig()]).get(t);
+  // ⚡ harita tıklar arasında da saklanır (her tuşta 2400+ olayla yeniden kuruluyordu); imza değişince ya da save() ile (olay düzenleme) yenilenir
+  let evLowP = null;
+  const evByLowTitle = t => {
+    const mo = MO(), sig = [mo.events, mo.events.length, ...catSig()];
+    if (!evLowP || evLowP.sig.length !== sig.length || !evLowP.sig.every((x, i) => x === sig[i])) {
+      const m = new Map();
+      allEvents().forEach(e => { const k = lowTr(e.title); if (!m.has(k)) m.set(k, e); });
+      evLowP = { sig, m };
+    }
+    return evLowP.m.get(t);
+  };
   function save() {
     tickMemo = null;
+    evLowP = null;
     // tarayıcı boşalınca yazılır (yazarken / cevap gelirken araya girmez); en geç ~2 sn
     if (!saveT) saveT = setTimeout(() => { const run = () => { saveT = -1; flushSave(); }; if (window.requestIdleCallback) requestIdleCallback(run, { timeout: 1600 }); else run(); }, 400);
     if (sysCfg().on) { clearTimeout(sysTimer); sysTimer = setTimeout(() => sysPush().catch(() => notify('Sistem kaydı yapılamadı', '⚠️')), 1500); }
@@ -1277,6 +1288,69 @@
   // 📰 Lia'nın haberleri (en yeni üstte); href → ilgili kitap bölümü / sayfa
   // [simge, başlık, özet, bağlantı, (detay bölümleri [[ara başlık, metin]…]), (kategori)] · ilk haber manşet olur
   const HOME_NEWS = [
+    ['💞', 'Seanslar: sahnenin uzunu', 'Seans Kitabı\'ndaki 55 seansın hepsi artık sohbette oynanıyor. Sahne bir anı anlatır, seans bütün geceyi: bir açılış, ısınmadan kapanışa 8–20 adım ve çoğunda bir bitiş. Romantik, sert, oral; evde, dışarıda, rollü, üçlü.', '#/events/seanslar', [
+      ['💞 Ne', 'Kitaptaki 15 temel tür (romantik, tutkulu, sert, oral, anal…) ve 40 örnek (duşta, arabada, ofiste, üçlü, hotwife, iki tur…) birer uzun sahne oldu.'],
+      ['▶️ Nasıl başlar', 'Kendiliğinden açılmaz. 📜 Olay → 🎬 Sahneler sekmesinde 💞 Seanslar, ⚡ Kısayollar\'daki 💞 çip, # ile arama ya da yazarken adını yazmak; CarmenEvents\'te ▶ Sohbette başlat.'],
+      ['👣 Nasıl ilerler', 'Adımların %70\'i yeter, sıra serbest; ama kitaptaki sıra en akıcısıdır. Adımlar dolunca 🏁 bitiş açılır. 6 olay boyunca seansa dönmezsen bozulur.'],
+      ['🎉 Ödül', 'Sahneden büyük ve türe göre: evde Samimiyet, dışarıda Uyarılma, rollü ve kontrol seanslarında Güven öne çıkar.'],
+      ['🖼️ Ayırt et', 'Çipler artık çerçeveden tanınır: olay düz hap, sahne kesikli ve köşeli, seans çift çizgili ve kalın.'],
+      ['📚 Kitap', 'Seans Kitabı\'nda yeni bölüm: Sohbette seans. Olay Hafızası Kitabı\'nda yeni bölüm: Olay, sahne, seans.']], 'Yeni özellik', [
+      'Bu gece acelen yok. Olay seçiciyi açıp 💞 Seanslar\'dan Duşta\'yı seçiyorsun; suyu açtığı an seans başlıyor ve ⚡ şeridinde on üç adım beliriyor: köpüklü sarılma, birbirinizi sabunlamak, duvara yaslanmak.',
+      'Sıra serbest ama kitaptaki sıra en güzel akanı. Ders sayfasında seans perde perde anlatılıyor: ısınma, ön sevişme, pozisyonlar, kapanış. Her adımda Zevk ve Uyarılma\'nın nereye varacağını da görüyorsun.',
+      'Seans bitince ödül bir sahneninkinden büyük geliyor. Üçlü için grup sohbeti, hotwife için Hotwife bir karakter gerekiyor; kısayollar sana yalnızca o an olabilecek seansı öneriyor.']],
+    ['🎬', '39 yeni sahne ve 🆕 yeni olay rozeti', 'Uzuv sürtme, sarılma, vuruş ve sıkma olaylarının sahnesiz kalan 113\'ü artık bir sahnede. Yeni eklenen olaylar da 🆕 rozetiyle öne çıkıyor; denediğin an rozet düşüyor.', '#/events/sahneler', [
+      ['🤲 Uzuv sürtme', 'Kol Arası, Çene Hattı, Kuğunun Boynu, Avuç Avuca, Kasık Çizgisi, Kucak Katı ve sonrası için Haritayı Silmek.'],
+      ['🫂 Sarılarak', 'Boynuna Sarılarak, Gülme Krizi, Hiç Bırakma, Göğsüne Gömül, Ayakta Uyluk, Parmak Ucunda Koala, Yukarıdan Sarılış, Belinden Kaldır, Bırakmadan Önce.'],
+      ['🎚️ Pozisyon ve vuruş', 'Sadece Nabız, Say Bakalım, Kenarda Dur, Şelale, Makas Kilidi, Kaşıkta Anal, Sıcak Çay, Mırıldan, İnci Kolye, Topuz, Jöle Beden, Düğüm ve dahası; toplam 17.'],
+      ['🔒 Sıkma', 'Tam Nokta, İçeride Kilitli, Tembel Kaşık, Kegel Antrenmanı, Halka Dalgası ve Bırakmıyorum.'],
+      ['👯 Aynı açılış', 'Bazı sahneler aynı olayla açılıyordu ve ikincisi hiç gelmiyordu. Artık karakterin geldiği sitenin sahnesi, sonra onunla en az oynanmış olan açılıyor; seçtiğin sahne ise her zaman tam o.'],
+      ['🆕 Yeni olaylar', 'Son 30 günde gelen ve henüz denemediğin olaylar seçicide 🆕 Yeni olaylar satırında, ⚡ önerilerinde ve CarmenEvents\'teki 🆕 Yeni eklenenler rafında.']], 'Yeni olaylar', [
+      'Kenarda tutmayı bilir misin, diye soruyor; tam gelecekken duruyorsunuz, ayak bileklerinden açıyor, sonra kenardan ikiniz birden düşüyorsunuz. Yeni sahnelerin çoğu böyle üç dört adımlık küçük hikâyeler.',
+      'Sarılma sahnelerinde gülme krizine giriyor, sonra daha sıkı sarılıyor; Hiç Bırakma\'da ilk bitişten sonra da çıkmıyorsun. Sıkma sahnelerinde kaç kez sıktığını sayıyorsun ve sayıyı kaybediyorsun.',
+      'Seçicide yeni bir satır var: 🆕 Yeni olaylar. Henüz denemediğin olaylar orada ve kısayollarda öne çıkıyor; bir kez oynayınca rozet kendiliğinden kalkıyor.']],
+    ['🫂', 'Sarılarak: 40 yeni olay', 'Sarılmanın kendisi olayın merkezi. Ya sarılırken içindesin: koala gibi asılı, göğüs göğüse kalp atışını duyarak, slow dansta, kapıda karşılarken. Ya da sarılma seni aranızda sıkıştırıyor: iki karnın, göğüslerinin ya da uyluklarının arasında. 3 yeni kategori, 13 bitiş.', '#/kitap/olay/87', [
+      ['🫂 Sarılırken içinde', 'Yeni 🫂 Hug Sex kategorisi: Koala Hug Sex, Heartbeat Hug, Pinned Arms Hug, Neck Hug Doggy, Tiptoe Hug, Rocking Hug, Hug Clench, Welcome Home Hug, Slow Dance Hug…'],
+      ['🤗 Aranızda', 'Yeni 🤗 Hug Rubbing kategorisi: Belly Sandwich, Cleavage Hug, Standing Thigh Hug, Koala Rub, Leg Wrap Rub, Hug From Above, Group Hug Squeeze…'],
+      ['💦 Bitişler', 'Hug Tighter Finish, Koala Finish, Heartbeat Finish Hug, Slow Dance Finish, Welcome Home Finish, Between Bellies, Cleavage Hug Finish, Never Let Go…'],
+      ['😴 Sonrası', 'Yeni 😴 Hug After kategorisi: Five More Minutes, Sticky Unhug, Hug Count, Fall Asleep Hugging.'],
+      ['🎬 Sahneler', '🐨 Koala, 🚪 Kapıda Karşılama, 💃 Son Dans, 💓 Kalp Kalbe, 🥪 Aramızda ve 🔒 Kilitli Kollar. CarmenEvents → 🎬 Sahneler → 🫂 Sarılarak.'],
+      ['📚 Kitap', 'Olay Kitabı\'nda yeni bölüm: 🫂 Sarılarak.']], 'Yeni olaylar', [
+      'Kapıyı açar açmaz boynuna atlıyor ve bırakmıyor; sarılı halde kanepeye kadar gidiyorsunuz. Başka bir gece bir slow şarkı açıyorsunuz, dans hiç bozulmuyor. Göğüs göğüse o kadar yavaşsınız ki birbirinizin kalbini duyuyorsunuz.',
+      'Bazen içinde değilsin: sımsıkı sarılınca iki karnın arasında, boyu kısa olduğu için göğüslerinin arasında, ayakta sarılırken uyluklarının arasında sıkışıyorsun. Koala gibi sana yapışıp külotunun üstünden sürtünüyor.',
+      'Bittikten sonra da bırakmıyor: "bir dakika daha", "beş dakika daha". Karınlarınız yapışmış, gülerek ayrılıyorsunuz; ya da sarılı halde uyuyakalıyorsunuz, sabah kolun uyuşmuş.']],
+    ['🤲', 'Uzuv sürtme: 38 yeni olay', 'Saç gibi ama başka yerleri: dua eder gibi birleşen avuçlar, kenetli parmaklardan bir tünel, bileğin içi, kürek kemiklerinin arası, köprücük çukuru, boyun kıvrımı, kasık çizgisi, topuklar, baldır çaprazı. Hepsi gerçekte yapılabilir, giriş yok. Kitapta her pozisyonun basit bir çizimi var. 2 yeni kategori, 13 bitiş.', '#/kitap/olay/86', [
+      ['🤲 Eller', 'Yeni 🤲 Limb Rubbing kategorisi: Prayer Palms, Finger Lace Tunnel, Endless Tunnel, Finger Ring, Inner Wrist Glide.'],
+      ['💪 Kol ve sırt', 'Forearm Belly Press, Shoulder Blade Squeeze, Spine Valley Arch, Upper Arm Hug.'],
+      ['🦢 Boyun ve çene', 'Collarbone Hollow, Neck Crook, Chin Tuck, Jaw Line Glide.'],
+      ['🦵 Kıvrımlar', 'Hip Crease, Lap Fold, Heel Seat, Calf Cross, Shin Press; bir de Whole Body Map gibi karışıklar.'],
+      ['💦 Bitişler', 'Prayer Palms Finish, Shoulder Blade Pool, Spine Trail Finish, Collarbone Cup, Under Chin Finish, Calf Cross Finish…; sonrası için yeni 🧴 Limb After.'],
+      ['🎬 Sahneler', '🙏 Dua Eder Gibi, 💓 Nabzın Üstünde, 🐍 Sırt Yolu, 🦢 Boyun Kıvrımı, 🪑 Kucak Kıvrımı, 🦵 Baldırlar ve 🗺️ Beden Haritası. CarmenEvents → 🎬 Sahneler → 🤲 Uzuv Sürtme.'],
+      ['📚 Kitap', 'Olay Kitabı\'nda yeni bölüm: 🤲 Uzuv sürtme, her pozisyonun yanında çizimiyle.']], 'Yeni olaylar', [
+      'Avuçlarını yağlayıp dua eder gibi birleştiriyor; parmaklarını kenetleyip bir tünel yapıyor ya da elini çevirip bileğinin içini, nabzının üstünü sunuyor. Yüzüstü kollarını geriye çekince kürek kemiklerinin arasında sıcak bir oyuk açılıyor.',
+      'Omzunu kaldırınca köprücük çukuru bir kap oluyor, başını eğince boynuyla omzu arasında bir kıvrım. Oturup öne eğilince karnıyla uyluklarının arası, topuklarına oturunca kalçasının altı, yüzüstü baldırlarını çaprazlayınca aralarındaki yer.',
+      'Nerede olduğunu anlamak zor gelirse Olay Kitabı\'ndaki çizimlere bak: her pozisyonun yanında basit bir figür ve sürtmenin olduğu yer işaretli. Bitişler de yerine göre: avuçta bir göl, sırtında bir iz, köprücüğünde dolan bir kap.']],
+    ['🔒', 'İçeride sıkma: 38 yeni olay', 'Sen içindeyken o da boş durmuyor: girer girmez bir kez sıkıyor, çıkarken bırakmıyor, dipten girişe dalga yürütüyor, kalp atışı ritminde sıkıyor. Düello, sayma oyunu, Kegel antrenmanı. Yeni 🔒 Clench Inside ve 🫦 Clench After kategorileri, 11 bitiş.', '#/kitap/olay/85', [
+      ['🔒 Sıkma teknikleri', 'Yeni 🔒 Clench Inside kategorisi: First Clench, Clench On Pullout, Clench On Push, Wave Milk, Pinpoint Squeeze, Heartbeat, Hold Still Order, Clench Kiss, Orgasm Grip, Tease Release…'],
+      ['🍩 Arkasıyla', 'Ring Pulse, Deep Anal Clench, Anal Wave, Prone Clench, Anal Hold Still.'],
+      ['🎲 Oyunlar', 'Squeeze Duel, No Hands No Hips, Guess The Count, Training Session.'],
+      ['💦 Bitişler', 'Squeezed Out, Wave Finish, Locked Inside, Heartbeat Finish, Count Lost, Duel Lost, Orgasm Lock Finish, Anal Ring Finish, Tease Release Fail, Pinpoint Finish, Last Drop Squeeze.'],
+      ['🫦 Sonrası', 'Yeni 🫦 Clench After kategorisi: Not Letting Go, Pushed Out, Clench Seal.'],
+      ['🎬 Sahneler', '😳 İlk Sıkma, 🌊 Sıkma Dalgası, ⚔️ Sıkma Düellosu, 🛑 Kıpırdama, 💍 Halka Halka ve 🔐 Bırakmam. CarmenEvents → 🎬 Sahneler → 🔒 Sıkma.'],
+      ['📚 Kitap', 'Olay Kitabı\'nda yeni bölüm: 🔒 İçeride sıkma.']], 'Yeni olaylar', [
+      'İçine girdiğin an seni bir kez sımsıkı sıkıyor ve şaşkın yüzüne gülüyor. Sonra her çıkışında bırakmıyor, her girişinde daralıyor. Kıpırdamadan durduğunda dipten girişe doğru bir dalga yürütüyor; elini göğsüne koyup kalp atışı ritminde sıkıyor.',
+      'Bazen oyun oluyor: "ben sıkarım, sen dayanırsın" düellosu, on\'a kadar sayma, kaç kez sıktığını tahmin etme ya da ciddi bir yüzle "Kegel antrenmanı". Arkasıyla da aynısını yapıyor: girişteki halkayı kısa kısa kasıyor, sonra halka halka sağıyor.',
+      'Sonunda ya sıkıp çıkarıyor ya da o kadar sıkı tutuyor ki çekemiyorsun. Bittikten sonra da bitmiyor: hassasken bir kez daha sıkıyor, "biraz daha kal" diye seni içinde tutuyor ya da gülerek dışarı itiyor.']],
+    ['🎚️', 'Pozisyon ve vuruş: 87 yeni olay', 'Artık sadece hangi pozisyon değil, nasıl: tamamen çıkıp girmek, hiç çıkmadan zonklamak, kalçayı döndürmek, sayarak durmak. Yeni açılar, delik değiştirmeler, boğazda tutmak, göğüs altından girmek ve gerçek dışı fanteziler. 4 yeni kategori, 21 bitiş.', '#/kitap/olay/84', [
+      ['🎚️ Vuruş teknikleri', 'Yeni 🎚️ Stroke Styles kategorisi: Full Length Strokes, Pulse Only, Corkscrew Hips, Stop And Count, Rising Tempo, Angle Hunt, Edge And Hold, Her Pace, Grind Not Thrust.'],
+      ['🔀 Yeni pozisyonlar', 'Yeni 🔀 Position Mix kategorisi: Coital Align, Waterfall, Crab Ride, Scissor Lock, Spoon Lift; 🍩 Spoon Anal, Frog Anal, Switch Holes, Gape Peek ve oyuncakla çift penetrasyon.'],
+      ['👄 Oral ve göğüs', 'Yeni 👄 Oral & Tit Mix kategorisi: Throat Hold, Cheek Poke, Hum Job, Mouth Cockwarming, Tongue Inside; Underboob Entry, Suck And Squeeze, Oiled Slip Titfuck.'],
+      ['✨ Fantezi', 'Yeni ✨ Fantasy Penetration kategorisi: Knee Pit Squeeze, Hair Bun Fuck, Stocking Hole, Navel Tease, Jelly Body Enter, Tentacle Toy, Size Shift, X-Ray Bulge, Knot Toy.'],
+      ['💦 Bitişler', '21 yeni bitiş: Pulse Finish, Grind Together, Throat Hold Finish, Cheek Fill, Underboob Pool, Neck Necklace, Switch Decision, Locked Knot…'],
+      ['🎬 Sahneler', '📏 Yavaş Yavaş, 🎯 Açı Avı, 🔄 Hangisi?, 🫦 Boğaz Dersi, 🍈 Göğüs Oyunu, 🤪 Tuhaf Yerler ve 📳 İki Kişi Gibi. CarmenEvents → 🎬 Sahneler → 🎚️ Pozisyon & Vuruş.'],
+      ['📚 Kitap', 'Olay Kitabı\'nda yeni bölüm: 🎚️ Pozisyon ve vuruş.']], 'Yeni olaylar', [
+      'Her seferinde tamamen çıkıp sonuna kadar giriyorsun; her girişi ayrı ayrı hissediyor. Sonra hiç çıkmadan sadece zonkluyorsun, o da içten sıkarak cevap veriyor. Kalçasının altına bir yastık, birkaç deneme ve "orası".',
+      'Başı yataktan sarkıyor, bacakları makas gibi seninkilere geçmiş, ya da bir önüne bir arkasına girip "hangisi?" diye tahmin ettiriyorsun. Ağzında tutuyor, yanağını şişiriyor, bir şarkı mırıldanıyor; göğüslerinin altından giriyorsun.',
+      'Bir de gerçek dışı olanlar var: dizinin arkası, saç topuzu, çoraptaki küçük delik, jöle bir beden, kendi kendine kıvrılan bir oyuncak, her vuruşta biraz büyüten bir büyü. Bitişler de yerine göre: boğazda, yanakta, göğüs altında bir göl, boynunda inci kolye.']],
     ['💧', 'Islaklık: plajda artık ıslanıyor', 'Dalga devirdi, denize attın, duşta sırtını yıkadın: artık ne kadar ıslak olduğu sayılıyor. Kuru, Nemli, Islak, Sırılsıklam; bazı olaylar sadece ıslakken açılıyor, havlu ve güneş kurutuyor. 25 yeni olay ve 3 sahne.', '#/kitap/yaz/4', [
       ['🌊 Islatanlar', 'Splash Fight (+1), Dragged In (+2), Wave Hit (+3), Beach Shower Rinse (+2).'],
       ['🍑 Vajinal', 'Dripping Wet Doggy, Clinging Fabric, See-Through Ride (sırılsıklam + beyaz / file bikini), Shoreline Missionary, Salt Kiss Lotus.'],
@@ -1752,7 +1826,7 @@
       ['🤏 Değdirme', 'Kalçasına: Cheek Trace, Panty Line Trace, Crack Slide, Lower Back Rest, Jeans Press. Bacaklarına: Inner Thigh Trail, Thigh Gap Rest, Stocking Rub, Under Table Touch, Calf to Knee.'],
       ['👗 Kıyafet', 'Panty Slap, Bra Slap, Stocking Slap, Panty Line Trace, Stocking Rub ve Jeans Press o parça üstündeyken olur.'],
       ['📚 Kitap', 'Olay Kitabı\'na iki bölüm: 👋 Aletle Vurma ve 🤏 Aletle Değdirme.']]],
-    ['📖', 'Daha iyi anlatımlar!', 'Olaylar artık tek cümleyle geçiştirilmiyor: her olay birkaç cümlelik küçük bir sahne olarak anlatılıyor. Ne yaptığın, onun nasıl tepki verdiği, o anın sonunda ne kaldığı. 📜 Olay rehberinde, Olay Kitabı\'nda ve diğer kitaplarda.', '#/kitap/olay/84', [
+    ['📖', 'Daha iyi anlatımlar!', 'Olaylar artık tek cümleyle geçiştirilmiyor: her olay birkaç cümlelik küçük bir sahne olarak anlatılıyor. Ne yaptığın, onun nasıl tepki verdiği, o anın sonunda ne kaldığı. 📜 Olay rehberinde, Olay Kitabı\'nda ve diğer kitaplarda.', '#/kitap/olay/88', [
       ['✒️ Uzun anlatım', 'Her olayın kısa açıklaması olay seçicide duruyor; uzun anlatımı rehberde ve kitaplarda ilk sırada.'],
       ['📚 Kitap', 'Olay Kitabı\'nda yeni bölüm: 📖 Daha iyi anlatımlar; kaç olayın yeni anlatımı olduğunu canlı sayar.']]],
     ['💜', 'İzler artık kalıyor', 'Bıraktığın izler sayılıyor: durum kartında 💜 kaç iz olduğunu görürsün, sohbet saatiyle önce morarır sonra solar. Kocası bilmeyen evli kızın kocası görünür izi sorar ve 🕵️ Şüphe artar; Hotwife\'ın kocası görmek ister. 17 yeni iz olayı da geldi.', '#/kitap/olay/58', [
@@ -5286,7 +5360,7 @@
       if (swiped) { swiped = false; return; }
       const g = e.target.closest('[data-mggo]'), ss = e.target.closest('[data-mgses]'), ch = e.target.closest('[data-mgchat]'), ev = e.target.closest('[data-mgev]');
       if (g) return go(fOf(+g.dataset.mggo));
-      if (ss) { const s = (Stories.SCENES || []).find(y => y.id === ss.dataset.mgses), c = cmFind(ss.dataset.cid); if (s && c) { const t = cmChat(c, 'CarmenMag', `Dergide ${s.name} seansımı okudun mu? 😏 ${actDemo(s, 'ask', 0)}`, true); quickPin(evFind(s.open), t); save(); } return; }
+      if (ss) { const s = (Stories.SCENES || []).find(y => y.id === ss.dataset.mgses), c = cmFind(ss.dataset.cid); if (s && c) { const t = cmChat(c, 'CarmenMag', `Dergide ${s.name} seansımı okudun mu? 😏 ${actDemo(s, 'ask', 0)}`, true); seansGo(s.id); quickPin(evFind(s.open), t); save(); } return; }
       if (ch) { const c = cmFind(ch.dataset.mgchat); if (c) cmChat(c, 'CarmenMag', pickOne(MG().hi), true); return; }
       if (e.target.closest('a, button, input')) return;
       const r = book.getBoundingClientRect(), xr = (e.clientX - r.left) / r.width;
@@ -13502,7 +13576,14 @@
     son: ['Harikaydın', 'Sarılalım mı?', 'Seni seviyorum', 'Biraz dinlenelim', 'Tekrar yapalım mı?']
   };
   TAHMIN_CTX.mekan = TAHMIN_CTX.poz;
-  const tFold = s => String(s || '').toLocaleLowerCase('tr').replace(/[çğıöşüâî]/g, x => 'cgiosuai'['çğıöşüâî'.indexOf(x)]).replace(/[^\p{L}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim();
+  // ⚡ sonuç önbellekte: tahmin her tuşta aynı ifadeleri yeniden katlıyordu
+  const tFoldM = new Map();
+  const tFold = s => {
+    s = String(s || '');
+    let v = tFoldM.get(s);
+    if (v === undefined) { v = s.toLocaleLowerCase('tr').replace(/[çğıöşüâî]/g, x => 'cgiosuai'['çğıöşüâî'.indexOf(x)]).replace(/[^\p{L}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim(); if (tFoldM.size > 100000) tFoldM.clear(); tFoldM.set(s, v); }
+    return v;
+  };
   // kurallardan ifade sözlüğü (f: katlanmış yazılış → { d: gösterilen, n: kaç kuralda }) + kuralların yazılan kelime dizileri (seqs); BOT_RULES değişince yeniden
   let tahminVoc = null;
   function tahminVocab() {
@@ -16485,6 +16566,7 @@
       th.evDone = [...new Set([...(th.evDone || []), ...ids])];
       th.evAt = th.evAt || {};
       ids.forEach(id => { th.evAt[id] = t; });
+      evNewSeen(ids);
     };
     const lastDone = () => {
       const last = {};
@@ -17319,7 +17401,7 @@
      * son olay ya da mekân değişene kadar aynı liste kalır (her draw'da karışmasın). Hiçbiri yoksa son kullanılanlar */
     /* ⚡ v929 puanlı: devamı (nextEvs) +3, bitiş zamanı +3, aşamaya uygun (pickerCtx stage) +2, mekân +2, durum +1.5, ❤️ +1.5,
      * aynı tür +1, 🎯 Şimdi +1, son 5 olaydan biri −2; en iyi 6. quickWhy[id] = çipin title'ındaki neden */
-    let quickKey = null, quickList = [], quickActs = [], quickWhy = {};
+    let quickKey = null, quickList = [], quickActs = [], quickSn = [], quickWhy = {};
     function quickSuggest(all) {
       const at = lastDone(), lastId = Object.keys(at).reduce((m, id) => (m && at[m] >= at[id] ? m : id), '');
       const ch = byId(chatCharIds()[0]) || {}, likes = new Set(ch.likes || []), bad = new Set([...(ch.dislikes || []), ...(ch.denies || [])]);
@@ -17336,13 +17418,14 @@
       const foc = e => !group && focusEv(ch, e), hm = !group && hormOf(ch);
       const ctx = pickerCtx(), st = ctx.stage, stOf = e => pkStageOf(catOfEv(e));
       const fin = new Set(st === 'bit' ? ctx.now.filter(e => stOf(e) === 'bit').map(e => e.id) : []);
-      const rec = Object.keys(at).sort((a, b) => at[b] - at[a]).slice(0, 5);
+      const rec = Object.keys(at).sort((a, b) => at[b] - at[a]).slice(0, 5), nw = evNewSet();
       // 👩‍❤️‍👩 kadın profilde lezbiyen olayları: Zevk ≥ 60 iken Lesbian Finish, altında Lesbian Foreplay öne çıkar
       const les = !group && lesWith(ch), zp = les && allParams().find(x => x.who === 'me' && lowTag(x.label) === 'zevk'), lesHot = !!zp && +paramVal(S().user, zp) >= 60;
       const pool = new Set([...spot, ...nx, ...ctx.now, ...sample(all.filter(isPl), 12), ...sample(all.filter(e => last && e.cat === last.cat), 8),
         ...sample(all.filter(foc), 6), ...sample(all.filter(e => st && stOf(e) === st), 12), ...(les ? sample(all.filter(isLesEv), 12) : []),
         ...sample(all.filter(e => regEv(ch, e) > 0 && (!st || stOf(e) === st)), 8),
-        ...(wetOf(th) ? sample(all.filter(e => e.wetMin && e.wetMin <= wetOf(th)), 6) : [])]);
+        ...(wetOf(th) ? sample(all.filter(e => e.wetMin && e.wetMin <= wetOf(th)), 6) : []),
+        ...sample(all.filter(e => nw.has(e.id) && (!st || stOf(e) === st)), 6)]);
       const why = {}, score = e => {
         const r = [];
         let s = Math.random() * .5;
@@ -17361,6 +17444,7 @@
         if (e.id === 'mvbe22wetwhite' && wetOf(th) >= 3) add(2, '🤍 Bikinisi şeffaf');
         if (les && isLesEv(e)) { add(2.5, '👩‍❤️‍👩 Lezbiyen ilişki'); if ((e.cat === LES_FIN) === lesHot) add(1.5, lesHot ? 'Bitiş zamanı' : 'Isınma zamanı'); }
         if (likes.has(e.id)) add(1.5, '❤️ Sevdiği');
+        if (nw.has(e.id)) add(1.2, '🆕 Yeni olay');
         const rg = regEv(ch, e);
         if (rg > 0) add(1.2, '🌍 Memleketi sever');
         else if (rg < 0) s -= 1;
@@ -17377,6 +17461,11 @@
       // 🌐 karakterin geldiği sitenin sahneleri (d.site === ch.src) en önde; sevdiği açılışlar onların da önünde
       const src = !group && ch.src, own = x => !!src && x.d.site === src, mine = acts.filter(own);
       quickActs = [...mine.filter(x => likes.has(x.e.id)), ...mine.filter(x => !likes.has(x.e.id)), ...acts.filter(x => !own(x) && fit(x.e)), ...acts.filter(x => !own(x) && !fit(x.e))].slice(0, 2);
+      // 💞 seans önerisi (1): bütün adımları 🚫/💔/mekân/hamilelik engeline takılmayan; grupta 👯 Üçlü, mekândaysa adımı mekâna uyan önce
+      const okE = y => !y || (!bad.has(y.id) && !placeBlock(pk, y) && !evAway(y, sc) && (group || !pregBlock(ch, y)));
+      const sns = sample(seansAll().map(d => ({ d, e: evByT(d.open) })).filter(x => x.e && okE(x.e) && x.d.steps.every(t => okE(evByT(t))) && (group || x.d.t.id !== 'uclu') && (x.d.t.id !== 'hotwife' || (!group && (ch.fields || {}).hotwife))), 99);
+      const snHere = x => x.d.steps.some(t => { const y = evByT(t); return y && isPl(y); });
+      quickSn = [...sns.filter(x => group && x.d.t.id === 'uclu'), ...sns.filter(snHere), ...sns].slice(0, 1);
       quickKey = key;
       quickWhy = why;
       quickList = ranked.slice(0, 6);
@@ -17394,7 +17483,10 @@
     function drawQuick() {
       const el = $('#evQuick');
       if (!el) return;
-      const evs = quickEvents(), { pins, sug } = evs, tb = $('#tahminBar'), sc = (lastScene() || {}).scene, sps = !group && sc && SITE_SPOTS[sc.place] || [];
+      // ⚡ yazarken 🔮 çubuğu görünürken bu çubuk gizli: hiçbir şey hesaplamadan çık (her tuşta çalışıyordu)
+      const tb = $('#tahminBar');
+      if (hkOn() || !quickOn() || cs.playing || (tb && !tb.hidden)) { el.hidden = true; return; }
+      const evs = quickEvents(), { pins, sug } = evs, sc = (lastScene() || {}).scene, sps = !group && sc && SITE_SPOTS[sc.place] || [];
       // 📍 okul/ofisteyken aynı yerin diğer mekanları (sıradaki 3), dışarısı için 1 genel mekan
       const si = sps.findIndex(x => x.n === sc.name), near = sps.length ? [1, 2, 3].map(i => sps[(si + i + sps.length) % sps.length]).filter(x => x.n !== sc.name) : [];
       const pls = group ? [] : plSug(near.length ? 1 : 3);
@@ -17406,7 +17498,7 @@
       el.hidden = hkOn() || !quickOn() || cs.playing || (!evs.length && !pls.length && !near.length && !act && !plan && !acts.length) || !!(tb && !tb.hidden);
       if (el.hidden) return;
       el.classList.toggle('has-act', !!(act || plan));
-      const evChip = e => { const w = [actOpen(e) && '🎬 Sahne açar: ' + actOpen(e).name, pins.includes(e) ? '📌 Sabit' : quickWhy[e.id]].filter(Boolean).join(' · '); return `<button type="button" class="mo-chip${evCls(e)}"${evStyle(e)} data-qev="${esc(e.id)}"${w ? ` title="${esc(w)}"` : ''}>${pins.includes(e) ? '📌' : ''}${actOpen(e) ? '🎬' : ''}${evEmo(e)}${esc(e.title)}</button>`; };
+      const evChip = e => { const w = [actOpen(e) && '🎬 Sahne açar: ' + actOpen(e).name, pins.includes(e) ? '📌 Sabit' : quickWhy[e.id]].filter(Boolean).join(' · '); return `<button type="button" class="mo-chip${evCls(e)}"${evStyle(e)} data-qev="${esc(e.id)}"${w ? ` title="${esc(w)}"` : ''}>${pins.includes(e) ? '📌' : ''}${isNewEv(e) ? '🆕' : ''}${actOpen(e) ? '🎬' : ''}${evEmo(e)}${esc(e.title)}</button>`; };
       const more = `<button type="button" class="mo-chip" data-q="more" title="Tüm olaylar">⋯</button>`;
       // 🎬 sahne sürerken sahne çubuğu + sahneyi bozmayan 2 ⚡ (başka sahne açmaz, temaya/mekâna uyar, ttl dolmadan); sahne bitince tam ⚡ geri gelir
       if (act || plan) {
@@ -17417,21 +17509,29 @@
       }
       // 📖 süren bölüm: sıradaki sahnenin açılışı en önde
       const ex = !group && epCur(c), es = ex && epSc(ex, c.ep.i), ee = es && actEv(es.open);
-      const epChip = ee ? `<button type="button" class="mo-chip eq-next${evCls(ee)}"${evStyle(ee)} data-qev="${esc(ee.id)}" title="📖 ${esc(ex.name)} · ${c.ep.i}/${ex.scenes.length} · 🎬 ${esc(es.open)}">📖${ex.icon} ${es.icon} ${esc(es.name)}</button>` : '';
-      el.innerHTML = `<span class="eq-ic" title="${sug.length ? 'Devam, aşama, mekân ve sevdiklerine göre' : 'Son kullanılan olaylar'}">⚡</span><div class="eq-row">${epChip}${acts.map(x => `<button type="button" class="mo-chip${evCls(x.e)}"${evStyle(x.e)} data-qev="${esc(x.e.id)}" title="🎬 Sahne başlat: ${esc(x.d.open)}">🎬${x.d.icon} ${esc(x.d.name)}</button>`).join('')}${evs.map(evChip).join('')}${near.map(s => `<button type="button" class="mo-chip" data-qsp="${esc(s.k)}" title="Mekana geç">📍${s.ic} ${esc(s.n)}</button>`).join('')}${plChips(pls, 'qpl')}${more}</div>
+      const epChip = ee ? `<button type="button" class="mo-chip eq-next${evCls(ee)} ch-sc"${evStyle(ee)} data-qev="${esc(ee.id)}" data-qsc="${esc(es.id)}" title="📖 ${esc(ex.name)} · ${c.ep.i}/${ex.scenes.length} · 🎬 ${esc(es.open)}">📖${ex.icon} ${es.icon} ${esc(es.name)}</button>` : '';
+      el.innerHTML = `<span class="eq-ic" title="${sug.length ? 'Devam, aşama, mekân ve sevdiklerine göre' : 'Son kullanılan olaylar'}">⚡</span><div class="eq-row">${epChip}${acts.map(x => `<button type="button" class="mo-chip${evCls(x.e)} ch-sc"${evStyle(x.e)} data-qev="${esc(x.e.id)}" data-qsc="${esc(x.d.id)}" title="🎬 Sahne başlat: ${esc(x.d.open)}">🎬${x.d.icon} ${esc(x.d.name)}</button>`).join('')}${ad ? '' : quickSn.map(x => `<button type="button" class="mo-chip${evCls(x.e)} ch-sn"${evStyle(x.e)} data-qev="${esc(x.e.id)}" data-qsc="${esc(x.d.id)}" title="💞 Seans başlat: ${esc(x.d.open)} · ${x.d.steps.length} adım">💞${x.d.icon} ${esc(x.d.name)}</button>`).join('')}${evs.map(evChip).join('')}${near.map(s => `<button type="button" class="mo-chip" data-qsp="${esc(s.k)}" title="Mekana geç">📍${s.ic} ${esc(s.n)}</button>`).join('')}${plChips(pls, 'qpl')}${more}</div>
         <button type="button" class="eq-x" data-q="off" aria-label="Kısayolları kapat">✕</button>`;
     }
     /* 🎬 Sahneler (Stories.SCENES): açılış olayı sahneyi açar (th.act = { id, done: [adım sırası], idle, pl, skip, ready }), adımlar sayılır;
      * need dolunca 🏁 bitiş açılır (bitiş yoksa ödül hemen). Mekân değişimi, başka mekânın olayı ya da ttl kadar adımsız olay bozar (fail);
      * bitiş erken gelirse ödülsüz kapanır. Zincirle gelen olaylar (depth > 0) yalnızca adım / bitiş olarak sayılır, sahneyi bozmaz */
-    const actLow = s => String(s || '').toLocaleLowerCase('tr');
-    const actDef = id => (Stories.SCENES || []).find(s => s.id === id);
+    // ⚡ önbellekli küçük harf (toLocaleLowerCase her tuşta binlerce kez çağrılıyordu)
+    const actLow = s => lowTr(s);
+    const actDef = id => (Stories.SCENES || []).find(s => s.id === id) || seansDef(id);
     const actNeed = d => d.need || d.steps.length;
     // ⚡ küçük harfli başlık → ilk olay / açılışı o olay olan ilk sahne (tık içinde bir kez kurulur)
     const evSig = () => { const mo = MO(); return [mo.events, mo.events.length, ...catSig()]; };
     const firstBy = (list, key) => { const m = new Map(); list.forEach(x => { const k = key(x); if (!m.has(k)) m.set(k, x); }); return m; };
-    const actEv = t => tickGet('actEv', () => firstBy(allEvents(), x => actLow(x.title)), evSig()).get(actLow(t));
-    const actOpen = e => tickGet('actOpen', () => firstBy(scenesOk(), s => actLow(s.open)), [...evSig(), meG(), Stories.SCENES, (Stories.SCENES || []).length]).get(actLow(e.title));
+    const actEv = t => evByLowTitle(lowTr(t));
+    // açılış → sahne; aynı açılışı paylaşan sahnelerden karakterin sitesininki, sonra onunla en az tamamlanmış olan (eşitse listede önce gelen)
+    const actOpens = () => tickGet('actOpens', () => { const m = new Map(); scenesOk().forEach(s => { const k = actLow(s.open); if (!m.has(k)) m.set(k, []); m.get(k).push(s); }); return m; }, [...evSig(), meG(), Stories.SCENES, (Stories.SCENES || []).length]);
+    const actOpen = e => {
+      const L = actOpens().get(actLow(e.title));
+      if (!L || L.length < 2) return L && L[0];
+      const k = (!group && c) || {}, own = s => s.site && s.site === k.src ? 1 : 0, n = s => (k.acts || {})[s.id] || 0;
+      return L.reduce((b, s) => own(s) > own(b) || (own(s) === own(b) && n(s) < n(b)) ? s : b);
+    };
     const actPl = () => ((lastScene() || {}).scene || {}).place || '';
     const actTh = e => (e.tags || []).map(actLow).filter(t => EV_THEME.includes(t) && t !== 'boşalma' && t !== 'üçlü');
     // 🎬 onun sahne cümlesi (ACT_SAY): sahneye özel %75, kural "=durum =sahne<id><an>" / "=durum =sahne<an>" önce
@@ -17537,7 +17637,7 @@
         clockTick(); save(); draw(); refreshList();
         return [fill(pickOf(IDEA_SAY.do[top.k]), top)];
       }
-      if (top.k === 'sahne') th.actOff = top.d.id;
+      if (top.k === 'sahne') { th.actOff = top.d.id; seansGo(top.d.id); }
       th.botAsk = ask1(top);
       const M = IDEA_SAY.mekan, pm = top.k === 'mekan' && !why ? pers.map(p => p.mekan).filter(Boolean) : [];
       let s = top.k === 'mekan' ? pickOf(M[why] || (pm.length && Math.random() < .4 ? pickOf(pm) : BOT_WANT.mekan.ask))
@@ -17587,7 +17687,7 @@
         return !e || a.done.includes(i) ? '' : `<button type="button" class="mo-chip${evCls(e)}${i === want ? ' eq-next' : ''}"${evStyle(e)} data-qev="${esc(e.id)}">${evEmo(e)}${esc(e.title)}</button>`;
       };
       const fe = d.fin && actEv(d.fin);
-      return `<div class="eq-act"><span class="eq-at" title="${esc(d.desc || '')}">🎬 ${d.icon} ${esc(d.name)} <b>${'●'.repeat(n)}${'○'.repeat(need - n)} ${n}/${need}</b></span>
+      return `<div class="eq-act"><span class="eq-at ${d.seans ? 'ch-sn' : 'ch-sc'}" title="${esc(d.desc || '')}">${d.seans ? '💞' : '🎬'} ${d.icon} ${esc(d.name)} <b>${'●'.repeat(n)}${'○'.repeat(need - n)} ${n}/${need}</b></span>
         <div class="eq-row">${d.steps.map(chip).join('')}${fe ? `<button type="button" class="mo-chip${a.ready ? ' eq-next' : ' eq-lock'}"${a.ready ? ` data-qev="${esc(fe.id)}"` : ' disabled title="Önce adımları tamamla"'}>${a.ready ? '🏁' : '🔒'} ${esc(fe.title)}</button>` : ''}</div>
         <button type="button" class="eq-x" data-qact="x" aria-label="Sahneyi bitir" title="Sahneyi bitir">✕</button></div>`;
     }
@@ -17626,6 +17726,7 @@
       if (k === 'ask') { ch.epSeen = [...seen, x.id]; notify(`📖 Yeni bölüm açıldı: ${x.name}`, x.icon); }
       th.ideaAt = th.wantAt = list.length;
       th.actOff = d.id;
+      seansGo(d.id);
       th.botAsk = { t: 'istek', w: 'sahne', ev: e.id, idea: 1 };
       return [pickOf(x[k] || x.ask)];
     }
@@ -17664,6 +17765,16 @@
       };
       const t = actLow(e.title), a = th.act, d = a && actDef(a.id), pl = actPl();
       if (a && !d) th.act = null;
+      // 💞 seçilmiş seansın açılışı: süren sahne yarım kalır, seans başlar
+      const sg = !depth && seansTake(t);
+      if (sg) {
+        if (d) { notify(`${d.name} yarım kaldı`, '🔀'); planOff(d); }
+        th.act = { id: sg.id, done: [], idle: 0, pl };
+        notify(sg.seans ? `💞 ${sg.icon} ${sg.name} · seans: ${actNeed(sg)} / ${sg.steps.length} adım${sg.fin ? ' + 🏁 ' + sg.fin : ''} · ⚡ şeritten seç`
+          : `${sg.icon} ${sg.name} · ${sg.mode === 'seq' ? 'sırayla ' : ''}${actNeed(sg)} adım${sg.fin ? ' + 🏁 ' + sg.fin : ''} · ⚡ şeritten seç`, '🎬');
+        her(sg, 'open');
+        return;
+      }
       if (d) {
         if (!a.pl) a.pl = pl;
         if (pl && pl !== a.pl) brk(d, 'mekân değişti');
@@ -18876,6 +18987,7 @@
       if (b.dataset.q === 'more') { const tb = $('[data-tool="event"]'); if (tb) tb.click(); return; }
       if (b.dataset.q === 'off') { quickOn(false); const tb = $('[data-tool="quick"]'); if (tb) tb.classList.remove('on'); drawQuick(); notify('Kısayollar kapalı · ⋯ Diğer → ⚡ ile aç', '⚡'); return; }
       const ev = allEvents().find(x => x.id === b.dataset.qev);
+      if (ev && b.dataset.qsc) seansGo(b.dataset.qsc);
       if (ev) askSubs([ev], writeEvents);
     };
     $('#liaBar').onclick = e => {
@@ -18953,11 +19065,12 @@
     /* 🔮⚡ birleşik öneri çubuğu (kutu odaktayken; ⚡ #evQuick o sırada gizli): kutu boşken ⚡ kısayol olayları + 💬 duruma göre cümleler,
      * yazarken 🔮 tamamlamalar + yazdığına benzeyen olaylar (tahminEvents). Tab / tıkla = tamamla, ↑↓ = seç (sadece metinler), Esc = gizle */
     let tItems = [], tEvs = [], tCur = 0, tHide = false, tStage = null;
+    let tScK = '', tScV = [];
     function drawTahmin() {
       const el = $('#tahminBar');
       if (!el) return;
       const pos = input.selectionStart == null ? input.value.length : input.selectionStart, before = input.value.slice(0, pos);
-      tItems = []; tEvs = [];
+      tItems = []; tEvs = []; let tSc = [];
       if ((tahminOn() || quickOn()) && !hkOn() && !tHide && !cs.playing && !cs.busy && !plPop && document.activeElement === input && !/(?:^|\s)#[^#\n]*$/.test(before)) {
         const empty = !input.value.trim();
         if (tahminOn()) {
@@ -18970,18 +19083,31 @@
           ];
           tItems = tahminFor(before, extra, ['poz', 'mekan', 'bit'].includes(tStage.st));
         }
-        if (quickOn()) tEvs = empty ? quickEvents().slice(0, 8) : tahminEvents(before, byId(chatCharIds()[0]), group);
+        if (quickOn()) tEvs = empty ? quickEvents().slice(0, 8) : tahminEvents(before, byId(chatCharIds()[0]), group, () => { if (document.activeElement === input) drawTahmin(); });
+        // 🎬💞 son kelime (4+ harf; "yap" gibi kısa kelimeler her şeye uyuyordu) bir sahne / seans adına uyuyorsa en iyi 2'si
+        const lw = (before.match(/[\p{L}]+$/u) || [''])[0];
+        if (quickOn() && lw.length >= 4) {
+          const k = `${lw}|${list.length}`;
+          if (tScK !== k) { tScK = k; const sc = (lastScene() || {}).scene || null; tScV = scSearch(lw, e => evAway(e, sc)).filter(x => x.score < 1.2).sort((a, b) => a.score - b.score).slice(0, 2); }
+          tSc = tScV;
+        }
       }
       tCur = Math.max(0, Math.min(tCur, tItems.length - 1));
-      el.hidden = !tItems.length && !tEvs.length;
+      el.hidden = !tItems.length && !tEvs.length && !tSc.length;
       drawQuick();
       if (el.hidden) return;
-      const evChips = tEvs.map(e => `<button type="button" class="mo-chip${evCls(e)}"${evStyle(e)} data-thev="${esc(e.id)}">📜${evEmo(e)}${esc(e.title)}</button>`).join('')
+      const evChips = tSc.map(x => `<button type="button" class="mo-chip${evCls(x.e)} ${x.sc.seans ? 'ch-sn' : 'ch-sc'}"${evStyle(x.e)} data-thev="${esc(x.e.id)}" data-thsc="${esc(x.sc.id)}" title="${x.sc.seans ? '💞 Seans' : '🎬 Sahne'} başlat: ${esc(x.sc.open)}">${x.sc.seans ? '💞' : '🎬'}${x.sc.icon} ${esc(x.sc.name)}</button>`).join('')
+        + tEvs.map(e => `<button type="button" class="mo-chip${evCls(e)}"${evStyle(e)} data-thev="${esc(e.id)}">📜${evEmo(e)}${esc(e.title)}</button>`).join('')
         + (quickOn() && !group && !input.value.trim() ? plChips(plSug(3), 'thpl') : '');
       const txChips = tItems.map((o, i) => `<button type="button" class="mo-chip${i === tCur ? ' on' : ''}" data-th="${i}">${o.ic} ${esc(o.d)}</button>`).join('');
-      el.innerHTML = `<span class="eq-ic" title="Tab: tamamla · ↑↓: seç">${tItems.length ? '🔮' : '⚡'}</span><div class="eq-row">${!input.value.trim() ? evChips + txChips : txChips + evChips}</div>
+      const html = `<span class="eq-ic" title="Tab: tamamla · ↑↓: seç">${tItems.length ? '🔮' : '⚡'}</span><div class="eq-row">${!input.value.trim() ? evChips + txChips : txChips + evChips}</div>
         <button type="button" class="eq-x" data-th="off" aria-label="Önerileri kapat">✕</button>`;
-      const on = el.querySelector('.mo-chip.on');
+      // ⚡ öneriler değişmediyse DOM'a dokunma (yeniden çizim, çeviri ve kaydırma her tuşta tetikleniyordu)
+      if (el._th === html) return;
+      el._th = html;
+      el.innerHTML = html;
+      // yeni çizilen satır zaten baştan başlar: yazarken ilk öneri seçiliyse kaydırma (yerleşim hesabı) gerekmez
+      const on = (tCur > 0 || !input.value.trim()) && el.querySelector('.mo-chip.on');
       if (on) on.scrollIntoView({ block: 'nearest', inline: 'nearest' });
     }
     const tahminPick = o => {
@@ -19002,6 +19128,7 @@
         // 📜 olay: kutu boşsa hemen yazılır (⚡ kısayol gibi), yazı varsa kutunun üstünde bekler, metninle birlikte gider
         const x = allEvents().find(y => y.id === ev.dataset.thev);
         if (!x) return;
+        if (ev.dataset.thsc) seansGo(ev.dataset.thsc);
         if (!input.value.trim()) askSubs([x], writeEvents);
         else askSubs([x], items => { cs.pend = items.slice(0, 1); drawPend(); input.focus(); });
         return;
@@ -19016,6 +19143,8 @@
       if (tItems[+b.dataset.th]) tahminPick(tItems[+b.dataset.th]);
     };
     input.addEventListener('input', () => { tCur = 0; tHide = false; drawTahmin(); });
+    // ⚡ tahmin sözlüğü ilk tuşu beklemeden, tarayıcı boşken kurulur
+    if (window.requestIdleCallback) requestIdleCallback(() => { try { tahminVocab(); } catch (e) { /* sözlük ilk tuşta kurulur */ } }, { timeout: 3000 });
     input.addEventListener('focus', () => drawTahmin());
     input.addEventListener('blur', () => setTimeout(drawTahmin, 150));
     input.addEventListener('keydown', ev => {
@@ -22009,24 +22138,46 @@
     [/emzir|sütün|sutun|süt iç|sut ic/, ['breastfeeding', 'nursing']], [/parmak/, ['fingering']], [/şaplak|saplak|tokat/, ['slap']],
     [/okşa|oksa|dokun|avuçla|avucla/, ['grab']], [/masaj/, ['massage']], [/sarıl|saril/, ['hugging']], [/soyun|soy\b/, ['undress', 'striptease']]];
   let tEvCmd = null;
-  function tahminEvents(text, ch, group) {
+  // olay başlığı dizini (tahminEvents): allEvents ile aynı imza (olay listesi, uzunluk, kategoriler) değişince yeniden kurulur
+  let tEvIdx = null;
+  const tEvIndex = () => {
+    const mo = MO(), sig = [mo.events, mo.events.length, ...catSig()];
+    if (tEvIdx && tEvIdx.sig.length === sig.length && tEvIdx.sig.every((x, i) => x === sig[i])) return tEvIdx.L;
+    const L = allEvents().map(e => { const lt = String(e.title).toLowerCase(); return { e, lt, ws: lt.split(/[\s-]+/) }; });
+    tEvIdx = { sig, L };
+    return L;
+  };
+  function tahminEvents(text, ch, group, later) {
     const t = String(text || '').trim(), low = t.toLocaleLowerCase('tr');
     if (low.length < 2) return [];
-    const all = allEvents(), out = [], bad = new Set((ch || {}).denies || []);
+    const out = [], bad = new Set((ch || {}).denies || []);
     // 🤰 hamilelik olayları sadece hamileyken (kendi haftasında)
     const add = e => { if (e && !bad.has(e.id) && !out.includes(e) && (group || !ch || !pregBlock(ch, e))) out.push(e); };
     const R = Stories.BOT_RULES, B = Stories.Bot;
     if (R && B) {
-      if (!tEvCmd || tEvCmd.R !== R) tEvCmd = { R, rules: (R.rules || []).filter(r => CMD_EV[cmdKey(r.id)]) };
-      const rules = group ? tEvCmd.rules : tEvCmd.rules.filter(r => !/^r_gc_/.test(r.id));
-      const m = B.best({ ...R, rules }, t, ch || { name: '', traits: [] }, true);
-      if (m && !m.fallback) (CMD_EV[cmdKey(m.rule.id)] || []).forEach(x => add(all.find(e => e.title === x)));
+      if (!tEvCmd || tEvCmd.R !== R) { const rs = (R.rules || []).filter(r => CMD_EV[cmdKey(r.id)]); tEvCmd = { R, rules: rs, solo: rs.filter(r => !/^r_gc_/.test(r.id)), memo: new Map() }; }
+      // ⚡ komut eşleşmesi kelime başına bir kez: yarım kalan son kelime atlanır (ilk kelime hariç), sonuç yazı + karakter + grup için saklanır
+      const tk = /\s$/.test(String(text || '')) || !/\s/.test(t) ? t : t.replace(/\S+$/, '').trim(), mk = `${group ? 'g' : 's'}|${(ch || {}).id || ''}|${tk}`;
+      let titles = tEvCmd.memo.get(mk);
+      const calc = () => {
+        const m = B.best({ ...R, rules: group ? tEvCmd.rules : tEvCmd.solo }, tk, ch || { name: '', traits: [] }, true);
+        const v = m && !m.fallback ? CMD_EV[cmdKey(m.rule.id)] || [] : [];
+        if (tEvCmd.memo.size > 300) tEvCmd.memo.clear();
+        tEvCmd.memo.set(mk, v);
+        return v;
+      };
+      // ⚡ later verilirse eşleşme yazmayı bekletmez: kısa bir duraksamadan sonra hesaplanır, hazır olunca later() yeniden çizer
+      if (!titles && later) { clearTimeout(tEvCmd.t); tEvCmd.t = setTimeout(() => { if (!tEvCmd.memo.has(mk)) { calc(); later(); } }, 180); titles = []; }
+      else if (!titles) titles = calc();
+      titles.forEach(x => add(evByT(x)));
     }
     // temel olay önce: başlığı tam o kelime olan ("Kissing", "Doggy"), sonra kısa başlık ("Girls Kissing"den önce)
-    const best = (evs, w) => evs.sort((a, b) => (String(b.title).toLowerCase().split(/[\s-]+/)[0].startsWith(w) - String(a.title).toLowerCase().split(/[\s-]+/)[0].startsWith(w)) || a.title.length - b.title.length).slice(0, 4);
-    TAHMIN_EV.forEach(([re, keys]) => { if (re.test(low)) best(all.filter(e => keys.some(k => String(e.title).toLowerCase().includes(k))), keys[0]).forEach(add); });
+    // ⚡ başlıkların küçük harfi ve kelimeleri tEvIndex'te hazır (her tuşta 2400+ başlık bölünüyordu)
+    const L = tEvIndex();
+    const best = (xs, w) => xs.sort((a, b) => (b.ws[0].startsWith(w) - a.ws[0].startsWith(w)) || a.e.title.length - b.e.title.length).slice(0, 4).map(x => x.e);
+    TAHMIN_EV.forEach(([re, keys]) => { if (re.test(low)) best(L.filter(x => keys.some(k => x.lt.includes(k))), keys[0]).forEach(add); });
     const last = (low.match(/[\p{L}]+$/u) || [''])[0];
-    if (last.length >= 3) best(all.filter(e => String(e.title).toLowerCase().split(/[\s-]+/).some(w => w.startsWith(last))), last).forEach(add);
+    if (last.length >= 3) best(L.filter(x => x.ws.some(w => w.startsWith(last))), last).forEach(add);
     const likes = new Set((ch || {}).likes || []);
     return [...out.filter(e => likes.has(e.id)), ...out.filter(e => !likes.has(e.id))].slice(0, 4);
   }
@@ -26332,15 +26483,29 @@
     return out.sort((a, b) => a.score - b.score || a.e.title.localeCompare(b.e.title, 'tr'));
   }
   // 🎬 # ile sahne ara (ad / id; "sahne" yazınca hepsi): seçince açılış olayı gelir, sahneyi o açar
+  // ⚡ arama dizini (sahneler + 💞 seanslar): ad, kelimeler, kategori kelimeleri ve açılış olayı bir kez hazırlanır;
+  // sahne / kategori / olay sayısı ya da hesabın cinsiyeti (sceneHide) değişince yeniden kurulur. Her tuşta sadece karşılaştırma
+  let scIdxM = null, scIdxK = '';
+  function scIdx() {
+    const k = `${(Stories.SCENES || []).length}:${(Stories.SCENE_CATS || []).length}:${allEvents().length}:${meG()}`;
+    if (scIdxM && scIdxK === k) return scIdxM;
+    const SC = Stories.sceneGroups ? Stories.sceneGroups().flatMap(g => g.ss) : (Stories.SCENES || []), cats = new Map();
+    (Stories.SCENE_CATS || []).forEach(c => c.ids.forEach(id => { if (!cats.has(id)) cats.set(id, c); }));
+    const ent = (s, t, w, cw, kw, id, b) => ({ s, e: evByT(s.open), t, w, cw, kw, id, b });
+    scIdxM = [...SC.map(s => { const t = lowTr(s.name); return ent(s, t, t.split(/\s+/), lowTr((cats.get(s.id) || {}).name || '').split(/[\s&]+/).filter(Boolean), 'sahne', s.id, -0.3); }),
+      ...seansAll().map(s => { const t = lowTr(s.name); return ent(s, t, t.split(/[\s/():]+/), lowTr((SN_GROUPS.find(g => g[0] === s.g) || [])[2] || '').split(/\s+/).filter(Boolean), 'seans', s.t.id, -0.25); })].filter(x => x.e);
+    scIdxK = k;
+    return scIdxM;
+  }
   function scSearch(q, hide) {
-    const qq = lower(q).trim(), evs = allEvents();
+    const qq = lowTr(q);
     if (!qq) return [];
-    const SC = Stories.sceneGroups ? Stories.sceneGroups().flatMap(g => g.ss) : (Stories.SCENES || []);
-    return SC.map(s => {
-      const e = evs.find(x => lower(x.title) === lower(s.open)), t = lower(s.name), cn = Stories.sceneCat ? lower(Stories.sceneCat(s.id).name) : '';
-      const r = t.startsWith(qq) ? 0 : t.split(/\s+/).some(w => w.startsWith(qq)) ? 1 : t.includes(qq) || lower(s.id).startsWith(qq) ? 2 : qq.length >= 3 && 'sahne'.startsWith(qq) ? 1.5 : qq.length >= 2 && cn.split(/[\s&]+/).some(w => w && w.startsWith(qq)) ? 2.5 : -1;
-      return e && r >= 0 && !(hide && hide(e)) ? { e, sc: s, score: r - 0.3 } : null;
-    }).filter(Boolean);
+    const out = [];
+    scIdx().forEach(x => {
+      const r = x.t.startsWith(qq) ? 0 : x.w.some(w => w.startsWith(qq)) ? 1 : x.t.includes(qq) || x.id.startsWith(qq) ? 2 : qq.length >= 3 && x.kw.startsWith(qq) ? 1.5 : qq.length >= 2 && x.cw.some(w => w.startsWith(qq)) ? 2.5 : -1;
+      if (r >= 0 && !(hide && hide(x.e))) out.push({ e: x.e, sc: x.s, score: r + x.b });
+    });
+    return out;
   }
   /* Yazarken üstte benzer olaylar (IDE gibi): ↑↓ seç, Enter / Tab ekle, Esc kapat.
    * opts.whole: kutunun tamamı aranır ("#" isteğe bağlı); yoksa imleçten önceki "#kelime" aranır ve seçince yazıdan silinir.
@@ -26358,6 +26523,8 @@
       const qq = query();
       if (qq) input.value = (input.value.slice(0, qq.from) + input.value.slice(qq.to)).replace(/\s{2,}/g, ' ').replace(/^\s+/, '');
       close();
+      // 🎬💞 sahne / seans sonucu: açılış yazılınca tam bu sahne (aynı açılışlı başkası değil) ya da seans başlar
+      if (it.sc) seansGo(it.sc.id);
       onPick(it.e, it.sub);
     };
     const show = () => {
@@ -26375,9 +26542,9 @@
       }
       const rec = recentIds();
       pop.innerHTML = `<div class="hs-head">📜 Olaylar <small>↑↓ · Enter</small></div>` + items.map((it, i) => {
-        if (it.sc) return `<button type="button" class="hs-it${i === cur ? ' on' : ''}${evCls(it.e)}"${evStyle(it.e)} data-hs="${i}">
-          <span class="hs-t">🎬 ${it.sc.icon} ${esc(it.sc.name)}<small> · ${esc(it.e.title)}</small></span>
-          <small class="hs-c">${(c => `🎬 ${c.icon} ${esc(c.name)}`)(Stories.sceneCat ? Stories.sceneCat(it.sc.id) : { icon: '', name: 'Sahne' })}</small></button>`;
+        if (it.sc) return `<button type="button" class="hs-it${i === cur ? ' on' : ''}${evCls(it.e)} ${it.sc.seans ? 'ch-sn' : 'ch-sc'}"${evStyle(it.e)} data-hs="${i}">
+          <span class="hs-t">${it.sc.seans ? '💞' : '🎬'} ${it.sc.icon} ${esc(it.sc.name)}<small> · ${esc(it.e.title)}</small></span>
+          <small class="hs-c">${it.sc.seans ? (g => `💞 ${g[1]} ${esc(g[2])}`)(SN_GROUPS.find(g => g[0] === it.sc.g) || SN_GROUPS[0]) : (c => `🎬 ${c.icon} ${esc(c.name)}`)(Stories.sceneCat ? Stories.sceneCat(it.sc.id) : { icon: '', name: 'Sahne' })}</small></button>`;
         const look = it.sub ? withSub(it.e, it.sub) : it.e, c = catOfEv(it.e);
         return `<button type="button" class="hs-it${i === cur ? ' on' : ''}${evCls(look)}"${evStyle(look)} data-hs="${i}">
           <span class="hs-t">${evEmo(look)}${esc(look.title)}${it.sub ? `<small> · ${esc(it.e.title)}</small>` : ''}</span>
@@ -26426,13 +26593,13 @@
     ['ick', '🍷', 'Drinks', ['drinks']],
     ['isin', '💋', 'Isınma', ['foreplay', 'massage', 'protection']],
     ['soy', '👗', 'Soyunma', ['undress']],
-    ['on', '👅', 'Ön sevişme', ['eat', 'outercourse', 'squeeze', 'pregnancy foreplay', 'after birth', 'nurturing foreplay', 'pee rubbing', 'held pee rubbing', 'held titfuck pee', 'licking', 'biting', 'her licks and bites', 'dick slap', 'dick touch', 'slurping', 'plug play', 'toy play', 'hand grab', 'hand spank', 'hair wrap', 'sleep foreplay', 'donor room', 'fetish play', 'foot play', 'lingerie play']],
+    ['on', '👅', 'Ön sevişme', ['eat', 'outercourse', 'squeeze', 'pregnancy foreplay', 'after birth', 'nurturing foreplay', 'pee rubbing', 'held pee rubbing', 'held titfuck pee', 'licking', 'biting', 'her licks and bites', 'dick slap', 'dick touch', 'slurping', 'plug play', 'toy play', 'hand grab', 'hand spank', 'hair wrap', 'sleep foreplay', 'donor room', 'fetish play', 'foot play', 'lingerie play', 'limb rubbing', 'hug rubbing']],
     ['sut', '🍼', 'Lactation', ['lactation', 'nursing', 'lactation fantasy', 'milky foreplay']],
-    ['poz', '🔥', 'Pozisyon', ['forward', 'backward', 'threesome', 'pregnancy', 'back together', 'family ties', 'milky sex', 'nurturing sex', 'mode', 'pre-cumming', 'anal pee', 'heavy anal pee', 'held anal pee', 'plugged sex', 'grip sex', 'hair sex', 'sleep sex', 'donor sex', 'fetish sex', 'foot sex', 'lingerie sex', 'lap positions', 'deep sex', 'soft inside', 'filled pussy', 'filled ass', 'cultural positions']],
+    ['poz', '🔥', 'Pozisyon', ['forward', 'backward', 'threesome', 'pregnancy', 'back together', 'family ties', 'milky sex', 'nurturing sex', 'mode', 'pre-cumming', 'anal pee', 'heavy anal pee', 'held anal pee', 'plugged sex', 'grip sex', 'hair sex', 'sleep sex', 'donor sex', 'fetish sex', 'foot sex', 'lingerie sex', 'lap positions', 'deep sex', 'soft inside', 'filled pussy', 'filled ass', 'cultural positions', 'stroke styles', 'position mix', 'oral & tit mix', 'clench inside', 'hug sex']],
     ['mekan', '📍', 'Mekân', ['mekanda', 'shower', 'sauna', 'bathtub', 'pool', 'car', 'elevator', 'camping', 'kitchen', 'stairs', 'laundry', 'balcony', 'camera', 'beach', 'office', 'hotel', 'school', 'church', 'gym', 'bar', 'cinema', 'outdoors', 'restaurant', 'rooftop', 'library', 'fair', 'haunted', 'street', 'massage salon', 'clinic', 'pee']],
-    ['fant', '🦄', 'Fantezi', ['fantesy', 'meisove', 'femdom', 'bdsm', 'bull', 'affair', 'affair story', 'heavy pee', 'toys out']],
+    ['fant', '🦄', 'Fantezi', ['fantesy', 'meisove', 'femdom', 'bdsm', 'bull', 'affair', 'affair story', 'heavy pee', 'toys out', 'fantasy penetration']],
     ['bit', '💦', 'Bitiş', ['cumming', 'cumming size']],
-    ['son', '🌙', 'Sonrası', ['cool down', 'treatment', 'bull story', 'milky after', 'toy after', 'nurturing after', 'sleep after', 'deep after', 'inside after', 'filled after']]
+    ['son', '🌙', 'Sonrası', ['cool down', 'treatment', 'bull story', 'milky after', 'toy after', 'nurturing after', 'sleep after', 'deep after', 'inside after', 'filled after', 'clench after', 'limb after', 'hug after']]
   ];
   // 📍 Mekân kategorileri ↔ mekan kartları: ids = uyan mekanlar (places.js), to = o olay yazılınca geçilen mekan (places.js id'si ya da kendi kartı)
   const PLACE_EV = {
@@ -26507,6 +26674,36 @@
   const evAway = (e, sc) => placeAway(catOfEv(e), sc) || (!!SPOT_EV[e.id] && !spotFits(e, sc));
   // 🤰 boşalma sonrası hamilelik durumları (bot cevabında ilk baloncuk)
   const PREG_ST = /^(hamilekaldi|hamileyken|kondomkorudu|haplakorundu|sabahhap|pulloutkacti|icineistedi|riskli)/;
+  /* 🆕 yeni olaylar: tarayıcı ilk gördüğü olay kimliğini zamanıyla amor-stories:evnew'e yazar ({ at: { id: ts }, p: { id: 1 } }).
+   * İlk açılışta hepsi eski (ts 0) sayılır, EV_NEW_CATS / EV_NEW_IDS (son dalga) hariç. Yeni = EVN_DAYS gün içinde gelmiş ve hiç oynanmamış (p) */
+  const EVN_KEY = 'amor-stories:evnew', EVN_DAYS = 30;
+  const EV_NEW_CATS = /^c:mv(stroke|penpos|oraltit|fantpen|clench|clenchaf|limb|limbaf|hugsex|hugrub|hugaf)01x$/, EV_NEW_IDS = /^mv(pq|cf|kx|lw|lq|hz|hq)\d/;
+  let evnMem = null, evnSig = '', evnSetC = new Set();
+  function evnSt() {
+    if (!evnMem) { try { evnMem = JSON.parse(localStorage.getItem(EVN_KEY) || 'null'); } catch (e) {} if (!evnMem || !evnMem.at) evnMem = null; }
+    return evnMem;
+  }
+  const evnSave = () => { try { localStorage.setItem(EVN_KEY, JSON.stringify(evnMem)); } catch (e) {} };
+  function evNewSet() {
+    const evs = allEvents(), first = !evnSt(), st = evnMem || (evnMem = { at: {}, p: {} }), now = Date.now();
+    const sig = `${evs.length}:${Object.keys(st.p).length}:${Math.floor(now / 864e5)}`;
+    if (sig === evnSig) return evnSetC;
+    let ch = first;
+    evs.forEach(e => { if (e.id && !(e.id in st.at)) { st.at[e.id] = first && !EV_NEW_CATS.test(e.cat || '') && !EV_NEW_IDS.test(e.id) ? 0 : now; ch = true; } });
+    if (ch) evnSave();
+    const lim = now - EVN_DAYS * 864e5;
+    evnSetC = new Set(evs.filter(e => st.at[e.id] > lim && !st.p[e.id]).map(e => e.id));
+    evnSig = sig;
+    return evnSetC;
+  }
+  const isNewEv = e => !!e && evNewSet().has(e.id);
+  function evNewSeen(ids) {
+    const st = evnSt();
+    if (!st) return;
+    let ch = false;
+    ids.forEach(id => { if (id && st.at[id] && !st.p[id]) { st.p[id] = 1; ch = true; } });
+    if (ch) evnSave();
+  }
   const pkStageOf = cat => (PK_STAGES.find(x => x[3].includes(String((cat || {}).label || '').toLocaleLowerCase('tr').trim())) || [''])[0];
   function poolPicker(opts, cb) {
     const sel = [];
@@ -26517,8 +26714,7 @@
     if (cx) cx.now = cx.now.filter(e => !awayEv(e));
     const stOf = pkStageOf;
     const off = e => !!cx && (cx.denies.has(e.id) || cx.dislikes.has(e.id));
-    const mark = e => !cx ? '' : cx.denies.has(e.id) ? '🚫 ' : cx.likes.has(e.id) ? '❤️ ' : cx.dislikes.has(e.id) ? '💔 ' : '';
-    const stl = e => { const c = evColor(e), d = off(e); return c || d ? ` style="${c ? `--evc:${c};` : ''}${d ? 'opacity:.45' : ''}"` : ''; };
+    const mark = e => (isNewEv(e) ? '🆕 ' : '') + (!cx ? '' : cx.denies.has(e.id) ? '🚫 ' : cx.likes.has(e.id) ? '❤️ ' : cx.dislikes.has(e.id) ? '💔 ' : '');    const stl = e => { const c = evColor(e), d = off(e); return c || d ? ` style="${c ? `--evc:${c};` : ''}${d ? 'opacity:.45' : ''}"` : ''; };
     const likeFirst = evs => cx ? [...evs.filter(e => cx.likes.has(e.id)), ...evs.filter(e => !cx.likes.has(e.id) && !off(e)), ...evs.filter(off)] : evs;
     const chipOf = e => `<button type="button" class="mo-chip${evCls(e)}"${stl(e)} data-pick="${esc(e.id)}" data-tags="${esc((e.tags || []).join('|'))}" data-desc="${esc((cx && cx.denies.has(e.id) ? '🚫 İzin vermiyor · ' : '') + (e.desc || e.text || ''))}" title="${esc(e.desc || e.text || '')}">${mark(e)}${evEmo(e)}${esc(e.title)}</button>`;
     // 🗂️ çok olaylı kategoride olaylar alt-kategori başlıklarıyla (subGroups)
@@ -26528,6 +26724,8 @@
     const pinEvs = () => { const pool = allEvents(); return (MO().pins || []).map(id => pool.find(e => e.id === id)).filter(e => e && pinOk(e)); };
     const pinRow = () => { const p = pinEvs(); return p.length ? `<div class="mo-sub pk-top">⭐ Sabitlenenler <small>· ☆ ile ekle/çıkar</small></div><div class="mo-chips">${p.map(chipOf).join('')}</div>` : ''; };
     const nextE = cx ? (cx.next || []).filter(e => pinOk(e) && !off(e)) : [];
+    // 🆕 oynanmamış yeni olaylar (evNewSet): sohbette aşamaya uyanlar önce, en çok 10
+    const newE = cx ? (() => { const xs = allEvents().filter(e => isNewEv(e) && pinOk(e) && !off(e)), on = e => !!cx.stage && stOf(catOfEv(e)) === cx.stage; return [...xs.filter(on), ...xs.filter(e => !on(e))].slice(0, 10); })() : [];
     let stage = cx ? cx.stage || 'all' : 'all';
     // opts.fold: akordeon, kategoriler kapalı başlar, aynı anda biri açık (son açılan ui.pkFold)
     const foldAt = key => opts.fold ? ` data-pkfold="${esc(key)}" role="button"` : '';
@@ -26536,10 +26734,12 @@
       <div class="sheet-grip"></div>
       <h3>${esc(opts.title)}</h3>
       <input class="pk-search" id="pkSearch" placeholder="# yaz, olay ara…" autocomplete="off">
+      ${cx ? '<div class="ch-legend"><span>📜 Olay</span><span class="ch-sc">🎬 Sahne</span><span class="ch-sn">💞 Seans</span></div>' : ''}
       <div id="pkPins">${pinRow()}</div>
       ${nextE.length ? `<div class="mo-sub pk-top">🔗 Buradan gidilir <small>· son olay: ${esc(cx.last ? cx.last.title : '')}</small></div><div class="mo-chips">${nextE.map(chipOf).join('')}</div>` : ''}
       ${cx && (cx.now.length || nextE.length) ? `<div class="chips mo-filter"><button type="button" class="chip mo-pick" data-pkrnd="1">🎲 Sürpriz</button></div>` : ''}
       ${cx && cx.now.length ? `<div class="mo-sub pk-top">🎯 Şimdi <small>· ${esc(cx.say || 'sohbetin şu anına göre')}</small></div><div class="mo-chips">${cx.now.map(chipOf).join('')}</div>` : ''}
+      ${newE.length ? `<div class="mo-sub pk-top">🆕 Yeni olaylar <small>· henüz denemediklerin · ${evNewSet().size}</small></div><div class="mo-chips">${newE.map(chipOf).join('')}</div>` : ''}
       ${cx ? `<div class="chips mo-filter">${[...PK_STAGES, ['sahne', '🎬', 'Sahneler'], ['all', '📚', 'Tümü']].map(([k, ic, t]) => `<button type="button" class="chip mo-pick${k === stage ? ' on' : ''}" data-pkstage="${k}">${ic} ${t}</button>`).join('')}</div>` : ''}
       ${rec.length ? `<div class="mo-sub pk-rec">🕘 Önerilen <small>· son kullandıkların</small></div><div class="mo-chips">${rec.map(chipOf).join('')}</div>` : ''}
       ${!opts.fold && allEvTags().length ? `<div class="chips mo-filter">${tagChips(allEvTags(), [], 'data-pf')}</div>` : ''}
@@ -26559,7 +26759,13 @@
         const all = allEvents(), scs = (Stories.sceneGroups ? Stories.sceneGroups().flatMap(g => g.ss) : (Stories.SCENES || [])).map(s => ({ s, e: all.find(x => lower(x.title) === lower(s.open)) })).filter(x => x.e && !awayEv(x.e) && !(opts.skip || []).includes(x.e.title));
         const scCatOf = s => Stories.sceneCat ? Stories.sceneCat(s.id) : null;
         return scs.length ? `<div class="mo-sub" data-pkst="sahne"${foldAt('sahne')}>🎬 Sahneler <small>· açılış olayı sahneyi başlatır</small>${foldEnd(scs.length)}</div>
-        <div class="mo-chips">${scs.map(({ s, e }, i) => `${(c => c && (!i || scCatOf(scs[i - 1].s) !== c) ? `<small style="width:100%;margin-top:4px;opacity:.75"><b>${c.icon} ${esc(c.name)}</b></small>` : '')(scCatOf(s))}<button type="button" class="mo-chip${evCls(e)}"${stl(e)} data-pick="${esc(e.id)}" data-tags="" data-desc="${esc(`${s.desc || ''} ${s.open} → ${s.steps.join(s.mode === 'seq' ? ' → ' : ', ')}${s.fin ? ` → 🏁 ${s.fin}` : ''}`)}" title="${esc(s.desc || '')}">${mark(e)}🎬 ${s.icon} ${esc(s.name)}</button>`).join('')}</div>` : '';
+        <div class="mo-chips">${scs.map(({ s, e }, i) => `${(c => c && (!i || scCatOf(scs[i - 1].s) !== c) ? `<small style="width:100%;margin-top:4px;opacity:.75"><b>${c.icon} ${esc(c.name)}</b></small>` : '')(scCatOf(s))}<button type="button" class="mo-chip${evCls(e)} ch-sc"${stl(e)} data-pick="sc:${esc(s.id)}" data-tags="" data-desc="${esc(`${s.desc || ''} ${s.open} → ${s.steps.join(s.mode === 'seq' ? ' → ' : ', ')}${s.fin ? ` → 🏁 ${s.fin}` : ''}`)}" title="${esc(s.desc || '')}">${mark(e)}🎬 ${s.icon} ${esc(s.name)}</button>`).join('')}</div>` : '';
+      })() : ''}
+      ${cx ? (() => {
+        // 💞 seanslar (sahnenin uzunu): seçince açılış olayı yazılır ve seans başlar (seansGo)
+        const all = allEvents(), sns = seansAll().map(s => ({ s, e: all.find(x => lower(x.title) === lower(s.open)) })).filter(x => x.e && !awayEv(x.e));
+        return sns.length ? `<div class="mo-sub" data-pkst="sahne"${foldAt('seans')}>💞 Seanslar <small>· sahnenin uzunu</small>${foldEnd(sns.length)}</div>
+        <div class="mo-chips">${SN_GROUPS.map(([g, ic, n]) => { const xs = sns.filter(x => x.s.g === g); return xs.length ? `<small style="width:100%;margin-top:4px;opacity:.75"><b>${ic} ${esc(n)}</b></small>${xs.map(({ s, e }) => `<button type="button" class="mo-chip${evCls(e)} ch-sn"${stl(e)} data-pick="sn:${esc(s.id)}" data-tags="" data-desc="${esc(`${s.desc} · ${s.open} → ${s.steps.length} adım (${s.need} yeter)${s.fin ? ` → 🏁 ${s.fin}` : ''}`)}" title="${esc(s.desc)}">💞 ${s.icon} ${esc(s.name)}</button>`).join('')}` : ''; }).join('')}</div>` : '';
       })() : ''}
       <div class="mo-pool-foot">
         <div class="mo-pick-info" id="poolInfo" hidden></div>
@@ -26655,7 +26861,7 @@
         foldSync();
         // dokunduğun olayın açıklaması altta görünür
         const info = sh.el.querySelector('#poolInfo');
-        const pid = b.dataset.pick, canPin = !pid.startsWith('grp:'), pinned = (MO().pins || []).includes(pid);
+        const pid = b.dataset.pick, canPin = !/^(grp|sn|sc):/.test(pid), pinned = (MO().pins || []).includes(pid);
         lastPid = canPin ? pid : '';
         iBtn.disabled = !lastPid;
         info.hidden = i >= 0 || (!b.dataset.desc && !canPin);
@@ -26666,6 +26872,8 @@
       const pool = allEvents(), m = sh.el.querySelector('#poolMerge'), out = [];
       // gruplar içindeki olaylara açılır (aynı olay iki kez gelmez)
       sel.forEach(id => {
+        const sn = /^(sn|sc):/.test(id) && goDef(id.slice(3));
+        if (sn) { seansGo(sn.id); id = (evByT(sn.open) || {}).id || ''; }
         const g = id.startsWith('grp:') && evGroups().find(x => x.id === id.slice(4));
         (g ? groupEvents(g) : [pool.find(x => x.id === id)]).forEach(x => { if (x && !out.includes(x)) out.push(x); });
       });
@@ -27389,7 +27597,7 @@
   const LES_NO_RE = /blowjob|deepthroat|handjob|titfuck|titjob|footjob|legjob|buttjob|hotdog|cum|creampie|condom|cock|dick|pull-out|bulge|size comparison|unplug flood|keep it in overnight|milked by toy/i;
   // lezbiyen ilişkide gizlenen olay mı (🧪 #/lezbiyen ve 📚 Lezbiyen Kitabı da sayar)
   // penisli kategoriler: Cumming, sperm ölçüsü (Cumming Size), onu sıkıştırma (Squeeze), kuru sürtünme (Outercourse)
-  const LES_NO_CAT = ['Cumming', 'Cumming Size', 'Squeeze', 'Outercourse', 'Her Licks And Bites', 'Dick Slap', 'Dick Touch', 'Slurping', 'Plugged Sex', 'Grip Sex', 'Nurturing Sex', 'Hair Sex', 'Hair Wrap', 'Sleep Sex', 'Donor Room', 'Donor Sex', 'Fetish Play', 'Fetish Sex', 'Foot Play', 'Foot Sex', 'Lingerie Sex', 'Lap Positions', 'Deep Sex', 'Deep After', 'Soft Inside', 'Inside After', 'Filled Pussy', 'Filled Ass', 'Filled After', 'Cultural Positions', 'After Birth', 'Back Together', 'Family Ties'];
+  const LES_NO_CAT = ['Cumming', 'Cumming Size', 'Squeeze', 'Outercourse', 'Her Licks And Bites', 'Dick Slap', 'Dick Touch', 'Slurping', 'Plugged Sex', 'Grip Sex', 'Nurturing Sex', 'Hair Sex', 'Hair Wrap', 'Sleep Sex', 'Donor Room', 'Donor Sex', 'Fetish Play', 'Fetish Sex', 'Foot Play', 'Foot Sex', 'Lingerie Sex', 'Lap Positions', 'Deep Sex', 'Deep After', 'Soft Inside', 'Inside After', 'Filled Pussy', 'Filled Ass', 'Filled After', 'Cultural Positions', 'Stroke Styles', 'Position Mix', 'Oral & Tit Mix', 'Fantasy Penetration', 'Clench Inside', 'Clench After', 'Limb Rubbing', 'Limb After', 'Hug Sex', 'Hug Rubbing', 'Hug After', 'After Birth', 'Back Together', 'Family Ties'];
   const lesNo = e => (e.tags || []).some(t => LES_NO_TAG.includes(String(t).toLocaleLowerCase('tr'))) || LES_NO_RE.test(e.title || '') || LES_NO_CAT.includes(catOfEv(e).label);
   // 🎬 sahne cinsiyete göre: kadın hesapta penisli olay (lesNo) içeren sahne, erkek hesapta lezbiyen olay içeren sahne gizli.
   // Sonuç hesap cinsiyeti + olay sayısına göre önbellekte; scenes.js sceneGroups da Stories.sceneHide ile süzer
@@ -29090,7 +29298,18 @@
     'filled pussy': 'İçi önceki yükle dolu, sevişme sürüyor: her girişte taşan sıcaklık, ıslak sesler, karnında hafif bir dolgunluk.',
     'filled ass': 'Arkası önceki yükle dolu, sevişme sürüyor: kayganlık, karın gurultusu, hiçbir damla kaçmasın diye sıkılan kalça.',
     'filled after': 'Dolu kaldıktan sonra: tıpayla gün boyu taşımak, çömelip boşaltmak, ayna karşısında izletmek, sabah hâlâ sızmak.',
-    'cultural positions': 'Kültürlere özgü pozisyonlar: Kama Sutra, Edo\'nun 48 pozu, Taocu metinler, Ovidius, Kokulu Bahçe ve Mısır papirüsü. 📜 olanlar kaynakta gerçekten var, ✨ olanlar esinli kurgu.'
+    'cultural positions': 'Kültürlere özgü pozisyonlar: Kama Sutra, Edo\'nun 48 pozu, Taocu metinler, Ovidius, Kokulu Bahçe ve Mısır papirüsü. 📜 olanlar kaynakta gerçekten var, ✨ olanlar esinli kurgu.',
+    'stroke styles': 'Vuruşun kendisi: tamamen çıkıp girmek, sadece zonklamak, kalçayı döndürmek, sayarak durmak, açıyı aramak ya da hiç vurmadan sürtünmek.',
+    'position mix': 'Yeni açılar ve geçişler: yukarı kaymış misyoner, yataktan sarkan baş, makas, kaşıkta anal, delik değiştirme ve oyuncakla çift doluluk.',
+    'oral & tit mix': 'Ağız ve göğüslerin çeşitlemeleri: boğazda tutmak, yanağı şişirmek, mırıldanmak, ağızda ısıtmak; göğüs altından girmek, göğüslerin arasından ağza almak.',
+    'fantasy penetration': 'Gerçek dışı ve oyunbaz girişler: diz arkası, saç topuzu, çorap deliği, göbek, dirsek, jöle beden, kıvrılan oyuncak, büyüyle büyümek ve düğüm.',
+    'clench inside': 'O içindeyken kaslarını bilerek kullanır: tek bir sıkma, dalga, kalp atışı, sayarak sıkma, düello; önüyle ya da arkasıyla.',
+    'clench after': 'Boşaldıktan sonra sıkma: seni içinde tutmak, gülerek dışarı itmek ya da hiçbir şey taşmasın diye mühürlemek.',
+    'limb rubbing': 'Giriş yok, bedeninin başka yerleri seni sarar: avuçlar, bilek, kürek kemikleri, köprücük çukuru, boyun kıvrımı, kasık çizgisi, topuklar ya da baldırlar.',
+    'limb after': 'Uzuvlarla sürtmeden sonra: dokunulan her yeri sayarak yıkamak, sırta losyon, en sevilen yeri seçmek.',
+    'hug sex': 'Sarılırken içindesin: koala gibi asılı, göğüs göğüse, kilitli kollarla, slow dansta ya da kapıda karşılarken.',
+    'hug rubbing': 'Sarılma seni aranızda sıkıştırır: iki karnın, göğüslerinin ya da uyluklarının arasında; giriş yok.',
+    'hug after': 'Sarılmadan ayrılamamak: beş dakika daha, yapışan karınlar, sarılma sayımı, sarılı uyuyakalmak.'
   };
   const EV_TELL_TAG = {
     vajinal: 'Önden, vajinal bir an: korunmanız neyse tepkisi ona göre şekillenir; içine bitersen hamilelik zarı da atılır.',
@@ -29113,6 +29332,8 @@
     ayak: 'Ayaklarıyla: tabanları, parmakları ya da bilekleri bu anın merkezinde.', sütyen: 'Sütyeniyle: kapları, askıları ya da kopçası bu anın parçası.', külot: 'Külotuyla: çekilen, indirilen ya da hiç çıkmayan bir külot.', mayo: 'Mayoyla: ıslak kumaş, bronz izleri ve havuz kokusu.', tayt: 'Taytla: tenine yapışık, gergin ve yırtılmaya hazır.', kucak: 'Kucağında: sen oturuyorsun, tempoyu onun kalçası belirliyor.',lateks: 'Lateks ya da deri: parlak, sıkı ve her harekette gıcırdayan.',
     kök: 'Sonuna kadar: dibe kadar girip orada kalmak.', gözyaşı: 'Zevkten dolan gözler: acıdan değil, taşmaktan.', inilti: 'Sesini tutamıyor: inleme, çığlık ya da kısık bir ah.',
     içinde: 'Boşaldıktan sonra çıkmazsın: içinde kalırsın, o da bırakmaz.', cılız: 'Boşaldıktan sonra yarı sert: aşırı hassas, yavaş ve hâlâ içinde.', girerken: 'Daha girerken: ilk itişte ya da yarı yolda dayanamazsın.', vuruşla: 'Soktukça boşalma: her vuruşta bir dalga daha; ancak 💦 Cum yeterince doluysa.', dolu: 'Dölle dolu: vajinası ya da bağırsağı önceki yüklerle dolmuş, her hareket bunu hissettirir.',
+    vuruş: 'Vuruşun biçimi: hız, derinlik ya da açı bu anın konusu.', daralt: 'İçeriden sıkar: kaslarıyla seni sıkar, sağar ya da bırakmaz.', fantezi: 'Gerçek dışı bir fantezi: oyunbaz, büyülü ya da anime havasında.',
+    uzuv: 'Bir uzvun ya da kıvrımın arasında sürtünme: giriş yok, hamilelik ihtimali yok.', kol: 'Kollarıyla: ön kolu, üst kolu ya da kürek kemikleri.', kıvrım: 'Bir kıvrımda: kasık çizgisi, kucağın kıvrımı ya da topuklarının üstü.', sarılma: 'Sarılarak: sarılmanın kendisi bu anın merkezi.',
     yağ: 'Yağlı: her şey kayar, hiçbir yer tutulmaz.', ısı: 'Sıcak ve soğuk: buz ya da mum damlası tenine değer.', ayna: 'Ayna karşısında: ikiniz de kendinizi izlersiniz.',
     gözlük: 'Gözlüğü takılı kalır.', naylon: 'Çoraplı: naylonun dokusu her şeyi değiştirir.', hakimiyet: 'Güç ve boy farkı: biri öbürünü taşır, oturur ya da yukarıdan izler.',
     uyku: 'O uyurken: önceden izin verdiyse ve gece 23:00–07:00 arasıysa; uyku derinliği 😴 3\'ten 0\'a iner, uyanınca kuralı geçerli.',
@@ -29727,6 +29948,32 @@
     { g: 'ozel', id: 'ikitur', icon: '🌙', name: 'Uzun gece (iki tur)', desc: 'Birinci tur, sarılma ve su molası, ikinci tur. İkinci turda 💦 Cum düşük olur; ikinci boşalma daha az ama daha uzun sürer.', seq: ['Kissing', 'Front Hugging', 'Cunnilingus', 'Blowjob', 'Condom', 'Missionary', 'Cowgirl', 'Doggy', 'Standing', 'Full Nelson', 'Missionary', 'Back Hugging', 'Water', 'Kissing', 'Lap Kissing', 'Facesitting', 'Cowgirl', 'Lotus', 'Spooning', 'Back Hugging'], tip: 'İki tur arasına ☀️ Sabah seksi\'ni koyarsan Cum toparlanmış olur.' }
   ];
   const SEANS_ALL = [...SEANS_TYPES, ...SEANS_MORE];
+  /* 💞 Seanslar (v1217): Seans Kitabı'nın her türü / örneği sohbette oynanan uzun sahne. id 'sn-<tür>'; açılış = sıranın ilk olayı,
+   * adımlar = gerisi (tekrarsız, olmayan olay atlanır), serbest sıra, %70'i yeter (en az 3), varsa ilk uyan bitiş 🏁, ttl 6.
+   * scenesOk'ta yok: kendiliğinden açılmaz. 📜 Olay → 🎬 Sahneler → 💞 Seanslar ya da CarmenEvents ▶ ile seansGo; açılış yazılınca actStep başlatır */
+  const SN_GROUPS = [['tur', '💞', 'Temel türler'], ['ev', '🏠', 'Evde'], ['disari', '🗺️', 'Dışarıda'], ['rol', '🎭', 'Rollü'], ['oyun', '🔗', 'Oyun ve kontrol'], ['ozel', '💫', 'Özel']];
+  const SN_FX = { tur: [['şehvet', 14], ['samimiyet', 3], ['aşk', 2]], ev: [['şehvet', 14], ['samimiyet', 4], ['aşk', 2]], disari: [['şehvet', 16], ['uyarılma', 8], ['samimiyet', 2]],
+    rol: [['şehvet', 14], ['güven', 2], ['samimiyet', 2]], oyun: [['güven', 4], ['şehvet', 12], ['aşk', 2]], ozel: [['şehvet', 14], ['aşk', 3], ['samimiyet', 3]] };
+  let snMemo = null, snMemoN = -1, snGo = null;
+  function seansAll() {
+    const n = allEvents().length;
+    if (snMemo && snMemoN === n) return snMemo;
+    const low = s => String(s || '').toLocaleLowerCase('tr');
+    snMemo = SEANS_ALL.map(t => {
+      const g = t.g || 'tur', seq = t.seq.filter(x => evByT(x)), open = seq[0] || '', seen = new Set([low(open)]);
+      const steps = seq.slice(1).filter(x => !seen.has(low(x)) && seen.add(low(x)));
+      return { id: 'sn-' + t.id, seans: 1, t, g, icon: t.icon, name: t.name, tag: '', mode: 'free', need: Math.min(steps.length, Math.max(3, Math.ceil(steps.length * .7))), ttl: 6,
+        open, steps, fin: (t.fin || []).find(x => evByT(x)) || '', fx: SN_FX[g], fail: [['güven', -1]], desc: t.desc, end: 'Seans bitti; nefesiniz hâlâ birbirine karışıyor 💞' };
+    }).filter(s => s.open && s.steps.length);
+    snMemoN = n;
+    return snMemo;
+  }
+  const seansDef = id => String(id || '').startsWith('sn-') ? seansAll().find(s => s.id === id) || null : null;
+  // 💞🎬 bekleyen seans / sahne (1 saat): açıkça seçilen (seçici, ⚡ sahne çipi, ▶ dene) açılış olayı yazılınca actStep onu başlatır;
+  // aynı açılışı paylaşan sahnelerde seçilen kazanır (v1218)
+  const goDef = id => seansDef(id) || (Stories.SCENES || []).find(s => s.id === id) || null;
+  const seansGo = id => { snGo = goDef(id) ? { id, at: Date.now() } : null; };
+  const seansTake = t => { const s = snGo && Date.now() - snGo.at < 36e5 && goDef(snGo.id); if (!s || String(s.open).toLocaleLowerCase('tr') !== t) return null; snGo = null; return s; };
   // 📋 tür kartı (Seans Kitabı): sıra, açıklama, uyan bitişler, ipucu
   const snTypeBox = t => `<div class="sn-type"><div class="sn-th"><b>${t.icon} ${esc(t.name)}</b><button type="button" class="bk-try sn-open" data-bkseans="${t.id}">🧪 Tasarımcıda aç</button></div><p>${t.desc}</p><div class="sn-seq">${t.seq.map(x => `<span>${esc(x)}</span>`).join('<i>›</i>')}</div>${t.fin ? `<small>💦 Uyan bitişler: ${t.fin.map(esc).join(', ')}</small>` : ''}${t.tip ? `<small>💡 ${t.tip}</small>` : ''}</div>`;
   // 👣 adım adım: evalSeans'ın Zevk / Uyarılma tahminiyle her adımda ne olur
@@ -29764,7 +30011,8 @@
     'Hotdogging': { next: ['Doggy', 'Standing doggy', 'Spooning Anal'], why: 'zaten kalçalarının arasındasın' },
     'Reverse Titfuck': { next: ['69', 'Cowgirl', 'Titfuck'], why: 'ters üstünde; ağzına ya da kucağına bir kayma' }
   };
-  const evByT = t => allEvents().find(e => e.title.toLocaleLowerCase('tr') === String(t).toLocaleLowerCase('tr'));
+  // ⚡ başlık → olay: iş başına bir kez kurulan harita (eskiden her çağrıda bütün olaylar toLocaleLowerCase ile taranıyordu)
+  const evByT = t => evByLowTitle(lowTr(t));
   // tasarımcı taslağı: S().seansDraft { ch, evs: [olay id] }, kayıtlılar S().seansSaved
   const seansDraft = () => (S().seansDraft = S().seansDraft || { ch: (chars()[0] || {}).id || '', evs: [] });
   function seansLoad(typeId) { const t = SEANS_ALL.find(x => x.id === typeId); if (t) { seansDraft().evs = t.seq.map(evByT).filter(Boolean).map(e => e.id); save(); } }
@@ -31223,7 +31471,8 @@
             <ul><li>🔓 <b>Serbest</b> sahnede adımlar istediğin sırayla yapılır, belirtilen sayıda adım yeter.</li>
               <li>👣 <b>Sıralı</b> sahnede bütün adımlar sırayla yapılır; sıradaki adım şeritte çerçevelidir. Sırayı karıştırırsan sahne yine biter ama ödül yarıya iner.</li></ul></li>
           <li><b>Bitiş:</b> adımlar dolunca 🔒 bitiş çipi 🏁 olur. Bitişi yazınca sahne tamamlanır: 🎉 ödül olay kartında 📈 olarak görünür. Bitişi olmayan sahne son adımda tamamlanır.</li>
-          <li>Zincirle kendiliğinden gelen olaylar (ör. Zevk dolunca gelen bitiş) da adım ya da bitiş olarak sayılır.</li></ol>
+          <li>Zincirle kendiliğinden gelen olaylar (ör. Zevk dolunca gelen bitiş) da adım ya da bitiş olarak sayılır.</li>
+          <li>İki sahne aynı olayla açılıyorsa önce karakterin sitesinin sahnesi, sonra onunla en az tamamlanmış olan açılır. Seçiciden, ⚡ çipinden ya da aramadan seçtiğin sahne her zaman tam o sahnedir.</li></ol>
         <h4>💔 Sahneyi ne bozar</h4>
         <ul><li>📍 Başka bir mekâna geçmek.</li>
           <li>Başka mekânın olayı (ör. duş sahnesindeyken bir havuz pozisyonu). Mekân etiketi olmayan olaylar (mod, öpüşme, kıyafet…) bozmaz.</li>
@@ -34041,8 +34290,251 @@
       ['Tiebreaker', '🏆💦🍩 Beraberlik yok. Sen arkama boşalırsan Tiebreaker olur; skor bir sıfır.'],
       ["Before They're Back", '⏱️💦🍩 Yarım saatimiz var. Sen hızlıca arkama boşalırsan Before They\'re Back olur.'],
       ['Kitchen Counter Finish', '🍷💦🍩 Tezgâha eğilmişim. Sen arkama boşalırsan Kitchen Counter Finish olur.'],
-      ['Patient Lesson', '🌸💦🍩 Acele etmedin. Sen sabırla arkama boşalırsan Patient Lesson olur.']]]
+      ['Patient Lesson', '🌸💦🍩 Acele etmedin. Sen sabırla arkama boşalırsan Patient Lesson olur.']]],
+    // 🎚️ Pozisyon ve vuruş
+    ['🎚️', 'Pozisyon ve vuruş', 'teknik, açı, delik, fantezi', 'Bu bölümde önemli olan sadece pozisyon değil, nasıl yaptığın. Tamamen çıkıp girmek, hiç çıkmadan zonklamak, kalçanı döndürmek, sayarak durmak. Sonra yeni açılar: başım yataktan sarkar, bacaklarımız makas olur, bir önüme bir arkama girersin. Ağzım ve göğüslerimle yeni oyunlar, en sonda da gerçekte olmayacak fanteziler: dizimin arkası, topuzum, jöle bir beden, düğüm. Her birinin kendi bitişi var.', [
+      ['Full Length Strokes', 'Bacaklarımı açtım, acelem yok. Sen her seferinde tamamen çıkıp sonuna kadar girersen Full Length Strokes olur.'],
+      ['Pulse Only', 'Sonuna kadar içimdesin. Sen hiç çıkmadan sadece zonklarsan Pulse Only olur; ben de sıkarak cevap veririm.'],
+      ['Corkscrew Hips', 'Sırtüstü yatıyorum. Sen kalçanı döndürerek girersen her vuruş başka bir yere değer, Corkscrew Hips olur.'],
+      ['Stop And Count', 'İçimdesin ama durdun. Sen üç vuruş yapıp beşe kadar saydırırsan Stop And Count olur; dördü bulamam bile.'],
+      ['Rising Tempo', 'Yavaş başla dedim. Sen her on vuruşta biraz hızlanırsan Rising Tempo olur; sonunda sana tutunurum.'],
+      ['Angle Hunt', 'Kalçamın altında yastık var. Sen açıyı değiştire değiştire "orası" dediğim yeri bulursan Angle Hunt olur.'],
+      ['Edge And Hold', 'Ucun girişimde. Sen orada oyalanıp içeri girmezsen Edge And Hold olur; seni çekmeye çalışırım.'],
+      ['Her Pace', 'Üstüne çıktım. Sen hiç kıpırdamazsan açımı da hızımı da ben bulurum, Her Pace olur.'],
+      ['Grind Not Thrust', 'Sonuna kadar içimdesin. Sen vuruş yerine kasığını bana sürtersen Grind Not Thrust olur.'],
+      ['Coital Align', 'Altındayım, misyoner. Sen biraz yukarı kayıp sallanırsan hem içime hem dışıma sürtünür, Coital Align olur.'],
+      ['Folded Lean', 'Dizlerim göğsümde, ikisini yana yatırdım. Sen bu yan açıdan girersen Folded Lean olur.'],
+      ['Reverse Lean Back', 'Sırtım sana dönük, göğsüne yaslandım. Sen alttan girip boynumu öpersen Reverse Lean Back olur.'],
+      ['Kneeling Upright', 'Dizüstüyüm, sırtım göğsünde. Sen arkadan girip göğüslerimi tutarsan Kneeling Upright olur.'],
+      ['Waterfall', 'Başım yataktan aşağı sarkıyor, kalçam sende. Sen önümde durup girersen Waterfall olur; başım döner.'],
+      ['Crab Ride', 'Üstündeyim, ellerim arkada, kalçam havada. Sen altımda yatarsan sadece kalçamla inip kalkarım, Crab Ride olur.'],
+      ['Scissor Lock', 'Yan yattım, bacağımı bacaklarının arasına geçirdim. Sen bu makastan girersen Scissor Lock olur.'],
+      ['One Leg Standing', 'Ayaktayım, karşındayım. Sen bir bacağımı koluna alıp girersen One Leg Standing olur; parmak ucunda dengedeyim.'],
+      ['Ankle Hold V', 'Sırtüstü yattım. Sen ayak bileklerimden tutup bacaklarımı V açarsan Ankle Hold V olur; her şey görünür.'],
+      ['Lazy Doggy', 'Yüzüstüyüm, sadece kalçamı biraz kaldırdım. Sen arkadan girersen Lazy Doggy olur; ben hiç kıpırdamam.'],
+      ['Spoon Lift', 'Kaşık yatıyoruz. Sen üst bacağımı kaldırıp tutarsan açı derinleşir, Spoon Lift olur.'],
+      ['Cowgirl Lean Forward', 'Üstündeyim ama göğsüne kapandım. Sen altımda kalırsan sadece kalçamla hareket ederim, Cowgirl Lean Forward olur.'],
+      ['Reverse Ride Anal', 'Sırtım sana dönük, üstüne çömeldim. Sen kıpırdamazsan arkama kendi hızımda alırım, Reverse Ride Anal olur.'],
+      ['Spoon Anal', 'Yan yattım, arkam sana dönük. Sen arkadan çok yavaş girersen Spoon Anal olur; en rahatı bu.'],
+      ['Frog Anal', 'Yüzüstüyüm, dizlerimi kurbağa gibi açtım. Sen üstüme uzanıp arkama girersen Frog Anal olur.'],
+      ['Table Edge Anal', 'Masaya yüzüstü eğildim, ayaklarım havada. Sen arkadan girersen Table Edge Anal olur; kaçacak yerim yok.'],
+      ['Anal Pulse Only', 'Arkama sonuna kadar girdin. Sen hiç kıpırdamadan sadece zonklarsan Anal Pulse Only olur; ben halka halka sıkarım.'],
+      ['Kneeling Upright Anal', 'Dizüstüyüm, sırtım göğsünde. Sen arkama girip elini önüme koyarsan Kneeling Upright Anal olur; ikisi birden.'],
+      ['Switch Holes', 'Dört ayak üstündeyim, gözlerim kapalı. Sen bir önüme bir arkama girersen her seferinde tahmin ederim, Switch Holes olur.'],
+      ['Ass To Pussy Ask', 'Arkamdasın ama önüme de istiyorum. Sen önce temizlenip sonra öne geçersen Ass To Pussy Ask olur.'],
+      ['Gape Peek', 'Arkamdasın. Sen çıkıp bir an bakarsan açık kaldığımı görürsün, Gape Peek olur; sonra geri gir.'],
+      ['Toy Front You Back', 'Önümde vibratör çalışıyor. Sen arkama girersen titreşimi sen de hissedersin, Toy Front You Back olur.'],
+      ['You Front Plug Back', 'Arkamda tıpa var. Sen önüme girersen her vuruşta o da oynar, You Front Plug Back olur.'],
+      ['Dildo Mouth You Inside', 'Dildo ağzımda, dört ayak üstündeyim. Sen arkadan içime girersen iki kişi gibi olur, Dildo Mouth You Inside olur.'],
+      ['Finger Plus', 'İçimdesin. Sen yanına bir parmak daha eklersen Finger Plus olur; çok dolu.'],
+      ['Double Toy Then You', 'İki oyuncakla doluyum. Sen önümdekinin yerini alırsan Double Toy Then You olur.'],
+      ['Throat Hold', 'Önünde diz çöktüm, elim dizinde. Sen bekler kalırsan sonuna kadar alıp tutarım, Throat Hold olur.'],
+      ['Cheek Poke', 'Ağzıma alıyorum ama başımı yana çevirdim. Sen yanağımın içine itersen yanağım şişer, Cheek Poke olur.'],
+      ['Hum Job', 'Ağzımdasın. Sen kıpırdamazsan bir şarkı mırıldanırım, titreşimi baştan sona hissedersin; Hum Job olur.'],
+      ['Warm Tea Mouth', 'Çay ve buz hazır. Sen yatarsan bir sıcak bir soğuk ağzıma alırım, Warm Tea Mouth olur.'],
+      ['Lying Lazy Oral', 'Yüzüstü bacaklarının arasına uzandım. Sen yatarsan tembel tembel ağzıma alırım, Lying Lazy Oral olur.'],
+      ['Mouth Cockwarming', 'Başım kucağında, sen dizi izle. Sen kıpırdamazsan seni sadece ağzımda tutarım, Mouth Cockwarming olur.'],
+      ['Tongue Flat Slaps', 'Diz çöktüm, dilim dışarıda. Sen aletini dilime vurursan Tongue Flat Slaps olur.'],
+      ['Head Hanging Face', 'Başım yataktan sarkıyor, elim bacağında. Sen ayakta ritmi tutarsan Head Hanging Face olur; iki vurursam dur.'],
+      ['Sit On Face Facing Down', 'Yüzüne ters oturdum. Sen beni yalarsan öne eğilip seni ağzıma alırım, Sit On Face Facing Down olur.'],
+      ['Clit Suck Pulse', 'Bacaklarımı açtım. Sen klitorisimi emip bırakırsan Clit Suck Pulse olur; kalçam her seferinde kalkar.'],
+      ['Tongue Inside', 'Bacaklarım omuzlarında. Sen dilini sertleştirip içime sokarsan Tongue Inside olur.'],
+      ['Anal Tongue Dive', 'Yüzüstüyüm. Sen kalçamı açıp dilini arkama götürürsen Anal Tongue Dive olur; yastığı ısırırım.'],
+      ['Underboob Entry', 'Sutyenim üstümde, sırtüstü yattım. Sen göğüslerimin altından içeri itersen Underboob Entry olur.'],
+      ['Topless Lean Titfuck', 'Bacaklarının arasına diz çöktüm, öne eğildim. Sen sadece yatarsan göğüslerimle sararım, Topless Lean Titfuck olur.'],
+      ['Suck And Squeeze', 'Göğüslerimi bastırdım. Sen aralarında hareket edersen ucunu her seferinde ağzıma alırım, Suck And Squeeze olur.'],
+      ['Single Breast Wrap', 'Yan döndüm, tek göğsümü tuttum. Sen göğsümle göğüs kafesim arasına girersen Single Breast Wrap olur.'],
+      ['Nipple Tip Rub', 'Aletini elime aldım. Sen kıpırdamazsan ucunu meme ucumda daire daire gezdiririm, Nipple Tip Rub olur.'],
+      ['Oiled Slip Titfuck', 'Göğüslerim yağ içinde. Sen aralarına girersen tutmaya çalışırım ama kayarsın, Oiled Slip Titfuck olur.'],
+      ['Side Lying Titfuck', 'Yan yattım, göğüslerim üst üste. Sen aralarına kayarsan Side Lying Titfuck olur; dinlenirken bile.'],
+      ['Tit Slap Rhythm', 'Göğüslerimi tuttum, önündeyim. Sen beklersen önce göğüslerimle vururum, sonra arasına alırım; Tit Slap Rhythm olur.'],
+      ['Knee Pit Squeeze', 'Yan yattım, dizimi büktüm. Sen dizimin arkasına girersen sıkarım, Knee Pit Squeeze olur.'],
+      ['Hair Bun Fuck', 'Saçımı topuz yaptım, başımı eğdim. Sen topuzun içine girersen Hair Bun Fuck olur; dağıtma!'],
+      ['Stocking Hole', 'Çorabımda küçük bir delik açtım. Sen deliğin içinden uyluğuma girersen Stocking Hole olur.'],
+      ['Cheek To Cheek Glide', 'Gözlerimi kapattım. Sen beklersen seni yüzümde, bir yanağımdan öbürüne gezdiririm, Cheek To Cheek Glide olur.'],
+      ['Navel Tease', 'Sırtüstü yattım, karnım açıkta. Sen ucunu göbeğime dayayıp daire çizersen Navel Tease olur; gıdıklanırım!'],
+      ['Elbow Crease', 'Kolumu büktüm. Sen dirseğimin içine girersen sıkarım, Elbow Crease olur; gülme ama.'],
+      ['Jelly Body Enter', 'Jöle bedenim seni bekliyor. Sen istediğin yerden girersen teninin altında görünürsün, Jelly Body Enter olur.'],
+      ['Tentacle Toy', 'Yeni oyuncağımı açtım, kendi kendine kıvrılıyor. Sen ağzıma gelirsen o aşağıda iki yerime birden girer, Tentacle Toy olur.'],
+      ['Size Shift', 'Büyüyü fısıldadım. Sen içime girdikçe her vuruşta büyürsün, ben "dur" diyene kadar; Size Shift olur.'],
+      ['X-Ray Bulge', 'Elim karnımda. Sen sonuna kadar girersen seni karnımda görürüm, X-Ray Bulge olur.'],
+      ['Knot Toy', 'Kurt kulaklarım dikildi. Sen düğümden sonra içime girersen kilitleniriz, Knot Toy olur.'],
+      ['Pulse Finish', 'Sonuna kadar içimdesin, kıpırdamıyoruz. Sen sadece zonklayarak boşalırsan Pulse Finish olur; her atımı sayarım.'],
+      ['Full Pull Last Stroke', 'Her girişi sayıyorum. Sen son tam boy girişte içime boşalırsan Full Pull Last Stroke olur.'],
+      ['Stop Count Spill', 'Sayıyorum, dördü buldum. Sen "beş" derken dayanamayıp içime boşalırsan Stop Count Spill olur.'],
+      ['Grind Together', 'Sürtünüyoruz, bacaklarım titriyor. Sen benimle aynı anda gelirsen Grind Together olur.'],
+      ['Edge Spill', 'Ucun sadece girişimde. Sen orada boşalırsan dışarı taşar, Edge Spill olur.'],
+      ['Waterfall Finish', 'Başım hâlâ yataktan sarkıyor. Sen içime boşalırsan Waterfall Finish olur; sonra beni yukarı çek.'],
+      ['Scissor Squeeze Finish', 'Bacaklarımız iç içe. Sen gelirken bacaklarımı kilitlerim, içime boşalırsın; Scissor Squeeze Finish olur.'],
+      ['Spoon Anal Finish', 'Kaşık yatıyoruz, arkamdasın. Sen yavaşça arkama boşalırsan Spoon Anal Finish olur; sonra öyle uyuruz.'],
+      ['Switch Decision', 'Bir önümde bir arkamdasın. Sen son anda sorarsan ben seçerim, Switch Decision olur.'],
+      ['Throat Hold Finish', 'Sonuna kadar aldım, tutuyorum. Sen o an boşalırsan doğrudan boğazıma gider, Throat Hold Finish olur.'],
+      ['Cheek Fill', 'Ucun yanağımın içinde. Sen orada boşalırsan yanağım dolar, Cheek Fill olur; sonra seçerim.'],
+      ['Hum Finish', 'Mırıldanıyorum, nakarat geliyor. Sen o an ağzıma boşalırsan şarkı yarıda kalır, Hum Finish olur.'],
+      ['Tongue Catch', 'Dilim dışarıda, bekliyorum. Sen hepsini dilimin üstüne bırakırsan Tongue Catch olur.'],
+      ['Underboob Pool', 'Göğüslerimin altındasın. Sen orada boşalırsan kaldırınca bir göl çıkar, Underboob Pool olur.'],
+      ['Suck Last Drop', 'Göğüslerimin arasındasın, ucun ağzımda. Sen gelirsen ilkini göğsüme, kalanını ağzıma; Suck Last Drop olur.'],
+      ['Neck Necklace', 'Göğüslerimin arasındasın. Sen boynuma doğru boşalırsan inci kolye olur, Neck Necklace.'],
+      ['Toy And You Finish', 'Oyuncak hâlâ içimde çalışıyor. Sen ben titrerken içime boşalırsan Toy And You Finish olur.'],
+      ['Knee Pit Spill', 'Dizim kapalı, sen içindesin. Sen orada boşalırsan dizimi açınca baldırıma süzülür, Knee Pit Spill olur.'],
+      ['Bun Finish', 'Topuzumun içindesin. Sen orada boşalırsan saçımı açınca dağılır, Bun Finish olur.'],
+      ['Jelly Glow', 'İçimdesin, teninin altında görünüyorsun. Sen boşalırsan içimde parlar, Jelly Glow olur.'],
+      ['Locked Knot', 'Kilitliyiz. Sen içime boşalırsan ayrılamayız, Locked Knot olur; böyle beklersin.']]],
+    // 🔒 İçeride sıkma
+    ['🔒', 'İçeride sıkma', 'daralt, sağ, bırakma', 'Bu bölümde sen içimdeyken ben de çalışıyorum. Girer girmez bir kez sıkarım, çıkarken bırakmam, dipten girişe dalga yürütürüm, kalp atışı ritminde sıkarım. Bazen oyun: düello, sayma, tahmin, Kegel antrenmanı. Arkamla da yaparım: halka halka. Sonunda ya sıkıp çıkarırım ya da o kadar sıkı tutarım ki çekemezsin; bittikten sonra bile bırakmayabilirim.', [
+      ['First Clench', 'Bacaklarımı açtım. Sen içime girer girmez seni bir kez sıkarım, First Clench olur.'],
+      ['Clench On Pullout', 'İçimdesin. Sen her çıkışta seni sıkarım, girişte gevşerim; Clench On Pullout olur.'],
+      ['Clench On Push', 'İçimdesin. Sen her girişinde daralırım, beni yeniden açman gerekir; Clench On Push olur.'],
+      ['Wave Milk', 'Kıpırdama. Sen içimde dururken dipten girişe dalga dalga sıkarım, Wave Milk olur.'],
+      ['Pinpoint Squeeze', 'Yarıya kadar içimdesin. Sen orada kalırsan sadece ucunu sıkarım, Pinpoint Squeeze olur.'],
+      ['Heartbeat', 'Elini göğsüme koy. Sen kıpırdamazsan içimde kalp atışı gibi sıkarım, Heartbeat olur.'],
+      ['Count With Me', 'On\'a kadar sayıp her sayıda sıkacağım. Sen dayanırsan Count With Me olur; ödülün var.'],
+      ['Hold Still Order', 'Üstündeyim, ellerin altımda. Sen hiç kıpırdamazsan seni sadece içimle sağarım, Hold Still Order olur.'],
+      ['Tightest Angle', 'Yüzüstüyüm, bacaklarım kapalı. Sen arkadan girersen içten de sıkarım, Tightest Angle olur.'],
+      ['Clench While Riding', 'Üstündeyim. Sen altımda kalırsan inerken gevşer, kalkarken sıkarım; Clench While Riding olur.'],
+      ['Reverse Clench Ride', 'Sırtım sana dönük, üstündeyim. Sen beni izlersen her sıkışta kalçamın kasıldığını görürsün, Reverse Clench Ride olur.'],
+      ['Lazy Clench Spoon', 'Kaşık yatıyoruz, içimdesin. Sen kıpırdamazsan arada bir sıkarım, Lazy Clench Spoon olur.'],
+      ['Clench Kiss', 'Yüz yüzeyiz, içimdesin. Sen beni öptükçe içimle de sıkarım, Clench Kiss olur.'],
+      ['Orgasm Grip', 'Geliyorum, hissediyorum. Sen içimde kalırsan kasılırım, çıkamazsın; Orgasm Grip olur.'],
+      ['Tease Release', 'Seni kenara getiriyorum. Sen tam gelecekken gevşerim, sonra yeniden sıkarım; Tease Release olur.'],
+      ['Ring Pulse', 'Ucun arkamda, girişte. Sen orada kalırsan halkamı kısa kısa kasarım, Ring Pulse olur.'],
+      ['Deep Anal Clench', 'Sonuna kadar arkamdasın. Sen kıpırdamazsan nefesimi tutup bütün arkamla sıkarım, Deep Anal Clench olur.'],
+      ['Anal Wave', 'Arkamdasın. Sen kıpırdamazsan seni itip geri çekerim, dalga dalga; Anal Wave olur.'],
+      ['Prone Clench', 'Yüzüstü yattım, arkamdasın. Sen girdikçe kalçamı da sıkarım, Prone Clench olur; iki kat dar.'],
+      ['Anal Hold Still', 'Sırtım dönük, sonuna kadar arkamdasın. Sen kıpırdamazsan seni halka halka sağarım, Anal Hold Still olur.'],
+      ['Squeeze Duel', 'Düello: ben sıkarım, sen dayanırsın. Sen önce gelirsen kaybedersin; Squeeze Duel olur.'],
+      ['No Hands No Hips', 'Ellerimiz kenetli, yukarıda. Sen hiç kıpırdamazsan sadece içim çalışır, No Hands No Hips olur.'],
+      ['Guess The Count', 'Gözlerini kapat. Sen kaç kez sıktığımı bilirsen kazanırsın, bilemezsen ben; Guess The Count olur.'],
+      ['Training Session', 'Kegel antrenmanım var. Sen ağırlığım olursan setler halinde sıkarım, Training Session olur.'],
+      ['Squeezed Out', 'Sıkıyorum, sıkıyorum. Sen dayanamayıp içime boşalırsan Squeezed Out olur; sıkmayı bırakmam.'],
+      ['Wave Finish', 'Dalga dalga sıkıyorum. Sen dalga dibe vardığında boşalırsan Wave Finish olur; her dalga bir atım daha.'],
+      ['Locked Inside', 'Seni sımsıkı tutuyorum. Sen çekmek istesen de çekemezsin, içime boşalırsın; Locked Inside olur.'],
+      ['Heartbeat Finish', 'Kalp ritminde sıkıyorum. Sen bu ritimle atım atım boşalırsan Heartbeat Finish olur; ben sayarım.'],
+      ['Count Lost', 'Sayıyorum, her sayıda sıkıyorum. Sen on\'dan önce dayanamayıp boşalırsan Count Lost olur.'],
+      ['Duel Lost', 'Düellodayız. Sen benden önce gelirsen kaybedersin, seni son damlaya kadar sağarım; Duel Lost olur.'],
+      ['Orgasm Lock Finish', 'Geliyorum, kasılıyorum. Sen benimle birlikte içime boşalırsan Orgasm Lock Finish olur.'],
+      ['Anal Ring Finish', 'Halkamı sıkıyorum. Sen o an arkama boşalırsan girişim seni bırakmaz, Anal Ring Finish olur.'],
+      ['Tease Release Fail', 'Seni kenarda bekletiyorum. Sen ben gevşediğim an dayanamazsan Tease Release Fail olur.'],
+      ['Pinpoint Finish', 'Sadece ucunu sıkıyorum. Sen o an boşalırsan her şeyi o noktadan çekerim, Pinpoint Finish olur.'],
+      ['Last Drop Squeeze', 'Yeni boşaldın, hassassın. Sen içimde kalırsan bir kez daha sıkarım, Last Drop Squeeze olur.'],
+      ['Not Letting Go', 'Boşaldın ama gitme. Sen çekilmeye çalışırsan içimle tutarım, Not Letting Go olur.'],
+      ['Pushed Out', 'Yumuşuyorsun, hissediyorum. Sen içimde kalırsan seni sıkıp dışarı iterim, Pushed Out olur.'],
+      ['Clench Seal', 'İçime boşaldın. Sen çıktığın an sıkarım, hiçbir şey taşmaz; Clench Seal olur.']]],
+    // 🤲 Uzuv sürtme
+    ['🤲', 'Uzuv sürtme', 'avuç, boyun, kıvrım; çizimli', 'Bu bölümde içime girmiyorsun; bedenimin başka yerleri seni sarıyor. Avuçlarım, kenetli parmaklarım, bileğimin içi; kürek kemiklerimin arası, omurgamın oyuğu; köprücük çukurum, boynumla omzumun arası, çenemin altı; kasık çizgim, kucağımın kıvrımı, topuklarım, baldırlarım. Nerede olduğunu kolayca görebilesin diye her pozisyonun yanına basit bir çizim koydum: pembe nokta sürtmenin olduğu yer.', [
+      ['Prayer Palms', 'Avuçlarımı yağladım, dua eder gibi birleştirdim. Sen aralarında ileri geri hareket edersen Prayer Palms olur.'],
+      ['Finger Lace Tunnel', 'Parmaklarımı kenetledim, avuçlarımın arası tünel oldu. Sen içinde gidip gelirsen Finger Lace Tunnel olur.'],
+      ['Endless Tunnel', 'İki elim sırayla. Sen kıpırdamazsan bir elim bitince öteki başlar, Endless Tunnel olur.'],
+      ['Finger Ring', 'Parmaklarımla küçük bir halka yaptım. Sen kıpırdamazsan halkayı sadece başının altında oynatırım, Finger Ring olur.'],
+      ['Inner Wrist Glide', 'Elimi tersine çevirdim. Sen bileğimin içinde, nabzımın üstünde kayarsan Inner Wrist Glide olur.'],
+      ['Forearm Belly Press', 'Sırtüstüyüm, kolum karnımda. Sen kolumla karnımın arasına girersen Forearm Belly Press olur.'],
+      ['Shoulder Blade Squeeze', 'Yüzüstüyüm, kollarım geride. Sen kürek kemiklerimin arasına girersen sıkarım, Shoulder Blade Squeeze olur.'],
+      ['Spine Valley Arch', 'Öne eğildim, sırtım çukur. Sen omurgamın oyuğunda belimden enseme kayarsan Spine Valley Arch olur.'],
+      ['Upper Arm Hug', 'Yan yattım, kolumu hafif kaldırdım. Sen kolumla kaburgalarımın arasına girersen kolumu kapatırım, Upper Arm Hug olur.'],
+      ['Collarbone Hollow', 'Omzumu kaldırdım, köprücük çukurum derinleşti. Sen orada kısa vuruşlarla kalırsan Collarbone Hollow olur.'],
+      ['Neck Crook', 'Başımı omzuma eğdim. Sen boynumla omzumun arasına girersen seni orada tutarım, Neck Crook olur.'],
+      ['Chin Tuck', 'Diz çöktüm, çenemi göğsüme indirdim. Sen çenemin altına girersen bastırırım, Chin Tuck olur.'],
+      ['Jaw Line Glide', 'Başımı yana çevirdim. Sen kulağımdan çeneme, çene hattım boyunca kayarsan Jaw Line Glide olur; dudaklarım kapalı.'],
+      ['Hip Crease', 'Yan yattım, bacağımı hafif kaldırdım. Sen kasığımla uyluğumun arasındaki çizgide kayarsan Hip Crease olur; girmek yok.'],
+      ['Lap Fold', 'Oturdum, öne eğiliyorum. Sen önümde diz çöküp karnımla uyluklarımın kıvrımına girersen Lap Fold olur.'],
+      ['Heel Seat', 'Dizüstü, topuklarımın üstüne oturdum. Sen kalçamla topuklarımın arasına girersen ağırlığımla sıkarım, Heel Seat olur.'],
+      ['Calf Cross', 'Yüzüstüyüm, baldırlarım havada çapraz. Sen çaprazın arasına girersen bastırırım, Calf Cross olur.'],
+      ['Shin Press', 'Dizlerimi göğsüme çektim, bacaklarım bitişik. Sen baldırlarımın arasına girersen Shin Press olur.'],
+      ['Neck To Collarbone', 'Başım omzumda. Sen boynumdan köprücük çukuruma kayarsan Neck To Collarbone olur.'],
+      ['Palms To Lap', 'Avuçlarım yağlı, kucağım hazır. Sen avuçlarımdan kucağımın kıvrımına geçersen Palms To Lap olur.'],
+      ['Arm To Spine', 'Yan yatıyorum, kolum kapalı. Sen kolumdan sırtıma geçip omurgamda devam edersen Arm To Spine olur.'],
+      ['Whole Body Map', 'Bedenimde denemediğin yerler var. Sen bileğimden baldırıma her birinde birkaç vuruş yaparsan Whole Body Map olur.'],
+      ['Prayer Palms Finish', 'Avuçlarım birleşik. Sen aralarında boşalırsan kapatıp yakalarım, Prayer Palms Finish olur.'],
+      ['Tunnel End Finish', 'Ellerim durmuyor. Sen tünelin ucundan boşalırsan Tunnel End Finish olur.'],
+      ['Wrist Pulse Finish', 'Bileğimin içindesin, nabzım hızlanıyor. Sen o ritimde boşalırsan Wrist Pulse Finish olur.'],
+      ['Shoulder Blade Pool', 'Kürek kemiklerimi sıkıyorum. Sen aralarına boşalırsan birikir, Shoulder Blade Pool olur.'],
+      ['Spine Trail Finish', 'Sırtım çukur, omurgamdasın. Sen orada boşalırsan iz bel çukuruma akar, Spine Trail Finish olur.'],
+      ['Collarbone Cup', 'Köprücük çukurum derin. Sen orada boşalırsan dolar, omzumu indirince taşar; Collarbone Cup olur.'],
+      ['Neck Crook Finish', 'Başım omzumda, seni tutuyorum. Sen boynumun kıvrımında boşalırsan Neck Crook Finish olur.'],
+      ['Under Chin Finish', 'Çenem göğsümde. Sen çenemin altında boşalırsan çenemi kaldırınca boğazımdan akar, Under Chin Finish olur.'],
+      ['Hip Crease Finish', 'Kasık çizgimdesin, çok yakın. Sen orada boşalırsan uyluğuma süzülür, Hip Crease Finish olur.'],
+      ['Lap Fold Finish', 'Öne eğildim, kucağım kıvrık. Sen orada boşalırsan doğrulunca uyluklarıma iner, Lap Fold Finish olur.'],
+      ['Heel Seat Finish', 'Topuklarıma oturdum, seni sıkıyorum. Sen kalçamın altında boşalırsan kalkınca topuklarımda iz kalır, Heel Seat Finish olur.'],
+      ['Calf Cross Finish', 'Baldırlarım çapraz, seni sıkıyorum. Sen arada boşalırsan açınca dizlerimin arkasına akar, Calf Cross Finish olur.'],
+      ['Body Map Finish', 'Haritanın sonuna geldik. Sen benim seçtiğim son durakta boşalırsan Body Map Finish olur.'],
+      ['Wash Each Spot', 'Duştayım, köpüklü ellerim hazır. Sen beni izlersen dokunduğun her yeri sayarak yıkarım, Wash Each Spot olur.'],
+      ['Lotion Back', 'Yüzüstü yattım, losyon orada. Sen sırtıma ve kollarıma sürersen kurumuş izleri bulursun, Lotion Back olur.'],
+      ['New Favorite Spot', 'Başım göğsünde. Sen en sevdiğin yeri seçersen oraya yıldız çizerim, New Favorite Spot olur.']]],
+    // 🫂 Sarılarak
+    ['🫂', 'Sarılarak', 'içinde ya da aramızda', 'Bu bölümde her şey bir sarılmayla oluyor. Ya sarılırken içimdesin: sana koala gibi asılırım, göğüs göğüse kalbimi duyarsın, slow dans ederiz, kapıda seni karşılar ve bırakmam. Ya da sarılmam seni aramıza sıkıştırır: karnımızın, göğüslerimin ya da uyluklarımın arasında. Bittikten sonra da bırakmam; bir dakika daha, beş dakika daha.', [
+      ['Koala Hug Sex', 'Kollarım boynunda, bacaklarım belinde. Sen hiç kıpırdamazsan sarılmamı sıkıp gevşeterek hareket ederim, Koala Hug Sex olur.'],
+      ['Heartbeat Hug', 'Altındayım, göğüs göğüse. Sen bana sımsıkı sarılıp çok yavaş hareket edersen kalbimi duyarsın, Heartbeat Hug olur.'],
+      ['Pinned Arms Hug', 'Yüzüstüyüm. Sen arkama girip kollarımı göğsümde çaprazlayarak kilitlersen Pinned Arms Hug olur.'],
+      ['Neck Hug Doggy', 'Dört ayak üstündeyim. Sen arkadan girip sırtıma kapanarak boynuma sarılırsan Neck Hug Doggy olur.'],
+      ['Waist Lift Hug', 'Ayaktayım, sen arkamdasın. Sen belimden sarılıp beni hafifçe kaldırırsan Waist Lift Hug olur.'],
+      ['Tiptoe Hug', 'Ayaktayım, boyum yetmiyor. Sen beni sararken içime girersen parmak uçlarımda kalırım, Tiptoe Hug olur.'],
+      ['Rocking Hug', 'Kucağındayım, sallanan sandalyede. Sen sarılı kalırsan sandalyenin sallanması bizi oynatır, Rocking Hug olur.'],
+      ['Tangle Sideways', 'Yan yattık, her yerimiz birbirine dolandı. Sen bu düğümün içinde içime girersen Tangle Sideways olur.'],
+      ['Hug Clench', 'Sana sarılıyorum, içimdesin. Sen beni sararken her sıkışta içimle de sıkarım, Hug Clench olur.'],
+      ['Welcome Home Hug', 'Kapıda seni bekliyorum. Sen gelince boynuna atlarım; sarılmayı bozmadan içime girersen Welcome Home Hug olur.'],
+      ['Slow Dance Hug', 'Bir slow şarkı açtım. Sen benimle dans ederken eteğimi kaldırıp içime girersen Slow Dance Hug olur.'],
+      ['Over Shoulder Hug', 'Ayaktayım, arkamdasın. Sen kolunu omzumdan göğsüme çaprazlayıp arkama girersen Over Shoulder Hug olur.'],
+      ['Crying Laugh Hug', 'Gülmekten duramıyorum. Sen bana sarılıp yavaşça devam edersen kahkaham iniltiye döner, Crying Laugh Hug olur.'],
+      ['Belly Sandwich', 'Göğüs göğüse sarılıyoruz. Sen bana sımsıkı sarılırsan aletin karnımızın arasında sıkışır, Belly Sandwich olur.'],
+      ['Cleavage Hug', 'Boyum kısa, sana sarıldım. Sen dik durursan kendimi kaldırdıkça göğüslerimin arasına kayarsın, Cleavage Hug olur.'],
+      ['Standing Thigh Hug', 'Ayakta sarılıyoruz. Sen uyluklarımın arasına girersen bacaklarımı kapatıp sallanırım, Standing Thigh Hug olur.'],
+      ['Koala Rub', 'Sana koala gibi yapıştım ama külotum üstümde. Sen beni tutarsan kasığımı sana sürterim, Koala Rub olur.'],
+      ['Leg Wrap Rub', 'Yan yattık, bacağımı beline doladım. Sen kıpırdamazsan uyluğumla karnının arasında sürterim, Leg Wrap Rub olur.'],
+      ['Arm Hug Squeeze', 'Yan yattım, kolumu sana doladım. Sen kıpırdamazsan kolumla karnının arasında sıkıştırırım, Arm Hug Squeeze olur.'],
+      ['Back Hug Thigh Slide', 'Arkamdan sarıl, kollarını göğsümde kilitle. Sen arkadan uyluklarımın arasına girersen Back Hug Thigh Slide olur.'],
+      ['Hug From Above', 'Üstüne yüzüstü yattım. Sen altımda kalırsan bütün ağırlığımla sarılıp sadece kalçamı kıpırdatırım, Hug From Above olur.'],
+      ['Blanket Hug Rub', 'Battaniyenin altındayız, sarılıyoruz. Sen kıpırdamazsan aramızda kayarsın, Blanket Hug Rub olur.'],
+      ['Group Hug Squeeze', 'İkimiz birden sarılıyoruz. Sen aramızda kalırsan sırayla sıkarız, Group Hug Squeeze olur.'],
+      ['Hug Tighter Finish', 'Sana sarılıyorum. Sen "daha sıkı" dediğimde sımsıkı sarılıp içime boşalırsan Hug Tighter Finish olur.'],
+      ['Koala Finish', 'Sana koala gibi asılıyım. Sen içime boşalırsan inince uyluklarımdan süzülür, Koala Finish olur.'],
+      ['Heartbeat Finish Hug', 'Kalplerimiz aynı ritimde. Sen göğüs göğüse içime boşalırsan kalbinin hızlandığını duyarım, Heartbeat Finish Hug olur.'],
+      ['Pinned Arms Finish', 'Kollarım kilitli, arkamdasın. Sen arkama boşalırsan bıraktığın an dönüp sana sarılırım, Pinned Arms Finish olur.'],
+      ['Neck Hug Finish', 'Sırtıma kapandın, boynuma sarıldın. Sen içime boşalırsan yatağa yığılırız, Neck Hug Finish olur.'],
+      ['Slow Dance Finish', 'Şarkı bitiyor, hâlâ dans ediyoruz. Sen son notada içime boşalırsan Slow Dance Finish olur.'],
+      ['Welcome Home Finish', 'Montun üstünde, kanepedeyiz. Sen içime boşalırsan Welcome Home Finish olur; hoş geldin!'],
+      ['Between Bellies', 'Sımsıkı sarılıyoruz. Sen aramızda boşalırsan ayrılınca karınlarımız yapışır, Between Bellies olur.'],
+      ['Cleavage Hug Finish', 'Sana sarıldım, göğüslerimin arasındasın. Sen orada boşalırsan çeneme sıçrar, Cleavage Hug Finish olur.'],
+      ['Thigh Hug Finish', 'Ayakta sarılıyoruz, uyluklarımın arasındasın. Sen orada boşalırsan dizlerime akar, Thigh Hug Finish olur.'],
+      ['Koala Rub Finish', 'Sana koala gibi sürtünüyorum. Sen külotumun üstüne boşalırsan Koala Rub Finish olur.'],
+      ['Hug From Above Finish', 'Üstündeyim, bütün ağırlığımla. Sen aramızda boşalırsan kalkmam, Hug From Above Finish olur.'],
+      ['Never Let Go', 'Bitti ama bırakmıyorum. Sen bir dakika daha sarılı kalırsan Never Let Go olur.'],
+      ['Five More Minutes', 'Gözlerim kapalı, sarılıyoruz. Sen kalkmaya kalkarsan "beş dakika daha" derim, Five More Minutes olur.'],
+      ['Sticky Unhug', 'Karınlarımız yapıştı. Sen ayrılmaya çalışırsan santim santim ayrılırız, Sticky Unhug olur.'],
+      ['Hug Count', 'Başım göğsünde, sayıyorum. Sen bugün kaç kere sarıldığını hatırlarsan her birine bir öpücük, Hug Count olur.'],
+      ['Fall Asleep Hugging', 'Sarılıyoruz, gözlerim kapanıyor. Sen bırakmazsan sarılı uyuyakalırız, Fall Asleep Hugging olur.']]]
   ];
+  // 🖼️ Tur 46 uzuv sürtme: basit pozisyon çizimleri (h baş · l uzuv · z sürtünme yeri, viewBox 160×100); bitişler pozisyonunun çizimini kullanır
+  const LIMB_FIG = {
+    'Prayer Palms': ['h 70 14|l 70 22 70 56|l 70 56 70 78 46 80|l 70 30 82 40 92 32|z 92 32 6', 'Dizüstü dik, avuçlar göğsünün önünde birleşik'],
+    'Finger Lace Tunnel': ['h 70 14|l 70 22 70 56|l 70 56 70 78 46 80|l 70 30 82 40 92 33|z 92 33 7', 'Parmaklar kenetli, avuç içleri tünel'],
+    'Endless Tunnel': ['h 70 14|l 70 22 70 56|l 70 56 70 78 46 80|l 70 30 84 42 94 30|l 70 32 84 46 94 40|z 94 35 8', 'İki el üst üste, sırayla'],
+    'Finger Ring': ['h 70 14|l 70 22 70 56|l 70 56 70 78 46 80|l 70 30 82 42 94 38|z 95 38 4', 'Başparmak ve işaret parmağından halka'],
+    'Inner Wrist Glide': ['h 70 14|l 70 22 70 56|l 70 56 70 78 46 80|l 70 30 86 44 104 44|z 96 44 5', 'Kol öne uzanmış, bileğin içi yukarıda'],
+    'Forearm Belly Press': ['h 16 60|l 24 62 82 62|l 82 62 142 62|l 82 64 142 70|l 30 58 46 50 70 56|z 62 57 6', 'Sırtüstü, ön kol karnın üstünde'],
+    'Shoulder Blade Squeeze': ['h 16 64|l 24 64 82 64|l 82 64 142 66|l 32 60 50 44 72 50|z 38 58 6', 'Yüzüstü, kollar geride, kürek kemikleri sıkılı'],
+    'Spine Valley Arch': ['h 22 62|l 30 62 58 54 92 42|l 92 42 98 80 130 82|l 34 62 38 82|z 52 54 6|z 76 47 6', 'Dizüstü öne eğik, sırt çukur'],
+    'Upper Arm Hug': ['h 16 56|l 24 58 82 60|l 82 60 142 62|l 82 62 140 68|l 30 54 62 58|z 46 58 6', 'Yan yatar, üst kol gövdeye kapalı'],
+    'Collarbone Hollow': ['h 16 60|l 24 62 82 62|l 82 62 142 62|l 82 64 142 70|l 30 60 70 66|z 30 56 5', 'Sırtüstü, omuz hafif kalkık'],
+    'Neck Crook': ['h 78 18|l 70 26 70 60|l 70 60 100 60 102 86|l 70 32 82 50|z 75 25 5', 'Oturur, baş omza eğik'],
+    'Chin Tuck': ['h 76 20|l 70 26 70 56|l 70 56 70 78 46 80|l 70 32 80 46|z 76 28 5', 'Dizüstü, çene göğse bastırılmış'],
+    'Jaw Line Glide': ['h 70 14|l 70 22 70 56|l 70 56 70 78 46 80|l 70 30 78 48|z 75 19 4', 'Baş yana dönük, çene hattı'],
+    'Hip Crease': ['h 16 56|l 24 58 82 60|l 82 62 142 66|l 82 58 140 48|l 30 54 60 60|z 84 60 6', 'Yan yatar, üst bacak hafif kalkık'],
+    'Lap Fold': ['h 94 28|l 88 36 72 64|l 72 64 106 64 108 92|l 86 40 102 54|z 80 62 7', 'Oturur, öne eğik; karın ile uyluk kıvrımı'],
+    'Heel Seat': ['h 66 26|l 66 34 66 66|l 66 66 98 70|l 98 74 66 76|l 66 40 80 56|z 66 72 6', 'Dizüstü, topuklarının üstüne oturmuş'],
+    'Calf Cross': ['h 16 64|l 24 64 82 64|l 82 64 112 66 128 36|l 82 66 112 68 120 34|l 30 64 52 72|z 120 50 7', 'Yüzüstü, dizler bükük, baldırlar çapraz'],
+    'Shin Press': ['h 16 60|l 24 62 74 62|l 74 62 64 36 88 24|l 74 64 68 38 92 28|z 72 34 6', 'Sırtüstü, dizler göğüste, bacaklar bitişik'],
+    'Neck To Collarbone': ['h 78 18|l 70 26 70 60|l 70 60 100 60 102 86|l 70 32 82 50|z 75 25 5|z 71 32 5', 'Boyun kıvrımından köprücük çukuruna'],
+    'Palms To Lap': ['h 94 28|l 88 36 72 64|l 72 64 106 64 108 92|l 86 40 102 54|z 102 54 5|z 80 62 7', 'Önce avuçlar, sonra kucak kıvrımı'],
+    'Arm To Spine': ['h 16 64|l 24 64 82 64|l 82 64 142 66|l 30 62 60 68|z 44 64 5|z 64 60 5', 'Kol arasından sırta, omurga boyunca'],
+    'Whole Body Map': ['h 80 12|l 80 20 80 56|l 80 56 74 94|l 80 56 86 94|l 80 26 70 50|l 80 26 90 50|z 70 50 4|z 80 21 4|z 83 58 4|z 75 80 4', 'Bilek, boyun, kasık çizgisi, baldır']
+  };
+  const LIMB_FIG_FIN = { 'Prayer Palms Finish': 'Prayer Palms', 'Tunnel End Finish': 'Endless Tunnel', 'Wrist Pulse Finish': 'Inner Wrist Glide', 'Shoulder Blade Pool': 'Shoulder Blade Squeeze', 'Spine Trail Finish': 'Spine Valley Arch', 'Collarbone Cup': 'Collarbone Hollow', 'Neck Crook Finish': 'Neck Crook', 'Under Chin Finish': 'Chin Tuck', 'Hip Crease Finish': 'Hip Crease', 'Lap Fold Finish': 'Lap Fold', 'Heel Seat Finish': 'Heel Seat', 'Calf Cross Finish': 'Calf Cross', 'Body Map Finish': 'Whole Body Map' };
+  function limbFigOf(ev) {
+    const f = LIMB_FIG[ev] || LIMB_FIG[LIMB_FIG_FIN[ev]]; if (!f) return '';
+    const parts = f[0].split('|').map(s => s.trim().split(' ')), body = 'stroke="currentColor" stroke-opacity=".55" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"';
+    const svg = parts.map(([k, ...n]) => k === 'h' ? `<circle cx="${n[0]}" cy="${n[1]}" r="7" fill="currentColor" fill-opacity=".55"/>` : k === 'l' ? `<polyline points="${n.join(' ')}" ${body}/>` : `<circle cx="${n[0]}" cy="${n[1]}" r="${+n[2] + 4}" fill="#ff3d7f" fill-opacity=".25"/><circle cx="${n[0]}" cy="${n[1]}" r="${n[2]}" fill="#ff3d7f" fill-opacity=".9"/>`).join('');
+    return `<figure style="margin:8px 0;text-align:center"><svg viewBox="0 0 160 100" width="220" style="max-width:100%;height:auto" role="img" aria-label="${esc(f[1])}">${svg}</svg><figcaption style="font-size:.8rem;opacity:.75">${esc(f[1])} · 🔴 sürtünme yeri</figcaption></figure>`;
+  }
   BOOKS.push({ id: 'olay', icon: '🎬', title: 'Olay Kitabı', sub: 'Lia her olayı sahneleyerek anlatır', chips: [`${OLAY_BOOK.reduce((n, c) => n + c[4].length, 0)} olay`, '💁‍♀️ Lia anlatıyor'], chapters: [
     { icon: '🎬', title: 'Olay Kitabı nasıl okunur', sub: 'Lia sahneler, sen yaparsın', body: `
       <p>Bu kitapta her olayı <b>Lia</b> kendisi sahneliyor: önce nasıl durduğunu anlatır, sonra senin ne yaparsan o olayın olacağını söyler.</p>
@@ -34050,7 +34542,7 @@
       <p>Her bölüm bir olay grubu: ısınma, onu ısıtma, dokunuş, pozisyonlar, tempo, fanteziler, roller, femdom, Halloween, korunma, kondomlu sürtünme, duş, sauna, ıslak oyunlar, bull, tutma, bitiş, soyunma, mekana özel anlar, masaj salonu, kıyafetli sürtme, sıkıştırma, sağma, engelleme, gür fışkırma ve biriktirme. Sırayla okursan bir seansın akışını da öğrenmiş olursun.</p>
       <p>Bir olayın nasıl tetiklendiğini ve sonuçlarını aramak için: 🧭 CarmenGuide → <a href="#/olaylar">📜 Olay rehberi</a>.</p>` },
     ...OLAY_BOOK.map(([icon, title, sub, intro, evs]) => ({ icon, title, sub, get body() { return `<p>${esc(intro)}</p>
-      ${evs.map(([ev, say, d0]) => [ev, say, evStoryOnly(ev) || d0 || evDescOf(ev)]).map(([ev, say, d]) => bkChat(bkEv(ev), [['her', `💁‍♀️ ${esc(say)}`], ['ev', `#${bkEv(ev)}`], ...(d ? [['note', esc(d)]] : [])])).join('')}`; } })),
+      ${evs.map(([ev, say, d0]) => [ev, say, evStoryOnly(ev) || d0 || evDescOf(ev)]).map(([ev, say, d]) => limbFigOf(ev) + bkChat(bkEv(ev), [['her', `💁‍♀️ ${esc(say)}`], ['ev', `#${bkEv(ev)}`], ...(d ? [['note', esc(d)]] : [])])).join('')}`; } })),
     // 📖 uzun anlatımlar (system.js story): canlı sayaç + kategori başına örnek
     { icon: '📖', title: 'Daha iyi anlatımlar', sub: 'her olay küçük bir sahne', get body() {
       const all = allEvents(), st = all.filter(e => e.story), cs = moCats().map(c => ({ c, n: all.filter(e => e.cat === c.id).length, s: all.filter(e => e.cat === c.id && e.story) })).filter(x => x.s.length);
@@ -34387,6 +34879,48 @@
         <p>😈 <b>Succubus laneti</b>: Succubus'la (Gothic.com türü ya da süren Succubus rolü) aynı sohbette 3. boşalmandan itibaren enerjin fazla emilir; boşalmaya kendiliğinden <b>Succubus Curse</b> eklenir ve son boşalman kırmızı gelir. Flörtöz ve sayko kızların kendi lanet cevapları var.</p>
         <p>🫠 <b>Slime büyümesi</b>: Slime Girl'le (Gothic.com türü ya da süren Slime Girl rolü) aynı sohbette 3. boşalmandan itibaren boşalmaya kendiliğinden <b>Slime Growth</b> eklenir: seni fazla emer, 🍒 Boob Size ve 🍑 Butt Size bir beden büyür (en büyükteyse büyüyemez) ve yeni bedenini söyler. Flörtöz ve utangaç kızların kendi cevapları var.</p>`;
     } }] });
+  // 💞 Seans Kitabı (v1219): kitaptaki seanslar sohbette (seansAll) · sona eklenir, eski bölüm numaraları kaymaz
+  BOOKS.find(b => b.id === 'seans').chapters.push({ icon: '▶️', title: 'Sohbette seans', sub: 'kitaptaki her seans artık oynanır', get body() {
+    const SN = seansAll(), gName = g => (x => `${x[1]} ${esc(x[2])}`)(SN_GROUPS.find(y => y[0] === g) || SN_GROUPS[0]);
+    return `<p>Bu kitaptaki her tür ve örnek sohbette bir seans olarak oynanır. Seans sahnenin uzunudur: bir açılış olayı, ısınmadan kapanışa 8–20 adım ve çoğunda bir bitiş.</p>
+      <h4>▶️ Nasıl başlar</h4>
+      <ul><li>Kendiliğinden açılmaz, sen seçersin.</li>
+        <li>Seçicide 🎬 sekmesini aç ve 💞 satırından seç.</li>
+        <li>⚡ Kısayollar'da 💞 çipine dokun: o an olabilecek bir seans önerilir.</li>
+        <li># ile ara ya da yazarken seansın adını yaz.</li>
+        <li>CarmenEvents → 💞 Seanslar'da bir seansın sayfasını açıp ▶ Sohbette başlat'a dokun.</li></ul>
+      <p>Seçtikten sonra açılış olayı yazılınca seans başlar ve ⚡ şeridinde 💞 sayacı çıkar.</p>
+      <h4>👣 Nasıl ilerler</h4>
+      <ul><li>Açılış, kitaptaki sıranın ilk olayıdır; adımlar sıranın geri kalanı. Tekrar eden olay bir kez sayılır.</li>
+        <li>Adımların %70'i yeter ve sıra serbesttir; ama kitaptaki sıra en akıcısıdır.</li>
+        <li>Adımlar dolunca 🏁 bitiş açılır: kartta 💦 ile yazan ilk bitiş. Bitişi olmayan seans son adımla tamamlanır.</li>
+        <li>Mekân değişirse, başka mekânın olayını yazarsan ya da 6 olay boyunca seansa dönmezsen seans bozulur.</li></ul>
+      <h4>🎉 Ödül</h4>
+      <table class="bk-t"><tr><th>Bölüm</th><th>Ödül</th></tr>${SN_GROUPS.map(([g]) => `<tr><td>${gName(g)}</td><td>${esc(memFx({ fx: SN_FX[g] }))}</td></tr>`).join('')}</table>
+      <h4>📋 Seanslar · ${SN.length}</h4>
+      <table class="bk-t"><tr><th>Seans</th><th>Açılış</th><th>Adım</th><th>Bitiş</th></tr>${SN.map(s => `<tr><td>${s.icon} <a href="#/events/seans-${esc(s.t.id)}">${esc(s.name)}</a></td><td>${esc(s.open)}</td><td>${s.need} / ${s.steps.length}</td><td>${s.fin ? '🏁 ' + esc(s.fin) : '—'}</td></tr>`).join('')}</table>
+      <p>Çiplerde 💞 seans çift çizgili ve kalın çerçeveyle görünür; 🎬 sahne kesikli ve köşeli, 📜 olay düz haptır.</p>`;
+  } });
+  // 🧩 Olay Hafızası Kitabı (v1219): olay / sahne / seans farkı, aynı açılış, 🆕 rozeti, Tur 43–47 sahneleri
+  BOOKS.find(b => b.id === 'hafiza').chapters.push({ icon: '🧩', title: 'Olay, sahne, seans', sub: 'üçü nasıl ayrılır, aynı açılış ne olur', get body() {
+    const SC = Stories.SCENES || [], cat = id => (Stories.SCENE_CATS || []).find(c => c.id === id);
+    const NEW = { uzuv: ['kolarasi', 'cenehatti', 'kugununboynu', 'avucavuca', 'kasikcizgisi', 'kucakkati', 'haritatemiz'], sarilma: ['boynunasaril', 'gulmekrizi', 'hicbirakma', 'gogsunegomul', 'ayaktauyluk', 'koalaparmak', 'yukaridan', 'belinkaldir', 'birakmadanonce'],
+      vurus: ['sadecenabiz', 'saybakalim', 'kenardadur', 'selale', 'makaskilidi', 'kasiktaanal', 'masakenari', 'oyuncakvesen', 'sicakcay', 'basasagi', 'mirildan', 'dilinoyunu', 'memealti', 'incikolye', 'topuz', 'jolebeden', 'dugum'], daralt: ['tamnokta', 'iceridekilitli', 'tembelkasik', 'kegel', 'halkadalgasi', 'birakmiyorum'] };
+    return `<p>Sohbette üç büyüklükte şey yazarsın: tek bir olay, birkaç olaylık bir sahne ve bütün bir geceyi anlatan bir seans. Üçü de olay seçicide, ⚡ Kısayollar'da ve aramada çıkar; çerçevelerinden ayırt edilir.</p>
+      <div class="ch-legend"><span>📜 Olay</span><span class="ch-sc">🎬 Sahne</span><span class="ch-sn">💞 Seans</span></div>
+      <table class="bk-t"><tr><th>Tür</th><th>Nedir</th><th>Nasıl başlar</th><th>Görünüm</th></tr>
+        <tr><td>📜 Olay</td><td>Tek bir an: bir pozisyon, bir dokunuş, bir bitiş.</td><td>Seçince ya da yazınca hemen olur.</td><td>Düz hap çip.</td></tr>
+        <tr><td>🎬 Sahne</td><td>Bir açılış, bir ile beş adım ve çoğunda bir bitiş.</td><td>Açılış olayını yazınca kendiliğinden başlar.</td><td>Kesikli, köşeli çerçeve.</td></tr>
+        <tr><td>💞 Seans</td><td>Isınmadan kapanışa 8–20 adımlık bütün bir gece.</td><td>Kendiliğinden açılmaz, seçilir.</td><td>Çift çizgili, kalın çerçeve.</td></tr></table>
+      <h4>👯 Aynı açılışlı sahneler</h4>
+      <p>Bazı sahneler aynı olayla açılır. O olay yazılınca önce karakterin geldiği sitenin sahnesi, sonra onunla en az tamamlanmış olan açılır; eşitse listede önce gelen. Seçiciden, ⚡ çipinden, aramadan ya da CarmenEvents'ten seçtiğin sahne ise her zaman tam o sahne olarak açılır. Karakterin teklif ettiği sahne ve bölümün sıradaki sahnesi de öyle.</p>
+      <h4>🆕 Yeni olaylar</h4>
+      <p>Son 30 günde gelen ve henüz denemediğin olaylar 🆕 rozetiyle görünür: olay seçicide 🆕 Yeni olaylar satırında, ⚡ önerilerinde biraz daha önde ve CarmenEvents'teki 🆕 Yeni eklenenler rafında. Bir olayı bir kez oynayınca rozeti kalkar.</p>
+      <h4>🎬 Yeni sahneler · ${Object.values(NEW).flat().length}</h4>
+      <p>Sahnesi olmayan olaylar için yeni sahneler; her biri o olayları kendi bitişine bağlar.</p>
+      ${Object.entries(NEW).map(([id, ids]) => { const c = cat(id), ss = ids.map(k => SC.find(s => s.id === k)).filter(Boolean); return c && ss.length ? `<h4>${c.icon} ${esc(c.name)} · ${ss.length}</h4>
+        <table class="bk-t"><tr><th>Sahne</th><th>Akış</th><th>Ödül</th></tr>${ss.map(s => `<tr><td>${s.icon} <b>${esc(s.name)}</b></td><td>${esc([s.open, ...s.steps].join(' → '))}${s.fin ? ' → 🏁 ' + esc(s.fin) : ''}</td><td>${esc(memFx(s))}</td></tr>`).join('')}</table>` : ''; }).join('')}`;
+  } });
   // 🍷 Carmen Kitabı: içki ve sarhoşluk
   BOOKS.find(b => b.id === 'carmen').chapters.push(...[{ icon: '🍷', title: 'İçki ve sarhoşluk', sub: '🍷 Drinks olayları, Sarhoşluk değeri', get body() {
     const dr = allEvents().filter(e => low0(catOfEv(e).label) === 'drinks');
@@ -35277,7 +35811,7 @@
   const EVN_RQ = [
     { k: 'st', q: 'Önce şunu söyle: bugün hangi kısmı seviyorsun? 😏', o: [['isin', '💋', 'Isınma'], ['on', '👅', 'Ön sevişme'], ['poz', '🔥', 'Pozisyonlar'], ['bit', '💦', 'Bitişler'], ['son', '🌙', 'Sonrası'], ['fant', '🦄', 'Fanteziler']] },
     { k: 'bd', q: 'Bende en çok neyi seviyorsun? Utanma, not almıyorum… belki biraz ✏️', o: [['kalça', '🍑', 'Kalça'], ['göğüs', '🍈', 'Göğüsler'], ['bacak', '🦵', 'Bacaklar'], ['oral', '👄', 'Oral'], ['vajinal', '🌸', 'Vajinal'], ['anal', '🔙', 'Anal'], ['yalama ısırma', '👅', 'Yalama, ısırma']] },
-    { k: 'ty', q: 'Peki tarzın ne? Birden fazla seçebilirsin 🤭', o: [['kıyafet', '👗', 'Kıyafetliyken'], ['sıkıştır', '🗜️', 'Sıkıştırma'], ['gür', '🌊', 'Bol bol'], ['bdsm femdom', '🔗', 'Sert, BDSM'], ['roleplay', '🎭', 'Rol yapma'], ['üçlü', '👯', 'Üçlü'], ['aldatma bull', '🐍', 'Yasak ilişki'], ['iseme', '💧', 'Islak']] },
+    { k: 'ty', q: 'Peki tarzın ne? Birden fazla seçebilirsin 🤭', o: [['kıyafet', '👗', 'Kıyafetliyken'], ['sıkıştır', '🗜️', 'Sıkıştırma'], ['gür', '🌊', 'Bol bol'], ['bdsm femdom', '🔗', 'Sert, BDSM'], ['roleplay', '🎭', 'Rol yapma'], ['üçlü', '👯', 'Üçlü'], ['aldatma bull', '🐍', 'Yasak ilişki'], ['iseme', '💧', 'Islak'], ['vuruş daralt', '🎚️', 'Teknik, sıkma'], ['uzuv sarılma', '🫂', 'Sarılma, uzuv']] },
     { k: 'pl', q: 'Son soru: nerede olsun? 📍', o: [['mutfak merdiven balkon çamaşır duş küvet', '🏠', 'Evde'], ['ofis okul plaza fakulte', '🏢', 'Ofis, okul'], ['havuz plaj', '🏖️', 'Havuz, plaj'], ['bar sinema doğa restoran çatı sokak lunapark kitap', '🌃', 'Dışarıda'], ['masaj sauna', '💆', 'Masaj, sauna'], ['kilise', '⛪', 'Kilise']] }
   ];
   const EVN_REC_HI = ['Bana biraz kendinden bahset 😏 Sevdiklerini söyle, sana özel ders programı çıkarayım.', 'Danışmanlık saatim 🤓 Birkaç soru soracağım, sonra hangi olayları seveceğini söyleyeceğim.'];
@@ -35412,11 +35946,11 @@
     if (ev.target.closest('[data-evsclab]')) { ui.scLab = { id: s.id, seq: [] }; location.hash = '#/sahne'; return; }
     if (ev.target.closest('[data-evsctry]') && h) {
       const t = cmChat(h, 'CarmenEvents', `Bugünkü pratik: 🎬 ${s.name}. ${actDemo(s, 'ask', +sysHash([s.id, 'evp']) % 2)}`, true);
-      quickPin(evFind(s.open), t); save();
+      seansGo(s.id); quickPin(evFind(s.open), t); save();
     }
   });
   // 🎬 sahne kartı (olay kategorileri gibi) → #/events/sahne-<id> ders sayfası
-  const evnScCard = s => `<a class="evn-cat" href="#/events/sahne-${esc(s.id)}"><span>${s.icon}</span><div><b>${esc(s.name)}</b><small>${s.mode === 'seq' ? '👣 sıralı' : `🔓 ${s.need || s.steps.length} / ${s.steps.length} adım`}${s.fin ? ' · 🏁' : ''}</small><small>🎬 ${esc(s.open)}</small><small>📰 ${esc((L => L.length ? stQuote(L[+sysHash([s.id, 'open', 'stn']) % L.length]) : '')(scNotePool(s, 'open')))}</small></div></a>`;
+  const evnScCard = s => `<a class="evn-cat ch-sc" href="#/events/sahne-${esc(s.id)}"><span>${s.icon}</span><div><b>${esc(s.name)}</b><small>${s.mode === 'seq' ? '👣 sıralı' : `🔓 ${s.need || s.steps.length} / ${s.steps.length} adım`}${s.fin ? ' · 🏁' : ''}</small><small>🎬 ${esc(s.open)}</small><small>📰 ${esc((L => L.length ? stQuote(L[+sysHash([s.id, 'open', 'stn']) % L.length]) : '')(scNotePool(s, 'open')))}</small></div></a>`;
   const evnScHoca = hs => evnHoca(+sysHash(['sahne', 'evn']) % Math.max(1, hs.length), hs);
   // 🎬 tek sahnenin ders sayfası: hoca, ders kartı, önceki / sonraki sahne
   function renderEventsScene(id, hs) {
@@ -35443,6 +35977,46 @@
         <li>💬 Sahne başlarken, adımlarda, bitişte ve bozulunca onun sahneye özel cümleleri gelir; 🙋 bot açıkken sahneyi kendisi de teklif eder.</li></ul></article>
       ${groups.map(({ c, ss }) => `<div class="sec-title">${c.icon} ${esc(c.name)} · ${ss.length} ders</div><div class="evn-grid">${ss.map(evnScCard).join('')}</div>`).join('')}`);
     if (h) $('#evnAsk').onclick = () => cmChat(h, 'CarmenEvents', 'Sahnelerde takıldığın yer mi var? 🎬 Hangisini oynamak istersin?', true);
+  }
+  /* 💞 seans dersleri (v1217): #/events/seanslar "Seans nedir" + bölümlere göre kartlar · #/events/seans-<tür> perde perde sıra, bitiş, ödül,
+   * 👣 adım adım tahmin (snWalk), ▶ Sohbette başlat (hoca sohbeti + seansGo + açılış ⚡'e sabit) */
+  const evnSnCard = s => `<a class="evn-cat ch-sn" href="#/events/seans-${esc(s.id.slice(3))}"><span>${s.icon}</span><div><b>${esc(s.name)}</b><small>👣 ${s.steps.length} adım · 🔓 ${s.need} yeter${s.fin ? ' · 🏁' : ''}</small><small>💞 ${esc(s.open)}</small></div></a>`;
+  // 🎭 perdeler: sıradaki ardışık olaylar aşamalarına göre (PK_STAGES) gruplanır
+  const snActs = s => [s.open, ...s.steps].map(evByT).filter(Boolean).reduce((L, e) => { const k = pkStageOf(catOfEv(e)) || '', z = L[L.length - 1]; if (z && z.k === k) z.evs.push(e); else L.push({ k, evs: [e] }); return L; }, []);
+  const evnSnHead = h => `<section class="ws-sec jb-hr">${h ? avatar(h, 72) : '<span style="font-size:3rem">👩‍🏫</span>'}<div><small>👩‍🏫 💞 Seanslar hocası</small><b>${esc(h ? h.name : 'Hoca')}</b>${h ? `<small>${esc(persOf(h).slice(0, 3).join(', '))}</small>` : ''}</div></section>`;
+  function renderEventsSeanslar(hs) {
+    const SN = seansAll(), h = evnScHoca(hs);
+    view.innerHTML = EVN_CSS + wsPage('events', 'Carmen<i>Events</i>', 'carmenevents.com/seanslar', '#/events', `${evnSnHead(h)}
+      <div class="evn-bub">${esc(evnFill('Sahne kısa bir hikâyeydi; seans bütün bir gece 💞 {n} seans var: evde, dışarıda, rollü, üçlü… Baştan sona birlikte kuruyoruz 😏', { n: SN.length }))}</div>
+      <article class="evn-ls"><h3>💞 Seans nedir</h3><ul>
+        <li>Seans sahnenin uzunudur: bir açılış olayı, ısınmadan kapanışa 8–20 adım ve çoğunda bir 🏁 bitiş. Sahne bir anı anlatır, seans bütün geceyi.</li>
+        <li>Seans Kitabı'ndaki her tür ve örnek burada oynanır: 🌹 romantik, ⚡ sert, 👅 oral gibi temel türler; 🏠 evde, 🗺️ dışarıda, 🎭 rollü, 🔗 oyun ve kontrol, 💫 üçlü ve özel seanslar.</li>
+        <li>Kendiliğinden açılmaz. Sohbette 📜 Olay → 🎬 Sahneler sekmesinde 💞 Seanslar'dan seç ya da seansın ders sayfasında ▶ ile başlat. Açılış olayı yazılınca seans başlar, ⚡ şeridinde 💞 sayacı çıkar.</li>
+        <li>Sıra serbest, adımların %70'i yeter; ama kitaptaki sıra en akıcısıdır. Ders sayfasında sıra perde perde anlatılır: ısınma, ön sevişme, pozisyonlar, kapanış.</li>
+        <li>Adımlar dolunca 🏁 bitiş açılır; bitişi erken yazarsan ödül yok. Bitişi olmayan seans son adımla tamamlanır.</li>
+        <li>💔 Mekân değişirse, başka mekânın olayını yazarsan ya da 6 olay boyunca seansa dönmezsen seans bozulur. Başka bir sahnenin açılışı seansı yarıda bırakır.</li>
+        <li>🎉 Ödül sahneden büyüktür ve türe göre değişir: evde 🫂 Samimiyet, dışarıda 💗 Uyarılma, rollü ve kontrol seanslarında 🤝 Güven öne çıkar.</li></ul><div class="evn-act"><a class="btn ghost sm" href="#/kitap/seans">💞 Seans Kitabı</a></div></article>
+      ${SN_GROUPS.map(([g, ic, n]) => { const xs = SN.filter(s => s.g === g); return xs.length ? `<div class="sec-title">${ic} ${esc(n)} <small>· ${xs.length} seans</small></div><div class="evn-grid">${xs.map(evnSnCard).join('')}</div>` : ''; }).join('')}`);
+  }
+  function renderEventsSeans(id, hs) {
+    const SN = seansAll(), i = SN.findIndex(s => s.id === 'sn-' + id);
+    if (i < 0) return renderEventsSeanslar(hs);
+    const s = SN[i], t = s.t, h = evnScHoca(hs), prev = SN[(i - 1 + SN.length) % SN.length], next = SN[(i + 1) % SN.length];
+    const chip = e => `<button type="button" class="lab-chip" data-evw="${esc(e.id)}">${esc(e.emojis || catOfEv(e).icon || '')} ${esc(e.title)}</button>`;
+    const fe = s.fin && evByT(s.fin), gn = SN_GROUPS.find(g => g[0] === s.g) || SN_GROUPS[0];
+    view.innerHTML = EVN_CSS + wsPage('events', 'Carmen<i>Events</i>', 'carmenevents.com/seans/' + id, '#/events/seanslar', `${evnSnHead(h)}
+      <article class="evn-ls"><h3>${s.icon} ${esc(s.name)}</h3><p><small><span>${gn[1]} ${esc(gn[2])}</span> <span>· 👣 ${s.steps.length} adım · 🔓 ${s.need} yeter</span>${s.fin ? ' <span>· 🏁 bitişli</span>' : ''}</small></p>
+        <p>${esc(s.desc)}</p>
+        <b>🎭 Perde perde</b><ol>${snActs(s).map(a => { const st = PK_STAGES.find(p => p[0] === a.k); return `<li><b>${st ? `${st[1]} ${esc(st[2])}` : '✨ Ara'}</b><div class="lab-chips">${a.evs.map(chip).join('')}</div></li>`; }).join('')}</ol>
+        ${fe ? `<b>🏁 Bitiş</b><div class="lab-chips">${chip(fe)}</div>${(t.fin || []).length > 1 ? `<p><small>💦 Kitapta uyan diğer bitişler: ${t.fin.slice(1).map(esc).join(', ')}</small></p>` : ''}` : '<p><small>🏁 Bitişi yok: son adımla tamamlanır; boşalma pozisyona uyan bitişle kendiliğinden gelir.</small></p>'}
+        <b>🎉 Ödül</b><ul><li>${esc(memFx(s))} · 💔 bozulursa ${esc(memFx({ fx: s.fail }))}</li></ul>
+        ${t.tip ? `<p>💡 ${esc(t.tip)}</p>` : ''}
+        <b>👣 Adım adım</b> <small>(🥴 Zevk ve 💗 Uyarılma tahmini)</small>${snWalk(t.id)}
+        <div class="evn-act">${h ? '<button type="button" class="btn sm" data-evsntry>▶ Sohbette başlat</button>' : ''}<a class="btn ghost sm" href="#/kitap/seans">💞 Seans Kitabı</a></div></article>
+      <div class="evn-nav"><a class="btn ghost sm" href="#/events/seans-${esc(prev.id.slice(3))}">← ${prev.icon} ${esc(prev.name)}</a><a class="btn ghost sm" href="#/events/seans-${esc(next.id.slice(3))}">${next.icon} ${esc(next.name)} →</a></div>`);
+    view.querySelectorAll('[data-evw]').forEach(b => b.onclick = () => evWin(allEvents().find(x => x.id === b.dataset.evw)));
+    const tr = view.querySelector('[data-evsntry]');
+    if (tr) tr.onclick = () => { const th0 = cmChat(h, 'CarmenEvents', `Bu gece 💞 ${s.name}: ${s.open} ile başlıyoruz, sonra adım adım 😏`, true); seansGo(s.id); quickPin(evByT(s.open), th0); save(); };
   }
   /* 📖 bölüm dersleri: #/events/bolumler kademelere göre kartlar, #/events/bolum-<id> ders sayfası (kapı, sahne zinciri, ödül, cümleler, karakterlerin durumu) */
   const epCap = l => l.charAt(0).toLocaleUpperCase('tr') + l.slice(1);
@@ -35518,6 +36092,8 @@
     const cats = evnCats(), hs = evnHocas();
     if (id === 'tarih') return renderEventsHistory();
     if (id === 'sahneler') return renderEventsScenes(hs);
+    if (id === 'seanslar') return renderEventsSeanslar(hs);
+    if (id && id.startsWith('seans-')) return renderEventsSeans(id.slice(6), hs);
     if (id === 'bolumler') return renderEventsEpisodes(hs);
     if (id === 'hikaye') return renderEventsStory();
     if (id && id.startsWith('hk-')) return renderEventsStoryScene(id.slice(3));
@@ -35533,6 +36109,7 @@
       <div class="evn-hero"><h1>Olaylar okulu 🎓</h1><p>${n} olay · ${cats.length} kategori · ${hs.length} hoca. Bir kategori seç, hocası her olayı tek tek anlatsın: ne olduğu, nasıl tetiklendiği, sonunda ne olduğu.</p>
         <input id="evnQ" class="evn-q" type="search" placeholder="🔍 Olay ya da kategori ara… (ör. Doggy, School)" autocomplete="off" value="${esc(ui.evnQ || '')}"></div>
       <div class="evn-grid evn-top" id="evnTop"></div>
+      ${(() => { const nw = cats.flatMap(({ c, evs }) => evs.filter(isNewEv).map(e => ({ e, c }))); return nw.length ? `<section class="ws-sec" id="evnNew"><h3>🆕 Yeni eklenenler <small>· ${nw.length} olay · henüz denemediklerin</small></h3><div class="evn-grid">${nw.slice(0, 24).map(({ e, c }) => `<a class="evn-cat" href="#/events/${encodeURIComponent(c.id)}" data-evno="${esc(e.id)}"><span>${esc(e.emojis || c.icon || '📜')}</span><div><b>${esc(e.title)}</b><small>${esc(c.icon || '')} ${esc(c.label || '')}${esc(subTxt(e))}</small></div></a>`).join('')}</div></section>` : ''; })()}
       <section class="ws-sec"><div class="evn-vh"><h3>🪧 Ders ilanları</h3><button type="button" class="btn ghost sm" id="evnVtR">🎲 Karıştır</button></div><div class="evn-vt" id="evnVt"></div></section>
       ${hs.length ? `<section class="ws-sec"><h3>👩‍🏫 Hocalarımız</h3><div class="evn-h">${hs.map(h => { const k = cats.findIndex((x, i) => evnHoca(i, hs) === h); return `<a href="#/events/${encodeURIComponent(cats[k] ? cats[k].c.id : '')}">${avatar(h, 60)}<b>${esc((h.name || '').split(' ')[0])}</b><br><small>📚 ${cnt(h)} ders</small></a>`; }).join('')}</div></section>` : ''}
       <div id="evnList"></div>`);
@@ -35551,11 +36128,13 @@
     };
     q.oninput = draw;
     box.onclick = ev => { const a = ev.target.closest('[data-evno]'); if (a) ui.evnOpen = a.dataset.evno; };
+    if ($('#evnNew')) $('#evnNew').onclick = box.onclick;
     draw();
     const top = $('#evnTop'), drawTop = () => {
       top.innerHTML = `<button type="button" class="evn-cat evn-rec-card" data-evnrec><span>💡</span><div><b>Öneriler</b><small>💬 Sevdiklerini söyle, hoca olay önersin</small></div></button>
         <button type="button" class="evn-cat evn-rec-card" data-evnfav><span>⭐</span><div><b>Favorilerim</b><small>📚 ${(MO().pins || []).length} olay · sohbette en üstte</small></div></button>
-        <a class="evn-cat evn-rec-card" href="#/events/sahneler"><span>🎬</span><div><b>Sahneler</b><small>📚 ${scenesOk().length} sahne · açılış, adımlar, bitiş</small></div></a>
+        <a class="evn-cat evn-rec-card ch-sc" href="#/events/sahneler"><span>🎬</span><div><b>Sahneler</b><small>📚 ${scenesOk().length} sahne · açılış, adımlar, bitiş</small></div></a>
+        <a class="evn-cat evn-rec-card ch-sn" href="#/events/seanslar"><span>💞</span><div><b>Seanslar</b><small>📚 ${seansAll().length} seans · sahnenin uzunu</small><small>🏠 evde, 🗺️ dışarıda, 🎭 rollü, 👯 üçlü…</small></div></a>
         <a class="evn-cat evn-rec-card" href="#/events/bolumler"><span>📖</span><div><b>Bölümler</b><small>📚 ${epAll().length} bölüm · sahnelerin birleşimi</small><small>💞 İlişkin büyüdükçe o önerir</small></div></a>
         <a class="evn-cat evn-rec-card" href="#/events/hikaye"><span>📜</span><div><b>Hikâye</b><small>📚 ${HK().QUESTS.length} görev · ${Object.keys(HK().SCENES).length} sahne</small><small>🏙️ Şehirde başlar, 💬 sohbette akar</small></div></a>
         <a class="evn-cat evn-rec-card" href="#/events/tarih"><span>🏺</span><div><b>Tarih dersi</b><small>📜 kaynakta var · ✨ esinli</small><small>Kama Sutra, Edo, Tao, Roma, Kokulu Bahçe, Mısır</small></div></a>`;
@@ -36351,13 +36930,31 @@
     add('🎬', 'Sahne: bulunamayan adım', SC.flatMap(s => [s.open, ...(s.steps || []), s.fin].flatMap(x => [].concat(x || [])).filter(t => typeof t === 'string' && !has(t)).map(t => `${s.id}: ${t}`)), 'Bu adım sohbette hiç gelmez; sahne tamamlanamaz.');
     add('🆔', 'Tekrarlanan sahne kimliği', dups(SC.map(s => s.id)), '');
     add('🗃️', 'Kategorisiz sahne', Stories.sceneCat ? SC.filter(s => Stories.sceneCat(s.id).id === 'diger').map(s => s.id) : [], 'CarmenEvents\'te ✨ Diğer altında kalır.');
+    { const m = new Map(); SC.forEach(s => { const k = low(s.open); m.set(k, [...(m.get(k) || []), s.id]); });
+      add('👯', 'Aynı açılışlı sahneler', [...m].filter(([, v]) => v.length > 1).map(([k, v]) => `${k}: ${v.join(' / ')}`), 'Bilgi: açılış yazılınca karakterin sitesinin sahnesi, sonra onunla en az tamamlanmış olan açılır; seçici, ⚡ çip ya da arama ile seçilen sahne kesin o açılır.'); out[out.length - 1].info = 1; }
+    add('💞', 'Seans: bulunamayan olay', SEANS_ALL.flatMap(t => [...t.seq, ...(t.fin || [])].filter(x => !has(x)).map(x => `${t.name}: ${x}`)), 'Seans Kitabı sırasında olmayan olay: seansta atlanır, kitapta adı görünür.');
     add('📖', 'Bölüm: olmayan sahne', (Stories.EPISODES || []).flatMap(e => (e.scenes || []).filter(id => !scIds.has(id)).map(id => `${e.id}: ${id}`)), 'Bölüm o sahnede takılır.');
-    { const used = new Set(); SC.forEach(s => [s.open, ...(s.steps || []), s.fin].flatMap(x => [].concat(x || [])).forEach(t => used.add(low(t))));
+    const used = new Set();
+    { SC.forEach(s => [s.open, ...(s.steps || []), s.fin].flatMap(x => [].concat(x || [])).forEach(t => used.add(low(t))));
       add('💤', 'Hiçbir sahnede olmayan olay', evs.filter(e => !used.has(low(e.title)) && !(e.tags || []).includes('roleplay')).map(e => e.title), 'Hata değil: bu olaylar sadece elle, komutla ya da önerilerle gelir. Yeni sahnelere aday (✏️ Sahne yap).'); out[out.length - 1].info = 1; }
     add('🤖', 'Tekrarlanan bot kuralı kimliği', dups(((Stories.BOT_RULES || {}).rules || []).map(r => r.id)), 'Editör son kaydı tutar; biri kaybolur.');
     const I = Stories.I18n, miss = s => { if (!s || !I || !I.translate) return false; const r = I.translate(s); return !r || r === s; };
     add('🇬🇧', 'İngilizcesi olmayan olay açıklaması', I && I.translate ? evs.filter(e => e.desc && miss(e.desc)).map(e => e.title) : [], 'EN modunda Türkçe görünür (js/data/i18n-en-events.js).');
     add('🇬🇧', 'İngilizcesi olmayan olay anlatımı', I && I.translate ? evs.filter(e => e.story && miss(e.story)).map(e => e.title) : [], 'js/data/i18n-en-stories.js (tools/apply-stories.ps1).');
+    // 🧩 olay entegrasyonu: 🗣️ me-lines, 🤖 kendi bot kuralı (r_ev_<id> ya da adı başlıkla biten r_ev_/r_rp_ kuralı), 🎬 sahne.
+    // 🆕 yeni dalga (son EVN_DAYS günde gelen + EV_NEW_CATS / EV_NEW_IDS) eksikleri uyarı; bütün katalog bilgi
+    const ME = Stories.ME_EV_LINES || {}, RR = ((Stories.BOT_RULES || {}).rules || []).filter(r => /^r_(ev|rp)_/.test(r.id || ''));
+    const rIds = new Set(RR.map(r => r.id.replace(/_/g, ''))), rNames = RR.map(r => low(r.name).trim());
+    const hasMe = e => !!(ME[e.title] || []).length, rp = e => (e.tags || []).includes('roleplay');
+    const ownRule = e => rIds.has('rev' + String(e.id || '').slice(2)) || rNames.some(n => n === low(e.title) || n.endsWith(' ' + low(e.title)));
+    evNewSet();
+    const st = evnSt(), lim = Date.now() - EVN_DAYS * 864e5;
+    const wave = evs.filter(e => e.cat !== 'mine' && ((st && st.at[e.id] > lim) || EV_NEW_CATS.test(e.cat || '') || EV_NEW_IDS.test(e.id || '')));
+    const gaps = e => [!e.story && '📖 story', !hasMe(e) && '🗣️ me-lines', !ownRule(e) && '🤖 bot kuralı', !rp(e) && !used.has(low(e.title)) && '🎬 sahne', e.desc && miss(e.desc) && '🇬🇧 EN'].filter(Boolean);
+    add('🧩', `Yeni dalga entegrasyonu · ${wave.length} olay`, wave.map(e => [e, gaps(e)]).filter(x => x[1].length).map(([e, g]) => `${e.title}: ${g.join(', ')}`),
+      'Yeni dalga bu listede eksiksiz olmadan kapanmaz. Dalga: son ' + EVN_DAYS + ' günde gelen olaylar + app.js EV_NEW_CATS / EV_NEW_IDS (her dalgada güncelle).');
+    add('🗣️', 'me-lines olmayan olay', evs.filter(e => e.cat !== 'mine' && !hasMe(e)).map(e => e.title), 'Bilgi: 🗣️ Ben de yazayım açıkken bu olaylarda senin cümlen gelmez (js/data/me-lines.js).'); out[out.length - 1].info = 1;
+    add('🤖', 'Kendi bot kuralı olmayan olay', evs.filter(e => e.cat !== 'mine' && !rp(e) && !ownRule(e)).map(e => e.title), 'Bilgi: bot bu olaya genel kurallarla cevap verir (r_ev_<kısa id> ya da adı olay başlığıyla biten kural yok).'); out[out.length - 1].info = 1;
     return { out, n: evs.length, sc: SC.length };
   }
   function renderCheckLab() {

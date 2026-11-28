@@ -4046,3 +4046,23 @@ button.cr-and:active { transform: scale(.9); }
 .cc-home .cc-ic { width: 40px; height: 32px; font-size: 20px; border-radius: 12px 12px 4px 4px; }
 .cc-home small { font-size: 10px; }
 @media (max-width: 380px) { .cc-ic { width: 44px; height: 38px; font-size: 22px; } .cc-b small { font-size: 10px; } .cc-home .cc-ic { width: 36px; height: 30px; font-size: 18px; } }
+
+/* 📜 olay · 🎬 sahne · 💞 seans çerçeveden ayırt edilir (v1219): olay düz hap, sahne kesikli köşeli, seans çift çizgili kalın.
+ * Sadece orta tonlar / değişkenler: dark.css yeniden üretilmeden iki temada da çalışır */
+.mo-chip.ch-sc, .mo-chip.ch-sc.has-color { border: 2px dashed #2a9d8f; border-radius: 10px; }
+.mo-chip.ch-sn, .mo-chip.ch-sn.has-color { border: 3px double #d6336c; border-radius: 6px; font-weight: 700; padding: 5px 11px; }
+/* dark.css'teki html[data-theme] .mo-chip.has-color çerçeve rengini ezmesin: tür rengi her temada aynı */
+.mo-chip.ch-sc.has-color:not(.on) { border-color: #2a9d8f !important; }
+.mo-chip.ch-sn.has-color:not(.on) { border-color: #d6336c !important; }
+.mo-chip.ch-sc.on { border-style: solid; background: color-mix(in srgb, #2a9d8f 20%, var(--chip)); }
+.mo-chip.ch-sn.on { border-color: var(--purple); background: color-mix(in srgb, #d6336c 18%, var(--chip)); }
+.hs-it.ch-sc, .hs-it.ch-sc.has-color { border-left: 3px dashed #2a9d8f; }
+.hs-it.ch-sn, .hs-it.ch-sn.has-color { border-left: 5px double #d6336c; }
+.eq-at.ch-sc { border: 2px dashed #2a9d8f; border-radius: 10px; padding: 2px 8px; }
+.eq-at.ch-sn { border: 3px double #d6336c; border-radius: 6px; padding: 2px 8px; }
+.evn-cat.ch-sc { border: 2px dashed #2a9d8f; border-radius: 12px; }
+.evn-cat.ch-sn { border: 4px double #d6336c; border-radius: 8px; }
+.ch-legend { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 6px 0 2px; font-size: 12px; color: var(--muted); }
+.ch-legend span { padding: 2px 9px; border: 2px solid transparent; border-radius: 999px; background: var(--chip); color: inherit; }
+.ch-legend span.ch-sc { border: 2px dashed #2a9d8f; border-radius: 8px; }
+.ch-legend span.ch-sn { border: 3px double #d6336c; border-radius: 5px; }
